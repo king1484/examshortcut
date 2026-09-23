@@ -51,6 +51,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/ssc-cgl/score-calculator/">Score calculator</Link>
               <Link href="/revision/">My revision</Link>
               <Link href="/about/">About &amp; disclaimer</Link>
+              <Link href="/privacy/">Privacy</Link>
+              <Link href="/contact/">Contact</Link>
             </div>
             <p>
               ExamShortcut is an independent learning platform. It is not affiliated with, endorsed by, or connected to the Staff Selection
