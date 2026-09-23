@@ -7,6 +7,11 @@ import { CountdownChip } from './CountdownChip';
 
 type TopicDoc = { t: string; title: string; url: string; section: string };
 type TopicScore = { best: number; last: number; total: number; at: number };
+type ToolState = {
+  planDone: number | null; planTotal: number | null;
+  dest: { kd: number; errPct: number; pass: boolean } | null;
+  prefSaved: boolean;
+};
 
 const DAY = 86400000;
 const istDay = (ts: number) => Math.floor((ts + 5.5 * 3600000) / DAY);
@@ -63,6 +68,7 @@ function accuracyColor(pct: number | null): { bg: string; fg: string } {
 
 export function Dashboard() {
   const [catalog, setCatalog] = useState<TopicDoc[] | null>(null);
+  const [tools, setTools] = useState<ToolState>({ planDone: null, planTotal: null, dest: null, prefSaved: false });
   const studied = useStore(store.studied, {});
   const topicScores = useStore(store.topicScores, {} as Record<string, TopicScore>);
   const attempts = useStore(store.attempts, {} as Record<string, MockAttempt[]>);
@@ -74,6 +80,17 @@ export function Dashboard() {
       .then((r) => r.json())
       .then((d: TopicDoc[]) => setCatalog(d.filter((x) => x.t === 'topic')))
       .catch(() => setCatalog([]));
+  }, []);
+
+  useEffect(() => {
+    try {
+      const plan = JSON.parse(localStorage.getItem('es-study-plan') ?? 'null');
+      if (plan?.done) setTools((t) => ({ ...t, planDone: Object.keys(plan.done).length, planTotal: plan.total ?? null }));
+      const dest = JSON.parse(localStorage.getItem('es-dest-history') ?? '[]');
+      if (Array.isArray(dest) && dest[0]) setTools((t) => ({ ...t, dest: { kd: dest[0].kd, errPct: dest[0].errPct, pass: dest[0].pass } }));
+      const pref = JSON.parse(localStorage.getItem('es-post-planner') ?? 'null');
+      if (pref?.dob) setTools((t) => ({ ...t, prefSaved: true }));
+    } catch {}
   }, []);
 
   const model = useMemo(() => {
@@ -198,6 +215,28 @@ export function Dashboard() {
           </div>
         </section>
       )}
+
+      <section className="mt-6">
+        <h2 className="font-extrabold text-lg">Your tools</h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-3">
+          <Link href="/ssc-cgl/study-plan/" className="card p-4">
+            <div className="font-bold text-sm">🗓️ Study plan</div>
+            <div className="text-xs muted mt-1">{tools.planDone !== null ? `${tools.planDone} step${tools.planDone === 1 ? '' : 's'} ticked off${tools.planTotal ? ` · ${tools.planTotal} planned` : ''}` : 'Build a day-by-day timetable to exam day'}</div>
+          </Link>
+          <Link href="/ssc-cgl/typing-test/" className="card p-4">
+            <div className="font-bold text-sm">⌨️ DEST typing test</div>
+            <div className="text-xs muted mt-1">{tools.dest ? `Last: ${tools.dest.kd} KD · ${tools.dest.errPct}% errors ${tools.dest.pass ? '✓' : '✗'}` : '15-min simulator with SSC error marking'}</div>
+          </Link>
+          <Link href="/ssc-cgl/posts/" className="card p-4">
+            <div className="font-bold text-sm">🏛️ Posts &amp; eligibility</div>
+            <div className="text-xs muted mt-1">{tools.prefSaved ? 'Preference order saved on this device ✓' : 'Age checker + build your post preference'}</div>
+          </Link>
+          <Link href="/ssc-cgl/calendar/" className="card p-4">
+            <div className="font-bold text-sm">⏳ Exam calendar</div>
+            <div className="text-xs muted mt-1">Every 2026 date, add to your phone calendar</div>
+          </Link>
+        </div>
+      </section>
 
       <div className="grid lg:grid-cols-2 gap-4 mt-6">
         {model.trend.length >= 2 && (

@@ -115,12 +115,12 @@ export function StudyPlanner({ topics, mocks, t1Default, t2Default }: { topics: 
     setToday(t);
     setCfg((c) => (c.start ? c : { ...c, start: isoDay(t) }));
   }, [t1Default]);
-  useEffect(() => {
-    if (!today) return;
-    try { localStorage.setItem(KEY, JSON.stringify({ cfg, done })); } catch {}
-  }, [cfg, done, today]);
-
   const result = useMemo(() => (today ? buildPlan(topics, mocks, cfg, today) : null), [topics, mocks, cfg, today]);
+
+  useEffect(() => {
+    if (!today || !result) return;
+    try { localStorage.setItem(KEY, JSON.stringify({ cfg, done, total: result.plan.flatMap((p) => p.items).length })); } catch {}
+  }, [cfg, done, today, result]);
   const set = <K extends keyof Config>(k: K, v: Config[K]) => setCfg((c) => ({ ...c, [k]: v }));
   const input = { borderColor: 'var(--line)', background: 'var(--surface)', color: 'var(--ink)' };
   const sections = cfg.target === 'tier1' ? T1_SECTIONS : [...T1_SECTIONS, 'computer'];
