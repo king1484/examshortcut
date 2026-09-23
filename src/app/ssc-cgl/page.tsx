@@ -32,9 +32,18 @@ export default function ExamPage() {
   }
 
   const lc = exam.latestCycle ?? {};
+  const faqLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: (exam.faqs ?? []).map((f: any) => ({
+      '@type': 'Question', name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: String(f.a).replace(/[#*`]/g, '') },
+    })),
+  };
 
   return (
     <article className="max-w-4xl mx-auto">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
       <p className="text-xs font-bold uppercase tracking-wide" style={{ color: 'var(--brand)' }}>Free complete guide</p>
       <h1 className="text-3xl sm:text-4xl font-extrabold mt-1">{exam.fullName}</h1>
       <Md className="mt-3 text-[15px] muted">{exam.overview}</Md>

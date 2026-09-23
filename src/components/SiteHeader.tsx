@@ -34,6 +34,7 @@ export function SiteHeader() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
         <Link href="/" aria-label="ExamShortcut home"><Logo /></Link>
         <div className="flex items-center gap-2">
+          <Link href="/search/" aria-label="Search" className="btn" style={{ padding: '.4rem .7rem' }}>🔍<span className="hidden md:inline ml-1">Search</span></Link>
           <Link href="/ssc-cgl/mocks/" className="btn btn-brand hidden sm:inline-flex" style={{ padding: '.4rem .8rem' }}>Take a free mock</Link>
           <ThemeToggle />
         </div>

@@ -5,7 +5,7 @@ import path from 'node:path';
 
 const OUT = path.join(process.cwd(), 'out');
 const BASE = 'https://examshortcut.in';
-const urls = ['/', '/about/', '/revision/', '/ssc-cgl/', '/ssc-cgl/syllabus/', '/ssc-cgl/mocks/', '/ssc-cgl/formula-sheet/', '/ssc-cgl/cutoffs/', '/ssc-cgl/score-calculator/', '/ssc-cgl/ga/current-affairs/'];
+const urls = ['/', '/about/', '/revision/', '/search/', '/ssc-cgl/', '/ssc-cgl/syllabus/', '/ssc-cgl/mocks/', '/ssc-cgl/formula-sheet/', '/ssc-cgl/cutoffs/', '/ssc-cgl/score-calculator/', '/ssc-cgl/ga/current-affairs/'];
 
 function walk(dir) {
   for (const f of fs.readdirSync(dir)) {
