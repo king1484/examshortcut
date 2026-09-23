@@ -1,0 +1,646 @@
+{
+ "id": "statistics",
+ "sectionId": "quant",
+ "title": "Statistics",
+ "order": 18,
+ "importance": "high",
+ "avgQuestions": {
+  "tier1": 3,
+  "tier2": 4
+ },
+ "summary": "Mean, median, mode and simple dispersion: raw-data medians, the mode = 3·median − 2·mean relation, grouped-data formulas, range and SD with shift-scale effects. Every question is formula-driven with small numbers — statistics is among the most scoring blocks in the Quant paper once the six formulas above are memorised.",
+ "subtopics": [
+  {
+   "id": "stat-mean",
+   "title": "Mean, weighted mean and combined mean",
+   "concept": "$$\\text{Mean}=\\frac{\\sum x_i}{n}$$\n\nThree moves cover almost all CGL average questions:\n\n- **Missing value**: asked value $=$ (target mean $\\times$ new $n$) $-$ (old sum).\n- **Combined mean** of two groups: $\\bar x=\\dfrac{n_1\\bar x_1+n_2\\bar x_2}{n_1+n_2}$ — a weighted average by group size.\n- **Member change**: if replacing/adding one member shifts the average by $d$, the member's value is\n  old mean $\\pm$ (change $\\times$ new count).",
+   "formulas": [
+    {
+     "name": "Mean",
+     "tex": "\\bar{x}=\\frac{x_1+x_2+\\cdots+x_n}{n}=\\frac{\\sum x_i}{n}"
+    },
+    {
+     "name": "Combined mean",
+     "tex": "\\bar{x}=\\frac{n_1\\bar{x}_1+n_2\\bar{x}_2}{n_1+n_2}"
+    },
+    {
+     "name": "Weighted mean",
+     "tex": "\\bar{x}=\\frac{\\sum w_i x_i}{\\sum w_i}"
+    },
+    {
+     "name": "Member replacement",
+     "tex": "\\text{value brought in}=\\text{old mean}+(\\text{avg shift})\\times n_{\\text{new}}"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Think in totals, not averages",
+     "body": "Every average question is one subtraction away if you track $\\text{sum}=\\text{mean}\\times n$. Convert both\nsides to sums before combining.",
+     "example": {
+      "q": "The average of 5 numbers is 27. If four of them are 23, 25, 28 and 26, find the fifth.",
+      "solution": "Total $=135$, present $=102$, fifth $=33$."
+     }
+    },
+    {
+     "title": "Average of equal-sized groups is the plain middle",
+     "body": "For two groups of **equal** size the combined mean is just $\\frac{\\bar x_1+\\bar x_2}{2}$; weighting only\nmatters when sizes differ.",
+     "example": {
+      "q": "Two classes of 40 students each average 62% and 68%. Find the combined average.",
+      "solution": "Equal sizes: $\\frac{62+68}{2}=65\\%$."
+     }
+    }
+   ],
+   "mistakes": [
+    "Forgetting to update $n$ when a member joins or leaves (dividing by the old count).",
+    "Plain-averaging group means with different group sizes.",
+    "Median confused with mean when 'average of positions' is asked."
+   ]
+  },
+  {
+   "id": "stat-median-mode",
+   "title": "Median and mode of raw data",
+   "concept": "**Median**: sort first. For $n$ values,\n- $n$ odd: the $\\left(\\frac{n+1}{2}\\right)$-th value.\n- $n$ even: mean of the $\\frac{n}{2}$-th and $\\left(\\frac{n}{2}+1\\right)$-th values.\n\n**Mode**: the most frequent value (a list can have several or none).\n\n**Empirical relation** (approximate, but treated as exact in CGL):\n$$\\text{mode}=3\\,\\text{median}-2\\,\\text{mean}\\quad\\Leftrightarrow\\quad \\text{median}=\\frac{\\text{mode}+2\\,\\text{mean}}{3}$$",
+   "formulas": [
+    {
+     "name": "Median (odd)",
+     "tex": "\\text{median}=\\left(\\frac{n+1}{2}\\right)\\text{th value}"
+    },
+    {
+     "name": "Median (even)",
+     "tex": "\\text{median}=\\frac{(\\frac{n}{2})\\text{th}+(\\frac{n}{2}+1)\\text{th}}{2}"
+    },
+    {
+     "name": "Mode",
+     "tex": "\\text{mode}=\\text{most frequent value}"
+    },
+    {
+     "name": "Empirical relation",
+     "tex": "\\text{mode}=3\\,\\text{median}-2\\,\\text{mean}"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Sort, then count to the middle",
+     "body": "Never find a median of unsorted data. For small sets, sort and walk in from both ends — the meeting point\nis the answer.",
+     "example": {
+      "q": "Find the median of 8, 3, 11, 6, 14, 5.",
+      "solution": "Sorted: 3, 5, 6, 8, 11, 14. Even count → $\\frac{6+8}{2}=7$."
+     }
+    },
+    {
+     "title": "The 3M relation runs both ways",
+     "body": "Given any two of mean/median/mode, the third is one substitution away — keep the form\n$\\text{mode}=3m-2\\bar x$ in mind.",
+     "example": {
+      "q": "If median = 32 and mean = 30, find the mode.",
+      "solution": "$3\\times32-2\\times30=36$."
+     }
+    }
+   ],
+   "mistakes": [
+    "Taking the middle value without sorting the data.",
+    "Averaging the two middle values for odd $n$ (that is only for even $n$).",
+    "Applying the empirical relation to small datasets where it need not hold — in CGL, just use the formula."
+   ]
+  },
+  {
+   "id": "stat-grouped",
+   "title": "Median and mode of grouped data",
+   "concept": "For class-interval data:\n\n**Median** (continuous classes, width $h$): locate the median class where cumulative frequency first reaches\n$n/2$, then\n$$\\text{median}=L+\\frac{\\frac{n}{2}-cf}{f}\\,h$$\n($L$ = lower limit of median class, $cf$ = cumulative frequency before it, $f$ = its frequency).\n\n**Mode**: the modal class has the highest frequency $f_1$ (neighbours $f_0$ below, $f_2$ above):\n$$\\text{mode}=L+\\frac{f_1-f_0}{2f_1-f_0-f_2}\\,h$$",
+   "formulas": [
+    {
+     "name": "Grouped median",
+     "tex": "\\text{median}=L+\\frac{\\frac{n}{2}-cf}{f}\\,h"
+    },
+    {
+     "name": "Grouped mode",
+     "tex": "\\text{mode}=L+\\frac{f_1-f_0}{2f_1-f_0-f_2}\\,h"
+    },
+    {
+     "name": "Cumulative frequency",
+     "tex": "cf_i=f_1+f_2+\\cdots+f_i"
+    },
+    {
+     "name": "Grouped mean (midpoints)",
+     "tex": "\\bar{x}=\\frac{\\sum f_i m_i}{\\sum f_i},\\quad m_i=\\frac{L_i+U_i}{2}"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Find the median class by cf, not by eye",
+     "body": "Build the cf column, stop at the first cf $\\ge n/2$. That row's lower limit is $L$. Everything else is\nsubstitution.",
+     "example": {
+      "q": "Classes 0-10, 10-20, 20-30, 30-40, 40-50 have frequencies 4, 6, 10, 8, 2. Find the median.",
+      "solution": "$n=30$, $n/2=15$; cf reaches 20 at 20-30. $L=20$, $cf=10$, $f=10$, $h=10$: median $=20+\\frac{5}{10}\\times10=25$."
+     }
+    },
+    {
+     "title": "Modal class first, formula second",
+     "body": "The modal class is just the tallest bar. If it sits at an edge, the missing neighbour counts 0 in the\nformula.",
+     "example": {
+      "q": "Classes 10-20, 20-30, 30-40, 40-50, 50-60 have frequencies 5, 8, 12, 6, 3. Find the mode.",
+      "solution": "Modal class 30-40: $30+\\frac{12-8}{24-8-6}\\times10=30+\\frac{4}{10}\\times10=34$."
+     }
+    }
+   ],
+   "mistakes": [
+    "Using $n/2$ instead of $(n+1)/2$ in the grouped median — grouped data always uses $n/2$.",
+    "Taking $cf$ as the cumulative frequency including the median class (it must exclude it).",
+    "Reading class limits as inclusive when the data is exclusive (10-20 vs 10-19.5)."
+   ]
+  },
+  {
+   "id": "stat-dispersion",
+   "title": "Range, variance and standard deviation",
+   "concept": "- **Range** $=$ maximum $-$ minimum.\n- **Variance**: $\\sigma^2=\\frac{1}{n}\\sum(x_i-\\bar x)^2$. **Standard deviation** $\\sigma=\\sqrt{\\text{variance}}$.\n\n**Transformation rules** (the CGL favourite): if every value $x$ becomes $a x+b$,\n$$\\text{new mean}=a\\bar{x}+b,\\qquad \\text{new SD}=|a|\\,\\sigma\\ (b\\ \\text{does not touch SD})$$\nAdding/subtracting a constant shifts the mean but leaves SD unchanged.\n\nUseful closed forms for the first $n$ naturals: mean $=\\frac{n+1}{2}$, SD $=\\sqrt{\\frac{n^2-1}{12}}$.",
+   "formulas": [
+    {
+     "name": "Range",
+     "tex": "\\text{range}=x_{\\max}-x_{\\min}"
+    },
+    {
+     "name": "Variance and SD",
+     "tex": "\\sigma^2=\\frac{1}{n}\\sum(x_i-\\bar{x})^2,\\quad \\sigma=\\sqrt{\\sigma^2}"
+    },
+    {
+     "name": "Shift-scale rule",
+     "tex": "\\text{SD}(a x+b)=|a|\\,\\text{SD}(x)"
+    },
+    {
+     "name": "SD of 1 to n",
+     "tex": "\\sigma=\\sqrt{\\frac{n^2-1}{12}}"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Shifts never change spread",
+     "body": "A question saying \"5 is added to every number, what happens to SD?\" answers itself: nothing. Only the\nmultiplier scales SD.",
+     "example": {
+      "q": "The SD of a set is 7. Each value is multiplied by 3 and then 5 is added. Find the new SD.",
+      "solution": "Scale by $a=3$, shift ignores: new SD $=21$."
+     }
+    },
+    {
+     "title": "Small set? Deviations from the mean",
+     "body": "For 5-10 numbers, subtract the mean, square, average, take the root — keep squares exact with fractions.",
+     "example": {
+      "q": "Find the SD of 2, 4, 6, 8, 10.",
+      "solution": "Mean 6; squared gaps $16,4,0,4,16$; variance $=\\frac{40}{5}=8$; SD $=2\\sqrt2$."
+     }
+    }
+   ],
+   "mistakes": [
+    "Adding the shift $b$ into the new SD.",
+    "Reporting variance when SD is asked (or the reverse) — check the root.",
+    "Range computed as difference of the two extreme means instead of the data extremes."
+   ]
+  },
+  {
+   "id": "stat-series-sums",
+   "title": "Averages of special series",
+   "concept": "Closed-form sums give instant averages for standard series (first $n$ of each):\n\n| series | sum | mean |\n|---|---|---|\n| naturals $1..n$ | $\\frac{n(n+1)}{2}$ | $\\frac{n+1}{2}$ |\n| squares | $\\frac{n(n+1)(2n+1)}{6}$ | $\\frac{(n+1)(2n+1)}{6}$ |\n| cubes | $\\left[\\frac{n(n+1)}{2}\\right]^2$ | $\\frac{n(n+1)^2}{4}$ |\n| AP (first $a$, last $l$) | $\\frac{n(a+l)}{2}$ | $\\frac{a+l}{2}$ |\n\nFor consecutive equally-spaced numbers (AP), the **mean is the middle term** — with an even count, halfway\nbetween the two middles.",
+   "formulas": [
+    {
+     "name": "First n naturals",
+     "tex": "\\sum_{1}^{n}k=\\frac{n(n+1)}{2},\\quad \\text{mean}=\\frac{n+1}{2}"
+    },
+    {
+     "name": "Squares",
+     "tex": "\\sum_{1}^{n}k^2=\\frac{n(n+1)(2n+1)}{6}"
+    },
+    {
+     "name": "Cubes",
+     "tex": "\\sum_{1}^{n}k^3=\\left[\\frac{n(n+1)}{2}\\right]^2"
+    },
+    {
+     "name": "AP mean",
+     "tex": "\\text{mean of AP}=\\frac{\\text{first}+\\text{last}}{2}"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Consecutive numbers: average = middle",
+     "body": "For any run of consecutive terms (odd, even, naturals), the average equals the median — the middle term.\nNo summation needed.",
+     "example": {
+      "q": "The average of 5 consecutive even numbers is 16. Find the largest.",
+      "solution": "Middle (3rd) $=16$; largest $=16+2\\times2=20$."
+     }
+    },
+    {
+     "title": "Squares and cubes via the sums",
+     "body": "Divide the closed-form sum by $n$; memorise the $n=10$ anchor (mean of squares $=38.5$) as a sanity check.",
+     "example": {
+      "q": "Find the mean of the cubes of the first 6 natural numbers.",
+      "solution": "Sum $=\\left(\\frac{6\\times7}{2}\\right)^2=441$; mean $=\\frac{441}{6}=73.5$."
+     }
+    }
+   ],
+   "mistakes": [
+    "Using $\\frac{(n+1)(2n+1)}{6}$ (the mean of squares) as if it were a sum.",
+    "Off-by-one on 'consecutive': between the middle two for even counts, exactly the middle term for odd.",
+    "Cubes sum confused with square of sum of naturals (they are equal, but the mean needs dividing by $n$)."
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Combined average of two groups",
+   "frequency": "very common",
+   "howToSpot": "Two classes/teams/genders with different averages merge into one.",
+   "approach": "Weighted mean $\\frac{n_1\\bar x_1+n_2\\bar x_2}{n_1+n_2}$; equal sizes → plain average."
+  },
+  {
+   "pattern": "Member joins / leaves / replaced",
+   "frequency": "very common",
+   "howToSpot": "A new batsman, teacher or watch changes the group average by a stated amount.",
+   "approach": "Work in totals: new value = target total − old total, i.e. old mean + shift × new count."
+  },
+  {
+   "pattern": "Empirical 3M relation",
+   "frequency": "very common",
+   "howToSpot": "Two of mean/median/mode given (often as 27/45 style numbers), third asked.",
+   "approach": "$\\text{mode}=3\\,\\text{median}-2\\,\\text{mean}$; solve directly."
+  },
+  {
+   "pattern": "Median/mode of grouped data",
+   "frequency": "common",
+   "howToSpot": "A frequency table with class intervals; sometimes a missing frequency to solve for.",
+   "approach": "cf column → median class → $L+\\frac{n/2-cf}{f}h$; tallest frequency → modal class formula."
+  },
+  {
+   "pattern": "Effect of scaling on mean and SD",
+   "frequency": "common",
+   "howToSpot": "'Each value is multiplied/divided and then shifted; find new mean/SD/median.'",
+   "approach": "Mean and median scale by $a$ then shift by $b$; SD only scales by $|a|$."
+  },
+  {
+   "pattern": "Averages of consecutive / special series",
+   "frequency": "common",
+   "howToSpot": "First n naturals/squares/cubes, consecutive odds/evens, AP terms.",
+   "approach": "AP → middle term; squares/cubes → closed-form sums divided by $n$."
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "stat-s01",
+   "q": "The average weight of 30 boys is 62 kg and that of 20 girls is 58 kg. Find the average weight of the class.",
+   "figure": null,
+   "options": [
+    "60 kg",
+    "61 kg",
+    "59 kg",
+    "$\\frac{302}{5}$ kg"
+   ],
+   "answer": 3,
+   "solution": "Combined mean $=\\frac{30\\times62+20\\times58}{30+20}=\\frac{1860+1160}{50}=\\frac{3020}{50}=60.4$ kg.",
+   "shortcut": "Track totals: $1860+1160=3020$ over 50 students → 60.4 kg. (Sizes differ, so don't just average 62 and 58.)",
+   "difficulty": "easy",
+   "subtopic": "stat-mean",
+   "pattern": "combined mean",
+   "timeSec": 40
+  },
+  {
+   "id": "stat-s02",
+   "q": "The mean of a distribution is 27 and the mode is 45. Using the empirical relation, the median is:",
+   "figure": null,
+   "options": [
+    "34",
+    "33",
+    "36",
+    "31"
+   ],
+   "answer": 1,
+   "solution": "Median $=\\frac{\\text{mode}+2\\times\\text{mean}}{3}=\\frac{45+54}{3}=\\frac{99}{3}=33$.",
+   "shortcut": "Rearranged empirical relation: median $=\\frac{\\text{mode}+2\\,\\text{mean}}{3}=\\frac{45+54}{3}=33$.",
+   "difficulty": "easy",
+   "subtopic": "stat-median-mode",
+   "pattern": "empirical relation",
+   "timeSec": 30
+  },
+  {
+   "id": "stat-s03",
+   "q": "Find the median of 8, 3, 11, 6, 14, 5.",
+   "figure": null,
+   "options": [
+    "$\\frac{13}{2}$",
+    "6",
+    "$\\frac{15}{2}$",
+    "7"
+   ],
+   "answer": 3,
+   "solution": "Sorted: 3, 5, 6, 8, 11, 14. With $n=6$ (even), the median is the mean of the 3rd and 4th values:\n\n$\\frac{6+8}{2}=7$.",
+   "shortcut": "Sort first, then average the two middle terms: $\\frac{6+8}{2}=7$. Trap: $6.5$ = mean of middle two *unsorted* neighbors.",
+   "difficulty": "easy",
+   "subtopic": "stat-median-mode",
+   "pattern": "median of even set",
+   "timeSec": 35
+  },
+  {
+   "id": "stat-s04",
+   "q": "The mean of the squares of the first 10 natural numbers is:",
+   "figure": null,
+   "options": [
+    "38",
+    "$\\frac{121}{2}$",
+    "$\\frac{77}{2}$",
+    "55"
+   ],
+   "answer": 2,
+   "solution": "Sum of squares $=\\frac{10\\times11\\times21}{6}=385$. Mean $=\\frac{385}{10}=38.5$.",
+   "shortcut": "Formula chain: $\\frac{(n+1)(2n+1)}{6}=\\frac{11\\times21}{6}=38.5$ for the mean (no need to write the sum).",
+   "difficulty": "medium",
+   "subtopic": "stat-series-sums",
+   "pattern": "mean of squares",
+   "timeSec": 40
+  },
+  {
+   "id": "stat-s05",
+   "q": "The standard deviation of a set of observations is 7. If each observation is multiplied by 3 and then 5 is added, the new standard deviation is:",
+   "figure": null,
+   "options": [
+    "21",
+    "26",
+    "7",
+    "12"
+   ],
+   "answer": 0,
+   "solution": "Shifting by 5 changes only the mean. Multiplying by 3 multiplies the SD:\n\nnew SD $=3\\times7=21$.",
+   "shortcut": "SD$(3x+5)=3\\times$SD$(x)=21$ — the +5 never affects spread. Trap: 26 (added the shift).",
+   "difficulty": "medium",
+   "subtopic": "stat-dispersion",
+   "pattern": "SD transformation",
+   "timeSec": 35
+  }
+ ],
+ "practice": [
+  {
+   "id": "stat-q01",
+   "q": "The average of 5 numbers is 27. Four of the numbers are 23, 25, 28 and 26. The fifth number is:",
+   "figure": null,
+   "options": [
+    "31",
+    "33",
+    "32",
+    "34"
+   ],
+   "answer": 1,
+   "solution": "Total $=5\\times27=135$; given sum $=102$; fifth $=135-102=33$.",
+   "shortcut": "Total minus known sum: $135-102=33$.",
+   "difficulty": "easy",
+   "subtopic": "stat-mean",
+   "pattern": "missing value",
+   "timeSec": 30
+  },
+  {
+   "id": "stat-q02",
+   "q": "The median of 12, 5, 9, 7, 15 is:",
+   "figure": null,
+   "options": [
+    "7",
+    "12",
+    "$\\frac{21}{2}$",
+    "9"
+   ],
+   "answer": 3,
+   "solution": "Sorted: 5, 7, 9, 12, 15. The middle (3rd) value is 9.",
+   "shortcut": "Sort → pick the middle term for odd $n$: 9.",
+   "difficulty": "easy",
+   "subtopic": "stat-median-mode",
+   "pattern": "median odd set",
+   "timeSec": 25
+  },
+  {
+   "id": "stat-q03",
+   "q": "The mode of the data 2, 3, 3, 5, 3, 7, 2, 3 is:",
+   "figure": null,
+   "options": [
+    "7",
+    "3",
+    "2",
+    "5"
+   ],
+   "answer": 1,
+   "solution": "3 occurs four times — more than any other value, so the mode is 3.",
+   "shortcut": "Count frequencies: 3 appears 4 times → mode 3.",
+   "difficulty": "easy",
+   "subtopic": "stat-median-mode",
+   "pattern": "mode raw data",
+   "timeSec": 20
+  },
+  {
+   "id": "stat-q04",
+   "q": "The average of the first 10 natural numbers is:",
+   "figure": null,
+   "options": [
+    "$\\frac{11}{2}$",
+    "5",
+    "10",
+    "$\\frac{21}{2}$"
+   ],
+   "answer": 0,
+   "solution": "Mean $=\\frac{n+1}{2}=\\frac{11}{2}=5.5$.",
+   "shortcut": "$\\frac{n+1}{2}=\\frac{11}{2}=5.5$. (Sum $55$ over $10$ also gives it.)",
+   "difficulty": "easy",
+   "subtopic": "stat-series-sums",
+   "pattern": "first n naturals",
+   "timeSec": 25
+  },
+  {
+   "id": "stat-q05",
+   "q": "The range of the data 14, 7, 22, 9, 31, 18 is:",
+   "figure": null,
+   "options": [
+    "22",
+    "26",
+    "24",
+    "17"
+   ],
+   "answer": 2,
+   "solution": "Range $=31-7=24$.",
+   "shortcut": "Max minus min: $31-7=24$.",
+   "difficulty": "easy",
+   "subtopic": "stat-dispersion",
+   "pattern": "range",
+   "timeSec": 20
+  },
+  {
+   "id": "stat-q06",
+   "q": "The average weight of 24 students of a class is 35 kg. When the teacher is included, the average rises by 0.5 kg. The weight of the teacher is:",
+   "figure": null,
+   "options": [
+    "$\\frac{95}{2}$ kg",
+    "47 kg",
+    "$\\frac{89}{2}$ kg",
+    "35 kg"
+   ],
+   "answer": 0,
+   "solution": "New total $=25\\times35.5=887.5$ kg; students' total $=24\\times35=840$ kg.\n\nTeacher $=887.5-840=47.5$ kg.",
+   "shortcut": "Teacher = old mean + shift × new count $=35+0.5\\times25=47.5$ kg.",
+   "difficulty": "medium",
+   "subtopic": "stat-mean",
+   "pattern": "member joins",
+   "timeSec": 45
+  },
+  {
+   "id": "stat-q07",
+   "q": "If the median of a distribution is 32 and the mean is 30, then the mode is:",
+   "figure": null,
+   "options": [
+    "35",
+    "33",
+    "36",
+    "34"
+   ],
+   "answer": 2,
+   "solution": "$\\text{mode}=3\\times32-2\\times30=96-60=36$.",
+   "shortcut": "Empirical relation straight in: $3m-2\\bar x=36$.",
+   "difficulty": "medium",
+   "subtopic": "stat-median-mode",
+   "pattern": "empirical relation",
+   "timeSec": 30
+  },
+  {
+   "id": "stat-q08",
+   "q": "For the classes 0-10, 10-20, 20-30, 30-40, 40-50 with frequencies 4, 6, 10, 8, 2, the median is:",
+   "figure": null,
+   "options": [
+    "27",
+    "25",
+    "26",
+    "22"
+   ],
+   "answer": 1,
+   "solution": "$n=30$, $n/2=15$. Cumulative frequencies: 4, 10, 20, 28, 30 — the median class is 20-30 ($cf=20\\ge15$).\n\nMedian $=20+\\frac{15-10}{10}\\times10=25$.",
+   "shortcut": "cf first reaching 15 is 20 at class 20-30: $20+\\frac{5}{10}\\times10=25$. Trap: using $cf=20$ inside the formula instead of the *previous* cf 10.",
+   "difficulty": "medium",
+   "subtopic": "stat-grouped",
+   "pattern": "grouped median",
+   "timeSec": 60
+  },
+  {
+   "id": "stat-q09",
+   "q": "The average of 5 consecutive even numbers is 16. The largest of them is:",
+   "figure": null,
+   "options": [
+    "18",
+    "22",
+    "24",
+    "20"
+   ],
+   "answer": 3,
+   "solution": "The middle (3rd) number is 16, so the numbers are 12, 14, 16, 18, 20. Largest $=20$.",
+   "shortcut": "Average = middle term: 16 is the 3rd → largest $=16+4=20$.",
+   "difficulty": "medium",
+   "subtopic": "stat-series-sums",
+   "pattern": "consecutive evens",
+   "timeSec": 35
+  },
+  {
+   "id": "stat-q10",
+   "q": "The standard deviation of the data 2, 4, 6, 8, 10 is:",
+   "figure": null,
+   "options": [
+    "$2\\sqrt{2}$",
+    "8",
+    "$\\sqrt{10}$",
+    "4"
+   ],
+   "answer": 0,
+   "solution": "Mean $=6$; squared deviations $16, 4, 0, 4, 16$; variance $=\\frac{40}{5}=8$; SD $=\\sqrt8=2\\sqrt2$.",
+   "shortcut": "For an AP, mean is the middle term (6); average the squared gaps → 8 → $2\\sqrt2$. Trap: 8 is the variance.",
+   "difficulty": "medium",
+   "subtopic": "stat-dispersion",
+   "pattern": "SD small set",
+   "timeSec": 50
+  },
+  {
+   "id": "stat-q11",
+   "q": "The average of 30 results was 20. It was later found that a result of 24 had been wrongly recorded as 21. The corrected average is:",
+   "figure": null,
+   "options": [
+    "$\\frac{203}{10}$",
+    "$\\frac{199}{10}$",
+    "$\\frac{201}{10}$",
+    "20"
+   ],
+   "answer": 2,
+   "solution": "Shortfall $=24-21=3$. Corrected mean $=\\frac{600+3}{30}=20.1$.",
+   "shortcut": "Add the error to the total and re-divide: $\\frac{603}{30}=20.1$.",
+   "difficulty": "medium",
+   "subtopic": "stat-mean",
+   "pattern": "misread value",
+   "timeSec": 40
+  },
+  {
+   "id": "stat-q12",
+   "q": "A batsman scores 45 runs on average in 8 innings. How many runs must he score in the 9th innings to raise his average to 50?",
+   "figure": null,
+   "options": [
+    "90",
+    "95",
+    "85",
+    "50"
+   ],
+   "answer": 0,
+   "solution": "Required total $=9\\times50=450$; current $=8\\times45=360$; needed $=450-360=90$.",
+   "shortcut": "Target total minus current total: $450-360=90$. (Shortcut: $50+9\\times5=90$.)",
+   "difficulty": "medium",
+   "subtopic": "stat-mean",
+   "pattern": "raise the average",
+   "timeSec": 40
+  },
+  {
+   "id": "stat-q13",
+   "q": "The mean of the cubes of the first 6 natural numbers is:",
+   "figure": null,
+   "options": [
+    "44",
+    "$\\frac{49}{2}$",
+    "$\\frac{147}{2}$",
+    "441"
+   ],
+   "answer": 2,
+   "solution": "Sum of cubes $=\\left[\\frac{6\\times7}{2}\\right]^2=21^2=441$. Mean $=\\frac{441}{6}=73.5$.",
+   "shortcut": "$\\left(\\frac{n(n+1)}{2}\\right)^2/n$: $441/6=73.5$. Trap: 441 (the sum, not the mean).",
+   "difficulty": "hard",
+   "subtopic": "stat-series-sums",
+   "pattern": "mean of cubes",
+   "timeSec": 50
+  },
+  {
+   "id": "stat-q14",
+   "q": "For the classes 10-20, 20-30, 30-40, 40-50, 50-60 with frequencies 5, 8, 12, 6, 3, the mode is:",
+   "figure": null,
+   "options": [
+    "32",
+    "36",
+    "33",
+    "34"
+   ],
+   "answer": 3,
+   "solution": "Modal class: 30-40 ($f_1=12$, $f_0=8$, $f_2=6$, $h=10$).\n\nMode $=30+\\frac{12-8}{2(12)-8-6}\\times10=30+\\frac{4}{10}\\times10=34$.",
+   "shortcut": "Tallest bar 30-40, then $30+\\frac{4}{10}\\times10=34$. Trap: 32 (using $\\frac{f_1-f_0}{2}$ shape instead of the full formula).",
+   "difficulty": "hard",
+   "subtopic": "stat-grouped",
+   "pattern": "grouped mode",
+   "timeSec": 60
+  },
+  {
+   "id": "stat-q15",
+   "q": "The mean of 5 observations is 12. The mean of the first 3 is 10 and that of the last 3 is 15. The third observation is:",
+   "figure": null,
+   "options": [
+    "10",
+    "15",
+    "12",
+    "18"
+   ],
+   "answer": 1,
+   "solution": "Total $=5\\times12=60$. First 3 sum $=30$, last 3 sum $=45$; their union double-counts the middle term:\n\nMiddle $=30+45-60=15$.",
+   "shortcut": "Overlapping groups: middle = sum(first 3) + sum(last 3) − total = $30+45-60=15$.",
+   "difficulty": "hard",
+   "subtopic": "stat-mean",
+   "pattern": "overlapping means",
+   "timeSec": 55
+  }
+ ]
+}

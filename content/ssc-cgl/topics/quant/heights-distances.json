@@ -1,0 +1,633 @@
+{
+ "id": "heights-distances",
+ "sectionId": "quant",
+ "title": "Heights and Distances",
+ "order": 17,
+ "importance": "high",
+ "avgQuestions": {
+  "tier1": 2,
+  "tier2": 3
+ },
+ "summary": "Applied trigonometry: angles of elevation and depression, the 30-45-60 rules, two-angle configurations, moving observers and compound figures. Every question reduces to one right triangle and one tangent — learn the three standard-angle multipliers and the cot-difference formula and this becomes near-guaranteed marks.",
+ "subtopics": [
+  {
+   "id": "hd-basics",
+   "title": "Angles of elevation and depression",
+   "concept": "The observer's eye is the origin; the **horizontal line** through the eye is the reference.\n\n- **Elevation**: object is *above* eye level — the angle from the horizontal *up* to the line of sight.\n- **Depression**: object is *below* eye level — the angle from the horizontal *down* to the line of sight.\n\nHeight raised on a platform: always work with the **eye level**, not the ground. The ground distance $d$ and the\nheight *above eye level* $h$ satisfy $\\tan\\theta=\\dfrac{h}{d}$.",
+   "formulas": [
+    {
+     "name": "Master relation",
+     "tex": "\\tan\\theta=\\frac{\\text{height above eye level}}{\\text{horizontal distance}}"
+    },
+    {
+     "name": "Slant line",
+     "tex": "\\sin\\theta=\\frac{h}{L},\\quad \\cos\\theta=\\frac{d}{L}\\quad (L=\\text{line-of-sight or ladder length})"
+    },
+    {
+     "name": "Depression = elevation",
+     "tex": "\\text{angle of depression at observer}=\\text{angle of elevation at object}"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Draw the horizontal through the eye",
+     "body": "One sketch kills most errors: horizontal dashed line from the eye, the line of sight, and the right angle\nbetween them. Drop heights *below the eye* when the observer is elevated.",
+     "example": {
+      "q": "From a cliff top, a boat is seen at an angle of depression of $30^\\circ$. What angle does the line of sight make with the cliff face (vertical)?",
+      "solution": "Depression is from the horizontal, so the line of sight is $30^\\circ$ below horizontal; the vertical cliff makes $90^\\circ-30^\\circ=60^\\circ$ with the line of sight."
+     }
+    },
+    {
+     "title": "Depression at the top equals elevation at the bottom",
+     "body": "Alternate interior angles: the depression from the observer equals the elevation measured at the object from\nground level directly below — use whichever is stated.",
+     "example": {
+      "q": "The angle of elevation of the top of a tower from a point on the ground is $45^\\circ$. What is the angle of depression of the point from the tower top?",
+      "solution": "Equal alternate angles: $45^\\circ$."
+     }
+    }
+   ],
+   "mistakes": [
+    "Measuring height from the ground instead of eye level when the observer is on a cliff, tower or building.",
+    "Using $\\sin\\theta$ or $\\cos\\theta$ where the horizontal distance makes $\\tan\\theta$ the right ratio.",
+    "Swapping elevation and depression (drawing the angle from the object instead of the horizontal at the eye)."
+   ]
+  },
+  {
+   "id": "hd-standard-angles",
+   "title": "Standard angles: 30°, 45°, 60°",
+   "concept": "Almost every CGL question uses only these three angles. Convert tan to a **height–distance rule** and the\nanswer is a one-liner:\n\n| $\\theta$ | $\\tan\\theta$ | rule ($h$ = height, $d$ = distance) |\n|---|---|---|\n| $45^\\circ$ | $1$ | $d=h$ |\n| $30^\\circ$ | $\\frac{1}{\\sqrt3}$ | $d=\\sqrt3\\,h$ |\n| $60^\\circ$ | $\\sqrt3$ | $d=\\frac{h}{\\sqrt3}$ |\n\nSo height from distance: $45^\\circ\\to h=d$; $30^\\circ\\to h=\\frac{d}{\\sqrt3}$; $60^\\circ\\to h=\\sqrt3\\,d$.\nTake $\\sqrt3\\approx1.732$, $\\sqrt2\\approx1.414$ only if options are decimal.",
+   "formulas": [
+    {
+     "name": "45 degrees",
+     "tex": "\\theta=45^\\circ\\Rightarrow d=h"
+    },
+    {
+     "name": "30 degrees",
+     "tex": "\\theta=30^\\circ\\Rightarrow d=\\sqrt3\\,h\\ \\Leftrightarrow\\ h=\\frac{d}{\\sqrt3}"
+    },
+    {
+     "name": "60 degrees",
+     "tex": "\\theta=60^\\circ\\Rightarrow d=\\frac{h}{\\sqrt3}\\ \\Leftrightarrow\\ h=\\sqrt3\\,d"
+    },
+    {
+     "name": "Ladder (hypotenuse given)",
+     "tex": "h=L\\sin\\theta,\\quad d=L\\cos\\theta"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Match the angle to the multiplier",
+     "body": "45° → same; 30° → distance is $\\sqrt3$ times the height; 60° → height is $\\sqrt3$ times the distance.\nWrite the multiplier before touching numbers.",
+     "example": {
+      "q": "A tower subtends $60^\\circ$ at a point 20 m from its base. Find its height.",
+      "solution": "$h=\\sqrt3\\times20=20\\sqrt3$ m."
+     }
+    },
+    {
+     "title": "Ladder questions are sine/cosine, not tangent",
+     "body": "The ladder itself is the hypotenuse: height $=L\\sin\\theta$, foot distance $=L\\cos\\theta$. A $45^\\circ$ ladder\nof length $L\\sqrt2$ climbs exactly $L$.",
+     "example": {
+      "q": "A ladder of length $10\\sqrt2$ m leans at $45^\\circ$. How high up the wall does it reach?",
+      "solution": "$10\\sqrt2\\times\\frac{1}{\\sqrt2}=10$ m."
+     }
+    }
+   ],
+   "mistakes": [
+    "Using the $60^\\circ$ rule for $30^\\circ$ (they are reciprocals: $d=\\sqrt3h$ vs $d=h/\\sqrt3$).",
+    "Approximating $\\sqrt3$ too early and landing between two options — keep the radical until the end.",
+    "Ladder: applying $\\tan\\theta=h/d$ with the ladder length mistaken for $d$."
+   ]
+  },
+  {
+   "id": "hd-two-angles",
+   "title": "Two observation points (two angles)",
+   "concept": "The highest-yield pattern: **two angles** from two points on the same line.\n\n- **Same side** (walk toward the object, angle grows from $\\alpha$ to $\\beta$, $\\beta>\\alpha$):\n  the distance walked equals $h(\\cot\\alpha-\\cot\\beta)$, so\n  $$h=\\frac{d}{\\cot\\alpha-\\cot\\beta}$$\n- **Opposite sides** of the object, points $d$ apart:\n  $$h=\\frac{d}{\\cot\\alpha+\\cot\\beta}$$\n- **From a height** (two ships seen from a lighthouse): the gap between them is\n  $h(\\cot\\alpha-\\cot\\beta)$ for angles $\\alpha<\\beta$ measured to the nearer ship... i.e. gap $=d_{\\text{far}}-d_{\\text{near}}$.\n\nWith 30°/60° pairs remember $\\cot30^\\circ=\\sqrt3$, $\\cot60^\\circ=\\frac{1}{\\sqrt3}$, so $\\cot30-\\cot60=\\frac{2}{\\sqrt3}$\nand $h=\\frac{d\\sqrt3}{2}$ — the answer is $\\frac{\\sqrt3}{2}$ of the walked distance.",
+   "formulas": [
+    {
+     "name": "Same side",
+     "tex": "h=\\frac{d}{\\cot\\alpha-\\cot\\beta}"
+    },
+    {
+     "name": "Opposite sides",
+     "tex": "h=\\frac{d}{\\cot\\alpha+\\cot\\beta}"
+    },
+    {
+     "name": "30-60 pair",
+     "tex": "\\cot30^\\circ-\\cot60^\\circ=\\frac{2}{\\sqrt3}\\Rightarrow h=\\frac{d\\sqrt3}{2}"
+    },
+    {
+     "name": "Gap from a height",
+     "tex": "\\text{gap}=h(\\cot\\alpha-\\cot\\beta)"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Subtract the cotangents, don't solve two triangles",
+     "body": "Write $d_1=h\\cot\\alpha$, $d_2=h\\cot\\beta$ from each position; the difference of the distances is what is\ngiven. One linear equation in $h$.",
+     "example": {
+      "q": "Walking 40 m toward a tower changes the elevation angle from $30^\\circ$ to $60^\\circ$. Find the tower's height.",
+      "solution": "$h\\cot30^\\circ-h\\cot60^\\circ=40\\Rightarrow h(\\sqrt3-\\frac1{\\sqrt3})=40\\Rightarrow h\\cdot\\frac2{\\sqrt3}=40\\Rightarrow h=20\\sqrt3$ m."
+     }
+    },
+    {
+     "title": "Opposite sides means add",
+     "body": "When the two observers are on opposite sides, the base distances *add up* to $d$: denominators add, not\nsubtract.",
+     "example": {
+      "q": "Two men on opposite sides of a tower 80 m apart observe its top at $30^\\circ$ and $60^\\circ$. Find the height.",
+      "solution": "$h=\\frac{80}{\\sqrt3+\\frac1{\\sqrt3}}=\\frac{80}{\\frac{4}{\\sqrt3}}=20\\sqrt3$ m."
+     }
+    }
+   ],
+   "mistakes": [
+    "Subtracting base distances for opposite-side observers (they add).",
+    "Using tan instead of cot in the difference formula: $d=h(\\cot\\alpha-\\cot\\beta)$, not $h(\\tan\\beta-\\tan\\alpha)$... note $\\cot\\alpha-\\cot\\beta$ with $\\alpha<\\beta$ is positive.",
+    "Forgetting the nearer point has the LARGER angle when assigning which distance is which."
+   ]
+  },
+  {
+   "id": "hd-motion",
+   "title": "Moving observers: speed and time",
+   "concept": "When a car/boat/man moves between the two observation points, the distance walked is **speed × time**. Chain:\n\n$$\\text{speed}\\times\\text{time}=h(\\cot\\theta_1-\\cot\\theta_2)$$\n\nthen solve for $h$ (or for the speed if $h$ is given). Keep angles straight: moving **toward** the object the\nangle *increases*; moving **away** it *decreases*.",
+   "formulas": [
+    {
+     "name": "Distance walked",
+     "tex": "\\text{distance}=\\text{speed}\\times\\text{time}"
+    },
+    {
+     "name": "Chain to height",
+     "tex": "v\\,t=h(\\cot\\theta_1-\\cot\\theta_2)"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Convert speed and time first",
+     "body": "Reduce to a plain distance (e.g. $6\\times6=36$ m) and the problem becomes the standard two-angle pattern.",
+     "example": {
+      "q": "From a tower top, a car's angle of depression changes from $30^\\circ$ to $60^\\circ$ as the car approaches at a uniform 6 m/s for 6 s. Find the tower's height.",
+      "solution": "$36=h(\\cot30^\\circ-\\cot60^\\circ)=h\\cdot\\frac2{\\sqrt3}\\Rightarrow h=18\\sqrt3$ m."
+     }
+    },
+    {
+     "title": "Read it backwards when height is given",
+     "body": "If $h$ is known and the speed is asked, compute the gap $h(\\cot\\theta_1-\\cot\\theta_2)$ first, then divide by\ntime.",
+     "example": {
+      "q": "A car approaching a tower at a steady 4 m/s takes 5 s for the angle of elevation of the tower top to change from $30^\\circ$ to $60^\\circ$. Find the tower's height.",
+      "solution": "Gap $=4\\times5=20=h\\cdot\\frac2{\\sqrt3}\\Rightarrow h=10\\sqrt3$ m."
+     }
+    }
+   ],
+   "mistakes": [
+    "Mixing units (km/h with seconds) — convert before chaining.",
+    "Assigning the larger angle to the farther position."
+   ]
+  },
+  {
+   "id": "hd-compound",
+   "title": "Compound figures: buildings, pedestals, broken objects",
+   "concept": "Split the figure at the **eye-level horizontal** and handle each piece with its own angle:\n\n- **Statue on a pedestal**: pedestal gives the distance ($d=\\text{pedestal}\\cdot\\cot45^\\circ$ etc.); the statue is\n  $d(\\tan\\beta-\\tan\\alpha)$ for bottom/top angles $\\alpha,\\beta$.\n- **Tower on a building**: tower $=d\\tan(\\text{top})-$ building height.\n- **Broken tree**: the fallen part is the hypotenuse. If the top touches ground at distance $b$ making angle\n  $\\theta$, broken part $=\\frac{b}{\\cos\\theta}$, standing part $=b\\tan\\theta$, and the whole tree is their sum.",
+   "formulas": [
+    {
+     "name": "Statue on pedestal",
+     "tex": "\\text{statue}=d(\\tan\\beta-\\tan\\alpha)"
+    },
+    {
+     "name": "Tower on building",
+     "tex": "\\text{tower}=d\\tan\\theta_{\\text{top}}-\\text{building}"
+    },
+    {
+     "name": "Broken tree",
+     "tex": "\\text{tree}=\\frac{b}{\\cos\\theta}+b\\tan\\theta"
+    },
+    {
+     "name": "Building + tower from one height",
+     "tex": "\\text{tower}=\\text{building}+d(\\tan\\beta-\\tan\\alpha)"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Angles differ by 15°? Expect a surd answer",
+     "body": "45° paired with 60° or 30° gives clean radicals; keep $(\\sqrt3-1)$ or $(1+\\sqrt3)$ factored — that exact\nform is what the options show.",
+     "example": {
+      "q": "A statue stands on a 30 m pedestal. From a point on the ground the elevation of the pedestal top is $45^\\circ$ and of the statue top $60^\\circ$. Find the statue's height.",
+      "solution": "$d=30$ (from $45^\\circ$); statue $=30\\tan60^\\circ-30=30(\\sqrt3-1)$ m."
+     }
+    },
+    {
+     "title": "Broken tree = broken + standing",
+     "body": "Work the right triangle of the fallen part: horizontal $b$, angle $\\theta$ at the tip. Standing part\n$=b\\tan\\theta$, fallen part $=\\frac{b}{\\cos\\theta}$; add them.",
+     "example": {
+      "q": "A tree breaks and the top touches the ground 15 m from the base, making $30^\\circ$ with the ground. Find the original height.",
+      "solution": "Fallen $=\\frac{15}{\\cos30^\\circ}=10\\sqrt3$; standing $=15\\tan30^\\circ=5\\sqrt3$; total $=15\\sqrt3$ m."
+     }
+    }
+   ],
+   "mistakes": [
+    "Forgetting the standing/building part and reporting only the extra piece.",
+    "Adding the fallen length and the standing height with the angle applied to the wrong side.",
+    "Rationalising $30(\\sqrt3-1)$ into a decimal when the options are in factored surd form."
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Single angle, one unknown",
+   "frequency": "very common",
+   "howToSpot": "One angle ($30^\\circ$, $45^\\circ$ or $60^\\circ$) with either height or distance given.",
+   "approach": "Standard-angle rule: $d=h$ at 45°, $d=\\sqrt3h$ at 30°, $d=h/\\sqrt3$ at 60°; answer keeps the radical."
+  },
+  {
+   "pattern": "Two angles from two points",
+   "frequency": "very common",
+   "howToSpot": "Two elevation angles from two positions on the same line (walking, or observers on opposite sides).",
+   "approach": "$h=\\frac{d}{\\cot\\alpha-\\cot\\beta}$ (same side) or $\\frac{d}{\\cot\\alpha+\\cot\\beta}$ (opposite sides)."
+  },
+  {
+   "pattern": "Angle of depression from a height",
+   "frequency": "very common",
+   "howToSpot": "Lighthouse/cliff/aeroplane looking down at ships, cars or corners.",
+   "approach": "Depression at the eye = elevation at the object; then $d=\\frac{h}{\\tan\\theta}$. Two objects → subtract the two distances."
+  },
+  {
+   "pattern": "Speed-time two-angle problem",
+   "frequency": "common",
+   "howToSpot": "Car/boat moves at uniform speed; depression or elevation angle changes after a stated time.",
+   "approach": "Distance = speed × time = $h(\\cot\\theta_1-\\cot\\theta_2)$; solve for $h$."
+  },
+  {
+   "pattern": "Compound structure",
+   "frequency": "common",
+   "howToSpot": "Statue on pedestal, tower on building, broken tree, flagstaff on tower.",
+   "approach": "Split at eye level; the lower element usually fixes the distance $d$; the asked part is the difference of two tan products."
+  },
+  {
+   "pattern": "Shadow problems",
+   "frequency": "occasional",
+   "howToSpot": "Shadow length related to height (equal, $\\sqrt3$ times, or a ratio given).",
+   "approach": "Shadow = horizontal distance: $\\tan(\\text{sun elevation})=\\frac{h}{\\text{shadow}}$. Equal shadows at the same moment ⇒ equal heights."
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "hd-s01",
+   "q": "The angle of elevation of the top of a 50 m high tower from a point on the ground is $45^\\circ$. Find the distance of the point from the base of the tower.",
+   "figure": "<svg viewBox=\"0 0 240 130\" width=\"240\" height=\"130\" stroke=\"currentColor\" fill=\"none\">\n  <line x1=\"30\" y1=\"110\" x2=\"210\" y2=\"110\"/>\n  <line x1=\"170\" y1=\"110\" x2=\"170\" y2=\"20\"/>\n  <line x1=\"30\" y1=\"110\" x2=\"170\" y2=\"20\"/>\n  <line x1=\"30\" y1=\"80\" x2=\"150\" y2=\"80\" stroke-dasharray=\"4 3\"/>\n  <text x=\"8\" y=\"114\" font-size=\"13\" fill=\"currentColor\" stroke=\"none\">P</text>\n  <text x=\"176\" y=\"18\" font-size=\"13\" fill=\"currentColor\" stroke=\"none\">A</text>\n  <text x=\"176\" y=\"114\" font-size=\"13\" fill=\"currentColor\" stroke=\"none\">B</text>\n  <text x=\"52\" y=\"76\" font-size=\"12\" fill=\"currentColor\" stroke=\"none\">45&#176;</text>\n  <text x=\"120\" y=\"126\" font-size=\"12\" fill=\"currentColor\" stroke=\"none\">d</text>\n  <text x=\"196\" y=\"70\" font-size=\"12\" fill=\"currentColor\" stroke=\"none\">h</text>\n</svg>",
+   "options": [
+    "$50 \\sqrt{3}$ m",
+    "$\\frac{50 \\sqrt{3}}{3}$ m",
+    "50 m",
+    "25 m"
+   ],
+   "answer": 2,
+   "solution": "$\\tan45^\\circ=\\frac{50}{d}\\Rightarrow1=\\frac{50}{d}\\Rightarrow d=50$ m.",
+   "shortcut": "At $45^\\circ$, distance = height — no calculation at all. (Diagram: eye at the point, horizontal to the tower, angle up to the top.)",
+   "difficulty": "easy",
+   "subtopic": "hd-basics",
+   "pattern": "single angle 45",
+   "timeSec": 30
+  },
+  {
+   "id": "hd-s02",
+   "q": "The shadow of a tower is $40\\sqrt{3}$ m long when the sun's elevation is $30^\\circ$. Find the height of the tower.",
+   "figure": null,
+   "options": [
+    "40 m",
+    "$40 \\sqrt{3}$ m",
+    "80 m",
+    "$\\frac{40 \\sqrt{3}}{3}$ m"
+   ],
+   "answer": 0,
+   "solution": "$\\tan30^\\circ=\\frac{h}{40\\sqrt3}\\Rightarrow\\frac{1}{\\sqrt3}=\\frac{h}{40\\sqrt3}\\Rightarrow h=40$ m.",
+   "shortcut": "30° → height = $\\frac{\\text{shadow}}{\\sqrt3}=\\frac{40\\sqrt3}{\\sqrt3}=40$ m. The $\\sqrt3$ cancels by design.",
+   "difficulty": "easy",
+   "subtopic": "hd-standard-angles",
+   "pattern": "shadow with 30 degree sun",
+   "timeSec": 35
+  },
+  {
+   "id": "hd-s03",
+   "q": "From the top of a 100 m high cliff, the angle of depression of a ship is $30^\\circ$. Find the distance of the ship from the base of the cliff.",
+   "figure": null,
+   "options": [
+    "100 m",
+    "$50 \\sqrt{3}$ m",
+    "$100 \\sqrt{3}$ m",
+    "$\\frac{100 \\sqrt{3}}{3}$ m"
+   ],
+   "answer": 2,
+   "solution": "Depression $30^\\circ$ = elevation $30^\\circ$ at the ship. $\\tan30^\\circ=\\frac{100}{d}$\n\n$\\frac{1}{\\sqrt3}=\\frac{100}{d}\\Rightarrow d=100\\sqrt3$ m.",
+   "shortcut": "Flip depression to elevation, then the 30° rule: $d=\\sqrt3\\times100=100\\sqrt3$ m. Trap: $\\frac{100}{\\sqrt3}$ (that is the 60° answer).",
+   "difficulty": "easy",
+   "subtopic": "hd-basics",
+   "pattern": "depression single angle",
+   "timeSec": 35
+  },
+  {
+   "id": "hd-s04",
+   "q": "Walking 40 m towards a tower, the angle of elevation of its top changes from $30^\\circ$ to $60^\\circ$. Find the height of the tower.",
+   "figure": null,
+   "options": [
+    "$40 \\sqrt{3}$ m",
+    "$10 \\sqrt{3}$ m",
+    "$20 + 20 \\sqrt{3}$ m",
+    "$20 \\sqrt{3}$ m"
+   ],
+   "answer": 3,
+   "solution": "Let $h$ be the height and $x$ the nearer distance. Then $x\\tan60^\\circ=h$ and $(x+40)\\tan30^\\circ=h$:\n\n$h\\cot60^\\circ+40=h\\cot30^\\circ\\Rightarrow40=h(\\sqrt3-\\frac{1}{\\sqrt3})=\\frac{2h}{\\sqrt3}\\Rightarrow h=20\\sqrt3$ m.",
+   "shortcut": "Direct formula: $h=\\frac{d}{\\cot30-\\cot60}=\\frac{40\\sqrt3}{2}=20\\sqrt3$ m. For a 30–60 pair the height is always $\\frac{\\sqrt3}{2}$ of the walked distance.",
+   "difficulty": "medium",
+   "subtopic": "hd-two-angles",
+   "pattern": "walking two-angle",
+   "timeSec": 50
+  },
+  {
+   "id": "hd-s05",
+   "q": "A statue stands on a 30 m high pedestal. From a point on the ground, the angle of elevation of the top of the pedestal is $45^\\circ$ and that of the top of the statue is $60^\\circ$. Find the height of the statue.",
+   "figure": null,
+   "options": [
+    "$30\\sqrt{3}$ m",
+    "$30(\\sqrt{3}-1)$ m",
+    "$30(\\sqrt{3}+1)$ m",
+    "$15(\\sqrt{3}-1)$ m"
+   ],
+   "answer": 1,
+   "solution": "From the $45^\\circ$ observation: $d=\\frac{30}{\\tan45^\\circ}=30$ m.\n\nFrom the $60^\\circ$ observation: $30+\\text{statue}=30\\tan60^\\circ=30\\sqrt3$.\n\nSo statue $=30\\sqrt3-30=30(\\sqrt3-1)$ m.",
+   "shortcut": "45° fixes $d$ = pedestal height; statue $=d(\\tan60-\\tan45)=30(\\sqrt3-1)$. Keep the factored surd — that is how the options read.",
+   "difficulty": "hard",
+   "subtopic": "hd-compound",
+   "pattern": "statue on pedestal",
+   "timeSec": 55
+  }
+ ],
+ "practice": [
+  {
+   "id": "hd-q01",
+   "q": "A vertical pole 12 m high casts a shadow on level ground when the sun's elevation is $45^\\circ$. The length of the shadow is:",
+   "figure": null,
+   "options": [
+    "12 m",
+    "$12 \\sqrt{3}$ m",
+    "6 m",
+    "$4 \\sqrt{3}$ m"
+   ],
+   "answer": 0,
+   "solution": "$\\tan45^\\circ=\\frac{12}{s}\\Rightarrow s=12$ m.",
+   "shortcut": "45° → shadow = height = 12 m.",
+   "difficulty": "easy",
+   "subtopic": "hd-standard-angles",
+   "pattern": "shadow at 45",
+   "timeSec": 25
+  },
+  {
+   "id": "hd-q02",
+   "q": "The angle of elevation of the top of a 30 m high tower from a point on the ground is $60^\\circ$. The distance of the point from the base of the tower is:",
+   "figure": null,
+   "options": [
+    "10 m",
+    "$15 \\sqrt{3}$ m",
+    "$10 \\sqrt{3}$ m",
+    "$30 \\sqrt{3}$ m"
+   ],
+   "answer": 2,
+   "solution": "$\\tan60^\\circ=\\frac{30}{d}\\Rightarrow\\sqrt3=\\frac{30}{d}\\Rightarrow d=\\frac{30}{\\sqrt3}=10\\sqrt3$ m.",
+   "shortcut": "60° → distance $=\\frac{h}{\\sqrt3}=10\\sqrt3$ m. Trap: $30\\sqrt3$ (that is the 30° rule).",
+   "difficulty": "easy",
+   "subtopic": "hd-standard-angles",
+   "pattern": "single angle 60",
+   "timeSec": 30
+  },
+  {
+   "id": "hd-q03",
+   "q": "From the top of a 60 m high lighthouse, the angle of depression of a boat is $60^\\circ$. The horizontal distance of the boat from the lighthouse is:",
+   "figure": null,
+   "options": [
+    "$20 \\sqrt{3}$ m",
+    "$60 \\sqrt{3}$ m",
+    "20 m",
+    "$30 \\sqrt{3}$ m"
+   ],
+   "answer": 0,
+   "solution": "Depression $60^\\circ$ = elevation $60^\\circ$: $\\sqrt3=\\frac{60}{d}\\Rightarrow d=\\frac{60}{\\sqrt3}=20\\sqrt3$ m.",
+   "shortcut": "60° → $d=\\frac{h}{\\sqrt3}=20\\sqrt3$ m.",
+   "difficulty": "easy",
+   "subtopic": "hd-basics",
+   "pattern": "depression 60",
+   "timeSec": 30
+  },
+  {
+   "id": "hd-q04",
+   "q": "If the sun's elevation is $30^\\circ$ and a tower's shadow is $30\\sqrt{3}$ m long, the height of the tower is:",
+   "figure": null,
+   "options": [
+    "60 m",
+    "30 m",
+    "$30 \\sqrt{3}$ m",
+    "10 m"
+   ],
+   "answer": 1,
+   "solution": "$h=\\frac{\\text{shadow}}{\\sqrt3}=\\frac{30\\sqrt3}{\\sqrt3}=30$ m.",
+   "shortcut": "30° → height = shadow ÷ $\\sqrt3$ = 30 m.",
+   "difficulty": "easy",
+   "subtopic": "hd-standard-angles",
+   "pattern": "shadow at 30",
+   "timeSec": 25
+  },
+  {
+   "id": "hd-q05",
+   "q": "A ladder 20 m long leans against a wall at $45^\\circ$ to the ground. The height it reaches on the wall is:",
+   "figure": null,
+   "options": [
+    "20 m",
+    "10 m",
+    "$\\frac{20 \\sqrt{3}}{3}$ m",
+    "$10 \\sqrt{2}$ m"
+   ],
+   "answer": 3,
+   "solution": "Height $=L\\sin45^\\circ=20\\times\\frac{1}{\\sqrt2}=10\\sqrt2$ m.",
+   "shortcut": "Ladder is the hypotenuse: $h=L\\sin\\theta$. At 45°: $h=\\frac{L}{\\sqrt2}$. Trap: 10 is the $\\frac{L}{2}$ guess.",
+   "difficulty": "easy",
+   "subtopic": "hd-standard-angles",
+   "pattern": "ladder 45",
+   "timeSec": 30
+  },
+  {
+   "id": "hd-q06",
+   "q": "Two men stand on opposite sides of a tower, 80 m apart, and observe its top at elevations of $30^\\circ$ and $60^\\circ$. The height of the tower is:",
+   "figure": null,
+   "options": [
+    "$10 \\sqrt{3}$ m",
+    "$20 \\sqrt{3}$ m",
+    "$40 \\sqrt{3}$ m",
+    "40 m"
+   ],
+   "answer": 1,
+   "solution": "$h=\\frac{d}{\\cot30^\\circ+\\cot60^\\circ}=\\frac{80}{\\sqrt3+\\frac{1}{\\sqrt3}}=\\frac{80}{\\frac{4}{\\sqrt3}}=20\\sqrt3$ m.",
+   "shortcut": "Opposite sides → add the cotangents: $\\frac{80}{\\frac{4}{\\sqrt3}}=20\\sqrt3$ m. Trap: subtracting gives $\\frac{80\\sqrt3}{2}=40\\sqrt3$ (wrong side of the figure).",
+   "difficulty": "medium",
+   "subtopic": "hd-two-angles",
+   "pattern": "opposite sides 30-60",
+   "timeSec": 45
+  },
+  {
+   "id": "hd-q07",
+   "q": "On walking 20 m towards a tower the angle of elevation of its top rises from $30^\\circ$ to $60^\\circ$. The height of the tower is:",
+   "figure": null,
+   "options": [
+    "$20 \\sqrt{3}$ m",
+    "$5 \\sqrt{3}$ m",
+    "20 m",
+    "$10 \\sqrt{3}$ m"
+   ],
+   "answer": 3,
+   "solution": "$h=\\frac{d}{\\cot30^\\circ-\\cot60^\\circ}=\\frac{20}{\\frac{2}{\\sqrt3}}=10\\sqrt3$ m.",
+   "shortcut": "30–60 pair: $h=\\frac{\\sqrt3}{2}\\times d=\\frac{\\sqrt3}{2}\\times20=10\\sqrt3$ m.",
+   "difficulty": "medium",
+   "subtopic": "hd-two-angles",
+   "pattern": "walking two-angle",
+   "timeSec": 45
+  },
+  {
+   "id": "hd-q08",
+   "q": "The shadow of a pole is $\\sqrt{3}$ times the height of the pole. The angle of elevation of the sun is:",
+   "figure": null,
+   "options": [
+    "30°",
+    "45°",
+    "60°",
+    "90°"
+   ],
+   "answer": 0,
+   "solution": "$\\tan\\theta=\\frac{h}{\\sqrt3\\,h}=\\frac{1}{\\sqrt3}\\Rightarrow\\theta=30^\\circ$.",
+   "shortcut": "Shadow $\\sqrt3\\times$ height is the signature of 30° ($d=\\sqrt3h$). Trap: 60° inverts the ratio.",
+   "difficulty": "medium",
+   "subtopic": "hd-standard-angles",
+   "pattern": "shadow ratio to angle",
+   "timeSec": 30
+  },
+  {
+   "id": "hd-q09",
+   "q": "From the top of a 60 m high lighthouse, the angles of depression of two ships on the same side are $30^\\circ$ and $60^\\circ$. The distance between the ships is:",
+   "figure": null,
+   "options": [
+    "$80 \\sqrt{3}$ m",
+    "40 m",
+    "$40 \\sqrt{3}$ m",
+    "$20 \\sqrt{3}$ m"
+   ],
+   "answer": 2,
+   "solution": "Distances from the base: far $=60\\cot30^\\circ=60\\sqrt3$, near $=60\\cot60^\\circ=\\frac{60}{\\sqrt3}=20\\sqrt3$.\n\nGap $=60\\sqrt3-20\\sqrt3=40\\sqrt3$ m.",
+   "shortcut": "Gap $=h(\\cot30-\\cot60)=60\\cdot\\frac2{\\sqrt3}=40\\sqrt3$ m — same $\\frac{\\sqrt3}{2}\\times$ nothing; here $\\frac{2h}{\\sqrt3}$. Watch: far minus near, never add.",
+   "difficulty": "medium",
+   "subtopic": "hd-two-angles",
+   "pattern": "two ships from lighthouse",
+   "timeSec": 45
+  },
+  {
+   "id": "hd-q10",
+   "q": "From a point 20$\\sqrt{3}$ m from the base of a building, the elevation of the top of the building is $30^\\circ$ and of the top of the tower standing on it is $60^\\circ$. The height of the tower is:",
+   "figure": null,
+   "options": [
+    "20 m",
+    "40 m",
+    "$20 \\sqrt{3}$ m",
+    "60 m"
+   ],
+   "answer": 1,
+   "solution": "Building: $h_b=20\\sqrt3\\tan30^\\circ=20$ m.\n\nBuilding + tower: $20\\sqrt3\\tan60^\\circ=60$ m. Tower $=60-20=40$ m.",
+   "shortcut": "$\\text{tower}=d(\\tan60-\\tan30)=20\\sqrt3(\\sqrt3-\\frac1{\\sqrt3})=20\\sqrt3\\cdot\\frac{2}{\\sqrt3}=40$ m.",
+   "difficulty": "medium",
+   "subtopic": "hd-compound",
+   "pattern": "tower on building",
+   "timeSec": 50
+  },
+  {
+   "id": "hd-q11",
+   "q": "A tree breaks due to a storm and the broken part touches the ground 15 m from the base, making an angle of $30^\\circ$ with the ground. The height of the tree before breaking was:",
+   "figure": null,
+   "options": [
+    "15 m",
+    "$10 \\sqrt{3}$ m",
+    "$30 \\sqrt{3}$ m",
+    "$15 \\sqrt{3}$ m"
+   ],
+   "answer": 3,
+   "solution": "Fallen part $=\\frac{15}{\\cos30^\\circ}=\\frac{30}{\\sqrt3}=10\\sqrt3$ m; standing part $=15\\tan30^\\circ=5\\sqrt3$ m.\n\nTotal $=15\\sqrt3$ m.",
+   "shortcut": "Tree $=\\frac{b}{\\cos\\theta}+b\\tan\\theta=10\\sqrt3+5\\sqrt3=15\\sqrt3$. Trap: $10\\sqrt3$ (forgotten standing part).",
+   "difficulty": "medium",
+   "subtopic": "hd-compound",
+   "pattern": "broken tree",
+   "timeSec": 55
+  },
+  {
+   "id": "hd-q12",
+   "q": "The angles of elevation of the tops of two towers from the midpoint of the line joining their bases are $30^\\circ$ and $60^\\circ$. If the towers are 60 m apart, the difference of their heights is:",
+   "figure": null,
+   "options": [
+    "$30 \\sqrt{3}$ m",
+    "$20 \\sqrt{3}$ m",
+    "$10 \\sqrt{3}$ m",
+    "$40 \\sqrt{3}$ m"
+   ],
+   "answer": 1,
+   "solution": "Each base is 30 m from the midpoint.\n\n$h_1=30\\tan30^\\circ=10\\sqrt3$, $h_2=30\\tan60^\\circ=30\\sqrt3$. Difference $=20\\sqrt3$ m.",
+   "shortcut": "Midpoint splits 60 into 30 + 30; heights are $30\\times\\frac{1}{\\sqrt3}$ and $30\\times\\sqrt3$ → difference $20\\sqrt3$ m. (Ratio check: heights are always 1 : 3 here.)",
+   "difficulty": "medium",
+   "subtopic": "hd-two-angles",
+   "pattern": "two towers from midpoint",
+   "timeSec": 60
+  },
+  {
+   "id": "hd-q13",
+   "q": "From the top of a tower, the angle of depression of a car changes from $30^\\circ$ to $60^\\circ$ while the car approaches uniformly at 6 m/s for 6 seconds. The height of the tower is:",
+   "figure": null,
+   "options": [
+    "36 m",
+    "$12 \\sqrt{3}$ m",
+    "18 m",
+    "$18 \\sqrt{3}$ m"
+   ],
+   "answer": 3,
+   "solution": "Distance covered $=6\\times6=36$ m $=h(\\cot30^\\circ-\\cot60^\\circ)=\\frac{2h}{\\sqrt3}$.\n\n$h=\\frac{36\\sqrt3}{2}=18\\sqrt3$ m.",
+   "shortcut": "Speed × time gives the walked distance; then the 30–60 pair: $h=\\frac{\\sqrt3}{2}\\times36=18\\sqrt3$ m.",
+   "difficulty": "hard",
+   "subtopic": "hd-motion",
+   "pattern": "car speed two-angle",
+   "timeSec": 60
+  },
+  {
+   "id": "hd-q14",
+   "q": "The angles of elevation of the top of a tower from two points 40 m apart on the same side of it are $30^\\circ$ and $45^\\circ$. The height of the tower is:",
+   "figure": null,
+   "options": [
+    "$40(\\sqrt{3}+1)$ m",
+    "$40\\sqrt{3}$ m",
+    "$20(\\sqrt{3}+1)$ m",
+    "$20(\\sqrt{3}-1)$ m"
+   ],
+   "answer": 2,
+   "solution": "$h=\\frac{d}{\\cot30^\\circ-\\cot45^\\circ}=\\frac{40}{\\sqrt3-1}$.\n\nRationalise: $\\frac{40(\\sqrt3+1)}{3-1}=20(\\sqrt3+1)$ m.",
+   "shortcut": "$\\frac{40}{\\sqrt3-1}$ → multiply by $\\frac{\\sqrt3+1}{\\sqrt3+1}$ → $20(\\sqrt3+1)$ m. The $30/45$ pair always ends in $(\\sqrt3+1)\\times\\frac{d}{2}$.",
+   "difficulty": "hard",
+   "subtopic": "hd-two-angles",
+   "pattern": "30-45 same side pair",
+   "timeSec": 60
+  },
+  {
+   "id": "hd-q15",
+   "q": "From the roof of a 7 m high building, the angle of elevation of the top of a tower is $60^\\circ$ and the angle of depression of its base is $45^\\circ$. The height of the tower is:",
+   "figure": null,
+   "options": [
+    "$7(1+\\sqrt{3})$ m",
+    "$7\\sqrt{3}$ m",
+    "$7(2+\\sqrt{3})$ m",
+    "$(7+14\\sqrt{3})$ m"
+   ],
+   "answer": 0,
+   "solution": "Depression $45^\\circ$: horizontal distance $d=\\frac{7}{\\tan45^\\circ}=7$ m.\n\nElevation $60^\\circ$: top above roof $=7\\tan60^\\circ=7\\sqrt3$.\n\nTower $=7+7\\sqrt3=7(1+\\sqrt3)$ m.",
+   "shortcut": "45° depression gives $d$ = building height (7); tower $=7+7\\sqrt3$. Add the building back — the top angle only measures the part above the roof.",
+   "difficulty": "hard",
+   "subtopic": "hd-compound",
+   "pattern": "building and tower",
+   "timeSec": 65
+  }
+ ]
+}
