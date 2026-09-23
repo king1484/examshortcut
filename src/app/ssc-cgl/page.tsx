@@ -80,6 +80,7 @@ export default function ExamPage() {
           ['/ssc-cgl/ga/current-affairs/', '📰 Current affairs', 'Apr–Sep 2026, exam-relevant'],
           ['/ssc-cgl/study-plan/', '🗓️ Study plan generator', 'Day-by-day timetable to exam day'],
           ['/ssc-cgl/posts/', '🏛️ Posts & age checker', 'Eligibility + post preference builder'],
+          ['/ssc-cgl/calendar/', '⏳ Exam calendar', 'Countdown + add dates to your calendar'],
         ].map(([href, t, s]) => (
           <Link key={href} href={href} className="card p-4 hover:-translate-y-0.5 transition-transform">
             <div className="font-bold text-sm">{t}</div>
