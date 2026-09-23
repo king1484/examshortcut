@@ -83,13 +83,13 @@ add("t1m-q08",
     "17 and 18 — both 'abolition' articles sit side by side (17-untouchability, 18-titles).",
     "easy", "polity", "Article–subject", 20)
 
-# 9 POLITY — borrowed features
+# 9 POLITY — emergency provisions
 add("t1m-q09",
-    "The concept of Directive Principles of State Policy in the Indian Constitution has been borrowed from the Constitution of:",
-    ["Ireland", "United Kingdom", "United States", "Canada"], 0,
-    "DPSP (Part IV, borrowed from Ireland) is itself inspired by the Spanish Constitution. The UK gave parliamentary system and single citizenship, the USA gave Fundamental Rights and judicial review, Canada gave a federation with a strong Centre.",
-    "Irish = 'Instructions' — DPSP are instructions; Ireland is the only one starting with a vowel like 'Instructions'.",
-    "easy", "polity", "borrowed features-source", 20)
+    "Under which Article of the Constitution can the President proclaim a National Emergency on grounds of war, external aggression or armed rebellion?",
+    ["Article 352", "Article 356", "Article 360", "Article 365"], 0,
+    "Article 352 covers National Emergency ('armed rebellion' replaced 'internal disturbance' through the 44th Amendment, 1978). Article 356 covers President's Rule in a state, Article 360 covers Financial Emergency and Article 365 lets the Centre treat a state's failure to follow its directions as a breakdown of constitutional machinery.",
+    "Emergency trio in ascending order: 352 National → 356 State → 360 Financial ('2-6-0').",
+    "easy", "polity", "Article-emergency type", 20)
 
 # 10 POLITY — executive procedure
 add("t1m-q10",
@@ -141,11 +141,11 @@ add("t1m-q15",
 
 # 16 ECONOMY — institutions
 add("t1m-q16",
-    "NITI Aayog, which replaced the Planning Commission, was established on:",
-    ["1 January 2014", "1 January 2015", "26 January 2016", "15 August 2017"], 1,
-    "NITI Aayog (National Institution for Transforming India) was set up by a Cabinet resolution on 1 January 2015; the Planning Commission (1950) was abolished the previous day. The Prime Minister is its chairperson.",
-    "New Year 2015 — 'New Think-tank, New Year'.",
-    "easy", "economy", "body-establishment year", 20)
+    "The Reserve Bank of India was established in which year, on the recommendation of the Hilton Young Commission?",
+    ["1947", "1949", "1969", "1935"], 3,
+    "The RBI began operations on 1 April 1935 under the RBI Act, 1934, following the Hilton Young (Royal) Commission. It was nationalised on 1 January 1949; 1969 is the year 14 commercial banks were nationalised.",
+    "RBI: Act 1934 → started 1935 → nationalised 1949 ('34-35-49').",
+    "easy", "economy", "institution-establishment year", 20)
 
 # 17 PHYSICS — SI units
 add("t1m-q17",

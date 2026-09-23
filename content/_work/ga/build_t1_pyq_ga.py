@@ -75,10 +75,10 @@ add("pyq-q06",
 
 # P7 ART — temple architecture (mirrors cave-architecture question format)
 add("pyq-q07",
-    "The famous rock-cut Kailasa temple (Cave 16) at Ellora was carved during the reign of which dynasty?",
-    ["Rashtrakuta", "Chalukya", "Pallava", "Yadava"], 0,
-    "Krishna I of the Rashtrakuta dynasty had the Kailasa temple cut out of a single rock in the 8th century CE. The Pallavas built the ratha temples of Mahabalipuram; Badami Chalukyas excelled at Aihole-Pattadakal.",
-    "Ellora = E for Eight century = Rashtrakuta Krishna I.",
+    "The Shore Temple at Mahabalipuram, overlooking the Bay of Bengal, was built under which dynasty?",
+    ["Pallava", "Chola", "Chalukya", "Rashtrakuta"], 0,
+    "The Shore Temple was built in the early 8th century CE under the Pallava king Narasimhavarman II (Rajasimha). It is one of the earliest structural stone temples of South India and is part of the Mahabalipuram monuments on the UNESCO list (1984). The five rathas are also Pallava work.",
+    "Mahabalipuram = Mamalla (Narasimhavarman I's title) = Pallava port.",
     "medium", "art-culture", "monument-dynasty", 30)
 
 # --- POLITY (5) ------------------------------------------------------------
@@ -119,13 +119,13 @@ add("pyq-q11",
     "148: 'one-four-eight — the Auditor watches all three: union, states, accounts'.",
     "medium", "polity", "constitutional body-Article", 25)
 
-# P12 POLITY — Preamble amendments
+# P12 POLITY — local government amendments
 add("pyq-q12",
-    "The words 'Socialist', 'Secular' and 'Integrity' were inserted into the Preamble by which amendment?",
-    ["24th Amendment", "44th Amendment", "42nd Amendment", "52nd Amendment"], 2,
-    "The 42nd Amendment Act, 1976 (the 'Mini-Constitution') added the three words to the Preamble, restricted judicial review and moved five subjects (including education) to the Concurrent List. The 44th Amendment later softened some 42nd changes, removing 'internal disturbance' as a ground for emergency.",
-    "42 = the all-rounder: Preamble words, Fundamental Duties, education shift.",
-    "easy", "polity", "amendment-purpose", 20)
+    "The 73rd Constitutional Amendment Act, 1992, which gave constitutional status to Panchayati Raj institutions, added which Part to the Constitution?",
+    ["Part IX-A", "Part VIII", "Part IX", "Part XIV-A"], 2,
+    "The 73rd Amendment inserted Part IX (Articles 243 to 243-O) and the Eleventh Schedule (29 subjects) and came into force on 24 April 1993, now observed as National Panchayati Raj Day. The 74th Amendment added Part IX-A (Municipalities) and the Twelfth Schedule (18 subjects). Part VIII covers Union Territories.",
+    "73 → IX + 11th Schedule (29); 74 → IX-A + 12th Schedule (18).",
+    "medium", "polity", "amendment-Part added", 25)
 
 # --- SCIENCE (6) -----------------------------------------------------------
 

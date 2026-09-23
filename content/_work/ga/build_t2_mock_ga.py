@@ -62,9 +62,9 @@ add("t2m-q05",
 # 6 ART — folk dance-state pairs
 add("t2m-q06",
     "Which of the following dance–state pairs is correctly matched?",
-    ["Ghoomar — Punjab", "Bihu — Assam", "Lavani — Gujarat", "Yakshagana — Kerala"], 1,
-    "Bihu is the folk dance-festival of Assam. Ghoomar belongs to Rajasthan, Lavani to Maharashtra and Yakshagana (a dance-drama) to Karnataka.",
-    "Ghoomar-Ghagra-Rajasthan; Lavani-Lungi-Maharashtra; Yakshagana-Yaksha-Karnataka.",
+    ["Ghoomar — Punjab", "Lavani — Maharashtra", "Bihu — Odisha", "Yakshagana — Kerala"], 1,
+    "Lavani, with its fast dholki beat, is a folk form of Maharashtra. Ghoomar belongs to Rajasthan, Bihu to Assam and Yakshagana (a dance-drama) to coastal Karnataka.",
+    "Lavani–Marathi Tamasha stage; Ghoomar–Rajasthan; Bihu–Assam; Yakshagana–Karnataka.",
     "easy", "art-culture", "dance-state pair check", 20)
 
 # 7 ART — UNESCO World Heritage Sites
@@ -83,13 +83,13 @@ add("t2m-q08",
     "Impeachment = 61: 'charge-sheet (61) the first citizen'.",
     "medium", "polity", "Article-procedure", 30)
 
-# 9 POLITY — Money Bill
+# 9 POLITY — Speaker
 add("t2m-q09",
-    "A Money Bill under Article 110 can be introduced in the Lok Sabha only on the recommendation of:",
-    ["the Prime Minister", "the Finance Minister", "the President", "the Speaker"], 2,
-    "Article 110(3) says a Money Bill shall not be introduced except on the recommendation of the President. The Speaker certifies whether a bill is a Money Bill, and the Rajya Sabha must return it within 14 days.",
-    "President recommends, Speaker certifies, RS returns in 14 days.",
-    "easy", "polity", "legislative procedure", 25)
+    "The Speaker of the Lok Sabha, when resigning, addresses the letter of resignation to:",
+    ["the President", "the Prime Minister", "the Deputy Speaker", "the Chief Justice of India"], 2,
+    "Under Article 94, the Speaker resigns by writing to the Deputy Speaker, and the Deputy Speaker resigns by writing to the Speaker. The President resigns to the Vice-President, and the Vice-President resigns to the President.",
+    "Speaker ↔ Deputy Speaker; President ↔ Vice-President: each resigns to the partner.",
+    "medium", "polity", "resignation addressed to", 25)
 
 # 10 POLITY — Fundamental Duties (statement format)
 add("t2m-q10",
@@ -103,13 +103,13 @@ add("t2m-q10",
     "42 added 10, 86 added the 11th — '42+10, 86+11'.",
     "medium", "polity", "statement-based Fundamental Duties", 35)
 
-# 11 POLITY — borrowed features
+# 11 POLITY — Schedules / amendments
 add("t2m-q11",
-    "The idea of a 'Concurrent List' of subjects on which both the Union and the states can legislate was borrowed from the Constitution of:",
-    ["Australia", "Ireland", "Canada", "Japan"], 0,
-    "The Concurrent List comes from Australia (as does freedom of trade and commerce). Canada gave the union-with-strong-centre model, Ireland the DPSP and Japan the 'procedure established by law' concept.",
-    "Concurrent–Commonwealth–Australia (all C/A).",
-    "medium", "polity", "borrowed features", 25)
+    "The Tenth Schedule, which deals with disqualification of legislators on grounds of defection, was added to the Constitution by the:",
+    ["52nd Amendment Act, 1985", "44th Amendment Act, 1978", "73rd Amendment Act, 1992", "61st Amendment Act, 1988"], 0,
+    "The 52nd Amendment (1985, Rajiv Gandhi government) inserted the Tenth Schedule, known as the anti-defection law. The 91st Amendment (2003) later removed the 'split' exception. The 44th Amendment restored civil-liberty safeguards after the Emergency, the 61st lowered the voting age and the 73rd created Panchayati Raj.",
+    "Tenth Schedule = 52nd: 'defect in '85'.",
+    "medium", "polity", "Schedule-amendment", 25)
 
 # 12 INDIAN GEOGRAPHY — mountain passes
 add("t2m-q12",
@@ -135,13 +135,13 @@ add("t2m-q14",
     "Pacific = peace-named, fire-ringed.",
     "easy", "world-geography", "plate tectonics facts", 20)
 
-# 15 ECONOMY — monetary policy
+# 15 ECONOMY — market regulator
 add("t2m-q15",
-    "The repo rate, at which the RBI lends short-term funds to banks, is decided by:",
-    ["the RBI's Monetary Policy Committee", "NITI Aayog", "the Ministry of Finance", "SEBI"], 0,
-    "The six-member Monetary Policy Committee (3 RBI members including the Governor as chair + 3 external experts appointed by the Centre) sets the policy repo rate to achieve the 4% (+/-2%) inflation target, as amended by the Finance Act 2016.",
-    "MPC = 3+3, Governor chairs, target 4%±2%.",
-    "easy", "economy", "RBI policy institutions", 25)
+    "SEBI, set up in 1988 as a non-statutory body, received statutory powers through the SEBI Act in which year?",
+    ["1992", "1988", "1999", "2003"], 0,
+    "SEBI was constituted in April 1988 by a government resolution and became a statutory regulator under the SEBI Act, 1992 (30 January 1992). It is headquartered in Mumbai. 1999 is the year IRDA was set up.",
+    "SEBI: born '88, gets teeth in '92.",
+    "medium", "economy", "regulator-statutory year", 25)
 
 # 16 ECONOMY — price indices
 add("t2m-q16",

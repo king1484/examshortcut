@@ -1,0 +1,470 @@
+{
+ "id": "statement-conclusion",
+ "sectionId": "reasoning",
+ "title": "Statement & Conclusion",
+ "order": 14,
+ "importance": "medium",
+ "avgQuestions": {
+  "tier1": "0-1",
+  "tier2": "1-2"
+ },
+ "summary": "Judge what a short statement definitely supports: conclusions (forced or clearly implied by the statement alone), assumptions (what the speaker must take for granted — use the negation test) and courses of action (practical, proportionate responses). The traps are predictable: extreme words, outside facts, overgeneralisation, averages read as limits, and 'only X are eligible' misread as a guarantee.",
+ "subtopics": [
+  {
+   "id": "conclusions",
+   "title": "Statement and conclusions",
+   "concept": "A **conclusion** follows only if it is **definitely true on the basis of the statement alone** (plus universal common sense). You are not asked whether it is true in real life — only whether the statement forces it.\n\nA conclusion follows when it:\n- restates the statement in other words,\n- is a direct, necessary consequence (arithmetic from given data counts), or\n- is the obvious intended implication ('may', 'some', 'likely' conclusions often pass).\n\nA conclusion fails when it:\n- uses **extreme words** (only, all, always, never, best, must) the statement never used,\n- brings in **outside facts** or a cause/effect the statement does not mention,\n- **overgeneralises** one case to 'every time' or 'everyone',\n- confuses a **necessary** condition with a **sufficient** one ('only those with X are eligible' does not make everyone with X eligible).",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Extreme-word filter",
+     "body": "Circle words like only, all, always, never, surely, best, entire, must. If the conclusion has one and the statement doesn't, it almost always fails.",
+     "example": {
+      "q": "**Q.** Statement: Regular exercise helps control blood pressure. Conclusion: Exercise is the only way to control blood pressure.\n\n**Sol.** 'Only' is new — the statement says exercise *helps*, not that nothing else works. Does not follow.",
+      "solution": "New extreme word = reject."
+     }
+    },
+    {
+     "title": "Necessary vs sufficient",
+     "body": "'Only X can do Y' means X is required, not that X guarantees Y. Check which direction the conclusion runs.",
+     "example": {
+      "q": "**Q.** Statement: Only graduates can apply for the post. Riya is a graduate. Conclusion: Riya will be selected.\n\n**Sol.** Being a graduate is necessary to apply, not sufficient for selection. Does not follow.",
+      "solution": "'Only' fixes a gate, not a guarantee."
+     }
+    }
+   ],
+   "mistakes": [
+    "Accepting a conclusion because it is true in real life, though the statement is silent.",
+    "Reading 'only those with X' as 'everyone with X'.",
+    "Rejecting soft conclusions ('may', 'some') that the statement clearly supports.",
+    "Treating an average as a maximum or minimum in data statements."
+   ]
+  },
+  {
+   "id": "assumptions",
+   "title": "Statement and assumptions",
+   "concept": "An **assumption** is an unstated belief the speaker **must** hold for the statement (advice, appeal, notice, advertisement) to make sense. It is taken for granted *before* the statement is made.\n\n**Negation test**: negate the assumption. If the statement then becomes pointless or self-defeating, the assumption is implicit. Example: 'Book your tickets early to avoid the rush' assumes there will be a rush — negate it ('there will be no rush') and the advice is pointless.\n\nAssumptions are usually modest (some people, likely effect). A claimed assumption that the action will produce a **total** result (accidents will stop completely) is not needed and is not implicit.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Negation test",
+     "body": "Put 'not' in the assumption. Does the speaker still have a reason to say what they said? If not, the assumption is implicit.",
+     "example": {
+      "q": "**Q.** Notice: 'Use the stairs during the lift maintenance on Tuesday.' Assumption: The building has stairs usable by residents.\n\n**Sol.** Negate: 'there are no usable stairs' — the notice becomes absurd. Implicit.",
+      "solution": "If negation kills the statement's purpose, the assumption is implicit."
+     }
+    }
+   ],
+   "mistakes": [
+    "Choosing assumptions that are desirable but not required.",
+    "Accepting 100%-effect assumptions (will stop completely, everyone will obey).",
+    "Confusing an assumption (before the statement) with a conclusion (after it)."
+   ]
+  },
+  {
+   "id": "courses-of-action",
+   "title": "Courses of action",
+   "concept": "The statement describes a problem or situation; a **course of action** follows if it is a **practical, proportionate step** that addresses the problem (solves, reduces, or investigates it) and is within reach of the proper authority.\n\nReject actions that are:\n- **extreme or disproportionate** (ban, shut down permanently, punish everyone),\n- **unrelated** to the stated problem, or\n- **impractical** (require the impossible, e.g. stop the monsoon).\n\nTwo actions can both follow — a long-term fix (repair roads) and a short-term relief (deploy traffic police) are independent and often both valid.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Proportion check",
+     "body": "Ask: would a sensible administrator actually do this tomorrow? Investigating, repairing, warning, supplying, treating usually pass; banning, shutting forever, blaming everyone fail.",
+     "example": {
+      "q": "**Q.** Statement: A few buses of a city route broke down this week. Action: Scrap the entire bus fleet.\n\n**Sol.** Disproportionate — a few breakdowns call for inspection and repair, not scrapping all buses. Does not follow.",
+      "solution": "Fix the problem, don't nuke the system."
+     }
+    }
+   ],
+   "mistakes": [
+    "Accepting harsh blanket bans as 'strong action'.",
+    "Rejecting a valid short-term relief because it is not a permanent solution.",
+    "Choosing actions that address a different problem than the one stated."
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Two conclusions (verbal)",
+   "frequency": "very common",
+   "howToSpot": "A notice / news line / fact with two conclusions I and II.",
+   "approach": "Filter extreme words and outside facts; keep restatements and clear implications."
+  },
+  {
+   "pattern": "Data-based statement",
+   "frequency": "common",
+   "howToSpot": "Statement carries numbers (sales, prices, marks, speeds).",
+   "approach": "Compute: percentages, differences, averages — then compare. Averages never fix maxima."
+  },
+  {
+   "pattern": "Only-X eligibility trap",
+   "frequency": "common",
+   "howToSpot": "'Only those who…' plus an individual who meets the condition.",
+   "approach": "Necessary is not sufficient: meeting the condition does not guarantee the outcome."
+  },
+  {
+   "pattern": "Three conclusions",
+   "frequency": "occasional",
+   "howToSpot": "Three conclusions; options list pairs or all three.",
+   "approach": "Judge each separately, then match the true set to an option."
+  },
+  {
+   "pattern": "Statement and assumption",
+   "frequency": "common",
+   "howToSpot": "Advice, notice, advertisement or appeal; two assumptions.",
+   "approach": "Negation test; reject total-effect assumptions."
+  },
+  {
+   "pattern": "Course of action",
+   "frequency": "common",
+   "howToSpot": "A problem is described; two or three proposed actions.",
+   "approach": "Keep practical, proportionate, relevant steps; reject bans and extremes."
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "rsn-statement-ex1",
+   "q": "**Statement:** The municipal corporation has announced a 5% rebate on property tax paid on or before 30 June.\n\n**Conclusions:**\nI. Some property owners are likely to pay their tax on or before 30 June.\nII. A penalty will be charged on property tax paid after 30 June.\n\nWhich of the conclusions follow(s) from the statement?",
+   "figure": null,
+   "options": [
+    "Only conclusion I follows",
+    "Only conclusion II follows",
+    "Both I and II follow",
+    "Neither I nor II follows"
+   ],
+   "answer": 0,
+   "solution": "I: A rebate is offered precisely to encourage early payment; that some owners will respond is the clear implication — **follows**. II: The statement says nothing about a penalty; missing a rebate is not the same as paying a fine — outside information, **does not follow**. Answer: **Only I**.",
+   "shortcut": "Rebate ≠ penalty: reject anything the statement never mentioned.",
+   "difficulty": "easy",
+   "subtopic": "conclusions",
+   "pattern": "two conclusions (verbal)",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-statement-ex2",
+   "q": "**Statement:** In a school, 240 of the 400 students in Class XI chose the Science stream and all the others chose Commerce.\n\n**Conclusions:**\nI. 60% of the Class XI students chose Science.\nII. More Class XI students chose Commerce than Science.\n\nWhich of the conclusions follow(s) from the statement?",
+   "figure": null,
+   "options": [
+    "Only conclusion I follows",
+    "Only conclusion II follows",
+    "Both I and II follow",
+    "Neither I nor II follows"
+   ],
+   "answer": 0,
+   "solution": "I: 240 ÷ 400 = 0.6 = 60% — **follows**. II: Commerce = 400 − 240 = 160, which is less than 240 — the statement contradicts it, **does not follow**. Answer: **Only I**.",
+   "shortcut": "Do the arithmetic; data conclusions are either forced or contradicted.",
+   "difficulty": "easy",
+   "subtopic": "conclusions",
+   "pattern": "data-based statement",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-statement-ex3",
+   "q": "**Statement:** A mother tells her son, 'Carry your umbrella — the forecast says there will be heavy rain this evening.'\n\n**Assumptions:**\nI. The weather forecast is generally reliable.\nII. The son will be outdoors this evening.\n\nWhich of the assumptions is/are implicit in the statement?",
+   "figure": null,
+   "options": [
+    "Only assumption I is implicit",
+    "Only assumption II is implicit",
+    "Both I and II are implicit",
+    "Neither I nor II is implicit"
+   ],
+   "answer": 2,
+   "solution": "Negate I: 'the forecast is unreliable' — then advising an umbrella on its basis makes no sense, so I is **implicit**. Negate II: 'the son will stay indoors' — the umbrella advice becomes pointless, so II is **implicit**. Answer: **Both**.",
+   "shortcut": "Negation test on each assumption.",
+   "difficulty": "medium",
+   "subtopic": "assumptions",
+   "pattern": "statement and assumption",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-statement-ex4",
+   "q": "**Statement:** Several students of a college hostel fell ill after eating dinner from the hostel mess.\n\n**Courses of action:**\nI. The mess food and drinking water should be tested and the kitchen inspected.\nII. The hostel should be shut down permanently.\n\nWhich of the courses of action logically follow(s)?",
+   "figure": null,
+   "options": [
+    "Only course of action I follows",
+    "Only course of action II follows",
+    "Both I and II follow",
+    "Neither I nor II follows"
+   ],
+   "answer": 0,
+   "solution": "I is a practical, proportionate step to find and remove the cause — **follows**. II is a drastic overreaction to a single incident and does not address the cause — **does not follow**. Answer: **Only I**.",
+   "shortcut": "Investigate and fix = yes; shut down forever = no.",
+   "difficulty": "easy",
+   "subtopic": "courses-of-action",
+   "pattern": "course of action",
+   "timeSec": 40
+  }
+ ],
+ "practice": [
+  {
+   "id": "rsn-statement-1",
+   "q": "**Statement:** All candidates must carry an original photo identity card to the examination hall; candidates without one will not be allowed to enter.\n\n**Conclusions:**\nI. A candidate without an original photo identity card will not be allowed into the hall.\nII. The photo identity card is the only document a candidate needs to carry.\n\nWhich of the conclusions follow(s) from the statement?",
+   "figure": null,
+   "options": [
+    "Only conclusion I follows",
+    "Only conclusion II follows",
+    "Both I and II follow",
+    "Neither I nor II follows"
+   ],
+   "answer": 0,
+   "solution": "I simply restates the rule — **follows**. II adds 'only': the statement never says no other document (such as the admit card) is required — **does not follow**. Answer: **Only I**.",
+   "shortcut": "Restatement passes; a new 'only' fails.",
+   "difficulty": "easy",
+   "subtopic": "conclusions",
+   "pattern": "two conclusions (verbal)",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-statement-2",
+   "q": "**Statement:** Sales of mobile phones in the city rose sharply during the festival month of October this year.\n\n**Conclusions:**\nI. Every year, people in the city buy more phones in festival months than in other months.\nII. Mobile phone prices were reduced in October.\n\nWhich of the conclusions follow(s) from the statement?",
+   "figure": null,
+   "options": [
+    "Only conclusion I follows",
+    "Only conclusion II follows",
+    "Both I and II follow",
+    "Neither I nor II follows"
+   ],
+   "answer": 3,
+   "solution": "I stretches one year's data to 'every year' — overgeneralisation, **does not follow**. II supplies a cause (price cut) the statement never mentions — outside information, **does not follow**. Answer: **Neither**.",
+   "shortcut": "One observation ≠ a rule; an unstated cause ≠ a conclusion.",
+   "difficulty": "medium",
+   "subtopic": "conclusions",
+   "pattern": "two conclusions (verbal)",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-statement-3",
+   "q": "**Statement:** A train covered a distance of 360 km in 4 hours 30 minutes.\n\n**Conclusions:**\nI. The average speed of the train was 80 km/h.\nII. The speed of the train never exceeded 80 km/h.\n\nWhich of the conclusions follow(s) from the statement?",
+   "figure": null,
+   "options": [
+    "Only conclusion I follows",
+    "Only conclusion II follows",
+    "Both I and II follow",
+    "Neither I nor II follows"
+   ],
+   "answer": 0,
+   "solution": "I: 360 ÷ 4.5 = 80 km/h — **follows**. II: an average says nothing about the maximum; the train could have run faster on some stretches and slower on others — **does not follow**. Answer: **Only I**.",
+   "shortcut": "Average speed fixes the average, never the top speed.",
+   "difficulty": "medium",
+   "subtopic": "conclusions",
+   "pattern": "data-based statement",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-statement-4",
+   "q": "**Statement:** Only employees who have completed ten years of service are eligible for the long-service award. Rekha has completed twelve years of service.\n\n**Conclusions:**\nI. Rekha is eligible for the long-service award.\nII. Rekha will receive the long-service award.\n\nWhich of the conclusions follow(s) from the statement?",
+   "figure": null,
+   "options": [
+    "Only conclusion I follows",
+    "Only conclusion II follows",
+    "Both I and II follow",
+    "Neither I nor II follows"
+   ],
+   "answer": 3,
+   "solution": "'Only those with ten years are eligible' makes ten years **necessary**, not **sufficient**: it tells us who is *excluded* (under ten years), not that everyone above ten years is eligible — there may be other conditions. So I does **not** definitely follow, and II (actually receiving it) is even further away. Answer: **Neither**.",
+   "shortcut": "'Only X are eligible' → not-X are out; it never says X are in.",
+   "difficulty": "hard",
+   "subtopic": "conclusions",
+   "pattern": "only-x eligibility trap",
+   "timeSec": 60
+  },
+  {
+   "id": "rsn-statement-5",
+   "q": "**Statement:** Every employee of the firm who works on a Sunday gets a compensatory day off. Arun, an employee of the firm, worked last Sunday.\n\n**Conclusions:**\nI. Arun is entitled to a compensatory day off.\nII. Arun works on every Sunday.\n\nWhich of the conclusions follow(s) from the statement?",
+   "figure": null,
+   "options": [
+    "Only conclusion I follows",
+    "Only conclusion II follows",
+    "Both I and II follow",
+    "Neither I nor II follows"
+   ],
+   "answer": 0,
+   "solution": "The rule is universal ('every employee who works on a Sunday'), and Arun satisfies it, so I **follows**. II turns one Sunday into every Sunday — **does not follow**. Answer: **Only I**.",
+   "shortcut": "'Every X gets Y' + Arun is X → Arun gets Y. Contrast with the 'only' trap.",
+   "difficulty": "medium",
+   "subtopic": "conclusions",
+   "pattern": "only-x eligibility trap",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-statement-6",
+   "q": "**Statement:** The price of a notebook rose from ₹40 to ₹50, while the price of a pen rose from ₹10 to ₹15.\n\n**Conclusions:**\nI. The price of the notebook rose by a larger percentage than the price of the pen.\nII. The price of the pen rose by 50%.\n\nWhich of the conclusions follow(s) from the statement?",
+   "figure": null,
+   "options": [
+    "Only conclusion I follows",
+    "Only conclusion II follows",
+    "Both I and II follow",
+    "Neither I nor II follows"
+   ],
+   "answer": 1,
+   "solution": "Notebook: (50 − 40)/40 = 25%. Pen: (15 − 10)/10 = 50%. I claims 25% > 50% — false, **does not follow** (a bigger rupee rise is not a bigger percentage rise). II is exactly 50% — **follows**. Answer: **Only II**.",
+   "shortcut": "Compare percentages on the base, not the rupee jump.",
+   "difficulty": "medium",
+   "subtopic": "conclusions",
+   "pattern": "data-based statement",
+   "timeSec": 50
+  },
+  {
+   "id": "rsn-statement-7",
+   "q": "**Statement:** Doctors advise that adults should sleep for at least seven hours a night to stay healthy.\n\n**Conclusions:**\nI. Sleeping for more than seven hours a night is harmful for adults.\nII. Regularly sleeping for less than seven hours may affect an adult's health.\n\nWhich of the conclusions follow(s) from the statement?",
+   "figure": null,
+   "options": [
+    "Only conclusion I follows",
+    "Only conclusion II follows",
+    "Both I and II follow",
+    "Neither I nor II follows"
+   ],
+   "answer": 1,
+   "solution": "I invents a harm from sleeping more — the advice sets a minimum, not a maximum — **does not follow**. II is the direct implication of 'at least seven hours to stay healthy' and is suitably soft ('may') — **follows**. Answer: **Only II**.",
+   "shortcut": "'At least' sets a floor; it says nothing about going above it.",
+   "difficulty": "easy",
+   "subtopic": "conclusions",
+   "pattern": "two conclusions (verbal)",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-statement-8",
+   "q": "**Statement:** The city library will remain closed on all Sundays and on all public holidays.\n\n**Conclusions:**\nI. The library will be closed on Republic Day, a public holiday.\nII. A reader who visits the library on a Sunday will find it closed.\n\nWhich of the conclusions follow(s) from the statement?",
+   "figure": null,
+   "options": [
+    "Only conclusion I follows",
+    "Only conclusion II follows",
+    "Both I and II follow",
+    "Neither I nor II follows"
+   ],
+   "answer": 2,
+   "solution": "I: Republic Day is a public holiday, and the library is closed on all public holidays — **follows**. II: it is closed on all Sundays — **follows**. Answer: **Both**.",
+   "shortcut": "'All Sundays and all public holidays' covers both specific cases.",
+   "difficulty": "easy",
+   "subtopic": "conclusions",
+   "pattern": "two conclusions (verbal)",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-statement-9",
+   "q": "**Statement:** In a class of 50 students, 30 passed in Mathematics and 35 passed in Science. Every student passed in at least one of the two subjects.\n\n**Conclusions:**\nI. 15 students passed in both subjects.\nII. 20 students passed only in Science.\n\nWhich of the conclusions follow(s) from the statement?",
+   "figure": null,
+   "options": [
+    "Only conclusion I follows",
+    "Only conclusion II follows",
+    "Both I and II follow",
+    "Neither I nor II follows"
+   ],
+   "answer": 2,
+   "solution": "Both = 30 + 35 − 50 = 15, so I **follows**. Only Science = 35 − 15 = 20, so II **follows**. Answer: **Both**.",
+   "shortcut": "n(A∩B) = n(A) + n(B) − total when nobody fails both.",
+   "difficulty": "medium",
+   "subtopic": "conclusions",
+   "pattern": "data-based statement",
+   "timeSec": 55
+  },
+  {
+   "id": "rsn-statement-10",
+   "q": "**Statement:** All the seats for the evening show of the play were sold out two days before the show.\n\n**Conclusions:**\nI. There was high demand for tickets to the evening show.\nII. The morning show of the play was also sold out.\nIII. At least some tickets for the evening show were sold before the day of the show.\n\nWhich of the conclusions follow from the statement?",
+   "figure": null,
+   "options": [
+    "Only I and II follow",
+    "Only I and III follow",
+    "Only II and III follow",
+    "All of I, II and III follow"
+   ],
+   "answer": 1,
+   "solution": "I: selling out two days early clearly indicates high demand — **follows**. II: nothing is said about the morning show — **does not follow**. III: all seats were gone two days before, so tickets were certainly sold before the show day — **follows**. Answer: **Only I and III**.",
+   "shortcut": "Judge each conclusion alone, then find the matching pair.",
+   "difficulty": "medium",
+   "subtopic": "conclusions",
+   "pattern": "three conclusions",
+   "timeSec": 55
+  },
+  {
+   "id": "rsn-statement-11",
+   "q": "**Statement:** Advertisement: 'Learn to swim in just 15 days — join our summer swimming camp!'\n\n**Assumptions:**\nI. Some people want to learn swimming in a short time.\nII. Nobody can learn swimming in less than 15 days.\n\nWhich of the assumptions is/are implicit in the statement?",
+   "figure": null,
+   "options": [
+    "Only assumption I is implicit",
+    "Only assumption II is implicit",
+    "Both I and II are implicit",
+    "Neither I nor II is implicit"
+   ],
+   "answer": 0,
+   "solution": "I: the '15 days' pitch only attracts customers if people value quick learning — negate it and the advert loses its point, so I is **implicit**. II: the camp need not believe faster learning is impossible; it only claims 15 days is enough — **not implicit**. Answer: **Only I**.",
+   "shortcut": "An advert assumes its hook appeals to someone; it assumes nothing about rivals.",
+   "difficulty": "medium",
+   "subtopic": "assumptions",
+   "pattern": "statement and assumption",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-statement-12",
+   "q": "**Statement:** The state transport department has decided to put up road-safety hoardings along the national highway.\n\n**Assumptions:**\nI. Road accidents on the highway will stop completely once the hoardings are put up.\nII. At least some drivers will read the hoardings and may drive more carefully.\n\nWhich of the assumptions is/are implicit in the statement?",
+   "figure": null,
+   "options": [
+    "Only assumption I is implicit",
+    "Only assumption II is implicit",
+    "Both I and II are implicit",
+    "Neither I nor II is implicit"
+   ],
+   "answer": 1,
+   "solution": "I demands a 100% effect — the department only needs to expect *some* benefit, so I is **not implicit**. II: negate it ('no driver will read them') and the decision becomes pointless, so II is **implicit**. Answer: **Only II**.",
+   "shortcut": "Reject total-effect assumptions; keep the modest one the plan depends on.",
+   "difficulty": "medium",
+   "subtopic": "assumptions",
+   "pattern": "statement and assumption",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-statement-13",
+   "q": "**Statement:** The class teacher said, 'Please submit your filled forms by Friday so that I can send the list to the office on Monday.'\n\n**Assumptions:**\nI. The students are in a position to submit the forms by Friday.\nII. The list to be sent to the office depends on the students' forms.\n\nWhich of the assumptions is/are implicit in the statement?",
+   "figure": null,
+   "options": [
+    "Only assumption I is implicit",
+    "Only assumption II is implicit",
+    "Both I and II are implicit",
+    "Neither I nor II is implicit"
+   ],
+   "answer": 2,
+   "solution": "Negate I: 'students cannot submit by Friday' — the request is pointless, so I is **implicit**. Negate II: 'the list does not need the forms' — then linking the deadline to Monday's list makes no sense, so II is **implicit**. Answer: **Both**.",
+   "shortcut": "Both halves of the teacher's sentence rest on one assumption each.",
+   "difficulty": "medium",
+   "subtopic": "assumptions",
+   "pattern": "statement and assumption",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-statement-14",
+   "q": "**Statement:** After the monsoon, a large number of potholes have appeared on the city's main road, causing long traffic jams every day.\n\n**Conclusions:**\nI. The municipal body should repair the potholes as early as possible.\nII. All vehicles should be banned from the main road until the next monsoon.\nIII. Traffic police should be deployed on the road to manage the jams until the repairs are completed.\n\nWhich of the conclusions follow from the statement?",
+   "figure": null,
+   "options": [
+    "Only I and II follow",
+    "Only I and III follow",
+    "Only II and III follow",
+    "All of I, II and III follow"
+   ],
+   "answer": 1,
+   "solution": "I fixes the root cause — **follows**. II is a disproportionate ban that paralyses the city and does not repair anything — **does not follow**. III is a sensible short-term relief while repairs go on — **follows**. Answer: **Only I and III**.",
+   "shortcut": "A permanent fix and a temporary relief can both be valid.",
+   "difficulty": "medium",
+   "subtopic": "courses-of-action",
+   "pattern": "course of action",
+   "timeSec": 55
+  },
+  {
+   "id": "rsn-statement-15",
+   "q": "**Statement:** Farmers in a district report that a new type of pest has been damaging their standing crops.\n\n**Courses of action:**\nI. The farmers should be told to stop cultivation in the district.\nII. Agricultural experts should be sent to identify the pest and advise the farmers on control measures.\n\nWhich of the courses of action logically follow(s)?",
+   "figure": null,
+   "options": [
+    "Only course of action I follows",
+    "Only course of action II follows",
+    "Both I and II follow",
+    "Neither I nor II follows"
+   ],
+   "answer": 1,
+   "solution": "I is drastic and destroys the farmers' livelihood instead of tackling the pest — **does not follow**. II is a practical step that addresses the actual problem — **follows**. Answer: **Only II**.",
+   "shortcut": "Tackle the pest, not the farming.",
+   "difficulty": "easy",
+   "subtopic": "courses-of-action",
+   "pattern": "course of action",
+   "timeSec": 35
+  }
+ ]
+}

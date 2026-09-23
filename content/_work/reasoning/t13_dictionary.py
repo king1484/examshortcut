@@ -45,12 +45,12 @@ subs.append(C.sub(
         C.T(
             'Slot-count from the left',
             "Once sorted, number the words 1, 2, 3… and simply read the asked position. 'Comes last' = highest position; 'middle of five' = position 3.",
-            "**Q.** Cable, Cabin, Cabaret, Cabbage — which comes third?\n\n**Sol.** CABA < CABB < CAB I < CABL → Cabaret, Cabbage, Cabin, Cable → third = **Cabin**.",
+            "**Q.** Cable, Cabin, Cabaret, Cabbage — which comes third?\n\n**Sol.** CABA < CABB < CABI < CABL → Cabaret, Cabbage, Cabin, Cable → third = **Cabin**.",
             "Sort once, count to the slot; never re-compare for each option."),
     ],
     mistakes=[
         "Re-sorting mentally for every option instead of fixing one order.",
-        "Missing that CABINET would sit between CAB and CABLE-type words.",
+        "Answering 'third from the right' with the third word from the left.",
     ]))
 
 subs.append(C.sub(
@@ -76,7 +76,7 @@ subs.append(C.sub(
 
 subs.append(C.sub(
     'word-formation', 'Dictionary rank and word surgery',
-    "Two specialist questions:\n\n1. **Rank of a word** (e.g. the dictionary rank of MACHINE among arrangements of its letters): step letter by letter. At each step count how many *unused* letters are smaller than the current letter — multiply that count by (remaining letters − 1)! and add. Add 1 at the end. This is 'how many words start with earlier letters' accumulation.\n2. **Letter surgery**: rearranging a word's letters alphabetically, counting letters that keep their place, or rebuilding words from selected positions — always write the derived sequence out.\n\nFor words with repeated letters, treat identical letters as interchangeable (the rank algorithm handles this automatically since 'smaller letters' are counted, not equal ones).",
+    "Two specialist questions:\n\n1. **Rank of a word** (e.g. the dictionary rank of MACHINE among arrangements of its letters): step letter by letter. At each step count how many *unused* letters are smaller than the current letter — multiply that count by (remaining letters − 1)! and add. Add 1 at the end. This is 'how many words start with earlier letters' accumulation.\n2. **Letter surgery**: rearranging a word's letters alphabetically, counting letters that keep their place, or rebuilding words from selected positions — always write the derived sequence out.\n\nThe formula as written assumes all letters are **distinct** (every SSC rank question so far uses distinct letters). With repeated letters each block count must also be divided by the factorials of the repeats among the remaining letters.",
     formulas=[
         C.F('Rank of a word', '\\text{rank} = 1 + \\sum_i c_i \\times (r_i)!',
             'At each letter: c_i = unused letters smaller than it, r_i = letters remaining after it.'),
@@ -195,34 +195,34 @@ pr.append(C.Q(
 # 4
 new_seq = list(reversed('ABCDEFGHIJKLM')) + list('NOPQRSTUVWXYZ')
 assert len(new_seq) == 26
-assert new_seq[17 - 1] == 'Q' and new_seq[17 - 7 - 1] == 'E'
+assert new_seq[26 - 10] == 'Q' and new_seq[26 - 10 - 7] == 'D', new_seq
 pr.append(C.Q(
     'rsn-dictionary-4',
-    "If the **first half of the English alphabet is written in reverse order** (so the sequence begins N, M, L, …) and the rest kept as usual, which letter is **7th to the left of the letter that is 10th from the right** in this new sequence?",
-    ['E', 'F', 'D', 'G'], 'E',
-    "New sequence: N M L K J I H G F E D C B A O P Q R S T U V W X Y Z. 10th from the right = Q (position 17). Seven to its left = position 10 = **E**.",
+    "If the **first half of the English alphabet is written in reverse order** (so the sequence begins M, L, K, …) and the rest kept as usual, which letter is **7th to the left of the letter that is 10th from the right** in this new sequence?",
+    ['D', 'E', 'C', 'F'], 'D',
+    "New sequence: M L K J I H G F E D C B A N O P Q R S T U V W X Y Z. 10th from the right = position 27 − 10 = 17 = Q (the second half is unchanged). Seven to its left = position 10 = **D** (M1 L2 K3 J4 I5 H6 G7 F8 E9 D10).",
     sc="Write the full 26-letter line once; all counting happens on paper.",
     d='hard', sub='letter-position', pat='modified alphabet sequence', t=70))
 
 # 5
 w5 = sorted(['naughty', 'nautical', 'nation', 'native', 'nature'])
-assert w5 == ['naughty', 'nautical', 'nation', 'native', 'nature'], w5
+assert w5 == ['nation', 'native', 'nature', 'naughty', 'nautical'], w5
 pr.append(C.Q(
     'rsn-dictionary-5',
     "Arrange as in a dictionary: **Nation, Native, Nature, Nautical, Naughty.** Which word comes **third**?",
-    ['Nation', 'Native', 'Nautical', 'Nature'], 'Nation',
-    "N-words split at the 3rd letter: U-group (Naughty, Nautical) first, then T-group: NATI (Nation, Native) vs NATU (Nature) — I before U. Order: Naughty, Nautical, Nation, Native, Nature → third = **Nation**.",
-    sc="Group by the first split letter: AU < AT, then I < U.",
+    ['Nature', 'Native', 'Nautical', 'Nation'], 'Nature',
+    "All share NA; the 3rd letter splits them: T-group (Nation, Native, Nature) before U-group (Naughty, Nautical) since T < U. Inside NAT: NATI (Nation, Native) before NATU (Nature); NATIO < NATIV. Order: Nation, Native, Nature, Naughty, Nautical → third = **Nature**.",
+    sc="Group by the first split letter: NAT < NAU, then I < U.",
     d='medium', sub='arrange-words', pat='arrange and pick slot', t=40))
 
 # 6
 w6 = sorted(['borrow', 'border', 'borne', 'bore', 'borough'])
-assert w6 == ['bore', 'border', 'borne', 'borrow', 'borough'], w6
+assert w6 == ['border', 'bore', 'borne', 'borough', 'borrow'], w6
 pr.append(C.Q(
     'rsn-dictionary-6',
     "Which word would come **last** in the dictionary: **Borrow, Border, Borne, Bore, Borough**?",
     ['Borrow', 'Borough', 'Borne', 'Border'], 'Borrow',
-    "Common prefix BOR. 4th letters: E (Bore), D (Border), N (Borne), R (Borrow), O (Borough). D < E < N < O < R → order: Bore, Border, Borne, Borough, Borrow. Last = **Borrow**.",
+    "Common prefix BOR. 4th letters: D (Border), E (Bore), N (Borne), O (Borough), R (Borrow). D < E < N < O < R → order: Border, Bore, Borne, Borough, Borrow. Last = **Borrow**.",
     sc="Split at BOR + 4th letter: D E N O R.",
     d='medium', sub='arrange-words', pat='arrange and pick slot', t=45))
 
@@ -233,7 +233,7 @@ pr.append(C.Q(
     'rsn-dictionary-7',
     "Arrange as in a dictionary: **Signal, Sight, Silly, Sign, Silent.** Which word is **exactly in the middle**?",
     ['Signal', 'Silent', 'Sign', 'Silly'], 'Signal',
-    "SIG group: 4th letter H (Sight) before N (Sign, Signal); Sign is a prefix of Signal → Sign first. SIL group: Silent (I) before Silly (L). Full order: Sight, Sign, Signal, Silent, Silly → middle (3rd) = **Signal**.",
+    "SIG group: 4th letter H (Sight) before N (Sign, Signal); Sign is a prefix of Signal → Sign first. SIL group: 4th letter E (Silent) before L (Silly). Full order: Sight, Sign, Signal, Silent, Silly → middle (3rd) = **Signal**.",
     sc="Two prefix-clusters: SIG and SIL; settle each, then splice.",
     d='hard', sub='arrange-words', pat='prefix vs later-letter battle', t=55))
 
@@ -261,13 +261,13 @@ pr.append(C.Q(
 
 # 10
 w10 = sorted(['song', 'son', 'sonar', 'sone', 'soon'])
-assert w10 == ['son', 'sonar', 'song', 'sone', 'soon'], w10
+assert w10 == ['son', 'sonar', 'sone', 'song', 'soon'], w10
 pr.append(C.Q(
     'rsn-dictionary-10',
     "Arrange as in a dictionary: **Song, Son, Sonar, Sone, Soon.** Which word comes **fourth**?",
-    ['Sone', 'Song', 'Sonar', 'Soon'], 'Sone',
-    "SON is a prefix of Sonar → Son first. Then compare at the 3rd letter: SONAR (A) < SONG (G) < SONE (N) < SOON (O). Order: Son, Sonar, Song, Sone, Soon → fourth = **Sone**.",
-    sc="Prefix first, then the 3rd letter: A < G < N < O.",
+    ['Song', 'Sone', 'Sonar', 'Soon'], 'Song',
+    "SON is a prefix of Sonar → Son first. Among SON- words compare the 4th letter: SONA (Sonar) < SONE (Sone) < SONG (Song). SOON splits at the 3rd letter (O > N), so it is last. Order: Son, Sonar, Sone, Song, Soon → fourth = **Song**.",
+    sc="Prefix first, then the 4th letter A < E < G; SOO- after all SON-.",
     d='medium', sub='arrange-words', pat='prefix vs later-letter battle', t=45))
 
 # 11
@@ -283,3 +283,56 @@ pr.append(C.Q(
     d='hard', sub='word-formation', pat='dictionary rank of a word', t=110))
 
 
+# 12: rearranged alphabetically, letters keeping their place
+w = 'PLANET'
+srt = ''.join(sorted(w))
+same = [c for i, c in enumerate(w) if srt[i] == c]
+assert srt == 'AELNPT' and same == ['N', 'T'], (srt, same)
+pr.append(C.Q(
+    'rsn-dictionary-12',
+    "If the letters of the word **PLANET** are rearranged in alphabetical order, how many letters will remain in the **same position** as in the original word?",
+    ['Two', 'One', 'None', 'Three'], 'Two',
+    "Original: P L A N E T. Alphabetical: A E L N P T. Slot by slot: P/A ✗, L/E ✗, A/L ✗, N/N ✓, E/P ✗, T/T ✓ → **two** letters (N and T) stay put.",
+    sc="Write both versions one above the other and tick matches.",
+    d='medium', sub='word-formation', pat='same-position count', t=45))
+
+# 13: rank of a 4-letter word with shifts
+assert word_rank('BEAD') == brute_rank('BEAD') == 11
+pr.append(C.Q(
+    'rsn-dictionary-13',
+    "All arrangements of the letters of **BEAD** are listed as in a dictionary. What is the **position of BEAD** in that list?",
+    ['11', '10', '12', '9'], '11',
+    "Sorted letters: A, B, D, E. B → 1 smaller (A) × 3! = 6. E → unused {A, D, E}: 2 smaller × 2! = 4. A → 0. D → 0. Rank = 6 + 4 + 0 + 0 + 1 = **11**.",
+    sc="Smaller-unused × remaining! per letter, then +1.",
+    d='medium', sub='word-formation', pat='dictionary rank of a word', t=60))
+
+# 14: arrange five words, which is last
+w14 = sorted(['preach', 'precise', 'precede', 'precious', 'predict'])
+assert w14 == ['preach', 'precede', 'precious', 'precise', 'predict'], w14
+pr.append(C.Q(
+    'rsn-dictionary-14',
+    "Arrange as in a dictionary: **Precise, Preach, Predict, Precede, Precious.** Which word comes **fourth**?",
+    ['Precise', 'Precious', 'Precede', 'Predict'], 'Precise',
+    "All start PRE. 4th letter: A (Preach) < C (Precede, Precious, Precise) < D (Predict). Inside PREC: 5th letter E (Precede) < I (Precious, Precise); PRECI-O < PRECI-S. Order: Preach, Precede, Precious, Precise, Predict → fourth = **Precise**.",
+    sc="Peel the shared prefix one column at a time: PRE → A/C/D → E/I → O/S.",
+    d='hard', sub='arrange-words', pat='arrange and pick slot', t=55))
+
+# 15: middle letter between two positions
+assert (5 + 21) // 2 == 13 and ALPHA[13 - 1] == 'M'
+pr.append(C.Q(
+    'rsn-dictionary-15',
+    "Which letter lies **exactly midway between E and U** in the English alphabet?",
+    ['M', 'L', 'N', 'K'], 'M',
+    "E = 5, U = 21. Midpoint = (5 + 21) ÷ 2 = 13 → **M**. (Check: 7 letters F–L on one side, 7 letters N–T on the other.)",
+    sc="Average the two positions; EJOTY gives 13 = O − 2 = M.",
+    d='easy', sub='letter-position', pat='letter position arithmetic', t=30))
+
+assert len(pr) == 15
+
+t = C.topic(
+    'dictionary-order', 'Dictionary Order & Alphabet', 'medium', {'tier1': '1-2', 'tier2': '1-2'},
+    "Arranging words as in a dictionary, alphabet-position arithmetic (EJOTY anchors, from-right = 27 − p, shifts), modified-alphabet sequences, and the dictionary rank of a word among its letter arrangements. The whole topic runs on one rule — the first differing letter decides, and a prefix comes before its extensions — plus small, careful counting on paper.",
+    subs, patterns, examples, pr)
+
+C.write_topic(t)
+print('OK dictionary-order')

@@ -1,0 +1,498 @@
+{
+ "id": "dictionary-order",
+ "sectionId": "reasoning",
+ "title": "Dictionary Order & Alphabet",
+ "order": 13,
+ "importance": "medium",
+ "avgQuestions": {
+  "tier1": "1-2",
+  "tier2": "1-2"
+ },
+ "summary": "Arranging words as in a dictionary, alphabet-position arithmetic (EJOTY anchors, from-right = 27 − p, shifts), modified-alphabet sequences, and the dictionary rank of a word among its letter arrangements. The whole topic runs on one rule — the first differing letter decides, and a prefix comes before its extensions — plus small, careful counting on paper.",
+ "subtopics": [
+  {
+   "id": "dict-idea",
+   "title": "Dictionary order rules",
+   "concept": "Words sort letter by letter from the left. At the first position where two words differ, the word with the earlier alphabet comes first — everything after that position is irrelevant. Two refinements decide the tricky cases:\n\n1. **Prefix rule**: if one word runs out of letters while matching the other (SCAN vs SCANTY), the **shorter word comes first** — an ending acts like a space, and a space precedes every letter. (But SCANDAL vs SCANTY is settled at the 5th letter: D < T, so SCANDAL < SCANTY.)\n2. **No skipping**: compare position by position; a later difference never overrides an earlier one.\n\nMethod for 5-word arrangements: build the words' common prefixes on paper, sort group by group, then read off the asked slot (first / middle / last).",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Find the first split point",
+     "body": "Write the words one under another and slide a finger left to right until the letters first differ. That single column decides the entire comparison — ignore all later letters.",
+     "example": {
+      "q": "**Q.** Order: SIGN, SIGHT, SIGNAL.\n\n**Sol.** All start SIG. 4th letters: N, H, N → SIGHT (H) before the rest; SIGN vs SIGNAL: SIGN is a prefix → SIGN first. Order: SIGHT, SIGN, SIGNAL.",
+      "solution": "The first differing letter settles everything; prefix pairs end shortest-first."
+     }
+    }
+   ],
+   "mistakes": [
+    "Judging words by length instead of first-difference.",
+    "Putting SCANDAL after SCANTY because 'scanty feels later' — compare D vs T.",
+    "Forgetting the prefix rule: the shorter of two prefix words leads."
+   ]
+  },
+  {
+   "id": "arrange-words",
+   "title": "Arranging words and picking slots",
+   "concept": "Standard question: 4-6 words are given; arrange them as in a dictionary and answer which comes first, second, middle, or last. Practical pipeline:\n\n1. Group words by their first letter (usually all share one or two letters).\n2. Inside a group, repeat by the second letter, then the third — the groups shrink fast.\n3. Count down to the asked slot: 'third from the left' = the third word in the final order.\n\nAnswer options are usually the words themselves; wrong options come from comparing at the wrong position — which is exactly what the split-point method prevents.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Slot-count from the left",
+     "body": "Once sorted, number the words 1, 2, 3… and simply read the asked position. 'Comes last' = highest position; 'middle of five' = position 3.",
+     "example": {
+      "q": "**Q.** Cable, Cabin, Cabaret, Cabbage — which comes third?\n\n**Sol.** CABA < CABB < CABI < CABL → Cabaret, Cabbage, Cabin, Cable → third = **Cabin**.",
+      "solution": "Sort once, count to the slot; never re-compare for each option."
+     }
+    }
+   ],
+   "mistakes": [
+    "Re-sorting mentally for every option instead of fixing one order.",
+    "Answering 'third from the right' with the third word from the left."
+   ]
+  },
+  {
+   "id": "letter-position",
+   "title": "Letter positions and shifts",
+   "concept": "Memorise the anchor word **EJOTY**: E=5, J=10, O=15, T=20, Y=25. Every position question becomes a small shift:\n\n- Letter at position p: read off from EJOTY, adjust by the difference.\n- p-th from the right: position = 27 − p from the left.\n- k letters to the right of position p: p + k; to the left: p − k (stay inside 1–26).\n\nFor alphabet-modification questions ('first half reversed…'), physically write the 26-letter new sequence and count — never trust mental shifting.",
+   "formulas": [
+    {
+     "name": "Position from the right",
+     "tex": "p_{\\text{right}} = 27 - p_{\\text{left}}",
+     "note": "The two positions of the same letter add to 27."
+    },
+    {
+     "name": "Shifted position",
+     "tex": "p' = p \\pm k",
+     "note": "Move right (+) or left (−) by k letters, clamped to 1–26."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "EJOTY + tiny shift",
+     "body": "Anchor at the nearest of E, J, O, T, Y and step. Position 18: T(20) − 2 = **R**. Two seconds, no counting.",
+     "example": {
+      "q": "**Q.** Which letter is 7th to the right of the 10th letter of the alphabet?\n\n**Sol.** 10th = J; 7 right → 17 = **Q** (J at 10, O at 15, Q at 17).",
+      "solution": "EJOTY converts every position into a ±few-step walk from an anchor."
+     }
+    }
+   ],
+   "mistakes": [
+    "Using 26 instead of 27 in from-the-right conversions.",
+    "Slipping past A or Z on shifts — check bounds.",
+    "Confusing 'letter at position 10' with '10 letters after it'."
+   ]
+  },
+  {
+   "id": "word-formation",
+   "title": "Dictionary rank and word surgery",
+   "concept": "Two specialist questions:\n\n1. **Rank of a word** (e.g. the dictionary rank of MACHINE among arrangements of its letters): step letter by letter. At each step count how many *unused* letters are smaller than the current letter — multiply that count by (remaining letters − 1)! and add. Add 1 at the end. This is 'how many words start with earlier letters' accumulation.\n2. **Letter surgery**: rearranging a word's letters alphabetically, counting letters that keep their place, or rebuilding words from selected positions — always write the derived sequence out.\n\nThe formula as written assumes all letters are **distinct** (every SSC rank question so far uses distinct letters). With repeated letters each block count must also be divided by the factorials of the repeats among the remaining letters.",
+   "formulas": [
+    {
+     "name": "Rank of a word",
+     "tex": "\\text{rank} = 1 + \\sum_i c_i \\times (r_i)!",
+     "note": "At each letter: c_i = unused letters smaller than it, r_i = letters remaining after it."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Count smaller unused letters",
+     "body": "Freeze the sorted letter list, and for each letter of the word (left to right) ask: how many still-unused letters are SMALLER? Multiply by the factorial of what remains, sum, +1.",
+     "example": {
+      "q": "**Q.** Rank of CAB among ABC arrangements?\n\n**Sol.** C: A,B smaller → 2×2! = 4. A: none smaller → 0. B: none → 0. Rank = 4 + 0 + 0 + 1 = **5**.",
+      "solution": "Per-letter contribution = smaller-unused × (remaining)!."
+     }
+    }
+   ],
+   "mistakes": [
+    "Forgetting the final +1 (the word itself is not counted by the sums).",
+    "Using the original remaining count instead of the shrinking one.",
+    "Rearranging letters alphabetically but comparing with the original word wrongly."
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Arrange and pick slot",
+   "frequency": "very common",
+   "howToSpot": "4-6 words; find first / second / middle / last in dictionary order.",
+   "approach": "Sort by first split point; count to the slot."
+  },
+  {
+   "pattern": "Prefix vs later-letter battle",
+   "frequency": "common",
+   "howToSpot": "Word pairs sharing long prefixes (SCANDAL/SCANTY).",
+   "approach": "First differing letter wins; a true prefix ends before its extension."
+  },
+  {
+   "pattern": "Letter position arithmetic",
+   "frequency": "very common",
+   "howToSpot": "Position from left/right, shifts left/right, between-counts.",
+   "approach": "EJOTY anchors + p±k shifts; right-side = 27 − p."
+  },
+  {
+   "pattern": "Modified alphabet sequence",
+   "frequency": "occasional",
+   "howToSpot": "First half reversed, every 2nd letter dropped, etc.",
+   "approach": "Write out the new 26-letter line; count on paper."
+  },
+  {
+   "pattern": "Dictionary rank of a word",
+   "frequency": "common",
+   "howToSpot": "Rank of MACHINE among its letter arrangements.",
+   "approach": "Smaller-unused × remaining! summed, plus 1."
+  },
+  {
+   "pattern": "Same-position count",
+   "frequency": "occasional",
+   "howToSpot": "After alphabetical rearrangement, letters keeping their slot.",
+   "approach": "Write both versions aligned and tick matches."
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "rsn-dictionary-ex1",
+   "q": "Arrange as in a dictionary: **Cable, Cabin, Cabaret, Cabbage.** Which word comes **second**?",
+   "figure": null,
+   "options": [
+    "Cabin",
+    "Cable",
+    "Cabaret",
+    "Cabbage"
+   ],
+   "answer": 3,
+   "solution": "All share CAB. 4th letters: A (Cabaret), B (Cabbage), I (Cabin), L (Cable). Order: Cabaret, Cabbage, Cabin, Cable → second = **Cabbage**.",
+   "shortcut": "First split point: the 4th letter decides everything here.",
+   "difficulty": "easy",
+   "subtopic": "arrange-words",
+   "pattern": "arrange and pick slot",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-dictionary-ex2",
+   "q": "Which letter is **6th to the right of the 14th letter** from the left of the English alphabet?",
+   "figure": null,
+   "options": [
+    "U",
+    "S",
+    "V",
+    "T"
+   ],
+   "answer": 3,
+   "solution": "14 + 6 = 20 → the **20th letter = T** (EJOTY: T is 20).",
+   "shortcut": "Pure shift: p + k.",
+   "difficulty": "easy",
+   "subtopic": "letter-position",
+   "pattern": "letter position arithmetic",
+   "timeSec": 25
+  },
+  {
+   "id": "rsn-dictionary-ex3",
+   "q": "If the letters of the word **WORD** are arranged in all possible ways, what is the **dictionary rank** of the word WORD itself?",
+   "figure": null,
+   "options": [
+    "24",
+    "20",
+    "18",
+    "22"
+   ],
+   "answer": 3,
+   "solution": "Sorted letters: D, O, R, W. W: 3 smaller → 3×3! = 18. O: 1 smaller left (D) → 1×2! = 2. R: 1 smaller left (D) → 1×1! = 1. D: 0. Rank = 18+2+1+0+1 = **22**.",
+   "shortcut": "Smaller-unused × remaining! per letter, then +1.",
+   "difficulty": "medium",
+   "subtopic": "word-formation",
+   "pattern": "dictionary rank of a word",
+   "timeSec": 60
+  },
+  {
+   "id": "rsn-dictionary-ex4",
+   "q": "How many letters are there in the English alphabet **between J and V**?",
+   "figure": null,
+   "options": [
+    "11",
+    "12",
+    "10",
+    "13"
+   ],
+   "answer": 0,
+   "solution": "J = 10, V = 22 → 22 − 10 − 1 = **11** letters strictly between.",
+   "shortcut": "Difference minus one.",
+   "difficulty": "easy",
+   "subtopic": "letter-position",
+   "pattern": "letter position arithmetic",
+   "timeSec": 25
+  }
+ ],
+ "practice": [
+  {
+   "id": "rsn-dictionary-1",
+   "q": "How many letters of the English alphabet are there **between D and P** (not counting D and P)?",
+   "figure": null,
+   "options": [
+    "13",
+    "11",
+    "12",
+    "10"
+   ],
+   "answer": 1,
+   "solution": "D = 4, P = 16 → 16 − 4 − 1 = **11**.",
+   "shortcut": "Positions differ by 12; strictly-between is one less.",
+   "difficulty": "easy",
+   "subtopic": "letter-position",
+   "pattern": "letter position arithmetic",
+   "timeSec": 25
+  },
+  {
+   "id": "rsn-dictionary-2",
+   "q": "What is the position of the letter **W from the right** of the English alphabet?",
+   "figure": null,
+   "options": [
+    "4th",
+    "5th",
+    "3rd",
+    "6th"
+   ],
+   "answer": 0,
+   "solution": "W = 23 from the left → 27 − 23 = **4th** from the right (Z 1st, Y 2nd, X 3rd, W 4th).",
+   "shortcut": "From-right position = 27 − from-left position.",
+   "difficulty": "easy",
+   "subtopic": "letter-position",
+   "pattern": "letter position arithmetic",
+   "timeSec": 25
+  },
+  {
+   "id": "rsn-dictionary-3",
+   "q": "Which letter is **5th to the left of the 20th letter from the right** of the English alphabet?",
+   "figure": null,
+   "options": [
+    "B",
+    "C",
+    "A",
+    "D"
+   ],
+   "answer": 0,
+   "solution": "20th from the right = 27 − 20 = 7th from the left = G. Five to the left: 7 − 5 = 2 = **B**.",
+   "shortcut": "Convert from-right to from-left, then shift left.",
+   "difficulty": "medium",
+   "subtopic": "letter-position",
+   "pattern": "letter position arithmetic",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-dictionary-4",
+   "q": "If the **first half of the English alphabet is written in reverse order** (so the sequence begins M, L, K, …) and the rest kept as usual, which letter is **7th to the left of the letter that is 10th from the right** in this new sequence?",
+   "figure": null,
+   "options": [
+    "D",
+    "E",
+    "C",
+    "F"
+   ],
+   "answer": 0,
+   "solution": "New sequence: M L K J I H G F E D C B A N O P Q R S T U V W X Y Z. 10th from the right = position 27 − 10 = 17 = Q (the second half is unchanged). Seven to its left = position 10 = **D** (M1 L2 K3 J4 I5 H6 G7 F8 E9 D10).",
+   "shortcut": "Write the full 26-letter line once; all counting happens on paper.",
+   "difficulty": "hard",
+   "subtopic": "letter-position",
+   "pattern": "modified alphabet sequence",
+   "timeSec": 70
+  },
+  {
+   "id": "rsn-dictionary-5",
+   "q": "Arrange as in a dictionary: **Nation, Native, Nature, Nautical, Naughty.** Which word comes **third**?",
+   "figure": null,
+   "options": [
+    "Nation",
+    "Nature",
+    "Native",
+    "Nautical"
+   ],
+   "answer": 1,
+   "solution": "All share NA; the 3rd letter splits them: T-group (Nation, Native, Nature) before U-group (Naughty, Nautical) since T < U. Inside NAT: NATI (Nation, Native) before NATU (Nature); NATIO < NATIV. Order: Nation, Native, Nature, Naughty, Nautical → third = **Nature**.",
+   "shortcut": "Group by the first split letter: NAT < NAU, then I < U.",
+   "difficulty": "medium",
+   "subtopic": "arrange-words",
+   "pattern": "arrange and pick slot",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-dictionary-6",
+   "q": "Which word would come **last** in the dictionary: **Borrow, Border, Borne, Bore, Borough**?",
+   "figure": null,
+   "options": [
+    "Borough",
+    "Borne",
+    "Border",
+    "Borrow"
+   ],
+   "answer": 3,
+   "solution": "Common prefix BOR. 4th letters: D (Border), E (Bore), N (Borne), O (Borough), R (Borrow). D < E < N < O < R → order: Border, Bore, Borne, Borough, Borrow. Last = **Borrow**.",
+   "shortcut": "Split at BOR + 4th letter: D E N O R.",
+   "difficulty": "medium",
+   "subtopic": "arrange-words",
+   "pattern": "arrange and pick slot",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-dictionary-7",
+   "q": "Arrange as in a dictionary: **Signal, Sight, Silly, Sign, Silent.** Which word is **exactly in the middle**?",
+   "figure": null,
+   "options": [
+    "Signal",
+    "Silent",
+    "Sign",
+    "Silly"
+   ],
+   "answer": 0,
+   "solution": "SIG group: 4th letter H (Sight) before N (Sign, Signal); Sign is a prefix of Signal → Sign first. SIL group: 4th letter E (Silent) before L (Silly). Full order: Sight, Sign, Signal, Silent, Silly → middle (3rd) = **Signal**.",
+   "shortcut": "Two prefix-clusters: SIG and SIL; settle each, then splice.",
+   "difficulty": "hard",
+   "subtopic": "arrange-words",
+   "pattern": "prefix vs later-letter battle",
+   "timeSec": 55
+  },
+  {
+   "id": "rsn-dictionary-8",
+   "q": "Arrange as in a dictionary: **Angel, Angle, Anger, Amble, Amber.** Which word comes **fourth**?",
+   "figure": null,
+   "options": [
+    "Anger",
+    "Angel",
+    "Angle",
+    "Amber"
+   ],
+   "answer": 0,
+   "solution": "AM group first (Amber, Amble; B < L), then the ANG group at the 4th letter: Angel (E) and Anger (E) precede Angle (L). Angel vs Anger splits at the 5th: L < R. Order: Amber, Amble, Angel, Anger, Angle → fourth = **Anger**.",
+   "shortcut": "First-letter split (AM/AN), then compare at the first difference only.",
+   "difficulty": "medium",
+   "subtopic": "arrange-words",
+   "pattern": "arrange and pick slot",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-dictionary-9",
+   "q": "Arrange as in a dictionary: **Scant, Scan, Scandal.** Which word comes **second**?",
+   "figure": null,
+   "options": [
+    "Scan",
+    "Cannot be determined",
+    "Scandal",
+    "Scant"
+   ],
+   "answer": 2,
+   "solution": "SCANDAL vs SCANT: at the 5th letter D < T, so Scandal precedes Scant, and Scan (a prefix) precedes both. Order: Scan, Scandal, Scant → second = **Scandal**.",
+   "shortcut": "Prefix rule puts SCAN first; then D vs T decides the rest — never compare by length.",
+   "difficulty": "medium",
+   "subtopic": "dict-idea",
+   "pattern": "prefix vs later-letter battle",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-dictionary-10",
+   "q": "Arrange as in a dictionary: **Song, Son, Sonar, Sone, Soon.** Which word comes **fourth**?",
+   "figure": null,
+   "options": [
+    "Sonar",
+    "Soon",
+    "Song",
+    "Sone"
+   ],
+   "answer": 2,
+   "solution": "SON is a prefix of Sonar → Son first. Among SON- words compare the 4th letter: SONA (Sonar) < SONE (Sone) < SONG (Song). SOON splits at the 3rd letter (O > N), so it is last. Order: Son, Sonar, Sone, Song, Soon → fourth = **Song**.",
+   "shortcut": "Prefix first, then the 4th letter A < E < G; SOO- after all SON-.",
+   "difficulty": "medium",
+   "subtopic": "arrange-words",
+   "pattern": "prefix vs later-letter battle",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-dictionary-11",
+   "q": "If the letters of the word **MACHINE** are arranged in all possible ways and the arrangements are listed as in a dictionary, what is the **rank of the word MACHINE**?",
+   "figure": null,
+   "options": [
+    "3612",
+    "3608",
+    "3606",
+    "3610"
+   ],
+   "answer": 3,
+   "solution": "Sorted letters: A, C, E, H, I, M, N. Letter-by-letter 'smaller-unused × remaining!': M → 5×6! = 3600; A → 0; C → 0; H → 1×3! = 6 (only E is smaller-unused); I → 1×2! = 2 (E again); N → 1×1! = 1 (E); E → 0. Sum 3600+6+2+1, plus 1 for the word itself = **3610**.",
+   "shortcut": "Smaller-unused × remaining! per letter, then +1.",
+   "difficulty": "hard",
+   "subtopic": "word-formation",
+   "pattern": "dictionary rank of a word",
+   "timeSec": 110
+  },
+  {
+   "id": "rsn-dictionary-12",
+   "q": "If the letters of the word **PLANET** are rearranged in alphabetical order, how many letters will remain in the **same position** as in the original word?",
+   "figure": null,
+   "options": [
+    "One",
+    "None",
+    "Three",
+    "Two"
+   ],
+   "answer": 3,
+   "solution": "Original: P L A N E T. Alphabetical: A E L N P T. Slot by slot: P/A ✗, L/E ✗, A/L ✗, N/N ✓, E/P ✗, T/T ✓ → **two** letters (N and T) stay put.",
+   "shortcut": "Write both versions one above the other and tick matches.",
+   "difficulty": "medium",
+   "subtopic": "word-formation",
+   "pattern": "same-position count",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-dictionary-13",
+   "q": "All arrangements of the letters of **BEAD** are listed as in a dictionary. What is the **position of BEAD** in that list?",
+   "figure": null,
+   "options": [
+    "10",
+    "12",
+    "9",
+    "11"
+   ],
+   "answer": 3,
+   "solution": "Sorted letters: A, B, D, E. B → 1 smaller (A) × 3! = 6. E → unused {A, D, E}: 2 smaller × 2! = 4. A → 0. D → 0. Rank = 6 + 4 + 0 + 0 + 1 = **11**.",
+   "shortcut": "Smaller-unused × remaining! per letter, then +1.",
+   "difficulty": "medium",
+   "subtopic": "word-formation",
+   "pattern": "dictionary rank of a word",
+   "timeSec": 60
+  },
+  {
+   "id": "rsn-dictionary-14",
+   "q": "Arrange as in a dictionary: **Precise, Preach, Predict, Precede, Precious.** Which word comes **fourth**?",
+   "figure": null,
+   "options": [
+    "Precise",
+    "Precious",
+    "Precede",
+    "Predict"
+   ],
+   "answer": 0,
+   "solution": "All start PRE. 4th letter: A (Preach) < C (Precede, Precious, Precise) < D (Predict). Inside PREC: 5th letter E (Precede) < I (Precious, Precise); PRECI-O < PRECI-S. Order: Preach, Precede, Precious, Precise, Predict → fourth = **Precise**.",
+   "shortcut": "Peel the shared prefix one column at a time: PRE → A/C/D → E/I → O/S.",
+   "difficulty": "hard",
+   "subtopic": "arrange-words",
+   "pattern": "arrange and pick slot",
+   "timeSec": 55
+  },
+  {
+   "id": "rsn-dictionary-15",
+   "q": "Which letter lies **exactly midway between E and U** in the English alphabet?",
+   "figure": null,
+   "options": [
+    "N",
+    "K",
+    "M",
+    "L"
+   ],
+   "answer": 2,
+   "solution": "E = 5, U = 21. Midpoint = (5 + 21) ÷ 2 = 13 → **M**. (Check: 7 letters F–L on one side, 7 letters N–T on the other.)",
+   "shortcut": "Average the two positions; EJOTY gives 13 = O − 2 = M.",
+   "difficulty": "easy",
+   "subtopic": "letter-position",
+   "pattern": "letter position arithmetic",
+   "timeSec": 30
+  }
+ ]
+}
