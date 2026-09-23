@@ -76,6 +76,7 @@ export default function ExamPage() {
           ['/ssc-cgl/mocks/', '🖥️ Free mock tests', 'Real CBT interface + analysis'],
           ['/ssc-cgl/cutoffs/', '📈 Cutoff trends', 'Year × category official cutoffs'],
           ['/ssc-cgl/score-calculator/', '🧮 Score calculator', 'Safe-score estimator'],
+          ['/ssc-cgl/rank-estimator/', '🏅 Rank estimator', 'Marks → percentile + all-India rank'],
           ['/ssc-cgl/formula-sheet/', '⚡ Formula sheet', 'Printable, all sections'],
           ['/ssc-cgl/ga/current-affairs/', '📰 Current affairs', 'Apr–Sep 2026, exam-relevant'],
           ['/ssc-cgl/study-plan/', '🗓️ Study plan generator', 'Day-by-day timetable to exam day'],
