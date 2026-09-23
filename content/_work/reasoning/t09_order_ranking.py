@@ -9,10 +9,20 @@ def other_end(n, pos):
 
 def check_order(items, constraints):
     """constraints: list of (a, b) meaning a ranks above (better/taller/...) b.
-    Returns the unique total order or raises."""
+    Transitive closure is applied automatically. Returns the unique total
+    order or raises."""
+    cons = set(constraints)
+    changed = True
+    while changed:  # transitive closure
+        changed = False
+        for a, b in list(cons):
+            for c, d in list(cons):
+                if b == c and (a, d) not in cons:
+                    cons.add((a, d))
+                    changed = True
     sols = [p for p in permutations(items)
-            if all(p.index(a) < p.index(b) for a, b in constraints)]
-    assert len(sols) == 1, ('ambiguous order', items, constraints, len(sols))
+            if all(p.index(a) < p.index(b) for a, b in cons)]
+    assert len(sols) == 1, ('ambiguous order', items, sorted(cons), len(sols))
     return sols[0]
 
 
@@ -237,10 +247,9 @@ pr.append(C.Q(
 
 # 9: heights second tallest
 order = check_order(['P', 'Q', 'R', 'S', 'T'],
-                    [('P', 'Q'), ('R', 'P'), ('S', 'R'), ('T', 'Q')])
-# unique strongest constraint set: need S tallest explicitly
-order = check_order(['P', 'Q', 'R', 'S', 'T'],
-                    [('P', 'Q'), ('R', 'P'), ('S', 'R'), ('T', 'Q'), ('S', 'P')])
+                    [('P', 'Q'), ('R', 'P'),
+                     ('S', 'R'), ('S', 'P'), ('S', 'Q'), ('S', 'T'),
+                     ('Q', 'T')])
 assert order == ('S', 'R', 'P', 'Q', 'T'), order
 pr.append(C.Q(
     'rsn-order-ranking-9',

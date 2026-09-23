@@ -1,0 +1,532 @@
+{
+ "id": "internet-email",
+ "sectionId": "computer",
+ "title": "Internet, Browsers & E-mail",
+ "order": 7,
+ "importance": "high",
+ "avgQuestions": {
+  "tier1": 0,
+  "tier2": 3
+ },
+ "summary": "Internet history and structure, browsers vs search engines, URL/DNS, e-mail mechanics (To/CC/BCC, SMTP/POP3/IMAP) and India's e-banking rails (UPI, NEFT, RTGS). Full forms and the browser-vs-engine trap are asked every year.",
+ "subtopics": [
+  {
+   "id": "ie-internet-basics",
+   "title": "Internet, WWW, URL and DNS",
+   "concept": "The **Internet** is a global 'network of networks' that grew out of **ARPANET** (1969, US DoD project; first nodes UCLA and Stanford). The **TCP/IP** protocol suite became its standard on 1 January 1983. The **World Wide Web** is one service running on the Internet - the system of interlinked web pages invented by **Tim Berners-Lee in 1989 at CERN** (with the first browser/editor, WorldWideWeb). Other services: e-mail, FTP, VoIP, streaming.\n\nAn **ISP** (Internet Service Provider - Jio, Airtel, BSNL) sells you connectivity and assigns an **IP address**. The **DNS (Domain Name System)** is the Internet's phonebook: it converts a name like www.ssc.gov.in into its numeric IP address (this translation is its exam definition).\n\n**URL (Uniform Resource Locator)** parts: `https://www.ssc.gov.in:443/exams/index.html` = protocol + subdomain + domain + top-level domain (TLD .in) + port + path + file. Common TLDs: .com (commercial), .org (organisation), .edu (education), .gov (government), .in (India). **Bandwidth** = data-carrying capacity (bps/Kbps/Mbps); broadband = always-on high-speed access (fibre, DSL, 4G/5G).",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Internet vs WWW",
+     "body": "The **Internet = hardware network** (cables, routers, servers); the **WWW = content service** (hyperlinked pages) riding on it. Invented later (1989) by ONE man - Berners-Lee; the Internet is older (1969 ARPANET).",
+     "example": {
+      "q": "Who invented the World Wide Web?",
+      "solution": "Tim Berners-Lee (CERN, 1989)."
+     }
+    },
+    {
+     "title": "DNS = phonebook",
+     "body": "DNS translates names to numbers - never 'assigns IPs' (that is DHCP) and never 'sends mail' (that is SMTP). Any question phrased 'converts domain names into IP addresses' = DNS.",
+     "example": {
+      "q": "What does DNS do?",
+      "solution": "Resolves domain names into IP addresses."
+     }
+    }
+   ],
+   "mistakes": [
+    "Treating WWW and the Internet as the same thing.",
+    "Saying DNS assigns IP addresses - DHCP assigns; DNS resolves names to IPs.",
+    "Dating the Internet to 1989 - that is the WWW; ARPANET was 1969."
+   ]
+  },
+  {
+   "id": "ie-browsers-search",
+   "title": "Browsers, search engines, downloading and uploading",
+   "concept": "A **browser** is the client software that fetches and displays web pages: Chrome, Microsoft Edge, Firefox, Safari, Opera. A **search engine** is a website that indexes the web and finds pages: Google, Bing, Yahoo, DuckDuckGo. (Google is NOT a browser; Chrome is NOT a search engine - the most repeated trap.)\n\nA **webpage** is one document (HTML); a **website** is a collection of related pages; the **home page** is a site's opening page; a **portal** bundles services (news, mail, shopping). Pages are written in **HTML** (HyperText Markup Language) and linked by **hyperlinks**.\n\n**Downloading** = copying files FROM a server to your device; **uploading** = sending files FROM your device TO a server (e.g. attaching to e-mail, posting videos). **Cookies** are small text files a site stores in your browser (sessions, preferences, tracking); the **cache** keeps copies of pages/images for faster reloads.\n\n**Search tips:** quotes \"exact phrase\", minus -exclude, site:ssc.gov.in restricts to a site, OR widens. **Browser shortcuts:** Ctrl+T new tab, Ctrl+W close tab, Ctrl+Shift+T reopen closed tab, Ctrl+N window, Ctrl+Shift+N incognito/private, Ctrl+D bookmark, Ctrl+H history, Ctrl+J downloads, F5 refresh, Ctrl+F5 hard refresh, Ctrl+F find in page, Ctrl+L/Alt+D address bar, Ctrl+Enter adds www...com, Ctrl+plus/minus/0 zoom, F11 full screen, Ctrl+S save page, Ctrl+U view source, Ctrl+P print.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Browser vs engine",
+     "body": "**Browser = the car; search engine = the GPS you ask inside it.** Chrome/Edge/Firefox/Safari/Opera = cars. Google/Bing/Yahoo/DuckDuckGo = GPS. If it is a program you install, browser; if it is a website you visit, engine.",
+     "example": {
+      "q": "Which of these is a web browser - Google, Chrome, Yahoo, Bing?",
+      "solution": "Chrome (the rest are search engines)."
+     }
+    },
+    {
+     "title": "Ctrl-letter browser map",
+     "body": "**T**ab new, **W**ipe (close) tab, **D**rop a bookmark, **H**istory, **J**unk... no - **J**etisoned files (Downloads), **N**ormal window, **N+Shift** No-trace (incognito). F5 = freshen.",
+     "example": {
+      "q": "Shortcut to reopen a closed tab?",
+      "solution": "Ctrl+Shift+T."
+     }
+    },
+    {
+     "title": "Up vs Down",
+     "body": "**Upload = YOU send up** (to the server); **Download = server sends down** to you. The direction is always relative to YOUR machine.",
+     "example": {
+      "q": "Saving an e-mail attachment to your PC is?",
+      "solution": "Downloading."
+     }
+    }
+   ],
+   "mistakes": [
+    "Calling Google a browser or Chrome a search engine.",
+    "Confusing Ctrl+H (history) with Ctrl+J (downloads) - H comes before J alphabetically: History before Downloads? No: History=H, Downloads=J is pure memory; the mnemonic is 'H = havens visited (history)'.",
+    "Thinking cookies are viruses - cookies are passive text files (privacy issue, not malware)."
+   ]
+  },
+  {
+   "id": "ie-email-basics",
+   "title": "E-mail: structure, To/CC/BCC and protocols",
+   "concept": "**E-mail** (electronic mail) exchanges messages between accounts on mail servers. An address = `username@domain` - the **@** separates user from domain (ray.kiran@gmail.com).\n\n**Fields:** **To** - primary recipients; **CC (Carbon Copy)** - secondary recipients visible to all; **BCC (Blind Carbon Copy)** - hidden recipients: the To/CC people cannot see who was BCC'd (use BCC for mass mails to protect privacy). Others: Subject, body, **attachment** (paperclip; files sent along, size-limited), signature, priority.\n\n**Folders/actions:** Compose, Send, Reply (to sender), Reply All (sender + everyone on To/CC), Forward (pass on), Inbox (received), Outbox (pending), Sent, Drafts (unfinished), Spam/Junk (filtered mail), Trash/Bin. **MIME** (Multipurpose Internet Mail Extensions) is the standard that lets e-mail carry attachments, images and non-English text.\n\n**Protocols:** **SMTP (Simple Mail Transfer Protocol, port 25)** - SENDS mail between clients and servers. **POP3 (Post Office Protocol v3, port 110)** - downloads mail to one device, usually removing it from the server. **IMAP (Internet Message Access Protocol, port 143)** - mail stays on the server and **syncs across many devices**. Webmail (Gmail in a browser) vs mail clients (Outlook, Thunderbird). Filters/labels sort automatically; autoresponders reply when you are away.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "CC vs BCC",
+     "body": "**CC = Carbon Copy - Everyone sees. BCC = Blind - eyes covered**, so To/CC recipients cannot see the blind list. 'Who was secretly copied?' - nobody but the sender knows.",
+     "example": {
+      "q": "A receiver of the mail can see the addresses in which field(s)?",
+      "solution": "To and CC - never BCC."
+     }
+    },
+    {
+     "title": "SMTP Sends, POP Picks, IMAP In-sync",
+     "body": "**S**MTP = **S**end (outgoing). **P**OP3 = **P**ick up on one device (downloads, server emptied). **IMAP = In All devices** (server copy stays, everything syncs).",
+     "example": {
+      "q": "Which protocol lets you read the same mail on phone and laptop?",
+      "solution": "IMAP."
+     }
+    },
+    {
+     "title": "@ = at",
+     "body": "In ray@gmail.com the @ separates 'who' from 'where' - user at domain. Options without @, or with a space/comma, are dead giveaways.",
+     "example": {
+      "q": "Which character separates the username from the domain in e-mail?",
+      "solution": "@ (at the rate)."
+     }
+    }
+   ],
+   "mistakes": [
+    "Saying CC recipients are hidden - that is BCC; CC is fully visible.",
+    "Making SMTP the receiving protocol - SMTP only sends; POP3/IMAP receive.",
+    "Using Reply All when a mass mail was BCC'd - your reply reaches the sender, not the hidden list (and Reply-All storms are bad netiquette)."
+   ]
+  },
+  {
+   "id": "ie-ebanking",
+   "title": "e-Banking and digital payments",
+   "concept": "**e-Banking/net banking** = banking through the bank's secured website/app; **mobile banking** via apps; **ATM** (Automated Teller Machine) for cash, balance, mini-statement, PIN change.\n\n**Payment systems (NPCI - National Payments Corporation of India, 2008 - runs most retail rails):**\n\n| System | Nature | Key facts |\n|---|---|---|\n| NEFT | National Electronic Funds Transfer | Batch/half-hourly settlement; no minimum; available 24x7 since Dec 2019 |\n| RTGS | Real Time Gross Settlement | **Minimum Rs. 2 lakh**; settles individually, real time; 24x7 since Dec 2020 |\n| IMPS | Immediate Payment Service | Instant 24x7 transfers via mobile/MMID; no RTGS-style minimum |\n| UPI | Unified Payments Interface (2016) | Instant app-to-app transfer using a VPA (name@bank); 24x7; BHIM app; QR payments |\n\n**Security tokens:** **IFSC** (Indian Financial System Code) - 11 characters identifying the bank branch (e.g. SBIN0001234); **MICR** 9-digit cheque code; **OTP** (One Time Password) and **2FA** (two-factor authentication: something you know + something you receive/are). Safety rules: banks NEVER ask for PIN/OTP/password; check https + padlock before paying; avoid public Wi-Fi for transactions; unknown links = phishing (see cyber-security topic).",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "NEFT vs RTGS",
+     "body": "**RTGS = Really To Go, in batches of one, 2 lakh+** (real-time, gross = one-by-one, big amounts). **NEFT = Nice Easy Batches** (settlement in half-hourly batches, any amount).",
+     "example": {
+      "q": "Minimum amount for RTGS?",
+      "solution": "Rs. 2 lakh."
+     }
+    },
+    {
+     "title": "IFSC 11",
+     "body": "IFSC = **11 characters** (4 bank code + 0 + 6 branch code), used on NEFT/RTGS/UPI branch routing. MICR is the 9-digit cheque strip.",
+     "example": {
+      "q": "How many characters does an IFSC code have?",
+      "solution": "11."
+     }
+    },
+    {
+     "title": "2FA two keys",
+     "body": "Two-factor = password (know) + OTP/biometric (have/are). One stolen password is not enough - that is the whole point.",
+     "example": {
+      "q": "Entering a password followed by an SMS OTP is an example of?",
+      "solution": "Two-factor authentication."
+     }
+    }
+   ],
+   "mistakes": [
+    "Giving NEFT the 2-lakh minimum - RTGS has it; NEFT has no minimum.",
+    "Saying IMPS is only for banks abroad - IMPS is an Indian instant retail rail.",
+    "Sharing OTPs on calls 'from the bank' - real banks never ask; that is vishing."
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Full form / abbreviation",
+   "frequency": "very common",
+   "howToSpot": "'URL/SMTP/IMAP/DNS full form', 'HTML is used for?'.",
+   "approach": "Table recall; watch letter-order traps (HTML = HyperText Markup Language, not 'Marking')."
+  },
+  {
+   "pattern": "Browser vs search engine trap",
+   "frequency": "very common",
+   "howToSpot": "Options mixing Chrome/Google/Bing/Firefox asking 'which is a browser?'.",
+   "approach": "Installed program = browser (Chrome, Edge, Firefox, Safari, Opera); website service = engine (Google, Bing, Yahoo, DDG)."
+  },
+  {
+   "pattern": "CC/BCC visibility scenario",
+   "frequency": "common",
+   "howToSpot": "'Recipients in which field are not visible to others?'",
+   "approach": "To/CC visible to everyone; BCC hidden from all other recipients."
+  },
+  {
+   "pattern": "Protocol-to-purpose matching",
+   "frequency": "common",
+   "howToSpot": "'Which protocol sends e-mail?', 'which receives and deletes from server?'.",
+   "approach": "SMTP sends; POP3 downloads (single device); IMAP syncs (multi-device); HTTP serves pages; FTP moves files."
+  },
+  {
+   "pattern": "E-banking rails and limits",
+   "frequency": "common",
+   "howToSpot": "'Minimum RTGS transfer?', 'UPI is operated by?'",
+   "approach": "RTGS 2-lakh/real-time; NEFT batched/no minimum; UPI = NPCI, VPA-based instant."
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "ie-se01",
+   "q": "Which of the following is a web browser?",
+   "figure": null,
+   "options": [
+    "Google",
+    "Bing",
+    "Microsoft Edge",
+    "DuckDuckGo"
+   ],
+   "answer": 2,
+   "solution": "Microsoft Edge is browser software that displays web pages. Google, Bing and DuckDuckGo are search engines - websites that index the web.",
+   "shortcut": "Installed program = browser; website you search inside = engine. Edge/Chrome/Firefox/Safari/Opera are the usual browser options.",
+   "difficulty": "easy",
+   "subtopic": "ie-browsers-search",
+   "pattern": "browser vs search engine",
+   "timeSec": 30
+  },
+  {
+   "id": "ie-se02",
+   "q": "An e-mail is sent with the addresses of four colleagues placed in the BCC field. Which statement is correct?",
+   "figure": null,
+   "options": [
+    "All four can see each other's addresses",
+    "The To recipients can see the BCC addresses",
+    "The four receive copies whose addresses are hidden from other recipients",
+    "BCC recipients do not receive attachments"
+   ],
+   "answer": 2,
+   "solution": "Blind Carbon Copy hides its recipient list: each BCC recipient gets the full mail (including attachments), but To/CC recipients cannot see who was blind-copied.",
+   "shortcut": "'Blind' = nobody sees the list. The mail itself (with attachments) still arrives.",
+   "difficulty": "medium",
+   "subtopic": "ie-email-basics",
+   "pattern": "CC/BCC visibility",
+   "timeSec": 40
+  },
+  {
+   "id": "ie-se03",
+   "q": "Which protocol is used to SEND e-mail from a client to a mail server?",
+   "figure": null,
+   "options": [
+    "POP3",
+    "IMAP",
+    "SMTP",
+    "HTTP"
+   ],
+   "answer": 2,
+   "solution": "SMTP (Simple Mail Transfer Protocol) handles outgoing mail. POP3 and IMAP fetch incoming mail (POP3 downloads, IMAP syncs), and HTTP serves web pages.",
+   "shortcut": "S in SMTP = Send; the receiving protocols are POP3/IMAP.",
+   "difficulty": "easy",
+   "subtopic": "ie-email-basics",
+   "pattern": "protocol purpose",
+   "timeSec": 30
+  },
+  {
+   "id": "ie-se04",
+   "q": "Match: (a) NEFT (b) RTGS (c) UPI with (i) instant app-based transfer via VPA (ii) batch settlement, no minimum (iii) real-time gross settlement, minimum Rs. 2 lakh",
+   "figure": null,
+   "options": [
+    "a-ii, b-iii, c-i",
+    "a-iii, b-ii, c-i",
+    "a-ii, b-i, c-iii",
+    "a-i, b-iii, c-ii"
+   ],
+   "answer": 0,
+   "solution": "NEFT settles in half-hourly batches with no minimum amount (a-ii); RTGS settles each transaction individually in real time with a Rs. 2-lakh floor (b-iii); UPI is the instant VPA/QR app rail run by NPCI (c-i).",
+   "shortcut": "RTGS grabs the 2-lakh rule; NEFT is the batch rail; UPI is the phone-first instant one.",
+   "difficulty": "medium",
+   "subtopic": "ie-ebanking",
+   "pattern": "payment-system matching",
+   "timeSec": 45
+  }
+ ],
+ "practice": [
+  {
+   "id": "ie-q01",
+   "q": "The World Wide Web was invented in 1989 by:",
+   "figure": null,
+   "options": [
+    "Vint Cerf",
+    "Tim Berners-Lee",
+    "Bill Gates",
+    "Larry Page"
+   ],
+   "answer": 1,
+   "solution": "Tim Berners-Lee proposed the WWW at CERN in 1989 and wrote the first browser. Vint Cerf co-designed TCP/IP; Larry Page co-founded Google.",
+   "shortcut": "Web = Berners-Lee, 1989, CERN. Internet (1970s TCP/IP) = Cerf and Kahn.",
+   "difficulty": "easy",
+   "subtopic": "ie-internet-basics",
+   "pattern": "internet history",
+   "timeSec": 30
+  },
+  {
+   "id": "ie-q02",
+   "q": "ARPANET, the precursor of today's Internet, was launched in:",
+   "figure": null,
+   "options": [
+    "1949",
+    "1959",
+    "1969",
+    "1979"
+   ],
+   "answer": 2,
+   "solution": "ARPANET went live in 1969 connecting UCLA and Stanford Research Institute, funded by the US Department of Defense.",
+   "shortcut": "ARPANET 1969 - the 60s birth of the network.",
+   "difficulty": "medium",
+   "subtopic": "ie-internet-basics",
+   "pattern": "internet history",
+   "timeSec": 35
+  },
+  {
+   "id": "ie-q03",
+   "q": "The service that translates a domain name like www.ssc.gov.in into an IP address is:",
+   "figure": null,
+   "options": [
+    "DHCP",
+    "DNS",
+    "FTP",
+    "ISP"
+   ],
+   "answer": 1,
+   "solution": "DNS (Domain Name System) resolves human-friendly names to numeric IP addresses. DHCP assigns IP addresses automatically; FTP transfers files; the ISP is your access provider.",
+   "shortcut": "DNS = the Internet's phonebook: name in, number out.",
+   "difficulty": "easy",
+   "subtopic": "ie-internet-basics",
+   "pattern": "DNS function",
+   "timeSec": 30
+  },
+  {
+   "id": "ie-q04",
+   "q": "In the URL https://www.ssc.gov.in, the component '.in' is the:",
+   "figure": null,
+   "options": [
+    "Protocol",
+    "Sub-domain",
+    "Top-level domain (country code)",
+    "File name"
+   ],
+   "answer": 2,
+   "solution": ".in is the country-code top-level domain for India. 'https' is the protocol, 'www' the sub-domain/host, 'ssc' the registered domain name.",
+   "shortcut": "Read right to left: .in = TLD, .gov = second level, ssc = the name.",
+   "difficulty": "medium",
+   "subtopic": "ie-internet-basics",
+   "pattern": "URL anatomy",
+   "timeSec": 40
+  },
+  {
+   "id": "ie-q05",
+   "q": "Which of the following is NOT a web browser?",
+   "figure": null,
+   "options": [
+    "Opera",
+    "Safari",
+    "Yahoo",
+    "Mozilla Firefox"
+   ],
+   "answer": 2,
+   "solution": "Yahoo is a web portal/search engine, not browser software. Opera, Safari and Firefox are browsers.",
+   "shortcut": "Scan for the service/brand that you cannot install as a program - that is the odd one.",
+   "difficulty": "easy",
+   "subtopic": "ie-browsers-search",
+   "pattern": "browser vs search engine",
+   "timeSec": 30
+  },
+  {
+   "id": "ie-q06",
+   "q": "Receiving a file from a web server to your computer is called:",
+   "figure": null,
+   "options": [
+    "Uploading",
+    "Downloading",
+    "Streaming",
+    "Hosting"
+   ],
+   "answer": 1,
+   "solution": "Downloading copies data from the server down to your device; uploading sends it the other way; streaming plays without saving the whole file.",
+   "shortcut": "Down to you = download; up to the server = upload.",
+   "difficulty": "easy",
+   "subtopic": "ie-browsers-search",
+   "pattern": "download vs upload",
+   "timeSec": 25
+  },
+  {
+   "id": "ie-q07",
+   "q": "The browser shortcut to open a new tab is:",
+   "figure": null,
+   "options": [
+    "Ctrl+N",
+    "Ctrl+T",
+    "Ctrl+W",
+    "Ctrl+Tab"
+   ],
+   "answer": 1,
+   "solution": "Ctrl+T opens a new tab; Ctrl+N a new window; Ctrl+W closes the current tab; Ctrl+Tab cycles through open tabs.",
+   "shortcut": "T = Tab, N = window. Ctrl+W wipes the tab.",
+   "difficulty": "easy",
+   "subtopic": "ie-browsers-search",
+   "pattern": "browser shortcuts",
+   "timeSec": 30
+  },
+  {
+   "id": "ie-q08",
+   "q": "The standard that allows e-mails to carry attachments such as images and documents is:",
+   "figure": null,
+   "options": [
+    "SMTP",
+    "MIME",
+    "TCP",
+    "UDP"
+   ],
+   "answer": 1,
+   "solution": "MIME (Multipurpose Internet Mail Extensions) extends e-mail to carry multimedia, attachments and non-ASCII text. SMTP is the transport protocol for mail.",
+   "shortcut": "MIME = Multimedia Included (Mail Extensions).",
+   "difficulty": "medium",
+   "subtopic": "ie-email-basics",
+   "pattern": "email standards",
+   "timeSec": 35
+  },
+  {
+   "id": "ie-q09",
+   "q": "In an e-mail address kiran.ray@nic.in, the part before @ is the:",
+   "figure": null,
+   "options": [
+    "Domain name",
+    "Username",
+    "Protocol",
+    "Password"
+   ],
+   "answer": 1,
+   "solution": "The format is username@domain: 'kiran.ray' is the user's mailbox name on the domain 'nic.in'.",
+   "shortcut": "Who@where - the left side is the person.",
+   "difficulty": "easy",
+   "subtopic": "ie-email-basics",
+   "pattern": "email address structure",
+   "timeSec": 25
+  },
+  {
+   "id": "ie-q10",
+   "q": "Which e-mail protocol keeps messages on the server so that the same mailbox stays in sync across a phone, tablet and laptop?",
+   "figure": null,
+   "options": [
+    "POP3",
+    "SMTP",
+    "IMAP",
+    "FTP"
+   ],
+   "answer": 2,
+   "solution": "IMAP stores mail on the server and synchronises state across devices. POP3 traditionally downloads and removes mail (single-device model), SMTP sends, FTP moves files.",
+   "shortcut": "Many devices, one mailbox = IMAP.",
+   "difficulty": "medium",
+   "subtopic": "ie-email-basics",
+   "pattern": "POP3 vs IMAP",
+   "timeSec": 40
+  },
+  {
+   "id": "ie-q11",
+   "q": "The minimum amount that can be transferred through RTGS is:",
+   "figure": null,
+   "options": [
+    "Rs. 10,000",
+    "Rs. 50,000",
+    "Rs. 1 lakh",
+    "Rs. 2 lakh"
+   ],
+   "answer": 3,
+   "solution": "RTGS (Real Time Gross Settlement) is meant for large-value transfers - the floor is Rs. 2 lakh, settled individually and instantly. NEFT carries smaller amounts in batches with no minimum.",
+   "shortcut": "RTGS = 'Really Two-lakh Gross Settlement'.",
+   "difficulty": "medium",
+   "subtopic": "ie-ebanking",
+   "pattern": "payment system limits",
+   "timeSec": 35
+  },
+  {
+   "id": "ie-q12",
+   "q": "UPI, the instant real-time payment system, is developed and operated by:",
+   "figure": null,
+   "options": [
+    "RBI",
+    "SEBI",
+    "NPCI",
+    "SBI"
+   ],
+   "answer": 2,
+   "solution": "UPI (2016) is built and operated by the National Payments Corporation of India (NPCI), the umbrella organisation for retail payments (it also runs IMPS, RuPay, BHIM). RBI regulates but does not operate UPI.",
+   "shortcut": "NPCI runs the retail rails: UPI, IMPS, RuPay, AePS. RBI is the regulator.",
+   "difficulty": "medium",
+   "subtopic": "ie-ebanking",
+   "pattern": "digital payments",
+   "timeSec": 35
+  },
+  {
+   "id": "ie-q13",
+   "q": "An IFSC code used in electronic fund transfers contains how many characters?",
+   "figure": null,
+   "options": [
+    "9",
+    "10",
+    "11",
+    "12"
+   ],
+   "answer": 2,
+   "solution": "The Indian Financial System Code is 11 characters: 4 letters for the bank, a zero, and 6 characters identifying the branch (e.g. SBIN0007245).",
+   "shortcut": "IFSC = 11; MICR cheque code = 9 digits.",
+   "difficulty": "medium",
+   "subtopic": "ie-ebanking",
+   "pattern": "banking codes",
+   "timeSec": 35
+  },
+  {
+   "id": "ie-q14",
+   "q": "Small text files a website stores in your browser to remember sessions and preferences are called:",
+   "figure": null,
+   "options": [
+    "Cookies",
+    "Breadcrumbs",
+    "Applets",
+    "Plugins"
+   ],
+   "answer": 0,
+   "solution": "Cookies hold site-specific data (login sessions, carts, preferences, tracking IDs). They are plain text files - not programs and not viruses.",
+   "shortcut": "Website's memory of you = cookie.",
+   "difficulty": "easy",
+   "subtopic": "ie-browsers-search",
+   "pattern": "web concepts",
+   "timeSec": 30
+  },
+  {
+   "id": "ie-q15",
+   "q": "The keyboard shortcut to bookmark (favourite) the current page in all major browsers is:",
+   "figure": null,
+   "options": [
+    "Ctrl+B",
+    "Ctrl+D",
+    "Ctrl+M",
+    "Ctrl+K"
+   ],
+   "answer": 1,
+   "solution": "Ctrl+D adds the current page to bookmarks/favourites. (Ctrl+B is bold in Office; in some browsers it toggles the bookmarks BAR, which is why the safe exam answer for bookmarking a page is Ctrl+D.)",
+   "shortcut": "D = Drop a favourite: Ctrl+D.",
+   "difficulty": "easy",
+   "subtopic": "ie-browsers-search",
+   "pattern": "browser shortcuts",
+   "timeSec": 30
+  }
+ ]
+}

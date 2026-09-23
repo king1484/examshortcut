@@ -1,0 +1,432 @@
+{
+ "id": "seating-arrangement",
+ "sectionId": "reasoning",
+ "title": "Seating Arrangement",
+ "order": 10,
+ "importance": "high",
+ "avgQuestions": {
+  "tier1": "3-5",
+  "tier2": "4-6"
+ },
+ "summary": "Seating puzzles — linear rows and circular tables — are the highest-value reasoning block in CGL, appearing as a linked set of 3-5 questions. Mastery is mechanical: pin absolute seats (ends, middle, opposite) first, chain the fixed-distance and immediate-neighbour clues as arrows, apply negative clues last, and read the answer off the finished sketch. Circular variants hinge on one convention — facing centre, left = clockwise — and flip when people face outward.",
+ "subtopics": [
+  {
+   "id": "seating-idea",
+   "title": "How seating puzzles are set",
+   "concept": "A seating puzzle gives a set of people and a set of positional clues; you must rebuild the exact seating and then answer ('who is opposite D?', 'who sits third from the left?'). Two families cover the whole topic:\n\n1. **Linear** — everyone in one row, usually 'facing north'. The row's left/right ends belong to the **viewer**: the left end is on your left in the sketch. When a row **faces south**, each person's own left and right flip — a person facing south has their left toward your right. The ends never flip.\n2. **Circular** — around a table, 'facing centre' by default. For a person facing the centre, the **left-hand neighbour is the next person clockwise**; the right-hand neighbour is the next anticlockwise. If they face **outward**, both flip.\n\nMethod that never fails: draw n blanks, fill every 'extreme end / middle / opposite' clue first (they pin seats absolutely), then chain the relative clues ('second to the left of…'), and use every negative clue ('not adjacent', 'not at an end') only at the end to kill remaining options.",
+   "formulas": [
+    {
+     "name": "Circular neighbour rule",
+     "tex": "L(i) = (i+1) \\bmod n,\\ R(i) = (i-1) \\bmod n",
+     "note": "Seats numbered clockwise, everyone facing centre. Both swap if facing outward."
+    },
+    {
+     "name": "Opposite seats",
+     "tex": "i \\leftrightarrow (i + n/2) \\bmod n",
+     "note": "Only when n is even; odd tables have no opposite seat."
+    },
+    {
+     "name": "Viewer vs person",
+     "tex": "\\text{person faces south} \\Rightarrow \\text{their left} = \\text{your right}",
+     "note": "Applies only to the person's own left/right, never to the row ends."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Pin the absolutes first",
+     "body": "Extreme ends, exact middles, 'opposite', 'fourth from left' fix specific seats before any chaining. Fill those, and the remaining people usually fall into one or two slots.",
+     "example": {
+      "q": "**Q.** Six seats, B at the extreme left, F at the extreme right, D immediately right of B, C immediately left of F.\n\n**Sol.** B _ D _ C F with two blanks; the two leftover names (A, E) go in seats 2 and 4 — one more clue finishes it. Absolutes did the scaffolding.",
+      "solution": "Ends/middle/opposite clues are free information — place them before touching chains."
+     }
+    }
+   ],
+   "mistakes": [
+    "Applying left/right flips to the row's ends — ends belong to the viewer, only individuals flip.",
+    "Forgetting the facing-outward flip in circular puzzles.",
+    "Ignoring 'not adjacent / not at an end' until the answer, not the solving."
+   ]
+  },
+  {
+   "id": "linear-arrangement",
+   "title": "Single-row arrangements",
+   "concept": "Everyone in one line, normally facing north. Vocabulary decoded:\n\n- **'k-th to the left/right of X'** — count k seats from X in that direction (k = 2 means one person in between).\n- **'immediate left/right / neighbour'** — adjacent seat, no gap.\n- **'between'** — anywhere strictly inside; **'immediately between'** — the very next seat on both sides is the named pair.\n- **'extreme end'** — first or last seat.\n\nBuild order: ends and middle seats → fixed-distance clues ('third to the right of…') → adjacency pairs → negative clues. If the same face direction confuses you, physically rotate your rough sketch so everyone 'faces' up; your left is then their left.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Chain links, don't guess gaps",
+     "body": "'Second to the right of A' pins B exactly two seats from A — mark it with an arrow as soon as you read it. A puzzle of six clues usually has four such arrows; the picture completes itself.",
+     "example": {
+      "q": "**Q.** C sits third from the left; A sits second to the right of C; B is adjacent to both C and A.\n\n**Sol.** C at seat 3 → A at seat 5 → B must touch both → seat 4. One arrow each, done.",
+      "solution": "Every relative clue is an arrow of fixed length — draw all arrows before placing anyone optional."
+     }
+    }
+   ],
+   "mistakes": [
+    "Counting 'second to the right' as one seat away.",
+    "Treating 'sits between' as 'immediately between'.",
+    "Missing that south-facing rows flip each person's left/right."
+   ]
+  },
+  {
+   "id": "circular-arrangement",
+   "title": "Round-table arrangements",
+   "concept": "For people facing the centre (the default), fix the geometry once: **left neighbour = clockwise, right neighbour = anticlockwise.** 'Opposite' exists only for an even number of people: seat i is opposite seat i + n/2.\n\nRotation is the puzzle-setter's freedom: clues never tell you 'seat 1', so start by placing any one person anywhere and build the circle around them — every other clue is relative to people, not seats. Facing-outward variants flip left/right; mixed facing ('A faces centre, B faces outward') is rare in CGL and usually restricted to 4–5 people.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Walk the circle in one direction",
+     "body": "Take the longest adjacency chain and lay it out clockwise without thinking: 'D is to the immediate left of B, C to the immediate left of D, E to the immediate left of C' is just the clockwise string B → D → C → E. Close the loop with the last clue.",
+     "example": {
+      "q": "**Q.** Facing centre: A is to the immediate right of B; D to the immediate left of B; C to the immediate left of D; E to the immediate left of C.\n\n**Sol.** Left-walk from B: B, D, C, E, and A sits at B's right — the string closes as B D C E (A) — fully forced.",
+      "solution": "'Immediate left' chains concatenate into one clockwise string — walk it instead of solving seat by seat."
+     }
+    }
+   ],
+   "mistakes": [
+    "Using clockwise as the right-hand side for centre-facing people — it is the left.",
+    "Hunting for an 'opposite' person at an odd-sized table.",
+    "Placing people by seat numbers instead of relative to a fixed anchor."
+   ]
+  },
+  {
+   "id": "puzzle-strategy",
+   "title": "Exam strategy for puzzles",
+   "concept": "Seating questions come in sets of 3–5 sharing one puzzle. Budget rules:\n\n- **Read all clues before drawing anything.** Negative clues ('Q does not face the centre') often decide the last seat instantly.\n- **Solve once, answer many.** The first question costs 90–120 seconds; questions 2–4 of the same puzzle cost 15–20 seconds each because the seating is already on paper.\n- **Skip cleanly.** If after one full pass the seating still has two live configurations, park the set and return — CGL reasoning has cheaper marks elsewhere.\n- **Verify with one closed loop:** walk left-neighbour links around your final circle; if the string doesn't close, an arrow was drawn backwards.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Two-configuration bail-out",
+     "body": "When exactly two seatings survive all clues, check what the QUESTION asks: if both configurations give the same answer, mark it and move on — you never needed the extra clue you thought was missing.",
+     "example": {
+      "q": "**Q.** After all clues, A and B could swap (seats 2/3). Question: who is opposite E?\n\n**Sol.** If A/B's two seats are both on the same side, the seat opposite E is unchanged — answer stands either way.",
+      "solution": "The question only needs the asked seat, not the full unique seating."
+     }
+    }
+   ],
+   "mistakes": [
+    "Restarting the sketch for every question in the set instead of reusing it.",
+    "Spending 3+ minutes hoping a fifth re-read reveals a clue that isn't there.",
+    "Answering from a partial sketch without checking the remaining clues still hold."
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Extreme ends + adjacency row",
+   "frequency": "very common",
+   "howToSpot": "Ends pinned, immediate neighbours chained.",
+   "approach": "Place ends first, then connect neighbour pairs; leftover people fill the last seats."
+  },
+  {
+   "pattern": "Fixed-distance row",
+   "frequency": "very common",
+   "howToSpot": "'k-th to the left/right of X' clues.",
+   "approach": "Draw fixed-length arrows from each anchor; arrows lock seats absolutely."
+  },
+  {
+   "pattern": "South-facing / flipped row",
+   "frequency": "occasional",
+   "howToSpot": "Row faces south, so each person's left/right is mirrored.",
+   "approach": "Flip only the individuals' left/right; the row's ends stay viewer-fixed."
+  },
+  {
+   "pattern": "Circular facing centre",
+   "frequency": "very common",
+   "howToSpot": "Round table, left = clockwise, right = anticlockwise.",
+   "approach": "Anchor one person, walk immediate-left chains around the circle."
+  },
+  {
+   "pattern": "Circular facing outward",
+   "frequency": "occasional",
+   "howToSpot": "Same table but both flips reverse.",
+   "approach": "Reuse the facing-centre result with left/right swapped."
+  },
+  {
+   "pattern": "Two-variable circular (couples/genders)",
+   "frequency": "occasional",
+   "howToSpot": "Eight people, husband-wife pairs, opposite and adjacency clues.",
+   "approach": "First place the named relation web, then drop spouses into leftover compatibility."
+  },
+  {
+   "pattern": "Negative-clue finish",
+   "frequency": "common",
+   "howToSpot": "'Not adjacent / not at an end / does not face centre' decides between survivors.",
+   "approach": "Collect all negatives in a margin list; apply only when ≤2 configurations remain."
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "rsn-seating-ex1",
+   "q": "Five friends **A, B, C, D and E sit in a row facing north. B sits at the extreme left end, E at the extreme right end. D sits immediately to the right of B, and C sits immediately to the left of E.** Who sits in the **middle** of the row?",
+   "figure": null,
+   "options": [
+    "C",
+    "D",
+    "E",
+    "A"
+   ],
+   "answer": 3,
+   "solution": "Place the absolutes: B (seat 1), E (seat 5), then D right of B (seat 2) and C left of E (seat 4). The only person left, **A**, takes the middle seat 3.",
+   "shortcut": "Absolutes first — ends and fixed adjacencies leave the answer by elimination.",
+   "difficulty": "easy",
+   "subtopic": "linear-arrangement",
+   "pattern": "extreme ends + adjacency row",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-seating-ex2",
+   "q": "Five people **A, B, C, D and E sit around a circular table, all facing the centre. A is to the immediate right of B; D is to the immediate left of B; C is to the immediate left of D; E is to the immediate left of C.** Who sits **second to the left of A**?",
+   "figure": null,
+   "options": [
+    "C",
+    "E",
+    "B",
+    "D"
+   ],
+   "answer": 3,
+   "solution": "Facing the centre, left = clockwise. Walk clockwise from B: D, C, E; A closes the circle at B's right. Clockwise order: A, B, D, C, E. Second to the left of A = two seats clockwise = **D**.",
+   "shortcut": "Chain the 'immediate left' clues into one clockwise string, close it, then count.",
+   "difficulty": "medium",
+   "subtopic": "circular-arrangement",
+   "pattern": "circular facing centre",
+   "timeSec": 60
+  },
+  {
+   "id": "rsn-seating-ex3",
+   "q": "Four people **P, Q, R and S sit in a row facing north. Q sits at the extreme right end. P is not adjacent to Q. R sits immediately to the left of P.** Who sits **second from the left end**?",
+   "figure": null,
+   "options": [
+    "R",
+    "Q",
+    "P",
+    "S"
+   ],
+   "answer": 2,
+   "solution": "Q (seat 4). P must avoid seat 3 (next to Q), and R needs the seat on P's left — so P = seat 2, R = seat 1. S takes seat 3. Second from the left = **P**.",
+   "shortcut": "The negative clue removes one seat; 'immediately left' then forces the only pair left.",
+   "difficulty": "easy",
+   "subtopic": "linear-arrangement",
+   "pattern": "negative-clue finish",
+   "timeSec": 40
+  }
+ ],
+ "practice": [
+  {
+   "id": "rsn-seating-1",
+   "q": "Six friends **A, B, C, D, E and F sit in a row facing north. C sits third from the left end. A sits second to the right of C. B is an immediate neighbour of both C and A. D sits at the extreme left end and E at the extreme right end.** Who sits **exactly between C and A**?",
+   "figure": null,
+   "options": [
+    "D",
+    "E",
+    "B",
+    "F"
+   ],
+   "answer": 2,
+   "solution": "C at seat 3 → A at seat 5. The only seat touching both C (3) and A (5) is seat 4 → **B**. (D and E take the ends, so F sits at seat 2.)",
+   "shortcut": "Fixed-distance arrows first; a neighbour-of-both clue is just the seat in between.",
+   "difficulty": "easy",
+   "subtopic": "linear-arrangement",
+   "pattern": "fixed-distance row",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-seating-2",
+   "q": "Seven people **J, K, L, M, N, O and P sit in a row facing north. M sits exactly in the middle. L sits immediately to the left of M and O immediately to the right of M. J sits at the extreme left end, K at the extreme right end. P sits between O and K.** Who sits **second from the left end**?",
+   "figure": null,
+   "options": [
+    "M",
+    "O",
+    "N",
+    "L"
+   ],
+   "answer": 2,
+   "solution": "Middles first: M (seat 4), L (3), O (5). Ends: J (1), K (7). P between O and K → seat 6. The only person left, **N**, takes seat 2.",
+   "shortcut": "Five clues pin five seats; the answer is the leftover person's slot.",
+   "difficulty": "easy",
+   "subtopic": "linear-arrangement",
+   "pattern": "extreme ends + adjacency row",
+   "timeSec": 50
+  },
+  {
+   "id": "rsn-seating-3",
+   "q": "Five friends **R, S, T, U and V sit in a row facing south. R sits in the exact middle. T sits second to the left of R. V sits immediately to the right of R. S sits at an extreme end.** Who sits **immediately to the left of R** (from R's own facing)?",
+   "figure": null,
+   "options": [
+    "T",
+    "S",
+    "U",
+    "V"
+   ],
+   "answer": 2,
+   "solution": "Facing south, R's left is the viewer's right. R (seat 3) → T is second to R's left = seat 5; V immediately to R's right = seat 2; S takes seat 1, leaving **U at seat 4 — immediately to R's left** (viewer's right of R).",
+   "shortcut": "South-facing row: swap 'left' and 'right' for the people, keep the end seats as drawn.",
+   "difficulty": "hard",
+   "subtopic": "linear-arrangement",
+   "pattern": "south-facing / flipped row",
+   "timeSec": 60
+  },
+  {
+   "id": "rsn-seating-4",
+   "q": "Six friends **P, Q, R, S, T and W face north. P is at the extreme left end and Q at the extreme right end. R sits immediately to the right of P. T is not adjacent to R. S sits between W and T (with W immediately to S's left and T immediately to S's right).** Who sits **third from the left end**?",
+   "figure": null,
+   "options": [
+    "S",
+    "T",
+    "R",
+    "W"
+   ],
+   "answer": 3,
+   "solution": "P (1), R (2), Q (6). W–S–T must occupy seats 3–5 in that order. T at seat 3 would touch R — banned — so T sits at seat 5, giving W at seat 3. Third from the left = **W**.",
+   "shortcut": "The negative clue is the decider: it alone chooses between the two W–S–T placements.",
+   "difficulty": "medium",
+   "subtopic": "linear-arrangement",
+   "pattern": "negative-clue finish",
+   "timeSec": 55
+  },
+  {
+   "id": "rsn-seating-5",
+   "q": "Seven students **A, B, C, D, E, F and G sit in a row facing north. E sits at an extreme end, with D immediately to E's left. G sits second to the left of D, and B sits immediately to the right of G. A is not adjacent to B. C sits at an extreme end, with F immediately to C's right.** Who sits **fourth from the left end**?",
+   "figure": null,
+   "options": [
+    "B",
+    "A",
+    "D",
+    "G"
+   ],
+   "answer": 3,
+   "solution": "E (7), D (6). G = D − 2 = seat 4, B = seat 5. C at the other end (1), F (2). A must avoid B's neighbours — seats 4 and 6 are gone, so A takes seat 3. Fourth from the left = **G**.",
+   "shortcut": "Ends + fixed distances pin six seats; the negative clue only confirms the leftover.",
+   "difficulty": "hard",
+   "subtopic": "linear-arrangement",
+   "pattern": "fixed-distance row",
+   "timeSec": 70
+  },
+  {
+   "id": "rsn-seating-6",
+   "q": "Six friends **K, L, M, N, O and P sit around a circular table facing the centre. P sits opposite M, and K sits opposite L. N is to the immediate left of K. O is to the immediate right of M, and L is to the immediate right of O.** Who sits **opposite N**?",
+   "figure": null,
+   "options": [
+    "M",
+    "P",
+    "L",
+    "O"
+   ],
+   "answer": 3,
+   "solution": "Facing centre: right = anticlockwise, left = clockwise. Fix M anywhere: O is at M's right (next anticlockwise), L at O's right, K opposite L, N at K's left, and P closes the circle opposite M. Order (clockwise from M): M, K, N, P, L, O. N's opposite = three seats clockwise = **O**.",
+   "shortcut": "Anchor one person, unwind the left/right chain, then read n/2 steps across.",
+   "difficulty": "hard",
+   "subtopic": "circular-arrangement",
+   "pattern": "circular facing centre",
+   "timeSec": 80
+  },
+  {
+   "id": "rsn-seating-7",
+   "q": "Five people **R, S, T, U and V sit around a circular table facing outward (away from the centre). S is to the immediate right of R, T to the immediate right of S, V to the immediate right of U, and R to the immediate right of V.** Who sits **immediately to the left of T** (from T's own perspective)?",
+   "figure": null,
+   "options": [
+    "U",
+    "R",
+    "V",
+    "S"
+   ],
+   "answer": 3,
+   "solution": "Facing outward, right = clockwise. Chain the rights: R → S → T, and U → V → R, so the clockwise order is R, S, T, U, V. Facing outward, T's left is anticlockwise — the seat just before T — which is **S**.",
+   "shortcut": "Outward facing flips both hands: the 'left of T' seat is the anticlockwise neighbour.",
+   "difficulty": "hard",
+   "subtopic": "circular-arrangement",
+   "pattern": "circular facing outward",
+   "timeSec": 70
+  },
+  {
+   "id": "rsn-seating-8",
+   "q": "Four married couples — **(A, P), (B, Q), (C, R), (D, S)** — sit around a circular table facing the centre. **C sits opposite A; B opposite P; S opposite Q. R is to the immediate left of A, Q to the immediate left of P, and D to the immediate left of C. Q is an immediate neighbour of A.** Who sits **opposite R**?",
+   "figure": null,
+   "options": [
+    "C",
+    "A",
+    "D",
+    "S"
+   ],
+   "answer": 2,
+   "solution": "Fix P anywhere: Q at P's left; B opposite P; S opposite Q. Q must touch A, and R sits at A's left with C opposite A and D at C's left — the string P, Q, A, R, B, S, C, D closes the circle. R, three... four seats across (8 seats → +4) faces **D**.",
+   "shortcut": "Spouses opposite + left-neighbour chains: lay the 8-string down once, then read +4.",
+   "difficulty": "hard",
+   "subtopic": "circular-arrangement",
+   "pattern": "two-variable circular (couples/genders)",
+   "timeSec": 110
+  },
+  {
+   "id": "rsn-seating-9",
+   "q": "Seven students **H, I, J, K, L, M and N sit in a row facing north. K sits exactly in the middle. I sits second to the right of K. M is an immediate neighbour of I. J sits third to the left of M. L is an immediate neighbour of K. H sits at the extreme left end and N at the extreme right end.** Who sits **third from the right end**?",
+   "figure": null,
+   "options": [
+    "L",
+    "M",
+    "K",
+    "I"
+   ],
+   "answer": 1,
+   "solution": "K (4), I (6). M touches I (seat 5 or 7); J = M − 3 must exist → M = 5 (else J = 4, K's seat). J = 2. L touches K → seat 3 (5 is taken). H (1), N (7). Seats: H, J, L, K, M, I, N — third from the right = **M**.",
+   "shortcut": "Test the 'immediate neighbour' two ways; the impossible one falls to a fixed-distance clue.",
+   "difficulty": "hard",
+   "subtopic": "linear-arrangement",
+   "pattern": "fixed-distance row",
+   "timeSec": 80
+  },
+  {
+   "id": "rsn-seating-10",
+   "q": "Five people **A, B, C, D and E sit around a circular table facing the centre. E sits between C and B (immediately), D sits immediately to the left of B, and A sits to the immediate right of C.** Who sits **second to the right of B**?",
+   "figure": null,
+   "options": [
+    "C",
+    "A",
+    "E",
+    "D"
+   ],
+   "answer": 0,
+   "solution": "Facing centre: left = clockwise. From C clockwise: E (between C and B), then B, then D at B's left. A sits at C's right (anticlockwise), closing the circle. Clockwise: A, C, E, B, D. Second to the right of B = two anticlockwise = **C**.",
+   "shortcut": "'Between' + 'immediate left' chains trace the clockwise order almost by themselves.",
+   "difficulty": "medium",
+   "subtopic": "circular-arrangement",
+   "pattern": "circular facing centre",
+   "timeSec": 65
+  },
+  {
+   "id": "rsn-seating-11",
+   "q": "Six friends **T, U, V, W, X and Y face north. V sits second from the left end. W sits immediately between X and Y. T sits at the extreme left end and U at the extreme right end.** Who sits **second to the right of W**?",
+   "figure": null,
+   "options": [
+    "X",
+    "V",
+    "U",
+    "Y"
+   ],
+   "answer": 2,
+   "solution": "T (1), V (2), U (6). The X–W–Y block must fit consecutively with W in the middle — only seats 3–4–5 work (seat 2 is V's). X (3), W (4), Y (5). Two to the right of W = seat 6 = **U**.",
+   "shortcut": "A consecutive block only fits the leftover run of seats — place ends first, then slide the block.",
+   "difficulty": "medium",
+   "subtopic": "linear-arrangement",
+   "pattern": "extreme ends + adjacency row",
+   "timeSec": 55
+  },
+  {
+   "id": "rsn-seating-12",
+   "q": "Eight friends **A, B, C, D, E, F, G and H sit in a row facing north. A sits second to the left of E. E sits third to the left of D. G and D sit at the two extreme ends. C is an immediate neighbour of A (on A's left). B sits immediately to the right of E, and F immediately to the right of B.** Who sits **third from the right end**?",
+   "figure": null,
+   "options": [
+    "F",
+    "E",
+    "C",
+    "B"
+   ],
+   "answer": 3,
+   "solution": "Ends: G and D. D must leave three seats to its left for E, so D = seat 8, G = seat 1. E = D − 3 = seat 5; A = seat 3; C on A's left = seat 2; B = seat 6, F = seat 7. Remaining H takes seat 4. Third from the right = seat 6 = **B**.",
+   "shortcut": "'Third to the left of an end' forces which end is which — start there and chain inward.",
+   "difficulty": "hard",
+   "subtopic": "linear-arrangement",
+   "pattern": "fixed-distance row",
+   "timeSec": 90
+  }
+ ]
+}

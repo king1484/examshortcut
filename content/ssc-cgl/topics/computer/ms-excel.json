@@ -1,0 +1,550 @@
+{
+ "id": "ms-excel",
+ "sectionId": "computer",
+ "title": "MS Excel",
+ "order": 5,
+ "importance": "high",
+ "avgQuestions": {
+  "tier1": 0,
+  "tier2": 3
+ },
+ "summary": "Spreadsheet structure, cell references, functions, formula errors, charts and shortcuts. Excel gives the most 'compute-the-answer' questions in CKT - COUNT/IF/VLOOKP outputs are verifiable, so marks are safe.",
+ "subtopics": [
+  {
+   "id": "me-basics",
+   "title": "Workbook, cells and references",
+   "concept": "**Excel** is a spreadsheet program: data goes into **cells** at the crossing of rows and columns. A file = **workbook**; each tab = **worksheet**.\n\n**Dimensions (Excel 2007 onwards):** rows **10,48,576** (2^20, numbered 1...1048576) x columns **16,384** (2^14, named A...XFD) = 17,17,98,86,928 cells per sheet. (Excel 2003 and earlier: 65,536 x 256, last column IV.)\n\n**References:** a cell address = column letter + row number (C5). A range = top-left:bottom-right (A1:B5 covers 2 columns x 3 rows = 6 cells).\n\n| Reference type | Form | What happens when copied |\n|---|---|---|\n| Relative | A1 | Row/column shift with the formula |\n| Absolute | $A$1 | Fully locked |\n| Mixed | $A1 or A$1 | Column locked, or row locked |\n\n**F4** cycles A1 -> $A$1 -> A$1 -> $A1 while editing. Cross-sheet reference: Sheet2!B4; cross-workbook adds [Book1] before the sheet name. The **Name Box** (left of formula bar) shows/renames the active cell; the **formula bar** shows the cell's real content. The **fill handle** (small square at the active cell's corner) copies formulas or extends series (AutoFill). Formulas always begin with **=**.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Dollar locks",
+     "body": "A **$** before the letter locks the column; before the number locks the row. $A$1 = both locked ('dollar = padlock'). F4 taps through the four states.",
+     "example": {
+      "q": "Which reference keeps the row fixed but lets the column change?",
+      "solution": "Mixed reference like A$1."
+     }
+    },
+    {
+     "title": "Rows x Cols",
+     "body": "2007+: **2^20 rows (10,48,576)** x **2^14 columns (16,384)**; last column **XFD**. Old Excel: 65,536 x 256 ('256 = IV roman-ish, XFD = 16384').",
+     "example": {
+      "q": "Last column heading in Excel 2019?",
+      "solution": "XFD."
+     }
+    }
+   ],
+   "mistakes": [
+    "Saying Excel 2019 has 65,536 rows - that ended with Excel 2003.",
+    "Writing a range as A1-B5; the separator is a colon (A1:B5).",
+    "Forgetting that F4 toggles references only while editing a formula (outside editing it repeats the last action)."
+   ]
+  },
+  {
+   "id": "me-functions",
+   "title": "Functions you must know",
+   "concept": "| Category | Functions |\n|---|---|\n| Maths | SUM, SUMIF, PRODUCT, ROUND, INT, MOD, ABS, POWER, SQRT |\n| Statistics | AVERAGE, COUNT, COUNTA, COUNTBLANK, COUNTIF, MAX, MIN, MEDIAN, MODE, RANK, LARGE, SMALL, STDEV |\n| Logical | IF, AND, OR, NOT, IFS, IFERROR |\n| Text | LEN, LEFT, RIGHT, MID, CONCATENATE/CONCAT, TRIM, UPPER, LOWER, PROPER |\n| Date-time | TODAY, NOW, DAY, MONTH, YEAR, DATEDIF |\n| Lookup | VLOOKUP, HLOOKUP, INDEX, MATCH, XLOOKUP (2021+) |\n| Financial | PMT (loan instalment), FV, PV, NPV |\n\n**Count-family (classic trap):** COUNT counts **numeric cells only**; COUNTA counts all **non-empty** cells; COUNTBLANK counts empty cells; COUNTIF counts cells meeting a condition (e.g. COUNTIF(A1:A10,\">80\")).\n\n**Lookup:** VLOOKUP(value, table, col_index, FALSE) searches the **first column** of the table **vertically** and returns the matching row's col_index-th column; FALSE = exact match. HLOOKUP works horizontally on the first row.\n\n**Text/date:** LEN counts characters (LEN(\"SSCCGL\") = 6); TRIM strips extra spaces; PROPER capitalises Each Word; UPPER/LOWER change case. TODAY() gives today's date (updates); NOW() gives date **and time**.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "COUNT counts Numbers, COUNTA counts Anything",
+     "body": "COUNT = digits only; COUNTA = everything non-empty (text too); COUNTBLANK = the gaps. Test any MCQ by tagging each cell in the range N (number), T (text), E (empty).",
+     "example": {
+      "q": "Range has 3 numbers, 1 text cell, 1 blank. COUNT? COUNTA?",
+      "solution": "COUNT = 3; COUNTA = 4."
+     }
+    },
+    {
+     "title": "V of VLOOKUP = Vertical",
+     "body": "VLOOKUP hunts down the **first column**; HLOOKUP along the **first row**. The 4th argument FALSE = exact match ('F for Full match').",
+     "example": {
+      "q": "VLOOKUP searches the table for the lookup value in which direction?",
+      "solution": "Vertically, in the first column."
+     }
+    },
+    {
+     "title": "TODAY vs NOW",
+     "body": "**TODAY()** = date only; **NOW()** = date + time. Both refresh on recalculation (unlike Ctrl+; which stamps a fixed date).",
+     "example": {
+      "q": "Function returning current date and time together?",
+      "solution": "NOW()."
+     }
+    }
+   ],
+   "mistakes": [
+    "Letting COUNT count text cells - it skips them silently.",
+    "Looking up VLOOKUP values in any column - the lookup value must be in the table's first column.",
+    "Believing TODAY() freezes the date - it recalculates; Ctrl+; stamps a static date."
+   ]
+  },
+  {
+   "id": "me-errors-charts",
+   "title": "Formula errors, charts and data tools",
+   "concept": "**Error messages:**\n\n| Error | Cause |\n|---|---|\n| #DIV/0! | Division by zero or by an empty cell |\n| #NAME? | Text Excel cannot recognise (misspelt function/name) |\n| #VALUE! | Wrong data type in the formula (text where a number is needed) |\n| #REF! | Invalid cell reference (referenced cells deleted) |\n| #N/A | Lookup value not found |\n| #NUM! | Bad numeric argument (e.g. SQRT of a negative) |\n| ###### | Column too narrow - a display issue, NOT an error |\n| Circular Reference warning | Formula refers back to its own cell |\n\n**Charts:** Column - compare categories; **Line - trends over time**; **Pie - parts of one whole**; Bar - horizontal comparison; Area - cumulative trend; Scatter - relationship between two variables. Alt+F1 inserts a default chart on the sheet; F11 puts it on a new chart sheet.\n\n**Data tools:** Sort (multi-level), Filter/AutoFilter (**Ctrl+Shift+L**), Conditional Formatting (colour scales, icon sets), Data Validation (dropdowns/limits), **Pivot Table** (drag-and-drop summary of big data), What-If Analysis - **Goal Seek** (find the input that produces a wanted output), Scenario Manager, Data Table. **Freeze Panes** locks rows/columns on screen; Wrap Text shows long text on multiple lines; Merge & Center combines cells; Sheet protection locks cells against edits; **Sparklines** are tiny in-cell charts.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "###### is not an error",
+     "body": "Widen the column - done. Real errors start with #: DIV/0 (zero), NAME (spelling), VALUE (type), REF (deleted), N/A (not found). Match the cause table above.",
+     "example": {
+      "q": "A cell shows #####. The problem is?",
+      "solution": "Column width, not a formula error."
+     }
+    },
+    {
+     "title": "Chart chooser",
+     "body": "**Pie = Parts, Line = Line of time (trend), Column = Compare, Scatter = relationship.** 'Trend over months' questions always end at Line.",
+     "example": {
+      "q": "Best chart for monthly sales trend?",
+      "solution": "Line chart."
+     }
+    },
+    {
+     "title": "Goal Seek direction",
+     "body": "Goal Seek: you give the **answer**, it finds the **input**. Pivot Table: you give the **data**, it gives summaries.",
+     "example": {
+      "q": "Which tool finds the marks needed in the last test to average exactly 80?",
+      "solution": "Goal Seek."
+     }
+    }
+   ],
+   "mistakes": [
+    "Calling ##### an error - it is only a narrow column.",
+    "Using a pie chart for a time trend - pies show one whole's shares at one point.",
+    "Saying #REF! appears for misspelt functions - that is #NAME?."
+   ]
+  },
+  {
+   "id": "me-shortcuts",
+   "title": "Excel shortcuts and file facts",
+   "concept": "| Action | Shortcut |\n|---|---|\n| Insert current date / time | Ctrl+; / Ctrl+Shift+; |\n| AutoSum | Alt+= |\n| Edit active cell | F2 |\n| Toggle $ references | F4 (while editing) |\n| Format Cells dialog | Ctrl+1 |\n| Fill down / right | Ctrl+D / Ctrl+R |\n| Select column / row | Ctrl+Space / Shift+Space |\n| Insert new worksheet | Shift+F11 |\n| Chart on new sheet | F11 |\n| Next / previous sheet | Ctrl+PgDn / Ctrl+PgUp |\n| New line inside a cell | Alt+Enter |\n| Toggle filters | Ctrl+Shift+L |\n| Show formulas instead of results | Ctrl+` |\n| Hide rows | Ctrl+9 (restore Ctrl+Shift+9) |\n| Spell check | F7 |\n| Create Table | Ctrl+T |\n| Percent / currency / date format | Ctrl+Shift+% / $ / # |\n\n**File facts:** default extension .xlsx from Excel 2007 (before: .xls); macro workbook .xlsm; template .xltx; CSV .csv; OpenDocument .ods. Default chart is a Clustered Column. A quick printed grid = Page Layout view / Page Break Preview.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Date stamp duo",
+     "body": "**Ctrl+; = date, Ctrl+Shift+; = time** - the Shift makes it work-o'clock (time). 'Current date in a cell' questions answer Ctrl+;.",
+     "example": {
+      "q": "Shortcut to insert today's date in a cell?",
+      "solution": "Ctrl+; (semicolon)."
+     }
+    },
+    {
+     "title": "F-key row for Excel",
+     "body": "F2 edit, F4 lock, F7 spell, F9 recalc, F11 chart sheet, F12 Save As - the F-row reads like Excel's toolbar.",
+     "example": {
+      "q": "Shortcut to create a chart on a new sheet?",
+      "solution": "F11."
+     }
+    },
+    {
+     "title": "Alt+= = AutoSum",
+     "body": "Alt with the plus key writes =SUM() over the adjacent numbers instantly - the fastest marks in the section.",
+     "example": {
+      "q": "Keyboard shortcut for AutoSum?",
+      "solution": "Alt+= ."
+     }
+    }
+   ],
+   "mistakes": [
+    "Giving Ctrl+D for date - Ctrl+D fills down; the date stamp is Ctrl+;.",
+    "Saying F4 always toggles references - only while a reference is being edited; otherwise F4 repeats the last action.",
+    "Answering .xls for Excel 2016 files - .xls is 97-2003; the default is .xlsx."
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Function-output computation",
+   "frequency": "very common",
+   "howToSpot": "'=COUNT(A1:A5) returns?' with a small data table - a mini computation, not recall.",
+   "approach": "Replicate the function mentally (or on paper): tag cells number/text/blank for COUNT family; evaluate the condition for IF; sum/average directly."
+  },
+  {
+   "pattern": "Shortcut-key recall",
+   "frequency": "very common",
+   "howToSpot": "'Which shortcut inserts the current date in a cell?'",
+   "approach": "Ctrl+; date, Alt+= AutoSum, F2 edit, Shift+F11 sheet, F4 lock - keep the F-row and Ctrl-row drilled."
+  },
+  {
+   "pattern": "Error-message identification",
+   "frequency": "common",
+   "howToSpot": "'Which error appears when a formula divides by an empty cell?'",
+   "approach": "Match cause -> code: zero/blank divide = #DIV/0!, unknown text = #NAME?, type mismatch = #VALUE!, deleted ref = #REF!, not found = #N/A, narrow column = ##### (not an error)."
+  },
+  {
+   "pattern": "Chart selection",
+   "frequency": "common",
+   "howToSpot": "'Which chart best shows the trend of monthly rainfall?'",
+   "approach": "Pie = parts of a whole, Line = trend over time, Column/Bar = compare categories, Scatter = two-variable relationship."
+  },
+  {
+   "pattern": "Reference behaviour on copy",
+   "frequency": "common",
+   "howToSpot": "'A formula with $A$1 copied down to the next row will?'",
+   "approach": "$-locked parts stay put; unlocked parts shift with the formula's new position."
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "me-se01",
+   "q": "Cells A1:A5 contain: 72, Fail, 85, (blank), 90. What does =COUNT(A1:A5) return?",
+   "figure": null,
+   "options": [
+    "3",
+    "4",
+    "5",
+    "2"
+   ],
+   "answer": 0,
+   "solution": "COUNT counts only numeric cells: 72, 85 and 90 -> 3. The text 'Fail' and the empty cell are ignored (COUNTA would have returned 4).",
+   "shortcut": "COUNT = numbers only. Tag each cell N/T/E and count the Ns.",
+   "difficulty": "medium",
+   "subtopic": "me-functions",
+   "pattern": "COUNT family computation",
+   "timeSec": 45
+  },
+  {
+   "id": "me-se02",
+   "q": "Cell A1 contains 72. The formula =IF(A1>50,\"Pass\",\"Fail\") displays:",
+   "figure": null,
+   "options": [
+    "72",
+    "Pass",
+    "Fail",
+    "TRUE"
+   ],
+   "answer": 1,
+   "solution": "The condition 72>50 is TRUE, so IF returns its second argument, the text Pass. (If A1 held 40, the third argument Fail would show.)",
+   "shortcut": "Evaluate the condition first; return argument 2 on TRUE, argument 3 on FALSE. Plain TRUE/FALSE only appear from a bare comparison like =A1>50.",
+   "difficulty": "easy",
+   "subtopic": "me-functions",
+   "pattern": "IF evaluation",
+   "timeSec": 40
+  },
+  {
+   "id": "me-se03",
+   "q": "B1 contains the formula =$A$1*2 and is copied to B2. B2 will contain:",
+   "figure": null,
+   "options": [
+    "=$A$2*2",
+    "=$A$1*2",
+    "=A2*2",
+    "=$A$1*3"
+   ],
+   "answer": 1,
+   "solution": "$A$1 is fully absolute, so the copied formula is unchanged: =$A$1*2. Only relative parts (like A1) would shift row-wise on copying.",
+   "shortcut": "Dollar = padlock. $A$1 never moves; A1 becomes A2 on a one-row copy.",
+   "difficulty": "medium",
+   "subtopic": "me-basics",
+   "pattern": "absolute reference copy",
+   "timeSec": 45
+  },
+  {
+   "id": "me-se04",
+   "q": "Which error results from =A1/B1 when B1 is empty?",
+   "figure": null,
+   "options": [
+    "#VALUE!",
+    "#REF!",
+    "#DIV/0!",
+    "#NAME?"
+   ],
+   "answer": 2,
+   "solution": "An empty cell is treated as zero, so the formula divides by zero and Excel shows #DIV/0!. #VALUE! means a wrong data type, #REF! a deleted reference, #NAME? unknown text.",
+   "shortcut": "Blank divisor = zero divisor = #DIV/0!. Don't be fooled into choosing #VALUE! for a blank cell.",
+   "difficulty": "easy",
+   "subtopic": "me-errors-charts",
+   "pattern": "error identification",
+   "timeSec": 35
+  },
+  {
+   "id": "me-se05",
+   "q": "How many rows and columns does an Excel 2019 worksheet have?",
+   "figure": null,
+   "options": [
+    "65,536 rows x 256 columns",
+    "10,48,576 rows x 16,384 columns",
+    "1,048,576 rows x 256 columns",
+    "16,384 rows x 10,48,576 columns"
+   ],
+   "answer": 1,
+   "solution": "Excel 2007 onwards: 2^20 = 10,48,576 rows and 2^14 = 16,384 columns (A to XFD). The 65,536 x 256 grid belongs to Excel 2003 and earlier.",
+   "shortcut": "Remember the pair 2^20 x 2^14; the option swapping rows with columns is the deliberate trap.",
+   "difficulty": "easy",
+   "subtopic": "me-basics",
+   "pattern": "worksheet dimensions",
+   "timeSec": 35
+  }
+ ],
+ "practice": [
+  {
+   "id": "me-q01",
+   "q": "The default file extension of a workbook created in MS Excel 2019 is:",
+   "figure": null,
+   "options": [
+    ".xls",
+    ".xlsx",
+    ".xlsm",
+    ".ods"
+   ],
+   "answer": 1,
+   "solution": "Excel 2007 onwards saves workbooks as .xlsx (Office Open XML). .xls is the 97-2003 format, .xlsm is macro-enabled, .ods is OpenDocument.",
+   "shortcut": "X = XML = 2007+ across all Office extensions.",
+   "difficulty": "easy",
+   "subtopic": "me-shortcuts",
+   "pattern": "default extension",
+   "timeSec": 25
+  },
+  {
+   "id": "me-q02",
+   "q": "In Excel, the intersection of a row and a column is called a:",
+   "figure": null,
+   "options": [
+    "Field",
+    "Cell",
+    "Range",
+    "Box"
+   ],
+   "answer": 1,
+   "solution": "A cell is the single box at a column-row crossing, addressed as ColumnLetter+RowNumber (e.g. B7). A range is a rectangular block of cells.",
+   "shortcut": "Spreadsheet atom = cell; address = letter + number.",
+   "difficulty": "easy",
+   "subtopic": "me-basics",
+   "pattern": "spreadsheet basics",
+   "timeSec": 25
+  },
+  {
+   "id": "me-q03",
+   "q": "Cells A1:A5 contain: 72, Fail, 85, (blank), 90. What does =COUNTA(A1:A5) return?",
+   "figure": null,
+   "options": [
+    "3",
+    "4",
+    "5",
+    "2"
+   ],
+   "answer": 1,
+   "solution": "COUNTA counts every non-empty cell - numbers and text alike: 72, 'Fail', 85, 90 = 4. The blank cell is the only one skipped.",
+   "shortcut": "COUNTA = Anything non-empty. COUNT would give 3 here.",
+   "difficulty": "medium",
+   "subtopic": "me-functions",
+   "pattern": "COUNT family computation",
+   "timeSec": 40
+  },
+  {
+   "id": "me-q04",
+   "q": "Which function returns the number of characters in a text string?",
+   "figure": null,
+   "options": [
+    "COUNT",
+    "LENGTH",
+    "LEN",
+    "CHAR"
+   ],
+   "answer": 2,
+   "solution": "LEN(\"text\") returns the character count, e.g. LEN(\"SSCCGL\") = 6. There is no LENGTH function in Excel; COUNT works on numbers; CHAR returns the character for an ASCII code.",
+   "shortcut": "Excel's length function is LEN - no other name exists.",
+   "difficulty": "easy",
+   "subtopic": "me-functions",
+   "pattern": "text functions",
+   "timeSec": 30
+  },
+  {
+   "id": "me-q05",
+   "q": "Which function displays the current date that updates every time the workbook recalculates?",
+   "figure": null,
+   "options": [
+    "=NOW()",
+    "=TODAY()",
+    "=DATE()",
+    "Ctrl+D"
+   ],
+   "answer": 1,
+   "solution": "=TODAY() returns the live current date (updating on recalculation); =NOW() adds the time as well; =DATE() builds a date from given year/month/day; Ctrl+D fills down, it does not insert a date.",
+   "shortcut": "'Date only, updating' -> TODAY(); 'date and time' -> NOW(); 'fixed stamp' -> Ctrl+;.",
+   "difficulty": "medium",
+   "subtopic": "me-functions",
+   "pattern": "date functions",
+   "timeSec": 40
+  },
+  {
+   "id": "me-q06",
+   "q": "VLOOKUP searches for the lookup value in which part of the table array?",
+   "figure": null,
+   "options": [
+    "Last column",
+    "First row",
+    "First column",
+    "Any column"
+   ],
+   "answer": 2,
+   "solution": "VLOOKUP scans the first (leftmost) column of the table vertically and returns a value from the chosen column of the matching row. Searching along the first row is HLOOKUP.",
+   "shortcut": "V = Vertical = first column; H = Horizontal = first row.",
+   "difficulty": "medium",
+   "subtopic": "me-functions",
+   "pattern": "lookup functions",
+   "timeSec": 40
+  },
+  {
+   "id": "me-q07",
+   "q": "The formula =A1/B1 shows #DIV/0!. The most likely reason is:",
+   "figure": null,
+   "options": [
+    "A1 contains text",
+    "B1 is empty or zero",
+    "Column A is too narrow",
+    "The function name is misspelt"
+   ],
+   "answer": 1,
+   "solution": "#DIV/0! means the divisor (B1) is zero or blank. Text in A1 would raise #VALUE!; a narrow column shows #####; a misspelt function shows #NAME?.",
+   "shortcut": "Divide error -> look at the cell below the slash.",
+   "difficulty": "easy",
+   "subtopic": "me-errors-charts",
+   "pattern": "error identification",
+   "timeSec": 35
+  },
+  {
+   "id": "me-q08",
+   "q": "A cell displaying ######## (hash marks) indicates:",
+   "figure": null,
+   "options": [
+    "A circular reference",
+    "A formula error",
+    "The column is too narrow to show the value",
+    "The value is negative"
+   ],
+   "answer": 2,
+   "solution": "Excel fills the cell with # symbols when the formatted number cannot fit the column width - widen the column. It is a display condition, not an error.",
+   "shortcut": "Hashes = width, never an error code.",
+   "difficulty": "easy",
+   "subtopic": "me-errors-charts",
+   "pattern": "error identification",
+   "timeSec": 30
+  },
+  {
+   "id": "me-q09",
+   "q": "Which chart type is best suited to show the trend of monthly sales over a year?",
+   "figure": null,
+   "options": [
+    "Pie chart",
+    "Line chart",
+    "Doughnut chart",
+    "Radar chart"
+   ],
+   "answer": 1,
+   "solution": "Line charts plot values across a continuous axis - ideal for time-series trends. Pie/doughnut show shares of one whole at a single point; radar compares multiple variables.",
+   "shortcut": "Trend over time = line, every time.",
+   "difficulty": "easy",
+   "subtopic": "me-errors-charts",
+   "pattern": "chart selection",
+   "timeSec": 30
+  },
+  {
+   "id": "me-q10",
+   "q": "The keyboard shortcut to insert the current date into a cell (as a fixed value) is:",
+   "figure": null,
+   "options": [
+    "Ctrl+D",
+    "Ctrl+;",
+    "Ctrl+Shift+;",
+    "Ctrl+T"
+   ],
+   "answer": 1,
+   "solution": "Ctrl+; stamps today's date; Ctrl+Shift+; stamps the time; Ctrl+D fills down from the cell above; Ctrl+T creates a table.",
+   "shortcut": "Semicolon = stamp. Shift makes it time instead of date.",
+   "difficulty": "medium",
+   "subtopic": "me-shortcuts",
+   "pattern": "shortcut-key recall",
+   "timeSec": 35
+  },
+  {
+   "id": "me-q11",
+   "q": "AutoSum is applied with which shortcut?",
+   "figure": null,
+   "options": [
+    "Alt+=",
+    "Ctrl+=",
+    "Shift+=",
+    "Alt+S"
+   ],
+   "answer": 0,
+   "solution": "Alt+= writes =SUM() over the neighbouring numeric range in one stroke. Ctrl+= applies subscript formatting in Word, not AutoSum.",
+   "shortcut": "Alt with the plus sign = add them up.",
+   "difficulty": "easy",
+   "subtopic": "me-shortcuts",
+   "pattern": "shortcut-key recall",
+   "timeSec": 30
+  },
+  {
+   "id": "me-q12",
+   "q": "Which shortcut inserts a brand-new worksheet in the workbook?",
+   "figure": null,
+   "options": [
+    "Ctrl+N",
+    "Shift+F11",
+    "Ctrl+F11",
+    "Alt+N"
+   ],
+   "answer": 1,
+   "solution": "Shift+F11 adds a new worksheet. Ctrl+N creates a new workbook (file), and Ctrl+F11 has no default action in modern Excel.",
+   "shortcut": "New sheet inside the file = Shift+F11; whole new file = Ctrl+N.",
+   "difficulty": "medium",
+   "subtopic": "me-shortcuts",
+   "pattern": "shortcut-key recall",
+   "timeSec": 35
+  },
+  {
+   "id": "me-q13",
+   "q": "To find the input value that makes a formula produce a desired result, use:",
+   "figure": null,
+   "options": [
+    "Pivot Table",
+    "Goal Seek",
+    "AutoFilter",
+    "Freeze Panes"
+   ],
+   "answer": 1,
+   "solution": "Goal Seek (What-If Analysis) back-solves one input cell to hit a target output. Pivot Tables summarise data, AutoFilter hides rows, Freeze Panes locks screen areas.",
+   "shortcut": "You know the answer, want the input -> Goal Seek.",
+   "difficulty": "medium",
+   "subtopic": "me-errors-charts",
+   "pattern": "data tools",
+   "timeSec": 40
+  },
+  {
+   "id": "me-q14",
+   "q": "The formula =SUM(A1:A5, 10) is entered in B1. A1:A5 contain 2, 4, 6, 8, 10. The result is:",
+   "figure": null,
+   "options": [
+    "30",
+    "40",
+    "20",
+    "10"
+   ],
+   "answer": 1,
+   "solution": "SUM adds the range (2+4+6+8+10 = 30) plus the extra argument 10, giving 40.",
+   "shortcut": "SUM takes every argument: range total first, then any loose numbers.",
+   "difficulty": "easy",
+   "subtopic": "me-functions",
+   "pattern": "SUM computation",
+   "timeSec": 35
+  },
+  {
+   "id": "me-q15",
+   "q": "While editing a formula, pressing F4 on the reference A1 changes it to:",
+   "figure": null,
+   "options": [
+    "A2",
+    "$A$1",
+    "A$2",
+    "#REF!"
+   ],
+   "answer": 1,
+   "solution": "F4 cycles the reference through A1 -> $A$1 -> A$1 -> $A1 -> A1. The first press makes it fully absolute.",
+   "shortcut": "One tap of F4 = full lock ($ before both letter and number).",
+   "difficulty": "medium",
+   "subtopic": "me-basics",
+   "pattern": "reference toggling",
+   "timeSec": 40
+  }
+ ]
+}

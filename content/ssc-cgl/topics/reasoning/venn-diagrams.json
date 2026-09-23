@@ -1,0 +1,525 @@
+{
+ "id": "venn-diagrams",
+ "sectionId": "reasoning",
+ "title": "Venn Diagrams",
+ "order": 12,
+ "importance": "medium",
+ "avgQuestions": {
+  "tier1": "1-2",
+  "tier2": "1-3"
+ },
+ "summary": "Two question families: (1) region arithmetic — count union, intersection, only-regions, exactly-two, neither using inclusion-exclusion over labelled Venn regions; (2) relation selection — decide whether categories nest (definitional necessity), stay apart (impossibility) or intersect (possible but not forced). The arithmetic family is pure formula discipline; the relation family is two quick tests per pair. Label every region before computing and both become near-90% accuracy topics.",
+ "subtopics": [
+  {
+   "id": "venn-idea",
+   "title": "What a Venn diagram encodes",
+   "concept": "A Venn diagram is a picture of set membership: every point inside a circle belongs to that category; overlap regions belong to both. Two habits solve most CGL venn questions:\n\n1. **Region bookkeeping.** Name the 4 regions of a two-circle diagram (only A, only B, both, neither) and the 8 regions of a three-circle one. Every question is a sum or difference of named regions.\n2. **Relation reading.** 'Choose the right diagram for X, Y, Z' asks about *definitional* relations: is one category ALWAYS inside another (nested circles)? Can they NEVER meet (separate circles)? Otherwise (overlap possible but not forced) draw intersecting circles.\n\nDraw the regions and label them with the given numbers before computing — unlabelled diagrams cause double-counting errors.",
+   "formulas": [
+    {
+     "name": "Two-set inclusion-exclusion",
+     "tex": "|A \\cup B| = |A| + |B| - |A \\cap B|",
+     "note": "The intersection is counted twice on the right, so subtract once."
+    },
+    {
+     "name": "Only-regions",
+     "tex": "|A \\setminus B| = |A| - |A \\cap B|",
+     "note": "'Only A' is A minus the overlap."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Label regions, don’t imagine them",
+     "body": "Write the numbers INTO the regions: |A∩B| in the lens, only-A and only-B in the moons, neither outside. Sums become single looks instead of formula recalls.",
+     "example": {
+      "q": "**Q.** 60 students; 35 like tea, 30 coffee, 10 both. How many like neither?\n\n**Sol.** Tea-only 25 + both 10 + coffee-only 20 = 55 inside; 60 − 55 = **5**.",
+      "solution": "Fill the diagram first; the answer is whatever region is left empty times its count."
+     }
+    }
+   ],
+   "mistakes": [
+    "Counting the intersection twice when totalling.",
+    "Treating 'like tea' (including both) as 'like only tea'.",
+    "Forgetting the 'neither' region sits outside both circles."
+   ]
+  },
+  {
+   "id": "two-set-operations",
+   "title": "Two-circle counting",
+   "concept": "With two sets there are exactly four regions: only A, only B, both, neither. Every two-circle question is a sum or difference of these:\n\n- **Union** (at least one) = only A + only B + both.\n- **Only A** = |A| − both; **Only B** = |B| − both.\n- **Neither** = grand total − union.\n\nExam data typically gives |A|, |B| and the overlap (or hides one of them behind the union). Rearranging the inclusion-exclusion identity recovers any missing region in one step.",
+   "formulas": [
+    {
+     "name": "Two-set inclusion-exclusion",
+     "tex": "|A \\cup B| = |A| + |B| - |A \\cap B|",
+     "note": "The intersection is counted twice on the right, so subtract once."
+    },
+    {
+     "name": "Only-regions",
+     "tex": "|A \\setminus B| = |A| - |A \\cap B|",
+     "note": "'Only A' is A minus the overlap."
+    },
+    {
+     "name": "Neither",
+     "tex": "\\text{neither} = \\text{total} - |A \\cup B|",
+     "note": "Everyone outside both circles."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Label regions, don’t imagine them",
+     "body": "Write the numbers INTO the regions: the lens, the two moons, and outside. Sums become single looks instead of formula recalls.",
+     "example": {
+      "q": "**Q.** 60 students; 35 like tea, 30 coffee, 10 both. How many like neither?\n\n**Sol.** Tea-only 25 + both 10 + coffee-only 20 = 55 inside; 60 − 55 = **5**.",
+      "solution": "Fill the diagram first; the answer is whatever region is left, counted."
+     }
+    }
+   ],
+   "mistakes": [
+    "Counting the intersection twice when totalling.",
+    "Treating 'like tea' (including both) as 'like only tea'.",
+    "Forgetting the 'neither' region sits outside both circles."
+   ]
+  },
+  {
+   "id": "three-set-operations",
+   "title": "Three-circle counting",
+   "concept": "With three sets A, B, C the master formula is\n\n|A∪B∪C| = |A| + |B| + |C| − |A∩B| − |B∩C| − |A∩C| + |A∩B∩C|.\n\nTwo derived region-counts appear constantly:\n\n- **Exactly two** = (|A∩B| − all3) + (|B∩C| − all3) + (|A∩C| − all3): each pairwise figure includes the triple region, which must be stripped from both pairs it contaminates.\n- **Exactly one** = union − exactly-two − all-three.\n\nExam data usually gives the seven numbers directly (three singles, three pairs, one triple); plug them into the 8 regions and add or subtract as asked.",
+   "formulas": [
+    {
+     "name": "Three-set union",
+     "tex": "|A \\cup B \\cup C| = \\sum|A| - \\sum|A \\cap B| + |A \\cap B \\cap C|",
+     "note": "Add singles, subtract pairs, re-add the triple."
+    },
+    {
+     "name": "Exactly two sets",
+     "tex": "\\sum (|A \\cap B|) - 3|A \\cap B \\cap C|",
+     "note": "Sum of the three pairwise figures minus three times the triple."
+    },
+    {
+     "name": "Exactly one set",
+     "tex": "|A \\cup B \\cup C| - \\text{exactly two} - \\text{all three}",
+     "note": "Strip the multi-set members from the union."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Triple-strip subtraction",
+     "body": "Whenever a question says 'exactly two', your reflex is: pairwise sums overcount the core by 3. Compute pairwise sums, subtract 3×(all three), done.",
+     "example": {
+      "q": "**Q.** |A∩B| = 8, |B∩C| = 7, |A∩C| = 6, all three = 3.\n\n**Sol.** Exactly two = (8+7+6) − 3×3 = **12**.",
+      "solution": "'Exactly' always means: subtract every richer region, as many times as it was counted."
+     }
+    }
+   ],
+   "mistakes": [
+    "Using pairwise figures as 'exactly two' without stripping the triple region.",
+    "Sign slips on the +all-three term in the union formula.",
+    "Adding 'neither/none' into the union before subtracting from the grand total."
+   ]
+  },
+  {
+   "id": "relation-diagrams",
+   "title": "Choosing the correct diagram",
+   "concept": "For 'Which diagram represents Doctors, Men, Writers?' style questions, decide each pair with two tests:\n\n1. **Necessity test** — is every X definitionally a Y? (Every mother is a female.) → circle of X drawn **inside** Y.\n2. **Impossibility test** — can X and Y never share a member? (A square and a triangle.) → **separate** circles.\n3. Otherwise — overlap possible but neither forced (doctors and writers) → **intersecting** circles.\n\nSame-type categories usually intersect; category-of-category pairs (squares/rectangles/polygons) nest; mutually exclusive definitions separate.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Test one pair at a time",
+     "body": "Never judge the whole picture at once. Run necessity/impossibility on each pair; the correct option is the only one agreeing on every pair.",
+     "example": {
+      "q": "**Q.** Mothers, Females, Engineers.\n\n**Sol.** Mothers ⊂ Females (necessity). Engineers ∩ Females possible (female engineers) and Engineers ⊄ Females (male engineers) → intersecting. Match the option reflecting both facts.",
+      "solution": "One wrong pair eliminates an option — work pair by pair until one option survives."
+     }
+    }
+   ],
+   "mistakes": [
+    "Drawing engineers inside females because most examples in mind are female.",
+    "Making mutually-overlappable categories fully separate.",
+    "Missing a third category's relation to the nested pair."
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Two-set region count",
+   "frequency": "very common",
+   "howToSpot": "Two circles, find neither / only-one / union.",
+   "approach": "Inclusion-exclusion or direct region sums."
+  },
+  {
+   "pattern": "Three-set union / none",
+   "frequency": "very common",
+   "howToSpot": "Seven region numbers, find union or none.",
+   "approach": "Full inclusion-exclusion with the +triple correction."
+  },
+  {
+   "pattern": "Exactly two / exactly one",
+   "frequency": "common",
+   "howToSpot": "'Members in exactly two activities' style.",
+   "approach": "Pairwise sums − 3×triple for exactly two."
+  },
+  {
+   "pattern": "Reverse region puzzle",
+   "frequency": "occasional",
+   "howToSpot": "Union and two regions given; find the intersection.",
+   "approach": "Rearrange |A∪B| = |A| + |B| − x for the unknown region."
+  },
+  {
+   "pattern": "Percentage-based sets",
+   "frequency": "common",
+   "howToSpot": "70% play X, 60% Y, 40% both…",
+   "approach": "Same formulas on percentages; neither = 100 − union%."
+  },
+  {
+   "pattern": "Choose-the-diagram",
+   "frequency": "very common",
+   "howToSpot": "Three categories; pick the correct circle arrangement.",
+   "approach": "Per-pair necessity/impossibility tests; eliminate options pair-wise."
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "rsn-venn-ex1",
+   "q": "In a class of **60 students, 35 like tea, 30 like coffee and 10 like both.** How many students like **neither** tea nor coffee?",
+   "figure": null,
+   "options": [
+    "5",
+    "15",
+    "25",
+    "0"
+   ],
+   "answer": 0,
+   "solution": "Inside the circles: 35 + 30 − 10 = 55. Neither = 60 − 55 = **5**.",
+   "shortcut": "Add both counts, subtract the overlap once, subtract from the total.",
+   "difficulty": "easy",
+   "subtopic": "two-set-operations",
+   "pattern": "two-set region count",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-venn-ex2",
+   "q": "In a survey, **8 people read A and B, 7 read B and C, 6 read A and C, and 3 read all three.** How many read **exactly two** papers?",
+   "figure": null,
+   "options": [
+    "15",
+    "12",
+    "21",
+    "9"
+   ],
+   "answer": 1,
+   "solution": "(8 − 3) + (7 − 3) + (6 − 3) = **12**. Each pairwise figure wrongly includes the triple readers.",
+   "shortcut": "Pairwise sum minus 3 × triple.",
+   "difficulty": "medium",
+   "subtopic": "three-set-operations",
+   "pattern": "exactly two / exactly one",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-venn-ex3",
+   "q": "Which diagram correctly represents **Doctors, Men and Writers**?",
+   "figure": null,
+   "options": [
+    "Three completely separate circles",
+    "Doctors and Writers both inside the Men circle",
+    "Three circles, each pair intersecting",
+    "Doctors inside Men; Writers a separate circle"
+   ],
+   "answer": 2,
+   "solution": "No category is definitionally inside another (a doctor need not be a man; men need not write), and none is impossible to combine. So all three circles pairwise intersect.",
+   "shortcut": "Run necessity (nesting) and impossibility (separation) tests pair by pair; neither applies here.",
+   "difficulty": "easy",
+   "subtopic": "relation-diagrams",
+   "pattern": "choose-the-diagram",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-venn-ex4",
+   "q": "Of **200 people, 90 drink coffee, 80 tea, 70 milk; 40 coffee and tea, 35 tea and milk, 30 coffee and milk; 15 all three.** How many drink **none**?",
+   "figure": null,
+   "options": [
+    "30",
+    "20",
+    "60",
+    "50"
+   ],
+   "answer": 3,
+   "solution": "Union = 90+80+70−40−35−30+15 = 150. None = 200 − 150 = **50**.",
+   "shortcut": "Add singles, subtract pairs, re-add triple, subtract from total.",
+   "difficulty": "medium",
+   "subtopic": "three-set-operations",
+   "pattern": "three-set union / none",
+   "timeSec": 55
+  }
+ ],
+ "practice": [
+  {
+   "id": "rsn-venn-1",
+   "q": "In a group, **|A ∪ B| = 40**, the number of elements in **A only is 15** and in **B only is 12**. How many elements are in **both A and B**?",
+   "figure": null,
+   "options": [
+    "15",
+    "12",
+    "28",
+    "13"
+   ],
+   "answer": 3,
+   "solution": "Union = only-A + only-B + both → 40 = 15 + 12 + both → both = **13**.",
+   "shortcut": "The three inside-regions sum to the union.",
+   "difficulty": "easy",
+   "subtopic": "two-set-operations",
+   "pattern": "reverse region puzzle",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-venn-2",
+   "q": "In a school, **40 students play hockey, 25 play cricket and 12 play both.** How many students play **hockey or cricket** (at least one)?",
+   "figure": null,
+   "options": [
+    "53",
+    "65",
+    "77",
+    "41"
+   ],
+   "answer": 0,
+   "solution": "40 + 25 − 12 = **53**.",
+   "shortcut": "Singles minus overlap.",
+   "difficulty": "easy",
+   "subtopic": "two-set-operations",
+   "pattern": "two-set region count",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-venn-3",
+   "q": "In a survey, **70% of people watch cricket, 60% watch football and 40% watch both.** What percentage watch **neither**?",
+   "figure": null,
+   "options": [
+    "20%",
+    "10%",
+    "30%",
+    "0%"
+   ],
+   "answer": 1,
+   "solution": "Union = 70 + 60 − 40 = 90%. Neither = 100 − 90 = **10%**.",
+   "shortcut": "Percentages behave exactly like counts — total is 100.",
+   "difficulty": "easy",
+   "subtopic": "two-set-operations",
+   "pattern": "percentage-based sets",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-venn-4",
+   "q": "In a class of **80 students, every student plays at least one of chess and carrom. 50 play chess and 40 play carrom.** How many play **both**?",
+   "figure": null,
+   "options": [
+    "10",
+    "20",
+    "30",
+    "12"
+   ],
+   "answer": 0,
+   "solution": "At least one = 80 → 50 + 40 − both = 80 → both = **10**.",
+   "shortcut": "'Everyone plays' pins the union equal to the class strength.",
+   "difficulty": "easy",
+   "subtopic": "two-set-operations",
+   "pattern": "two-set region count",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-venn-5",
+   "q": "Three sets satisfy **|A| = 30, |B| = 25, |C| = 20, |A∩B| = 8, |B∩C| = 7, |A∩C| = 6, |A∩B∩C| = 3.** Find **|A ∪ B ∪ C|**.",
+   "figure": null,
+   "options": [
+    "57",
+    "54",
+    "60",
+    "51"
+   ],
+   "answer": 0,
+   "solution": "30 + 25 + 20 − 8 − 7 − 6 + 3 = **57**.",
+   "shortcut": "Sum, subtract pairs, re-add the triple.",
+   "difficulty": "medium",
+   "subtopic": "three-set-operations",
+   "pattern": "three-set union / none",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-venn-6",
+   "q": "In a colony of newspaper readers, **45 people read the Herald, 25 read both the Herald and the Tribune.** How many read **only the Herald**?",
+   "figure": null,
+   "options": [
+    "45",
+    "20",
+    "25",
+    "70"
+   ],
+   "answer": 1,
+   "solution": "Only Herald = 45 − 25 = **20**.",
+   "shortcut": "'Only X' = X minus the overlap.",
+   "difficulty": "easy",
+   "subtopic": "two-set-operations",
+   "pattern": "two-set region count",
+   "timeSec": 25
+  },
+  {
+   "id": "rsn-venn-7",
+   "q": "A club's three sports sections show: **15 members in badminton only, 10 in tennis only, 8 in chess only, 6 in badminton and tennis only, 5 in tennis and chess only, 4 in badminton and chess only, and 2 in all three.** How many members play **at least one** of the three sports?",
+   "figure": null,
+   "options": [
+    "48",
+    "52",
+    "45",
+    "50"
+   ],
+   "answer": 3,
+   "solution": "The seven regions are disjoint — add them: 15+10+8+6+5+4+2 = **50**.",
+   "shortcut": "When every region is given 'only'-style, no formula — just add.",
+   "difficulty": "easy",
+   "subtopic": "three-set-operations",
+   "pattern": "three-set union / none",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-venn-8",
+   "q": "Given **|A| = 22, |B| = 19, |C| = 17, |A∩B| = 9, |B∩C| = 7, |A∩C| = 6, |A∩B∩C| = 4** — how many elements belong to **exactly one** set?",
+   "figure": null,
+   "options": [
+    "26",
+    "24",
+    "30",
+    "20"
+   ],
+   "answer": 0,
+   "solution": "Exactly two = (9−4)+(7−4)+(6−4) = 10. Exactly one = union − exactly two − triple = 40 − 10 − 4 = **26**.",
+   "shortcut": "Union minus everyone in two or three sets.",
+   "difficulty": "hard",
+   "subtopic": "three-set-operations",
+   "pattern": "exactly two / exactly one",
+   "timeSec": 70
+  },
+  {
+   "id": "rsn-venn-9",
+   "q": "Which diagram correctly represents **Squares, Rectangles and Polygons**?",
+   "figure": null,
+   "options": [
+    "Squares inside Rectangles, both inside Polygons",
+    "Three circles, each pair intersecting",
+    "Squares and Rectangles intersecting, both inside Polygons",
+    "Three completely separate circles"
+   ],
+   "answer": 0,
+   "solution": "Every square is a rectangle and every rectangle is a polygon — a fully nested chain of circles.",
+   "shortcut": "Necessity test passes for every pair → nested circles.",
+   "difficulty": "easy",
+   "subtopic": "relation-diagrams",
+   "pattern": "choose-the-diagram",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-venn-10",
+   "q": "Which diagram correctly represents **Mothers, Females and Engineers**?",
+   "figure": null,
+   "options": [
+    "Mothers and Engineers inside Females",
+    "Engineers inside Females; Mothers separate",
+    "Mothers inside Females; Engineers circle intersecting both",
+    "All three circles intersecting equally"
+   ],
+   "answer": 2,
+   "solution": "Every mother is definitionally a female → Mothers inside Females. Engineers can be male or female and may or may not be mothers → the Engineers circle crosses both.",
+   "shortcut": "Definition decides nesting; possibility decides intersection.",
+   "difficulty": "medium",
+   "subtopic": "relation-diagrams",
+   "pattern": "choose-the-diagram",
+   "timeSec": 50
+  },
+  {
+   "id": "rsn-venn-11",
+   "q": "**|A ∩ B| = 8, |A − B| = 10, |B| = 20 and 7 elements belong to neither set.** What is the size of the **universal set** (all elements considered)?",
+   "figure": null,
+   "options": [
+    "45",
+    "38",
+    "40",
+    "37"
+   ],
+   "answer": 3,
+   "solution": "B − A = 20 − 8 = 12. Total = 8 + 10 + 12 + 7 = **37**.",
+   "shortcut": "Four disjoint regions: both, A-only, B-only, neither.",
+   "difficulty": "medium",
+   "subtopic": "two-set-operations",
+   "pattern": "reverse region puzzle",
+   "timeSec": 50
+  },
+  {
+   "id": "rsn-venn-12",
+   "q": "**|A| = 25, |B| = 20 and |A ∩ B| = 8.** How many elements are in **exactly one** of A and B?",
+   "figure": null,
+   "options": [
+    "29",
+    "37",
+    "17",
+    "21"
+   ],
+   "answer": 0,
+   "solution": "Exactly one = (25 − 8) + (20 − 8) = 17 + 12 = **29**.",
+   "shortcut": "Strip the lens from each circle and add the moons.",
+   "difficulty": "easy",
+   "subtopic": "two-set-operations",
+   "pattern": "two-set region count",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-venn-13",
+   "q": "In a batch of **120 trainees: 55 know Python, 45 know Java, 40 know C++; 20 know Python and Java, 18 know Java and C++, 15 know Python and C++; 8 know all three.** How many trainees know **none** of the three?",
+   "figure": null,
+   "options": [
+    "25",
+    "15",
+    "30",
+    "20"
+   ],
+   "answer": 0,
+   "solution": "Union = 55+45+40−20−18−15+8 = 95. None = 120 − 95 = **25**.",
+   "shortcut": "Full inclusion-exclusion, then subtract from the batch.",
+   "difficulty": "medium",
+   "subtopic": "three-set-operations",
+   "pattern": "three-set union / none",
+   "timeSec": 55
+  },
+  {
+   "id": "rsn-venn-14",
+   "q": "**|A∩B| = 12, |B∩C| = 10, |A∩C| = 9 and |A∩B∩C| = 5.** How many elements belong to **at least two** of the sets?",
+   "figure": null,
+   "options": [
+    "21",
+    "31",
+    "16",
+    "26"
+   ],
+   "answer": 0,
+   "solution": "At least two = exactly two + all three = (12−5)+(10−5)+(9−5) + 5 = 7+5+4+5 = **21**. Shortcut: pairwise sum 31 counts the triple 3 times → 31 − 2×5 = 21.",
+   "shortcut": "Pairwise sum − 2 × triple = at-least-two.",
+   "difficulty": "hard",
+   "subtopic": "three-set-operations",
+   "pattern": "exactly two / exactly one",
+   "timeSec": 65
+  },
+  {
+   "id": "rsn-venn-15",
+   "q": "Which diagram correctly represents **Words, English words and Hindi words**?",
+   "figure": null,
+   "options": [
+    "Three circles, each pair intersecting",
+    "English words inside Words; Hindi words a separate circle outside",
+    "All three nested inside one another",
+    "English and Hindi circles inside Words, not overlapping each other"
+   ],
+   "answer": 3,
+   "solution": "Both are subsets of Words (necessity), and a word cannot be English and Hindi at once (impossibility) → two disjoint circles inside the big one.",
+   "shortcut": "One pair needs the impossibility test — the other two are simple nestings.",
+   "difficulty": "medium",
+   "subtopic": "relation-diagrams",
+   "pattern": "choose-the-diagram",
+   "timeSec": 50
+  }
+ ]
+}
