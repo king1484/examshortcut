@@ -23,7 +23,7 @@ _UNIT_RE = re.compile(
     r"\s*(km/h|km/hr|kmph|m/s|km|metres|metre|m|hours|hour|hrs|hr|h|days|day|minutes|minute|min|"
     r"seconds|second|sec|s|years|year|yrs|months|month|litres|litre|L|ml|kg|g|cm|men|women|"
     r"boys|girls|persons|person|workers|units|unit|paise|marks|students|pens|articles|items|"
-    r"rounds|times|litres|runs|numbers|pages|toffees|coins|notes)\.?$"
+    r"rounds|times|litres|runs|numbers|pages|toffees|coins|notes|°C|°c|°F|°f|C|runs per wicket|wickets)\.?$"
 )
 
 

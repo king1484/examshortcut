@@ -108,8 +108,9 @@ export function MockCBT({ mock }: { mock: Mock }) {
   }
 
   function submit() {
-    // include an un-saved selection on the current question, as the real CBT does on submit
+    // fold the current question's un-saved selection into the answers, as the real CBT does on submit
     const answers = [...stRef.current.answers];
+    if (pending !== null) answers[st.cur] = pending;
     setPhase('result');
     setConfirmSubmit(false);
     const res = score(answers);

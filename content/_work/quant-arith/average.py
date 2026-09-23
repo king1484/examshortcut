@@ -38,8 +38,6 @@ assert sol == [16] and 16 + 12 == 28
 assert 8 * F(65, 2) == 260
 # solved: weighted boys/girls -> 11.4
 assert F(20 * 12 + 30 * 11, 50) == F(57, 5) == F(114, 10)
-# solved: replacement
-assert 8 * 27 - 7 * 25 == 43
 
 subtopics = [
  sub("avg-basics", "Average & the sum bridge",
@@ -132,7 +130,7 @@ subtopics = [
    "Rounding intermediate sums — these questions usually come out exact; a decimal mid-way means a slip."]),
 
  sub("avg-misc", "Batsman problems, overlapping sums & multi-step sets",
-  md("**Batsman/cricketer template:** a score in the next innings raises the average by d. If the new average is A' after n innings, the score was $A' + (n-1)d$. Rearranged: new average $= \frac{\text{old total} + \text{score}}{n}$.",
+  md(r"**Batsman/cricketer template:** a score in the next innings raises the average by d. If the new average is A' after n innings, the score was $A' + (n-1)d$. Rearranged: new average $= \frac{\text{old total} + \text{score}}{n}$.",
      "",
      "**Overlapping sums** (temperatures, marks): if the average of Mon–Wed is a and of Tue–Thu is b, subtracting gives Thu − Mon = 3(b − a). Give one endpoint to find the other.",
      "",
@@ -301,7 +299,7 @@ P.append(Q("avg-q09", "The average marks of 60 students in a class is 50. The av
 assert 300 + 15 * 50 == 1050
 P.append(Q("avg-q10", "The average monthly wage of 15 workers is ₹250. A manager is appointed and the average wage becomes ₹300. The manager's monthly wage is:",
   ["₹550", "₹800", "₹1,050", "₹1,200"], 2, 1050,
-  md(r"Manager $= 16 \times 300 - 15 \times 250 = 4800 - 3750 = ₹1050$."),
+  md(r"Manager = $16 \times 300 - 15 \times 250$ = ₹1,050."),
   "Manager = 300 + 15 × 50 = ₹1,050 (his own share plus the ₹50 raise for each of the 15).",
   "medium", "avg-weighted", "manager joins", 35))
 
