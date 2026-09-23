@@ -1,0 +1,552 @@
+{
+ "id": "classification",
+ "sectionId": "reasoning",
+ "title": "Classification (Odd One Out)",
+ "order": 2,
+ "importance": "high",
+ "avgQuestions": {
+  "tier1": 3,
+  "tier2": 4
+ },
+ "summary": "Classification questions list four or five similar items and ask which one does not belong. The hidden rule — a shared category, number property or letter structure — must hold for every option except one. CGL asks 2-4 per shift, drawn from number properties, letter clusters, word categories and pairs.",
+ "subtopics": [
+  {
+   "id": "classification-idea",
+   "title": "The idea of odd one out",
+   "concept": "Classification gives four/five items that look similar and asks which one **does not belong**. Every question hides a *rule that three options obey and one breaks*. Your whole job is to find that rule fast.\n\nThe rule can sit at any of these levels:\n- **Category** (sparrow, crow, parrot, *bat* — bat is a mammal, the rest are birds)\n- **Function/property** (keyboard, mouse, scanner, *monitor* — monitor is output)\n- **Number property** (17, 23, 29, *33* — 33 is not prime)\n- **Letter structure** (ACE, BDF, GIK, *MOP* — MOP does not keep a constant +2 step)\n- **Relation in a pair** (three creator-creation pairs, one creator-material pair)\n\nStrategy order for CGL: test **number/letter properties first** (they are objective), then **function**, then **category**. If two options look odd, you are at the wrong level — go one level deeper (all squares? then odd vs even squares).",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Write the majority rule, not the exception",
+     "body": "Instead of hunting for the odd item, write the rule the *other three* follow ('three are primes'). Then confirm each of the three obeys it and the remaining one breaks it. This prevents choosing an option that is merely unusual rather than breaking the rule.",
+     "example": {
+      "q": "**Q.** 21, 35, 49, 63, 56\n\n**Sol.** Majority rule: multiples of 7 (21, 35, 49, 63 ✓). 56 is also a multiple of 7 — so this rule makes nobody odd; go deeper: 21, 35, 49, 63 are all **odd**; 56 is even → **56** is the odd one.",
+      "solution": "If your first rule makes two items odd, the real rule is one level deeper."
+     }
+    }
+   ],
+   "mistakes": [
+    "Stopping at the first difference found instead of testing it on ALL options — the difference must separate exactly 1 from the rest.",
+    "Assuming the odd item must be the 4th/5th option; CGL shuffles positions freely.",
+    "Using loose categories ('all are animals') where a tighter one exists ('all are birds') — always prefer the tightest rule that still groups 3+ options."
+   ]
+  },
+  {
+   "id": "word-classification",
+   "title": "Word odd one out",
+   "concept": "Four words from overlapping fields; one breaks the shared category or function. CGL recycles the same pools:\n\n| Pool | Common odd ones |\n|---|---|\n| Animals | bat/mammal among birds, whale among fish, snake among legged reptiles |\n| Computer parts | monitor/speaker (output) among input devices, or vice versa |\n| Geography | sea/ocean (saline) among freshwater bodies |\n| Science | a *symptom* (fever) among diseases, a *unit* that is not base SI |\n| Occupations | an amateur activity among professions |\n\nThe exam expects school-level GK only. If two words look odd at category level, check a **property** level (even/odd, edible/non-edible, living/non-living, input/output).",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Two-level drill: category, then property",
+     "body": "First find the broad category word shared by three. If the fourth also fits that category, switch to a binary property (salt/fresh, input/output, base/derived, male/female) — one of the four will be the only one on the other side.",
+     "example": {
+      "q": "**Q.** Snake, Crocodile, Lizard, Whale\n\n**Sol.** Category 'reptile' fails to exclude whale (a mammal) cleanly? It does exclude whale — but verify: snake, crocodile, lizard are reptiles, whale is a mammal → **Whale**. If instead the list were Snake, Crocodile, Lizard, Turtle, all four are reptiles, and the property level (venomous/non-venomous) would decide.",
+      "solution": "Category first; if 2 candidates remain, a binary property splits them."
+     }
+    }
+   ],
+   "mistakes": [
+    "Choosing by rarity ('turtle is uncommon') instead of a structural difference.",
+    "Missing the functional split in device questions — CGL loves input vs output.",
+    "Overlooking that a word can belong to two categories (bat: mammal AND flying animal); pick the option where all others share a category that the odd one cannot join."
+   ]
+  },
+  {
+   "id": "number-classification",
+   "title": "Number odd one out",
+   "concept": "Three or four numbers share a number-theory property; one breaks it. The property bank, in testing order:\n\n1. **Prime vs composite** (most frequent)\n2. **Perfect square / cube / power**\n3. **Multiples** (of 7, 9, 11, 13...)\n4. **Digit properties** — digit sum 9, digit product, repeating digits\n5. **Parity** (odd/even) — usually the *second* level when all share property 1-3\n6. **Divisibility by 11** (alternate digit sums equal)\n\nTwo-level questions are rising: all four may be squares, but three are squares of *odd* numbers. Always check the survivors for a shared sub-property before answering.",
+   "formulas": [
+    {
+     "name": "Divisibility by 11",
+     "tex": "|S_{odd} - S_{even}| \\equiv 0 \\pmod{11}",
+     "note": "S = sums of alternate digits; e.g. 2728: (2+2)-(7+8) = -11 → divisible."
+    },
+    {
+     "name": "Perfect square endings",
+     "tex": "n^2 \\in \\{0,1,4,5,6,9\\}",
+     "note": "A square never ends in 2, 3, 7 or 8 — instant elimination."
+    },
+    {
+     "name": "Digit sum 9 rule",
+     "tex": "9 \\mid n \\iff S(n) \\equiv 0 \\pmod 9",
+     "note": "Numbers with digit sum exactly 9: 45, 54, 63, 72, 81."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Last-digit scan for squares",
+     "body": "Squares end only in 0, 1, 4, 5, 6, 9. If three numbers are squares, any option ending in 2/3/7/8 is instantly odd — no squaring needed.",
+     "example": {
+      "q": "**Q.** 144, 324, 576, 500\n\n**Sol.** All end in even digits, but squares must end in 0/1/4/5/6/9 — 500 ends in 0 (possible), so test values: 144 = 12², 324 = 18², 576 = 24², 500 is between 22² = 484 and 23² = 529 → **500** is not a square.",
+      "solution": "Ending check eliminates; root check confirms — together under 10 seconds."
+     }
+    },
+    {
+     "title": "Prime check by small divisors",
+     "body": "To test primality divide by 2, 3, 5, 7 only (for numbers under 121). 33 = 3 × 11, 51 = 3 × 17, 57 = 3 × 19, 91 = 7 × 13 — CGL's favourite fake primes.",
+     "example": {
+      "q": "**Q.** 17, 51, 41, 43\n\n**Sol.** 17, 41, 43 are prime; 51 = 3 × 17 → **51**.",
+      "solution": "Memorise the fake-prime list: 33, 51, 57, 91, 119, 133, 143 (11×13)."
+     }
+    }
+   ],
+   "mistakes": [
+    "Ignoring that 1 is neither prime nor composite; 2 is the only even prime.",
+    "Calling 56 odd among multiples of 7 without noticing 56 is also a multiple — check the rule against every option.",
+    "Overlooking a two-level structure (odd squares vs even squares) and marking a valid square as the answer for the wrong reason."
+   ]
+  },
+  {
+   "id": "letter-classification",
+   "title": "Letter-cluster odd one out",
+   "concept": "Each option is a small letter cluster; three share an internal structure and one breaks it. Read each cluster as **steps between its letters** (A=1...Z=26, wrap around). The structure bank:\n\n1. **Constant step**: ACE (+2), BDF (+2), GIK (+2).\n2. **Mixed constant steps**: ABD (+1, +2).\n3. **Vowel patterns**: clusters with exactly one vowel vs none vs all vowels.\n4. **Opposite pairs**: AZ, BY, CX (positions sum to 27).\n5. **Consecutive runs**: ABC, KLM, STU.\n6. **Pair structures**: pairs where second letter = first + k.\n\nCompute steps for all four options in one pass; the odd cluster's step tuple differs. This converts a 'feel' question into arithmetic.",
+   "formulas": [
+    {
+     "name": "Step of a cluster",
+     "tex": "s_i = Q(L_{i+1}) - Q(L_i) \\pmod{26}",
+     "note": "Compute steps for every option; three must match as tuples."
+    },
+    {
+     "name": "Opposite-pair sum",
+     "tex": "Q(X) + Q(Y) = 27",
+     "note": "Letter pairs whose positions add to 27 (AZ, BY, ..., MN)."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Step tuples in one line",
+     "body": "Under each cluster write its steps: ACE → (2,2), BDF → (2,2), GIK → (2,2), MOP → (2,1). The mismatched tuple is the answer — no naming of vowels needed.",
+     "example": {
+      "q": "**Q.** ACE, BDF, GIK, MOP\n\n**Sol.** ACE (+2,+2), BDF (+2,+2), GIK (+2,+2), MOP (+2,+1) → **MOP**.",
+      "solution": "Steps make letter classification as objective as number classification."
+     }
+    },
+    {
+     "title": "Vowel count as tiebreaker",
+     "body": "If step tuples coincide or the clusters differ in length, count vowels (A, E, I, O, U). Three clusters with exactly one vowel and one with none (or two) is a complete CGL pattern.",
+     "example": {
+      "q": "**Q.** BGT, CFD, HLM, APT\n\n**Sol.** Vowel counts: 0, 0, 0, 1 (A) → **APT**. (Steps here don't separate the options cleanly, so the vowel level decides.)",
+      "solution": "Circle vowels first when clusters look irregular."
+     }
+    }
+   ],
+   "mistakes": [
+    "Computing steps without wrapping (Y to B is +3, not −23).",
+    "Forgetting U is a vowel; 'QST' has no vowel even though Q *looks* vowel-ish next to U.",
+    "Reading pairs left-to-right when the structure is right-to-left (ZYX, Wax...); check both directions before concluding."
+   ]
+  },
+  {
+   "id": "pair-classification",
+   "title": "Pair odd one out",
+   "concept": "Each option is a **pair** (word:word or number:number). Three pairs share the same relation; one does not. The method is exactly the analogy method — name the majority relation, then test each pair against it:\n\n- Word pairs: worker-workplace, creator-creation, animal-home, instrument-quantity.\n- Number pairs: b = k·a ± r, reversal (27:72), squares (5:25), multiples.\n- Letter pairs: constant shift (AB:DE is +3/+3... test!), opposite letters.\n\nThe trap is a pair with the same *topic* but a different *relation* — 'Painter : Canvas' sits beside creator-creation pairs but is creator-**surface**.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Relation sentence, then four ticks",
+     "body": "Form the relation sentence from three pairs that clearly agree, then tick/cross all four options. In number pairs, compute k and r for each pair — three will match.",
+     "example": {
+      "q": "**Q.** 3:9, 7:49, 9:81, 11:132\n\n**Sol.** 3:9, 7:49, 9:81 are n:n². 11² = 121, but the pair says 132 → **11:132**.",
+      "solution": "One relation sentence + four quick ticks settles pair classification."
+     }
+    }
+   ],
+   "mistakes": [
+    "Matching topics instead of relations (all four pairs about artists, only three creator-creation).",
+    "In number pairs, testing the relation only on the odd-looking pair and not on the other three.",
+    "Missing sign: 12:6 and 18:9 are 'half', while 20:10 fits too — but 14:7 + 'half' means 9:3 does not; direction matters."
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Number odd one out — prime vs composite",
+   "frequency": "very common",
+   "howToSpot": "Three primes and one composite (or multiples of a hidden number).",
+   "approach": "Divisibility scan by 2, 3, 5, 7; recall fake primes 33, 51, 57, 91, 143."
+  },
+  {
+   "pattern": "Number odd one out — square/cube/multiple",
+   "frequency": "very common",
+   "howToSpot": "Three perfect squares/cubes (or multiples of k) and one that is not.",
+   "approach": "Ending-digit check for squares, then root/cube check; for multiples, divide mentally."
+  },
+  {
+   "pattern": "Word odd one out — category break",
+   "frequency": "very common",
+   "howToSpot": "Four nouns from one field; one belongs to a different biological/functional category.",
+   "approach": "Name the category of the majority; a binary property (input/output, salt/fresh) splits ties."
+  },
+  {
+   "pattern": "Letter-cluster odd one out — step mismatch",
+   "frequency": "very common",
+   "howToSpot": "Three clusters keep a constant or patterned step; one breaks it.",
+   "approach": "Write step tuples under all four clusters in one pass; the odd tuple is the answer."
+  },
+  {
+   "pattern": "Pair odd one out — relation break",
+   "frequency": "common",
+   "howToSpot": "Four word:number/word:word pairs, three sharing one relation.",
+   "approach": "Form the majority relation sentence (or k, r for numbers); test each pair."
+  },
+  {
+   "pattern": "Two-level number odd one out",
+   "frequency": "common",
+   "howToSpot": "All four share property 1 (e.g. all squares); three share property 2 (odd squares).",
+   "approach": "After property 1 matches all four, immediately look for parity/digit-level splits."
+  },
+  {
+   "pattern": "Vowel-structure cluster odd one out",
+   "frequency": "common",
+   "howToSpot": "Clusters differ in vowel count or position rather than steps.",
+   "approach": "Count vowels A, E, I, O, U in each cluster; 3-vs-1 split decides."
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "rsn-classification-ex1",
+   "q": "Find the odd one out: **17, 23, 29, 33**",
+   "figure": null,
+   "options": [
+    "29",
+    "33",
+    "17",
+    "23"
+   ],
+   "answer": 1,
+   "solution": "17, 23 and 29 are all **prime**. 33 = 3 × 11 is composite → **33** is the odd one.",
+   "shortcut": "Fake primes to memorise: 33 (3×11), 51 (3×17), 57 (3×19), 91 (7×13), 143 (11×13).",
+   "difficulty": "easy",
+   "subtopic": "number-classification",
+   "pattern": "number odd one out — prime vs composite",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-classification-ex2",
+   "q": "Find the odd one out: **121, 225, 289, 196**",
+   "figure": null,
+   "options": [
+    "225",
+    "289",
+    "196",
+    "121"
+   ],
+   "answer": 2,
+   "solution": "All four are perfect squares (11², 15², 17², 14²) — so the square rule is level one. Level two: 121, 225, 289 are squares of **odd** numbers; 196 = 14² is the square of an even number → **196**.",
+   "shortcut": "When every option passes property 1, drop to parity of the root — odd vs even square.",
+   "difficulty": "medium",
+   "subtopic": "number-classification",
+   "pattern": "two-level number odd one out",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-classification-ex3",
+   "q": "Find the odd one out: **ACE, BDF, GIK, MOP**",
+   "figure": null,
+   "options": [
+    "GIK",
+    "MOP",
+    "ACE",
+    "BDF"
+   ],
+   "answer": 1,
+   "solution": "Step tuples: ACE (+2, +2), BDF (+2, +2), GIK (+2, +2), MOP (+2, **+1**) → **MOP** breaks the constant +2 step.",
+   "shortcut": "Write the step tuple under each cluster; three identical tuples expose the fourth instantly.",
+   "difficulty": "medium",
+   "subtopic": "letter-classification",
+   "pattern": "letter-cluster odd one out — step mismatch",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-classification-ex4",
+   "q": "Find the odd one out: **Keyboard, Mouse, Scanner, Monitor**",
+   "figure": null,
+   "options": [
+    "Mouse",
+    "Scanner",
+    "Monitor",
+    "Keyboard"
+   ],
+   "answer": 2,
+   "solution": "Keyboard, mouse and scanner are **input** devices; a monitor is an **output** device → **Monitor**.",
+   "shortcut": "Device lists in CGL split input/output almost every time — classify direction first.",
+   "difficulty": "easy",
+   "subtopic": "word-classification",
+   "pattern": "word odd one out — category break",
+   "timeSec": 25
+  }
+ ],
+ "practice": [
+  {
+   "id": "rsn-classification-1",
+   "q": "Find the odd one out: **41, 51, 53, 59**",
+   "figure": null,
+   "options": [
+    "41",
+    "51",
+    "53",
+    "59"
+   ],
+   "answer": 1,
+   "solution": "41, 53, 59 are prime; **51 = 3 × 17** is composite.",
+   "shortcut": "51 is a stock fake prime (3 × 17); divide by 3 when in doubt.",
+   "difficulty": "easy",
+   "subtopic": "number-classification",
+   "pattern": "number odd one out — prime vs composite",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-classification-2",
+   "q": "Find the odd one out: **8, 27, 64, 100**",
+   "figure": null,
+   "options": [
+    "64",
+    "100",
+    "8",
+    "27"
+   ],
+   "answer": 1,
+   "solution": "8 = 2³, 27 = 3³, 64 = 4³ are cubes; 100 lies between 4³ = 64 and 5³ = 125, and is not a cube → **100**.",
+   "shortcut": "Cube roots to 10 by heart; check the gap between neighbouring cubes.",
+   "difficulty": "easy",
+   "subtopic": "number-classification",
+   "pattern": "number odd one out — square/cube/multiple",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-classification-3",
+   "q": "Find the odd one out: **35, 56, 63, 72**",
+   "figure": null,
+   "options": [
+    "35",
+    "56",
+    "63",
+    "72"
+   ],
+   "answer": 3,
+   "solution": "35 = 5 × 7, 56 = 8 × 7, 63 = 9 × 7 — all multiples of 7. 72 = 8 × 9 is not → **72**.",
+   "shortcut": "Scan for the divisibility rule the three 'look-alike' numbers share.",
+   "difficulty": "easy",
+   "subtopic": "number-classification",
+   "pattern": "number odd one out — square/cube/multiple",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-classification-4",
+   "q": "Find the odd one out: **45, 63, 81, 92**",
+   "figure": null,
+   "options": [
+    "45",
+    "63",
+    "81",
+    "92"
+   ],
+   "answer": 3,
+   "solution": "Digit sums: 45 → 9, 63 → 9, 81 → 9, but 92 → 11. Three numbers have digit sum 9 (are multiples of 9); **92** does not.",
+   "shortcut": "Two-digit multiples of 9: 18, 27, 36, 45, 54, 63, 72, 81, 90, 99 — spot them by digit sum.",
+   "difficulty": "easy",
+   "subtopic": "number-classification",
+   "pattern": "number odd one out — square/cube/multiple",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-classification-5",
+   "q": "Find the odd one out: **25, 49, 64, 81**",
+   "figure": null,
+   "options": [
+    "64",
+    "81",
+    "25",
+    "49"
+   ],
+   "answer": 0,
+   "solution": "All are squares (5², 7², 8², 9²). 25, 49, 81 are squares of odd numbers; **64 = 8²** is the square of an even number → odd one out.",
+   "shortcut": "Level 1 squares, level 2 parity of roots — the standard two-level climb.",
+   "difficulty": "medium",
+   "subtopic": "number-classification",
+   "pattern": "two-level number odd one out",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-classification-6",
+   "q": "Find the odd one out: **2728, 4917, 6061, 3456**",
+   "figure": null,
+   "options": [
+    "3456",
+    "2728",
+    "4917",
+    "6061"
+   ],
+   "answer": 0,
+   "solution": "Alternate-sum test for 11: 2728 → (2+2) − (7+8) = −11 ✓; 4917 → (4+1) − (9+7) = −11 ✓; 6061 → (6+6) − (0+1) = 11 ✓; 3456 → (3+5) − (4+6) = −2 ✗ → **3456**.",
+   "shortcut": "Divisibility by 11: difference of alternate digit sums must be 0 or ±11.",
+   "difficulty": "medium",
+   "subtopic": "number-classification",
+   "pattern": "number odd one out — square/cube/multiple",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-classification-7",
+   "q": "Find the odd one out: **Sparrow, Crow, Parrot, Bat**",
+   "figure": null,
+   "options": [
+    "Sparrow",
+    "Crow",
+    "Parrot",
+    "Bat"
+   ],
+   "answer": 3,
+   "solution": "Sparrow, crow and parrot are **birds**; a bat is a **mammal** (it suckles its young; its wings are skin folds, not feathers) → **Bat**.",
+   "shortcut": "'Flies' is the decoy level — classify by reproduction/body cover, not by flight.",
+   "difficulty": "easy",
+   "subtopic": "word-classification",
+   "pattern": "word odd one out — category break",
+   "timeSec": 25
+  },
+  {
+   "id": "rsn-classification-8",
+   "q": "Find the odd one out: **Printer, Speaker, Plotter, Router**",
+   "figure": null,
+   "options": [
+    "Speaker",
+    "Plotter",
+    "Router",
+    "Printer"
+   ],
+   "answer": 2,
+   "solution": "Printer, speaker and plotter are **output** devices; a router is a **networking** device that forwards data packets → **Router**.",
+   "shortcut": "CGL device pools now include network gear — classify by function, not by 'attached to computer'.",
+   "difficulty": "medium",
+   "subtopic": "word-classification",
+   "pattern": "word odd one out — category break",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-classification-9",
+   "q": "Find the odd one out: **River, Pond, Lake, Sea**",
+   "figure": null,
+   "options": [
+    "Pond",
+    "Lake",
+    "Sea",
+    "River"
+   ],
+   "answer": 2,
+   "solution": "River, pond and lake are **freshwater** bodies; the sea is **saline** → **Sea**.",
+   "shortcut": "Water bodies split on salinity first, then on flow (flowing vs still).",
+   "difficulty": "easy",
+   "subtopic": "word-classification",
+   "pattern": "word odd one out — category break",
+   "timeSec": 25
+  },
+  {
+   "id": "rsn-classification-10",
+   "q": "Find the odd one out: **Malaria, Typhoid, Cholera, Fever**",
+   "figure": null,
+   "options": [
+    "Fever",
+    "Malaria",
+    "Typhoid",
+    "Cholera"
+   ],
+   "answer": 0,
+   "solution": "Malaria, typhoid and cholera are **diseases** with specific causes (parasite, bacteria, bacteria); fever is a **symptom**, not a disease → **Fever**.",
+   "shortcut": "Science lists often hide one abstract term among concrete ones — check 'is it a thing or a sign of a thing'.",
+   "difficulty": "easy",
+   "subtopic": "word-classification",
+   "pattern": "word odd one out — category break",
+   "timeSec": 25
+  },
+  {
+   "id": "rsn-classification-11",
+   "q": "Find the odd one out: **BDF, HJL, NPR, STV**",
+   "figure": null,
+   "options": [
+    "HJL",
+    "NPR",
+    "STV",
+    "BDF"
+   ],
+   "answer": 2,
+   "solution": "Steps: BDF (+2, +2), HJL (+2, +2), NPR (+2, +2), STV (+1, +2) → **STV** breaks the pattern.",
+   "shortcut": "Step tuples settle cluster odd-one-out in one written line.",
+   "difficulty": "medium",
+   "subtopic": "letter-classification",
+   "pattern": "letter-cluster odd one out — step mismatch",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-classification-12",
+   "q": "Find the odd one out: **ABC, KLM, RST, XZB**",
+   "figure": null,
+   "options": [
+    "RST",
+    "XZB",
+    "ABC",
+    "KLM"
+   ],
+   "answer": 1,
+   "solution": "ABC, KLM, RST are three **consecutive** letters (+1, +1). XZB steps (+2, +2) — skipped letters → **XZB**.",
+   "shortcut": "Runs of consecutive letters are spotted by eye; confirm one option with steps.",
+   "difficulty": "easy",
+   "subtopic": "letter-classification",
+   "pattern": "vowel-structure cluster odd one out",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-classification-13",
+   "q": "Find the odd one out: **BCD, FGH, JLM, AEI**",
+   "figure": null,
+   "options": [
+    "FGH",
+    "JKL",
+    "AEI",
+    "BCD"
+   ],
+   "answer": 2,
+   "solution": "BCD, FGH, JKL contain **no vowel**; AEI is made only of vowels → **AEI**.",
+   "shortcut": "When steps look messy, count vowels — the A-E-I-O-U split is a favourite.",
+   "difficulty": "easy",
+   "subtopic": "letter-classification",
+   "pattern": "vowel-structure cluster odd one out",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-classification-14",
+   "q": "Find the odd one out: **AZ, BY, CX, FS**",
+   "figure": null,
+   "options": [
+    "CX",
+    "FS",
+    "AZ",
+    "BY"
+   ],
+   "answer": 1,
+   "solution": "Position sums: A(1)+Z(26) = 27, B(2)+Y(25) = 27, C(3)+X(24) = 27 — opposite-letter pairs. F(6)+S(19) = **25** ≠ 27 → **FS**.",
+   "shortcut": "Letter-pair odd one out: compute position sums; opposite pairs always total 27.",
+   "difficulty": "medium",
+   "subtopic": "letter-classification",
+   "pattern": "letter-cluster odd one out — step mismatch",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-classification-15",
+   "q": "Find the odd pair out: **Author : Book, Poet : Poem, Sculptor : Statue, Painter : Canvas**",
+   "figure": null,
+   "options": [
+    "Author : Book",
+    "Poet : Poem",
+    "Sculptor : Statue",
+    "Painter : Canvas"
+   ],
+   "answer": 3,
+   "solution": "Author-book, poet-poem and sculptor-statue are **creator-creation** pairs. A canvas is the painter's **surface**, not his creation — the painting is → **Painter : Canvas**.",
+   "shortcut": "Pair lists: write the majority relation once, then tick/cross each pair against it.",
+   "difficulty": "medium",
+   "subtopic": "pair-classification",
+   "pattern": "pair odd one out — relation break",
+   "timeSec": 35
+  }
+ ]
+}

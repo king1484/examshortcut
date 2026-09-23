@@ -81,7 +81,7 @@ def simple_rules(seq):
     if _const(d):
         rules.append('AP')
     if all(a != 0 for a in seq[:-1]):
-        r = [Fraction(b, 1) / Fraction(a, 1) for a, b in zip(seq, seq[1:])]
+        r = [Fraction(b) / Fraction(a) for a, b in zip(seq, seq[1:])]
         if _const(r):
             rules.append('GP')
     d2 = [b - a for a, b in zip(d, d[1:])]

@@ -1,0 +1,522 @@
+{
+ "id": "direction-distance",
+ "sectionId": "reasoning",
+ "title": "Direction & Distance",
+ "order": 8,
+ "importance": "medium",
+ "avgQuestions": {
+  "tier1": "1-2",
+  "tier2": "1-2"
+ },
+ "summary": "Compass-walking puzzles: multi-leg journeys with left/right turns, questions on the shortest distance back, the direction faced, the endpoint's bearing from the start, and shadow-based facing. Everything reduces to two signed running totals plus one Pythagoras step, and most answers are 3-4-5 multiples. Shadow questions add one conversion line (morning shadow West, evening shadow East). A written trace of headings and components turns the whole topic into bookkeeping.",
+ "subtopics": [
+  {
+   "id": "direction-idea",
+   "title": "Direction conventions and displacement",
+   "concept": "Direction questions track a walker on an invisible grid. Fix the conventions first:\n\n- **North is up, East is right**, South down, West left; North-East sits between North and East, and so on for the four diagonal directions.\n- **Facing North:** left = West, right = East. **Facing South:** left = East, right = West. (A 'left turn' depends on where you face — this is the number-one trap.)\n- 'Towards the sunrise' = **East**; 'towards the sunset' = **West**.\n- The **shortest distance** from start is the straight line joining start to finish — never the sum of the legs walked.\n\nComputationally: assign each leg a horizontal and vertical component (North: +y, South: −y, East: +x, West: −x), add them up, and apply Pythagoras:\n\n$$\\text{shortest distance} = \\sqrt{x^2 + y^2}$$\n\nMost CGL answers are Pythagorean triples — 3-4-5, 6-8-10, 5-12-13, 9-12-15 — so a clean square root usually means you are on track.",
+   "formulas": [
+    {
+     "name": "Shortest distance",
+     "tex": "d = \\sqrt{x^2 + y^2}",
+     "note": "x = net east-west movement, y = net north-south movement."
+    },
+    {
+     "name": "Triple shortcut",
+     "tex": "3\\text{-}4\\text{-}5 \\times k",
+     "note": "Legs (3k, 4k) give distance 5k: check 6-8-10, 9-12-15, 12-16-20."
+    },
+    {
+     "name": "Turn directions",
+     "tex": "\\text{left/right} = \\text{facing}\\pm90^\\circ",
+     "note": "Left/right are relative to current facing; about-turn is 180°."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Two-axis bookkeeping",
+     "body": "Keep two running totals: EAST-WEST and NORTH-SOUTH. East and West cancel each other; North and South cancel each other. The endpoint is (EW, NS) and distance is the square root of the sum of squares.",
+     "example": {
+      "q": "**Q.** 8 km east, 6 km west, 3 km east — how far from start?\n\n**Sol.** EW: +8 − 6 + 3 = +5; NS: 0. Distance = **5 km, East**. (17 km is the total walked, not the displacement.)",
+      "solution": "Signed totals per axis; everything else is one square root."
+     }
+    },
+    {
+     "title": "Triple recognition",
+     "body": "When the two net components come out as 3k and 4k (any order), the answer is 5k with no calculation: (6, 8) → 10, (9, 12) → 15, (12, 5) → 13.",
+     "example": {
+      "q": "**Q.** 6 m east, then right and 8 m south. Distance from start?\n\n**Sol.** (6, 8) = 2×(3, 4) → **10 m**.",
+      "solution": "Scan for a multiple of 3-4-5 or 5-12-13 before touching a square root."
+     }
+    }
+   ],
+   "mistakes": [
+    "Adding the legs (total path) instead of the straight-line displacement.",
+    "Turning left/right as if absolute (facing South, 'left' is East, not West).",
+    "Mixing the order of components — direction of the displacement needs its correct sign on each axis."
+   ]
+  },
+  {
+   "id": "final-direction",
+   "title": "Direction faced and net direction",
+   "concept": "Two sub-formats:\n\n1. **Which direction is X facing now?** — pure turn-tracking. A clock-wise turn of 90° maps N→E→S→W→N; anticlockwise runs N→W→S→E→N. An about-turn adds 180°. Turn, update the heading, repeat.\n2. **In which direction is the endpoint from the start?** — finish the walk, note the final (x, y), and read the direction from signs: (+x, +y) = North-East, (−x, +y) = North-West, (+x, −y) = South-East, (−x, −y) = South-West; a zero component drops that word.\n\nBoth take seconds *if* you write the heading after every turn instead of trusting memory across three turns.",
+   "formulas": [
+    {
+     "name": "Clockwise cycle",
+     "tex": "N \\to E \\to S \\to W \\to N",
+     "note": "Every right turn moves one step along this cycle."
+    },
+    {
+     "name": "Anticlockwise cycle",
+     "tex": "N \\to W \\to S \\to E \\to N",
+     "note": "Every left turn moves one step along this cycle."
+    },
+    {
+     "name": "Sign reading",
+     "tex": "(x>0,y>0) \\Rightarrow NE",
+     "note": "Signs of the net components give the quadrant."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Write the heading down each time",
+     "body": "After every turn, overwrite a single letter (N/E/S/W). Three written letters beat one mental chain — and if a wrong option appears, each written heading is checkable.",
+     "example": {
+      "q": "**Q.** Facing West, a man turns 90° clockwise, then 180° anticlockwise. Final facing?\n\n**Sol.** W --90° CW--> N --180° ACW--> **South**.",
+      "solution": "One letter, overwritten per turn."
+     }
+    }
+   ],
+   "mistakes": [
+    "Applying 'left = West' regardless of current facing.",
+    "Counting a 180° turn as two separate questions' worth of turns.",
+    "Reading the *final facing* when the question asks direction-from-start (or vice versa)."
+   ]
+  },
+  {
+   "id": "shadow-direction",
+   "title": "Shadow questions",
+   "concept": "The sun's position fixes the shadow:\n\n- **Morning:** sun in the **East** → every shadow points **West**.\n- **Evening:** sun in the **West** → every shadow points **East**.\n- At local noon (in India) the shadow points roughly **North**.\n\nThe standard phrasings, decoded:\n\n- 'Shadow falls **behind** him' → he faces **opposite** the shadow.\n- 'Shadow falls **in front / towards him**' → he faces **along** the shadow.\n- 'Shadow to his **left/right**' → he faces perpendicular, on the stated side.\n\nConvert to a sentence about facing first, then run the walk. Do not skip the conversion — answering 'which way is the shadow' instead of 'which way is he facing' is the classic half-error.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "One-line conversion",
+     "body": "Rewrite the shadow sentence as a facing sentence before doing anything else: morning + behind = facing East; evening + in front = facing East; morning + shadow on the left = facing South (shadow West is on the left of a South-facing person).",
+     "example": {
+      "q": "**Q.** One evening, Ramesh's shadow falls exactly in front of him. Which direction is he facing?\n\n**Sol.** Evening shadow points East; shadow in front means he faces along it → **East**.",
+      "solution": "Shadow sentence → facing sentence → answer. Three words per step."
+     }
+    }
+   ],
+   "mistakes": [
+    "Using the evening shadow direction (East) in a morning question.",
+    "Answering the shadow's direction instead of the person's facing.",
+    "Forgetting shadow-left/right flips when the facing flips."
+   ]
+  },
+  {
+   "id": "relative-position",
+   "title": "Position of one point from another",
+   "concept": "'C is 5 km East of A; A is 2 km North of B — in which direction is C from B?' Two anchored statements chain into one picture: place the *reference* person first (B), attach A relative to B, then C relative to A. The answer is read straight from the sketch.\n\nCare points:\n\n- **Direction reverses with reference**: 'C from B' (C relative to B) is the opposite corner of 'B from C'.\n- Distances may be enough for a diagonal ('how far is C from B?' → Pythagoras on the two components).\n- With three or more people, name the sketch's axes once (up = North) and place everyone before answering anything.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Place the final reference first",
+     "body": "Start the sketch with the person the question asks FROM ('direction of C from B' → draw B at origin), then attach the chain. The answer is simply where C lands on the page.",
+     "example": {
+      "q": "**Q.** A is 5 km North of B; C is 5 km East of A. Direction of C from B?\n\n**Sol.** B at origin → A above it → C to A's right: C sits 5 East, 5 North of B → **North-East**.",
+      "solution": "Anchor at the asked-from person; the chain then hangs downward."
+     }
+    }
+   ],
+   "mistakes": [
+    "Drawing A first when B is the asked-from reference.",
+    "Reporting 'C from B' when the question asked 'B from C'.",
+    "Adding distances that need Pythagoras instead."
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Shortest distance between start and finish",
+   "frequency": "very common",
+   "howToSpot": "A multi-leg walk; 'how far is he from the starting point?'",
+   "approach": "Net components per axis, then Pythagoras; look for a 3-4-5 multiple."
+  },
+  {
+   "pattern": "Direction of the endpoint from start",
+   "frequency": "very common",
+   "howToSpot": "A walk with left/right turns; 'in which direction is he from the start?'",
+   "approach": "Track (x, y) signs at the endpoint; quadrant names the direction."
+  },
+  {
+   "pattern": "Final facing after turns",
+   "frequency": "common",
+   "howToSpot": "'Facing X, turns right, then about turn...' — which way now?",
+   "approach": "Cycle N→E→S→W (right); write the heading after every turn."
+  },
+  {
+   "pattern": "Shadow-based facing",
+   "frequency": "common",
+   "howToSpot": "Morning/evening shadow behind/in front/left — find the facing.",
+   "approach": "Shadow points West in the morning, East in the evening; convert to a facing sentence."
+  },
+  {
+   "pattern": "Relative position of two people",
+   "frequency": "common",
+   "howToSpot": "'A is 5 km north of B; C is 3 km east of A — direction of C from B?'",
+   "approach": "Sketch with the asked-from person at the origin; read off the quadrant."
+  },
+  {
+   "pattern": "Distance between two walkers",
+   "frequency": "occasional",
+   "howToSpot": "Two people start together, walk different routes; find the gap.",
+   "approach": "Compute both endpoints from the same origin, then the distance between them."
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "rsn-direction-ex1",
+   "q": "**Ravi walks 3 km towards North, turns right and walks 4 km.** How far is he from the starting point?",
+   "figure": null,
+   "options": [
+    "6 km",
+    "5 km",
+    "7 km",
+    "1 km"
+   ],
+   "answer": 1,
+   "solution": "North 3 km, then right (East) 4 km: components (4, 3). Shortest distance = √(4² + 3²) = √25 = **5 km**. (7 km is the distance walked — not asked.)",
+   "shortcut": "(3, 4) legs are the 3-4-5 triple — the answer is 5 without computing.",
+   "difficulty": "easy",
+   "subtopic": "direction-idea",
+   "pattern": "shortest distance between start and finish",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-direction-ex2",
+   "q": "**Maya walks 5 km South, turns left and walks 3 km, then turns left and walks 5 km.** In which direction is she from the starting point?",
+   "figure": null,
+   "options": [
+    "North",
+    "South",
+    "East",
+    "West"
+   ],
+   "answer": 2,
+   "solution": "South 5 → (0, −5). Facing South, left = East: +3 → (3, −5). Facing East, left = North: +5 → (3, 0). The y-components cancelled; she is **3 km East** of the start.",
+   "shortcut": "Opposite legs of equal length cancel — only the East 3 km survives.",
+   "difficulty": "easy",
+   "subtopic": "final-direction",
+   "pattern": "direction of the endpoint from start",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-direction-ex3",
+   "q": "One morning, a man starts walking and his **shadow falls exactly behind him**. Which direction is he facing?",
+   "figure": null,
+   "options": [
+    "West",
+    "North",
+    "South",
+    "East"
+   ],
+   "answer": 3,
+   "solution": "In the morning the sun is in the East, so every shadow points **West**. A shadow falling behind him means his back is to the West — he faces **East**.",
+   "shortcut": "Morning shadow = West; 'behind' ⇒ face opposite the shadow.",
+   "difficulty": "easy",
+   "subtopic": "shadow-direction",
+   "pattern": "shadow-based facing",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-direction-ex4",
+   "q": "**P is 4 km East of Q. R is 3 km South of P.** In which direction is **R from Q**?",
+   "figure": null,
+   "options": [
+    "South-West",
+    "East",
+    "South-East",
+    "North-East"
+   ],
+   "answer": 2,
+   "solution": "Put Q at the origin: P is (+4, 0), R is (+4, −3). Both x and y components are non-zero, signs (+, −) → **South-East** (exactly 5 km away, by the triple).",
+   "shortcut": "Anchor at Q (the asked-from point); R lands in the (+, −) quadrant.",
+   "difficulty": "easy",
+   "subtopic": "relative-position",
+   "pattern": "relative position of two people",
+   "timeSec": 35
+  }
+ ],
+ "practice": [
+  {
+   "id": "rsn-direction-1",
+   "q": "**Asha walks 6 m towards East, turns right and walks 8 m.** How far is she from the starting point?",
+   "figure": null,
+   "options": [
+    "14 m",
+    "2 m",
+    "12 m",
+    "10 m"
+   ],
+   "answer": 3,
+   "solution": "Components (6, 8) = 2 × (3, 4) → distance = 2 × 5 = **10 m**. (14 m is the path walked.)",
+   "shortcut": "6-8 is the doubled 3-4 triple → 10.",
+   "difficulty": "easy",
+   "subtopic": "direction-idea",
+   "pattern": "shortest distance between start and finish",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-direction-2",
+   "q": "**Vikram walks 9 km towards South, then turns right and walks 12 km.** How far is he from the start?",
+   "figure": null,
+   "options": [
+    "3 km",
+    "18 km",
+    "15 km",
+    "21 km"
+   ],
+   "answer": 2,
+   "solution": "Components (12, 9) = 3 × (4, 3) → distance = 3 × 5 = **15 km**.",
+   "shortcut": "9-12 legs → 15 by the triple; no square root needed.",
+   "difficulty": "easy",
+   "subtopic": "direction-idea",
+   "pattern": "shortest distance between start and finish",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-direction-3",
+   "q": "**Neha walks 12 m North, turns right and walks 5 m, then turns right and walks 12 m.** How far is she from the starting point?",
+   "figure": null,
+   "options": [
+    "5 m",
+    "29 m",
+    "17 m",
+    "24 m"
+   ],
+   "answer": 0,
+   "solution": "North 12 and South 12 cancel completely; only the East 5 m remains → **5 m**. (29 m is the total distance walked.)",
+   "shortcut": "Equal out-and-back legs on one axis vanish; only the crosswise leg survives.",
+   "difficulty": "easy",
+   "subtopic": "direction-idea",
+   "pattern": "shortest distance between start and finish",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-direction-4",
+   "q": "A man facing **West turns 90° clockwise, then 180° anticlockwise**. Which direction is he facing now?",
+   "figure": null,
+   "options": [
+    "East",
+    "North",
+    "West",
+    "South"
+   ],
+   "answer": 3,
+   "solution": "West --90° clockwise--> North --180°--> **South**. A 180° turn flips the heading whatever its sense.",
+   "shortcut": "Write the heading after each turn: W → N → S.",
+   "difficulty": "easy",
+   "subtopic": "final-direction",
+   "pattern": "final facing after turns",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-direction-5",
+   "q": "**A is 5 km North of B. C is 5 km East of A.** In which direction is **C from B**?",
+   "figure": null,
+   "options": [
+    "North-East",
+    "South-East",
+    "North-West",
+    "East"
+   ],
+   "answer": 0,
+   "solution": "B at origin → A at (0, 5) → C at (5, 5). Both components positive → **North-East** of B (7.07 km away, if asked).",
+   "shortcut": "Chain from B, the asked-from point: up 5, right 5 → NE.",
+   "difficulty": "easy",
+   "subtopic": "relative-position",
+   "pattern": "relative position of two people",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-direction-6",
+   "q": "**Sameer walks 8 km East, then 6 km West, then 3 km East.** How far is he from the starting point?",
+   "figure": null,
+   "options": [
+    "5 km",
+    "17 km",
+    "11 km",
+    "2 km"
+   ],
+   "answer": 0,
+   "solution": "Net East = 8 − 6 + 3 = 5 km; net North–South = 0 → **5 km East**. (17 km is the walking total.)",
+   "shortcut": "One signed column for East-West; opposite directions subtract.",
+   "difficulty": "easy",
+   "subtopic": "direction-idea",
+   "pattern": "shortest distance between start and finish",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-direction-7",
+   "q": "In the **evening**, Ramesh's shadow falls **exactly in front of him**. Which direction is he facing?",
+   "figure": null,
+   "options": [
+    "East",
+    "West",
+    "North",
+    "South"
+   ],
+   "answer": 0,
+   "solution": "Evening sun is in the West, so shadows point **East**. A shadow in front means he faces along it → **East**.",
+   "shortcut": "Evening shadow = East; 'in front' ⇒ facing the shadow's direction.",
+   "difficulty": "easy",
+   "subtopic": "shadow-direction",
+   "pattern": "shadow-based facing",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-direction-8",
+   "q": "**Facing South, Sita walks 4 km, turns left and walks 4 km, then turns left again and walks 4 km.** In which direction is her endpoint from the start?",
+   "figure": null,
+   "options": [
+    "North-East",
+    "West",
+    "East",
+    "North"
+   ],
+   "answer": 2,
+   "solution": "South 4 → (0, −4). Facing South, left = East → (4, −4). Facing East, left = North → (4, 0). Net: **4 km East**.",
+   "shortcut": "The two South-North legs cancel; the middle leg decides.",
+   "difficulty": "medium",
+   "subtopic": "final-direction",
+   "pattern": "direction of the endpoint from start",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-direction-9",
+   "q": "Two friends start from the same point. **X walks 3 km North and then 4 km East. Y walks 4 km South and then 3 km West.** How far apart are they now?",
+   "figure": null,
+   "options": [
+    "9.9 km",
+    "7 km",
+    "14 km",
+    "5 km"
+   ],
+   "answer": 0,
+   "solution": "X is at (+4, +3); Y is at (−3, −4). Separation = √((4+3)² + (3+4)²) = √(49 + 49) = 7√2 ≈ **9.9 km**.",
+   "shortcut": "Both walkers from the same origin; subtract components, then Pythagoras (√98 = 7√2).",
+   "difficulty": "hard",
+   "subtopic": "relative-position",
+   "pattern": "distance between two walkers",
+   "timeSec": 60
+  },
+  {
+   "id": "rsn-direction-10",
+   "q": "**Kiran starts facing East and walks 5 km, turns right and walks 3 km, turns right and walks 5 km, then turns right again and walks 2 km.** In which direction is she from the starting point?",
+   "figure": null,
+   "options": [
+    "East",
+    "West",
+    "South",
+    "North"
+   ],
+   "answer": 2,
+   "solution": "East 5 → (5, 0); right → South 3 → (5, −3); right → West 5 → (0, −3); right → North 2 → (0, −1). The x-components cancel; 1 km of Southward drift remains → **South** of the start.",
+   "shortcut": "Cancel East-West first (5 and 5); the leftover South 1 km decides the direction.",
+   "difficulty": "medium",
+   "subtopic": "final-direction",
+   "pattern": "direction of the endpoint from start",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-direction-11",
+   "q": "One morning, Amit walks **10 m towards the rising sun**, then turns left and walks 10 m. In which direction is he from his starting point?",
+   "figure": null,
+   "options": [
+    "North",
+    "South-East",
+    "East",
+    "North-East"
+   ],
+   "answer": 3,
+   "solution": "Rising sun = East: he walks 10 m East, then turns left (facing East, left = North) 10 m. Endpoint (10, 10) → **North-East** of the start.",
+   "shortcut": "Sunrise = East; facing East, left is North — (+, +) endpoint means North-East.",
+   "difficulty": "easy",
+   "subtopic": "shadow-direction",
+   "pattern": "shadow-based facing",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-direction-12",
+   "q": "**Rani walks 7 km North, turns right and walks 7 km East, then turns right and walks 7 km South.** What is her position relative to the start?",
+   "figure": null,
+   "options": [
+    "7 km East",
+    "7 km North",
+    "At the starting point",
+    "21 km away"
+   ],
+   "answer": 0,
+   "solution": "North 7 and South 7 cancel; the East 7 km survives → she is **7 km East** of the start. (21 km is the distance walked.)",
+   "shortcut": "Out-and-back legs cancel; only the middle leg counts.",
+   "difficulty": "easy",
+   "subtopic": "final-direction",
+   "pattern": "direction of the endpoint from start",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-direction-13",
+   "q": "**Imran walks 5 km North, turns right and walks 3 km, then turns right again and walks 9 km.** How far is he from the starting point?",
+   "figure": null,
+   "options": [
+    "11 km",
+    "5 km",
+    "17 km",
+    "6 km"
+   ],
+   "answer": 1,
+   "solution": "North 5 → (0, 5); right = East 3 → (3, 5); right = South 9 → (3, −4). Distance = √(9 + 16) = **5 km**.",
+   "shortcut": "Components (3, 4) reappear after cancellation → the triple gives 5.",
+   "difficulty": "medium",
+   "subtopic": "direction-idea",
+   "pattern": "shortest distance between start and finish",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-direction-14",
+   "q": "**D is 6 km West of C. C is 4 km South of B.** In which direction is **B from D**?",
+   "figure": null,
+   "options": [
+    "South-West",
+    "North-East",
+    "North-West",
+    "South-East"
+   ],
+   "answer": 1,
+   "solution": "Place D at the origin. 'D is 6 km West of C' puts C 6 km **East** of D. 'C is 4 km South of B' puts B 4 km **North** of C. So B sits at (+6, +4) from D → **North-East** of D.",
+   "shortcut": "Anchor at D (the asked-from point); C hangs East, B hangs North of C.",
+   "difficulty": "medium",
+   "subtopic": "relative-position",
+   "pattern": "relative position of two people",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-direction-15",
+   "q": "A soldier marching towards **North** is ordered **'about turn'**, and then **'right turn'**. In which direction is he marching now?",
+   "figure": null,
+   "options": [
+    "East",
+    "North",
+    "South",
+    "West"
+   ],
+   "answer": 3,
+   "solution": "About turn: North → South. Right turn from South: South → **West** (right-hand cycle N→E→S→W).",
+   "shortcut": "About turn = +180°; right turn = +90° on the N→E→S→W cycle.",
+   "difficulty": "easy",
+   "subtopic": "final-direction",
+   "pattern": "final facing after turns",
+   "timeSec": 30
+  }
+ ]
+}

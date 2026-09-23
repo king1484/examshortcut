@@ -362,16 +362,6 @@ pr.append(C.Q('rsn-classification-15',
               sc="Pair lists: write the majority relation once, then tick/cross each pair against it.",
               d='medium', sub='pair-classification', pat='pair odd one out — relation break', t=35))
 
-# 16 pair numbers n:n^2
-assert 9 == 3 ** 2 and 49 == 7 ** 2 and 81 == 9 ** 2 and 132 != 11 ** 2
-pr.append(C.Q('rsn-classification-16',
-              "Find the odd pair out: **3:9, 7:49, 9:81, 11:132**",
-              ['3:9', '7:49', '9:81', '11:132'],
-              '11:132',
-              "3:9, 7:49 and 9:81 follow **second = (first)²**. 11² = 121, not 132 → **11:132**.",
-              sc="For number pairs compute the majority rule (here squaring) and verify each pair.",
-              d='medium', sub='pair-classification', pat='pair odd one out — relation break', t=35))
-
 topic_obj = C.topic(
     'classification', 'Classification (Odd One Out)', 'high', {'tier1': 3, 'tier2': 4},
     "Classification questions list four or five similar items and ask which one does not belong. The hidden rule — a shared category, number property or letter structure — must hold for every option except one. CGL asks 2-4 per shift, drawn from number properties, letter clusters, word categories and pairs.",

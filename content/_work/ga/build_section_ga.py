@@ -1,0 +1,60 @@
+"""Build content/ssc-cgl/sections/ga.json — the GA section descriptor.
+Run:  py -3 build_section_ga.py   (run AFTER all 13 topic files exist)
+"""
+from gacommon import GA_TOPICS, save_section
+
+OVERVIEW = """General Awareness (GA) is the highest return-per-minute section of SSC CGL: no calculations, no reasoning chains — you either know the fact or you do not. Tier 1 asks 25 questions worth 2 marks each (50 marks); Tier 2 (Paper 1, Session 1) asks 25 questions worth 3 marks each (75 marks) with a 1-mark penalty per wrong answer in both tiers. The section spans History (ancient/medieval/modern), Art & Culture, Polity, Geography (India + world), Economy, General Science (Physics/Chemistry/Biology), Static GK and Current Affairs. In CGL 2025 Tier 1 shifts the observed mix was roughly: Current Affairs 7-8, Science 5-6, History 3-4, Polity 2-3, Geography 2-3, Economy 2-3, with statement-based, assertion-reason, chronological-order and fill-in-the-blank formats dominating. Toppers typically attempt 20-24 of 25 questions in 6-8 minutes, banking the saved time for Quant and Reasoning. A serious aspirant can push GA accuracy from 40% to 80%+ in 8-10 weeks because the syllabus is finite and repeats heavily — SSC recycles the same fact families (Buddhist councils, Article numbers, vitamin deficiencies, river nicknames, dance-state pairs) year after year with changed wording."""
+
+STRATEGY = """## 1. Know the split before you open a book
+
+SSC CGL GA divides into two pools:
+
+- **Static GA (~70%)** — everything that does not expire: History, Art & Culture, Polity, Geography, Economy basics, Physics/Chemistry/Biology, and static GK (books, awards, dances, days, organisations, sports trophies). This pool is finite and heavily repeated; it is where 17-18 of 25 questions come from.
+- **Current Affairs (~30%)** — roughly 6-8 questions in Tier 1, drawn from a **6-month window** ending about a month before your exam date. For a December/January CGL cycle that means April-September of the previous year; for an September exam, read March-August.
+
+Plan your hours in the same ratio: about 70% of GA time on static revision, 30% on a daily 20-30 minute current-affairs habit.
+
+## 2. Static GA — two-source method
+
+- **Base: NCERT History (6-12), Geography (6-10 + 11 Fundamentals), Polity (Class 8-10 civics + 11 Indian Constitution at Work), Science (6-10).** NCERT gives the narrative skeleton that makes facts stick; toppers do not skip it for GA.
+- **Revision layer: any one-line fact compendium of the Lucent/Kiran type** — a single book read 4-5 times beats five books read once. Annotate it: every wrong mock answer gets a star in this book.
+- **Science is mostly Class 6-10 recall**: SI units, vitamin-deficiency pairs, common chemical names, human-body superlatives, everyday physics (scattering, refraction, inertia). Do not chase numericals — SSC GA science is definitional.
+- **Polity is article-driven**: memorise the big-number clusters (17 untouchability, 21 life & liberty, 32 remedies, 61 impeachment, 110 Money Bill, 148 CAG, 280 Finance Commission, 279A GST Council) and the amendment short-list (1st, 42nd, 44th, 52nd, 61st, 73rd/74th, 86th, 101st, 103rd/104th/106th).
+
+## 3. Current Affairs — the 6-month pipeline
+
+- Sources: **PIB press releases (pib.gov.in)** for schemes/appointments, one daily newspaper summary, and monthly compilations. Focus on the categories SSC actually asks: appointments, national awards, sports winners and venues, government schemes and portals, summits and their themes, reports & indices (India's rank), defence exercises, space missions, banking/RBI news.
+- Make a one-page monthly sheet: date + fact + one keyword. Revise only the sheets, not full articles.
+
+## 4. Revision cycles (the actual rank-maker)
+
+GA is a forgetting-curve subject. Run three loops:
+
+- **Loop 1 (weekly)**: every Sunday, re-read the fact tables of the topics you studied that week — 30-40 minutes.
+- **Loop 2 (fortnightly)**: one 25-question GA mini-mock purely from your weak-topic pool.
+- **Loop 3 (pre-exam, last 21 days)**: daily 25-question GA sectional + re-read your star-marked compendium pages. Nothing new in the final week.
+
+## 5. Attempt strategy in the exam
+
+- GA first or second (never last) — finish in **8-9 minutes in Tier 1** and **10-12 minutes in Tier 2**.
+- First pass: answer only certain facts. Second pass: use elimination — two options usually die on a single known detail (a date, a state, an Article number).
+- Negative marking is 0.50 in Tier 1 and 1 mark in Tier 2: with 4 options, blind guessing has zero expected value — guess only after eliminating at least two options.
+- Statement-based and chronological-order questions are SSC's favourite traps: verify **each** statement independently before choosing "1, 2 and 3".
+
+## 6. Eight-week order of attack
+
+Weeks 1-2 Polity + Modern History (highest repetition) → Weeks 3-4 Science (Phy/Chem/Bio) → Week 5 Geography (India + world) → Week 6 Ancient + Medieval History → Week 7 Economy + Art & Culture → Week 8 Static GK + full CA window revision, with one 25-Q GA sectional every alternate day from Week 5 onward."""
+
+SEC = {
+    "id": "ga",
+    "name": "General Awareness",
+    "short": "GA",
+    "tier1": {"questions": 25, "marks": 50},
+    "tier2": {"questions": 25, "marks": 75},
+    "overview": OVERVIEW,
+    "strategy": STRATEGY,
+    "topics": list(GA_TOPICS),
+}
+
+path = save_section(SEC)
+print(f"OK {path}: topics {SEC['topics']}")
