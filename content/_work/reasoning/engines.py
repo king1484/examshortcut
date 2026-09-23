@@ -2,6 +2,11 @@
 import itertools
 from fractions import Fraction as Fr
 
+
+def PL(*pts):
+    """Turn a polyline point list into a list of ((x1,y1),(x2,y2)) segments."""
+    return list(zip(pts, pts[1:]))
+
 # ====================================================================== SVG basics
 def svg(w, h, body, sw=1.5):
     return ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 %s %s" width="%s" height="%s" fill="none" '

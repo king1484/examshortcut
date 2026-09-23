@@ -1,9 +1,10 @@
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { SECTION_META, SECTION_ORDER, getSection, listTopics } from '@/lib/content';
+import { SECTION_META, SECTION_ORDER, getSection, getTopic, listTopics } from '@/lib/content';
 import type { SectionId } from '@/lib/sections';
 import { Md } from '@/components/Md';
+import { TopicGrid } from '@/components/TopicGrid';
+import type { GridTopic } from '@/components/TopicGrid';
 
 export const dynamic = 'force-static';
 
@@ -21,8 +22,6 @@ export async function generateMetadata({ params }: { params: Promise<{ section: 
     description: `How to prepare ${sec.name} for SSC CGL Tier 1 & Tier 2: topic priority, ${sec.tier1.questions}Q/${sec.tier1.marks} marks in Tier 1, shortcut tricks and free topic-wise tests.`,
   };
 }
-
-const IMP_CHIP: Record<string, string> = { high: 'chip-high', medium: 'chip-medium', low: 'chip-low' };
 
 export default async function SectionPage({ params }: { params: Promise<{ section: string }> }) {
   const { section } = await params;
@@ -53,25 +52,34 @@ export default async function SectionPage({ params }: { params: Promise<{ sectio
       <p className="text-sm muted mt-1">High importance = asked in nearly every shift. Do these first.
         {weight.high > 0 && <> ({weight.high} high · {weight.medium} medium · {weight.low} low)</>}
       </p>
-      <div className="grid sm:grid-cols-2 gap-3 mt-4">
-        {topics.map((t, i) => (
-          <Link key={t.id} href={`/ssc-cgl/${sec.id}/${t.id}/`} className="card p-4 hover:-translate-y-0.5 transition-transform flex flex-col">
-            <div className="flex items-center gap-2">
-              <span className="text-xs faint font-bold">#{i + 1}</span>
-              <span className="font-bold">{t.title}</span>
-              {t.importance && <span className={`chip ml-auto ${IMP_CHIP[t.importance]}`}>{t.importance}</span>}
-            </div>
-            <p className="text-sm muted mt-1.5 line-clamp-2">{t.summary}</p>
-            <div className="text-xs faint mt-2 flex gap-3 flex-wrap">
-              <span>{t.subtopics.length} subtopics</span>
-              {t.avgQuestions?.tier1 ? <span>~{t.avgQuestions.tier1} Q/Tier 1</span> : null}
-              {t.practice?.length ? <span>{t.practice.length}-Q test</span> : null}
-              {t.solvedExamples?.length ? <span>{t.solvedExamples.length} solved</span> : null}
-            </div>
-          </Link>
-        ))}
-      </div>
-      {topics.length === 0 && <p className="card p-6 mt-4 text-center muted">Notes for this section are being compiled — check back shortly.</p>}
+      {topics.length > 0 ? (
+        <TopicGrid section={sec.id} topics={gridTopics(topics, section)} />
+      ) : (
+        <p className="card p-6 mt-4 text-center muted">Notes for this section are being compiled — check back shortly.</p>
+      )}
     </div>
   );
+}
+
+/** Build the serializable per-topic payload the client grid renders (studied/test badges live in the browser). */
+function gridTopics(cards: ReturnType<typeof listTopics>, section: string): GridTopic[] {
+  return cards.map((c) => {
+    const t = getTopic(section as SectionId, c.id);
+    const practice = t?.practice ?? [];
+    const diff = { easy: 0, medium: 0, hard: 0 };
+    practice.forEach((q) => { if (q.difficulty && q.difficulty in diff) diff[q.difficulty as keyof typeof diff]++; });
+    return {
+      id: c.id,
+      title: c.title,
+      summary: c.summary,
+      importance: c.importance,
+      avgQ1: c.avgQuestions?.tier1 ?? undefined,
+      avgQ2: c.avgQuestions?.tier2 ?? undefined,
+      nSub: t?.subtopics.length ?? 0,
+      nFormulas: t?.subtopics.reduce((a, s) => a + (s.formulas?.length ?? 0), 0) ?? 0,
+      nTricks: t?.subtopics.reduce((a, s) => a + (s.tricks?.length ?? 0), 0) ?? 0,
+      nPractice: practice.length,
+      difficulty: diff,
+    };
+  });
 }

@@ -86,6 +86,22 @@ def check_groups(qs):
     return groups
 
 
+def balance(qs):
+    """Deterministically rotate each question's options so correct answers spread
+    across positions. Rotation keeps option order natural; solutions must never
+    reference options by number (asserted below)."""
+    from hashlib import md5
+    for x in qs:
+        sol = x["solution"]
+        assert not re.search(r"option\s*\(?\s*[0-9]", sol, re.I), f"{x['id']}: solution cites an option number"
+        k = int(md5(x["id"].encode()).hexdigest(), 16) % 4
+        if k:
+            opts = x["options"]
+            x["options"] = opts[k:] + opts[:k]
+            x["answer"] = (x["answer"] - k) % 4
+    return qs
+
+
 def md_table(headers, rows):
     out = ["| " + " | ".join(headers) + " |", "|" + "|".join(["---"] * len(headers)) + "|"]
     for r in rows:
@@ -129,6 +145,8 @@ def write_topic(t):
         assert p["frequency"] in {"very common", "common", "occasional"}
         assert p["pattern"] and p["howToSpot"] and p["approach"]
     se, pr = t["solvedExamples"], t["practice"]
+    balance(se)
+    balance(pr)
     assert 3 <= len(se) <= 5, f"{t['id']}: {len(se)} solved"
     assert 12 <= len(pr) <= 15, f"{t['id']}: {len(pr)} practice"
     ids = set()
@@ -155,6 +173,7 @@ def write_topic(t):
 
 def write_mock(mock_id, questions, expected):
     assert len(questions) == expected, f"{mock_id}: {len(questions)} != {expected}"
+    balance(questions)
     ids = set()
     for x in questions:
         assert x["id"] not in ids, f"dup id {x['id']}"

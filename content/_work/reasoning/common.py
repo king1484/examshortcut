@@ -165,6 +165,92 @@ def check_letter_series(clusters, options, correct):
     return True
 
 
+# ---------------------------------------------------------------- analogy / coding checkers
+def _nat_num_rules(pairs):
+    """All natural numeric rules f with f(a)=b for every given pair (a,b).
+    Returns list of (name, f)."""
+    out = []
+    def add(name, f):
+        for a, b in pairs:
+            try:
+                if f(a) != b:
+                    return
+            except Exception:
+                return
+        out.append((name, f))
+    for k in range(1, 13):
+        for r in range(-15, 16):
+            add('x*%d%+d' % (k, r), (lambda k, r: lambda x: k * x + r)(k, r))
+    for k in range(1, 4):
+        for r in range(-15, 16):
+            add('x^2*%d%+d' % (k, r), (lambda k, r: lambda x: k * x * x + r)(k, r))
+            add('x^3*%d%+d' % (k, r), (lambda k, r: lambda x: k * x ** 3 + r)(k, r))
+    for d in range(-20, 21):
+        add('x^2%+d' % d, (lambda d: lambda x: x * x + d)(d))
+    for k in (2, 3):
+        for r in range(-15, 16):
+            add('%d^x%+d' % (k, r), (lambda k, r: lambda x: k ** x + r)(k, r))
+    for k in range(1, 11):
+        for r in range(-10, 11):
+            add('digitsum*%d%+d' % (k, r),
+                (lambda k, r: lambda x: k * sum(int(ch) for ch in str(x)) + r)(k, r))
+    for k in range(1, 4):
+        for r in range(-10, 11):
+            add('rev*' + str(k) + '%+d' % r,
+                (lambda k, r: lambda x: k * int(str(x)[::-1]) + r)(k, r))
+    for k in range(-6, 7):
+        add('x*(x+' + str(k) + ')', (lambda k: lambda x: x * (x + k))(k))
+        add('(x+' + str(k) + ')^2', (lambda k: lambda x: (x + k) ** 2)(k))
+    for k in range(1, 6):
+        add('tri*%d' % k, (lambda k: lambda x: k * x * (x + 1) // 2)(k))
+    return out
+
+
+def check_num_analogy(pairs, probe, correct, options):
+    """pairs: [(a,b),...] establishing the rule; probe: x with ? ; correct: intended value.
+    Asserts only ONE natural rule output lands among options and it equals correct."""
+    assert correct in options
+    hits = set()
+    rules = _nat_num_rules(pairs)
+    assert rules, 'no natural rule fits the given pairs'
+    for name, f in rules:
+        try:
+            v = f(probe)
+        except Exception:
+            continue
+        if str(v) in [str(o) for o in options]:
+            hits.add(str(v))
+    assert hits == {str(correct)}, ('ambiguous/satisfied wrong rule', hits, correct,
+                                    [(n, f(probe)) for n, f in rules])
+    return True
+
+
+def check_letter_analogy(a, b, c, correct, options):
+    """a:b :: c:?. Mapping = per-index letter shift OR atbash. Asserts exactly one mapping
+    class reproduces (a,b) and maps c to correct; no simpler mapping (constant shift / atbash)
+    gives a different option."""
+    assert correct in options
+    assert len(a) == len(b) == len(c) == len(correct)
+    d = diffs(a, b)
+    map_shift = shv(c, d)
+    map_atbash = opps(c) if all(opp(x) == y for x, y in zip(a, b)) else None
+    map_rev = c[::-1] if b == a[::-1] else None
+    cand = [(map_shift, 'shift'), (map_atbash, 'atbash'), (map_rev, 'reversal')]
+    cand = [(m, k) for m, k in cand if m is not None and m == correct]
+    assert len(cand) == 1, ('mapping must reproduce correct uniquely', cand, correct)
+    m, kind = cand[0]
+    simpler = [sh(c, k) for k in range(-13, 14)]
+    if kind != 'atbash':
+        simpler.append(opps(c))
+    if kind != 'reversal':
+        simpler.append(c[::-1])
+    for o in options:
+        if o == correct:
+            continue
+        assert o not in simpler, ('wrong option via simpler mapping', o)
+    return True
+
+
 # ---------------------------------------------------------------- question builder
 def _h(s):
     return int(hashlib.md5(s.encode()).hexdigest(), 16)
