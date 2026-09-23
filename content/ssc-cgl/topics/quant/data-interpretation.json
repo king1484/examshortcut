@@ -1,0 +1,630 @@
+{
+ "id": "data-interpretation",
+ "sectionId": "quant",
+ "title": "Data Interpretation",
+ "order": 19,
+ "importance": "medium",
+ "avgQuestions": {
+  "tier1": 2,
+  "tier2": 5
+ },
+ "summary": "Reading tables and charts: totals, percentage change, pie-chart angles and shares, row averages, weighted averages and successive growth. DI rewards calm reading more than calculation — every question is one fraction or one product away, and the data is given in clean, round numbers by design. Tier 2 sets often attach a 5-question block to one table, so per-table setup pays twice.",
+ "subtopics": [
+  {
+   "id": "di-table",
+   "title": "Reading tables: totals, differences, ratios",
+   "concept": "DI starts with **reading discipline**: note what rows and columns are (units! years!), and only then look at\nthe question. Most Tier-1 table questions ask for a total, a difference of two cells, or a simple ratio —\nthe data hunting *is* the question.\n\nWork cell-by-cell with running subtotals rather than reading values one by one for every sub-question.",
+   "formulas": [
+    {
+     "name": "Total of a row/column",
+     "tex": "\\text{total}=x_1+x_2+\\cdots+x_k"
+    },
+    {
+     "name": "Difference",
+     "tex": "\\text{difference}=|A-B|"
+    },
+    {
+     "name": "Ratio of cells",
+     "tex": "\\text{ratio}=\\frac{x_{ij}}{x_{kl}}\\ \\text{(simplify the fraction)}"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Simplify the fraction before choosing",
+     "body": "Ratios like $450:550$ reduce to $9:11$ — reduce before matching options, the unreduced pair is a common\ndistractor.",
+     "example": {
+      "q": "The table gives male and female employees (450 and 550). Find the ratio of males to females.",
+      "solution": "$\\frac{450}{550}=\\frac{9}{11}$, i.e. $9:11$."
+     }
+    },
+    {
+     "title": "Sums of friendly numbers",
+     "body": "Group digits that make round numbers (e.g. $60+70+80$). DI tables are built so subtotals land on\nround values.",
+     "example": {
+      "q": "Unit A produces 60, 70, 80 units in three years; Unit B produces 50, 60, 90. Whose total is larger and by how much?",
+      "solution": "$A=210$, $B=200$; A leads by 10."
+     }
+    }
+   ],
+   "mistakes": [
+    "Mismatching units across columns (thousands vs units, lakh tonnes vs tonnes).",
+    "Adding percentages or ratios from different bases as if they were plain numbers.",
+    "Reading the wrong year's column after the question switches reference year."
+   ]
+  },
+  {
+   "id": "di-percent",
+   "title": "Percentage change and comparisons",
+   "concept": "$$\\%\\ \\text{change}=\\frac{\\text{new}-\\text{old}}{\\text{old}}\\times100$$\n\n- The base is always the **earlier/older** value (\"increase over 2020\" divides by 2020).\n- \"X is what percent of Y\" $\\Rightarrow \\frac{X}{Y}\\times100$.\n- Comparing two percentage changes: subtract them for percentage **points**, take a ratio for a relative\n  comparison — the question says which it wants.",
+   "formulas": [
+    {
+     "name": "Percentage change",
+     "tex": "\\Delta\\%=\\frac{\\text{new}-\\text{old}}{\\text{old}}\\times100"
+    },
+    {
+     "name": "Share of total",
+     "tex": "\\text{share}=\\frac{\\text{part}}{\\text{whole}}\\times100\\%"
+    },
+    {
+     "name": "Percentage points",
+     "tex": "\\text{pp difference}=\\Delta\\%_1-\\Delta\\%_2"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Divide by the old value, always",
+     "body": "Half of all DI percentage errors come from dividing by the new value. Anchor: \"increase OVER X\" uses X\nas the denominator.",
+     "example": {
+      "q": "Sales fall from 480 units to 420 units. Find the percentage decrease.",
+      "solution": "$\\frac{480-420}{480}\\times100=12.5\\%$ — denominator is the starting 480."
+     }
+    },
+    {
+     "title": "Compare percentages as fractions of friendly numbers",
+     "body": "Convert $\\frac{\\text{change}}{\\text{base}}$ to a fraction over a round base: $\\frac{60}{300}=\\frac15=20\\%$\nbeats decimal division.",
+     "example": {
+      "q": "Output: 2021: 300, 2022: 360, 2023: 396. Which jump had the larger percentage increase?",
+      "solution": "2021→22: $\\frac{60}{300}=20\\%$; 2022→23: $\\frac{36}{360}=10\\%$. The first, by 10 percentage points."
+     }
+    }
+   ],
+   "mistakes": [
+    "Dividing by the new value instead of the base.",
+    "Percentage points confused with percent (20% vs 10% is '10 points more', not 'twice as much' relative growth).",
+    "Ignoring 'approximately' and chasing exact decimals when the options are close but distinct."
+   ]
+  },
+  {
+   "id": "di-pie",
+   "title": "Pie charts: degrees, shares and totals",
+   "concept": "A pie's whole circle $=360^\\circ=$ the stated total. Conversion chain:\n\n$$\\text{value}=\\frac{\\text{angle}}{360^\\circ}\\times\\text{total},\\qquad\n\\text{angle}=\\text{share}\\times360^\\circ,\\qquad 1\\% = 3.6^\\circ$$\n\nCGL papers usually *print* the pie as a table of sector angles or percentages — read it exactly like a table.",
+   "formulas": [
+    {
+     "name": "Angle to value",
+     "tex": "\\text{value}=\\frac{\\theta}{360^\\circ}\\times\\text{total}"
+    },
+    {
+     "name": "Percent to angle",
+     "tex": "\\theta=\\text{share}\\times3.6^\\circ\\ \\text{per percent}"
+    },
+    {
+     "name": "Share from angle",
+     "tex": "\\text{share}=\\frac{\\theta}{3.6^\\circ}\\%"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Memorise 3.6° per percent",
+     "body": "Percent ↔ degree is one multiplication: 22% spans $79.2^\\circ$; $36^\\circ$ is 10% of the total. Most pie\nquestions are one such step plus a multiply.",
+     "example": {
+      "q": "A sector subtends $36^\\circ$ in a pie chart of a budget of ₹7,200. What does the sector represent?",
+      "solution": "$\\frac{36}{360}=\\frac{1}{10}$ of 7200 = ₹720."
+     }
+    },
+    {
+     "title": "Two-sector combos first",
+     "body": "When asked about two sectors together, add angles (or percentages) **before** converting to values — one\nmultiplication instead of two.",
+     "example": {
+      "q": "Two departments take 15% and 25% of a workforce of 4,800. How many together?",
+      "solution": "$40\\%$ of $4800=1920$."
+     }
+    }
+   ],
+   "mistakes": [
+    "Treating the printed angle as the value (or the value as a percentage).",
+    "Using 360° with a total that is itself a percentage share.",
+    "Degrees arithmetic off by the 3.6 factor ($1\\%\\neq1^\\circ$)."
+   ]
+  },
+  {
+   "id": "di-average",
+   "title": "Averages from data",
+   "concept": "Two recurring asks:\n\n- **Row/column average**: sum the cells, divide by the count — with clean DI numbers this is usually an\n  integer.\n- **Combined/weighted average** across two groups printed in the table (students × average marks, workers ×\n  output):\n  $$\\bar{x}=\\frac{n_1\\bar{x}_1+n_2\\bar{x}_2}{n_1+n_2}$$\n\nFor per-day/per-unit rates, the total over the period divided by the number of periods is the whole question.",
+   "formulas": [
+    {
+     "name": "Average of cells",
+     "tex": "\\bar{x}=\\frac{\\text{sum of cells}}{\\text{number of cells}}"
+    },
+    {
+     "name": "Weighted average",
+     "tex": "\\bar{x}=\\frac{n_1\\bar{x}_1+n_2\\bar{x}_2}{n_1+n_2}"
+    },
+    {
+     "name": "Per-period value",
+     "tex": "\\text{per period}=\\frac{\\text{total}}{\\text{number of periods}}"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Scan for the shortcut row",
+     "body": "DI tables often hide symmetry: values around a central number (320, 280, 360, 300, 340 all deviate by\n±20/40 around 320). Spotting the centre makes the average mental arithmetic.",
+     "example": {
+      "q": "A unit produces 320, 280, 360, 300 and 340 units over five days. Find the average daily production.",
+      "solution": "Deviations $0,-40,+40,-20,+20$ cancel: average $=320$ units."
+     }
+    },
+    {
+     "title": "Weight by the group sizes, not the marks",
+     "body": "In combined-average tables the *count* is the weight. Multiply across each row, add, divide by total\ncount.",
+     "example": {
+      "q": "School A: 300 students averaging 65; School B: 200 students averaging 75. Find the combined average.",
+      "solution": "$\\frac{300\\times65+200\\times75}{500}=\\frac{34500}{500}=69$."
+     }
+    }
+   ],
+   "mistakes": [
+    "Averaging group averages without weights (65 and 75 average to 70, not 69).",
+    "Dividing by the wrong count (summing 5 days but dividing by 7).",
+    "Mixing up which is the count column and which is the value column."
+   ]
+  },
+  {
+   "id": "di-growth",
+   "title": "Growth rates and successive changes",
+   "concept": "- **Growth rate**: $\\frac{\\text{new}-\\text{old}}{\\text{old}}\\times100$ — same as percentage change.\n- **Successive changes multiply**: $+a\\%$ then $+b\\%$ gives the factor $\\left(1+\\frac{a}{100}\\right)\\left(1+\\frac{b}{100}\\right)$.\n  A $+20\\%$ then $-10\\%$ run nets $1.2\\times0.9=1.08$, i.e. $+8\\%$.\n- **Running backwards**: earlier value $=\\dfrac{\\text{final value}}{\\text{growth factor}}$ — divide, don't subtract.",
+   "formulas": [
+    {
+     "name": "Growth rate",
+     "tex": "g=\\frac{\\text{new}-\\text{old}}{\\text{old}}\\times100"
+    },
+    {
+     "name": "Successive change",
+     "tex": "\\text{factor}=\\left(1+\\frac{a}{100}\\right)\\left(1+\\frac{b}{100}\\right)"
+    },
+    {
+     "name": "Reverse growth",
+     "tex": "\\text{initial}=\\frac{\\text{final}}{\\text{factor}}"
+    },
+    {
+     "name": "Profit percent from table",
+     "tex": "\\text{profit}\\%=\\frac{\\text{income}-\\text{expenditure}}{\\text{expenditure}}\\times100"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Multiply factors, never add percentages",
+     "body": "Convert each change to a factor ($+20\\%\\to1.2$), multiply, convert back. $+20\\%+(-10\\%)=+10\\%$ is the\nclassic wrong shortcut — the true net is $+8\\%$.",
+     "example": {
+      "q": "A price rises 20% and then falls 10%. What is the net change?",
+      "solution": "$1.2\\times0.9=1.08$ → net $+8\\%$."
+     }
+    },
+    {
+     "title": "Reverse-growth: divide by the factor",
+     "body": "When the final value is given and the initial is asked, write the factor chain and divide once. Keep\nfactors as fractions ($1.65=\\frac{33}{20}$) for clean division.",
+     "example": {
+      "q": "A town's population grew 10%, then 20%, then 25% over three years to reach 33,000. Find the initial population.",
+      "solution": "Factor $=1.1\\times1.2\\times1.25=1.65$; initial $=\\frac{33000}{1.65}=20{,}000$."
+     }
+    }
+   ],
+   "mistakes": [
+    "Adding successive percentages instead of multiplying factors.",
+    "Reversing growth by subtracting percentages (a 25% rise then 25% fall is not flat — it is $-6.25\\%$).",
+    "Profit percent computed on income instead of expenditure."
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Totals and differences from a table",
+   "frequency": "very common",
+   "howToSpot": "Sum a row/column, or find the gap between two cells or two years.",
+   "approach": "Add friendly groups; keep subtotals; answer usually a round number — check against it."
+  },
+  {
+   "pattern": "Percentage change between periods",
+   "frequency": "very common",
+   "howToSpot": "'The percent increase from year A to year B', often with 'approximately' in the question.",
+   "approach": "$\\frac{\\text{new}-\\text{old}}{\\text{old}}\\times100$; base is the earlier value; match the nearest option."
+  },
+  {
+   "pattern": "Pie-chart sector values",
+   "frequency": "very common",
+   "howToSpot": "Sectors printed as degrees or percentages with a stated total; a value, share or angle asked.",
+   "approach": "$\\frac{\\theta}{360}\\times$total, or share$\\times3.6^\\circ$ for angles; combine sectors before converting."
+  },
+  {
+   "pattern": "Ratios and shares",
+   "frequency": "common",
+   "howToSpot": "'Ratio of X to Y in year Z' or 'X is what percent of Y'.",
+   "approach": "Reduce the fraction directly; convert to percent only at the end."
+  },
+  {
+   "pattern": "Averages and weighted averages",
+   "frequency": "common",
+   "howToSpot": "Row/column averages, or two groups with counts and averages to combine.",
+   "approach": "Simple mean of cells, or $\\frac{n_1\\bar x_1+n_2\\bar x_2}{n_1+n_2}$ weighted by counts."
+  },
+  {
+   "pattern": "Successive growth / reverse growth",
+   "frequency": "common",
+   "howToSpot": "Multi-year growth rates with the final (or initial) value given.",
+   "approach": "Multiply factors to move forward, divide by the factor to move back; never add percentages."
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "di-s01",
+   "q": "Production of a factory (in thousand units):\n\n| Year | 2019 | 2020 | 2021 | 2022 |\n|---|---|---|---|---|\n| Production | 400 | 450 | 500 | 550 |\n\nFind the average production over the four years (in thousand units).",
+   "figure": null,
+   "options": [
+    "475",
+    "470",
+    "480",
+    "465"
+   ],
+   "answer": 0,
+   "solution": "Total $=400+450+500+550=1900$; average $=\\frac{1900}{4}=475$ thousand units.",
+   "shortcut": "Deviations around 475 are $-75,-25,+25,+75$ — they cancel, so the average is 475 without summing.",
+   "difficulty": "easy",
+   "subtopic": "di-average",
+   "pattern": "row average",
+   "timeSec": 35
+  },
+  {
+   "id": "di-s02",
+   "q": "Using the same data,\n\n| Year | 2019 | 2020 | 2021 | 2022 |\n|---|---|---|---|---|\n| Production | 400 | 450 | 500 | 550 |\n\nthe percentage increase in production from 2020 to 2021 was approximately:",
+   "figure": null,
+   "options": [
+    "$12\\tfrac{1}{2}\\%$",
+    "12%",
+    "$11\\tfrac{1}{9}\\%$",
+    "10%"
+   ],
+   "answer": 2,
+   "solution": "$\\frac{500-450}{450}\\times100=\\frac{50}{450}\\times100=\\frac{100}{9}=11\\tfrac19\\%$.",
+   "shortcut": "$\\frac{50}{450}=\\frac19\\to11\\tfrac19\\%$. Base is 2020 (the earlier year).",
+   "difficulty": "medium",
+   "subtopic": "di-percent",
+   "pattern": "percent increase",
+   "timeSec": 40
+  },
+  {
+   "id": "di-s03",
+   "q": "Employees of a company by department (pie-chart sectors given as angles):\n\n| Department | Engineering | Sales | HR | Admin | Support |\n|---|---|---|---|---|---|\n| Angle | 144° | 90° | 36° | 54° | 36° |\n\nIf the company has 720 employees, how many work in Engineering?",
+   "figure": null,
+   "options": [
+    "288",
+    "216",
+    "180",
+    "252"
+   ],
+   "answer": 0,
+   "solution": "$\\frac{144}{360}\\times720=\\frac{2}{5}\\times720=288$.",
+   "shortcut": "$\\frac{144}{360}=\\frac25$ of 720 = 288. (Check: Sales $\\frac{90}{360}\\times720=180$.)",
+   "difficulty": "easy",
+   "subtopic": "di-pie",
+   "pattern": "pie angle to value",
+   "timeSec": 40
+  },
+  {
+   "id": "di-s04",
+   "q": "Students who appeared ($A$) and passed ($P$) in a board exam:\n\n| | City A (App) | City A (Pass) | City B (App) | City B (Pass) |\n|---|---|---|---|---|\n| 2020 | 50 | 40 | 60 | 55 |\n| 2021 | 60 | 45 | 70 | 63 |\n\n(In hundreds.) Which city-year pair had the highest pass percentage?",
+   "figure": null,
+   "options": [
+    "City A, 2020",
+    "City B, 2020",
+    "City B, 2021",
+    "City A, 2021"
+   ],
+   "answer": 1,
+   "solution": "Pass percentages: A-2020 $\\frac45=80\\%$, B-2020 $\\frac{55}{60}=91\\tfrac23\\%$, A-2021 $75\\%$, B-2021 $90\\%$.\n\nHighest: City B in 2020.",
+   "shortcut": "Compare fractions: $\\frac{55}{60}=\\frac{11}{12}\\approx91.7\\%$ beats $\\frac{9}{10}$ and the two $\\frac45$s. Cross-multiply to compare — don't decimalise.",
+   "difficulty": "medium",
+   "subtopic": "di-table",
+   "pattern": "max ratio cell",
+   "timeSec": 55
+  },
+  {
+   "id": "di-s05",
+   "q": "The price of a commodity rose by 20% in the first year and fell by 10% in the next year. The net change over the two years is:",
+   "figure": null,
+   "options": [
+    "10% increase",
+    "8% decrease",
+    "10% decrease",
+    "8% increase"
+   ],
+   "answer": 3,
+   "solution": "Factor $=1.20\\times0.90=1.08$ — a net increase of 8%.",
+   "shortcut": "Multiply the factors $1.2\\times0.9=1.08$: net $+8\\%$. (Adding $+20-10=+10\\%$ is the classic trap.)",
+   "difficulty": "medium",
+   "subtopic": "di-growth",
+   "pattern": "successive change",
+   "timeSec": 40
+  }
+ ],
+ "practice": [
+  {
+   "id": "di-q01",
+   "q": "Sales (in ₹ hundreds) of four shops in a month:\n\n| Shop | A | B | C | D |\n|---|---|---|---|---|\n| Sales | 250 | 300 | 400 | 350 |\n\nThe total sales of all four shops (in ₹) is:",
+   "figure": null,
+   "options": [
+    "135000",
+    "120000",
+    "130000",
+    "125000"
+   ],
+   "answer": 2,
+   "solution": "Total $=250+300+400+350=1300$ hundreds $=$ ₹1,30,000.",
+   "shortcut": "Sum 1300, remember the ×100 unit: ₹1,30,000. Trap: 1300 (forgot the unit).",
+   "difficulty": "easy",
+   "subtopic": "di-table",
+   "pattern": "column total",
+   "timeSec": 35
+  },
+  {
+   "id": "di-q02",
+   "q": "Output of a unit (in tonnes):\n\n| Year | 2020 | 2021 |\n|---|---|---|\n| Output | 200 | 250 |\n\nThe percentage increase in output from 2020 to 2021 is:",
+   "figure": null,
+   "options": [
+    "25%",
+    "20%",
+    "$22\\tfrac12\\%$",
+    "30%"
+   ],
+   "answer": 0,
+   "solution": "$\\frac{250-200}{200}\\times100=25\\%$.",
+   "shortcut": "$\\frac{50}{200}=\\frac14\\to25\\%$. Trap: 20% (divided by 250).",
+   "difficulty": "easy",
+   "subtopic": "di-percent",
+   "pattern": "percent increase",
+   "timeSec": 30
+  },
+  {
+   "id": "di-q03",
+   "q": "In a pie chart of a yearly budget of ₹7,200 (in hundreds), one sector subtends an angle of 36° at the centre. The amount represented by this sector (in ₹) is:",
+   "figure": null,
+   "options": [
+    "720000",
+    "216000",
+    "72000",
+    "36000"
+   ],
+   "answer": 2,
+   "solution": "$\\frac{36}{360}\\times7200=720$ hundreds $=$ ₹72,000.",
+   "shortcut": "36° is $\\frac{1}{10}$ of the circle: one tenth of 7200 hundreds = ₹72,000.",
+   "difficulty": "easy",
+   "subtopic": "di-pie",
+   "pattern": "pie sector value",
+   "timeSec": 35
+  },
+  {
+   "id": "di-q04",
+   "q": "Daily production of a factory (in units): 320, 280, 360, 300, 340 over five days. The average daily production (in units) is:",
+   "figure": null,
+   "options": [
+    "315",
+    "325",
+    "310",
+    "320"
+   ],
+   "answer": 3,
+   "solution": "Total $=1600$; average $=\\frac{1600}{5}=320$ units.",
+   "shortcut": "Deviations $0,-40,+40,-20,+20$ cancel around 320 — the average is the centre value itself.",
+   "difficulty": "easy",
+   "subtopic": "di-average",
+   "pattern": "row average",
+   "timeSec": 30
+  },
+  {
+   "id": "di-q05",
+   "q": "Production (in units) of two units of a plant:\n\n| Year | Unit A | Unit B |\n|---|---|---|\n| 2020 | 60 | 50 |\n| 2021 | 70 | 60 |\n| 2022 | 80 | 90 |\n\nOver the three years, the total production of Unit A exceeds that of Unit B by:",
+   "figure": null,
+   "options": [
+    "15 units",
+    "10 units",
+    "20 units",
+    "5 units"
+   ],
+   "answer": 1,
+   "solution": "$A=60+70+80=210$; $B=50+60+90=200$; difference $=10$ units.",
+   "shortcut": "Tally each column: 210 vs 200 → 10. ($60+70+80$: pair 60+80=140 first.)",
+   "difficulty": "easy",
+   "subtopic": "di-table",
+   "pattern": "column totals difference",
+   "timeSec": 40
+  },
+  {
+   "id": "di-q06",
+   "q": "In a workforce of 4,800, the pie chart shows two departments occupying 15% and 25% of the circle. The number of employees in these two departments together is:",
+   "figure": null,
+   "options": [
+    "1680",
+    "2400",
+    "1440",
+    "1920"
+   ],
+   "answer": 3,
+   "solution": "Together $15\\%+25\\%=40\\%$; $0.40\\times4800=1920$.",
+   "shortcut": "Add the shares first: 40% of 4800 = 1920. One multiplication, not two.",
+   "difficulty": "medium",
+   "subtopic": "di-pie",
+   "pattern": "pie combined sectors",
+   "timeSec": 35
+  },
+  {
+   "id": "di-q07",
+   "q": "The readership of a magazine fell from 4.8 lakh to 4.2 lakh. The percentage decrease is:",
+   "figure": null,
+   "options": [
+    "15%",
+    "12.5%",
+    "12%",
+    "10%"
+   ],
+   "answer": 1,
+   "solution": "$\\frac{4.8-4.2}{4.8}\\times100=\\frac{0.6}{4.8}\\times100=12.5\\%$.",
+   "shortcut": "$\\frac{0.6}{4.8}=\\frac18\\to12.5\\%$. Base is the original 4.8 lakh.",
+   "difficulty": "medium",
+   "subtopic": "di-percent",
+   "pattern": "percent decrease",
+   "timeSec": 35
+  },
+  {
+   "id": "di-q08",
+   "q": "In a college in 2022 there were 450 male and 550 female students. The ratio of male to female students is:",
+   "figure": null,
+   "options": [
+    "4 : 5",
+    "5 : 6",
+    "9 : 11",
+    "11 : 9"
+   ],
+   "answer": 2,
+   "solution": "$\\frac{450}{550}=\\frac{9}{11}$, i.e. $9:11$.",
+   "shortcut": "Divide both by 50: 9 : 11. Trap: 11 : 9 (reversed order — the question asks male : female).",
+   "difficulty": "medium",
+   "subtopic": "di-table",
+   "pattern": "ratio of cells",
+   "timeSec": 30
+  },
+  {
+   "id": "di-q09",
+   "q": "Monthly incomes (in ₹): Aman 54,000; Bina 63,000. Bina's income is what percent of Aman's income?",
+   "figure": null,
+   "options": [
+    "$116\\tfrac{2}{3}\\%$",
+    "$86\\tfrac{2}{3}\\%$",
+    "120%",
+    "$116\\tfrac{1}{4}\\%$"
+   ],
+   "answer": 0,
+   "solution": "$\\frac{63000}{54000}\\times100=\\frac{7}{6}\\times100=116\\tfrac23\\%$.",
+   "shortcut": "$\\frac{63}{54}=\\frac76\\to116\\tfrac23\\%$. Trap: $86\\tfrac23\\%$ is Aman as a percent of Bina (the inverse).",
+   "difficulty": "medium",
+   "subtopic": "di-percent",
+   "pattern": "share as percent",
+   "timeSec": 35
+  },
+  {
+   "id": "di-q10",
+   "q": "Production (in tonnes): 2021: 300, 2022: 360, 2023: 396. The percentage increase in 2021-22 exceeds that in 2022-23 by:",
+   "figure": null,
+   "options": [
+    "20 percentage points",
+    "30 percentage points",
+    "5 percentage points",
+    "10 percentage points"
+   ],
+   "answer": 3,
+   "solution": "2021-22: $\\frac{60}{300}\\times100=20\\%$. 2022-23: $\\frac{36}{360}\\times100=10\\%$.\n\nDifference $=20-10=10$ percentage points.",
+   "shortcut": "$\\frac{60}{300}=20\\%$, $\\frac{36}{360}=10\\%$ → 10 points. (Bases differ: 300 then 360.)",
+   "difficulty": "medium",
+   "subtopic": "di-percent",
+   "pattern": "compare percent changes",
+   "timeSec": 45
+  },
+  {
+   "id": "di-q11",
+   "q": "In a pie chart of family expenditure, rent takes 22% of the total. The central angle of the rent sector is:",
+   "figure": null,
+   "options": [
+    "$88^\\circ$",
+    "$79.2^\\circ$",
+    "$72^\\circ$",
+    "$80.5^\\circ$"
+   ],
+   "answer": 1,
+   "solution": "$22\\times3.6^\\circ=79.2^\\circ$.",
+   "shortcut": "Percent to angle: multiply by 3.6. $22\\times3.6=79.2^\\circ$. Trap: $72^\\circ$ (used 3° per percent... or mixed up with 20%).",
+   "difficulty": "medium",
+   "subtopic": "di-pie",
+   "pattern": "percent to angle",
+   "timeSec": 30
+  },
+  {
+   "id": "di-q12",
+   "q": "Units assembled by a worker over a week (5 working days): 25, 30, 20, 35, 40. The average daily output is:",
+   "figure": null,
+   "options": [
+    "28",
+    "32",
+    "26",
+    "30"
+   ],
+   "answer": 3,
+   "solution": "Total $=25+30+20+35+40=150$; average $=\\frac{150}{5}=30$ units.",
+   "shortcut": "Pair to round numbers: $25+35=60$, $30+20=50$, $+40$ → 150 over 5 days → 30.",
+   "difficulty": "medium",
+   "subtopic": "di-average",
+   "pattern": "per-day average",
+   "timeSec": 30
+  },
+  {
+   "id": "di-q13",
+   "q": "The population of a town grew by 10%, 20% and 25% in three successive years and stood at 33,000 at the end. The population at the beginning was:",
+   "figure": null,
+   "options": [
+    "19800",
+    "20000",
+    "22000",
+    "24000"
+   ],
+   "answer": 1,
+   "solution": "Factor $=1.1\\times1.2\\times1.25=1.65$.\n\nInitial $=\\frac{33000}{1.65}=20{,}000$.",
+   "shortcut": "Divide by the product of factors $1.65$: $33000/1.65=20000$. ($1.65=\\frac{33}{20}$ makes the division clean.)",
+   "difficulty": "hard",
+   "subtopic": "di-growth",
+   "pattern": "reverse successive growth",
+   "timeSec": 60
+  },
+  {
+   "id": "di-q14",
+   "q": "For a firm in 2022, income was ₹6.6 crore and expenditure ₹5.5 crore. The profit percentage is:",
+   "figure": null,
+   "options": [
+    "20%",
+    "18%",
+    "22%",
+    "25%"
+   ],
+   "answer": 0,
+   "solution": "$\\frac{6.6-5.5}{5.5}\\times100=\\frac{1.1}{5.5}\\times100=20\\%$.",
+   "shortcut": "$\\frac{1.1}{5.5}=\\frac15\\to20\\%$. Profit percent is always on **expenditure**.",
+   "difficulty": "hard",
+   "subtopic": "di-growth",
+   "pattern": "profit percent",
+   "timeSec": 45
+  },
+  {
+   "id": "di-q15",
+   "q": "Two schools:\n\n| School | Students | Average marks |\n|---|---|---|\n| A | 300 | 65 |\n| B | 200 | 75 |\n\nThe average marks of all 500 students of the two schools together is:",
+   "figure": null,
+   "options": [
+    "68",
+    "71",
+    "69",
+    "70"
+   ],
+   "answer": 2,
+   "solution": "$\\frac{300\\times65+200\\times75}{500}=\\frac{19500+15000}{500}=\\frac{34500}{500}=69$.",
+   "shortcut": "Weighted by students, not the plain 70: $\\frac{34500}{500}=69$. Trap: 70 (equal-weight average).",
+   "difficulty": "hard",
+   "subtopic": "di-average",
+   "pattern": "weighted average",
+   "timeSec": 50
+  }
+ ]
+}

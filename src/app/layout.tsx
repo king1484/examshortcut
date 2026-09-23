@@ -41,6 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <footer className="border-t mt-10" style={{ borderColor: 'var(--line)' }}>
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 text-sm faint space-y-3">
             <div className="flex flex-wrap gap-x-5 gap-y-2">
+              <Link href="/dashboard/">Dashboard</Link>
               <Link href="/ssc-cgl/">SSC CGL</Link>
               <Link href="/ssc-cgl/syllabus/">Syllabus</Link>
               <Link href="/ssc-cgl/weightage/">Weightage</Link>

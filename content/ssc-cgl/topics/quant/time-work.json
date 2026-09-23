@@ -1,0 +1,699 @@
+{
+ "id": "time-work",
+ "sectionId": "quant",
+ "title": "Time & Work",
+ "order": 10,
+ "importance": "high",
+ "avgQuestions": {
+  "tier1": 1,
+  "tier2": 2
+ },
+ "summary": "Rates, LCM units and the men-days chain solve nearly every question: combined work, efficiency ratios, pipes and cisterns, mid-work join/leave, alternate days, provisions and wages. One slot is near-guaranteed in Tier 1, with staged pipe problems and wage splits rising in Tier 2.",
+ "subtopics": [
+  {
+   "id": "tw-basics",
+   "title": "Work Rates & the LCM Method",
+   "concept": "Think of a whole job as 1 unit. A person who finishes in T days works at rate $\\frac{1}{T}$ per day.\n\n$$\\text{combined rate} = \\frac{1}{T_1} + \\frac{1}{T_2} + \\cdots, \\qquad T_{\\text{together}} = \\frac{1}{\\text{combined rate}}$$\n\n**LCM method (no fractions):** take total work = LCM of the given days. If A takes 12 and B takes 24, set work = 24 units; A does 2/day, B does 1/day; together 3/day ⇒ 8 days. Whole numbers only — faster and safer.\n\n**Symmetry shortcut:** two workers of times a and b together take $\\frac{ab}{a+b}$ days.",
+   "formulas": [
+    {
+     "name": "One-day work",
+     "tex": "\\frac{1}{T}"
+    },
+    {
+     "name": "Combined time (two workers)",
+     "tex": "T = \\frac{ab}{a + b}"
+    },
+    {
+     "name": "Combined time (three workers)",
+     "tex": "T = \\frac{abc}{ab + bc + ca}"
+    },
+    {
+     "name": "Work done",
+     "tex": "W = \\text{rate} \\times \\text{time}"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "LCM units, not fractions",
+     "body": "Set the job to the LCM of the individual times; rates become small integers.",
+     "example": {
+      "q": "A finishes a job in 10 days and B in 20 days. Working together, they finish in:",
+      "solution": "Work = 20 units. A: 2/day, B: 1/day ⇒ 3/day ⇒ $20/3 = 6\\frac{2}{3}$ days."
+     }
+    },
+    {
+     "title": "The ab/(a+b) reflex",
+     "body": "For exactly two workers, one formula — no addition of fractions.",
+     "example": {
+      "q": "A does a job in 6 days, B in 12 days. Together they need:",
+      "solution": "$\\frac{6 \\times 12}{6 + 12} = 4$ days. (Sanity: less than either alone ✓.)"
+     }
+    },
+    {
+     "title": "Three workers through the LCM",
+     "body": "Same method, three rates.",
+     "example": {
+      "q": "A, B and C take 6, 12 and 18 days respectively. Working together, they complete the work in:",
+      "solution": "Work = 36 units; rates 6, 3, 2 ⇒ 11/day ⇒ $36/11 = 3\\frac{3}{11}$ days."
+     }
+    }
+   ],
+   "mistakes": [
+    "Adding the days ($12 + 24 = 36$) instead of adding the rates.",
+    "For three workers, applying $\\frac{ab}{a+b}$ pairwise instead of the three-way formula.",
+    "Forgetting the combined time must be less than the smallest individual time.",
+    "Mixing units — one rate in days, another in hours."
+   ]
+  },
+  {
+   "id": "tw-efficiency",
+   "title": "Efficiency, 'Twice as Good' & Ratio Cases",
+   "concept": "Efficiency is rate. **Efficiency is inversely proportional to time**: twice as efficient ⇒ half the days.\n\n$$\\frac{\\text{efficiency}_A}{\\text{efficiency}_B} = \\frac{\\text{time}_B}{\\text{time}_A}$$\n\nIf A is k times as good as B and together they take T days: rate $= (k+1)$ units ⇒ B alone takes $(k+1)T$ days, A alone takes $\\frac{(k+1)T}{k}$ days.\n\nConvert every 'twice as good / half as efficient' statement into a rate ratio first — everything else is arithmetic.",
+   "formulas": [
+    {
+     "name": "Efficiency ⇄ time",
+     "tex": "\\frac{E_A}{E_B} = \\frac{T_B}{T_A}"
+    },
+    {
+     "name": "k-times worker",
+     "tex": "T_B = (k+1)T, \\quad T_A = \\frac{(k+1)T}{k}"
+    },
+    {
+     "name": "Efficiency ratio from times",
+     "tex": "E_A : E_B = \\frac{1}{T_A} : \\frac{1}{T_B}"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Rate units from the efficiency ratio",
+     "body": "Let B = 1 unit/day, A = k units/day; total = (k+1)/day.",
+     "example": {
+      "q": "A is twice as efficient as B, and together they finish a job in 12 days. B alone would take:",
+      "solution": "Units: A + B = 3/day = whole job in 12 ⇒ job = 36 units ⇒ B alone = **36 days** (A: 18)."
+     }
+    },
+    {
+     "title": "Invert, never scale",
+     "body": "'A is 3 times as good' ⇒ A's days = B's days ÷ 3.",
+     "example": {
+      "q": "A is 3 times as efficient as B and together they complete the work in 12 days. A alone takes:",
+      "solution": "4 units/day ⇒ job = 48 ⇒ A = 48/3 = **16 days**."
+     }
+    },
+    {
+     "title": "Days-difference cases",
+     "body": "'B takes 24 days more than A' plus an efficiency ratio pins both times.",
+     "example": {
+      "q": "A is 3 times as fast as B and takes 24 days less than B. Together they would finish the work in:",
+      "solution": "Times x and 3x with 3x − x = 24 ⇒ x = 12, so A = 12, B = 36; together $\\frac{36}{4} = 9$ days."
+     }
+    }
+   ],
+   "mistakes": [
+    "Scaling days when told efficiency scales ('twice as good' means HALF the days, not double).",
+    "Adding efficiencies as days.",
+    "Using $kT$ for the stronger worker's time instead of $\\frac{(k+1)T}{k}$.",
+    "Ignoring that 'x times as fast' and 'x% more efficient' set up different ratios."
+   ]
+  },
+  {
+   "id": "tw-pipes",
+   "title": "Pipes & Cisterns",
+   "concept": "Inlets fill (+rate), outlets/leaks drain (−rate). Treat the tank as 1 unit (or LCM litres).\n\n$$\\text{net rate} = \\sum_{\\text{inlets}} \\frac{1}{T_i} - \\sum_{\\text{outlets}} \\frac{1}{T_j}, \\qquad \\text{time} = \\frac{1}{\\text{net rate}}$$\n\n**Two pipes, one filling one emptying:** net time $= \\frac{ab}{b - a}$ (a = fill time, b > a = empty time).\n\nStage-based problems: compute the work already done in the first stage, then re-solve the remainder with the new set of pipes.",
+   "formulas": [
+    {
+     "name": "Net filling rate",
+     "tex": "\\frac{1}{T} = \\sum \\frac{1}{T_i^{\\,+}} - \\sum \\frac{1}{T_j^{\\,-}}"
+    },
+    {
+     "name": "Fill + drain pair",
+     "tex": "T = \\frac{ab}{b - a}"
+    },
+    {
+     "name": "Work done in stage 1",
+     "tex": "W_1 = \\text{rate}_1 \\times t_1"
+    },
+    {
+     "name": "Tank as LCM units",
+     "tex": "\\text{tank} = \\text{LCM of times; rates in units/hour}"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Sign discipline",
+     "body": "Empty pipes subtract. Write + and − before adding anything.",
+     "example": {
+      "q": "Two pipes fill a tank in 8 hours and 12 hours; a third empties it in 6 hours. With all three open, the tank fills in:",
+      "solution": "$\\frac{1}{8} + \\frac{1}{12} - \\frac{1}{6} = \\frac{3 + 2 - 4}{24} = \\frac{1}{24}$ ⇒ **24 hours**."
+     }
+    },
+    {
+     "title": "Stage the problem",
+     "body": "Finish stage 1 first, then treat the remainder as a fresh tank.",
+     "example": {
+      "q": "Pipes A (12 h) and B (16 h) fill a tank. Both run for 4 hours, then a drain (24 h) is also opened. The tank is full after how many more hours?",
+      "solution": "In 4 h: $\\frac{7}{48} \\times 4 = \\frac{7}{12}$ done. New rate $= \\frac{7}{48} - \\frac{1}{24} = \\frac{5}{48}$, so the remainder takes $\\frac{5}{12} \\div \\frac{5}{48} = 4$ h ⇒ total **8 hours**."
+     }
+    },
+    {
+     "title": "Fill-and-drain pair formula",
+     "body": "One inlet, one outlet: net time = ab/(b − a).",
+     "example": {
+      "q": "A pipe fills a tank in 10 hours; a leak empties the full tank in 15 hours. With both, the tank fills in:",
+      "solution": "$\\frac{10 \\times 15}{15 - 10} = 30$ hours."
+     }
+    }
+   ],
+   "mistakes": [
+    "Adding an outlet's rate instead of subtracting it.",
+    "Forgetting the tank may already be part-full when a new pipe opens.",
+    "Using $\\frac{ab}{a+b}$ for a fill-drain pair (that formula is for two inlets).",
+    "Reporting the stage-1 time instead of the total time."
+   ]
+  },
+  {
+   "id": "tw-man-days",
+   "title": "Men–Days–Hours Chain & Provisions",
+   "concept": "Work is the product of every resource: $\\text{Work} = M \\times D \\times H \\times E$ (men, days, hours/day, efficiency).\n\n$$\\frac{M_1 D_1 H_1 E_1}{W_1} = \\frac{M_2 D_2 H_2 E_2}{W_2}$$\n\n**Same work ⇒ equal products:** $M_1 D_1 = M_2 D_2$. More men ⇒ fewer days (inverse proportion).\n\n**Provisions problems:** stock = men × days. After t days, remaining stock feeds the new headcount: $\\text{days} = \\frac{M_1 D_{\\text{left}}}{M_2}$.\n\nConsumption questions (garrison, fodder, food stores) are men-days problems in disguise.",
+   "formulas": [
+    {
+     "name": "MDH chain",
+     "tex": "M_1 D_1 H_1 E_1 = M_2 D_2 H_2 E_2 \\quad (W_1 = W_2)"
+    },
+    {
+     "name": "Men × days constant",
+     "tex": "M_1 D_1 = M_2 D_2"
+    },
+    {
+     "name": "Provisions remaining",
+     "tex": "\\text{days} = \\frac{M_1 (D_{\\text{total}} - t)}{M_2}"
+    },
+    {
+     "name": "Piece of work",
+     "tex": "\\text{days for } \\tfrac{k}{n} \\text{ of work} = \\frac{k}{n} T"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Multiply resources, equate products",
+     "body": "Everything inverse-proportional lands in the numerator; direct-proportional in the denominator.",
+     "example": {
+      "q": "15 men complete a work in 20 days. In how many days will 25 men complete the same work?",
+      "solution": "$15 \\times 20 = 25 \\times D$ ⇒ $D = 12$ days."
+     }
+    },
+    {
+     "title": "Provisions after reinforcement",
+     "body": "Stock left = original men × days left; then divide by the new headcount.",
+     "example": {
+      "q": "A garrison of 500 men has provisions for 27 days. After 3 days, 300 more men join. The provisions will now last:",
+      "solution": "Stock left $= 500 \\times 24 = 12000$ man-days ⇒ $\\frac{12000}{800} = 15$ days."
+     }
+    },
+    {
+     "title": "Work left after a share is done",
+     "body": "First find what fraction remains, then apply men-days to that remainder.",
+     "example": {
+      "q": "45 men start a job they would finish in 16 days. After 4 days, 36 more men join. The remaining work now takes:",
+      "solution": "Left $= \\frac{540}{81} = 6\\frac{2}{3}$ days."
+     }
+    }
+   ],
+   "mistakes": [
+    "Putting more men in the numerator of the chain equation (more men ⇒ fewer days ⇒ denominator).",
+    "Forgetting to subtract elapsed days in provisions problems.",
+    "Counting efficiency twice — E belongs inside the product once.",
+    "Applying men-days to the whole work instead of the remaining work."
+   ]
+  },
+  {
+   "id": "tw-cases",
+   "title": "Joining / Leaving Mid-work, Alternate Days & Wages",
+   "concept": "Three classic twists, one method — compute the work actually done by each worker:\n\n- **A leaves after t days:** work done $= \\frac{t}{T_A}$; the rest is finished by B alone.\n- **Alternate days:** pair the days. A 2-day cycle does $\\frac{1}{T_A} + \\frac{1}{T_B}$; count complete cycles, then handle the leftover.\n- **Wages:** money splits in the ratio of work actually done — i.e. the ratio of daily rates when all work the full time.\n\nWage ratio for full-time co-workers: $A : B = \\frac{1}{T_A} : \\frac{1}{T_B} = T_B : T_A$.",
+   "formulas": [
+    {
+     "name": "Work done by A in t days",
+     "tex": "\\frac{t}{T_A}"
+    },
+    {
+     "name": "Remaining work",
+     "tex": "1 - \\frac{t}{T_A}"
+    },
+    {
+     "name": "Two-day cycle",
+     "tex": "\\frac{1}{T_A} + \\frac{1}{T_B} \\text{ per 2 days}"
+    },
+    {
+     "name": "Wage split",
+     "tex": "w_A = \\text{total} \\times \\frac{1/T_A}{1/T_A + 1/T_B}"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Subtract the finished part",
+     "body": "Whoever continues inherits only the remainder.",
+     "example": {
+      "q": "A can do a work in 15 days and B in 20 days. A works for 4 days and leaves. B alone finishes the rest in:",
+      "solution": "A did $\\frac{4}{15}$; left $= \\frac{11}{15}$ ⇒ B needs $20 \\times \\frac{11}{15} = 14\\frac{2}{3}$ days."
+     }
+    },
+    {
+     "title": "Count full cycles, then the tail",
+     "body": "Alternate days: measure progress per 2-day cycle.",
+     "example": {
+      "q": "A takes 6 days and B takes 12 days for a job. They work on alternate days, A starting. The job is finished in:",
+      "solution": "Per 2 days: $\\frac{1}{6} + \\frac{1}{12} = \\frac{1}{4}$ ⇒ 4 cycles = 8 days exactly."
+     }
+    },
+    {
+     "title": "Wages follow work, not days alone",
+     "body": "Rate ratio × equal days = work ratio.",
+     "example": {
+      "q": "A alone does a work in 12 days, B in 18 days. They work together and earn ₹840. A's share is:",
+      "solution": "$A : B = \\frac{1}{12} : \\frac{1}{18} = 3 : 2$ ⇒ A gets $840 \\times \\frac{3}{5} = 504$, i.e. ₹504."
+     }
+    }
+   ],
+   "mistakes": [
+    "Splitting wages by days instead of by work done when efficiencies differ.",
+    "In alternate-day problems, forgetting who works the final partial day.",
+    "Applying the remaining work to both workers ('B finishes 11/15' — not both B and A).",
+    "Counting a 2-day cycle as 1 day when pairing alternate workers."
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Two or three people working together",
+   "frequency": "very common",
+   "howToSpot": "Individual completion times given; find the combined time (or reverse).",
+   "approach": "LCM units or ab/(a+b). Three people: rate sum, or abc/(ab+bc+ca)."
+  },
+  {
+   "pattern": "Pipes & cisterns",
+   "frequency": "very common",
+   "howToSpot": "Fill pipes + an outlet/leak; find the fill time or who's open when.",
+   "approach": "Net rate with signs; stage the problem when pipes open mid-way."
+  },
+  {
+   "pattern": "Efficiency comparisons",
+   "frequency": "common",
+   "howToSpot": "'A is twice/thrice as efficient', or an efficiency ratio like 3 : 4 is given.",
+   "approach": "Rate ratio first, then units: (k+1) workers' worth of rate = 1/T."
+  },
+  {
+   "pattern": "A leaves or joins mid-work",
+   "frequency": "common",
+   "howToSpot": "Someone works a few days, then leaves; another (or the group) finishes.",
+   "approach": "Work already done = t/T; apply the remaining fraction to the continuing workers."
+  },
+  {
+   "pattern": "Alternate days",
+   "frequency": "common",
+   "howToSpot": "A and B work on alternate days (someone starts); find total time or work share.",
+   "approach": "Progress per 2-day cycle; multiply cycles, then finish the tail with whoever's turn it is."
+  },
+  {
+   "pattern": "Men–days–hours chain",
+   "frequency": "common",
+   "howToSpot": "Men, days, hours given in two scenarios (maybe efficiency too) — find the missing one.",
+   "approach": "M₁D₁H₁E₁ = M₂D₂H₂E₂ for the same work; keep inverses in the numerator."
+  },
+  {
+   "pattern": "Provisions / consumption",
+   "frequency": "common",
+   "howToSpot": "Garrison or hostel stock after reinforcements or early inspection.",
+   "approach": "Stock in man-days: M × D. Subtract elapsed consumption, divide by new headcount."
+  },
+  {
+   "pattern": "Wages distribution",
+   "frequency": "common",
+   "howToSpot": "Total wage for a joint job; find one worker's share.",
+   "approach": "Share = rate × days worked, normalized. Equal days ⇒ rate ratio = wage ratio."
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "tw-s01",
+   "q": "A can finish a work in 12 days and B in 24 days. Working together, they will finish it in:",
+   "figure": null,
+   "options": [
+    "6 days",
+    "7 days",
+    "8 days",
+    "9 days"
+   ],
+   "answer": 2,
+   "solution": "LCM method: work = 24 units; A does 2/day, B 1/day ⇒ 3/day ⇒ $24/3 = 8$ days.",
+   "shortcut": "ab/(a+b) = 12×24/36 = 8 days.",
+   "difficulty": "easy",
+   "subtopic": "tw-basics",
+   "pattern": "combined work",
+   "timeSec": 25
+  },
+  {
+   "id": "tw-s02",
+   "q": "A pipe can fill a tank in 10 hours and another pipe can empty it in 15 hours. If both are opened, the tank will be filled in:",
+   "figure": null,
+   "options": [
+    "24 hours",
+    "28 hours",
+    "30 hours",
+    "32 hours"
+   ],
+   "answer": 2,
+   "solution": "$\\frac{1}{10} - \\frac{1}{15} = \\frac{3 - 2}{30} = \\frac{1}{30}$ ⇒ **30 hours**.",
+   "shortcut": "Fill-drain pair: ab/(b−a) = 150/5 = 30 h.",
+   "difficulty": "easy",
+   "subtopic": "tw-pipes",
+   "pattern": "fill and drain",
+   "timeSec": 30
+  },
+  {
+   "id": "tw-s03",
+   "q": "A is twice as efficient as B, and together they complete a work in 12 days. B alone can complete it in:",
+   "figure": null,
+   "options": [
+    "18 days",
+    "24 days",
+    "30 days",
+    "36 days"
+   ],
+   "answer": 3,
+   "solution": "Rates: A $= 2k$, B $= k$ ⇒ $3k = \\frac{1}{12}$ ⇒ $k = \\frac{1}{36}$.\nB alone takes $\\frac{1}{k} = 36$ days (A takes 18).",
+   "shortcut": "(k+1)T = 3 × 12 = 36 days for B.",
+   "difficulty": "medium",
+   "subtopic": "tw-efficiency",
+   "pattern": "efficiency ratio",
+   "timeSec": 35
+  },
+  {
+   "id": "tw-s04",
+   "q": "If 15 men can complete a work in 20 days, then 25 men will complete the same work in:",
+   "figure": null,
+   "options": [
+    "10 days",
+    "12 days",
+    "14 days",
+    "15 days"
+   ],
+   "answer": 1,
+   "solution": "$15 \\times 20 = 25 \\times D$ ⇒ $D = 12$ days.",
+   "shortcut": "Men × days constant: 300/25 = 12.",
+   "difficulty": "easy",
+   "subtopic": "tw-man-days",
+   "pattern": "men-days",
+   "timeSec": 25
+  },
+  {
+   "id": "tw-s05",
+   "q": "A can do a work in 12 days. With B's help the work is done in 8 days. If total wages are ₹1,200, B's share (both working the whole time) is:",
+   "figure": null,
+   "options": [
+    "₹300",
+    "₹400",
+    "₹450",
+    "₹600"
+   ],
+   "answer": 1,
+   "solution": "B's rate $= \\frac{1}{8} - \\frac{1}{12} = \\frac{1}{24}$.\n$A : B = \\frac{1}{12} : \\frac{1}{24} = 2 : 1$ ⇒ B gets $1200 \\times \\frac{1}{3} = 400$, i.e. ₹400.",
+   "shortcut": "Rate ratio 2 : 1 ⇒ B takes a third of the wages.",
+   "difficulty": "medium",
+   "subtopic": "tw-cases",
+   "pattern": "wages",
+   "timeSec": 40
+  }
+ ],
+ "practice": [
+  {
+   "id": "tw-q01",
+   "q": "A completes a job in 10 days and B in 20 days. Working together, they complete it in:",
+   "figure": null,
+   "options": [
+    "$5\\frac{1}{3}$ days",
+    "$6\\frac{2}{3}$ days",
+    "7 days",
+    "$7\\frac{1}{2}$ days"
+   ],
+   "answer": 1,
+   "solution": "$\\frac{ab}{a+b} = \\frac{10 \\times 20}{30} = \\frac{20}{3} = 6\\frac{2}{3}$ days.",
+   "shortcut": "LCM: 20 units, 3/day ⇒ 6⅔ days.",
+   "difficulty": "easy",
+   "subtopic": "tw-basics",
+   "pattern": "combined work",
+   "timeSec": 25
+  },
+  {
+   "id": "tw-q02",
+   "q": "A, B and C can do a piece of work in 6, 12 and 18 days respectively. All three working together finish it in:",
+   "figure": null,
+   "options": [
+    "$2\\frac{6}{11}$ days",
+    "$3\\frac{3}{11}$ days",
+    "$4\\frac{1}{11}$ days",
+    "$5\\frac{3}{11}$ days"
+   ],
+   "answer": 1,
+   "solution": "$\\frac{1}{6} + \\frac{1}{12} + \\frac{1}{18} = \\frac{6 + 3 + 2}{36} = \\frac{11}{36}$ ⇒ $3\\frac{3}{11}$ days.",
+   "shortcut": "LCM 36: rates 6 + 3 + 2 = 11/day ⇒ 36/11 days.",
+   "difficulty": "easy",
+   "subtopic": "tw-basics",
+   "pattern": "combined work",
+   "timeSec": 30
+  },
+  {
+   "id": "tw-q03",
+   "q": "Two pipes can fill a tank in 12 hours and 24 hours respectively. If both are opened together, the tank is filled in:",
+   "figure": null,
+   "options": [
+    "6 hours",
+    "7 hours",
+    "8 hours",
+    "9 hours"
+   ],
+   "answer": 2,
+   "solution": "$\\frac{12 \\times 24}{12 + 24} = 8$ hours.",
+   "shortcut": "ab/(a+b) = 288/36 = 8 h.",
+   "difficulty": "easy",
+   "subtopic": "tw-pipes",
+   "pattern": "two inlets",
+   "timeSec": 25
+  },
+  {
+   "id": "tw-q04",
+   "q": "12 men can complete a piece of work in 15 days. In how many days will 20 men complete the same work?",
+   "figure": null,
+   "options": [
+    "8 days",
+    "9 days",
+    "10 days",
+    "12 days"
+   ],
+   "answer": 1,
+   "solution": "$12 \\times 15 = 20 \\times D$ ⇒ $D = 9$ days.",
+   "shortcut": "180 man-days ÷ 20 men = 9 days.",
+   "difficulty": "easy",
+   "subtopic": "tw-man-days",
+   "pattern": "men-days",
+   "timeSec": 25
+  },
+  {
+   "id": "tw-q05",
+   "q": "A is 3 times as efficient as B, and together they finish a work in 12 days. A alone will finish it in:",
+   "figure": null,
+   "options": [
+    "14 days",
+    "16 days",
+    "18 days",
+    "20 days"
+   ],
+   "answer": 1,
+   "solution": "Rates $3k + k = 4k = \\frac{1}{12}$ ⇒ $k = \\frac{1}{48}$; A $= \\frac{1}{3k} = 16$ days.",
+   "shortcut": "(k+1)T/k = 4×12/3 = 16 days.",
+   "difficulty": "easy",
+   "subtopic": "tw-efficiency",
+   "pattern": "k-times worker",
+   "timeSec": 30
+  },
+  {
+   "id": "tw-q06",
+   "q": "A can do a work in 15 days and B in 20 days. A works for 4 days and then leaves. B alone completes the remaining work in:",
+   "figure": null,
+   "options": [
+    "$12\\frac{1}{2}$ days",
+    "$13\\frac{1}{3}$ days",
+    "$14\\frac{2}{3}$ days",
+    "$15\\frac{1}{2}$ days"
+   ],
+   "answer": 2,
+   "solution": "A did $\\frac{4}{15}$; remaining $= \\frac{11}{15}$.\nB's time $= 20 \\times \\frac{11}{15} = 14\\frac{2}{3}$ days.",
+   "shortcut": "Remainder 11/15 at B's 1/20 per day ⇒ 44/3 days.",
+   "difficulty": "medium",
+   "subtopic": "tw-cases",
+   "pattern": "leaving mid-work",
+   "timeSec": 40
+  },
+  {
+   "id": "tw-q07",
+   "q": "Two pipes fill a tank in 8 hours and 12 hours, while a third pipe empties the full tank in 6 hours. With all three open, the empty tank is filled in:",
+   "figure": null,
+   "options": [
+    "20 hours",
+    "22 hours",
+    "24 hours",
+    "26 hours"
+   ],
+   "answer": 2,
+   "solution": "$\\frac{1}{8} + \\frac{1}{12} - \\frac{1}{6} = \\frac{3 + 2 - 4}{24} = \\frac{1}{24}$ ⇒ 24 hours.",
+   "shortcut": "Net rate = 1/24 ⇒ 24 h.",
+   "difficulty": "medium",
+   "subtopic": "tw-pipes",
+   "pattern": "fill-fill-drain",
+   "timeSec": 35
+  },
+  {
+   "id": "tw-q08",
+   "q": "A and B together can do a work in 8 days, B and C in 12 days, and A and C in 16 days. All three together will complete it in:",
+   "figure": null,
+   "options": [
+    "$6\\frac{6}{13}$ days",
+    "$7\\frac{5}{13}$ days",
+    "$7\\frac{11}{13}$ days",
+    "$8\\frac{4}{13}$ days"
+   ],
+   "answer": 1,
+   "solution": "$2(A+B+C) = \\frac{1}{8} + \\frac{1}{12} + \\frac{1}{16} = \\frac{13}{48}$ ⇒ rate $= \\frac{13}{96}$.\nTime $= \\frac{96}{13} = 7\\frac{5}{13}$ days.",
+   "shortcut": "Pairwise rates add to 2× the trio rate ⇒ 96/13 days.",
+   "difficulty": "medium",
+   "subtopic": "tw-basics",
+   "pattern": "pairwise rates",
+   "timeSec": 45
+  },
+  {
+   "id": "tw-q09",
+   "q": "A can do $\\frac{2}{5}$ of a work in 6 days and B can do $\\frac{3}{4}$ of the same work in 9 days. Working together, they complete the work in:",
+   "figure": null,
+   "options": [
+    "$5\\frac{1}{3}$ days",
+    "$6\\frac{2}{3}$ days",
+    "$7\\frac{1}{3}$ days",
+    "8 days"
+   ],
+   "answer": 1,
+   "solution": "A: full work in $\\frac{6 \\times 5}{2} = 15$ days; B: $\\frac{9 \\times 4}{3} = 12$ days.\nTogether: $\\frac{1}{15} + \\frac{1}{12} = \\frac{3}{20}$ ⇒ $6\\frac{2}{3}$ days.",
+   "shortcut": "Scale each to full-work time first (15 and 12), then combine.",
+   "difficulty": "medium",
+   "subtopic": "tw-basics",
+   "pattern": "partial work scaling",
+   "timeSec": 40
+  },
+  {
+   "id": "tw-q10",
+   "q": "A garrison of 500 men has provisions for 27 days. After 3 days, 300 more men join. The provisions will now last for:",
+   "figure": null,
+   "options": [
+    "12 days",
+    "15 days",
+    "18 days",
+    "20 days"
+   ],
+   "answer": 1,
+   "solution": "Stock left $= 500 \\times (27 - 3) = 12000$ man-days.\n$\\frac{12000}{800} = 15$ days.",
+   "shortcut": "24 days of stock spread over 800 men ⇒ 15 days.",
+   "difficulty": "medium",
+   "subtopic": "tw-man-days",
+   "pattern": "provisions",
+   "timeSec": 40
+  },
+  {
+   "id": "tw-q11",
+   "q": "A alone completes a work in 12 days and B alone in 18 days. They work together and receive ₹840 as total wages. A's share is:",
+   "figure": null,
+   "options": [
+    "₹420",
+    "₹480",
+    "₹504",
+    "₹560"
+   ],
+   "answer": 2,
+   "solution": "$A : B = \\frac{1}{12} : \\frac{1}{18} = 3 : 2$ ⇒ $A = 840 \\times \\frac{3}{5} = 504$, i.e. ₹504.",
+   "shortcut": "Equal days ⇒ wage ratio = rate ratio = 3 : 2.",
+   "difficulty": "medium",
+   "subtopic": "tw-cases",
+   "pattern": "wages",
+   "timeSec": 35
+  },
+  {
+   "id": "tw-q12",
+   "q": "A can finish a work in 6 days and B in 12 days. They work on alternate days, A starting on the first day. The work is completed in:",
+   "figure": null,
+   "options": [
+    "7 days",
+    "8 days",
+    "9 days",
+    "$8\\frac{1}{2}$ days"
+   ],
+   "answer": 1,
+   "solution": "Per 2 days: $\\frac{1}{6} + \\frac{1}{12} = \\frac{1}{4}$ of the work.\n4 cycles (8 days) complete exactly $4 \\times \\frac{1}{4} = 1$ ⇒ finished on day 8.",
+   "shortcut": "Cycle rate 1/4 ⇒ exactly 4 cycles = 8 days.",
+   "difficulty": "medium",
+   "subtopic": "tw-cases",
+   "pattern": "alternate days",
+   "timeSec": 40
+  },
+  {
+   "id": "tw-q13",
+   "q": "45 men would complete a piece of work in 16 days. They work for 4 days, after which 36 more men join them. The remaining work is now completed in:",
+   "figure": null,
+   "options": [
+    "$5\\frac{1}{3}$ days",
+    "$6\\frac{2}{3}$ days",
+    "$7\\frac{1}{3}$ days",
+    "8 days"
+   ],
+   "answer": 1,
+   "solution": "Total work $= 720$ man-days; done in 4 days $= 180$.\nRemaining $= 540$ with 81 men ⇒ $\\frac{540}{81} = 6\\frac{2}{3}$ days.",
+   "shortcut": "540 man-days ÷ 81 men = 6⅔ days.",
+   "difficulty": "hard",
+   "subtopic": "tw-man-days",
+   "pattern": "reinforcement",
+   "timeSec": 50
+  },
+  {
+   "id": "tw-q14",
+   "q": "Pipes A and B can fill a tank in 12 hours and 16 hours respectively. Both are opened together for 4 hours; then a drain pipe C, which can empty the full tank in 24 hours, is also opened. The total time taken to fill the tank is:",
+   "figure": null,
+   "options": [
+    "7 hours",
+    "$7\\frac{1}{2}$ hours",
+    "8 hours",
+    "9 hours"
+   ],
+   "answer": 2,
+   "solution": "In 4 h, A + B fill $\\frac{7}{48} \\times 4 = \\frac{7}{12}$; remaining $= \\frac{5}{12}$.\nNew net rate $= \\frac{7}{48} - \\frac{1}{24} = \\frac{5}{48}$ ⇒ time $= \\frac{5}{12} \\times \\frac{48}{5} = 4$ h.\nTotal = 4 + 4 = **8 hours**.",
+   "shortcut": "Stage 1 does 7/12; stage 2 rate 5/48 finishes the rest in exactly 4 h.",
+   "difficulty": "hard",
+   "subtopic": "tw-pipes",
+   "pattern": "staged pipes",
+   "timeSec": 55
+  },
+  {
+   "id": "tw-q15",
+   "q": "A is 3 times as fast a worker as B and takes 24 days less than B for the same work. If they work together, the work is completed in:",
+   "figure": null,
+   "options": [
+    "8 days",
+    "9 days",
+    "10 days",
+    "12 days"
+   ],
+   "answer": 1,
+   "solution": "Times: $x$ and $3x$ with $3x - x = 24$ ⇒ $x = 12$ (A = 12, B = 36).\nTogether: $\\frac{1}{12} + \\frac{1}{36} = \\frac{4}{36} = \\frac{1}{9}$ ⇒ 9 days.",
+   "shortcut": "Difference of times = 2 units = 24 ⇒ A 12, B 36; ab/(a+b) = 9.",
+   "difficulty": "hard",
+   "subtopic": "tw-efficiency",
+   "pattern": "efficiency + days difference",
+   "timeSec": 50
+  }
+ ]
+}

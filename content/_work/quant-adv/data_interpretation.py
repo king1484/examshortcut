@@ -236,7 +236,7 @@ r"""Using the same data,
 | Production | 400 | 450 | 500 | 550 |
 
 the percentage increase in production from 2020 to 2021 was approximately:""",
-[(r"$11\tfrac{1}{9}\%", "11 1/9%"), ("10%", "10%"), (r"$12\tfrac{1}{2}\%", "12.5%"), ("12%", "12%")], "11 1/9%",
+[(r"$11\tfrac{1}{9}\%$", "11 1/9%"), ("10%", "10%"), (r"$12\tfrac{1}{2}\%$", "12.5%"), ("12%", "12%")], "11 1/9%",
 r"$\frac{500-450}{450}\times100=\frac{50}{450}\times100=\frac{100}{9}=11\tfrac19\%$.",
 r"$\frac{50}{450}=\frac19\to11\tfrac19\%$. Base is 2020 (the earlier year).",
 "medium", "di-percent", "percent increase", 40))

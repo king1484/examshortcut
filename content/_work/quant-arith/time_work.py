@@ -16,8 +16,8 @@ assert Fr(1, 12) / 4 == Fr(1, 48) and 48 / 3 == 16                    # E5
 assert Fr(4, 15) == Fr(4, 15) and 20 * Fr(11, 15) == Fr(44, 3)        # M1
 assert Fr(1, 8) + Fr(1, 12) - Fr(1, 6) == Fr(1, 24)                   # M2
 assert Fr(1, 8) + Fr(1, 12) + Fr(1, 16) == Fr(13, 48) and Fr(13, 48) / 2 == Fr(13, 96)  # M3
-assert Fr(2, 5) * Fr(6, 2) * Fr(5, 2) == 15 // 1 and Fr(6, 1) * Fr(5, 2) == 15  # M4 A
-assert Fr(9, 4) * Fr(4, 3) == 12                                       # M4 B: (3/4 -> 9 days) full 12
+assert Fr(6, 1) * Fr(5, 2) == 15                                       # M4 A: 2/5 in 6 days -> full 15
+assert Fr(9, 1) * Fr(4, 3) == 12                                       # M4 B: 3/4 in 9 days -> full 12
 assert Fr(1, 15) + Fr(1, 12) == Fr(3, 20)                              # M4 together
 assert 500 * 27 == 13500 and 13500 - 1500 == 12000 and 12000 / 800 == 15  # M5
 assert Fr(1, 12) / Fr(1, 18) == Fr(3, 2) and 840 * Fr(3, 5) == 504     # M6
@@ -105,8 +105,7 @@ subtopics = [
    trick("Stage the problem",
          "Finish stage 1 first, then treat the remainder as a fresh tank.",
          "Pipes A (12 h) and B (16 h) fill a tank. Both run for 4 hours, then a drain (24 h) is also opened. The tank is full after how many more hours?",
-         r"In 4 h: $\frac{7}{48} \times 4 = \frac{7}{12}$ done. New rate $= \frac{7}{48} - \frac{1}{24} = \frac{5}{48}$.",
-         r"Remainder $\frac{5}{12} \div \frac{5}{48} = 4$ h ⇒ total **8 hours**."),
+         r"In 4 h: $\frac{7}{48} \times 4 = \frac{7}{12}$ done. New rate $= \frac{7}{48} - \frac{1}{24} = \frac{5}{48}$, so the remainder takes $\frac{5}{12} \div \frac{5}{48} = 4$ h ⇒ total **8 hours**."),
    trick("Fill-and-drain pair formula",
          "One inlet, one outlet: net time = ab/(b − a).",
          "A pipe fills a tank in 10 hours; a leak empties the full tank in 15 hours. With both, the tank fills in:",
@@ -171,7 +170,7 @@ subtopics = [
    trick("Wages follow work, not days alone",
          "Rate ratio × equal days = work ratio.",
          "A alone does a work in 12 days, B in 18 days. They work together and earn ₹840. A's share is:",
-         r"$A : B = \frac{1}{12} : \frac{1}{18} = 3 : 2$ ⇒ A gets $840 \times \frac{3}{5} = ₹504$.")],
+         r"$A : B = \frac{1}{12} : \frac{1}{18} = 3 : 2$ ⇒ A gets $840 \times \frac{3}{5} = 504$, i.e. ₹504.")],
   [r"Splitting wages by days instead of by work done when efficiencies differ.",
    "In alternate-day problems, forgetting who works the final partial day.",
    "Applying the remaining work to both workers ('B finishes 11/15' — not both B and A).",
@@ -239,7 +238,7 @@ assert Fr(1, 8) - Fr(1, 12) == Fr(1, 24)
 solved.append(Q("tw-s05", "A can do a work in 12 days. With B's help the work is done in 8 days. If total wages are ₹1,200, B's share (both working the whole time) is:",
   ["₹300", "₹400", "₹450", "₹600"], 1, 400,
   md(r"B's rate $= \frac{1}{8} - \frac{1}{12} = \frac{1}{24}$.",
-     r"$A : B = \frac{1}{12} : \frac{1}{24} = 2 : 1$ ⇒ B gets $1200 \times \frac{1}{3} = ₹400$."),
+     r"$A : B = \frac{1}{12} : \frac{1}{24} = 2 : 1$ ⇒ B gets $1200 \times \frac{1}{3} = 400$, i.e. ₹400."),
   "Rate ratio 2 : 1 ⇒ B takes a third of the wages.",
   "medium", "tw-cases", "wages", 40))
 
@@ -305,7 +304,7 @@ P.append(Q("tw-q08", "A and B together can do a work in 8 days, B and C in 12 da
   "medium", "tw-basics", "pairwise rates", 45))
 
 assert Fr(1, 15) + Fr(1, 12) == Fr(3, 20)
-P.append(Q("tw-q09", "A can do $\frac{2}{5}$ of a work in 6 days and B can do $\frac{3}{4}$ of the same work in 9 days. Working together, they complete the work in:",
+P.append(Q("tw-q09", r"A can do $\frac{2}{5}$ of a work in 6 days and B can do $\frac{3}{4}$ of the same work in 9 days. Working together, they complete the work in:",
   ["$5\\frac{1}{3}$ days", "$6\\frac{2}{3}$ days", "$7\\frac{1}{3}$ days", "8 days"], 1, Fr(20, 3),
   md(r"A: full work in $\frac{6 \times 5}{2} = 15$ days; B: $\frac{9 \times 4}{3} = 12$ days.",
      r"Together: $\frac{1}{15} + \frac{1}{12} = \frac{3}{20}$ ⇒ $6\frac{2}{3}$ days."),
@@ -323,7 +322,7 @@ P.append(Q("tw-q10", "A garrison of 500 men has provisions for 27 days. After 3 
 assert Fr(1, 12) / Fr(1, 18) == Fr(3, 2) and 840 * Fr(3, 5) == 504
 P.append(Q("tw-q11", "A alone completes a work in 12 days and B alone in 18 days. They work together and receive ₹840 as total wages. A's share is:",
   ["₹420", "₹480", "₹504", "₹560"], 2, 504,
-  md(r"$A : B = \frac{1}{12} : \frac{1}{18} = 3 : 2$ ⇒ $A = 840 \times \frac{3}{5} = ₹504$."),
+  md(r"$A : B = \frac{1}{12} : \frac{1}{18} = 3 : 2$ ⇒ $A = 840 \times \frac{3}{5} = 504$, i.e. ₹504."),
   "Equal days ⇒ wage ratio = rate ratio = 3 : 2.",
   "medium", "tw-cases", "wages", 35))
 

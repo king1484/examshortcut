@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import { ThemeToggle } from './ThemeToggle';
 
 const NAV = [
+  { href: '/dashboard/', label: 'Dashboard', exact: true },
   { href: '/ssc-cgl/', label: 'SSC CGL', exact: true },
   { href: '/ssc-cgl/syllabus/', label: 'Syllabus & Notes' },
   { href: '/ssc-cgl/mocks/', label: 'Mock Tests' },
