@@ -81,6 +81,7 @@ export default function ExamPage() {
           ['/ssc-cgl/study-plan/', '🗓️ Study plan generator', 'Day-by-day timetable to exam day'],
           ['/ssc-cgl/posts/', '🏛️ Posts & age checker', 'Eligibility + post preference builder'],
           ['/ssc-cgl/calendar/', '⏳ Exam calendar', 'Countdown + add dates to your calendar'],
+          ['/ssc-cgl/typing-test/', '⌨️ Typing test (DEST)', '15-min simulator, SSC error marking'],
         ].map(([href, t, s]) => (
           <Link key={href} href={href} className="card p-4 hover:-translate-y-0.5 transition-transform">
             <div className="font-bold text-sm">{t}</div>
