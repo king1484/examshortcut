@@ -2,8 +2,8 @@
    Static export: every page is a static file; cache-on-request keeps visited
    topics/mocks available offline. Content updates via network-first for pages,
    cache-first for static assets. */
-const VERSION = 'es-v1';
-const SHELL = ['/', '/ssc-cgl/', '/ssc-cgl/syllabus/', '/ssc-cgl/mocks/', '/ssc-cgl/formula-sheet/', '/revision/', '/about/', '/manifest.webmanifest', '/icon.svg'];
+const VERSION = 'es-v2';
+const SHELL = ['/', '/ssc-cgl/', '/ssc-cgl/syllabus/', '/ssc-cgl/mocks/', '/ssc-cgl/formula-sheet/', '/revision/', '/about/', '/search/', '/manifest.webmanifest', '/icon.svg', '/search-index.json'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()).catch(() => {}));
@@ -24,7 +24,7 @@ self.addEventListener('fetch', (e) => {
   if (url.origin !== location.origin) return;
 
   // Static assets: cache-first
-  if (url.pathname.startsWith('/_next/static/') || /\.(css|js|svg|png|woff2?|webmanifest)$/.test(url.pathname)) {
+  if (url.pathname.startsWith('/_next/static/') || /\.(css|js|json|svg|png|woff2?|webmanifest)$/.test(url.pathname)) {
     e.respondWith(
       caches.match(req).then((hit) => hit || fetch(req).then((res) => {
         const copy = res.clone();

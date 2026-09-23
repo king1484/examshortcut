@@ -387,7 +387,7 @@ r"If $\cos\theta=\dfrac{12}{13}$, then $\text{cosec}\,\theta$ equals:",
 [(r"$\frac{13}{5}$", sp.Rational(13, 5)), (r"$\frac{5}{13}$", sp.Rational(5, 13)), (r"$\frac{13}{12}$", sp.Rational(13, 12)), (r"$\frac{12}{5}$", sp.Rational(12, 5))], sp.Rational(13, 5),
 r"Opposite $=\sqrt{13^2-12^2}=5$, so $\sin\theta=\frac5{13}$ and $\text{cosec}\theta=\frac{13}{5}$.",
 r"5-12-13: $\sin=\frac5{13}$ → cosec $=\frac{13}{5}$ (flip). Trap: $\frac{13}{12}$ is $\sec\theta$.",
-"medium", "trig-valueput", "given cos → cosec", 30))
+"easy", "trig-valueput", "given cos → cosec", 30))
 
 pr.append(Q("trig-q12",
 r"The minimum value of $4\tan^2\theta+9\cot^2\theta$ (for acute $\theta$) is:",
