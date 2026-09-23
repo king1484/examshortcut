@@ -1,0 +1,490 @@
+{
+ "id": "counting-figures",
+ "sectionId": "reasoning",
+ "title": "Counting Figures",
+ "order": 15,
+ "importance": "medium",
+ "avgQuestions": {
+  "tier1": "0-1",
+  "tier2": "1-2"
+ },
+ "summary": "Count triangles, squares, rectangles or straight lines in a figure. Recognise the standard shapes first (square with diagonals = 8, with midlines too = 16; apex lines (k+1)(k+2)/2; grid rectangles C(m+1,2)C(n+1,2); squares 1² + … + n²), and count anything irregular size by size so nothing is missed or counted twice.",
+ "subtopics": [
+  {
+   "id": "triangles",
+   "title": "Counting triangles",
+   "concept": "Never count by eye. Use one of two systematic methods:\n\n1. **Size-by-size**: count the smallest triangles, then triangles made of 2 pieces, then 3, and so on. Symmetric figures (square with diagonals) are fastest this way.\n2. **Vertex labelling**: name every corner and crossing point, then list triangles by their top vertex. Slow but fool-proof for irregular figures.\n\n**Formula for a triangle with lines from the apex**: if k lines are drawn from the apex to the base (splitting it into k + 1 parts), the number of triangles is (k + 1)(k + 2) ÷ 2 — it equals the number of ways to pick two of the k + 2 lines through the apex. Every horizontal line cutting all of them adds another full set: multiply by (h + 1).",
+   "formulas": [
+    {
+     "name": "Apex lines",
+     "tex": "T = \\frac{(k+1)(k+2)}{2}",
+     "note": "k lines from the apex to the base."
+    },
+    {
+     "name": "Apex lines + horizontal cuts",
+     "tex": "T = \\frac{(k+1)(k+2)}{2}\\times(h+1)",
+     "note": "h lines parallel to the base crossing every apex line."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Square with both diagonals = 8",
+     "body": "A square (or any rectangle) with both diagonals always has 4 small triangles meeting at the centre and 4 half-squares — 8 in total. Add midlines and it becomes 16: 8 smallest, 4 made of two, 4 half-squares.",
+     "example": {
+      "q": "**Q.** How many triangles are in a square with both diagonals and both midlines drawn?\n\n**Sol.** 8 smallest + 4 of two pieces (a full side of the square as base, apex at the centre) + 4 half-squares = **16**.",
+      "solution": "Memorise 8 and 16; they recur inside bigger figures."
+     }
+    },
+    {
+     "title": "Choose-two-lines view",
+     "body": "In a triangle with lines from the apex, each triangle is fixed by choosing its left and right side among the lines through the apex: C(k + 2, 2).",
+     "example": {
+      "q": "**Q.** Apex with 4 lines to the base (base in 5 parts). Triangles?\n\n**Sol.** Lines through the apex = 4 + 2 sides = 6. C(6, 2) = **15**.",
+      "solution": "Count the lines through the apex, then C(n, 2)."
+     }
+    }
+   ],
+   "mistakes": [
+    "Forgetting the big outer triangle.",
+    "Counting a four-sided region as a triangle because it looks pointed.",
+    "Missing triangles made of two or three small pieces."
+   ]
+  },
+  {
+   "id": "squares-rectangles",
+   "title": "Counting squares and rectangles",
+   "concept": "For a grid of m columns and n rows of equal cells:\n\n- **Rectangles** (squares included): choose 2 of the m + 1 vertical lines and 2 of the n + 1 horizontal lines → C(m+1, 2) × C(n+1, 2).\n- **Squares**: count k × k squares for every size k: (m − k + 1)(n − k + 1), summed for k = 1 … min(m, n).\n\nFor an n × n grid the square count is 1² + 2² + … + n² (a 3 × 3 grid has 9 + 4 + 1 = 14 squares).",
+   "formulas": [
+    {
+     "name": "Rectangles in an m × n grid",
+     "tex": "R = \\binom{m+1}{2}\\binom{n+1}{2}",
+     "note": "Pick two vertical and two horizontal lines."
+    },
+    {
+     "name": "Squares in an m × n grid",
+     "tex": "S = \\sum_{k=1}^{\\min(m,n)} (m-k+1)(n-k+1)",
+     "note": "n × n grid: 1² + 2² + … + n²."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Line-pair trick",
+     "body": "A rectangle is decided by its two vertical sides and two horizontal sides — so count line pairs, never shapes.",
+     "example": {
+      "q": "**Q.** How many rectangles are in a 3 × 2 grid?\n\n**Sol.** Vertical lines 4 → C(4,2) = 6; horizontal lines 3 → C(3,2) = 3. 6 × 3 = **18**.",
+      "solution": "R = C(vertical lines, 2) × C(horizontal lines, 2)."
+     }
+    }
+   ],
+   "mistakes": [
+    "Forgetting that every square is also a rectangle.",
+    "Using the number of cells instead of the number of lines in C( , 2).",
+    "Missing the larger squares (2 × 2, 3 × 3) in a grid."
+   ]
+  },
+  {
+   "id": "straight-lines",
+   "title": "Counting straight lines",
+   "concept": "Count each **complete straight line** once, however many shapes it passes through. Group lines by direction: horizontal, vertical, then each slant direction. Two drawn pieces lying on the same straight path and touching end to end form **one** line.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Direction sweep",
+     "body": "Sweep once for horizontals, once for verticals, once per slant direction; the running total is the answer.",
+     "example": {
+      "q": "**Q.** A square with both diagonals — how many straight lines?\n\n**Sol.** Horizontal 2, vertical 2, slants 2 → **6**.",
+      "solution": "Group by direction to avoid double counting."
+     }
+    }
+   ],
+   "mistakes": [
+    "Counting a diagonal made of two joined pieces as two lines.",
+    "Missing the outer boundary lines."
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Triangle with apex lines",
+   "frequency": "very common",
+   "howToSpot": "A triangle with several lines from one vertex, possibly with horizontal cuts.",
+   "approach": "(k+1)(k+2)/2 × (h+1)."
+  },
+  {
+   "pattern": "Square/rectangle with diagonals",
+   "frequency": "very common",
+   "howToSpot": "Square or rectangle with diagonals, midlines or an inner square.",
+   "approach": "Size-by-size count: smallest, two-piece, half-figure."
+  },
+  {
+   "pattern": "Irregular composite figure",
+   "frequency": "common",
+   "howToSpot": "House/envelope shapes, kites, subdivided triangles.",
+   "approach": "Label vertices; count by region combinations."
+  },
+  {
+   "pattern": "Squares in a grid",
+   "frequency": "common",
+   "howToSpot": "A chessboard-style grid; count squares.",
+   "approach": "Sum (m−k+1)(n−k+1) over sizes."
+  },
+  {
+   "pattern": "Rectangles in a grid",
+   "frequency": "occasional",
+   "howToSpot": "A grid; count all rectangles.",
+   "approach": "C(m+1,2) × C(n+1,2)."
+  },
+  {
+   "pattern": "Straight lines count",
+   "frequency": "occasional",
+   "howToSpot": "Count the straight lines needed to draw a figure.",
+   "approach": "Sweep by direction; joined collinear pieces are one line."
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "rsn-counting-ex1",
+   "q": "How many triangles are there in the given figure?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 154 118\" width=\"154\" height=\"118\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"77\" y1=\"5\" x2=\"5\" y2=\"113\"/><line x1=\"5\" y1=\"113\" x2=\"149\" y2=\"113\"/><line x1=\"149\" y1=\"113\" x2=\"77\" y2=\"5\"/><line x1=\"77\" y1=\"5\" x2=\"41\" y2=\"113\"/><line x1=\"77\" y1=\"5\" x2=\"77\" y2=\"113\"/><line x1=\"77\" y1=\"5\" x2=\"113\" y2=\"113\"/></svg>",
+   "options": [
+    "8",
+    "9",
+    "12",
+    "10"
+   ],
+   "answer": 3,
+   "solution": "Three lines run from the apex to the base, so there are 3 + 2 = 5 lines through the apex. Any two of them form a triangle with the base: C(5, 2) = **10**. (Size-wise: 4 single, 3 double, 2 triple, 1 whole.)",
+   "shortcut": "(k+1)(k+2)/2 with k = 3 → 4 × 5 / 2 = 10.",
+   "difficulty": "easy",
+   "subtopic": "triangles",
+   "pattern": "triangle with apex lines",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-counting-ex2",
+   "q": "How many triangles are there in the given figure?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 82 82\" width=\"82\" height=\"82\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"5\" x2=\"77\" y2=\"5\"/><line x1=\"77\" y1=\"5\" x2=\"77\" y2=\"77\"/><line x1=\"77\" y1=\"77\" x2=\"5\" y2=\"77\"/><line x1=\"5\" y1=\"77\" x2=\"5\" y2=\"5\"/><line x1=\"5\" y1=\"5\" x2=\"77\" y2=\"77\"/><line x1=\"77\" y1=\"5\" x2=\"5\" y2=\"77\"/><line x1=\"41\" y1=\"5\" x2=\"41\" y2=\"77\"/><line x1=\"5\" y1=\"41\" x2=\"77\" y2=\"41\"/></svg>",
+   "options": [
+    "14",
+    "18",
+    "16",
+    "12"
+   ],
+   "answer": 2,
+   "solution": "Smallest triangles: the diagonals and midlines cut the square into 8 → **8**. Two pieces together: a full side of the square as base with the apex at the centre (a midline splits each into 2 small ones) → 4. Half-squares cut off by a diagonal → 4. Total 8 + 4 + 4 = **16**.",
+   "shortcut": "Square + diagonals + midlines is a standard 16.",
+   "difficulty": "medium",
+   "subtopic": "triangles",
+   "pattern": "square/rectangle with diagonals",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-counting-ex3",
+   "q": "How many rectangles (including squares) are there in the given figure?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 46\" width=\"64\" height=\"46\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"5\" x2=\"5\" y2=\"41\"/><line x1=\"23\" y1=\"5\" x2=\"23\" y2=\"41\"/><line x1=\"41\" y1=\"5\" x2=\"41\" y2=\"41\"/><line x1=\"59\" y1=\"5\" x2=\"59\" y2=\"41\"/><line x1=\"5\" y1=\"5\" x2=\"59\" y2=\"5\"/><line x1=\"5\" y1=\"23\" x2=\"59\" y2=\"23\"/><line x1=\"5\" y1=\"41\" x2=\"59\" y2=\"41\"/></svg>",
+   "options": [
+    "15",
+    "20",
+    "18",
+    "12"
+   ],
+   "answer": 2,
+   "solution": "The grid has 4 vertical and 3 horizontal lines. Choose 2 verticals: C(4, 2) = 6; choose 2 horizontals: C(3, 2) = 3. Rectangles = 6 × 3 = **18**.",
+   "shortcut": "C(4,2) × C(3,2).",
+   "difficulty": "easy",
+   "subtopic": "squares-rectangles",
+   "pattern": "rectangles in a grid",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-counting-ex4",
+   "q": "What is the minimum number of straight lines needed to draw the given figure?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 118 118\" width=\"118\" height=\"118\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"41\" x2=\"113\" y2=\"41\"/><line x1=\"113\" y1=\"41\" x2=\"113\" y2=\"113\"/><line x1=\"113\" y1=\"113\" x2=\"5\" y2=\"113\"/><line x1=\"5\" y1=\"113\" x2=\"5\" y2=\"41\"/><line x1=\"5\" y1=\"41\" x2=\"59\" y2=\"5\"/><line x1=\"59\" y1=\"5\" x2=\"113\" y2=\"41\"/><line x1=\"5\" y1=\"41\" x2=\"113\" y2=\"113\"/><line x1=\"113\" y1=\"41\" x2=\"5\" y2=\"113\"/></svg>",
+   "options": [
+    "9",
+    "10",
+    "8",
+    "7"
+   ],
+   "answer": 2,
+   "solution": "Horizontal: top and bottom of the rectangle → 2. Vertical: two sides → 2. Diagonals of the rectangle → 2. Roof slopes → 2. Total **8**.",
+   "shortcut": "Sweep by direction: 2 + 2 + 2 + 2.",
+   "difficulty": "easy",
+   "subtopic": "straight-lines",
+   "pattern": "straight lines count",
+   "timeSec": 30
+  }
+ ],
+ "practice": [
+  {
+   "id": "rsn-counting-1",
+   "q": "How many triangles are there in the given figure?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 154 118\" width=\"154\" height=\"118\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"77\" y1=\"5\" x2=\"5\" y2=\"113\"/><line x1=\"5\" y1=\"113\" x2=\"149\" y2=\"113\"/><line x1=\"149\" y1=\"113\" x2=\"77\" y2=\"5\"/><line x1=\"77\" y1=\"5\" x2=\"33.8\" y2=\"113\"/><line x1=\"77\" y1=\"5\" x2=\"62.6\" y2=\"113\"/><line x1=\"77\" y1=\"5\" x2=\"91.4\" y2=\"113\"/><line x1=\"77\" y1=\"5\" x2=\"120.2\" y2=\"113\"/></svg>",
+   "options": [
+    "15",
+    "10",
+    "12",
+    "14"
+   ],
+   "answer": 0,
+   "solution": "Four lines from the apex divide the base into 5 parts. Lines through the apex = 4 + 2 = 6; any two form a triangle: C(6, 2) = **15**.",
+   "shortcut": "(k+1)(k+2)/2 = 5 × 6 / 2 = 15.",
+   "difficulty": "easy",
+   "subtopic": "triangles",
+   "pattern": "triangle with apex lines",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-counting-2",
+   "q": "How many triangles are there in the given figure?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 154 118\" width=\"154\" height=\"118\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"77\" y1=\"5\" x2=\"5\" y2=\"113\"/><line x1=\"5\" y1=\"113\" x2=\"149\" y2=\"113\"/><line x1=\"149\" y1=\"113\" x2=\"77\" y2=\"5\"/><line x1=\"77\" y1=\"5\" x2=\"53\" y2=\"113\"/><line x1=\"77\" y1=\"5\" x2=\"101\" y2=\"113\"/><line x1=\"41\" y1=\"59\" x2=\"113\" y2=\"59\"/></svg>",
+   "options": [
+    "10",
+    "12",
+    "6",
+    "9"
+   ],
+   "answer": 1,
+   "solution": "Two apex lines give (3 × 4)/2 = 6 triangles above the base. The horizontal line crosses all apex lines and creates another complete set of 6 above it. Total 6 × 2 = **12**.",
+   "shortcut": "6 × (h + 1) with h = 1.",
+   "difficulty": "medium",
+   "subtopic": "triangles",
+   "pattern": "triangle with apex lines",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-counting-3",
+   "q": "How many triangles are there in the given figure?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 154 118\" width=\"154\" height=\"118\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"77\" y1=\"5\" x2=\"5\" y2=\"113\"/><line x1=\"5\" y1=\"113\" x2=\"149\" y2=\"113\"/><line x1=\"149\" y1=\"113\" x2=\"77\" y2=\"5\"/><line x1=\"77\" y1=\"5\" x2=\"41\" y2=\"113\"/><line x1=\"77\" y1=\"5\" x2=\"77\" y2=\"113\"/><line x1=\"77\" y1=\"5\" x2=\"113\" y2=\"113\"/><line x1=\"41\" y1=\"59\" x2=\"113\" y2=\"59\"/></svg>",
+   "options": [
+    "16",
+    "20",
+    "10",
+    "15"
+   ],
+   "answer": 1,
+   "solution": "Three apex lines → 10 triangles on the base; the horizontal line gives a second set of 10 on itself. Total **20**.",
+   "shortcut": "10 × 2.",
+   "difficulty": "medium",
+   "subtopic": "triangles",
+   "pattern": "triangle with apex lines",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-counting-4",
+   "q": "How many triangles are there in the given figure?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 154 118\" width=\"154\" height=\"118\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"77\" y1=\"5\" x2=\"5\" y2=\"113\"/><line x1=\"5\" y1=\"113\" x2=\"149\" y2=\"113\"/><line x1=\"149\" y1=\"113\" x2=\"77\" y2=\"5\"/><line x1=\"41\" y1=\"59\" x2=\"113\" y2=\"59\"/><line x1=\"113\" y1=\"59\" x2=\"77\" y2=\"113\"/><line x1=\"77\" y1=\"113\" x2=\"41\" y2=\"59\"/></svg>",
+   "options": [
+    "5",
+    "4",
+    "6",
+    "7"
+   ],
+   "answer": 0,
+   "solution": "Joining the midpoints of the sides makes 4 small triangles (the middle one is upside down). Plus the whole triangle → **5**. No two small triangles combine into a triangle.",
+   "shortcut": "4 + 1.",
+   "difficulty": "easy",
+   "subtopic": "triangles",
+   "pattern": "irregular composite figure",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-counting-5",
+   "q": "How many triangles are there in the given figure?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 82 82\" width=\"82\" height=\"82\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"5\" x2=\"77\" y2=\"5\"/><line x1=\"77\" y1=\"5\" x2=\"77\" y2=\"77\"/><line x1=\"77\" y1=\"77\" x2=\"5\" y2=\"77\"/><line x1=\"5\" y1=\"77\" x2=\"5\" y2=\"5\"/><line x1=\"5\" y1=\"5\" x2=\"77\" y2=\"77\"/><line x1=\"77\" y1=\"5\" x2=\"5\" y2=\"77\"/></svg>",
+   "options": [
+    "10",
+    "8",
+    "4",
+    "6"
+   ],
+   "answer": 1,
+   "solution": "The diagonals make 4 small triangles meeting at the centre. Each diagonal also cuts the square into 2 half-squares, so 4 more. Total **8**.",
+   "shortcut": "Square + both diagonals = 8, always.",
+   "difficulty": "easy",
+   "subtopic": "triangles",
+   "pattern": "square/rectangle with diagonals",
+   "timeSec": 25
+  },
+  {
+   "id": "rsn-counting-6",
+   "q": "How many triangles are there in the given figure?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 154 82\" width=\"154\" height=\"82\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"5\" x2=\"149\" y2=\"5\"/><line x1=\"149\" y1=\"5\" x2=\"149\" y2=\"77\"/><line x1=\"149\" y1=\"77\" x2=\"5\" y2=\"77\"/><line x1=\"5\" y1=\"77\" x2=\"5\" y2=\"5\"/><line x1=\"77\" y1=\"5\" x2=\"77\" y2=\"77\"/><line x1=\"5\" y1=\"5\" x2=\"77\" y2=\"77\"/><line x1=\"77\" y1=\"5\" x2=\"5\" y2=\"77\"/><line x1=\"77\" y1=\"5\" x2=\"149\" y2=\"77\"/><line x1=\"149\" y1=\"5\" x2=\"77\" y2=\"77\"/></svg>",
+   "options": [
+    "20",
+    "18",
+    "16",
+    "14"
+   ],
+   "answer": 1,
+   "solution": "Each of the two squares has both its diagonals → 8 triangles each = 16. Two larger triangles use the whole bottom or whole top side of the rectangle with the two inner diagonals meeting at the midpoint of the opposite side → 2. Total **18**.",
+   "shortcut": "8 + 8 + 2 spanning triangles.",
+   "difficulty": "hard",
+   "subtopic": "triangles",
+   "pattern": "square/rectangle with diagonals",
+   "timeSec": 60
+  },
+  {
+   "id": "rsn-counting-7",
+   "q": "How many triangles are there in the given figure?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 82 82\" width=\"82\" height=\"82\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"5\" x2=\"77\" y2=\"5\"/><line x1=\"77\" y1=\"5\" x2=\"77\" y2=\"77\"/><line x1=\"77\" y1=\"77\" x2=\"5\" y2=\"77\"/><line x1=\"5\" y1=\"77\" x2=\"5\" y2=\"5\"/><line x1=\"41\" y1=\"5\" x2=\"77\" y2=\"41\"/><line x1=\"77\" y1=\"41\" x2=\"41\" y2=\"77\"/><line x1=\"41\" y1=\"77\" x2=\"5\" y2=\"41\"/><line x1=\"5\" y1=\"41\" x2=\"41\" y2=\"5\"/><line x1=\"5\" y1=\"5\" x2=\"77\" y2=\"77\"/><line x1=\"77\" y1=\"5\" x2=\"5\" y2=\"77\"/></svg>",
+   "options": [
+    "24",
+    "20",
+    "16",
+    "18"
+   ],
+   "answer": 1,
+   "solution": "The inner square joins the midpoints; the diagonals of the outer square cross everything. Size by size: each corner triangle is split by a diagonal into 2 tiny ones → 8; the 4 corner triangles themselves → 4; the 4 triangles with a full side of the square as base and apex at the centre → 4; the 4 half-squares → 4. Total 8 + 4 + 4 + 4 = **20**.",
+   "shortcut": "Work outward: tiny, corner, centre-apex, half-square.",
+   "difficulty": "hard",
+   "subtopic": "triangles",
+   "pattern": "square/rectangle with diagonals",
+   "timeSec": 75
+  },
+  {
+   "id": "rsn-counting-8",
+   "q": "How many triangles are there in the given figure?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 82 82\" width=\"82\" height=\"82\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"5\" x2=\"77\" y2=\"5\"/><line x1=\"77\" y1=\"5\" x2=\"77\" y2=\"77\"/><line x1=\"77\" y1=\"77\" x2=\"5\" y2=\"77\"/><line x1=\"5\" y1=\"77\" x2=\"5\" y2=\"5\"/><line x1=\"41\" y1=\"5\" x2=\"41\" y2=\"77\"/><line x1=\"5\" y1=\"41\" x2=\"77\" y2=\"41\"/><line x1=\"5\" y1=\"5\" x2=\"41\" y2=\"41\"/><line x1=\"41\" y1=\"5\" x2=\"77\" y2=\"41\"/><line x1=\"5\" y1=\"41\" x2=\"41\" y2=\"77\"/><line x1=\"41\" y1=\"41\" x2=\"77\" y2=\"77\"/></svg>",
+   "options": [
+    "8",
+    "12",
+    "9",
+    "10"
+   ],
+   "answer": 3,
+   "solution": "Each of the 4 cells has one diagonal → 8 small triangles. The diagonals of the top-left and bottom-right cells lie on one straight line (the main diagonal of the whole square), so the square's two halves on either side of it are 2 more big triangles. The other two cell-diagonals do not line up with anything. Total **10**.",
+   "shortcut": "Check which small diagonals join into one long line.",
+   "difficulty": "hard",
+   "subtopic": "triangles",
+   "pattern": "square/rectangle with diagonals",
+   "timeSec": 60
+  },
+  {
+   "id": "rsn-counting-9",
+   "q": "How many triangles are there in the given figure?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 118 154\" width=\"118\" height=\"154\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"59\" y1=\"5\" x2=\"113\" y2=\"59\"/><line x1=\"113\" y1=\"59\" x2=\"59\" y2=\"149\"/><line x1=\"59\" y1=\"149\" x2=\"5\" y2=\"59\"/><line x1=\"5\" y1=\"59\" x2=\"59\" y2=\"5\"/><line x1=\"59\" y1=\"5\" x2=\"59\" y2=\"149\"/><line x1=\"5\" y1=\"59\" x2=\"113\" y2=\"59\"/></svg>",
+   "options": [
+    "6",
+    "10",
+    "8",
+    "4"
+   ],
+   "answer": 2,
+   "solution": "The two diagonals cut the kite into 4 small triangles. The vertical diagonal cuts it into 2 halves (each a triangle) and the horizontal diagonal cuts it into 2 more. Total 4 + 2 + 2 = **8**.",
+   "shortcut": "Same as square with diagonals: 4 + 4.",
+   "difficulty": "easy",
+   "subtopic": "triangles",
+   "pattern": "irregular composite figure",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-counting-10",
+   "q": "How many triangles are there in the given figure?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 118 118\" width=\"118\" height=\"118\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"41\" x2=\"113\" y2=\"41\"/><line x1=\"113\" y1=\"41\" x2=\"113\" y2=\"113\"/><line x1=\"113\" y1=\"113\" x2=\"5\" y2=\"113\"/><line x1=\"5\" y1=\"113\" x2=\"5\" y2=\"41\"/><line x1=\"5\" y1=\"41\" x2=\"59\" y2=\"5\"/><line x1=\"59\" y1=\"5\" x2=\"113\" y2=\"41\"/><line x1=\"5\" y1=\"41\" x2=\"113\" y2=\"113\"/><line x1=\"113\" y1=\"41\" x2=\"5\" y2=\"113\"/></svg>",
+   "options": [
+    "7",
+    "9",
+    "8",
+    "10"
+   ],
+   "answer": 1,
+   "solution": "The rectangle with both diagonals gives 8 triangles (4 small + 4 half-rectangles). The roof is 1 more. The roof cannot combine with any lower piece, since its sides do not continue down. Total **9**.",
+   "shortcut": "8 (rectangle with diagonals) + 1 (roof).",
+   "difficulty": "easy",
+   "subtopic": "triangles",
+   "pattern": "irregular composite figure",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-counting-11",
+   "q": "How many triangles are there in the given figure?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 154 118\" width=\"154\" height=\"118\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"113\" x2=\"149\" y2=\"113\"/><line x1=\"149\" y1=\"113\" x2=\"77\" y2=\"5\"/><line x1=\"77\" y1=\"5\" x2=\"5\" y2=\"113\"/><line x1=\"77\" y1=\"113\" x2=\"77\" y2=\"5\"/><line x1=\"41\" y1=\"59\" x2=\"77\" y2=\"113\"/><line x1=\"77\" y1=\"113\" x2=\"113\" y2=\"59\"/></svg>",
+   "options": [
+    "7",
+    "5",
+    "6",
+    "8"
+   ],
+   "answer": 0,
+   "solution": "The vertical line from the apex splits the triangle into 2 halves. Two lines from the base midpoint to the midpoints of the slanted sides cut each half into 2 → 4 smallest. The 2 halves themselves → 2. The whole triangle → 1. Total **7**.",
+   "shortcut": "4 small + 2 halves + 1 whole.",
+   "difficulty": "medium",
+   "subtopic": "triangles",
+   "pattern": "irregular composite figure",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-counting-12",
+   "q": "How many squares are there in the given figure?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\" width=\"64\" height=\"64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"5\" x2=\"5\" y2=\"59\"/><line x1=\"23\" y1=\"5\" x2=\"23\" y2=\"59\"/><line x1=\"41\" y1=\"5\" x2=\"41\" y2=\"59\"/><line x1=\"59\" y1=\"5\" x2=\"59\" y2=\"59\"/><line x1=\"5\" y1=\"5\" x2=\"59\" y2=\"5\"/><line x1=\"5\" y1=\"23\" x2=\"59\" y2=\"23\"/><line x1=\"5\" y1=\"41\" x2=\"59\" y2=\"41\"/><line x1=\"5\" y1=\"59\" x2=\"59\" y2=\"59\"/></svg>",
+   "options": [
+    "14",
+    "9",
+    "10",
+    "13"
+   ],
+   "answer": 0,
+   "solution": "1 × 1 squares: 9. 2 × 2 squares: 4. 3 × 3 square: 1. Total 9 + 4 + 1 = **14**.",
+   "shortcut": "n × n grid: 1² + 2² + … + n².",
+   "difficulty": "easy",
+   "subtopic": "squares-rectangles",
+   "pattern": "squares in a grid",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-counting-13",
+   "q": "How many rectangles (including squares) are there in the given figure?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 82 46\" width=\"82\" height=\"46\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"5\" x2=\"5\" y2=\"41\"/><line x1=\"23\" y1=\"5\" x2=\"23\" y2=\"41\"/><line x1=\"41\" y1=\"5\" x2=\"41\" y2=\"41\"/><line x1=\"59\" y1=\"5\" x2=\"59\" y2=\"41\"/><line x1=\"77\" y1=\"5\" x2=\"77\" y2=\"41\"/><line x1=\"5\" y1=\"5\" x2=\"77\" y2=\"5\"/><line x1=\"5\" y1=\"23\" x2=\"77\" y2=\"23\"/><line x1=\"5\" y1=\"41\" x2=\"77\" y2=\"41\"/></svg>",
+   "options": [
+    "24",
+    "18",
+    "36",
+    "30"
+   ],
+   "answer": 3,
+   "solution": "Vertical lines: 5 → C(5, 2) = 10. Horizontal lines: 3 → C(3, 2) = 3. Rectangles = 10 × 3 = **30**.",
+   "shortcut": "C(5,2) × C(3,2).",
+   "difficulty": "medium",
+   "subtopic": "squares-rectangles",
+   "pattern": "rectangles in a grid",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-counting-14",
+   "q": "How many squares are there in the given figure?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 82 64\" width=\"82\" height=\"64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"5\" x2=\"5\" y2=\"59\"/><line x1=\"23\" y1=\"5\" x2=\"23\" y2=\"59\"/><line x1=\"41\" y1=\"5\" x2=\"41\" y2=\"59\"/><line x1=\"59\" y1=\"5\" x2=\"59\" y2=\"59\"/><line x1=\"77\" y1=\"5\" x2=\"77\" y2=\"59\"/><line x1=\"5\" y1=\"5\" x2=\"77\" y2=\"5\"/><line x1=\"5\" y1=\"23\" x2=\"77\" y2=\"23\"/><line x1=\"5\" y1=\"41\" x2=\"77\" y2=\"41\"/><line x1=\"5\" y1=\"59\" x2=\"77\" y2=\"59\"/></svg>",
+   "options": [
+    "12",
+    "18",
+    "17",
+    "20"
+   ],
+   "answer": 3,
+   "solution": "1 × 1: 4 × 3 = 12. 2 × 2: 3 × 2 = 6. 3 × 3: 2 × 1 = 2. Total 12 + 6 + 2 = **20**.",
+   "shortcut": "Σ (m−k+1)(n−k+1).",
+   "difficulty": "medium",
+   "subtopic": "squares-rectangles",
+   "pattern": "squares in a grid",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-counting-15",
+   "q": "What is the minimum number of straight lines needed to draw the given figure?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 82 82\" width=\"82\" height=\"82\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"5\" x2=\"77\" y2=\"5\"/><line x1=\"77\" y1=\"5\" x2=\"77\" y2=\"77\"/><line x1=\"77\" y1=\"77\" x2=\"5\" y2=\"77\"/><line x1=\"5\" y1=\"77\" x2=\"5\" y2=\"5\"/><line x1=\"41\" y1=\"5\" x2=\"41\" y2=\"77\"/><line x1=\"5\" y1=\"41\" x2=\"77\" y2=\"41\"/><line x1=\"5\" y1=\"5\" x2=\"41\" y2=\"41\"/><line x1=\"41\" y1=\"5\" x2=\"77\" y2=\"41\"/><line x1=\"5\" y1=\"41\" x2=\"41\" y2=\"77\"/><line x1=\"41\" y1=\"41\" x2=\"77\" y2=\"77\"/></svg>",
+   "options": [
+    "11",
+    "9",
+    "10",
+    "8"
+   ],
+   "answer": 1,
+   "solution": "Horizontal: 3. Vertical: 3. Slanting: the top-left and bottom-right cell diagonals lie on one straight line → 1; the other two cell diagonals are separate → 2. Total 3 + 3 + 1 + 2 = **9**.",
+   "shortcut": "Joined collinear pieces count once.",
+   "difficulty": "medium",
+   "subtopic": "straight-lines",
+   "pattern": "straight lines count",
+   "timeSec": 45
+  }
+ ]
+}

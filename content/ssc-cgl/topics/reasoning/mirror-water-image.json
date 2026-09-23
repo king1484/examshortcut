@@ -1,0 +1,473 @@
+{
+ "id": "mirror-water-image",
+ "sectionId": "reasoning",
+ "title": "Mirror & Water Images",
+ "order": 16,
+ "importance": "medium",
+ "avgQuestions": {
+  "tier1": "0-1",
+  "tier2": "1-2"
+ },
+ "summary": "A vertical mirror reverses left-right (character order reversed and every character flipped); water reverses top-bottom (order kept, characters upside down). Know the symmetric letters for each (AHIMOTUVWXY for mirrors, BCDEHIKOX for water), use 11:60 − time for clock mirrors, and track one asymmetric feature in figure questions.",
+ "subtopics": [
+  {
+   "id": "mirror-image",
+   "title": "Mirror images (vertical mirror)",
+   "concept": "A mirror placed **vertically** (to the left or right of the object — the result is the same) swaps **left and right** but keeps **top and bottom**. For a word or number this does two things at once:\n\n1. the **order** of characters is reversed (the last character appears first), and\n2. **each character is flipped** left-to-right (R faces the other way, 4 turns round).\n\nLetters with a vertical axis of symmetry — **A H I M O T U V W X Y** — look unchanged when flipped, so they are the fastest check points; asymmetric ones like **B C D E F G J K L N P Q R S Z** and digits **2 3 4 5 6 7 9** decide between options.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Check the end characters first",
+     "body": "In a vertical-mirror image the last character of the original stands first, flipped. Eliminate options by looking only at the first and last characters.",
+     "example": {
+      "q": "**Q.** Mirror image of PEN7?\n\n**Sol.** The image starts with a flipped 7 and ends with a flipped P. Any option starting with a normal P (order not reversed) or a normal 7 (not flipped) is wrong.",
+      "solution": "Reversed order + flipped characters — test both on one end."
+     }
+    },
+    {
+     "title": "Symmetric-letter shortcut",
+     "body": "A word made only of A H I M O T U V W X Y that reads the same backwards (a palindrome, e.g. TOOT, WOW) looks identical in a vertical mirror.",
+     "example": {
+      "q": "**Q.** Does MOM look the same in a vertical mirror?\n\n**Sol.** M, O are symmetric and MOM is a palindrome → yes.",
+      "solution": "Symmetric letters + palindrome → unchanged."
+     }
+    }
+   ],
+   "mistakes": [
+    "Flipping each letter but keeping the original order.",
+    "Reversing the order but not flipping the asymmetric letters.",
+    "Confusing the mirror image with the water image (top-bottom flip)."
+   ]
+  },
+  {
+   "id": "water-image",
+   "title": "Water images (horizontal mirror)",
+   "concept": "A water surface acts as a **horizontal** mirror below the object: it swaps **top and bottom** and keeps **left and right**. So in a water image:\n\n- the **order** of characters stays the same, and\n- each character is turned **upside down** (flipped top-to-bottom, not rotated).\n\nLetters with a horizontal axis of symmetry — **B C D E H I K O X** (and digits 0, 3, 8) — look unchanged in water. A word made only of these letters (CHOICE, CODE, HIDE, BOX) looks identical in water.\n\nA mirror image followed by a water image is the same as a **half-turn (180° rotation)**.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Order stays, letters go upside down",
+     "body": "Scan the options for the one that keeps the original order and has only asymmetric letters turned upside down.",
+     "example": {
+      "q": "**Q.** Water image of BOX?\n\n**Sol.** B, O, X are all top-bottom symmetric, and water keeps the order → BOX looks unchanged.",
+      "solution": "Water image: same order, top-bottom flip."
+     }
+    }
+   ],
+   "mistakes": [
+    "Reversing the character order in a water image.",
+    "Rotating letters by 180° instead of flipping them top-to-bottom."
+   ]
+  },
+  {
+   "id": "clock-mirror",
+   "title": "Mirror image of a clock",
+   "concept": "When a clock is seen in a vertical mirror, both hands swap sides of the 12–6 line. The time shown by the image and the actual time always **add up to 12:00** (on a 12-hour clock).\n\nSo: **image time = 11:60 − actual time** (and actual = 11:60 − image, the same rule both ways). Writing 12:00 as 11:60 avoids borrowing.\n\nException: if the actual time is 12:00 or 6:00, the image shows the same time. For times between 12:00 and 1:00 (like 12:20), use 23:60 − time (answer 11:40).\n\nWater images of clocks usually put the hour hand in a position that no real time matches, so exams mostly ask about mirror images.",
+   "formulas": [
+    {
+     "name": "Mirror time",
+     "tex": "T_{\\text{image}} = 11{:}60 - T_{\\text{actual}}",
+     "note": "Works in both directions; for 12:xx use 23:60 − T."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "11:60 rule",
+     "body": "Subtract the time from 11:60 digit-group-wise: hours from 11, minutes from 60.",
+     "example": {
+      "q": "**Q.** A clock shows 4:20. What does its mirror image show?\n\n**Sol.** 11:60 − 4:20 = **7:40**.",
+      "solution": "Mirror time + actual time = 12:00."
+     }
+    }
+   ],
+   "mistakes": [
+    "Subtracting from 12:00 and mis-borrowing the minutes.",
+    "Applying the rule to 12:xx without adding 12 first."
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Mirror image of word / number",
+   "frequency": "very common",
+   "howToSpot": "A word, code or number with four image options.",
+   "approach": "Reversed order + each letter flipped; check first and last characters."
+  },
+  {
+   "pattern": "Water image of word / number",
+   "frequency": "common",
+   "howToSpot": "Same, with the mirror below (water).",
+   "approach": "Order unchanged; asymmetric letters upside down."
+  },
+  {
+   "pattern": "Clock mirror time",
+   "frequency": "common",
+   "howToSpot": "Time seen in a mirror, or actual time from a mirror reading.",
+   "approach": "11:60 − time."
+  },
+  {
+   "pattern": "Symmetric letters count",
+   "frequency": "occasional",
+   "howToSpot": "How many letters of a word look the same in a mirror / in water.",
+   "approach": "Match against A H I M O T U V W X Y (mirror) or B C D E H I K O X (water)."
+  },
+  {
+   "pattern": "Figure mirror / water image",
+   "frequency": "common",
+   "howToSpot": "A line figure with four image options.",
+   "approach": "Track one asymmetric feature (a flag, a notch) to its reflected position."
+  },
+  {
+   "pattern": "Identical image words",
+   "frequency": "occasional",
+   "howToSpot": "Which word looks exactly the same in the mirror / in water.",
+   "approach": "Mirror: symmetric letters + palindrome. Water: all letters top-bottom symmetric."
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "rsn-mirror-ex1",
+   "q": "Which option shows the correct **mirror image** of **PLANK** when the mirror is placed vertically on the right side?",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 75 28\" width=\"75\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(23,0) scale(-1,1)\">P</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(49,0) scale(-1,1)\">L</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(75,0) scale(-1,1)\">A</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(101,0) scale(-1,1)\">N</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(127,0) scale(-1,1)\">K</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 75 28\" width=\"75\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(23,0) scale(-1,1)\">K</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(49,0) scale(-1,1)\">N</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(75,0) scale(-1,1)\">A</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(101,0) scale(-1,1)\">L</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(127,0) scale(-1,1)\">P</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 75 28\" width=\"75\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">P</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">L</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">A</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">N</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">K</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 75 28\" width=\"75\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">K</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">N</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">A</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">L</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">P</text></svg>"
+   ],
+   "answer": 1,
+   "solution": "A vertical mirror reverses the order and flips every letter left-to-right. So the image reads K N A L P from left to right, with K, N, L, P facing the other way (A is symmetric and looks the same). The option with reversed order **and** flipped letters is correct; the others show the water image, only a reversed order, or only flipped letters.",
+   "shortcut": "Look at the first character: it must be a flipped K.",
+   "difficulty": "easy",
+   "subtopic": "mirror-image",
+   "pattern": "mirror image of word / number",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-mirror-ex2",
+   "q": "A clock shows the time **4:20**. What time does its mirror image show?",
+   "figure": null,
+   "options": [
+    "8:40",
+    "7:20",
+    "8:20",
+    "7:40"
+   ],
+   "answer": 3,
+   "solution": "Mirror time = 11:60 − 4:20 = **7:40**. Check: 4:20 + 7:40 = 12:00.",
+   "shortcut": "11:60 − 4:20.",
+   "difficulty": "easy",
+   "subtopic": "clock-mirror",
+   "pattern": "clock mirror time",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-mirror-ex3",
+   "q": "Which option shows the correct **water image** of **GR8547** when the mirror is placed horizontally below it (water image)?",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">7</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">4</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">5</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">8</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">R</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">G</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(23,0) scale(-1,1) translate(0,26.4) scale(1,-1)\">7</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(49,0) scale(-1,1) translate(0,26.4) scale(1,-1)\">4</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(75,0) scale(-1,1) translate(0,26.4) scale(1,-1)\">5</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(101,0) scale(-1,1) translate(0,26.4) scale(1,-1)\">8</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(127,0) scale(-1,1) translate(0,26.4) scale(1,-1)\">R</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(153,0) scale(-1,1) translate(0,26.4) scale(1,-1)\">G</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">G</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">R</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">8</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">5</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">4</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">7</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(23,0) scale(-1,1)\">7</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(49,0) scale(-1,1)\">4</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(75,0) scale(-1,1)\">5</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(101,0) scale(-1,1)\">8</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(127,0) scale(-1,1)\">R</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(153,0) scale(-1,1)\">G</text></svg>"
+   ],
+   "answer": 2,
+   "solution": "A water image keeps the order G R 8 5 4 7 and turns each character upside down. 8 is top-bottom symmetric and stays the same; G, R, 5, 4, 7 appear upside down. The option with the original order and upside-down characters is correct.",
+   "shortcut": "Water: order unchanged, characters flipped top-to-bottom.",
+   "difficulty": "medium",
+   "subtopic": "water-image",
+   "pattern": "water image of word / number",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-mirror-ex4",
+   "q": "How many letters of the word **MATHEMATICS** look exactly the same in a vertical mirror (considered one by one)?",
+   "figure": null,
+   "options": [
+    "6",
+    "8",
+    "7",
+    "9"
+   ],
+   "answer": 1,
+   "solution": "Left-right symmetric capitals: A H I M O T U V W X Y. In M A T H E M A T I C S, the symmetric ones are M, A, T, H, M, A, T, I = **8**; E, C, S are not.",
+   "shortcut": "Tick letters from AHIMOTUVWXY.",
+   "difficulty": "easy",
+   "subtopic": "mirror-image",
+   "pattern": "symmetric letters count",
+   "timeSec": 35
+  }
+ ],
+ "practice": [
+  {
+   "id": "rsn-mirror-1",
+   "q": "Which option shows the correct **mirror image** of **REASON** when the mirror is placed vertically on the right side?",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">R</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">E</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">A</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">S</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">O</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">N</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">N</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">O</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">S</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">A</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">E</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">R</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(23,0) scale(-1,1)\">R</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(49,0) scale(-1,1)\">E</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(75,0) scale(-1,1)\">A</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(101,0) scale(-1,1)\">S</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(127,0) scale(-1,1)\">O</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(153,0) scale(-1,1)\">N</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(23,0) scale(-1,1)\">N</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(49,0) scale(-1,1)\">O</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(75,0) scale(-1,1)\">S</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(101,0) scale(-1,1)\">A</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(127,0) scale(-1,1)\">E</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(153,0) scale(-1,1)\">R</text></svg>"
+   ],
+   "answer": 3,
+   "solution": "Mirror image = reversed order N O S A E R, each letter flipped left-to-right. O and A are symmetric; N, S, E, R appear reversed. Only one option has both the reversed order and the flipped letters.",
+   "shortcut": "First character must be a flipped N.",
+   "difficulty": "easy",
+   "subtopic": "mirror-image",
+   "pattern": "mirror image of word / number",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-mirror-2",
+   "q": "Which option shows the correct **mirror image** of **FLIGHT27** when the mirror is placed vertically on the right side?",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 114 28\" width=\"114\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(23,0) scale(-1,1)\">F</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(49,0) scale(-1,1)\">L</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(75,0) scale(-1,1)\">I</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(101,0) scale(-1,1)\">G</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(127,0) scale(-1,1)\">H</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(153,0) scale(-1,1)\">T</text><text x=\"89.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(179,0) scale(-1,1)\">2</text><text x=\"102.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(205,0) scale(-1,1)\">7</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 114 28\" width=\"114\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(23,0) scale(-1,1)\">7</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(49,0) scale(-1,1)\">2</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(75,0) scale(-1,1)\">T</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(101,0) scale(-1,1)\">H</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(127,0) scale(-1,1)\">G</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(153,0) scale(-1,1)\">I</text><text x=\"89.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(179,0) scale(-1,1)\">L</text><text x=\"102.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(205,0) scale(-1,1)\">F</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 114 28\" width=\"114\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">F</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">L</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">I</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">G</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">H</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">T</text><text x=\"89.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">2</text><text x=\"102.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">7</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 114 28\" width=\"114\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">7</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">2</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">T</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">H</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">G</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">I</text><text x=\"89.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">L</text><text x=\"102.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">F</text></svg>"
+   ],
+   "answer": 1,
+   "solution": "Reverse the order (7 2 T H G I L F) and flip each character left-to-right. T, H, I are symmetric; 7, 2, G, L, F face the other way. The correct option shows a flipped 7 first and a flipped F last.",
+   "shortcut": "Check both ends: flipped 7 … flipped F.",
+   "difficulty": "medium",
+   "subtopic": "mirror-image",
+   "pattern": "mirror image of word / number",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-mirror-3",
+   "q": "Which option shows the correct **water image** of **BUDGET** when the mirror is placed horizontally below it (water image)?",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">T</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">E</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">G</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">D</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">U</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">B</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(23,0) scale(-1,1) translate(0,26.4) scale(1,-1)\">T</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(49,0) scale(-1,1) translate(0,26.4) scale(1,-1)\">E</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(75,0) scale(-1,1) translate(0,26.4) scale(1,-1)\">G</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(101,0) scale(-1,1) translate(0,26.4) scale(1,-1)\">D</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(127,0) scale(-1,1) translate(0,26.4) scale(1,-1)\">U</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(153,0) scale(-1,1) translate(0,26.4) scale(1,-1)\">B</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">B</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">U</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">D</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">G</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">E</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">T</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(23,0) scale(-1,1)\">T</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(49,0) scale(-1,1)\">E</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(75,0) scale(-1,1)\">G</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(101,0) scale(-1,1)\">D</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(127,0) scale(-1,1)\">U</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(153,0) scale(-1,1)\">B</text></svg>"
+   ],
+   "answer": 2,
+   "solution": "Water image: same order B U D G E T, each letter upside down. B, D, E are top-bottom symmetric and look unchanged; U, G, T appear upside down. The option keeping the order with U, G, T inverted is correct.",
+   "shortcut": "Order unchanged; only U, G, T visibly change.",
+   "difficulty": "medium",
+   "subtopic": "water-image",
+   "pattern": "water image of word / number",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-mirror-4",
+   "q": "Which option shows the correct **water image** of **4R95JQ** when the mirror is placed horizontally below it (water image)?",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(23,0) scale(-1,1) translate(0,26.4) scale(1,-1)\">Q</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(49,0) scale(-1,1) translate(0,26.4) scale(1,-1)\">J</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(75,0) scale(-1,1) translate(0,26.4) scale(1,-1)\">5</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(101,0) scale(-1,1) translate(0,26.4) scale(1,-1)\">9</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(127,0) scale(-1,1) translate(0,26.4) scale(1,-1)\">R</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(153,0) scale(-1,1) translate(0,26.4) scale(1,-1)\">4</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">4</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">R</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">9</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">5</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">J</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">Q</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(23,0) scale(-1,1)\">Q</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(49,0) scale(-1,1)\">J</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(75,0) scale(-1,1)\">5</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(101,0) scale(-1,1)\">9</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(127,0) scale(-1,1)\">R</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(153,0) scale(-1,1)\">4</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">Q</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">J</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">5</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">9</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">R</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">4</text></svg>"
+   ],
+   "answer": 1,
+   "solution": "Keep the order 4 R 9 5 J Q and turn every character upside down; none of these is top-bottom symmetric, so all six change. The option with the same order and inverted characters is correct; the half-turned option (order reversed as well) is the classic trap.",
+   "shortcut": "Water never changes the order.",
+   "difficulty": "hard",
+   "subtopic": "water-image",
+   "pattern": "water image of word / number",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-mirror-5",
+   "q": "Which option shows the correct **mirror image** of **EXAM25** when the mirror is placed vertically on the right side?",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">5</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">2</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">M</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">A</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">X</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\">E</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(23,0) scale(-1,1)\">E</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(49,0) scale(-1,1)\">X</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(75,0) scale(-1,1)\">A</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(101,0) scale(-1,1)\">M</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(127,0) scale(-1,1)\">2</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(153,0) scale(-1,1)\">5</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(23,0) scale(-1,1)\">5</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(49,0) scale(-1,1)\">2</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(75,0) scale(-1,1)\">M</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(101,0) scale(-1,1)\">A</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(127,0) scale(-1,1)\">X</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(153,0) scale(-1,1)\">E</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"11.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">E</text><text x=\"24.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">X</text><text x=\"37.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">A</text><text x=\"50.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">M</text><text x=\"63.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">2</text><text x=\"76.5\" y=\"18.8\" font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\" transform=\"translate(0,26.4) scale(1,-1)\">5</text></svg>"
+   ],
+   "answer": 2,
+   "solution": "Reverse the order (5 2 M A X E) and flip each character left-to-right. M, A, X are symmetric; 5, 2 and E face the other way. Only one option has both features.",
+   "shortcut": "The image starts with a flipped 5.",
+   "difficulty": "easy",
+   "subtopic": "mirror-image",
+   "pattern": "mirror image of word / number",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-mirror-6",
+   "q": "A wall clock shows **3:45**. What time will its mirror image show?",
+   "figure": null,
+   "options": [
+    "8:45",
+    "9:45",
+    "8:15",
+    "9:15"
+   ],
+   "answer": 2,
+   "solution": "Mirror time = 11:60 − 3:45 = **8:15**. Check: 3:45 + 8:15 = 12:00.",
+   "shortcut": "11:60 − time.",
+   "difficulty": "easy",
+   "subtopic": "clock-mirror",
+   "pattern": "clock mirror time",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-mirror-7",
+   "q": "A wall clock shows **10:10**. What time will its mirror image show?",
+   "figure": null,
+   "options": [
+    "2:10",
+    "1:50",
+    "2:50",
+    "1:10"
+   ],
+   "answer": 1,
+   "solution": "Mirror time = 11:60 − 10:10 = **1:50**. Check: 10:10 + 1:50 = 12:00.",
+   "shortcut": "11:60 − time.",
+   "difficulty": "easy",
+   "subtopic": "clock-mirror",
+   "pattern": "clock mirror time",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-mirror-8",
+   "q": "A wall clock shows **6:35**. What time will its mirror image show?",
+   "figure": null,
+   "options": [
+    "5:25",
+    "6:25",
+    "5:35",
+    "6:35"
+   ],
+   "answer": 0,
+   "solution": "Mirror time = 11:60 − 6:35 = **5:25**. Check: 6:35 + 5:25 = 12:00.",
+   "shortcut": "11:60 − time.",
+   "difficulty": "medium",
+   "subtopic": "clock-mirror",
+   "pattern": "clock mirror time",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-mirror-9",
+   "q": "Seen in a mirror, a clock appears to show **2:25**. What is the actual time?",
+   "figure": null,
+   "options": [
+    "10:25",
+    "9:35",
+    "10:35",
+    "9:25"
+   ],
+   "answer": 1,
+   "solution": "The rule works both ways: actual = 11:60 − 2:25 = **9:35**. Check: mirror of 9:35 = 11:60 − 9:35 = 2:25.",
+   "shortcut": "Same 11:60 rule in reverse.",
+   "difficulty": "medium",
+   "subtopic": "clock-mirror",
+   "pattern": "clock mirror time",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-mirror-10",
+   "q": "A clock shows **12:20**. What time does its mirror image show?",
+   "figure": null,
+   "options": [
+    "11:20",
+    "12:20",
+    "11:40",
+    "12:40"
+   ],
+   "answer": 2,
+   "solution": "For 12:xx times use 23:60: 23:60 − 12:20 = 11:40. Check: 12:20 + 11:40 = 24:00, i.e. the hands mirror across the 12–6 line → **11:40**.",
+   "shortcut": "12:xx → subtract from 23:60.",
+   "difficulty": "hard",
+   "subtopic": "clock-mirror",
+   "pattern": "clock mirror time",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-mirror-11",
+   "q": "Which of the following words will look **exactly the same** in a vertical mirror?",
+   "figure": null,
+   "options": [
+    "DEED",
+    "BOB",
+    "WOW",
+    "NOON"
+   ],
+   "answer": 2,
+   "solution": "A word looks unchanged in a vertical mirror only if (i) it reads the same backwards and (ii) every letter is left-right symmetric (A H I M O T U V W X Y). All four are palindromes, but N, D and B are not left-right symmetric. Only **WOW** passes both tests.",
+   "shortcut": "Palindrome + only AHIMOTUVWXY letters.",
+   "difficulty": "medium",
+   "subtopic": "mirror-image",
+   "pattern": "identical image words",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-mirror-12",
+   "q": "Which of the following words will look **exactly the same** in its water image?",
+   "figure": null,
+   "options": [
+    "BRIDGE",
+    "CHANCE",
+    "EXPECT",
+    "CHOICE"
+   ],
+   "answer": 3,
+   "solution": "Water keeps the order, so a word is unchanged only if every letter is top-bottom symmetric (B C D E H I K O X). CHOICE = C, H, O, I, C, E — all symmetric. BRIDGE has R and G, CHANCE has A and N, EXPECT has P and T. Answer: **CHOICE**.",
+   "shortcut": "Every letter must be in BCDEHIKOX.",
+   "difficulty": "medium",
+   "subtopic": "water-image",
+   "pattern": "identical image words",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-mirror-13",
+   "q": "How many letters of the word **BACKGROUND** look exactly the same in a water image (considered one by one)?",
+   "figure": null,
+   "options": [
+    "3",
+    "5",
+    "4",
+    "6"
+   ],
+   "answer": 1,
+   "solution": "Top-bottom symmetric capitals: B C D E H I K O X. Letter by letter in B A C K G R O U N D: B ✓, A ✗, C ✓, K ✓, G ✗, R ✗, O ✓, U ✗, N ✗, D ✓ → **5**.",
+   "shortcut": "Tick letters from BCDEHIKOX.",
+   "difficulty": "easy",
+   "subtopic": "water-image",
+   "pattern": "symmetric letters count",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-mirror-14",
+   "q": "Which option is the correct **mirror image** of the given figure when the mirror is placed vertically to its right?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 50 74\" width=\"50\" height=\"74\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"13\" y1=\"69\" x2=\"13\" y2=\"5\"/><line x1=\"13\" y1=\"5\" x2=\"45\" y2=\"17\"/><line x1=\"45\" y1=\"17\" x2=\"13\" y2=\"29\"/><line x1=\"5\" y1=\"69\" x2=\"29\" y2=\"69\"/></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 50 74\" width=\"50\" height=\"74\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"13\" y1=\"69\" x2=\"13\" y2=\"5\"/><line x1=\"13\" y1=\"5\" x2=\"45\" y2=\"17\"/><line x1=\"45\" y1=\"17\" x2=\"13\" y2=\"29\"/><line x1=\"5\" y1=\"69\" x2=\"29\" y2=\"69\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 50 74\" width=\"50\" height=\"74\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"37\" y1=\"69\" x2=\"37\" y2=\"5\"/><line x1=\"37\" y1=\"5\" x2=\"5\" y2=\"17\"/><line x1=\"5\" y1=\"17\" x2=\"37\" y2=\"29\"/><line x1=\"45\" y1=\"69\" x2=\"21\" y2=\"69\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 50 74\" width=\"50\" height=\"74\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"13\" y1=\"5\" x2=\"13\" y2=\"69\"/><line x1=\"13\" y1=\"69\" x2=\"45\" y2=\"57\"/><line x1=\"45\" y1=\"57\" x2=\"13\" y2=\"45\"/><line x1=\"5\" y1=\"5\" x2=\"29\" y2=\"5\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 50 74\" width=\"50\" height=\"74\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"37\" y1=\"5\" x2=\"37\" y2=\"69\"/><line x1=\"37\" y1=\"69\" x2=\"5\" y2=\"57\"/><line x1=\"5\" y1=\"57\" x2=\"37\" y2=\"45\"/><line x1=\"45\" y1=\"5\" x2=\"21\" y2=\"5\"/></svg>"
+   ],
+   "answer": 1,
+   "solution": "A vertical mirror swaps left and right only. The flag, which points to the right of the pole, will point to the **left** in the image, and it stays at the **top**; the foot line (which extends to the right of the pole) moves to the left side. The option showing a left-pointing flag at the top is correct — a flag at the bottom is the water image, and a flag at the bottom pointing left is the half-turn.",
+   "shortcut": "Left-right swaps; top stays top.",
+   "difficulty": "easy",
+   "subtopic": "mirror-image",
+   "pattern": "figure mirror / water image",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-mirror-15",
+   "q": "Which option is the correct **water image** of the given figure?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 50 58\" width=\"50\" height=\"58\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"5\" x2=\"5\" y2=\"53\"/><line x1=\"5\" y1=\"53\" x2=\"45\" y2=\"53\"/><line x1=\"45\" y1=\"53\" x2=\"45\" y2=\"37\"/><line x1=\"45\" y1=\"37\" x2=\"21\" y2=\"37\"/><line x1=\"21\" y1=\"37\" x2=\"21\" y2=\"5\"/><line x1=\"5\" y1=\"21\" x2=\"21\" y2=\"21\"/></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 50 58\" width=\"50\" height=\"58\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"53\" x2=\"5\" y2=\"5\"/><line x1=\"5\" y1=\"5\" x2=\"45\" y2=\"5\"/><line x1=\"45\" y1=\"5\" x2=\"45\" y2=\"21\"/><line x1=\"45\" y1=\"21\" x2=\"21\" y2=\"21\"/><line x1=\"21\" y1=\"21\" x2=\"21\" y2=\"53\"/><line x1=\"5\" y1=\"37\" x2=\"21\" y2=\"37\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 50 58\" width=\"50\" height=\"58\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"45\" y1=\"5\" x2=\"45\" y2=\"53\"/><line x1=\"45\" y1=\"53\" x2=\"5\" y2=\"53\"/><line x1=\"5\" y1=\"53\" x2=\"5\" y2=\"37\"/><line x1=\"5\" y1=\"37\" x2=\"29\" y2=\"37\"/><line x1=\"29\" y1=\"37\" x2=\"29\" y2=\"5\"/><line x1=\"45\" y1=\"21\" x2=\"29\" y2=\"21\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 50 58\" width=\"50\" height=\"58\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"45\" y1=\"53\" x2=\"45\" y2=\"5\"/><line x1=\"45\" y1=\"5\" x2=\"5\" y2=\"5\"/><line x1=\"5\" y1=\"5\" x2=\"5\" y2=\"21\"/><line x1=\"5\" y1=\"21\" x2=\"29\" y2=\"21\"/><line x1=\"29\" y1=\"21\" x2=\"29\" y2=\"53\"/><line x1=\"45\" y1=\"37\" x2=\"29\" y2=\"37\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 50 58\" width=\"50\" height=\"58\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"5\" x2=\"5\" y2=\"53\"/><line x1=\"5\" y1=\"53\" x2=\"45\" y2=\"53\"/><line x1=\"45\" y1=\"53\" x2=\"45\" y2=\"37\"/><line x1=\"45\" y1=\"37\" x2=\"21\" y2=\"37\"/><line x1=\"21\" y1=\"37\" x2=\"21\" y2=\"5\"/><line x1=\"5\" y1=\"21\" x2=\"21\" y2=\"21\"/></svg>"
+   ],
+   "answer": 0,
+   "solution": "A water image swaps top and bottom only. The boot's toe (the wide part) is at the bottom-right in the figure; in water it moves to the **top-right**, and the shaft with its strap line now hangs downward on the left. Left and right do not change, so the toe must still be on the right. The option with the toe at the top-right is correct.",
+   "shortcut": "Top-bottom swaps; left-right stays.",
+   "difficulty": "medium",
+   "subtopic": "water-image",
+   "pattern": "figure mirror / water image",
+   "timeSec": 35
+  }
+ ]
+}

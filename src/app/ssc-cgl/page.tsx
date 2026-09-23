@@ -78,6 +78,8 @@ export default function ExamPage() {
           ['/ssc-cgl/score-calculator/', '🧮 Score calculator', 'Safe-score estimator'],
           ['/ssc-cgl/formula-sheet/', '⚡ Formula sheet', 'Printable, all sections'],
           ['/ssc-cgl/ga/current-affairs/', '📰 Current affairs', 'Apr–Sep 2026, exam-relevant'],
+          ['/ssc-cgl/study-plan/', '🗓️ Study plan generator', 'Day-by-day timetable to exam day'],
+          ['/ssc-cgl/posts/', '🏛️ Posts & age checker', 'Eligibility + post preference builder'],
         ].map(([href, t, s]) => (
           <Link key={href} href={href} className="card p-4 hover:-translate-y-0.5 transition-transform">
             <div className="font-bold text-sm">{t}</div>

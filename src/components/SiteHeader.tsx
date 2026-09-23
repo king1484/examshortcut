@@ -7,6 +7,7 @@ const NAV = [
   { href: '/dashboard/', label: 'Dashboard', exact: true },
   { href: '/ssc-cgl/', label: 'SSC CGL', exact: true },
   { href: '/ssc-cgl/syllabus/', label: 'Syllabus & Notes' },
+  { href: '/ssc-cgl/study-plan/', label: 'Study Plan' },
   { href: '/ssc-cgl/mocks/', label: 'Mock Tests' },
   { href: '/ssc-cgl/formula-sheet/', label: 'Formula Sheet' },
   { href: '/ssc-cgl/ga/current-affairs/', label: 'Current Affairs' },
