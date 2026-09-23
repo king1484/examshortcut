@@ -1,0 +1,634 @@
+{
+ "id": "mensuration-3d",
+ "sectionId": "quant",
+ "title": "Mensuration (3D)",
+ "order": 15,
+ "importance": "medium",
+ "avgQuestions": {
+  "tier1": 2,
+  "tier2": 3
+ },
+ "summary": "Volumes and surface areas of cubes, cuboids, cylinders, cones, spheres, hemispheres, prisms and pyramids, plus melting-recasting, capacities and painted-cube counts. About 1-3 questions per shift; every question reduces to one formula plus a unit conversion, so memorising the formula sheet is nearly the whole job.",
+ "subtopics": [
+  {
+   "id": "m3d-cube-cuboid",
+   "title": "Cube and cuboid",
+   "concept": "For a cube of edge $a$ and a cuboid $l\\times b\\times h$:\n\n| Quantity | Cuboid | Cube |\n|---|---|---|\n| Volume | $lbh$ | $a^3$ |\n| Lateral (4 walls) | $2(l+b)h$ | $4a^2$ |\n| Total surface | $2(lb+bh+lh)$ | $6a^2$ |\n| Space diagonal | $\\sqrt{l^2+b^2+h^2}$ | $a\\sqrt3$ |\n\nThe space diagonal is the **longest rod that fits in the room**. Wall questions use the lateral area only.",
+   "formulas": [
+    {
+     "name": "Volume",
+     "tex": "V=lbh,\\qquad V_{\\text{cube}}=a^3"
+    },
+    {
+     "name": "Lateral surface",
+     "tex": "LSA=2(l+b)h,\\qquad LSA_{\\text{cube}}=4a^2"
+    },
+    {
+     "name": "Total surface",
+     "tex": "TSA=2(lb+bh+lh),\\qquad TSA_{\\text{cube}}=6a^2"
+    },
+    {
+     "name": "Space diagonal",
+     "tex": "d=\\sqrt{l^2+b^2+h^2},\\qquad d_{\\text{cube}}=a\\sqrt3"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Longest rod = space diagonal",
+     "body": "A rod can poke corner-to-corner through the room: $\\sqrt{l^2+b^2+h^2}$. Triplets like (3,4,12,13) exist:\n$3^2+4^2+12^2=169=13^2$.",
+     "example": {
+      "q": "Find the length of the longest rod that can be placed in a room of dimensions $12\\text{ m}\\times9\\text{ m}\\times8\\text{ m}$.",
+      "solution": "$\\sqrt{12^2+9^2+8^2}=\\sqrt{144+81+64}=\\sqrt{289}=17$ m."
+     }
+    },
+    {
+     "title": "Painting/flooring picks the right area",
+     "body": "Four walls → $2(l+b)h$ (ignore floor and roof). Full painting including roof and floor → TSA. Cost = area × rate.",
+     "example": {
+      "q": "A room is 8 m long, 6 m wide and 4 m high. Find the cost of painting its four walls at ₹10 per sq m.",
+      "solution": "Four walls $=2(8+6)\\times4=112$ sq m; cost $=112\\times10=$ ₹1,120."
+     }
+    }
+   ],
+   "mistakes": [
+    "Using TSA where the question asks only for the four walls (or the reverse).",
+    "Cube diagonal $a\\sqrt3$ confused with the face diagonal $a\\sqrt2$.",
+    "Height left out of the wall formula: walls need $h$; floor area does not."
+   ]
+  },
+  {
+   "id": "m3d-cylinder",
+   "title": "Cylinder",
+   "concept": "For a cylinder of radius $r$ and height $h$:\n- Volume $=\\pi r^2h$ (capacity in litres: multiply $\\text{m}^3$ by 1000)\n- Curved surface $=2\\pi rh$\n- Total surface $=2\\pi r(r+h)$\n- A **hollow pipe/well** of inner radius $r$, outer radius $R$: volume of material $=\\pi(R^2-r^2)h$\n- A **wire/rod** is a very long thin cylinder: its volume is $\\pi r^2\\times\\text{length}$.",
+   "formulas": [
+    {
+     "name": "Volume",
+     "tex": "V=\\pi r^2h"
+    },
+    {
+     "name": "Curved surface",
+     "tex": "CSA=2\\pi rh"
+    },
+    {
+     "name": "Total surface",
+     "tex": "TSA=2\\pi r(r+h)"
+    },
+    {
+     "name": "Hollow cylinder",
+     "tex": "V=\\pi(R^2-r^2)h"
+    },
+    {
+     "name": "Capacity",
+     "tex": "1\\ \\text{m}^3=1000\\ \\ell"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "1 m³ = 1000 litres",
+     "body": "Tank answers in litres: compute $\\pi r^2h$ in metres, then ×1000. Keep radii in the units the answer needs.",
+     "example": {
+      "q": "A cylindrical water tank has a radius of 2 m and a depth of 7 m. Find its capacity in litres. [Use $\\pi=\\frac{22}{7}$]",
+      "solution": "$V=\\frac{22}{7}\\times4\\times7=88$ m$^3$ $=88{,}000$ litres."
+     }
+    },
+    {
+     "title": "Hollow cylinder: difference of squared radii",
+     "body": "Material volume $=\\pi(R^2-r^2)h$ — the cross-section is a ring.",
+     "example": {
+      "q": "A metallic pipe has inner radius 3 cm, outer radius 5 cm and length 14 cm. Find the volume of metal. [Use $\\pi=\\frac{22}{7}$]",
+      "solution": "$\\frac{22}{7}\\times(25-9)\\times14=\\frac{22}{7}\\times224=704$ cu cm."
+     }
+    }
+   ],
+   "mistakes": [
+    "Using the outer radius alone for a hollow pipe.",
+    "Forgetting the 1000 factor when the answer is asked in litres.",
+    "CSA ($2\\pi rh$) and TSA ($2\\pi r(r+h)$) mixed up when the question mentions a closed drum or an open tank."
+   ]
+  },
+  {
+   "id": "m3d-cone",
+   "title": "Cone",
+   "concept": "For a cone of radius $r$, height $h$ and slant height $\\ell=\\sqrt{r^2+h^2}$:\n- Volume $=\\frac13\\pi r^2h$ (exactly one-third of the cylinder on the same base)\n- Curved surface $=\\pi r\\ell$\n- Total surface $=\\pi r(\\ell+r)$\n- If a cone is rolled from a sector of a circle: the sector's radius is $\\ell$, and arc length $=2\\pi r$.\n\nThe $r$-$h$-$\\ell$ triangle is right-angled, so Pythagorean triplets (3,4,5), (7,24,25), (5,12,13) appear constantly.",
+   "formulas": [
+    {
+     "name": "Slant height",
+     "tex": "\\ell=\\sqrt{r^2+h^2}"
+    },
+    {
+     "name": "Volume",
+     "tex": "V=\\frac13\\pi r^2h"
+    },
+    {
+     "name": "Curved surface",
+     "tex": "CSA=\\pi r\\ell"
+    },
+    {
+     "name": "Total surface",
+     "tex": "TSA=\\pi r(\\ell+r)"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Triplet for the slant height",
+     "body": "Check for (3,4,5) or (7,24,25) among $r,h,\\ell$ before computing a square root.",
+     "example": {
+      "q": "The radius of a cone is 7 cm and its height 24 cm. Find its curved surface area. [Use $\\pi=\\frac{22}{7}$]",
+      "solution": "$\\ell=\\sqrt{7^2+24^2}=25$; CSA $=\\frac{22}{7}\\times7\\times25=550$ sq cm."
+     }
+    },
+    {
+     "title": "One-third of the cylinder",
+     "body": "Equal base and height: $V_{\\text{cone}}=\\frac13V_{\\text{cylinder}}$ — useful directly in ratio questions and for\nconical heaps of sand/grain.",
+     "example": {
+      "q": "A conical tent has base radius 7 m and height 24 m. Find its volume. [Use $\\pi=\\frac{22}{7}$]",
+      "solution": "$V=\\frac13\\times\\frac{22}{7}\\times49\\times24=1232$ cu m."
+     }
+    }
+   ],
+   "mistakes": [
+    "Using $\\pi r^2h$ (cylinder volume) for a cone — the one-third is forgotten most often.",
+    "CSA computed with $h$ instead of $\\ell$.",
+    "Rounding $\\ell$ from a non-triplet when exact fractions were expected."
+   ]
+  },
+  {
+   "id": "m3d-sphere",
+   "title": "Sphere and hemisphere",
+   "concept": "- Sphere (radius $r$): volume $=\\frac43\\pi r^3$, surface $=4\\pi r^2$.\n- Hemisphere: volume $=\\frac23\\pi r^3$; curved surface $=2\\pi r^2$; **total** surface $=3\\pi r^2$ (adds the flat circular face).\n- Melting and recasting conserves **volume** (surface area almost never matches — that option is a trap).",
+   "formulas": [
+    {
+     "name": "Sphere",
+     "tex": "V=\\frac43\\pi r^3,\\quad S=4\\pi r^2"
+    },
+    {
+     "name": "Hemisphere",
+     "tex": "V=\\frac23\\pi r^3,\\quad S_{\\text{curved}}=2\\pi r^2,\\quad S_{\\text{total}}=3\\pi r^2"
+    },
+    {
+     "name": "Melting rule",
+     "tex": "V_{\\text{before}}=V_{\\text{after}}"
+    },
+    {
+     "name": "Count of small spheres",
+     "tex": "\\text{count}=\\left(\\frac{R}{r}\\right)^3"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Count small balls by the cube of the radius ratio",
+     "body": "Number of small spheres $=\\left(\\frac{R}{r}\\right)^3$. Radii in ratio 8:1 → 512 pieces, no π needed.",
+     "example": {
+      "q": "A solid metallic sphere of radius 8 cm is melted and drawn into small spheres of radius 1 cm. How many are formed?",
+      "solution": "$\\left(\\frac81\\right)^3=512$."
+     }
+    },
+    {
+     "title": "Hemisphere TSA is three circles",
+     "body": "$3\\pi r^2$: two for the curved half (recall the sphere is $4\\pi r^2$) plus one for the base.",
+     "example": {
+      "q": "Find the total surface area of a solid hemisphere of radius 7 cm. [Use $\\pi=\\frac{22}{7}$]",
+      "solution": "$3\\times\\frac{22}{7}\\times49=462$ sq cm."
+     }
+    }
+   ],
+   "mistakes": [
+    "Hemisphere TSA taken as $2\\pi r^2$ (that is the curved part only).",
+    "Melting questions answered with equality of surface areas.",
+    "$\\frac43\\pi r^3$ misremembered as $\\frac{4\\pi r^3}{3\\text{ or }2}$ variants — write the fraction before substituting."
+   ]
+  },
+  {
+   "id": "m3d-prism-pyramid",
+   "title": "Prisms, pyramids and painted cubes",
+   "concept": "- **Prism:** two parallel congruent bases; volume $=$ base area $\\times$ height.\n- **Pyramid:** volume $=\\frac13\\times$ base area $\\times$ height.\n- **Painted cube cut into $n^3$ unit cubes** (side $n$): cubes with 3 painted faces $=8$ (corners);\n  2 faces $=12(n-2)$ (edges); 1 face $=6(n-2)^2$; unpainted $=(n-2)^3$.",
+   "formulas": [
+    {
+     "name": "Prism volume",
+     "tex": "V=A_{\\text{base}}\\times h"
+    },
+    {
+     "name": "Pyramid volume",
+     "tex": "V=\\frac13A_{\\text{base}}h"
+    },
+    {
+     "name": "Painted-cube counts",
+     "tex": "3\\text{f}=8,\\ 2\\text{f}=12(n-2),\\ 1\\text{f}=6(n-2)^2,\\ 0\\text{f}=(n-2)^3"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Painted-cube formula table",
+     "body": "Identify $n$ = number of small cubes along one edge. Corners are fixed at 8; the rest depend on $n-2$.",
+     "example": {
+      "q": "A cube of side 7 cm is painted on all faces and cut into 1 cm cubes. How many small cubes have exactly two faces painted?",
+      "solution": "$12(n-2)=12\\times5=60$. (One face: $6\\times25=150$; none: $125$.)"
+     }
+    },
+    {
+     "title": "Pyramid by one-third",
+     "body": "Same base and height as a prism: the pyramid holds exactly one-third.",
+     "example": {
+      "q": "A pyramid stands on a square base of side 10 cm and is 12 cm high. Find its volume.",
+      "solution": "$V=\\frac13\\times100\\times12=400$ cu cm."
+     }
+    }
+   ],
+   "mistakes": [
+    "Forgetting the $\\frac13$ in pyramid (and cone) volumes.",
+    "Painted-cube formulas applied with $n$ = side length in cm instead of cubes per edge.",
+    "Counting corner cubes as 6 or edge cubes as $12(n-1)$."
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Four walls / cost of painting a room",
+   "frequency": "very common",
+   "howToSpot": "Room dimensions and a rate per sq m for painting walls or plastering.",
+   "approach": "LSA $=2(l+b)h$; multiply by rate. Roof/floor included only if stated."
+  },
+  {
+   "pattern": "Melting and recasting",
+   "frequency": "very common",
+   "howToSpot": "A sphere/cone/cylinder melted and recast into another shape; find a dimension or the count of pieces.",
+   "approach": "Equate volumes; for counts use the cube of the radius (or side) ratio. Ignore surface area completely."
+  },
+  {
+   "pattern": "Tank capacity in litres",
+   "frequency": "common",
+   "howToSpot": "Cylindrical or cuboidal tank; capacity asked in litres.",
+   "approach": "$\\pi r^2h$ (or $lbh$) in m³, then ×1000; watch cm-to-m conversions."
+  },
+  {
+   "pattern": "Cone with a Pythagorean triplet",
+   "frequency": "common",
+   "howToSpot": "Radius and height given as (3,4), (6,8), (7,24); asked for CSA/TSA or volume.",
+   "approach": "$\\ell$ from the triplet, then $\\pi r\\ell$; volume keeps $\\frac13$."
+  },
+  {
+   "pattern": "Longest rod / diagonal in 3D",
+   "frequency": "common",
+   "howToSpot": "Longest pole/rod inside a room or cube.",
+   "approach": "Space diagonal $\\sqrt{l^2+b^2+h^2}$; for a cube $a\\sqrt3$."
+  },
+  {
+   "pattern": "Painted cube cut into small cubes",
+   "frequency": "occasional",
+   "howToSpot": "A painted cube is cut into equal small cubes; count cubes with 0/1/2/3 painted faces.",
+   "approach": "$8,\\ 12(n-2),\\ 6(n-2)^2,\\ (n-2)^3$ with $n$ = cubes per edge."
+  },
+  {
+   "pattern": "Percentage change in volume",
+   "frequency": "occasional",
+   "howToSpot": "Sides of a cube change by x%; find the change in volume (or surface).",
+   "approach": "Volume factor $(1+x/100)^3$, surface factor $(1+x/100)^2$. +10% → +33.1% volume, +21% surface."
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "m3d-s01",
+   "q": "A room is 12 m long, 9 m wide and 8 m high. Find the length of the longest pole that can be placed inside the room.",
+   "figure": null,
+   "options": [
+    "19 m",
+    "16 m",
+    "17 m",
+    "15 m"
+   ],
+   "answer": 2,
+   "solution": "The longest pole fits along the space diagonal:\n\n$\\sqrt{12^2+9^2+8^2}=\\sqrt{144+81+64}=\\sqrt{289}=17$ m.",
+   "shortcut": "12-9-8 → 17 is a stock diagonal: $144+81+64=289=17^2$. Trap: 15 m is the floor diagonal $\\sqrt{12^2+9^2}$.",
+   "difficulty": "easy",
+   "subtopic": "m3d-cube-cuboid",
+   "pattern": "space diagonal (longest rod)",
+   "timeSec": 40
+  },
+  {
+   "id": "m3d-s02",
+   "q": "A cylindrical tank of radius 2 m and depth 7 m is full of water. The capacity of the tank is: [Use $\\pi=\\frac{22}{7}$]",
+   "figure": null,
+   "options": [
+    "88,000 litres",
+    "8,800 litres",
+    "880 litres",
+    "44,000 litres"
+   ],
+   "answer": 0,
+   "solution": "$V=\\pi r^2h=\\frac{22}{7}\\times4\\times7=88$ m$^3$.\n\n$1$ m$^3=1000$ litres, so capacity $=88{,}000$ litres.",
+   "shortcut": "$88$ m³ ×1000 → 88,000 L. Trap: 880 (×10) or answering in m³.",
+   "difficulty": "medium",
+   "subtopic": "m3d-cylinder",
+   "pattern": "tank capacity in litres",
+   "timeSec": 40
+  },
+  {
+   "id": "m3d-s03",
+   "q": "A solid metallic cone of radius 6 cm and height 3 cm is melted and recast into a sphere. The radius of the sphere is:",
+   "figure": null,
+   "options": [
+    "2 cm",
+    "4 cm",
+    "3 cm",
+    "6 cm"
+   ],
+   "answer": 2,
+   "solution": "$\\frac13\\pi r_c^2h=\\frac43\\pi R^3$\n\n$\\frac13\\times36\\times3=36=\\frac43R^3\\Rightarrow R^3=27\\Rightarrow R=3$ cm.",
+   "shortcut": "$V_{\\text{cone}}=36\\pi$; set $\\frac43\\pi R^3=36\\pi$ → $R^3=27$ → 3 cm. Trap: 6 cm (radius unchanged) and 2 cm (took $R^3=36/4$ with a slip).",
+   "difficulty": "hard",
+   "subtopic": "m3d-sphere",
+   "pattern": "melted cone to sphere",
+   "timeSec": 60
+  },
+  {
+   "id": "m3d-s04",
+   "q": "If each edge of a cube increases by 10%, the percentage increase in its volume is:",
+   "figure": null,
+   "options": [
+    "30%",
+    "21%",
+    "33%",
+    "33.1%"
+   ],
+   "answer": 3,
+   "solution": "Volume scales as the cube of the linear factor: $(1.1)^3=1.331$.\n\nIncrease $=33.1\\%$. (Surface would rise by $(1.1)^2=1.21$, i.e. 21%.)",
+   "shortcut": "$1.1^3=1.331$ → 33.1%. Traps: 30% (linear ×3), 21% (that is the **surface** increase).",
+   "difficulty": "medium",
+   "subtopic": "m3d-cube-cuboid",
+   "pattern": "percentage change in volume",
+   "timeSec": 35
+  }
+ ],
+ "practice": [
+  {
+   "id": "m3d-q01",
+   "q": "The volume of a cube of edge 6 cm is:",
+   "figure": null,
+   "options": [
+    "216 cu cm",
+    "36 cu cm",
+    "1296 cu cm",
+    "18 cu cm"
+   ],
+   "answer": 0,
+   "solution": "$V=a^3=6^3=216$ cu cm.",
+   "shortcut": "$6^3=216$. Trap: 36 is the face area.",
+   "difficulty": "easy",
+   "subtopic": "m3d-cube-cuboid",
+   "pattern": "cube volume",
+   "timeSec": 20
+  },
+  {
+   "id": "m3d-q02",
+   "q": "The total surface area of a cuboid of dimensions $8\\text{ cm}\\times6\\text{ cm}\\times4\\text{ cm}$ is:",
+   "figure": null,
+   "options": [
+    "192 sq cm",
+    "216 sq cm",
+    "208 sq cm",
+    "104 sq cm"
+   ],
+   "answer": 2,
+   "solution": "$TSA=2(lb+bh+lh)=2(48+24+32)=208$ sq cm.",
+   "shortcut": "Half of 208 is 104 — the bracket sum; double it. Trap: 104 (no doubling).",
+   "difficulty": "easy",
+   "subtopic": "m3d-cube-cuboid",
+   "pattern": "cuboid total surface",
+   "timeSec": 30
+  },
+  {
+   "id": "m3d-q03",
+   "q": "The volume of a cylinder of radius 7 cm and height 10 cm is: [Use $\\pi=\\frac{22}{7}$]",
+   "figure": null,
+   "options": [
+    "1,540 cu cm",
+    "440 cu cm",
+    "220 cu cm",
+    "770 cu cm"
+   ],
+   "answer": 0,
+   "solution": "$V=\\pi r^2h=\\frac{22}{7}\\times49\\times10=1540$ cu cm.",
+   "shortcut": "$49\\times10\\times22/7=1540$. Trap: 440 is the CSA ($2\\pi rh$).",
+   "difficulty": "easy",
+   "subtopic": "m3d-cylinder",
+   "pattern": "cylinder volume",
+   "timeSec": 30
+  },
+  {
+   "id": "m3d-q04",
+   "q": "The surface area of a sphere of radius 7 cm is: [Use $\\pi=\\frac{22}{7}$]",
+   "figure": null,
+   "options": [
+    "154 sq cm",
+    "616 sq cm",
+    "462 sq cm",
+    "308 sq cm"
+   ],
+   "answer": 1,
+   "solution": "$S=4\\pi r^2=4\\times\\frac{22}{7}\\times49=616$ sq cm.",
+   "shortcut": "$4\\times154=616$. Trap: 462 is the hemisphere TSA ($3\\pi r^2$); 308 is $2\\pi r^2$.",
+   "difficulty": "easy",
+   "subtopic": "m3d-sphere",
+   "pattern": "sphere surface area",
+   "timeSec": 30
+  },
+  {
+   "id": "m3d-q05",
+   "q": "The total surface area of a solid hemisphere of radius 7 cm is: [Use $\\pi=\\frac{22}{7}$]",
+   "figure": null,
+   "options": [
+    "616 sq cm",
+    "308 sq cm",
+    "770 sq cm",
+    "462 sq cm"
+   ],
+   "answer": 3,
+   "solution": "$TSA=3\\pi r^2=3\\times\\frac{22}{7}\\times49=462$ sq cm.",
+   "shortcut": "Three circles of $\\pi r^2=154$ each → 462. Trap: 308 is only the curved half.",
+   "difficulty": "easy",
+   "subtopic": "m3d-sphere",
+   "pattern": "hemisphere total surface",
+   "timeSec": 30
+  },
+  {
+   "id": "m3d-q06",
+   "q": "The diagonal of a cuboid of dimensions $3\\text{ cm}\\times4\\text{ cm}\\times12\\text{ cm}$ is:",
+   "figure": null,
+   "options": [
+    "$\\sqrt{24}$ cm",
+    "13 cm",
+    "12 cm",
+    "19 cm"
+   ],
+   "answer": 1,
+   "solution": "$d=\\sqrt{3^2+4^2+12^2}=\\sqrt{169}=13$ cm.",
+   "shortcut": "$9+16+144=169=13^2$. This cuboid is a stock triplet (3, 4, 12 → 13).",
+   "difficulty": "medium",
+   "subtopic": "m3d-cube-cuboid",
+   "pattern": "cuboid diagonal",
+   "timeSec": 35
+  },
+  {
+   "id": "m3d-q07",
+   "q": "The radius of a cone is 7 cm and its height is 24 cm. Its curved surface area is: [Use $\\pi=\\frac{22}{7}$]",
+   "figure": null,
+   "options": [
+    "528 sq cm",
+    "1,100 sq cm",
+    "704 sq cm",
+    "550 sq cm"
+   ],
+   "answer": 3,
+   "solution": "$\\ell=\\sqrt{7^2+24^2}=25$ cm; CSA $=\\pi r\\ell=\\frac{22}{7}\\times7\\times25=550$ sq cm.",
+   "shortcut": "7-24-25 triplet: $\\ell=25$, then $\\pi\\times7\\times25=550$. Trap: 528 uses $h$ instead of $\\ell$ ($2\\pi rh$).",
+   "difficulty": "medium",
+   "subtopic": "m3d-cone",
+   "pattern": "cone CSA with triplet",
+   "timeSec": 40
+  },
+  {
+   "id": "m3d-q08",
+   "q": "A solid metallic sphere of radius 6 cm is melted and drawn into a cylindrical wire of radius 2 mm. The length of the wire is:",
+   "figure": null,
+   "options": [
+    "72 m",
+    "7.2 m",
+    "720 m",
+    "36 m"
+   ],
+   "answer": 0,
+   "solution": "Sphere: $V=\\frac43\\pi(6)^3=288\\pi$ cu cm.\n\nWire radius: 2 mm $=0.2$ cm. $V_{\\text{wire}}=\\pi(0.2)^2L=0.04\\pi L$.\n\n$0.04\\pi L=288\\pi\\Rightarrow L=7200$ cm $=72$ m.",
+   "shortcut": "$288\\pi/0.04\\pi=7200$ cm. Units trap: 2 mm $=0.2$ cm; answer in metres divides by 100. 720 m forgot that step.",
+   "difficulty": "hard",
+   "subtopic": "m3d-cylinder",
+   "pattern": "sphere melted into wire",
+   "timeSec": 70
+  },
+  {
+   "id": "m3d-q09",
+   "q": "A metallic pipe has inner radius 3 cm, outer radius 5 cm and length 14 cm. The volume of metal used is: [Use $\\pi=\\frac{22}{7}$]",
+   "figure": null,
+   "options": [
+    "396 cu cm",
+    "308 cu cm",
+    "704 cu cm",
+    "1,100 cu cm"
+   ],
+   "answer": 2,
+   "solution": "$V=\\pi(R^2-r^2)h=\\frac{22}{7}\\times(25-9)\\times14=\\frac{22}{7}\\times224=704$ cu cm.",
+   "shortcut": "Ring area $22\\times16=352$, ×14/2... directly: $\\frac{22}{7}\\times224=704$. Trap: 1100 uses only the outer cylinder.",
+   "difficulty": "medium",
+   "subtopic": "m3d-cylinder",
+   "pattern": "hollow pipe volume",
+   "timeSec": 45
+  },
+  {
+   "id": "m3d-q10",
+   "q": "A solid sphere of radius 8 cm is melted and recast into small spheres of radius 1 cm each. The number of small spheres formed is:",
+   "figure": null,
+   "options": [
+    "128",
+    "512",
+    "64",
+    "8"
+   ],
+   "answer": 1,
+   "solution": "Volume ratio $=\\left(\\frac{8}{1}\\right)^3=512$.",
+   "shortcut": "Cube the radius ratio: $8^3=512$. Trap: 64 (squared the ratio — that is an area ratio).",
+   "difficulty": "medium",
+   "subtopic": "m3d-sphere",
+   "pattern": "count of small spheres",
+   "timeSec": 35
+  },
+  {
+   "id": "m3d-q11",
+   "q": "If each edge of a cube increases by 10%, its volume increases by:",
+   "figure": null,
+   "options": [
+    "30%",
+    "21%",
+    "10%",
+    "33.1%"
+   ],
+   "answer": 3,
+   "solution": "$(1.1)^3=1.331$, so the increase is 33.1%.",
+   "shortcut": "$1.1^3=1.331$. Trap: 21% is the surface increase; 30% treats volume as linear.",
+   "difficulty": "medium",
+   "subtopic": "m3d-cube-cuboid",
+   "pattern": "percentage change in volume",
+   "timeSec": 35
+  },
+  {
+   "id": "m3d-q12",
+   "q": "A pyramid stands on a square base of side 10 cm and is 12 cm high. Its volume is:",
+   "figure": null,
+   "options": [
+    "600 cu cm",
+    "400 cu cm",
+    "1200 cu cm",
+    "300 cu cm"
+   ],
+   "answer": 1,
+   "solution": "$V=\\frac13\\times\\text{base area}\\times h=\\frac13\\times100\\times12=400$ cu cm.",
+   "shortcut": "$100\\times12=1200$, then one-third → 400. Trap: 1200 forgot the $\\frac13$.",
+   "difficulty": "medium",
+   "subtopic": "m3d-prism-pyramid",
+   "pattern": "pyramid volume",
+   "timeSec": 40
+  },
+  {
+   "id": "m3d-q13",
+   "q": "A hemispherical bowl of internal radius 9 cm is full of water. The water is emptied into a cylindrical bottle of radius 3 cm. The height of water in the bottle is: [Use $\\pi=\\frac{22}{7}$]",
+   "figure": null,
+   "options": [
+    "27 cm",
+    "18 cm",
+    "36 cm",
+    "54 cm"
+   ],
+   "answer": 3,
+   "solution": "Bowl: $V=\\frac23\\pi(9)^3=486\\pi$.\n\nBottle: $\\pi(3)^2h=486\\pi\\Rightarrow h=54$ cm.",
+   "shortcut": "$486\\pi/9\\pi=54$. Keep π symbolic — it cancels. Trap: 18 cm uses the bowl volume as $\\frac13\\pi r^3$.",
+   "difficulty": "hard",
+   "subtopic": "m3d-sphere",
+   "pattern": "hemispherical bowl into cylinder",
+   "timeSec": 60
+  },
+  {
+   "id": "m3d-q14",
+   "q": "A cube of side 7 cm is painted on all its faces and then cut into 1 cm cubes. How many of the small cubes have exactly two faces painted?",
+   "figure": null,
+   "options": [
+    "75",
+    "90",
+    "60",
+    "54"
+   ],
+   "answer": 2,
+   "solution": "$n=7$: cubes on edges (excluding corners) have exactly two painted faces: $12(n-2)=12\\times5=60$.",
+   "shortcut": "12 edges × 5 cubes each = 60. Trap: 54 ($6(n-2)^2$ mixing formulas), 75 (5³).",
+   "difficulty": "hard",
+   "subtopic": "m3d-prism-pyramid",
+   "pattern": "painted cube: two-face count",
+   "timeSec": 50
+  },
+  {
+   "id": "m3d-q15",
+   "q": "A solid metallic cone of radius 6 cm and height 3 cm is melted and recast into a sphere. The radius of the sphere is:",
+   "figure": null,
+   "options": [
+    "3 cm",
+    "6 cm",
+    "2 cm",
+    "9 cm"
+   ],
+   "answer": 0,
+   "solution": "$\\frac13\\pi(6)^2(3)=36\\pi=\\frac43\\pi R^3\\Rightarrow R^3=27\\Rightarrow R=3$ cm.",
+   "shortcut": "Volume of cone $36\\pi$; $\\frac43R^3=36\\Rightarrow R=3$ cm.",
+   "difficulty": "hard",
+   "subtopic": "m3d-sphere",
+   "pattern": "cone melted into sphere",
+   "timeSec": 55
+  }
+ ]
+}

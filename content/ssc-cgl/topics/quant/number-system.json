@@ -1,0 +1,795 @@
+{
+ "id": "number-system",
+ "sectionId": "quant",
+ "title": "Number System",
+ "order": 1,
+ "importance": "high",
+ "avgQuestions": {
+  "tier1": 2,
+  "tier2": 3
+ },
+ "summary": "Divisibility, remainders, unit digits, factors and recurring decimals — the base layer every other Quant topic uses. CGL asks 1–3 direct questions per Tier 1 shift (missing-digit divisibility, remainders and unit digit are near-certain) and a few more in Tier 2.",
+ "subtopics": [
+  {
+   "id": "ns-types-counting",
+   "title": "Number types, place value & counting",
+   "concept": "**Number families you must know cold**\n\n| Type | Meaning | Watch-out |\n|---|---|---|\n| Natural | 1, 2, 3, … | 0 is **not** natural |\n| Whole | 0, 1, 2, … | smallest whole number is 0 |\n| Integers | …, −2, −1, 0, 1, 2, … | 0 is neither positive nor negative |\n| Rational | $\\frac{p}{q}$, $q \\neq 0$ | every terminating/recurring decimal is rational |\n| Irrational | non-terminating, non-recurring | $\\sqrt{2}$, $\\pi$; sum of two irrationals can be rational |\n| Prime | exactly two factors | 1 is neither prime nor composite; 2 is the only even prime; 25 primes up to 100 |\n| Co-prime | HCF = 1 | 8 and 15 are co-prime though neither is prime |\n\n**Place value vs face value:** in 3,47,218 the face value of 7 is 7, the place value is 7000.\n\n**Counting multiples** in a range and **sums of series** (natural numbers, squares, cubes, odd numbers, AP) appear as 1-mark sitters in Tier 1. Always read *between* (exclusive) vs *from … to* (inclusive).",
+   "formulas": [
+    {
+     "name": "Multiples of k from 1 to n",
+     "tex": "\\left\\lfloor \\frac{n}{k} \\right\\rfloor"
+    },
+    {
+     "name": "Multiples of k from a to b",
+     "tex": "\\left\\lfloor \\frac{b}{k} \\right\\rfloor - \\left\\lfloor \\frac{a-1}{k} \\right\\rfloor"
+    },
+    {
+     "name": "Inclusion–exclusion",
+     "tex": "n(A \\cup B) = n(A) + n(B) - n(A \\cap B)",
+     "note": "A ∩ B = multiples of LCM"
+    },
+    {
+     "name": "Sum of first n natural numbers",
+     "tex": "\\frac{n(n+1)}{2}"
+    },
+    {
+     "name": "Sum of squares",
+     "tex": "1^2+2^2+\\cdots+n^2 = \\frac{n(n+1)(2n+1)}{6}"
+    },
+    {
+     "name": "Sum of cubes",
+     "tex": "1^3+2^3+\\cdots+n^3 = \\left[\\frac{n(n+1)}{2}\\right]^2"
+    },
+    {
+     "name": "First n odd / even numbers",
+     "tex": "1+3+\\cdots+(2n-1) = n^2,\\quad 2+4+\\cdots+2n = n(n+1)"
+    },
+    {
+     "name": "AP: terms and sum",
+     "tex": "n = \\frac{l-a}{d}+1,\\quad S = \\frac{n}{2}(a+l)"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Floor-division counting",
+     "body": "Count multiples of $k$ up to $b$, subtract the multiples up to $a-1$. No listing needed.",
+     "example": {
+      "q": "How many numbers from 100 to 400 are divisible by 13?",
+      "solution": "$\\left\\lfloor \\frac{400}{13} \\right\\rfloor - \\left\\lfloor \\frac{99}{13} \\right\\rfloor = 30 - 7 = 23$."
+     }
+    },
+    {
+     "title": "Place value − face value",
+     "body": "Place value = digit × its position value. Difference = digit × (position value − 1).",
+     "example": {
+      "q": "Find the difference between the place value and face value of 7 in 3,47,218.",
+      "solution": "Place value $= 7000$, face value $= 7$. Difference $= 7 \\times 999 = 6993$."
+     }
+    },
+    {
+     "title": "AP sum = terms × middle term",
+     "body": "For any AP, sum = number of terms × average of first and last term. Saves writing the formula.",
+     "example": {
+      "q": "Find the sum of all odd numbers from 21 to 79.",
+      "solution": "Terms $= \\frac{79-21}{2}+1 = 30$, average $= \\frac{21+79}{2} = 50$. Sum $= 30 \\times 50 = 1500$."
+     }
+    }
+   ],
+   "mistakes": [
+    "Counting the end points when the question says *between* (exclusive).",
+    "Treating 1 as a prime number, or forgetting that 2 is prime.",
+    "In 'divisible by 3 or 5' questions, adding both counts without subtracting multiples of 15.",
+    "Using $\\frac{n(n+1)}{2}$ for a series that does not start at 1."
+   ]
+  },
+  {
+   "id": "ns-divisibility",
+   "title": "Divisibility rules",
+   "concept": "| Divisor | Rule |\n|---|---|\n| 2, 5, 10 | last digit |\n| 4 | last two digits divisible by 4 |\n| 8 | last three digits divisible by 8 |\n| 3, 9 | digit sum divisible by 3 / 9 |\n| 11 | (sum of digits at odd places) − (sum at even places) = 0 or a multiple of 11 |\n| 7, 11, 13 | alternating sum of 3-digit groups from the right divisible by 7/11/13 (since 1001 = 7 × 11 × 13) |\n| composite | break into **co-prime** factors: 12 = 3 × 4, 72 = 8 × 9, 88 = 8 × 11, 99 = 9 × 11 |\n\n**Algebraic divisibility** (very popular): $a^n - b^n$ is always divisible by $a-b$; by $a+b$ too when $n$ is even. $a^n + b^n$ is divisible by $a+b$ when $n$ is odd.\n\nFor missing-digit questions, apply the **most restrictive** rule first (usually 8 or 11), then the digit-sum rule.",
+   "formulas": [
+    {
+     "name": "Divisibility by 11",
+     "tex": "\\left(\\sum \\text{odd-place digits}\\right) - \\left(\\sum \\text{even-place digits}\\right) \\in \\{0, \\pm 11, \\pm 22, \\dots\\}"
+    },
+    {
+     "name": "Composite divisor",
+     "tex": "pq \\mid N \\iff p \\mid N \\text{ and } q \\mid N, \\quad \\gcd(p,q)=1"
+    },
+    {
+     "name": "Difference of powers",
+     "tex": "(a-b) \\mid (a^n - b^n) \\text{ for all } n"
+    },
+    {
+     "name": "Difference of even powers",
+     "tex": "(a+b) \\mid (a^n - b^n) \\text{ when } n \\text{ is even}"
+    },
+    {
+     "name": "Sum of odd powers",
+     "tex": "(a+b) \\mid (a^n + b^n) \\text{ when } n \\text{ is odd}"
+    },
+    {
+     "name": "abcabc form",
+     "tex": "\\overline{abcabc} = \\overline{abc} \\times 1001 = \\overline{abc} \\times 7 \\times 11 \\times 13"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Split into co-prime factors",
+     "body": "Never split 12 as 2 × 6 or 72 as 4 × 18 — the factors must be co-prime. Test each factor's rule separately.",
+     "example": {
+      "q": "If the five-digit number 37x84 is divisible by 12, find the smallest value of x.",
+      "solution": "12 = 3 × 4. **By 4:** last two digits 84 ✓ (any x).\n**By 3:** $3+7+x+8+4 = 22+x$ must be a multiple of 3 ⇒ $x \\in \\{2, 5, 8\\}$. Smallest $x = 2$."
+     }
+    },
+    {
+     "title": "The 1001 family",
+     "body": "Any six-digit number of the form $abcabc$ equals $abc \\times 1001$, so it is always divisible by 7, 11, 13 (and 77, 91, 143, 1001).",
+     "example": {
+      "q": "Which of 7, 11 and 13 divide 345345?",
+      "solution": "$345345 = 345 \\times 1001 = 345 \\times 7 \\times 11 \\times 13$ — all three divide it."
+     }
+    },
+    {
+     "title": "Sum of odd powers",
+     "body": "$a^n + b^n$ with odd $n$ is divisible by $a+b$ — look at the options for $a+b$ first.",
+     "example": {
+      "q": "Is $17^{15} + 23^{15}$ divisible by 40?",
+      "solution": "Exponent 15 is odd, so $17 + 23 = 40$ divides $17^{15} + 23^{15}$. **Yes.**"
+     }
+    }
+   ],
+   "mistakes": [
+    "Splitting a composite divisor into non-co-prime factors (e.g. 18 is divisible by 2 and 6 but not by 12).",
+    "Checking only the last two digits for 8 (need last three).",
+    "For 11, forgetting that the difference can be 0 or a negative multiple of 11.",
+    "Applying the $(a+b)$ rule to $a^n + b^n$ when $n$ is even — it fails."
+   ]
+  },
+  {
+   "id": "ns-remainders",
+   "title": "Remainders & remainder theorem",
+   "concept": "**Division algorithm:** $N = dq + r$ with $0 \\le r < d$.\n\n**Remainder of sums/products** = remainder of the sum/product of individual remainders. Reduce every number first, then multiply small numbers.\n\n**Negative remainders:** $98 \\equiv -1 \\pmod{99}$. Working with $-1, -2$ keeps numbers tiny; add the divisor at the end if the result is negative.\n\n**Large powers:** find a small power that gives remainder $\\pm 1$ (e.g. $2^3 = 8 \\equiv 1 \\pmod 7$, $2^4 = 16 \\equiv -1 \\pmod{17}$), then split the exponent. For a prime $p$ not dividing $a$: $a^{p-1} \\equiv 1 \\pmod p$ (Fermat).\n\n**Divisor-multiple rule:** if $N$ leaves remainder $r$ with divisor $D$ and $d$ is a factor of $D$, the remainder with $d$ is simply $r \\bmod d$.",
+   "formulas": [
+    {
+     "name": "Division algorithm",
+     "tex": "N = d \\times q + r,\\quad 0 \\le r < d"
+    },
+    {
+     "name": "Product rule",
+     "tex": "\\text{Rem}\\left(\\frac{a \\times b}{d}\\right) = \\text{Rem}\\left(\\frac{R_a \\times R_b}{d}\\right)"
+    },
+    {
+     "name": "Fermat's little theorem",
+     "tex": "a^{p-1} \\equiv 1 \\pmod{p},\\quad p \\text{ prime},\\ \\gcd(a,p)=1"
+    },
+    {
+     "name": "Divisor-multiple rule",
+     "tex": "N \\equiv r \\pmod{D},\\ d \\mid D \\ \\Rightarrow\\ N \\equiv r \\pmod{d}"
+    },
+    {
+     "name": "Base one more than divisor",
+     "tex": "(ad+1)^n \\equiv 1 \\pmod{d}"
+    },
+    {
+     "name": "Base one less than divisor",
+     "tex": "(ad-1)^n \\equiv (-1)^n \\pmod{d}",
+     "note": "remainder 1 if n even, d − 1 if n odd"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Make the base ±1",
+     "body": "Write the base as (multiple of divisor) ± 1. Then the power collapses to $\\pm 1$.",
+     "example": {
+      "q": "Find the remainder when $15^{47}$ is divided by 16.",
+      "solution": "$15 \\equiv -1 \\pmod{16}$, so $15^{47} \\equiv (-1)^{47} = -1 \\equiv 16 - 1 = 15$."
+     }
+    },
+    {
+     "title": "Negative remainders for products",
+     "body": "When the numbers are just below the divisor, use small negative remainders.",
+     "example": {
+      "q": "Find the remainder when $98 \\times 97 \\times 96$ is divided by 99.",
+      "solution": "$(-1)(-2)(-3) = -6 \\equiv 99 - 6 = 93$."
+     }
+    },
+    {
+     "title": "Divisor is a multiple — just reduce",
+     "body": "If the second divisor is a factor of the first, divide the old remainder by the new divisor. If it is NOT a factor, the answer cannot be found this way.",
+     "example": {
+      "q": "A number leaves remainder 29 when divided by 56. What is the remainder when it is divided by 8?",
+      "solution": "$56 = 8 \\times 7$, so remainder $= 29 \\bmod 8 = 5$."
+     }
+    }
+   ],
+   "mistakes": [
+    "Leaving a negative remainder as the final answer — add the divisor.",
+    "Using the divisor-multiple rule in reverse: knowing N mod 8 does NOT give N mod 56.",
+    "Applying Fermat when the divisor is not prime or divides the base.",
+    "Multiplying the big numbers before reducing — wastes time and invites errors."
+   ]
+  },
+  {
+   "id": "ns-unit-digit",
+   "title": "Unit digit & cyclicity",
+   "concept": "The unit digit of a power depends only on the unit digit of the base and the exponent's position in the **cycle**.\n\n| Unit digit of base | Cycle | Length |\n|---|---|---|\n| 0, 1, 5, 6 | same digit always | 1 |\n| 4 | 4, 6 | 2 (odd power → 4, even → 6) |\n| 9 | 9, 1 | 2 (odd power → 9, even → 1) |\n| 2 | 2, 4, 8, 6 | 4 |\n| 3 | 3, 9, 7, 1 | 4 |\n| 7 | 7, 9, 3, 1 | 4 |\n| 8 | 8, 4, 2, 6 | 4 |\n\n**Method:** divide the exponent by 4 (only its last two digits matter). Remainder r → use power r; remainder 0 → use power 4.\n\nFor products, multiply only the unit digits. Any even number × any number ending in 5 ends in 0. Every n! with n ≥ 5 ends in 0.",
+   "formulas": [
+    {
+     "name": "Cyclicity rule",
+     "tex": "\\text{u.d.}(a^n) = \\text{u.d.}(a^{r}),\\ r = n \\bmod 4,\\ (r = 0 \\Rightarrow r = 4)"
+    },
+    {
+     "name": "Cycles of 2, 3, 7, 8",
+     "tex": "2:\\,2,4,8,6 \\quad 3:\\,3,9,7,1 \\quad 7:\\,7,9,3,1 \\quad 8:\\,8,4,2,6"
+    },
+    {
+     "name": "Factorials",
+     "tex": "n! \\equiv 0 \\pmod{10} \\text{ for } n \\ge 5"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Last two digits of the exponent",
+     "body": "For mod 4, only the last two digits of the exponent matter (100 is a multiple of 4).",
+     "example": {
+      "q": "Find the unit digit of $1357^{2463}$.",
+      "solution": "Base ends in 7. $63 \\bmod 4 = 3$ ⇒ $7^3 = 343$ ⇒ unit digit **3**."
+     }
+    },
+    {
+     "title": "Even × 5 = 0",
+     "body": "If the product contains an even factor and a factor ending in 5, the unit digit is 0 — no cycle work needed.",
+     "example": {
+      "q": "Find the unit digit of $2^{31} \\times 5^{17} \\times 3^{9}$.",
+      "solution": "$2^{31}$ is even and $5^{17}$ ends in 5 ⇒ product ends in **0**."
+     }
+    },
+    {
+     "title": "Factorial sums: only the first four terms",
+     "body": "From 5! onwards every factorial ends in 0, so the unit digit of 1! + 2! + … + n! (n ≥ 4) is always 3.",
+     "example": {
+      "q": "Find the unit digit of 1! + 2! + 3! + … + 50!.",
+      "solution": "1 + 2 + 6 + 24 = 33; all later terms end in 0 ⇒ unit digit **3**."
+     }
+    }
+   ],
+   "mistakes": [
+    "Treating exponent remainder 0 as power 0 (unit digit 1) — use power 4 instead.",
+    "Taking the exponent mod 4 using only its last digit (use the last two digits).",
+    "For a difference like $7^{a} - 3^{b}$, forgetting to borrow 10 when the first unit digit is smaller."
+   ]
+  },
+  {
+   "id": "ns-factors",
+   "title": "Factors, prime factorisation & trailing zeros",
+   "concept": "Write $N = p^a q^b r^c$ (prime factorisation). Everything about factors comes from the exponents.\n\n- **Number of factors** $= (a+1)(b+1)(c+1)$\n- **Odd factors:** ignore the power of 2. **Even factors** = total − odd (or give 2 an exponent from 1 to its max).\n- **Perfect-square factors:** each exponent can only take even values 0, 2, 4, …\n- **Sum of factors:** multiply $(1 + p + \\dots + p^a)$ for each prime.\n\n**Trailing zeros** of a product = number of (2, 5) pairs = number of 5s (5s are scarcer). In n!, count 5s by successive division by 5.",
+   "formulas": [
+    {
+     "name": "Number of factors",
+     "tex": "d(N) = (a+1)(b+1)(c+1)"
+    },
+    {
+     "name": "Sum of factors",
+     "tex": "\\sigma(N) = \\frac{p^{a+1}-1}{p-1} \\cdot \\frac{q^{b+1}-1}{q-1} \\cdot \\frac{r^{c+1}-1}{r-1}"
+    },
+    {
+     "name": "Even factors",
+     "tex": "a \\cdot (b+1)(c+1)",
+     "note": "when p = 2 with exponent a"
+    },
+    {
+     "name": "Product of all factors",
+     "tex": "N^{d(N)/2}"
+    },
+    {
+     "name": "Trailing zeros in n!",
+     "tex": "\\left\\lfloor \\frac{n}{5} \\right\\rfloor + \\left\\lfloor \\frac{n}{25} \\right\\rfloor + \\left\\lfloor \\frac{n}{125} \\right\\rfloor + \\cdots"
+    },
+    {
+     "name": "Highest power of prime p in n!",
+     "tex": "\\sum_{k \\ge 1} \\left\\lfloor \\frac{n}{p^k} \\right\\rfloor"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Even factors: force one 2",
+     "body": "If $N = 2^a \\times (\\text{odd part})$, even factors $= a \\times$ (factors of odd part).",
+     "example": {
+      "q": "How many even factors does 360 have?",
+      "solution": "$360 = 2^3 \\times 3^2 \\times 5$ ⇒ even factors $= 3 \\times 3 \\times 2 = 18$."
+     }
+    },
+    {
+     "title": "Successive division by 5",
+     "body": "Keep dividing by 5 (dropping remainders) and add the quotients.",
+     "example": {
+      "q": "How many zeros are at the end of 1000!?",
+      "solution": "$1000 \\to 200 \\to 40 \\to 8 \\to 1$. Sum $= 200+40+8+1 = 249$."
+     }
+    },
+    {
+     "title": "Sum of factors as bracket product",
+     "body": "Write one bracket per prime: (1 + p + p² + …). Multiply.",
+     "example": {
+      "q": "Find the sum of all factors of 72.",
+      "solution": "$72 = 2^3 \\times 3^2$ ⇒ $(1+2+4+8)(1+3+9) = 15 \\times 13 = 195$."
+     }
+    }
+   ],
+   "mistakes": [
+    "Counting only n/5 for trailing zeros and missing the extra 5s from 25, 125, …",
+    "Adding exponents instead of multiplying (a + 1)(b + 1)(c + 1).",
+    "Forgetting that 1 and N are themselves factors.",
+    "For trailing zeros of a SUM (e.g. 100! + 200!) adding the zeros — the sum has the smaller count."
+   ]
+  },
+  {
+   "id": "ns-fractions-decimals",
+   "title": "Fractions, decimals & recurring decimals",
+   "concept": "**Terminating or not?** Reduce $\\frac{p}{q}$ to lowest terms. It terminates only if $q$ has no prime factor other than 2 and 5.\n\n**Recurring decimal → fraction**\n\n- Pure recurring: repeating digits over as many 9s. $0.\\overline{36} = \\frac{36}{99} = \\frac{4}{11}$\n- Mixed recurring: (all digits after the point − non-repeating part) over (one 9 per repeating digit followed by one 0 per non-repeating digit). $0.2\\overline{45} = \\frac{245-2}{990}$\n- With a whole number: $2.4\\overline{7} = 2 + \\frac{47-4}{90}$\n\n**Comparing fractions:** cross-multiply two at a time, convert to decimals, or compare the gap from 1 (complement) when all fractions are close to 1.",
+   "formulas": [
+    {
+     "name": "Pure recurring",
+     "tex": "0.\\overline{ab} = \\frac{ab}{99},\\quad 0.\\overline{abc} = \\frac{abc}{999}"
+    },
+    {
+     "name": "Mixed recurring",
+     "tex": "0.a\\overline{bc} = \\frac{abc - a}{990}"
+    },
+    {
+     "name": "Terminating test",
+     "tex": "\\frac{p}{q} \\text{ (lowest terms) terminates} \\iff q = 2^m \\, 5^n"
+    },
+    {
+     "name": "Cross-multiplication",
+     "tex": "\\frac{a}{b} > \\frac{c}{d} \\iff ad > bc \\quad (b, d > 0)"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "9s-and-0s rule",
+     "body": "Numerator: whole block after the point minus the non-repeating part. Denominator: one 9 per repeating digit, then one 0 per non-repeating digit.",
+     "example": {
+      "q": "Convert $0.2\\overline{45}$ into a fraction.",
+      "solution": "$\\frac{245 - 2}{990} = \\frac{243}{990} = \\frac{27}{110}$."
+     }
+    },
+    {
+     "title": "Complement comparison",
+     "body": "When fractions are close to 1, compare $1 - \\text{fraction}$: the **smallest** gap gives the **largest** fraction.",
+     "example": {
+      "q": "Which is the largest: $\\frac{11}{12}, \\frac{13}{14}, \\frac{17}{18}, \\frac{19}{21}$?",
+      "solution": "Gaps: $\\frac{1}{12}, \\frac{1}{14}, \\frac{1}{18}, \\frac{2}{21}$. Smallest gap $\\frac{1}{18}$ ⇒ $\\frac{17}{18}$ is largest."
+     }
+    },
+    {
+     "title": "Terminating check in one glance",
+     "body": "Cancel first, then look only at the denominator's primes.",
+     "example": {
+      "q": "Which of $\\frac{7}{80}, \\frac{9}{42}, \\frac{11}{75}, \\frac{13}{120}$ is a terminating decimal?",
+      "solution": "$80 = 2^4 \\times 5$ ✓. $\\frac{9}{42} = \\frac{3}{14}$ (7) ✗, $75 = 3 \\times 5^2$ ✗, $120 = 2^3 \\times 3 \\times 5$ ✗. Answer: $\\frac{7}{80}$."
+     }
+    }
+   ],
+   "mistakes": [
+    "Writing $0.2\\overline{45}$ as $\\frac{245}{999}$ — ignoring the non-repeating digit.",
+    "Testing the denominator for 2s and 5s before reducing the fraction.",
+    "Assuming the fraction with the larger numerator is larger."
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Missing digit for divisibility (by 11, 72, 88, 99)",
+   "frequency": "very common",
+   "howToSpot": "A number with one or two blanks (x, y) and 'is divisible by …'; options are digits or x + y.",
+   "approach": "Split the divisor into co-prime factors. Apply the rule with fewest possibilities first (8 → last three digits, 11 → alternating sum), then the digit-sum rule. With two blanks, list the few cases and check which quantity (x + y, x − y) is fixed."
+  },
+  {
+   "pattern": "Remainder with a factor of the old divisor",
+   "frequency": "very common",
+   "howToSpot": "'A number divided by 342 leaves remainder 47; find the remainder when divided by 18.'",
+   "approach": "Check that the new divisor divides the old one (342 = 18 × 19). Answer = old remainder mod new divisor. One-line question — do not overthink."
+  },
+  {
+   "pattern": "Unit digit of a power product",
+   "frequency": "very common",
+   "howToSpot": "'Find the unit digit of $7^{95} \\times 3^{58}$' or of a sum/difference of powers.",
+   "approach": "Exponent mod 4 using last two digits; remainder 0 → power 4. Look for even × 5 shortcuts. Multiply only unit digits."
+  },
+  {
+   "pattern": "Remainder of a large power",
+   "frequency": "common",
+   "howToSpot": "'Find the remainder when $2^{99}$ is divided by 17' or $(x^n + a^n)$ divisibility.",
+   "approach": "Find the smallest power that gives ±1 mod the divisor; split the exponent. Use $a^n \\pm b^n$ rules when two powers with equal exponents appear."
+  },
+  {
+   "pattern": "Number / sum / even / odd / square factors",
+   "frequency": "common",
+   "howToSpot": "'How many factors does 540 have', 'sum of factors of 72', 'even factors of 1080'.",
+   "approach": "Prime-factorise first. Apply (a+1)(b+1)… with the needed restriction (drop 2 for odd, force 2 for even, even exponents for squares)."
+  },
+  {
+   "pattern": "Trailing zeros",
+   "frequency": "occasional",
+   "howToSpot": "'Number of zeros at the end of 250!' or at the end of a product like 5 × 10 × 15 × … × 500.",
+   "approach": "Count 5s by successive division. For products of multiples, factor out the 5s. For a sum of factorials, the answer is the smaller count."
+  },
+  {
+   "pattern": "Recurring decimal conversion and arithmetic",
+   "frequency": "common",
+   "howToSpot": "Bars over digits: $2.4\\overline{7}$, $0.\\overline{3} + 0.\\overline{47}$ etc.",
+   "approach": "Convert each with the 9s-and-0s rule, then add fractions over a common 99/990 denominator. Check the answer by converting back mentally."
+  },
+  {
+   "pattern": "Counting multiples in a range / series sums",
+   "frequency": "common",
+   "howToSpot": "'How many numbers between 200 and 600 are divisible by 4, 5 and 6' or 'sum of all two-digit multiples of 6'.",
+   "approach": "Use LCM for 'divisible by all', inclusion–exclusion for 'or'. Watch between (exclusive) vs from–to (inclusive). AP sum = terms × middle term."
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "ns-s01",
+   "q": "What is the unit digit of $3^{65} \\times 6^{59} \\times 7^{71}$?",
+   "figure": null,
+   "options": [
+    "2",
+    "4",
+    "6",
+    "8"
+   ],
+   "answer": 1,
+   "solution": "- $3^{65}$: $65 \\bmod 4 = 1$ ⇒ unit digit of $3^1 = 3$.\n- $6^{59}$: 6 raised to any power ends in 6.\n- $7^{71}$: $71 \\bmod 4 = 3$ ⇒ unit digit of $7^3 = 343$ is 3.\nProduct of unit digits: $3 \\times 6 \\times 3 = 54$ ⇒ unit digit **4**.",
+   "shortcut": "Cyclicity 4 for 3 and 7: exponents 65 → 1, 71 → 3. Unit digits 3, 6, 3 → 3 × 6 = 18 → 8 × 3 = 24 → **4**.",
+   "difficulty": "easy",
+   "subtopic": "ns-unit-digit",
+   "pattern": "unit digit of power product",
+   "timeSec": 40
+  },
+  {
+   "id": "ns-s02",
+   "q": "What is the remainder when $25^{25}$ is divided by 9?",
+   "figure": null,
+   "options": [
+    "1",
+    "4",
+    "7",
+    "8"
+   ],
+   "answer": 2,
+   "solution": "$25 = 27 - 2$, so $25 \\equiv 7 \\pmod 9$ (or $\\equiv -2$).\n$7^3 = 343 = 38 \\times 9 + 1$, so $7^3 \\equiv 1 \\pmod 9$.\n$25 = 3 \\times 8 + 1$ ⇒ $7^{25} = (7^3)^8 \\times 7 \\equiv 1 \\times 7 = 7$.\nRemainder = **7**.",
+   "shortcut": "$25 \\equiv -2 \\pmod 9$ and $(-2)^3 = -8 \\equiv 1 \\pmod 9$.\n$(-2)^{25} = ((-2)^3)^8 \\times (-2) \\equiv -2 \\equiv 7$.",
+   "difficulty": "medium",
+   "subtopic": "ns-remainders",
+   "pattern": "remainder of large power",
+   "timeSec": 60
+  },
+  {
+   "id": "ns-s03",
+   "q": "Which of the following fractions is the largest? $\\frac{5}{7}, \\frac{7}{10}, \\frac{9}{13}, \\frac{11}{16}$",
+   "figure": null,
+   "options": [
+    "$\\frac{5}{7}$",
+    "$\\frac{7}{10}$",
+    "$\\frac{9}{13}$",
+    "$\\frac{11}{16}$"
+   ],
+   "answer": 0,
+   "solution": "Convert to decimals:\n$\\frac{5}{7} \\approx 0.714$, $\\frac{7}{10} = 0.700$, $\\frac{9}{13} \\approx 0.692$, $\\frac{11}{16} = 0.6875$.\nLargest: $\\frac{5}{7}$.",
+   "shortcut": "All fractions are a bit above 2/3, so compare the gap from 1:\n$1 - \\frac{5}{7} = \\frac{2}{7} \\approx 0.286$, $\\frac{3}{10} = 0.3$, $\\frac{4}{13} \\approx 0.308$, $\\frac{5}{16} \\approx 0.313$.\nSmallest gap ⇒ largest fraction: $\\frac{5}{7}$.",
+   "difficulty": "easy",
+   "subtopic": "ns-fractions-decimals",
+   "pattern": "compare fractions",
+   "timeSec": 45
+  },
+  {
+   "id": "ns-s04",
+   "q": "The expression $3^{25} + 3^{26} + 3^{27} + 3^{28}$ is divisible by which of the following?",
+   "figure": null,
+   "options": [
+    "11",
+    "16",
+    "25",
+    "30"
+   ],
+   "answer": 3,
+   "solution": "Take out the common factor $3^{25}$:\n$3^{25}(1 + 3 + 9 + 27) = 3^{25} \\times 40 = 3^{25} \\times 2^3 \\times 5$.\n30 = 2 × 3 × 5 — all present ✓. 16 needs $2^4$ (only $2^3$) ✗, 25 needs $5^2$ ✗, 11 absent ✗.\nAnswer: **30**.",
+   "shortcut": "Factor the smallest power: bracket = 1 + 3 + 9 + 27 = 40. The number is 3^25 × 40, so any divisor must be built from 3s, at most three 2s and one 5 → 30.",
+   "difficulty": "medium",
+   "subtopic": "ns-divisibility",
+   "pattern": "factorise sum of powers",
+   "timeSec": 50
+  },
+  {
+   "id": "ns-s05",
+   "q": "What is the sum of all two-digit numbers that are divisible by 6?",
+   "figure": null,
+   "options": [
+    "756",
+    "810",
+    "864",
+    "900"
+   ],
+   "answer": 1,
+   "solution": "Two-digit multiples of 6: 12, 18, …, 96.\nNumber of terms $= \\frac{96 - 12}{6} + 1 = 15$.\nSum $= \\frac{15}{2}(12 + 96) = 15 \\times 54 = 810$.",
+   "shortcut": "15 terms (99 ÷ 6 = 16 minus the single-digit one, 6). Middle term = (12 + 96)/2 = 54. Sum = 15 × 54 = **810**.",
+   "difficulty": "easy",
+   "subtopic": "ns-types-counting",
+   "pattern": "AP sum of multiples",
+   "timeSec": 45
+  }
+ ],
+ "practice": [
+  {
+   "id": "ns-q01",
+   "q": "If the seven-digit number 74x5236 is divisible by 11, what is the value of x?",
+   "figure": null,
+   "options": [
+    "3",
+    "5",
+    "6",
+    "8"
+   ],
+   "answer": 3,
+   "solution": "Digits from the right: 6, 3, 2, 5, x, 4, 7.\nSum at odd places = 6 + 2 + x + 7 = 15 + x; sum at even places = 3 + 5 + 4 = 12.\nDifference = (15 + x) − 12 = x + 3 must be 0 or 11 ⇒ x = 8.",
+   "shortcut": "x + 3 = 11 is the only possibility for a digit, so x = 8. Check option: 7485236 → (6+2+8+7) − (3+5+4) = 23 − 12 = 11 ✓.",
+   "difficulty": "easy",
+   "subtopic": "ns-divisibility",
+   "pattern": "missing digit divisibility by 11",
+   "timeSec": 40
+  },
+  {
+   "id": "ns-q02",
+   "q": "What is the unit digit of $7^{95} \\times 3^{58}$?",
+   "figure": null,
+   "options": [
+    "1",
+    "3",
+    "7",
+    "9"
+   ],
+   "answer": 2,
+   "solution": "$95 \\bmod 4 = 3$ ⇒ $7^{95}$ ends like $7^3 = 343$ → 3.\n$58 \\bmod 4 = 2$ ⇒ $3^{58}$ ends like $3^2 = 9$ → 9.\n$3 \\times 9 = 27$ ⇒ unit digit **7**.",
+   "shortcut": "Cycle of 7: 7, 9, 3, 1 → 3rd = 3. Cycle of 3: 3, 9, 7, 1 → 2nd = 9. 3 × 9 → 7.",
+   "difficulty": "easy",
+   "subtopic": "ns-unit-digit",
+   "pattern": "unit digit of power product",
+   "timeSec": 35
+  },
+  {
+   "id": "ns-q03",
+   "q": "A number when divided by 893 leaves a remainder of 193. What will be the remainder when the same number is divided by 47?",
+   "figure": null,
+   "options": [
+    "5",
+    "10",
+    "19",
+    "41"
+   ],
+   "answer": 0,
+   "solution": "Let $N = 893k + 193$. Since $893 = 47 \\times 19$, $893k$ is a multiple of 47.\nSo the remainder is $193 \\bmod 47$: $193 = 4 \\times 47 + 5$ ⇒ **5**.",
+   "shortcut": "47 divides 893, so just divide the old remainder: 193 − 188 = 5.",
+   "difficulty": "easy",
+   "subtopic": "ns-remainders",
+   "pattern": "remainder with factor of divisor",
+   "timeSec": 35
+  },
+  {
+   "id": "ns-q04",
+   "q": "The value of $2.4\\overline{7}$ in the form $\\frac{p}{q}$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{247}{99}$",
+    "$\\frac{223}{90}$",
+    "$\\frac{223}{99}$",
+    "$\\frac{245}{90}$"
+   ],
+   "answer": 1,
+   "solution": "Let $x = 2.4777\\ldots$ Then $10x = 24.777\\ldots$ and $100x = 247.777\\ldots$\n$100x - 10x = 223$ ⇒ $x = \\frac{223}{90}$.",
+   "shortcut": "9s-and-0s rule: $2 + \\frac{47 - 4}{90} = 2 + \\frac{43}{90} = \\frac{223}{90}$.",
+   "difficulty": "easy",
+   "subtopic": "ns-fractions-decimals",
+   "pattern": "recurring decimal to fraction",
+   "timeSec": 40
+  },
+  {
+   "id": "ns-q05",
+   "q": "How many factors does 540 have?",
+   "figure": null,
+   "options": [
+    "18",
+    "20",
+    "24",
+    "30"
+   ],
+   "answer": 2,
+   "solution": "$540 = 2^2 \\times 3^3 \\times 5^1$.\nNumber of factors $= (2+1)(3+1)(1+1) = 3 \\times 4 \\times 2 = 24$.",
+   "shortcut": "Add 1 to each exponent and multiply: 3 × 4 × 2 = 24.",
+   "difficulty": "easy",
+   "subtopic": "ns-factors",
+   "pattern": "number of factors",
+   "timeSec": 35
+  },
+  {
+   "id": "ns-q06",
+   "q": "What is the remainder when $2^{99}$ is divided by 17?",
+   "figure": null,
+   "options": [
+    "1",
+    "8",
+    "9",
+    "15"
+   ],
+   "answer": 1,
+   "solution": "$2^4 = 16 \\equiv -1 \\pmod{17}$, so $2^8 \\equiv 1 \\pmod{17}$.\n$99 = 8 \\times 12 + 3$ ⇒ $2^{99} = (2^8)^{12} \\times 2^3 \\equiv 1 \\times 8 = 8$.",
+   "shortcut": "Find the ±1 power: $2^4 \\equiv -1$. $2^{99} = (2^4)^{24} \\times 2^3 \\equiv (+1) \\times 8 = 8$.",
+   "difficulty": "medium",
+   "subtopic": "ns-remainders",
+   "pattern": "remainder of large power",
+   "timeSec": 50
+  },
+  {
+   "id": "ns-q07",
+   "q": "How many zeros are there at the end of 250! (factorial 250)?",
+   "figure": null,
+   "options": [
+    "50",
+    "52",
+    "60",
+    "62"
+   ],
+   "answer": 3,
+   "solution": "Each trailing zero needs a pair (2, 5); 5s are fewer, so count the 5s.\n$\\left\\lfloor \\frac{250}{5} \\right\\rfloor + \\left\\lfloor \\frac{250}{25} \\right\\rfloor + \\left\\lfloor \\frac{250}{125} \\right\\rfloor = 50 + 10 + 2 = 62$.",
+   "shortcut": "250 → 50 → 10 → 2 (keep dividing by 5). 50 + 10 + 2 = 62.",
+   "difficulty": "medium",
+   "subtopic": "ns-factors",
+   "pattern": "trailing zeros in factorial",
+   "timeSec": 40
+  },
+  {
+   "id": "ns-q08",
+   "q": "If the six-digit number 25x6y4 is divisible by 72, what is the value of x + y?",
+   "figure": null,
+   "options": [
+    "1",
+    "8",
+    "10",
+    "12"
+   ],
+   "answer": 2,
+   "solution": "72 = 8 × 9 (co-prime).\n**By 8:** last three digits 6y4 must be divisible by 8. Checking y = 0 to 9: only 624 and 664 work ⇒ y = 2 or 6.\n**By 9:** 2 + 5 + x + 6 + y + 4 = 17 + x + y must be a multiple of 9 ⇒ x + y = 1 or 10.\ny = 2 ⇒ x = 8; y = 6 ⇒ x = 4. In both cases x + y = **10** (x + y = 1 is impossible since y ≥ 2).",
+   "shortcut": "Digit sum 17 + (x + y) → next multiple of 9 is 27 ⇒ x + y = 10 (x + y = 1 fails because y is 2 or 6).",
+   "difficulty": "medium",
+   "subtopic": "ns-divisibility",
+   "pattern": "missing digits divisibility by 72",
+   "timeSec": 60
+  },
+  {
+   "id": "ns-q09",
+   "q": "How many even factors does 1080 have?",
+   "figure": null,
+   "options": [
+    "8",
+    "16",
+    "24",
+    "32"
+   ],
+   "answer": 2,
+   "solution": "$1080 = 2^3 \\times 3^3 \\times 5$. Total factors $= 4 \\times 4 \\times 2 = 32$.\nOdd factors (power of 2 = 0): $4 \\times 2 = 8$.\nEven factors $= 32 - 8 = 24$.",
+   "shortcut": "Force at least one 2: exponent of 2 has 3 choices (1, 2, 3) ⇒ $3 \\times 4 \\times 2 = 24$.",
+   "difficulty": "medium",
+   "subtopic": "ns-factors",
+   "pattern": "even factors",
+   "timeSec": 45
+  },
+  {
+   "id": "ns-q10",
+   "q": "How many numbers between 200 and 600 are divisible by 4, 5 and 6?",
+   "figure": null,
+   "options": [
+    "5",
+    "6",
+    "7",
+    "8"
+   ],
+   "answer": 1,
+   "solution": "Divisible by 4, 5 and 6 ⇔ divisible by LCM(4, 5, 6) = 60.\nMultiples of 60 strictly between 200 and 600: 240, 300, 360, 420, 480, 540 ⇒ **6**.",
+   "shortcut": "$\\left\\lfloor \\frac{599}{60} \\right\\rfloor - \\left\\lfloor \\frac{200}{60} \\right\\rfloor = 9 - 3 = 6$. (600 itself is excluded — 'between'.)",
+   "difficulty": "medium",
+   "subtopic": "ns-types-counting",
+   "pattern": "count multiples in range",
+   "timeSec": 45
+  },
+  {
+   "id": "ns-q11",
+   "q": "The number $47^{43} + 43^{43}$ is divisible by:",
+   "figure": null,
+   "options": [
+    "4",
+    "86",
+    "90",
+    "94"
+   ],
+   "answer": 2,
+   "solution": "For odd $n$, $a^n + b^n$ is divisible by $a + b$. Here $n = 43$ is odd ⇒ divisible by $47 + 43 = 90$.\nCheck traps: mod 4, $47 \\equiv 43 \\equiv 3$ ⇒ sum $\\equiv 2 \\times 3^{43} \\equiv 2 \\pmod 4$ — not divisible by 4. Mod 43 the sum $\\equiv 4^{43} \\equiv 4$ (Fermat), so 86 fails; similarly 94 fails.",
+   "shortcut": "Odd equal exponents + '+' sign ⇒ look for a + b = 90 in the options.",
+   "difficulty": "medium",
+   "subtopic": "ns-divisibility",
+   "pattern": "sum of odd powers divisibility",
+   "timeSec": 40
+  },
+  {
+   "id": "ns-q12",
+   "q": "What is the remainder when $1523 \\times 1527 \\times 1531$ is divided by 15?",
+   "figure": null,
+   "options": [
+    "3",
+    "6",
+    "8",
+    "12"
+   ],
+   "answer": 1,
+   "solution": "Reduce each number mod 15: 1523 → 8, 1527 → 12, 1531 → 1 (since 1515 = 15 × 101).\n$8 \\times 12 \\times 1 = 96$, and $96 \\bmod 15 = 6$.",
+   "shortcut": "Use negatives: 1527 ≡ −3, 1523 ≡ −7, 1531 ≡ 1. $(-7)(-3)(1) = 21 \\equiv 6$.",
+   "difficulty": "medium",
+   "subtopic": "ns-remainders",
+   "pattern": "remainder of product",
+   "timeSec": 45
+  },
+  {
+   "id": "ns-q13",
+   "q": "How many factors of $N = 2^4 \\times 3^3 \\times 5^2 \\times 7$ are perfect squares?",
+   "figure": null,
+   "options": [
+    "6",
+    "8",
+    "12",
+    "24"
+   ],
+   "answer": 2,
+   "solution": "A factor is a perfect square only if every prime appears with an even exponent.\n- 2: exponents 0, 2, 4 → 3 choices\n- 3: exponents 0, 2 → 2 choices\n- 5: exponents 0, 2 → 2 choices\n- 7: exponent 0 only → 1 choice\nTotal $= 3 \\times 2 \\times 2 \\times 1 = 12$.",
+   "shortcut": "Square factors = product of $\\left(\\left\\lfloor \\frac{a}{2} \\right\\rfloor + 1\\right)$: $(2+1)(1+1)(1+1)(0+1) = 12$.",
+   "difficulty": "hard",
+   "subtopic": "ns-factors",
+   "pattern": "perfect square factors",
+   "timeSec": 75
+  },
+  {
+   "id": "ns-q14",
+   "q": "What is the value of $0.\\overline{3} + 0.\\overline{47} + 0.1\\overline{5}$?",
+   "figure": null,
+   "options": [
+    "$\\frac{47}{55}$",
+    "$\\frac{52}{55}$",
+    "$\\frac{53}{55}$",
+    "$\\frac{106}{99}$"
+   ],
+   "answer": 2,
+   "solution": "$0.\\overline{3} = \\frac{3}{9} = \\frac{1}{3}$, $0.\\overline{47} = \\frac{47}{99}$, $0.1\\overline{5} = \\frac{15 - 1}{90} = \\frac{14}{90} = \\frac{7}{45}$.\nLCM of 3, 99, 45 is 495: $\\frac{165}{495} + \\frac{235}{495} + \\frac{77}{495} = \\frac{477}{495} = \\frac{53}{55}$.",
+   "shortcut": "Put all over 990: $\\frac{330 + 470 + 154}{990} = \\frac{954}{990} = \\frac{53}{55}$. Sanity check: $0.333 + 0.475 + 0.156 \\approx 0.964 \\approx \\frac{53}{55}$.",
+   "difficulty": "hard",
+   "subtopic": "ns-fractions-decimals",
+   "pattern": "sum of recurring decimals",
+   "timeSec": 90
+  },
+  {
+   "id": "ns-q15",
+   "q": "How many numbers from 1 to 300 are divisible by 3 or 5 but NOT by 7?",
+   "figure": null,
+   "options": [
+    "118",
+    "120",
+    "126",
+    "140"
+   ],
+   "answer": 1,
+   "solution": "**Divisible by 3 or 5:** 100 + 60 − 20 (multiples of 15) = 140.\n**Of these, divisible by 7 as well** (i.e. by 21 or 35): 14 + 8 − 2 (multiples of 105) = 20.\nRequired count = 140 − 20 = **120**.",
+   "shortcut": "Inclusion–exclusion twice: (3 or 5) − (21 or 35) = 140 − 20 = 120. Trap option 140 ignores the 'not by 7' condition.",
+   "difficulty": "hard",
+   "subtopic": "ns-types-counting",
+   "pattern": "inclusion-exclusion counting",
+   "timeSec": 90
+  }
+ ]
+}

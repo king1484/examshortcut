@@ -1,0 +1,54 @@
+'use client';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { ThemeToggle } from './ThemeToggle';
+
+const NAV = [
+  { href: '/ssc-cgl/', label: 'SSC CGL', exact: true },
+  { href: '/ssc-cgl/syllabus/', label: 'Syllabus & Notes' },
+  { href: '/ssc-cgl/mocks/', label: 'Mock Tests' },
+  { href: '/ssc-cgl/formula-sheet/', label: 'Formula Sheet' },
+  { href: '/ssc-cgl/ga/current-affairs/', label: 'Current Affairs' },
+  { href: '/ssc-cgl/cutoffs/', label: 'Cutoffs' },
+  { href: '/revision/', label: 'My Revision' },
+];
+
+export function Logo() {
+  return (
+    <span className="flex items-center gap-2 font-extrabold tracking-tight text-lg">
+      <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden>
+        <rect width="32" height="32" rx="8" fill="var(--brand)" />
+        <path d="M9 17.5 14 22 23 10" stroke="var(--brand-ink)" strokeWidth="3.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      <span>Exam<span style={{ color: 'var(--brand)' }}>Shortcut</span></span>
+    </span>
+  );
+}
+
+export function SiteHeader() {
+  const path = usePathname() || '/';
+  // The CBT screen is full-focus; hide the site chrome there.
+  if (/\/mocks\/[^/]+\/?$/.test(path) && path !== '/ssc-cgl/mocks/') return null;
+  return (
+    <header className="sticky top-0 z-30 border-b backdrop-blur" style={{ borderColor: 'var(--line)', background: 'color-mix(in srgb, var(--bg) 88%, transparent)' }}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
+        <Link href="/" aria-label="ExamShortcut home"><Logo /></Link>
+        <div className="flex items-center gap-2">
+          <Link href="/ssc-cgl/mocks/" className="btn btn-brand hidden sm:inline-flex" style={{ padding: '.4rem .8rem' }}>Take a free mock</Link>
+          <ThemeToggle />
+        </div>
+      </div>
+      <nav className="max-w-6xl mx-auto px-2 sm:px-4 flex gap-1 overflow-x-auto text-sm font-semibold" style={{ scrollbarWidth: 'none' }}>
+        {NAV.map((n) => {
+          const active = n.exact ? path === n.href || path === n.href.slice(0, -1) : path.startsWith(n.href);
+          return (
+            <Link key={n.href} href={n.href} className="px-3 py-2 whitespace-nowrap border-b-2 transition-colors"
+              style={{ borderColor: active ? 'var(--brand)' : 'transparent', color: active ? 'var(--ink)' : 'var(--ink-2)' }}>
+              {n.label}
+            </Link>
+          );
+        })}
+      </nav>
+    </header>
+  );
+}

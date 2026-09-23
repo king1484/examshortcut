@@ -1,0 +1,59 @@
+import type { Metadata } from 'next';
+import { allFormulas, SECTION_META } from '@/lib/content';
+import { Md, Tex } from '@/components/Md';
+import { PrintButton } from '@/components/PrintButton';
+
+export const dynamic = 'force-static';
+export const metadata: Metadata = {
+  title: 'SSC CGL formula sheet — every formula & shortcut trick, printable',
+  description: 'The complete SSC CGL formula sheet: all Quant formulas, reasoning rules, English grammar rules and GA mnemonics on one printable page. Built for last-minute revision.',
+};
+
+export default function FormulaSheetPage() {
+  const sections = allFormulas();
+
+  return (
+    <div className="max-w-4xl mx-auto">
+      <div className="flex items-start justify-between gap-4 flex-wrap no-print">
+        <div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold">SSC CGL formula sheet</h1>
+          <p className="muted mt-2 max-w-2xl">Every formula and shortcut trick from the notes, on one page. Print it (Ctrl/Cmd + P) or save as PDF — it's formatted for paper.</p>
+        </div>
+        <PrintButton />
+      </div>
+
+      {sections.map((sec) => (
+        <section key={sec.sectionId} className="mt-10">
+          <h2 className="text-2xl font-extrabold pb-1 border-b-2" style={{ color: SECTION_META[sec.sectionId].color, borderColor: SECTION_META[sec.sectionId].color }}>
+            {SECTION_META[sec.sectionId].name}
+          </h2>
+          {sec.topics.map((t) => (
+            <div key={t.id} className="mt-5">
+              <h3 className="font-extrabold text-lg">{t.title}</h3>
+              <div className="grid sm:grid-cols-2 gap-2.5 mt-2">
+                {t.subtopics.map((s) => (
+                  <div key={s.id} className="card p-3.5">
+                    <div className="text-sm font-bold">{s.title}</div>
+                    {s.formulas.map((f, i) => (
+                      <div key={i} className="mt-2">
+                        <div className="text-xs font-semibold faint">{f.name}</div>
+                        <div className="overflow-x-auto"><Tex tex={f.tex} /></div>
+                        {f.note && <div className="text-[11px] muted">{f.note}</div>}
+                      </div>
+                    ))}
+                    {s.tricks.map((k, i) => (
+                      <div key={`t${i}`} className="mt-2 text-xs">
+                        <span className="font-bold">⚡ {k.title}.</span> <Md inline className="text-xs">{k.body.slice(0, 220) + (k.body.length > 220 ? '…' : '')}</Md>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </section>
+      ))}
+      {sections.every((s) => s.topics.length === 0) && <p className="card p-6 mt-8 text-center muted">Formulas are being compiled — check back shortly.</p>}
+    </div>
+  );
+}

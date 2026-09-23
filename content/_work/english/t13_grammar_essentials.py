@@ -1,0 +1,748 @@
+from common import q, write_topic, md_table
+
+ES = "The following sentence has been divided into parts. One of them contains an error. Select the part that contains the error.\n\n"
+FB = "Select the most appropriate option to fill in the blank.\n\n"
+SI = "Select the most appropriate option to substitute the highlighted segment in the given sentence. If no substitution is required, select 'No substitution required'.\n\n"
+
+# ---------------------------------------------------------------- subtopic 1
+pos_table = md_table(
+    ["Part of speech", "Job in the sentence", "Example (word in bold)"],
+    [
+        ["Noun", "names a person, place, thing, idea", "**Honesty** pays."],
+        ["Pronoun", "replaces a noun", "**She** called **us**."],
+        ["Adjective", "describes a noun/pronoun", "a **brave** soldier"],
+        ["Verb", "action or state", "He **writes**; she **is** tired."],
+        ["Adverb", "modifies verb/adjective/adverb", "runs **fast**, **very** tall"],
+        ["Preposition", "links noun to rest of sentence (place, time, relation)", "sat **on** the wall"],
+        ["Conjunction", "joins words/clauses", "tea **or** coffee; **although** it rained"],
+        ["Interjection", "sudden feeling", "**Alas!** he is gone."],
+    ],
+)
+
+noun_table = md_table(
+    ["Group", "Words", "Rule"],
+    [
+        ["Uncountable (no plural, no a/an)", "information, advice, furniture, luggage, baggage, equipment, machinery, scenery, poetry, stationery, jewellery, evidence, knowledge, mischief, traffic, bread", "singular verb; use *a piece of / an item of* to count: *two pieces of advice*"],
+        ["Always plural", "scissors, trousers, spectacles, tongs, pliers, thanks, alms, premises, riches, outskirts, surroundings, belongings, proceeds", "plural verb; *a pair of scissors* takes a singular verb"],
+        ["Singular form, plural meaning", "cattle, police, people, poultry, clergy, gentry, vermin, peasantry", "plural verb: *The police **are** investigating.*"],
+        ["Plural form, singular meaning", "news, mathematics, physics, economics (subject), civics, measles, mumps, billiards", "singular verb: *The news **is** good.*"],
+        ["Same singular and plural", "sheep, deer, swine, series, species, aircraft", "number shown by determiner/verb: *a series is*, *two series are*"],
+        ["Number words after a definite number", "dozen, hundred, thousand, million, score, lakh, crore, pair", "no -s: *three dozen eggs, five hundred rupees*; but *dozens of*, *hundreds of*"],
+        ["Number + noun used as adjective", "a five-year plan, a ten-rupee note, a two-hour delay", "hyphenated, noun stays singular"],
+    ],
+)
+
+s_pos = {
+    "id": "ge-parts-of-speech",
+    "title": "Parts of speech: nouns, pronouns, adjectives, adverbs",
+    "concept": f"""Every error-spotting question is really asking **which word is doing the wrong job**. Start by knowing the eight jobs.
+
+{pos_table}
+
+### Nouns that SSC loves
+{noun_table}
+
+**Collective nouns** (team, committee, jury, family, audience, crowd, army): singular verb when the group acts **as one unit** (*The committee **has** approved the plan*), plural when members act **individually** or disagree (*The jury **were** divided in their opinions*).
+
+**Possessive case**
+- Living things take *'s*: *the minister's car*. Non-living things take *of*: *the leg of the table* (not *the table's leg*).
+- Exceptions (time, distance, weight, personified things): *a day's leave, a stone's throw, a kilo's weight, the nation's pride*.
+- Joint ownership: *Ram and Shyam's shop* (one shop). Separate ownership: *Ram's and Shyam's shops*.
+
+### Pronouns
+| Situation | Use | Example |
+|---|---|---|
+| After a preposition (between, for, with, to, like) | object form: me, him, her, us, them, whom | *between you and **me***, *for him and **me*** |
+| After *than / as* | the form the hidden verb needs | *He is taller than **I** (am)*; *I like you more than **him*** (than I like him) |
+| After *let* | object form | *Let **him and me** try.* |
+| Complement of *be* (formal) | subject form | *It is **I**.* |
+| Order of persons (normal) | 2nd, 3rd, 1st (**231**) | ***You, he and I** will go.* |
+| Order when admitting fault | 1st, 2nd, 3rd (**123**) | ***I, you and he** are to blame.* |
+| Subject *one* | one's / oneself | *One must keep **one's** promises.* |
+| Reflexive after *avail, absent, pride, enjoy (oneself), apply (effort)* | needs -self | *He **availed himself of** the offer.* |
+
+- **-self pronouns are never subjects**: *My friend and myself went* ✗ → *My friend and **I** went*.
+- **Who / whom / whose / which / that**: *who* = subject (people), *whom* = object (people), *whose* = possession, *which* = things. Use **that** after superlatives, *all, only, same, none, nothing, everything*: *the best book **that** I have read*.
+- **Either / neither** refer to two; **any / none** to more than two. SSC keys follow the traditional rule *each other* (two) and *one another* (more than two).
+- A pronoun must have **one clear antecedent** and agree with it in number: *Each of the girls brought **her** bag.*
+
+### Adjectives
+| Pair | Rule | Example |
+|---|---|---|
+| few / a few / the few | *few* = hardly any (negative), *a few* = some, *the few* = all of the small number | *The few books he had were old.* |
+| little / a little / the little | same idea for uncountables | *There is **little** hope* (almost none). |
+| many / much | countable / uncountable | *many chairs, much furniture* |
+| fewer / less | countable / uncountable | ***fewer** people, **less** sugar* |
+| elder, eldest / older, oldest | *elder* only for family, before a noun, never with *than* | *my **elder** sister*; *she is **older than** me* |
+| later, latest / latter, last | time / order | *the **latest** news; the **latter** half* |
+| farther / further | distance / additional | *two km **farther**; **further** details* |
+
+- **Order of adjectives (OSASCOMP)**: Opinion, Size, Age, Shape, Colour, Origin, Material, Purpose: *a **beautiful small old round brown Indian wooden** dining table*.
+- **Absolute adjectives** are not compared: unique, perfect, ideal, complete, entire, round, square, supreme, universal. *more unique* ✗.
+
+### Adverbs
+- **too** = more than needed (negative result): *too weak **to** walk*. **very** = high degree: *very weak*.
+- **enough** comes after the adjective/adverb: *old **enough***, *fast **enough***.
+- **hardly, scarcely, barely, seldom, rarely** are already negative: *I can **hardly** hear* ✓, *I can't hardly hear* ✗.
+- Look-alike pairs: *hard* (with effort) / *hardly* (almost not); *late* / *lately* (recently); *near* / *nearly* (almost); *high* / *highly* (very much).
+- Linking verbs (look, seem, feel, smell, taste, sound, appear, become, grow) take an **adjective**, not an adverb: *The soup tastes **good*** (not *well*); *She looks **sad***.
+- **very** with positive degree and *-ing* adjectives; **much** with comparatives and many past participles: *very tall, very interesting; **much** taller, **much** obliged*.
+- Frequency adverbs go **before the main verb** but **after *be***: *He **always** comes late*; *He is **always** late*.""",
+    "formulas": [],
+    "tricks": [
+        {"title": "Pronoun case test: cover the other name",
+         "body": "When a pronoun is paired with a noun (*Ravi and I / Ravi and me*), cover the noun and read the sentence with the pronoun alone. *The teacher praised ~~Ravi and~~ me* ✓ because *praised me* sounds right; *praised I* does not.",
+         "example": {"q": "The award was shared by Meena and ___ . (I / me)",
+                     "solution": "Cover *Meena and*: *shared by me*. After the preposition *by* we need the object form **me**."}},
+        {"title": "Noun trap scan",
+         "body": "In any error-spotting sentence, circle every noun and ask two questions: *Is it countable?* and *Is it one of the special groups (uncountable / always plural / cattle-type)?* About one in five SSC noun errors is *informations, furnitures, advices, sceneries, luggages*.",
+         "example": {"q": "Spot the error: He gave me / some useful advices / before the interview.",
+                     "solution": "*advice* is uncountable, so **some useful advice**. If a count is needed: *two pieces of advice*."}},
+        {"title": "Few vs a few: the half-glass rule",
+         "body": "*few / little* = the glass is **empty** (negative feeling); *a few / a little* = there is **something** (positive feeling). If the sentence continues with a negative idea (*so he could not...*), pick *few/little*; if positive (*so he managed...*), pick *a few/a little*.",
+         "example": {"q": "He had ___ friends in the new city, so he felt lonely. (few / a few)",
+                     "solution": "Loneliness is the negative result, so **few** (hardly any)."}},
+    ],
+    "mistakes": [
+        "Pluralising uncountable nouns: *furnitures, informations, luggages, sceneries, equipments*.",
+        "Using *myself* as a subject: *Ravi and myself will attend* ✗.",
+        "Writing *elder than*; the comparative with *than* is always *older than*.",
+        "Using *less* with countable nouns: *less mistakes* ✗ → *fewer mistakes*.",
+        "Adding a second negative to *hardly/scarcely*: *I could not hardly breathe* ✗.",
+        "Adding *-s* to *dozen/hundred/lakh* after a number: *five hundreds rupees* ✗.",
+    ],
+}
+
+# ---------------------------------------------------------------- subtopic 2
+tense_table = md_table(
+    ["Tense", "Form", "Main use", "Signal words", "Example"],
+    [
+        ["Simple present", "V1 / V1+s", "habits, facts, timetables", "always, usually, every day", "The sun **rises** in the east."],
+        ["Present continuous", "is/am/are + V-ing", "action now; fixed near-future plan", "now, at present, look!", "She **is writing** a report."],
+        ["Present perfect", "has/have + V3", "past action with present result; unspecified time", "just, already, yet, ever, never, so far, recently", "I **have finished** my work."],
+        ["Present perfect continuous", "has/have been + V-ing", "action started in past and still continuing (with duration)", "since, for, how long", "He **has been waiting** for two hours."],
+        ["Simple past", "V2", "finished action at a stated past time", "yesterday, ago, last year, in 2010", "We **met** him last week."],
+        ["Past continuous", "was/were + V-ing", "action in progress at a past moment", "when, while, at 8 pm yesterday", "I **was reading** when you called."],
+        ["Past perfect", "had + V3", "earlier of two past actions", "before, after, already (past)", "The train **had left** before we reached."],
+        ["Past perfect continuous", "had been + V-ing", "past action continuing up to another past point", "for, since (in past)", "She **had been working** there for ten years when she resigned."],
+        ["Simple future", "will/shall + V1", "future fact, decision, prediction", "tomorrow, next week, soon", "I **will call** you tomorrow."],
+        ["Future continuous", "will be + V-ing", "action in progress at a future moment", "at this time tomorrow", "We **will be travelling** at noon tomorrow."],
+        ["Future perfect", "will have + V3", "action completed before a future point", "by, by the time, by then", "By March, they **will have completed** the bridge."],
+        ["Future perfect continuous", "will have been + V-ing", "duration up to a future point", "for ... by", "By June, he **will have been teaching** for 20 years."],
+    ],
+)
+
+s_tense = {
+    "id": "ge-tenses",
+    "title": "Tenses and sequence of tenses",
+    "concept": f"""### The 12 tenses at a glance
+{tense_table}
+
+### Ten tense rules behind most SSC errors
+1. **since + point of time, for + period of time**, and both normally need a **perfect** tense: *I **have lived** here **since** 2019 / **for** six years* (not *I live here since 2019*).
+2. **Future time clauses take the simple present**: after *when, if, unless, until, till, before, after, as soon as, once, in case*, do not use *will*: *I will call you when he **arrives*** (not *will arrive*).
+3. **Definite past time words forbid the present perfect**: *I **saw** him yesterday* ✓; *I have seen him yesterday* ✗.
+4. **Earlier of two past actions → past perfect**: *The patient **had died** before the doctor came.*
+5. **Sequence of tenses**: a past reporting/main verb pushes the subordinate clause into the past: *He said that he **was** busy.* Exception: universal truths and habitual facts stay present: *The teacher said that water **boils** at 100 °C.*
+6. **Stative verbs are not used in continuous tenses**: know, believe, understand, like, love, hate, want, prefer, own, possess, belong, contain, consist, seem, mean, see, hear, smell (involuntary). *I **know** him* ✓; *I am knowing him* ✗.
+7. ***It is time / It is high time / It is about time* + subject + past form**: *It is high time we **left**.*
+8. **Two linked past events with hardly / scarcely / no sooner** use past perfect in the first clause and simple past in the second: *No sooner **had** I **reached** the station **than** the train **left**.*
+9. ***By the time* + present → future perfect**; ***by the time* + past → past perfect**: *By the time you **arrive**, I **will have left***; *By the time we **arrived**, the show **had begun***.
+10. ***It is / has been* two years since** + simple past: *It is two years since he **left** the job.*
+
+### Tense consistency
+Keep one time frame inside a sentence unless the meaning changes: *She **opened** the door and **sees** a stranger* ✗ → *saw*.""",
+    "formulas": [],
+    "tricks": [
+        {"title": "Signal-word scan",
+         "body": "Before reading options, underline the time signal: *since/for* → perfect; *yesterday/ago/last/in 2019* → simple past; *by + future time* → future perfect; *when/if/as soon as + future meaning* → simple present; *before/after* joining two past events → past perfect for the earlier one.",
+         "example": {"q": "She ___ (work) in this bank for eight years now.",
+                     "solution": "*for eight years now* = started in past, still continuing → **has been working** (present perfect continuous)."}},
+        {"title": "The 'no will after when/if' reflex",
+         "body": "If a clause begins with *when, if, unless, until, as soon as, before, after, once* and talks about the future, strike out *will/shall* in that clause. The *will* belongs only to the main clause.",
+         "example": {"q": "Spot the error: Unless you will apologise, / she will not / speak to you again.",
+                     "solution": "Clause after *unless* refers to the future → simple present: **Unless you apologise**."}},
+    ],
+    "mistakes": [
+        "Using present perfect with a past time marker: *has gone yesterday*.",
+        "Using *will* in *if/when/unless* clauses about the future.",
+        "Writing *since two years*; *since* needs a point of time, *for* needs a duration.",
+        "Using stative verbs in -ing form: *I am understanding the problem* ✗.",
+        "Changing a universal truth to past in reported speech: *said that the earth moved round the sun* ✗.",
+        "Using simple past for the earlier of two past actions when *before/after* is not present to show order clearly.",
+    ],
+}
+
+# ---------------------------------------------------------------- subtopic 3
+sva_table = md_table(
+    ["#", "Rule", "Correct example"],
+    [
+        ["1", "Find the head noun; ignore phrases after *of, in, with* etc.", "The **quality** of the apples **is** poor."],
+        ["2", "A and B → plural", "Ravi and his sister **are** here."],
+        ["3", "A and B = one person/idea (one article) → singular", "The secretary and treasurer **has** resigned. / Bread and butter **is** my breakfast."],
+        ["4", "*each / every* before A and B → singular", "Every boy and every girl **was** given a prize."],
+        ["5", "A **as well as / along with / together with / with / besides / in addition to / rather than / accompanied by / including / like / no less than** B → verb agrees with **A**", "The minister, along with his aides, **was** present."],
+        ["6", "**either...or / neither...nor / not only...but also / or / nor** → verb agrees with the **nearer** subject", "Neither the teacher nor the students **were** late."],
+        ["7", "*each, every, either, neither, everyone, someone, anyone, no one, nobody, everything* → singular", "Each of the players **has** a kit."],
+        ["8", "*one of + plural noun* → singular verb", "One of my friends **is** a pilot."],
+        ["9", "*one of those + plural noun + who/that* → plural verb (the relative clause describes the group)", "He is one of those people who **never give** up."],
+        ["10", "*the only one of ... who* → singular", "She is the only one of the girls who **has** passed."],
+        ["11", "**A number of** → plural; **the number of** → singular", "A number of cars **were** towed. The number of cars **is** rising."],
+        ["12", "*many a* + singular noun → singular", "Many a man **has** tried."],
+        ["13", "*more than one* + singular noun → singular", "More than one student **was** absent."],
+        ["14", "Amount of money/time/distance/weight as one unit → singular", "Fifty rupees **is** too much for this. Ten km **is** a long way."],
+        ["15", "*half / part / some / all / most / plenty / a lot / rest / % / fractions* **of** X → verb agrees with X", "Half of the cake **is** eaten. Half of the guests **are** here."],
+        ["16", "Titles, names of countries/organisations, even if plural in form → singular", "The United Nations **is** based in New York."],
+        ["17", "*the + adjective* (class of people) → plural", "The rich **are** not always happy."],
+        ["18", "*There / Here* + verb: verb agrees with the noun that follows", "There **are** many reasons. Here **comes** the bus."],
+        ["19", "Gerund, infinitive or noun clause as subject → singular", "Walking **is** good exercise. What he said **was** false."],
+        ["20", "Relative pronoun takes the number of its antecedent", "I, who **am** your friend, will help."],
+        ["21", "*a pair of / a series of / a set of* + plural noun → singular (head is pair/series/set)", "A pair of shoes **was** stolen."],
+        ["22", "Uncountable nouns → singular; always-plural nouns → plural", "The furniture **is** new. My trousers **are** torn."],
+    ],
+)
+
+s_sva = {
+    "id": "ge-subject-verb-agreement",
+    "title": "Subject-verb agreement (all rules and exceptions)",
+    "concept": f"""Subject-verb agreement (SVA) is the single most tested grammar point in SSC error spotting. The rule is simple (singular subject → singular verb), but the traps are in **finding the real subject**.
+
+{sva_table}
+
+### Collective nouns
+*team, committee, jury, family, staff, audience, crowd, board, government* take a **singular** verb when acting as one body and a **plural** verb when the members act separately: *The team **is** strong* / *The team **are** arguing among themselves*. A matching pronoun follows the same choice (*its* vs *their*).
+
+### Tricky subjects summary
+- **Singular**: news, mathematics, economics (subject), measles, furniture, information, luggage, scenery, *each, every, either, neither*, amounts as a unit, titles.
+- **Plural**: cattle, police, people, poultry, clergy, scissors, trousers, spectacles, *the rich / the poor*, *a number of*, *both, few, many, several*.
+- **Depends on the noun after *of***: *all, some, most, half, none (with uncountable → singular), a lot, plenty, the rest, 40 per cent, two-thirds*.""",
+    "formulas": [],
+    "tricks": [
+        {"title": "Strike-through method",
+         "body": "Draw a line through every **prepositional phrase** (*of the boys, in the box, with his friends*) and every **add-on phrase** (*as well as..., along with..., together with...*). What remains before the verb is the true subject.",
+         "example": {"q": "The captain, together with his players, ___ (was/were) felicitated.",
+                     "solution": "Strike *together with his players* → *The captain ___ felicitated* → **was**."}},
+        {"title": "Nearest-noun rule for or/nor pairs",
+         "body": "For *either...or, neither...nor, not only...but also, or, nor*: look **only** at the subject closest to the verb. Tip: put the plural subject second so the plural verb sounds natural.",
+         "example": {"q": "Either the players or the coach ___ (is/are) responsible.",
+                     "solution": "Nearest subject *the coach* (singular) → **is**."}},
+        {"title": "Number vs A number",
+         "body": "***The** number* = one figure (singular). ***A** number* = many (plural). Memory hook: *A = Abundant*.",
+         "example": None},
+    ],
+    "mistakes": [
+        "Matching the verb with the noun just before it (*The list of items are...*) instead of the head noun.",
+        "Treating *as well as / along with* like *and* and using a plural verb.",
+        "Using a plural verb after *each / every / either / neither*.",
+        "Using a singular verb after *one of those who*; the relative clause refers to the plural group.",
+        "Treating *people / police / cattle* as singular.",
+        "Using a plural verb for a sum of money or distance treated as one amount.",
+    ],
+}
+
+# ---------------------------------------------------------------- subtopic 4
+s_articles = {
+    "id": "ge-articles-determiners",
+    "title": "Articles (a, an, the, zero article) and determiners",
+    "concept": """### A or An: go by the first SOUND, not the letter
+| Use **an** (vowel sound) | Use **a** (consonant sound) |
+|---|---|
+| an hour, an honest man, an heir, an honour | a university, a unit, a European, a useful tip |
+| an MLA, an MBA, an SP, an X-ray, an LLB | a one-day match, a one-way street, a ewe, a union |
+| an FIR, an NGO, an 8-year-old | a U-turn, a uniform, a hotel (h is sounded) |
+
+Letters whose names begin with a vowel sound: **A, E, F, H, I, L, M, N, O, R, S, X** → *an F-grade, an M.Sc., an S-bend*.
+
+### Uses of A / An
+- First mention of a countable singular: *I saw **a** cat.*
+- Profession or class: *She is **a** doctor.*
+- Rate: *60 km **an** hour, twice **a** week, ₹50 **a** kilo*.
+- Exclamations and fixed phrases: *What **a** sight! such **a** fool, quite **a** crowd, half **an** hour, **a** few, **a** little, **a** lot of, **a** great deal of, in **a** hurry, as **a** rule, at **a** loss*.
+
+### Uses of The
+| Use | Example |
+|---|---|
+| Something already mentioned or specific | *I bought a pen. **The** pen leaks.* |
+| Unique objects | *the sun, the moon, the sky, the earth, the world* |
+| Superlatives and ordinals | *the best, the first, the last, the only, the same* |
+| Rivers, seas, oceans, canals, gulfs | *the Ganga, the Arabian Sea, the Pacific, the Suez Canal* |
+| Mountain ranges, island groups, deserts | *the Himalayas, the Andamans, the Thar* |
+| Holy books, epics, newspapers, famous buildings | *the Gita, the Ramayana, the Hindu, the Taj Mahal* |
+| Countries with Republic/Union/States/plural names | *the USA, the UK, the Netherlands, the Maldives* |
+| Musical instruments | *She plays **the** sitar.* |
+| Adjective used as a class of people | *the rich, the poor, the blind* |
+| Whole species (singular noun) | ***The** tiger is a national animal.* |
+| Double comparative | ***The** more you read, **the** better you write.* |
+| Proper noun used as common noun | *Kalidas is **the** Shakespeare of India.* |
+| Directions | *in **the** north* (but *go north*) |
+
+### No article (zero article)
+- Proper nouns of people, cities, most countries, single mountains, single lakes: *Mount Everest, Lake Chilika, India*.
+- Languages and school subjects: *He speaks **Hindi**; **physics** is hard.*
+- Meals, games, most diseases: *have **lunch**, play **cricket**, suffer from **malaria*** (but *a heavy lunch, the flu, a cold, a headache*).
+- Abstract and material nouns in a general sense: ***Honesty** is the best policy; **Gold** is costly* (but ***The** gold of Kolar*).
+- *man* meaning mankind: ***Man** is mortal.*
+- Institutions used for their main purpose: *go to **school / church / hospital / prison / bed / college*** (but *went to **the** school to meet the principal*).
+- Transport with *by*: *by bus, by train, by air*; time phrases: *at night, next week, last year, by chance, in time*.
+
+### Determiners quick table
+| Word | With | Note |
+|---|---|---|
+| each | singular, from a known group (2+) | *each side of the road* |
+| every | singular, 3+ as a whole | *every student* |
+| some / any | *some* in positive, *any* in negative/questions | *Some* in offers: *Would you like some tea?* |
+| much / little / less | uncountable | *much time, less water* |
+| many / few / fewer | countable plural | *many books, fewer errors* |""",
+    "formulas": [],
+    "tricks": [
+        {"title": "Say it aloud",
+         "body": "For a/an, whisper the next word. If your mouth starts with a vowel **sound** (*on-est, em-el-ay, ex-ray*), use **an**; if it starts with *y* or *w* sound (*you-niversity, won-day*), use **a**.",
+         "example": {"q": "He is ___ one-eyed man and ___ honest worker.",
+                     "solution": "*one* sounds *won* → **a** one-eyed man; *honest* sounds *on-est* → **an** honest worker."}},
+        {"title": "The geography rule of thumb",
+         "body": "**Plural or water or chain → THE** (the Alps, the Ganga, the Indian Ocean, the Andamans). **Single peak, single lake, city, most countries → no article** (Mount Abu, Lake Dal, Delhi, Nepal).",
+         "example": None},
+    ],
+    "mistakes": [
+        "Choosing a/an by spelling: *an university, a hour, an European* ✗.",
+        "Using *the* with meals, games and languages: *play the cricket, the English is easy* ✗.",
+        "Dropping *the* before superlatives or *same/only*.",
+        "Using *the* with single mountains or lakes: *the Mount Everest* ✗.",
+        "Omitting *a* in rate expressions and fixed phrases: *twice week, in hurry* ✗.",
+    ],
+}
+
+# ---------------------------------------------------------------- subtopic 5
+prep_rows = [
+    ["abide by", "follow a rule"], ["absorbed in", "fully busy"], ["accede to", "agree to a request"],
+    ["accompanied by (person) / with (thing)", "went along with"], ["accuse of / charge with", "blame for a crime"],
+    ["acquainted with", "knows"], ["addicted to", "habit"], ["afraid of", "fear"],
+    ["agree with (person) / to (proposal) / on (point)", "agreement"], ["angry with (person) / at (thing)", "anger"],
+    ["apologise to (person) for (act)", "say sorry"], ["aware of / conscious of", "knowing"],
+    ["beware of", "be careful"], ["boast of", "brag"], ["capable of", "able"],
+    ["comply with", "obey"], ["confident of", "sure"], ["congratulate on", "praise for success"],
+    ["consist of", "made up of"], ["cope with", "manage"], ["deal in (goods) / deal with (handle)", "trade / handle"],
+    ["depend on / rely on", "trust"], ["deprive of", "take away"], ["die of (disease) / from (cause)", "death"],
+    ["differ from (thing) / with (person's view)", "disagree"], ["divide into (parts) / among (people)", "share"],
+    ["eligible for", "qualified"], ["envious / jealous of", "envy"], ["famous for", "known for"],
+    ["fond of", "likes"], ["good at / weak in", "skill"], ["guilty of", "blame"],
+    ["indifferent to", "not caring"], ["insist on", "demand firmly"], ["interested in", "keen"],
+    ["married to", "wedded"], ["object to (+ V-ing)", "oppose"], ["part with (thing) / from (person)", "give up / leave"],
+    ["prefer X to Y", "choose"], ["prevent / refrain / abstain from", "stop"], ["proud of", "pride"],
+    ["senior / junior / superior / inferior / prior to", "comparison"], ["similar to / identical with", "likeness"],
+    ["succeed in", "achieve"], ["sure of", "certain"], ["tired of (bored) / from (exhausted)", "fatigue"],
+    ["wait for (someone) / wait on (serve)", "waiting"],
+]
+prep_table = md_table(["Fixed combination", "Sense"], prep_rows)
+
+s_prep = {
+    "id": "ge-prepositions-conjunctions",
+    "title": "Prepositions and conjunctions",
+    "concept": f"""### Prepositions of time and place
+| Preposition | Time | Place |
+|---|---|---|
+| **at** | exact point: *at 6 pm, at noon, at night, at dawn* | point/address: *at the gate, at 12 MG Road* |
+| **on** | days and dates: *on Monday, on 15 August* | surface/street: *on the table, on MG Road* |
+| **in** | months, years, seasons, parts of day: *in May, in 2025, in the evening* | enclosed area/city/country: *in the room, in Delhi* |
+| **by** | not later than: *by 5 pm* | beside/means: *by the window, by train* |
+| **till / until** | up to (continuity): *wait till 5* | - |
+| **since / for** | point / period with perfect tenses | - |
+| **between / among** | two / more than two | *between the two banks, among the villagers* |
+| **beside / besides** | *beside* = next to; *besides* = in addition to | *sat beside me; besides English, he knows Tamil* |
+| **into / in** | *into* = movement inside; *in* = position | *jumped into the pool; swimming in the pool* |
+
+### Fixed prepositions (collocations SSC repeats)
+{prep_table}
+
+**Verbs that take NO preposition before the object**: *discuss* (the plan), *describe*, *reach* (the station), *enter* (the room), *marry* (someone), *attack*, *resemble*, *request*, *order*, *answer* (a question), *comprise*, *emphasise*, *investigate*. *discuss about* ✗, *reach at* ✗, *comprises of* ✗ (but *consists of* ✓, *is composed of* ✓), *request for* (as verb) ✗ (but *a request for* as noun ✓).
+
+### Conjunctions
+**Correlative pairs (must be used as fixed pairs):**
+| Pair | Example |
+|---|---|
+| either ... or / neither ... nor | *Neither he nor I knew.* |
+| both ... and | *both Ravi **and** Sita* (not *both...as well as*) |
+| not only ... but also | *She **not only** sings **but also** dances.* |
+| whether ... or | *whether you like it **or** not* |
+| no sooner ... than | *No sooner had he left **than** it rained.* |
+| hardly / scarcely / barely ... when / before | *Hardly had I sat **when** the phone rang.* |
+| though / although ... yet (or nothing) | *Though he is poor, (yet) he is honest.* (**never** *though...but*) |
+| so ... that / such ... that (result) | *so tired **that** he slept* |
+| such ... as / the same ... as (relative) | *such books **as** these* |
+| lest ... should | *Walk carefully **lest** you **should** fall.* (never *lest...not*) |
+| rather / other ... than | *I would rather walk **than** wait.* |
+| as ... as / so ... as (negative) | *not so tall **as** his brother* |
+
+**Conjunction errors SSC tests**
+- Double conjunctions: *Although ... but*, *Because ... so*, *Since ... therefore* ✗ (use only one).
+- **unless / until / lest / till** already carry a negative sense: *Unless you do **not** work hard* ✗.
+- *The reason ... is **that*** (not *because*): *The reason he failed is **that** he did not study.*
+- *Scarcely ... than* ✗ and *No sooner ... when* ✗: pairs cannot be mixed.
+- **Parallelism**: correlatives must join the same kind of words: *He **not only** plays cricket **but also** football* ✗ → *He plays **not only** cricket **but also** football*.""",
+    "formulas": [],
+    "tricks": [
+        {"title": "Partner check for correlatives",
+         "body": "The moment you see *hardly, scarcely, no sooner, not only, neither, either, both, whether, lest, though*, scan ahead for its fixed partner. A wrong or missing partner is the error ~80% of the time.",
+         "example": {"q": "Spot the error: Scarcely had the match started / than it began / to rain heavily.",
+                     "solution": "*Scarcely* pairs with **when/before**, not *than* → *Scarcely had the match started **when** it began to rain.*"}},
+        {"title": "Verb-preposition memory by meaning",
+         "body": "Group collocations by the idea: **stopping** (prevent/refrain/abstain/desist **from**), **dependence** (depend/rely/count **on**), **skill** (good/expert/adept **at**; proficient **in**), **Latin comparatives** (senior/junior/superior/inferior/prior/prefer **to**). One group, one preposition.",
+         "example": None},
+    ],
+    "mistakes": [
+        "Adding a preposition after *discuss, reach, enter, resemble, request, comprise*.",
+        "Using *between* for more than two people/things.",
+        "Writing *prefer X than Y* instead of *prefer X to Y*.",
+        "Using *though...but*, *because...so*, *both...as well as*.",
+        "Adding *not* after *unless / lest / until*.",
+        "Using *since* with a period (*since three days*) instead of *for*.",
+    ],
+}
+
+# ---------------------------------------------------------------- subtopic 6
+s_modals = {
+    "id": "ge-modals-conditionals",
+    "title": "Modals, conditionals and the subjunctive",
+    "concept": """### Modals: always followed by the base verb (V1)
+| Modal | Main uses | Example |
+|---|---|---|
+| can / could | ability; *could* = past ability or polite request | *She **can** swim. **Could** you help me?* |
+| may / might | permission; possibility (*might* = less likely) | ***May** I come in? It **might** rain.* |
+| must | strong obligation; logical certainty | *You **must** wear a helmet. He **must** be tired.* |
+| should / ought to | duty, advice (*ought* always takes *to*) | *You **ought to** respect elders.* |
+| will / shall | future; *shall* for offers with I/we | ***Shall** I open the window?* |
+| would | past habit; polite request; conditional | *He **would** walk daily as a child.* |
+| need / dare (as modals) | only in negatives/questions, **no *to***, no *-s* | *He **need not** come. **Dare** he argue?* |
+| used to | past habit that no longer exists | *I **used to** play chess.* |
+
+- Modal + V1 only: *He can **speaks*** ✗; *She must **to** go* ✗.
+- *be used to / be accustomed to* + **V-ing** (= familiar with): *I am used to **working** late* ≠ *I used to work late*.
+- *had better* + V1: *You **had better** leave now.* *would rather* + V1: *I **would rather** stay.*
+
+### Perfect modals (modal + have + V3) talk about the past
+| Form | Meaning | Example |
+|---|---|---|
+| must have + V3 | confident deduction | *The ground is wet; it **must have rained**.* |
+| can't have + V3 | confident negative deduction | *He **can't have finished** so soon.* |
+| should have / ought to have + V3 | duty not done (regret/criticism) | *You **should have told** me.* |
+| could have + V3 | possible but did not happen | *We **could have won**.* |
+| may / might have + V3 | possibility about the past | *She **may have missed** the bus.* |
+| needn't have + V3 | did it, but it was unnecessary | *You **needn't have brought** gifts.* |
+
+### Conditionals
+| Type | If-clause | Main clause | Meaning | Example |
+|---|---|---|---|---|
+| Zero | present | present | general truth | *If you heat ice, it **melts**.* |
+| First | present | will + V1 | real future possibility | *If it **rains**, we **will stay** in.* |
+| Second | past (*were* for all persons) | would/could/might + V1 | unreal present/future | *If I **were** rich, I **would travel**.* |
+| Third | had + V3 | would/could/might + have + V3 | unreal past | *If he **had studied**, he **would have passed**.* |
+
+- **Never** put *will* or *would* in the *if*-clause of these patterns: *If he would have come* ✗ → *If he had come*.
+- **Inverted conditionals** drop *if*: ***Had** I known = If I had known; **Were** I you = If I were you; **Should** you need help = If you need help.*
+- ***unless* = if not**, so it never takes another *not*: *Unless you hurry, you will miss the bus.*
+- Mixed conditional: *If I **had taken** the job, I **would be** in Mumbai now* (past condition, present result).
+
+### Subjunctive (unreal or desired situations)
+- ***wish*** + past (present wish) / past perfect (past regret): *I wish I **were** taller; I wish I **had listened**.*
+- ***as if / as though*** + past / *were*: *He talks as if he **were** the boss.*
+- ***It is (high/about) time*** + past: *It is time we **went** home.*
+- ***suggest, recommend, insist, demand, propose, order, request*** + that + subject + **(should) V1**: *The doctor suggested that he **take** / **should take** rest* (not *takes*).
+- ***would rather*** + subject + past: *I would rather you **stayed** here.*""",
+    "formulas": [],
+    "tricks": [
+        {"title": "If-clause match table",
+         "body": "Read the main clause first, then fix the *if*-clause: **will** → present; **would + V1** → past/were; **would have + V3** → had + V3. The *if*-clause is always one step 'further back' in time than the main verb.",
+         "example": {"q": "If she ___ (leave) earlier, she would have caught the flight.",
+                     "solution": "Main clause *would have caught* → third conditional → **had left**."}},
+        {"title": "Deduction ladder",
+         "body": "Certain positive → *must have*; certain negative → *can't/couldn't have*; unsure → *may/might have*; duty missed → *should have*. Evidence words (*wet road, empty plate, lights off*) point to **must have**.",
+         "example": None},
+    ],
+    "mistakes": [
+        "Using *to* after a modal (*must to go*) or *-s* after a modal (*can speaks*).",
+        "Writing *would* in the *if*-clause: *If I would know...*.",
+        "Using *was* instead of *were* in the formal subjunctive (*If I was you* is informal).",
+        "Confusing *used to + V1* (past habit) with *be used to + V-ing* (familiar).",
+        "Writing *suggested that he takes* instead of *(should) take*.",
+        "Using *needn't to* or *doesn't need go*.",
+    ],
+}
+
+# ---------------------------------------------------------------- subtopic 7
+s_comp = {
+    "id": "ge-comparison-question-tags",
+    "title": "Degrees of comparison and question tags",
+    "concept": """### Degrees of comparison
+| Degree | Pattern | Example |
+|---|---|---|
+| Positive | *as + adj + as* (positive); *not so/as + adj + as* (negative) | *Ravi is **as tall as** Amit. He is **not so tall as** his father.* |
+| Comparative | *adj-er / more + adj + than* | *Delhi is **hotter than** Shimla.* |
+| Superlative | *the + adj-est / the most + adj* | *the **tallest** tower* |
+
+**Irregular forms**: good–better–best; bad–worse–worst; little–less–least; much/many–more–most; far–farther/further–farthest/furthest; old–older/elder–oldest/eldest; late–later/latter–latest/last.
+
+### Comparison rules SSC tests
+1. **No double comparatives or superlatives**: *more better, most tallest, more costlier* ✗.
+2. ***than any other* + singular noun** when the thing compared belongs to the same group: *Everest is higher than **any other peak** in the world* (without *other* it would be compared with itself).
+3. **Compare like with like** (use *that of / those of* or a possessive): *The population of Mumbai is larger than **that of** Pune* (not *than Pune*). *His marks are better than **mine*** (not *than me*).
+4. **Latin comparatives take *to***: *senior, junior, superior, inferior, prior, anterior, posterior, preferable, prefer*: *She is senior **to** me* (not *than*).
+5. **Of the two → the + comparative**: *She is **the taller** of the two sisters.*
+6. ***one of the* + superlative + plural noun**: *one of the **best players*** (not *best player*).
+7. Absolute adjectives (*unique, perfect, ideal, complete, round, supreme*) are not compared.
+8. **Double comparative for gradual change**: *The more you practise, **the** better you get.*
+9. Transformation triad (same meaning):
+   - *No other city in India is **as** big **as** Mumbai.* (positive)
+   - *Mumbai is **bigger than any other** city in India.* (comparative)
+   - *Mumbai is **the biggest** city in India.* (superlative)
+
+### Question tags
+A question tag = **auxiliary + pronoun** of the main clause, with the **opposite polarity**.
+| Statement type | Tag | Example |
+|---|---|---|
+| Positive with auxiliary | negative of that auxiliary | *She **is** busy, **isn't she**?* |
+| Negative | positive | *They **won't** come, **will they**?* |
+| No auxiliary (simple present/past) | do / does / did | *He **plays** well, **doesn't he**? You **met** her, **didn't you**?* |
+| *I am* | **aren't I** | *I am late, **aren't I**?* |
+| *Let's* (suggestion) | **shall we** | *Let's go, **shall we**?* |
+| Imperative (order/request) | **will you / won't you / can you** | *Close the door, **will you**?* |
+| *Let me / Let him* (asking permission) | **will you** | *Let me help, **will you**?* |
+| Negative-sense words: *never, hardly, scarcely, seldom, rarely, barely, few, little, nobody, nothing, none* | **positive** tag | *He **never** lies, **does he**? **Few** people came, **did they**?* |
+| *everyone / someone / nobody / everybody* | **they** | *Everyone was happy, **weren't they**?* |
+| *everything / nothing / something* | **it** | *Nothing happened, **did it**?* |
+| *There is / There are* | **isn't there / aren't there** | *There is a problem, **isn't there**?* |
+| *used to* | **didn't** | *He used to smoke, **didn't he**?* |
+| *had better* | **hadn't** | *We had better leave, **hadn't we**?* |
+| Complex sentence with *I think / I believe* | tag follows the **subordinate** clause | *I think he is right, **isn't he**?* |""",
+    "formulas": [],
+    "tricks": [
+        {"title": "'Other' check in comparative sentences",
+         "body": "Whenever you see *than any / than all*, ask: *Is the subject part of the group after 'than'?* If yes, *other* (or *else*) is mandatory. *Kolkata is bigger than any city in Nepal* ✓ (different group); *...than any city in India* ✗ → *any other city*.",
+         "example": {"q": "Spot the error: Sachin scored more runs / than any batsman / in the Indian team / that season.",
+                     "solution": "Sachin belongs to the Indian team → **than any other batsman**."}},
+        {"title": "Tag in two steps",
+         "body": "Step 1: find the auxiliary (or supply *do/does/did*). Step 2: flip the polarity, remembering that *never, hardly, seldom, few, little, nobody, nothing* make the statement **negative**, so the tag is **positive**.",
+         "example": {"q": "She seldom visits us, ___?",
+                     "solution": "*seldom* is negative; auxiliary for *visits* is *does* → **does she?**"}},
+    ],
+    "mistakes": [
+        "Double comparatives: *more stronger, most cleverest*.",
+        "Comparing a thing with a person/place: *The roads of Pune are better than Nagpur* ✗ → *than those of Nagpur*.",
+        "Writing *senior than, superior than, prefer ... than*.",
+        "Dropping *other* in *than any other*.",
+        "Giving a negative tag after *hardly / never / few*.",
+        "Using *amn't I* or *am I not* informally; the standard tag for *I am* is *aren't I*.",
+    ],
+}
+
+# ---------------------------------------------------------------- subtopic 8
+s_nonfinite = {
+    "id": "ge-non-finites-inversion",
+    "title": "Non-finites (infinitive, gerund, participle), inversion and parallelism",
+    "concept": """### Infinitive (to + V1) and bare infinitive (V1)
+- **Bare infinitive (no *to*)** after: modals, *let, make, see, hear, watch, feel, bid, had better, would rather, rather than*, and after *but/except* following *do*: *She made him **apologise**; He did nothing but **laugh**.*
+- In the **passive**, *make / see / hear* take *to*: *He was made **to apologise**.*
+- Verbs followed by **to + V1**: *agree, decide, hope, plan, promise, refuse, want, wish, expect, afford, fail, manage, offer, pretend, threaten, deserve, learn, seem, tend*.
+- **too ... to** gives a negative result: *He is too tired **to walk*** (not *too tired that*).
+
+### Gerund (V-ing used as a noun)
+- Verbs followed by **V-ing**: *avoid, admit, deny, enjoy, finish, mind, miss, postpone, practise, quit, resist, risk, suggest, consider, keep, give up, can't help, feel like, appreciate*.
+- ***to* as a preposition** → V-ing: *look forward to, object to, be used to, be accustomed to, with a view to, confess to, be averse to, take to, devote oneself to*: *I look forward to **meeting** you.*
+- After **every preposition** use V-ing: *He is fond **of reading**; She left **without saying** goodbye.*
+- Gerund as subject takes a singular verb: ***Smoking** is injurious.*
+
+### Verbs whose meaning changes
+| Verb | + to V1 | + V-ing |
+|---|---|---|
+| stop | stop (one activity) in order to do another: *He stopped **to drink** water* | quit the activity: *He stopped **drinking** tea* |
+| remember / forget | a duty still to do: *Remember **to lock** the door* | a past action: *I remember **locking** it* |
+| regret | announce bad news: *We regret **to inform** you* | feel sorry about a past act: *I regret **shouting*** |
+| try | make an effort: *Try **to lift** it* | experiment: *Try **adding** salt* |
+
+### Participles
+- **Present participle (V-ing)** = active; **past participle (V3)** = passive: *a **boring** lecture* (it bores) vs *a **bored** student* (he is bored).
+- **Dangling participle**: the opening participle must describe the **subject** of the main clause. *Walking along the beach, a crab bit him* ✗ (the crab was not walking) → *Walking along the beach, **he** was bitten by a crab* ✓.
+- **Absolute phrase** has its own subject: *The weather **being** pleasant, we went out.*
+
+### Inversion (auxiliary before subject)
+When these words **open** a sentence, use question word order:
+| Opener | Example |
+|---|---|
+| Never / Seldom / Rarely / Little | *Never **have I seen** such courage. Little **did he know** the truth.* |
+| Hardly / Scarcely ... when | *Hardly **had we reached** when it rained.* |
+| No sooner ... than | *No sooner **did the bell ring** than the pupils ran out.* |
+| Not only ... but also | *Not only **did she win**, but she also broke the record.* |
+| Not until / Only then / Only after / Only when | *Only then **did I realise** my mistake.* |
+| Nowhere / At no time / Under no circumstances / On no account / In no way | *Under no circumstances **will we accept** bribes.* |
+| So + adjective ... that | *So loud **was the noise** that nobody slept.* |
+| Conditional without *if* | ***Had I known**, I would have helped.* |
+| Neither / Nor / So (agreement) | *He can't swim, and **neither can I**. She likes tea, and **so do I**.* |
+| Here / There + verb (with a noun subject) | ***Here comes the bus*** (but *Here **it comes***) |
+
+### Parallelism
+Items joined by *and, or, but, not only...but also, either...or, both...and, than, as* must have the **same grammatical form**: *She likes reading, writing and **painting*** (not *to paint*). *He is honest, hardworking and **intelligent*** (not *has intelligence*).""",
+    "formulas": [],
+    "tricks": [
+        {"title": "Is 'to' a preposition? Test with a noun",
+         "body": "Replace the verb after *to* with a noun. If a noun fits (*I look forward to **the holiday***), then *to* is a preposition and the verb must be **V-ing**. If only a verb fits (*I want to ~~the holiday~~*), use **to + V1**.",
+         "example": {"q": "She is accustomed to ___ (work) late.",
+                     "solution": "*accustomed to the noise* works, so *to* is a preposition → **working**."}},
+        {"title": "Negative opener = question order",
+         "body": "If a sentence begins with a negative or restrictive word (*never, seldom, hardly, no sooner, not only, only then, little, nowhere*), immediately check that the auxiliary comes **before** the subject. Missing inversion is the planted error.",
+         "example": {"q": "Spot the error: Rarely we have seen / such a spectacular / display of fireworks.",
+                     "solution": "*Rarely* opens the sentence → inversion: **Rarely have we seen**."}},
+    ],
+    "mistakes": [
+        "Using *to + V1* after *look forward to / object to / be used to*.",
+        "Writing *made him to go* in the active voice.",
+        "Dangling participles that make the wrong noun do the action.",
+        "Forgetting inversion after *never, seldom, not only, no sooner, only then*.",
+        "Breaking parallel structure in lists and correlatives.",
+        "Using *too ... that*; the pattern is *too ... to* or *so ... that*.",
+    ],
+}
+
+subtopics = [s_pos, s_tense, s_sva, s_articles, s_prep, s_modals, s_comp, s_nonfinite]
+
+pyq = [
+    {"pattern": "Subject-verb agreement hidden behind a long subject", "frequency": "very common",
+     "howToSpot": "Long subject with *of...*, *as well as*, *along with*, *either/neither*, *each*, *one of*; verb sits in the 2nd or 3rd segment.",
+     "approach": "Strike out prepositional and add-on phrases, find the head noun, then apply the singular/plural rule or the nearest-subject rule."},
+    {"pattern": "Tense error with time signals (since/for, by the time, when/if + future)", "frequency": "very common",
+     "howToSpot": "Words like *since, for, yesterday, ago, by the time, as soon as, before, after, when, unless*.",
+     "approach": "Match the tense to the signal word table; no *will* in time/condition clauses; no present perfect with definite past time."},
+    {"pattern": "Wrong or missing preposition in a fixed collocation", "frequency": "very common",
+     "howToSpot": "A verb/adjective + preposition pair (*prefer...than, discuss about, capable for, senior than*).",
+     "approach": "Recall the collocation list; also check for unnecessary prepositions after *discuss, reach, enter, comprise*."},
+    {"pattern": "Article before a vowel-sound/consonant-sound word or with proper nouns", "frequency": "common",
+     "howToSpot": "*a/an* before words starting with h, u, eu, one, or abbreviations; *the* with games, meals, languages, single peaks.",
+     "approach": "Pronounce the next word; apply the geography and zero-article lists."},
+    {"pattern": "Correlative / conjunction pair mismatch", "frequency": "common",
+     "howToSpot": "*hardly, scarcely, no sooner, lest, though, both, not only, unless* in the sentence.",
+     "approach": "Check the partner word (*when/before, than, should, yet, and, but also*) and remove double negatives with *unless/lest*."},
+    {"pattern": "Conditional and subjunctive forms", "frequency": "common",
+     "howToSpot": "*If, unless, wish, as if, it is high time, suggest that*, or a sentence opening with *Had / Were / Should*.",
+     "approach": "Use the conditional type table; *had + V3* pairs with *would have + V3*; subjunctive uses past form or *were*."},
+    {"pattern": "Comparison errors (double comparative, than any other, that of, senior to)", "frequency": "common",
+     "howToSpot": "*more, most, -er, than, senior, superior, prefer*.",
+     "approach": "Remove double comparatives; add *other*; compare like with like using *that of / those of*; use *to* with Latin comparatives."},
+    {"pattern": "Gerund vs infinitive and inversion after negative openers", "frequency": "occasional",
+     "howToSpot": "*look forward to, used to, object to, stop, remember*; sentences starting with *Never, Seldom, Rarely, Not only, Only then*.",
+     "approach": "Apply the preposition-*to* test; check auxiliary-subject order after negative openers."},
+]
+
+solved = [
+    q("ge-s01", FB + "Neither the coach nor the players ___ happy with the umpire's decision.",
+      ["was", "were", "is", "has been"], 1,
+      "With *neither...nor* the verb agrees with the **nearer** subject. The nearer subject is *the players* (plural), so the verb is plural: **were**. *was, is* and *has been* are singular.",
+      "Nearest-noun rule: look only at *players* → plural → **were**.",
+      "easy", "ge-subject-verb-agreement", "neither-nor proximity agreement", 30),
+    q("ge-s02", ES + "Had he left on time, / he would not miss / the flight / to Chennai.",
+      ["Had he left on time,", "he would not miss", "the flight", "to Chennai."], 1,
+      "*Had he left* is an inverted third conditional (= *If he had left*). The result clause of a third conditional needs **would + have + V3**: *he **would not have missed** the flight*. So segment 2 contains the error.",
+      "*Had + V3* at the start → the other clause must be *would have + V3*. Scan only the main clause.",
+      "medium", "ge-modals-conditionals", "third conditional inverted", 40),
+    q("ge-s03", ES + "Between you and I, / the new manager / does not seem / very competent.",
+      ["Between you and I,", "the new manager", "does not seem", "very competent."], 0,
+      "*Between* is a preposition, so the pronouns after it must be in the objective case: **between you and me**. The rest of the sentence is correct (*does not seem* agrees with *the new manager*).",
+      "Cover *you and*: *between I* sounds wrong, *between me* is right.",
+      "easy", "ge-parts-of-speech", "pronoun case after preposition", 30),
+    q("ge-s04", FB + "Seldom ___ such a dedicated officer in my career.",
+      ["I have met", "have I met", "I met", "did I met"], 1,
+      "*Seldom* is a negative adverb; when it begins a sentence, the auxiliary comes before the subject (inversion). **have I met** is correct. *I have met / I met* lack inversion; *did I met* wrongly uses V3 after *did* (it should be *did I meet*).",
+      "Negative opener → question word order → pick the option shaped like a question: *have I met*.",
+      "medium", "ge-non-finites-inversion", "inversion after negative adverb", 35),
+    q("ge-s05", FB + "The climate of Bengaluru is milder than ___ of Chennai.",
+      ["that", "those", "it", "this"], 0,
+      "We must compare climate with climate, not climate with a city. The singular noun *climate* is replaced by **that** (plural nouns would take *those*). *it/this* cannot stand for a noun followed by *of* in a comparison.",
+      "Singular thing compared → *that of*; plural → *those of*.",
+      "easy", "ge-comparison-question-tags", "compare like with like (that of)", 30),
+]
+
+practice = [
+    q("ge-p01", FB + "The quality of the mangoes sold in these markets ___ improved this year.",
+      ["have", "has", "are", "were"], 1,
+      "The head noun is *quality* (singular); *of the mangoes sold in these markets* is only a descriptive phrase. A singular subject with present perfect needs **has improved**.",
+      "Strike *of the mangoes...markets* → *The quality ___ improved* → **has**.",
+      "easy", "ge-subject-verb-agreement", "head noun after 'of' phrase", 30),
+    q("ge-p02", ES + "The principal, as well as the teachers, / were present / at the annual function / held last Friday.",
+      ["The principal, as well as the teachers,", "were present", "at the annual function", "held last Friday."], 1,
+      "With *as well as*, the verb agrees with the **first** subject, *The principal* (singular). So it should be **was present**.",
+      None, "easy", "ge-subject-verb-agreement", "as well as agreement", 35),
+    q("ge-p03", FB + "My uncle ___ in Pune since 2018.",
+      ["lives", "is living", "has been living", "was living"], 2,
+      "*since 2018* marks an action that began in the past and continues now, so a perfect (continuous) tense is needed: **has been living**. Simple present, present continuous and past continuous cannot be used with *since* here.",
+      "since/for → perfect tense; only one option is perfect.",
+      "easy", "ge-tenses", "since with perfect continuous", 30),
+    q("ge-p04", ES + "I will inform you / as soon as the results / will be declared / by the board.",
+      ["I will inform you", "as soon as the results", "will be declared", "by the board."], 2,
+      "In a time clause introduced by *as soon as*, the simple present is used for future meaning: *as soon as the results **are declared***. *will be declared* is wrong.",
+      None, "easy", "ge-tenses", "no will in time clause", 35),
+    q("ge-p05", ES + "He waited for / a hour at the bus stop / before he finally / took an autorickshaw.",
+      ["He waited for", "a hour at the bus stop", "before he finally", "took an autorickshaw."], 1,
+      "*hour* begins with a silent *h*, so it starts with a vowel sound: **an hour**. *an autorickshaw* is correct.",
+      None, "easy", "ge-articles-determiners", "a/an by sound", 25),
+    q("ge-p06", FB + "She is not capable ___ handling so much pressure at work.",
+      ["for", "in", "of", "to"], 2,
+      "The fixed collocation is **capable of** + V-ing. *capable for / in / to* are not standard.",
+      None, "easy", "ge-prepositions-conjunctions", "adjective + fixed preposition", 25),
+    q("ge-p07", FB + "Hardly had the guests arrived ___ it started raining.",
+      ["than", "when", "then", "that"], 1,
+      "*Hardly* is paired with **when** (or *before*). *than* belongs with *no sooner*; *then* and *that* are not correlative partners here.",
+      "Hardly/Scarcely → when; No sooner → than.",
+      "easy", "ge-prepositions-conjunctions", "hardly...when correlative", 25),
+    q("ge-p08", FB + "The road is wet and there are puddles everywhere; it ___ rained last night.",
+      ["must have", "should have", "must", "ought to"], 0,
+      "The wet road is evidence for a confident conclusion about the past → **must have + V3** (*must have rained*). *should have rained* means it was expected but did not happen; *must rained* and *ought to rained* are ungrammatical.",
+      "Evidence + past → must have.",
+      "medium", "ge-modals-conditionals", "perfect modal of deduction", 35),
+    q("ge-p09", SI + "If you **would have told** me earlier, I would have helped you.",
+      ["had told", "have told", "would tell", "No substitution required"], 0,
+      "The main clause *I would have helped* is a third conditional, so the *if*-clause must be past perfect: **If you had told me**. *would* never goes into the *if*-clause.",
+      None, "medium", "ge-modals-conditionals", "third conditional if-clause", 35),
+    q("ge-p10", ES + "Gold is more costlier / than silver, / but both are / widely used in jewellery.",
+      ["Gold is more costlier", "than silver,", "but both are", "widely used in jewellery."], 0,
+      "*costlier* is already comparative; adding *more* makes a double comparative. Correct: **Gold is costlier** (or *more costly*).",
+      None, "easy", "ge-comparison-question-tags", "double comparative", 30),
+    q("ge-p11", "Select the grammatically correct sentence.",
+      ["Mount Everest is higher than any peak in the world.",
+       "Mount Everest is higher than any other peak in the world.",
+       "Mount Everest is the higher peak in the world.",
+       "Mount Everest is highest than all other peaks in the world."], 1,
+      "Everest is itself a peak in the world, so it must be compared with **any other** peak; otherwise it is compared with itself (option 1). *the higher* is used only between two things; *highest than* mixes superlative with *than*.",
+      None, "medium", "ge-comparison-question-tags", "than any other", 40),
+    q("ge-p12", "Select the correct question tag.\n\nNobody called while I was out, ___",
+      ["did he?", "didn't they?", "did they?", "didn't he?"], 2,
+      "*Nobody* makes the statement negative, so the tag is positive; indefinite pronouns for people (*nobody, everyone, someone*) are picked up by **they**. The simple past *called* takes *did* → **did they?**",
+      "Negative word → positive tag; nobody → they.",
+      "medium", "ge-comparison-question-tags", "question tag with nobody", 30),
+    q("ge-p13", FB + "She is looking forward ___ her cousins next month.",
+      ["to meet", "to meeting", "for meeting", "meeting"], 1,
+      "In *look forward to*, *to* is a preposition, so it must be followed by a gerund: **to meeting**.",
+      "Test: *looking forward to the trip* works → *to* is a preposition → V-ing.",
+      "easy", "ge-non-finites-inversion", "look forward to + V-ing", 25),
+    q("ge-p14", ES + "No sooner the bell rang / than the students / rushed out / of the classroom.",
+      ["No sooner the bell rang", "than the students", "rushed out", "of the classroom."], 0,
+      "*No sooner* at the start requires inversion with an auxiliary: **No sooner did the bell ring** (or *No sooner had the bell rung*) *than...*. The rest is correct.",
+      None, "medium", "ge-non-finites-inversion", "inversion after no sooner", 35),
+    q("ge-p15", ES + "The officer gave us / many useful informations / about the new scheme / and its benefits.",
+      ["The officer gave us", "many useful informations", "about the new scheme", "and its benefits."], 1,
+      "*information* is uncountable: it has no plural and cannot take *many*. Correct: **much useful information** (or *a lot of useful information*).",
+      None, "easy", "ge-parts-of-speech", "uncountable noun pluralised", 30),
+]
+
+topic = {
+    "id": "grammar-essentials",
+    "sectionId": "english",
+    "title": "Grammar Essentials (Handbook)",
+    "order": 13,
+    "importance": "high",
+    "avgQuestions": {"tier1": 7, "tier2": 10},
+    "summary": "A complete working grammar for SSC: parts of speech, tenses, subject-verb agreement, articles, prepositions, conjunctions, modals, conditionals, comparison, question tags, non-finites and inversion. It is rarely asked by name, but it decides roughly 7 Tier 1 questions (error spotting, sentence improvement, fill in the blanks, voice and narration) and about 10 in Tier 2.",
+    "subtopics": subtopics,
+    "pyqPatterns": pyq,
+    "solvedExamples": solved,
+    "practice": practice,
+}
+
+if __name__ == "__main__":
+    write_topic(topic)
