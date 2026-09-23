@@ -1,0 +1,393 @@
+{
+ "id": "figure-series",
+ "sectionId": "reasoning",
+ "title": "Figure Series",
+ "order": 20,
+ "importance": "low",
+ "avgQuestions": {
+  "tier1": "0-1",
+  "tier2": "0-1"
+ },
+ "summary": "A row of figures changes by fixed rules — an element moves round the border, an arrow rotates, a shaded quarter turns, or a count grows. Track each element separately, find its step, and pick the only option that satisfies every rule.",
+ "subtopics": [
+  {
+   "id": "movement-rotation",
+   "title": "Movement and rotation",
+   "concept": "Most figure series move an element step by step:\n\n- **Around the border**: a dot/shape jumps a fixed number of positions (1, 2, 3 …) clockwise or anticlockwise. Border positions: 4 corners + 4 edge mid-points = 8 places.\n- **Rotation**: an arrow or line turns by a fixed angle (45°, 90°, 135°) each step.\n- **Shading**: a shaded quarter moves round the square.\n\nTrack **one element at a time** across all frames, write its step (e.g. +1 clockwise), then predict its next place. Do the same for each element and pick the option that agrees on all of them.",
+   "formulas": [
+    {
+     "name": "Position after k steps",
+     "tex": "p_{k} = (p_{0} + k\\,s) \\bmod 8",
+     "note": "s = step (positive = clockwise) on the 8 border places."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "One element, one line",
+     "body": "Write a tiny table: element → positions in frames 1-4 → step → next. Options that fail any row are out.",
+     "example": {
+      "q": "**Q.** A dot sits at places 1, 3, 5, 7 (clockwise count). Next?",
+      "solution": "Step +2: 7 + 2 = 9 ≡ **1** (back to the first place)."
+     }
+    },
+    {
+     "title": "Angles as clock hours",
+     "body": "Treat 45° as 1.5 clock-hours; an arrow turning 90° clockwise each step goes 12 → 3 → 6 → 9 → 12.",
+     "example": {
+      "q": "**Q.** Arrow: up, right, down, … next?",
+      "solution": "Left (90° clockwise each step)."
+     }
+    }
+   ],
+   "mistakes": [
+    "Mixing up clockwise and anticlockwise because the first step looked like both.",
+    "Tracking only one element and choosing an option that is right for it but wrong for another.",
+    "Forgetting to wrap round after the 8th border position."
+   ]
+  },
+  {
+   "id": "addition-change",
+   "title": "Adding, removing and changing elements",
+   "concept": "Some series change the **number** of elements: strokes grow 1, 2, 3, …; a new shape appears in the next corner each step; or shapes disappear one by one.\n\nOthers **alternate**: an arrow flips up/down, a shape switches between two kinds. Count carefully, and check whether each new element is added at a fixed rotation (clockwise) from the previous one.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Count first",
+     "body": "Count the elements in each frame. If the counts go 1, 2, 3, 4, only options with 5 survive; then check positions.",
+     "example": {
+      "q": "**Q.** Strokes: 1, 2, 3, 4. Next?",
+      "solution": "**5** strokes."
+     }
+    }
+   ],
+   "mistakes": [
+    "Ignoring an alternating element because it returns to an earlier state.",
+    "Counting a shape twice when it sits on a boundary."
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Element moving round the border",
+   "frequency": "very common",
+   "howToSpot": "One or two small shapes change position along the edge of a square.",
+   "approach": "Number the 8 border places; find the step of each shape."
+  },
+  {
+   "pattern": "Rotating arrow/line",
+   "frequency": "very common",
+   "howToSpot": "An arrow turns each frame.",
+   "approach": "Find the angle per step (45°, 90°, 135°) and its direction."
+  },
+  {
+   "pattern": "Moving shaded part",
+   "frequency": "common",
+   "howToSpot": "A shaded quarter moves round the square.",
+   "approach": "Quarter order TL → TR → BR → BL is clockwise."
+  },
+  {
+   "pattern": "Growing count",
+   "frequency": "common",
+   "howToSpot": "Number of strokes/shapes rises by one each frame.",
+   "approach": "Count first, then check positions."
+  },
+  {
+   "pattern": "Two or three rules together",
+   "frequency": "common",
+   "howToSpot": "Several elements, each with its own rule.",
+   "approach": "Solve each element separately; the answer satisfies all."
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "rsn-figseries-ex1",
+   "q": "Select the figure that will come next in the given series.",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 284 52\" width=\"284\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g transform=\"translate(0,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"26\" y1=\"37\" x2=\"26\" y2=\"15\"/><polyline points=\"28.06,18.43 26,15 23.94,18.43\"/></g><g transform=\"translate(58,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"18.22\" y1=\"33.78\" x2=\"33.78\" y2=\"18.22\"/><polyline points=\"32.81,22.1 33.78,18.22 29.9,19.19\"/></g><g transform=\"translate(116,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"15\" y1=\"26\" x2=\"37\" y2=\"26\"/><polyline points=\"33.57,28.06 37,26 33.57,23.94\"/></g><g transform=\"translate(174,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"18.22\" y1=\"18.22\" x2=\"33.78\" y2=\"33.78\"/><polyline points=\"29.9,32.81 33.78,33.78 32.81,29.9\"/></g><polygon points=\"235,3 281,3 281,49 235,49\" stroke-dasharray=\"3 2\"/><text x=\"258\" y=\"32\" font-size=\"18\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">?</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"33.78\" y1=\"18.22\" x2=\"18.22\" y2=\"33.78\"/><polyline points=\"19.19,29.9 18.22,33.78 22.1,32.81\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"18.22\" y1=\"18.22\" x2=\"33.78\" y2=\"33.78\"/><polyline points=\"29.9,32.81 33.78,33.78 32.81,29.9\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"26\" y1=\"37\" x2=\"26\" y2=\"15\"/><polyline points=\"28.06,18.43 26,15 23.94,18.43\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"26\" y1=\"15\" x2=\"26\" y2=\"37\"/><polyline points=\"23.94,33.57 26,37 28.06,33.57\"/></svg>"
+   ],
+   "answer": 3,
+   "solution": "The arrow points up, then up-right, right, down-right — it turns **45° clockwise** each step. Next it points **straight down**.",
+   "shortcut": "45° clockwise per step.",
+   "difficulty": "easy",
+   "subtopic": "movement-rotation",
+   "pattern": "rotating arrow/line",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-figseries-ex2",
+   "q": "Select the figure that will come next in the given series.",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 284 52\" width=\"284\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g transform=\"translate(0,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"9\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/></g><g transform=\"translate(58,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"43\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/></g><g transform=\"translate(116,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"43\" cy=\"43\" r=\"3.36\" fill=\"currentColor\"/></g><g transform=\"translate(174,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"9\" cy=\"43\" r=\"3.36\" fill=\"currentColor\"/></g><polygon points=\"235,3 281,3 281,49 235,49\" stroke-dasharray=\"3 2\"/><text x=\"258\" y=\"32\" font-size=\"18\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">?</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"26\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"9\" cy=\"43\" r=\"3.36\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"9\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"9\" cy=\"26\" r=\"3.36\" fill=\"currentColor\"/></svg>"
+   ],
+   "answer": 2,
+   "solution": "Number the 8 border places clockwise from the top-left corner. The dot is at places 0, 2, 4, 6 — two places clockwise each step (corner to corner). Next: 6 + 2 = 8 → place 0, the **top-left corner**.",
+   "shortcut": "Step +2 on the border; wrap round after 8.",
+   "difficulty": "easy",
+   "subtopic": "movement-rotation",
+   "pattern": "element moving round the border",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-figseries-ex3",
+   "q": "Select the figure that will come next in the given series.",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 284 52\" width=\"284\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g transform=\"translate(0,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"26\" y1=\"37\" x2=\"26\" y2=\"15\"/><polyline points=\"28.06,18.43 26,15 23.94,18.43\"/><line x1=\"26\" y1=\"21\" x2=\"26\" y2=\"31\"/></g><g transform=\"translate(58,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"26\" y1=\"15\" x2=\"26\" y2=\"37\"/><polyline points=\"23.94,33.57 26,37 28.06,33.57\"/><line x1=\"23.5\" y1=\"21\" x2=\"23.5\" y2=\"31\"/><line x1=\"28.5\" y1=\"21\" x2=\"28.5\" y2=\"31\"/></g><g transform=\"translate(116,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"26\" y1=\"37\" x2=\"26\" y2=\"15\"/><polyline points=\"28.06,18.43 26,15 23.94,18.43\"/><line x1=\"21\" y1=\"21\" x2=\"21\" y2=\"31\"/><line x1=\"26\" y1=\"21\" x2=\"26\" y2=\"31\"/><line x1=\"31\" y1=\"21\" x2=\"31\" y2=\"31\"/></g><g transform=\"translate(174,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"26\" y1=\"15\" x2=\"26\" y2=\"37\"/><polyline points=\"23.94,33.57 26,37 28.06,33.57\"/><line x1=\"18.5\" y1=\"21\" x2=\"18.5\" y2=\"31\"/><line x1=\"23.5\" y1=\"21\" x2=\"23.5\" y2=\"31\"/><line x1=\"28.5\" y1=\"21\" x2=\"28.5\" y2=\"31\"/><line x1=\"33.5\" y1=\"21\" x2=\"33.5\" y2=\"31\"/></g><polygon points=\"235,3 281,3 281,49 235,49\" stroke-dasharray=\"3 2\"/><text x=\"258\" y=\"32\" font-size=\"18\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">?</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"26\" y1=\"37\" x2=\"26\" y2=\"15\"/><polyline points=\"28.06,18.43 26,15 23.94,18.43\"/><line x1=\"18.5\" y1=\"21\" x2=\"18.5\" y2=\"31\"/><line x1=\"23.5\" y1=\"21\" x2=\"23.5\" y2=\"31\"/><line x1=\"28.5\" y1=\"21\" x2=\"28.5\" y2=\"31\"/><line x1=\"33.5\" y1=\"21\" x2=\"33.5\" y2=\"31\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"26\" y1=\"37\" x2=\"26\" y2=\"15\"/><polyline points=\"28.06,18.43 26,15 23.94,18.43\"/><line x1=\"13.5\" y1=\"21\" x2=\"13.5\" y2=\"31\"/><line x1=\"18.5\" y1=\"21\" x2=\"18.5\" y2=\"31\"/><line x1=\"23.5\" y1=\"21\" x2=\"23.5\" y2=\"31\"/><line x1=\"28.5\" y1=\"21\" x2=\"28.5\" y2=\"31\"/><line x1=\"33.5\" y1=\"21\" x2=\"33.5\" y2=\"31\"/><line x1=\"38.5\" y1=\"21\" x2=\"38.5\" y2=\"31\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"26\" y1=\"37\" x2=\"26\" y2=\"15\"/><polyline points=\"28.06,18.43 26,15 23.94,18.43\"/><line x1=\"16\" y1=\"21\" x2=\"16\" y2=\"31\"/><line x1=\"21\" y1=\"21\" x2=\"21\" y2=\"31\"/><line x1=\"26\" y1=\"21\" x2=\"26\" y2=\"31\"/><line x1=\"31\" y1=\"21\" x2=\"31\" y2=\"31\"/><line x1=\"36\" y1=\"21\" x2=\"36\" y2=\"31\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"26\" y1=\"15\" x2=\"26\" y2=\"37\"/><polyline points=\"23.94,33.57 26,37 28.06,33.57\"/><line x1=\"16\" y1=\"21\" x2=\"16\" y2=\"31\"/><line x1=\"21\" y1=\"21\" x2=\"21\" y2=\"31\"/><line x1=\"26\" y1=\"21\" x2=\"26\" y2=\"31\"/><line x1=\"31\" y1=\"21\" x2=\"31\" y2=\"31\"/><line x1=\"36\" y1=\"21\" x2=\"36\" y2=\"31\"/></svg>"
+   ],
+   "answer": 2,
+   "solution": "Two rules. The strokes increase by one: 1, 2, 3, 4 → **5**. The arrow alternates up, down, up, down → next **up**. Only the figure with 5 strokes and an upward arrow fits both.",
+   "shortcut": "Count first, then the alternating arrow.",
+   "difficulty": "medium",
+   "subtopic": "addition-change",
+   "pattern": "two or three rules together",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-figseries-ex4",
+   "q": "Select the figure that will come next in the given series.",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 284 52\" width=\"284\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g transform=\"translate(0,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"9\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/><polygon points=\"9,21.8 13.2,29.36 4.8,29.36\"/></g><g transform=\"translate(58,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"26\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/><polygon points=\"26,38.8 30.2,46.36 21.8,46.36\"/></g><g transform=\"translate(116,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"43\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/><polygon points=\"43,21.8 47.2,29.36 38.8,29.36\"/></g><g transform=\"translate(174,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"43\" cy=\"26\" r=\"3.36\" fill=\"currentColor\"/><polygon points=\"26,4.8 30.2,12.36 21.8,12.36\"/></g><polygon points=\"235,3 281,3 281,49 235,49\" stroke-dasharray=\"3 2\"/><text x=\"258\" y=\"32\" font-size=\"18\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">?</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"26\" cy=\"43\" r=\"3.36\" fill=\"currentColor\"/><polygon points=\"9,21.8 13.2,29.36 4.8,29.36\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"43\" cy=\"43\" r=\"3.36\" fill=\"currentColor\"/><polygon points=\"43,21.8 47.2,29.36 38.8,29.36\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"43\" cy=\"43\" r=\"3.36\" fill=\"currentColor\"/><polygon points=\"9,21.8 13.2,29.36 4.8,29.36\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"43\" cy=\"43\" r=\"3.36\" fill=\"currentColor\"/><polygon points=\"26,4.8 30.2,12.36 21.8,12.36\"/></svg>"
+   ],
+   "answer": 2,
+   "solution": "Border places numbered clockwise from the top-left corner (0-7). The dot is at 0, 1, 2, 3 — **one place clockwise** each step → next 4 (bottom-right corner). The triangle is at 7, 5, 3, 1 (the edge mid-points) — **two places anticlockwise** each step → next 1 − 2 = −1 → 7 (left-middle). The answer has the dot at the bottom-right corner and the triangle at the middle of the left side.",
+   "shortcut": "Solve each shape separately.",
+   "difficulty": "hard",
+   "subtopic": "movement-rotation",
+   "pattern": "two or three rules together",
+   "timeSec": 55
+  }
+ ],
+ "practice": [
+  {
+   "id": "rsn-figseries-1",
+   "q": "Select the figure that will come next in the given series.",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 284 52\" width=\"284\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g transform=\"translate(0,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"26\" y1=\"37\" x2=\"26\" y2=\"15\"/><polyline points=\"28.06,18.43 26,15 23.94,18.43\"/></g><g transform=\"translate(58,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"15\" y1=\"26\" x2=\"37\" y2=\"26\"/><polyline points=\"33.57,28.06 37,26 33.57,23.94\"/></g><g transform=\"translate(116,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"26\" y1=\"15\" x2=\"26\" y2=\"37\"/><polyline points=\"23.94,33.57 26,37 28.06,33.57\"/></g><g transform=\"translate(174,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"37\" y1=\"26\" x2=\"15\" y2=\"26\"/><polyline points=\"18.43,23.94 15,26 18.43,28.06\"/></g><polygon points=\"235,3 281,3 281,49 235,49\" stroke-dasharray=\"3 2\"/><text x=\"258\" y=\"32\" font-size=\"18\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">?</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"37\" y1=\"26\" x2=\"15\" y2=\"26\"/><polyline points=\"18.43,23.94 15,26 18.43,28.06\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"15\" y1=\"26\" x2=\"37\" y2=\"26\"/><polyline points=\"33.57,28.06 37,26 33.57,23.94\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"33.78\" y1=\"33.78\" x2=\"18.22\" y2=\"18.22\"/><polyline points=\"22.1,19.19 18.22,18.22 19.19,22.1\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"26\" y1=\"37\" x2=\"26\" y2=\"15\"/><polyline points=\"28.06,18.43 26,15 23.94,18.43\"/></svg>"
+   ],
+   "answer": 3,
+   "solution": "The arrow turns **90° clockwise** each step: up → right → down → left. Next it points **up** again.",
+   "shortcut": "90° clockwise per step.",
+   "difficulty": "easy",
+   "subtopic": "movement-rotation",
+   "pattern": "rotating arrow/line",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-figseries-2",
+   "q": "Select the figure that will come next in the given series.",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 284 52\" width=\"284\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g transform=\"translate(0,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"26\" y1=\"37\" x2=\"26\" y2=\"15\"/><polyline points=\"28.06,18.43 26,15 23.94,18.43\"/></g><g transform=\"translate(58,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"18.22\" y1=\"18.22\" x2=\"33.78\" y2=\"33.78\"/><polyline points=\"29.9,32.81 33.78,33.78 32.81,29.9\"/></g><g transform=\"translate(116,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"37\" y1=\"26\" x2=\"15\" y2=\"26\"/><polyline points=\"18.43,23.94 15,26 18.43,28.06\"/></g><g transform=\"translate(174,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"18.22\" y1=\"33.78\" x2=\"33.78\" y2=\"18.22\"/><polyline points=\"32.81,22.1 33.78,18.22 29.9,19.19\"/></g><polygon points=\"235,3 281,3 281,49 235,49\" stroke-dasharray=\"3 2\"/><text x=\"258\" y=\"32\" font-size=\"18\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">?</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"18.22\" y1=\"18.22\" x2=\"33.78\" y2=\"33.78\"/><polyline points=\"29.9,32.81 33.78,33.78 32.81,29.9\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"15\" y1=\"26\" x2=\"37\" y2=\"26\"/><polyline points=\"33.57,28.06 37,26 33.57,23.94\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"26\" y1=\"15\" x2=\"26\" y2=\"37\"/><polyline points=\"23.94,33.57 26,37 28.06,33.57\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"33.78\" y1=\"18.22\" x2=\"18.22\" y2=\"33.78\"/><polyline points=\"19.19,29.9 18.22,33.78 22.1,32.81\"/></svg>"
+   ],
+   "answer": 2,
+   "solution": "The arrow turns **135° clockwise** each step (three 45° steps): up → down-right → left → up-right. Next: up-right + 135° = **down**.",
+   "shortcut": "Count 45° units: +3 each step.",
+   "difficulty": "medium",
+   "subtopic": "movement-rotation",
+   "pattern": "rotating arrow/line",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-figseries-3",
+   "q": "Select the figure that will come next in the given series.",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 284 52\" width=\"284\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g transform=\"translate(0,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"15\" y1=\"26\" x2=\"37\" y2=\"26\"/><polyline points=\"33.57,28.06 37,26 33.57,23.94\"/></g><g transform=\"translate(58,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"18.22\" y1=\"33.78\" x2=\"33.78\" y2=\"18.22\"/><polyline points=\"32.81,22.1 33.78,18.22 29.9,19.19\"/></g><g transform=\"translate(116,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"26\" y1=\"37\" x2=\"26\" y2=\"15\"/><polyline points=\"28.06,18.43 26,15 23.94,18.43\"/></g><g transform=\"translate(174,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"33.78\" y1=\"33.78\" x2=\"18.22\" y2=\"18.22\"/><polyline points=\"22.1,19.19 18.22,18.22 19.19,22.1\"/></g><polygon points=\"235,3 281,3 281,49 235,49\" stroke-dasharray=\"3 2\"/><text x=\"258\" y=\"32\" font-size=\"18\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">?</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"26\" y1=\"15\" x2=\"26\" y2=\"37\"/><polyline points=\"23.94,33.57 26,37 28.06,33.57\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"33.78\" y1=\"18.22\" x2=\"18.22\" y2=\"33.78\"/><polyline points=\"19.19,29.9 18.22,33.78 22.1,32.81\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"37\" y1=\"26\" x2=\"15\" y2=\"26\"/><polyline points=\"18.43,23.94 15,26 18.43,28.06\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"26\" y1=\"37\" x2=\"26\" y2=\"15\"/><polyline points=\"28.06,18.43 26,15 23.94,18.43\"/></svg>"
+   ],
+   "answer": 2,
+   "solution": "The arrow starts pointing right and turns **45° anticlockwise** each step: right → up-right → up → up-left. Next: **left**.",
+   "shortcut": "45° anticlockwise per step.",
+   "difficulty": "medium",
+   "subtopic": "movement-rotation",
+   "pattern": "rotating arrow/line",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-figseries-4",
+   "q": "Select the figure that will come next in the given series.",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 284 52\" width=\"284\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g transform=\"translate(0,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"26\" cy=\"9\" r=\"3.57\"/></g><g transform=\"translate(58,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"43\" cy=\"9\" r=\"3.57\"/></g><g transform=\"translate(116,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"43\" cy=\"26\" r=\"3.57\"/></g><g transform=\"translate(174,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"43\" cy=\"43\" r=\"3.57\"/></g><polygon points=\"235,3 281,3 281,49 235,49\" stroke-dasharray=\"3 2\"/><text x=\"258\" y=\"32\" font-size=\"18\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">?</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"9\" cy=\"43\" r=\"3.57\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"43\" cy=\"43\" r=\"3.57\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"9\" cy=\"9\" r=\"3.57\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"26\" cy=\"43\" r=\"3.57\"/></svg>"
+   ],
+   "answer": 3,
+   "solution": "The ring moves **one place clockwise** round the border each step: top-middle → top-right corner → right-middle → bottom-right corner. Next: **bottom-middle**.",
+   "shortcut": "Step +1 clockwise.",
+   "difficulty": "easy",
+   "subtopic": "movement-rotation",
+   "pattern": "element moving round the border",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-figseries-5",
+   "q": "Select the figure that will come next in the given series.",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 284 52\" width=\"284\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g transform=\"translate(0,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"5.64,22.64 12.36,22.64 12.36,29.36 5.64,29.36\" fill=\"currentColor\"/></g><g transform=\"translate(58,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"39.64,39.64 46.36,39.64 46.36,46.36 39.64,46.36\" fill=\"currentColor\"/></g><g transform=\"translate(116,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"22.64,5.64 29.36,5.64 29.36,12.36 22.64,12.36\" fill=\"currentColor\"/></g><g transform=\"translate(174,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"5.64,39.64 12.36,39.64 12.36,46.36 5.64,46.36\" fill=\"currentColor\"/></g><polygon points=\"235,3 281,3 281,49 235,49\" stroke-dasharray=\"3 2\"/><text x=\"258\" y=\"32\" font-size=\"18\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">?</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"22.64,5.64 29.36,5.64 29.36,12.36 22.64,12.36\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"5.64,5.64 12.36,5.64 12.36,12.36 5.64,12.36\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"39.64,5.64 46.36,5.64 46.36,12.36 39.64,12.36\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"39.64,22.64 46.36,22.64 46.36,29.36 39.64,29.36\" fill=\"currentColor\"/></svg>"
+   ],
+   "answer": 3,
+   "solution": "Number the border places clockwise from the top-left corner (0-7). The square is at 7, 4, 1, 6 — it moves **three places anticlockwise** each step. Next: 6 − 3 = 3, the **right-middle** place.",
+   "shortcut": "Step −3 on the 8-place border.",
+   "difficulty": "medium",
+   "subtopic": "movement-rotation",
+   "pattern": "element moving round the border",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-figseries-6",
+   "q": "Select the figure that will come next in the given series.",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 284 52\" width=\"284\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g transform=\"translate(0,0)\"><polygon points=\"3,3 26,3 26,26 3,26\" fill=\"currentColor\" fill-opacity=\"0.35\"/><polygon points=\"3,3 49,3 49,49 3,49\"/></g><g transform=\"translate(58,0)\"><polygon points=\"26,3 49,3 49,26 26,26\" fill=\"currentColor\" fill-opacity=\"0.35\"/><polygon points=\"3,3 49,3 49,49 3,49\"/></g><g transform=\"translate(116,0)\"><polygon points=\"26,26 49,26 49,49 26,49\" fill=\"currentColor\" fill-opacity=\"0.35\"/><polygon points=\"3,3 49,3 49,49 3,49\"/></g><g transform=\"translate(174,0)\"><polygon points=\"3,26 26,26 26,49 3,49\" fill=\"currentColor\" fill-opacity=\"0.35\"/><polygon points=\"3,3 49,3 49,49 3,49\"/></g><polygon points=\"235,3 281,3 281,49 235,49\" stroke-dasharray=\"3 2\"/><text x=\"258\" y=\"32\" font-size=\"18\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">?</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"26,26 49,26 49,49 26,49\" fill=\"currentColor\" fill-opacity=\"0.35\"/><polygon points=\"3,3 49,3 49,49 3,49\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"26,3 49,3 49,26 26,26\" fill=\"currentColor\" fill-opacity=\"0.35\"/><polygon points=\"3,3 49,3 49,49 3,49\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,26 26,26 26,49 3,49\" fill=\"currentColor\" fill-opacity=\"0.35\"/><polygon points=\"3,3 49,3 49,49 3,49\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 26,3 26,26 3,26\" fill=\"currentColor\" fill-opacity=\"0.35\"/><polygon points=\"3,3 49,3 49,49 3,49\"/></svg>"
+   ],
+   "answer": 3,
+   "solution": "The shaded quarter moves **clockwise**: top-left → top-right → bottom-right → bottom-left. Next it returns to the **top-left** quarter.",
+   "shortcut": "Quarter moves one step clockwise.",
+   "difficulty": "easy",
+   "subtopic": "movement-rotation",
+   "pattern": "moving shaded part",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-figseries-7",
+   "q": "Select the figure that will come next in the given series.",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 284 52\" width=\"284\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g transform=\"translate(0,0)\"><polygon points=\"3,3 26,3 26,26 3,26\" fill=\"currentColor\" fill-opacity=\"0.35\"/><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"18.22\" y1=\"33.78\" x2=\"33.78\" y2=\"18.22\"/><polyline points=\"32.81,22.1 33.78,18.22 29.9,19.19\"/></g><g transform=\"translate(58,0)\"><polygon points=\"3,26 26,26 26,49 3,49\" fill=\"currentColor\" fill-opacity=\"0.35\"/><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"18.22\" y1=\"18.22\" x2=\"33.78\" y2=\"33.78\"/><polyline points=\"29.9,32.81 33.78,33.78 32.81,29.9\"/></g><g transform=\"translate(116,0)\"><polygon points=\"26,26 49,26 49,49 26,49\" fill=\"currentColor\" fill-opacity=\"0.35\"/><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"33.78\" y1=\"18.22\" x2=\"18.22\" y2=\"33.78\"/><polyline points=\"19.19,29.9 18.22,33.78 22.1,32.81\"/></g><g transform=\"translate(174,0)\"><polygon points=\"26,3 49,3 49,26 26,26\" fill=\"currentColor\" fill-opacity=\"0.35\"/><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"33.78\" y1=\"33.78\" x2=\"18.22\" y2=\"18.22\"/><polyline points=\"22.1,19.19 18.22,18.22 19.19,22.1\"/></g><polygon points=\"235,3 281,3 281,49 235,49\" stroke-dasharray=\"3 2\"/><text x=\"258\" y=\"32\" font-size=\"18\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">?</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 26,3 26,26 3,26\" fill=\"currentColor\" fill-opacity=\"0.35\"/><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"18.22\" y1=\"33.78\" x2=\"33.78\" y2=\"18.22\"/><polyline points=\"32.81,22.1 33.78,18.22 29.9,19.19\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"26,3 49,3 49,26 26,26\" fill=\"currentColor\" fill-opacity=\"0.35\"/><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"18.22\" y1=\"33.78\" x2=\"33.78\" y2=\"18.22\"/><polyline points=\"32.81,22.1 33.78,18.22 29.9,19.19\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 26,3 26,26 3,26\" fill=\"currentColor\" fill-opacity=\"0.35\"/><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"33.78\" y1=\"33.78\" x2=\"18.22\" y2=\"18.22\"/><polyline points=\"22.1,19.19 18.22,18.22 19.19,22.1\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,26 26,26 26,49 3,49\" fill=\"currentColor\" fill-opacity=\"0.35\"/><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"18.22\" y1=\"18.22\" x2=\"33.78\" y2=\"33.78\"/><polyline points=\"29.9,32.81 33.78,33.78 32.81,29.9\"/></svg>"
+   ],
+   "answer": 0,
+   "solution": "Two elements. Shading moves **anticlockwise**: TL → BL → BR → TR → next **TL**. The arrow turns **90° clockwise**: up-right → down-right → down-left → up-left → next **up-right**. The answer has the top-left quarter shaded and the arrow pointing up-right.",
+   "shortcut": "Shading and arrow separately.",
+   "difficulty": "medium",
+   "subtopic": "movement-rotation",
+   "pattern": "two or three rules together",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-figseries-8",
+   "q": "Select the figure that will come next in the given series.",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 226 52\" width=\"226\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g transform=\"translate(0,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"26\" y1=\"21\" x2=\"26\" y2=\"31\"/></g><g transform=\"translate(58,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"21\" y1=\"21\" x2=\"21\" y2=\"31\"/><line x1=\"26\" y1=\"21\" x2=\"26\" y2=\"31\"/><line x1=\"31\" y1=\"21\" x2=\"31\" y2=\"31\"/></g><g transform=\"translate(116,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"16\" y1=\"21\" x2=\"16\" y2=\"31\"/><line x1=\"21\" y1=\"21\" x2=\"21\" y2=\"31\"/><line x1=\"26\" y1=\"21\" x2=\"26\" y2=\"31\"/><line x1=\"31\" y1=\"21\" x2=\"31\" y2=\"31\"/><line x1=\"36\" y1=\"21\" x2=\"36\" y2=\"31\"/></g><polygon points=\"177,3 223,3 223,49 177,49\" stroke-dasharray=\"3 2\"/><text x=\"200\" y=\"32\" font-size=\"18\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">?</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"13.5\" y1=\"21\" x2=\"13.5\" y2=\"31\"/><line x1=\"18.5\" y1=\"21\" x2=\"18.5\" y2=\"31\"/><line x1=\"23.5\" y1=\"21\" x2=\"23.5\" y2=\"31\"/><line x1=\"28.5\" y1=\"21\" x2=\"28.5\" y2=\"31\"/><line x1=\"33.5\" y1=\"21\" x2=\"33.5\" y2=\"31\"/><line x1=\"38.5\" y1=\"21\" x2=\"38.5\" y2=\"31\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"16\" y1=\"21\" x2=\"16\" y2=\"31\"/><line x1=\"21\" y1=\"21\" x2=\"21\" y2=\"31\"/><line x1=\"26\" y1=\"21\" x2=\"26\" y2=\"31\"/><line x1=\"31\" y1=\"21\" x2=\"31\" y2=\"31\"/><line x1=\"36\" y1=\"21\" x2=\"36\" y2=\"31\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"8.5\" y1=\"21\" x2=\"8.5\" y2=\"31\"/><line x1=\"13.5\" y1=\"21\" x2=\"13.5\" y2=\"31\"/><line x1=\"18.5\" y1=\"21\" x2=\"18.5\" y2=\"31\"/><line x1=\"23.5\" y1=\"21\" x2=\"23.5\" y2=\"31\"/><line x1=\"28.5\" y1=\"21\" x2=\"28.5\" y2=\"31\"/><line x1=\"33.5\" y1=\"21\" x2=\"33.5\" y2=\"31\"/><line x1=\"38.5\" y1=\"21\" x2=\"38.5\" y2=\"31\"/><line x1=\"43.5\" y1=\"21\" x2=\"43.5\" y2=\"31\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"11\" y1=\"21\" x2=\"11\" y2=\"31\"/><line x1=\"16\" y1=\"21\" x2=\"16\" y2=\"31\"/><line x1=\"21\" y1=\"21\" x2=\"21\" y2=\"31\"/><line x1=\"26\" y1=\"21\" x2=\"26\" y2=\"31\"/><line x1=\"31\" y1=\"21\" x2=\"31\" y2=\"31\"/><line x1=\"36\" y1=\"21\" x2=\"36\" y2=\"31\"/><line x1=\"41\" y1=\"21\" x2=\"41\" y2=\"31\"/></svg>"
+   ],
+   "answer": 3,
+   "solution": "Strokes: 1, 3, 5 — **two more** each step. Next: **7** strokes.",
+   "shortcut": "Odd numbers: +2.",
+   "difficulty": "easy",
+   "subtopic": "addition-change",
+   "pattern": "growing count",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-figseries-9",
+   "q": "Select the figure that will come next in the given series.",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 226 52\" width=\"226\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g transform=\"translate(0,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"9\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/></g><g transform=\"translate(58,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"9\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/><circle cx=\"43\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/></g><g transform=\"translate(116,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"9\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/><circle cx=\"43\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/><circle cx=\"43\" cy=\"43\" r=\"3.36\" fill=\"currentColor\"/></g><polygon points=\"177,3 223,3 223,49 177,49\" stroke-dasharray=\"3 2\"/><text x=\"200\" y=\"32\" font-size=\"18\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">?</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"9\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/><circle cx=\"43\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/><circle cx=\"43\" cy=\"43\" r=\"3.36\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"9\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/><circle cx=\"43\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/><circle cx=\"43\" cy=\"43\" r=\"3.36\" fill=\"currentColor\"/><circle cx=\"26\" cy=\"43\" r=\"3.36\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"9\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/><circle cx=\"26\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/><circle cx=\"43\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/><circle cx=\"43\" cy=\"43\" r=\"3.36\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><circle cx=\"9\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/><circle cx=\"43\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/><circle cx=\"43\" cy=\"43\" r=\"3.36\" fill=\"currentColor\"/><circle cx=\"9\" cy=\"43\" r=\"3.36\" fill=\"currentColor\"/></svg>"
+   ],
+   "answer": 3,
+   "solution": "A dot is **added at the next corner clockwise** each step: top-left; then top-right; then bottom-right. Next: **4 dots, one in every corner** (the new one at the bottom-left).",
+   "shortcut": "Count first.",
+   "difficulty": "medium",
+   "subtopic": "addition-change",
+   "pattern": "growing count",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-figseries-10",
+   "q": "Select the figure that will come next in the given series.",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 226 52\" width=\"226\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g transform=\"translate(0,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"9,4.8 13.2,12.36 4.8,12.36\"/><line x1=\"18.5\" y1=\"21\" x2=\"18.5\" y2=\"31\"/><line x1=\"23.5\" y1=\"21\" x2=\"23.5\" y2=\"31\"/><line x1=\"28.5\" y1=\"21\" x2=\"28.5\" y2=\"31\"/><line x1=\"33.5\" y1=\"21\" x2=\"33.5\" y2=\"31\"/></g><g transform=\"translate(58,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"43,4.8 47.2,12.36 38.8,12.36\"/><line x1=\"21\" y1=\"21\" x2=\"21\" y2=\"31\"/><line x1=\"26\" y1=\"21\" x2=\"26\" y2=\"31\"/><line x1=\"31\" y1=\"21\" x2=\"31\" y2=\"31\"/></g><g transform=\"translate(116,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"43,38.8 47.2,46.36 38.8,46.36\"/><line x1=\"23.5\" y1=\"21\" x2=\"23.5\" y2=\"31\"/><line x1=\"28.5\" y1=\"21\" x2=\"28.5\" y2=\"31\"/></g><polygon points=\"177,3 223,3 223,49 177,49\" stroke-dasharray=\"3 2\"/><text x=\"200\" y=\"32\" font-size=\"18\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">?</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"9,38.8 13.2,46.36 4.8,46.36\"/><line x1=\"26\" y1=\"21\" x2=\"26\" y2=\"31\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"9,38.8 13.2,46.36 4.8,46.36\"/><line x1=\"23.5\" y1=\"21\" x2=\"23.5\" y2=\"31\"/><line x1=\"28.5\" y1=\"21\" x2=\"28.5\" y2=\"31\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"43,38.8 47.2,46.36 38.8,46.36\"/><line x1=\"23.5\" y1=\"21\" x2=\"23.5\" y2=\"31\"/><line x1=\"28.5\" y1=\"21\" x2=\"28.5\" y2=\"31\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"9,38.8 13.2,46.36 4.8,46.36\"/></svg>"
+   ],
+   "answer": 0,
+   "solution": "Two rules. The triangle moves **two places clockwise** (corner to corner): top-left → top-right → bottom-right → next **bottom-left**. The strokes decrease by one: 4, 3, 2 → next **1**. The answer has the triangle at the bottom-left corner and a single stroke.",
+   "shortcut": "Moving corner + falling count.",
+   "difficulty": "medium",
+   "subtopic": "addition-change",
+   "pattern": "two or three rules together",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-figseries-11",
+   "q": "Select the figure that will come next in the given series.",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 284 52\" width=\"284\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g transform=\"translate(0,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"5.64\" y1=\"5.64\" x2=\"12.36\" y2=\"12.36\"/><line x1=\"5.64\" y1=\"12.36\" x2=\"12.36\" y2=\"5.64\"/><circle cx=\"26\" cy=\"43\" r=\"3.36\" fill=\"currentColor\"/></g><g transform=\"translate(58,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"21.8\" y1=\"9\" x2=\"30.2\" y2=\"9\"/><line x1=\"26\" y1=\"4.8\" x2=\"26\" y2=\"13.2\"/><circle cx=\"9\" cy=\"43\" r=\"3.36\" fill=\"currentColor\"/></g><g transform=\"translate(116,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"39.64\" y1=\"5.64\" x2=\"46.36\" y2=\"12.36\"/><line x1=\"39.64\" y1=\"12.36\" x2=\"46.36\" y2=\"5.64\"/><circle cx=\"9\" cy=\"26\" r=\"3.36\" fill=\"currentColor\"/></g><g transform=\"translate(174,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"38.8\" y1=\"26\" x2=\"47.2\" y2=\"26\"/><line x1=\"43\" y1=\"21.8\" x2=\"43\" y2=\"30.2\"/><circle cx=\"9\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/></g><polygon points=\"235,3 281,3 281,49 235,49\" stroke-dasharray=\"3 2\"/><text x=\"258\" y=\"32\" font-size=\"18\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">?</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"39.64\" y1=\"22.64\" x2=\"46.36\" y2=\"29.36\"/><line x1=\"39.64\" y1=\"29.36\" x2=\"46.36\" y2=\"22.64\"/><circle cx=\"26\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"39.64\" y1=\"39.64\" x2=\"46.36\" y2=\"46.36\"/><line x1=\"39.64\" y1=\"46.36\" x2=\"46.36\" y2=\"39.64\"/><circle cx=\"26\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"38.8\" y1=\"43\" x2=\"47.2\" y2=\"43\"/><line x1=\"43\" y1=\"38.8\" x2=\"43\" y2=\"47.2\"/><circle cx=\"26\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><line x1=\"39.64\" y1=\"39.64\" x2=\"46.36\" y2=\"46.36\"/><line x1=\"39.64\" y1=\"46.36\" x2=\"46.36\" y2=\"39.64\"/><circle cx=\"9\" cy=\"9\" r=\"3.36\" fill=\"currentColor\"/></svg>"
+   ],
+   "answer": 1,
+   "solution": "Border places numbered clockwise from the top-left corner (0-7). The cross-shaped mark is at 0, 1, 2, 3 (one step clockwise each time) and **alternates** between × and + (×, +, ×, +) → next: place 4 (bottom-right corner) as **×**. The dot is at 5, 6, 7, 0 (one step clockwise) → next place **1** (top-middle). The answer has × at the bottom-right corner and the dot at the top-middle.",
+   "shortcut": "Movement + alternation.",
+   "difficulty": "hard",
+   "subtopic": "addition-change",
+   "pattern": "two or three rules together",
+   "timeSec": 55
+  },
+  {
+   "id": "rsn-figseries-12",
+   "q": "Select the figure that will come next in the given series.",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 284 52\" width=\"284\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g transform=\"translate(0,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"5.64,5.64 12.36,5.64 12.36,12.36 5.64,12.36\" fill=\"currentColor\"/><circle cx=\"9\" cy=\"26\" r=\"3.57\"/><line x1=\"26\" y1=\"15\" x2=\"26\" y2=\"37\"/><polyline points=\"23.94,33.57 26,37 28.06,33.57\"/></g><g transform=\"translate(58,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"39.64,5.64 46.36,5.64 46.36,12.36 39.64,12.36\" fill=\"currentColor\"/><circle cx=\"9\" cy=\"43\" r=\"3.57\"/><line x1=\"33.78\" y1=\"18.22\" x2=\"18.22\" y2=\"33.78\"/><polyline points=\"19.19,29.9 18.22,33.78 22.1,32.81\"/></g><g transform=\"translate(116,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"39.64,39.64 46.36,39.64 46.36,46.36 39.64,46.36\" fill=\"currentColor\"/><circle cx=\"26\" cy=\"43\" r=\"3.57\"/><line x1=\"37\" y1=\"26\" x2=\"15\" y2=\"26\"/><polyline points=\"18.43,23.94 15,26 18.43,28.06\"/></g><g transform=\"translate(174,0)\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"5.64,39.64 12.36,39.64 12.36,46.36 5.64,46.36\" fill=\"currentColor\"/><circle cx=\"43\" cy=\"43\" r=\"3.57\"/><line x1=\"33.78\" y1=\"33.78\" x2=\"18.22\" y2=\"18.22\"/><polyline points=\"22.1,19.19 18.22,18.22 19.19,22.1\"/></g><polygon points=\"235,3 281,3 281,49 235,49\" stroke-dasharray=\"3 2\"/><text x=\"258\" y=\"32\" font-size=\"18\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">?</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"5.64,5.64 12.36,5.64 12.36,12.36 5.64,12.36\" fill=\"currentColor\"/><circle cx=\"43\" cy=\"26\" r=\"3.57\"/><line x1=\"18.22\" y1=\"33.78\" x2=\"33.78\" y2=\"18.22\"/><polyline points=\"32.81,22.1 33.78,18.22 29.9,19.19\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"5.64,39.64 12.36,39.64 12.36,46.36 5.64,46.36\" fill=\"currentColor\"/><circle cx=\"43\" cy=\"26\" r=\"3.57\"/><line x1=\"26\" y1=\"37\" x2=\"26\" y2=\"15\"/><polyline points=\"28.06,18.43 26,15 23.94,18.43\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"5.64,5.64 12.36,5.64 12.36,12.36 5.64,12.36\" fill=\"currentColor\"/><circle cx=\"43\" cy=\"26\" r=\"3.57\"/><line x1=\"26\" y1=\"37\" x2=\"26\" y2=\"15\"/><polyline points=\"28.06,18.43 26,15 23.94,18.43\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 52 52\" width=\"52\" height=\"52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 49,3 49,49 3,49\"/><polygon points=\"5.64,5.64 12.36,5.64 12.36,12.36 5.64,12.36\" fill=\"currentColor\"/><circle cx=\"43\" cy=\"43\" r=\"3.57\"/><line x1=\"26\" y1=\"37\" x2=\"26\" y2=\"15\"/><polyline points=\"28.06,18.43 26,15 23.94,18.43\"/></svg>"
+   ],
+   "answer": 2,
+   "solution": "Three rules (places numbered clockwise from the top-left corner, 0-7). Square: 0, 2, 4, 6 — two places clockwise → next **0** (top-left corner). Ring: 7, 6, 5, 4 — one place anticlockwise → next **3** (right-middle). Arrow: down, down-left, left, up-left — 45° clockwise → next **up**. Only one option satisfies all three.",
+   "shortcut": "One rule per element.",
+   "difficulty": "hard",
+   "subtopic": "movement-rotation",
+   "pattern": "two or three rules together",
+   "timeSec": 60
+  }
+ ]
+}
