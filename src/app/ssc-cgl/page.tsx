@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getExam, contentStats, availableSections, SECTION_META, listTopics } from '@/lib/content';
 import { Md } from '@/components/Md';
+import { CountdownChip } from '@/components/CountdownChip';
 
 export const dynamic = 'force-static';
 export const metadata: Metadata = {
@@ -51,7 +52,10 @@ export default function ExamPage() {
       <div className="card p-5 mt-6">
         <div className="flex items-center justify-between flex-wrap gap-2">
           <h2 className="text-lg font-extrabold">{lc.year} cycle — live status</h2>
-          <span className="chip chip-high">Verified {exam.lastVerified}</span>
+          <span className="flex items-center gap-2 flex-wrap">
+            {lc.tier1 && <CountdownChip date="2026-09-30" />}
+            <span className="chip chip-high">Verified {exam.lastVerified}</span>
+          </span>
         </div>
         <p className="text-sm muted mt-2">{lc.status}</p>
         <div className="grid sm:grid-cols-2 gap-3 mt-3 text-sm">

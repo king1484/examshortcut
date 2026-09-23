@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { contentStats, getExam, listMocks, SECTION_META, availableSections } from '@/lib/content';
+import { CountdownChip } from '@/components/CountdownChip';
 
 export const dynamic = 'force-static';
 
@@ -11,7 +12,10 @@ export default function Home() {
   return (
     <div>
       <section className="text-center max-w-3xl mx-auto pt-8 pb-4 sm:pt-16">
-        <span className="chip chip-high">100% free · no login · no ads in the test engine</span>
+        <div className="flex justify-center gap-2 flex-wrap">
+          <CountdownChip date="2026-09-30" />
+          <span className="chip chip-high">100% free · no login · no ads in the test engine</span>
+        </div>
         <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight mt-4 leading-tight">
           Crack SSC CGL with<br /><span style={{ color: 'var(--brand)' }}>shortcuts, not slog</span>
         </h1>
