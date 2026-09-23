@@ -177,6 +177,7 @@ C_ELEC = """### Current electricity
 
 ### Electromagnetic spectrum (increasing wavelength)
 **Gamma rays → X-rays → Ultraviolet → Visible → Infrared → Microwaves → Radio waves.**
+
 | Wave | Use |
 |---|---|
 | Gamma | Cancer treatment, sterilising |
