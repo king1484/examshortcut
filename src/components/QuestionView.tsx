@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import type { Question } from '@/lib/types';
 import { Md, Figure, isSvg } from './Md';
+import patternNames from '@/data/pattern-names.json';
 
 /** Fill in `passage` for grouped RC / cloze questions that only carry it on the first member. */
 export function withPassages(qs: Question[]): Question[] {
@@ -67,7 +68,7 @@ export function Explanation({ q }: { q: Question }) {
           <button className="chip" onClick={() => setTab('shortcut')} style={tab === 'shortcut' ? { background: 'var(--brand)', color: 'var(--brand-ink)', borderColor: 'var(--brand)' } : {}}>⚡ Shortcut</button>
         )}
         <button className="chip" onClick={() => setTab('solution')} style={tab === 'solution' ? { background: 'var(--ink)', color: 'var(--bg)', borderColor: 'var(--ink)' } : {}}>Full solution</button>
-        {q.pattern && <span className="chip ml-auto" title="Recurring PYQ pattern">PYQ pattern: {q.pattern}</span>}
+        {q.pattern && <span className="chip ml-auto" title="Recurring PYQ pattern">PYQ pattern: {(patternNames as Record<string, string>)[q.pattern] ?? q.pattern}</span>}
       </div>
       <Md>{tab === 'shortcut' && q.shortcut ? q.shortcut : q.solution}</Md>
     </div>
