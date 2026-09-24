@@ -40,6 +40,57 @@
     "Fitting a rule to the first row only and answering immediately.",
     "Assuming left-to-right reading of the figure when the rule runs along columns or diagonals.",
     "Over-complicated rules (three operations) when a simple one fits both rows."
+   ],
+   "notes": "### One hidden rule, found by systematic guessing\n\nA figure — grids, circles, triangles — carries a hidden rule connecting its numbers; one cell is missing. You are not looking for THE rule, only for A simple rule that fits every complete row/segment and gives one of the options.\n\n**The standard search order.** For each complete row (or matching pair of cells), test in this sequence and stop at the first rule that fits everywhere:\n1. Sums and differences: third = first + second, or their difference.\n2. Products and quotients: third = first × second (watch a constant ×, like 2ab).\n3. Squares and near-squares: third = a², a² + b, a² + b², a² − 1 — numbers like 25, 26, 48, 49 are square magnets.\n4. Mixed: first² ± second, (first + second)², first × second ± constant.\n\n**Fit everywhere, not somewhere.** A rule that works on one row is a coincidence. Every complete row must reproduce its third number (and every complete grid must reproduce the other grid's numbers) before you trust it on the missing cell. Two rows fitting 'a + b' while the third fits 'a × b' means the rule is wrong — real exam rules are uniform.\n\n**Two-grid puzzles.** When two complete grids sit beside an incomplete one, the rule lives *inside* each grid (usually row by row), and the second grid simply repeats the first grid's rule with different numbers. Solve grid 1 completely first, verify on grid 2, then apply to grid 3.\n\n**Segments (circles, triangles).** Match positions: opposite segments, or corner-vs-centre. Common segment rules: opposite pairs share a constant sum; centre = sum (or product) of corners; each ring adds a constant.\n\n**Option-driven pruning.** If the missing cell must be, say, odd, every even option dies — check parity first. If rows are increasing, a decreasing option dies. Prune before deep work; with two options left, often only one fits a plausible rule.\n\n**Anchor on the biggest number.** The largest cell of a row is almost always the output. Try to rebuild it from the smaller cells: 26 from 5 and 1 (5² + 1), 21 from 4 and 5 (4 × 5 + 1). Reading left to right hides the rule; rebuilding the largest cell exposes it.\n\n**Size tells you the operation.** Compare the output with the inputs: output ≈ sum → addition family; output ≈ product → multiplication family; output ≈ first² → square family; output smaller than both → difference, average or a digit rule. One glance at the size cuts the search list in half.\n\n**Why distractors look right.** Exam setters plant the value of the *most tempting wrong rule* in the options: the bare product when the rule is product + 1, the plain square when it is square − 1, the unreversed sum when the rule reverses. If your answer equals a 'simpler' version of the rule, re-check that the simpler rule really fails a complete row.\n\n### Quick revision\n- Test rules in order: + / − → × / ÷ → squares → mixed (a² ± b, (a+b)²...).\n- The rule must fit EVERY complete row/segment — one fit is a coincidence.\n- Two grids: solve grid 1, verify on grid 2, apply to grid 3.\n- Segments: match opposite positions; centre often = sum/product of corners.\n- Prune by parity and trend before hunting the rule.",
+   "patterns": [
+    {
+     "id": "mn-p1",
+     "name": "Third number from two: linear rules",
+     "frequency": "very common",
+     "howToSpot": "Rows of two/three numbers where the third is a plain sum, difference or multiple of the first.",
+     "formula": null,
+     "logic": "1. Test c = ka (constant multiple) and c = a ± b.\n2. k must be the same in every row.\n3. Apply to the incomplete row.\n\n*Why it works:* the simplest rules are linear, so they are tried first.",
+     "example": {
+      "q": "**Rows: 4 → 20, 6 → 30, 5 → ?**",
+      "solution": "Second = 5 × first in both rows → 5 × 5 = **25**."
+     }
+    },
+    {
+     "id": "mn-p2",
+     "name": "Square-based rules",
+     "frequency": "very common",
+     "howToSpot": "Third numbers near perfect squares (25, 26, 35, 48, 49...).",
+     "formula": null,
+     "logic": "1. Test c = a² ± b, c = a² ± 1, c = a² + b².\n2. Square the first number and see what the leftover equals.\n3. Verify on all rows before answering.\n\n*Why it works:* squares plus a small correction are a favourite exam construction.",
+     "example": {
+      "q": "**Rows: 3 → 10, 4 → 17, 5 → ?**",
+      "solution": "10 = 3² + 1, 17 = 4² + 1 → 5² + 1 = **26**."
+     }
+    },
+    {
+     "id": "mn-p3",
+     "name": "Two-grid analogy",
+     "frequency": "common",
+     "howToSpot": "Two complete grids and a third with a missing cell.",
+     "formula": null,
+     "logic": "1. Find grid 1's row rule.\n2. Verify it reproduces grid 2 exactly.\n3. Apply it to grid 3's incomplete row.\n\n*Why it works:* the second grid is a free verification of the rule.",
+     "example": {
+      "q": "**Grid 1 rows: (2,3,7), (3,4,13). Grid 2 rows: (4,5,?), (5,6,31).**",
+      "solution": "Grid 1: c = a×b + 1 (7, 13). Grid 2 row 2: 5×6+1 = 31 ✓ → ? = 4×5+1 = **21**."
+     }
+    },
+    {
+     "id": "mn-p4",
+     "name": "Verify-then-answer discipline",
+     "frequency": "common",
+     "howToSpot": "Any figure where several rules 'almost' fit, or a cross/2×2 layout.",
+     "formula": null,
+     "logic": "1. Candidate rule must fit every complete row/segment AND match an option.\n2. For 2×2 crosses: test diagonal products and sums too.\n3. Reject a rule that fits two rows but fails the third.\n\n*Why it works:* exam figures are built from one uniform rule; near-misses are bait.",
+     "example": {
+      "q": "**Rows: 9 → 81, 12 → 144, 15 → ?**",
+      "solution": "Both rows square the first number → 15² = **225**."
+     }
+    }
    ]
   },
   {
@@ -69,6 +120,57 @@
     "Mixing up the two grids — applying grid 1's row to grid 2's columns.",
     "Choosing between two half-fitting rules by feel instead of testing both fully.",
     "Arithmetic slips on squares: 13² = 169, not 196."
+   ],
+   "notes": "### The CGL workhorse: grids where rows (or columns) share a rule\n\nThe format: a 3×3 grid — sometimes two complete grids and a third with a hole. Each row obeys the same rule turning its first two numbers into its third. Everything is row-arithmetic; the skill is finding the rule fast.\n\n**The two-number bridge.** Cover the third column and hunt a bridge from column 1 to column 2 — or from columns 1+2 to column 3. The classic bridges, in testing order:\n- $c = a + b$ and $c = a - b$ (or $|a-b|$) — check signs.\n- $c = a \\times b$; then $c = 2ab$, $c = ab + k$, $c = ab - k$ with a small constant.\n- $c = a^2 + b$, $c = b^2 + a$, $c = a^2 + b^2$ — the Pythagorean look (3-4-25, 5-12-169).\n- $c = (a + b)^2$ or $(a - b)^2$ — results like 49, 64, 144 are squares.\n- Digit tricks (see the digit-operations lesson): digit sums and reversals.\n\n**Confirm on every row.** Compute the candidate rule on all complete rows. A rule fitting row 1 and row 3 but not row 2 is dead — keep hunting. This one habit separates solvers from guessers.\n\n**Column rules.** When rows refuse every bridge, the rule runs down the columns: third row = f(first row, second row) cell by cell, or column 2 = average of columns 1 and 3, or column 3 = column 1 − column 2. Same procedure, transposed.\n\n**Two complete grids.** Solve the left grid's rule first (it has no hole), verify it reproduces the middle grid, then apply to the right one. The rule never changes between grids; only the numbers do.\n\n**Circle and triangle figures.** Match by position: opposite segments of a circle (constant sum or product), corners vs centre of a triangle (centre = sum or product of corners), inner ring vs outer ring. Write the matched pairs as little equations and look for the common thread.\n\n**Worked walk-through.** Rows (4, 6, 10), (5, 3, 22), (7, 2, ?). Sum: 4 + 6 = 10 ✓ on row 1 — tempting — but 5 + 3 = 8 ✗ on row 2, so the sum rule dies. Product: 24 ✗. Square family: $a^2 - b$ gives 16 − 6 = 10 ✓ and 25 − 3 = 22 ✓. Only now apply it: 49 − 2 = **47**. Notice the trap: had you stopped at row 1, you would have answered 7 + 2 = 9. The discipline is the same every time: one candidate, all rows, next candidate.\n\n**Speed tricks.** Keep squares to 25 and cubes to 12 memorised; spot $a^2 - b^2 = (a+b)(a-b)$ to avoid big squaring; and when third cells are all odd while inputs are mixed parity, product ± 1 is a strong suspect.\n\n### Quick revision\n- Bridge hunt order: + / − → × / ÷ → ×2, ab ± k → a²+b, b²+a, a²+b² → (a±b)².\n- The rule must reproduce EVERY complete row (and grid 2 in two-grid puzzles).\n- Rows stuck → test columns; grids stuck → test opposite segments / centre vs corners.\n- Squares in the options (25, 49, 144) beg for a square-based rule.\n- Digit sums and reversals are fair game — see digit-operations.",
+   "patterns": [
+    {
+     "id": "gr-p1",
+     "name": "Row sums and differences",
+     "frequency": "very common",
+     "howToSpot": "Third column close to the sum or difference of the first two.",
+     "formula": null,
+     "logic": "1. Test c = a + b on all rows; then c = |a − b|.\n2. Watch sign traps (a − b vs b − a).\n3. Apply the fitting rule to the incomplete row.\n\n*Why it works:* the default construction of exam grids.",
+     "example": {
+      "q": "**Rows: (5,8,13), (6,9,15), (7,11,?)**",
+      "solution": "c = a + b fits every row → 7 + 11 = **18**."
+     }
+    },
+    {
+     "id": "gr-p2",
+     "name": "Products, doubled products and squares",
+     "frequency": "common",
+     "howToSpot": "Third column much larger than the first two, or a perfect square.",
+     "formula": null,
+     "logic": "1. Test c = ab, then 2ab, then ab ± k.\n2. If c is a square, test a² + b² and (a+b)².\n3. Fit all rows.\n\n*Why it works:* multiplicative and square rules create the 'too big' signature.",
+     "example": {
+      "q": "**Rows: (3,4,25), (6,8,100), (5,12,?)**",
+      "solution": "25 = 3² + 4², 100 = 6² + 8² → 5² + 12² = **169**."
+     }
+    },
+    {
+     "id": "gr-p3",
+     "name": "Column rules",
+     "frequency": "common",
+     "howToSpot": "Rows refuse every bridge; try the grid vertically.",
+     "formula": null,
+     "logic": "1. Test column3 = column1 ± column2 (cell by cell down the rows).\n2. Test column2 = (column1 + column3) / 2.\n3. Confirm on every complete column.\n\n*Why it works:* transposing the rule is the standard disguise.",
+     "example": {
+      "q": "**Rows: (10,14,18), (22,25,28), (30,?,40)**",
+      "solution": "Column 2 = average of columns 1 and 3 (14, 25) → (30+40)/2 = **35**."
+     }
+    },
+    {
+     "id": "gr-p4",
+     "name": "Circle and triangle segments",
+     "frequency": "common",
+     "howToSpot": "Numbers around a circle or in triangle corners with a centre.",
+     "formula": null,
+     "logic": "1. Pair opposite segments; test constant sum, then product.\n2. For triangles: centre vs sum/product of corners.\n3. Verify on every matched pair.\n\n*Why it works:* segment figures repeat one relation across matched positions.",
+     "example": {
+      "q": "**Circle: opposite pairs 12–8, 15–5, 18–?**",
+      "solution": "Each pair sums to 20 → ? = 20 − 18 = **2**."
+     }
+    }
    ]
   },
   {
@@ -98,45 +200,137 @@
     "Reversing the inputs instead of the sum (43 → 34) when the rule reverses the result.",
     "Digit-sum slips on numbers containing 0 or repeated digits.",
     "Abandoning the two-instance confirmation because the rule 'looks digital' — confirm it anyway."
+   ],
+   "notes": "### When the rule lives inside the digits\n\nA large family of missing-number puzzles never add the *values* — they operate on **digits**: sums of digits, reversed digits, products of digits. Recognising the family early saves minutes.\n\n**The digit-sum rule.** $S(n)$ = sum of a number's digits: $S(47) = 11$. Typical rules:\n- third = $S(a) + S(b)$ — e.g. 47 and 38 give $11 + 11 = 22$;\n- third = $S(a + b)$ — add first, then sum digits (68 → 14);\n- third = $2 \\times S(a)$ — doubling a digit sum.\nTell them apart by testing one complete row with each variant; only one will fit both rows.\n\n**The reversal family.** $R(n)$ = the number with digits reversed: $R(43) = 34$. Common rules:\n- third = $R(a) + R(b)$ — the classic 'reversed-sum' grid (34 + 41 = 75);\n- third = $|R(a) - b|$;\n- third = $R(a + b)$ — add first, then flip (39 → 93).\nReversal rules produce third numbers whose digits are the 'mirror image' of the row's story — options like 75 next to 43 and 14 are a waving flag.\n\n**The digit-product rule.** $P(n)$ = product of digits: $P(47) = 28$. Rules: third = $P(a)$, third = $P(a) + P(b)$, third = $P(a) \\times S(b)$. Zero is the instant tell — a row containing 0 or 10 has digit product 0, which usually kills product rules on sight.\n\n**Spotting the family.** Hints that the rule is digit-based:\n- The third numbers are far too small or too large for plain sums/products of the values.\n- Options cluster near digit-scale numbers (5-30) while the values are two-digit.\n- The same digits recur across rows (43/34, 62/26) — reversal is in play.\n\n**Verification is cheap here.** Digit rules are one line of arithmetic per row — check all complete rows, not just one. And compute the final answer with the SAME variant that fit, not with the variant you tried first.\n\n**The mod-9 shortcut.** A number and its digit sum leave the same remainder on division by 9. So if a digit-sum rule is in play, the output and the inputs' digit sums must agree mod 9 — a quick way to kill an option without computing every digit sum. Example: S(47) + S(38) = 22; check 47 + 38 = 85 → 85 and 22 both leave 4 on division by 9 ✓.\n\n**Reversal traps.** Two traps dominate: reversing the *inputs* when the rule reverses the *result* (and vice versa), and sums ending in 0 (R(40) = 04 = 4) — setters avoid them, so a 0-ending sum usually means you picked the wrong variant. Palindromes (77, 66) sitting in the grid are a gift: they are identical under reversal and hint that reversal is part of the rule.\n\n### Quick revision\n- $S(n)$ = digit sum (47 → 11); $R(n)$ = reversal (43 → 34); $P(n)$ = digit product (47 → 28).\n- Standard rules: $S(a)+S(b)$, $S(a+b)$, $2S(a)$, $R(a)+R(b)$, $|R(a)-b|$, $R(a+b)$, $P(a)+P(b)$.\n- Test each variant on a complete row; only one fits all rows.\n- Options far smaller than the values → digit rule; mirror-looking pairs → reversal.\n- Zeros kill digit-product rules instantly.",
+   "patterns": [
+    {
+     "id": "do-p1",
+     "name": "Digit-sum rules",
+     "frequency": "very common",
+     "howToSpot": "Third numbers are small (5-30) while values are two-digit.",
+     "formula": null,
+     "logic": "1. S(n) = digit sum. Test c = S(a) + S(b), then c = S(a + b).\n2. Test on a complete row first, then everywhere.\n3. Apply the fitting variant to the missing cell.\n\n*Why it works:* digit sums shrink big numbers into option-sized ones.",
+     "example": {
+      "q": "**Rows: (36,24,15), (28,19,20), (47,38,?)**",
+      "solution": "S(36)+S(24) = 9+6 = 15 ✓; S(28)+S(19) = 10+10 = 20 ✓ → S(47)+S(38) = 11+11 = **22**."
+     }
+    },
+    {
+     "id": "do-p2",
+     "name": "Reversal rules",
+     "frequency": "very common",
+     "howToSpot": "Digits mirror across the row (43 beside 34); third numbers look like flipped sums.",
+     "formula": null,
+     "logic": "1. R(n) = reversed digits. Test c = R(a) + R(b).\n2. Then |R(a) − b| and R(a + b).\n3. Check on all rows.\n\n*Why it works:* reversal is the most reused digit trick in CGL grids.",
+     "example": {
+      "q": "**Rows: (23,14,73), (45,12,75), (62,23,?)**",
+      "solution": "R(23)+R(14) = 32+41 = 73 ✓; R(45)+R(12) = 54+21 = 75 ✓ → R(62)+R(23) = 26+32 = **58**."
+     }
+    },
+    {
+     "id": "do-p3",
+     "name": "Digit-product rules",
+     "frequency": "common",
+     "howToSpot": "Third numbers too small even for digit sums, or options under ~30.",
+     "formula": null,
+     "logic": "1. P(n) = product of digits. Test c = P(a), then P(a) + P(b).\n2. A 0 in the values usually kills product rules — check first.\n3. Fit everywhere.\n\n*Why it works:* digit products collapse two-digit numbers into tiny ones.",
+     "example": {
+      "q": "**Rows: (24,8), (35,15), (47,?)**",
+      "solution": "P(24) = 8, P(35) = 15 → P(47) = 4×7 = **28**."
+     }
+    },
+    {
+     "id": "do-p4",
+     "name": "Mixed digit arithmetic",
+     "frequency": "common",
+     "howToSpot": "Digit sums combined with the other value: multiply, double, or weight.",
+     "formula": null,
+     "logic": "1. Test c = 2·S(a), c = S(a) × b, c = S(a) + b.\n2. The b-value stays whole while the digit-sum shrinks a.\n3. Verify variant on all rows.\n\n*Why it works:* mixing one digit op with one raw value hides the rule one level deeper.",
+     "example": {
+      "q": "**Rows: (24,3,18), (35,2,16), (47,2,?)**",
+      "solution": "S(24)×3 = 6×3 = 18 ✓; S(35)×2 = 8×2 = 16 ✓ → S(47)×2 = 11×2 = **22**."
+     }
+    }
    ]
   }
  ],
  "pyqPatterns": [
   {
-   "pattern": "Two grids, row rule",
+   "pattern": "Row-rule hunt in a grid",
    "frequency": "very common",
-   "howToSpot": "Two complete grids plus a third carrying one '?'.",
-   "approach": "Compare matching rows of the two complete grids, extract f, confirm, apply."
+   "howToSpot": "A 3×3 grid with one missing cell; rows (or columns) share a hidden rule.",
+   "approach": "Test bridges in order: a+b, |a−b|, ab, 2ab, ab±k, a²+b², (a+b)² — fit on every complete row before applying.",
+   "subtopic": "grid-row-rules",
+   "example": {
+    "q": "**Rows: (6,3,15), (8,4,28), (9,5,?)**",
+    "solution": "Plain a+b fails (9, 12). Divide out: 15 = 5×3, 28 = 7×4 — the multipliers 5, 7 are one less than the first numbers → c = (a−1)×b → (9−1)×5 = **40**."
+   }
   },
   {
-   "pattern": "Single grid, rows share a rule",
-   "frequency": "very common",
-   "howToSpot": "One grid; two rows complete, third row holds '?'.",
-   "approach": "Fit f on rows 1–2, confirm, evaluate on row 3."
-  },
-  {
-   "pattern": "Column rule in a single grid",
+   "pattern": "Two grids, one rule",
    "frequency": "common",
-   "howToSpot": "Third column built from the first two: read each row as (a, b, c) and proceed identically.",
-   "approach": "Transpose mentally: a column rule is a row rule on (col1, col2, col3)."
+   "howToSpot": "Two complete grids and an incomplete third.",
+   "approach": "Derive the rule on the first grid, verify it on the second, then apply to the third.",
+   "subtopic": "grid-row-rules",
+   "example": {
+    "q": "**Grid 1: (2,3,7),(3,4,13). Grid 2: (4,5,?),(5,6,31)**",
+    "solution": "c = a×b + 1 → 31 ✓ → 4×5 + 1 = **21**."
+   }
+  },
+  {
+   "pattern": "Square-based row rule",
+   "frequency": "common",
+   "howToSpot": "Output cells sit next to perfect squares (26, 48, 50, 63...).",
+   "approach": "Square the first (or second) input and read the leftover: a² ± b, a² ± 1, a² + b².",
+   "subtopic": "missing-number-idea",
+   "example": {
+    "q": "**Rows: (4,6,10), (5,3,22), (7,2,?)**",
+    "solution": "a + b fits row 1 only. a² − b: 16−6 = 10 ✓, 25−3 = 22 ✓ → 49−2 = **47**."
+   }
   },
   {
    "pattern": "Circle / triangle segments",
    "frequency": "common",
-   "howToSpot": "Numbers arranged in sectors; each sector is a triplet.",
-   "approach": "Treat each sector as a row; the complete sectors are your two instances."
+   "howToSpot": "Numbers placed in sectors of a circle or corners of a triangle with a centre value.",
+   "approach": "Treat each sector as a row, or pair opposite sectors; test constant sum, then centre = sum/product of corners.",
+   "subtopic": "grid-row-rules",
+   "example": {
+    "q": "**Triangles (corners → centre): (2,3,4 → 24), (1,5,6 → 30), (3,2,5 → ?)**",
+    "solution": "Centre = product of corners: 2×3×4 = 24 ✓, 1×5×6 = 30 ✓ → 3×2×5 = **30**."
+   }
   },
   {
-   "pattern": "Digit-sum rule",
+   "pattern": "Reversed-digit rule",
    "frequency": "common",
-   "howToSpot": "Values resist sums/products/squares for two full seconds.",
-   "approach": "Test c = digitsum(a) + digitsum(b) ± k with two-row confirmation."
+   "howToSpot": "Mirror-image digits across the row (23 beside 32); outputs look like scrambled sums.",
+   "approach": "Test R(a) + R(b) and R(a + b); confirm on both complete rows.",
+   "subtopic": "digit-operations",
+   "example": {
+    "q": "**Rows: (23,14,73), (45,12,75), (62,23,?)**",
+    "solution": "R(23)+R(14) = 32+41 = 73 ✓; R(45)+R(12) = 54+21 = 75 ✓ → 26+32 = **58**."
+   }
   },
   {
-   "pattern": "Reversed-sum rule",
+   "pattern": "Digit-product rule",
    "frequency": "occasional",
-   "howToSpot": "Third cell looks like a scrambled sum of the first two.",
-   "approach": "Compute a + b, reverse the digits, confirm on the second row."
+   "howToSpot": "Outputs are small and factor neatly into the digits of the inputs.",
+   "approach": "P(n) = product of digits; test P(a), P(a) + P(b), then weighted mixtures.",
+   "subtopic": "digit-operations",
+   "example": {
+    "q": "**Rows: (24,35,23), (43,26,24), (52,33,?)**",
+    "solution": "P(24)+P(35) = 8+15 = 23 ✓; P(43)+P(26) = 12+12 = 24 ✓ → P(52)+P(33) = 10+9 = **19**."
+   }
+  },
+  {
+   "pattern": "Digit-sum grid",
+   "frequency": "common",
+   "howToSpot": "Third numbers tiny compared with the values.",
+   "approach": "S(a)+S(b) first, then S(a+b); fit on all complete rows.",
+   "subtopic": "digit-operations",
+   "example": {
+    "q": "**Rows: (29,14,18), (38,25,20), (56,34,?)**",
+    "solution": "S(29)+S(14) = 11+5 = 16, but the answer is 18 — a constant +2 gap. Check row 2: S(38)+S(25) = 11+7 = 18, +2 = 20 ✓ → rule is S(a)+S(b)+2 → 11+7+2 = **20**."
+   }
   }
  ],
  "solvedExamples": [
@@ -483,6 +677,546 @@
    "subtopic": "grid-row-rules",
    "pattern": "single grid, rows share a rule",
    "timeSec": 60
+  },
+  {
+   "id": "missing-number-idea-p01",
+   "q": "Find the missing number:\n\n**3   12**\n\n**7   28**\n\n**9   ?**",
+   "figure": null,
+   "options": [
+    "27",
+    "32",
+    "36",
+    "40"
+   ],
+   "answer": 2,
+   "solution": "Second number = 4 × first: 3 × 4 = 12 ✓, 7 × 4 = 28 ✓. So 9 × 4 = **36**. (27 uses ×3, which fits neither row.)",
+   "shortcut": "Divide the output by the input — a constant quotient means a constant multiplier.",
+   "difficulty": "easy",
+   "subtopic": "missing-number-idea",
+   "pattern": "mn-p1",
+   "timeSec": 25
+  },
+  {
+   "id": "missing-number-idea-p02",
+   "q": "Find the missing number:\n\n**3   4   10**\n\n**5   2   12**\n\n**6   5   ?**",
+   "figure": null,
+   "options": [
+    "16",
+    "17",
+    "30",
+    "11"
+   ],
+   "answer": 1,
+   "solution": "a + b gives 7 and 7, not 10 and 12 — the first number counts twice. Rule: third = 2 × first + second: 6 + 4 = 10 ✓, 10 + 2 = 12 ✓. So 12 + 5 = **17**. (16 doubles the wrong number.)",
+   "shortcut": "Output just above a + b by exactly one input → that input is doubled.",
+   "difficulty": "easy",
+   "subtopic": "missing-number-idea",
+   "pattern": "mn-p1",
+   "timeSec": 35
+  },
+  {
+   "id": "missing-number-idea-p03",
+   "q": "Find the missing number:\n\n**5   4   11**\n\n**6   2   16**\n\n**8   3   ?**",
+   "figure": null,
+   "options": [
+    "24",
+    "11",
+    "5",
+    "21"
+   ],
+   "answer": 3,
+   "solution": "Sum and product both fail (9, 20 against 11). Rule: third = 3 × first − second: 15 − 4 = 11 ✓, 18 − 2 = 16 ✓. So 24 − 3 = **21**. (24 forgets to subtract the second number.)",
+   "shortcut": "Output between a and 3a → try ka ± b.",
+   "difficulty": "medium",
+   "subtopic": "missing-number-idea",
+   "pattern": "mn-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "missing-number-idea-p04",
+   "q": "Find the missing number:\n\n**3   10**\n\n**6   37**\n\n**8   ?**",
+   "figure": null,
+   "options": [
+    "65",
+    "63",
+    "64",
+    "72"
+   ],
+   "answer": 0,
+   "solution": "10 = 3² + 1 and 37 = 6² + 1. So 8² + 1 = **65**. (64 is the bare square — the near-miss.)",
+   "shortcut": "Outputs one above a perfect square → a² + 1.",
+   "difficulty": "easy",
+   "subtopic": "missing-number-idea",
+   "pattern": "mn-p2",
+   "timeSec": 30
+  },
+  {
+   "id": "missing-number-idea-p05",
+   "q": "Find the missing number:\n\n**3   4   19**\n\n**5   2   9**\n\n**6   5   ?**",
+   "figure": null,
+   "options": [
+    "41",
+    "30",
+    "61",
+    "31"
+   ],
+   "answer": 3,
+   "solution": "19 = 4² + 3 and 9 = 2² + 5 — the SECOND number is squared. Rule: third = second² + first. So 5² + 6 = **31**. (41 squares the wrong number: 6² + 5.)",
+   "shortcut": "Try squaring each input in turn; only one choice fits both rows.",
+   "difficulty": "medium",
+   "subtopic": "missing-number-idea",
+   "pattern": "mn-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "missing-number-idea-p06",
+   "q": "Find the missing number:\n\n**2   3   25**\n\n**4   2   36**\n\n**3   5   ?**",
+   "figure": null,
+   "options": [
+    "49",
+    "15",
+    "64",
+    "34"
+   ],
+   "answer": 2,
+   "solution": "25 and 36 are perfect squares: 25 = (2 + 3)², 36 = (4 + 2)². Rule: third = (first + second)². So (3 + 5)² = **64**. (34 = 3² + 5² squares separately.)",
+   "shortcut": "Every output a perfect square → find what is being squared.",
+   "difficulty": "hard",
+   "subtopic": "missing-number-idea",
+   "pattern": "mn-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "missing-number-idea-p07",
+   "q": "Study the pattern and find the missing number.\n\n**Grid 1:** 3, 5, 16  **Grid 2:** 4, 6, 25  **Grid 3:** 5, 7, ?\n\n(Each grid is read left to right as one row.)",
+   "figure": null,
+   "options": [
+    "35",
+    "36",
+    "37",
+    "12"
+   ],
+   "answer": 1,
+   "solution": "Grid 1: 3 × 5 + 1 = 16; grid 2 confirms: 4 × 6 + 1 = 25 ✓. Grid 3: 5 × 7 + 1 = **36**. (35 is the bare product.)",
+   "shortcut": "Solve grid 1, confirm on grid 2, apply to grid 3.",
+   "difficulty": "easy",
+   "subtopic": "missing-number-idea",
+   "pattern": "mn-p3",
+   "timeSec": 35
+  },
+  {
+   "id": "missing-number-idea-p08",
+   "q": "Study the pattern and find the missing number.\n\n**Grid 1:** 6, 4, 18  **Grid 2:** 5, 7, 30  **Grid 3:** 8, 3, ?\n\n(Each grid is read left to right as one row.)",
+   "figure": null,
+   "options": [
+    "21",
+    "16",
+    "11",
+    "24"
+   ],
+   "answer": 1,
+   "solution": "Products 24 and 35 overshoot by exactly the first number (6 and 5). Rule: third = first × (second − 1): 6 × 3 = 18 ✓, 5 × 6 = 30 ✓. So 8 × 2 = **16**. (21 = 3 × 7 reduces the wrong factor.)",
+   "shortcut": "Product too big by one input → that input's partner carries a −1.",
+   "difficulty": "medium",
+   "subtopic": "missing-number-idea",
+   "pattern": "mn-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "missing-number-idea-p09",
+   "q": "Study the pattern and find the missing number.\n\n**Grid 1:** 8, 9, 8  **Grid 2:** 12, 6, 7  **Grid 3:** 10, 4, ?\n\n(Each grid is read left to right as one row.)",
+   "figure": null,
+   "options": [
+    "10",
+    "14",
+    "6",
+    "11"
+   ],
+   "answer": 3,
+   "solution": "No clean a-to-c bridge exists, so total the rows: 8 + 9 + 8 = 25 and 12 + 6 + 7 = 25. Every grid sums to 25 → 10 + 4 + ? = 25 → ? = **11**.",
+   "shortcut": "When bridges fail, add each complete row — equal totals mean a constant-sum rule.",
+   "difficulty": "medium",
+   "subtopic": "missing-number-idea",
+   "pattern": "mn-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "missing-number-idea-p10",
+   "q": "Find the missing number:\n\n**2   4   6**\n\n**5   3   13**\n\n**6   4   ?**",
+   "figure": null,
+   "options": [
+    "24",
+    "20",
+    "10",
+    "22"
+   ],
+   "answer": 3,
+   "solution": "Row 1 tempts with 2 + 4 = 6, but row 2 gives 5 + 3 = 8 ≠ 13 — the sum rule dies. Product − 2 fits both: 8 − 2 = 6 ✓, 15 − 2 = 13 ✓. So 24 − 2 = **22**. (10 is the sum rule that only fitted row 1.)",
+   "shortcut": "A rule that fits one row is a coincidence until the second row agrees.",
+   "difficulty": "medium",
+   "subtopic": "missing-number-idea",
+   "pattern": "mn-p4",
+   "timeSec": 45
+  },
+  {
+   "id": "missing-number-idea-p11",
+   "q": "Find the missing number:\n\n**2   4   8**\n\n**5   3   28**\n\n**6   2   ?**",
+   "figure": null,
+   "options": [
+    "34",
+    "38",
+    "40",
+    "12"
+   ],
+   "answer": 1,
+   "solution": "Row 1 looks like a product (2 × 4 = 8), but row 2 breaks it (5 × 3 = 15 ≠ 28). Rule: first² + second: 4 + 4 = 8 ✓, 25 + 3 = 28 ✓. So 36 + 2 = **38**. (12 is the product rule; 34 subtracts instead of adding.)",
+   "shortcut": "Test the second row before trusting the first.",
+   "difficulty": "hard",
+   "subtopic": "missing-number-idea",
+   "pattern": "mn-p4",
+   "timeSec": 55
+  },
+  {
+   "id": "missing-number-idea-p12",
+   "q": "Find the missing number:\n\n**4   12**\n\n**7   42**\n\n**9   ?**",
+   "figure": null,
+   "options": [
+    "90",
+    "36",
+    "72",
+    "81"
+   ],
+   "answer": 2,
+   "solution": "The multipliers differ (×3, then ×6), so no constant multiple fits. 12 = 4² − 4 and 42 = 7² − 7 ✓. So 9² − 9 = **72**. (81 is the bare square; 36 = 9 × 4 copies row 1's ×3 idea.)",
+   "shortcut": "Changing multiplier equal to (a − 1) → a × (a − 1) = a² − a.",
+   "difficulty": "medium",
+   "subtopic": "missing-number-idea",
+   "pattern": "mn-p4",
+   "timeSec": 45
+  },
+  {
+   "id": "grid-row-rules-p01",
+   "q": "Find the missing number:\n\n**15   7   8**\n\n**20   9   11**\n\n**18   5   ?**",
+   "figure": null,
+   "options": [
+    "14",
+    "12",
+    "23",
+    "13"
+   ],
+   "answer": 3,
+   "solution": "Third = first − second: 15 − 7 = 8 ✓, 20 − 9 = 11 ✓. So 18 − 5 = **13**. (23 adds instead.)",
+   "shortcut": "Output smaller than the first input → subtraction.",
+   "difficulty": "easy",
+   "subtopic": "grid-row-rules",
+   "pattern": "gr-p1",
+   "timeSec": 30
+  },
+  {
+   "id": "grid-row-rules-p02",
+   "q": "Find the missing number:\n\n**8   6   11**\n\n**9   7   13**\n\n**6   5   ?**",
+   "figure": null,
+   "options": [
+    "9",
+    "11",
+    "1",
+    "8"
+   ],
+   "answer": 3,
+   "solution": "Sums are 14 and 16; the outputs are 11 and 13 — always 3 less. Rule: third = first + second − 3. So 11 − 3 = **8**. (11 is the bare sum; 1 is the difference.)",
+   "shortcut": "Constant gap between output and a + b → a + b ± k.",
+   "difficulty": "medium",
+   "subtopic": "grid-row-rules",
+   "pattern": "gr-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "grid-row-rules-p03",
+   "q": "Find the missing number:\n\n**3   4   24**\n\n**5   2   20**\n\n**4   6   ?**",
+   "figure": null,
+   "options": [
+    "24",
+    "49",
+    "10",
+    "48"
+   ],
+   "answer": 3,
+   "solution": "Products are 12 and 10; outputs are exactly double. Rule: third = 2 × first × second. So 2 × 24 = **48**. (24 is the undoubled product.)",
+   "shortcut": "Output ÷ product constant → k × ab.",
+   "difficulty": "medium",
+   "subtopic": "grid-row-rules",
+   "pattern": "gr-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "grid-row-rules-p04",
+   "q": "Find the missing number:\n\n**1   2   5**\n\n**2   5   29**\n\n**3   6   ?**",
+   "figure": null,
+   "options": [
+    "18",
+    "45",
+    "81",
+    "36"
+   ],
+   "answer": 1,
+   "solution": "5 = 1² + 2² and 29 = 2² + 5² ✓. Rule: third = first² + second². So 9 + 36 = **45**. (81 = (3 + 6)² squares the sum instead.)",
+   "shortcut": "Output neither sum nor product but beats both → sum of squares.",
+   "difficulty": "hard",
+   "subtopic": "grid-row-rules",
+   "pattern": "gr-p2",
+   "timeSec": 55
+  },
+  {
+   "id": "grid-row-rules-p05",
+   "q": "Find the missing number:\n\n**6   9   12**\n\n**15   20   25**\n\n**8   ?   20**",
+   "figure": null,
+   "options": [
+    "12",
+    "28",
+    "14",
+    "16"
+   ],
+   "answer": 2,
+   "solution": "The missing cell is in the middle, so read each row as (left, middle, right): 9 = (6 + 12) ÷ 2 ✓, 20 = (15 + 25) ÷ 2 ✓. Middle = average of the outer two → (8 + 20) ÷ 2 = **14**. (28 forgets to halve.)",
+   "shortcut": "A middle cell sitting between its neighbours → average.",
+   "difficulty": "easy",
+   "subtopic": "grid-row-rules",
+   "pattern": "gr-p3",
+   "timeSec": 35
+  },
+  {
+   "id": "grid-row-rules-p06",
+   "q": "Find the missing number:\n\n**4   7   3**\n\n**5   2   9**\n\n**9   9   ?**",
+   "figure": null,
+   "options": [
+    "18",
+    "9",
+    "6",
+    "12"
+   ],
+   "answer": 3,
+   "solution": "Rows resist every bridge (4, 7 → 3 but 5, 2 → 9). Read down the columns instead: 4 + 5 = 9 ✓, 7 + 2 = 9 ✓ — the bottom row is the sum of the two above. So 3 + 9 = **12**. (18 = 9 + 9 is a row-wise guess.)",
+   "shortcut": "Rows stuck → try columns: bottom = top ± middle, cell by cell.",
+   "difficulty": "medium",
+   "subtopic": "grid-row-rules",
+   "pattern": "gr-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "grid-row-rules-p07",
+   "q": "Numbers are written in the six sectors of a circle. Reading opposite sectors as pairs: **14 – 9**, **11 – 12**, **16 – ?**. Find the missing number.",
+   "figure": null,
+   "options": [
+    "7",
+    "5",
+    "25",
+    "9"
+   ],
+   "answer": 0,
+   "solution": "Each opposite pair sums to the same total: 14 + 9 = 23, 11 + 12 = 23. So 16 + ? = 23 → ? = **7**. (9 copies a neighbour; 25 is 16 + 9.)",
+   "shortcut": "Opposite sectors → constant sum (or product) first.",
+   "difficulty": "medium",
+   "subtopic": "grid-row-rules",
+   "pattern": "gr-p4",
+   "timeSec": 35
+  },
+  {
+   "id": "grid-row-rules-p08",
+   "q": "In each triangle the corners are (left, right, top) and a number sits in the centre:\n\n**(2, 3, 4) → 20**\n\n**(1, 5, 3) → 18**\n\n**(4, 2, 5) → ?**",
+   "figure": null,
+   "options": [
+    "40",
+    "11",
+    "30",
+    "28"
+   ],
+   "answer": 2,
+   "solution": "Product of corners fails (24 ≠ 20), sum fails (9). Rule: centre = (left + right) × top: (2 + 3) × 4 = 20 ✓, (1 + 5) × 3 = 18 ✓. So (4 + 2) × 5 = **30**. (40 is the product of all three corners.)",
+   "shortcut": "Centre just below the corner product → try (x + y) × z.",
+   "difficulty": "hard",
+   "subtopic": "grid-row-rules",
+   "pattern": "gr-p4",
+   "timeSec": 55
+  },
+  {
+   "id": "digit-operations-p01",
+   "q": "Find the missing number:\n\n**23   41   10**\n\n**27   45   18**\n\n**35   26   ?**",
+   "figure": null,
+   "options": [
+    "15",
+    "7",
+    "61",
+    "16"
+   ],
+   "answer": 3,
+   "solution": "Outputs are far too small for sums of values → digit sums. S(23) + S(41) = 5 + 5 = 10 ✓; S(27) + S(45) = 9 + 9 = 18 ✓. So S(35) + S(26) = 8 + 8 = **16**. (61 is the plain sum.)",
+   "shortcut": "Two-digit inputs, small outputs → add all the digits.",
+   "difficulty": "easy",
+   "subtopic": "digit-operations",
+   "pattern": "do-p1",
+   "timeSec": 35
+  },
+  {
+   "id": "digit-operations-p02",
+   "q": "Find the missing number:\n\n**38   27   11**\n\n**54   18   9**\n\n**46   37   ?**",
+   "figure": null,
+   "options": [
+    "83",
+    "20",
+    "11",
+    "10"
+   ],
+   "answer": 2,
+   "solution": "Adding digit sums separately fails (11 + 9 = 20 ≠ 11). Add first, then sum the digits: 38 + 27 = 65 → 11 ✓; 54 + 18 = 72 → 9 ✓. So 46 + 37 = 83 → 8 + 3 = **11**. (20 is the separate digit-sum trap.)",
+   "shortcut": "Carries make S(a+b) differ from S(a)+S(b) — test both.",
+   "difficulty": "medium",
+   "subtopic": "digit-operations",
+   "pattern": "do-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "digit-operations-p03",
+   "q": "Find the missing number:\n\n**12   31   12**\n\n**22   15   24**\n\n**41   23   ?**",
+   "figure": null,
+   "options": [
+    "20",
+    "64",
+    "25",
+    "10"
+   ],
+   "answer": 2,
+   "solution": "S(12) = 3, S(31) = 4 → 3 × 4 = 12 ✓; S(22) = 4, S(15) = 6 → 24 ✓. Rule: product of digit sums. So S(41) × S(23) = 5 × 5 = **25**. (10 adds the digit sums.)",
+   "shortcut": "Digit sums that multiply to the output → S(a) × S(b).",
+   "difficulty": "hard",
+   "subtopic": "digit-operations",
+   "pattern": "do-p1",
+   "timeSec": 55
+  },
+  {
+   "id": "digit-operations-p04",
+   "q": "Find the missing number:\n\n**12   23   53**\n\n**31   14   54**\n\n**21   32   ?**",
+   "figure": null,
+   "options": [
+    "45",
+    "55",
+    "53",
+    "35"
+   ],
+   "answer": 3,
+   "solution": "Reverse each input, then add: 21 + 32 = 53 ✓; 13 + 41 = 54 ✓. So 12 + 23 = **35**. (53 adds the unreversed inputs — which is exactly row 1's output, a planted trap.)",
+   "shortcut": "Outputs look like sums of flipped numbers → reverse first.",
+   "difficulty": "easy",
+   "subtopic": "digit-operations",
+   "pattern": "do-p2",
+   "timeSec": 35
+  },
+  {
+   "id": "digit-operations-p05",
+   "q": "Find the missing number:\n\n**25   17   24**\n\n**38   16   45**\n\n**19   33   ?**",
+   "figure": null,
+   "options": [
+    "25",
+    "52",
+    "124",
+    "26"
+   ],
+   "answer": 0,
+   "solution": "25 + 17 = 42 → reversed 24 ✓; 38 + 16 = 54 → reversed 45 ✓. Rule: reverse the sum. So 19 + 33 = 52 → **25**. (52 forgets to reverse; 124 reverses the inputs instead: 91 + 33.)",
+   "shortcut": "Sum first, flip second.",
+   "difficulty": "medium",
+   "subtopic": "digit-operations",
+   "pattern": "do-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "digit-operations-p06",
+   "q": "Find the missing number:\n\n**52   13   12**\n\n**71   9   8**\n\n**83   20   ?**",
+   "figure": null,
+   "options": [
+    "18",
+    "36",
+    "58",
+    "63"
+   ],
+   "answer": 0,
+   "solution": "Plain difference fails (52 − 13 = 39). Reverse the first number, then subtract: 25 − 13 = 12 ✓; 17 − 9 = 8 ✓. So 38 − 20 = **18**. (63 = 83 − 20 skips the reversal; 36 reverses the difference instead.)",
+   "shortcut": "Reverse only the two-digit input when the other is small.",
+   "difficulty": "hard",
+   "subtopic": "digit-operations",
+   "pattern": "do-p2",
+   "timeSec": 55
+  },
+  {
+   "id": "digit-operations-p07",
+   "q": "Find the missing number:\n\n**24   8**\n\n**36   18**\n\n**57   ?**",
+   "figure": null,
+   "options": [
+    "35",
+    "12",
+    "30",
+    "75"
+   ],
+   "answer": 0,
+   "solution": "8 = 2 × 4 and 18 = 3 × 6 — multiply the digits. So 5 × 7 = **35**. (12 adds the digits.)",
+   "shortcut": "Output = digit product: check with the first pair.",
+   "difficulty": "easy",
+   "subtopic": "digit-operations",
+   "pattern": "do-p3",
+   "timeSec": 30
+  },
+  {
+   "id": "digit-operations-p08",
+   "q": "Find the missing number:\n\n**23   41   10**\n\n**32   25   16**\n\n**43   62   ?**",
+   "figure": null,
+   "options": [
+    "24",
+    "15",
+    "105",
+    "144"
+   ],
+   "answer": 0,
+   "solution": "Digit sums give 9, not 10, for row 1 — try digit products: 6 + 4 = 10 ✓; 6 + 10 = 16 ✓. So P(43) + P(62) = 12 + 12 = **24**. (15 adds digit sums; 144 multiplies the two products.)",
+   "shortcut": "Digit sums miss by a little → switch to digit products.",
+   "difficulty": "medium",
+   "subtopic": "digit-operations",
+   "pattern": "do-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "digit-operations-p09",
+   "q": "Find the missing number:\n\n**13   5   20**\n\n**42   3   18**\n\n**51   4   ?**",
+   "figure": null,
+   "options": [
+    "204",
+    "10",
+    "24",
+    "55"
+   ],
+   "answer": 2,
+   "solution": "S(13) × 5 = 4 × 5 = 20 ✓; S(42) × 3 = 6 × 3 = 18 ✓. Rule: digit sum of the first × second. So 6 × 4 = **24**. (204 multiplies the raw values; 10 adds instead of multiplying.)",
+   "shortcut": "Small second input + two-digit first → shrink the first, keep the second.",
+   "difficulty": "medium",
+   "subtopic": "digit-operations",
+   "pattern": "do-p4",
+   "timeSec": 45
+  },
+  {
+   "id": "digit-operations-p10",
+   "q": "Find the missing number:\n\n**25   4   18**\n\n**31   6   14**\n\n**47   3   ?**",
+   "figure": null,
+   "options": [
+    "14",
+    "50",
+    "25",
+    "22"
+   ],
+   "answer": 2,
+   "solution": "S(25) = 7 → 2 × 7 + 4 = 18 ✓; S(31) = 4 → 2 × 4 + 6 = 14 ✓. Rule: twice the first number's digit sum plus the second. So 2 × 11 + 3 = **25**. (14 forgets to double; 22 forgets the + second.)",
+   "shortcut": "Output − second number is even and small → 2 × digit sum.",
+   "difficulty": "hard",
+   "subtopic": "digit-operations",
+   "pattern": "do-p4",
+   "timeSec": 55
   }
  ]
 }

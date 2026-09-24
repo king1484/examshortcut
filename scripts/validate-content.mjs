@@ -45,6 +45,11 @@ function check(p) {
     seenIds.add(`${data.sectionId}/${data.id}`);
     for (const s of data.subtopics ?? []) {
       if (!s.id || !s.title || typeof s.concept !== 'string') errors.push(`${rel}: bad subtopic ${s.id ?? '?'}`);
+      // Shapes the pages dereference directly (formula-sheet prerender crashed on string tricks)
+      (s.tricks ?? []).forEach((k, i) => { if (!k || typeof k.title !== 'string' || typeof k.body !== 'string') errors.push(`${rel}#${s.id}: tricks[${i}] needs {title, body}`); });
+      (s.formulas ?? []).forEach((f, i) => { if (!f || typeof f.name !== 'string' || typeof f.tex !== 'string') errors.push(`${rel}#${s.id}: formulas[${i}] needs {name, tex}`); });
+      (s.mistakes ?? []).forEach((m, i) => { if (typeof m !== 'string') errors.push(`${rel}#${s.id}: mistakes[${i}] must be a string`); });
+      (s.patterns ?? []).forEach((p, i) => { if (!p || !p.id || typeof p.name !== 'string') errors.push(`${rel}#${s.id}: patterns[${i}] needs {id, name}`); });
     }
     (data.solvedExamples ?? []).forEach((q) => checkQ(q, `${rel}#solved`));
     (data.practice ?? []).forEach((q) => checkQ(q, `${rel}#practice`));

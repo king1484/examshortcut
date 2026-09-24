@@ -25,6 +25,12 @@ A figure — grids, circles, triangles — carries a hidden rule connecting its 
 
 **Option-driven pruning.** If the missing cell must be, say, odd, every even option dies — check parity first. If rows are increasing, a decreasing option dies. Prune before deep work; with two options left, often only one fits a plausible rule.
 
+**Anchor on the biggest number.** The largest cell of a row is almost always the output. Try to rebuild it from the smaller cells: 26 from 5 and 1 (5² + 1), 21 from 4 and 5 (4 × 5 + 1). Reading left to right hides the rule; rebuilding the largest cell exposes it.
+
+**Size tells you the operation.** Compare the output with the inputs: output ≈ sum → addition family; output ≈ product → multiplication family; output ≈ first² → square family; output smaller than both → difference, average or a digit rule. One glance at the size cuts the search list in half.
+
+**Why distractors look right.** Exam setters plant the value of the *most tempting wrong rule* in the options: the bare product when the rule is product + 1, the plain square when it is square − 1, the unreversed sum when the rule reverses. If your answer equals a 'simpler' version of the rule, re-check that the simpler rule really fails a complete row.
+
 ### Quick revision
 - Test rules in order: + / − → × / ÷ → squares → mixed (a² ± b, (a+b)²...).
 - The rule must fit EVERY complete row/segment — one fit is a coincidence.
@@ -50,6 +56,10 @@ The format: a 3×3 grid — sometimes two complete grids and a third with a hole
 **Two complete grids.** Solve the left grid's rule first (it has no hole), verify it reproduces the middle grid, then apply to the right one. The rule never changes between grids; only the numbers do.
 
 **Circle and triangle figures.** Match by position: opposite segments of a circle (constant sum or product), corners vs centre of a triangle (centre = sum or product of corners), inner ring vs outer ring. Write the matched pairs as little equations and look for the common thread.
+
+**Worked walk-through.** Rows (4, 6, 10), (5, 3, 22), (7, 2, ?). Sum: 4 + 6 = 10 ✓ on row 1 — tempting — but 5 + 3 = 8 ✗ on row 2, so the sum rule dies. Product: 24 ✗. Square family: $a^2 - b$ gives 16 − 6 = 10 ✓ and 25 − 3 = 22 ✓. Only now apply it: 49 − 2 = **47**. Notice the trap: had you stopped at row 1, you would have answered 7 + 2 = 9. The discipline is the same every time: one candidate, all rows, next candidate.
+
+**Speed tricks.** Keep squares to 25 and cubes to 12 memorised; spot $a^2 - b^2 = (a+b)(a-b)$ to avoid big squaring; and when third cells are all odd while inputs are mixed parity, product ± 1 is a strong suspect.
 
 ### Quick revision
 - Bridge hunt order: + / − → × / ÷ → ×2, ab ± k → a²+b, b²+a, a²+b² → (a±b)².
@@ -82,6 +92,10 @@ Reversal rules produce third numbers whose digits are the 'mirror image' of the 
 - The same digits recur across rows (43/34, 62/26) — reversal is in play.
 
 **Verification is cheap here.** Digit rules are one line of arithmetic per row — check all complete rows, not just one. And compute the final answer with the SAME variant that fit, not with the variant you tried first.
+
+**The mod-9 shortcut.** A number and its digit sum leave the same remainder on division by 9. So if a digit-sum rule is in play, the output and the inputs' digit sums must agree mod 9 — a quick way to kill an option without computing every digit sum. Example: S(47) + S(38) = 22; check 47 + 38 = 85 → 85 and 22 both leave 4 on division by 9 ✓.
+
+**Reversal traps.** Two traps dominate: reversing the *inputs* when the rule reverses the *result* (and vice versa), and sums ending in 0 (R(40) = 04 = 4) — setters avoid them, so a 0-ending sum usually means you picked the wrong variant. Palindromes (77, 66) sitting in the grid are a gift: they are identical under reversal and hint that reversal is part of the rule.
 
 ### Quick revision
 - $S(n)$ = digit sum (47 → 11); $R(n)$ = reversal (43 → 34); $P(n)$ = digit product (47 → 28).
@@ -172,6 +186,26 @@ PYQS = [
      "Derive the rule on the first grid, verify it on the second, then apply to the third.",
      "**Grid 1: (2,3,7),(3,4,13). Grid 2: (4,5,?),(5,6,31)**",
      "c = a×b + 1 → 31 ✓ → 4×5 + 1 = **21**."),
+    ("Square-based row rule", "common", "missing-number-idea",
+     "Output cells sit next to perfect squares (26, 48, 50, 63...).",
+     "Square the first (or second) input and read the leftover: a² ± b, a² ± 1, a² + b².",
+     "**Rows: (4,6,10), (5,3,22), (7,2,?)**",
+     "a + b fits row 1 only. a² − b: 16−6 = 10 ✓, 25−3 = 22 ✓ → 49−2 = **47**."),
+    ("Circle / triangle segments", "common", "grid-row-rules",
+     "Numbers placed in sectors of a circle or corners of a triangle with a centre value.",
+     "Treat each sector as a row, or pair opposite sectors; test constant sum, then centre = sum/product of corners.",
+     "**Triangles (corners → centre): (2,3,4 → 24), (1,5,6 → 30), (3,2,5 → ?)**",
+     "Centre = product of corners: 2×3×4 = 24 ✓, 1×5×6 = 30 ✓ → 3×2×5 = **30**."),
+    ("Reversed-digit rule", "common", "digit-operations",
+     "Mirror-image digits across the row (23 beside 32); outputs look like scrambled sums.",
+     "Test R(a) + R(b) and R(a + b); confirm on both complete rows.",
+     "**Rows: (23,14,73), (45,12,75), (62,23,?)**",
+     "R(23)+R(14) = 32+41 = 73 ✓; R(45)+R(12) = 54+21 = 75 ✓ → 26+32 = **58**."),
+    ("Digit-product rule", "occasional", "digit-operations",
+     "Outputs are small and factor neatly into the digits of the inputs.",
+     "P(n) = product of digits; test P(a), P(a) + P(b), then weighted mixtures.",
+     "**Rows: (24,35,23), (43,26,24), (52,33,?)**",
+     "P(24)+P(35) = 8+15 = 23 ✓; P(43)+P(26) = 12+12 = 24 ✓ → P(52)+P(33) = 10+9 = **19**."),
     ("Digit-sum grid", "common", "digit-operations",
      "Third numbers tiny compared with the values.",
      "S(a)+S(b) first, then S(a+b); fit on all complete rows.",

@@ -4,24 +4,26 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 :root {
-  --bg: #f7f5f0;
+  --bg: #ffffff;
   --surface: #ffffff;
-  --surface-2: #f0ede6;
-  --ink: #1b1f2a;
-  --ink-2: #4a5160;
-  --ink-3: #7b8292;
-  --line: #e3dfd6;
+  --surface-2: #f4f5f7;
+  --ink: #111827;
+  --ink-2: #374151;
+  --ink-3: #6b7280;
+  --line: #e5e7eb;
   --brand: #e8590c;
   --brand-ink: #ffffff;
-  --brand-soft: #fff0e6;
-  --ok: #1f9d55;
-  --ok-soft: #e6f6ec;
-  --bad: #d63939;
-  --bad-soft: #fdecec;
-  --warn: #b7791f;
-  --warn-soft: #fdf5e3;
-  --info: #2563eb;
-  --info-soft: #e8efff;
+  --brand-soft: #fff4ec;
+  --brand-text: #c2410c;
+  --ok: #15803d;
+  --ok-soft: #e9f7ee;
+  --bad: #c92a2a;
+  --bad-soft: #fdeeee;
+  --warn: #a16207;
+  --warn-soft: #fdf6e3;
+  --info: #1d4ed8;
+  --info-soft: #eaf1ff;
+  --shadow: 0 1px 2px rgba(16, 24, 40, .05), 0 1px 3px rgba(16, 24, 40, .04);
   --c-quant: #e8590c;
   --c-reasoning: #7048e8;
   --c-english: #1c7ed6;
@@ -33,7 +35,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #111318; --surface: #191c23; --surface-2: #21252e; --ink: #eceef2; --ink-2: #b4bac6; --ink-3: #858c9a;
-    --line: #2c313c; --brand: #ff7a2e; --brand-ink: #1a0d04; --brand-soft: #2d1c11; --ok: #40c070; --ok-soft: #13291c;
+    --line: #2c313c; --brand: #ff7a2e; --brand-ink: #1a0d04; --brand-soft: #2d1c11; --brand-text: #ff8a47; --shadow: none; --ok: #40c070; --ok-soft: #13291c;
     --bad: #f06060; --bad-soft: #2e1616; --warn: #e0a940; --warn-soft: #2c2412; --info: #6b9bff; --info-soft: #172240;
     --c-quant: #ff8a47; --c-reasoning: #9d7dff; --c-english: #4dabf7; --c-ga: #51cf66; --c-computer: #f06595;
     color-scheme: dark;
@@ -41,7 +43,7 @@
 }
 :root[data-theme="dark"] {
   --bg: #111318; --surface: #191c23; --surface-2: #21252e; --ink: #eceef2; --ink-2: #b4bac6; --ink-3: #858c9a;
-  --line: #2c313c; --brand: #ff7a2e; --brand-ink: #1a0d04; --brand-soft: #2d1c11; --ok: #40c070; --ok-soft: #13291c;
+  --line: #2c313c; --brand: #ff7a2e; --brand-ink: #1a0d04; --brand-soft: #2d1c11; --brand-text: #ff8a47; --shadow: none; --ok: #40c070; --ok-soft: #13291c;
   --bad: #f06060; --bad-soft: #2e1616; --warn: #e0a940; --warn-soft: #2c2412; --info: #6b9bff; --info-soft: #172240;
   --c-quant: #ff8a47; --c-reasoning: #9d7dff; --c-english: #4dabf7; --c-ga: #51cf66; --c-computer: #f06595;
   color-scheme: dark;
@@ -53,11 +55,12 @@ body {
   color: var(--ink);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
 }
 
 /* Component classes live in a layer so Tailwind utilities (hidden, sm:inline-flex, px-*) can override them. */
 @layer components {
-  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
   .muted { color: var(--ink-2); }
   .faint { color: var(--ink-3); }
   .btn {
@@ -83,7 +86,7 @@ body {
 }
 
 /* Markdown prose tuned to tokens */
-.md { --tw-prose-body: var(--ink); --tw-prose-headings: var(--ink); --tw-prose-bold: var(--ink); --tw-prose-links: var(--brand);
+.md { --tw-prose-body: var(--ink); --tw-prose-headings: var(--ink); --tw-prose-bold: var(--ink); --tw-prose-links: var(--brand-text);
   --tw-prose-bullets: var(--ink-3); --tw-prose-counters: var(--ink-3); --tw-prose-hr: var(--line); --tw-prose-quotes: var(--ink-2);
   --tw-prose-quote-borders: var(--brand); --tw-prose-code: var(--ink); --tw-prose-th-borders: var(--line); --tw-prose-td-borders: var(--line);
   max-width: none; }
