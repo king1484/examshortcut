@@ -4,7 +4,7 @@ import Link from 'next/link';
 export const dynamic = 'force-static';
 export const metadata: Metadata = {
   title: 'Privacy policy',
-  description: 'What ExamShortcut stores (and does not store): your practice data stays on your device, there are no accounts, and no personal information is collected.',
+  description: 'What ExamShortcut stores (and does not store): studying is open without an account and your data stays on your device; if you choose to log in, only your email and your progress sync — nothing is sold or profiled.',
 };
 
 export default function PrivacyPage() {
@@ -17,15 +17,16 @@ export default function PrivacyPage() {
         <div>
           <h2 className="font-extrabold text-base">The short version</h2>
           <p className="mt-1">
-            ExamShortcut has <b>no accounts and no sign-up</b>. Your practice data — mock attempts, mistake notebook, study plan,
-            eligibility inputs — is saved <b>only in your own browser</b> on your own device. We do not receive a copy, and we never will.
+            All notes, practice, calculators and open mocks work <b>without an account</b>. Without logging in, your progress —
+            mock attempts, mistake notebook, study plan, eligibility inputs — is saved <b>only in your own browser</b> and we never
+            receive a copy. A free login exists for one reason only: to sync that same progress across your devices.
           </p>
         </div>
 
         <div>
           <h2 className="font-extrabold text-base">What stays on your device</h2>
           <p className="mt-1">
-            The site uses your browser&apos;s local storage to remember your progress between visits: mock attempts and analysis,
+            Without an account, the site uses your browser&apos;s local storage to remember your progress between visits: mock attempts and analysis,
             your score entries, your study-plan ticks, your date of birth and category <i>if</i> you choose to enter them in the
             posts checker, and your typing-test history. This data never leaves your device — it is not transmitted to us or to
             anyone else. Clearing your browser data for this site erases it permanently; there is no server copy to restore.
@@ -33,9 +34,17 @@ export default function PrivacyPage() {
         </div>
 
         <div>
-          <h2 className="font-extrabold text-base">What we collect</h2>
+          <h2 className="font-extrabold text-base">If you log in</h2>
           <p className="mt-1">
-            Nothing. No analytics profile, no advertising identifier, no forms that send us personal information, no newsletters.
+            Accounts are optional and free (Google sign-in or an email link). Logging in stores <b>your email address</b> and a
+            copy of your progress (scores, mistakes, saved questions, studied topics) with our authentication provider so your
+            devices stay in sync. We do not sell it, share it, or use it to profile you, and you can erase it any time by logging
+            out and asking us to delete your account data.
+          </p>
+
+          <h2 className="font-extrabold text-base">What we collect otherwise</h2>
+          <p className="mt-1">
+            Nothing beyond the above. No analytics profile, no advertising identifier, no newsletters.
             Like any website, our hosting provider may see standard technical request logs (IP address, browser type) for security
             and uptime — these are not used to profile you.
           </p>

@@ -4,7 +4,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT = path.join(process.cwd(), 'content', 'ssc-cgl');
+const ROOT = path.join(process.cwd(), 'content');
 const errors = [];
 let files = 0, questions = 0;
 
@@ -12,7 +12,7 @@ function walk(dir) {
   if (!fs.existsSync(dir)) return;
   for (const f of fs.readdirSync(dir)) {
     const p = path.join(dir, f);
-    if (fs.statSync(p).isDirectory()) walk(p);
+    if (fs.statSync(p).isDirectory()) { if (f !== '_work') walk(p); }
     else if (f.endsWith('.json')) check(p);
   }
 }
@@ -32,7 +32,9 @@ function checkQ(q, where) {
 
 function check(p) {
   files++;
-  const rel = path.relative(ROOT, p);
+  const full = path.relative(ROOT, p).split(path.sep).join('/');
+  // strip the layer prefix: core/<x> or exams/<examId>/<x>
+  const rel = full.replace(/^core\//, '').replace(/^exams\/[^/]+\//, '');
   let data;
   try { data = JSON.parse(fs.readFileSync(p, 'utf-8')); }
   catch (e) { errors.push(`${rel}: INVALID JSON — ${e.message}`); return; }
@@ -50,6 +52,12 @@ function check(p) {
     for (const q of [...(data.solvedExamples ?? []), ...(data.practice ?? [])]) {
       if (ids.has(q.id)) errors.push(`${rel}: duplicate question id ${q.id}`);
       ids.add(q.id);
+    }
+  } else if (rel.startsWith('current-affairs')) {
+    for (const m of data.months ?? []) {
+      if (!/^\d{4}-\d{2}$/.test(m.month ?? '')) errors.push(`${rel}: bad month ${m.month}`);
+      for (const it of m.items ?? []) if (!it.headline || !it.detail || !it.category) errors.push(`${rel}#${m.month}: item missing headline/detail/category`);
+      (m.quiz ?? []).forEach((q) => checkQ(q, `${rel}#${m.month}`));
     }
   } else if (rel.startsWith('mocks')) {
     (data.questions ?? []).forEach((q) => checkQ(q, rel));

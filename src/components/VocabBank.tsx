@@ -26,7 +26,7 @@ function readKnown(): Known {
   } catch { return {}; }
 }
 function writeKnown(k: Known) {
-  try { localStorage.setItem(KEY, JSON.stringify(k)); } catch {}
+  try { localStorage.setItem(KEY, JSON.stringify(k)); window.dispatchEvent(new Event('es-store')); } catch {}
 }
 
 function shuffle<T>(a: T[]): T[] {

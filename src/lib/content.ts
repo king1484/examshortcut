@@ -10,16 +10,22 @@ export function getSection(id: SectionId): Section | null {
   return readJson<Section>(`sections/${id}.json`);
 }
 
-const ROOT = path.join(process.cwd(), 'content', 'ssc-cgl');
+/* Two layers: `content/core` holds exam-agnostic subjects (sections, topics, current
+   affairs) shared by every exam; `content/exams/<examId>` holds one exam's own data
+   (pattern, cutoffs, weightage, mocks). */
+const CORE = path.join(process.cwd(), 'content', 'core');
+const EXAMS = path.join(process.cwd(), 'content', 'exams');
 
-function readJson<T>(rel: string): T | null {
-  const file = path.join(ROOT, rel);
+function readFrom<T>(root: string, rel: string): T | null {
+  const file = path.join(root, rel);
   if (!fs.existsSync(file)) return null;
   return JSON.parse(fs.readFileSync(file, 'utf-8')) as T;
 }
+const readJson = <T,>(rel: string) => readFrom<T>(CORE, rel);
+const readExam = <T,>(examId: string, rel: string) => readFrom<T>(path.join(EXAMS, examId), rel);
 
 export function listTopics(sectionId: SectionId): Topic[] {
-  const dir = path.join(ROOT, 'topics', sectionId);
+  const dir = path.join(CORE, 'topics', sectionId);
   if (!fs.existsSync(dir)) return [];
   const topics = fs
     .readdirSync(dir)
@@ -47,25 +53,44 @@ export function availableSections(): SectionId[] {
 
 // ---------- exam / cutoffs / weightage (shapes are loose; rendered defensively) ----------
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export function getExam(): any | null { return readJson('exam.json'); }
-export function getCutoffs(): any | null { return readJson('cutoffs.json'); }
-export function getWeightage(): any | null { return readJson('weightage.json'); }
+export function getExam(examId = 'ssc-cgl'): any | null { return readExam(examId, 'exam.json'); }
+export function getCutoffs(examId = 'ssc-cgl'): any | null { return readExam(examId, 'cutoffs.json'); }
+export function getWeightage(examId = 'ssc-cgl'): any | null { return readExam(examId, 'weightage.json'); }
+
+// ---------- current affairs (core, month-wise per year) ----------
+export interface CaItem { date: string; category: string; headline: string; detail: string; examFacts?: string[] }
+export interface CaMonth { month: string; label: string; items: CaItem[]; quiz?: Question[] }
+export interface CaYear { year: number; months: CaMonth[] }
+
+export function listCaYears(): number[] {
+  const dir = path.join(CORE, 'current-affairs');
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir).filter((f) => /^\d{4}\.json$/.test(f)).map((f) => Number(f.slice(0, 4)))
+    .filter((y) => (getCaYear(y)?.months.length ?? 0) > 0).sort((a, b) => b - a);
+}
+export function getCaYear(year: number): CaYear | null {
+  const y = readJson<CaYear>(`current-affairs/${year}.json`);
+  if (!y) return null;
+  return { ...y, months: [...(y.months ?? [])].filter((m) => m.items?.length).sort((a, b) => b.month.localeCompare(a.month)) };
+}
 
 // ---------- mocks ----------
+/* `open` mocks are free without an account (and crawlable); the rest need a login,
+   which is only used to save attempts and scores. */
 interface MockDef {
   id: string; title: string; kind: Mock['kind']; tier: 1 | 2; durationMin: number;
-  plus: number; minus: number; blurb: string; sections: SectionId[];
+  plus: number; minus: number; blurb: string; sections: SectionId[]; open?: boolean;
 }
 
 export const MOCK_DEFS: MockDef[] = [
   {
     id: 't1-pyq-2025', title: 'CGL 2025 Tier 1 — PYQ-pattern paper', kind: 'pyq-pattern', tier: 1,
-    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'],
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
     blurb: 'Same topic-wise distribution and difficulty as the actual CGL 2025 Tier 1 shifts, with freshly written questions.',
   },
   {
     id: 't1-mock-1', title: 'Tier 1 Full Mock 1', kind: 'full', tier: 1,
-    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'],
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
     blurb: '100 questions · 200 marks · 60 minutes · −0.50 per wrong answer. Real CBT interface.',
   },
   {
@@ -90,7 +115,7 @@ export function getMock(id: string): Mock | null {
   if (!def) return null;
   const sections = def.sections
     .map((sid) => {
-      const part = readJson<{ questions: Question[] }>(`mocks/parts/${id}--${sid}.json`);
+      const part = readExam<{ questions: Question[] }>('ssc-cgl', `mocks/parts/${id}--${sid}.json`);
       if (!part) return null;
       return { sectionId: sid, name: SECTION_META[sid].name, questions: part.questions };
     })

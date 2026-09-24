@@ -75,12 +75,6 @@ export function CutoffExplorer({ data }: { data: any }) {
         </table>
       </div>
 
-      <h2 className="text-xl font-extrabold mt-8">Sources</h2>
-      <ul className="text-sm mt-2 space-y-1 list-disc pl-5">
-        {listsSorted.flatMap((l) => l.source ? [l.source] : []).filter((s, i, a) => a.findIndex((x) => x.url === s.url) === i).map((s, i) => (
-          <li key={i}><a className="underline" href={s.url} target="_blank" rel="noopener noreferrer">{s.title}</a></li>
-        ))}
-      </ul>
     </div>
   );
 }

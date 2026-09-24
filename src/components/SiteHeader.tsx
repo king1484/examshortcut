@@ -3,17 +3,20 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from './ThemeToggle';
+import { AccountButton } from './Auth';
+import { useSelectedExam } from '@/lib/useExam';
 
 const NAV = [
-  { href: '/dashboard/', label: 'Dashboard', exact: true },
-  { href: '/ssc-cgl/', label: 'SSC CGL', exact: true },
-  { href: '/ssc-cgl/syllabus/', label: 'Syllabus & Notes' },
-  { href: '/ssc-cgl/study-plan/', label: 'Study Plan' },
-  { href: '/ssc-cgl/mocks/', label: 'Mock Tests' },
-  { href: '/ssc-cgl/formula-sheet/', label: 'Formula Sheet' },
-  { href: '/ssc-cgl/ga/current-affairs/', label: 'Current Affairs' },
-  { href: '/ssc-cgl/cutoffs/', label: 'Cutoffs' },
-  { href: '/revision/', label: 'My Revision' },
+  { href: '/', label: 'Home', exact: true },
+  { href: '/exams/', label: 'Exams' },
+  { href: '/learn/', label: 'Subjects & Notes' },
+  { href: '/daily-quiz/', label: 'Daily Quiz' },
+  { href: '/exams/ssc-cgl/mocks/', label: 'Mock Tests' },
+  { href: '/formula-sheet/', label: 'Formula Sheet' },
+  { href: '/current-affairs/', label: 'Current Affairs' },
+  { href: '/exams/ssc-cgl/cutoffs/', label: 'Cutoffs' },
+  { href: '/dashboard/', label: 'My Progress', exact: true },
+  { href: '/revision/', label: 'Revision' },
 ];
 
 export function Logo() {
@@ -33,16 +36,20 @@ export function SiteHeader() {
   // Highlight the clicked tab immediately rather than when the route lands
   const [pendingHref, setPendingHref] = useState<string | null>(null);
   useEffect(() => { setPendingHref(null); }, [path]);
+  const exam = useSelectedExam();
   // The CBT screen is full-focus; hide the site chrome there.
-  if (/\/mocks\/[^/]+\/?$/.test(path) && path !== '/ssc-cgl/mocks/') return null;
+  if (/\/mocks\/[^/]+\/?$/.test(path) && path !== '/exams/ssc-cgl/mocks/') return null;
   return (
     <header className="sticky top-0 z-30 border-b backdrop-blur" style={{ borderColor: 'var(--line)', background: 'color-mix(in srgb, var(--bg) 88%, transparent)' }}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
         <Link href="/" aria-label="ExamShortcut home"><Logo /></Link>
         <div className="flex items-center gap-2">
           <Link href="/search/" aria-label="Search" className="btn" style={{ padding: '.4rem .7rem' }}>🔍<span className="hidden md:inline ml-1">Search</span></Link>
-          <Link href="/ssc-cgl/mocks/" className="btn btn-brand hidden sm:inline-flex" style={{ padding: '.4rem .8rem' }}>Take a free mock</Link>
+          <Link href="/exams/" className="btn hidden sm:inline-flex" style={{ padding: '.4rem .75rem' }} title="Change exam">
+            🎯 {exam ? exam.short : 'Choose exam'}
+          </Link>
           <ThemeToggle />
+          <AccountButton />
         </div>
       </div>
       <nav className="max-w-6xl mx-auto px-2 sm:px-4 flex gap-1 overflow-x-auto text-sm font-semibold" style={{ scrollbarWidth: 'none' }}>

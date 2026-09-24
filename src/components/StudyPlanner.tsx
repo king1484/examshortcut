@@ -64,7 +64,7 @@ function buildPlan(topics: PlanTopic[], mocks: PlanMock[], cfg: Config, today: D
   let mockIdx = 0;
   const nextMock = (iso: string): Item => {
     const m = anyMocks[mockIdx++ % Math.max(1, anyMocks.length)];
-    return { key: `mock@${iso}`, kind: 'mock', label: m ? m.title : 'Full-length mock', sub: 'Full mock in exam conditions + 45 min reviewing every wrong and skipped question', hours: cfg.hours, href: m ? `/ssc-cgl/mocks/${m.id}/` : '/ssc-cgl/mocks/', color: 'var(--brand)' };
+    return { key: `mock@${iso}`, kind: 'mock', label: m ? m.title : 'Full-length mock', sub: 'Full mock in exam conditions + 45 min reviewing every wrong and skipped question', hours: cfg.hours, href: m ? `/exams/ssc-cgl/mocks/${m.id}/` : '/exams/ssc-cgl/mocks/', color: 'var(--brand)' };
   };
 
   const plan: { date: Date; items: Item[] }[] = [];
@@ -88,7 +88,7 @@ function buildPlan(topics: PlanTopic[], mocks: PlanMock[], cfg: Config, today: D
           key: `${w.t.section}/${w.t.id}@${iso}`, kind: 'topic', label: `${w.t.sectionShort} · ${w.t.title}${w.started ? ' (contd.)' : ''}`,
           sub: ratio < 0.4 ? (finishing ? 'Quick pass: Formulas tab + shortcut tricks, then the topic test' : 'Quick pass: Overview + Formulas tab')
             : finishing ? 'Finish Learn + Formulas, then take the topic test' : 'Learn pages + solved examples',
-          hours: round(h), href: `/ssc-cgl/${w.t.section}/${w.t.id}/${finishing ? 'practice/' : 'learn/'}`, color: w.t.color,
+          hours: round(h), href: `/${w.t.section}/${w.t.id}/${finishing ? 'practice/' : 'learn/'}`, color: w.t.color,
         });
         w.left = round(w.left - h); cap -= h; w.started = true;
         if (w.left <= 0) wi++;
@@ -119,7 +119,7 @@ export function StudyPlanner({ topics, mocks, t1Default, t2Default }: { topics: 
 
   useEffect(() => {
     if (!today || !result) return;
-    try { localStorage.setItem(KEY, JSON.stringify({ cfg, done, total: result.plan.flatMap((p) => p.items).length })); } catch {}
+    try { localStorage.setItem(KEY, JSON.stringify({ cfg, done, total: result.plan.flatMap((p) => p.items).length })); window.dispatchEvent(new Event('es-store')); } catch {}
   }, [cfg, done, today, result]);
   const set = <K extends keyof Config>(k: K, v: Config[K]) => setCfg((c) => ({ ...c, [k]: v }));
   const input = { borderColor: 'var(--line)', background: 'var(--surface)', color: 'var(--ink)' };
@@ -184,7 +184,7 @@ export function StudyPlanner({ topics, mocks, t1Default, t2Default }: { topics: 
             {(result.ratio < 1 || result.dropped.length > 0) && (
               <div className="mt-3 text-sm rounded-lg p-3" style={{ background: 'var(--warn-soft)', color: 'var(--warn)' }}>
                 <b>Compressed plan.</b> There isn&apos;t enough time to cover everything properly, so topic time is cut to about {Math.round(result.ratio * 100)}% of normal.
-                {result.dropped.length > 0 && <> {result.dropped.length} lower-weightage topics are left out: {result.dropped.slice(0, 8).map((t) => t.title).join(', ')}{result.dropped.length > 8 ? '…' : ''}. Use the <Link className="underline" href="/ssc-cgl/formula-sheet/">formula sheet</Link> for these.</>}
+                {result.dropped.length > 0 && <> {result.dropped.length} lower-weightage topics are left out: {result.dropped.slice(0, 8).map((t) => t.title).join(', ')}{result.dropped.length > 8 ? '…' : ''}. Use the <Link className="underline" href="/formula-sheet/">formula sheet</Link> for these.</>}
               </div>
             )}
           </div>

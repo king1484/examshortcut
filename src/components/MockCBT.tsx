@@ -119,7 +119,7 @@ export function MockCBT({ mock }: { mock: Mock }) {
     flat.forEach((f, i) => {
       const a = answers[i];
       if (a !== null && a !== f.q.answer)
-        store.addMistake({ key: `mock/${mock.id}/${f.q.id}`, question: f.q, chosen: a, from: mock.title, href: `/ssc-cgl/mocks/${mock.id}/`, section: mock.sections[f.s].sectionId, at: Date.now() });
+        store.addMistake({ key: `mock/${mock.id}/${f.q.id}`, question: f.q, chosen: a, from: mock.title, href: `/exams/ssc-cgl/mocks/${mock.id}/`, section: mock.sections[f.s].sectionId, at: Date.now() });
     });
     setSt((p) => ({ ...p, answers }));
     window.scrollTo(0, 0);
@@ -145,7 +145,7 @@ export function MockCBT({ mock }: { mock: Mock }) {
   if (phase === 'intro') {
     return (
       <div className="max-w-3xl mx-auto">
-        <Link href="/ssc-cgl/mocks/" className="text-sm faint">← All mock tests</Link>
+        <Link href="/exams/ssc-cgl/mocks/" className="text-sm faint">← All mock tests</Link>
         <h1 className="text-2xl sm:text-3xl font-extrabold mt-2">{mock.title}</h1>
         <p className="muted mt-2">{mock.blurb}</p>
         <div className="tbl-wrap mt-5">
@@ -321,7 +321,7 @@ function MockResult({ mock, flat, answers, times, attempt }: { mock: Mock; flat:
 
   return (
     <div className="max-w-5xl mx-auto">
-      <Link href="/ssc-cgl/mocks/" className="text-sm faint">← All mock tests</Link>
+      <Link href="/exams/ssc-cgl/mocks/" className="text-sm faint">← All mock tests</Link>
       <h1 className="text-2xl sm:text-3xl font-extrabold mt-2">Result · {mock.title}</h1>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-5">
         {[
@@ -334,7 +334,7 @@ function MockResult({ mock, flat, answers, times, attempt }: { mock: Mock; flat:
         ))}
       </div>
       {mock.tier === 1 && (
-        <p className="text-sm muted mt-3">Compare your score with the <Link className="underline" href="/ssc-cgl/cutoffs/">year-wise official cutoffs</Link> for your category
+        <p className="text-sm muted mt-3">Compare your score with the <Link className="underline" href="/exams/ssc-cgl/cutoffs/">year-wise official cutoffs</Link> for your category
           (remember real scores are normalised across shifts).</p>
       )}
 
@@ -367,7 +367,7 @@ function MockResult({ mock, flat, answers, times, attempt }: { mock: Mock; flat:
               const sec = flat.find((f) => (f.q.subtopic || 'other') === t);
               const sid = sec ? mock.sections[sec.s].sectionId : '';
               return (
-                <Link key={t} href={`/ssc-cgl/${sid}/${t}/`} className="chip" style={{ padding: '.35rem .7rem', fontSize: '.8rem' }}>
+                <Link key={t} href={`/${sid}/${t}/`} className="chip" style={{ padding: '.35rem .7rem', fontSize: '.8rem' }}>
                   {t.replace(/-/g, ' ')} · <span style={{ color: 'var(--bad)' }}>{r.w} wrong</span> · {r.s} skipped
                 </Link>
               );

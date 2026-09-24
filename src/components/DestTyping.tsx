@@ -114,7 +114,7 @@ export function DestTyping({ passages }: { passages: DestPassage[] }) {
     const a: Attempt = { at: new Date().toISOString(), passage: passage.title, kd, secs: Math.round(done.secs), errPct: +summary.errPct.toFixed(1), pass: summary.pass };
     setHist((h) => {
       const n = [a, ...h].slice(0, 10);
-      try { localStorage.setItem(HIST, JSON.stringify(n)); } catch {}
+      try { localStorage.setItem(HIST, JSON.stringify(n)); window.dispatchEvent(new Event('es-store')); } catch {}
       return n;
     });
   }, [done]); // eslint-disable-line react-hooks/exhaustive-deps

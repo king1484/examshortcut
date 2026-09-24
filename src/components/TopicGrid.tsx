@@ -24,7 +24,7 @@ export function TopicGrid({ section, topics }: { section: string; topics: GridTo
         const pct = s ? Math.round((s.last / Math.max(1, s.total)) * 100) : null;
         const total = t.difficulty.easy + t.difficulty.medium + t.difficulty.hard;
         return (
-          <Link key={t.id} href={`/ssc-cgl/${section}/${t.id}/`} className="card p-4 hover:-translate-y-0.5 transition-transform flex flex-col">
+          <Link key={t.id} href={`/${section}/${t.id}/`} className="card p-4 hover:-translate-y-0.5 transition-transform flex flex-col">
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-xs faint font-bold">#{i + 1}</span>
               <span className="font-bold">{t.title}</span>

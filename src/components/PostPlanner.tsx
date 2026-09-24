@@ -56,7 +56,7 @@ export function PostPlanner({ posts, cutoffDate }: { posts: PlannerPost[]; cutof
 
   useEffect(() => {
     if (!loaded) return;
-    try { localStorage.setItem(KEY, JSON.stringify({ dob, cat, stats, order } satisfies Saved)); } catch {}
+    try { localStorage.setItem(KEY, JSON.stringify({ dob, cat, stats, order } satisfies Saved)); window.dispatchEvent(new Event('es-store')); } catch {}
   }, [dob, cat, stats, order, loaded]);
 
   const on = useMemo(() => new Date(`${cutoffDate}T00:00:00`), [cutoffDate]);
@@ -129,7 +129,7 @@ export function PostPlanner({ posts, cutoffDate }: { posts: PlannerPost[]; cutof
                 <span className="text-lg font-extrabold w-7 text-center shrink-0" style={{ color: 'var(--brand)' }}>{i + 1}</span>
                 <div className="flex-1 min-w-0">
                   <div className="font-bold text-sm">
-                    <Link href={`/ssc-cgl/posts/${p.id}/`} className="hover:underline" style={{ color: 'var(--ink)' }}>{p.name}</Link>
+                    <Link href={`/exams/ssc-cgl/posts/${p.id}/`} className="hover:underline" style={{ color: 'var(--ink)' }}>{p.name}</Link>
                     <span className="chip ml-1.5 text-[10px]">Group {p.group}</span>
                     {p.paper2 && <span className="chip ml-1 text-[10px]">+ Paper 2</span>}
                   </div>

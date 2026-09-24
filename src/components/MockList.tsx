@@ -27,7 +27,7 @@ export function MockList({ mocks }: { mocks: Row[] }) {
               </p>
             </div>
             <div className="flex gap-2 shrink-0">
-              <Link href={`/ssc-cgl/mocks/${m.id}/`} className={`btn ${m.available ? 'btn-brand' : ''}`}>{m.available ? (hist.length ? 'Retake' : 'Start test') : 'Preview'}</Link>
+              <Link href={`/exams/ssc-cgl/mocks/${m.id}/`} className={`btn ${m.available ? 'btn-brand' : ''}`}>{m.available ? (hist.length ? 'Retake' : 'Start test') : 'Preview'}</Link>
             </div>
           </div>
         );

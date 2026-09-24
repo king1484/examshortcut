@@ -1,0 +1,976 @@
+{
+ "id": "coding-decoding",
+ "sectionId": "reasoning",
+ "title": "Coding - Decoding",
+ "order": 4,
+ "importance": "high",
+ "avgQuestions": {
+  "tier1": 4,
+  "tier2": 4
+ },
+ "summary": "Coding questions reveal how a word (or sentence) is transformed into a code and ask you to apply the same transformation to a new word. CGL asks 3-5 per shift. Rules are mechanical: letter shifts, opposites, reversal, position sums, renames. Compute the rule from the sample pair, then apply it without creativity.",
+ "subtopics": [
+  {
+   "id": "coding-idea",
+   "title": "The coding-decoding family",
+   "concept": "A coding question shows you a word and its coded form, reveals the rule, and asks you to code (or decode) another word. Every CGL coding rule is mechanical — no vocabulary is tested. The five recurring rule types:\n\n1. **Letter shifting**: each letter moves +k or −k (CAT → DBU is +1).\n2. **Opposite letters (Atbash)**: each letter is replaced by its mirror in the alphabet.\n3. **Reversal / reverse+shift**: the word is written backwards, often after or before a shift.\n4. **Number coding**: the word becomes a number — sum of letter positions, position sums plus a constant, or position-weighted sums.\n5. **Substitution**: objects or words are renamed ('sky is called sea'); you answer from the renames, never from reality.\n\nMethod: compute the letter-position difference between the sample pair, slot by slot. The difference tuple IS the rule. Apply it to the asked word mechanically.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Difference tuple first",
+     "body": "Write the sample word and its code with positions, subtract slot by slot. A flat tuple (+1, +1, +1) is a shift; a mixed tuple is a per-index rule; a reversed tuple pattern hints at reversal. Then apply the same tuple to the new word.",
+     "example": {
+      "q": "**Q.** If CAT is coded as **FDW**, how is DOG coded?\n\n**Sol.** C→F is +3, A→D is +3, T→W is +3, so the rule is a flat +3. D+3 = G, O+3 = R, G+3 = J → **GRJ**.",
+      "solution": "The tuple you computed on the sample pair is the rule — apply the same tuple to the new word and never guess a fresh rule."
+     }
+    }
+   ],
+   "mistakes": [
+    "Coding the probe with a *different* shift than the sample revealed (the most common silly loss).",
+    "Forgetting wrap-around: Y + 3 = B, not 'out of range'.",
+    "Answering substitution questions from real-world facts instead of the given renames."
+   ],
+   "notes": "### What is coding-decoding?\nIn daily life we use codes all the time. A bank sends a one-time password, a shop marks a price as 'AB' instead of ₹12, and friends use short secret words. In a **coding-decoding** question, the examiner hides a word using a fixed rule. You are shown one word with its code, you work out the rule, and then you apply the **same** rule to a new word. **Coding** means turning a word into its code. **Decoding** means turning a code back into the word.\n\nThe good news: the rule is always mechanical. No vocabulary or general knowledge is tested (except in renaming questions, where you need only simple facts like 'fish live in water').\n\n### The main families\n| Family | What happens | Small example |\n|---|---|---|\n| Letter shift | every letter moves forward or back | CAT → DBU (+1) |\n| Reversal / opposite | word written backwards, or each letter replaced by its opposite (A↔Z) | LOGIC → CIGOL |\n| Rearrangement | same letters, new order | PLANET → LPNATE |\n| Number coding | word becomes a number from letter positions | CAT → 24 |\n| Symbol coding | each letter gets a symbol or digit | R = 6, O = 8 |\n| Substitution | objects are renamed | sky is called sea |\n| Language coding | whole sentences become code words | 'good day' = 'pa ki' |\n\n### How to find any rule — step by step\n1. **Count letters.** If the code has the same number of letters, compare them one by one.\n2. **Same letters, new order?** Then it is rearrangement. Mark where each letter went.\n3. **Different letters?** Write alphabet positions (A=1 ... Z=26) and subtract slot by slot. A constant like +2 is a shift; letters adding to 27 are opposites.\n4. **Read the code backwards.** If you see the word (or a shifted word), reversal is part of the rule.\n5. **Code is a number?** Add the letter positions first and compare with the code.\n6. **Apply the rule exactly** to the new word. Then check one letter again.\n\n### Rearrangement rules\n- **Pair swap**: letters are swapped in pairs. PLANET → PL AN ET → LP NA TE → **LPNATE**. With an odd number of letters the last letter stays.\n- **Halves reversed**: split the word in two halves and write each half backwards. MONKEY → MON | KEY → **NOM YEK**. In an odd word the middle letter stays in place.\n- **First–last interchange**: only the first and last letters swap. LEMON → **NEMOL**. Sometimes the middle letters are also shifted.\n\n### Mixed (two-step) rules\nSome codes use two simple rules together:\n- **Vowels one way, consonants another**: vowels (A, E, I, O, U) move +1 and consonants move −1. BASKET → **ABRJFS**.\n- **Opposite then shift**: BAD → opposite YZW → +1 → **ZAX**.\n- **Reverse then alternate shift**: +1, −1, +1, −1 after writing the word backwards.\n- **Letters plus a number**: letters shifted, then a number such as the letter count or position sum is written after them.\n\nAlways do the steps in the same order as the sample. 'Reverse then shift' and 'shift then reverse' can give different answers when the shift changes from slot to slot.\n\n### Must-know alphabet facts\n- **EJOTY**: E=5, J=10, O=15, T=20, Y=25. Every letter is at most 2 steps from one of these.\n- **Opposite pairs** (positions add to 27): A-Z, B-Y, C-X, D-W, E-V, F-U, G-T, H-S, I-R, J-Q, K-P, L-O, M-N.\n- **Wrap-around**: after Z comes A again. Y + 3 = B.\n\n### Quick revision\n- Same letters in a new order → rearrangement (pair swap, halves reversed, first–last swap).\n- Different letters → subtract positions; constant = shift, sum 27 = opposite.\n- Read the code backwards before trying anything complicated.\n- Two-step rules: copy the order of steps from the sample.\n- Always apply the rule found on the sample; never invent a new rule for the new word.",
+   "patterns": [
+    {
+     "id": "cd-p1",
+     "name": "Pair-swap coding (adjacent letters interchanged)",
+     "frequency": "common",
+     "howToSpot": "The code has exactly the same letters as the word, and every two neighbouring letters have changed places (PLANET → LPNATE).",
+     "formula": null,
+     "logic": "1. Split the word into pairs from the left: PL | AN | ET.\n2. Write each pair backwards: LP | NA | TE.\n3. If the word has an odd number of letters, the last letter stays as it is.\n\nWhy it works: no letter changes, only the order — so checking pairs is enough.",
+     "example": {
+      "q": "If PLANET is written as LPNATE, how is GARDEN written?",
+      "solution": "Pairs GA | RD | EN → AG | DR | NE → **AGDRNE**."
+     }
+    },
+    {
+     "id": "cd-p2",
+     "name": "Halves reversed (each half written backwards)",
+     "frequency": "common",
+     "howToSpot": "Same letters as the word, but the first half and the second half each appear backwards (MONKEY → NOMYEK).",
+     "formula": null,
+     "logic": "1. Split the word into two equal halves (odd length: the middle letter stays).\n2. Reverse the first half, then reverse the second half.\n3. Apply any extra shift only after this, if the sample shows one.\n\nWhy it works: reading each half backwards in the sample shows the original halves.",
+     "example": {
+      "q": "If MONKEY is written as NOMYEK, how is GINGER written?",
+      "solution": "GIN | GER → NIG | REG → **NIGREG**."
+     }
+    },
+    {
+     "id": "cd-p3",
+     "name": "First and last letters interchanged",
+     "frequency": "occasional",
+     "howToSpot": "Only the end letters look different: the first letter of the word is at the end of the code and the last letter is at the front. Middle letters are same or shifted by a fixed amount.",
+     "formula": null,
+     "logic": "1. Swap the first and last letters.\n2. Check the middle letters against the sample: unchanged, or each moved by the same k?\n3. Apply both steps to the new word.\n\nWhy it works: the middle part tells you whether a second rule is present.",
+     "example": {
+      "q": "If LEMON is written as NEMOL, how is GRAPE written?",
+      "solution": "Swap first and last letters: G…E → E…G, middle RAP unchanged → **ERAPG**."
+     }
+    },
+    {
+     "id": "cd-p4",
+     "name": "Vowel–consonant rule (different change for vowels and consonants)",
+     "frequency": "occasional",
+     "howToSpot": "Differences are not constant: vowels all move one way (say +1) while consonants move another way (say −1, or not at all).",
+     "formula": null,
+     "logic": "1. Write the sample's differences under each letter.\n2. Group them: what happened to the vowels? what happened to the consonants?\n3. Code the new word letter by letter, first asking 'vowel or consonant?'.\n\nWhy it works: the examiner uses the letter type, not the slot, to decide the change.",
+     "example": {
+      "q": "If BASKET is written as ABRJFS, how is PENCIL written?",
+      "solution": "Vowels +1 (A→B, E→F), consonants −1 (B→A, S→R, K→J, T→S). PENCIL → P−1, E+1, N−1, C−1, I+1, L−1 = **OFMBJK**."
+     }
+    },
+    {
+     "id": "cd-p5",
+     "name": "Multi-step mixed coding",
+     "frequency": "common",
+     "howToSpot": "One simple rule does not explain the sample: e.g. letters are opposite AND shifted, or reversed AND shifted +1/−1 alternately, or letters are followed by a number.",
+     "formula": null,
+     "logic": "1. Test the simple rules first (shift, opposite, reverse).\n2. If a rule 'almost' works, the remaining difference is the second step (e.g. opposite letters that are all one step further).\n3. Apply the steps to the new word in the same order.\n4. For letter+number codes, solve the letters and the number separately.\n\nWhy it works: every mixed rule is two basic rules in a row.",
+     "example": {
+      "q": "If BAD is written as ZAX, how is CUP written?",
+      "solution": "Opposite of BAD = YZW; +1 → ZAX ✓. CUP → opposite XFK → +1 → **YGL**."
+     }
+    }
+   ]
+  },
+  {
+   "id": "letter-shift-coding",
+   "title": "Letter shift coding",
+   "concept": "The bread and butter of CGL coding. The code moves every letter by the same number of positions (or by a fixed per-index pattern). Compute the shift from the sample pair once; the same shift (or tuple) applies to the probe.\n\n**Worked skeleton**: If MANGO is coded **OCPIQ**, the tuple is (+2, +2, +2, +2, +2); so JUICE (+2 on each) = **LWKEG**. If the tuple comes out mixed — (+1, +2, +3, +1, +2) — it is still applied slot-wise exactly.\n\nShifts behave mod 26: X + 5 = C. Fluency with EJOTY anchors (E=5, J=10, O=15, T=20, Y=25) makes every jump a small hop from a known letter.",
+   "formulas": [
+    {
+     "name": "Shift tuple",
+     "tex": "Q(code_i) = Q(word_i) + d_i \\pmod{26}",
+     "note": "Compute d_i from the sample; apply the identical tuple to the probe."
+    },
+    {
+     "name": "Decode = negative shift",
+     "tex": "Q(word_i) = Q(code_i) - d_i \\pmod{26}",
+     "note": "For decoding questions subtract the tuple instead of adding."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Anchor hops, not counting",
+     "body": "For shift +k, jump from the nearest EJOTY anchor: to shift W by 4, note W = Y − 2, so W + 4 = Y + 2 = A. Two small hops beat counting W→X→Y→Z→A.",
+     "example": {
+      "q": "**Q.** If MANGO = OCPIQ (+2), code JUICE.\n\n**Sol.** J+2 = L, U+2 = W, I+2 = K, C+2 = E, E+2 = G → **LWKEG**.",
+      "solution": "EJOTY + small hops keeps shift arithmetic error-free at speed."
+     }
+    },
+    {
+     "title": "Decode questions: run the tuple backwards",
+     "body": "When a coded word is given and the original is asked, subtract the tuple instead of adding. Reverse every hop.",
+     "example": {
+      "q": "**Q.** If MANGO is coded as **OCPIQ**, which word is coded as **LWKEG**?\n\n**Sol.** MANGO → OCPIQ is +2 on every letter, so decoding means −2 on every letter: L→J, W→U, K→I, E→C, G→E → **JUICE**.",
+      "solution": "Decoding is the same question played backwards — subtract the shift, don't invent a new rule."
+     }
+    }
+   ],
+   "mistakes": [
+    "Applying a +2 found on a 5-letter sample to only 4 letters of the probe (misalignment).",
+    "Sign errors on decode questions — the shift runs the opposite way.",
+    "Missing a per-index rising tuple and treating it as flat."
+   ]
+  },
+  {
+   "id": "reverse-coding",
+   "title": "Reversal and reverse-plus-shift coding",
+   "concept": "The code is the word written **backwards**, possibly after shifting each letter. Test for it in one move: read the coded word backwards; if you see the sample word (or a uniform shift of it), the rule is reverse (+ shift k).\n\n**Skeleton**: LOGIC → CIGOL (pure reversal). TABLE → FMCBU (reverse TABLE → ELBAT, then +1 per letter). Order matters: check 'reverse then shift' first, then 'shift then reverse' — both appear in CGL and they are *not* the same rule.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Backwards reading test",
+     "body": "Read the code from right to left. If it equals the sample word, code new words by writing them backwards. If it is *almost* the sample with every letter off by the same k, code new words by reverse-then-shift.",
+     "example": {
+      "q": "**Q.** If TABLE = FMCBU (reverse + 1), code CHAIR.\n\n**Sol.** CHAIR reversed = RIAHC; shift +1 → **SJBID**.",
+      "solution": "One backwards read identifies the family; the shift value falls out of the first letter."
+     }
+    }
+   ],
+   "mistakes": [
+    "Reversing but forgetting the extra shift (or shifting before reversing when the sample did it the other way).",
+    "Reversing the probe but keeping the sample's letter order in the middle letters.",
+    "Applying reversal to decode questions without un-reversing the shift as well."
+   ]
+  },
+  {
+   "id": "number-coding",
+   "title": "Number coding",
+   "concept": "Words are coded as numbers. The code is built from alphabet positions (A=1 ... Z=26) by one of:\n\n1. **Position sum**: CAT = 3 + 1 + 20 = 24.\n2. **Sum plus/minus constant**: CAT = 24 + 5 = 29.\n3. **Sum times constant**: CAT = 24 × 2 = 48.\n4. **Position-weighted sum**: CAT = 3×1 + 1×2 + 20×3 = 65.\n5. **Reverse-position coding**: A=26 ... Z=1 (equivalently 27 − position); CAT = 24+26+7 = 57.\n\nDecode the rule by computing the position sum of the sample word and comparing it with the code: the offset (plus 5? times 2? weighted?) is usually visible in one step. Reverse-position coding is spotted when long letters give *small* codes.",
+   "formulas": [
+    {
+     "name": "Position sum",
+     "tex": "\\text{code} = \\sum Q(w_i)",
+     "note": "Q = A1..Z26 positions."
+    },
+    {
+     "name": "Affine code",
+     "tex": "\\text{code} = k \\cdot \\sum Q(w_i) + r",
+     "note": "Fit k and r from the sample pair."
+    },
+    {
+     "name": "Weighted sum",
+     "tex": "\\text{code} = \\sum i \\cdot Q(w_i)",
+     "note": "Letter i multiplies its position."
+    },
+    {
+     "name": "Reverse positions",
+     "tex": "Q^{rev}(c) = 27 - Q(c)",
+     "note": "Z=1 ... A=26; small codes for long words."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "One sample fixes the affine code",
+     "body": "Compute the position sum S of the sample. If code = S → plain sum. If code − S is constant-looking (5, 10...) the rule is S + r. If code/S is a clean 2 or 3, the rule is k·S. If neither fits, try the weighted sum.",
+     "example": {
+      "q": "**Q.** If SUN = 54 (19+21+14), code MOON.\n\n**Sol.** Code = plain position sum. M+O+O+N = 13+15+15+14 = **57**.",
+      "solution": "Position sum first — it explains over half of CGL number codes."
+     }
+    },
+    {
+     "title": "Digit-sum shortcut for 9-heavy checks",
+     "body": "Position sums reduce nicely: letters at EJOTY anchors contribute 5/10/15/20/25. Sums are easy to verify by grouping anchors instead of adding letter by letter.",
+     "example": {
+      "q": "**Q.** In position-sum coding, is CAT coded as 24?\n\n**Sol.** C = 3, A = 1 and T = Y − 5 = 25 − 5 = 20. Total = 3 + 1 + 20 = **24** ✓.",
+      "solution": "Anchors (E=5, J=10, O=15, T=20, Y=25) turn position look-ups into small ± adjustments."
+     }
+    }
+   ],
+   "mistakes": [
+    "Using A=0 indexing by mistake — CGL always uses A=1 unless a sample proves otherwise.",
+    "Adding the constant to each letter instead of to the total (S + r per letter vs once).",
+    "Ignoring the weighted variant when the plain sum is off by a non-constant amount."
+   ]
+  },
+  {
+   "id": "symbol-coding",
+   "title": "Symbol and digit coding",
+   "concept": "Letters (or digits) are replaced by **symbols or digits**, one fixed code per letter. Either a code table is given (sometimes with extra conditions), or you get a few words with their codes and must work out which symbol stands for which letter by matching common letters. Once a letter's code is known it never changes inside the question.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Common letters ↔ common symbols",
+     "body": "When two coded words share letters, their codes share exactly the same number of symbols. Circle the shared letters and the shared symbols — they belong to each other. What is left over in each word belongs to the left-over letters.",
+     "example": {
+      "q": "**Q.** 'PEN' is coded '@ # %' and 'NET' is coded '% & #' (order of symbols may differ). What is the code for P?",
+      "solution": "Common letters E, N ↔ common symbols #, %. So P takes the remaining symbol of PEN → **@** (and T = &)."
+     }
+    },
+    {
+     "title": "Conditions before the table",
+     "body": "In condition-type questions, first check the conditions on the letter group (first letter vowel? last letter consonant?). Only if no condition applies do you code straight from the table.",
+     "example": null
+    }
+   ],
+   "mistakes": [
+    "Assuming symbols appear in the same order as the letters when the question says the order may differ.",
+    "Coding straight from the table without first checking whether a condition applies.",
+    "Applying two conditions at once when the question says only the first matching condition applies."
+   ]
+  },
+  {
+   "id": "substitution-coding",
+   "title": "Substitution and sentence coding",
+   "concept": "Two formats, no arithmetic:\n\n1. **Object renaming**: 'sky is called sea, sea is called water...' — answer from the renaming chain, never from reality. If fish live in the sea and sea is called water, fish live in **water**.\n2. **Sentence code matching**: 'red light = pa ka', 'green light = ka na' — align words to code-words across sentences. Words repeated across sentences keep the same code-word; eliminate to decode singletons.\n\nMethod for sentence codes: list code-words per sentence side by side; the shared word's code appears in both lists; whatever remains is unique by elimination.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Elimination table",
+     "body": "Write each sentence and its code as two aligned rows. Common words are common code-words — tick them. The word asked about then either appears directly or is the lone unmatched item.",
+     "example": {
+      "q": "**Q.** 'red light' = pa ka; 'green light' = ka na. Code for **red**?\n\n**Sol.** 'light' is common to both sentences → light = ka. In sentence 1, red is the other word → red = **pa**.",
+      "solution": "Cross out matched pairs; the answer is whatever is left unpaired."
+     }
+    }
+   ],
+   "mistakes": [
+    "Answering from real-world knowledge ('fish live in water') instead of the renaming chain.",
+    "Assuming code-word order matches word order — sentence codes often reverse it; alignment is by elimination, not position.",
+    "Missing a repeated word because of a plural/singular change (light vs lights) — check word stems."
+   ]
+  },
+  {
+   "id": "language-coding",
+   "title": "Language (sentence) coding with common words",
+   "concept": "A 'code language' writes whole sentences as code words: 'pa ka ni' for 'good morning sir'. The code words are usually **jumbled** (not in the same order as the words). You find a word's code by comparing sentences: a word common to two sentences has its code among the code words common to those two sentences. When the comparison leaves two choices, the code **cannot be determined**.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Intersect, then subtract",
+     "body": "For a word, take the code words of every sentence that contains it (intersect), then remove code words already fixed for other words. One code left = answer; two left = cannot be determined (unless the options force it).",
+     "example": {
+      "q": "**Q.** 'sun is hot' = 'ta mo ri', 'sun is bright' = 'ri ze mo'. Code for 'hot'?",
+      "solution": "'sun is' is common → 'ri mo' is common. Sentence 1 left: hot ↔ **ta**."
+     }
+    }
+   ],
+   "mistakes": [
+    "Matching code words by position — the code order is usually jumbled.",
+    "Picking one of two equally possible codes instead of answering 'cannot be determined'.",
+    "Forgetting that a code word already fixed for another word cannot be reused."
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Letter-shift coding of a new word",
+   "frequency": "very common",
+   "howToSpot": "A sample word and its code are given ('If PEN is written as RGP...'). Every letter of the code is a fixed number of places ahead of or behind the original letter, or the shift changes slot by slot.",
+   "approach": "Write the shift under each letter of the sample (e.g. +2, +2, +2). Apply exactly the same shifts to the new word. Remember that after Z you come back to A.",
+   "subtopic": "letter-shift-coding",
+   "example": {
+    "q": "If PEN is written as RGP, how is RING written?",
+    "solution": "P→R, E→G, N→P: +2 each. R+2 = T, I+2 = K, N+2 = P, G+2 = I → **TKPI**."
+   }
+  },
+  {
+   "pattern": "Decoding: find the original word",
+   "frequency": "common",
+   "howToSpot": "The code of the new word is given and the real word is asked ('Which word is written as TKPI?').",
+   "approach": "Find the rule from the sample, then run it backwards: subtract where the rule adds, un-reverse where it reverses. Check the answer by coding it forward once.",
+   "subtopic": "letter-shift-coding",
+   "example": {
+    "q": "If PEN is written as RGP, which word is written as TKPI?",
+    "solution": "The rule is +2, so decode with −2: T→R, K→I, P→N, I→G → **RING**."
+   }
+  },
+  {
+   "pattern": "Reversal and reverse-plus-shift coding",
+   "frequency": "common",
+   "howToSpot": "Read the code from right to left. If you see the original word, or the original word with every letter moved by the same amount, the rule contains a reversal.",
+   "approach": "Reverse the new word, then apply the same shift as the sample. Keep the same order of steps (reverse then shift, or shift then reverse) that the sample used.",
+   "subtopic": "reverse-coding",
+   "example": {
+    "q": "If GOLD is written as EMPH, how is SILK written?",
+    "solution": "GOLD +1 = HPME; reversed = EMPH ✓. SILK +1 = TJML; reversed = **LMJT**."
+   }
+  },
+  {
+   "pattern": "Opposite-letter coding",
+   "frequency": "common",
+   "howToSpot": "Each code letter and its original letter add up to 27 in position (A↔Z, M↔N). Codes look 'far away' from the word, e.g. MILK → NROP.",
+   "approach": "Confirm the 27 total on two letters, then write the opposite of each letter of the new word. If the code is also reversed, reverse at the end.",
+   "subtopic": "reverse-coding",
+   "example": {
+    "q": "If MILK is written as NROP, how is CAKE written?",
+    "solution": "M(13)+N(14) = 27, so opposite letters. C↔X, A↔Z, K↔P, E↔V → **XZPV**."
+   }
+  },
+  {
+   "pattern": "Word to number coding",
+   "frequency": "very common",
+   "howToSpot": "A word is given a number ('BAT = 23'). The number is built from alphabet positions: plain sum, sum plus/minus or times a constant, weighted sum, reverse positions, or the letter positions written side by side.",
+   "approach": "Find the plain position sum of the sample first and compare it with the code. The gap (+k, ×k, or a letter-count link) is the rule. Apply the same rule to the new word.",
+   "subtopic": "number-coding",
+   "example": {
+    "q": "If BAT = 23, what is CAR?",
+    "solution": "B+A+T = 2+1+20 = 23, a plain sum. C+A+R = 3+1+18 = **22**."
+   }
+  },
+  {
+   "pattern": "Substitution (renaming) chains",
+   "frequency": "common",
+   "howToSpot": "'Sky is called sea, sea is called water...' followed by a real-life question such as 'where do fish live?'",
+   "approach": "First answer the real-life question in your head (fish live in the sea). Then give the code name of that answer (sea is called water) — rename exactly once.",
+   "subtopic": "substitution-coding",
+   "example": {
+    "q": "If milk is called water, water is called juice and juice is called tea, what do we drink when thirsty?",
+    "solution": "Real answer: water. 'Water' is called **juice** in this code."
+   }
+  },
+  {
+   "pattern": "Language coding with common words",
+   "frequency": "very common",
+   "howToSpot": "Two to four sentences with jumbled code words ('good morning sir' = 'pa ka ni'); code of one word asked, or 'which could be the code', or 'cannot be determined'.",
+   "approach": "Take the sentences that contain the word, keep the code words common to all of them, remove codes already fixed for other words. One code left = answer; two left = cannot be determined.",
+   "subtopic": "language-coding",
+   "example": {
+    "q": "'sun is hot' = 'ta mo ri' and 'sun is bright' = 'ri ze mo'. What is the code for 'bright'?",
+    "solution": "'sun is' ↔ 'ri mo' (common). Sentence 2 left over: bright ↔ **ze**."
+   }
+  },
+  {
+   "pattern": "Letter-to-symbol / digit coding",
+   "frequency": "common",
+   "howToSpot": "Letters or digits are replaced by symbols, either from a given table (sometimes with conditions) or from a few coded words that share letters.",
+   "approach": "Match shared letters with shared symbols across the given words. For tables, check the conditions first, then code letter by letter.",
+   "subtopic": "symbol-coding",
+   "example": {
+    "q": "If ROSE = 6821 and SORE = 2861, what is the code for O?",
+    "solution": "The digits follow the letter order: R = 6, O = 8, S = 2, E = 1. Check: SORE = 2 8 6 1 ✓. So O = **8**."
+   }
+  },
+  {
+   "pattern": "Rearrangement and mixed-rule coding",
+   "frequency": "occasional",
+   "howToSpot": "The code uses the same letters as the word but in a new order (pairs swapped, halves reversed, first and last interchanged), or two rules act together (vowels +1 and consonants −1).",
+   "approach": "Compare letter by letter: are the letters the same (rearrangement) or changed (shift)? For rearrangement, note which slot went where; for mixed rules, note which group of letters got which change.",
+   "subtopic": "coding-idea",
+   "example": {
+    "q": "If PLANET is written as LPNATE, how is FOREST written?",
+    "solution": "Letters are swapped in pairs: PL→LP, AN→NA, ET→TE. FO→OF, RE→ER, ST→TS → **OFERTS**."
+   }
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "rsn-coding-ex1",
+   "q": "In a certain code, **CAT is written as DBU**. How is **DELHI** written in that code?",
+   "figure": null,
+   "options": [
+    "CFMIJ",
+    "EFMIJ",
+    "EFMIK",
+    "DELIH"
+   ],
+   "answer": 1,
+   "solution": "CAT → DBU: every letter moves **+1** (C→D, A→B, T→U). DELHI + 1 = D→E, E→F, L→M, H→I, I→J → **EFMIJ**.",
+   "shortcut": "Flat shift found on the sample; run the probe through the same +1 in one pass.",
+   "difficulty": "easy",
+   "subtopic": "letter-shift-coding",
+   "pattern": "direct letter-shift coding of a new word",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-coding-ex2",
+   "q": "In a certain code, **RAIN is written as VEMR**. How is **CLOUD** written in that code?",
+   "figure": null,
+   "options": [
+    "GQSYH",
+    "GPSYH",
+    "GPTYI",
+    "GQTYH"
+   ],
+   "answer": 1,
+   "solution": "R→V = +4, A→E = +4, I→M = +4, N→R = +4: flat **+4**. CLOUD + 4 = C→G, L→P, O→S, U→Y, D→H → **GPSYH**.",
+   "shortcut": "One subtraction row gives +4; C jumps to G via the E anchor (E−2 = C, G = E+2).",
+   "difficulty": "easy",
+   "subtopic": "letter-shift-coding",
+   "pattern": "direct letter-shift coding of a new word",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-coding-ex3",
+   "q": "In a certain code, **FLOW is written as UOLD**. How is **MEAT** written in that code?",
+   "figure": null,
+   "options": [
+    "NVZG",
+    "NVZI",
+    "NFZG",
+    "MUZG"
+   ],
+   "answer": 0,
+   "solution": "F(6)→U(21): 6+21 = 27 ✓; L(12)→O(15): 27 ✓ — opposite letters (Atbash). M↔N, E↔V, A↔Z, T↔G → **NVZG**.",
+   "shortcut": "Position sums of 27 confirm Atbash; read the probe straight through the opposite-pairs table.",
+   "difficulty": "easy",
+   "subtopic": "letter-shift-coding",
+   "pattern": "opposite-letter (Atbash) coding",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-coding-ex4",
+   "q": "If **SUN is coded 54**, how is **MOON** coded? (code = sum of alphabet positions)",
+   "figure": null,
+   "options": [
+    "46",
+    "57",
+    "55",
+    "61"
+   ],
+   "answer": 1,
+   "solution": "Position sum: S(19) + U(21) + N(14) = 54 ✓ — the code is the plain position sum. MOON = 13 + 15 + 15 + 14 = **57**.",
+   "shortcut": "Group anchors: O = 15 each; M = J+3 = 13; N = O−1 = 14. Two O's make the sum quick.",
+   "difficulty": "easy",
+   "subtopic": "number-coding",
+   "pattern": "coding by position sum (number coding)",
+   "timeSec": 35
+  }
+ ],
+ "practice": [
+  {
+   "id": "rsn-coding-1",
+   "q": "In a certain code, **CUP is written as EWR**. How is **BOX** written in that code?",
+   "figure": null,
+   "options": [
+    "DQZ",
+    "DQY",
+    "EQZ",
+    "CPZ"
+   ],
+   "answer": 0,
+   "solution": "C→E = +2, U→W = +2, P→R = +2: flat **+2**. B+2 = D, O+2 = Q, X+2 = Z → **DQZ**.",
+   "shortcut": "Shift +2 read from the sample; X wraps? No — X(24)+2 = Z(26), no wrap needed.",
+   "difficulty": "easy",
+   "subtopic": "letter-shift-coding",
+   "pattern": "direct letter-shift coding of a new word",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-coding-2",
+   "q": "In a certain code, **CUP is written as EWR**. Which word is coded as **DNCEM**?",
+   "figure": null,
+   "options": [
+    "BLACK",
+    "CLACK",
+    "BLAKC",
+    "ALBCK"
+   ],
+   "answer": 0,
+   "solution": "CUP → EWR is **+2** per letter, so decoding means −2. DNCEM − 2: D→B, N→L, C→A, E→C, M→K → **BLACK**.",
+   "shortcut": "Decode = subtract the tuple; run the letters in one pass and the option word appears.",
+   "difficulty": "medium",
+   "subtopic": "letter-shift-coding",
+   "pattern": "decoding (reverse direction)",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-coding-3",
+   "q": "In a certain code, **CROWN is written as DTRAS**. How is **BLADE** written in that code?",
+   "figure": null,
+   "options": [
+    "DNCHJ",
+    "CNDHJ",
+    "CNDJH",
+    "CMDHJ"
+   ],
+   "answer": 1,
+   "solution": "C→D = +1, R→T = +2, O→R = +3, W→A = +4 (wrap), N→S = +5: tuple (+1, +2, +3, +4, +5). BLADE: B+1 = C, L+2 = N, A+3 = D, D+4 = H, E+5 = J → **CNDHJ**.",
+   "shortcut": "Rising tuple — apply slot by slot; the W→A wrap is just (23+4)−26 = 1 = A.",
+   "difficulty": "medium",
+   "subtopic": "letter-shift-coding",
+   "pattern": "mixed per-index shift coding",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-coding-4",
+   "q": "In a certain code, **HIDE is written as SRWV**. How is **GOAT** written in that code?",
+   "figure": null,
+   "options": [
+    "SLZG",
+    "TMZG",
+    "TLZG",
+    "TLZT"
+   ],
+   "answer": 2,
+   "solution": "H(8)+S(19) = 27, I(9)+R(18) = 27 — **opposite letters**. G↔T, O↔L, A↔Z, T↔G → **TLZG**.",
+   "shortcut": "27-sum check, then the opposite-pairs table does the whole question.",
+   "difficulty": "easy",
+   "subtopic": "letter-shift-coding",
+   "pattern": "opposite-letter (Atbash) coding",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-coding-5",
+   "q": "In a certain code, **LOGIC is written as CIGOL**. How is **REASON** written in that code?",
+   "figure": null,
+   "options": [
+    "SOAERN",
+    "NOSAER",
+    "NOSEAR",
+    "RAESON"
+   ],
+   "answer": 1,
+   "solution": "CIGOL read backwards is LOGIC — **pure reversal**. REASON reversed = **NOSAER**.",
+   "shortcut": "Backwards-read test: code reversed = sample ⇒ just reverse the probe.",
+   "difficulty": "easy",
+   "subtopic": "reverse-coding",
+   "pattern": "reversal or reverse+shift coding",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-coding-6",
+   "q": "In a certain code, **TABLE is written as FMCBU**. How is **CHAIR** written in that code?",
+   "figure": null,
+   "options": [
+    "TJBJE",
+    "SBIDJ",
+    "SJBID",
+    "RIAHC"
+   ],
+   "answer": 2,
+   "solution": "TABLE reversed = ELBAT; each letter +1 → FMCBU ✓ (rule: **reverse, then +1**). CHAIR reversed = RIAHC; +1 → **SJBID**.",
+   "shortcut": "Reverse first, then shift — keep the order the sample used.",
+   "difficulty": "medium",
+   "subtopic": "reverse-coding",
+   "pattern": "reversal or reverse+shift coding",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-coding-7",
+   "q": "In a certain code, **SUN is coded 54** (sum of alphabet positions). How is **DOG** coded?",
+   "figure": null,
+   "options": [
+    "24",
+    "30",
+    "26",
+    "28"
+   ],
+   "answer": 2,
+   "solution": "S+U+N = 19+21+14 = 54 ✓ plain sum. D+O+G = 4+15+7 = **26**.",
+   "shortcut": "Position sum via anchors: G = E+2 = 7, O = 15, D = E−1 = 4.",
+   "difficulty": "easy",
+   "subtopic": "number-coding",
+   "pattern": "coding by position sum (number coding)",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-coding-8",
+   "q": "In a certain code, **CAB is coded 16**. How is **PEN** coded in that code?",
+   "figure": null,
+   "options": [
+    "48",
+    "45",
+    "55",
+    "52"
+   ],
+   "answer": 1,
+   "solution": "C+A+B = 3+1+2 = 6; the code is 16 = 6 + **10**. PEN = 16 + 5 + 14 = 35; 35 + 10 = **45**.",
+   "shortcut": "Sample sum 6 vs code 16 reveals the +10 offset; add it once to the probe's sum.",
+   "difficulty": "medium",
+   "subtopic": "number-coding",
+   "pattern": "coding by position sum (number coding)",
+   "timeSec": 40
+  },
+  {
+   "id": "rsn-coding-9",
+   "q": "In a certain code, **BAG is coded 25**: each letter's position is multiplied by its place in the word and added. How is **DEAF** coded?",
+   "figure": null,
+   "options": [
+    "14",
+    "42",
+    "47",
+    "41"
+   ],
+   "answer": 3,
+   "solution": "BAG = B×1 + A×2 + G×3 = 2 + 2 + 21 = 25 ✓. DEAF = 4×1 + 5×2 + 1×3 + 6×4 = 4 + 10 + 3 + 24 = **41**.",
+   "shortcut": "Weighted coding: multiply each letter by 1st, 2nd, 3rd... place, then add.",
+   "difficulty": "hard",
+   "subtopic": "number-coding",
+   "pattern": "coding by position sum (number coding)",
+   "timeSec": 50
+  },
+  {
+   "id": "rsn-coding-10",
+   "q": "In a certain code, **CAT is coded 57** (A=26, B=25, ... Z=1). How is **DOG** coded?",
+   "figure": null,
+   "options": [
+    "52",
+    "55",
+    "26",
+    "45"
+   ],
+   "answer": 1,
+   "solution": "Reverse positions: C = 24, A = 26, T = 7 → 57 ✓. D = 23, O = 12, G = 20 → 23+12+20 = **55**.",
+   "shortcut": "Reverse-position coding = 27 − position per letter; Z=1, A=26.",
+   "difficulty": "medium",
+   "subtopic": "number-coding",
+   "pattern": "coding by position sum (number coding)",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-coding-11",
+   "q": "If **sky is called sea**, **sea is called water**, **water is called air**, and **air is called cloud**, where do **fishes** live?",
+   "figure": null,
+   "options": [
+    "Sea",
+    "Air",
+    "Cloud",
+    "Water"
+   ],
+   "answer": 3,
+   "solution": "Fishes live in the **sea** (reality). But 'sea' is called **water** in this code → fishes live in **water**.",
+   "shortcut": "Find the real answer first, then apply the rename — one substitution step.",
+   "difficulty": "easy",
+   "subtopic": "substitution-coding",
+   "pattern": "substitution (renaming) questions",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-coding-12",
+   "q": "If **white is called blue**, **blue is called red**, **red is called green**, **green is called black**, **black is called yellow** — what is the colour of **clear daylight sky**?",
+   "figure": null,
+   "options": [
+    "Red",
+    "Blue",
+    "Green",
+    "Yellow"
+   ],
+   "answer": 0,
+   "solution": "The sky's real colour is **blue**; 'blue' is called **red** in this code → **Red**.",
+   "shortcut": "Two-step rename: reality → real colour → code name of that colour.",
+   "difficulty": "easy",
+   "subtopic": "substitution-coding",
+   "pattern": "substitution (renaming) questions",
+   "timeSec": 30
+  },
+  {
+   "id": "rsn-coding-13",
+   "q": "In a code language, **'red light' is written as 'pa ka'** and **'green light' is written as 'ka na'**. What is the code for **red**?",
+   "figure": null,
+   "options": [
+    "pa or na",
+    "pa",
+    "ka",
+    "na"
+   ],
+   "answer": 1,
+   "solution": "'light' is common to both sentences and 'ka' is the common code-word → light = ka. In sentence 1 the remaining word 'red' takes the remaining code **pa**.",
+   "shortcut": "Common word ↔ common code-word; the leftover pair is your answer.",
+   "difficulty": "easy",
+   "subtopic": "substitution-coding",
+   "pattern": "sentence code matching by elimination",
+   "timeSec": 35
+  },
+  {
+   "id": "rsn-coding-14",
+   "q": "**'birds fly high' = 'lo pe ni'**, **'high skies shine' = 'ni ta co'**, **'birds shine bright' = 'pe co ra'**. What is the code for **birds**?",
+   "figure": null,
+   "options": [
+    "ni",
+    "co",
+    "ra",
+    "pe"
+   ],
+   "answer": 3,
+   "solution": "Sentence 1: birds fly high → lo pe ni. Sentence 3: birds shine bright → pe co ra. 'birds' is common to 1 and 3, whose common code-word is **pe** ('high' = ni sits in sentences 1-2; 'shine' = co in 2-3) → birds = **pe**.",
+   "shortcut": "Overlap coding: the code-word shared by exactly the sentences sharing the word.",
+   "difficulty": "medium",
+   "subtopic": "substitution-coding",
+   "pattern": "sentence code matching by elimination",
+   "timeSec": 45
+  },
+  {
+   "id": "rsn-coding-15",
+   "q": "In a certain code, **'TREE' is written as 'USFF48'** — each letter moves one step forward (TREE → USFF) and the word's position sum (20+18+5+5 = 48) is written after it. How is **LEAF** written?",
+   "figure": null,
+   "options": [
+    "MFBG24",
+    "MFBG52",
+    "MFAG24",
+    "MFBG48"
+   ],
+   "answer": 0,
+   "solution": "Letter part: LEAF +1 → M, F, B, G = **MFBG**. Number part: L(12)+E(5)+A(1)+F(6) = **24**. Code = **MFBG24**.",
+   "shortcut": "Two-part code: shift the letters once; recompute the number from the probe — never reuse the sample's number.",
+   "difficulty": "hard",
+   "subtopic": "number-coding",
+   "pattern": "mixed per-index shift coding",
+   "timeSec": 50
+  },
+  {
+   "id": "coding-idea-p01",
+   "q": "In a certain code, **PLANET** is written as **LPNATE**. How is **GARDEN** written in that code?",
+   "figure": null,
+   "options": [
+    "AGDREN",
+    "AGDRNE",
+    "AGRDNE",
+    "NEDRAG"
+   ],
+   "answer": 1,
+   "solution": "PLANET → PL | AN | ET → LP | NA | TE: each pair of letters is swapped. GARDEN → GA | RD | EN → **AGDRNE**.",
+   "shortcut": "Same letters in the code = rearrangement. Swap in pairs from the left.",
+   "difficulty": "easy",
+   "subtopic": "coding-idea",
+   "pattern": "cd-p1",
+   "timeSec": 30
+  },
+  {
+   "id": "coding-idea-p02",
+   "q": "In a certain code, **SPORT** is written as **PSROT**. How is **WINDOW** written in that code?",
+   "figure": null,
+   "options": [
+    "WODNIW",
+    "IWDNWO",
+    "IWNDWO",
+    "IWDNOW"
+   ],
+   "answer": 1,
+   "solution": "SPORT → SP | OR | T → PS | RO | T (pairs swapped, last odd letter stays). WINDOW → WI | ND | OW → **IWDNWO**.",
+   "shortcut": "Odd sample, even target: every pair is swapped, nothing is left over.",
+   "difficulty": "medium",
+   "subtopic": "coding-idea",
+   "pattern": "cd-p1",
+   "timeSec": 40
+  },
+  {
+   "id": "coding-idea-p03",
+   "q": "In a certain code, **CANDLE** is written as **ACDNEL**. Which word is written as **ISVLRE** in that code?",
+   "figure": null,
+   "options": [
+    "LIVERS",
+    "SLIVER",
+    "SILVER",
+    "SILVRE"
+   ],
+   "answer": 2,
+   "solution": "CANDLE → CA | ND | LE → AC | DN | EL: pairs swapped. Swapping pairs again undoes the code: IS | VL | RE → SI | LV | ER → **SILVER**.",
+   "shortcut": "A pair swap is its own reverse — apply the same swap to the code to get the word.",
+   "difficulty": "medium",
+   "subtopic": "coding-idea",
+   "pattern": "cd-p1",
+   "timeSec": 40
+  },
+  {
+   "id": "coding-idea-p04",
+   "q": "In a certain code, **MONKEY** is written as **NOMYEK**. How is **GINGER** written in that code?",
+   "figure": null,
+   "options": [
+    "NIGREG",
+    "REGNIG",
+    "NIGERG",
+    "IGNEGR"
+   ],
+   "answer": 0,
+   "solution": "MONKEY → MON | KEY → NOM | YEK: each half written backwards. GINGER → GIN | GER → NIG | REG → **NIGREG**.",
+   "shortcut": "Read each half of the code backwards — you get MON and KEY.",
+   "difficulty": "easy",
+   "subtopic": "coding-idea",
+   "pattern": "cd-p2",
+   "timeSec": 30
+  },
+  {
+   "id": "coding-idea-p05",
+   "q": "In a certain code, **CAMEL** is written as **ACMLE**. How is **TIGER** written in that code?",
+   "figure": null,
+   "options": [
+    "ITGER",
+    "ITERG",
+    "REGIT",
+    "ITGRE"
+   ],
+   "answer": 3,
+   "solution": "CAMEL → CA | M | EL → AC | M | LE: the middle letter stays, each half is reversed. TIGER → TI | G | ER → IT | G | RE → **ITGRE**.",
+   "shortcut": "Odd length: keep the middle letter fixed and flip the two sides.",
+   "difficulty": "medium",
+   "subtopic": "coding-idea",
+   "pattern": "cd-p2",
+   "timeSec": 40
+  },
+  {
+   "id": "coding-idea-p06",
+   "q": "In a certain code, **MOTHER** is written as **UPNSFI**. How is **SISTER** written in that code?",
+   "figure": null,
+   "options": [
+    "TJTUFS",
+    "TJTSFU",
+    "RHRQDS",
+    "SISRET"
+   ],
+   "answer": 1,
+   "solution": "MOTHER → halves reversed = TOMREH; then each letter +1 → UPNSFI ✓. SISTER → SIS | TER → SISRET → +1 → **TJTSFU**.",
+   "shortcut": "Two steps: flip each half, then +1 on every letter. The code starts with U = T+1, and T is the last letter of the first half MOT — proof that the halves were flipped first.",
+   "difficulty": "hard",
+   "subtopic": "coding-idea",
+   "pattern": "cd-p2",
+   "timeSec": 60
+  },
+  {
+   "id": "coding-idea-p07",
+   "q": "In a certain code, **LEMON** is written as **NEMOL**. How is **GRAPE** written in that code?",
+   "figure": null,
+   "options": [
+    "ERAPE",
+    "ERAPG",
+    "EPARG",
+    "ERPAG"
+   ],
+   "answer": 1,
+   "solution": "In LEMON → NEMOL only the first and last letters (L, N) have changed places. GRAPE → **ERAPG**.",
+   "shortcut": "Middle letters unchanged → only the ends swap.",
+   "difficulty": "easy",
+   "subtopic": "coding-idea",
+   "pattern": "cd-p3",
+   "timeSec": 30
+  },
+  {
+   "id": "coding-idea-p08",
+   "q": "In a certain code, **PENCIL** is written as **LFODJP**. How is **MARKET** written in that code?",
+   "figure": null,
+   "options": [
+    "TARKEM",
+    "TBSLFM",
+    "TZQJDM",
+    "MBSLFT"
+   ],
+   "answer": 1,
+   "solution": "PENCIL → LFODJP: the first and last letters are interchanged (P…L → L…P) and the middle letters ENCI each move +1 → FODJ. MARKET: T…M at the ends, middle ARKE +1 → BSLF → **TBSLFM**.",
+   "shortcut": "Two jobs: swap the ends, shift the middle by the same +1.",
+   "difficulty": "medium",
+   "subtopic": "coding-idea",
+   "pattern": "cd-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "coding-idea-p09",
+   "q": "In a certain code, **BASKET** is written as **ABRJFS**. How is **PENCIL** written in that code?",
+   "figure": null,
+   "options": [
+    "ODMBHK",
+    "QDODHM",
+    "QFODJM",
+    "OFMBJK"
+   ],
+   "answer": 3,
+   "solution": "BASKET → ABRJFS: B→A (−1), A→B (+1), S→R (−1), K→J (−1), E→F (+1), T→S (−1). Vowels (A, E) move +1, consonants move −1. PENCIL: P−1 = O, E+1 = F, N−1 = M, C−1 = B, I+1 = J, L−1 = K → **OFMBJK**.",
+   "shortcut": "Mark vowels first; they are the only letters that go forward.",
+   "difficulty": "medium",
+   "subtopic": "coding-idea",
+   "pattern": "cd-p4",
+   "timeSec": 50
+  },
+  {
+   "id": "coding-idea-p10",
+   "q": "In a certain code, **MANGO** is written as **OAPIO**. How is **RIVER** written in that code?",
+   "figure": null,
+   "options": [
+    "TIXET",
+    "TKXGT",
+    "RKVGR",
+    "SIWES"
+   ],
+   "answer": 0,
+   "solution": "MANGO → OAPIO: M→O (+2), A→A (+0), N→P (+2), G→I (+2), O→O (+0). Vowels (A, O) stay the same; each consonant moves +2. RIVER: R+2 = T, I stays, V+2 = X, E stays, R+2 = T → **TIXET**.",
+   "shortcut": "Vowels unchanged in the sample → keep them unchanged; shift only consonants.",
+   "difficulty": "medium",
+   "subtopic": "coding-idea",
+   "pattern": "cd-p4",
+   "timeSec": 45
+  },
+  {
+   "id": "coding-idea-p11",
+   "q": "In a certain code, **LOTUS** is written as **MNUTT**. Which of the following is the code for **TULIP**?",
+   "figure": null,
+   "options": [
+    "VTNHR",
+    "UVMJQ",
+    "UTMHQ",
+    "SVKJO"
+   ],
+   "answer": 2,
+   "solution": "LOTUS → MNUTT: L→M (+1), O→N (−1), T→U (+1), U→T (−1), S→T (+1). Vowels move −1, consonants move +1. TULIP: T+1 = U, U−1 = T, L+1 = M, I−1 = H, P+1 = Q → **UTMHQ**.",
+   "shortcut": "The vowels are the letters that went backwards — spot them first.",
+   "difficulty": "hard",
+   "subtopic": "coding-idea",
+   "pattern": "cd-p4",
+   "timeSec": 50
+  },
+  {
+   "id": "coding-idea-p12",
+   "q": "In a certain code, **BAD** is written as **ZAX**. How is **CUP** written in that code?",
+   "figure": null,
+   "options": [
+    "YGL",
+    "DVQ",
+    "XFK",
+    "WEJ"
+   ],
+   "answer": 0,
+   "solution": "Opposite letters of BAD are Y, Z, W; each +1 gives Z, A, X ✓. CUP → opposites XFK → +1 → **YGL**.",
+   "shortcut": "When the code is 'almost opposite', the gap is the second step.",
+   "difficulty": "medium",
+   "subtopic": "coding-idea",
+   "pattern": "cd-p5",
+   "timeSec": 50
+  },
+  {
+   "id": "coding-idea-p13",
+   "q": "In a certain code, **FORM** is written as **NQPE**. How is **SALT** written in that code?",
+   "figure": null,
+   "options": [
+    "UMBT",
+    "TZMS",
+    "SMZT",
+    "UKBR"
+   ],
+   "answer": 3,
+   "solution": "FORM backwards = MROF; then +1, −1, +1, −1 → NQPE ✓. SALT backwards = TLAS; +1, −1, +1, −1 → **UKBR**.",
+   "shortcut": "Reverse first, then the alternating shift — the sample's first code letter N = M+1 comes from the last letter M, which proves the reversal came first.",
+   "difficulty": "hard",
+   "subtopic": "coding-idea",
+   "pattern": "cd-p5",
+   "timeSec": 60
+  },
+  {
+   "id": "coding-idea-p14",
+   "q": "In a certain code, **LAMP** is written as **NCOR8**. How is **TABLE** written in that code?",
+   "figure": null,
+   "options": [
+    "UBCMF10",
+    "VCDNG8",
+    "VCDNG40",
+    "VCDNG10"
+   ],
+   "answer": 3,
+   "solution": "Letter part: L→N (+2), A→C (+2), M→O (+2), P→R (+2) → +2 each. Number part: 8 = 2 × (4 letters). TABLE: letters +2 → VCDNG; number = 2 × 5 = 10 → **VCDNG10**.",
+   "shortcut": "Solve letters and number separately; recompute the number for the new word.",
+   "difficulty": "medium",
+   "subtopic": "coding-idea",
+   "pattern": "cd-p5",
+   "timeSec": 50
+  }
+ ]
+}

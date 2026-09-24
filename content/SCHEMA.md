@@ -1,6 +1,16 @@
-# ExamShortcut content schema (SSC CGL, Phase 1)
+# ExamShortcut content schema
 
-All content lives under `content/ssc-cgl/`. Every file is **UTF-8 JSON** and must parse with
+ExamShortcut is a multi-exam platform (SSC, Railways, Banking, state PSCs, entrance exams).
+Content is split in two layers:
+
+- `content/core/` — **exam-agnostic** section content shared by every exam: `sections/<sectionId>.json`,
+  `topics/<sectionId>/<topicId>.json`, `current-affairs/<year>.json`. Write it for any aspirant, not one exam.
+- `content/exams/<examId>/` — exam-specific data: `exam.json`, `cutoffs.json`, `weightage.json`, `mocks/`.
+
+(Older paths below that say `content/ssc-cgl/topics/...` now live at `content/core/topics/...`, and
+`content/ssc-cgl/{exam,cutoffs,weightage}.json` + `mocks/` live at `content/exams/ssc-cgl/`.)
+
+All content lives under `content/`. Every file is **UTF-8 JSON** and must parse with
 `py -3 -c "import json,sys; json.load(open(sys.argv[1], encoding='utf-8'))" <file>`.
 Validate every file you write. Invalid JSON breaks the site build.
 
@@ -132,3 +142,57 @@ English sets must include 1 reading comprehension passage (5 Qs) and 1 cloze tes
 (Tier 2: 2 RC + 1 cloze); put the passage text in each question's `q` via a shared lead-in
 (`"passage"` field allowed: `"passage": "Markdown passage"` on the first question of the group and
 `"group": "rc1"` on all questions in the group).
+
+
+---
+
+## Phase 2: deep subtopic content (added 2026-09-24)
+
+Every subtopic gains detailed notes and a catalogue of question types; every subtopic gets its own practice set.
+**Existing fields and ids stay** (URLs are indexed): never rename or delete a topic/subtopic id or an existing
+question. You may ADD new subtopics where the topic is missing an important sub-area (e.g. HCF/LCM of fractions).
+
+### Writing style (Phase 2)
+- **Simple English.** Short sentences, everyday words, explain every term the first time. Write for a
+  first-time aspirant from a Hindi/regional-medium school. No jargon without a one-line meaning.
+- Exam-neutral: say "competitive exams" / "SSC, Railway, Banking exams", not "SSC CGL" only.
+- **No links, URLs, "Source:" lines, book or website names.** Original writing only.
+- Markdown; headings inside `notes` use `###` only (the page already uses h2 for the subtopic title).
+- Math in `$...$` / `$$...$$`, backslashes doubled in JSON (build via a Python script + json.dump).
+
+### Subtopic additions
+```json
+{
+  "id": "...", "title": "...", "concept": "(keep — short intro)", "formulas": [...], "tricks": [...], "mistakes": [...],
+
+  "notes": "Markdown, 2500-5000 characters. The full lesson: what it is (with an everyday example),
+            the basic idea step by step, every rule/formula explained in words with a small worked number,
+            special cases, a quick-revision table or bullet list at the end (### Quick revision).",
+
+  "patterns": [                      // 4-8 question TYPES asked from this subtopic, most common first
+    {
+      "id": "hl-p1",                  // unique within the topic file
+      "name": "Largest number dividing a, b, c leaving the same remainder r",
+      "frequency": "very common | common | occasional",
+      "howToSpot": "Plain words: the words/shape of the question that tell you it is this type",
+      "formula": "LaTeX without $ (the dedicated formula for this type), or null for non-math types",
+      "logic": "Markdown: numbered steps to solve + one line on WHY it works",
+      "example": { "q": "Markdown question", "solution": "Markdown step-by-step solution, ending with the answer" }
+    }
+  ]
+}
+```
+
+### Topic-level `pyqPatterns` (rewrite richer, simple English)
+Keep the same keys, make each 2-4 sentences, add `example` and `subtopic`:
+`{ "pattern", "frequency", "howToSpot", "approach", "subtopic": "<subtopic id>", "example": { "q", "solution" } | null }`
+6-10 per topic, covering the whole topic.
+
+### Practice (per subtopic)
+Append new questions to the topic's `practice` array. Target **>= 12 practice questions per subtopic**
+(existing ones count) and **every pattern covered by >= 2 questions**. Each new question sets
+`"subtopic"` to its subtopic id and `"pattern"` to the pattern **id** (e.g. `"hl-p1"`). Mixed difficulty
+(~30% easy, 50% medium, 20% hard). New question ids: `<subtopicId>-pNN`, unique in the file.
+Same Question contract as above (4 unique options, 0-based answer, solution, shortcut when there is one).
+Quant/numeric answers MUST be computed by Python in your build script (assert the stored answer equals the
+computed value); if a question can't be verified, drop it.

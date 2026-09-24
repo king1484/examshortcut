@@ -8,8 +8,8 @@ export default function NotFound() {
       <p className="muted mt-2">The page you're looking for doesn't exist — but your preparation does.</p>
       <div className="flex gap-3 justify-center mt-6 flex-wrap">
         <Link href="/" className="btn btn-brand">Home</Link>
-        <Link href="/ssc-cgl/syllabus/" className="btn">Syllabus</Link>
-        <Link href="/ssc-cgl/mocks/" className="btn">Mock tests</Link>
+        <Link href="/learn/" className="btn">Subjects</Link>
+        <Link href="/exams/ssc-cgl/mocks/" className="btn">Mock tests</Link>
       </div>
     </div>
   );

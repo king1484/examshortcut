@@ -6,14 +6,15 @@ import { SiteHeader } from '@/components/SiteHeader';
 import { SwRegister } from '@/components/SwRegister';
 import { NavLoader } from '@/components/NavLoader';
 import Link from 'next/link';
+import { AuthProvider } from '@/components/Auth';
 
 const sans = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-sans', display: 'swap' });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://examshortcut.in'),
-  title: { default: 'ExamShortcut — Free SSC CGL preparation: syllabus, shortcuts, mocks, cutoffs', template: '%s · ExamShortcut' },
+  title: { default: 'ExamShortcut — Free government & entrance exam preparation: notes, shortcuts, mocks', template: '%s · ExamShortcut' },
   description:
-    'Everything for SSC CGL in one place, free: exam pattern, topic-wise notes, formulas & shortcut tricks, topic tests, full mocks in a real CBT interface, PYQ-pattern papers, cutoffs and current affairs.',
+    'Free preparation for SSC, Railway, Banking, Defence and entrance exams: detailed topic notes, every question type with formulas and shortcuts, practice sets, daily quiz, full mocks, cutoffs and 5 years of current affairs.',
   manifest: '/manifest.webmanifest',
   icons: { icon: '/icon.svg', apple: '/icon-192.png' },
   openGraph: { siteName: 'ExamShortcut', type: 'website', locale: 'en_IN' },
@@ -37,36 +38,40 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="min-h-screen flex flex-col">
+        <AuthProvider>
         <SiteHeader />
         <main className="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">{children}</main>
         <footer className="border-t mt-10" style={{ borderColor: 'var(--line)' }}>
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 text-sm faint space-y-3">
             <div className="flex flex-wrap gap-x-5 gap-y-2">
-              <Link href="/dashboard/">Dashboard</Link>
-              <Link href="/ssc-cgl/">SSC CGL</Link>
-              <Link href="/ssc-cgl/syllabus/">Syllabus</Link>
-              <Link href="/ssc-cgl/weightage/">Weightage</Link>
-              <Link href="/ssc-cgl/mocks/">Mock tests</Link>
-              <Link href="/ssc-cgl/formula-sheet/">Formula sheet</Link>
-              <Link href="/ssc-cgl/vocab/">Vocab bank</Link>
-              <Link href="/ssc-cgl/static-gk/">Static GK</Link>
-              <Link href="/ssc-cgl/cutoffs/">Cutoffs</Link>
-              <Link href="/ssc-cgl/score-calculator/">Score calculator</Link>
+              <Link href="/exams/">All exams</Link>
+              <Link href="/learn/">Subjects &amp; notes</Link>
+              <Link href="/quant/">Quantitative Aptitude</Link>
+              <Link href="/reasoning/">Reasoning</Link>
+              <Link href="/english/">English</Link>
+              <Link href="/ga/">General Awareness</Link>
+              <Link href="/computer/">Computer</Link>
+              <Link href="/daily-quiz/">Daily quiz</Link>
+              <Link href="/current-affairs/">Current affairs</Link>
+              <Link href="/exams/ssc-cgl/">SSC CGL</Link>
+              <Link href="/exams/ssc-cgl/mocks/">Mock tests</Link>
+              <Link href="/formula-sheet/">Formula sheet</Link>
+              <Link href="/vocab/">Vocab bank</Link>
+              <Link href="/static-gk/">Static GK</Link>
+              <Link href="/exams/ssc-cgl/cutoffs/">Cutoffs</Link>
+              <Link href="/exams/ssc-cgl/score-calculator/">Score calculator</Link>
+              <Link href="/dashboard/">My progress</Link>
               <Link href="/revision/">My revision</Link>
-              <Link href="/about/">About &amp; disclaimer</Link>
+              <Link href="/about/">About</Link>
               <Link href="/privacy/">Privacy</Link>
               <Link href="/contact/">Contact</Link>
             </div>
-            <p>
-              ExamShortcut is an independent learning platform. It is not affiliated with, endorsed by, or connected to the Staff Selection
-              Commission or any Government body. Always confirm dates and rules on the official website{' '}
-              <a className="underline" href="https://ssc.gov.in" target="_blank" rel="noopener noreferrer">ssc.gov.in</a>.
-            </p>
-            <p>© {new Date().getFullYear()} ExamShortcut · Free forever for core preparation · No login needed</p>
+            <p>© {new Date().getFullYear()} ExamShortcut</p>
           </div>
         </footer>
         <NavLoader />
         <SwRegister />
+        </AuthProvider>
       </body>
     </html>
   );

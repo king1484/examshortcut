@@ -29,8 +29,8 @@ export default function ContactPage() {
       <div className="card p-5 mt-4 text-sm">
         <p className="font-bold">Please don&apos;t ask us about:</p>
         <p className="mt-1">
-          Application status, admit-card problems, exam-centre changes or result grievances — these are handled only by SSC.
-          Raise them at <a className="underline" href="https://ssc.gov.in" target="_blank" rel="noopener noreferrer">ssc.gov.in</a> or your regional SSC office;
+          Application status, admit-card problems, exam-centre changes or result grievances — these are handled only by the exam body.
+          Raise them with the exam's official website or regional office;
           we cannot act on them.
         </p>
       </div>

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Dashboard } from '@/components/Dashboard';
+import { AuthGate } from '@/components/Auth';
 
 export const metadata: Metadata = {
   title: 'Dashboard — your preparation at a glance',
@@ -9,7 +10,9 @@ export const metadata: Metadata = {
 export default function DashboardPage() {
   return (
     <div className="max-w-5xl mx-auto">
-      <Dashboard />
+      <AuthGate what="see your dashboard">
+        <Dashboard />
+      </AuthGate>
     </div>
   );
 }

@@ -135,15 +135,15 @@ export function Dashboard() {
     const mistakeCount = Object.keys(mistakes).length;
 
     const plan: Array<{ icon: string; title: string; body: string; href: string; cta: string }> = [];
-    if (mockCount === 0) plan.push({ icon: '🖥️', title: 'Take your first full mock', body: 'The single best calibration: 100 questions, 60 minutes, real interface.', href: '/ssc-cgl/mocks/', cta: 'Start mock' });
-    else if (Date.now() - lastMockAt > 2 * DAY) plan.push({ icon: '🖥️', title: 'Mock day', body: 'Your last mock was over 48h ago. In the final week, alternate mocks and revision days.', href: '/ssc-cgl/mocks/', cta: 'Take a mock' });
+    if (mockCount === 0) plan.push({ icon: '🖥️', title: 'Take your first full mock', body: 'The single best calibration: 100 questions, 60 minutes, real interface.', href: '/exams/ssc-cgl/mocks/', cta: 'Start mock' });
+    else if (Date.now() - lastMockAt > 2 * DAY) plan.push({ icon: '🖥️', title: 'Mock day', body: 'Your last mock was over 48h ago. In the final week, alternate mocks and revision days.', href: '/exams/ssc-cgl/mocks/', cta: 'Take a mock' });
     if (mistakeCount >= 5) plan.push({ icon: '📕', title: `Clear ${mistakeCount} mistakes`, body: 'Re-solve your logged mistakes — the cheapest marks you will ever earn.', href: '/revision/', cta: 'Open notebook' });
     if (nextTopic) plan.push({ icon: '📚', title: `Study: ${nextTopic.title}`, body: `Next untouched topic in ${SECTION_META[nextTopic.section as SectionId]?.name}. Notes → formulas → tricks, then a 12-question test.`, href: nextTopic.url, cta: 'Start topic' });
-    plan.push({ icon: '📰', title: 'Daily current affairs', body: '10 minutes of GA every day beats 2 hours the night before.', href: '/ssc-cgl/ga/current-affairs/', cta: 'Read today' });
+    plan.push({ icon: '📰', title: 'Daily current affairs', body: '10 minutes of GA every day beats 2 hours the night before.', href: '/current-affairs/', cta: 'Read today' });
 
     const activity = [
-      ...allAttempts.map((a) => ({ at: a.at, icon: '🖥️', title: `Mock — ${a.score}/${a.max}`, sub: `${a.correct}✓ ${a.wrong}✗ ${a.skipped}— · ${Math.round(a.timeSec / 60)} min`, href: '/ssc-cgl/mocks/', pct: mockPct(a) })),
-      ...testedKeys.map((k) => ({ at: topicScores[k].at, icon: '📝', title: `Topic test — ${k.split('/')[1].replace(/-/g, ' ')}`, sub: `last ${topicScores[k].last}/${topicScores[k].total} · best ${topicScores[k].best}/${topicScores[k].total}`, href: `/ssc-cgl/${k}/`, pct: Math.round((topicScores[k].last / Math.max(1, topicScores[k].total)) * 100) })),
+      ...allAttempts.map((a) => ({ at: a.at, icon: '🖥️', title: `Mock — ${a.score}/${a.max}`, sub: `${a.correct}✓ ${a.wrong}✗ ${a.skipped}— · ${Math.round(a.timeSec / 60)} min`, href: '/exams/ssc-cgl/mocks/', pct: mockPct(a) })),
+      ...testedKeys.map((k) => ({ at: topicScores[k].at, icon: '📝', title: `Topic test — ${k.split('/')[1].replace(/-/g, ' ')}`, sub: `last ${topicScores[k].last}/${topicScores[k].total} · best ${topicScores[k].best}/${topicScores[k].total}`, href: `/${k}/`, pct: Math.round((topicScores[k].last / Math.max(1, topicScores[k].total)) * 100) })),
     ].sort((a, b) => b.at - a.at).slice(0, 6);
 
     return { topics, testedKeys, bestMock, streak, trend, perSection, strength, weakest, nextTopic, mockCount, mistakeCount, plan, activity, bookmarkCount: Object.keys(bookmarks).length };
@@ -167,9 +167,9 @@ export function Dashboard() {
           <h2 className="font-extrabold text-lg mt-1">Three steps to get going</h2>
           <div className="grid sm:grid-cols-3 gap-3 mt-4 text-sm">
             {[
-              ['1', 'Study a topic', 'Notes → formulas → shortcut tricks', '/ssc-cgl/syllabus/', 'Browse syllabus'],
-              ['2', 'Pass its topic test', '12–15 questions, instant explanations', '/ssc-cgl/syllabus/', 'Pick a topic'],
-              ['3', 'Take a full mock', 'Real CBT interface + analysis', '/ssc-cgl/mocks/', 'Start a mock'],
+              ['1', 'Study a topic', 'Notes → formulas → shortcut tricks', '/learn/', 'Browse syllabus'],
+              ['2', 'Pass its topic test', '12–15 questions, instant explanations', '/learn/', 'Pick a topic'],
+              ['3', 'Take a full mock', 'Real CBT interface + analysis', '/exams/ssc-cgl/mocks/', 'Start a mock'],
             ].map(([n, t, b, href, cta]) => (
               <div key={n} className="rounded-xl p-4" style={{ background: 'var(--surface-2)' }}>
                 <div className="w-7 h-7 mx-auto rounded-full font-extrabold flex items-center justify-center" style={{ background: 'var(--brand)', color: '#fff' }}>{n}</div>
@@ -203,7 +203,7 @@ export function Dashboard() {
             {model.perSection.filter((s) => s.total > 0).map((s) => {
               const pct = s.total ? Math.round((s.studiedCount / s.total) * 100) : 0;
               return (
-                <Link key={s.sid} href={`/ssc-cgl/${s.sid}/`} className="card p-4 block">
+                <Link key={s.sid} href={`/${s.sid}/`} className="card p-4 block">
                   <div className="text-xs font-bold" style={{ color: SECTION_META[s.sid].color }}>{SECTION_META[s.sid].name}</div>
                   <div className="text-xl font-extrabold mt-1">{s.studiedCount}<span className="text-sm faint">/{s.total}</span></div>
                   <div className="h-2 rounded-full mt-2" style={{ background: 'var(--surface-2)' }}>
@@ -219,19 +219,19 @@ export function Dashboard() {
       <section className="mt-6">
         <h2 className="font-extrabold text-lg">Your tools</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-3">
-          <Link href="/ssc-cgl/study-plan/" className="card p-4">
+          <Link href="/exams/ssc-cgl/study-plan/" className="card p-4">
             <div className="font-bold text-sm">🗓️ Study plan</div>
             <div className="text-xs muted mt-1">{tools.planDone !== null ? `${tools.planDone} step${tools.planDone === 1 ? '' : 's'} ticked off${tools.planTotal ? ` · ${tools.planTotal} planned` : ''}` : 'Build a day-by-day timetable to exam day'}</div>
           </Link>
-          <Link href="/ssc-cgl/typing-test/" className="card p-4">
+          <Link href="/exams/ssc-cgl/typing-test/" className="card p-4">
             <div className="font-bold text-sm">⌨️ DEST typing test</div>
             <div className="text-xs muted mt-1">{tools.dest ? `Last: ${tools.dest.kd} KD · ${tools.dest.errPct}% errors ${tools.dest.pass ? '✓' : '✗'}` : '15-min simulator with SSC error marking'}</div>
           </Link>
-          <Link href="/ssc-cgl/posts/" className="card p-4">
+          <Link href="/exams/ssc-cgl/posts/" className="card p-4">
             <div className="font-bold text-sm">🏛️ Posts &amp; eligibility</div>
             <div className="text-xs muted mt-1">{tools.prefSaved ? 'Preference order saved on this device ✓' : 'Age checker + build your post preference'}</div>
           </Link>
-          <Link href="/ssc-cgl/calendar/" className="card p-4">
+          <Link href="/exams/ssc-cgl/calendar/" className="card p-4">
             <div className="font-bold text-sm">⏳ Exam calendar</div>
             <div className="text-xs muted mt-1">Every 2026 date, add to your phone calendar</div>
           </Link>
@@ -331,7 +331,7 @@ export function Dashboard() {
         </section>
       )}
 
-      <p className="text-[11px] faint mt-6">All progress lives in this browser (localStorage) — private by design, no account needed. Don't clear site data, or your notebook and scores reset.</p>
+      <p className="text-[11px] faint mt-6">Your progress is saved in this browser, and synced to your account when you're logged in — log in on every device you study from so nothing is lost.</p>
     </div>
   );
 }

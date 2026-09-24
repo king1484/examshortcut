@@ -26,9 +26,26 @@ export interface Subtopic {
   formulas?: Formula[];
   tricks?: Trick[];
   mistakes?: string[];
+  /** Long-form lesson in markdown (### headings, KaTeX). */
+  notes?: string;
+  /** Every question type asked from this subtopic; practice questions point here via `pattern`. */
+  patterns?: QuestionPattern[];
 }
 
-export interface PyqPattern { pattern: string; frequency?: string; howToSpot?: string; approach?: string }
+export interface QuestionPattern {
+  id: string;
+  name: string;
+  frequency?: string;
+  howToSpot?: string;
+  formula?: string | null;
+  logic?: string;
+  example?: { q: string; solution: string } | null;
+}
+
+export interface PyqPattern {
+  pattern: string; frequency?: string; howToSpot?: string; approach?: string;
+  subtopic?: string; example?: { q: string; solution: string } | null;
+}
 
 export interface Topic {
   id: string;
@@ -66,6 +83,7 @@ export interface Mock {
   plus: number;
   minus: number;
   blurb: string;
+  open?: boolean;
   sections: MockSection[];
 }
 

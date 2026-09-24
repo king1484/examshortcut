@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { store, useStore } from '@/lib/store';
 import { SECTION_META, type SectionId } from '@/lib/sections';
 import { Md, isSvg } from '@/components/Md';
+import { AuthGate } from '@/components/Auth';
 
 export default function RevisionPage() {
   const mistakes = useStore(store.mistakes, {});
@@ -28,9 +29,10 @@ export default function RevisionPage() {
   ] as const;
 
   return (
+    <AuthGate what="see your revision list">
     <div className="max-w-4xl mx-auto">
       <h1 className="text-3xl sm:text-4xl font-extrabold">My revision</h1>
-      <p className="muted mt-2">Everything you got wrong, saved, or studied — stored on this device only. No account, nothing leaves your browser.</p>
+      <p className="muted mt-2">Everything you got wrong, saved, or studied — saved in this browser and synced to your account when you're logged in.</p>
 
       <div className="flex gap-2 mt-5 flex-wrap">
         {tabs.map(([k, label]) => (
@@ -93,7 +95,7 @@ export default function RevisionPage() {
                   <tbody>
                     {attemptList.slice(0, 20).map((a, i) => (
                       <tr key={i}>
-                        <td><Link className="underline decoration-dotted" href={`/ssc-cgl/mocks/${a.id}/`}>{a.id}</Link></td>
+                        <td><Link className="underline decoration-dotted" href={`/exams/ssc-cgl/mocks/${a.id}/`}>{a.id}</Link></td>
                         <td className="font-bold">{Number.isInteger(a.score) ? a.score : a.score.toFixed(2)}<span className="faint font-normal">/{a.max}</span></td>
                         <td>{a.correct + a.wrong ? Math.round((100 * a.correct) / (a.correct + a.wrong)) : 0}%</td>
                         <td className="faint text-xs">{new Date(a.at).toLocaleString('en-IN')}</td>
@@ -114,6 +116,7 @@ export default function RevisionPage() {
         </div>
       )}
     </div>
+    </AuthGate>
   );
 }
 
