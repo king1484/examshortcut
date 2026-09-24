@@ -29,11 +29,20 @@ export const viewport: Viewport = {
 
 const themeScript = `try{var t=localStorage.getItem('es-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}`;
 
+/* Static export navigates are full page loads (no SPA router), and the CDN
+   round trip from India is ~0.7s. Prerender links on hover so Chrome renders
+   the next page before the click — unsupported browsers ignore this. */
+const speculationRules = JSON.stringify({
+  prefetch: [{ source: 'document', where: { href_matches: '/*' }, eagerness: 'moderate' }],
+  prerender: [{ source: 'document', where: { href_matches: '/*' }, eagerness: 'moderate' }],
+});
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-IN" className={sans.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script type="speculationrules" dangerouslySetInnerHTML={{ __html: speculationRules }} />
       </head>
       <body className="min-h-screen flex flex-col">
         <SiteHeader />
