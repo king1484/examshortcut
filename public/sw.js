@@ -2,7 +2,7 @@
    Static export: every page is a static file; cache-on-request keeps visited
    topics/mocks available offline. Content updates via network-first for pages,
    cache-first for static assets. */
-const VERSION = 'es-v4';
+const VERSION = 'es-v5';
 const SHELL = ['/', '/ssc-cgl/', '/ssc-cgl/syllabus/', '/ssc-cgl/mocks/', '/ssc-cgl/formula-sheet/', '/revision/', '/about/', '/search/', '/manifest.webmanifest', '/icon.svg', '/search-index.json'];
 
 self.addEventListener('install', (e) => {
@@ -48,21 +48,15 @@ self.addEventListener('fetch', (e) => {
     return;
   }
 
-  // Pages: stale-while-revalidate. Every navigation is a full page load on a
-  // static host (~0.7s CDN round trip from India), so render the cached copy
-  // instantly and refresh it in the background. Cold pages hit the network,
-  // and offline falls back to cache, then the home shell.
+  // Pages + RSC payloads: network-first, so a deploy is picked up at once and
+  // payloads never point at chunk hashes from an older build; offline falls
+  // back to cache, then the home shell. Speed comes from next/link prefetch.
   e.respondWith(
-    caches.open(VERSION).then((c) => c.match(req).then((hit) => {
-      const fresh = fetch(req)
-        .then((res) => {
-          const copy = res.clone();
-          caches.open(VERSION).then((c2) => c2.put(req, copy)).catch(() => {});
-          return res;
-        })
-        .catch(() => c.match(req).then((h2) => h2 || caches.match('/')));
-      if (hit) { fresh.catch(() => {}); return hit; }
-      return fresh;
-    }))
+    fetch(req)
+      .then((res) => {
+        if (res.ok) { const copy = res.clone(); caches.open(VERSION).then((c) => c.put(req, copy)).catch(() => {}); }
+        return res;
+      })
+      .catch(() => caches.match(req).then((hit) => hit || caches.match('/')))
   );
 });

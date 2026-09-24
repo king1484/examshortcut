@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from './ThemeToggle';
 
@@ -29,6 +30,9 @@ export function Logo() {
 
 export function SiteHeader() {
   const path = usePathname() || '/';
+  // Highlight the clicked tab immediately rather than when the route lands
+  const [pendingHref, setPendingHref] = useState<string | null>(null);
+  useEffect(() => { setPendingHref(null); }, [path]);
   // The CBT screen is full-focus; hide the site chrome there.
   if (/\/mocks\/[^/]+\/?$/.test(path) && path !== '/ssc-cgl/mocks/') return null;
   return (
@@ -43,9 +47,10 @@ export function SiteHeader() {
       </div>
       <nav className="max-w-6xl mx-auto px-2 sm:px-4 flex gap-1 overflow-x-auto text-sm font-semibold" style={{ scrollbarWidth: 'none' }}>
         {NAV.map((n) => {
-          const active = n.exact ? path === n.href || path === n.href.slice(0, -1) : path.startsWith(n.href);
+          const active = pendingHref ? pendingHref === n.href
+            : n.exact ? path === n.href || path === n.href.slice(0, -1) : path.startsWith(n.href);
           return (
-            <Link key={n.href} href={n.href} className="px-3 py-2 whitespace-nowrap border-b-2 transition-colors"
+            <Link key={n.href} href={n.href} onClick={() => setPendingHref(n.href)} className="px-3 py-2 whitespace-nowrap border-b-2 transition-colors"
               style={{ borderColor: active ? 'var(--brand)' : 'transparent', color: active ? 'var(--ink)' : 'var(--ink-2)' }}>
               {n.label}
             </Link>

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { allFormulas, SECTION_META } from '@/lib/content';
-import { Md, Tex } from '@/components/Md';
+import { LazyTex } from '@/components/LazyTex';
 import { PrintButton } from '@/components/PrintButton';
 
 export const dynamic = 'force-static';
@@ -8,6 +8,21 @@ export const metadata: Metadata = {
   title: 'SSC CGL formula sheet — every formula & shortcut trick, printable',
   description: 'The complete SSC CGL formula sheet: all Quant formulas, reasoning rules, English grammar rules and GA mnemonics on one printable page. Built for last-minute revision.',
 };
+
+/** 220-char trick preview as plain text + browser-rendered inline math. Full
+    markdown/KaTeX for 851 snippets was ~2 MB of the page on its own. */
+function TrickSnippet({ body }: { body: string }) {
+  let text = body.length > 220 ? body.slice(0, 220) : body;
+  // A cut through a $…$ span would leave an unbalanced delimiter: drop the tail
+  if ((text.match(/\$/g)?.length ?? 0) % 2) text = text.slice(0, text.lastIndexOf('$'));
+  const parts = text.split(/\$([^$]+)\$/);
+  return (
+    <span className="muted">
+      {parts.map((p, i) => (i % 2 ? <LazyTex key={i} tex={p} /> : p.replace(/\*\*|__|`/g, '')))}
+      {body.length > text.length && '…'}
+    </span>
+  );
+}
 
 export default function FormulaSheetPage() {
   const sections = allFormulas();
@@ -37,13 +52,13 @@ export default function FormulaSheetPage() {
                     {s.formulas.map((f, i) => (
                       <div key={i} className="mt-2">
                         <div className="text-xs font-semibold faint">{f.name}</div>
-                        <div className="overflow-x-auto"><Tex tex={f.tex} /></div>
+                        <div className="overflow-x-auto"><LazyTex tex={f.tex} /></div>
                         {f.note && <div className="text-[11px] muted">{f.note}</div>}
                       </div>
                     ))}
                     {s.tricks.map((k, i) => (
                       <div key={`t${i}`} className="mt-2 text-xs">
-                        <span className="font-bold">⚡ {k.title}.</span> <Md inline className="text-xs">{k.body.slice(0, 220) + (k.body.length > 220 ? '…' : '')}</Md>
+                        <span className="font-bold">⚡ {k.title}.</span> <TrickSnippet body={k.body} />
                       </div>
                     ))}
                   </div>

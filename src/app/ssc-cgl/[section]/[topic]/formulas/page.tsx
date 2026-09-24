@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getTopic } from '@/lib/content';
-import { Tex } from '@/components/Md';
+import { LazyTex } from '@/components/LazyTex';
 import { PrintButton } from '@/components/TopicTabs';
 
 export const dynamic = 'force-static';
@@ -39,7 +39,7 @@ export default async function FormulasPage({ params }: { params: Promise<{ secti
             {s.formulas!.map((f, k) => (
               <div key={k} className="card p-3.5">
                 <div className="text-sm font-bold">{f.name}</div>
-                <div className="my-1.5 overflow-x-auto"><Tex tex={f.tex} display /></div>
+                <div className="my-1.5 overflow-x-auto"><LazyTex tex={f.tex} display /></div>
                 {f.note && <p className="text-xs muted">{f.note}</p>}
               </div>
             ))}
