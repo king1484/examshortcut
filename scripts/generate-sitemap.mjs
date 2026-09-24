@@ -12,7 +12,9 @@ function walk(dir) {
     const p = path.join(dir, f);
     if (fs.statSync(p).isDirectory()) walk(p);
     else if (f === 'index.html') {
-      const rel = path.relative(OUT, p).replaceAll('\\', '/').replace('/index.html', '/');
+      // path.relative yields no leading slash — without it the URL joins as
+      // "https://examshortcut.inssc-cgl/…" and the seed-list dedupe misses
+      const rel = '/' + path.relative(OUT, p).replaceAll('\\', '/').replace('/index.html', '/');
       if (!urls.includes(rel)) urls.push(rel);
     }
   }
