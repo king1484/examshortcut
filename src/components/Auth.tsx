@@ -2,8 +2,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { createContext, useContext, useEffect, useState } from 'react';
-import type { User } from '@supabase/supabase-js';
-import { authConfigured, supabase } from '@/lib/supabase';
+import { onAuthStateChanged, signOut as fbSignOut, type User } from 'firebase/auth';
+import { auth, authConfigured } from '@/lib/firebase';
 import { pullAndMerge, resetSyncState, startAutoPush } from '@/lib/sync';
 
 interface AuthState { user: User | null; loading: boolean; configured: boolean; signOut: () => Promise<void> }
@@ -16,25 +16,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(authConfigured);
 
   useEffect(() => {
-    if (!supabase) return;
+    if (!auth) return;
     let stopPush: (() => void) | undefined;
     let syncedFor: string | null = null;
-    const onUser = (u: User | null) => {
+    const unsub = onAuthStateChanged(auth, (u) => {
       setUser(u);
       setLoading(false);
-      if (u && syncedFor !== u.id) {
-        syncedFor = u.id;
+      if (u && syncedFor !== u.uid) {
+        syncedFor = u.uid;
         stopPush?.();
-        void pullAndMerge(u.id).then(() => { stopPush = startAutoPush(u.id); });
+        void pullAndMerge(u.uid).then(() => { stopPush = startAutoPush(u.uid); });
       }
       if (!u) { syncedFor = null; stopPush?.(); stopPush = undefined; resetSyncState(); }
-    };
-    supabase.auth.getSession().then(({ data }) => onUser(data.session?.user ?? null));
-    const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => onUser(session?.user ?? null));
-    return () => { sub.subscription.unsubscribe(); stopPush?.(); };
+    });
+    return () => { unsub(); stopPush?.(); };
   }, []);
 
-  const signOut = async () => { await supabase?.auth.signOut(); };
+  const signOut = async () => { if (auth) await fbSignOut(auth); };
 
   return <AuthCtx.Provider value={{ user, loading, configured: authConfigured, signOut }}>{children}</AuthCtx.Provider>;
 }
@@ -79,7 +77,7 @@ export function AccountButton() {
   if (!configured || !user) {
     return <Link href="/login/" className="btn" style={{ padding: '.4rem .75rem' }}>Log in</Link>;
   }
-  const name = (user.user_metadata?.full_name as string | undefined) || user.email || 'Account';
+  const name = user.displayName || user.email || 'Account';
   const initial = name.trim()[0]?.toUpperCase() ?? 'U';
   return (
     <div className="relative">

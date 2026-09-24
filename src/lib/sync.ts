@@ -1,8 +1,9 @@
 'use client';
-import { supabase } from './supabase';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { db } from './firebase';
 
 /* Local-first progress. Everything is written to localStorage as before; when the
-   visitor is logged in, those keys are mirrored to one jsonb row (user_progress.data).
+   visitor is logged in, those keys are mirrored to one Firestore doc (user_progress/{uid}).
    On login the cloud copy and this browser's copy are merged, so nothing done before
    logging in is lost. */
 
@@ -66,11 +67,14 @@ function mergeKey(key: string, cloud: unknown, local: unknown): unknown {
   return local; // single-value settings: this browser wins
 }
 
+function progressRef(userId: string) {
+  return doc(db!, 'user_progress', userId);
+}
+
 export async function pullAndMerge(userId: string) {
-  if (!supabase) return;
-  const { data, error } = await supabase.from('user_progress').select('data').eq('user_id', userId).maybeSingle();
-  if (error) { console.warn('[sync] pull failed', error.message); return; }
-  const cloud = (data?.data ?? {}) as Data;
+  if (!db) return;
+  const snap = await getDoc(progressRef(userId));
+  const cloud = ((snap.exists() ? snap.data().data : null) ?? {}) as Data;
   const local = readLocal();
   const merged: Data = {};
   for (const k of SYNC_KEYS) {
@@ -84,12 +88,15 @@ export async function pullAndMerge(userId: string) {
 
 let lastPushed = '';
 async function push(userId: string, d: Data = readLocal()) {
-  if (!supabase) return;
+  if (!db) return;
   const body = JSON.stringify(d);
   if (body === lastPushed) return;
-  const { error } = await supabase.from('user_progress').upsert({ user_id: userId, data: d, updated_at: new Date().toISOString() });
-  if (error) console.warn('[sync] push failed', error.message);
-  else lastPushed = body;
+  try {
+    await setDoc(progressRef(userId), { data: d, updated_at: new Date().toISOString() }, { merge: true });
+    lastPushed = body;
+  } catch (e) {
+    console.warn('[sync] push failed', e);
+  }
 }
 
 /** Mirror every local write to the cloud (debounced). Returns an unsubscribe. */

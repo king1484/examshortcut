@@ -2,7 +2,10 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabase';
+import {
+  isSignInWithEmailLink, sendSignInLinkToEmail, signInWithEmailLink, signInWithPopup,
+} from 'firebase/auth';
+import { auth, googleProvider } from '@/lib/firebase';
 import { useAuth } from './Auth';
 
 function nextPath() {
@@ -12,6 +15,8 @@ function nextPath() {
   } catch { return '/dashboard/'; }
 }
 
+const EMAIL_KEY = 'es-email-for-login';
+
 export function LoginForm() {
   const { user, configured, loading, signOut } = useAuth();
   const router = useRouter();
@@ -19,23 +24,35 @@ export function LoginForm() {
   const [state, setState] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const [err, setErr] = useState('');
 
-  // Coming back from Google / the magic link: session is picked up from the URL, then go on.
-  useEffect(() => { if (user) router.replace(nextPath()); }, [user, router]);
+  const finish = () => { try { localStorage.removeItem(EMAIL_KEY); } catch {} router.replace(nextPath()); };
+
+  // Coming back from the email link: complete sign-in from the URL, then move on.
+  useEffect(() => {
+    if (!auth || !isSignInWithEmailLink(auth, window.location.href)) return;
+    let saved: string | null = null;
+    try { saved = localStorage.getItem(EMAIL_KEY); } catch {}
+    if (saved) void signInWithEmailLink(auth, saved, window.location.href).then(finish).catch((e) => { setState('error'); setErr(String(e?.message ?? e)); });
+  }, [ ]);
+
+  // Coming back from Google (or any already-live session): go straight on.
+  useEffect(() => { if (user) finish(); /* eslint-disable-next-line react-hooks/exhaustive-deps */ }, [user]);
 
   const redirectTo = () => `${location.origin}/login/?next=${encodeURIComponent(nextPath())}`;
 
   const google = async () => {
-    if (!supabase) return;
-    const { error } = await supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: redirectTo() } });
-    if (error) { setState('error'); setErr(error.message); }
+    if (!auth) return;
+    try { await signInWithPopup(auth, googleProvider); } catch (e) { setState('error'); setErr(String((e as Error).message)); }
   };
 
   const magic = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!supabase || !email) return;
+    if (!auth || !email) return;
     setState('sending');
-    const { error } = await supabase.auth.signInWithOtp({ email, options: { emailRedirectTo: redirectTo() } });
-    if (error) { setState('error'); setErr(error.message); } else setState('sent');
+    try {
+      await sendSignInLinkToEmail(auth, email, { url: redirectTo(), handleCodeInApp: true });
+      try { localStorage.setItem(EMAIL_KEY, email); } catch {}
+      setState('sent');
+    } catch (e2) { setState('error'); setErr(String((e2 as Error).message)); }
   };
 
   return (
@@ -82,7 +99,7 @@ export function LoginForm() {
             </form>
           )}
           {state === 'error' && <p className="text-sm" style={{ color: 'var(--bad, #d33)' }}>{err}</p>}
-          <p className="text-xs faint">No password to remember. New here? The same button creates your free account.</p>
+          <p className="text-xs faint">No password to remember. New here? The same buttons create your free account.</p>
         </div>
       )}
       <p className="text-xs faint mt-6">By continuing you agree to our <Link href="/privacy/" className="underline">privacy policy</Link>.</p>
