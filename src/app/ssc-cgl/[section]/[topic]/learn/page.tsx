@@ -32,9 +32,9 @@ export default async function LearnIndexPage({ params }: { params: Promise<{ sec
           const nT = s.tricks?.length ?? 0;
           const nQ = (t.practice ?? []).filter((q) => q.subtopic === s.id).length;
           return (
-            <div key={s.id} className="card p-4 flex items-center gap-3">
+            <div key={s.id} className="card p-4 flex flex-wrap sm:flex-nowrap items-center gap-3">
               <div className="w-8 h-8 rounded-full shrink-0 font-extrabold text-sm flex items-center justify-center" style={{ background: 'var(--surface-2)', color: 'var(--ink-2)' }}>{i + 1}</div>
-              <div className="flex-1 min-w-0">
+              <div className="flex-1 min-w-0 basis-[calc(100%-2.75rem)] sm:basis-auto">
                 <Link href={`${base}/${s.id}/`} className="font-bold hover:underline">{s.title}</Link>
                 <div className="text-xs faint mt-0.5 flex gap-2.5 flex-wrap">
                   {nF > 0 && <span>{nF} formulas</span>}
@@ -42,8 +42,10 @@ export default async function LearnIndexPage({ params }: { params: Promise<{ sec
                   {nQ > 0 && <span>{nQ}-Q quiz</span>}
                 </div>
               </div>
-              <StudiedToggle storeKey={`${t.sectionId}/${t.id}/${s.id}`} />
-              <Link href={`${base}/${s.id}/`} className="btn btn-brand text-xs shrink-0" style={{ padding: '.35rem .7rem' }}>Open</Link>
+              <div className="flex items-center gap-2 ml-11 sm:ml-0 shrink-0">
+                <StudiedToggle storeKey={`${t.sectionId}/${t.id}/${s.id}`} />
+                <Link href={`${base}/${s.id}/`} className="btn btn-brand text-xs shrink-0" style={{ padding: '.35rem .7rem' }}>Open</Link>
+              </div>
             </div>
           );
         })}

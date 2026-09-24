@@ -47,6 +47,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/ssc-cgl/weightage/">Weightage</Link>
               <Link href="/ssc-cgl/mocks/">Mock tests</Link>
               <Link href="/ssc-cgl/formula-sheet/">Formula sheet</Link>
+              <Link href="/ssc-cgl/vocab/">Vocab bank</Link>
+              <Link href="/ssc-cgl/static-gk/">Static GK</Link>
               <Link href="/ssc-cgl/cutoffs/">Cutoffs</Link>
               <Link href="/ssc-cgl/score-calculator/">Score calculator</Link>
               <Link href="/revision/">My revision</Link>

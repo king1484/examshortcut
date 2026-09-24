@@ -69,6 +69,16 @@ export const MOCK_DEFS: MockDef[] = [
     blurb: '100 questions · 200 marks · 60 minutes · −0.50 per wrong answer. Real CBT interface.',
   },
   {
+    id: 't1-mock-2', title: 'Tier 1 Full Mock 2', kind: 'full', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'],
+    blurb: '100 questions · 200 marks · 60 minutes · −0.50 per wrong answer. Fresh set, CGL 2025 difficulty.',
+  },
+  {
+    id: 't1-mock-3', title: 'Tier 1 Full Mock 3', kind: 'full', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'],
+    blurb: '100 questions · 200 marks · 60 minutes · −0.50 per wrong answer. Slightly tougher set for the final week.',
+  },
+  {
     id: 't2-mock-1', title: 'Tier 2 Paper 1 Full Mock 1', kind: 'full', tier: 2,
     durationMin: 135, plus: 3, minus: 1, sections: ['quant', 'reasoning', 'english', 'ga', 'computer'],
     blurb: '150 questions · Maths, Reasoning, English, GA + Computer module · +3 / −1.',

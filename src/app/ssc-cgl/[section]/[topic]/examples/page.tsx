@@ -30,7 +30,7 @@ export default async function ExamplesPage({ params }: { params: Promise<{ secti
         {(t.solvedExamples ?? []).length === 0 && <p className="card p-6 mt-4 text-center muted">Solved examples are being written — check back shortly.</p>}
       </div>
       {(t.practice?.length ?? 0) > 0 && (
-        <Link href={`/ssc-cgl/${t.sectionId}/${t.id}/practice/`} className="btn btn-brand mt-6 inline-block">Ready? Take the {t.practice!.length}-question test →</Link>
+        <Link href={`/ssc-cgl/${t.sectionId}/${t.id}/practice/`} className="btn btn-brand mt-6">Ready? Take the {t.practice!.length}-question test →</Link>
       )}
     </div>
   );

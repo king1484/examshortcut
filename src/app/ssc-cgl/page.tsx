@@ -57,9 +57,9 @@ export default function ExamPage() {
             <span className="chip chip-high">Verified {exam.lastVerified}</span>
           </span>
         </div>
-        <p className="text-sm muted mt-2">{lc.status}</p>
+        <Md className="mt-2 muted">{lc.status}</Md>
         <div className="grid sm:grid-cols-2 gap-3 mt-3 text-sm">
-          {[['Notification', lc.notificationDate], ['Application window', lc.applicationWindow], ['Tier 1', lc.tier1], ['Tier 2', lc.tier2], ['Vacancies', lc.vacancies ? String(lc.vacancies) : null], ['Fee', lc.fee]].map(([k, v]) => (
+          {[['Notification', lc.notificationDate], ['Application window', lc.applicationWindow], ['Tier 1', lc.tier1], ['Tier 2', lc.tier2], ['Vacancies', lc.vacancies ? Number(lc.vacancies).toLocaleString('en-IN') : null], ['Fee', lc.fee]].map(([k, v]) => (
             <div key={k} className="rounded-xl p-3" style={{ background: 'var(--surface-2)' }}>
               <div className="text-xs faint font-semibold uppercase">{k}</div>
               <div className="mt-1">{v ?? 'To be announced'}</div>
@@ -79,6 +79,8 @@ export default function ExamPage() {
           ['/ssc-cgl/rank-estimator/', '🏅 Rank estimator', 'Marks → percentile + all-India rank'],
           ['/ssc-cgl/formula-sheet/', '⚡ Formula sheet', 'Printable, all sections'],
           ['/ssc-cgl/ga/current-affairs/', '📰 Current affairs', 'Apr–Sep 2026, exam-relevant'],
+          ['/ssc-cgl/vocab/', '🔤 Vocab bank', 'Idioms, one-word, synonyms, spellings'],
+          ['/ssc-cgl/static-gk/', '🗺️ Static GK tables', 'Dances, parks, firsts, books, sports'],
           ['/ssc-cgl/study-plan/', '🗓️ Study plan generator', 'Day-by-day timetable to exam day'],
           ['/ssc-cgl/posts/', '🏛️ Posts & age checker', 'Eligibility + post preference builder'],
           ['/ssc-cgl/calendar/', '⏳ Exam calendar', 'Countdown + add dates to your calendar'],

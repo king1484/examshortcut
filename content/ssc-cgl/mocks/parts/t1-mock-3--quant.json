@@ -1,0 +1,456 @@
+{
+ "mockId": "t1-mock-3",
+ "sectionId": "quant",
+ "questions": [
+  {
+   "id": "q-t1-mock-3-quant-1",
+   "q": "What is the value of $\\frac{1}{1 \\times 2} + \\frac{1}{2 \\times 3} + \\frac{1}{3 \\times 4} + \\cdots + \\frac{1}{24 \\times 25}$?",
+   "figure": null,
+   "options": [
+    "$\\frac{25}{26}$",
+    "$\\frac{23}{24}$",
+    "$\\frac{24}{25}$",
+    "$\\frac{1}{25}$"
+   ],
+   "answer": 2,
+   "solution": "Each term splits: $\\frac{1}{k(k+1)} = \\frac{1}{k} - \\frac{1}{k+1}$. The sum telescopes to $1 - \\frac{1}{25} = \\frac{24}{25}$.",
+   "shortcut": "For $\\frac{1}{1\\cdot2} + \\cdots + \\frac{1}{n(n+1)}$ the answer is $\\frac{n}{n+1}$ with $n = 24$ (the smaller factor of the last term), not 25.",
+   "difficulty": "medium",
+   "subtopic": "simplification",
+   "pattern": "telescoping fraction series",
+   "timeSec": 40
+  },
+  {
+   "id": "q-t1-mock-3-quant-2",
+   "q": "What is the remainder when $3^{2026}$ is divided by 7?",
+   "figure": null,
+   "options": [
+    "4",
+    "2",
+    "1",
+    "5"
+   ],
+   "answer": 0,
+   "solution": "Powers of 3 mod 7: $3, 2, 6, 4, 5, 1$ — the cycle length is 6 ($3^6 \\equiv 1$). $2026 = 6 \\times 337 + 4$, so $3^{2026} \\equiv 3^4 = 81 \\equiv 4 \\pmod 7$.",
+   "shortcut": "Fermat: $3^6 \\equiv 1 \\pmod 7$. Reduce the exponent mod 6: $2026 \\to 4$, and $81 = 77 + 4$. Using cycle 4 (the unit-digit cycle) wrongly gives $3^2 = 9 \\to 2$.",
+   "difficulty": "hard",
+   "subtopic": "number-system",
+   "pattern": "remainder of large power",
+   "timeSec": 60
+  },
+  {
+   "id": "q-t1-mock-3-quant-3",
+   "q": "In a town, 60% of the population are adults and the rest are children. 45% of the adults and 25% of the children are females. If the total number of males in the town is 12,600, what is the population of the town?",
+   "figure": null,
+   "options": [
+    "21,000",
+    "20,000",
+    "18,000",
+    "28,000"
+   ],
+   "answer": 1,
+   "solution": "Adult males $= 60\\% \\times 55\\% = 33\\%$ of the population. Male children $= 40\\% \\times 75\\% = 30\\%$. Total males $= 63\\%$. So $0.63P = 12600 \\Rightarrow P = 20{,}000$.",
+   "shortcut": "Weight each group's male share by its size: $0.6 \\times 0.55 + 0.4 \\times 0.75 = 0.63$; $12600 \\div 0.63 = 20000$. Using only the adults' 60% gives the trap 21,000.",
+   "difficulty": "medium",
+   "subtopic": "percentage",
+   "pattern": "population sub-group percentages",
+   "timeSec": 60
+  },
+  {
+   "id": "q-t1-mock-3-quant-4",
+   "q": "Two varieties of tea costing ₹132 per kg and ₹140 per kg are mixed with a third variety in the ratio 1 : 1 : 2. If the mixture is worth ₹160 per kg, what is the price of the third variety per kg?",
+   "figure": null,
+   "options": [
+    "₹208",
+    "₹184",
+    "₹176",
+    "₹194"
+   ],
+   "answer": 1,
+   "solution": "Let the third variety cost $₹x$. Then $\\frac{132 \\times 1 + 140 \\times 1 + x \\times 2}{4} = 160 \\Rightarrow 272 + 2x = 640 \\Rightarrow x = 184$.",
+   "shortcut": "The first two average to 136 (weight 2) and the third has weight 2, so the mixture price 160 is the midpoint: $x = 2 \\times 160 - 136 = 184$. Ignoring the weight 2 gives the trap 208.",
+   "difficulty": "medium",
+   "subtopic": "mixture-alligation",
+   "pattern": "three-variety weighted mixture",
+   "timeSec": 50
+  },
+  {
+   "id": "q-t1-mock-3-quant-5",
+   "q": "A sum of ₹6,640 is divided among A, B and C such that 4 times A's share, 5 times B's share and 7 times C's share are all equal. What is C's share?",
+   "figure": null,
+   "options": [
+    "₹2,905",
+    "₹2,800",
+    "₹2,240",
+    "₹1,600"
+   ],
+   "answer": 3,
+   "solution": "$4A = 5B = 7C = k \\Rightarrow A : B : C = \\frac{1}{4} : \\frac{1}{5} : \\frac{1}{7} = 35 : 28 : 20$ (multiply by LCM 140). Total 83 parts $= 6640 \\Rightarrow$ 1 part $= 80$. C $= 20 \\times 80 = ₹1{,}600$.",
+   "shortcut": "Equal products means shares in the INVERSE ratio. Taking $4 : 5 : 7$ directly gives C $= \\frac{7}{16} \\times 6640 = 2905$ — the trap.",
+   "difficulty": "medium",
+   "subtopic": "ratio-proportion",
+   "pattern": "inverse ratio division",
+   "timeSec": 50
+  },
+  {
+   "id": "q-t1-mock-3-quant-6",
+   "q": "A batsman has an average of 42 runs per innings. In his next innings he scores 90 runs, which raises his average by 4 runs. How many innings had he played before this innings?",
+   "figure": null,
+   "options": [
+    "12",
+    "11",
+    "10",
+    "13"
+   ],
+   "answer": 1,
+   "solution": "Let him have played $n$ innings. $42n + 90 = 46(n + 1) \\Rightarrow 42n + 90 = 46n + 46 \\Rightarrow 4n = 44 \\Rightarrow n = 11$.",
+   "shortcut": "The new score covers the old average, pays the +4 rise to all $n + 1$ innings: $90 = 42 + 4(n + 1) \\Rightarrow n + 1 = 12 \\Rightarrow n = 11$. $\\frac{90 - 42}{4} = 12$ counts the new innings too.",
+   "difficulty": "medium",
+   "subtopic": "average",
+   "pattern": "new innings raises average",
+   "timeSec": 45
+  },
+  {
+   "id": "q-t1-mock-3-quant-7",
+   "q": "A loan is to be repaid in two equal annual instalments of ₹2,420 each at 10% per annum compound interest, compounded annually. What is the amount of the loan?",
+   "figure": null,
+   "options": [
+    "₹4,840",
+    "₹4,400",
+    "₹4,000",
+    "₹4,200"
+   ],
+   "answer": 3,
+   "solution": "Loan $=$ present value of the instalments $= \\frac{2420}{1.1} + \\frac{2420}{1.1^2} = 2200 + 2000 = ₹4{,}200$. Check: $4200 \\to 4620$; pay 2420 leaves 2200 $\\to 2420$; pay 2420 leaves 0.",
+   "shortcut": "Discount each instalment back to today: $\\frac{2420}{1.1} = 2200$, $\\frac{2420}{1.21} = 2000$. Adding the instalments (4840) or discounting both by one year only (4400) are the traps.",
+   "difficulty": "medium",
+   "subtopic": "interest",
+   "pattern": "CI equal instalments",
+   "timeSec": 55
+  },
+  {
+   "id": "q-t1-mock-3-quant-8",
+   "q": "A grocer buys 40 kg of rice at ₹32 per kg and 60 kg at ₹37 per kg. He mixes them and sells the whole mixture at ₹42 per kg. What is his profit per cent?",
+   "figure": null,
+   "options": [
+    "$16\\frac{2}{3}\\%$",
+    "$21\\frac{17}{23}\\%$",
+    "20%",
+    "25%"
+   ],
+   "answer": 2,
+   "solution": "CP $= 40 \\times 32 + 60 \\times 37 = 1280 + 2220 = ₹3500$. SP $= 100 \\times 42 = ₹4200$. Profit $= 700$, i.e. $\\frac{700}{3500} \\times 100 = 20\\%$.",
+   "shortcut": "Weighted CP per kg $= 35$ (not the simple average 34.5, which gives $21\\frac{17}{23}\\%$); $\\frac{42 - 35}{35} = \\frac{1}{5} = 20\\%$.",
+   "difficulty": "easy",
+   "subtopic": "profit-loss-discount",
+   "pattern": "mixed purchase profit",
+   "timeSec": 40
+  },
+  {
+   "id": "q-t1-mock-3-quant-9",
+   "q": "A shopkeeper allows a discount of 20% on the marked price of an article. The selling price of 16 such articles equals the cost price of 20 articles. By what per cent is the marked price above the cost price?",
+   "figure": null,
+   "options": [
+    "45%",
+    "25%",
+    "50%",
+    "56.25%"
+   ],
+   "answer": 3,
+   "solution": "$16 \\times \\text{SP} = 20 \\times \\text{CP} \\Rightarrow \\text{SP} = 1.25\\,\\text{CP}$. Also $\\text{SP} = 0.8\\,\\text{MP}$, so $\\text{MP} = \\frac{1.25}{0.8}\\,\\text{CP} = 1.5625\\,\\text{CP}$. MP is $56.25\\%$ above CP.",
+   "shortcut": "$\\frac{\\text{MP}}{\\text{CP}} = \\frac{20}{16} \\times \\frac{100}{80} = \\frac{5}{4} \\times \\frac{5}{4} = \\frac{25}{16}$. Adding the 25% profit and 20% discount (45%) is the trap.",
+   "difficulty": "hard",
+   "subtopic": "profit-loss-discount",
+   "pattern": "article-count equation with discount",
+   "timeSec": 60
+  },
+  {
+   "id": "q-t1-mock-3-quant-10",
+   "q": "A and B can complete a piece of work in 30 days and 40 days respectively. They start working together, but A leaves some days before the work is completed. If the whole work is finished in 28 days, how many days before completion did A leave?",
+   "figure": null,
+   "options": [
+    "19 days",
+    "9 days",
+    "17 days",
+    "21 days"
+   ],
+   "answer": 0,
+   "solution": "Let the work $= 120$ units (LCM of 30, 40): A does 4 units/day, B 3 units/day. B works all 28 days: $28 \\times 3 = 84$ units. A did the remaining $36$ units in $\\frac{36}{4} = 9$ days. So A left $28 - 9 = 19$ days before completion.",
+   "shortcut": "Fill the full span with the worker who stayed (B: 84 of 120), the gap (36) is the leaver's share. 9 is how long A worked — the question asks for $28 - 9$.",
+   "difficulty": "medium",
+   "subtopic": "time-work",
+   "pattern": "one leaves before completion",
+   "timeSec": 55
+  },
+  {
+   "id": "q-t1-mock-3-quant-11",
+   "q": "A boat takes 3 hours more to cover 36 km upstream than to cover the same distance downstream. If the speed of the stream is 3 km/h, what is the speed of the boat in still water?",
+   "figure": null,
+   "options": [
+    "12 km/h",
+    "6 km/h",
+    "15 km/h",
+    "9 km/h"
+   ],
+   "answer": 3,
+   "solution": "$\\frac{36}{b - 3} - \\frac{36}{b + 3} = 3 \\Rightarrow 36 \\times 6 = 3(b^2 - 9) \\Rightarrow b^2 = 81 \\Rightarrow b = 9$ km/h. Check: upstream 6 km/h takes 6 h, downstream 12 km/h takes 3 h — difference 3 h.",
+   "shortcut": "Use the options: $b = 9$ gives speeds 6 and 12, times $6$ h and $3$ h, gap 3 h. Done in 10 seconds. 12 km/h is the downstream speed, not the boat's.",
+   "difficulty": "medium",
+   "subtopic": "time-speed-distance",
+   "pattern": "boat time difference",
+   "timeSec": 50
+  },
+  {
+   "id": "q-t1-mock-3-quant-12",
+   "q": "If $2x + \\frac{1}{3x} = 4$, what is the value of $9x^2 + \\frac{1}{4x^2}$?",
+   "figure": null,
+   "options": [
+    "36",
+    "39",
+    "30",
+    "33"
+   ],
+   "answer": 3,
+   "solution": "Multiply the given equation by $\\frac{3}{2}$: $3x + \\frac{1}{2x} = 6$. Squaring, $9x^2 + \\frac{1}{4x^2} + 2 \\cdot 3x \\cdot \\frac{1}{2x} = 36 \\Rightarrow 9x^2 + \\frac{1}{4x^2} = 36 - 3 = 33$.",
+   "shortcut": "Scale first so the square matches: the cross term of $\\left(3x + \\frac{1}{2x}\\right)^2$ is $2 \\times 3x \\times \\frac{1}{2x} = 3$. Forgetting to remove it gives 36; adding it instead gives 39.",
+   "difficulty": "medium",
+   "subtopic": "algebra",
+   "pattern": "scaled x+1/x square",
+   "timeSec": 50
+  },
+  {
+   "id": "q-t1-mock-3-quant-13",
+   "q": "If $x^4 + \\frac{1}{x^4} = 119$ and $x > 1$, what is the value of $x^3 - \\frac{1}{x^3}$?",
+   "figure": null,
+   "options": [
+    "36",
+    "18",
+    "$10\\sqrt{13}$",
+    "33"
+   ],
+   "answer": 0,
+   "solution": "$x^2 + \\frac{1}{x^2} = \\sqrt{119 + 2} = 11$. Then $\\left(x - \\frac{1}{x}\\right)^2 = 11 - 2 = 9 \\Rightarrow x - \\frac{1}{x} = 3$ (positive since $x > 1$). $x^3 - \\frac{1}{x^3} = 3^3 + 3 \\times 3 = 36$.",
+   "shortcut": "Climb down the ladder: $119 \\to 11 \\to 3$, then $k^3 + 3k$ for the minus version. Using $k^3 - 3k$ (18) mixes up the plus and minus ladders; $10\\sqrt{13}$ is $x^3 + \\frac{1}{x^3}$.",
+   "difficulty": "hard",
+   "subtopic": "algebra",
+   "pattern": "x-1/x ladder from fourth power",
+   "timeSec": 70
+  },
+  {
+   "id": "q-t1-mock-3-quant-14",
+   "q": "$PA$ and $PB$ are tangents drawn from an external point $P$ to a circle with centre $O$. If $\\angle APB = 64^\\circ$, what is the measure of $\\angle OAB$?",
+   "figure": null,
+   "options": [
+    "$58^\\circ$",
+    "$26^\\circ$",
+    "$64^\\circ$",
+    "$32^\\circ$"
+   ],
+   "answer": 3,
+   "solution": "$\\angle OAP = \\angle OBP = 90^\\circ$, so $\\angle AOB = 180^\\circ - 64^\\circ = 116^\\circ$. In isosceles $\\triangle OAB$ ($OA = OB$), $\\angle OAB = \\frac{180^\\circ - 116^\\circ}{2} = 32^\\circ$.",
+   "shortcut": "$\\angle OAB = \\frac{1}{2}\\angle APB = 32^\\circ$ always. $58^\\circ$ is $\\angle PAB$ — a different angle.",
+   "difficulty": "medium",
+   "subtopic": "geometry",
+   "pattern": "tangents from external point angle",
+   "timeSec": 40
+  },
+  {
+   "id": "q-t1-mock-3-quant-15",
+   "q": "In $\\triangle ABC$, $D$ and $E$ are points on $AB$ and $AC$ respectively such that $DE \\parallel BC$ and $AD : DB = 2 : 3$. If the area of the trapezium $DECB$ is 84 cm², what is the area of $\\triangle ABC$?",
+   "figure": null,
+   "options": [
+    "140 cm²",
+    "100 cm²",
+    "105 cm²",
+    "126 cm²"
+   ],
+   "answer": 1,
+   "solution": "$\\triangle ADE \\sim \\triangle ABC$ with $\\frac{AD}{AB} = \\frac{2}{5}$. Area ratio $= \\frac{4}{25}$, so the trapezium is $\\frac{21}{25}$ of $\\triangle ABC$. $\\frac{21}{25} \\times \\text{ar}(ABC) = 84 \\Rightarrow \\text{ar}(ABC) = 100$ cm².",
+   "shortcut": "Areas go as squares: $2^2 : 5^2 = 4 : 25$, trapezium $= 21$ parts $= 84 \\Rightarrow$ 1 part $= 4$, whole $= 100$. Using the linear ratio $2 : 5$ gives the trap 140.",
+   "difficulty": "medium",
+   "subtopic": "geometry",
+   "pattern": "BPT similar triangle area",
+   "timeSec": 50
+  },
+  {
+   "id": "q-t1-mock-3-quant-16",
+   "q": "In $\\triangle ABC$, the medians $AD$ and $BE$ intersect at right angles. If $AD = 9$ cm and $BE = 12$ cm, what is the area of $\\triangle ABC$?",
+   "figure": null,
+   "options": [
+    "72 cm²",
+    "54 cm²",
+    "24 cm²",
+    "108 cm²"
+   ],
+   "answer": 0,
+   "solution": "The centroid $G$ divides each median $2 : 1$: $AG = 6$, $BG = 8$. $\\triangle ABG$ is right-angled at $G$, so its area $= \\frac{1}{2} \\times 6 \\times 8 = 24$. The three medians split $\\triangle ABC$ into three equal-area triangles $GAB, GBC, GCA$, so area $= 3 \\times 24 = 72$ cm².",
+   "shortcut": "Perpendicular medians: area $= \\frac{2}{3} \\times AD \\times BE = \\frac{2}{3} \\times 9 \\times 12 = 72$. Treating the medians like rhombus diagonals ($\\frac12 \\times 9 \\times 12 = 54$) is the trap.",
+   "difficulty": "hard",
+   "subtopic": "geometry",
+   "pattern": "perpendicular medians area",
+   "timeSec": 70
+  },
+  {
+   "id": "q-t1-mock-3-quant-17",
+   "q": "A flagstaff 10 m high stands on the top of a tower. From a point on the ground, the angle of elevation of the top of the flagstaff is $60^\\circ$ and that of the top of the tower is $45^\\circ$. What is the height of the tower?",
+   "figure": null,
+   "options": [
+    "$10(\\sqrt{3} + 1)$ m",
+    "$5(\\sqrt{3} - 1)$ m",
+    "$5(\\sqrt{3} + 1)$ m",
+    "$10\\sqrt{3}$ m"
+   ],
+   "answer": 2,
+   "solution": "Let the tower be $h$ m. With $45^\\circ$, the point is $h$ m from the base. With $60^\\circ$: $h + 10 = h\\sqrt{3} \\Rightarrow h(\\sqrt{3} - 1) = 10 \\Rightarrow h = \\frac{10}{\\sqrt{3} - 1} = 5(\\sqrt{3} + 1)$ m.",
+   "shortcut": "Rationalise: $\\frac{10}{\\sqrt3 - 1} \\times \\frac{\\sqrt3 + 1}{\\sqrt3 + 1} = \\frac{10(\\sqrt3 + 1)}{2}$. Forgetting to divide by the 2 from $(\\sqrt3)^2 - 1$ gives the trap $10(\\sqrt3+1)$.",
+   "difficulty": "hard",
+   "subtopic": "heights-distances",
+   "pattern": "flagstaff on tower",
+   "timeSec": 60
+  },
+  {
+   "id": "q-t1-mock-3-quant-18",
+   "q": "The perimeter of a sector of a circle of radius 14 cm is 50 cm. What is the area of the sector?",
+   "figure": null,
+   "options": [
+    "308 cm²",
+    "350 cm²",
+    "154 cm²",
+    "196 cm²"
+   ],
+   "answer": 2,
+   "solution": "Perimeter $= 2r + \\text{arc} \\Rightarrow \\text{arc} = 50 - 28 = 22$ cm. Area of sector $= \\frac{1}{2} \\times \\text{arc} \\times r = \\frac{1}{2} \\times 22 \\times 14 = 154$ cm².",
+   "shortcut": "Sector area $= \\frac{1}{2} l r$ — no angle needed. Using the whole perimeter 50 as the arc gives 350; dropping the $\\frac12$ gives 308.",
+   "difficulty": "medium",
+   "subtopic": "mensuration-2d",
+   "pattern": "sector area from perimeter",
+   "timeSec": 45
+  },
+  {
+   "id": "q-t1-mock-3-quant-19",
+   "q": "A right circular cylinder of radius 9 cm and height 16 cm is full of ice-cream. The ice-cream is to be filled into cones of height 10 cm and diameter 6 cm, each having a hemispherical top. How many such cones can be filled?",
+   "figure": null,
+   "options": [
+    "12",
+    "27",
+    "36",
+    "24"
+   ],
+   "answer": 1,
+   "solution": "Cylinder $= \\pi \\times 9^2 \\times 16 = 1296\\pi$. One cone with hemispherical top $= \\frac{1}{3}\\pi \\times 3^2 \\times 10 + \\frac{2}{3}\\pi \\times 3^3 = 30\\pi + 18\\pi = 48\\pi$. Number $= \\frac{1296\\pi}{48\\pi} = 27$.",
+   "shortcut": "Cancel $\\pi$ at once and work in 'units': $81 \\times 16 = 1296$; $30 + 18 = 48$; $1296 \\div 48 = 27$. Forgetting the $\\frac13$ for the cone gives 12. Radius is 3, not the diameter 6.",
+   "difficulty": "hard",
+   "subtopic": "mensuration-3d",
+   "pattern": "recast into cones with hemispheres",
+   "timeSec": 75
+  },
+  {
+   "id": "q-t1-mock-3-quant-20",
+   "q": "What is the value of $\\dfrac{\\cos 37^\\circ}{\\sin 53^\\circ} + \\dfrac{\\sec 28^\\circ}{\\text{cosec}\\, 62^\\circ} - 3\\tan 15^\\circ \\tan 75^\\circ$?",
+   "figure": null,
+   "options": [
+    "5",
+    "1",
+    "2",
+    "$-1$"
+   ],
+   "answer": 3,
+   "solution": "$\\sin 53^\\circ = \\cos 37^\\circ$, so the first term is 1. $\\text{cosec}\\,62^\\circ = \\sec 28^\\circ$, so the second term is 1. $\\tan 75^\\circ = \\cot 15^\\circ$, so $\\tan 15^\\circ \\tan 75^\\circ = 1$. Value $= 1 + 1 - 3 = -1$.",
+   "shortcut": "Angles adding to $90^\\circ$: co-function pairs cancel to 1. So it is $1 + 1 - 3(1) = -1$. A sign slip on the last term gives 5.",
+   "difficulty": "easy",
+   "subtopic": "trigonometry",
+   "pattern": "complementary angle ratios",
+   "timeSec": 30
+  },
+  {
+   "id": "q-t1-mock-3-quant-21",
+   "q": "If $\\sin\\theta - \\cos\\theta = \\frac{7}{13}$ and $0^\\circ < \\theta < 90^\\circ$, what is the value of $\\sin\\theta + \\cos\\theta$?",
+   "figure": null,
+   "options": [
+    "$\\frac{12}{13}$",
+    "$\\frac{7}{13}$",
+    "$\\frac{17}{13}$",
+    "$\\frac{13}{17}$"
+   ],
+   "answer": 2,
+   "solution": "$(\\sin\\theta + \\cos\\theta)^2 + (\\sin\\theta - \\cos\\theta)^2 = 2$. So $(\\sin\\theta + \\cos\\theta)^2 = 2 - \\frac{49}{169} = \\frac{289}{169}$, giving $\\sin\\theta + \\cos\\theta = \\frac{17}{13}$ (positive for an acute angle).",
+   "shortcut": "Guess the triplet: $\\frac{12}{13} - \\frac{5}{13} = \\frac{7}{13}$, so $\\sin = \\frac{12}{13}$, $\\cos = \\frac{5}{13}$, sum $\\frac{17}{13}$. $\\frac{12}{13}$ alone is only $\\sin\\theta$.",
+   "difficulty": "hard",
+   "subtopic": "trigonometry",
+   "pattern": "sum from difference of sin and cos",
+   "timeSec": 60
+  },
+  {
+   "id": "q-t1-mock-3-quant-22",
+   "q": "The observations $12, 15, 17, x, 24, 28, 33$ are arranged in ascending order and their mean is 21. What is the median of the data?",
+   "figure": null,
+   "options": [
+    "18",
+    "21",
+    "24",
+    "20.5"
+   ],
+   "answer": 0,
+   "solution": "Sum $= 7 \\times 21 = 147$. Known values add to $12 + 15 + 17 + 24 + 28 + 33 = 129$, so $x = 18$. With 7 values, the median is the 4th value $= x = 18$.",
+   "shortcut": "Odd count: median is the middle (4th) term, which is $x$ itself — find $x$ from the total. 21 is the mean, not the median.",
+   "difficulty": "easy",
+   "subtopic": "statistics",
+   "pattern": "median with unknown term",
+   "timeSec": 40
+  },
+  {
+   "id": "q-t1-mock-3-quant-23",
+   "q": "The table shows the number of candidates who appeared in an examination from five centres and the percentage of them who qualified:\n\n| Centre | Appeared | Qualified (%) |\n|---|---|---|\n| P | 1200 | 45% |\n| Q | 1500 | 36% |\n| R | 900 | 60% |\n| S | 1600 | 40% |\n| T | 800 | 55% |\n\nWhat is the overall percentage of qualified candidates from all five centres taken together?",
+   "figure": null,
+   "options": [
+    "47.2%",
+    "44%",
+    "45%",
+    "42.5%"
+   ],
+   "answer": 2,
+   "solution": "Qualified: P $= 540$, Q $= 540$, R $= 540$, S $= 640$, T $= 440$; total $= 2700$. Appeared total $= 6000$. Overall $= \\frac{2700}{6000} \\times 100 = 45\\%$.",
+   "shortcut": "Never average the percentages ($\\frac{236}{5} = 47.2\\%$) when the bases differ — convert to counts first. Three centres give exactly 540 each, which speeds the addition.",
+   "difficulty": "medium",
+   "subtopic": "data-interpretation",
+   "pattern": "overall percentage from weighted table",
+   "timeSec": 60
+  },
+  {
+   "id": "q-t1-mock-3-quant-24",
+   "q": "The table shows the number of candidates who appeared in an examination from five centres and the percentage of them who qualified:\n\n| Centre | Appeared | Qualified (%) |\n|---|---|---|\n| P | 1200 | 45% |\n| Q | 1500 | 36% |\n| R | 900 | 60% |\n| S | 1600 | 40% |\n| T | 800 | 55% |\n\nThe number of candidates who did not qualify from centre S is what per cent more than the number who did not qualify from centre R?",
+   "figure": null,
+   "options": [
+    "$166\\frac{2}{3}\\%$",
+    "62.5%",
+    "$266\\frac{2}{3}\\%$",
+    "150%"
+   ],
+   "answer": 0,
+   "solution": "Not qualified at S $= 1600 \\times 60\\% = 960$. Not qualified at R $= 900 \\times 40\\% = 360$. Required $= \\frac{960 - 360}{360} \\times 100 = \\frac{600}{360} \\times 100 = 166\\frac{2}{3}\\%$.",
+   "shortcut": "$\\frac{960}{360} = \\frac{8}{3} = 266\\frac23\\%$ is 'what per cent OF'; 'per cent MORE' subtracts 100: $166\\frac23\\%$. Dividing by 960 gives 62.5%.",
+   "difficulty": "hard",
+   "subtopic": "data-interpretation",
+   "pattern": "table percent more of failures",
+   "timeSec": 70
+  },
+  {
+   "id": "q-t1-mock-3-quant-25",
+   "q": "The table shows the number of candidates who appeared in an examination from five centres and the percentage of them who qualified:\n\n| Centre | Appeared | Qualified (%) |\n|---|---|---|\n| P | 1200 | 45% |\n| Q | 1500 | 36% |\n| R | 900 | 60% |\n| S | 1600 | 40% |\n| T | 800 | 55% |\n\nWhat is the ratio of the number of qualified candidates from centre Q to that from centre T?",
+   "figure": null,
+   "options": [
+    "15 : 8",
+    "27 : 22",
+    "36 : 55",
+    "22 : 27"
+   ],
+   "answer": 1,
+   "solution": "Qualified at Q $= 1500 \\times 36\\% = 540$. Qualified at T $= 800 \\times 55\\% = 440$. Ratio $= 540 : 440 = 27 : 22$.",
+   "shortcut": "Multiply appeared by per cent for each first; comparing only the appeared (15 : 8) or only the percentages (36 : 55) ignores half the data.",
+   "difficulty": "easy",
+   "subtopic": "data-interpretation",
+   "pattern": "table ratio of computed values",
+   "timeSec": 40
+  }
+ ]
+}

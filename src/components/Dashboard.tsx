@@ -175,7 +175,7 @@ export function Dashboard() {
                 <div className="w-7 h-7 mx-auto rounded-full font-extrabold flex items-center justify-center" style={{ background: 'var(--brand)', color: '#fff' }}>{n}</div>
                 <div className="font-bold mt-2">{t}</div>
                 <div className="faint text-xs mt-1">{b}</div>
-                <Link className="btn text-xs mt-3 inline-block" href={href} style={{ padding: '.3rem .7rem' }}>{cta}</Link>
+                <Link className="btn text-xs mt-3 self-start" href={href} style={{ padding: '.3rem .7rem' }}>{cta}</Link>
               </div>
             ))}
           </div>

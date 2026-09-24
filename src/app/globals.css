@@ -55,29 +55,32 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
-.muted { color: var(--ink-2); }
-.faint { color: var(--ink-3); }
-.btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
-  padding: .6rem 1rem; border-radius: 10px; font-weight: 600; font-size: .95rem;
-  border: 1px solid var(--line); background: var(--surface); color: var(--ink);
-  transition: transform .06s ease, background .15s ease; cursor: pointer; white-space: nowrap;
-}
-.btn:hover { background: var(--surface-2); }
-.btn:active { transform: translateY(1px); }
-.btn:disabled { opacity: .5; cursor: not-allowed; }
-.btn-brand { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
-.btn-brand:hover { background: var(--brand); filter: brightness(1.06); }
-.chip { display: inline-flex; align-items: center; gap: .3rem; padding: .15rem .55rem; border-radius: 999px; font-size: .75rem; font-weight: 600; border: 1px solid var(--line); background: var(--surface-2); color: var(--ink-2); }
-.chip-high { background: var(--bad-soft); color: var(--bad); border-color: transparent; }
-.chip-medium { background: var(--warn-soft); color: var(--warn); border-color: transparent; }
-.chip-low { background: var(--info-soft); color: var(--info); border-color: transparent; }
+/* Component classes live in a layer so Tailwind utilities (hidden, sm:inline-flex, px-*) can override them. */
+@layer components {
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+  .muted { color: var(--ink-2); }
+  .faint { color: var(--ink-3); }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+    padding: .6rem 1rem; border-radius: 10px; font-weight: 600; font-size: .95rem;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+    transition: transform .06s ease, background .15s ease; cursor: pointer; white-space: nowrap;
+  }
+  .btn:hover { background: var(--surface-2); }
+  .btn:active { transform: translateY(1px); }
+  .btn:disabled { opacity: .5; cursor: not-allowed; }
+  .btn-brand { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
+  .btn-brand:hover { background: var(--brand); filter: brightness(1.06); }
+  .chip { display: inline-flex; align-items: center; gap: .3rem; padding: .15rem .55rem; border-radius: 999px; font-size: .75rem; font-weight: 600; border: 1px solid var(--line); background: var(--surface-2); color: var(--ink-2); }
+  .chip-high { background: var(--bad-soft); color: var(--bad); border-color: transparent; }
+  .chip-medium { background: var(--warn-soft); color: var(--warn); border-color: transparent; }
+  .chip-low { background: var(--info-soft); color: var(--info); border-color: transparent; }
 
-.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; }
-.tbl th, .tbl td { border-bottom: 1px solid var(--line); padding: .5rem .6rem; text-align: left; vertical-align: top; }
-.tbl th { font-weight: 700; color: var(--ink-2); background: var(--surface-2); font-size: .8rem; text-transform: uppercase; letter-spacing: .02em; }
-.tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+  .tbl { width: 100%; border-collapse: collapse; font-size: .9rem; }
+  .tbl th, .tbl td { border-bottom: 1px solid var(--line); padding: .5rem .6rem; text-align: left; vertical-align: top; }
+  .tbl th { font-weight: 700; color: var(--ink-2); background: var(--surface-2); font-size: .8rem; text-transform: uppercase; letter-spacing: .02em; }
+  .tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+}
 
 /* Markdown prose tuned to tokens */
 .md { --tw-prose-body: var(--ink); --tw-prose-headings: var(--ink); --tw-prose-bold: var(--ink); --tw-prose-links: var(--brand);
