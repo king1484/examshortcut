@@ -39,7 +39,7 @@ export default async function FormulasPage({ params }: { params: Promise<{ secti
             {s.formulas!.map((f, k) => (
               <div key={k} className="card p-3.5">
                 <div className="text-sm font-bold">{f.name}</div>
-                <div className="my-1.5 overflow-x-auto"><LazyTex tex={f.tex} display /></div>
+                <div className="my-1.5 overflow-x-auto overflow-y-hidden py-0.5"><LazyTex tex={f.tex} display /></div>
                 {f.note && <p className="text-xs muted">{f.note}</p>}
               </div>
             ))}

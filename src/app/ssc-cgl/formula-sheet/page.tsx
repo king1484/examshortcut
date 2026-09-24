@@ -52,7 +52,7 @@ export default function FormulaSheetPage() {
                     {s.formulas.map((f, i) => (
                       <div key={i} className="mt-2">
                         <div className="text-xs font-semibold faint">{f.name}</div>
-                        <div className="overflow-x-auto"><LazyTex tex={f.tex} /></div>
+                        <div className="overflow-x-auto overflow-y-hidden py-0.5"><LazyTex tex={f.tex} /></div>
                         {f.note && <div className="text-[11px] muted">{f.note}</div>}
                       </div>
                     ))}
