@@ -1,0 +1,88 @@
+# Sentence-improvement practice questions, part B: si-agreement, si-comparison-structure.
+from _lib import Q
+
+QS = []
+A = "si-agreement"
+C = "si-comparison-structure"
+
+STEM = "Select the most appropriate option to substitute the highlighted segment in the given sentence. If no substitution is required, select 'No substitution required'."
+
+# ------------------------------------------------- si-agreement (9)
+QS += [
+ Q("si-agreement-p01", A, "sia1", STEM + "\n\nThe bundle of old files **were** sent to the record room.",
+   ["No substitution required", "was", "have been", "are"], 1,
+   "The subject is **bundle**; 'of old files' is an interrupter → the bundle **was** sent. The other plural helpers repeat the illusion.",
+   "cover the 'of' phrase; bundle is singular.", "easy", 30),
+ Q("si-agreement-p02", A, "sia1", STEM + "\n\nThe captain, as well as the openers, **were** blamed for the collapse.",
+   ["was", "No substitution required", "have been", "are"], 0,
+   "'As well as' adds information; it never makes the subject plural → the captain **was** blamed. The plural helpers all follow the added noun instead of the true subject.",
+   "as well as / along with → verb follows the first noun.", "medium", 40),
+ Q("si-agreement-p03", A, "sia1", STEM + "\n\nThe list of holidays **have been** announced by the district administration.",
+   ["has been", "No substitution required", "are been", "were"], 0,
+   "The subject is **list** (singular) → the list **has been** announced. 'Were' and 'are been' repeat the plural fault; 'are been' is not even a form.",
+   "the list has — not have.", "easy", 30),
+ Q("si-agreement-p04", A, "sia2", STEM + "\n\nEach of the shortlisted candidates **are** to report by nine tomorrow.",
+   ["is", "No substitution required", "were", "have been"], 0,
+   "**Each** is unconditionally singular → each **is** to report. The plural *candidates* inside the 'of' phrase cannot change the opener.",
+   "each of → singular.", "easy", 30),
+ Q("si-agreement-p05", A, "sia2", STEM + "\n\nOne of my cousins **have settled** in Wellington.",
+   ["No substitution required", "has settled", "have settle", "are settling"], 1,
+   "The subject is **one** → one **has settled**. 'Have settle' keeps the plural helper and drops the participle; the original agrees with the decoy noun *cousins*.",
+   "one of + plural noun + singular verb.", "medium", 35),
+ Q("si-agreement-p06", A, "sia3", STEM + "\n\nEither the secretary or the joint secretaries **is** responsible for the circular.",
+   ["are", "No substitution required", "was", "has been"], 0,
+   "With either…or, the verb agrees with the **nearer** subject — *the joint secretaries* (plural) → **are** responsible. 'Is' and 'was' follow the distant 'secretary'.",
+   "either…or → nearer subject.", "medium", 40),
+ Q("si-agreement-p07", A, "sia3", STEM + "\n\nNot only the students but also the wardens **was** honoured at the function.",
+   ["were", "No substitution required", "is", "has been"], 0,
+   "The nearness rule applies to not only…but also too: the nearer subject *the wardens* is plural → **were** honoured. 'Has been' would also break the passive plural.",
+   "not only…but also → nearer subject.", "medium", 40),
+ Q("si-agreement-p08", A, "sia4", STEM + "\n\nA number of films **has been** censored this month.",
+   ["have been", "No substitution required", "are been", "was"], 0,
+   "**A number of** means 'many' → plural: a number of films **have been** censored this month. ('The number of films has…' would be the singular frame.)",
+   "a number of → plural verb.", "medium", 40),
+ Q("si-agreement-p09", A, "sia4", STEM + "\n\nMany a farmer **have** shifted to drip irrigation in the drought belt.",
+   ["has", "No substitution required", "are", "were"], 0,
+   "**Many a + singular noun** is grammatically singular despite the plural meaning → many a farmer **has** shifted. The plural helpers follow the meaning, not the grammar.",
+   "many a → singular, always.", "medium", 40),
+]
+
+# ------------------------------------------------- si-comparison-structure (9)
+QS += [
+ Q("si-comparison-structure-p01", C, "sic1", STEM + "\n\nThe second model is **far more better** than the first.",
+   ["No substitution required", "far better", "more good", "best"], 1,
+   "**Better** is already comparative → drop the doubled marker: **far better** than the first. 'More good' re-doubles; 'best' breaks the two-item frame announced by *than the first*.",
+   "cut the doubled marker; keep the intensifier.", "easy", 30),
+ Q("si-comparison-structure-p02", C, "sic1", STEM + "\n\nOf all the vaccines, this one is **the more effective**.",
+   ["the most effective", "No substitution required", "more effective", "effective most"], 0,
+   "**Of all** the vaccines announces more than two → superlative: **the most effective**. 'The more effective' fits only a two-item frame; 'effective most' is not a form.",
+   "of all → superlative; of the two → comparative.", "medium", 40),
+ Q("si-comparison-structure-p03", C, "sic2", STEM + "\n\nThe streets of Mysuru are cleaner than **Bangalore**.",
+   ["those of Bangalore", "that of Bangalore", "No substitution required", "Bangalore's streets"], 0,
+   "Compare streets with streets → **those of Bangalore** (plural *those* for plural *streets*). 'That of' is singular; 'Bangalore's streets' doubles the clause.",
+   "plural noun compared → those of.", "easy", 35),
+ Q("si-comparison-structure-p04", C, "sic2", STEM + "\n\nThe proteins in millets are higher than **most cereals**.",
+   ["No substitution required", "those of most cereals", "that of most cereals", "most cereal's"], 1,
+   "Proteins must be compared with proteins → **those of most cereals** (plural). 'That of' is singular; the original compares proteins with cereals — unlike things.",
+   "name both sides of the comparison before choosing.", "medium", 45),
+ Q("si-comparison-structure-p05", C, "sic2", STEM + "\n\nThe floors of the new hostel are cleaner than **the old hostel**.",
+   ["the old hostel's floors are", "that of the old hostel", "those of the old hostel", "No substitution required"], 2,
+   "Floors with floors → **those of the old hostel**. 'That of' is singular; 'the old hostel's floors are' produces a doubled clause.",
+   "floors (plural) → those of.", "medium", 40),
+ Q("si-comparison-structure-p06", C, "sic3", STEM + "\n\nThe Goods and Services Tax is **preferable than** the older levy system.",
+   ["preferable to", "No substitution required", "more preferable than", "prefer to"], 0,
+   "**Preferable** takes **to**, never than → preferable **to** the older levy system. 'More preferable than' doubles the comparison; 'prefer to' changes the word class.",
+   "preferable / superior / senior → to.", "easy", 30),
+ Q("si-comparison-structure-p07", C, "sic3", STEM + "\n\nMy sister **prefers coffee than** tea in winter.",
+   ["No substitution required", "prefers coffee to", "prefer coffee to", "is preferring coffee than"], 1,
+   "**Prefer X to Y**: prefers coffee **to** tea. The original's subject is third person singular, so *prefers* with the -s must stay — only the partner word changes.",
+   "prefer → to; keep the subject-verb agreement.", "easy", 30),
+ Q("si-comparison-structure-p08", C, "sic4", STEM + "\n\nMumbai is the **larger** of the two megacities in terms of population.",
+   ["largest", "No substitution required", "more larger", "most large"], 1,
+   "**Of the two** → comparative: the **larger** of the two megacities is exactly right → No substitution required. 'Largest' needs three or more; 'more larger' doubles the marker.",
+   "of the two → the …er of.", "easy", 35),
+ Q("si-comparison-structure-p09", C, "sic4", STEM + "\n\nIron is **the most useful** of the two metals for construction.",
+   ["the more useful", "No substitution required", "more useful", "useful most"], 0,
+   "**Of the two** metals → comparative: **the more useful**. 'The most useful' claims three or more; 'more useful' drops the required *the*.",
+   "count the items before choosing the degree.", "medium", 40),
+]

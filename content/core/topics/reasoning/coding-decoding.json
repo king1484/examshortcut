@@ -132,6 +132,69 @@
     "Applying a +2 found on a 5-letter sample to only 4 letters of the probe (misalignment).",
     "Sign errors on decode questions — the shift runs the opposite way.",
     "Missing a per-index rising tuple and treating it as flat."
+   ],
+   "notes": "### What is letter-shift coding?\nThink of the alphabet as a circular road with 26 houses, A to Z. In **letter-shift coding** every letter of a word walks forward (or backward) a fixed number of houses. If every letter walks 2 houses forward, CAT becomes ECV. This is the most common coding question in SSC, Railway and Banking papers.\n\n### Step 1: know the positions\nEach letter has a **position number**: A=1, B=2 ... Z=26. Do not count on your fingers every time. Learn the **EJOTY** anchors:\n\n| E | J | O | T | Y |\n|---|---|---|---|---|\n| 5 | 10 | 15 | 20 | 25 |\n\nAny letter is at most 2 steps from an anchor. For example, R = T − 2 = 18 and H = J − 2 = 8.\n\n### Step 2: find the shift\nWrite the sample word and its code one above the other. For each slot, subtract: code position − word position. The list of answers is the **shift tuple**.\n\nExample: KITE → MKVG. K(11)→M(13) is +2, I→K +2, T→V +2, E→G +2. The tuple is (+2, +2, +2, +2), a **flat shift**.\n\n### Wrap-around\nAfter Z the road starts again at A. So Y + 3 = B (Y→Z→A→B). In numbers: if the new position is more than 26, subtract 26. If it is 0 or less, add 26. Example: C − 5 → 3 − 5 = −2 → −2 + 26 = 24 = X.\n\n### Types of shift you will meet\n1. **Flat shift**: every letter moves by the same number, e.g. +2 or −3.\n2. **Per-slot (rising or falling) shift**: 1st letter +1, 2nd +2, 3rd +3 ... or −1, −2, −3 ... The tuple changes but follows a pattern.\n3. **Alternating shift**: +1, −1, +1, −1 ... or odd places +2 and even places −2.\n4. **Length-based shift**: each letter moves by the number of letters in the word. CAT (3 letters) → FDW; FISH (4 letters) → JMWL. When two samples of different length show different flat shifts, check the letter count.\n5. **Decoding**: the code is given and the word is asked. Run the tuple backwards: where the rule adds 2, you subtract 2.\n\n### A full worked example\n**Q.** If WORD is written as XQUH, how is BOOK written?\n\nW→X +1, O→Q +2, R→U +3, D→H +4. The tuple rises: (+1, +2, +3, +4). Apply it to BOOK: B+1 = C, O+2 = Q, O+3 = R, K+4 = O. Answer **CQRO**.\n\nNotice that the two O's in BOOK get **different** codes (Q and R). In per-slot rules the slot decides the shift, not the letter.\n\n### Speed habits\n- Find the shift from the **first two letters** and confirm it with one more letter before coding.\n- Look at the options: usually only one option has the right **first** letter. Check the last letter to be sure.\n- For decoding, code your chosen option forward once. If it gives the code, you are right.\n\n### Quick revision\n- Positions: A=1 ... Z=26; anchors E5, J10, O15, T20, Y25.\n- Shift tuple = code position − word position, slot by slot.\n- Flat, rising/falling, alternating and length-based shifts are the four families.\n- Wrap-around: above 26 subtract 26; 0 or below add 26.\n- Decode = subtract the tuple. Check the answer by coding it forward.",
+   "patterns": [
+    {
+     "id": "cd-p6",
+     "name": "Flat shift (+k or −k on every letter)",
+     "frequency": "very common",
+     "howToSpot": "Every letter of the code is the same number of places ahead of (or behind) the matching letter of the word.",
+     "formula": "\\text{code}_i = \\text{letter}_i + k \\pmod{26}",
+     "logic": "1. Subtract positions for two or three letters of the sample.\n2. If all differences are equal, that is k.\n3. Add k to each letter of the new word (wrap after Z).\n\nWhy it works: a flat rule treats every letter the same.",
+     "example": {
+      "q": "If KITE is written as MKVG, how is LAMP written?",
+      "solution": "K→M (+2), I→K (+2), T→V (+2), E→G (+2) → flat +2. LAMP +2 → **NCOR**."
+     }
+    },
+    {
+     "id": "cd-p7",
+     "name": "Per-slot shift (rising, falling or fixed tuple)",
+     "frequency": "common",
+     "howToSpot": "The differences are not equal but follow a pattern by position: +1, +2, +3, +4 or −1, −2, −3 or (+3, +1, +4...).",
+     "formula": "\\text{code}_i = \\text{letter}_i + d_i",
+     "logic": "1. Write the full shift tuple from the sample.\n2. Apply the same tuple to the new word, slot by slot.\n3. Repeated letters may get different codes — that is expected.\n\nWhy it works: the slot number decides the shift.",
+     "example": {
+      "q": "If WORD is written as XQUH, how is BOOK written?",
+      "solution": "W→X (+1), O→Q (+2), R→U (+3), D→H (+4) → (+1, +2, +3, +4). BOOK → **CQRO**."
+     }
+    },
+    {
+     "id": "cd-p8",
+     "name": "Decoding (code given, word asked)",
+     "frequency": "common",
+     "howToSpot": "The question gives a code and asks 'which word is written as ...?' — the direction is reversed.",
+     "formula": "\\text{letter}_i = \\text{code}_i - d_i",
+     "logic": "1. Find the rule from the sample pair.\n2. Undo it: subtract where the rule adds, add where it subtracts.\n3. Code your answer forward once to confirm.\n\nWhy it works: decoding is the same rule played backwards.",
+     "example": {
+      "q": "If DOG is written as FQI, which word is written as DKTF?",
+      "solution": "Rule +2, so decode −2: DKTF → **BIRD**."
+     }
+    },
+    {
+     "id": "cd-p9",
+     "name": "Alternating or odd/even-place shift",
+     "frequency": "common",
+     "howToSpot": "The shifts swing: +1, −1, +1, −1 ... or letters in odd places move one way and letters in even places the other way.",
+     "formula": null,
+     "logic": "1. Write the tuple and look for a repeating 2-step cycle.\n2. Apply the cycle to the new word from the first letter.\n3. For a longer new word, just keep repeating the cycle.\n\nWhy it works: the rule depends only on odd/even place.",
+     "example": {
+      "q": "If FLOWER is written as GKPVFQ, how is GARDEN written?",
+      "solution": "F→G (+1), L→K (−1), O→P (+1), W→V (−1), E→F (+1), R→Q (−1) → +1, −1 repeating. GARDEN → **HZSCFM**."
+     }
+    },
+    {
+     "id": "cd-p10",
+     "name": "Shift equal to the number of letters",
+     "frequency": "occasional",
+     "howToSpot": "Two or more samples of different lengths each have a flat shift, and the shift equals the word's letter count (3-letter word +3, 4-letter word +4), or its negative.",
+     "formula": null,
+     "logic": "1. Find the flat shift of each sample.\n2. Compare it with the word length.\n3. For the new word, count its letters and shift by that number.\n\nWhy it works: the shift is not fixed; it is tied to the length.",
+     "example": {
+      "q": "If CAT is written as FDW and FISH as JMWL, how is TIGER written?",
+      "solution": "CAT: +3 (3 letters); FISH: +4 (4 letters). TIGER has 5 letters → +5 → **YNLJW**."
+     }
+    }
    ]
   },
   {
@@ -153,6 +216,57 @@
     "Reversing but forgetting the extra shift (or shifting before reversing when the sample did it the other way).",
     "Reversing the probe but keeping the sample's letter order in the middle letters.",
     "Applying reversal to decode questions without un-reversing the shift as well."
+   ],
+   "notes": "### What is reverse coding?\nHold a word in front of a mirror and you see it backwards. **Reverse coding** writes the word from right to left: LOGIC becomes CIGOL. Examiners like to add one more step, such as a shift after reversing, or they replace each letter by its **opposite letter** in the alphabet. All three ideas are covered in this lesson.\n\n### 1. Pure reversal\nWrite the last letter first and the first letter last. GARDEN → NEDRAG. Test: read the code from right to left. If you get the original word, the rule is pure reversal.\n\n### 2. Reverse and shift\nThe code is the reversed word with every letter moved by the same amount.\n\nExample: PAINT → UOJBQ. Reverse PAINT → TNIAP. Compare TNIAP with UOJBQ: T→U, N→O, I→J, A→B, P→Q — each +1. So the rule is **reverse, then +1**.\n\nWhen the shift is the same for every letter, 'reverse then shift' and 'shift then reverse' give the same result. When the shift changes by slot (+1, +2, +3 ...), the order matters, so copy the order used in the sample.\n\n### 3. Opposite letters\nFold the alphabet in the middle: A sits on Z, B on Y, C on X, and so on. Each pair is called **opposite letters**. The positions of a pair always add up to **27**.\n\n| A-Z | B-Y | C-X | D-W | E-V | F-U | G-T |\n|---|---|---|---|---|---|---|\n| **H-S** | **I-R** | **J-Q** | **K-P** | **L-O** | **M-N** | |\n\nMemory aid: 'AZ', 'BY', 'CX' then 'DeW', 'EVe', 'FUn', 'GT', 'HS', 'IR', 'JQ', 'KP', 'LO', 'MN'. To find an opposite quickly: opposite = 27 − position. Example: opposite of K(11) = 27 − 11 = 16 = P.\n\nHow to spot it: take the first letter of the word and the first letter of the code. If their positions add to 27, check one more letter. Example: WHITE → DSRGV. W(23) + D(4) = 27, H(8) + S(19) = 27. Opposite letters confirmed.\n\n### 4. Opposite and reverse together\nSome codes first write the opposite letters and then reverse the whole word. LAMP → opposites OZNK → reversed **KNZO**. Test: if the first code letter is the opposite of the **last** word letter, both steps are present.\n\n### Decoding\n- Reversal undoes itself: reverse the code to get the word.\n- Opposite letters also undo themselves: the opposite of the opposite is the same letter.\n- For reverse + shift, first un-shift, then reverse (or the other way; with a flat shift both orders work).\n\n### Common traps\n- Reversing but forgetting the extra shift.\n- Using 26 instead of 27 for opposites (26 − 11 = 15 = O is wrong; the opposite of K is P).\n- In odd-length words the middle letter stays in the middle after reversal, but it still gets the shift or opposite.\n\n### Quick revision\n- Read the code backwards first: word appears → reversal.\n- Word appears shifted → reverse + shift; find k from one letter.\n- Positions add to 27 → opposite letters; opposite = 27 − position.\n- First code letter pairs with the last word letter → opposite + reverse.\n- Reversal and opposite undo themselves when decoding.",
+   "patterns": [
+    {
+     "id": "cd-p11",
+     "name": "Pure reversal",
+     "frequency": "common",
+     "howToSpot": "The code has the same letters as the word, written from right to left (GARDEN → NEDRAG).",
+     "formula": null,
+     "logic": "1. Read the code backwards; you should see the sample word.\n2. Write the new word backwards.\n3. For decoding, reverse the code.\n\nWhy it works: reversal is its own undo.",
+     "example": {
+      "q": "If GARDEN is written as NEDRAG, how is FLOWER written?",
+      "solution": "Pure reversal → **REWOLF**."
+     }
+    },
+    {
+     "id": "cd-p12",
+     "name": "Reverse and then shift",
+     "frequency": "common",
+     "howToSpot": "Reading the code backwards gives the sample word with every letter moved by the same (or patterned) amount.",
+     "formula": "\\text{code} = \\text{shift}_k(\\text{reverse}(w))",
+     "logic": "1. Reverse the sample word.\n2. Compare the reversed word with the code letter by letter to find the shift.\n3. Reverse the new word and apply the same shift in the same order.\n\nWhy it works: two simple rules in a row.",
+     "example": {
+      "q": "If PAINT is written as UOJBQ, how is BRUSH written?",
+      "solution": "PAINT reversed = TNIAP; TNIAP → UOJBQ is +1. BRUSH reversed = HSURB; +1 → **ITVSC**."
+     }
+    },
+    {
+     "id": "cd-p13",
+     "name": "Opposite letters (positions add to 27)",
+     "frequency": "common",
+     "howToSpot": "Code letters look far from the word letters, and each word letter + its code letter = 27 (A↔Z, M↔N).",
+     "formula": "\\text{opposite}(p) = 27 - p",
+     "logic": "1. Add the positions of the first word letter and first code letter; 27 means opposites.\n2. Confirm with one more letter.\n3. Write the opposite of each letter of the new word (27 − position).\n\nWhy it works: opposite pairs are fixed, so the code is a simple look-up.",
+     "example": {
+      "q": "If WHITE is written as DSRGV, how is GREEN written?",
+      "solution": "W+D = 23+4 = 27 → opposites. GREEN: G↔T, R↔I, E↔V, E↔V, N↔M → **TIVVM**."
+     }
+    },
+    {
+     "id": "cd-p14",
+     "name": "Opposite letters plus reversal",
+     "frequency": "occasional",
+     "howToSpot": "The first code letter is the opposite of the LAST word letter; the code is the opposite word read backwards.",
+     "formula": null,
+     "logic": "1. Pair the first code letter with the last word letter (sum 27).\n2. For the new word, write the opposite letters, then reverse the result.\n\nWhy it works: both steps are self-undoing, so the order does not change the answer.",
+     "example": {
+      "q": "If LAMP is written as KNZO, how is DESK written?",
+      "solution": "LAMP → opposites OZNK → reversed KNZO ✓. DESK → opposites WVHP → reversed **PHVW**."
+     }
+    }
    ]
   },
   {
@@ -203,6 +317,69 @@
     "Using A=0 indexing by mistake — CGL always uses A=1 unless a sample proves otherwise.",
     "Adding the constant to each letter instead of to the total (S + r per letter vs once).",
     "Ignoring the weighted variant when the plain sum is off by a non-constant amount."
+   ],
+   "notes": "### What is number coding?\nA **word is coded as a number**. You are told (or you discover) how one word turns into its number, and you must code another word the same way. Example: **SUN is coded 54**, so how is DOG coded?\n\nThe number is almost always built from the **alphabet positions** of the letters: A = 1, B = 2, ... Z = 26. The EJOTY anchors make positions fast: E = 5, J = 10, O = 15, T = 20, Y = 25.\n\n### Step 1: find the position sum of the model word\nAdd the positions of the model word's letters. For SUN: S = 19, U = 21, N = 14, and 19 + 21 + 14 = **54**. The code 54 is exactly this sum — the rule is a **plain position sum**.\n\n### Step 2: compare the sum with the code\nIf the sum does not equal the code, look at the difference:\n\n| What you see | Rule family |\n|---|---|\n| Code = sum of positions | plain sum (SUN = 54) |\n| Code uses A = 26, B = 25 ... Z = 1 | **reverse positions** (27 − p) |\n| Code = 2 × sum, sum + 10, sum − 5 ... | sum with an **extra step** |\n| Code grows fast for 4-letter words | **weighted sum** (position × place in word) |\n| Code = letters **plus** a number | **mixed code** (shifted letters + sum) |\n\nThe question often states the rule (\"sum of alphabet positions\", \"A = 26, B = 25...\"). When it does not, this table is your test order.\n\n### The rule bank with worked examples\n1. **Plain sum.** SUN = 19 + 21 + 14 = 54. DOG = 4 + 15 + 7 = 26.\n2. **Reverse-position sum.** Treat A as 26 and Z as 1 (each letter counts 27 − its normal position). CAT = 24 + 26 + 7 = 57.\n3. **Sum with an extra step.** CAB: sum = 6, code 16 → the rule adds 10. Apply the same extra step to the new word.\n4. **Weighted sum.** Each letter's position is multiplied by its place in the word, then added. BAG = 2×1 + 1×2 + 7×3 = 25.\n5. **Mixed letter-plus-number code.** 'TREE' → 'USFF48': each letter moves +1 (TREE → USFF) and the position sum (48) is written after. For the new word, do both parts again from scratch.\n\n### Worked example (weighted sum)\n**DAB is coded 12. How is CAD coded?** D×1 + A×2 + B×3 = 4 + 2 + 6 = 12 ✓. CAD = 3×1 + 1×2 + 4×3 = 3 + 2 + 12 = **17**.\n\n### Common traps\n- **Reusing the sample's number.** In mixed codes, the number part must be recomputed for the new word — it is never copied.\n- **Wrong direction.** If the paper says A = 26, do not keep summing normal positions.\n- **Assuming the plain sum.** Always check: does the model word's plain sum equal the code? If not, find the extra step before coding the new word.\n- **Adding instead of multiplying** in weighted sums — B×1 + A×2 means A is multiplied by 2, not added.\n\n### Quick revision\n- Positions A = 1 ... Z = 26; EJOTY anchors give fast look-ups.\n- Test order: plain sum → reverse sum (27 − p) → sum ± r or × k → weighted (p × place) → mixed letter + number.\n- The rule must reproduce the model word's code exactly before you use it.\n- Reverse position of a letter = 27 − position. Z counts as 1, A as 26.\n- Mixed codes: shift the letters and append the fresh position sum of the new word.\n",
+   "patterns": [
+    {
+     "id": "cd-p15",
+     "name": "Plain position-sum coding",
+     "frequency": "very common",
+     "howToSpot": "A word is coded with a number close to 30-80, and the question may say 'sum of alphabet positions'.",
+     "formula": "\\text{code} = \\sum p_i",
+     "logic": "1. Add the positions of the model word's letters (EJOTY helps).\n2. If the sum equals the code, the rule is a plain sum.\n3. Add the positions of the new word.\n\n*Why it works:* the plain sum is the most common number code in SSC, Railway and Banking papers.",
+     "example": {
+      "q": "**HAT is coded 29** (sum of positions). How is **PEN** coded?",
+      "solution": "H + A + T = 8 + 1 + 20 = 29 ✓ (plain sum). P + E + N = 16 + 5 + 14 = **35**."
+     }
+    },
+    {
+     "id": "cd-p16",
+     "name": "Reverse-position sum (A = 26 ... Z = 1)",
+     "frequency": "common",
+     "howToSpot": "The question says 'A = 26, B = 25 ... Z = 1', or the code is large for a short word.",
+     "formula": "\\text{code} = \\sum (27 - p_i)",
+     "logic": "1. Convert each letter to 27 − its normal position.\n2. Add them for the model word and confirm the code.\n3. Repeat for the new word.\n\n*Why it works:* reverse positions are the same table read backwards; Z = 1 and A = 26.",
+     "example": {
+      "q": "**EAT is coded 55** (A = 26, B = 25 ... Z = 1). How is **TEN** coded?",
+      "solution": "E = 22, A = 26, T = 7 → 55 ✓. T = 7, E = 22, N = 13 → **42**."
+     }
+    },
+    {
+     "id": "cd-p17",
+     "name": "Position sum with an extra step (× k or + r)",
+     "frequency": "common",
+     "howToSpot": "The plain sum of the model word is close to, but not equal to, the code.",
+     "formula": "\\text{code} = k\\sum p_i + r",
+     "logic": "1. Compute the plain sum of the model word.\n2. Find the extra step: code − sum, or code ÷ sum.\n3. Apply the same step to the new word's sum.\n\n*Why it works:* a single extra operation turns the plain sum into any number the setter wants.",
+     "example": {
+      "q": "**DIG is coded 22**. How is **BIG** coded?",
+      "solution": "D + I + G = 4 + 9 + 7 = 20; 20 + 2 = 22, so the rule is **sum + 2**. BIG = 2 + 9 + 7 = 18, plus 2 = **20**."
+     }
+    },
+    {
+     "id": "cd-p18",
+     "name": "Weighted sum (position × place in the word)",
+     "frequency": "occasional",
+     "howToSpot": "The code cannot be reached by any plain sum; the word has 3-4 letters and the code is mid-sized.",
+     "formula": "\\text{code} = \\sum i \\cdot p_i",
+     "logic": "1. Multiply each letter's position by its place (1st, 2nd, 3rd ...).\n2. Add the products and check the model word's code.\n3. Do the same for the new word.\n\n*Why it works:* weighting explains codes that no flat sum can reach.",
+     "example": {
+      "q": "**DAB is coded 12** (position × place). How is **CAD** coded?",
+      "solution": "D×1 + A×2 + B×3 = 4 + 2 + 6 = 12 ✓. CAD = 3×1 + 1×2 + 4×3 = 3 + 2 + 12 = **17**."
+     }
+    },
+    {
+     "id": "cd-p19",
+     "name": "Mixed letter-plus-number code",
+     "frequency": "occasional",
+     "howToSpot": "The code is a string like 'USFF48' — letters followed by a number (or the reverse).",
+     "formula": null,
+     "logic": "1. Solve the letter part first (usually a shift).\n2. Compute the number part for the NEW word afresh (usually its position sum).\n3. Join both parts in the same order as the sample.\n\n*Why it works:* the two halves are independent mini-codes; the number always changes with the word.",
+     "example": {
+      "q": "**TREE is written USFF48** (+1 letters, position sum appended). How is **LEAF** written?",
+      "solution": "LEAF + 1 = **MFBG**. Sum = 12 + 5 + 1 + 6 = **24**. Code = **MFBG24**."
+     }
+    }
    ]
   },
   {
@@ -229,6 +406,69 @@
     "Assuming symbols appear in the same order as the letters when the question says the order may differ.",
     "Coding straight from the table without first checking whether a condition applies.",
     "Applying two conditions at once when the question says only the first matching condition applies."
+   ],
+   "notes": "### What is symbol and digit coding?\nLetters (or digits) are replaced by **symbols** (@ # % * ...) or **digits**, one fixed code per letter. Two exam looks:\n\n1. **A table is given**: M = #, A = @, T = %. Code the word letter by letter.\n2. **No table**: two or three words come with their codes, and you discover which symbol stands for which letter by **matching**.\n\nOnce a letter's code is known, it never changes inside the question.\n\n### Type 1: code straight from the table\nWrite the table's letter under each letter of the word, in order. If MAT has M = #, A = @, T = %, then MAT = **#@%**. Watch for extra **conditions**:\n- \"If the word begins with a vowel, write the codes in reverse order.\"\n- \"If the digit sum is even, reverse the digits first.\"\n\nCheck the condition **before** touching the table — the setter counts on you forgetting it.\n\n### Type 2: match common letters with common symbols\nWhen two coded words share letters, their codes share exactly those symbols:\n\n- PEN = @ # %  and NET = % # &\n- Common letters E, N sit at the same places as common symbols #, % → E = #, N = %.\n- The leftover letter of PEN (P) takes the leftover symbol **@**.\n\nThis works when the symbols keep their positions. If the question says the symbol order may differ, match by **count**: two common letters must appear as two common symbols; the leftover pairs up one-to-one.\n\n### Digit tables\nDigits may stand for letters with a simple build: A = 2, B = 4, C = 6 (double the position). Code letter by digit, keeping one digit per letter. 4 can be one letter (D) or part of 10 (J) — count letters, not digits.\n\n### Matrix coding (SSC favourite)\nLetters sit in a 5 × 5 grid; rows and columns are numbered 1-5. Each letter's code is its **(row, column)** pair. Read the word letter by letter and write the pairs: H is in row 2, column 3 → 23. The code of a 4-letter word is four two-digit numbers.\n\nSpeed tip: the same letter may appear more than once in the grid in some papers — any valid position pair is accepted; pick the one that matches an option.\n\n### Conditions with numbers\nNumber codes come with a test: \"if the sum of the digits is even, reverse the digits before coding.\" Sum first, then decide the order, then map digit → symbol.\n\n### Quick revision\n- Table given: map letter by letter; check conditions first.\n- No table: common letters ↔ common symbols; leftovers pair up.\n- Symbols may not keep order — then only counts are safe, and two possible codes mean 'cannot be determined'.\n- Matrix: code = (row, column) per letter; the grid has no J in the classic version.\n- Mixed conditions: decide the order rule before coding anything.\n",
+   "patterns": [
+    {
+     "id": "cd-p24",
+     "name": "Direct table look-up",
+     "frequency": "very common",
+     "howToSpot": "A letter → symbol/digit table is printed with the question.",
+     "formula": null,
+     "logic": "1. Write the code symbol under each letter of the word, in order.\n2. Join the symbols without spaces (or as the options show).\n3. Double-check the table row you used.\n\n*Why it works:* the table fixes every letter; nothing needs discovering.",
+     "example": {
+      "q": "**M = #, A = @, T = %.** What is the code of **MAT**?",
+      "solution": "M → #, A → @, T → %. MAT = **#@%**."
+     }
+    },
+    {
+     "id": "cd-p25",
+     "name": "Condition before the table",
+     "frequency": "common",
+     "howToSpot": "The question lists conditions ('if the word begins with a vowel, reverse the codes') above the table.",
+     "formula": null,
+     "logic": "1. Test the conditions on the word in order.\n2. Apply the first matching condition (reverse order, swap rows ...).\n3. Only then code from the table.\n\n*Why it works:* the condition changes the ORDER of symbols, not their letter values.",
+     "example": {
+      "q": "Table: E = &, C = $, H = %, O = *. Condition: if the word begins with a vowel, write the codes in reverse order. Code of **ECHO**?",
+      "solution": "ECHO begins with the vowel E → reverse. Direct codes are & $ % *; reversed → ***%$&**."
+     }
+    },
+    {
+     "id": "cd-p26",
+     "name": "Match common letters ↔ common symbols (no table)",
+     "frequency": "common",
+     "howToSpot": "Words like 'PEN = @ # %' and 'NET = % # &' come with no table; you must infer codes.",
+     "formula": null,
+     "logic": "1. Circle letters shared by two words and symbols shared by their codes.\n2. Pair them (position-wise when order is fixed).\n3. Left-over letter takes the left-over symbol.\n\n*Why it works:* codes are letter-for-symbol, so shared letters force shared symbols.",
+     "example": {
+      "q": "**PEN = @ # %, NET = % # &.** What is the code for **P**?",
+      "solution": "E and N are common; # and % are the common symbols → E = #, N = %. PEN's leftover P takes PEN's leftover **@**."
+     }
+    },
+    {
+     "id": "cd-p27",
+     "name": "Digit substitution for letters",
+     "frequency": "common",
+     "howToSpot": "Letters map to digits by a rule (A = 2, B = 4, C = 6 ... or vowels to their positions).",
+     "formula": null,
+     "logic": "1. Find the build rule from the given examples (double the position, position itself ...).\n2. Convert the word letter by letter.\n3. Keep one number per letter — 10 takes two digit places.\n\n*Why it works:* the build rule is a small arithmetic step on positions.",
+     "example": {
+      "q": "**A = 2, B = 4, C = 6 ...** (double the position). What is the code of **CAB**?",
+      "solution": "C = 6, A = 2, B = 4 → **624**."
+     }
+    },
+    {
+     "id": "cd-p28",
+     "name": "Matrix coding (row, column)",
+     "frequency": "very common",
+     "howToSpot": "A 5 × 5 grid of letters with numbered rows and columns; the code of each letter is a two-digit (row, column) pair.",
+     "formula": null,
+     "logic": "1. Find each letter's row and column in the grid.\n2. Write the pair as two digits (row first, then column).\n3. Join the pairs for the whole word.\n\n*Why it works:* the grid is just a table; the pair is an address.",
+     "example": {
+      "q": "In the following 5 × 5 matrix, columns are numbered 1-5 from left to right and rows 1-5 from top to bottom:\nRow 1: A B C D E\nRow 2: F G H I K\nRow 3: L M N O P\nRow 4: Q R S T U\nRow 5: V W X Y Z\nWhat is the code for **HIDE**?",
+      "solution": "H = (2, 3), I = (2, 4), D = (1, 4), E = (1, 5) → **23, 24, 14, 15**."
+     }
+    }
    ]
   },
   {
@@ -250,6 +490,57 @@
     "Answering from real-world knowledge ('fish live in water') instead of the renaming chain.",
     "Assuming code-word order matches word order — sentence codes often reverse it; alignment is by elimination, not position.",
     "Missing a repeated word because of a plural/singular change (light vs lights) — check word stems."
+   ],
+   "notes": "### What is substitution coding?\nThe exam **renames things** or **renames code words**, and you must answer from the renamed world. Two very different looks share this subtopic:\n\n1. **'Is called' chains.** \"If cloud is called rain, rain is called wind...\" — the real thing and its new name are linked in a chain, and you answer with the **new name**.\n2. **Word-code matching.** \"In a code language, 'red light' is 'pa ka'...\" — English words are written with code words (pa, ka, ni ...), usually **jumbled**, and you find which code stands for which word.\n\n### 'Is called' chains — the one rule\nThe question always asks about the **real world**, and the answer lies in the **renamed world**.\n\n- Ask: what is the real answer in everyday life? (What do farmers wait for? **Rain**.)\n- Then look up what that thing **is called** in the question. (Rain is called **wind**.)\n- Answer with the new name: **wind**.\n\nRead the chain in one direction only. \"Cloud is called rain\" tells you the new name of cloud — it does **not** tell you the new name of rain. That comes from the next line of the chain.\n\n### Word-code matching — intersect and subtract\n- A word common to two sentences has its code among the code words **common** to those two sentences.\n- Find a code for every common word first. Then remove those codes from each sentence: what is left over belongs to the left-over words.\n\nExample: 'red light' = 'pa ka', 'green light' = 'ka na'. 'light' is common and 'ka' is the common code → light = ka. In sentence 1 the leftover word 'red' takes the leftover code **pa**.\n\n### The 'cannot be determined' rule\nSometimes two codes remain possible for one word. Example: 'red rose' = 'pa ka', 'white lotus' = 'za ka'. No word is common to the two sentences, so 'ka' is not pinned to anything: 'rose' could be 'pa' or 'ka'. When **two or more** codes remain equally possible after all elimination, the answer is **cannot be determined**. Do not guess one of them — the exam keeps this option exactly for this case.\n\nWith three sentences, elimination usually pins every word down. Work in this order:\n1. Words common to two (or three) sentences.\n2. Codes common to the same sentences.\n3. Subtract fixed codes; assign leftovers.\n\n### Other substitution forms\n- **Longer chains with reverse look-up:** \"when do we sleep?\" — real answer 'night' — night is called 'morning' → answer 'morning'.\n- **Digits or symbols standing for words:** a small dictionary is given (1 = come, 2 = home ...); build the answer phrase in the **same word order as the question** asks.\n\n### Quick revision\n- 'Is called': find the real-world answer first, then answer with its **new name**. Never mix the two worlds.\n- One line of a chain names only the word at its left end.\n- Word-code: common word ↔ common code; then subtract what is fixed.\n- Two possible codes left after elimination → cannot be determined.\n- Phrase codes keep the order in which the question writes the phrase.\n",
+   "patterns": [
+    {
+     "id": "cd-p20",
+     "name": "Simple 'is called' chains",
+     "frequency": "very common",
+     "howToSpot": "Lines like 'if white is called blue, blue is called red ...' ending with a real-life question.",
+     "formula": null,
+     "logic": "1. Answer the everyday question with the REAL thing (what do we write with? a pen).\n2. Read off the new name of that real thing from the chain.\n3. Give the new name as the answer.\n\n*Why it works:* the chain only renames things; the asked fact lives in the real world, the answer in the renamed one.",
+     "example": {
+      "q": "**If cloud is called rain, rain is called wind, wind is called sun** — what do farmers wait for?",
+      "solution": "Farmers wait for real **rain**. Rain is called **wind**. Answer: Wind (not rain — that is cloud's new name)."
+     }
+    },
+    {
+     "id": "cd-p21",
+     "name": "Word-code matching by elimination",
+     "frequency": "common",
+     "howToSpot": "Two or three English sentences with code words ('pa ka ni'); the code order is usually jumbled.",
+     "formula": null,
+     "logic": "1. Find words common to two sentences; their codes are the common code words.\n2. Fix those codes, then subtract them from each sentence.\n3. Left-over words take left-over codes.\n\n*Why it works:* a word's code must appear in every sentence that contains the word.",
+     "example": {
+      "q": "**'hot tea' = 'na pi', 'cold tea' = 'pi ka', 'hot milk' = 'na ru'** — code for 'milk'?",
+      "solution": "hot ↔ na (sentences 1, 3), tea ↔ pi (1, 2). Sentence 2 leaves cold = ka; sentence 3 leaves milk = **ru**."
+     }
+    },
+    {
+     "id": "cd-p22",
+     "name": "Cannot be determined (two codes left)",
+     "frequency": "common",
+     "howToSpot": "A word appears in only one sentence, and its sentence shares two or more codes with the other sentence.",
+     "formula": null,
+     "logic": "1. Fix every code you can by the common-word method.\n2. If two codes still fit the asked word, stop — the answer is 'cannot be determined'.\n3. Never pick one of the two possible codes.\n\n*Why it works:* elimination needs leftovers of size one; size two leaves a genuine ambiguity.",
+     "example": {
+      "q": "**'red rose' = 'pa ka', 'white lotus' = 'za ka'** — what is the code for 'rose'?",
+      "solution": "No word is common to the two sentences, so 'ka' belongs to nothing for certain. Rose can be 'pa' or 'ka' → **cannot be determined**."
+     }
+    },
+    {
+     "id": "cd-p23",
+     "name": "Longer chains and reverse look-up",
+     "frequency": "common",
+     "howToSpot": "Chains of four or five renames, or questions that run the chain the other way ('what does 'morning' really mean?').",
+     "formula": null,
+     "logic": "1. Write the chain as a list: real thing → new name.\n2. Start from the real-world fact the question asks about.\n3. Walk to its new name (or, for reverse look-up, find which real thing maps to the given name).\n\n*Why it works:* a written-down chain stops the confusion that costs marks here.",
+     "example": {
+      "q": "**If day is called night, night is called morning, morning is called evening** — when do we sleep?",
+      "solution": "We sleep at real **night**. Night is called **morning**. Answer: Morning."
+     }
+    }
    ]
   },
   {
@@ -271,6 +562,69 @@
     "Matching code words by position — the code order is usually jumbled.",
     "Picking one of two equally possible codes instead of answering 'cannot be determined'.",
     "Forgetting that a code word already fixed for another word cannot be reused."
+   ],
+   "notes": "### What is language coding?\nA whole **sentence** is written in a code language: 'good morning sir' becomes 'ta pa ni'. You get two or three such sentence–code pairs and must find the code of a word (or the meaning of a code).\n\nThe golden fact: **the code order is usually jumbled**. 'good morning' = 'ta pa' does NOT mean good = ta. Never match by position.\n\n### The intersect-and-subtract method\n1. **Intersect.** For the word you need, find every sentence that contains it. The word's code is among the code words those sentences have **in common**.\n2. **Subtract.** Remove codes already fixed for other words. One code left → that is the answer.\n\nExample: 'sun is hot' = 'ta mo ri'; 'sun is bright' = 'ri ze mo'. The words 'sun is' are common, so their codes are 'ri mo' (the common code words). Sentence 1's leftover word 'hot' takes the leftover code **ta**.\n\n### When the answer is 'cannot be determined'\nIf, after subtracting everything you know, **two codes** still fit the word, stop. The answer is **cannot be determined**. Example: 'sky is blue' = 'ta pa ka'; 'sea is deep' = 'pa za la'. Only 'is' is common → is = pa. 'Blue' can be 'ta' or 'ka' — both remain possible. Picking one of them is the classic wrong move; the option 'cannot be determined' exists exactly for this.\n\nMore sentences = more information. With three well-chosen sentences every word usually gets pinned down; with two sentences some word almost always stays open.\n\n### Phrase and digit codes\n- To code a **phrase** ('sweet home'), find each word's code, then write them **in the order the phrase asks**, not in any remembered order.\n- Some papers use **digit codes**: 'come home' = '1 2', 'sweet home' = '2 3' → come = 1, home = 2, sweet = 3. The same intersect-and-subtract method works on digits.\n\n### Reverse questions ('what does pa mean?')\nWork exactly the same way, then read the answer backwards: if pa = mango, then the code 'pa' means **mango**. The options are usually English words — check each option against your fixed mapping.\n\n### A watertight check (for practice)\nFor every sentence, the set of code words and the set of English words must match one-to-one: a word in the sentence ⇔ its code in the code line. If your final mapping makes any sentence inconsistent, you paired something wrongly.\n\n### Quick revision\n- Never match by position — code order is jumbled.\n- Intersect: word's code ∈ common codes of all sentences containing it.\n- Subtract fixed codes; one left = answer.\n- Two codes still possible → cannot be determined.\n- Phrase codes follow the phrase's own word order; the same method works for digit codes.\n",
+   "patterns": [
+    {
+     "id": "cd-p29",
+     "name": "Two sentences, one common word",
+     "frequency": "very common",
+     "howToSpot": "Two sentence–code pairs sharing exactly one word (or two) — the basic look of this subtopic.",
+     "formula": null,
+     "logic": "1. Find the word common to both sentences; its code is the common code word.\n2. In one sentence, the leftover word takes the leftover code.\n3. Read the asked word off your mapping.\n\n*Why it works:* with one common word, the common code is forced on both sides.",
+     "example": {
+      "q": "**'delhi is big' = 'ja pa ni'; 'mumbai is big' = 'sa pa ni'.** Code for **delhi**?",
+      "solution": "'is' and 'big' are common → their codes are 'pa ni'. Sentence 1's leftover 'delhi' takes **ja**."
+     }
+    },
+    {
+     "id": "cd-p30",
+     "name": "Three sentences, chain elimination",
+     "frequency": "common",
+     "howToSpot": "Three sentence–code pairs; the asked word needs two subtraction steps.",
+     "formula": null,
+     "logic": "1. Fix codes for words common to sentence pairs (common words ↔ common codes).\n2. Subtract all fixed codes from the asked word's sentence.\n3. The last remaining code is the answer.\n\n*Why it works:* each fixed code shrinks the leftovers; three sentences usually finish the job.",
+     "example": {
+      "q": "**'train runs fast' = 'la jo me'; 'bus runs fast' = 'la jo fi'; 'fast train' = 'me jo'.** Code for **bus**?",
+      "solution": "fast and train are common to sentences 1 and 3 → codes 'jo me'. fast also sits in sentence 1–2 pair ('la jo') → fast = jo, the code in both pairs. Then train = me, runs = la, and bus takes sentence 2's leftover **fi**."
+     }
+    },
+    {
+     "id": "cd-p31",
+     "name": "Cannot be determined (two codes left)",
+     "frequency": "common",
+     "howToSpot": "The asked word appears in only one sentence, and two codes there remain unclaimed.",
+     "formula": null,
+     "logic": "1. Fix every code you can with the common-word method.\n2. Count the codes still possible for the asked word.\n3. Two possible → answer 'cannot be determined'; never guess one.\n\n*Why it works:* jumbled order means both leftovers are equally likely until something pins one down.",
+     "example": {
+      "q": "**'sky is blue' = 'ta pa ka'; 'sea is deep' = 'pa za la'.** Code for **blue**?",
+      "solution": "Only 'is' is common → is = pa. Blue can be 'ta' or 'ka' — two codes remain → **cannot be determined**."
+     }
+    },
+    {
+     "id": "cd-p32",
+     "name": "Phrase codes and digit codes",
+     "frequency": "common",
+     "howToSpot": "The question codes a phrase ('sweet home') or uses digits ('come home' = '1 2').",
+     "formula": null,
+     "logic": "1. Find each word's code by the usual method.\n2. Write the phrase's code in the phrase's own word order.\n3. For digits, the method is identical — the tokens are just numbers.\n\n*Why it works:* a phrase code is only its word codes written in the asked order.",
+     "example": {
+      "q": "**'come home' = '1 2'; 'home sweet' = '2 3'.** What is the code for **'sweet home'**?",
+      "solution": "home is common → home = 2. So come = 1 and sweet = 3. 'Sweet home' = **3 2** (sweet first, as the phrase asks)."
+     }
+    },
+    {
+     "id": "cd-p33",
+     "name": "Reverse: what does the code mean?",
+     "frequency": "occasional",
+     "howToSpot": "The question gives a CODE and asks which English word it stands for.",
+     "formula": null,
+     "logic": "1. Fix the mapping word-by-word with intersect-and-subtract.\n2. Look up the given code in your mapping.\n3. Give the English word as the answer.\n\n*Why it works:* the mapping is symmetric; only the reading direction changes.",
+     "example": {
+      "q": "**'birds fly' = 'lo pe'; 'fly high' = 'pe ni'; 'birds sing' = 'lo ra'.** What does **'ra'** mean?",
+      "solution": "birds ↔ lo (sentences 1, 3), fly ↔ pe (1, 2). Sentence 3 leaves sing = ra, so 'ra' means **sing**."
+     }
+    }
    ]
   }
  ],
@@ -971,6 +1325,1158 @@
    "subtopic": "coding-idea",
    "pattern": "cd-p5",
    "timeSec": 50
+  },
+  {
+   "id": "letter-shift-coding-p01",
+   "q": "In a certain code, **KITE** is written as **MKVG**. How is **LAMP** written in that code?",
+   "figure": null,
+   "options": [
+    "ODPS",
+    "NCOR",
+    "MBNQ",
+    "JYKN"
+   ],
+   "answer": 1,
+   "solution": "K→M (+2), I→K (+2), T→V (+2), E→G (+2): flat **+2**. LAMP: L+2 = N, A+2 = C, M+2 = O, P+2 = R → **NCOR**.",
+   "shortcut": "Only one option starts with N (L+2); confirm with the last letter R.",
+   "difficulty": "easy",
+   "subtopic": "letter-shift-coding",
+   "pattern": "cd-p6",
+   "timeSec": 30
+  },
+  {
+   "id": "letter-shift-coding-p02",
+   "q": "In a certain code, **HOUSE** is written as **ELRPB**. How is **WATER** written in that code?",
+   "figure": null,
+   "options": [
+    "TXQBP",
+    "ZDWHU",
+    "TXQBO",
+    "UYRCP"
+   ],
+   "answer": 2,
+   "solution": "H→E (−3), O→L (−3), U→R (−3), S→P (−3), E→B (−3): flat **−3**. WATER: W−3 = T, A−3 = X (wrap: 1−3+26 = 24), T−3 = Q, E−3 = B, R−3 = O → **TXQBO**.",
+   "shortcut": "Backward shift with wrap: A − 3 = X. Anchor check: R = T − 2, so R − 3 = O.",
+   "difficulty": "medium",
+   "subtopic": "letter-shift-coding",
+   "pattern": "cd-p6",
+   "timeSec": 40
+  },
+  {
+   "id": "letter-shift-coding-p03",
+   "q": "In a certain code, **WORD** is written as **XQUH**. How is **BOOK** written in that code?",
+   "figure": null,
+   "options": [
+    "CQRO",
+    "CPPL",
+    "FRQL",
+    "CQQO"
+   ],
+   "answer": 0,
+   "solution": "W→X (+1), O→Q (+2), R→U (+3), D→H (+4): tuple (+1, +2, +3, +4). BOOK: B+1 = C, O+2 = Q, O+3 = R, K+4 = O → **CQRO**.",
+   "shortcut": "The two O's get different codes (Q, R) because the slot decides the shift.",
+   "difficulty": "medium",
+   "subtopic": "letter-shift-coding",
+   "pattern": "cd-p7",
+   "timeSec": 45
+  },
+  {
+   "id": "letter-shift-coding-p04",
+   "q": "In a certain code, **PLANT** is written as **OJXJO**. How is **GRASS** written in that code?",
+   "figure": null,
+   "options": [
+    "BNXQR",
+    "FQZRR",
+    "HTDWX",
+    "FPXON"
+   ],
+   "answer": 3,
+   "solution": "P→O (−1), L→J (−2), A→X (−3), N→J (−4), T→O (−5): tuple (−1, −2, −3, −4, −5). GRASS: G−1 = F, R−2 = P, A−3 = X, S−4 = O, S−5 = N → **FPXON**.",
+   "shortcut": "Falling tuple; A − 3 wraps to X.",
+   "difficulty": "hard",
+   "subtopic": "letter-shift-coding",
+   "pattern": "cd-p7",
+   "timeSec": 55
+  },
+  {
+   "id": "letter-shift-coding-p05",
+   "q": "In a certain code, **DOG** is written as **FQI**. Which word is written as **DKTF** in that code?",
+   "figure": null,
+   "options": [
+    "BIRD",
+    "FMVH",
+    "BIRT",
+    "CJSE"
+   ],
+   "answer": 0,
+   "solution": "D→F (+2), O→Q (+2), G→I (+2): rule +2. To decode, subtract 2: D→B, K→I, T→R, F→D → **BIRD**.",
+   "shortcut": "Decode = subtract. Check: BIRD + 2 = DKTF ✓.",
+   "difficulty": "easy",
+   "subtopic": "letter-shift-coding",
+   "pattern": "cd-p8",
+   "timeSec": 30
+  },
+  {
+   "id": "letter-shift-coding-p06",
+   "q": "In a certain code, **CHAIR** is written as **FKDLU**. Which word is written as **ZDWHU**?",
+   "figure": null,
+   "options": [
+    "WATER",
+    "XBUFS",
+    "WATES",
+    "CGZKX"
+   ],
+   "answer": 0,
+   "solution": "C→F (+3), H→K (+3), A→D (+3), I→L (+3), R→U (+3): rule +3. Decode with −3: Z→W, D→A, W→T, H→E, U→R → **WATER**.",
+   "shortcut": "Z − 3 = W; D − 3 = A. The word WATER appears after the first two letters.",
+   "difficulty": "medium",
+   "subtopic": "letter-shift-coding",
+   "pattern": "cd-p8",
+   "timeSec": 40
+  },
+  {
+   "id": "letter-shift-coding-p07",
+   "q": "In a certain code, **PEN** is written as **QGQ**. Using the same rule, which word is written as **NCUO**?",
+   "figure": null,
+   "options": [
+    "PARK",
+    "MASK",
+    "MARK",
+    "LARK"
+   ],
+   "answer": 2,
+   "solution": "P→Q (+1), E→G (+2), N→Q (+3): tuple (+1, +2, +3), so the 4th letter moves +4. Decode NCUO with (−1, −2, −3, −4): N→M, C→A, U→R, O→K → **MARK**.",
+   "shortcut": "Code each option forward: MASK gives NCVO, LARK gives MCUO, PARK gives QCUO — only MARK gives NCUO.",
+   "difficulty": "hard",
+   "subtopic": "letter-shift-coding",
+   "pattern": "cd-p8",
+   "timeSec": 55
+  },
+  {
+   "id": "letter-shift-coding-p08",
+   "q": "In a certain code, **FLOWER** is written as **GKPVFQ**. How is **GARDEN** written in that code?",
+   "figure": null,
+   "options": [
+    "HBSEFO",
+    "HZSCFM",
+    "HZSCFO",
+    "FBQEDO"
+   ],
+   "answer": 1,
+   "solution": "F→G (+1), L→K (−1), O→P (+1), W→V (−1), E→F (+1), R→Q (−1): +1, −1 repeating. GARDEN: G+1 = H, A−1 = Z, R+1 = S, D−1 = C, E+1 = F, N−1 = M → **HZSCFM**.",
+   "shortcut": "Two-step cycle (+1, −1); A − 1 wraps to Z.",
+   "difficulty": "medium",
+   "subtopic": "letter-shift-coding",
+   "pattern": "cd-p9",
+   "timeSec": 45
+  },
+  {
+   "id": "letter-shift-coding-p09",
+   "q": "In a certain code, **SCHOOL** is written as **UAJMQJ**. How is **COLLEGE** written in that code?",
+   "figure": null,
+   "options": [
+    "AQJNCIC",
+    "EQNNGIG",
+    "EMNJGEC",
+    "EMNJGEG"
+   ],
+   "answer": 3,
+   "solution": "S→U (+2), C→A (−2), H→J (+2), O→M (−2), O→Q (+2), L→J (−2): odd places +2, even places −2. COLLEGE has 7 letters, so the 7th (odd) letter also gets +2: C+2 = E, O−2 = M, L+2 = N, L−2 = J, E+2 = G, G−2 = E, E+2 = G → **EMNJGEG**.",
+   "shortcut": "The new word is longer than the sample — just continue the +2, −2 cycle.",
+   "difficulty": "medium",
+   "subtopic": "letter-shift-coding",
+   "pattern": "cd-p9",
+   "timeSec": 50
+  },
+  {
+   "id": "letter-shift-coding-p10",
+   "q": "In a certain code, **CAT** is written as **FDW** and **FISH** is written as **JMWL**. How is **TIGER** written in that code?",
+   "figure": null,
+   "options": [
+    "YNLJW",
+    "ZOMKX",
+    "WLJHU",
+    "XMKIV"
+   ],
+   "answer": 0,
+   "solution": "CAT → FDW is +3 and CAT has 3 letters; FISH → JMWL is +4 and FISH has 4 letters. So each letter moves by the number of letters. TIGER has 5 letters → +5: T→Y, I→N, G→L, E→J, R→W → **YNLJW**.",
+   "shortcut": "Different flat shifts for different lengths = letter-count rule.",
+   "difficulty": "medium",
+   "subtopic": "letter-shift-coding",
+   "pattern": "cd-p10",
+   "timeSec": 45
+  },
+  {
+   "id": "letter-shift-coding-p11",
+   "q": "In a certain code, **DOG** is written as **ALD** and **BIRD** is written as **XENZ**. How is **MONKEY** written in that code?",
+   "figure": null,
+   "options": [
+    "SUTQKE",
+    "GIHEYS",
+    "HJIFZT",
+    "IKJGAU"
+   ],
+   "answer": 1,
+   "solution": "DOG → ALD: each letter −3 (3 letters). BIRD → XENZ: each letter −4 (4 letters). MONKEY has 6 letters → −6: M→G, O→I, N→H, K→E, E→Y (wrap), Y→S → **GIHEYS**.",
+   "shortcut": "Backward by the letter count; E − 6 wraps: 5 − 6 + 26 = 25 = Y.",
+   "difficulty": "hard",
+   "subtopic": "letter-shift-coding",
+   "pattern": "cd-p10",
+   "timeSec": 55
+  },
+  {
+   "id": "reverse-coding-p01",
+   "q": "In a certain code, **GARDEN** is written as **NEDRAG**. How is **FLOWER** written in that code?",
+   "figure": null,
+   "options": [
+    "RWEOLF",
+    "REWLOF",
+    "LOWERF",
+    "REWOLF"
+   ],
+   "answer": 3,
+   "solution": "NEDRAG read backwards is GARDEN → pure reversal. FLOWER backwards → **REWOLF**.",
+   "shortcut": "Read the code right to left — the word appears, so just reverse.",
+   "difficulty": "easy",
+   "subtopic": "reverse-coding",
+   "pattern": "cd-p11",
+   "timeSec": 25
+  },
+  {
+   "id": "reverse-coding-p02",
+   "q": "In a certain code, **MOBILE** is written as **ELIBOM**. Which word is written as **TEKCOP** in that code?",
+   "figure": null,
+   "options": [
+    "PACKET",
+    "ROCKET",
+    "POCKET",
+    "POCKTE"
+   ],
+   "answer": 2,
+   "solution": "ELIBOM backwards is MOBILE → the rule is reversal. Reverse TEKCOP → **POCKET**.",
+   "shortcut": "Reversal undoes itself — reverse the code.",
+   "difficulty": "easy",
+   "subtopic": "reverse-coding",
+   "pattern": "cd-p11",
+   "timeSec": 25
+  },
+  {
+   "id": "reverse-coding-p03",
+   "q": "In a certain code, **PAINT** is written as **UOJBQ**. How is **BRUSH** written in that code?",
+   "figure": null,
+   "options": [
+    "GRTQA",
+    "ITVSC",
+    "CSVTI",
+    "HSURB"
+   ],
+   "answer": 1,
+   "solution": "PAINT reversed = TNIAP; T→U (+1), N→O (+1), I→J (+1), A→B (+1), P→Q (+1) → reverse, then +1. BRUSH reversed = HSURB; +1 → **ITVSC**.",
+   "shortcut": "First code letter U = T + 1, and T is the last letter of PAINT → reversal + 1.",
+   "difficulty": "medium",
+   "subtopic": "reverse-coding",
+   "pattern": "cd-p12",
+   "timeSec": 40
+  },
+  {
+   "id": "reverse-coding-p04",
+   "q": "In a certain code, **CLOUD** is written as **BSMJA**. How is **STORM** written in that code?",
+   "figure": null,
+   "options": [
+    "OTQVU",
+    "KPMRQ",
+    "MROTS",
+    "QRMPK"
+   ],
+   "answer": 1,
+   "solution": "CLOUD reversed = DUOLC; D→B (−2), U→S (−2), O→M (−2), L→J (−2), C→A (−2) → reverse, then −2. STORM reversed = MROTS; −2 → **KPMRQ**.",
+   "shortcut": "Reverse, then subtract 2 from each letter.",
+   "difficulty": "medium",
+   "subtopic": "reverse-coding",
+   "pattern": "cd-p12",
+   "timeSec": 45
+  },
+  {
+   "id": "reverse-coding-p05",
+   "q": "In a certain code, **NOTE** is written as **FVRR**. How is **BOAT** written in that code?",
+   "figure": null,
+   "options": [
+    "UCRF",
+    "UBPC",
+    "XDQC",
+    "CQDX"
+   ],
+   "answer": 0,
+   "solution": "NOTE reversed = ETON; E→F (+1), T→V (+2), O→R (+3), N→R (+4) → reverse, then (+1, +2, +3, +4). BOAT reversed = TAOB; T+1 = U, A+2 = C, O+3 = R, B+4 = F → **UCRF**.",
+   "shortcut": "With a rising tuple the order matters: shifting BOAT first and then reversing gives XDQC — a trap option.",
+   "difficulty": "hard",
+   "subtopic": "reverse-coding",
+   "pattern": "cd-p12",
+   "timeSec": 60
+  },
+  {
+   "id": "reverse-coding-p06",
+   "q": "In a certain code, **BOY** is written as **YLB**. How is **GIRL** written in that code?",
+   "figure": null,
+   "options": [
+    "HJSM",
+    "OIRT",
+    "TRIO",
+    "TRIP"
+   ],
+   "answer": 2,
+   "solution": "B(2)+Y(25) = 27, O(15)+L(12) = 27 → opposite letters. GIRL: G↔T, I↔R, R↔I, L↔O → **TRIO**.",
+   "shortcut": "27-sum check, then the opposite-pairs table.",
+   "difficulty": "easy",
+   "subtopic": "reverse-coding",
+   "pattern": "cd-p13",
+   "timeSec": 30
+  },
+  {
+   "id": "reverse-coding-p07",
+   "q": "In a certain code, **WHITE** is written as **DSRGV**. How is **GREEN** written in that code?",
+   "figure": null,
+   "options": [
+    "TIVVN",
+    "SIVVM",
+    "MVVIT",
+    "TIVVM"
+   ],
+   "answer": 3,
+   "solution": "W(23)+D(4) = 27, H(8)+S(19) = 27 → opposite letters. GREEN: G↔T, R↔I, E↔V, E↔V, N↔M → **TIVVM**.",
+   "shortcut": "Opposite = 27 − position: G(7) → 20 = T, R(18) → 9 = I, E(5) → 22 = V, N(14) → 13 = M.",
+   "difficulty": "medium",
+   "subtopic": "reverse-coding",
+   "pattern": "cd-p13",
+   "timeSec": 35
+  },
+  {
+   "id": "reverse-coding-p08",
+   "q": "In a certain code, **PAPER** is written as **KZKVI**. Which word is written as **XLOW** in that code?",
+   "figure": null,
+   "options": [
+    "COLT",
+    "BOLD",
+    "COLD",
+    "CORD"
+   ],
+   "answer": 2,
+   "solution": "P(16)+K(11) = 27 → opposite letters. Opposites undo themselves: X↔C, L↔O, O↔L, W↔D → **COLD**.",
+   "shortcut": "Decode opposites with the same table — no subtraction needed.",
+   "difficulty": "medium",
+   "subtopic": "reverse-coding",
+   "pattern": "cd-p13",
+   "timeSec": 35
+  },
+  {
+   "id": "reverse-coding-p09",
+   "q": "In a certain code, **LAMP** is written as **KNZO**. How is **DESK** written in that code?",
+   "figure": null,
+   "options": [
+    "PHVW",
+    "PHWV",
+    "WVHP",
+    "KSED"
+   ],
+   "answer": 0,
+   "solution": "LAMP → opposite letters OZNK → reversed KNZO ✓. DESK → opposites WVHP → reversed **PHVW**.",
+   "shortcut": "First code letter K is the opposite of the last letter P → opposite + reverse.",
+   "difficulty": "medium",
+   "subtopic": "reverse-coding",
+   "pattern": "cd-p14",
+   "timeSec": 45
+  },
+  {
+   "id": "reverse-coding-p10",
+   "q": "In a certain code, **SMART** is written as **GIZNH**. Which word is written as **VHFLS** in that code?",
+   "figure": null,
+   "options": [
+    "MOUSE",
+    "HORSE",
+    "HOUSE",
+    "HOSES"
+   ],
+   "answer": 2,
+   "solution": "SMART → opposites HNZIG → reversed GIZNH ✓ (opposite + reverse). Decode VHFLS: reverse → SLFHV, then opposites → **HOUSE**.",
+   "shortcut": "Both steps undo themselves — reverse the code, then take opposites.",
+   "difficulty": "hard",
+   "subtopic": "reverse-coding",
+   "pattern": "cd-p14",
+   "timeSec": 55
+  },
+  {
+   "id": "number-coding-p01",
+   "q": "In a certain code, **HAT is coded 29** (sum of alphabet positions). How is **PEN** coded?",
+   "figure": null,
+   "options": [
+    "35",
+    "45",
+    "36",
+    "34"
+   ],
+   "answer": 0,
+   "solution": "H + A + T = 8 + 1 + 20 = 29 ✓ (plain sum). PEN = 16 + 5 + 14 = **35**.",
+   "shortcut": "Add positions straight away when the question says 'sum'.",
+   "difficulty": "easy",
+   "subtopic": "number-coding",
+   "pattern": "cd-p15",
+   "timeSec": 30
+  },
+  {
+   "id": "number-coding-p02",
+   "q": "In a certain code, **BAT is coded 23** (sum of alphabet positions). How is **CUP** coded?",
+   "figure": null,
+   "options": [
+    "39",
+    "41",
+    "38",
+    "40"
+   ],
+   "answer": 3,
+   "solution": "B + A + T = 2 + 1 + 20 = 23 ✓. C + U + P = 3 + 21 + 16 = **40**.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "number-coding",
+   "pattern": "cd-p15",
+   "timeSec": 30
+  },
+  {
+   "id": "number-coding-p03",
+   "q": "In a certain code, **EAT is coded 55** (A = 26, B = 25 ... Z = 1). How is **TEN** coded?",
+   "figure": null,
+   "options": [
+    "41",
+    "43",
+    "42",
+    "52"
+   ],
+   "answer": 2,
+   "solution": "Reverse positions: E = 22, A = 26, T = 7 → 55 ✓. TEN = 7 + 22 + 13 = **42**.",
+   "shortcut": "Reverse position = 27 − position. Z counts 1, A counts 26.",
+   "difficulty": "medium",
+   "subtopic": "number-coding",
+   "pattern": "cd-p16",
+   "timeSec": 40
+  },
+  {
+   "id": "number-coding-p04",
+   "q": "In a certain code, **ZIP is coded 30** (A = 26, B = 25 ... Z = 1). How is **MAP** coded?",
+   "figure": null,
+   "options": [
+    "61",
+    "51",
+    "49",
+    "50"
+   ],
+   "answer": 1,
+   "solution": "Reverse: Z = 1, I = 18, P = 11 → 30 ✓. MAP = 14 + 26 + 11 = **51**.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "number-coding",
+   "pattern": "cd-p16",
+   "timeSec": 40
+  },
+  {
+   "id": "number-coding-p05",
+   "q": "In a certain code, **MAN is coded 56** — double the sum of the letter positions. How is **FAN** coded?",
+   "figure": null,
+   "options": [
+    "42",
+    "40",
+    "21",
+    "44"
+   ],
+   "answer": 0,
+   "solution": "M + A + N = 13 + 1 + 14 = 28, and 2 × 28 = 56 ✓. FAN = 6 + 1 + 14 = 21, doubled = **42**.",
+   "shortcut": "Confirm the extra step on the model word before doubling anything.",
+   "difficulty": "medium",
+   "subtopic": "number-coding",
+   "pattern": "cd-p17",
+   "timeSec": 40
+  },
+  {
+   "id": "number-coding-p06",
+   "q": "In a certain code, **DIG is coded 22** — two more than the sum of the positions. How is **BIG** coded?",
+   "figure": null,
+   "options": [
+    "18",
+    "22",
+    "20",
+    "19"
+   ],
+   "answer": 2,
+   "solution": "D + I + G = 4 + 9 + 7 = 20, and 20 + 2 = 22 ✓. BIG = 2 + 9 + 7 = 18, plus 2 = **20**. (18 alone forgets the step.)",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "number-coding",
+   "pattern": "cd-p17",
+   "timeSec": 40
+  },
+  {
+   "id": "number-coding-p07",
+   "q": "In a certain code, **DAB is coded 12**: each letter's position is multiplied by its place in the word and the products are added. How is **CAD** coded?",
+   "figure": null,
+   "options": [
+    "12",
+    "18",
+    "17",
+    "16"
+   ],
+   "answer": 2,
+   "solution": "DAB = 4×1 + 1×2 + 2×3 = 12 ✓. CAD = 3×1 + 1×2 + 4×3 = 3 + 2 + 12 = **17**.",
+   "shortcut": "Weighted sums are the only family that reaches some codes — test them after plain sums fail.",
+   "difficulty": "hard",
+   "subtopic": "number-coding",
+   "pattern": "cd-p18",
+   "timeSec": 50
+  },
+  {
+   "id": "number-coding-p08",
+   "q": "In a certain code, **DIME is coded 81**: each letter's position is multiplied by its place in the word and the products are added. How is **TIME** coded?",
+   "figure": null,
+   "options": [
+    "97",
+    "91",
+    "99",
+    "81"
+   ],
+   "answer": 0,
+   "solution": "DIME = 4×1 + 9×2 + 13×3 + 5×4 = 4 + 18 + 39 + 20 = 81 ✓. TIME = 20×1 + 9×2 + 13×3 + 5×4 = **97**.",
+   "shortcut": "Only the first letter changes (D → T), so recompute just that product: 4 → 20 adds 16 to 81 − 4 = 77... quick way: 81 − 4 + 20 = 97.",
+   "difficulty": "hard",
+   "subtopic": "number-coding",
+   "pattern": "cd-p18",
+   "timeSec": 55
+  },
+  {
+   "id": "number-coding-p09",
+   "q": "In a certain code, **GOAT is written HPBU43** — each letter moves one step forward and the word's position sum is written after it. How is **LAMP** written?",
+   "figure": null,
+   "options": [
+    "LAMP42",
+    "MBNQ42",
+    "MBNQ36",
+    "MBNQ41"
+   ],
+   "answer": 1,
+   "solution": "Letters: GOAT + 1 = HPBU ✓, and 7 + 15 + 1 + 20 = 43 ✓. LAMP + 1 = **MBNQ**; sum = 12 + 1 + 13 + 16 = **42**. Code = **MBNQ42**.",
+   "shortcut": "Two-part code: shift the letters; recompute the number from the new word.",
+   "difficulty": "medium",
+   "subtopic": "number-coding",
+   "pattern": "cd-p19",
+   "timeSec": 50
+  },
+  {
+   "id": "number-coding-p10",
+   "q": "In a certain code, **BIRD is written CJSE33** — each letter moves one step forward and the word's position sum is written after it. How is **FISH** written?",
+   "figure": null,
+   "options": [
+    "FISH42",
+    "GJTI41",
+    "GJTI42",
+    "GJTJ42"
+   ],
+   "answer": 2,
+   "solution": "BIRD + 1 = CJSE ✓, sum 2 + 9 + 18 + 4 = 33 ✓. FISH + 1 = **GJTI**; sum = 6 + 9 + 19 + 8 = **42**. Code = **GJTI42**.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "number-coding",
+   "pattern": "cd-p19",
+   "timeSec": 55
+  },
+  {
+   "id": "substitution-coding-p01",
+   "q": "If **cloud is called rain**, **rain is called wind**, **wind is called sun**, and **sun is called moon**, what do farmers wait for?",
+   "figure": null,
+   "options": [
+    "Wind",
+    "Moon",
+    "Rain",
+    "Sun"
+   ],
+   "answer": 0,
+   "solution": "Farmers wait for real **rain**. The chain says rain is called **wind**. Answer: Wind.",
+   "shortcut": "Real-world answer first, then its new name.",
+   "difficulty": "easy",
+   "subtopic": "substitution-coding",
+   "pattern": "cd-p20",
+   "timeSec": 30
+  },
+  {
+   "id": "substitution-coding-p02",
+   "q": "If **pen is called sword**, **sword is called shield**, **shield is called gun**, and **gun is called book**, which one is used to write?",
+   "figure": null,
+   "options": [
+    "Pen",
+    "Book",
+    "Sword",
+    "Shield"
+   ],
+   "answer": 2,
+   "solution": "We write with a real **pen**. Pen is called **sword**. Answer: Sword.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "substitution-coding",
+   "pattern": "cd-p20",
+   "timeSec": 30
+  },
+  {
+   "id": "substitution-coding-p03",
+   "q": "If **dog is called cat**, **cat is called rat**, **rat is called lion**, and **lion is called cow**, which animal catches mice?",
+   "figure": null,
+   "options": [
+    "Cat",
+    "Lion",
+    "Cow",
+    "Rat"
+   ],
+   "answer": 3,
+   "solution": "A real **cat** catches mice. Cat is called **rat**. Answer: Rat. (Cat is only the new name of a dog.)",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "substitution-coding",
+   "pattern": "cd-p23",
+   "timeSec": 30
+  },
+  {
+   "id": "substitution-coding-p04",
+   "q": "If **day is called night**, **night is called morning**, **morning is called evening**, and **evening is called noon**, when do we sleep?",
+   "figure": null,
+   "options": [
+    "Noon",
+    "Morning",
+    "Evening",
+    "Night"
+   ],
+   "answer": 1,
+   "solution": "We sleep at real **night**. Night is called **morning**. Answer: Morning.",
+   "shortcut": "Write the chain down before answering long ones.",
+   "difficulty": "medium",
+   "subtopic": "substitution-coding",
+   "pattern": "cd-p23",
+   "timeSec": 35
+  },
+  {
+   "id": "substitution-coding-p05",
+   "q": "If **hot is called cold**, **cold is called warm**, **warm is called cool**, and **cool is called freezing**, how does ice feel?",
+   "figure": null,
+   "options": [
+    "Warm",
+    "Cold",
+    "Cool",
+    "Freezing"
+   ],
+   "answer": 0,
+   "solution": "Ice feels real **cold**. Cold is called **warm**. Answer: Warm.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "substitution-coding",
+   "pattern": "cd-p23",
+   "timeSec": 35
+  },
+  {
+   "id": "substitution-coding-p06",
+   "q": "In a code language, **'blue sky' is written 'ta pa'** and **'sky walk' is written 'pa sa'**. What is the code for **'blue'**?",
+   "figure": null,
+   "options": [
+    "sa",
+    "ta",
+    "na",
+    "pa"
+   ],
+   "answer": 1,
+   "solution": "'sky' is common to both sentences and 'pa' is the common code → sky = pa. In sentence 1 the leftover word 'blue' takes the leftover code **ta**.",
+   "shortcut": "Common word ↔ common code; leftovers pair up.",
+   "difficulty": "easy",
+   "subtopic": "substitution-coding",
+   "pattern": "cd-p21",
+   "timeSec": 35
+  },
+  {
+   "id": "substitution-coding-p07",
+   "q": "In a code language, **'hot tea' = 'na pi'**, **'cold tea' = 'pi ka'**, **'hot milk' = 'na ru'**. What is the code for **'milk'**?",
+   "figure": null,
+   "options": [
+    "na",
+    "ka",
+    "ru",
+    "pi"
+   ],
+   "answer": 2,
+   "solution": "hot ↔ na (sentences 1, 3) and tea ↔ pi (sentences 1, 2). Sentence 2 leaves cold = ka. Sentence 3 leaves milk = **ru**.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "substitution-coding",
+   "pattern": "cd-p21",
+   "timeSec": 45
+  },
+  {
+   "id": "substitution-coding-p08",
+   "q": "In a code language, **'red rose' = 'pa ka'** and **'white lotus' = 'za ka'**. What is the code for **'rose'**?",
+   "figure": null,
+   "options": [
+    "za",
+    "ka",
+    "pa",
+    "Cannot be determined"
+   ],
+   "answer": 3,
+   "solution": "No word is common to the two sentences, so the shared code 'ka' is not fixed to any word. 'Rose' can be 'pa' or 'ka' — two codes remain → **cannot be determined**.",
+   "shortcut": "Two possible codes after full elimination = the CBD option.",
+   "difficulty": "medium",
+   "subtopic": "substitution-coding",
+   "pattern": "cd-p22",
+   "timeSec": 40
+  },
+  {
+   "id": "substitution-coding-p09",
+   "q": "In a code language, **'birds fly' = 'lo pe'**, **'fly high' = 'pe ni'**, **'birds sing' = 'lo ra'**. What is the code for **'sing'**?",
+   "figure": null,
+   "options": [
+    "ra",
+    "lo",
+    "pe",
+    "ni"
+   ],
+   "answer": 0,
+   "solution": "birds ↔ lo (sentences 1, 3) and fly ↔ pe (sentences 1, 2). Sentence 3 leaves sing = **ra**.",
+   "shortcut": "Three sentences usually pin every code down.",
+   "difficulty": "hard",
+   "subtopic": "substitution-coding",
+   "pattern": "cd-p22",
+   "timeSec": 45
+  },
+  {
+   "id": "symbol-coding-p01",
+   "q": "In a certain code, **M = #, A = @, T = %**. What is the code for **MAT**?",
+   "figure": null,
+   "options": [
+    "#%@",
+    "#@%",
+    "%#@",
+    "@#%"
+   ],
+   "answer": 1,
+   "solution": "M → #, A → @, T → %. MAT = **#@%**.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "symbol-coding",
+   "pattern": "cd-p24",
+   "timeSec": 30
+  },
+  {
+   "id": "symbol-coding-p02",
+   "q": "In a certain code, **D = 8, O = 5, G = 2**. What is the code for **GOD**?",
+   "figure": null,
+   "options": [
+    "852",
+    "528",
+    "582",
+    "258"
+   ],
+   "answer": 3,
+   "solution": "G → 2, O → 5, D → 8. GOD = **258**. (852 is DOG — the reverse trap.)",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "symbol-coding",
+   "pattern": "cd-p24",
+   "timeSec": 30
+  },
+  {
+   "id": "symbol-coding-p03",
+   "q": "In a certain code, **C = %, A = @, B = #, T = ***. What is the code for **TAB**?",
+   "figure": null,
+   "options": [
+    "#*@",
+    "*#@",
+    "@*#",
+    "*@#"
+   ],
+   "answer": 3,
+   "solution": "T → *, A → @, B → #. TAB = ***@#**.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "symbol-coding",
+   "pattern": "cd-p24",
+   "timeSec": 30
+  },
+  {
+   "id": "symbol-coding-p04",
+   "q": "In a certain code, digits are coded **1 = @, 2 = #, 3 = $, 4 = %, 5 = &**. What is the code for **245**?",
+   "figure": null,
+   "options": [
+    "#$%",
+    "#&%",
+    "&#%",
+    "%&#"
+   ],
+   "answer": 1,
+   "solution": "2 → #, 4 → %, 5 → &. 245 = **#&%**.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "symbol-coding",
+   "pattern": "cd-p27",
+   "timeSec": 30
+  },
+  {
+   "id": "symbol-coding-p05",
+   "q": "In a certain code, **A = 2, B = 4, C = 6, D = 8, E = 10** (double the position). What is the code for **CAB**?",
+   "figure": null,
+   "options": [
+    "624",
+    "264",
+    "246",
+    "642"
+   ],
+   "answer": 0,
+   "solution": "C = 6, A = 2, B = 4 → **624**. (246 writes the word backwards.)",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "symbol-coding",
+   "pattern": "cd-p27",
+   "timeSec": 35
+  },
+  {
+   "id": "symbol-coding-p06",
+   "q": "In a certain code, **A = 2, B = 4, C = 6, D = 8, E = 10** (double the position). What is the code for **BED**?",
+   "figure": null,
+   "options": [
+    "4 10 9",
+    "4 8 10",
+    "10 4 8",
+    "4 10 8"
+   ],
+   "answer": 3,
+   "solution": "B = 4, E = 10, D = 8 → **4 10 8**. Keep one number per letter — E takes the two-digit 10.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "symbol-coding",
+   "pattern": "cd-p27",
+   "timeSec": 35
+  },
+  {
+   "id": "symbol-coding-p07",
+   "q": "In a certain code, **PEN = @ # %** and **NET = % # &**. What is the code for **P**?",
+   "figure": null,
+   "options": [
+    "@",
+    "&",
+    "%",
+    "#"
+   ],
+   "answer": 0,
+   "solution": "E and N are common to both words; # and % are the common symbols → E = #, N = %. The leftover letter of PEN (P) takes the leftover symbol **@**.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "symbol-coding",
+   "pattern": "cd-p26",
+   "timeSec": 40
+  },
+  {
+   "id": "symbol-coding-p08",
+   "q": "In a certain code, **CAT = & @ %** and **CUT = & $ %**. What is the code for **ACT**?",
+   "figure": null,
+   "options": [
+    "%&@",
+    "@%&",
+    "&@%",
+    "@&%"
+   ],
+   "answer": 3,
+   "solution": "CAT and CUT share C and T; their codes share & and % → C = &, T = %. The leftovers give A = @, U = $. ACT = A → @, C → &, T → % = **@&%**.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "symbol-coding",
+   "pattern": "cd-p26",
+   "timeSec": 45
+  },
+  {
+   "id": "symbol-coding-p09",
+   "q": "A code table says: if a word **begins with a vowel**, write the letter codes in **reverse order**; otherwise left to right. Codes: E = &, C = $, H = %, O = *. What is the code for **ECHO**?",
+   "figure": null,
+   "options": [
+    "$%*&",
+    "&$%*",
+    "*&$%",
+    "*%$&"
+   ],
+   "answer": 3,
+   "solution": "ECHO begins with the vowel E → reverse the order. Direct codes are & $ % *; reversed gives ***%$&**.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "symbol-coding",
+   "pattern": "cd-p25",
+   "timeSec": 50
+  },
+  {
+   "id": "symbol-coding-p10",
+   "q": "Digits are coded **1 = @, 2 = #, 3 = $, 4 = %, 5 = &, 6 = ***. Condition: if the digit sum is **even**, code the digits in reverse order; otherwise left to right. What is the code for **136**?",
+   "figure": null,
+   "options": [
+    "@$*",
+    "*$%",
+    "*$@",
+    "@$%"
+   ],
+   "answer": 2,
+   "solution": "Digit sum 1 + 3 + 6 = 10, which is even → reverse to 631. 6 → *, 3 → $, 1 → @ → ***$@**.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "symbol-coding",
+   "pattern": "cd-p25",
+   "timeSec": 50
+  },
+  {
+   "id": "symbol-coding-p11",
+   "q": "In the following 5 × 5 matrix, columns are numbered 1-5 from left to right and rows 1-5 from top to bottom:\nRow 1: A B C D E\nRow 2: F G H I K\nRow 3: L M N O P\nRow 4: Q R S T U\nRow 5: V W X Y Z\nWhat is the code for **HIDE**? (Row, column for each letter.)",
+   "figure": null,
+   "options": [
+    "23, 14, 24, 15",
+    "23, 24, 14, 15",
+    "24, 23, 14, 15",
+    "23, 24, 15, 14"
+   ],
+   "answer": 1,
+   "solution": "H is in row 2, column 3 → 23; I → 24; D is in row 1, column 4 → 14; E → 15. Code = **23, 24, 14, 15**.",
+   "shortcut": "Find the first letter's pair, then walk the grid for the rest.",
+   "difficulty": "hard",
+   "subtopic": "symbol-coding",
+   "pattern": "cd-p28",
+   "timeSec": 55
+  },
+  {
+   "id": "symbol-coding-p12",
+   "q": "In the following 5 × 5 matrix, columns are numbered 1-5 from left to right and rows 1-5 from top to bottom:\nRow 1: A B C D E\nRow 2: F G H I K\nRow 3: L M N O P\nRow 4: Q R S T U\nRow 5: V W X Y Z\nWhat is the code for **ROSE**? (Row, column for each letter.)",
+   "figure": null,
+   "options": [
+    "42, 43, 34, 15",
+    "42, 34, 43, 15",
+    "42, 34, 15, 43",
+    "24, 34, 43, 15"
+   ],
+   "answer": 1,
+   "solution": "R = (4, 2) → 42; O = (3, 4) → 34; S = (4, 3) → 43; E = (1, 5) → 15. Code = **42, 34, 43, 15**.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "symbol-coding",
+   "pattern": "cd-p28",
+   "timeSec": 55
+  },
+  {
+   "id": "language-coding-p01",
+   "q": "In a certain code language, **'delhi is big' is written 'ja pa ni'**; **'mumbai is big' is written 'sa pa ni'**. What is the code for delhi?",
+   "figure": null,
+   "options": [
+    "pa",
+    "sa",
+    "ja",
+    "ni"
+   ],
+   "answer": 2,
+   "solution": "'is' and 'big' are common to both sentences, so their codes are 'pa ni'. The leftover word 'delhi' takes the leftover code **ja**.",
+   "shortcut": "Common word ↔ common code; leftovers pair up.",
+   "difficulty": "easy",
+   "subtopic": "language-coding",
+   "pattern": "cd-p29",
+   "timeSec": 35
+  },
+  {
+   "id": "language-coding-p02",
+   "q": "In a certain code language, **'read books' is written 'ka pi'**; **'read well' is written 'ka ja'**. What is the code for books?",
+   "figure": null,
+   "options": [
+    "pi",
+    "ka",
+    "ka ja",
+    "ja"
+   ],
+   "answer": 0,
+   "solution": "'read' is common and 'ka' is the common code → read = ka. The leftover word 'books' takes **pi**.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "language-coding",
+   "pattern": "cd-p29",
+   "timeSec": 35
+  },
+  {
+   "id": "language-coding-p03",
+   "q": "In a certain code language, **'apples are red' is written 'to na pi'**; **'roses are red' is written 'to na gu'**. What is the code for apples?",
+   "figure": null,
+   "options": [
+    "pi",
+    "gu",
+    "to",
+    "na"
+   ],
+   "answer": 0,
+   "solution": "'are' and 'red' are common → codes 'to na'. Sentence 1's leftover word 'apples' takes **pi**.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "language-coding",
+   "pattern": "cd-p30",
+   "timeSec": 40
+  },
+  {
+   "id": "language-coding-p04",
+   "q": "In a certain code language, **'train runs fast' is written 'la jo me'**; **'bus runs fast' is written 'la jo fi'**; **'fast train' is written 'me jo'**. What is the code for bus?",
+   "figure": null,
+   "options": [
+    "jo",
+    "la",
+    "fi",
+    "me"
+   ],
+   "answer": 2,
+   "solution": "Sentences 1–2 share 'runs fast' ↔ 'la jo'; sentences 1–3 share 'train fast' ↔ 'me jo'. 'fast' sits in both pairs → fast = jo. Then runs = la, train = me. Sentence 2's leftovers: bus takes **fi**.",
+   "shortcut": "Fix the word that appears in two overlapping pairs first.",
+   "difficulty": "hard",
+   "subtopic": "language-coding",
+   "pattern": "cd-p30",
+   "timeSec": 55
+  },
+  {
+   "id": "language-coding-p05",
+   "q": "In a certain code language, **'cats drink milk' is written 'ba da la'**; **'milk is white' is written 'la pa ka'**; **'cats are white' is written 'ba ta pa'**. What is the code for drink?",
+   "figure": null,
+   "options": [
+    "la",
+    "da",
+    "ba",
+    "pa"
+   ],
+   "answer": 1,
+   "solution": "cats ↔ ba (sentences 1, 3); milk ↔ la (1, 2). White is common to sentences 2–3 → 'pa ka' ∩ 'ta pa' = pa. So is = ka, are = ta. Sentence 1's leftover: drink = **da**.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "language-coding",
+   "pattern": "cd-p30",
+   "timeSec": 50
+  },
+  {
+   "id": "language-coding-p06",
+   "q": "In a certain code language, **'sky is blue' is written 'ta pa ka'**; **'sea is deep' is written 'pa za la'**. What is the code for blue?",
+   "figure": null,
+   "options": [
+    "pa",
+    "ka",
+    "Cannot be determined",
+    "ta"
+   ],
+   "answer": 2,
+   "solution": "Only 'is' is common → is = pa. 'Blue' can still be 'ta' or 'ka' — two codes remain → **cannot be determined**.",
+   "shortcut": "Two possible codes after elimination = the CBD option.",
+   "difficulty": "medium",
+   "subtopic": "language-coding",
+   "pattern": "cd-p31",
+   "timeSec": 40
+  },
+  {
+   "id": "language-coding-p07",
+   "q": "In a certain code language, **'sum of money' is written 'ni mo za'**; **'sum earned' is written 'mo ka'**. What is the code for of?",
+   "figure": null,
+   "options": [
+    "mo",
+    "za",
+    "Cannot be determined",
+    "ni"
+   ],
+   "answer": 2,
+   "solution": "'sum' is common → sum = mo. 'Of' can be 'ni' or 'za' — two codes remain → **cannot be determined**.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "language-coding",
+   "pattern": "cd-p31",
+   "timeSec": 40
+  },
+  {
+   "id": "language-coding-p08",
+   "q": "In a certain code language, **'he is kind' is written 'jo ma ne'**; **'she is honest' is written 'ka ma po'**. What is the code for he?",
+   "figure": null,
+   "options": [
+    "Cannot be determined",
+    "ne",
+    "jo",
+    "ma"
+   ],
+   "answer": 0,
+   "solution": "'is' is common → is = ma. 'He' can be 'jo' or 'ne' → **cannot be determined**.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "language-coding",
+   "pattern": "cd-p31",
+   "timeSec": 40
+  },
+  {
+   "id": "language-coding-p09",
+   "q": "In a certain code language, **'come home' = '1 2'** and **'home sweet' = '2 3'**. What is the code for **'sweet home'**?",
+   "figure": null,
+   "options": [
+    "2 3",
+    "3 2",
+    "3 1",
+    "1 3"
+   ],
+   "answer": 1,
+   "solution": "'home' is common → home = 2. Then come = 1 and sweet = 3. The phrase asks 'sweet home', so sweet first: **3 2**. (2 3 reads 'home sweet'.)",
+   "shortcut": "Phrase codes follow the phrase's own word order.",
+   "difficulty": "medium",
+   "subtopic": "language-coding",
+   "pattern": "cd-p32",
+   "timeSec": 40
+  },
+  {
+   "id": "language-coding-p10",
+   "q": "In a certain code language, **'go to school' = '5 7 9'**, **'to the park' = '7 2 4'** and **'school bus' = '9 8'**. What is the code for **'bus go'**?",
+   "figure": null,
+   "options": [
+    "8 5",
+    "5 8",
+    "8 9",
+    "9 5"
+   ],
+   "answer": 0,
+   "solution": "'to' is common to sentences 1–2 → to = 7. 'school' is common to 1–3 → school = 9. Sentence 3 leaves bus = 8; sentence 1 leaves go = 5. 'Bus go' = **8 5**.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "language-coding",
+   "pattern": "cd-p32",
+   "timeSec": 50
+  },
+  {
+   "id": "language-coding-p11",
+   "q": "In a certain code language, **'apples are sweet' is written 'ra sa da'**; **'sweet mango' is written 'sa pa'**. What does the code **'pa'** mean?",
+   "figure": null,
+   "options": [
+    "Sweet",
+    "Mango",
+    "Cannot be determined",
+    "Apples"
+   ],
+   "answer": 1,
+   "solution": "'sweet' is common and 'sa' is the common code → sweet = sa. Sentence 2's leftover word 'mango' takes the leftover code **pa**. So 'pa' means mango.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "language-coding",
+   "pattern": "cd-p33",
+   "timeSec": 40
+  },
+  {
+   "id": "language-coding-p12",
+   "q": "In a certain code language, **'birds fly' is written 'lo pe'**; **'fly high' is written 'pe ni'**; **'birds sing' is written 'lo ra'**. What does the code **'ra'** mean?",
+   "figure": null,
+   "options": [
+    "Fly",
+    "High",
+    "Sing",
+    "Birds"
+   ],
+   "answer": 2,
+   "solution": "birds ↔ lo (sentences 1, 3), fly ↔ pe (1, 2). Sentence 3 leaves sing = ra, so 'ra' means **sing**.",
+   "shortcut": "Same mapping as forward questions; only the reading direction changes.",
+   "difficulty": "medium",
+   "subtopic": "language-coding",
+   "pattern": "cd-p33",
+   "timeSec": 40
   }
  ]
 }

@@ -40,6 +40,57 @@
     "Applying the substitution to only some operators (the last one is most often forgotten).",
     "Evaluating strictly left to right when BODMAS is expected — the examiner counts on exactly this.",
     "Reading the mapping backwards: '+' means '÷' means wherever + *appears*, write ÷."
+   ],
+   "notes": "### What this topic tests\nIn mathematical-operation questions the numbers are small and the sums are easy. What the examiner really checks is whether you follow the **order of operations** without a single slip. Think of a shop bill: 3 pens at ₹10 each and 2 notebooks at ₹40 each cost 3 × 10 + 2 × 40 = 30 + 80 = ₹110. Nobody adds 10 + 2 first. That habit of \"multiply first, then add\" is exactly the rule you need here.\n\n### BODMAS in simple words\nBODMAS tells you which part of an expression to work out first:\n\n| Letter | Meaning | Example |\n|---|---|---|\n| B | Brackets | (6 + 2) is done first |\n| O | Orders: powers, roots, \"of\" | $3^2$, $\\sqrt{16}$, half of 10 |\n| D, M | Division and Multiplication | same rank |\n| A, S | Addition and Subtraction | same rank |\n\nExample: 18 + 24 ÷ 6 × 3 − 5. First the ÷ and ×: 24 ÷ 6 = 4, then 4 × 3 = 12. Now 18 + 12 − 5 = **25**.\n\n### Same rank means left to right\nDivision is **not** \"before\" multiplication, and addition is **not** \"before\" subtraction. When operators have the same rank, simply go from left to right.\n\n- 96 ÷ 8 × 4 = 12 × 4 = **48** (not 96 ÷ 32 = 3).\n- 60 − 12 + 8 = 48 + 8 = **56** (not 60 − 20 = 40).\n\nThis one rule decides many answers, because examiners love to put ÷ before × or − before +.\n\n### Brackets inside brackets\nWhen brackets are nested, open them from the inside: first ( ), then { }, then [ ].\n\nExample: 100 − [20 + {30 − (12 − 4) × 2}]. Inner bracket: 12 − 4 = 8. Curly bracket: 30 − 8 × 2 = 30 − 16 = 14. Square bracket: 20 + 14 = 34. Finally 100 − 34 = **66**. Inside every bracket, BODMAS still applies (8 × 2 before 30 − ...).\n\n### Finding a missing number\nSome questions hide one number: 18 + 6 × ? − 4 = 38. Undo the steps in reverse order.\n\n1. Move the loose terms: 6 × ? = 38 + 4 − 18 = 24.\n2. Undo the multiplication: ? = 24 ÷ 6 = **4**.\n3. Put 4 back and check: 18 + 24 − 4 = 38 ✓.\n\nAlways check the answer by putting it back. It takes five seconds and removes every doubt.\n\n### How wrong options are built\nAlmost every wrong option in this topic comes from one of three slips:\n\n- **Left-to-right slip**: the student ignored BODMAS. For 7 + 8 × 2 − 5, left to right gives 15 × 2 − 5 = 25, but the correct value is 7 + 16 − 5 = 18.\n- **Sign slip**: a minus sign is carried wrongly, e.g. 45 − 5 × 6 + 9 read as 45 − (30 + 9).\n- **Forgotten term**: the last \"− 5\" or \"+ 4\" is left out.\n\nIf your answer matches an option, still ask: \"Did I do × and ÷ before + and −?\" If yes, mark it and move on.\n\n### Speed habits\n- Circle every × and ÷ first; do those pieces; then read the line once more for + and −.\n- Write the reduced line after each step (18 + 12 − 5). Short lines prevent mistakes.\n- Use the last digit to check: 7 × 8 ends in 6, so 56 is right and 54 is not.\n\n### Quick revision\n- Order: Brackets → Orders → ÷ and × (left to right) → + and − (left to right).\n- ÷ and × have equal rank; + and − have equal rank. Same rank = left to right.\n- Nested brackets: ( ) then { } then [ ]; BODMAS works inside each bracket too.\n- Missing number: undo the steps backwards, then put the number back to check.\n- The left-to-right value is the examiner's favourite wrong option.",
+   "patterns": [
+    {
+     "id": "mo-p1",
+     "name": "Evaluate a mixed expression with BODMAS",
+     "frequency": "common",
+     "howToSpot": "A plain expression with + − × ÷ and no brackets; options include the left-to-right value.",
+     "formula": null,
+     "logic": "1. Circle × and ÷; work them out left to right.\n2. Then do + and − left to right.\n3. Match with options; the left-to-right value is the trap.\n\nWhy: × and ÷ bind the numbers next to them more tightly than + and −.",
+     "example": {
+      "q": "Find the value of **18 + 24 ÷ 6 × 3 − 5**.",
+      "solution": "24 ÷ 6 = 4, 4 × 3 = 12. Then 18 + 12 − 5 = **25**. (Left to right would give 16 — wrong.)"
+     }
+    },
+    {
+     "id": "mo-p2",
+     "name": "Same-rank operators: left to right",
+     "frequency": "common",
+     "howToSpot": "A chain of only ÷ and × (or only + and −), where ÷ comes before × or − before +.",
+     "formula": null,
+     "logic": "1. Same rank means no priority between them.\n2. Work strictly from left to right.\n\nWhy: BODMAS lists D and M (and A and S) together; the letter order is only for memory.",
+     "example": {
+      "q": "Find **96 ÷ 8 × 4**.",
+      "solution": "96 ÷ 8 = 12, then 12 × 4 = **48** (not 96 ÷ 32 = 3)."
+     }
+    },
+    {
+     "id": "mo-p3",
+     "name": "Nested brackets",
+     "frequency": "common",
+     "howToSpot": "The expression has ( ), { } and [ ] brackets.",
+     "formula": null,
+     "logic": "1. Solve the innermost ( ) first.\n2. Then { }, then [ ].\n3. Use BODMAS inside every bracket.\n\nWhy: each bracket is a complete small expression whose value feeds the outer one.",
+     "example": {
+      "q": "Find **[48 ÷ {2 × (10 − 4)}] + 5**.",
+      "solution": "10 − 4 = 6; 2 × 6 = 12; 48 ÷ 12 = 4; 4 + 5 = **9**."
+     }
+    },
+    {
+     "id": "mo-p4",
+     "name": "Find the missing number in an equation",
+     "frequency": "common",
+     "howToSpot": "An equation with a '?' in place of one number.",
+     "formula": null,
+     "logic": "1. Move the known terms to the other side (undo + and −).\n2. Undo × or ÷ around the '?'.\n3. Put the value back to check.\n\nWhy: undoing steps in reverse order keeps both sides equal.",
+     "example": {
+      "q": "**18 + 6 × ? − 4 = 38**. Find ?",
+      "solution": "6 × ? = 38 + 4 − 18 = 24, so ? = **4**. Check: 18 + 24 − 4 = 38 ✓."
+     }
+    }
    ]
   },
   {
@@ -61,6 +112,69 @@
     "Changing numbers instead of operators (the mapping speaks only of signs).",
     "Losing track when the same operator appears twice — every occurrence must be replaced.",
     "Forgetting that after substitution the ÷/× may sit where +/− used to, changing the BODMAS order."
+   ],
+   "notes": "### What sign substitution means\nImagine a calculator whose keys have been relabelled: the key marked \"+\" now multiplies and the key marked \"×\" now adds. The question gives you such a list of new meanings and an expression. You must first convert the expression into normal maths and only then calculate. In SSC, Railway and Banking papers this is one of the most frequent reasoning questions, and it is almost pure marks if you are careful.\n\n### The three-step method\n1. **Write the mapping** in a small table in your rough space, e.g. + → ×, − → ÷, × → +, ÷ → −.\n2. **Rewrite the whole line** with the new signs. Keep every number and every bracket exactly where it is.\n3. **Calculate with BODMAS** on the rewritten line.\n\nExample: If + means ×, − means ÷, × means + and ÷ means −, find 6 + 2 × 4 ÷ 2 − 2.\nRewrite: 6 × 2 + 4 − 2 ÷ 2. Now BODMAS: 6 × 2 = 12 and 2 ÷ 2 = 1, so 12 + 4 − 1 = **15**.\n\n### Convert each sign only once\nWhen the list says \"+ means × and × means +\", both changes happen **at the same time**. Look at the original line, and convert each symbol one time. Do not convert a sign that you have already changed. A good habit is to write the new line below the old one, symbol by symbol, looking only at the old line.\n\n### Partial substitution\nSometimes only two signs are changed (\"+ means ×, × means +\"). The other signs keep their normal meaning. Example: 9 + 4 × 7 becomes 9 × 4 + 7 = 36 + 7 = **43**.\n\n### Letter-coded signs\nThe signs may be replaced by letters: \"A means +, B means −, C means ×, D means ÷\". Then 18 C 4 D 6 A 9 B 5 means 18 × 4 ÷ 6 + 9 − 5. Left to right for × and ÷: 72 ÷ 6 = 12. Then 12 + 9 − 5 = **16**. The method is the same: rewrite first, then calculate.\n\n### Substitution with brackets\nBrackets never move and are always solved first, but the signs **inside** the brackets are also converted. Example: if + means ÷ and − means ×, then (24 + 8) − 2 becomes (24 ÷ 8) × 2 = 3 × 2 = 6. Forgetting to convert the sign inside the bracket is a very common loss.\n\n### Choose the correct equation after substitution\nA harder form gives a mapping and four equations. Convert each left side, evaluate it, and compare with the right side. Exactly one option balances. Work in writing, one option per line.\n\n### Know the planted wrong answers\nMost options are made from these slips:\n\n| Slip | What the student did |\n|---|---|\n| Mapping ignored | calculated the original expression |\n| BODMAS skipped | rewrote correctly but went left to right |\n| Half substitution | converted some signs and missed others |\n\nIf your answer equals the original expression's value, you forgot to substitute. That quick check saves many marks.\n\n### Quick revision\n- Mapping table → rewrite the full line → BODMAS. Never substitute and calculate together.\n- All changes are simultaneous: convert each symbol once, reading the ORIGINAL line.\n- Signs not in the list keep their normal meaning.\n- Letters for signs (A, B, P, Q...) are handled the same way.\n- Convert signs inside brackets too; brackets are still solved first.\n- Wrong options = original value, left-to-right value, half-substituted value.",
+   "patterns": [
+    {
+     "id": "mo-p5",
+     "name": "Full four-operator substitution",
+     "frequency": "very common",
+     "howToSpot": "'If + means ×, − means ÷, × means +, ÷ means −, then ... = ?' — all four signs are re-assigned.",
+     "formula": null,
+     "logic": "1. Write the mapping table.\n2. Rewrite the whole line, converting each sign once.\n3. Evaluate with BODMAS.\n\nWhy: separating 'rewrite' from 'calculate' removes sign slips.",
+     "example": {
+      "q": "If + means ×, − means ÷, × means +, ÷ means −, find **6 + 2 × 4 ÷ 2 − 2**.",
+      "solution": "Rewrite: 6 × 2 + 4 − 2 ÷ 2 = 12 + 4 − 1 = **15**."
+     }
+    },
+    {
+     "id": "mo-p6",
+     "name": "Partial (two-sign) substitution",
+     "frequency": "common",
+     "howToSpot": "Only two signs are given new meanings; the others stay normal.",
+     "formula": null,
+     "logic": "1. Change only the listed signs.\n2. Keep the other signs as they are.\n3. BODMAS.\n\nWhy: an unlisted sign keeps its usual job.",
+     "example": {
+      "q": "If + means × and × means +, find **9 + 4 × 7**.",
+      "solution": "Rewrite: 9 × 4 + 7 = 36 + 7 = **43**."
+     }
+    },
+    {
+     "id": "mo-p7",
+     "name": "Substitution with brackets",
+     "frequency": "common",
+     "howToSpot": "The expression under substitution contains brackets.",
+     "formula": null,
+     "logic": "1. Convert the signs inside AND outside the brackets.\n2. Solve the brackets first, then the rest.\n\nWhy: brackets fix the order, but their signs are still coded.",
+     "example": {
+      "q": "If + means ÷ and − means ×, find **(24 + 8) − 2**.",
+      "solution": "Rewrite: (24 ÷ 8) × 2 = 3 × 2 = **6**."
+     }
+    },
+    {
+     "id": "mo-p8",
+     "name": "Letter-coded operators",
+     "frequency": "common",
+     "howToSpot": "Letters like A, B, C, D (or P, Q, R, S) stand for the four signs.",
+     "formula": null,
+     "logic": "1. Replace each letter by its sign.\n2. Evaluate with BODMAS.\n\nWhy: a letter is just another name for a sign.",
+     "example": {
+      "q": "A means +, B means −, C means ×, D means ÷. Find **18 C 4 D 6 A 9 B 5**.",
+      "solution": "18 × 4 ÷ 6 + 9 − 5 = 12 + 9 − 5 = **16**."
+     }
+    },
+    {
+     "id": "mo-p9",
+     "name": "Substitute, then pick the correct equation",
+     "frequency": "occasional",
+     "howToSpot": "A mapping is given, and the options are four equations; one becomes true after substitution.",
+     "formula": null,
+     "logic": "1. Convert the left side of each option.\n2. Evaluate and compare with its right side.\n3. Only one balances.\n\nWhy: the right side is already a plain number; only the left side is coded.",
+     "example": {
+      "q": "If × means + and + means ×, which is correct: 4 × 3 + 2 = 10 or 4 + 3 × 2 = 14?",
+      "solution": "4 × 3 + 2 → 4 + 3 × 2 = 10 ✓; 4 + 3 × 2 → 4 × 3 + 2 = 14 ✓ — here both hold, so exam versions change one right side. Always evaluate every option."
+     }
+    }
    ]
   },
   {
@@ -90,6 +204,69 @@
     "Swapping the signs but forgetting the numbers (or the reverse) in two-part interchanges.",
     "Swapping numbers that appear more than once without checking every occurrence.",
     "Abandoning the sweep halfway — the correct pair is often the last one you would try."
+   ],
+   "notes": "### What \"interchange\" means\nTo interchange two things means to **swap** them: wherever the first stood, the second now stands, and the other way round. \"Interchange + and ×\" turns 3 × 4 + 5 into 3 + 4 × 5. It is like two students exchanging seats: both move. This is different from substitution, where the change may go in one direction only.\n\n### Type 1: swap two signs, then find the value\nRewrite the line with the two signs exchanged, then use BODMAS.\nExample: interchange + and ×; find 3 × 4 + 5 − 6. New line: 3 + 4 × 5 − 6 = 3 + 20 − 6 = **17**.\n\n### Type 2: swap two numbers (and maybe two signs too)\n\"Interchange 2 and 8\" means every 2 becomes 8 and every 8 becomes 2. Do all swaps in **one** rewrite, then calculate.\nExample: interchange + and × and also 2 and 8 in 2 + 8 × 3 − 5. New line: 8 × 2 + 3 − 5 = 16 + 3 − 5 = **14**.\nCareful: swap whole numbers only. If the swap is 2 and 5, the number 25 does not change.\n\n### Type 3: which two numbers must be swapped to make the equation true?\nYou get a wrong equation, for example 4 + 2 × 6 − 3 = 20, and four pairs in the options. Do a **sweep**: try each option pair, evaluate the new left side, and stop when it equals the right side.\n\n- (4, 2): 2 + 4 × 6 − 3 = 23 ✗\n- (2, 3): 4 + 3 × 6 − 2 = 4 + 18 − 2 = 20 ✓\n\nWith 4 numbers there are only 6 possible pairs; with 5 numbers there are 10. You normally test only the 4 option pairs.\n\n### Type 4: which two signs must be swapped?\nSame sweep, but you swap two operators. Example: 12 + 6 ÷ 3 − 2 × 4 = 18. Try + and −: 12 − 6 ÷ 3 + 2 × 4 = 12 − 2 + 8 = 18 ✓.\n\n### Type 5: after a given swap, which equation is correct?\nThe swap is stated first, and four equations follow. Apply the swap to each **left side**, evaluate, and compare with its right side. Only one balances.\n\n### Shortcuts that save time\n- **Swapping the two numbers around a single ×** (like 8 × 4 to 4 × 8) changes nothing, because order does not matter in multiplication. Skip such pairs.\n- **Size check**: if the target is large (like 81) you need a big product; if it is small, look for a division or subtraction to be created.\n- **Last-digit check**: 8 × 6 ends in 8; if the target ends in 5 you may drop that option at once.\n- **Division must usually come out exact**: a swap that creates 7 ÷ 5 rarely gives a whole-number answer, so test it last.\n\n### Traps\n- Swapping only one direction (changing + to × but leaving the old × as it was).\n- Forgetting a second occurrence of the same sign or number.\n- Evaluating the swapped line left to right instead of by BODMAS.\n\n### Quick revision\n- Interchange = two-way swap; every occurrence of both items changes.\n- Apply all swaps (signs and numbers) in ONE rewrite, then BODMAS.\n- \"Which pair to swap\": sweep the option pairs in a fixed order and stop at the one that balances.\n- Swapping the two numbers of one product changes nothing: skip it.\n- Use size and last-digit checks to cut options fast.",
+   "patterns": [
+    {
+     "id": "mo-p10",
+     "name": "Interchange two signs, then evaluate",
+     "frequency": "common",
+     "howToSpot": "'If + and ÷ are interchanged, find the value of ...'",
+     "formula": null,
+     "logic": "1. Swap both signs everywhere (two-way).\n2. BODMAS on the new line.\n\nWhy: interchange is symmetric, so both signs change places.",
+     "example": {
+      "q": "Interchange + and ×: **3 × 4 + 5 − 6**.",
+      "solution": "3 + 4 × 5 − 6 = 3 + 20 − 6 = **17**."
+     }
+    },
+    {
+     "id": "mo-p11",
+     "name": "Interchange numbers (with or without signs), then evaluate",
+     "frequency": "common",
+     "howToSpot": "'If 2 and 8 are interchanged (and + and ×) ...' — numbers are swapped too.",
+     "formula": null,
+     "logic": "1. Do every swap in one rewrite.\n2. Swap whole numbers only (25 is not changed by swapping 2 and 5).\n3. BODMAS.\n\nWhy: doing swaps one after another invites double swaps.",
+     "example": {
+      "q": "Interchange + and × and 2 and 8: **2 + 8 × 3 − 5**.",
+      "solution": "8 × 2 + 3 − 5 = 16 + 3 − 5 = **14**."
+     }
+    },
+    {
+     "id": "mo-p12",
+     "name": "Which two numbers to interchange to balance",
+     "frequency": "common",
+     "howToSpot": "A false equation and options like '4 and 2', '6 and 3'.",
+     "formula": null,
+     "logic": "1. For each option, swap the two numbers.\n2. Evaluate the left side; stop when it equals the right side.\n\nWhy: only one pair can restore the balance in a well-set question.",
+     "example": {
+      "q": "Which two numbers should be interchanged: **4 + 2 × 6 − 3 = 20**?",
+      "solution": "Swap 2 and 3: 4 + 3 × 6 − 2 = 20 ✓ → **2 and 3**."
+     }
+    },
+    {
+     "id": "mo-p13",
+     "name": "Which two signs to interchange to balance",
+     "frequency": "common",
+     "howToSpot": "A false equation and options like '+ and −', '× and ÷'.",
+     "formula": null,
+     "logic": "1. For each option, swap the two signs everywhere.\n2. Evaluate; stop at the one that balances.\n\nWhy: same sweep idea as number swaps, applied to operators.",
+     "example": {
+      "q": "Which two signs should be interchanged: **12 + 6 ÷ 3 − 2 × 4 = 18**?",
+      "solution": "Swap + and −: 12 − 2 + 8 = 18 ✓ → **+ and −**."
+     }
+    },
+    {
+     "id": "mo-p14",
+     "name": "After a given interchange, which equation is correct",
+     "frequency": "occasional",
+     "howToSpot": "The swap is stated; four equations follow.",
+     "formula": null,
+     "logic": "1. Apply the swap to each left side.\n2. Evaluate and compare with the right side.\n\nWhy: the right sides are plain numbers and do not change.",
+     "example": {
+      "q": "If + and − are interchanged, is **10 − 4 + 2 × 3 = 8** correct?",
+      "solution": "Swap: 10 + 4 − 2 × 3 = 14 − 6 = 8 ✓ — correct."
+     }
+    }
    ]
   },
   {
@@ -111,6 +288,145 @@
     "Scanning options for a 'nice-looking' equation instead of evaluating.",
     "Testing only the first blank of a sign pair — the second sign is where the balance usually breaks.",
     "Ignoring equal ranks: ÷ then × must be done left to right, not 'multiplication always first'."
+   ],
+   "notes": "### What balancing means\nAn equation is like a weighing scale: the left side and the right side must have the same value. In these questions you either check which equation is already balanced, or choose the signs that will balance it. Nothing is hidden; you only need clean BODMAS and a fixed order of testing.\n\n### Type 1: pick the correct equation\nFour full equations are given; exactly one is true. Evaluate each left side and compare.\nExample options: 16 ÷ 4 × 2 + 6 = 14, and 7 + 8 × 2 − 5 = 25. First one: 4 × 2 + 6 = 14 ✓. Second one: 7 + 16 − 5 = 18, not 25 ✗ (25 is the left-to-right value, a planted trap).\n\n### Type 2: fill the blanks with a pair or set of signs\n\"Which pair of signs makes 14 ? 2 ? 3 = 21 true?\" Put each option in and evaluate.\n- ÷ and ×: 14 ÷ 2 × 3 = 7 × 3 = **21** ✓\n- × and −: 28 − 3 = 25 ✗\nWith three or four blanks the options are full sets like \"−, +, ×\". Replace the blanks in order from left to right.\n\n### Type 3: replace the * signs in order\nRecent papers write the question as: \"Select the correct combination of mathematical signs to sequentially replace the * signs and balance the equation\", e.g. `21 * 7 * 5 * 4 * 3 = 27`. \"Sequentially\" means the first sign of the option goes into the first *, the second into the second *, and so on.\nOption \"÷, ×, +, ×\": 21 ÷ 7 × 5 + 4 × 3 = 3 × 5 + 12 = 15 + 12 = **27** ✓.\n\n### Type 4: the = sign is one of the options\nHere the equation has no = sign yet: `12 * 4 * 3 * 16`, and one option sign is \"=\". After filling, check that the part before = equals the part after =.\n\"×, ÷, =\" gives 12 × 4 ÷ 3 = 16 → 48 ÷ 3 = 16 ✓.\nTip: the = sign usually sits just before the last number, but always test; examiners move it to catch guessers.\n\n### A fast testing order\n1. Look at the right side. Is it big or small compared with the numbers? A big target needs ×; a small one needs ÷ or −.\n2. Test options that create **exact** divisions first. 72 ÷ 8 = 9 is friendly; 7 ÷ 5 is usually a dead end.\n3. Use the **last digit**: if the left side must end in 7 and your option gives a product ending in 0 plus 5, drop it.\n4. Once one option balances, still glance at the rest only if time allows; in a correct question only one works.\n\n### Common mistakes\n- Applying BODMAS in your head and slipping on the order (× before +).\n- Putting option signs in the wrong blanks (reading the option from the right).\n- In \"=\" questions, calculating the whole line as one expression instead of comparing both sides.\n\n### Quick revision\n- Balanced = left value equals right value; test each option in writing.\n- \"Sequentially replace *\" = first sign into first *, second into second, and so on.\n- When \"=\" is among the signs, compare the two sides after filling.\n- Target size tells you whether you need × (big) or ÷/− (small).\n- Exact divisions and last digits cut options quickly.\n- The left-to-right value is the usual trap option.",
+   "patterns": [
+    {
+     "id": "mo-p15",
+     "name": "Pick the arithmetically correct equation",
+     "frequency": "very common",
+     "howToSpot": "'Which of the following equations is correct?' with four complete equations.",
+     "formula": null,
+     "logic": "1. Evaluate each left side with BODMAS.\n2. Compare with the right side; exactly one matches.\n\nWhy: wrong options are usually left-to-right values.",
+     "example": {
+      "q": "Is **16 ÷ 4 × 2 + 6 = 14** correct?",
+      "solution": "4 × 2 + 6 = 8 + 6 = 14 ✓ — yes."
+     }
+    },
+    {
+     "id": "mo-p16",
+     "name": "Fill the blanks with a sign pair or sign set",
+     "frequency": "common",
+     "howToSpot": "'Which pair/set of signs will make 14 ? 2 ? 3 = 21 correct?'",
+     "formula": null,
+     "logic": "1. Put each option's signs into the blanks, left to right.\n2. Evaluate; keep the one that equals the right side.\n\nWhy: testing is faster and safer than guessing.",
+     "example": {
+      "q": "**14 ? 2 ? 3 = 21**: try ÷ and ×.",
+      "solution": "14 ÷ 2 × 3 = 7 × 3 = **21** ✓."
+     }
+    },
+    {
+     "id": "mo-p17",
+     "name": "Sequentially replace the * signs",
+     "frequency": "very common",
+     "howToSpot": "`21 * 7 * 5 * 4 * 3 = 27` — 'select the combination of signs to sequentially replace *'.",
+     "formula": null,
+     "logic": "1. First sign → first *, second sign → second *, and so on.\n2. BODMAS.\n3. Check against the right side.\n\nWhy: 'sequentially' fixes the order of placement.",
+     "example": {
+      "q": "`21 * 7 * 5 * 4 * 3 = 27` with ÷, ×, +, ×.",
+      "solution": "21 ÷ 7 × 5 + 4 × 3 = 15 + 12 = **27** ✓."
+     }
+    },
+    {
+     "id": "mo-p18",
+     "name": "Replace * signs when '=' is one of the options",
+     "frequency": "common",
+     "howToSpot": "`12 * 4 * 3 * 16` — there is no = sign yet; options contain '='.",
+     "formula": null,
+     "logic": "1. Place the signs in order, including '='.\n2. Evaluate the left part and the right part separately.\n3. They must be equal.\n\nWhy: '=' splits the line into two expressions.",
+     "example": {
+      "q": "`12 * 4 * 3 * 16` with ×, ÷, =.",
+      "solution": "12 × 4 ÷ 3 = 16 → 16 = 16 ✓."
+     }
+    }
+   ]
+  },
+  {
+   "id": "defined-operations",
+   "title": "Hidden-rule and defined operations",
+   "concept": "A new symbol such as ★, # or @ is given its own meaning — either as a formula (a ★ b = 2a + 3b) or through solved examples (5 # 3 = 34) from which you find the rule. Plug the numbers in carefully, keep the order of a and b, and test a hidden rule on every example before using it.",
+   "formulas": [
+    {
+     "name": "Sum of squares",
+     "tex": "a \\# b = a^2 + b^2",
+     "note": "Very common hidden rule: 5 # 3 = 34."
+    },
+    {
+     "name": "Difference of squares",
+     "tex": "a @ b = a^2 - b^2 = (a+b)(a-b)",
+     "note": "8 @ 2 = 60."
+    },
+    {
+     "name": "Product plus sum",
+     "tex": "a \\$ b = ab + a + b",
+     "note": "4 $ 3 = 19."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Rule ladder for hidden operations",
+     "body": "Test in this order: a + b, a × b, $a^2 + b^2$, $a^2 - b^2$, $(a+b)^2$, $(a-b)^2$, ab + a + b. Stop at the first rule that fits **all** the examples.",
+     "example": {
+      "q": "8 @ 2 = 60 and 7 @ 3 = 40. Find 9 @ 4.",
+      "solution": "64 − 4 = 60 ✓ and 49 − 9 = 40 ✓, so the rule is $a^2 - b^2$: 81 − 16 = **65**."
+     }
+    }
+   ],
+   "mistakes": [
+    "Swapping a and b in a formula that is not symmetric (2a + 3b ≠ 3a + 2b).",
+    "Accepting a rule after checking only one example.",
+    "Using the first case of a conditional definition again without re-checking the condition."
+   ],
+   "notes": "### What a defined operation is\nSometimes the examiner invents a new symbol, like ★, # or @, and tells you what it does. For example, \"a ★ b = 2a + 3b\". The symbol is just a short name for a small formula. To find 5 ★ 4 you put a = 5 and b = 4 into the formula: 2 × 5 + 3 × 4 = 10 + 12 = **22**. It is like a shop rule: \"price of a combo = 2 × price of burger + 3 × price of drink\" — you just plug in the prices.\n\n### Type 1: the formula is given\nPut the first number in place of a and the second in place of b. The **order matters**: with a ★ b = 2a + 3b, 5 ★ 4 = 22 but 4 ★ 5 = 8 + 15 = 23. Always check which number is a.\n\nCommon formulas: $a^2 + b^2$, $a^2 - ab + b^2$, $\\frac{a+b}{a-b}$, $3a - b$, $ab + a + b$.\n\n### Type 2: nested (chained) operations\n(7 @ 5) @ 3 means: first work out 7 @ 5, then use that answer as the new a. With a @ b = (a + b) ÷ (a − b): 7 @ 5 = 12 ÷ 2 = 6. Then 6 @ 3 = 9 ÷ 3 = **3**. Brackets decide which operation is done first, just like BODMAS. When two symbols are defined, work out each bracket with its own formula, then combine.\n\n### Type 3: find the hidden rule from examples\nThe question shows solved examples such as 5 # 3 = 34 and 6 # 2 = 40, and asks for 7 # 4. You must guess the rule and test it on **every** example.\nTry the common rules in this order:\n\n| Try | 5 and 3 give | 6 and 2 give |\n|---|---|---|\n| a + b, a × b | 8, 15 | 8, 12 |\n| $a^2 + b^2$ | 34 ✓ | 40 ✓ |\n| $a^2 - b^2$ | 16 | 32 |\n| $(a+b)^2$ | 64 | 64 |\n\nSo the rule is $a^2 + b^2$ and 7 # 4 = 49 + 16 = **65**.\nA rule that fits only one example is not the rule. Two different rules can fit one example; the second example decides.\n\n### Type 4: conditional definitions\nThe formula may depend on a condition: \"a ▲ b = a − b if a > b, and a + b if a ≤ b\". Check the condition **every time** you use the symbol. 9 ▲ 4: 9 > 4, so 9 − 4 = 5. Then 5 ▲ 7: 5 ≤ 7, so 5 + 7 = **12**. Students often use the first case again without checking; that is the trap.\n\n### Rules that appear most often\n- Sum or difference of squares: $a^2 \\pm b^2$.\n- Square of sum or difference: $(a \\pm b)^2$.\n- Product plus sum: $ab + a + b$.\n- Weighted sums: $2a + 3b$, $3a - b$.\n- Mixed: $a^2 + b$, $a \\times b - a$.\n\n### How to avoid mistakes\n- Write \"a = __, b = __\" before plugging in.\n- In nested questions, finish the inner bracket fully and write its value.\n- For hidden rules, test on all examples before answering.\n- Negative or fraction results are allowed only if the question allows them; if every option is a whole number and yours is not, recheck.\n\n### Quick revision\n- Defined symbol = small formula; plug in a (first number) and b (second number).\n- Order of a and b matters unless the formula is symmetric.\n- Nested: inner bracket first; its result becomes the new input.\n- Hidden rule: try a+b, ab, $a^2 \\pm b^2$, $(a \\pm b)^2$, ab+a+b; it must fit EVERY example.\n- Conditional: re-check the condition at each step.",
+   "patterns": [
+    {
+     "id": "mo-p19",
+     "name": "Defined formula: a ★ b = given expression",
+     "frequency": "common",
+     "howToSpot": "The question defines a new symbol with a formula in a and b.",
+     "formula": "a \\star b = 2a + 3b",
+     "logic": "1. Write a = first number, b = second number.\n2. Put them into the formula.\n3. Calculate.\n\nWhy: the symbol is only a short name for the formula.",
+     "example": {
+      "q": "If a ★ b = 2a + 3b, find **5 ★ 4**.",
+      "solution": "2 × 5 + 3 × 4 = 10 + 12 = **22**."
+     }
+    },
+    {
+     "id": "mo-p20",
+     "name": "Hidden rule from solved examples",
+     "frequency": "common",
+     "howToSpot": "Examples like 5 # 3 = 34, 6 # 2 = 40, then '7 # 4 = ?'.",
+     "formula": "a \\# b = a^2 + b^2",
+     "logic": "1. Try common rules: a+b, ab, $a^2 \\pm b^2$, $(a \\pm b)^2$, ab+a+b.\n2. Keep the rule that fits EVERY example.\n3. Apply it.\n\nWhy: two examples are given so that only one rule survives.",
+     "example": {
+      "q": "5 # 3 = 34, 6 # 2 = 40. Find **7 # 4**.",
+      "solution": "25 + 9 = 34 ✓, 36 + 4 = 40 ✓: rule $a^2 + b^2$. 49 + 16 = **65**."
+     }
+    },
+    {
+     "id": "mo-p21",
+     "name": "Conditional definition",
+     "frequency": "occasional",
+     "howToSpot": "The symbol does different things depending on a condition (a > b, both even, etc.).",
+     "formula": null,
+     "logic": "1. Check the condition for the given pair.\n2. Use the matching formula.\n3. Re-check the condition at every new step.\n\nWhy: the second step often falls in the other case.",
+     "example": {
+      "q": "a ▲ b = a − b if a > b, a + b if a ≤ b. Find **(9 ▲ 4) ▲ 7**.",
+      "solution": "9 ▲ 4 = 5; 5 ▲ 7 = 5 + 7 = **12**."
+     }
+    },
+    {
+     "id": "mo-p22",
+     "name": "Nested or two-symbol defined operations",
+     "frequency": "common",
+     "howToSpot": "Brackets combine defined operations: (7 @ 5) @ 3, or two symbols in one line.",
+     "formula": "a \\otimes b = 3a - b",
+     "logic": "1. Solve the inner bracket with its own formula.\n2. Use that result as an input to the outer operation.\n\nWhy: brackets decide the order, as in BODMAS.",
+     "example": {
+      "q": "a ⊗ b = 3a − b. Find **(4 ⊗ 2) ⊗ 5**.",
+      "solution": "4 ⊗ 2 = 12 − 2 = 10; 10 ⊗ 5 = 30 − 5 = **25**."
+     }
+    }
    ]
   }
  ],
@@ -118,38 +434,112 @@
   {
    "pattern": "Full four-operator substitution",
    "frequency": "very common",
-   "howToSpot": "'If + means ÷, − means ×, × means +, ÷ means −, then <expr> = ?'",
-   "approach": "Rewrite the whole line with new operators, evaluate with BODMAS; expect the original-value trap among the options."
+   "howToSpot": "The question says 'If + means ×, − means ÷, × means +, ÷ means −' (or similar) and gives an expression.",
+   "approach": "Write the mapping, rewrite the whole line converting each sign once, then apply BODMAS. The original value and the left-to-right value are always planted as wrong options.",
+   "subtopic": "sign-substitution",
+   "example": {
+    "q": "If + means ×, − means ÷, × means +, ÷ means −, find 6 + 2 × 4 ÷ 2 − 2.",
+    "solution": "Rewrite: 6 × 2 + 4 − 2 ÷ 2 = 12 + 4 − 1 = **15**."
+   }
+  },
+  {
+   "pattern": "Letter-coded or partial substitution",
+   "frequency": "common",
+   "howToSpot": "Letters (A, B, C, D or P, Q, R, S) stand for signs, or only two signs change meaning.",
+   "approach": "Replace each code by its real sign, leave the unlisted signs as they are, and calculate with BODMAS. Signs inside brackets are converted too.",
+   "subtopic": "sign-substitution",
+   "example": {
+    "q": "A means +, B means −, C means ×, D means ÷. Find 18 C 4 D 6 A 9 B 5.",
+    "solution": "18 × 4 ÷ 6 + 9 − 5 = 12 + 9 − 5 = **16**."
+   }
+  },
+  {
+   "pattern": "Interchange signs or numbers, then evaluate",
+   "frequency": "common",
+   "howToSpot": "'If + and × are interchanged (and 2 and 8 are interchanged), find the value of ...'.",
+   "approach": "Interchange is a two-way swap. Do all swaps in one rewrite, change whole numbers only, then apply BODMAS.",
+   "subtopic": "interchange-signs",
+   "example": {
+    "q": "Interchange + and ×: find 3 × 4 + 5 − 6.",
+    "solution": "3 + 4 × 5 − 6 = 3 + 20 − 6 = **17**."
+   }
+  },
+  {
+   "pattern": "Which two numbers or signs to interchange",
+   "frequency": "common",
+   "howToSpot": "A false equation is given; options are pairs like '2 and 3' or '+ and −'.",
+   "approach": "Sweep the option pairs in a fixed order. Swap, evaluate the left side, and stop at the pair that equals the right side. Use target size and last digits to skip hopeless pairs.",
+   "subtopic": "interchange-signs",
+   "example": {
+    "q": "Which two numbers should be interchanged: 4 + 2 × 6 − 3 = 20?",
+    "solution": "Swap 2 and 3: 4 + 3 × 6 − 2 = 4 + 18 − 2 = 20 ✓ → **2 and 3**."
+   }
   },
   {
    "pattern": "Pick the correct equation",
    "frequency": "very common",
-   "howToSpot": "Four complete equations; exactly one is true.",
-   "approach": "Evaluate all four in a written value column; the true one is the answer."
+   "howToSpot": "Four complete equations are given and only one is arithmetically true.",
+   "approach": "Evaluate every left side with BODMAS in writing and compare. Wrong options are usually built from left-to-right working, so careful BODMAS finds the answer fast.",
+   "subtopic": "balance-equation",
+   "example": {
+    "q": "Which is correct: 7 + 8 × 2 − 5 = 25 or 16 ÷ 4 × 2 + 6 = 14?",
+    "solution": "7 + 16 − 5 = 18 ✗; 4 × 2 + 6 = 14 ✓ → **16 ÷ 4 × 2 + 6 = 14**."
+   }
   },
   {
-   "pattern": "Two-sign or sign + number interchange",
+   "pattern": "Sequentially replace the * signs",
+   "frequency": "very common",
+   "howToSpot": "`21 * 7 * 5 * 4 * 3 = 27` or `12 * 4 * 3 * 16` with options such as '÷, ×, +, ×' (sometimes including '=').",
+   "approach": "Place the option's signs into the * marks from left to right and evaluate. If '=' is one of the signs, compare the two sides after filling.",
+   "subtopic": "balance-equation",
+   "example": {
+    "q": "`21 * 7 * 5 * 4 * 3 = 27` — does '÷, ×, +, ×' work?",
+    "solution": "21 ÷ 7 × 5 + 4 × 3 = 15 + 12 = 27 ✓."
+   }
+  },
+  {
+   "pattern": "Fill the blanks with a sign pair or set",
    "frequency": "common",
-   "howToSpot": "'Interchange + and ×' (sometimes also two numbers), then evaluate.",
-   "approach": "One margin rewrite applying all swaps at once, then BODMAS."
+   "howToSpot": "'Which set of signs will make 18 ? 6 ? 3 ? 4 = 24 correct?'",
+   "approach": "Test each option in order with BODMAS. A big right side needs ×; a small one needs ÷ or −.",
+   "subtopic": "balance-equation",
+   "example": {
+    "q": "18 ? 6 ? 3 ? 4 = 24 — test '−, +, ×'.",
+    "solution": "18 − 6 + 3 × 4 = 12 + 12 = **24** ✓."
+   }
   },
   {
-   "pattern": "Fix the equation by swapping numbers",
-   "frequency": "common",
-   "howToSpot": "A false equation; some pair of numbers makes it true — find the pair.",
-   "approach": "Fixed-order sweep of all pairs with one written value per row."
-  },
-  {
-   "pattern": "Fill the operator blanks",
-   "frequency": "common",
-   "howToSpot": "'5 ? 2 ? 3 = 13' with sign-pair or sign-set options.",
-   "approach": "Evaluate each candidate set with BODMAS until one balances."
-  },
-  {
-   "pattern": "Substitution with brackets",
+   "pattern": "Hidden rule from solved examples",
    "frequency": "occasional",
-   "howToSpot": "Substitution where the expression carries brackets.",
-   "approach": "Substitute first; brackets still resolve first inside BODMAS."
+   "howToSpot": "Two or three worked examples like 5 # 3 = 34, 6 # 2 = 40 are given and a new pair is asked.",
+   "approach": "Try the common rules — a + b, ab, a² ± b², (a ± b)², ab + a + b — and keep only the rule that fits every example. Then apply it.",
+   "subtopic": "defined-operations",
+   "example": {
+    "q": "5 # 3 = 34, 6 # 2 = 40. Find 7 # 4.",
+    "solution": "a² + b² fits both examples: 49 + 16 = **65**."
+   }
+  },
+  {
+   "pattern": "Defined symbol with a formula",
+   "frequency": "occasional",
+   "howToSpot": "'If a ★ b = 2a + 3b ...' or a conditional/nested definition.",
+   "approach": "Write a and b before plugging in; solve inner brackets first; re-check any condition at each step.",
+   "subtopic": "defined-operations",
+   "example": {
+    "q": "If a ★ b = 2a + 3b, find 5 ★ 4.",
+    "solution": "2 × 5 + 3 × 4 = **22**."
+   }
+  },
+  {
+   "pattern": "BODMAS value or missing number",
+   "frequency": "common",
+   "howToSpot": "A plain expression to evaluate, or an equation with one '?'.",
+   "approach": "Do brackets, then ÷ and × left to right, then + and − left to right. For a missing number, undo the steps backwards and put the value back to check.",
+   "subtopic": "mathops-idea",
+   "example": {
+    "q": "18 + 6 × ? − 4 = 38. Find ?",
+    "solution": "6 × ? = 24, so ? = **4**."
+   }
   }
  ],
  "solvedExamples": [
@@ -218,7 +608,7 @@
     "9 + 6 ÷ 2 − 3 = 11"
    ],
    "answer": 2,
-   "solution": "Evaluate each with BODMAS: 24÷6−2×3 = 4−6 = −2 ✗; 5×4+6÷2 = 20+3 = **23** ✓; 9+6÷2−3 = 9+3−3 = 9 ✗ (not 11); 7×2+8÷4 = 14+2 = 16 ✗ (not 18). Only the second equation holds.",
+   "solution": "Evaluate each option with BODMAS, in the order given:\n\n- 7 × 2 + 8 ÷ 4 = 14 + 2 = 16, not 18 ✗\n- 24 ÷ 6 − 2 × 3 = 4 − 6 = −2, not 1 ✗\n- 5 × 4 + 6 ÷ 2 = 20 + 3 = **23** ✓\n- 9 + 6 ÷ 2 − 3 = 9 + 3 − 3 = 9, not 11 ✗\n\nOnly **5 × 4 + 6 ÷ 2 = 23** is correct.",
    "shortcut": "A written value column for all four options — the true equation is the only row matching its RHS.",
    "difficulty": "easy",
    "subtopic": "balance-equation",
@@ -328,7 +718,7 @@
     "15 ÷ 3 + 2 × 4 = 13"
    ],
    "answer": 3,
-   "solution": "Values: 15÷3+2×4 = 5+8 = **13** ✓; 20−4÷2+6 = 20−2+6 = 24 ✗; 7×2+8÷4 = 14+2 = 16 ✗; 36÷6×2+1 = 12+1 = 13 ✗ (not 14). Only the first equation is true.",
+   "solution": "Evaluate each option with BODMAS, in the order given:\n\n- 20 − 4 ÷ 2 + 6 = 20 − 2 + 6 = 24, not 16 ✗\n- 7 × 2 + 8 ÷ 4 = 14 + 2 = 16, not 18 ✗\n- 36 ÷ 6 × 2 + 1 = 6 × 2 + 1 = 13, not 14 ✗\n- 15 ÷ 3 + 2 × 4 = 5 + 8 = **13** ✓\n\nOnly **15 ÷ 3 + 2 × 4 = 13** is correct.",
    "shortcut": "Four one-line evaluations; note 36 ÷ 6 × 2 must go left to right (12), not ×-first (3).",
    "difficulty": "easy",
    "subtopic": "balance-equation",
@@ -346,7 +736,7 @@
     "16"
    ],
    "answer": 2,
-   "solution": "Substitute (brackets still first): (24 + 8) − 2 ÷ 4 → (24 ÷ 8) × 2 + 4 = 3 × 2 + 4 = **10**. The un-substituted value is (32 × 2) ÷ 4 = 16 — the mapping-ignored trap.",
+   "solution": "Substitute every sign once (brackets stay where they are): (24 + 8) − 2 ÷ 4 → **(24 ÷ 8) × 2 + 4**. Bracket first: 24 ÷ 8 = 3. Then 3 × 2 = 6 and 6 + 4 = **10**.\n\nTrap check: 16 is what you get if you convert only the signs outside the bracket and forget the '+' inside it: (24 + 8) × 2 ÷ 4 = 32 × 2 ÷ 4 = 16. (The original expression, with no substitution at all, is 32 − 0.5 = 31.5.)",
    "shortcut": "Resolve the bracket with its NEW operator, then sweep the rest by BODMAS.",
    "difficulty": "medium",
    "subtopic": "sign-substitution",
@@ -400,7 +790,7 @@
     "4 and 6"
    ],
    "answer": 0,
-   "solution": "Sweep: (8,4) → 4×6−8+3 = 19 ✗; (4,6) → 8×6−4+3 = 47 ✗; (6,3) → 8×4−3+6 = 32 − 3 + 6 = **35** ✓. Interchanging **6 and 3** works (the remaining pairs give 14 and 22).",
+   "solution": "Sweep every pair of numbers and evaluate with BODMAS: (8, 4) → 4 × 8 − 6 + 3 = 29 ✗; (8, 6) → 6 × 4 − 8 + 3 = 19 ✗; (8, 3) → 3 × 4 − 6 + 8 = 14 ✗; (4, 6) → 8 × 6 − 4 + 3 = 47 ✗; (4, 3) → 8 × 3 − 6 + 4 = 22 ✗; (6, 3) → 8 × 4 − 3 + 6 = 35 ✓.\n\nOnly interchanging **6 and 3** gives 8 × 4 − 3 + 6 = 32 − 3 + 6 = **35**.",
    "shortcut": "Try the pair touching the last operator early — (6,3) — then confirm no earlier pair matched.",
    "difficulty": "medium",
    "subtopic": "interchange-signs",
@@ -496,6 +886,996 @@
    "subtopic": "sign-substitution",
    "pattern": "full four-operator substitution",
    "timeSec": 35
+  },
+  {
+   "id": "mathops-idea-p01",
+   "q": "Find the value of **18 + 24 ÷ 6 × 3 − 5**.",
+   "figure": null,
+   "options": [
+    "30",
+    "16",
+    "23",
+    "25"
+   ],
+   "answer": 3,
+   "solution": "Do ÷ and × first, left to right: 24 ÷ 6 = 4, 4 × 3 = 12. Now 18 + 12 − 5 = **25**.",
+   "shortcut": "Left to right gives 16 — that is the trap option.",
+   "difficulty": "easy",
+   "subtopic": "mathops-idea",
+   "pattern": "mo-p1",
+   "timeSec": 30
+  },
+  {
+   "id": "mathops-idea-p02",
+   "q": "Find the value of **45 − 5 × 6 + 36 ÷ 4**.",
+   "figure": null,
+   "options": [
+    "33",
+    "69",
+    "24",
+    "6"
+   ],
+   "answer": 2,
+   "solution": "5 × 6 = 30 and 36 ÷ 4 = 9. Then 45 − 30 + 9 = **24**. (Reading it as 45 − (30 + 9) = 6 is a sign slip.)",
+   "shortcut": "Circle × and ÷ first; the rest is left to right.",
+   "difficulty": "easy",
+   "subtopic": "mathops-idea",
+   "pattern": "mo-p1",
+   "timeSec": 35
+  },
+  {
+   "id": "mathops-idea-p03",
+   "q": "Find the value of **7 × 8 − 72 ÷ 9 + 3 × 5**.",
+   "figure": null,
+   "options": [
+    "63",
+    "71",
+    "33",
+    "48"
+   ],
+   "answer": 0,
+   "solution": "7 × 8 = 56, 72 ÷ 9 = 8, 3 × 5 = 15. Then 56 − 8 + 15 = **63**. (56 − (8 + 15) = 33 is the sign-slip trap; 48 forgets the + 15.)",
+   "shortcut": "Three products first, then one left-to-right pass.",
+   "difficulty": "medium",
+   "subtopic": "mathops-idea",
+   "pattern": "mo-p1",
+   "timeSec": 40
+  },
+  {
+   "id": "mathops-idea-p04",
+   "q": "Find the value of **96 ÷ 8 × 4**.",
+   "figure": null,
+   "options": [
+    "48",
+    "36",
+    "3",
+    "12"
+   ],
+   "answer": 0,
+   "solution": "÷ and × have the same rank, so go left to right: 96 ÷ 8 = 12, then 12 × 4 = **48**. Doing 8 × 4 first gives 96 ÷ 32 = 3 — wrong.",
+   "shortcut": "Same rank → left to right.",
+   "difficulty": "easy",
+   "subtopic": "mathops-idea",
+   "pattern": "mo-p2",
+   "timeSec": 25
+  },
+  {
+   "id": "mathops-idea-p05",
+   "q": "Find the value of **60 − 12 + 8 − 6**.",
+   "figure": null,
+   "options": [
+    "34",
+    "46",
+    "50",
+    "38"
+   ],
+   "answer": 2,
+   "solution": "+ and − have the same rank: 60 − 12 = 48, 48 + 8 = 56, 56 − 6 = **50**. Adding 12 + 8 first (60 − 20 − 6 = 34) is the trap.",
+   "shortcut": "Same rank → left to right.",
+   "difficulty": "easy",
+   "subtopic": "mathops-idea",
+   "pattern": "mo-p2",
+   "timeSec": 25
+  },
+  {
+   "id": "mathops-idea-p06",
+   "q": "Find the value of **144 ÷ 12 ÷ 2 × 6 + 4**.",
+   "figure": null,
+   "options": [
+    "148",
+    "5",
+    "40",
+    "76"
+   ],
+   "answer": 2,
+   "solution": "Left to right for ÷ and ×: 144 ÷ 12 = 12, 12 ÷ 2 = 6, 6 × 6 = 36. Then 36 + 4 = **40**. (Working 12 ÷ 2 first gives 148; working 2 × 6 first gives 5.)",
+   "shortcut": "Never jump to a later ÷ or ×; walk left to right.",
+   "difficulty": "medium",
+   "subtopic": "mathops-idea",
+   "pattern": "mo-p2",
+   "timeSec": 40
+  },
+  {
+   "id": "mathops-idea-p07",
+   "q": "Find the value of **(36 − 4 × 5) ÷ 4 + 3 × (8 − 2)**.",
+   "figure": null,
+   "options": [
+    "22",
+    "58",
+    "7",
+    "40"
+   ],
+   "answer": 0,
+   "solution": "Bracket 1: 36 − 20 = 16 (× inside the bracket first). Bracket 2: 8 − 2 = 6. Then 16 ÷ 4 + 3 × 6 = 4 + 18 = **22**. (Doing 36 − 4 first inside the bracket gives 160 ÷ 4 + 18 = 58.)",
+   "shortcut": "BODMAS works inside each bracket too.",
+   "difficulty": "medium",
+   "subtopic": "mathops-idea",
+   "pattern": "mo-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "mathops-idea-p08",
+   "q": "Find the value of **[48 ÷ {2 × (10 − 4)}] + 5**.",
+   "figure": null,
+   "options": [
+    "13",
+    "29",
+    "149",
+    "9"
+   ],
+   "answer": 3,
+   "solution": "Innermost first: 10 − 4 = 6. Curly bracket: 2 × 6 = 12. Square bracket: 48 ÷ 12 = 4. Finally 4 + 5 = **9**. (Ignoring the brackets gives 48 ÷ 2 × 6 + 5 = 149.)",
+   "shortcut": "( ) → { } → [ ].",
+   "difficulty": "medium",
+   "subtopic": "mathops-idea",
+   "pattern": "mo-p3",
+   "timeSec": 40
+  },
+  {
+   "id": "mathops-idea-p09",
+   "q": "Find the value of **100 − [20 + {30 − (12 − 4) × 2}]**.",
+   "figure": null,
+   "options": [
+    "66",
+    "54",
+    "36",
+    "62"
+   ],
+   "answer": 0,
+   "solution": "12 − 4 = 8. Inside { }: 30 − 8 × 2 = 30 − 16 = 14. Inside [ ]: 20 + 14 = 34. Finally 100 − 34 = **66**. (Doing (30 − 8) × 2 = 44 inside { } gives 100 − 64 = 36 — a BODMAS slip.)",
+   "shortcut": "Inside the curly bracket, × still comes before −.",
+   "difficulty": "hard",
+   "subtopic": "mathops-idea",
+   "pattern": "mo-p3",
+   "timeSec": 50
+  },
+  {
+   "id": "mathops-idea-p10",
+   "q": "Find the missing number: **18 + 6 × ? − 4 = 38**",
+   "figure": null,
+   "options": [
+    "6",
+    "5",
+    "3",
+    "4"
+   ],
+   "answer": 3,
+   "solution": "Move the loose numbers: 6 × ? = 38 + 4 − 18 = 24. So ? = 24 ÷ 6 = **4**. Check: 18 + 24 − 4 = 38 ✓.",
+   "shortcut": "Put each option back in: only 4 balances.",
+   "difficulty": "easy",
+   "subtopic": "mathops-idea",
+   "pattern": "mo-p4",
+   "timeSec": 35
+  },
+  {
+   "id": "mathops-idea-p11",
+   "q": "Find the missing number: **? ÷ 4 + 7 × 3 = 36**",
+   "figure": null,
+   "options": [
+    "15",
+    "60",
+    "64",
+    "48"
+   ],
+   "answer": 1,
+   "solution": "7 × 3 = 21, so ? ÷ 4 = 36 − 21 = 15. Then ? = 15 × 4 = **60**. (15 is the trap of forgetting to multiply back by 4.)",
+   "shortcut": "Undo the steps in reverse order.",
+   "difficulty": "medium",
+   "subtopic": "mathops-idea",
+   "pattern": "mo-p4",
+   "timeSec": 40
+  },
+  {
+   "id": "mathops-idea-p12",
+   "q": "Find the missing number: **56 ÷ ? × 3 − 10 = 11**",
+   "figure": null,
+   "options": [
+    "7",
+    "8",
+    "9",
+    "6"
+   ],
+   "answer": 1,
+   "solution": "56 ÷ ? × 3 = 11 + 10 = 21, so 56 ÷ ? = 21 ÷ 3 = 7. Then ? = 56 ÷ 7 = **8**. Check: 56 ÷ 8 = 7, 7 × 3 = 21, 21 − 10 = 11 ✓. (7 is the value of 56 ÷ ?, not of ?.)",
+   "shortcut": "Try options: 56 ÷ 8 × 3 = 21 → 21 − 10 = 11.",
+   "difficulty": "medium",
+   "subtopic": "mathops-idea",
+   "pattern": "mo-p4",
+   "timeSec": 45
+  },
+  {
+   "id": "sign-substitution-p01",
+   "q": "If **+ means −**, **− means ×**, **× means ÷** and **÷ means +**, then what is the value of **48 × 6 + 3 − 2 ÷ 9**?",
+   "figure": null,
+   "options": [
+    "15",
+    "11",
+    "19",
+    "23"
+   ],
+   "answer": 1,
+   "solution": "Rewrite: **48 ÷ 6 − 3 × 2 + 9**. BODMAS: 48 ÷ 6 = 8 and 3 × 2 = 6. Then 8 − 6 + 9 = **11**. (Left to right on the new line gives 19.)",
+   "shortcut": "Rewrite first; compute ÷ and × before − and +.",
+   "difficulty": "medium",
+   "subtopic": "sign-substitution",
+   "pattern": "mo-p5",
+   "timeSec": 45
+  },
+  {
+   "id": "sign-substitution-p02",
+   "q": "If **× means +**, **+ means ÷**, **÷ means −** and **− means ×**, then what is the value of **27 + 9 × 6 − 4 ÷ 10**?",
+   "figure": null,
+   "options": [
+    "37",
+    "13",
+    "17",
+    "26"
+   ],
+   "answer": 2,
+   "solution": "Rewrite: **27 ÷ 9 + 6 × 4 − 10**. 27 ÷ 9 = 3 and 6 × 4 = 24. Then 3 + 24 − 10 = **17**. (Going left to right gives 26.)",
+   "shortcut": "Mapping table → rewrite → BODMAS.",
+   "difficulty": "easy",
+   "subtopic": "sign-substitution",
+   "pattern": "mo-p5",
+   "timeSec": 40
+  },
+  {
+   "id": "sign-substitution-p03",
+   "q": "If **÷ means ×**, **× means −**, **− means +** and **+ means ÷**, then what is the value of **84 + 12 ÷ 5 × 18 − 9**?",
+   "figure": null,
+   "options": [
+    "8",
+    "26",
+    "44",
+    "21"
+   ],
+   "answer": 1,
+   "solution": "Rewrite: **84 ÷ 12 × 5 − 18 + 9**. 84 ÷ 12 = 7, 7 × 5 = 35. Then 35 − 18 + 9 = **26**. (Taking 35 − (18 + 9) = 8 is the sign-slip trap.)",
+   "shortcut": "After ÷ and ×, go left to right for − and +.",
+   "difficulty": "medium",
+   "subtopic": "sign-substitution",
+   "pattern": "mo-p5",
+   "timeSec": 45
+  },
+  {
+   "id": "sign-substitution-p04",
+   "q": "If **+ means ×** and **× means +**, then what is the value of **9 + 4 × 7**?",
+   "figure": null,
+   "options": [
+    "99",
+    "37",
+    "63",
+    "43"
+   ],
+   "answer": 3,
+   "solution": "Only + and × change. Rewrite: **9 × 4 + 7** = 36 + 7 = **43**. (37 is the value of the original expression — mapping ignored.)",
+   "shortcut": "Change only the listed signs.",
+   "difficulty": "easy",
+   "subtopic": "sign-substitution",
+   "pattern": "mo-p6",
+   "timeSec": 30
+  },
+  {
+   "id": "sign-substitution-p05",
+   "q": "If **÷ means −** and **− means ÷**, then what is the value of **50 ÷ 30 − 5 + 8**?",
+   "figure": null,
+   "options": [
+    "36",
+    "12",
+    "44",
+    "52"
+   ],
+   "answer": 3,
+   "solution": "Rewrite: **50 − 30 ÷ 5 + 8**. 30 ÷ 5 = 6. Then 50 − 6 + 8 = **52**. (Left to right gives 12; 50 − (6 + 8) = 36 is a sign slip.)",
+   "shortcut": "+ is not in the list, so it stays +.",
+   "difficulty": "easy",
+   "subtopic": "sign-substitution",
+   "pattern": "mo-p6",
+   "timeSec": 35
+  },
+  {
+   "id": "sign-substitution-p06",
+   "q": "If **+ means ×**, **− means ÷**, **× means −** and **÷ means +**, then what is the value of **(18 − 3) + 4 × (5 ÷ 7)**?",
+   "figure": null,
+   "options": [
+    "36",
+    "6",
+    "12",
+    "24"
+   ],
+   "answer": 2,
+   "solution": "Convert the signs inside the brackets too. Rewrite: **(18 ÷ 3) × 4 − (5 + 7)**. Brackets: 18 ÷ 3 = 6 and 5 + 7 = 12. Then 6 × 4 − 12 = 24 − 12 = **12**.",
+   "shortcut": "Brackets first, but their signs are coded as well.",
+   "difficulty": "medium",
+   "subtopic": "sign-substitution",
+   "pattern": "mo-p7",
+   "timeSec": 45
+  },
+  {
+   "id": "sign-substitution-p07",
+   "q": "If **× means ÷**, **÷ means +**, **+ means −** and **− means ×**, then what is the value of **[(60 × 4) + 5] − 2 ÷ 7**?",
+   "figure": null,
+   "options": [
+    "17",
+    "37",
+    "90",
+    "27"
+   ],
+   "answer": 3,
+   "solution": "Rewrite: **[(60 ÷ 4) − 5] × 2 + 7**. Inner bracket: 60 ÷ 4 = 15. Square bracket: 15 − 5 = 10. Then 10 × 2 + 7 = 20 + 7 = **27**. (10 × (2 + 7) = 90 is the trap of adding before multiplying.)",
+   "shortcut": "Solve the brackets fully, then × before +.",
+   "difficulty": "hard",
+   "subtopic": "sign-substitution",
+   "pattern": "mo-p7",
+   "timeSec": 55
+  },
+  {
+   "id": "sign-substitution-p08",
+   "q": "If **A** means '+', **B** means '−', **C** means '×' and **D** means '÷', then what is the value of **18 C 4 D 6 A 9 B 5**?",
+   "figure": null,
+   "options": [
+    "14",
+    "10",
+    "22",
+    "16"
+   ],
+   "answer": 3,
+   "solution": "Replace the letters: **18 × 4 ÷ 6 + 9 − 5**. 18 × 4 = 72, 72 ÷ 6 = 12. Then 12 + 9 − 5 = **16**.",
+   "shortcut": "Letters are just signs in disguise.",
+   "difficulty": "easy",
+   "subtopic": "sign-substitution",
+   "pattern": "mo-p8",
+   "timeSec": 35
+  },
+  {
+   "id": "sign-substitution-p09",
+   "q": "If **P** denotes '÷', **Q** denotes '×', **R** denotes '+' and **S** denotes '−', then what is the value of **64 P 8 R 7 Q 6 S 11**?",
+   "figure": null,
+   "options": [
+    "39",
+    "33",
+    "45",
+    "79"
+   ],
+   "answer": 0,
+   "solution": "Replace the letters: **64 ÷ 8 + 7 × 6 − 11**. 64 ÷ 8 = 8 and 7 × 6 = 42. Then 8 + 42 − 11 = **39**. (Left to right gives 79.)",
+   "shortcut": "Rewrite, then BODMAS.",
+   "difficulty": "medium",
+   "subtopic": "sign-substitution",
+   "pattern": "mo-p8",
+   "timeSec": 40
+  },
+  {
+   "id": "sign-substitution-p10",
+   "q": "If **+ means ×**, **× means −**, **− means ÷** and **÷ means +**, which of the following equations is **correct**?",
+   "figure": null,
+   "options": [
+    "20 − 5 ÷ 6 + 2 × 4 = 14",
+    "6 + 4 × 10 − 5 ÷ 3 = 17",
+    "9 − 3 + 4 × 2 ÷ 6 = 14",
+    "8 + 3 ÷ 12 − 4 × 5 = 22"
+   ],
+   "answer": 3,
+   "solution": "Convert only the left side of each option, then evaluate:\n\n- 8 + 3 ÷ 12 − 4 × 5 = 22: 8 × 3 + 12 ÷ 4 − 5 = 22 ✓\n- 6 + 4 × 10 − 5 ÷ 3 = 17: 6 × 4 − 10 ÷ 5 + 3 = 25, not 17 ✗\n- 9 − 3 + 4 × 2 ÷ 6 = 14: 9 ÷ 3 × 4 − 2 + 6 = 16, not 14 ✗\n- 20 − 5 ÷ 6 + 2 × 4 = 14: 20 ÷ 5 + 6 × 2 − 4 = 12, not 14 ✗\n\nOnly **8 + 3 ÷ 12 − 4 × 5 = 22** balances after substitution.",
+   "shortcut": "Rewrite each left side on its own line; the right sides never change.",
+   "difficulty": "hard",
+   "subtopic": "sign-substitution",
+   "pattern": "mo-p9",
+   "timeSec": 70
+  },
+  {
+   "id": "sign-substitution-p11",
+   "q": "If **× means +**, **+ means −**, **− means ÷** and **÷ means ×**, which of the following equations is **correct**?",
+   "figure": null,
+   "options": [
+    "7 ÷ 2 × 9 − 3 = 20",
+    "36 − 6 + 2 ÷ 5 = 30",
+    "12 − 4 × 5 + 2 = 18",
+    "15 × 3 ÷ 4 + 6 = 21"
+   ],
+   "answer": 3,
+   "solution": "Convert only the left side of each option, then evaluate:\n\n- 15 × 3 ÷ 4 + 6 = 21: 15 + 3 × 4 − 6 = 21 ✓\n- 12 − 4 × 5 + 2 = 18: 12 ÷ 4 + 5 − 2 = 6, not 18 ✗\n- 7 ÷ 2 × 9 − 3 = 20: 7 × 2 + 9 ÷ 3 = 17, not 20 ✗\n- 36 − 6 + 2 ÷ 5 = 30: 36 ÷ 6 − 2 × 5 = -4, not 30 ✗\n\nOnly **15 × 3 ÷ 4 + 6 = 21** balances after substitution.",
+   "shortcut": "Rewrite each left side on its own line; the right sides never change.",
+   "difficulty": "medium",
+   "subtopic": "sign-substitution",
+   "pattern": "mo-p9",
+   "timeSec": 60
+  },
+  {
+   "id": "interchange-signs-p01",
+   "q": "If the signs **+ and ÷ are interchanged**, what is the value of **63 + 9 ÷ 14 − 3 × 2**?",
+   "figure": null,
+   "options": [
+    "21",
+    "15",
+    "9",
+    "36"
+   ],
+   "answer": 1,
+   "solution": "After the swap: **63 ÷ 9 + 14 − 3 × 2**. 63 ÷ 9 = 7 and 3 × 2 = 6. Then 7 + 14 − 6 = **15**. (Left to right gives 36.)",
+   "shortcut": "Swap both signs everywhere, then BODMAS.",
+   "difficulty": "easy",
+   "subtopic": "interchange-signs",
+   "pattern": "mo-p10",
+   "timeSec": 35
+  },
+  {
+   "id": "interchange-signs-p02",
+   "q": "If the signs **− and × are interchanged**, what is the value of **12 − 4 × 3 + 20 ÷ 5**?",
+   "figure": null,
+   "options": [
+    "13",
+    "49",
+    "41",
+    "4"
+   ],
+   "answer": 1,
+   "solution": "After the swap: **12 × 4 − 3 + 20 ÷ 5**. 12 × 4 = 48 and 20 ÷ 5 = 4. Then 48 − 3 + 4 = **49**. (4 is the unswapped value; 13 is the left-to-right value.)",
+   "shortcut": "Interchange is two-way: − becomes × and × becomes −.",
+   "difficulty": "easy",
+   "subtopic": "interchange-signs",
+   "pattern": "mo-p10",
+   "timeSec": 35
+  },
+  {
+   "id": "interchange-signs-p03",
+   "q": "If **× and ÷ are interchanged** and **+ and − are interchanged**, what is the value of **18 × 3 − 6 ÷ 2 + 5**?",
+   "figure": null,
+   "options": [
+    "56",
+    "13",
+    "19",
+    "23"
+   ],
+   "answer": 1,
+   "solution": "Both swaps in one rewrite: **18 ÷ 3 + 6 × 2 − 5**. 18 ÷ 3 = 6 and 6 × 2 = 12. Then 6 + 12 − 5 = **13**. (56 is the unswapped value; 19 is left to right.)",
+   "shortcut": "Two swaps, one rewrite.",
+   "difficulty": "medium",
+   "subtopic": "interchange-signs",
+   "pattern": "mo-p10",
+   "timeSec": 45
+  },
+  {
+   "id": "interchange-signs-p04",
+   "q": "If the signs **+ and ×** are interchanged and the numbers **3 and 6** are interchanged, what is the value of **8 + 4 × 6 − 12 ÷ 3**?",
+   "figure": null,
+   "options": [
+    "18",
+    "33",
+    "34",
+    "28"
+   ],
+   "answer": 1,
+   "solution": "Apply both swaps: **8 × 4 + 3 − 12 ÷ 6**. 8 × 4 = 32 and 12 ÷ 6 = 2. Then 32 + 3 − 2 = **33**. (34 swaps only the signs, 18 swaps only the numbers, 28 swaps nothing.)",
+   "shortcut": "Do the sign swap and the number swap together in one rewrite.",
+   "difficulty": "medium",
+   "subtopic": "interchange-signs",
+   "pattern": "mo-p11",
+   "timeSec": 50
+  },
+  {
+   "id": "interchange-signs-p05",
+   "q": "If the signs **÷ and −** are interchanged and the numbers **2 and 8** are interchanged, what is the value of **40 − 8 ÷ 2 × 3 + 6**?",
+   "figure": null,
+   "options": [
+    "42",
+    "5",
+    "34",
+    "2"
+   ],
+   "answer": 3,
+   "solution": "Apply both swaps: **40 ÷ 2 − 8 × 3 + 6**. 40 ÷ 2 = 20 and 8 × 3 = 24. Then 20 − 24 + 6 = **2**. (34 is the unswapped value, 5 swaps only the signs, 42 is left to right.)",
+   "shortcut": "One rewrite; then × and ÷ before − and +.",
+   "difficulty": "hard",
+   "subtopic": "interchange-signs",
+   "pattern": "mo-p11",
+   "timeSec": 55
+  },
+  {
+   "id": "interchange-signs-p06",
+   "q": "Which two numbers should be interchanged to make the following equation correct?\n\n**6 × 4 + 8 ÷ 2 − 5 = 9**",
+   "figure": null,
+   "options": [
+    "6 and 5",
+    "6 and 8",
+    "4 and 2",
+    "4 and 8"
+   ],
+   "answer": 2,
+   "solution": "Right now the left side is 23, not 9. Try each option pair:\n\n- 4 and 2: 6 × 2 + 8 ÷ 4 − 5 = 9 ✓\n- 6 and 8: 8 × 4 + 6 ÷ 2 − 5 = 30 ✗\n- 4 and 8: 6 × 8 + 4 ÷ 2 − 5 = 45 ✗\n- 6 and 5: 5 × 4 + 8 ÷ 2 − 6 = 18 ✗\n\nOnly interchanging **4 and 2** balances the equation.",
+   "shortcut": "Sweep the option pairs in order; skip pairs that only swap the two sides of one ×.",
+   "difficulty": "medium",
+   "subtopic": "interchange-signs",
+   "pattern": "mo-p12",
+   "timeSec": 60
+  },
+  {
+   "id": "interchange-signs-p07",
+   "q": "Which two numbers should be interchanged to make the following equation correct?\n\n**15 ÷ 5 × 3 + 7 − 2 = 22**",
+   "figure": null,
+   "options": [
+    "5 and 3",
+    "3 and 7",
+    "7 and 2",
+    "3 and 2"
+   ],
+   "answer": 1,
+   "solution": "Right now the left side is 14, not 22. Try each option pair:\n\n- 3 and 7: 15 ÷ 5 × 7 + 3 − 2 = 22 ✓\n- 5 and 3: 15 ÷ 3 × 5 + 7 − 2 = 30 ✗\n- 3 and 2: 15 ÷ 5 × 2 + 7 − 3 = 10 ✗\n- 7 and 2: 15 ÷ 5 × 3 + 2 − 7 = 4 ✗\n\nOnly interchanging **3 and 7** balances the equation.",
+   "shortcut": "Sweep the option pairs in order; skip pairs that only swap the two sides of one ×.",
+   "difficulty": "hard",
+   "subtopic": "interchange-signs",
+   "pattern": "mo-p12",
+   "timeSec": 70
+  },
+  {
+   "id": "interchange-signs-p08",
+   "q": "Which two signs should be interchanged to make the following equation correct?\n\n**12 + 6 ÷ 3 − 2 × 4 = 18**",
+   "figure": null,
+   "options": [
+    "− and ×",
+    "+ and ×",
+    "+ and −",
+    "+ and ÷"
+   ],
+   "answer": 2,
+   "solution": "Right now the left side is 6, not 18. Swap each option's signs everywhere and evaluate:\n\n- + and −: 12 − 6 ÷ 3 + 2 × 4 = 18 ✓\n- + and ×: 12 × 6 ÷ 3 − 2 + 4 = 26 ✗\n- − and ×: 12 + 6 ÷ 3 × 2 − 4 = 12 ✗\n- + and ÷: 12 ÷ 6 + 3 − 2 × 4 = -3 ✗\n\nOnly interchanging **+ and −** makes it correct.",
+   "shortcut": "Use the target's size: a small target needs a new ÷ or −, a large one a new ×.",
+   "difficulty": "medium",
+   "subtopic": "interchange-signs",
+   "pattern": "mo-p13",
+   "timeSec": 60
+  },
+  {
+   "id": "interchange-signs-p09",
+   "q": "Which two signs should be interchanged to make the following equation correct?\n\n**20 − 4 × 3 + 8 ÷ 2 = 21**",
+   "figure": null,
+   "options": [
+    "× and −",
+    "− and +",
+    "− and ÷",
+    "× and +"
+   ],
+   "answer": 2,
+   "solution": "Right now the left side is 12, not 21. Swap each option's signs everywhere and evaluate:\n\n- − and ÷: 20 ÷ 4 × 3 + 8 − 2 = 21 ✓\n- × and +: 20 − 4 + 3 × 8 ÷ 2 = 28 ✗\n- − and +: 20 + 4 × 3 − 8 ÷ 2 = 28 ✗\n- × and −: 20 × 4 − 3 + 8 ÷ 2 = 81 ✗\n\nOnly interchanging **− and ÷** makes it correct.",
+   "shortcut": "Use the target's size: a small target needs a new ÷ or −, a large one a new ×.",
+   "difficulty": "hard",
+   "subtopic": "interchange-signs",
+   "pattern": "mo-p13",
+   "timeSec": 70
+  },
+  {
+   "id": "interchange-signs-p10",
+   "q": "If the signs **× and + are interchanged**, which of the following equations becomes **correct**?",
+   "figure": null,
+   "options": [
+    "8 + 3 × 4 − 6 = 26",
+    "5 × 6 + 2 − 4 = 30",
+    "7 + 4 × 2 ÷ 2 = 29",
+    "9 × 2 + 5 − 3 = 18"
+   ],
+   "answer": 2,
+   "solution": "Swap × and + on each left side, then evaluate:\n\n- 7 + 4 × 2 ÷ 2 = 29: 7 × 4 + 2 ÷ 2 = 29 ✓\n- 5 × 6 + 2 − 4 = 30: 5 + 6 × 2 − 4 = 13 ✗\n- 8 + 3 × 4 − 6 = 26: 8 × 3 + 4 − 6 = 22 ✗\n- 9 × 2 + 5 − 3 = 18: 9 + 2 × 5 − 3 = 16 ✗\n\nOnly **7 + 4 × 2 ÷ 2 = 29** becomes correct.",
+   "shortcut": "Apply the swap to the left side only; the right side is a plain number.",
+   "difficulty": "medium",
+   "subtopic": "interchange-signs",
+   "pattern": "mo-p14",
+   "timeSec": 60
+  },
+  {
+   "id": "interchange-signs-p11",
+   "q": "If the signs **− and ÷ are interchanged**, which of the following equations becomes **correct**?",
+   "figure": null,
+   "options": [
+    "24 − 6 ÷ 2 + 3 = 7",
+    "36 − 4 + 5 ÷ 2 = 12",
+    "40 ÷ 8 − 2 + 6 = 30",
+    "18 − 3 ÷ 4 × 2 = 10"
+   ],
+   "answer": 1,
+   "solution": "Swap − and ÷ on each left side, then evaluate:\n\n- 36 − 4 + 5 ÷ 2 = 12: 36 ÷ 4 + 5 − 2 = 12 ✓\n- 24 − 6 ÷ 2 + 3 = 7: 24 ÷ 6 − 2 + 3 = 5 ✗\n- 18 − 3 ÷ 4 × 2 = 10: 18 ÷ 3 − 4 × 2 = -2 ✗\n- 40 ÷ 8 − 2 + 6 = 30: 40 − 8 ÷ 2 + 6 = 42 ✗\n\nOnly **36 − 4 + 5 ÷ 2 = 12** becomes correct.",
+   "shortcut": "Apply the swap to the left side only; the right side is a plain number.",
+   "difficulty": "medium",
+   "subtopic": "interchange-signs",
+   "pattern": "mo-p14",
+   "timeSec": 60
+  },
+  {
+   "id": "balance-equation-p01",
+   "q": "Which of the following equations is **correct**?",
+   "figure": null,
+   "options": [
+    "9 × 3 − 12 ÷ 4 = 21",
+    "16 ÷ 4 × 2 + 6 = 14",
+    "25 − 15 ÷ 5 + 2 = 4",
+    "7 + 8 × 2 − 5 = 25"
+   ],
+   "answer": 1,
+   "solution": "Evaluate each left side with BODMAS:\n\n- 16 ÷ 4 × 2 + 6 = 14 ✓\n- 9 × 3 − 12 ÷ 4 = 24, not 21 ✗\n- 25 − 15 ÷ 5 + 2 = 24, not 4 ✗\n- 7 + 8 × 2 − 5 = 18, not 25 ✗\n\nOnly **16 ÷ 4 × 2 + 6 = 14** is correct.",
+   "shortcut": "Wrong right-hand sides are usually left-to-right values — BODMAS exposes them.",
+   "difficulty": "easy",
+   "subtopic": "balance-equation",
+   "pattern": "mo-p15",
+   "timeSec": 45
+  },
+  {
+   "id": "balance-equation-p02",
+   "q": "Which of the following equations is **correct**?",
+   "figure": null,
+   "options": [
+    "48 ÷ 6 + 4 × 3 − 5 = 31",
+    "60 − 5 × 8 + 12 ÷ 4 = 26",
+    "13 + 7 × 2 − 18 ÷ 3 = 21",
+    "11 × 4 − 20 ÷ 5 + 2 = 44"
+   ],
+   "answer": 2,
+   "solution": "Evaluate each left side with BODMAS:\n\n- 13 + 7 × 2 − 18 ÷ 3 = 21 ✓\n- 48 ÷ 6 + 4 × 3 − 5 = 15, not 31 ✗\n- 60 − 5 × 8 + 12 ÷ 4 = 23, not 26 ✗\n- 11 × 4 − 20 ÷ 5 + 2 = 42, not 44 ✗\n\nOnly **13 + 7 × 2 − 18 ÷ 3 = 21** is correct.",
+   "shortcut": "Wrong right-hand sides are usually left-to-right values — BODMAS exposes them.",
+   "difficulty": "medium",
+   "subtopic": "balance-equation",
+   "pattern": "mo-p15",
+   "timeSec": 55
+  },
+  {
+   "id": "balance-equation-p03",
+   "q": "Which pair of signs will make **14 ? 2 ? 3 = 21** correct?",
+   "figure": null,
+   "options": [
+    "−, +",
+    "×, −",
+    "÷, ×",
+    "+, ×"
+   ],
+   "answer": 2,
+   "solution": "Put each option's signs into the blanks from left to right, then use BODMAS:\n\n- ÷, ×: 14 ÷ 2 × 3 = 21 ✓\n- ×, −: 14 × 2 − 3 = 25 ✗\n- +, ×: 14 + 2 × 3 = 20 ✗\n- −, +: 14 − 2 + 3 = 15 ✗\n\nOnly **÷, ×** balances.",
+   "shortcut": "Check the target size first: a big right side needs ×; a small one needs ÷ or −.",
+   "difficulty": "easy",
+   "subtopic": "balance-equation",
+   "pattern": "mo-p16",
+   "timeSec": 35
+  },
+  {
+   "id": "balance-equation-p04",
+   "q": "Which set of signs will make **18 ? 6 ? 3 ? 4 = 24** correct?",
+   "figure": null,
+   "options": [
+    "÷, ×, +",
+    "+, ÷, ×",
+    "−, +, ×",
+    "×, ÷, −"
+   ],
+   "answer": 2,
+   "solution": "Put each option's signs into the blanks from left to right, then use BODMAS:\n\n- −, +, ×: 18 − 6 + 3 × 4 = 24 ✓\n- +, ÷, ×: 18 + 6 ÷ 3 × 4 = 26 ✗\n- ÷, ×, +: 18 ÷ 6 × 3 + 4 = 13 ✗\n- ×, ÷, −: 18 × 6 ÷ 3 − 4 = 32 ✗\n\nOnly **−, +, ×** balances.",
+   "shortcut": "Check the target size first: a big right side needs ×; a small one needs ÷ or −.",
+   "difficulty": "medium",
+   "subtopic": "balance-equation",
+   "pattern": "mo-p16",
+   "timeSec": 50
+  },
+  {
+   "id": "balance-equation-p05",
+   "q": "Which set of signs will make **72 ? 8 ? 3 ? 5 ? 2 = 37** correct?",
+   "figure": null,
+   "options": [
+    "÷, ×, −, +",
+    "÷, +, ×, −",
+    "×, ÷, +, −",
+    "÷, ×, +, ×"
+   ],
+   "answer": 3,
+   "solution": "Put each option's signs into the blanks from left to right, then use BODMAS:\n\n- ÷, ×, +, ×: 72 ÷ 8 × 3 + 5 × 2 = 37 ✓\n- ÷, +, ×, −: 72 ÷ 8 + 3 × 5 − 2 = 22 ✗\n- ÷, ×, −, +: 72 ÷ 8 × 3 − 5 + 2 = 24 ✗\n- ×, ÷, +, −: 72 × 8 ÷ 3 + 5 − 2 = 195 ✗\n\nOnly **÷, ×, +, ×** balances.",
+   "shortcut": "Check the target size first: a big right side needs ×; a small one needs ÷ or −.",
+   "difficulty": "hard",
+   "subtopic": "balance-equation",
+   "pattern": "mo-p16",
+   "timeSec": 70
+  },
+  {
+   "id": "balance-equation-p06",
+   "q": "Select the correct combination of mathematical signs to sequentially replace the * signs and balance the equation.\n\n`21 * 7 * 5 * 4 * 3 = 27`",
+   "figure": null,
+   "options": [
+    "×, ÷, −, +",
+    "÷, +, ×, −",
+    "÷, ×, −, ×",
+    "÷, ×, +, ×"
+   ],
+   "answer": 3,
+   "solution": "Put each option's signs into the blanks from left to right, then use BODMAS:\n\n- ÷, ×, +, ×: 21 ÷ 7 × 5 + 4 × 3 = 27 ✓\n- ÷, ×, −, ×: 21 ÷ 7 × 5 − 4 × 3 = 3 ✗\n- ÷, +, ×, −: 21 ÷ 7 + 5 × 4 − 3 = 20 ✗\n- ×, ÷, −, +: 21 × 7 ÷ 5 − 4 + 3 = 28.4 ✗\n\nOnly **÷, ×, +, ×** balances.",
+   "shortcut": "Check the target size first: a big right side needs ×; a small one needs ÷ or −.",
+   "difficulty": "medium",
+   "subtopic": "balance-equation",
+   "pattern": "mo-p17",
+   "timeSec": 60
+  },
+  {
+   "id": "balance-equation-p07",
+   "q": "Select the correct combination of mathematical signs to sequentially replace the * signs and balance the equation.\n\n`13 * 4 * 6 * 3 * 2 = 19`",
+   "figure": null,
+   "options": [
+    "+, ×, ÷, −",
+    "−, ×, ÷, +",
+    "+, ×, −, ÷",
+    "×, +, ÷, −"
+   ],
+   "answer": 0,
+   "solution": "Put each option's signs into the blanks from left to right, then use BODMAS:\n\n- +, ×, ÷, −: 13 + 4 × 6 ÷ 3 − 2 = 19 ✓\n- ×, +, ÷, −: 13 × 4 + 6 ÷ 3 − 2 = 52 ✗\n- −, ×, ÷, +: 13 − 4 × 6 ÷ 3 + 2 = 7 ✗\n- +, ×, −, ÷: 13 + 4 × 6 − 3 ÷ 2 = 35.5 ✗\n\nOnly **+, ×, ÷, −** balances.",
+   "shortcut": "Check the target size first: a big right side needs ×; a small one needs ÷ or −.",
+   "difficulty": "medium",
+   "subtopic": "balance-equation",
+   "pattern": "mo-p17",
+   "timeSec": 60
+  },
+  {
+   "id": "balance-equation-p08",
+   "q": "Select the correct combination of mathematical signs to replace the * signs and balance the given equation.\n\n`12 * 4 * 3 * 16`",
+   "figure": null,
+   "options": [
+    "×, ÷, =",
+    "=, +, ×",
+    "+, =, ÷",
+    "÷, ×, ="
+   ],
+   "answer": 0,
+   "solution": "Fill the signs in order, then compare the two sides of '=':\n\n- ×, ÷, =: 12 × 4 ÷ 3 = 16 → 16 vs 16 ✓\n- ÷, ×, =: 12 ÷ 4 × 3 = 16 → 9 vs 16 ✗\n- +, =, ÷: 12 + 4 = 3 ÷ 16 → 16 vs 0.1875 ✗\n- =, +, ×: 12 = 4 + 3 × 16 → 12 vs 52 ✗\n\nOnly **×, ÷, =** balances.",
+   "shortcut": "'=' splits the line: evaluate the left part and the right part separately.",
+   "difficulty": "medium",
+   "subtopic": "balance-equation",
+   "pattern": "mo-p18",
+   "timeSec": 45
+  },
+  {
+   "id": "balance-equation-p09",
+   "q": "Select the correct combination of mathematical signs to replace the * signs and balance the given equation.\n\n`18 * 3 * 4 * 2 * 14`",
+   "figure": null,
+   "options": [
+    "×, −, ÷, =",
+    "÷, +, ×, =",
+    "÷, +, =, ×",
+    "÷, ×, −, ="
+   ],
+   "answer": 1,
+   "solution": "Fill the signs in order, then compare the two sides of '=':\n\n- ÷, +, ×, =: 18 ÷ 3 + 4 × 2 = 14 → 14 vs 14 ✓\n- ÷, ×, −, =: 18 ÷ 3 × 4 − 2 = 14 → 22 vs 14 ✗\n- ×, −, ÷, =: 18 × 3 − 4 ÷ 2 = 14 → 52 vs 14 ✗\n- ÷, +, =, ×: 18 ÷ 3 + 4 = 2 × 14 → 10 vs 28 ✗\n\nOnly **÷, +, ×, =** balances.",
+   "shortcut": "'=' splits the line: evaluate the left part and the right part separately.",
+   "difficulty": "hard",
+   "subtopic": "balance-equation",
+   "pattern": "mo-p18",
+   "timeSec": 70
+  },
+  {
+   "id": "defined-operations-p01",
+   "q": "If **a ★ b = 2a + 3b**, find the value of **5 ★ 4**.",
+   "figure": null,
+   "options": [
+    "26",
+    "23",
+    "22",
+    "20"
+   ],
+   "answer": 2,
+   "solution": "Here a = 5 and b = 4. So 5 ★ 4 = 2 × 5 + 3 × 4 = 10 + 12 = **22**. (23 comes from swapping a and b.)",
+   "shortcut": "First number is a, second is b — never swap.",
+   "difficulty": "easy",
+   "subtopic": "defined-operations",
+   "pattern": "mo-p19",
+   "timeSec": 30
+  },
+  {
+   "id": "defined-operations-p02",
+   "q": "If **a # b = a² − ab + b²**, find **6 # 3**.",
+   "figure": null,
+   "options": [
+    "63",
+    "9",
+    "27",
+    "36"
+   ],
+   "answer": 2,
+   "solution": "a = 6, b = 3: 6² − 6 × 3 + 3² = 36 − 18 + 9 = **27**. (63 uses + ab by mistake.)",
+   "shortcut": "Write the three terms separately: 36, 18, 9.",
+   "difficulty": "easy",
+   "subtopic": "defined-operations",
+   "pattern": "mo-p19",
+   "timeSec": 35
+  },
+  {
+   "id": "defined-operations-p03",
+   "q": "If **a @ b = (a + b) ÷ (a − b)**, find **(7 @ 5) @ 3**.",
+   "figure": null,
+   "options": [
+    "9",
+    "6",
+    "2",
+    "3"
+   ],
+   "answer": 3,
+   "solution": "Inner bracket first: 7 @ 5 = 12 ÷ 2 = 6. Then 6 @ 3 = (6 + 3) ÷ (6 − 3) = 9 ÷ 3 = **3**.",
+   "shortcut": "Solve the bracket, then use its value as the new a.",
+   "difficulty": "medium",
+   "subtopic": "defined-operations",
+   "pattern": "mo-p22",
+   "timeSec": 45
+  },
+  {
+   "id": "defined-operations-p04",
+   "q": "If **5 # 3 = 34** and **6 # 2 = 40**, then **7 # 4 = ?**",
+   "figure": null,
+   "options": [
+    "45",
+    "57",
+    "65",
+    "33"
+   ],
+   "answer": 2,
+   "solution": "Test the rule $a^2 + b^2$: 25 + 9 = 34 ✓ and 36 + 4 = 40 ✓. So 7 # 4 = 49 + 16 = **65**.",
+   "shortcut": "Try $a^2 + b^2$ early — it is the most common hidden rule.",
+   "difficulty": "medium",
+   "subtopic": "defined-operations",
+   "pattern": "mo-p20",
+   "timeSec": 45
+  },
+  {
+   "id": "defined-operations-p05",
+   "q": "If **8 @ 2 = 60** and **7 @ 3 = 40**, then **9 @ 4 = ?**",
+   "figure": null,
+   "options": [
+    "13",
+    "97",
+    "72",
+    "65"
+   ],
+   "answer": 3,
+   "solution": "Test $a^2 - b^2$: 64 − 4 = 60 ✓ and 49 − 9 = 40 ✓. So 9 @ 4 = 81 − 16 = **65**. (97 uses $a^2 + b^2$, which fails the examples.)",
+   "shortcut": "Difference of squares = (a + b)(a − b): 13 × 5 = 65.",
+   "difficulty": "medium",
+   "subtopic": "defined-operations",
+   "pattern": "mo-p20",
+   "timeSec": 45
+  },
+  {
+   "id": "defined-operations-p06",
+   "q": "If **4 $ 3 = 19** and **5 $ 2 = 17**, then **7 $ 2 = ?**",
+   "figure": null,
+   "options": [
+    "51",
+    "21",
+    "16",
+    "23"
+   ],
+   "answer": 3,
+   "solution": "Try $a^2 + b$: 16 + 3 = 19 ✓ but 25 + 2 = 27 ✗ — rejected. Try ab + a + b: 12 + 4 + 3 = 19 ✓ and 10 + 5 + 2 = 17 ✓. So 7 $ 2 = 14 + 7 + 2 = **23**.",
+   "shortcut": "A rule must fit EVERY example; the second example kills $a^2 + b$.",
+   "difficulty": "hard",
+   "subtopic": "defined-operations",
+   "pattern": "mo-p20",
+   "timeSec": 60
+  },
+  {
+   "id": "defined-operations-p07",
+   "q": "If **3 ⊕ 4 = 49** and **5 ⊕ 2 = 49**, then **6 ⊕ 3 = ?**",
+   "figure": null,
+   "options": [
+    "45",
+    "27",
+    "81",
+    "18"
+   ],
+   "answer": 2,
+   "solution": "Both examples give 49 although the numbers differ — but both pairs add up to 7, and 7² = 49. Rule: $(a+b)^2$. So 6 ⊕ 3 = 9² = **81**.",
+   "shortcut": "Same answer for different pairs → look at the sum or product of the pair.",
+   "difficulty": "medium",
+   "subtopic": "defined-operations",
+   "pattern": "mo-p20",
+   "timeSec": 45
+  },
+  {
+   "id": "defined-operations-p08",
+   "q": "If **a ▲ b = a − b** when a > b and **a ▲ b = a + b** when a ≤ b, find **(9 ▲ 4) ▲ 7**.",
+   "figure": null,
+   "options": [
+    "18",
+    "−2",
+    "12",
+    "20"
+   ],
+   "answer": 2,
+   "solution": "9 ▲ 4: 9 > 4, so 9 − 4 = 5. Then 5 ▲ 7: 5 ≤ 7, so 5 + 7 = **12**. (−2 re-uses the first case without checking.)",
+   "shortcut": "Check the condition again at every step.",
+   "difficulty": "medium",
+   "subtopic": "defined-operations",
+   "pattern": "mo-p21",
+   "timeSec": 45
+  },
+  {
+   "id": "defined-operations-p09",
+   "q": "If **a ● b = a × b** when both a and b are even, and **a ● b = a + b** otherwise, find **(4 ● 6) + (3 ● 8)**.",
+   "figure": null,
+   "options": [
+    "34",
+    "21",
+    "35",
+    "48"
+   ],
+   "answer": 2,
+   "solution": "4 ● 6: both even → 4 × 6 = 24. 3 ● 8: 3 is odd → 3 + 8 = 11. Total = 24 + 11 = **35**. (48 multiplies both pairs.)",
+   "shortcut": "Test the condition for each pair separately.",
+   "difficulty": "easy",
+   "subtopic": "defined-operations",
+   "pattern": "mo-p21",
+   "timeSec": 40
+  },
+  {
+   "id": "defined-operations-p10",
+   "q": "If **a ◆ b = a²** when a > b, **b²** when a < b, and **ab** when a = b, find **(3 ◆ 5) ◆ 20**.",
+   "figure": null,
+   "options": [
+    "625",
+    "9",
+    "400",
+    "500"
+   ],
+   "answer": 0,
+   "solution": "3 ◆ 5: 3 < 5, so the answer is 5² = 25. Then 25 ◆ 20: 25 > 20, so 25² = **625**. (400 wrongly uses 20² again.)",
+   "shortcut": "Work out the bracket, then re-check which case applies.",
+   "difficulty": "medium",
+   "subtopic": "defined-operations",
+   "pattern": "mo-p21",
+   "timeSec": 45
+  },
+  {
+   "id": "defined-operations-p11",
+   "q": "If **a ⊗ b = 3a − b**, find **(4 ⊗ 2) ⊗ 5**.",
+   "figure": null,
+   "options": [
+    "20",
+    "25",
+    "35",
+    "11"
+   ],
+   "answer": 1,
+   "solution": "4 ⊗ 2 = 12 − 2 = 10. Then 10 ⊗ 5 = 30 − 5 = **25**. (11 comes from doing 2 ⊗ 5 first — ignoring the bracket.)",
+   "shortcut": "The bracket decides which operation is done first.",
+   "difficulty": "medium",
+   "subtopic": "defined-operations",
+   "pattern": "mo-p22",
+   "timeSec": 40
+  },
+  {
+   "id": "defined-operations-p12",
+   "q": "If **a ★ b = a + 2b** and **a # b = 2a − b**, find **(3 ★ 4) # (5 ★ 1)**.",
+   "figure": null,
+   "options": [
+    "25",
+    "18",
+    "15",
+    "3"
+   ],
+   "answer": 2,
+   "solution": "3 ★ 4 = 3 + 8 = 11. 5 ★ 1 = 5 + 2 = 7. Then 11 # 7 = 22 − 7 = **15**. (3 swaps the inputs of #; 25 uses ★ instead of # at the last step.)",
+   "shortcut": "Each symbol keeps its own formula; the first bracket is a, the second is b.",
+   "difficulty": "hard",
+   "subtopic": "defined-operations",
+   "pattern": "mo-p22",
+   "timeSec": 55
   }
  ]
 }

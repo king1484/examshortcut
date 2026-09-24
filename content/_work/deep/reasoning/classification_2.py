@@ -32,7 +32,7 @@ Everyday example: *2, 4, 6, 9*. Three are even; 9 is odd. So 9 is the odd one.
 
 **5. Parity (odd/even).** Usually a **second-level** rule: all four are squares, but three are squares of odd numbers.
 
-**6. Number forms.** Three numbers fit a formula such as $n^2+1$ (50, 65, 82), $n^3-1$ (63, 124, 215) or $n(n+1)$ (12, 42, 110). One does not.
+**6. Number forms.** Three numbers fit a formula such as $n^2+1$ (50, 65, 82), $n^3-1$ (124, 215, 342) or $n(n+1)$ (30, 42, 56). One does not.
 
 ### Worked example
 Odd one: 79, 83, 89, 91.
@@ -141,21 +141,21 @@ def num_questions():
     qs.append(num_q("number-classification-p09", [138, 234, 164, 326], 326, lambda n: dprod(n) == 24,
                     "Digit products: 1×3×8 = 24, 2×3×4 = 24, 1×6×4 = 24, 3×2×6 = **36** → **326**.",
                     "Digit sums (12, 9, 11, 11) show no clear rule, so try products.", "medium", "cl-p13", 40))
-    qs.append(num_q("number-classification-p10", [27, 125, 343, 512], 512, lambda n: n % 2 == 1,
-                    "All four are **cubes**: 3³, 5³, 7³, 8³. Level two: roots 3, 5, 7 are odd; 8 is even (so 512 is the only even number) → **512**.",
+    qs.append(num_q("number-classification-p10", [125, 343, 729, 512], 512, lambda n: n % 2 == 1,
+                    "All four are **cubes**: 5³, 7³, 9³, 8³. Level two: roots 5, 7, 9 are odd; 8 is even (so 512 is the only even number) → **512**.",
                     "All cubes? Compare the roots.", "medium", "cl-p14", 35))
-    qs.append(num_q("number-classification-p11", [4, 16, 36, 81], 81, lambda n: n % 2 == 0,
-                    "All four are **squares**: 2², 4², 6², 9². Roots 2, 4, 6 are even; 9 is odd → **81**.",
+    qs.append(num_q("number-classification-p11", [16, 36, 64, 81], 81, lambda n: n % 2 == 0,
+                    "All four are **squares**: 4², 6², 8², 9². Roots 4, 6, 8 are even; 9 is odd → **81**.",
                     None, "easy", "cl-p14", 25))
     qs.append(num_q("number-classification-p12", [50, 65, 82, 99], 99, lambda n: issq(n - 1),
                     "50 = 7² + 1, 65 = 8² + 1, 82 = 9² + 1 - form **n² + 1**. 99 = 10² − 1 → **99**.",
                     "Each number sits just above a square except 99, which sits just below 100.", "medium", "cl-p15", 40))
-    qs.append(num_q("number-classification-p13", [63, 124, 215, 350], 350, lambda n: iscube(n + 1),
-                    "63 = 4³ − 1, 124 = 5³ − 1, 215 = 6³ − 1 - form **n³ − 1**. 350 is not one less than a cube (7³ = 343, so 7³ − 1 = 342) → **350**.",
+    qs.append(num_q("number-classification-p13", [124, 217, 342, 999], 217, lambda n: iscube(n + 1),
+                    "124 = 5³ − 1, 342 = 7³ − 1, 999 = 10³ − 1 - form **n³ − 1**. 217 + 1 = 218 is not a cube (in fact 217 = 6³ + 1) → **217**.",
                     "Add 1 to each number and look for a cube.", "hard", "cl-p15", 50))
-    qs.append(num_q("number-classification-p14", [12, 42, 110, 80], 80,
+    qs.append(num_q("number-classification-p14", [30, 42, 56, 80], 80,
                     lambda n: any(k * (k + 1) == n for k in range(1, 40)),
-                    "12 = 3 × 4, 42 = 6 × 7, 110 = 10 × 11 - each is a **product of two consecutive numbers**, n(n + 1). 80 = 8 × 10 is not (8 × 9 = 72, 9 × 10 = 90) → **80**.",
+                    "30 = 5 × 6, 42 = 6 × 7, 56 = 7 × 8 - each is a **product of two consecutive numbers**, n(n + 1). 80 = 8 × 10 is not (8 × 9 = 72, 9 × 10 = 90) → **80**.",
                     "Take the square root roughly: √80 ≈ 8.9, so check 8 × 9 = 72 - not 80.", "hard", "cl-p15", 50))
     return qs
 
@@ -275,9 +275,9 @@ def let_questions():
     qs.append(let_q("letter-classification-p06", ["DW", "GT", "KP", "MO"], "MO", lambda w: pos(w[0]) + pos(w[1]) == 27,
                     "Opposite letters add to 27: D + W = 4 + 23 = 27, G + T = 7 + 20 = 27, K + P = 11 + 16 = 27, M + O = 13 + 15 = **28** (M's opposite is N) → **MO**.",
                     "Remember the pair M-N: MO cannot be an opposite pair.", "easy", "cl-p18", 25))
-    qs.append(let_q("letter-classification-p07", ["CXD", "FUG", "JQK", "PLQ"], "PLQ",
+    qs.append(let_q("letter-classification-p07", ["CXD", "GTH", "JQK", "PLQ"], "PLQ",
                     lambda w: pos(w[0]) + pos(w[1]) == 27 and pos(w[2]) == pos(w[0]) + 1,
-                    "Rule: 2nd letter = opposite of 1st, 3rd letter = next letter after 1st.\n- CXD: C↔X ✓, D = C + 1 ✓\n- FUG: F↔U ✓, G = F + 1 ✓\n- JQK: J↔Q ✓, K = J + 1 ✓\n- PLQ: P(16) + L(12) = 28 ✗ (P's opposite is K)\n\n→ **PLQ**.",
+                    "Rule: 2nd letter = opposite of 1st, 3rd letter = next letter after 1st.\n- CXD: C↔X ✓, D = C + 1 ✓\n- GTH: G↔T ✓, H = G + 1 ✓\n- JQK: J↔Q ✓, K = J + 1 ✓\n- PLQ: P(16) + L(12) = 28 ✗ (P's opposite is K)\n\n→ **PLQ**.",
                     None, "hard", "cl-p18", 50))
     qs.append(let_q("letter-classification-p08", ["NOP", "HIJ", "DEF", "RST"], "RST",
                     lambda w: w[1] in "AEIOU",
@@ -287,9 +287,9 @@ def let_questions():
                     lambda w: w[0] in "AEIOU",
                     "All four are four consecutive letters and each contains exactly one vowel. In OPQR, UVWX and ABCD the vowel is the **first** letter. In STUV the vowel U is third → **STUV**.",
                     None, "medium", "cl-p19", 35))
-    qs.append(let_q("letter-classification-p10", ["AMP", "DGT", "EKN", "BHS"], "BHS",
+    qs.append(let_q("letter-classification-p10", ["AMP", "GJM", "EKN", "BHS"], "BHS",
                     lambda w: sum(pos(c) for c in w) == 30,
-                    "Step tuples are all different, so try position sums: A+M+P = 1+13+16 = 30, D+G+T = 4+7+19 = 30, E+K+N = 5+11+14 = 30, B+H+S = 2+8+19 = **29** → **BHS**.",
+                    "Step tuples are all different, so try position sums: A+M+P = 1+13+16 = 30, G+J+M = 7+10+13 = 30, E+K+N = 5+11+14 = 30, B+H+S = 2+8+19 = **29** → **BHS**.",
                     "EJOTY makes the sums quick: M = O − 2 = 13, P = O + 1 = 16, S = T − 1 = 19, K = J + 1 = 11, N = O − 1 = 14.", "hard", "cl-p20", 55))
     qs.append(let_q("letter-classification-p11", ["BHL", "DJP", "FNT", "GLR"], "GLR",
                     lambda w: all(pos(c) % 2 == 0 for c in w),

@@ -450,7 +450,7 @@ A science passage about germs or earthquakes is still **informative** if it just
 These are inference questions about the author's opinion. The correct option matches what the author says **and** how strongly. If the author wants "sewage stopped before ceremonies", he would agree that *stopping sewage matters more than publicity* — not that "the lake can never be cleaned".
 
 ### "The passage is most likely taken from…"
-Match style to source:
+Match style to the type of text:
 - facts + explanations, no opinion → science book / textbook / encyclopaedia
 - opinion on a current issue with suggestions → newspaper editorial / opinion piece
 - personal feelings in first person, dates → diary / memoir

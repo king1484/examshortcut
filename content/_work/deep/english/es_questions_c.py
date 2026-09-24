@@ -1,0 +1,58 @@
+# Error-spotting practice questions, part C: the NEW subtopic es-verbs-structure.
+from _lib import Q
+
+QS = []
+F = "es-verbs-structure"
+
+STEM1 = "Parts of a sentence are given as options in order. One part contains an error; the other three are correct. Select the part with the error."
+
+QS += [
+ Q("es-verbs-structure-p01", F, "esf1", STEM1,
+   ["The children are", "looking forward", "to see", "the circus next week."], 2,
+   "In **look forward to**, the word 'to' is a preposition, so it takes the -ing form: 'looking forward **to seeing** the circus'. 'Look forward to see' is the classic slip.",
+   "look forward to + -ing (to is a preposition here).", "medium", 40),
+ Q("es-verbs-structure-p02", F, "esf1", STEM1,
+   ["She denied to have", "taken the file,", "but the register", "proved otherwise."], 0,
+   "**Deny** takes the -ing form: 'She denied **having taken** the file'. Verbs like deny, enjoy, avoid and suggest refuse the infinitive.",
+   "deny / enjoy / avoid / suggest + -ing.", "hard", 50),
+ Q("es-verbs-structure-p03", F, "esf2", STEM1,
+   ["The students have submitted", "their projects,", "isn't it?", "asked the invigilator."], 2,
+   "The statement uses **have** with the subject *the students* → the tag flips it: **haven't they?** 'Isn't it?' matches neither the helper nor the subject.",
+   "tag = helping verb flipped + subject pronoun.", "easy", 30),
+ Q("es-verbs-structure-p04", F, "esf2", STEM1,
+   ["Suresh rarely", "misses his morning walk,", "doesn't he?", "his neighbour asked."], 2,
+   "**Rarely** makes the statement negative, so the tag must be positive: **does he?** 'Doesn't he' fails to flip — the same trap hides behind never, seldom, hardly and little.",
+   "rarely / never / hardly → positive tag.", "hard", 50),
+ Q("es-verbs-structure-p05", F, "esf3", STEM1,
+   ["If I would have known", "about the traffic,", "I would have left", "much earlier."], 0,
+   "The unreal-past conditional takes **had** + participle in the if-clause: '**If I had known** about the traffic'. 'Would have' stays in the main clause only.",
+   "if + had known; main clause keeps would have.", "medium", 45),
+ Q("es-verbs-structure-p06", F, "esf3", STEM1,
+   ["If she will work hard,", "she will surely", "qualify", "for the final round."], 0,
+   "The if-clause of a real future condition takes the **simple present**: 'If she **works** hard'. *Will* appears only in the main clause.",
+   "if + present; will in the main clause.", "easy", 35),
+ Q("es-verbs-structure-p07", F, "esf4", STEM1,
+   ["The new policy aims", "at reducing paperwork,", "improving transparency,", "and to speed up file movement."], 3,
+   "The list runs on -ing forms after 'aims at': reducing, improving, and **speeding up**. 'To speed up' breaks the parallel line.",
+   "lists stay parallel: match the first item's shape.", "medium", 45),
+ Q("es-verbs-structure-p08", F, "esf4", STEM1,
+   ["My grandmother enjoys", "cooking,", "to garden,", "and long walks in the park."], 2,
+   "After **enjoys**, every item takes the -ing shape: cooking, **gardening**, and (taking) long walks. 'To garden' is the odd form out.",
+   "enjoy + -ing for every item in the list.", "easy", 35),
+ Q("es-verbs-structure-p09", F, "esf5", STEM1,
+   ["The new engine runs", "very smooth", "and hardly makes", "any noise at all."], 1,
+   "**Runs** is an action verb, so it is described by an adverb: runs very **smoothly**. (Part 3's 'hardly' is correct — a hidden negative fits here.)",
+   "action verb → adverb: runs smoothly.", "medium", 40),
+ Q("es-verbs-structure-p10", F, "esf5", STEM1,
+   ["The mangoes in this basket", "taste", "deliciously", "and ripen early."], 2,
+   "**Taste** here is a linking verb describing the mangoes, so it takes the adjective: they taste **delicious**. 'Taste deliciously' would describe how the mangoes perform the action of tasting.",
+   "linking verbs (taste, smell, feel) → adjective.", "hard", 50),
+ Q("es-verbs-structure-p11", F, "esf6", STEM1,
+   ["The candidate could not", "able to explain", "the gap", "in his employment."], 1,
+   "**Could** already carries ability, so only the bare verb follows: 'could not **explain** the gap'. 'Could able to' doubles the idea and breaks the grammar.",
+   "never 'could able to' — could + base verb.", "medium", 40),
+ Q("es-verbs-structure-p12", F, "esf6", STEM1,
+   ["You must", "to submit", "the completed form", "before Friday."], 1,
+   "Modals take the bare base verb: 'You must **submit** the completed form'. No 'to' after must, can, should or could.",
+   "modal + base verb, no to.", "easy", 30),
+]

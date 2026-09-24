@@ -193,7 +193,7 @@ BEX = {
                            "Block **abc** repeats (12 places = 4 blocks of 3). Filling column-wise gives abc | abc | abc | abc."),
     "growing": blank_example("aababcabcd", [1, 4, 7, 9], None,
                              "Parts of length 1, 2, 3, 4: a | ab | abc | abcd."),
-    "mirror": blank_example("pqrrqppqrrqp", [1, 3, 7, 10], 6,
+    "mirror": blank_example("pqrrqppqrrqp", [1, 3, 8, 10], 6,
                             "Block **pqrrqp** (pqr, then rqp) repeats twice: pqrrqp | pqrrqp."),
     "rotating": blank_example("abcbcacab", [1, 5, 6], None,
                               "Each block moves its first letter to the end: abc | bca | cab."),
@@ -463,7 +463,7 @@ aq("alphanumeric-series-p08", t, 4, ["10KS", "10JR", "12KR"],
    "Solve each slot; the last slot runs backwards.", "medium", "se-p20", 45)
 t = [L(16 + 2 * i) + str(3 * (i + 1)) + L(17 + 2 * i) for i in range(5)]
 assert t[:2] == ["P3Q", "R6S"]
-aq("alphanumeric-series-p09", t, 4, ["X15Y", "X12Y", "Y15X"],
+aq("alphanumeric-series-p09", t, 4, ["Y15X", "X12Y", "W15Y"],
    "First letters P, R, T, V (+2) → X. Numbers 3, 6, 9, 12 (+3) → 15. Last letters Q, S, U, W (+2) → Y. Answer **X15Y**.",
    "Last letter is always the next letter after the first one.", "medium", "se-p20", 45)
 t = [L(4 + 3 * i) + str(5 * (i + 1)) for i in range(5)]
@@ -558,8 +558,8 @@ bq("letter-blank-series-p06", "xyxyyxyyyxyyyy", [2, 4, 8, 12],
    "Parts: xy | xyy | xyyy | xyyyy — one more y each time. Blanks in order: x, y, y, y → **xyyy**.",
    "Every part starts with x; count the y's: 1, 2, 3, 4.", "medium", PAT, None, 50)
 PAT = "se-p29"
-bq("letter-blank-series-p07", "pqrrqppqrrqp", [1, 3, 7, 10],
-   "Block **pqrrqp** (pqr, then back rqp) repeats twice. Blanks in order: q, r, q, q → **qrqq**.",
+bq("letter-blank-series-p07", "pqrrqppqrrqp", [1, 3, 8, 10],
+   "Block **pqrrqp** (pqr, then back rqp) repeats twice. Blanks in order: q, r, r, q → **qrrq**.",
    "The double r marks the turning point.", "medium", PAT, 6, 45)
 bq("letter-blank-series-p08", "abcdcbabcdcba", [2, 5, 7, 10, 12],
    "Letters climb a→d and come back: a b c d c b | a b c d c b | a. Blanks in order: c, b, b, c, a → **cbbca**.",

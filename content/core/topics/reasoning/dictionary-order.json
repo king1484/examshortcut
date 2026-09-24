@@ -29,6 +29,57 @@
     "Judging words by length instead of first-difference.",
     "Putting SCANDAL after SCANTY because 'scanty feels later' — compare D vs T.",
     "Forgetting the prefix rule: the shorter of two prefix words leads."
+   ],
+   "notes": "### One rule runs the whole topic\n\nA real dictionary sorts words letter by letter from the left, and so does every question in this topic. At the **first position where two words differ**, the word with the **earlier letter** comes first. That single rule answers every arrangement question — the skill is applying it without getting lost.\n\n**The comparison algorithm.** To order any group of words:\n1. Compare the first letters. Words sort into groups by their first letter: all A-words before all B-words, and so on.\n2. Inside a group, compare the second letters; then the third; keep going until the words separate.\n3. If one word runs out of letters while matching the other word letter for letter (Cart vs Carton), the **shorter word comes first** — it is a prefix of the longer one.\n\nWork with paper, not memory: stack the words vertically so the columns line up, then scan column by column. The first column that is not identical splits the group into sub-groups; recurse inside each sub-group.\n\n**Two classic traps.**\n- *The later-letter trap:* early matches lull you into relaxing. Scant, Scan, Scandal all share S-C-A-N; the decision hides at the fifth letter (t vs nothing vs d). Stay letter-by-letter to the very end.\n- *The prefix trap:* a shorter word that matches a longer one's start always comes **before** it — Scan before Scant, Play before Player. Options routinely offer the reverse because it 'feels' longer-word-first.\n\n**Words with same letters, different order.** Angel vs Angle: identical multiset of letters, but the third letter (e vs n) splits them — Angel first. The rule never changes: first differing position, earlier letter wins.\n\n**Reading the question direction.** \"Which comes first / last\", \"which is third\", \"which pair is adjacent\", \"which comes just after X\" — all four are the same sort followed by a different lookup. Do the full sort once, number the slots 1-2-3-4-5, and answer any of these variants from the numbered list.\n\n### Quick revision\n- Sort letter by letter from the left; the first differing letter decides.\n- A shorter word that is a prefix of a longer one comes first (Scan → Scant → Scandal).\n- Stack words vertically and scan columns — never juggle in your head.\n- Same letters, different order: the first differing position still decides (Angel before Angle).\n- Sort once, number the slots, then answer 'first / last / third / adjacent' from the list.\n\n**Where marks are actually lost.** Almost never in the rule — always in execution: a misread letter pair (m/n, r/s), a forgotten prefix, or answering 'first' when the question asked 'last'. The numbered-line habit kills all three: order on paper, read the slot, and reread the question's direction word (first / last / second / middle) before marking.",
+   "patterns": [
+    {
+     "id": "dc-p1",
+     "name": "First differing letter decides",
+     "frequency": "very common",
+     "howToSpot": "Two or three words sharing an opening; the question asks which comes first or last.",
+     "formula": null,
+     "logic": "1. Scan letter by letter to the first position where the words differ.\n2. The earlier letter at that position wins the earlier slot.\n3. Ignore how long the shared part is — only the first difference matters.\n\n*Why it works:* dictionary order is exactly lexicographic order on the left-most difference.",
+     "example": {
+      "q": "**Which comes first in the dictionary: Market, Margin or Marble?**",
+      "solution": "All share MAR; 4th letters k / g / b → b earliest → **Marble** comes first."
+     }
+    },
+    {
+     "id": "dc-p2",
+     "name": "Shorter prefix sorts first",
+     "frequency": "common",
+     "howToSpot": "One word is exactly the start of another (Sand, Sandwich) — a prefix pair.",
+     "formula": null,
+     "logic": "1. If word A matches word B letter for letter and A has no letters left, A is B's prefix.\n2. The prefix comes **before** the longer word.\n3. Among several extensions, compare the letter right after the stem.\n\n*Why it works:* a dictionary cannot fit anything between a word and itself, so the short form lists first.",
+     "example": {
+      "q": "**Which of these comes first: Sand, Sandy, Sandwich or Sandal?**",
+      "solution": "Sand is a prefix of the other three → **Sand** comes first."
+     }
+    },
+    {
+     "id": "dc-p3",
+     "name": "Deep ties beyond the third letter",
+     "frequency": "common",
+     "howToSpot": "4-6 words sharing a long stem where the decision hides at the 4th-6th letter.",
+     "formula": null,
+     "logic": "1. Strip the common stem and write only the tails.\n2. Sort tails letter by letter; the earliest tail letter takes the earliest slot.\n3. Prefix tails (empty tail) sort first inside their group.\n\n*Why it works:* the comparison rule does not care how deep the difference hides.",
+     "example": {
+      "q": "**Arrange Sure, Surge, Surgeon, Surplus, Surreal. Which comes third?**",
+      "solution": "4th letters: e / g / g / p / r → Sure, Surge, Surgeon, Surplus, Surreal → third = **Surgeon**."
+     }
+    },
+    {
+     "id": "dc-p4",
+     "name": "Slot lookups: middle and adjacent pairs",
+     "frequency": "common",
+     "howToSpot": "After sorting, the question asks for the middle word or an adjacent pair rather than first/last.",
+     "formula": null,
+     "logic": "1. Produce the full numbered order first — never answer adjacent questions by instinct.\n2. Middle of 5 words = slot 3; of 4 words, slots 2 and 3 share the middle.\n3. Adjacent = slot numbers differing by exactly 1.\n\n*Why it works:* every lookup variant reads off the same sorted list.",
+     "example": {
+      "q": "**Arrange Melon, Melody, Mellow, Member. Which two are adjacent in the dictionary?**",
+      "solution": "4th letters: b / l / l / o → Member, Mellow, Melody, Melon. Adjacent pair: **Melon and Melody**."
+     }
+    }
    ]
   },
   {
@@ -49,6 +100,57 @@
    "mistakes": [
     "Re-sorting mentally for every option instead of fixing one order.",
     "Answering 'third from the right' with the third word from the left."
+   ],
+   "notes": "### The standard 4-6 word arrangement\n\nThis is the topic's workhorse: a list of 4-6 similar words, and one lookup — \"which comes third\", \"which is last\", \"which comes just after X\", \"which is second from the right\". The method never changes; only the lookup does.\n\n**Step 1 — group by the shared stem.** Exam words almost always share a long prefix (Stat-, Colon-, Dec-). Find the stem and draw it once; only the letters **after** the stem matter. Statue, Status, Statute, Stature, Station all share STAT — the fight starts at the fifth letter.\n\n**Step 2 — split at the first difference.** Line up the words, ignore the common stem, and look at the next letter of each. Sort by those letters. Ties inside a letter move one position deeper. In the STAT family: Station (i) separates immediately; Statue/Status/Statute/Stature all show E/S/E/R at position six, then sort by the seventh where needed.\n\n**Step 3 — apply the prefix rule inside ties.** When one word is a stem-with-nothing (Colon inside Colonial... but also Decamp family: Decay vs December), remember: exact prefix sorts before its extensions; among extensions, the next letter decides.\n\n**Step 4 — number and read.** Write the final order as a numbered line, 1 to N, then answer whatever was asked:\n- \"Third word\" → slot 3.\n- \"Second from the right\" → slot N−1.\n- \"Just after X\" → slot of X plus one.\n- \"Adjacent pair\" → two words whose slot numbers differ by exactly 1.\n\n**Speed practice pays twice.** These questions are pure procedure — the same 30-second routine solves every one. Errors come almost only from mis-comparing one letter pair (mixing up m/n order, reading r before s) or from mis-counting slots ('second from right' vs 'second'). Both are prevented by the numbered line: letters decide the order, numbers decide the answer.\n\n**Check with extremes.** Before locking an answer, confirm the obvious: the word with the alphabetically earliest deep letter should sit near the left end, the latest near the right end. If your final order violates that instinct, re-scan column two — a transposed pair is the usual cause.\n\n### Quick revision\n- Strip the shared stem; the battle starts at the first letter after it.\n- Prefix (bare stem) sorts before any extension of itself.\n- Write the full numbered order, then read the requested slot off it.\n- 'Second from the right' = slot N−1; 'just after X' = X's slot + 1.\n- Sanity-check: earliest deciding letter at the left end, latest at the right.\n\n**Time target.** A practiced 5-word arrangement takes 30-40 seconds: 5 for the stem, 15 for the column scan, 10 for the numbered line, 5 for the lookup. If you are past a minute, you are re-sorting in your head — restart on paper; it is faster than a third mental pass.",
+   "patterns": [
+    {
+     "id": "aw-p1",
+     "name": "Arrange and pick the slot",
+     "frequency": "very common",
+     "howToSpot": "4-6 words; 'which is the Nth word in dictionary order' (from the left).",
+     "formula": null,
+     "logic": "1. Strip the shared stem; sort by the first differing tail letter.\n2. Write the numbered order 1..N.\n3. Read slot N and check it against the extreme words.\n\n*Why it works:* one sort, then a positional lookup.",
+     "example": {
+      "q": "**Arrange Chalk, Charm, Chart, Chase, Chatter. Which is the fourth word?**",
+      "solution": "4th letters: l / r / r / s / t → Chalk, Charm, Chart, Chase, Chatter → fourth = **Chase**."
+     }
+    },
+    {
+     "id": "aw-p2",
+     "name": "Prefix vs later-letter battle",
+     "frequency": "very common",
+     "howToSpot": "The list mixes a bare stem with extensions that fight over a later letter.",
+     "formula": null,
+     "logic": "1. The bare stem sorts before all extensions.\n2. Extensions sort by the letter right after the stem; ties go one letter deeper.\n3. Re-scan the deciding column twice — one misread flips two slots.\n\n*Why it works:* first difference decides, at whatever depth it hides.",
+     "example": {
+      "q": "**Arrange Mystery, Mystic, Myself, Myopia. Which comes first?**",
+      "solution": "3rd letters: s / s / s / o → Myopia first; among the s-words, 4th letters e/t/t → Myself, then Mystery (5th e) before Mystic (5th i). First = **Myopia**."
+     }
+    },
+    {
+     "id": "aw-p3",
+     "name": "Extremes and immediate neighbours",
+     "frequency": "common",
+     "howToSpot": "'Which comes last / just after X / immediately before Y' — neighbour lookups on the sorted list.",
+     "formula": null,
+     "logic": "1. Sort fully and number the slots.\n2. 'Just after X' = X's slot + 1; 'immediately before Y' = Y's slot − 1.\n3. For 'last', only the deepest group's final word matters.\n\n*Why it works:* neighbours are slot arithmetic on the finished order.",
+     "example": {
+      "q": "**Which comes just after Colony: Colonel, Colony, Column, Colour, Colossus?**",
+      "solution": "Order: Colonel, Colony, Colossus, Colour, Column → just after Colony = **Colossus**."
+     }
+    },
+    {
+     "id": "aw-p4",
+     "name": "Counting from the right end",
+     "frequency": "common",
+     "howToSpot": "'Second from the right', 'third from the end' — the slot is counted from the back.",
+     "formula": null,
+     "logic": "1. Sort and number 1..N as usual.\n2. k-th from the right = slot N + 1 − k.\n3. Convert first, then read — do not count backwards on the raw list.\n\n*Why it works:* mirror of the slot lookup: the right end is slot N.",
+     "example": {
+      "q": "**Arrange Judge, Judo, Joust, Journal, Jostle. Which word is second from the right?**",
+      "solution": "Order: Jostle, Journal, Joust, Judge, Judo → slot 5 + 1 − 2 = 4 → **Judge**."
+     }
+    }
    ]
   },
   {
@@ -81,6 +183,57 @@
     "Using 26 instead of 27 in from-the-right conversions.",
     "Slipping past A or Z on shifts — check bounds.",
     "Confusing 'letter at position 10' with '10 letters after it'."
+   ],
+   "notes": "### Positions, mirrors and letter arithmetic\n\nThese questions treat the alphabet as a numbered strip of 26 tiles and ask who stands where. Three tools cover everything.\n\n**Tool 1 — absolute positions (EJOTY).** Memorise five anchors: **E=5, J=10, O=15, T=20, Y=25**. Every other position is a small step from an anchor: G = J − 3 = 7; R = T − 2 = 18; W = Y + 2 = 23. With anchors, \"which is the 15th letter\" is instant (O), and \"how many letters between G and S\" is 19 − 7 − 1 = 11 (subtract positions, minus one — the letters *between* exclude both ends).\n\n**Tool 2 — the mirror (from the right).** The letter that is k-th from the **right** stands at position $27 - k$ from the left (and vice versa: position p from the left is $27 - p$ from the right). So the 9th from the right = $27 - 9 = 18$th from the left = R; and T (20th from left) is $27 - 20 = 7$th from the right. The number 27 is the whole trick: 26 letters plus one.\n\n**Tool 3 — letter arithmetic.** \"4th to the right of the 12th from the left\": convert every clause to a from-the-left position, then add or subtract on the strip. From-the-left + right-steps = add; left-steps = subtract. When a clause says \"from the right\", convert first ($27-k$), then do the arithmetic:\n- 4th right of 12th from left → $12 + 4 = 16$ → P.\n- 6th left of 8th from right → $27 - 8 = 19$, then $19 - 6 = 13$ → M.\n\nWatch the two directions: 'to the right of' adds toward Z; 'to the left of' subtracts toward A — because the strip is drawn left = A … right = Z.\n\n**Tool 4 — modified alphabets.** Variants rewrite the strip first, then ask a position:\n- *Full reverse:* Z first … A last; position p in the reverse strip = letter $27 - p$ of the normal strip.\n- *Half reverse:* first half A-M written backwards, second half normal (or Z-N backwards). Write the new 26-letter strip once, then answer by counting — never by juggling formulas.\n\n**Check every answer by touch.** Confirm with anchors: position 16 must be near T (20) — 4 steps before T is P ✓. If your letter lands more than 5 away from the predicted anchor, recount; that five-second habit catches nearly every off-by-one.\n\n### Quick revision\n- EJOTY anchors: E=5, J=10, O=15, T=20, Y=25; step from them, never from A.\n- Between G and S: $19-7-1=11$; 'between' excludes both ends.\n- Mirror: k-th from right $= 27-k$ from left (and the reverse).\n- Multi-clause: convert everything to from-the-left, then add (right) or subtract (left).\n- Modified strip: write it out once, then count on paper.\n\n**Off-by-one defence.** Every wrong answer in this subtopic is off by exactly one step: counting the end letter in 'between', forgetting the +1 in the mirror (27, not 26), or stepping the wrong way after 'to the left of'. Anchor-verify the final letter (it must sit within 5 of the predicted anchor) and both errors disappear.",
+   "patterns": [
+    {
+     "id": "lp-p1",
+     "name": "Absolute position via EJOTY anchors",
+     "frequency": "very common",
+     "howToSpot": "'Which is the 15th letter' or 'how many letters between X and Y'.",
+     "formula": null,
+     "logic": "1. Step from the nearest anchor (E=5, J=10, O=15, T=20, Y=25).\n2. Between A and B: $|posA - posB| - 1$ ('between' excludes both ends).\n3. Confirm the letter sits within 5 of the predicted anchor.\n\n*Why it works:* five anchors turn 26 positions into five short hops.",
+     "example": {
+      "q": "**How many letters of the alphabet are there between G and S?**",
+      "solution": "$posS - posG - 1 = 19 - 7 - 1$ = **11**."
+     }
+    },
+    {
+     "id": "lp-p2",
+     "name": "Mirror positions from the right",
+     "frequency": "very common",
+     "howToSpot": "'k-th from the right' or 'position of letter X from the right'.",
+     "formula": null,
+     "logic": "1. From-right position = $27 - $ from-left position (and the reverse).\n2. Convert to from-left, answer with anchors, convert back if asked.\n3. Remember the 27: 26 letters + 1.\n\n*Why it works:* the mirror maps the strip onto itself around the midpoint.",
+     "example": {
+      "q": "**What is the position of the letter T from the right of the alphabet?**",
+      "solution": "$27 - 20$ = **7th** from the right."
+     }
+    },
+    {
+     "id": "lp-p3",
+     "name": "Letter arithmetic (left/right of a position)",
+     "frequency": "common",
+     "howToSpot": "'Which letter is 4th to the right of the 12th from the left' — two clauses in one question.",
+     "formula": null,
+     "logic": "1. Convert every clause to a from-the-left number (mirror any 'from the right').\n2. Right-steps add, left-steps subtract.\n3. Read the letter off the EJOTY anchors.\n\n*Why it works:* the alphabet strip is a number line in disguise.",
+     "example": {
+      "q": "**Which letter is 6th to the left of the 8th letter from the right?**",
+      "solution": "8th from right = $27-8=19$ (S); $19-6=13$ → **M**."
+     }
+    },
+    {
+     "id": "lp-p4",
+     "name": "Modified or reversed alphabet",
+     "frequency": "common",
+     "howToSpot": "'First half written in reverse', 'alphabet in reverse order', then a position question.",
+     "formula": null,
+     "logic": "1. Write the new 26-letter strip once on paper.\n2. Count the asked position on the new strip directly.\n3. For the full reverse only: reverse position p = normal letter $27 - p$.\n\n*Why it works:* a rewrite is a one-time setup; after that it is plain counting.",
+     "example": {
+      "q": "**If the first half of the alphabet (A-M) is written in reverse order followed by N-Z, which letter is 10th from the left?**",
+      "solution": "New strip: M L K J I H G F E D C B A N O ... → 10th = **D**."
+     }
+    }
    ]
   },
   {
@@ -108,45 +261,126 @@
     "Forgetting the final +1 (the word itself is not counted by the sums).",
     "Using the original remaining count instead of the shrinking one.",
     "Rearranging letters alphabetically but comparing with the original word wrongly."
+   ],
+   "notes": "### Rank of a word, and other letter-bag questions\n\nTwo families live here. Both are procedures — learn the steps once and every instance falls.\n\n**Family 1 — dictionary rank of a word.** \"The letters of PRIME are arranged in all possible ways as in a dictionary; what is the rank of PRIME?\" The rank counts how many arrangements come **before** the word, plus one. Procedure:\n1. Write the word's letters in alphabetical order (E, I, M, P, R for PRIME).\n2. Scan the word left to right. At each position, count how many *unused* letters are **smaller** than the current letter. Each smaller letter would start a block of arrangements: add (count) × (arrangements of the remaining letters).\n3. 'Arrangements of the remaining letters' = factorial of how many letters are left — divided by the factorials of any repeated-letter counts (a word with two E's has half as many distinct arrangements).\n4. Fix the current letter as used and move right. The final total + 1 is the rank.\n\nExample skeleton for PRIME: P is 4th smallest of {E,I,M,P,R} → 3 × 4! before it; then R is 4th of {E,I,M,R} → 3 × 3!; then I is 2nd of {E,I,M} → 1 × 2!; then M is 2nd of {E,M} → 1 × 1!; E is 1st → 0. Rank = 72 + 18 + 2 + 1 + 1 = 94.\n\n**Family 2 — alphabetised spellings.** \"If the letters of TABLE are rearranged in alphabetical order, how many letters keep their position?\" Write the word, write its letters sorted (A B E L T), and compare column by column. Only exact matches count. TABLE: only L (position 4) matches → one letter.\n\n**Family 3 — form the word from the letters.** \"Which word can be formed from the letters of CONVERSATION?\" Check each option letter by letter against the bag: cross off a bag letter for every use. Two details decide these: **repeats** (the bag has two O's and two N's — using three O's fails) and **missing letters** (one absent letter kills the option). Scan for the rarest letter in each option first; that fails or passes fastest.\n\n**Family 4 — neighbours in the arrangement list.** \"All arrangements of BAT in dictionary order — which is 4th?\" The list is short: write it out (ABT, ATB, BAT, BTA, TAB, TBA) and count. For 3 distinct letters the whole list is 6 words; writing it beats any formula.\n\n### Quick revision\n- Rank = count smaller-letter blocks position by position + 1; divide by repeat factorials.\n- Alphabetise-and-compare: only exact same-position letters count.\n- Word-formation: cross off bag letters; watch double letters and one missing letter.\n- 3-letter words: write all 6 arrangements and count slots.\n- Sanity: the rank must not exceed n! (7! = 5040 for a 7-letter word).",
+   "patterns": [
+    {
+     "id": "wf-p1",
+     "name": "Dictionary rank of a word",
+     "frequency": "very common",
+     "howToSpot": "'All arrangements listed as in a dictionary — what is the rank of the word?'",
+     "formula": null,
+     "logic": "1. Sort the letters alphabetically; scan the word left to right.\n2. At each position add (unused letters smaller than the current one) × (arrangements of the rest).\n3. Arrangements of the rest = factorial of the count, divided by repeat factorials.\n4. Fix the letter, move right; total + 1 = rank.\n\n*Why it works:* each smaller unused letter heads a full block of arrangements that come first.",
+     "example": {
+      "q": "**Find the dictionary rank of the word CAB.**",
+      "solution": "C: A and B smaller → 2 × 2! = 4. A fixed; B: nothing smaller. Rank = 4 + 1 = **5** (ABT-style list: ABC, ACB, BAC, BCA, CAB)."
+     }
+    },
+    {
+     "id": "wf-p2",
+     "name": "Same-position count after alphabetising",
+     "frequency": "common",
+     "howToSpot": "'Letters rearranged in alphabetical order — how many letters occupy their original position?'",
+     "formula": null,
+     "logic": "1. Write the word; write its letters sorted beneath it.\n2. Compare column by column; count exact matches only.\n3. Answer as a number word if the options say so.\n\n*Why it works:* a position survives only if the sorted letter equals the original letter there.",
+     "example": {
+      "q": "**If the letters of DERAIL are rearranged in alphabetical order, how many letters remain in their original position?**",
+      "solution": "DERAIL vs ADEILR: D≠A, E≠D, R≠E, A≠I, I≠L, L≠R → **None**."
+     }
+    },
+    {
+     "id": "wf-p3",
+     "name": "Forming words from a letter bag",
+     "frequency": "common",
+     "howToSpot": "'Which word can/cannot be formed from the letters of X?'",
+     "formula": null,
+     "logic": "1. List the bag with repeat counts.\n2. For each option, check its rarest letter first; cross off bag letters as used.\n3. One missing letter, or one letter needed more often than it appears, kills the option.\n\n*Why it works:* forming a word is a multiset check — counts matter as much as presence.",
+     "example": {
+      "q": "**Which word CANNOT be formed from the letters of DISTRIBUTION?**",
+      "solution": "Bag has D,I,S,T,R,B,U,O,N (I×2, T×2). STUDIO ✓, BIRD ✓, ROBUST ✓, BRUSH needs **H** → cannot be formed."
+     }
+    },
+    {
+     "id": "wf-p4",
+     "name": "Neighbours in a short arrangement list",
+     "frequency": "common",
+     "howToSpot": "3-letter words: 'which is the 4th arrangement' or 'what comes just after X' in dictionary order.",
+     "formula": null,
+     "logic": "1. List all 3! = 6 arrangements in dictionary order (a few seconds of writing).\n2. Count to the asked slot, or read the requested neighbour.\n\n*Why it works:* for six items, writing the list is faster and safer than any formula.",
+     "example": {
+      "q": "**All arrangements of FAN are listed in dictionary order. Which word comes immediately after AFN?**",
+      "solution": "List: AFN, ANF, FAN, FNA, NAF, NFA → after AFN = **ANF**."
+     }
+    }
    ]
   }
  ],
  "pyqPatterns": [
   {
-   "pattern": "Arrange and pick slot",
+   "pattern": "Letter-by-letter sorting",
    "frequency": "very common",
-   "howToSpot": "4-6 words; find first / second / middle / last in dictionary order.",
-   "approach": "Sort by first split point; count to the slot."
+   "howToSpot": "Words with a shared opening; 'which comes first/last/third'.",
+   "approach": "Compare to the first differing letter; earlier letter wins; prefix sorts before extensions; sort once, number, read.",
+   "subtopic": "dict-idea",
+   "example": {
+    "q": "**Arrange Scant, Scan, Scandal. Which comes last?**",
+    "solution": "Scan (prefix) → Scandal (5th d) → Scant (5th t) → last = **Scant**."
+   }
   },
   {
-   "pattern": "Prefix vs later-letter battle",
+   "pattern": "Slot picking in a 4-6 word sort",
+   "frequency": "very common",
+   "howToSpot": "A list of near-identical words plus 'which is the Nth'.",
+   "approach": "Strip the stem, sort tails letter by letter, number the list, read the slot; convert 'from the right' to N+1−k.",
+   "subtopic": "arrange-words",
+   "example": {
+    "q": "**Arrange Statue, Status, Station, Statute, Stature. Which is third from the left?**",
+    "solution": "Station, Statue, Stature, Status, Statute → third = **Stature**."
+   }
+  },
+  {
+   "pattern": "EJOTY positions and mirrors",
+   "frequency": "very common",
+   "howToSpot": "'Nth letter', 'k-th from the right', 'letters between X and Y'.",
+   "approach": "Anchors E=5 J=10 O=15 T=20 Y=25; between = difference − 1; mirror = 27 − position.",
+   "subtopic": "letter-position",
+   "example": {
+    "q": "**Which letter is 9th from the right of the English alphabet?**",
+    "solution": "$27 - 9 = 18$ → **R**."
+   }
+  },
+  {
+   "pattern": "Modified alphabet strips",
    "frequency": "common",
-   "howToSpot": "Word pairs sharing long prefixes (SCANDAL/SCANTY).",
-   "approach": "First differing letter wins; a true prefix ends before its extension."
-  },
-  {
-   "pattern": "Letter position arithmetic",
-   "frequency": "very common",
-   "howToSpot": "Position from left/right, shifts left/right, between-counts.",
-   "approach": "EJOTY anchors + p±k shifts; right-side = 27 − p."
-  },
-  {
-   "pattern": "Modified alphabet sequence",
-   "frequency": "occasional",
-   "howToSpot": "First half reversed, every 2nd letter dropped, etc.",
-   "approach": "Write out the new 26-letter line; count on paper."
+   "howToSpot": "'Half the alphabet reversed' plus a position lookup.",
+   "approach": "Write the new strip once, then count on paper; full reverse: position p ↔ letter 27−p.",
+   "subtopic": "letter-position",
+   "example": {
+    "q": "**Alphabet reversed (Z first). Which letter is 5th from the left?**",
+    "solution": "Z Y X W V → 5th = **V**."
+   }
   },
   {
    "pattern": "Dictionary rank of a word",
-   "frequency": "common",
-   "howToSpot": "Rank of MACHINE among its letter arrangements.",
-   "approach": "Smaller-unused × remaining! summed, plus 1."
+   "frequency": "very common",
+   "howToSpot": "'Rank of the word among all arrangements of its letters'.",
+   "approach": "Position by position: smaller unused letters × arrangements of the rest; add, then +1; divide by repeat factorials.",
+   "subtopic": "word-formation",
+   "example": {
+    "q": "**Rank of BEAD among all arrangements of its letters?**",
+    "solution": "B: A smaller → 1 × 3! = 6. E: A and D smaller → 2 × 2! = 4. A: nothing smaller. Rank = 6 + 4 + 0 + 1 = **11**."
+   }
   },
   {
-   "pattern": "Same-position count",
-   "frequency": "occasional",
-   "howToSpot": "After alphabetical rearrangement, letters keeping their slot.",
-   "approach": "Write both versions aligned and tick matches."
+   "pattern": "Word from a letter bag",
+   "frequency": "common",
+   "howToSpot": "'Which word can/cannot be formed from the letters of X?'",
+   "approach": "Bag with repeat counts; check each option's rarest letter first; a missing letter or an over-used repeated letter kills the option.",
+   "subtopic": "word-formation",
+   "example": {
+    "q": "**Which word CANNOT be formed from the letters of DISTRIBUTION: STUDIO, BIRD, ROBUST, BRUSH?**",
+    "solution": "The bag has no **H** → BRUSH cannot be formed; the rest fit inside the letter counts."
+   }
   }
  ],
  "solvedExamples": [
@@ -493,6 +727,654 @@
    "subtopic": "letter-position",
    "pattern": "letter position arithmetic",
    "timeSec": 30
+  },
+  {
+   "id": "dict-idea-p01",
+   "q": "Which word comes **first** in the dictionary?",
+   "figure": null,
+   "options": [
+    "Market",
+    "Margin",
+    "Marble",
+    "Marginal"
+   ],
+   "answer": 2,
+   "solution": "All share MAR. 4th letters: b (Marble), k (Market), g (Margin). b is earliest → **Marble** comes first.",
+   "shortcut": "Ignore the shared part; only the first differing letter votes.",
+   "difficulty": "easy",
+   "subtopic": "dict-idea",
+   "pattern": "dc-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "dict-idea-p02",
+   "q": "Which word comes **last** in the dictionary?",
+   "figure": null,
+   "options": [
+    "Pants",
+    "Panel",
+    "Panda",
+    "Panorama"
+   ],
+   "answer": 0,
+   "solution": "All share PAN. 4th letters: d (Panda), e (Panel), o (Panorama), t (Pants). t is the latest → **Pants** comes last.",
+   "shortcut": "The biggest deciding letter wins the last slot.",
+   "difficulty": "easy",
+   "subtopic": "dict-idea",
+   "pattern": "dc-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "dict-idea-p03",
+   "q": "Arrange as in a dictionary: **Sand, Sandwich, Sandy, Sandal.** Which comes **first**?",
+   "figure": null,
+   "options": [
+    "Sandwich",
+    "Sandy",
+    "Sandal",
+    "Sand"
+   ],
+   "answer": 3,
+   "solution": "Sand is a prefix of the other three, and a prefix always sorts **before** its extensions → **Sand** first.",
+   "shortcut": "Bare stem beats every extension of itself.",
+   "difficulty": "medium",
+   "subtopic": "dict-idea",
+   "pattern": "dc-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "dict-idea-p04",
+   "q": "Arrange as in a dictionary: **Car, Cart, Carton, Cargo.** Which comes **last**?",
+   "figure": null,
+   "options": [
+    "Cart",
+    "Cargo",
+    "Carton",
+    "Car"
+   ],
+   "answer": 2,
+   "solution": "Car is the prefix of the rest → Car first. Extensions by 4th letter: g (Cargo) vs t (Cart, Carton) → g < t, so Cargo precedes both. Cart is the prefix of Carton → Cart, then Carton. Full order: Car, Cargo, Cart, Carton → last = **Carton**.",
+   "shortcut": "Prefix first; then the deepest letter decides the end of the list.",
+   "difficulty": "medium",
+   "subtopic": "dict-idea",
+   "pattern": "dc-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "dict-idea-p05",
+   "q": "Arrange as in a dictionary: **Sure, Surge, Surgeon, Surreal, Surplus.** Which comes **third**?",
+   "figure": null,
+   "options": [
+    "Surreal",
+    "Surge",
+    "Surplus",
+    "Surgeon"
+   ],
+   "answer": 3,
+   "solution": "All share SUR. 4th letters: e (Sure), g (Surge, Surgeon), p (Surplus), r (Surreal); e < g < p < r. Inside the g-pair, Surge is the prefix of Surgeon → Surge first. Full order: Sure, Surge, Surgeon, Surplus, Surreal → third = **Surgeon**.",
+   "shortcut": "Sort the 4th letters e < g < p < r; the prefix splits the g-pair.",
+   "difficulty": "hard",
+   "subtopic": "dict-idea",
+   "pattern": "dc-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "dict-idea-p06",
+   "q": "Arrange as in a dictionary: **Kite, Kind, Kill, Kingdom.** Which comes **second**?",
+   "figure": null,
+   "options": [
+    "Kingdom",
+    "Kind",
+    "Kill",
+    "Kite"
+   ],
+   "answer": 1,
+   "solution": "All share KI. 3rd letters: l (Kill), n (Kind, Kingdom), t (Kite); l < n < t. Inside the n-pair, Kind is the prefix of Kingdom → Kind first. Full order: Kill, Kind, Kingdom, Kite → second = **Kind**.",
+   "shortcut": "Sort the 3rd letters l < n < t; the prefix splits the n-pair.",
+   "difficulty": "medium",
+   "subtopic": "dict-idea",
+   "pattern": "dc-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "dict-idea-p07",
+   "q": "Arrange as in a dictionary: **Melon, Melody, Mellow, Member.** Which pair sits on **adjacent** slots?",
+   "figure": null,
+   "options": [
+    "Mellow and Member",
+    "Member and Melody",
+    "Melon and Member",
+    "Melon and Melody"
+   ],
+   "answer": 3,
+   "solution": "4th letters: o (Melon), o (Melody), l (Mellow), b (Member) → Member, Mellow, then Melody (5th d) before Melon (5th n). Order: Member, Mellow, Melody, Melon → the last two are adjacent: **Melon and Melody**.",
+   "shortcut": "Write the numbered order; adjacency is just slots differing by one.",
+   "difficulty": "medium",
+   "subtopic": "dict-idea",
+   "pattern": "dc-p4",
+   "timeSec": 45
+  },
+  {
+   "id": "dict-idea-p08",
+   "q": "Arrange as in a dictionary: **Freeze, Fridge, Friend, Fright.** Which comes **second**?",
+   "figure": null,
+   "options": [
+    "Fright",
+    "Freeze",
+    "Friend",
+    "Fridge"
+   ],
+   "answer": 3,
+   "solution": "FR common. 3rd letters: e (Freeze) vs i (the rest) → Freeze first. The i-group: 4th letters d (Fridge), e (Friend), g (Fright) → Fridge, Friend, Fright. Second = **Fridge**.",
+   "shortcut": "First split at the 3rd letter, then sort the bigger group by the 4th.",
+   "difficulty": "medium",
+   "subtopic": "dict-idea",
+   "pattern": "dc-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "dict-idea-p09",
+   "q": "Which word would a dictionary list **first**: Play, Player or Plays?",
+   "figure": null,
+   "options": [
+    "Player",
+    "Plays",
+    "Play",
+    "Any of the three"
+   ],
+   "answer": 2,
+   "solution": "Play is a prefix of both Player and Plays, so it sorts before them → **Play** first.",
+   "shortcut": "Prefix beats extensions — no deeper comparison needed.",
+   "difficulty": "easy",
+   "subtopic": "dict-idea",
+   "pattern": "dc-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "dict-idea-p10",
+   "q": "Arrange as in a dictionary: **Regal, Region, Regime, Register, Regret.** Which comes **last**?",
+   "figure": null,
+   "options": [
+    "Regime",
+    "Regret",
+    "Register",
+    "Region"
+   ],
+   "answer": 1,
+   "solution": "All share REG. 4th letters: a (Regal), i (Regime, Region, Register), r (Regret); a < i < r, so Regal first and Regret **last** — no 5th letter can rescue Register because its 4th letter (i) already loses to r. Order: Regal, Regime, Region, Register, Regret → last = **Regret**.",
+   "shortcut": "The 4th-letter sort (a < i < r) already fixes both ends of this list.",
+   "difficulty": "hard",
+   "subtopic": "dict-idea",
+   "pattern": "dc-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "dict-idea-p11",
+   "q": "Arrange as in a dictionary: **Honest, Honey, Hong, Honk, Honour.** Which word is exactly in the **middle**?",
+   "figure": null,
+   "options": [
+    "Honest",
+    "Hong",
+    "Honk",
+    "Honour"
+   ],
+   "answer": 1,
+   "solution": "All share HON. 4th letters: e (Honest, Honey), g (Hong), k (Honk), o (Honour); e < g < k < o. The e-pair: 5th letters e (Honest) vs y (Honey) → Honest first. Full order: Honest, Honey, Hong, Honk, Honour → middle (slot 3 of 5) = **Hong**.",
+   "shortcut": "Order the 4th letters e < g < k < o; slot 3 of five is the middle.",
+   "difficulty": "medium",
+   "subtopic": "dict-idea",
+   "pattern": "dc-p4",
+   "timeSec": 45
+  },
+  {
+   "id": "arrange-words-p01",
+   "q": "Arrange as in a dictionary: **Chalk, Charm, Chart, Chase, Chatter.** Which is the **fourth** word?",
+   "figure": null,
+   "options": [
+    "Chase",
+    "Charm",
+    "Chatter",
+    "Chart"
+   ],
+   "answer": 0,
+   "solution": "All share CHA. 4th letters: l (Chalk), r (Charm, Chart), s (Chase), t (Chatter); l < r < s < t. The r-pair: 5th letters m (Charm) vs t (Chart) → Charm first. Full order: Chalk, Charm, Chart, Chase, Chatter → fourth = **Chase**.",
+   "shortcut": "Sort the 4th letters; only the r-pair needs one more letter.",
+   "difficulty": "medium",
+   "subtopic": "arrange-words",
+   "pattern": "aw-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "arrange-words-p02",
+   "q": "Arrange as in a dictionary: **Colonel, Colony, Column, Colour, Colossus.** Which word comes **just after Colony**?",
+   "figure": null,
+   "options": [
+    "Colour",
+    "Colonel",
+    "Colossus",
+    "Column"
+   ],
+   "answer": 2,
+   "solution": "All share COL. 4th letters: o (Colonel, Colony, Colour, Colossus) vs u (Column) → the o-group first. 5th letters: n (Colonel, Colony), s (Colossus), u (Colour); n < s < u. The n-pair: 6th letters e (Colonel) vs y (Colony) → Colonel, Colony. Full order: Colonel, Colony, Colossus, Colour, Column → just after Colony = **Colossus**.",
+   "shortcut": "u sends Column last; inside the o-group sort 5th letters n < s < u.",
+   "difficulty": "hard",
+   "subtopic": "arrange-words",
+   "pattern": "aw-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "arrange-words-p03",
+   "q": "Which word comes **last** in the dictionary: **Panther, Pant, Pantomime, Pantry**?",
+   "figure": null,
+   "options": [
+    "Pantomime",
+    "Pant",
+    "Pantry",
+    "Panther"
+   ],
+   "answer": 2,
+   "solution": "Pant is the prefix of all → first. 5th letters of the rest: h (Panther), o (Pantomime), r (Pantry); h < o < r. Order: Pant, Panther, Pantomime, Pantry → last = **Pantry**.",
+   "shortcut": "Prefix first; then h < o < r lines up the rest.",
+   "difficulty": "easy",
+   "subtopic": "arrange-words",
+   "pattern": "aw-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "arrange-words-p04",
+   "q": "Arrange as in a dictionary: **Judge, Judo, Joust, Journal, Jostle.** Which word is **second from the right**?",
+   "figure": null,
+   "options": [
+    "Jostle",
+    "Journal",
+    "Judo",
+    "Judge"
+   ],
+   "answer": 3,
+   "solution": "2nd letters: o (Jostle, Journal, Joust) vs u (Judge, Judo); o < u → the o-group comes first. 3rd letters: s (Jostle) vs u (Journal, Joust) → Jostle first. 4th letters: r (Journal) vs s (Joust) → Journal, Joust. Full order: Jostle, Journal, Joust, Judge, Judo → slot 5 + 1 − 2 = 4 → **Judge**.",
+   "shortcut": "The 2nd letter splits J-o... before J-u... — check column two before assuming a shared stem.",
+   "difficulty": "hard",
+   "subtopic": "arrange-words",
+   "pattern": "aw-p4",
+   "timeSec": 45
+  },
+  {
+   "id": "arrange-words-p05",
+   "q": "Arrange as in a dictionary: **Decamp, Decay, Deceive, Decent, December.** Which word comes **immediately before Deceive**?",
+   "figure": null,
+   "options": [
+    "Decamp",
+    "Decent",
+    "Decay",
+    "December"
+   ],
+   "answer": 2,
+   "solution": "All share DEC. 4th letters: a (Decamp, Decay), e (the rest) → the a-pair first: 5th letters m (Decamp) vs y (Decay) → Decamp, Decay. The e-group by 5th letters: i (Deceive), m (December), n (Decent). Full order: Decamp, Decay, Deceive, December, Decent → before Deceive = **Decay**.",
+   "shortcut": "Sort the 4th letters a < e; the a-pair hides Decamp vs Decay at the 5th letter.",
+   "difficulty": "hard",
+   "subtopic": "arrange-words",
+   "pattern": "aw-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "arrange-words-p06",
+   "q": "Arrange as in a dictionary: **Statue, Status, Station, Statute, Stature.** Which is **third from the left**?",
+   "figure": null,
+   "options": [
+    "Stature",
+    "Statute",
+    "Status",
+    "Statue"
+   ],
+   "answer": 0,
+   "solution": "All share STAT. 5th letters: i (Station) vs u (the rest) → Station first. The u-group by 6th letters: e (Statue), r (Stature), s (Status), t (Statute); e < r < s < t. Full order: Station, Statue, Stature, Status, Statute → third = **Stature**.",
+   "shortcut": "Compare position 6: e < r < s < t — Statue, Stature, Status, Statute.",
+   "difficulty": "medium",
+   "subtopic": "arrange-words",
+   "pattern": "aw-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "arrange-words-p07",
+   "q": "Arrange as in a dictionary: **Mystery, Mystic, Myself, Myopia.** Which comes **first**?",
+   "figure": null,
+   "options": [
+    "Myopia",
+    "Myself",
+    "Mystic",
+    "Mystery"
+   ],
+   "answer": 0,
+   "solution": "MY common. 3rd letters: s (Mystery, Mystic, Myself) vs o (Myopia); o < s → **Myopia** first, whatever happens later. (Full order: Myopia, Myself, Mystery, Mystic.)",
+   "shortcut": "The earliest 3rd letter ends the contest at once — check the o-word first.",
+   "difficulty": "medium",
+   "subtopic": "arrange-words",
+   "pattern": "aw-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "letter-position-p01",
+   "q": "Which is the **15th letter** of the English alphabet?",
+   "figure": null,
+   "options": [
+    "N",
+    "M",
+    "P",
+    "O"
+   ],
+   "answer": 3,
+   "solution": "EJOTY anchor: O = 15. The 15th letter is **O**.",
+   "shortcut": "E=5, J=10, O=15, T=20, Y=25 — read anchors, never count from A.",
+   "difficulty": "easy",
+   "subtopic": "letter-position",
+   "pattern": "lp-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "letter-position-p02",
+   "q": "How many letters of the English alphabet are there **between G and S**?",
+   "figure": null,
+   "options": [
+    "11",
+    "13",
+    "10",
+    "12"
+   ],
+   "answer": 0,
+   "solution": "pos S = 19, pos G = 7. Letters between = 19 − 7 − 1 = **11** ('between' excludes both ends).",
+   "shortcut": "Difference of positions minus one.",
+   "difficulty": "easy",
+   "subtopic": "letter-position",
+   "pattern": "lp-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "letter-position-p03",
+   "q": "Which letter is **9th from the right** of the English alphabet?",
+   "figure": null,
+   "options": [
+    "Q",
+    "S",
+    "I",
+    "R"
+   ],
+   "answer": 3,
+   "solution": "k-th from the right = position 27 − k from the left: 27 − 9 = 18 → **R**.",
+   "shortcut": "Mirror number 27: from-right k ↔ from-left 27−k.",
+   "difficulty": "medium",
+   "subtopic": "letter-position",
+   "pattern": "lp-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "letter-position-p04",
+   "q": "What is the position of the letter **T from the right** of the English alphabet?",
+   "figure": null,
+   "options": [
+    "20th",
+    "7th",
+    "6th",
+    "8th"
+   ],
+   "answer": 1,
+   "solution": "T is 20th from the left (EJOTY anchor T=20). Mirror: 27 − 20 = **7th** from the right.",
+   "shortcut": "Anchor first, then 27 − position.",
+   "difficulty": "medium",
+   "subtopic": "letter-position",
+   "pattern": "lp-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "letter-position-p05",
+   "q": "Which letter is **4th to the right of the 12th letter from the left**?",
+   "figure": null,
+   "options": [
+    "Q",
+    "O",
+    "P",
+    "N"
+   ],
+   "answer": 2,
+   "solution": "12th letter = L; 4 steps right: 12 + 4 = 16 → **P**.",
+   "shortcut": "Convert to numbers, add right-steps, read off T=20 anchor (16 = T − 4).",
+   "difficulty": "medium",
+   "subtopic": "letter-position",
+   "pattern": "lp-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "letter-position-p06",
+   "q": "Which letter is **6th to the left of the 8th letter from the right**?",
+   "figure": null,
+   "options": [
+    "N",
+    "O",
+    "L",
+    "M"
+   ],
+   "answer": 3,
+   "solution": "8th from the right = 27 − 8 = 19 (S). 6 steps left: 19 − 6 = 13 → **M**.",
+   "shortcut": "Mirror first (27−8), then subtract the left-steps.",
+   "difficulty": "hard",
+   "subtopic": "letter-position",
+   "pattern": "lp-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "letter-position-p07",
+   "q": "The first half of the alphabet (A-M) is written in **reverse order**, followed by N-Z. Which letter is **10th from the left** of the new arrangement?",
+   "figure": null,
+   "options": [
+    "F",
+    "E",
+    "C",
+    "D"
+   ],
+   "answer": 3,
+   "solution": "New strip: M L K J I H G F E D C B A N O P ... Count to 10: M(1) L(2) K(3) J(4) I(5) H(6) G(7) F(8) E(9) D(10) → **D**.",
+   "shortcut": "Write the new strip once; then it is plain counting.",
+   "difficulty": "medium",
+   "subtopic": "letter-position",
+   "pattern": "lp-p4",
+   "timeSec": 45
+  },
+  {
+   "id": "letter-position-p08",
+   "q": "The alphabet is written as A to M, followed by **Z to N in reverse**. Which letter is **20th from the left** of this arrangement?",
+   "figure": null,
+   "options": [
+    "T",
+    "U",
+    "G",
+    "S"
+   ],
+   "answer": 0,
+   "solution": "New strip positions 1-13: A-M; positions 14-26: Z, Y, X, W, V, U, T, S ... 20th = 14 + 6 → count from Z: Z(14) Y(15) X(16) W(17) V(18) U(19) T(20) → **T**.",
+   "shortcut": "Position 20 sits 6 steps into the reversed half starting at Z (position 14).",
+   "difficulty": "hard",
+   "subtopic": "letter-position",
+   "pattern": "lp-p4",
+   "timeSec": 45
+  },
+  {
+   "id": "word-formation-p01",
+   "q": "All arrangements of the letters of **CAB** are listed as in a dictionary. What is the **rank of CAB**?",
+   "figure": null,
+   "options": [
+    "4",
+    "3",
+    "5",
+    "6"
+   ],
+   "answer": 2,
+   "solution": "Letters sorted: A, B, C. Position 1 (C): A and B are smaller → 2 × 2! = 4 arrangements come first. Positions 2-3 (A, B): nothing smaller. Rank = 4 + 1 = **5** (list: ABC, ACB, BAC, BCA, CAB).",
+   "shortcut": "Small words: write the 6-item list and count — same answer, zero algebra.",
+   "difficulty": "medium",
+   "subtopic": "word-formation",
+   "pattern": "wf-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "word-formation-p02",
+   "q": "The letters of **MONSTER** are arranged in all possible ways as in a dictionary. What is the **rank of MONSTER**?",
+   "figure": null,
+   "options": [
+    "999",
+    "1001",
+    "1010",
+    "1111"
+   ],
+   "answer": 1,
+   "solution": "Sorted letters: E, M, N, O, R, S, T. M: E smaller → 1 × 6! = 720. O (left M,E,N): E, N smaller → 2 × 4! = 48. N (left E): 1 × 3! = 6. S (left O,R): O, R smaller → 2 × 2! = 4. T (left R): 1 × 1! = 1. E: 0. Rank = 720 + 48 + 6 + 4 + 1 + 1 = **1001**.",
+   "shortcut": "Track the unused set after each fix; multiply the smaller-letter count by the remaining factorial.",
+   "difficulty": "hard",
+   "subtopic": "word-formation",
+   "pattern": "wf-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "word-formation-p03",
+   "q": "If the letters of **PRIME** are arranged in all possible ways as in a dictionary, what is the **rank of PRIME**?",
+   "figure": null,
+   "options": [
+    "94",
+    "96",
+    "92",
+    "119"
+   ],
+   "answer": 0,
+   "solution": "Sorted letters: E, I, M, P, R. P: E, I, M smaller → 3 × 4! = 72. R (left E, I, M): 3 smaller → 3 × 3! = 18. I (left E, M): 1 smaller → 1 × 2! = 2. M (left E): 1 × 1! = 1. E: 0. Rank = 72 + 18 + 2 + 1 + 1 = **94**.",
+   "shortcut": "720-then-720 style: the first letter usually contributes the bulk.",
+   "difficulty": "medium",
+   "subtopic": "word-formation",
+   "pattern": "wf-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "word-formation-p04",
+   "q": "If the letters of **TABLE** are rearranged in alphabetical order, how many letters **keep their original position**?",
+   "figure": null,
+   "options": [
+    "Three",
+    "One",
+    "None",
+    "Two"
+   ],
+   "answer": 1,
+   "solution": "TABLE vs its sorted form ABE L T: T-A-B-L-E under A-B-E-L-T → only L sits at position 4 in both → **one** letter.",
+   "shortcut": "Write one word under the other; count exact column matches only.",
+   "difficulty": "easy",
+   "subtopic": "word-formation",
+   "pattern": "wf-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "word-formation-p05",
+   "q": "If the letters of **SIGNED** are rearranged in alphabetical order, how many letters **keep their original position**?",
+   "figure": null,
+   "options": [
+    "One",
+    "Three",
+    "Two",
+    "None"
+   ],
+   "answer": 0,
+   "solution": "SIGNED vs its sorted form D-E-G-I-N-S → only G (position 3) matches → **one** letter.",
+   "shortcut": "Compare columns; one match is the usual exam answer — verify, don't assume.",
+   "difficulty": "medium",
+   "subtopic": "word-formation",
+   "pattern": "wf-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "word-formation-p06",
+   "q": "Which word **can be formed** from the letters of **CONVERSATION**?",
+   "figure": null,
+   "options": [
+    "TRANSPIRE",
+    "CREATION",
+    "CARPENTER",
+    "CONSUMER"
+   ],
+   "answer": 1,
+   "solution": "Bag: C, O×2, N×2, V, E, R, S, A, T, I. CREATION needs C, R, E, A, T, I, O, N — all present, no letter used twice. CARPENTER needs P (absent); TRANSPIRE needs P (absent); CONSUMER needs U and M (absent) → **CREATION**.",
+   "shortcut": "Hunt the rarest letter of each option first; P/U fail three options instantly.",
+   "difficulty": "medium",
+   "subtopic": "word-formation",
+   "pattern": "wf-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "word-formation-p07",
+   "q": "Which word **cannot be formed** from the letters of **DISTRIBUTION**?",
+   "figure": null,
+   "options": [
+    "BIRD",
+    "BRUSH",
+    "STUDIO",
+    "ROBUST"
+   ],
+   "answer": 1,
+   "solution": "Bag: D, I×2, S, T×2, R, B, U, O, N. BRUSH needs **H**, which is not in the word → cannot be formed. STUDIO, BIRD and ROBUST use only available letters within their counts.",
+   "shortcut": "One missing letter is enough — scan for absent letters first.",
+   "difficulty": "easy",
+   "subtopic": "word-formation",
+   "pattern": "wf-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "word-formation-p08",
+   "q": "All arrangements of the letters of **BAT** are listed in dictionary order. Which is the **4th** word?",
+   "figure": null,
+   "options": [
+    "TAB",
+    "ATB",
+    "BTA",
+    "BAT"
+   ],
+   "answer": 2,
+   "solution": "Write the six: ABT, ATB, BAT, BTA, TAB, TBA. The 4th is **BTA**.",
+   "shortcut": "Six arrangements, five seconds — write them out, no formula needed.",
+   "difficulty": "medium",
+   "subtopic": "word-formation",
+   "pattern": "wf-p4",
+   "timeSec": 45
+  },
+  {
+   "id": "word-formation-p09",
+   "q": "All arrangements of **FAN** are listed in dictionary order. Which word comes **immediately after AFN**?",
+   "figure": null,
+   "options": [
+    "NAF",
+    "FNA",
+    "FAN",
+    "ANF"
+   ],
+   "answer": 3,
+   "solution": "The list: AFN, ANF, FAN, FNA, NAF, NFA. After AFN = **ANF**.",
+   "shortcut": "Same first letter → the deeper letter decides the neighbour.",
+   "difficulty": "medium",
+   "subtopic": "word-formation",
+   "pattern": "wf-p4",
+   "timeSec": 45
+  },
+  {
+   "id": "arrange-words-p08",
+   "q": "Arrange as in a dictionary: **Silver, Silk, Sinful, Single.** Which word is **second from the right**?",
+   "figure": null,
+   "options": [
+    "Sinful",
+    "Silver",
+    "Single",
+    "Silk"
+   ],
+   "answer": 0,
+   "solution": "All share SI. 3rd letters: l (Silk, Silver) vs n (Sinful, Single); l < n. The l-pair: 4th k (Silk) vs v (Silver) → Silk, Silver. The n-pair: 4th f (Sinful) vs g (Single) → Sinful, Single. Full order: Silk, Silver, Sinful, Single → slot 4 + 1 − 2 = 3 → **Sinful**.",
+   "shortcut": "Sort the 3rd letters l < n; then slot N+1−k for the right-count.",
+   "difficulty": "medium",
+   "subtopic": "arrange-words",
+   "pattern": "aw-p4",
+   "timeSec": 45
   }
  ]
 }
