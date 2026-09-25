@@ -63,6 +63,57 @@
     "Forgetting the 5/18 conversion and dividing metres by km/h.",
     "In early/late problems, using $\\frac{3}{4}t$ as the new time when it is $\\frac{4}{3}t$.",
     "Mixing minutes and hours inside one equation."
+   ],
+   "notes": "### The spine: $D = S \\times T$\nEvery question in this topic is one equation in different clothes:\n$$\\text{Distance} = \\text{Speed} \\times \\text{Time}, \\qquad S = \\frac{D}{T}, \\qquad T = \\frac{D}{S}$$\nAsk at every question: \"which two of the three do I know?\" Speed and time are inversely proportional for a fixed distance — if the speed drops to $\\frac34$, the time becomes $\\frac43$ of the old time. This inverse reflex solves a surprising number of questions on its own.\n\n### Unit conversion — the 5/18 rule\nTrain lengths are in metres and times in seconds, but speeds are usually quoted in km/h. Convert first, always:\n$$1 \\text{ km/h} = \\frac{5}{18} \\text{ m/s}, \\qquad 1 \\text{ m/s} = \\frac{18}{5} \\text{ km/h}$$\nKeep the friendly table by heart: 36 km/h = 10 m/s, 54 = 15, 72 = 20, 90 = 25, 108 = 30 m/s. To convert by hand, divide by 18 first when using $\\frac5{18}$ (54 → 3 → 5×3 = 15).\n\n### Average speed — a division, not an average\n$$\\text{Average speed} = \\frac{\\text{total distance}}{\\text{total time}}$$\nIt is the average of the speeds **only when the times are equal**. Distances are more often equal (out and back), and then the answer is the harmonic mean:\n$$\\bar{S} = \\frac{2ab}{a + b}$$\n40 km/h out, 60 km/h back → $\\frac{2 \\times 2400}{100} = 48$ km/h, not 50. The equal-distance average always sits **below** the arithmetic mean, and below the mid-value of the two speeds. Three equal legs at a, b, c give $\\frac{3}{\\frac1a + \\frac1b + \\frac1c}$ — e.g. 20, 30, 60 → $\\frac{3}{\\frac{3+2+1}{60}} = 30$ km/h.\nFor legs of **different lengths**, go back to basics: add the distances, add the times, divide.\n\n### \"Late by…\" and \"early by…\" questions\nThe distance is the same in both runs, so equate the two time expressions. Walking at $\\frac34$ of the usual speed makes the time $\\frac43 t$; the lateness is $\\frac43 t - t = \\frac{t}{3}$. So \"20 minutes late\" → $t = 60$ minutes. With two speeds s₁ and s₂ and a stated gap between the arrival times:\n$$\\frac{d}{s_1} - \\frac{d}{s_2} = \\text{gap (in hours)}$$\ne.g. 5 min late at 4 km/h, 10 min early at 5 km/h → $\\frac{d}{4} - \\frac{d}{5} = \\frac{15}{60} = \\frac14$ → $d = 5$ km. Add the two gaps when one is late and the other early; subtract when both are late.\n\n### Percentage shortcuts\nSpeed 20% more → time $\\frac{5}{6}$ of before (7 min early on a 42-min run, etc.). Speed 20% less → time $\\frac54$ of before. Convert every \"reduces his speed to ¾\" into the time multiplier $\\frac43$ before writing any equation.\n\n### Common traps\n- Averaging the two speeds for equal distances (50 instead of 48).\n- Dividing metres by km/h — no conversion done.\n- Reading \"speed is ¾ of usual\" as \"time is ¾ of usual\" (it is 4/3).\n- Mixing minutes and hours inside one equation — convert to hours (or fractions of an hour).\n\n### Quick revision\n- $D = ST$; speed and time are inverse for fixed distance.\n- km/h → m/s: × 5/18 (table: 36→10, 54→15, 72→20, 90→25).\n- Equal distances: $\\frac{2ab}{a+b}$; three equal legs: $3 \\div (\\frac1a+\\frac1b+\\frac1c)$.\n- Late/early: $\\frac{d}{s_1} - \\frac{d}{s_2} =$ time gap in hours.\n- Speed ×(p/q) ⇒ time ×(q/p).\n",
+   "patterns": [
+    {
+     "id": "tsd-p1",
+     "name": "Direct distance–speed–time (with conversion)",
+     "frequency": "very common",
+     "howToSpot": "Two of distance, speed and time are given in mixed units; the third is asked (very often with a km/h ↔ m/s conversion built in).",
+     "formula": "S = \\frac{D}{T}, \\qquad \\text{km/h} \\times \\frac{5}{18} = \\text{m/s}",
+     "logic": "1. Put all quantities in one unit system (metres and seconds, or km and hours).\n2. Apply $D = S \\times T$ in the direction you need.\n3. Convert the answer back to the unit the options use.\n\nWhy: the formula is only consistent when distance, speed and time speak the same units.",
+     "example": {
+      "q": "A train covers 450 metres in 30 seconds. Its speed in km/h is:",
+      "solution": "$\\frac{450}{30} = 15$ m/s → $15 \\times \\frac{18}{5} = 54$ km/h."
+     }
+    },
+    {
+     "id": "tsd-p2",
+     "name": "Average speed over legs of a journey",
+     "frequency": "very common",
+     "howToSpot": "A journey is split into legs (often out-and-back at different speeds, or different speeds for different durations); the average speed is asked.",
+     "formula": "\\bar{S} = \\frac{D_{\\text{total}}}{T_{\\text{total}}}, \\quad \\text{equal distances: } \\frac{2ab}{a+b}",
+     "logic": "1. Equal distances (typical round trip): use $\\frac{2ab}{a+b}$; three equal legs: $3 \\div (\\frac1a+\\frac1b+\\frac1c)$.\n2. Equal times: the plain average of the speeds.\n3. Otherwise: total distance ÷ total time, computing each leg's time first.\n\nWhy: average speed is a mean over TIME; weighting by time is exactly what the harmonic mean does.",
+     "example": {
+      "q": "A car goes to a town at 40 km/h and returns along the same road at 60 km/h. The average speed for the round trip is:",
+      "solution": "$\\frac{2 \\times 40 \\times 60}{40 + 60} = 48$ km/h — not 50."
+     }
+    },
+    {
+     "id": "tsd-p3",
+     "name": "Fraction of usual speed → late/early",
+     "frequency": "very common",
+     "howToSpot": "'Walking at 3/4 (or 4/5) of his usual speed he is 20 minutes late' — the usual time, or the usual speed, is asked.",
+     "formula": "\\text{new time} = \\frac{1}{f}\\, t \\ \\Rightarrow\\ \\text{late} = \\left(\\frac{1}{f} - 1\\right) t",
+     "logic": "1. Speed fraction f of usual ⇒ time is $t/f$.\n2. Lateness $= t(\\frac1f - 1)$; set it equal to the given minutes and solve for t.\n3. The distance can also be extracted if the usual speed is given.\n\nWhy: for the same distance, speed and time are inversely proportional.",
+     "example": {
+      "q": "Walking at $\\frac{4}{5}$ of his usual speed, a man reaches his office 10 minutes late. His usual time is:",
+      "solution": "New time $= \\frac54 t$ → late $= \\frac{t}{4} = 10$ → $t = 40$ minutes."
+     }
+    },
+    {
+     "id": "tsd-p4",
+     "name": "Two fixed speeds, both 'off schedule' → distance",
+     "frequency": "common",
+     "howToSpot": "'At s₁ km/h he is x minutes late; at s₂ km/h he is y minutes early' — the distance (or the exact time) is asked.",
+     "formula": "\\frac{d}{s_1} - \\frac{d}{s_2} = \\frac{x + y}{60}",
+     "logic": "1. Both times are compared with the SAME (unknown) schedule time, so subtract the two travel times.\n2. The gap between them = late + early, converted to hours.\n3. Solve $d\\left(\\frac{1}{s_1} - \\frac{1}{s_2}\\right) = \\text{gap}$ for d.\n\nWhy: writing both time expressions against a common schedule cancels the unknown schedule time.",
+     "example": {
+      "q": "Walking at 4 km/h a student reaches school 5 minutes late; walking at 5 km/h he reaches 10 minutes early. The distance to the school is:",
+      "solution": "$\\frac{d}{4} - \\frac{d}{5} = \\frac{15}{60} = \\frac14$ → $\\frac{d}{20} = \\frac14$ → $d = 5$ km."
+     }
+    }
    ]
   },
   {
@@ -118,6 +169,57 @@
     "Using only one train's length when two trains cross each other.",
     "Applying relative speed to a stationary pole (relative speed = train's own speed).",
     "Summing an infinite shuttle zigzag instead of multiplying speed by the meeting time."
+   ],
+   "notes": "### Relative speed in one line\nWhenever two moving things matter at once — meeting, crossing, overtaking, catching up — work with the **gap** and the **relative speed**:\n$$\\text{same direction: } S_{\\text{rel}} = S_1 - S_2 \\qquad \\text{opposite directions: } S_{\\text{rel}} = S_1 + S_2$$\nSame direction means the gap closes slowly (subtract); opposite directions make it close fast (add). The distance to cover is the current gap — for two trains crossing each other, the gap to \"cross completely\" is the sum of their lengths.\n\n### Meeting problems (opposite directions)\nTwo objects start towards each other from a gap D. They meet after\n$$t = \\frac{D}{S_1 + S_2}$$\n240 km apart at 40 and 40 km/h → 3 hours. The meeting **point** is then fixed by one side alone: distance from A's start $= S_A \\times t$. Speeds 40 and 60 from 300 km apart: meet after 3 hours, 120 km from A's end.\n\n### Overtaking (same direction)\nA faster object closes a gap G at $S_1 - S_2$:\n$$t = \\frac{G}{S_1 - S_2}$$\nFor trains the gap to clear is the two lengths together (the back of the faster must pass the front of the slower). For a cyclist or a moving man being crossed, the man is a point — only the train's own length counts.\n\n### Train vs a walking man\nThe man's own size is zero. Only his speed enters: same direction → subtract it from the train's speed; opposite → add. A 120 m train at 54 km/h passing a man walking the same way at 6 km/h: relative speed 48 km/h $= \\frac{40}{3}$ m/s → $120 \\div \\frac{40}{3} = 9$ seconds.\n\n### Delayed starts\nSomeone leaves later — the gap is simply the distance the first runner covered alone. A starts at 9 a.m. at 30 km/h; B starts at 10 a.m. at 40 km/h in pursuit: gap at 10 a.m. = 30 km, closed at 10 km/h → 3 hours → 1 p.m., at $40 \\times 3 = 120$ km from the start.\n\n### The shuttle (bird) trick\nA bird flies back and forth between two approaching trains \"until they meet\". Do NOT sum the zigzags — the bird is simply flying the whole time, so\n$$\\text{distance} = \\text{bird's speed} \\times \\text{meeting time}$$\nTrains 100 km apart at 20 and 30 km/h meet in 2 h; a bird at 60 km/h covers $60 \\times 2 = 120$ km. One line, no series.\n\n### Sanity habits\n- Opposite directions: think \"sum\" before touching numbers.\n- A gap must shrink: if your relative speed came out negative, you subtracted in the wrong order (take the difference of magnitudes).\n- Convert km/h to m/s before dividing metres.\n\n### Common traps\n- Adding speeds when both move the same way.\n- Using one train's length only, when two trains cross each other.\n- In delayed-start problems, timing from the wrong start moment.\n- Summing an endless zigzag instead of speed × meeting time.\n\n### Quick revision\n- Same way: subtract; opposite ways: add.\n- Meet time = gap ÷ (sum of speeds); meeting point from either side.\n- Overtake = gap ÷ (difference of speeds); two trains → both lengths.\n- Late starter: gap = distance already covered.\n- Shuttle distance = speed × meeting time.\n",
+   "patterns": [
+    {
+     "id": "tsd-p5",
+     "name": "Two vehicles moving towards each other",
+     "frequency": "very common",
+     "howToSpot": "Two buses/trains/people start towards each other from a known distance; the meeting time (or meeting point) is asked.",
+     "formula": "t = \\frac{\\text{gap}}{S_1 + S_2}, \\qquad d_{\\text{from A}} = S_1 \\times t",
+     "logic": "1. Add the speeds — opposite directions always sum.\n2. Meeting time = initial gap ÷ combined speed.\n3. For the meeting point, multiply one vehicle's speed by the meeting time.\n\nWhy: the two vehicles together swallow the gap at the sum of their speeds.",
+     "example": {
+      "q": "Two towns are 150 km apart. A car leaves one town for the other at 40 km/h and at the same time another car leaves the opposite town at 60 km/h. After how long do they meet?",
+      "solution": "$\\frac{150}{40 + 60} = 1.5$ hours (meeting point: 60 km from the first town)."
+     }
+    },
+    {
+     "id": "tsd-p6",
+     "name": "Same direction — catch up / overtake",
+     "frequency": "very common",
+     "howToSpot": "A chase or an overtaking move in the same direction; the time to catch up or the crossing time of two trains is asked.",
+     "formula": "t = \\frac{\\text{gap}}{S_{\\text{fast}} - S_{\\text{slow}}}",
+     "logic": "1. Subtract the speeds — same direction always differences.\n2. Gap = the stated distance, or the sum of both train lengths.\n3. Time = gap ÷ relative speed.\n\nWhy: viewed from the slower object, the faster one approaches at the difference of speeds.",
+     "example": {
+      "q": "Two trains of lengths 200 m and 150 m run in the same direction at 63 km/h and 45 km/h. The time the faster train takes to completely cross the slower one is:",
+      "solution": "$S_{\\text{rel}} = 18$ km/h $= 5$ m/s; total length 350 m → $\\frac{350}{5} = 70$ seconds."
+     }
+    },
+    {
+     "id": "tsd-p7",
+     "name": "Train crossing a moving man",
+     "frequency": "common",
+     "howToSpot": "A train crosses a man walking/running/cycling — alongside or opposite; the crossing time is asked.",
+     "formula": "t = \\frac{L_{\\text{train}}}{S_{\\text{train}} \\pm S_{\\text{man}}}",
+     "logic": "1. The man is a point: only the train's own length has to pass.\n2. Opposite direction → add the speeds; same direction → subtract.\n3. Convert to m/s, divide the train's length by the relative speed.\n\nWhy: the man's size adds no length, only his speed changes how fast the train passes him.",
+     "example": {
+      "q": "A 120 m long train running at 54 km/h crosses a man walking in the same direction at 6 km/h in:",
+      "solution": "$S_{\\text{rel}} = 48$ km/h $= \\frac{40}{3}$ m/s → $120 \\times \\frac{3}{40} = 9$ seconds."
+     }
+    },
+    {
+     "id": "tsd-p8",
+     "name": "Delayed start / shuttle-till-meeting",
+     "frequency": "common",
+     "howToSpot": "The second person starts later (gap = what the first already covered), or a bird/object shuttles between two approaching vehicles until they meet.",
+     "formula": "\\text{gap} = S_{\\text{first}} \\times t_{\\text{alone}}, \\qquad \\text{shuttle distance} = S_{\\text{bird}} \\times t_{\\text{meet}}",
+     "logic": "1. Delayed start: compute the head start, then chase it at the difference of speeds; add the times if asked from the very beginning.\n2. Shuttle: find the meeting time of the two vehicles first (sum of speeds), then multiply by the shuttle's speed.\n3. Never sum the zigzags.\n\nWhy: the shuttling object simply flies for the whole duration, whatever its path looks like.",
+     "example": {
+      "q": "A train leaves a station at 60 km/h. Two hours later a second train leaves the same station along the same track at 90 km/h. How far from the station does the second train catch the first?",
+      "solution": "Head start $= 120$ km; gap closes at 30 km/h → 4 h after the start of the second train.\nDistance $= 90 \\times 4 = 360$ km."
+     }
+    }
    ]
   },
   {
@@ -173,6 +275,57 @@
     "Adding the platform length when crossing a pole.",
     "Leaving the speed in km/h while lengths are in metres.",
     "Using the relative speed of a stationary object as the train's speed MINUS zero incorrectly in same-direction cases (it is simply the train's speed)."
+   ],
+   "notes": "### What \"crossing\" means\nA train \"crosses\" an object when its **front end reaches** the object and its **back end leaves it**. So the distance travelled during a crossing is always measured from the train's own front to its own back over the object:\n\n- pole, man, signal post, tree — a point object → distance = **train's own length** $L$;\n- platform, bridge, tunnel — distance = $L + \\text{platform length}$;\n- another train — distance = $L_1 + L_2$.\n\nThen simply $t = \\dfrac{\\text{distance}}{\\text{speed}}$ (or the relative speed, if both move).\n\n### Pole / man / signal: the train's own length\n$$t = \\frac{L}{S} \\qquad \\text{or} \\qquad L = S \\times t$$\nA 180 m train crossing a pole in 9 s runs at $\\frac{180}{9} = 20$ m/s $= 72$ km/h. Every train question that gives a pole crossing is handing you the train's length-speed pair for free.\n\n### Platform / bridge: add the platform\n$$t = \\frac{L + P}{S}$$\nTwo-step strategy: get $S$ (or $L$) from the pole crossing first, then use the platform crossing for the remaining unknown. A train crosses a pole in 12 s and a 270 m platform in 30 s: in the extra $30 - 12 = 18$ s it covers exactly the extra 270 m → $S = 15$ m/s $= 54$ km/h, and $L = 15 \\times 12 = 180$ m. This \"subtract the times, the difference is the platform\" trick avoids writing two equations.\n\n### Train vs train\n- **Opposite directions**: $t = \\dfrac{L_1 + L_2}{S_1 + S_2}$ — the gap closes fast.\n- **Same direction**: $t = \\dfrac{L_1 + L_2}{|S_1 - S_2|}$ — slow, uses the difference.\n- Crossing a **point** on the other train (or a man on it): only the crossing train's own length is used, at the relative speed.\n\n### Two crossings → solve two unknowns\nWhen neither $L$ nor $S$ is given directly, two crossings give two equations. Bridges of 200 m and 400 m crossed in 20 s and 30 s:\n$$\\frac{L + 200}{S} = 20, \\qquad \\frac{L + 400}{S} = 30$$\nSubtract: $\\frac{200}{S} = 10$ → $S = 20$ m/s, $L = 20 \\times 20 - 200 = 200$ m. Any two fixed structures work the same way — subtract first, the train length drops out.\n\n### Common traps\n- Using only the train's length when a platform is mentioned (or only the platform — both are wrong).\n- Forgetting the other train's length when two trains cross each other.\n- Dividing metres by a km/h speed — convert with $\\frac{5}{18}$ first.\n- In same-direction crossings, adding the speeds instead of subtracting.\n\n### Quick revision\n- Point object: $t = L/S$. Platform: $t = (L+P)/S$. Two trains: $t = (L_1+L_2)/(S_1 \\pm S_2)$.\n- Pole in $t_p$ s and platform $P$ in $t$ s → $S = \\frac{P}{t - t_p}$, $L = S\\, t_p$.\n- Two bridges: subtract the two equations — $\\Delta L / \\Delta t = S$.\n- km/h → m/s × 5/18 before dividing lengths.\n",
+   "patterns": [
+    {
+     "id": "tsd-p9",
+     "name": "Train crossing a pole / man / signal",
+     "frequency": "very common",
+     "howToSpot": "A single train crosses a pole, a man standing, or a signal post; length, speed or time is asked.",
+     "formula": "L = S \\times t",
+     "logic": "1. A pole is a point: the train covers only its own length.\n2. Any two of $L$, $S$, $t$ determine the third: $L = St$, $S = L/t$, $t = L/S$.\n3. Convert with $\\frac{5}{18}$ if the units disagree.\n\nWhy: crossing a point object begins when the engine reaches it and ends when the guard's van leaves it — exactly one train-length of travel.",
+     "example": {
+      "q": "A 210 m long train crosses a pole in 12 seconds. The length of a platform it crosses in 30 seconds at the same speed is:",
+      "solution": "$S = \\frac{210}{12} = 17.5$ m/s. Platform: $17.5 \\times 30 = 525$ m total → platform $= 525 - 210 = 315$ m."
+     }
+    },
+    {
+     "id": "tsd-p10",
+     "name": "Train crossing a platform / bridge / tunnel",
+     "frequency": "very common",
+     "howToSpot": "A train crosses a structure of given length; time, speed or the structure's length is asked (often paired with a pole crossing).",
+     "formula": "t = \\frac{L + P}{S}, \\qquad S = \\frac{P}{t_{\\text{plat}} - t_{\\text{pole}}}",
+     "logic": "1. Write the distance as $L + P$ — the train must travel its own length plus the platform.\n2. If a pole crossing is also given, subtract the two times: the extra time covers exactly the platform length → $S = \\frac{P}{\\Delta t}$.\n3. Then $L = S \\times t_{\\text{pole}}$ if needed.\n\nWhy: during the extra time between the two crossings, the engine end travels exactly one platform-length more.",
+     "example": {
+      "q": "A train crosses a platform of length 180 m in 20 seconds and a pole in 8 seconds. The length of the train is:",
+      "solution": "$\\frac{L + 180}{L/8} = 20$ → $8L + 1440 = 20L$ → $L = 120$ m. (Speed $= 15$ m/s.)"
+     }
+    },
+    {
+     "id": "tsd-p11",
+     "name": "Two trains crossing each other",
+     "frequency": "very common",
+     "howToSpot": "Two trains cross each other — opposite or same direction; the crossing time or a length/speed ratio is asked.",
+     "formula": "t = \\frac{L_1 + L_2}{S_1 + S_2}\\ (\\text{opp}), \\qquad t = \\frac{L_1 + L_2}{|S_1 - S_2|}\\ (\\text{same})",
+     "logic": "1. Distance is always the SUM of both lengths.\n2. Opposite directions → add the speeds; same direction → subtract.\n3. If equal lengths cross in $t_o$ s opposite and $t_s$ s in the same direction, the speed ratio is $\\frac{t_s + t_o}{t_s - t_o}$.\n\nWhy: the last point follows from $x+y = v_o t_o$ and $x+y = v_s t_s$, so $v_o/v_s = t_s/t_o$, and $\\frac{v_o - v_s}{v_o + v_s} = \\frac{t_s - t_o}{t_s + t_o}$.",
+     "example": {
+      "q": "Two trains of equal length cross each other completely in 12 seconds when moving in opposite directions and in 36 seconds when moving in the same direction. The ratio of their speeds is:",
+      "solution": "$\\frac{v_{\\text{fast}}}{v_{\\text{slow}}} = \\frac{36 + 12}{36 - 12} = \\frac{48}{24} = 2:1$."
+     }
+    },
+    {
+     "id": "tsd-p12",
+     "name": "Two crossings → two unknowns",
+     "frequency": "common",
+     "howToSpot": "Neither the train's length nor its speed is given directly; two different crossings (two bridges, or a man and a platform) provide two equations.",
+     "formula": "\\frac{L + A}{S} = t_1, \\qquad \\frac{L + B}{S} = t_2",
+     "logic": "1. Set up one equation per crossing.\n2. Subtract them — the unknown length $L$ cancels or drops to $\\Delta L = S\\,\\Delta t$.\n3. Back-substitute to get $L$.\n\nWhy: subtracting eliminates one unknown immediately; the structures' length difference is covered in the time difference.",
+     "example": {
+      "q": "A train crosses two bridges of lengths 200 m and 400 m in 20 seconds and 30 seconds respectively. The length of the train is:",
+      "solution": "Subtract: $\\frac{400 - 200}{30 - 20} = 20$ m/s. Then $L = 20 \\times 20 - 200 = 200$ m."
+     }
+    }
    ]
   },
   {
@@ -228,6 +381,57 @@
     "Recovering b as $\\frac{u - v}{2}$ instead of $\\frac{u + v}{2}$.",
     "Adding the distances before dividing (legs have different effective speeds — never merge them).",
     "Ignoring the stream when the question asks for the boat's own speed."
+   ],
+   "notes": "### Downstream and upstream\nA current of speed $s$ pushes a boat whose own speed in still water is $b$:\n$$u = b + s \\ \\text{(downstream)}, \\qquad v = b - s \\ \\text{(upstream)}$$\nMemorise the recovery formulas — almost every answer routes through them:\n$$b = \\frac{u + v}{2}, \\qquad s = \\frac{u - v}{2}$$\nDownstream 15 and upstream 10 → boat 12.5 km/h, stream 2.5 km/h. Since $b > s$ for forward progress, $u > v$ always: the bigger of the two given speeds is downstream.\n\n### Trip questions\nEach leg is plain $D = S \\times T$ with the leg's effective speed. 42 km upstream in a boat with $b = 18$, $s = 6$: time $= \\frac{42}{12} = 3.5$ h. Name the two leg speeds first, then divide — that is the whole method.\n\n### Round trips\nA trip down and back the same distance takes longer than the same distance in still water, because the stream steals more time going up than it gives going down. Two shapes appear:\n1. **Both times given, equal distances**: $\\frac{d}{u} + \\frac{d}{v} = T_{\\text{total}}$, or if the times differ, $d = u\\,t_1 = v\\,t_2$. Downstream 4 h and upstream 6 h for the same distance with downstream speed 6 km/h → $d = 24$ km, $v = 4$, $s = 1$.\n2. **Stream given, one time known**: work the missing leg speed out of $b \\pm s$.\n\nAlso worth knowing: for equal distance both ways, the average speed is $\\frac{2uv}{u+v}$ — the harmonic mean again, always less than $b$.\n\n### Two double trips → two linear equations\nThe hardest common shape: two journeys with different mixes of up- and downstream distances and their total times. With $a = \\frac1v$ and $c = \\frac1u$ as unknowns, each trip gives one linear equation — e.g. 8 km up and 16 km down in 4 h, 3 km up and 8 km down in 1¾ h:\n$$\\frac{8}{v} + \\frac{16}{u} = 4, \\qquad \\frac{3}{v} + \\frac{8}{u} = \\frac74$$\nDoubling the second and subtracting gives $\\frac{2}{v} = \\frac12$ → $v = 4$, then $u = 8$ → $b = 6$, $s = 2$. Substituting reciprocals turns a messy pair into a clean one.\n\n### Still-water and drifting objects\nA floating log, a cork or a swimmer who stops rowing moves at exactly the stream's speed. Two consequences:\n- time to drift distance $d$ = $\\frac{d}{s}$ (1 km wide river crossed straight with $b = 4$, $s = 3$ takes 15 min, drifting 0.75 km);\n- **downstream time = still-water time + drift time** for the same stretch: $t_d = \\frac{d}{b} + \\frac{d}{s}$, and $t_u = \\frac{d}{b} - \\frac{d}{s}$.\n\n### Common traps\n- Swapping $u$ and $v$ (downstream is always the FASTER leg).\n- Reporting $b$ when the stream was asked, or vice versa — check the question.\n- Adding speeds on the return leg.\n- Missing that a floating object's speed is $s$, not zero.\n\n### Quick revision\n- $u = b + s$, $v = b - s$; $b = \\frac{u+v}{2}$, $s = \\frac{u-v}{2}$.\n- Leg time = leg distance ÷ leg speed; label each leg fast/slow first.\n- Equal-distance round trip: $\\bar S = \\frac{2uv}{u+v}$; $t_u > t_d$ always.\n- Two trips → equations in $\\frac1u, \\frac1v$.\n- Log/cork speed = $s$; upstream and downstream times differ by $t_u - t_d = \\frac{2ds}{b^2 - s^2}$.\n",
+   "patterns": [
+    {
+     "id": "tsd-p13",
+     "name": "Boat and stream from u and v",
+     "frequency": "very common",
+     "howToSpot": "Downstream and upstream speeds are given; the boat's still-water speed or the stream's speed is asked.",
+     "formula": "b = \\frac{u + v}{2}, \\qquad s = \\frac{u - v}{2}",
+     "logic": "1. Identify which speed is downstream (the larger one).\n2. Average the two for the boat; take the half-difference for the stream.\n3. Sanity check: $b$ must exceed $s$.\n\nWhy: $u = b + s$ and $v = b - s$ add and subtract to isolate $b$ and $s$.",
+     "example": {
+      "q": "A boat goes downstream at 15 km/h and upstream at 10 km/h. The speed of the stream is:",
+      "solution": "$s = \\frac{15 - 10}{2} = 2.5$ km/h (boat: $\\frac{25}{2} = 12.5$ km/h)."
+     }
+    },
+    {
+     "id": "tsd-p14",
+     "name": "Single leg — time or distance",
+     "frequency": "very common",
+     "howToSpot": "Boat speed and stream speed (or both leg speeds) are known; the time for one downstream/upstream leg, or the distance covered in a given time, is asked.",
+     "formula": "t = \\frac{D}{b \\pm s}",
+     "logic": "1. Decide the direction: downstream uses $b + s$, upstream uses $b - s$.\n2. Time = leg distance ÷ leg speed (or distance = speed × time).\n3. Keep units consistent before dividing.\n\nWhy: each leg is just straight $D = S \\times T$ with the current added or removed.",
+     "example": {
+      "q": "A boat's speed in still water is 18 km/h and the stream runs at 6 km/h. The time it takes to go 42 km upstream is:",
+      "solution": "$v = 18 - 6 = 12$ km/h → $t = \\frac{42}{12} = 3.5$ hours."
+     }
+    },
+    {
+     "id": "tsd-p15",
+     "name": "Round trip / equal-distance legs",
+     "frequency": "common",
+     "howToSpot": "The same distance is covered both ways; total time, the stream speed, or the distance is asked from partial information.",
+     "formula": "\\frac{d}{u} + \\frac{d}{v} = T, \\qquad d = u\\,t_1 = v\\,t_2",
+     "logic": "1. Equal distance on both legs: equate the two expressions for $d$ ($u t_1 = v t_2$) when the times differ.\n2. Otherwise use the total-time equation $\\frac{d}{u} + \\frac{d}{v} = T$.\n3. Finish with $b = \\frac{u+v}{2}$, $s = \\frac{u-v}{2}$.\n\nWhy: the same $d$ anchors both legs, giving one equation per unknown.",
+     "example": {
+      "q": "A boat covers a certain distance downstream in 4 hours and returns upstream in 6 hours. If its downstream speed is 6 km/h, the speed of the stream is:",
+      "solution": "$d = 6 \\times 4 = 24$ km; $v = \\frac{24}{6} = 4$ km/h; $s = \\frac{6 - 4}{2} = 1$ km/h."
+     }
+    },
+    {
+     "id": "tsd-p16",
+     "name": "Drifting objects / two double trips",
+     "frequency": "common",
+     "howToSpot": "A log/cork drifts with the stream, or two journeys with different up/down mixes and total times are given; the boat speed (or stream speed) is asked.",
+     "formula": "\\text{drift time} = \\frac{d}{s}; \\qquad \\frac{A}{v} + \\frac{B}{u} = T_1, \\ \\frac{C}{v} + \\frac{D}{u} = T_2",
+     "logic": "1. Drift: a floating object moves at the stream's speed; time = distance ÷ s. A rower crossing straight takes $t = \\frac{\\text{width}}{b}$ and drifts $s \\times t$.\n2. Two double trips: substitute $a = \\frac1v$, $c = \\frac1u$ to get two linear equations; solve for $u, v$, then $b, s$.\n3. Scale one equation to match a coefficient, then subtract.\n\nWhy: reciprocals linearise the equations, and the drift is independent of the rowing.",
+     "example": {
+      "q": "A man can row 8 km upstream and 16 km downstream in 4 hours; he can also row 3 km upstream and 8 km downstream in 1 hour 45 minutes. His speed in still water is:",
+      "solution": "In $\\frac1u, \\frac1v$: $8\\cdot\\frac1v + 16\\cdot\\frac1u = 4$ and $3\\cdot\\frac1v + 8\\cdot\\frac1u = \\frac74$.\nTwice the second minus the first gives $\\frac1v = \\frac14$ → $v = 4$; then $\\frac1u = \\frac18$ → $u = 8$.\nSo $b = \\frac{4+8}{2} = 6$ km/h."
+     }
+    }
    ]
   },
   {
@@ -283,6 +487,57 @@
     "Confusing a time margin with a distance margin.",
     "Applying the start on the wrong runner ('A gives B a start' ⇒ B begins ahead, running less).",
     "Dividing race length by the wrong runner's time when extracting speeds."
+   ],
+   "notes": "### The language of races\nEvery race question uses one of four phrases. Decode them first, then it is plain arithmetic:\n\n- \"**A beats B by x metres**\" — when A finishes the race (covers the full distance D), B is still x m from the finish, having run $D - x$.\n- \"**A beats B by t seconds**\" — A finishes, and B needs t more seconds to finish.\n- \"**A gives B a start of x metres**\" — B starts x m ahead of the common start line, so B runs only $D - x$.\n- \"**A gives B a start of t seconds**\" — B starts running t seconds before A does.\nA \"**dead heat**\" means both finish together.\n\n### Beats by x metres → the speed ratio\nWhen A finishes, B has covered $D - x$. Both ran for the same time, so\n$$\\frac{S_A}{S_B} = \\frac{D}{D - x}$$\nIn a 100 m race A beats B by 10 m → $S_A : S_B = 100 : 90 = 10:9$. That ratio answers most follow-ups directly (who wins a longer race, by how much, start needed for a dead heat, and so on).\n\n### Beats by t seconds / by both\n- Beaten by t s: B covers D in $t_A + t$. If B's time is given, A's time is $t_B - t$; if A's time is given, B's is $t_A + t$.\n- \"**A beats B by 20 m or 5 s**\" links them: B runs the final 20 m in 5 s → $S_B = \\frac{20}{5} = 4$ m/s. Then A's time over D follows at once (200 m race: A runs 200 m while B runs 180 m, taking 45 s → $t_A = 45$ s, $S_A = \\frac{40}{9}$ m/s).\n- Race scores may quote the winner's time: A runs 100 m in 12 s while B takes 15 s → when A finishes, B has covered $\\frac{100}{15} \\times 12 = 80$ m → beaten by 20 m.\n\n### Starts and handicaps\nA start of x m to B in a race of D: B runs $D - x$ while A runs D. If the result is a dead heat, $\\frac{S_A}{S_B} = \\frac{D}{D-x}$ exactly as in a \"beats by x\" race — a start problem and a beats problem are the same arithmetic read in opposite directions. If A gives a start and still WINS by y m, B effectively ran $D - x - y$: e.g. A gives B 30 m in a 300 m race and wins by 45 m → $S_A : S_B = 300 : 225 = 4:3$.\n\n### Games of 100 (chain rule)\n\"A can give B 20 points in a game of 100\" means $S_A : S_B = 100 : 80$. Chain two such statements by multiplying:\nA gives B 20 (in 100) and B gives C 10 (in 100): $\\frac{A}{B} = \\frac{100}{80}$, $\\frac{B}{C} = \\frac{100}{90}$ → when A scores 100, C scores $80 \\times \\frac{90}{100} = 72$ → A can give C 28 points.\n\n### Chained races\n\"A beats B by 5 m in 100 m; B beats C by 8 m in 100 m\" does NOT give A beats C by 13 m. Convert to ratios and multiply: $\\frac{A}{B} = \\frac{100}{95}$, $\\frac{B}{C} = \\frac{100}{92}$ → when A runs 100, C runs $95 \\times \\frac{92}{100} = 87.4$ → A beats C by 12.6 m.\n\n### Common traps\n- Adding the two margins in a chained race (13 instead of 12.6 m).\n- Forgetting that a beaten runner still has to run the remaining x m in \"or t seconds\" statements.\n- Treating a start of x m as if B ran the full distance.\n- Comparing speeds before both runners have run for the SAME time.\n\n### Quick revision\n- Beats by x m → $S_A:S_B = D : (D-x)$.\n- Beats by t s → $t_B = t_A + t$; \"by x m or t s\" → $S_B = \\frac{x}{t}$.\n- Start x m → B runs $D - x$; wins by y m after a start → B ran $D - x - y$.\n- Chain margins through ratios, never by addition.\n",
+   "patterns": [
+    {
+     "id": "tsd-p17",
+     "name": "Race won by x metres",
+     "frequency": "very common",
+     "howToSpot": "'A beats B by x metres in a D-metre race' — the ratio of speeds, the margin in a different-length race, or the winner's speed is asked.",
+     "formula": "\\frac{S_A}{S_B} = \\frac{D}{D - x}",
+     "logic": "1. At the moment A finishes, B has covered exactly $D - x$ in the same time.\n2. Equal times cancel: the speeds are in the ratio $D : (D-x)$.\n3. Use the ratio for any follow-up (B's speed from A's, new margins, dead-heat starts).\n\nWhy: 'beats by x' is just two runners observed over one common time interval.",
+     "example": {
+      "q": "In a 1 km race A beats B by 100 m. If A runs at 11 m/s, B's speed is:",
+      "solution": "$\\frac{S_B}{S_A} = \\frac{900}{1000}$ → $S_B = 9.9$ m/s."
+     }
+    },
+    {
+     "id": "tsd-p18",
+     "name": "Race won by t seconds, or by x m or t s",
+     "frequency": "very common",
+     "howToSpot": "'A beats B by t seconds' or the combined form 'by x metres or t seconds' — a finishing time or a speed is asked.",
+     "formula": "t_B = t_A + t; \\qquad S_B = \\frac{x}{t}",
+     "logic": "1. 'By t s': the loser needs t more seconds after the winner finishes — $t_B = t_A + t$.\n2. 'By x m or t s': the loser covers the last x m in exactly t s → $S_B = \\frac{x}{t}$.\n3. If the winner's time is known, $t_A$ is read off directly; otherwise compute the loser's full time first.\n\nWhy: the two phrasings describe the same finishing moment — x metres and t seconds are two views of the loser's final stretch.",
+     "example": {
+      "q": "In a 200 m race A beats B by 20 metres or 5 seconds. A's time over the race is:",
+      "solution": "$S_B = \\frac{20}{5} = 4$ m/s → B's full time $= \\frac{200}{4} = 50$ s → A's time $= 50 - 5 = 45$ s."
+     }
+    },
+    {
+     "id": "tsd-p19",
+     "name": "Starts and handicaps",
+     "frequency": "common",
+     "howToSpot": "A runner is given a head start (x metres or t seconds), and the outcome — dead heat, win margin, or the start needed — is asked.",
+     "formula": "\\text{B runs } D - x; \\qquad \\text{wins by } y \\Rightarrow S_A:S_B = D : (D - x - y)",
+     "logic": "1. Write how far each runner actually runs: the favoured runner runs $D - x$.\n2. Dead heat → the two distances are covered in equal time → ratio $D : (D-x)$.\n3. If the giver still wins by y m, subtract that too: B covers $D - x - y$.\n\nWhy: a start shortens one runner's course; the win margin shortens it further at the finish.",
+     "example": {
+      "q": "In a 300 m race A gives B a start of 30 m and still beats him by 45 m. The ratio of their speeds is:",
+      "solution": "B runs $300 - 30 - 45 = 225$ m while A runs 300 → $S_A : S_B = 300 : 225 = 4 : 3$."
+     }
+    },
+    {
+     "id": "tsd-p20",
+     "name": "Games of points / chained races",
+     "frequency": "common",
+     "howToSpot": "'A can give B p points in a game of N' chains, or two consecutive race margins (A over B, B over C) combine into A over C.",
+     "formula": "\\frac{S_A}{S_B} = \\frac{N}{N-p}; \\qquad \\frac{S_A}{S_C} = \\frac{S_A}{S_B} \\times \\frac{S_B}{S_C}",
+     "logic": "1. Convert every statement into a ratio: giving p points in a game of N means $N : (N - p)$.\n2. Multiply the ratios along the chain — never add the margins.\n3. Read the combined margin off the final ratio: when A scores N, the last runner scores $N \\times \\prod \\frac{N - p_i}{N}$.\n\nWhy: margins compose multiplicatively because each link compares distances run in a common time.",
+     "example": {
+      "q": "In a game of 100, A can give B 20 points and B can give C 10 points. How many points can A give C in a game of 100?",
+      "solution": "$\\frac{A}{B} = \\frac{100}{80}$, $\\frac{B}{C} = \\frac{100}{90}$ → when A has 100, C has $80 \\times \\frac{90}{100} = 72$ → A gives C 28."
+     }
+    }
    ]
   }
  ],
@@ -291,49 +546,89 @@
    "pattern": "Train crossing a pole or a man",
    "frequency": "very common",
    "howToSpot": "Length of train given, time to pass a point asked (or vice versa).",
-   "approach": "$L = S \\times t$ with S in m/s. Convert with 5/18 first."
+   "approach": "$t = \\frac{L}{S}$ with S in m/s — convert with $\\frac{5}{18}$ first. A pole, man or signal is a point: only the train's own length passes it.",
+   "subtopic": "tsd-trains",
+   "example": {
+    "q": "A 150 m long train running at 90 km/h crosses a pole in:",
+    "solution": "$S = 90 \\times \\frac{5}{18} = 25$ m/s → $\\frac{150}{25} = 6$ seconds."
+   }
   },
   {
    "pattern": "Train crossing a platform, bridge or another train",
    "frequency": "very common",
    "howToSpot": "Two lengths involved; time for the train to completely cross.",
-   "approach": "$t = \\frac{L_1 + L_2}{S_{\\text{rel}}}$. Pole + platform times together solve for both L and S."
+   "approach": "$t = \\frac{L + P}{S}$ (platform) or $\\frac{L_1 + L_2}{S_1 \\pm S_2}$ (train). Pole + platform times together solve for both $L$ and $S$.",
+   "subtopic": "tsd-trains",
+   "example": {
+    "q": "A train running at 54 km/h crosses a pole in 12 s and a platform in 30 s. The platform's length is:",
+    "solution": "$S = 15$ m/s, $L = 180$ m → platform $= 15 \\times 30 - 180 = 270$ m."
+   }
   },
   {
    "pattern": "Boats & streams",
    "frequency": "very common",
    "howToSpot": "Downstream/upstream times, boat or stream speed asked; sometimes two double trips.",
-   "approach": "u = b + s, v = b − s; invert the pair. Two trip equations are linear in 1/u and 1/v."
+   "approach": "$u = b + s$, $v = b - s$; recover with $b = \\frac{u+v}{2}$, $s = \\frac{u-v}{2}$. Two trip equations are linear in $\\frac1u$ and $\\frac1v$.",
+   "subtopic": "tsd-boats",
+   "example": {
+    "q": "A boat goes downstream at 15 km/h and upstream at 10 km/h. The speed of the stream is:",
+    "solution": "$s = \\frac{15 - 10}{2} = 2.5$ km/h (boat: 12.5 km/h)."
+   }
   },
   {
    "pattern": "Relative speed — meeting or overtaking",
    "frequency": "common",
    "howToSpot": "Two vehicles move towards or along each other; find meeting time or crossing time.",
-   "approach": "Opposite: add; same direction: subtract. Distance = gap or sum of lengths."
+   "approach": "Opposite: add the speeds; same direction: subtract. Distance = the gap (or the sum of both lengths for trains).",
+   "subtopic": "tsd-relative",
+   "example": {
+    "q": "Two towns 100 km apart send buses towards each other at 20 km/h and 30 km/h. They meet after:",
+    "solution": "$\\frac{100}{20 + 30} = 2$ hours."
+   }
   },
   {
    "pattern": "Average speed for legs of a journey",
    "frequency": "common",
    "howToSpot": "Out-and-back or multi-leg trips; the trap is averaging the speeds.",
-   "approach": "Total distance ÷ total time; equal legs ⇒ 2ab/(a+b)."
+   "approach": "Total distance ÷ total time; equal legs ⇒ $\\frac{2ab}{a+b}$; three equal legs ⇒ $3 \\div (\\frac1a+\\frac1b+\\frac1c)$.",
+   "subtopic": "tsd-basics",
+   "example": {
+    "q": "A car goes out at 40 km/h and returns the same road at 60 km/h. The average speed is:",
+    "solution": "$\\frac{2 \\times 40 \\times 60}{40 + 60} = 48$ km/h — not 50."
+   }
   },
   {
    "pattern": "Speed change with early/late arrival",
    "frequency": "common",
    "howToSpot": "Walking slower/faster makes the person late/early by known minutes.",
-   "approach": "Same distance both ways: set up the two time expressions; the difference is the delay."
+   "approach": "Same distance both ways: $\\frac{d}{s_1} - \\frac{d}{s_2} = $ delay in hours; a speed fraction $f$ multiplies the time by $\\frac1f$.",
+   "subtopic": "tsd-basics",
+   "example": {
+    "q": "Walking at $\\frac34$ of his usual speed a man is 20 minutes late. His usual time is:",
+    "solution": "New time $= \\frac43 t$ → late by $\\frac{t}{3} = 20$ → $t = 60$ minutes."
+   }
   },
   {
    "pattern": "Races and starts",
    "frequency": "common",
    "howToSpot": "'A beats B by x m / t s', or start handicaps; find speeds or ratios.",
-   "approach": "Distances covered in equal time are in the speed ratio; convert margins directly."
+   "approach": "Distances covered in equal time are in the speed ratio: beats by $x$ m ⇒ $D : (D-x)$; chain margins multiplicatively.",
+   "subtopic": "tsd-races",
+   "example": {
+    "q": "In a 200 m race A beats B by 20 m. The ratio of their speeds is:",
+    "solution": "$S_A : S_B = 200 : 180 = 10 : 9$."
+   }
   },
   {
    "pattern": "Unit conversion embedded in other questions",
    "frequency": "common",
    "howToSpot": "Any train/m/s question quietly needs km/h ⇄ m/s.",
-   "approach": "5/18 and 18/5 — know the 36/54/72/90 table by heart."
+   "approach": "$\\frac{5}{18}$ and $\\frac{18}{5}$ — know the 36/54/72/90 table by heart.",
+   "subtopic": "tsd-basics",
+   "example": {
+    "q": "A 120 m train crosses a pole in 8 seconds. Its speed in km/h is:",
+    "solution": "$\\frac{120}{8} = 15$ m/s $= 54$ km/h."
+   }
   }
  ],
  "solvedExamples": [
@@ -698,6 +993,870 @@
    "subtopic": "tsd-boats",
    "pattern": "double trip equations",
    "timeSec": 60
+  },
+  {
+   "id": "tsd-basics-p01",
+   "q": "A car covers a distance of 360 km in 6 hours. Its average speed is:",
+   "figure": null,
+   "options": [
+    "55 km/h",
+    "65 km/h",
+    "60 km/h",
+    "72 km/h"
+   ],
+   "answer": 2,
+   "solution": "$S = \\frac{360}{6} = 60$ km/h.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "tsd-basics",
+   "pattern": "tsd-p1",
+   "timeSec": 20
+  },
+  {
+   "id": "tsd-basics-p02",
+   "q": "A train covers 450 metres in 30 seconds. Its speed in km/h is:",
+   "figure": null,
+   "options": [
+    "54 km/h",
+    "50 km/h",
+    "58 km/h",
+    "60 km/h"
+   ],
+   "answer": 0,
+   "solution": "$\\frac{450}{30} = 15$ m/s → $15 \\times \\frac{18}{5} = 54$ km/h.",
+   "shortcut": "15 m/s is a table value: 54 km/h.",
+   "difficulty": "medium",
+   "subtopic": "tsd-basics",
+   "pattern": "tsd-p1",
+   "timeSec": 30
+  },
+  {
+   "id": "tsd-basics-p03",
+   "q": "A man walks at 6 km/h for 2 hours and at 10 km/h for 1 hour. His average speed for the whole journey is:",
+   "figure": null,
+   "options": [
+    "7 km/h",
+    "8 km/h",
+    "$7\\frac{1}{3}$ km/h",
+    "$7\\frac{2}{3}$ km/h"
+   ],
+   "answer": 2,
+   "solution": "Distance $= 12 + 10 = 22$ km in 3 hours.\nAverage $= \\frac{22}{3} = 7\\frac13$ km/h.",
+   "shortcut": "Different times → weights are the times, not a plain average (8 would be wrong).",
+   "difficulty": "medium",
+   "subtopic": "tsd-basics",
+   "pattern": "tsd-p2",
+   "timeSec": 40
+  },
+  {
+   "id": "tsd-basics-p04",
+   "q": "A man covers three equal distances at 20 km/h, 30 km/h and 60 km/h respectively. His average speed for the whole journey is:",
+   "figure": null,
+   "options": [
+    "36.67 km/h",
+    "30 km/h",
+    "33.33 km/h",
+    "25 km/h"
+   ],
+   "answer": 1,
+   "solution": "Equal legs: $\\bar{S} = \\dfrac{3}{\\frac{1}{20} + \\frac{1}{30} + \\frac{1}{60}} = \\dfrac{3}{\\frac{6}{60}} = 30$ km/h.",
+   "shortcut": "36.67 is the plain average — the equal-distance trap.",
+   "difficulty": "medium",
+   "subtopic": "tsd-basics",
+   "pattern": "tsd-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "tsd-basics-p05",
+   "q": "Walking at $\\frac{4}{5}$ of his usual speed, a man is 10 minutes late. His usual time (in minutes) is:",
+   "figure": null,
+   "options": [
+    "50",
+    "30",
+    "45",
+    "40"
+   ],
+   "answer": 3,
+   "solution": "New time $= \\frac54 t$; late by $\\frac{t}{4} = 10$ → $t = 40$ minutes.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "tsd-basics",
+   "pattern": "tsd-p3",
+   "timeSec": 35
+  },
+  {
+   "id": "tsd-basics-p06",
+   "q": "By walking at $\\frac{3}{4}$ of his usual speed a man reaches his office 1 hour 20 minutes late. His usual time for the journey is:",
+   "figure": null,
+   "options": [
+    "3 hours",
+    "4 hours",
+    "5 hours",
+    "3.5 hours"
+   ],
+   "answer": 1,
+   "solution": "New time $= \\frac43 t$; late by $\\frac{t}{3} = 80$ min → $t = 240$ min $= 4$ hours.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "tsd-basics",
+   "pattern": "tsd-p3",
+   "timeSec": 35
+  },
+  {
+   "id": "tsd-basics-p07",
+   "q": "Walking at 4 km/h a student misses a bus by 5 minutes, while walking at 5 km/h he reaches the stop 10 minutes early. The distance to the bus stop is:",
+   "figure": null,
+   "options": [
+    "4.5 km",
+    "5.5 km",
+    "6 km",
+    "5 km"
+   ],
+   "answer": 3,
+   "solution": "Gap $= 5 + 10 = 15$ min $= \\frac14$ h. $\\frac{d}{4} - \\frac{d}{5} = \\frac{d}{20} = \\frac14$ → $d = 5$ km.",
+   "shortcut": "One late + one early → ADD the two gaps.",
+   "difficulty": "hard",
+   "subtopic": "tsd-basics",
+   "pattern": "tsd-p4",
+   "timeSec": 50
+  },
+  {
+   "id": "tsd-basics-p08",
+   "q": "A cyclist covers a certain distance at 10 km/h and reaches 6 minutes late. Cycling at 12 km/h he reaches 6 minutes early. The distance is:",
+   "figure": null,
+   "options": [
+    "10 km",
+    "14 km",
+    "12 km",
+    "15 km"
+   ],
+   "answer": 2,
+   "solution": "$\\frac{d}{10} - \\frac{d}{12} = \\frac{12}{60} = \\frac15$ → $\\frac{d}{60} = \\frac15$ → $d = 12$ km.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "tsd-basics",
+   "pattern": "tsd-p4",
+   "timeSec": 45
+  },
+  {
+   "id": "tsd-relative-p01",
+   "q": "Two towns A and B are 240 km apart. A bus starts from A towards B at 40 km/h and at the same time another bus starts from B towards A at 40 km/h. They will meet after:",
+   "figure": null,
+   "options": [
+    "3 hours",
+    "2.5 hours",
+    "3.5 hours",
+    "4 hours"
+   ],
+   "answer": 0,
+   "solution": "$t = \\frac{240}{40 + 40} = 3$ hours.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "tsd-relative",
+   "pattern": "tsd-p5",
+   "timeSec": 25
+  },
+  {
+   "id": "tsd-relative-p02",
+   "q": "A thief runs at 20 km/h. A policeman, 2.5 km behind him, chases at 25 km/h. The policeman catches the thief in:",
+   "figure": null,
+   "options": [
+    "25 minutes",
+    "36 minutes",
+    "30 minutes",
+    "20 minutes"
+   ],
+   "answer": 2,
+   "solution": "Gap closes at $25 - 20 = 5$ km/h → $\\frac{2.5}{5} = 0.5$ h $= 30$ minutes.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "tsd-relative",
+   "pattern": "tsd-p6",
+   "timeSec": 30
+  },
+  {
+   "id": "tsd-relative-p03",
+   "q": "A 120 m long train running at 54 km/h crosses a man walking in the same direction at 6 km/h. The train crosses him in:",
+   "figure": null,
+   "options": [
+    "9 seconds",
+    "8 seconds",
+    "10 seconds",
+    "12 seconds"
+   ],
+   "answer": 0,
+   "solution": "$S_{\\text{rel}} = 54 - 6 = 48$ km/h $= \\frac{40}{3}$ m/s. $t = 120 \\div \\frac{40}{3} = 9$ seconds.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "tsd-relative",
+   "pattern": "tsd-p7",
+   "timeSec": 30
+  },
+  {
+   "id": "tsd-relative-p04",
+   "q": "Two cars start towards each other from towns 150 km apart at 40 km/h and 60 km/h. They meet after:",
+   "figure": null,
+   "options": [
+    "1 hour",
+    "2 hours",
+    "1.25 hours",
+    "1.5 hours"
+   ],
+   "answer": 3,
+   "solution": "$\\frac{150}{40 + 60} = 1.5$ hours.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "tsd-relative",
+   "pattern": "tsd-p5",
+   "timeSec": 25
+  },
+  {
+   "id": "tsd-relative-p05",
+   "q": "Two trains of lengths 200 m and 150 m run on parallel tracks in the same direction at 63 km/h and 45 km/h. The time the faster train takes to completely cross the slower one is:",
+   "figure": null,
+   "options": [
+    "60 seconds",
+    "70 seconds",
+    "80 seconds",
+    "75 seconds"
+   ],
+   "answer": 1,
+   "solution": "$S_{\\text{rel}} = 18$ km/h $= 5$ m/s. Lengths together $= 350$ m → $70$ seconds.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "tsd-relative",
+   "pattern": "tsd-p6",
+   "timeSec": 40
+  },
+  {
+   "id": "tsd-relative-p06",
+   "q": "Two stations are 300 km apart. A train leaves one station at 40 km/h and at the same time another leaves the other at 60 km/h, moving towards each other. How far from the first station do they meet?",
+   "figure": null,
+   "options": [
+    "180 km",
+    "150 km",
+    "140 km",
+    "120 km"
+   ],
+   "answer": 3,
+   "solution": "Meeting time $= \\frac{300}{100} = 3$ h → from the first station $40 \\times 3 = 120$ km.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "tsd-relative",
+   "pattern": "tsd-p5",
+   "timeSec": 40
+  },
+  {
+   "id": "tsd-relative-p07",
+   "q": "A cyclist leaves town A at 9 a.m. cycling at 30 km/h towards town B. At 10 a.m. a motorist leaves A along the same road at 40 km/h. At what time does the motorist catch the cyclist?",
+   "figure": null,
+   "options": [
+    "12 noon",
+    "1 p.m.",
+    "2 p.m.",
+    "1:30 p.m."
+   ],
+   "answer": 1,
+   "solution": "Head start $= 30$ km. Gap closes at 10 km/h → 3 h after 10 a.m. = 1 p.m.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "tsd-relative",
+   "pattern": "tsd-p8",
+   "timeSec": 40
+  },
+  {
+   "id": "tsd-relative-p08",
+   "q": "A 240 m long train running at 90 km/h crosses a cyclist coming from the opposite direction at 18 km/h. The train crosses him in:",
+   "figure": null,
+   "options": [
+    "8 seconds",
+    "9 seconds",
+    "7.5 seconds",
+    "10 seconds"
+   ],
+   "answer": 0,
+   "solution": "$S_{\\text{rel}} = 90 + 18 = 108$ km/h $= 30$ m/s → $\\frac{240}{30} = 8$ seconds.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "tsd-relative",
+   "pattern": "tsd-p7",
+   "timeSec": 35
+  },
+  {
+   "id": "tsd-relative-p09",
+   "q": "A train leaves station P at 60 km/h. Two hours later, a faster train leaves P along the same track at 90 km/h and catches the first train. How far from station P does the catch-up happen?",
+   "figure": null,
+   "options": [
+    "300 km",
+    "320 km",
+    "360 km",
+    "400 km"
+   ],
+   "answer": 2,
+   "solution": "Head start $= 60 \\times 2 = 120$ km, closed at 30 km/h → 4 h. Distance $= 90 \\times 4 = 360$ km.",
+   "shortcut": "From P the first train also ran $60 \\times 6 = 360$ km — a free check.",
+   "difficulty": "hard",
+   "subtopic": "tsd-relative",
+   "pattern": "tsd-p8",
+   "timeSec": 50
+  },
+  {
+   "id": "tsd-trains-p01",
+   "q": "A 180 m long train crosses a signal post in 9 seconds. Its speed is:",
+   "figure": null,
+   "options": [
+    "64 km/h",
+    "72 km/h",
+    "80 km/h",
+    "76 km/h"
+   ],
+   "answer": 1,
+   "solution": "$S = \\frac{180}{9} = 20$ m/s $= 20 \\times \\frac{18}{5} = 72$ km/h.",
+   "shortcut": "20 m/s is a table value: 72 km/h.",
+   "difficulty": "easy",
+   "subtopic": "tsd-trains",
+   "pattern": "tsd-p9",
+   "timeSec": 25
+  },
+  {
+   "id": "tsd-trains-p02",
+   "q": "A 120 m long train crosses a 180 m long platform in 20 seconds. The speed of the train is:",
+   "figure": null,
+   "options": [
+    "50 km/h",
+    "58 km/h",
+    "60 km/h",
+    "54 km/h"
+   ],
+   "answer": 3,
+   "solution": "$S = \\frac{120 + 180}{20} = 15$ m/s $= 54$ km/h.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "tsd-trains",
+   "pattern": "tsd-p10",
+   "timeSec": 30
+  },
+  {
+   "id": "tsd-trains-p03",
+   "q": "Two trains of lengths 120 m and 180 m run towards each other on parallel tracks at 36 km/h and 54 km/h. They cross each other completely in:",
+   "figure": null,
+   "options": [
+    "10 seconds",
+    "12 seconds",
+    "14 seconds",
+    "15 seconds"
+   ],
+   "answer": 1,
+   "solution": "$S_{\\text{rel}} = 36 + 54 = 90$ km/h $= 25$ m/s. $\\frac{120 + 180}{25} = 12$ seconds.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "tsd-trains",
+   "pattern": "tsd-p11",
+   "timeSec": 30
+  },
+  {
+   "id": "tsd-trains-p04",
+   "q": "A train running at 54 km/h crosses a pole in 12 seconds and a platform in 30 seconds. The length of the platform is:",
+   "figure": null,
+   "options": [
+    "240 m",
+    "300 m",
+    "270 m",
+    "250 m"
+   ],
+   "answer": 2,
+   "solution": "$S = 54 \\times \\frac{5}{18} = 15$ m/s. Train length $= 15 \\times 12 = 180$ m. Platform $= 15 \\times 30 - 180 = 270$ m.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "tsd-trains",
+   "pattern": "tsd-p10",
+   "timeSec": 40
+  },
+  {
+   "id": "tsd-trains-p05",
+   "q": "A train running at 63 km/h crosses a pole in 12 seconds. The length of the train is:",
+   "figure": null,
+   "options": [
+    "210 m",
+    "200 m",
+    "220 m",
+    "225 m"
+   ],
+   "answer": 0,
+   "solution": "$S = 63 \\times \\frac{5}{18} = 17.5$ m/s. $L = 17.5 \\times 12 = 210$ m.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "tsd-trains",
+   "pattern": "tsd-p9",
+   "timeSec": 30
+  },
+  {
+   "id": "tsd-trains-p06",
+   "q": "Two trains of lengths 180 m and 120 m run in the same direction on parallel tracks at 72 km/h and 54 km/h. The faster train crosses the slower one completely in:",
+   "figure": null,
+   "options": [
+    "50 seconds",
+    "70 seconds",
+    "60 seconds",
+    "55 seconds"
+   ],
+   "answer": 2,
+   "solution": "$S_{\\text{rel}} = 72 - 54 = 18$ km/h $= 5$ m/s. $\\frac{180 + 120}{5} = 60$ seconds.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "tsd-trains",
+   "pattern": "tsd-p11",
+   "timeSec": 40
+  },
+  {
+   "id": "tsd-trains-p07",
+   "q": "A train crosses two bridges of lengths 200 m and 400 m in 20 seconds and 30 seconds respectively. The length of the train is:",
+   "figure": null,
+   "options": [
+    "200 m",
+    "150 m",
+    "250 m",
+    "300 m"
+   ],
+   "answer": 0,
+   "solution": "Subtracting the two crossings: $\\frac{400 - 200}{30 - 20} = 20$ m/s. Then $L = 20 \\times 20 - 200 = 200$ m.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "tsd-trains",
+   "pattern": "tsd-p12",
+   "timeSec": 45
+  },
+  {
+   "id": "tsd-trains-p08",
+   "q": "A train crosses a man standing on a platform in 10 seconds and crosses the 300 m long platform completely in 25 seconds. The length of the train is:",
+   "figure": null,
+   "options": [
+    "150 m",
+    "200 m",
+    "250 m",
+    "180 m"
+   ],
+   "answer": 1,
+   "solution": "$\\frac{L}{10} = \\frac{L + 300}{25}$ → $25L = 10L + 3000$ → $L = 200$ m (speed 20 m/s).",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "tsd-trains",
+   "pattern": "tsd-p12",
+   "timeSec": 45
+  },
+  {
+   "id": "tsd-trains-p09",
+   "q": "Two trains of equal length take 12 seconds to cross each other completely when moving in opposite directions, and 36 seconds when moving in the same direction. The ratio of the speeds of the two trains is:",
+   "figure": null,
+   "options": [
+    "3 : 1",
+    "3 : 2",
+    "4 : 3",
+    "2 : 1"
+   ],
+   "answer": 3,
+   "solution": "$\\frac{v_{\\text{fast}}}{v_{\\text{slow}}} = \\frac{t_s + t_o}{t_s - t_o} = \\frac{36 + 12}{36 - 12} = \\frac{48}{24} = \\frac21$.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "tsd-trains",
+   "pattern": "tsd-p11",
+   "timeSec": 55
+  },
+  {
+   "id": "tsd-trains-p10",
+   "q": "Train A of length 150 m running at 54 km/h crosses train B moving in the opposite direction at 72 km/h in 12 seconds. The length of train B is:",
+   "figure": null,
+   "options": [
+    "250 m",
+    "300 m",
+    "270 m",
+    "280 m"
+   ],
+   "answer": 2,
+   "solution": "$S_{\\text{rel}} = 54 + 72 = 126$ km/h $= 35$ m/s.\nTotal $= 35 \\times 12 = 420$ m → $L_B = 420 - 150 = 270$ m.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "tsd-trains",
+   "pattern": "tsd-p11",
+   "timeSec": 55
+  },
+  {
+   "id": "tsd-boats-p01",
+   "q": "A boat's downstream speed is 18 km/h and its upstream speed is 12 km/h. The speed of the stream is:",
+   "figure": null,
+   "options": [
+    "3 km/h",
+    "2.5 km/h",
+    "3.5 km/h",
+    "4 km/h"
+   ],
+   "answer": 0,
+   "solution": "$s = \\frac{18 - 12}{2} = 3$ km/h (boat: 15 km/h).",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "tsd-boats",
+   "pattern": "tsd-p13",
+   "timeSec": 25
+  },
+  {
+   "id": "tsd-boats-p02",
+   "q": "A boat's speed in still water is 10 km/h and the stream flows at 2 km/h. The time taken to travel 24 km downstream is:",
+   "figure": null,
+   "options": [
+    "2.4 hours",
+    "3 hours",
+    "2 hours",
+    "1.5 hours"
+   ],
+   "answer": 2,
+   "solution": "$u = 10 + 2 = 12$ km/h → $t = \\frac{24}{12} = 2$ hours.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "tsd-boats",
+   "pattern": "tsd-p14",
+   "timeSec": 25
+  },
+  {
+   "id": "tsd-boats-p03",
+   "q": "A swimmer swims at 12 km/h in still water and the current runs at 3 km/h. The time she takes to swim 30 km downstream is:",
+   "figure": null,
+   "options": [
+    "2 hours",
+    "2.5 hours",
+    "3 hours",
+    "1.75 hours"
+   ],
+   "answer": 0,
+   "solution": "$u = 12 + 3 = 15$ km/h → $t = \\frac{30}{15} = 2$ hours.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "tsd-boats",
+   "pattern": "tsd-p14",
+   "timeSec": 25
+  },
+  {
+   "id": "tsd-boats-p04",
+   "q": "A boat covers a certain distance downstream in 4 hours and returns the same distance upstream in 6 hours. If the downstream speed is 6 km/h, the speed of the stream is:",
+   "figure": null,
+   "options": [
+    "1.5 km/h",
+    "0.5 km/h",
+    "2 km/h",
+    "1 km/h"
+   ],
+   "answer": 3,
+   "solution": "$d = 6 \\times 4 = 24$ km → $v = \\frac{24}{6} = 4$ km/h → $s = \\frac{6 - 4}{2} = 1$ km/h.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "tsd-boats",
+   "pattern": "tsd-p15",
+   "timeSec": 40
+  },
+  {
+   "id": "tsd-boats-p05",
+   "q": "A boat's speed in still water is 18 km/h and the stream flows at 6 km/h. The time taken to travel 42 km upstream is:",
+   "figure": null,
+   "options": [
+    "3 hours",
+    "3.5 hours",
+    "4 hours",
+    "4.5 hours"
+   ],
+   "answer": 1,
+   "solution": "$v = 18 - 6 = 12$ km/h → $t = \\frac{42}{12} = 3.5$ hours.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "tsd-boats",
+   "pattern": "tsd-p14",
+   "timeSec": 30
+  },
+  {
+   "id": "tsd-boats-p06",
+   "q": "A river 1 km wide flows at 3 km/h. A rower who can row at 4 km/h in still water crosses straight to the opposite bank. How far does he drift with the current while crossing?",
+   "figure": null,
+   "options": [
+    "1 km",
+    "0.5 km",
+    "1.25 km",
+    "0.75 km"
+   ],
+   "answer": 3,
+   "solution": "Crossing time $= \\frac{1}{4}$ h $= 15$ min. Drift $= 3 \\times \\frac{1}{4} = 0.75$ km.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "tsd-boats",
+   "pattern": "tsd-p16",
+   "timeSec": 45
+  },
+  {
+   "id": "tsd-boats-p07",
+   "q": "A boat's downstream speed is 12 km/h, and the boat's speed in still water is 5 times the speed of the stream. The boat's speed in still water is:",
+   "figure": null,
+   "options": [
+    "12 km/h",
+    "10 km/h",
+    "8 km/h",
+    "9 km/h"
+   ],
+   "answer": 1,
+   "solution": "$b + s = 12$ with $b = 5s$ → $6s = 12$ → $s = 2$, $b = 10$ km/h.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "tsd-boats",
+   "pattern": "tsd-p13",
+   "timeSec": 40
+  },
+  {
+   "id": "tsd-boats-p08",
+   "q": "The stream flows at 3 km/h. A boat takes 4 hours to row 20 km upstream. The boat's speed in still water is:",
+   "figure": null,
+   "options": [
+    "8 km/h",
+    "7 km/h",
+    "9 km/h",
+    "10 km/h"
+   ],
+   "answer": 0,
+   "solution": "$v = \\frac{20}{4} = 5$ km/h → $b = v + s = 5 + 3 = 8$ km/h.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "tsd-boats",
+   "pattern": "tsd-p14",
+   "timeSec": 30
+  },
+  {
+   "id": "tsd-boats-p09",
+   "q": "A boat's downstream speed is 8 km/h and its upstream speed is 6 km/h. It rows a certain distance and returns to the start, taking 7 hours in all. The one-way distance is:",
+   "figure": null,
+   "options": [
+    "21 km",
+    "28 km",
+    "24 km",
+    "20 km"
+   ],
+   "answer": 2,
+   "solution": "$\\frac{d}{8} + \\frac{d}{6} = 7$ → $\\frac{14d}{48} = 7$ → $d = 24$ km (3 h down + 4 h up).",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "tsd-boats",
+   "pattern": "tsd-p15",
+   "timeSec": 45
+  },
+  {
+   "id": "tsd-boats-p10",
+   "q": "A man can row 8 km upstream and 16 km downstream in 4 hours, and he can row 3 km upstream and 8 km downstream in 1 hour 45 minutes. His speed in still water is:",
+   "figure": null,
+   "options": [
+    "7 km/h",
+    "5 km/h",
+    "8 km/h",
+    "6 km/h"
+   ],
+   "answer": 3,
+   "solution": "Let $a = \\frac1u$, $c = \\frac1v$: $8c + 16a = 4$ and $3c + 8a = \\frac74$.\nDoubling the second: $6c + 16a = \\frac72$. Subtracting: $2c = \\frac12$ → $c = \\frac14$ → $v = 4$.\nThen $8 \\times \\frac14 + 16a = 4$ → $a = \\frac18$ → $u = 8$. Boat $= \\frac{4+8}{2} = 6$ km/h.",
+   "shortcut": "Substitute reciprocals first — never clear denominators the brute-force way.",
+   "difficulty": "hard",
+   "subtopic": "tsd-boats",
+   "pattern": "tsd-p16",
+   "timeSec": 60
+  },
+  {
+   "id": "tsd-races-p01",
+   "q": "In a 100 m race A beats B by 10 metres. The ratio of the speeds of A and B is:",
+   "figure": null,
+   "options": [
+    "10 : 9",
+    "9 : 10",
+    "11 : 10",
+    "10 : 11"
+   ],
+   "answer": 0,
+   "solution": "When A finishes, B has run 90 m in the same time → $S_A : S_B = 100 : 90 = 10 : 9$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "tsd-races",
+   "pattern": "tsd-p17",
+   "timeSec": 25
+  },
+  {
+   "id": "tsd-races-p02",
+   "q": "In a 200 m race A beats B by 25 metres. The ratio of the speeds of A and B is:",
+   "figure": null,
+   "options": [
+    "7 : 8",
+    "9 : 8",
+    "8 : 7",
+    "8 : 9"
+   ],
+   "answer": 2,
+   "solution": "$S_A : S_B = 200 : 175 = 8 : 7$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "tsd-races",
+   "pattern": "tsd-p17",
+   "timeSec": 25
+  },
+  {
+   "id": "tsd-races-p03",
+   "q": "A runs 100 m in 12 seconds and B runs 100 m in 15 seconds. By how many metres does A beat B?",
+   "figure": null,
+   "options": [
+    "20 m",
+    "25 m",
+    "15 m",
+    "18 m"
+   ],
+   "answer": 0,
+   "solution": "In 12 s B covers $\\frac{100}{15} \\times 12 = 80$ m → A beats B by 20 m.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "tsd-races",
+   "pattern": "tsd-p18",
+   "timeSec": 30
+  },
+  {
+   "id": "tsd-races-p04",
+   "q": "In a 100 m race, A gives B a start of 10 m and the race ends in a dead heat. The ratio of the speeds of A and B is:",
+   "figure": null,
+   "options": [
+    "9 : 10",
+    "10 : 11",
+    "11 : 9",
+    "10 : 9"
+   ],
+   "answer": 3,
+   "solution": "B runs 90 m while A runs 100 m in the same time → $S_A : S_B = 100 : 90 = 10 : 9$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "tsd-races",
+   "pattern": "tsd-p19",
+   "timeSec": 25
+  },
+  {
+   "id": "tsd-races-p05",
+   "q": "In a 200 m race A beats B by 20 metres or 5 seconds. A's time over the course is:",
+   "figure": null,
+   "options": [
+    "40 s",
+    "45 s",
+    "50 s",
+    "42.5 s"
+   ],
+   "answer": 1,
+   "solution": "$S_B = \\frac{20}{5} = 4$ m/s → B's time $= 50$ s → A's time $= 50 - 5 = 45$ s.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "tsd-races",
+   "pattern": "tsd-p18",
+   "timeSec": 45
+  },
+  {
+   "id": "tsd-races-p06",
+   "q": "In a 200 m race A gives B a start of 20 m and then beats him by 20 m. The ratio of the speeds of A and B is:",
+   "figure": null,
+   "options": [
+    "4 : 5",
+    "6 : 5",
+    "11 : 9",
+    "5 : 4"
+   ],
+   "answer": 3,
+   "solution": "B effectively runs $200 - 20 - 20 = 160$ m while A runs 200 → $S_A : S_B = 200 : 160 = 5 : 4$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "tsd-races",
+   "pattern": "tsd-p19",
+   "timeSec": 45
+  },
+  {
+   "id": "tsd-races-p07",
+   "q": "In a game of 100 points, A can give B 20 points and B can give C 10 points. In a game of 100 points, A can give C:",
+   "figure": null,
+   "options": [
+    "30 points",
+    "28 points",
+    "25 points",
+    "32 points"
+   ],
+   "answer": 1,
+   "solution": "When A scores 100, B scores 80; when B scores 100, C scores 90 → C scores $80 \\times \\frac{90}{100} = 72$. Margin $= 100 - 72 = 28$.",
+   "shortcut": "Chain through ratios — 20 + 10 = 30 is the classic wrong answer.",
+   "difficulty": "medium",
+   "subtopic": "tsd-races",
+   "pattern": "tsd-p20",
+   "timeSec": 45
+  },
+  {
+   "id": "tsd-races-p08",
+   "q": "In a 1 km race A beats B by 100 m. If A runs at 11 m/s, B's speed is:",
+   "figure": null,
+   "options": [
+    "9.9 m/s",
+    "10 m/s",
+    "9.5 m/s",
+    "10.1 m/s"
+   ],
+   "answer": 0,
+   "solution": "$S_B = 11 \\times \\frac{900}{1000} = 9.9$ m/s.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "tsd-races",
+   "pattern": "tsd-p17",
+   "timeSec": 35
+  },
+  {
+   "id": "tsd-races-p09",
+   "q": "In a 400 m race A beats B by 40 m. If B's time for the race is 44 seconds, A's time for the race is:",
+   "figure": null,
+   "options": [
+    "40 s",
+    "38.5 s",
+    "39.6 s",
+    "41 s"
+   ],
+   "answer": 2,
+   "solution": "$S_B = \\frac{400}{44} = \\frac{100}{11}$ m/s.\nWhen A finishes, B has run 360 m → time $= \\frac{360}{100/11} = 39.6$ s.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "tsd-races",
+   "pattern": "tsd-p18",
+   "timeSec": 55
+  },
+  {
+   "id": "tsd-races-p10",
+   "q": "In a 100 m race A beats B by 5 metres, and in a 100 m race B beats C by 8 metres. By how many metres will A beat C in a 100 m race?",
+   "figure": null,
+   "options": [
+    "13 m",
+    "12 m",
+    "11.6 m",
+    "12.6 m"
+   ],
+   "answer": 3,
+   "solution": "$\\frac{B}{C} = \\frac{100}{92}$ → when A runs 100, B runs 95 and C runs $95 \\times \\frac{92}{100} = 87.4$ m.\nMargin $= 100 - 87.4 = 12.6$ m.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "tsd-races",
+   "pattern": "tsd-p20",
+   "timeSec": 55
+  },
+  {
+   "id": "tsd-races-p11",
+   "q": "A runs at 8 m/s and B at 6 m/s. In a 300 m race, A gives B a start of 30 m. By what distance does A win?",
+   "figure": null,
+   "options": [
+    "40 m",
+    "45 m",
+    "50 m",
+    "35 m"
+   ],
+   "answer": 1,
+   "solution": "A's time $= \\frac{300}{8} = 37.5$ s. B covers $6 \\times 37.5 = 225$ m of his 270 m course.\nB is short of the finish by $270 - 225 = 45$ m → A wins by 45 m.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "tsd-races",
+   "pattern": "tsd-p19",
+   "timeSec": 45
   }
  ]
 }
