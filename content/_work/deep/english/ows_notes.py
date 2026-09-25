@@ -227,7 +227,7 @@ Worked example: *A group of wolves* → **pack**. Lions take pride, cattle take 
 2. Recall its partner place or group word.
 3. Check the look-alike trap before you mark.
 
-These questions are fast marks. Twenty place words and twenty group words cover almost every paper, so learn them in one sitting and revise weekly.
+These questions are fast marks. Twenty place words and twenty group words cover almost every paper, so learn them in one sitting and revise weekly. While revising, always say the partner word aloud — *bees–apiary, coins–mint, wolves–pack, islands–archipelago* — because the exam never asks for a definition, only for the partner.
 
 ### Quick revision
 - Places: apiary (bees), aviary (birds), granary (grain), mint (coins), hangar (aircraft), mortuary (bodies), abattoir (slaughter), monastery (monks), convent (nuns).
