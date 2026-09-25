@@ -37,6 +37,81 @@
     "Unfolding in the original order instead of the reverse order.",
     "Rotating hole positions instead of reflecting them.",
     "Assuming every punch doubles, even where the flap does not reach."
+   ],
+   "notes": "### What happens when you fold and punch\nA punch goes through **every layer** of paper under it. When the sheet is opened, each layer shows its own hole. So the job is to find **where each layer came from**.\n\nThe fold line acts like a mirror. A point on the part that was folded over lands at the **same distance on the other side** of the fold line. Opening the fold sends it back. So every unfold gives each hole a **mirror copy** across that fold line.\n\n### The method: unfold in reverse order\n1. Read the folds in order and mark the final punch position(s).\n2. Undo the **last** fold first. For every hole that lies on the part that was folded over, draw its mirror copy across that fold line.\n3. Undo the fold before it in the same way, and so on, until the sheet is fully open.\n4. Now compare **positions**, not just the number of holes.\n\nEach full fold doubles the holes: 1 fold gives 2 holes per punch, 2 folds give 4, 3 folds give 8.\n\n### Where the copies go\n- **Vertical fold line** (left-right fold): the copy keeps its **height** and moves to the other side. A hole near the top-right gets a partner near the top-left.\n- **Horizontal fold line** (top-bottom fold): the copy keeps its **left-right position** and moves up or down.\n- **Diagonal fold** along the line from top-left to bottom-right: a point at (x, y) goes to **(y, x)**. A hole near the middle of the top edge gets a partner near the middle of the left edge.\n- **Other diagonal** (top-right to bottom-left) on a square of side s: (x, y) goes to (s − y, s − x).\n\n### Quarter fold\nFolding in half and then in half again makes 4 layers. One punch unfolds into **4 holes**, one in each quarter, placed like mirror images around the two centre lines. If the punch is near the folded corner (the centre of the sheet), the 4 holes cluster near the centre. If it is near the open corners, they sit near the 4 corners of the sheet.\n\n### Partial (strip) folds\nIf only a strip is folded over, only the part of the sheet under that strip has two layers. A punch **inside** the doubled strip makes 2 holes; a punch **outside** it makes only 1 hole. This is the most common trap in option questions.\n\n### Punch on a fold line\nA punch placed **exactly on a crease** does not make two separate holes across that crease; the two copies meet at the same spot and open as **one hole on the crease**. A punch at the centre of a sheet folded into quarters (where both creases meet) opens as just **1 hole**. A punch on only one crease of a quarter fold opens as **2 holes**.\n\n### Cutting instead of punching\nCutting works the same way. A notch cut from a folded edge opens into a shape that is **symmetric about that fold line**. A cut on a corner where two folds meet repeats in all four quarters. Draw the cut piece, then mirror it across each fold line in reverse order.\n\n### Common traps\n- **Rotating instead of reflecting:** copies must be mirror images across the fold line, not a half turn of the flap.\n- Undoing folds in the **original** order instead of the reverse order.\n- Forgetting the **last** unfold, which halves the true count.\n- Doubling a punch that lies outside a folded strip.\n\n### Worked example\nA sheet is folded left over right, then top down onto the bottom, and punched once near the bottom-right corner of the folded piece. Undo the top-down fold: a copy appears near the top-right. Undo the left-right fold: both holes get copies on the left. Result: **4 holes**, one near each corner of the sheet.\n\n### Quick revision\n- A punch goes through all layers; each layer gives one hole.\n- Unfold in **reverse** order; each unfold **mirrors** the holes across that fold line.\n- Vertical fold keeps height, horizontal fold keeps left-right position, main diagonal swaps x and y.\n- Full folds: 1 → 2 → 4 → 8 holes per punch.\n- Strip fold: double only the punches inside the strip.\n- Punch on a crease: the copies merge into one hole on that crease.\n",
+   "patterns": [
+    {
+     "id": "fp-p1",
+     "name": "Single half fold, then punch",
+     "frequency": "very common",
+     "howToSpot": "One dashed line through the middle of the sheet and one arrow. One or two punches on the folded half.",
+     "formula": null,
+     "logic": "Each punch makes 2 holes: the one you see and its mirror copy across the fold line, at the same distance on the other side.",
+     "example": {
+      "q": "**Q.** A square sheet is folded left over right and punched once near the top-right corner. Where are the holes after unfolding?",
+      "solution": "One hole near the top-right and one near the top-left, both at the same height."
+     }
+    },
+    {
+     "id": "fp-p2",
+     "name": "Quarter fold, then punch",
+     "frequency": "very common",
+     "howToSpot": "Two folds: first one half onto the other, then the result halved again at right angles.",
+     "formula": "H = p \\times 2^{n}",
+     "logic": "4 layers under the punch, so 4 holes per punch. Undo the second fold first, then the first. The 4 holes are mirror images around both centre lines.",
+     "example": {
+      "q": "**Q.** A sheet folded into quarters is punched once near the open corner of the folded square. How many holes, and where?",
+      "solution": "4 holes, one near each corner of the sheet."
+     }
+    },
+    {
+     "id": "fp-p3",
+     "name": "Diagonal fold",
+     "frequency": "common",
+     "howToSpot": "A dashed line from corner to corner. The folded sheet is a triangle.",
+     "formula": null,
+     "logic": "Reflect across the diagonal. For the diagonal from top-left to bottom-right, (x, y) goes to (y, x): a hole near the top edge gets a partner near the left or right edge.",
+     "example": {
+      "q": "**Q.** A square is folded along the diagonal from top-left to bottom-right, the top-right half moving over. A punch is made near the middle of the left edge of the folded triangle. Where is the second hole?",
+      "solution": "Near the middle of the bottom edge. (x, y) becomes (y, x): (1, 4) goes to (4, 1)."
+     }
+    },
+    {
+     "id": "fp-p4",
+     "name": "Strip (partial) fold",
+     "frequency": "common",
+     "howToSpot": "The dashed line is not through the middle. Only a narrow strip is folded over.",
+     "formula": null,
+     "logic": "Only the part covered by the strip has 2 layers. Punches in the covered part make 2 holes; punches elsewhere make 1 hole.",
+     "example": {
+      "q": "**Q.** The left quarter of a sheet is folded over to the right. One punch is made on the doubled part and one on the single part. How many holes?",
+      "solution": "2 + 1 = 3 holes."
+     }
+    },
+    {
+     "id": "fp-p5",
+     "name": "Three folds",
+     "frequency": "occasional",
+     "howToSpot": "Three folding steps: usually a quarter fold followed by a diagonal fold, or three half folds.",
+     "formula": "H = p \\times 2^{3}",
+     "logic": "8 layers under a punch away from the creases. Undo the diagonal (last) fold first, then the two straight folds.",
+     "example": {
+      "q": "**Q.** A sheet is folded in half, then in half again, then along a diagonal. One punch is made. How many holes?",
+      "solution": "2 × 2 × 2 = 8 holes."
+     }
+    },
+    {
+     "id": "fp-p6",
+     "name": "Punch on a fold line",
+     "frequency": "occasional",
+     "howToSpot": "The punch mark sits exactly on an edge of the folded piece where the paper bends.",
+     "formula": null,
+     "logic": "Copies across that crease land on the same spot, so they merge into one hole on the crease. Count only the folds whose crease does not pass through the punch.",
+     "example": {
+      "q": "**Q.** A sheet folded into quarters is punched exactly at the folded corner (the centre of the sheet). How many holes?",
+      "solution": "Only 1 hole, at the centre, because both creases pass through the punch."
+     }
+    }
    ]
   },
   {
@@ -63,6 +138,69 @@
    "mistakes": [
     "Adding 2 per fold instead of doubling.",
     "Doubling a punch that sits outside a partially folded strip."
+   ],
+   "notes": "### Count first, then check positions\nMany questions only ask **how many holes** appear, or how many layers of paper a punch goes through. Even in figure questions, counting first removes most wrong options quickly.\n\n**Rule:** holes after unfolding = the sum, over all punches, of the **number of layers** under that punch.\n\n### Full folds\nA full fold lays one half exactly on the other half, so the number of layers **doubles everywhere**:\n\n| Full folds | Layers | Holes from 1 punch |\n|---|---|---|\n| 1 | 2 | 2 |\n| 2 | 4 | 4 |\n| 3 | 8 | 8 |\n| 4 | 16 | 16 |\n\nSo with p punches and n full folds: $H = p \\times 2^{n}$. A diagonal fold of a square or of a folded square also counts as a full fold, because the two halves match exactly.\n\n### Partial folds\nIf only a strip is folded over, layers double **only inside the strip**. Work punch by punch:\n- punch inside the doubled strip: 2 layers (or double what was there before);\n- punch outside it: the old number of layers.\n\nExample: the top quarter is folded down, then the whole sheet is folded in half left over right. Where the flap lies the paper has 2 × 2 = 4 layers; below the flap it has 2. One punch in each part gives 4 + 2 = 6 holes.\n\n### Three-way (letter) fold\nA sheet folded into three equal strips, like a letter going into an envelope, has **3 layers** everywhere. Folding that in half again gives 6 layers. Not every count is a power of 2.\n\n### Punches on a crease\nA punch exactly on a crease joins the two layers that meet there, so the copies merge into one hole. Count the folds whose crease does **not** pass through the punch, and double only for those.\n- Quarter fold, punch on one crease: 2 holes (not 4).\n- Quarter fold, punch at the point where both creases meet: 1 hole.\n\n### Doubling chain\nWrite the count as you read each step: 1 → 2 → 4 → 8. For a strip fold, write two chains, one for the doubled part and one for the single part. Multiply by the punches in each part and add.\n\n### Worked example\nA sheet is folded in half and in half again, then 3 holes are punched through all the layers. Layers: 2 after the first fold, 4 after the second. Holes = 3 × 4 = **12**. But if only the left quarter had been folded over first, only punches made inside that doubled quarter would double, and the count would be smaller.\n\n### Common mistakes\n- Adding 2 for each fold instead of doubling.\n- Doubling a punch that is outside a folded strip.\n- Counting 4 holes for a punch that sits on a crease.\n- Thinking layers must be a power of 2 after a three-way fold.\n\n### Quick revision\n- Holes = sum of the layers under each punch.\n- n full folds, p punches: H = p × 2ⁿ.\n- Strip fold: double only inside the strip.\n- Three-way fold: 3 layers; then halved: 6 layers.\n- Crease punch: do not double for a crease through the punch.\n",
+   "patterns": [
+    {
+     "id": "lc-p1",
+     "name": "Holes after full folds",
+     "frequency": "very common",
+     "howToSpot": "Text only: 'folded in half n times', 'p holes punched'.",
+     "formula": "H = p \\times 2^{n}",
+     "logic": "Every full fold doubles the layers, so each punch becomes 2ⁿ holes.",
+     "example": {
+      "q": "**Q.** A sheet is folded in half three times and 2 holes are punched. How many holes after unfolding?",
+      "solution": "2 × 2³ = 16."
+     }
+    },
+    {
+     "id": "lc-p2",
+     "name": "Holes after a strip fold",
+     "frequency": "common",
+     "howToSpot": "Only a strip or a quarter of the sheet is folded over, and punches are in different parts.",
+     "formula": null,
+     "logic": "Find the layers in each part separately (doubled only where the flap lies). Add the layers under each punch.",
+     "example": {
+      "q": "**Q.** The left quarter of a sheet is folded onto the next quarter. 2 punches are made on the doubled part and 1 on the single part. Holes?",
+      "solution": "2 × 2 + 1 × 1 = 5."
+     }
+    },
+    {
+     "id": "lc-p3",
+     "name": "Punch on a crease",
+     "frequency": "occasional",
+     "howToSpot": "The question says the punch is made exactly on a fold line or at the folded corner.",
+     "formula": null,
+     "logic": "Copies across a crease through the punch merge. Double only for creases that do not pass through the punch.",
+     "example": {
+      "q": "**Q.** A sheet folded into quarters is punched exactly at the folded corner. Holes?",
+      "solution": "1 hole: both creases pass through the punch."
+     }
+    },
+    {
+     "id": "lc-p4",
+     "name": "Number of layers",
+     "frequency": "common",
+     "howToSpot": "Asked for layers or thickness at a point, or a three-way fold appears.",
+     "formula": null,
+     "logic": "Doubling for full folds; a three-way fold gives 3 layers; multiply the factors of each step.",
+     "example": {
+      "q": "**Q.** A sheet is folded into three equal strips and then folded in half. How many layers?",
+      "solution": "3 × 2 = 6."
+     }
+    },
+    {
+     "id": "lc-p5",
+     "name": "Hole count from a figure",
+     "frequency": "common",
+     "howToSpot": "Folding steps are drawn; the options are numbers.",
+     "formula": null,
+     "logic": "Read each drawn step as full, strip or diagonal; count layers under each punch mark; add.",
+     "example": {
+      "q": "**Q.** The figure shows a quarter fold and 2 punches. How many holes?",
+      "solution": "2 × 4 = 8, unless a punch sits on a crease."
+     }
+    }
    ]
   }
  ],
@@ -70,32 +208,101 @@
   {
    "pattern": "Single fold, punch",
    "frequency": "very common",
-   "howToSpot": "One vertical/horizontal half-fold, one or two punches.",
-   "approach": "Reflect each hole across the fold line."
+   "howToSpot": "One half fold, one or two punches, four figure options.",
+   "approach": "Mirror each punch across the fold line; same height for a vertical fold.",
+   "subtopic": "fold-punch",
+   "example": {
+    "q": "**Q.** Folded left over right, punched once near the top-right. Holes after unfolding?",
+    "solution": "2 holes at the same height, one near each side."
+   }
   },
   {
-   "pattern": "Two folds, punch",
+   "pattern": "Quarter fold, punch",
    "frequency": "very common",
-   "howToSpot": "Folded into quarters, then punched.",
-   "approach": "Unfold the second fold first, then the first; expect 4 holes per punch."
+   "howToSpot": "Two folds at right angles, then a punch.",
+   "approach": "Undo the second fold, then the first; 4 holes per punch placed symmetrically about both centre lines.",
+   "subtopic": "fold-punch",
+   "example": {
+    "q": "**Q.** Folded into quarters and punched once near the open corner. How many holes?",
+    "solution": "4, one near each corner of the sheet."
+   }
   },
   {
    "pattern": "Diagonal fold",
    "frequency": "common",
-   "howToSpot": "A square folded along a diagonal into a triangle.",
-   "approach": "Reflect across the diagonal: (x, y) swaps to (y, x) for the main diagonal."
+   "howToSpot": "A corner-to-corner fold makes a triangle.",
+   "approach": "Reflect across the diagonal: (x, y) → (y, x) for the top-left to bottom-right diagonal.",
+   "subtopic": "fold-punch",
+   "example": {
+    "q": "**Q.** Folded along the main diagonal, punched near the middle of the left edge. Where is the other hole?",
+    "solution": "Near the middle of the bottom edge."
+   }
   },
   {
-   "pattern": "Partial (strip) fold",
+   "pattern": "Strip (partial) fold",
    "frequency": "occasional",
-   "howToSpot": "Only a strip is folded over, so layers differ across the sheet.",
-   "approach": "Double only the punches that lie inside the covered strip."
+   "howToSpot": "The fold line is not through the centre.",
+   "approach": "Double only punches inside the folded strip.",
+   "subtopic": "fold-punch",
+   "example": {
+    "q": "**Q.** Left quarter folded over; punches on the doubled and the single part. Holes?",
+    "solution": "2 + 1 = 3."
+   }
+  },
+  {
+   "pattern": "Three folds",
+   "frequency": "occasional",
+   "howToSpot": "Quarter fold followed by a diagonal, or three half folds.",
+   "approach": "8 holes per punch; undo the last fold first.",
+   "subtopic": "fold-punch",
+   "example": {
+    "q": "**Q.** Halved, halved again, then folded along a diagonal; one punch. Holes?",
+    "solution": "8."
+   }
+  },
+  {
+   "pattern": "Punch on a crease",
+   "frequency": "occasional",
+   "howToSpot": "The punch mark is on the edge where the paper bends.",
+   "approach": "Copies across that crease merge into one hole.",
+   "subtopic": "fold-punch",
+   "example": {
+    "q": "**Q.** Quarter fold punched at the folded corner. Holes?",
+    "solution": "1."
+   }
   },
   {
    "pattern": "Hole count only",
    "frequency": "common",
-   "howToSpot": "Text question: number of holes after n folds and p punches.",
-   "approach": "p × 2ⁿ, adjusted for partial folds."
+   "howToSpot": "Text question: number of folds and number of punches.",
+   "approach": "H = p × 2ⁿ for full folds; adjust for strip folds and crease punches.",
+   "subtopic": "layers-count",
+   "example": {
+    "q": "**Q.** Folded in half three times, 2 punches. Holes?",
+    "solution": "16."
+   }
+  },
+  {
+   "pattern": "Layers after a three-way fold",
+   "frequency": "occasional",
+   "howToSpot": "The sheet is folded into three equal strips.",
+   "approach": "3 layers; each later full fold doubles it.",
+   "subtopic": "layers-count",
+   "example": {
+    "q": "**Q.** Folded into three strips, then in half. Layers?",
+    "solution": "6."
+   }
+  },
+  {
+   "pattern": "Cut and unfold",
+   "frequency": "common",
+   "howToSpot": "A shape is cut from a folded edge or corner instead of a punch.",
+   "approach": "The cut opens into a shape symmetric about each fold line; mirror it in reverse order.",
+   "subtopic": "fold-punch",
+   "example": {
+    "q": "**Q.** A half-circle is cut from the folded edge of a sheet folded once. What opens out?",
+    "solution": "A full circle centred on the crease."
+   }
   }
  ],
  "solvedExamples": [
@@ -424,6 +631,402 @@
    "subtopic": "layers-count",
    "pattern": "partial (strip) fold",
    "timeSec": 40
+  },
+  {
+   "id": "fold-punch-p01",
+   "q": "A square sheet of paper is folded as shown by the dashed lines and arrows, and then punched at the marked position(s). How will the sheet look when it is opened?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 134 62\" width=\"134\" height=\"62\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"7,7 55,7 55,55 7,55\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"31\" y1=\"7\" x2=\"31\" y2=\"55\" stroke-dasharray=\"3 2\"/><line x1=\"22.6\" y1=\"31\" x2=\"38.2\" y2=\"31\"/><polyline points=\"34.8,33.1 38.2,31 34.8,28.9\"/><text x=\"67\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"79,7 127,7 127,55 79,55\" stroke-dasharray=\"3 2\"/><polygon points=\"103,7 103,55 127,55 127,7\" fill=\"currentColor\" fill-opacity=\"0.12\"/><circle cx=\"118\" cy=\"16\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"15\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"15\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"15\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"12\" cy=\"18\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"48\" cy=\"18\" r=\"2.6\" fill=\"currentColor\"/></svg>"
+   ],
+   "answer": 0,
+   "solution": "A punch goes through every layer, so it opens into one hole per layer. Unfold in reverse order, mirroring the holes across each fold line: the count goes 1 - 2.",
+   "shortcut": "Count first: each full fold doubles the holes; then check positions.",
+   "difficulty": "easy",
+   "subtopic": "fold-punch",
+   "pattern": "fp-p1",
+   "timeSec": 60
+  },
+  {
+   "id": "fold-punch-p02",
+   "q": "A square sheet of paper is folded as shown by the dashed lines and arrows, and then punched at the marked position(s). How will the sheet look when it is opened?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 134 62\" width=\"134\" height=\"62\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"7,7 55,7 55,55 7,55\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"7\" y1=\"31\" x2=\"55\" y2=\"31\" stroke-dasharray=\"3 2\"/><line x1=\"31\" y1=\"39.4\" x2=\"31\" y2=\"23.8\"/><polyline points=\"33.1,27.2 31,23.8 28.9,27.2\"/><text x=\"67\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"79,7 127,7 127,55 79,55\" stroke-dasharray=\"3 2\"/><polygon points=\"79,7 127,7 127,31 79,31\" fill=\"currentColor\" fill-opacity=\"0.12\"/><circle cx=\"88\" cy=\"16\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"15\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"15\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"15\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"18\" cy=\"18\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"18\" cy=\"42\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"45\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/></svg>"
+   ],
+   "answer": 1,
+   "solution": "A punch goes through every layer, so it opens into one hole per layer. Unfold in reverse order, mirroring the holes across each fold line: the count goes 1 - 2.",
+   "shortcut": "Count first: each full fold doubles the holes; then check positions.",
+   "difficulty": "easy",
+   "subtopic": "fold-punch",
+   "pattern": "fp-p1",
+   "timeSec": 60
+  },
+  {
+   "id": "fold-punch-p03",
+   "q": "A square sheet of paper is folded as shown by the dashed lines and arrows, and then punched at the marked position(s). How will the sheet look when it is opened?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 206 62\" width=\"206\" height=\"62\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"7,7 55,7 55,55 7,55\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"31\" y1=\"7\" x2=\"31\" y2=\"55\" stroke-dasharray=\"3 2\"/><line x1=\"22.6\" y1=\"31\" x2=\"38.2\" y2=\"31\"/><polyline points=\"34.8,33.1 38.2,31 34.8,28.9\"/><text x=\"67\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"79,7 127,7 127,55 79,55\" stroke-dasharray=\"3 2\"/><polygon points=\"103,7 103,55 127,55 127,7\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"103\" y1=\"31\" x2=\"127\" y2=\"31\" stroke-dasharray=\"3 2\"/><line x1=\"115\" y1=\"22.6\" x2=\"115\" y2=\"38.2\"/><polyline points=\"112.9,34.8 115,38.2 117.1,34.8\"/><text x=\"139\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"151,7 199,7 199,55 151,55\" stroke-dasharray=\"3 2\"/><polygon points=\"175,31 199,31 199,55 175,55\" fill=\"currentColor\" fill-opacity=\"0.12\"/><circle cx=\"190\" cy=\"46\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"15\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"12\" cy=\"12\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"12\" cy=\"48\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"48\" cy=\"12\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"48\" cy=\"48\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"15\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"15\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"12\" cy=\"18\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"12\" cy=\"42\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"48\" cy=\"18\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"48\" cy=\"42\" r=\"2.6\" fill=\"currentColor\"/></svg>"
+   ],
+   "answer": 2,
+   "solution": "A punch goes through every layer, so it opens into one hole per layer. Unfold in reverse order, mirroring the holes across each fold line: the count goes 1 - 2 - 4.",
+   "shortcut": "Count first: each full fold doubles the holes; then check positions.",
+   "difficulty": "medium",
+   "subtopic": "fold-punch",
+   "pattern": "fp-p2",
+   "timeSec": 60
+  },
+  {
+   "id": "fold-punch-p04",
+   "q": "A square sheet of paper is folded as shown by the dashed lines and arrows, and then punched at the marked position(s). How will the sheet look when it is opened?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 206 62\" width=\"206\" height=\"62\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"7,7 55,7 55,55 7,55\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"31\" y1=\"7\" x2=\"31\" y2=\"55\" stroke-dasharray=\"3 2\"/><line x1=\"39.4\" y1=\"31\" x2=\"23.8\" y2=\"31\"/><polyline points=\"27.2,28.9 23.8,31 27.2,33.1\"/><text x=\"67\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"79,7 127,7 127,55 79,55\" stroke-dasharray=\"3 2\"/><polygon points=\"79,7 79,55 103,55 103,7\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"79\" y1=\"31\" x2=\"103\" y2=\"31\" stroke-dasharray=\"3 2\"/><line x1=\"91\" y1=\"39.4\" x2=\"91\" y2=\"23.8\"/><polyline points=\"93.1,27.2 91,23.8 88.9,27.2\"/><text x=\"139\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"151,7 199,7 199,55 151,55\" stroke-dasharray=\"3 2\"/><polygon points=\"151,7 151,31 175,31 175,7\" fill=\"currentColor\" fill-opacity=\"0.12\"/><circle cx=\"172\" cy=\"28\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"27\" cy=\"27\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"27\" cy=\"33\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"33\" cy=\"27\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"33\" cy=\"33\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"27\" cy=\"27\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"33\" cy=\"27\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"30\" cy=\"30\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"9\" cy=\"33\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"27\" cy=\"27\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"33\" cy=\"27\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"51\" cy=\"33\" r=\"2.6\" fill=\"currentColor\"/></svg>"
+   ],
+   "answer": 0,
+   "solution": "A punch goes through every layer, so it opens into one hole per layer. Unfold in reverse order, mirroring the holes across each fold line: the count goes 1 - 2 - 4.",
+   "shortcut": "Count first: each full fold doubles the holes; then check positions.",
+   "difficulty": "medium",
+   "subtopic": "fold-punch",
+   "pattern": "fp-p2",
+   "timeSec": 60
+  },
+  {
+   "id": "fold-punch-p05",
+   "q": "A square sheet of paper is folded as shown by the dashed lines and arrows, and then punched at the marked position(s). How will the sheet look when it is opened?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 134 62\" width=\"134\" height=\"62\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"7,7 55,7 55,55 7,55\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"7\" y1=\"7\" x2=\"55\" y2=\"55\" stroke-dasharray=\"3 2\"/><line x1=\"36.9\" y1=\"25.1\" x2=\"25.9\" y2=\"36.1\"/><polyline points=\"26.8,32.2 25.9,36.1 29.8,35.2\"/><text x=\"67\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"79,7 127,7 127,55 79,55\" stroke-dasharray=\"3 2\"/><polygon points=\"79,7 127,55 79,55\" fill=\"currentColor\" fill-opacity=\"0.12\"/><circle cx=\"88\" cy=\"22\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"15\" cy=\"21\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"39\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"15\" cy=\"39\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"21\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"15\" cy=\"21\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"21\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"39\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"21\" r=\"2.6\" fill=\"currentColor\"/></svg>"
+   ],
+   "answer": 2,
+   "solution": "A punch goes through every layer, so it opens into one hole per layer. Unfold in reverse order, mirroring the holes across each fold line: the count goes 1 - 2.",
+   "shortcut": "Count first: each full fold doubles the holes; then check positions.",
+   "difficulty": "medium",
+   "subtopic": "fold-punch",
+   "pattern": "fp-p3",
+   "timeSec": 60
+  },
+  {
+   "id": "fold-punch-p06",
+   "q": "A square sheet of paper is folded as shown by the dashed lines and arrows, and then punched at the marked position(s). How will the sheet look when it is opened?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 134 62\" width=\"134\" height=\"62\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"7,7 55,7 55,55 7,55\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"55\" y1=\"7\" x2=\"7\" y2=\"55\" stroke-dasharray=\"3 2\"/><line x1=\"25.1\" y1=\"25.1\" x2=\"36.1\" y2=\"36.1\"/><polyline points=\"32.2,35.2 36.1,36.1 35.2,32.2\"/><text x=\"67\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"79,7 127,7 127,55 79,55\" stroke-dasharray=\"3 2\"/><polygon points=\"79,55 127,7 127,55\" fill=\"currentColor\" fill-opacity=\"0.12\"/><circle cx=\"118\" cy=\"46\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"18\" cy=\"12\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"48\" cy=\"42\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"15\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"12\" cy=\"12\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"48\" cy=\"48\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"15\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/></svg>"
+   ],
+   "answer": 1,
+   "solution": "A punch goes through every layer, so it opens into one hole per layer. Unfold in reverse order, mirroring the holes across each fold line: the count goes 1 - 2.",
+   "shortcut": "Count first: each full fold doubles the holes; then check positions.",
+   "difficulty": "medium",
+   "subtopic": "fold-punch",
+   "pattern": "fp-p3",
+   "timeSec": 60
+  },
+  {
+   "id": "fold-punch-p07",
+   "q": "A square sheet of paper is folded as shown by the dashed lines and arrows, and then punched at the marked position(s). How will the sheet look when it is opened?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 134 62\" width=\"134\" height=\"62\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"7,7 55,7 55,55 7,55\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"19\" y1=\"7\" x2=\"19\" y2=\"55\" stroke-dasharray=\"3 2\"/><line x1=\"10.6\" y1=\"31\" x2=\"26.2\" y2=\"31\"/><polyline points=\"22.8,33.1 26.2,31 22.8,28.9\"/><text x=\"67\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"79,7 127,7 127,55 79,55\" stroke-dasharray=\"3 2\"/><polygon points=\"91,7 91,55 127,55 127,7\" fill=\"currentColor\" fill-opacity=\"0.12\"/><circle cx=\"100\" cy=\"16\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"118\" cy=\"46\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"9\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"27\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"15\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"33\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"51\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"9\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"27\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"9\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"27\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/></svg>"
+   ],
+   "answer": 0,
+   "solution": "A punch goes through every layer, so it opens into one hole per layer. Unfold in reverse order, mirroring the holes across each fold line: the count goes 2 - 3.",
+   "shortcut": "Count first: each full fold doubles the holes; then check positions.",
+   "difficulty": "medium",
+   "subtopic": "fold-punch",
+   "pattern": "fp-p4",
+   "timeSec": 60
+  },
+  {
+   "id": "fold-punch-p08",
+   "q": "A square sheet of paper is folded as shown by the dashed lines and arrows, and then punched at the marked position(s). How will the sheet look when it is opened?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 134 62\" width=\"134\" height=\"62\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"7,7 55,7 55,55 7,55\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"7\" y1=\"43\" x2=\"55\" y2=\"43\" stroke-dasharray=\"3 2\"/><line x1=\"31\" y1=\"51.4\" x2=\"31\" y2=\"35.8\"/><polyline points=\"33.1,39.2 31,35.8 28.9,39.2\"/><text x=\"67\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"79,7 127,7 127,55 79,55\" stroke-dasharray=\"3 2\"/><polygon points=\"79,7 127,7 127,43 79,43\" fill=\"currentColor\" fill-opacity=\"0.12\"/><circle cx=\"88\" cy=\"40\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"106\" cy=\"16\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"15\" cy=\"39\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"33\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"27\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"39\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"15\" cy=\"39\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"15\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"33\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"15\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"15\" cy=\"21\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"33\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/></svg>"
+   ],
+   "answer": 2,
+   "solution": "A punch goes through every layer, so it opens into one hole per layer. Unfold in reverse order, mirroring the holes across each fold line: the count goes 2 - 3.",
+   "shortcut": "Count first: each full fold doubles the holes; then check positions.",
+   "difficulty": "medium",
+   "subtopic": "fold-punch",
+   "pattern": "fp-p4",
+   "timeSec": 60
+  },
+  {
+   "id": "fold-punch-p09",
+   "q": "A square sheet of paper is folded as shown by the dashed lines and arrows, and then punched at the marked position(s). How will the sheet look when it is opened?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 278 62\" width=\"278\" height=\"62\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"7,7 55,7 55,55 7,55\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"31\" y1=\"7\" x2=\"31\" y2=\"55\" stroke-dasharray=\"3 2\"/><line x1=\"22.6\" y1=\"31\" x2=\"38.2\" y2=\"31\"/><polyline points=\"34.8,33.1 38.2,31 34.8,28.9\"/><text x=\"67\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"79,7 127,7 127,55 79,55\" stroke-dasharray=\"3 2\"/><polygon points=\"103,7 103,55 127,55 127,7\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"103\" y1=\"31\" x2=\"127\" y2=\"31\" stroke-dasharray=\"3 2\"/><line x1=\"115\" y1=\"22.6\" x2=\"115\" y2=\"38.2\"/><polyline points=\"112.9,34.8 115,38.2 117.1,34.8\"/><text x=\"139\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"151,7 199,7 199,55 151,55\" stroke-dasharray=\"3 2\"/><polygon points=\"175,31 199,31 199,55 175,55\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"199\" y1=\"31\" x2=\"175\" y2=\"55\" stroke-dasharray=\"3 2\"/><line x1=\"181.1\" y1=\"37.1\" x2=\"192.1\" y2=\"48.1\"/><polyline points=\"188.2,47.2 192.1,48.1 191.2,44.2\"/><text x=\"211\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"223,7 271,7 271,55 223,55\" stroke-dasharray=\"3 2\"/><polygon points=\"247,55 271,55 271,31\" fill=\"currentColor\" fill-opacity=\"0.12\"/><circle cx=\"262\" cy=\"52\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"15\" cy=\"9\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"15\" cy=\"51\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"27\" cy=\"21\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"27\" cy=\"39\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"33\" cy=\"21\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"33\" cy=\"39\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"9\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"51\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"12\" cy=\"6\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"12\" cy=\"54\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"30\" cy=\"24\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"30\" cy=\"36\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"48\" cy=\"6\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"48\" cy=\"54\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"15\" cy=\"9\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"15\" cy=\"51\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"9\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"51\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"15\" cy=\"9\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"15\" cy=\"51\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"21\" cy=\"27\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"21\" cy=\"33\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"39\" cy=\"27\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"39\" cy=\"33\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"9\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"45\" cy=\"51\" r=\"2.6\" fill=\"currentColor\"/></svg>"
+   ],
+   "answer": 0,
+   "solution": "A punch goes through every layer, so it opens into one hole per layer. Unfold in reverse order, mirroring the holes across each fold line: the count goes 1 - 2 - 4 - 8.",
+   "shortcut": "Count first: each full fold doubles the holes; then check positions.",
+   "difficulty": "hard",
+   "subtopic": "fold-punch",
+   "pattern": "fp-p5",
+   "timeSec": 90
+  },
+  {
+   "id": "fold-punch-p10",
+   "q": "A square sheet of paper is folded as shown by the dashed lines and arrows, and then punched at the marked position(s). How will the sheet look when it is opened?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 278 62\" width=\"278\" height=\"62\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"7,7 55,7 55,55 7,55\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"31\" y1=\"7\" x2=\"31\" y2=\"55\" stroke-dasharray=\"3 2\"/><line x1=\"22.6\" y1=\"31\" x2=\"38.2\" y2=\"31\"/><polyline points=\"34.8,33.1 38.2,31 34.8,28.9\"/><text x=\"67\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"79,7 127,7 127,55 79,55\" stroke-dasharray=\"3 2\"/><polygon points=\"103,7 103,55 127,55 127,7\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"103\" y1=\"31\" x2=\"127\" y2=\"31\" stroke-dasharray=\"3 2\"/><line x1=\"115\" y1=\"39.4\" x2=\"115\" y2=\"23.8\"/><polyline points=\"117.1,27.2 115,23.8 112.9,27.2\"/><text x=\"139\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"151,7 199,7 199,55 151,55\" stroke-dasharray=\"3 2\"/><polygon points=\"175,7 199,7 199,31 175,31\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"187\" y1=\"7\" x2=\"187\" y2=\"31\" stroke-dasharray=\"3 2\"/><line x1=\"195.4\" y1=\"19\" x2=\"179.8\" y2=\"19\"/><polyline points=\"183.2,16.9 179.8,19 183.2,21.1\"/><text x=\"211\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"223,7 271,7 271,55 223,55\" stroke-dasharray=\"3 2\"/><polygon points=\"247,7 259,7 259,31 247,31\" fill=\"currentColor\" fill-opacity=\"0.12\"/><circle cx=\"250\" cy=\"16\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"27\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"27\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"33\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"33\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"12\" cy=\"12\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"12\" cy=\"48\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"24\" cy=\"12\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"24\" cy=\"48\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"36\" cy=\"12\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"36\" cy=\"48\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"48\" cy=\"12\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"48\" cy=\"48\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"12\" cy=\"18\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"12\" cy=\"42\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"24\" cy=\"18\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"24\" cy=\"42\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"36\" cy=\"18\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"36\" cy=\"42\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"48\" cy=\"18\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"48\" cy=\"42\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"9\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"9\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"27\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"27\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"33\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"33\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"51\" cy=\"15\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"51\" cy=\"45\" r=\"2.6\" fill=\"currentColor\"/></svg>"
+   ],
+   "answer": 3,
+   "solution": "A punch goes through every layer, so it opens into one hole per layer. Unfold in reverse order, mirroring the holes across each fold line: the count goes 1 - 2 - 4 - 8.",
+   "shortcut": "Count first: each full fold doubles the holes; then check positions.",
+   "difficulty": "hard",
+   "subtopic": "fold-punch",
+   "pattern": "fp-p5",
+   "timeSec": 90
+  },
+  {
+   "id": "fold-punch-p11",
+   "q": "A square sheet of paper is folded as shown by the dashed lines and arrows, and then punched at the marked position(s). How will the sheet look when it is opened?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 206 62\" width=\"206\" height=\"62\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"7,7 55,7 55,55 7,55\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"31\" y1=\"7\" x2=\"31\" y2=\"55\" stroke-dasharray=\"3 2\"/><line x1=\"22.6\" y1=\"31\" x2=\"38.2\" y2=\"31\"/><polyline points=\"34.8,33.1 38.2,31 34.8,28.9\"/><text x=\"67\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"79,7 127,7 127,55 79,55\" stroke-dasharray=\"3 2\"/><polygon points=\"103,7 103,55 127,55 127,7\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"103\" y1=\"31\" x2=\"127\" y2=\"31\" stroke-dasharray=\"3 2\"/><line x1=\"115\" y1=\"22.6\" x2=\"115\" y2=\"38.2\"/><polyline points=\"112.9,34.8 115,38.2 117.1,34.8\"/><text x=\"139\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"151,7 199,7 199,55 151,55\" stroke-dasharray=\"3 2\"/><polygon points=\"175,31 199,31 199,55 175,55\" fill=\"currentColor\" fill-opacity=\"0.12\"/><circle cx=\"175\" cy=\"31\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"27\" cy=\"27\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"27\" cy=\"33\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"33\" cy=\"27\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"33\" cy=\"33\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"30\" cy=\"24\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"30\" cy=\"36\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"24\" cy=\"30\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"36\" cy=\"30\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"30\" cy=\"30\" r=\"2.6\" fill=\"currentColor\"/></svg>"
+   ],
+   "answer": 3,
+   "solution": "A punch goes through every layer, so it opens into one hole per layer. Unfold in reverse order, mirroring the holes across each fold line: the count goes 1 - 1 - 1. The copies keep landing on the same spot because the punch sits on a crease.",
+   "shortcut": "Count first: each full fold doubles the holes; then check positions.",
+   "difficulty": "hard",
+   "subtopic": "fold-punch",
+   "pattern": "fp-p6",
+   "timeSec": 90
+  },
+  {
+   "id": "fold-punch-p12",
+   "q": "A square sheet of paper is folded as shown by the dashed lines and arrows, and then punched at the marked position(s). How will the sheet look when it is opened?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 206 62\" width=\"206\" height=\"62\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"7,7 55,7 55,55 7,55\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"31\" y1=\"7\" x2=\"31\" y2=\"55\" stroke-dasharray=\"3 2\"/><line x1=\"39.4\" y1=\"31\" x2=\"23.8\" y2=\"31\"/><polyline points=\"27.2,28.9 23.8,31 27.2,33.1\"/><text x=\"67\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"79,7 127,7 127,55 79,55\" stroke-dasharray=\"3 2\"/><polygon points=\"79,7 79,55 103,55 103,7\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"79\" y1=\"31\" x2=\"103\" y2=\"31\" stroke-dasharray=\"3 2\"/><line x1=\"91\" y1=\"39.4\" x2=\"91\" y2=\"23.8\"/><polyline points=\"93.1,27.2 91,23.8 88.9,27.2\"/><text x=\"139\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"151,7 199,7 199,55 151,55\" stroke-dasharray=\"3 2\"/><polygon points=\"151,7 151,31 175,31 175,7\" fill=\"currentColor\" fill-opacity=\"0.12\"/><circle cx=\"172\" cy=\"31\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"24\" cy=\"27\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"24\" cy=\"33\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"36\" cy=\"27\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"36\" cy=\"33\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"27\" cy=\"30\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"33\" cy=\"30\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"30\" cy=\"27\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"30\" cy=\"33\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 60\" width=\"60\" height=\"60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 54,6 54,54 6,54\"/><circle cx=\"21\" cy=\"30\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"39\" cy=\"30\" r=\"2.6\" fill=\"currentColor\"/></svg>"
+   ],
+   "answer": 1,
+   "solution": "A punch goes through every layer, so it opens into one hole per layer. Unfold in reverse order, mirroring the holes across each fold line: the count goes 1 - 1 - 2.",
+   "shortcut": "Count first: each full fold doubles the holes; then check positions.",
+   "difficulty": "hard",
+   "subtopic": "fold-punch",
+   "pattern": "fp-p6",
+   "timeSec": 90
+  },
+  {
+   "id": "layers-count-p01",
+   "q": "A square sheet of paper is folded in half three times (each fold halves the folded sheet again), and then **two** holes are punched through all the layers. How many holes will the opened sheet have?",
+   "figure": null,
+   "options": [
+    "6",
+    "16",
+    "12",
+    "8"
+   ],
+   "answer": 1,
+   "solution": "Layers under the punches: 8, 8, so the opened sheet has 8 + 8 = 16 holes. Unfolding one fold at a time: 2 - 4 - 8 - 16.",
+   "shortcut": "Holes = sum of the layers under each punch.",
+   "difficulty": "easy",
+   "subtopic": "layers-count",
+   "pattern": "lc-p1",
+   "timeSec": 30
+  },
+  {
+   "id": "layers-count-p02",
+   "q": "A square sheet is folded in half four times, and one hole is punched through all the layers. How many holes appear when it is opened?",
+   "figure": null,
+   "options": [
+    "8",
+    "16",
+    "12",
+    "32"
+   ],
+   "answer": 1,
+   "solution": "Layers under the punch: 16, so the opened sheet has 16 = 16 holes. Unfolding one fold at a time: 1 - 2 - 4 - 8 - 16.",
+   "shortcut": "Holes = sum of the layers under each punch.",
+   "difficulty": "medium",
+   "subtopic": "layers-count",
+   "pattern": "lc-p1",
+   "timeSec": 30
+  },
+  {
+   "id": "layers-count-p03",
+   "q": "A square sheet has its left quarter folded over onto the quarter next to it. Then three holes are punched: two through the doubled part and one through the single part. How many holes does the opened sheet have?",
+   "figure": null,
+   "options": [
+    "4",
+    "5",
+    "6",
+    "3"
+   ],
+   "answer": 1,
+   "solution": "Layers under the punches: 2, 2, 1, so the opened sheet has 2 + 2 + 1 = 5 holes.",
+   "shortcut": "Holes = sum of the layers under each punch.",
+   "difficulty": "medium",
+   "subtopic": "layers-count",
+   "pattern": "lc-p2",
+   "timeSec": 30
+  },
+  {
+   "id": "layers-count-p04",
+   "q": "The top quarter of a square sheet is folded down, and then the whole sheet is folded in half from left to right. One hole is punched where the folded flap lies and one hole below it. How many holes does the opened sheet have?",
+   "figure": null,
+   "options": [
+    "8",
+    "4",
+    "3",
+    "6"
+   ],
+   "answer": 3,
+   "solution": "Layers under the punches: 4, 2, so the opened sheet has 4 + 2 = 6 holes. Unfolding one fold at a time: 2 - 4 - 6.",
+   "shortcut": "Holes = sum of the layers under each punch.",
+   "difficulty": "hard",
+   "subtopic": "layers-count",
+   "pattern": "lc-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "layers-count-p05",
+   "q": "A square sheet is folded in half from left to right, and one hole is punched exactly on the folded edge (the crease), halfway up. How many holes does the opened sheet have?",
+   "figure": null,
+   "options": [
+    "1",
+    "3",
+    "2",
+    "4"
+   ],
+   "answer": 0,
+   "solution": "A punch on a crease makes no separate copy: the mirror image of the hole across the fold line falls on the same spot, so the two plies open as just **1** hole, on the crease.",
+   "shortcut": "Holes = sum of the layers under each punch.",
+   "difficulty": "medium",
+   "subtopic": "layers-count",
+   "pattern": "lc-p3",
+   "timeSec": 30
+  },
+  {
+   "id": "layers-count-p06",
+   "q": "A square sheet is folded along its diagonal and one hole is punched exactly on the folded (diagonal) edge. How many holes does the opened sheet have?",
+   "figure": null,
+   "options": [
+    "3",
+    "1",
+    "2",
+    "4"
+   ],
+   "answer": 1,
+   "solution": "The punch sits on the crease itself, so its mirror copy across the diagonal coincides with it. The opened sheet shows only **1** hole, on the diagonal.",
+   "shortcut": "Holes = sum of the layers under each punch.",
+   "difficulty": "hard",
+   "subtopic": "layers-count",
+   "pattern": "lc-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "layers-count-p07",
+   "q": "A rectangular sheet is folded into three equal strips, the way a letter is folded before going into an envelope. How many layers of paper are there?",
+   "figure": null,
+   "options": [
+    "2",
+    "4",
+    "3",
+    "6"
+   ],
+   "answer": 2,
+   "solution": "Doubling for every full fold; a three-way fold contributes its factor directly.",
+   "shortcut": "Multiply the layer factor of each step.",
+   "difficulty": "easy",
+   "subtopic": "layers-count",
+   "pattern": "lc-p4",
+   "timeSec": 30
+  },
+  {
+   "id": "layers-count-p08",
+   "q": "A sheet is folded into three equal strips and then folded in half once more. How many layers of paper are there now?",
+   "figure": null,
+   "options": [
+    "6",
+    "5",
+    "3",
+    "9"
+   ],
+   "answer": 0,
+   "solution": "Doubling for every full fold; a three-way fold contributes its factor directly.",
+   "shortcut": "Multiply the layer factor of each step.",
+   "difficulty": "medium",
+   "subtopic": "layers-count",
+   "pattern": "lc-p4",
+   "timeSec": 30
+  },
+  {
+   "id": "layers-count-p09",
+   "q": "A square sheet of paper is folded as shown, and then punched at the two marked positions. How many holes will the opened sheet have?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 206 62\" width=\"206\" height=\"62\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"7,7 55,7 55,55 7,55\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"31\" y1=\"7\" x2=\"31\" y2=\"55\" stroke-dasharray=\"3 2\"/><line x1=\"22.6\" y1=\"31\" x2=\"38.2\" y2=\"31\"/><polyline points=\"34.8,33.1 38.2,31 34.8,28.9\"/><text x=\"67\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"79,7 127,7 127,55 79,55\" stroke-dasharray=\"3 2\"/><polygon points=\"103,7 103,55 127,55 127,7\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"103\" y1=\"31\" x2=\"127\" y2=\"31\" stroke-dasharray=\"3 2\"/><line x1=\"115\" y1=\"22.6\" x2=\"115\" y2=\"38.2\"/><polyline points=\"112.9,34.8 115,38.2 117.1,34.8\"/><text x=\"139\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"151,7 199,7 199,55 151,55\" stroke-dasharray=\"3 2\"/><polygon points=\"175,31 199,31 199,55 175,55\" fill=\"currentColor\" fill-opacity=\"0.12\"/><circle cx=\"190\" cy=\"46\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"184\" cy=\"40\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+   "options": [
+    "4",
+    "2",
+    "6",
+    "8"
+   ],
+   "answer": 3,
+   "solution": "Layers under the punches: 4, 4, so the opened sheet has 4 + 4 = 8 holes. Unfolding one fold at a time: 2 - 4 - 8.",
+   "shortcut": "Holes = sum of the layers under each punch.",
+   "difficulty": "medium",
+   "subtopic": "layers-count",
+   "pattern": "lc-p5",
+   "timeSec": 30
+  },
+  {
+   "id": "layers-count-p10",
+   "q": "A square sheet of paper is folded as shown, and then punched at the three marked positions. How many holes will the opened sheet have?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 134 62\" width=\"134\" height=\"62\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"7,7 55,7 55,55 7,55\" fill=\"currentColor\" fill-opacity=\"0.12\"/><line x1=\"7\" y1=\"43\" x2=\"55\" y2=\"43\" stroke-dasharray=\"3 2\"/><line x1=\"31\" y1=\"51.4\" x2=\"31\" y2=\"35.8\"/><polyline points=\"33.1,39.2 31,35.8 28.9,39.2\"/><text x=\"67\" y=\"34\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">→</text><polygon points=\"79,7 127,7 127,55 79,55\" stroke-dasharray=\"3 2\"/><polygon points=\"79,7 127,7 127,43 79,43\" fill=\"currentColor\" fill-opacity=\"0.12\"/><circle cx=\"88\" cy=\"40\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"112\" cy=\"40\" r=\"2.6\" fill=\"currentColor\"/><circle cx=\"106\" cy=\"16\" r=\"2.6\" fill=\"currentColor\"/></svg>",
+   "options": [
+    "5",
+    "3",
+    "6",
+    "4"
+   ],
+   "answer": 0,
+   "solution": "Layers under the punches: 2, 2, 1, so the opened sheet has 2 + 2 + 1 = 5 holes.",
+   "shortcut": "Holes = sum of the layers under each punch.",
+   "difficulty": "hard",
+   "subtopic": "layers-count",
+   "pattern": "lc-p5",
+   "timeSec": 60
   }
  ]
 }

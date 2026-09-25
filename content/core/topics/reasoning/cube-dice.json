@@ -43,6 +43,81 @@
     "Declaring two faces opposite just because they never appear together — check that the other four are all ruled out.",
     "Applying the same-position rule when the common face is in different positions.",
     "Forgetting that a standard-die fact (sum 7) only holds when the question says the die is standard."
+   ],
+   "notes": "### What a view of a die tells you\nA die has six faces, and each face has exactly **one** face opposite it; the other four touch it. A view of a die shows three faces that meet at one corner, so the three faces in any one view are **pairwise adjacent** — no two of them can ever be opposite.\n\n### Rule 1: strike out the faces seen together\nTo find the face opposite X, list every face that appears in some view **together with X**. All of them touch X. If four different faces are struck out, exactly one face is left, and that face must be opposite X. This single rule settles most questions.\nExample: X appears with A and B in one view, with C in a second and with D in a third. Faces A, B, C, D all touch X, so the sixth face is opposite X.\n\n### Rule 2: two common faces\nIf two views share the **same two** faces, then the face left over in the first view is opposite the face left over in the second. Views (A, B, C) and (A, B, D): A and B are common, so C and D are opposite.\n\n### Rule 3: common face in the same position\nIf one face is common to two views and sits in the **same position** in both (top in both, front in both, or right in both), then the faces in the other matching positions are opposite: front of view 1 with front of view 2, right with right. If the common face has **moved** to a different position, this rule does not apply — fall back on Rules 1 and 2.\n\n### Rule 4: never together\nTwo faces that appear together in any single view can never be opposite. This is the quickest way to reject an option or a suggested pair.\n\n### Standard die\nA **standard** (ordinary) die has opposite faces adding to 7: 1 is opposite 6, 2 opposite 5, 3 opposite 4. Use this only when the question says the die is standard; a die showing letters has no sum rule.\n\n### The working method\nKeep a small table of opposite pairs and fill it in as you read the views. A die has exactly three opposite pairs, and each face is used once. A good order: apply Rule 2 first (it gives a whole pair at once), then Rule 3, then finish with Rule 1.\n\n### Worked example\nThree views show (P, Q, R), (R, S, P) and (Q, T, R), where the first letter is the front, second the top, third the right face. Views 1 and 2 share P and R, so the leftovers Q and S are opposite. Views 1 and 3 share Q and R in the **same positions** (front and right), so the matching positions give P opposite T. That leaves R opposite the sixth face U. All three pairs found.\n\n### Common mistakes\n- Calling two faces opposite just because they never appear together — you must strike out **four** faces first, or use Rule 2 or 3.\n- Using Rule 3 when the common face sits in different positions in the two views.\n- Applying the sum-7 rule to a die that is not stated to be standard.\n- Forgetting that the answer must be a face of the same die: it must never appear together with the asked face.\n\n### Quick revision\n- A view shows three faces meeting at a corner; they are all adjacent.\n- Rule 1: strike out every face seen with X; if four are gone, the last one is opposite.\n- Rule 2: two common faces in two views → the two leftovers are opposite.\n- Rule 3: common face in the same position → matching positions are opposite.\n- Faces seen together are never opposite.\n- Standard die: 1–6, 2–5, 3–4 (each pair sums to 7).\n",
+   "patterns": [
+    {
+     "id": "dp-p1",
+     "name": "Adjacent-four (strike out)",
+     "frequency": "very common",
+     "howToSpot": "Three views of the same die; the asked face appears with four different faces across the views.",
+     "formula": null,
+     "logic": "Every face seen with X touches X. Strike out all of them; the only face never seen with X is opposite it.",
+     "example": {
+      "q": "**Q.** 4 is seen with 1 and 2, then with 3 and 1, then with 5 and 3. What is opposite 4?",
+      "solution": "4 has been seen with 1, 2, 3 and 5 — four faces. The only one left is **6**."
+     }
+    },
+    {
+     "id": "dp-p2",
+     "name": "Two common faces",
+     "frequency": "very common",
+     "howToSpot": "Two views repeat the same two faces; each view has one extra face.",
+     "formula": null,
+     "logic": "The two common faces touch both extras, so the two leftover faces are opposite each other.",
+     "example": {
+      "q": "**Q.** Views show (A, B, C) and (A, B, D). What is opposite C?",
+      "solution": "A and B are common to both views, so **D** is opposite C."
+     }
+    },
+    {
+     "id": "dp-p3",
+     "name": "Common face in the same position",
+     "frequency": "common",
+     "howToSpot": "Two views share exactly one face, and it sits in the same slot (both top, both front or both right).",
+     "formula": null,
+     "logic": "Matching positions hold opposite faces: front with front, top with top, right with right.",
+     "example": {
+      "q": "**Q.** In both views A is on top; the front faces are B and C. What is opposite B?",
+      "solution": "A is common and in the same position, so the front faces are opposite: **C**."
+     }
+    },
+    {
+     "id": "dp-p4",
+     "name": "Standard die (sum 7)",
+     "frequency": "common",
+     "howToSpot": "The question says 'ordinary' or 'standard' die and gives one or more face values.",
+     "formula": "x + x^{*} = 7",
+     "logic": "Opposite faces add to 7: 1–6, 2–5, 3–4. The three hidden faces sum to 21 minus the three shown.",
+     "example": {
+      "q": "**Q.** A standard die shows 3 on top, 5 in front, 6 on the right. Sum of the hidden faces?",
+      "solution": "Hidden faces are 4, 2 and 1: 21 − (3 + 5 + 6) = **7**."
+     }
+    },
+    {
+     "id": "dp-p5",
+     "name": "Build the full opposite map",
+     "frequency": "occasional",
+     "howToSpot": "Three or more views; the question asks for a pair of opposite faces, or for the partner of the last face.",
+     "formula": null,
+     "logic": "Collect pairs with Rules 2 and 3 until two pairs are known; the two faces never yet paired form the third pair.",
+     "example": {
+      "q": "**Q.** From the views you get A opposite D and B opposite E. What is opposite C?",
+      "solution": "Only C and F are unpaired, so **F**."
+     }
+    },
+    {
+     "id": "dp-p6",
+     "name": "Which view is possible?",
+     "frequency": "occasional",
+     "howToSpot": "The opposite pairs of a labelled die are given in words; options are drawings of views.",
+     "formula": null,
+     "logic": "A real view never shows two opposite faces. Reject every option that shows a pair; a view with one face from each pair can always be turned up.",
+     "example": {
+      "q": "**Q.** A is opposite D, B opposite E, C opposite F. Which view can be formed?",
+      "solution": "The view showing A, B and C — one face from each opposite pair."
+     }
+    }
    ]
   },
   {
@@ -64,6 +139,69 @@
     "Treating squares that only meet at a corner in the net as opposite.",
     "Accepting a cube that shows two faces which are opposite in the net.",
     "Ignoring the order (clockwise/anticlockwise) of the three visible faces."
+   ],
+   "notes": "### What a net is\nAn unfolded cube is a **net** of six squares. When it is folded, the printed side lands on the **outside**. Two squares that share an edge in the net are always **adjacent** on the cube — they can never be opposite.\n\n### Rule 1: skip one in a straight line\nIn any straight row or column of the net, faces with **exactly one square between them** are opposite: 1st with 3rd, 2nd with 4th. A row of four gives two opposite pairs at once.\n\n### Rule 2: ends of a Z (or S)\nFour squares forming a **Z** shape (two and two, offset by one) have their two **end** squares opposite. This covers the pairs that no straight line gives you.\n\n### Rule 3: pair them all\nA cube has exactly three opposite pairs. Find pairs with the two rules above; the two squares left unpaired must form the last pair. As a check, every face appears in exactly one pair.\n\n### Testing 'which cube can be formed?'\nOptions show a cube with three visible faces (front, top, right).\n1. **Reject opposite pairs first.** If two faces shown on an option cube are opposite in the net, that cube is impossible.\n2. **Check the corner order.** The three remaining options show the same three faces; only the order around their shared corner differs. Fold the net mentally: fix one face as the front, see which neighbour rises to the top and which swings to the right. Only one of the two possible orders matches — the other is the mirror image and cannot be formed.\n\n### How to fold in your head\nChoose the square that you want as the **front**. Every square attached to it folds up along the shared edge: the one above the front becomes the **top**, the one to the right becomes the **right** face, and a square two steps away in a line lands **opposite**. Track one neighbour at a time instead of the whole net.\n\n### Worked example\nA net has the row L, M, N and the column K, M, O with J below O. Skip one in the row: L opposite N. Skip one in the column: K opposite O. Left over: M and J, so M is opposite J. To test a cube showing K on top, M in front, N on the right: fold with M facing you — K (above M in the net) comes over the top, and N (right of M) swings to the right, so this cube **can** be formed. Its mirror, with L on the right, cannot.\n\n### Common mistakes\n- Treating squares that only touch at a **corner** in the net as opposite — corner-touching says nothing direct.\n- Accepting a cube that shows an opposite pair (the commonest error; always do the rejection pass first).\n- Reversing the order of the three faces around the corner — the mirror order of a real cube can never be formed.\n- Forgetting that when a row bends around the net, the skip-one rule still applies only within one straight line.\n\n### Quick revision\n- Edge-touching squares are adjacent; opposite faces never touch.\n- In a row or column, skip one square: 1st ↔ 3rd, 2nd ↔ 4th.\n- Ends of a Z of four squares are opposite.\n- Three pairs in total; the leftovers pair up.\n- Which-cube questions: reject opposite pairs, then compare the corner order.\n",
+   "patterns": [
+    {
+     "id": "cn-p1",
+     "name": "Opposite faces in a row",
+     "frequency": "very common",
+     "howToSpot": "A net with a straight row or column of three or four labelled squares.",
+     "formula": "\\text{1st} \\leftrightarrow \\text{3rd}",
+     "logic": "Faces with exactly one square between them in the same line are opposite.",
+     "example": {
+      "q": "**Q.** A net has the row A, B, C. What is opposite A?",
+      "solution": "Skip one square: **C** is opposite A."
+     }
+    },
+    {
+     "id": "cn-p2",
+     "name": "Ends of a Z shape",
+     "frequency": "very common",
+     "howToSpot": "The net bends: two squares, a step sideways, two more squares.",
+     "formula": null,
+     "logic": "In a Z (or S) of four squares the two end squares are opposite.",
+     "example": {
+      "q": "**Q.** A net has the Z path P, Q, R, S. What is opposite P?",
+      "solution": "The ends of the Z are opposite: **S**."
+     }
+    },
+    {
+     "id": "cn-p3",
+     "name": "Find all three pairs",
+     "frequency": "common",
+     "howToSpot": "The question asks which pair of faces is opposite, or for the partner of the last face.",
+     "formula": null,
+     "logic": "Pair up rows and Zs first; the two squares left over are the third pair.",
+     "example": {
+      "q": "**Q.** Row A, B, C, D with E above B and F below C. Which faces are opposite?",
+      "solution": "A–C and B–D from the row; the leftovers **E and F** are opposite."
+     }
+    },
+    {
+     "id": "cn-p4",
+     "name": "Which cube can be formed?",
+     "frequency": "very common",
+     "howToSpot": "A net is drawn; the options are four cubes showing three faces each.",
+     "formula": null,
+     "logic": "Reject cubes showing an opposite pair; then fold the net around the front face and match the order of the remaining two faces.",
+     "example": {
+      "q": "**Q.** Net: column K, M, O, J with L left of M and N right of M. Which cube can be formed?",
+      "solution": "Reject any cube with K–O, M–J or L–N together. The cube with K on top, M in front and N on the right folds correctly; its mirror, with L on the right, does not."
+     }
+    },
+    {
+     "id": "cn-p5",
+     "name": "Which cube cannot be formed?",
+     "frequency": "occasional",
+     "howToSpot": "Same setup, but the question asks for the impossible cube.",
+     "formula": null,
+     "logic": "Three options fold correctly; the impossible one either shows an opposite pair or has the mirror-image corner order.",
+     "example": {
+      "q": "**Q.** Net with A, B, C in a row and D below B. Which cube cannot be formed?",
+      "solution": "The one showing A and C together — they are opposite in the net."
+     }
+    }
    ]
   },
   {
@@ -100,6 +238,93 @@
    "mistakes": [
     "Using n instead of (n − 2) in the formulas.",
     "Forgetting that corner cubes always have 3 painted faces, whatever n is."
+   ],
+   "notes": "### The picture to keep in mind\nA big cube of side **n** (made of n × n × n unit cubes) is painted on the outside and then cut into n³ unit cubes. A small cube keeps paint only on the faces that were on the **surface** of the big cube. Its position decides how many of its faces are painted.\n\n### The four counts\n- **3 faces painted — corners.** A corner cube touches three faces of the big cube. There are always **8**, whatever n is.\n- **2 faces painted — edges.** Each of the 12 edges holds n cubes, but the 2 ends are corners, leaving **n − 2** per edge: 12(n − 2).\n- **1 face painted — face centres.** On each face, the cubes not on any edge form an (n − 2) × (n − 2) block: 6(n − 2)².\n- **0 faces painted — the core.** Peeling one layer from every side leaves an (n − 2) × (n − 2) × (n − 2) block: (n − 2)³.\n\n### Why (n − 2) everywhere\nA cube on an edge but not at a corner has lost 2 of its edge-mates to the corners; a face block has lost its border ring. Always subtract 2 before squaring or cubing — using n instead of (n − 2) is the classic error.\n\n### The total check\n8 + 12(n − 2) + 6(n − 2)² + (n − 2)³ = n³. Test with n = 3: 8 + 12 + 6 + 1 = 27. Test with n = 4: 8 + 24 + 24 + 8 = 64. If your four counts do not add to n³, something is wrong.\n\n### Combined questions\n- **At least one face painted:** everything except the core, n³ − (n − 2)³.\n- **At least two faces painted:** corners plus edges, 8 + 12(n − 2).\n- Adding the counts of two classes is enough — no new formulas are needed.\n\n### Working backwards\nSometimes a count is given and n is asked. Divide: if exactly-two cubes number 12(n − 2) = 24, then n − 2 = 2 and n = 4. If exactly-one cubes number 6(n − 2)² = 54, then (n − 2)² = 9 and n = 5. Then answer the real question with n.\n\n### Cuboid a × b × c\nThe same positions, with each edge keeping its own leftover:\n- corners: **8**;\n- edges: 4[(a − 2) + (b − 2) + (c − 2)];\n- face centres: 2[(a − 2)(b − 2) + (b − 2)(c − 2) + (c − 2)(a − 2)];\n- core: (a − 2)(b − 2)(c − 2).\nThese hold when every side is at least 2. Check: 5 × 4 × 3 gives edges 4(3 + 2 + 1) = 24 and core 3 × 2 × 1 = 6.\n\n### Common mistakes\n- Writing n instead of (n − 2) inside the formulas.\n- Counting 8 corners as 12(n − 2) + 8 twice, or forgetting that corners are never counted among edge cubes.\n- Adding the four counts and expecting n³ − something: they must total exactly n³.\n- For a cuboid, using n − 2 with a single n instead of each side's own (side − 2).\n\n### Quick revision\n- 3 painted: 8 (corners, any size).\n- 2 painted: 12(n − 2) (edges).\n- 1 painted: 6(n − 2)² (face centres).\n- 0 painted: (n − 2)³ (core).\n- Check: the four counts add to n³.\n- At least one: n³ − (n − 2)³; at least two: 8 + 12(n − 2).\n",
+   "patterns": [
+    {
+     "id": "pc-p1",
+     "name": "Three faces painted (corners)",
+     "frequency": "very common",
+     "howToSpot": "Cube painted and cut; the question asks for cubes with all three / three or more painted faces.",
+     "formula": null,
+     "logic": "Only the 8 corner cubes have three painted faces, for every side length.",
+     "example": {
+      "q": "**Q.** A cube of side 7 is painted and cut into unit cubes. How many have three painted faces?",
+      "solution": "Always **8**."
+     }
+    },
+    {
+     "id": "pc-p2",
+     "name": "Two faces painted (edges)",
+     "frequency": "very common",
+     "howToSpot": "Asks for exactly-two cubes after cutting a painted cube of side n.",
+     "formula": "12(n-2)",
+     "logic": "Each of the 12 edges keeps n − 2 non-corner cubes: 12(n − 2).",
+     "example": {
+      "q": "**Q.** Side 5, painted, cut. How many cubes have exactly two painted faces?",
+      "solution": "12 × (5 − 2) = **36**."
+     }
+    },
+    {
+     "id": "pc-p3",
+     "name": "One face painted (face centres)",
+     "frequency": "very common",
+     "howToSpot": "Asks for exactly-one cubes.",
+     "formula": "6(n-2)^{2}",
+     "logic": "Each face keeps an (n − 2) × (n − 2) block away from the edges: 6(n − 2)².",
+     "example": {
+      "q": "**Q.** Side 6, painted, cut. How many cubes have exactly one painted face?",
+      "solution": "6 × 4² = **96**."
+     }
+    },
+    {
+     "id": "pc-p4",
+     "name": "No face painted (core)",
+     "frequency": "common",
+     "howToSpot": "Asks for completely unpainted cubes.",
+     "formula": "(n-2)^{3}",
+     "logic": "Strip one layer from each side; the hidden core is (n − 2)³.",
+     "example": {
+      "q": "**Q.** Side 5, painted, cut. How many cubes have no painted face?",
+      "solution": "(5 − 2)³ = **27**."
+     }
+    },
+    {
+     "id": "pc-p5",
+     "name": "Combined counts",
+     "frequency": "common",
+     "howToSpot": "Asks for 'at least one', 'at least two', or the sum of two classes.",
+     "formula": "n^{3} - (n-2)^{3}",
+     "logic": "At least one = n³ − (n − 2)³. At least two = 8 + 12(n − 2). Otherwise add the wanted classes.",
+     "example": {
+      "q": "**Q.** Side 4, painted, cut. How many cubes have at least two painted faces?",
+      "solution": "8 + 12 × 2 = **32**."
+     }
+    },
+    {
+     "id": "pc-p6",
+     "name": "Painted cuboid",
+     "frequency": "occasional",
+     "howToSpot": "The block is a × b × c, not a cube.",
+     "formula": null,
+     "logic": "Corners 8; edges 4[(a−2)+(b−2)+(c−2)]; face centres 2[(a−2)(b−2)+(b−2)(c−2)+(c−2)(a−2)]; core (a−2)(b−2)(c−2).",
+     "example": {
+      "q": "**Q.** A 5 × 4 × 3 cuboid, painted and cut. How many cubes have exactly two painted faces?",
+      "solution": "4 × (3 + 2 + 1) = **24**."
+     }
+    },
+    {
+     "id": "pc-p7",
+     "name": "Find n from a count",
+     "frequency": "occasional",
+     "howToSpot": "A count of painted cubes is given; the side n (or another count) is asked.",
+     "formula": null,
+     "logic": "Invert the formula: divide by 12 (edges) or by 6 and square-root (faces), add 2 to get n, then compute what is asked.",
+     "example": {
+      "q": "**Q.** 36 cubes have exactly two painted faces. How many have exactly one?",
+      "solution": "12(n − 2) = 36 gives n = 5, so 6 × 3² = **54**."
+     }
+    }
    ]
   }
  ],
@@ -107,32 +332,90 @@
   {
    "pattern": "Opposite face from two/three positions",
    "frequency": "very common",
-   "howToSpot": "Two or three drawings of the same die; ask the face opposite to X.",
-   "approach": "Adjacent-four rule, two-common-faces rule, or same-position rule."
+   "howToSpot": "Two or three drawings of the same die; ask the face opposite X.",
+   "approach": "Strike out the faces seen with X, or use the two-common-faces / same-position rules.",
+   "subtopic": "dice-positions",
+   "example": {
+    "q": "**Q.** Two views share A and B; the other faces are C and D. Opposite of C?",
+    "solution": "D."
+   }
   },
   {
    "pattern": "Standard die (sum 7)",
    "frequency": "occasional",
-   "howToSpot": "The die is stated to be standard / ordinary.",
-   "approach": "Opposite pairs 1-6, 2-5, 3-4."
+   "howToSpot": "The die is stated to be standard or ordinary.",
+   "approach": "Opposite pairs 1–6, 2–5, 3–4; hidden faces sum to 21 minus the shown three.",
+   "subtopic": "dice-positions",
+   "example": {
+    "q": "**Q.** A standard die shows 2, 3 and 6. Sum of the hidden faces?",
+    "solution": "21 − 11 = 10."
+   }
   },
   {
-   "pattern": "Opposite face in a net",
+   "pattern": "Possible view of a labelled die",
+   "frequency": "occasional",
+   "howToSpot": "Opposite pairs are given in words; options are views.",
+   "approach": "A view can never show two opposite faces; pick the option with one face from each pair.",
+   "subtopic": "dice-positions",
+   "example": {
+    "q": "**Q.** A–D, B–E, C–F are pairs. Which view is possible?",
+    "solution": "The one showing A, B, C."
+   }
+  },
+  {
+   "pattern": "Opposite faces in a net",
    "frequency": "very common",
-   "howToSpot": "An unfolded sheet with 6 labelled squares.",
-   "approach": "Skip-one in a line; ends of a Z are opposite."
+   "howToSpot": "An unfolded sheet of six labelled squares.",
+   "approach": "Skip one in a line; ends of a Z; leftovers form the last pair.",
+   "subtopic": "cube-nets",
+   "example": {
+    "q": "**Q.** Row A, B, C, D. Opposite of B?",
+    "solution": "D."
+   }
   },
   {
    "pattern": "Which cube can be formed",
    "frequency": "common",
    "howToSpot": "Net in the question, four cubes in the options.",
-   "approach": "Reject cubes showing an opposite pair; then check the corner order."
+   "approach": "Reject cubes showing an opposite pair; then match the corner order by folding.",
+   "subtopic": "cube-nets",
+   "example": {
+    "q": "**Q.** Which of the four cubes can be made from the net?",
+    "solution": "The only one without an opposite pair and with the correct corner order."
+   }
   },
   {
-   "pattern": "Painted cube cut into pieces",
+   "pattern": "Which cube cannot be formed",
+   "frequency": "occasional",
+   "howToSpot": "Same figures, reversed question.",
+   "approach": "Three options are formable; the impossible one shows an opposite pair or a mirrored corner.",
+   "subtopic": "cube-nets",
+   "example": {
+    "q": "**Q.** Which cube cannot be made?",
+    "solution": "The one whose three faces run in the reverse order around the corner."
+   }
+  },
+  {
+   "pattern": "Painted cube cut into n³ pieces",
+   "frequency": "very common",
+   "howToSpot": "A painted cube of side n is cut into unit cubes.",
+   "approach": "Use 8 / 12(n − 2) / 6(n − 2)² / (n − 2)³ and the n³ total check.",
+   "subtopic": "painted-cubes",
+   "example": {
+    "q": "**Q.** Side 4, painted, cut. How many cubes have two painted faces?",
+    "solution": "12 × 2 = 24."
+   }
+  },
+  {
+   "pattern": "Painted cuboid",
    "frequency": "common",
-   "howToSpot": "Cube painted and cut into n³ small cubes.",
-   "approach": "8 / 12(n−2) / 6(n−2)² / (n−2)³."
+   "howToSpot": "The block is a × b × c.",
+   "approach": "Edges 4[(a−2)+(b−2)+(c−2)]; core (a−2)(b−2)(c−2); corners 8.",
+   "subtopic": "painted-cubes",
+   "example": {
+    "q": "**Q.** 5 × 4 × 3, painted, cut. Cubes with no painted face?",
+    "solution": "(3)(2)(1) = 6."
+   }
   }
  ],
  "solvedExamples": [
@@ -461,6 +744,690 @@
    "subtopic": "painted-cubes",
    "pattern": "painted cube cut into pieces",
    "timeSec": 45
+  },
+  {
+   "id": "dice-positions-p01",
+   "q": "Three different positions of the same dice are shown. Which letter is on the face opposite to **A**? (Ignore the orientation of the letters/numbers.)",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 189 59\" width=\"189\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">F</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">D</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">A</text><polygon points=\"69,21 103,21 103,55 69,55\"/><polygon points=\"69,21 103,21 120,4 86,4\"/><polygon points=\"103,21 120,4 120,38 103,55\"/><text x=\"86\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">A</text><text x=\"94.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">F</text><text x=\"111.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">D</text><polygon points=\"134,21 168,21 168,55 134,55\"/><polygon points=\"134,21 168,21 185,4 151,4\"/><polygon points=\"168,21 185,4 185,38 168,55\"/><text x=\"151\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">E</text><text x=\"159.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">B</text><text x=\"176.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">A</text></svg>",
+   "options": [
+    "F",
+    "D",
+    "C",
+    "E"
+   ],
+   "answer": 2,
+   "solution": "Across the views, **A** is seen with F and D, then with F and D, then with E and B — four different faces, and every one of them touches it. The only face never seen with **A** is **C**, so it must be the opposite face.",
+   "shortcut": "Strike out every face seen with the asked face; the last one left is opposite.",
+   "difficulty": "medium",
+   "subtopic": "dice-positions",
+   "pattern": "dp-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "dice-positions-p02",
+   "q": "Two different positions of the same dice are shown. Which letter is on the face opposite to **1**? (Ignore the orientation of the letters/numbers.)",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 124 59\" width=\"124\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">1</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">5</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">2</text><polygon points=\"69,21 103,21 103,55 69,55\"/><polygon points=\"69,21 103,21 120,4 86,4\"/><polygon points=\"103,21 120,4 120,38 103,55\"/><text x=\"86\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">4</text><text x=\"94.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">1</text><text x=\"111.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">3</text></svg>",
+   "options": [
+    "4",
+    "2",
+    "3",
+    "6"
+   ],
+   "answer": 3,
+   "solution": "Across the views, **1** is seen with 5 and 2, then with 4 and 3 — four different faces, and every one of them touches it. The only face never seen with **1** is **6**, so it must be the opposite face.",
+   "shortcut": "Strike out every face seen with the asked face; the last one left is opposite.",
+   "difficulty": "easy",
+   "subtopic": "dice-positions",
+   "pattern": "dp-p1",
+   "timeSec": 35
+  },
+  {
+   "id": "dice-positions-p03",
+   "q": "Two different positions of the same dice are shown. Which letter is on the face opposite to **I**? (Ignore the orientation of the letters/numbers.)",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 124 59\" width=\"124\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">H</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">J</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">I</text><polygon points=\"69,21 103,21 103,55 69,55\"/><polygon points=\"69,21 103,21 120,4 86,4\"/><polygon points=\"103,21 120,4 120,38 103,55\"/><text x=\"86\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">J</text><text x=\"94.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">H</text><text x=\"111.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">L</text></svg>",
+   "options": [
+    "K",
+    "G",
+    "L",
+    "J"
+   ],
+   "answer": 2,
+   "solution": "The two views share **H** and **J** — two common faces, so each of them touches the other faces shown. The face left over in the first view (**I**) and the face left over in the second (**L**) must therefore be opposite each other.",
+   "shortcut": "Two common faces in two views: the leftovers are opposite.",
+   "difficulty": "medium",
+   "subtopic": "dice-positions",
+   "pattern": "dp-p2",
+   "timeSec": 40
+  },
+  {
+   "id": "dice-positions-p04",
+   "q": "Two different positions of the same dice are shown. Which letter is on the face opposite to **Q**? (Ignore the orientation of the letters/numbers.)",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 124 59\" width=\"124\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">P</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">Q</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">R</text><polygon points=\"69,21 103,21 103,55 69,55\"/><polygon points=\"69,21 103,21 120,4 86,4\"/><polygon points=\"103,21 120,4 120,38 103,55\"/><text x=\"86\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">R</text><text x=\"94.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">O</text><text x=\"111.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">P</text></svg>",
+   "options": [
+    "O",
+    "N",
+    "R",
+    "M"
+   ],
+   "answer": 0,
+   "solution": "The two views share **P** and **R** — two common faces, so each of them touches the other faces shown. The face left over in the first view (**Q**) and the face left over in the second (**O**) must therefore be opposite each other.",
+   "shortcut": "Two common faces in two views: the leftovers are opposite.",
+   "difficulty": "medium",
+   "subtopic": "dice-positions",
+   "pattern": "dp-p2",
+   "timeSec": 40
+  },
+  {
+   "id": "dice-positions-p05",
+   "q": "Two different positions of the same dice are shown. Which letter is on the face opposite to **X**? (Ignore the orientation of the letters/numbers.)",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 124 59\" width=\"124\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">X</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">W</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">S</text><polygon points=\"69,21 103,21 103,55 69,55\"/><polygon points=\"69,21 103,21 120,4 86,4\"/><polygon points=\"103,21 120,4 120,38 103,55\"/><text x=\"86\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">T</text><text x=\"94.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">W</text><text x=\"111.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">U</text></svg>",
+   "options": [
+    "T",
+    "S",
+    "V",
+    "W"
+   ],
+   "answer": 0,
+   "solution": "**W** is common to both views and sits in the **same position** (the top face in both). So faces in matching positions are opposite: the front face of the first view (**X**) is opposite the front face of the second (**T**).",
+   "shortcut": "Common face in the same place: match the other positions.",
+   "difficulty": "medium",
+   "subtopic": "dice-positions",
+   "pattern": "dp-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "dice-positions-p06",
+   "q": "Two different positions of the same dice are shown. Which letter is on the face opposite to **P**? (Ignore the orientation of the letters/numbers.)",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 124 59\" width=\"124\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">P</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">U</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">T</text><polygon points=\"69,21 103,21 103,55 69,55\"/><polygon points=\"69,21 103,21 120,4 86,4\"/><polygon points=\"103,21 120,4 120,38 103,55\"/><text x=\"86\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">Q</text><text x=\"94.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">S</text><text x=\"111.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">T</text></svg>",
+   "options": [
+    "S",
+    "U",
+    "Q",
+    "T"
+   ],
+   "answer": 2,
+   "solution": "**T** is common to both views and sits in the **same position** (the right face in both). So faces in matching positions are opposite: the front face of the first view (**P**) is opposite the front face of the second (**Q**).",
+   "shortcut": "Common face in the same place: match the other positions.",
+   "difficulty": "medium",
+   "subtopic": "dice-positions",
+   "pattern": "dp-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "dice-positions-p07",
+   "q": "An ordinary die, whose opposite faces always add up to 7, shows **3** on top, **5** in front and **6** on the right. What is the sum of the numbers on the bottom, back and left faces?",
+   "figure": null,
+   "options": [
+    "12",
+    "7",
+    "10",
+    "13"
+   ],
+   "answer": 1,
+   "solution": "Opposite faces add to 7: bottom = 7 − 3 = 4, back = 7 − 5 = 2, left = 7 − 6 = 1. Sum = 4 + 2 + 1 = **7**. (Check: 3 × 7 − 14 = 7.)",
+   "shortcut": "Hidden sum = 21 − (shown sum).",
+   "difficulty": "easy",
+   "subtopic": "dice-positions",
+   "pattern": "dp-p4",
+   "timeSec": 30
+  },
+  {
+   "id": "dice-positions-p08",
+   "q": "An ordinary die, whose opposite faces always add up to 7, shows **2** on its top face. Which of the numbers 1 to 6 can **never** lie on a face adjacent to the 2?",
+   "figure": null,
+   "options": [
+    "5",
+    "6",
+    "4",
+    "3"
+   ],
+   "answer": 0,
+   "solution": "The face opposite 2 is 7 − 2 = **5**. Opposite faces never touch, so 5 can never be adjacent to 2; every other number (1, 3, 4, 6) shares an edge with the 2 in some position.",
+   "shortcut": "Never-adjacent = the opposite face = 7 − the number.",
+   "difficulty": "easy",
+   "subtopic": "dice-positions",
+   "pattern": "dp-p4",
+   "timeSec": 30
+  },
+  {
+   "id": "dice-positions-p09",
+   "q": "Three different positions of the same dice are shown. Which of these pairs shows two **opposite** faces? (Ignore the orientation of the letters/numbers.)",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 189 59\" width=\"189\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">B</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">F</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">D</text><polygon points=\"69,21 103,21 103,55 69,55\"/><polygon points=\"69,21 103,21 120,4 86,4\"/><polygon points=\"103,21 120,4 120,38 103,55\"/><text x=\"86\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">A</text><text x=\"94.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">B</text><text x=\"111.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">D</text><polygon points=\"134,21 168,21 168,55 134,55\"/><polygon points=\"134,21 168,21 185,4 151,4\"/><polygon points=\"168,21 185,4 185,38 168,55\"/><text x=\"151\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">A</text><text x=\"159.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">E</text><text x=\"176.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">C</text></svg>",
+   "options": [
+    "A and F",
+    "B and C",
+    "C and F",
+    "D and F"
+   ],
+   "answer": 0,
+   "solution": "Match views that share two faces: each such match makes the two leftover faces opposite. Working through the three views, the opposite pairs of this die are A–F, B–E, C–D.",
+   "shortcut": "Pair up the views that share two faces; the leftovers pair last.",
+   "difficulty": "hard",
+   "subtopic": "dice-positions",
+   "pattern": "dp-p5",
+   "timeSec": 60
+  },
+  {
+   "id": "dice-positions-p10",
+   "q": "Three different positions of the same dice are shown. Which of these pairs shows two **opposite** faces? (Ignore the orientation of the letters/numbers.)",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 189 59\" width=\"189\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">3</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">2</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">5</text><polygon points=\"69,21 103,21 103,55 69,55\"/><polygon points=\"69,21 103,21 120,4 86,4\"/><polygon points=\"103,21 120,4 120,38 103,55\"/><text x=\"86\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">2</text><text x=\"94.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">4</text><text x=\"111.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">6</text><polygon points=\"134,21 168,21 168,55 134,55\"/><polygon points=\"134,21 168,21 185,4 151,4\"/><polygon points=\"168,21 185,4 185,38 168,55\"/><text x=\"151\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">4</text><text x=\"159.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">1</text><text x=\"176.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">6</text></svg>",
+   "options": [
+    "1 and 5",
+    "1 and 6",
+    "1 and 2",
+    "1 and 4"
+   ],
+   "answer": 2,
+   "solution": "Match views that share two faces: each such match makes the two leftover faces opposite. Working through the three views, the opposite pairs of this die are 1–2, 3–6, 4–5.",
+   "shortcut": "Pair up the views that share two faces; the leftovers pair last.",
+   "difficulty": "hard",
+   "subtopic": "dice-positions",
+   "pattern": "dp-p5",
+   "timeSec": 60
+  },
+  {
+   "id": "dice-positions-p11",
+   "q": "In a die, the face **G** is opposite **H**, **H** is opposite **G** and **I** is opposite **J**. Which of the following views can be formed? (Ignore the orientation of the letters/numbers.)",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">I</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">J</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">G</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">K</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">J</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">G</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">G</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">H</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">I</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">H</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">G</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">I</text></svg>"
+   ],
+   "answer": 1,
+   "solution": "A real view can never show two opposite faces together. Three options show a pair from (G–H, H–G, I–J), so they are impossible. The remaining view shows one face from each opposite pair, and such a view can always be turned up on the die.",
+   "shortcut": "Reject every view that shows an opposite pair.",
+   "difficulty": "medium",
+   "subtopic": "dice-positions",
+   "pattern": "dp-p6",
+   "timeSec": 45
+  },
+  {
+   "id": "dice-positions-p12",
+   "q": "In a die, the face **M** is opposite **R**, **N** is opposite **O** and **O** is opposite **N**. Which of the following views can be formed? (Ignore the orientation of the letters/numbers.)",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">N</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">O</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">M</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">O</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">N</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">M</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">O</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">M</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">Q</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">M</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">R</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">N</text></svg>"
+   ],
+   "answer": 2,
+   "solution": "A real view can never show two opposite faces together. Three options show a pair from (M–R, N–O, O–N), so they are impossible. The remaining view shows one face from each opposite pair, and such a view can always be turned up on the die.",
+   "shortcut": "Reject every view that shows an opposite pair.",
+   "difficulty": "medium",
+   "subtopic": "dice-positions",
+   "pattern": "dp-p6",
+   "timeSec": 45
+  },
+  {
+   "id": "cube-nets-p01",
+   "q": "The given sheet is folded to form a cube. Which letter will be on the face opposite to **B**? (Ignore the orientation of the letters/numbers.)",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 111 84\" width=\"111\" height=\"84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,30 27,30 27,54 3,54\"/><text x=\"15\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">A</text><polygon points=\"30,3 54,3 54,27 30,27\"/><text x=\"42\" y=\"20\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">E</text><polygon points=\"30,30 54,30 54,54 30,54\"/><text x=\"42\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">B</text><polygon points=\"57,30 81,30 81,54 57,54\"/><text x=\"69\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">C</text><polygon points=\"57,57 81,57 81,81 57,81\"/><text x=\"69\" y=\"74\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">F</text><polygon points=\"84,30 108,30 108,54 84,54\"/><text x=\"96\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">D</text></svg>",
+   "options": [
+    "A",
+    "F",
+    "D",
+    "C"
+   ],
+   "answer": 2,
+   "solution": "The net has the row A, B, C, D. In a straight line of the net, faces with exactly one square between them are opposite. The three opposite pairs are A–C, B–D, E–F. Answer **D**.",
+   "shortcut": "In a row or column, skip one square.",
+   "difficulty": "easy",
+   "subtopic": "cube-nets",
+   "pattern": "cn-p1",
+   "timeSec": 35
+  },
+  {
+   "id": "cube-nets-p02",
+   "q": "The given sheet is folded to form a cube. Which letter will be on the face opposite to **K**? (Ignore the orientation of the letters/numbers.)",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 84 111\" width=\"84\" height=\"111\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,30 27,30 27,54 3,54\"/><text x=\"15\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">K</text><polygon points=\"30,3 54,3 54,27 30,27\"/><text x=\"42\" y=\"20\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">G</text><polygon points=\"30,30 54,30 54,54 30,54\"/><text x=\"42\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">H</text><polygon points=\"30,57 54,57 54,81 30,81\"/><text x=\"42\" y=\"74\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">I</text><polygon points=\"30,84 54,84 54,108 30,108\"/><text x=\"42\" y=\"101\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">J</text><polygon points=\"57,57 81,57 81,81 57,81\"/><text x=\"69\" y=\"74\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">L</text></svg>",
+   "options": [
+    "H",
+    "L",
+    "I",
+    "G"
+   ],
+   "answer": 1,
+   "solution": "The net has the column K, L, M, N. In a straight line of the net, faces with exactly one square between them are opposite. The three opposite pairs are G–I, H–J, K–L. Answer **L**.",
+   "shortcut": "In a row or column, skip one square.",
+   "difficulty": "easy",
+   "subtopic": "cube-nets",
+   "pattern": "cn-p1",
+   "timeSec": 35
+  },
+  {
+   "id": "cube-nets-p03",
+   "q": "The given sheet is folded to form a cube. Which letter will be on the face opposite to **M**? (Ignore the orientation of the letters/numbers.)",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 111 84\" width=\"111\" height=\"84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 27,3 27,27 3,27\"/><text x=\"15\" y=\"20\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">M</text><polygon points=\"30,3 54,3 54,27 30,27\"/><text x=\"42\" y=\"20\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">N</text><polygon points=\"30,30 54,30 54,54 30,54\"/><text x=\"42\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">O</text><polygon points=\"57,30 81,30 81,54 57,54\"/><text x=\"69\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">P</text><polygon points=\"57,57 81,57 81,81 57,81\"/><text x=\"69\" y=\"74\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">Q</text><polygon points=\"84,57 108,57 108,81 84,81\"/><text x=\"96\" y=\"74\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">R</text></svg>",
+   "options": [
+    "Q",
+    "P",
+    "R",
+    "N"
+   ],
+   "answer": 1,
+   "solution": "The squares M, N, O, P form a Z (or S) shape of four squares, and the two end squares of a Z are opposite. The full pairs are M–P, N–Q, O–R. Answer **P**.",
+   "shortcut": "Ends of a Z are opposite.",
+   "difficulty": "medium",
+   "subtopic": "cube-nets",
+   "pattern": "cn-p2",
+   "timeSec": 40
+  },
+  {
+   "id": "cube-nets-p04",
+   "q": "The given sheet is folded to form a cube. Which letter will be on the face opposite to **S**? (Ignore the orientation of the letters/numbers.)",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 111 84\" width=\"111\" height=\"84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 27,3 27,27 3,27\"/><text x=\"15\" y=\"20\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">S</text><polygon points=\"30,3 54,3 54,27 30,27\"/><text x=\"42\" y=\"20\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">T</text><polygon points=\"30,30 54,30 54,54 30,54\"/><text x=\"42\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">U</text><polygon points=\"57,30 81,30 81,54 57,54\"/><text x=\"69\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">V</text><polygon points=\"84,30 108,30 108,54 84,54\"/><text x=\"96\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">W</text><polygon points=\"84,57 108,57 108,81 84,81\"/><text x=\"96\" y=\"74\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">X</text></svg>",
+   "options": [
+    "W",
+    "U",
+    "V",
+    "X"
+   ],
+   "answer": 2,
+   "solution": "The squares S, T, U, V form a Z (or S) shape of four squares, and the two end squares of a Z are opposite. The full pairs are S–V, T–X, U–W. Answer **V**.",
+   "shortcut": "Ends of a Z are opposite.",
+   "difficulty": "medium",
+   "subtopic": "cube-nets",
+   "pattern": "cn-p2",
+   "timeSec": 40
+  },
+  {
+   "id": "cube-nets-p05",
+   "q": "The given sheet is folded to form a cube. Which pair of letters will be on **opposite** faces? (Ignore the orientation of the letters/numbers.)",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 111 84\" width=\"111\" height=\"84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,30 27,30 27,54 3,54\"/><text x=\"15\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">B</text><polygon points=\"30,3 54,3 54,27 30,27\"/><text x=\"42\" y=\"20\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">A</text><polygon points=\"30,30 54,30 54,54 30,54\"/><text x=\"42\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">C</text><polygon points=\"30,57 54,57 54,81 30,81\"/><text x=\"42\" y=\"74\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">F</text><polygon points=\"57,30 81,30 81,54 57,54\"/><text x=\"69\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">D</text><polygon points=\"84,30 108,30 108,54 84,54\"/><text x=\"96\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">E</text></svg>",
+   "options": [
+    "B and F",
+    "B and D",
+    "D and E",
+    "C and F"
+   ],
+   "answer": 1,
+   "solution": "Pair the straight lines first (skip one square), then the Z shapes; the two squares still unpaired form the last pair. The three opposite pairs are A–F, B–D, C–E. Answer **B and D**.",
+   "shortcut": "Pair the rows and Zs; the leftovers pair up.",
+   "difficulty": "medium",
+   "subtopic": "cube-nets",
+   "pattern": "cn-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "cube-nets-p06",
+   "q": "The given sheet is folded to form a cube. Which pair of letters will be on **opposite** faces? (Ignore the orientation of the letters/numbers.)",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 84 111\" width=\"84\" height=\"111\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,30 27,30 27,54 3,54\"/><text x=\"15\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">N</text><polygon points=\"30,3 54,3 54,27 30,27\"/><text x=\"42\" y=\"20\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">M</text><polygon points=\"30,30 54,30 54,54 30,54\"/><text x=\"42\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">O</text><polygon points=\"30,57 54,57 54,81 30,81\"/><text x=\"42\" y=\"74\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">Q</text><polygon points=\"30,84 54,84 54,108 30,108\"/><text x=\"42\" y=\"101\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">R</text><polygon points=\"57,30 81,30 81,54 57,54\"/><text x=\"69\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">P</text></svg>",
+   "options": [
+    "Q and R",
+    "M and N",
+    "M and Q",
+    "P and R"
+   ],
+   "answer": 2,
+   "solution": "Pair the straight lines first (skip one square), then the Z shapes; the two squares still unpaired form the last pair. The three opposite pairs are M–Q, N–P, O–R. Answer **M and Q**.",
+   "shortcut": "Pair the rows and Zs; the leftovers pair up.",
+   "difficulty": "medium",
+   "subtopic": "cube-nets",
+   "pattern": "cn-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "cube-nets-p07",
+   "q": "The given sheet is folded to form a cube. Which of the following cubes can be formed? (Ignore the orientation of the letters/numbers.)",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 84 111\" width=\"84\" height=\"111\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 27,3 27,27 3,27\"/><text x=\"15\" y=\"20\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">P</text><polygon points=\"30,3 54,3 54,27 30,27\"/><text x=\"42\" y=\"20\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">Q</text><polygon points=\"30,30 54,30 54,54 30,54\"/><text x=\"42\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">R</text><polygon points=\"30,57 54,57 54,81 30,81\"/><text x=\"42\" y=\"74\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">S</text><polygon points=\"30,84 54,84 54,108 30,108\"/><text x=\"42\" y=\"101\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">T</text><polygon points=\"57,84 81,84 81,108 57,108\"/><text x=\"69\" y=\"101\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">U</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">R</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">S</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">P</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">R</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">P</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">U</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">S</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">U</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">Q</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">T</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">U</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">R</text></svg>"
+   ],
+   "answer": 0,
+   "solution": "The opposite pairs of this net are P–U, Q–S, R–T, so any cube showing one of those pairs together is impossible. Among the remaining options, only one has the three faces in an order that folding can give; the others run the wrong way round the corner. The cube shown in the answer can be formed.",
+   "shortcut": "Reject opposite pairs first, then check the corner order.",
+   "difficulty": "medium",
+   "subtopic": "cube-nets",
+   "pattern": "cn-p4",
+   "timeSec": 60
+  },
+  {
+   "id": "cube-nets-p08",
+   "q": "The given sheet is folded to form a cube. Which of the following cubes can be formed? (Ignore the orientation of the letters/numbers.)",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 111 84\" width=\"111\" height=\"84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,3 27,3 27,27 3,27\"/><text x=\"15\" y=\"20\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">K</text><polygon points=\"3,30 27,30 27,54 3,54\"/><text x=\"15\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">G</text><polygon points=\"30,30 54,30 54,54 30,54\"/><text x=\"42\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">H</text><polygon points=\"57,30 81,30 81,54 57,54\"/><text x=\"69\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">I</text><polygon points=\"84,30 108,30 108,54 84,54\"/><text x=\"96\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">J</text><polygon points=\"84,57 108,57 108,81 84,81\"/><text x=\"96\" y=\"74\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">L</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">H</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">G</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">L</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">K</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">G</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">L</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">H</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">J</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">G</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">L</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">G</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">H</text></svg>"
+   ],
+   "answer": 3,
+   "solution": "The opposite pairs of this net are G–I, H–J, K–L, so any cube showing one of those pairs together is impossible. Among the remaining options, only one has the three faces in an order that folding can give; the others run the wrong way round the corner. The cube shown in the answer can be formed.",
+   "shortcut": "Reject opposite pairs first, then check the corner order.",
+   "difficulty": "hard",
+   "subtopic": "cube-nets",
+   "pattern": "cn-p4",
+   "timeSec": 70
+  },
+  {
+   "id": "cube-nets-p09",
+   "q": "The given sheet is folded to form a cube. Which of the following cubes can be formed? (Ignore the orientation of the letters/numbers.)",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 84 111\" width=\"84\" height=\"111\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,30 27,30 27,54 3,54\"/><text x=\"15\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">5</text><polygon points=\"30,3 54,3 54,27 30,27\"/><text x=\"42\" y=\"20\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">1</text><polygon points=\"30,30 54,30 54,54 30,54\"/><text x=\"42\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">2</text><polygon points=\"30,57 54,57 54,81 30,81\"/><text x=\"42\" y=\"74\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">3</text><polygon points=\"30,84 54,84 54,108 30,108\"/><text x=\"42\" y=\"101\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">4</text><polygon points=\"57,30 81,30 81,54 57,54\"/><text x=\"69\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">6</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">4</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">1</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">6</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">3</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">4</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">1</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">5</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">2</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">3</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">4</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">5</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">2</text></svg>"
+   ],
+   "answer": 2,
+   "solution": "The opposite pairs of this net are 1–3, 2–4, 5–6, so any cube showing one of those pairs together is impossible. Among the remaining options, only one has the three faces in an order that folding can give; the others run the wrong way round the corner. The cube shown in the answer can be formed.",
+   "shortcut": "Reject opposite pairs first, then check the corner order.",
+   "difficulty": "hard",
+   "subtopic": "cube-nets",
+   "pattern": "cn-p4",
+   "timeSec": 70
+  },
+  {
+   "id": "cube-nets-p10",
+   "q": "The given sheet is folded to form a cube. Which of the following cubes **cannot** be formed? (Ignore the orientation of the letters/numbers.)",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 84 111\" width=\"84\" height=\"111\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,30 27,30 27,54 3,54\"/><text x=\"15\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">B</text><polygon points=\"30,3 54,3 54,27 30,27\"/><text x=\"42\" y=\"20\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">A</text><polygon points=\"30,30 54,30 54,54 30,54\"/><text x=\"42\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">C</text><polygon points=\"30,57 54,57 54,81 30,81\"/><text x=\"42\" y=\"74\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">E</text><polygon points=\"30,84 54,84 54,108 30,108\"/><text x=\"42\" y=\"101\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">F</text><polygon points=\"57,30 81,30 81,54 57,54\"/><text x=\"69\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">D</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">D</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">E</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">C</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">A</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">F</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">D</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">E</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">D</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">F</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">B</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">A</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">E</text></svg>"
+   ],
+   "answer": 3,
+   "solution": "The opposite pairs are A–E, B–D, C–F. Three of the options only use faces that fold next to each other in an order the cube allows; the remaining option cannot be turned to match — it either shows an opposite pair or runs the faces the wrong way round the corner. That one cannot be formed.",
+   "shortcut": "Three cubes fold; find the one with a pair or a mirrored corner.",
+   "difficulty": "hard",
+   "subtopic": "cube-nets",
+   "pattern": "cn-p5",
+   "timeSec": 60
+  },
+  {
+   "id": "cube-nets-p11",
+   "q": "The given sheet is folded to form a cube. Which of the following cubes **cannot** be formed? (Ignore the orientation of the letters/numbers.)",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 111 84\" width=\"111\" height=\"84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,30 27,30 27,54 3,54\"/><text x=\"15\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">Q</text><polygon points=\"30,3 54,3 54,27 30,27\"/><text x=\"42\" y=\"20\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">U</text><polygon points=\"30,30 54,30 54,54 30,54\"/><text x=\"42\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">R</text><polygon points=\"57,30 81,30 81,54 57,54\"/><text x=\"69\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">S</text><polygon points=\"57,57 81,57 81,81 57,81\"/><text x=\"69\" y=\"74\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">V</text><polygon points=\"84,30 108,30 108,54 84,54\"/><text x=\"96\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">T</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">V</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">T</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">Q</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">U</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">Q</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">S</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">Q</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">U</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">R</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">T</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">V</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">S</text></svg>"
+   ],
+   "answer": 1,
+   "solution": "The opposite pairs are Q–S, R–T, U–V. Three of the options only use faces that fold next to each other in an order the cube allows; the remaining option cannot be turned to match — it either shows an opposite pair or runs the faces the wrong way round the corner. That one cannot be formed.",
+   "shortcut": "Three cubes fold; find the one with a pair or a mirrored corner.",
+   "difficulty": "hard",
+   "subtopic": "cube-nets",
+   "pattern": "cn-p5",
+   "timeSec": 60
+  },
+  {
+   "id": "cube-nets-p12",
+   "q": "The given sheet is folded to form a cube. Which of the following cubes **cannot** be formed? (Ignore the orientation of the letters/numbers.)",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 84 111\" width=\"84\" height=\"111\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"3,30 27,30 27,54 3,54\"/><text x=\"15\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">O</text><polygon points=\"30,3 54,3 54,27 30,27\"/><text x=\"42\" y=\"20\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">K</text><polygon points=\"30,30 54,30 54,54 30,54\"/><text x=\"42\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">L</text><polygon points=\"30,57 54,57 54,81 30,81\"/><text x=\"42\" y=\"74\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">M</text><polygon points=\"30,84 54,84 54,108 30,108\"/><text x=\"42\" y=\"101\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">N</text><polygon points=\"57,30 81,30 81,54 57,54\"/><text x=\"69\" y=\"47\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">P</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">K</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">L</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">O</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">L</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">M</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">O</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">N</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">O</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">M</text></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 59 59\" width=\"59\" height=\"59\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"4,21 38,21 38,55 4,55\"/><polygon points=\"4,21 38,21 55,4 21,4\"/><polygon points=\"38,21 55,4 55,38 38,55\"/><text x=\"21\" y=\"43\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">K</text><text x=\"29.5\" y=\"16.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">M</text><text x=\"46.5\" y=\"33.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">N</text></svg>"
+   ],
+   "answer": 3,
+   "solution": "The opposite pairs are K–M, L–N, O–P. Three of the options only use faces that fold next to each other in an order the cube allows; the remaining option cannot be turned to match — it either shows an opposite pair or runs the faces the wrong way round the corner. That one cannot be formed.",
+   "shortcut": "Three cubes fold; find the one with a pair or a mirrored corner.",
+   "difficulty": "hard",
+   "subtopic": "cube-nets",
+   "pattern": "cn-p5",
+   "timeSec": 60
+  },
+  {
+   "id": "painted-cubes-p01",
+   "q": "A cube of side 6 cm is painted on all its faces and then cut into small cubes of side 1 cm. How many small cubes have **three** faces painted?",
+   "figure": null,
+   "options": [
+    "12",
+    "24",
+    "8",
+    "48"
+   ],
+   "answer": 2,
+   "solution": "Only the corner cubes of the big cube touch three painted faces, and a cube has 8 corners whatever its side. Answer **8**.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "painted-cubes",
+   "pattern": "pc-p4",
+   "timeSec": 30
+  },
+  {
+   "id": "painted-cubes-p02",
+   "q": "A cube of side 7 units is painted on all faces and cut into 343 unit cubes. How many unit cubes have **exactly three** painted faces?",
+   "figure": null,
+   "options": [
+    "24",
+    "8",
+    "12",
+    "21"
+   ],
+   "answer": 1,
+   "solution": "Three painted faces happen only at the corners of the big cube: **8** of them, independent of the side length.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "painted-cubes",
+   "pattern": "pc-p4",
+   "timeSec": 30
+  },
+  {
+   "id": "painted-cubes-p03",
+   "q": "A cube of side 5 cm is painted on all its faces and then cut into 1 cm cubes. How many small cubes have **exactly two** faces painted?",
+   "figure": null,
+   "options": [
+    "44",
+    "36",
+    "25",
+    "60"
+   ],
+   "answer": 1,
+   "solution": "Exactly-two cubes sit on the 12 edges, excluding the 2 corner cubes of each edge: 12 × (5 − 2) = 12 × 3 = **36**.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "painted-cubes",
+   "pattern": "pc-p3",
+   "timeSec": 30
+  },
+  {
+   "id": "painted-cubes-p04",
+   "q": "A painted cube of side 6 is cut into unit cubes. How many unit cubes have exactly two painted faces?",
+   "figure": null,
+   "options": [
+    "48",
+    "72",
+    "36",
+    "56"
+   ],
+   "answer": 0,
+   "solution": "Each of the 12 edges keeps 6 − 2 = 4 non-corner cubes: 12 × 4 = **48**.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "painted-cubes",
+   "pattern": "pc-p3",
+   "timeSec": 35
+  },
+  {
+   "id": "painted-cubes-p05",
+   "q": "A cube of side 4 cm is painted on all faces and cut into 1 cm cubes. How many small cubes have **exactly one** face painted?",
+   "figure": null,
+   "options": [
+    "54",
+    "24",
+    "96",
+    "8"
+   ],
+   "answer": 1,
+   "solution": "On each face the cubes away from the edge form a (4 − 2) × (4 − 2) = 2 × 2 block. 6 faces × 4 = **24**.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "painted-cubes",
+   "pattern": "pc-p2",
+   "timeSec": 30
+  },
+  {
+   "id": "painted-cubes-p06",
+   "q": "A painted cube of side 6 is cut into unit cubes. How many unit cubes have exactly one painted face?",
+   "figure": null,
+   "options": [
+    "96",
+    "150",
+    "64",
+    "216"
+   ],
+   "answer": 0,
+   "solution": "Each face keeps an (6 − 2)² = 16 block of one-face cubes: 6 × 16 = **96**.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "painted-cubes",
+   "pattern": "pc-p2",
+   "timeSec": 35
+  },
+  {
+   "id": "painted-cubes-p07",
+   "q": "A cube of side 5 cm is painted on all its faces and then cut into 1 cm cubes. How many small cubes have **no** face painted?",
+   "figure": null,
+   "options": [
+    "125",
+    "98",
+    "54",
+    "27"
+   ],
+   "answer": 3,
+   "solution": "Strip one layer from every side: the unpainted core is (5 − 2)³ = 3³ = **27**.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "painted-cubes",
+   "pattern": "pc-p1",
+   "timeSec": 30
+  },
+  {
+   "id": "painted-cubes-p08",
+   "q": "A painted cube of side 6 is cut into 216 unit cubes. How many unit cubes have no painted face?",
+   "figure": null,
+   "options": [
+    "64",
+    "96",
+    "216",
+    "152"
+   ],
+   "answer": 0,
+   "solution": "The inner block measures (6 − 2) × (6 − 2) × (6 − 2) = 4³ = **64**.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "painted-cubes",
+   "pattern": "pc-p1",
+   "timeSec": 35
+  },
+  {
+   "id": "painted-cubes-p09",
+   "q": "A cube of side 4 cm is painted on all faces and cut into 1 cm cubes. How many small cubes have **at least two** painted faces?",
+   "figure": null,
+   "options": [
+    "44",
+    "56",
+    "32",
+    "24"
+   ],
+   "answer": 2,
+   "solution": "Corners plus edge cubes: 8 + 12 × (4 − 2) = 8 + 24 = **32**.",
+   "shortcut": "At least two = corners + edges = 8 + 12(n − 2).",
+   "difficulty": "medium",
+   "subtopic": "painted-cubes",
+   "pattern": "pc-p5",
+   "timeSec": 40
+  },
+  {
+   "id": "painted-cubes-p10",
+   "q": "A painted cube of side 5 is cut into unit cubes. How many unit cubes have paint on **at least one** face?",
+   "figure": null,
+   "options": [
+    "98",
+    "61",
+    "27",
+    "125"
+   ],
+   "answer": 0,
+   "solution": "Everything except the hidden core: 5³ − (5 − 2)³ = 125 − 27 = **98**.",
+   "shortcut": "At least one = n³ − (n − 2)³.",
+   "difficulty": "medium",
+   "subtopic": "painted-cubes",
+   "pattern": "pc-p5",
+   "timeSec": 40
+  },
+  {
+   "id": "painted-cubes-p11",
+   "q": "A cuboid 6 cm × 4 cm × 3 cm is painted on all faces and cut into 1 cm cubes. How many small cubes have **no** face painted?",
+   "figure": null,
+   "options": [
+    "12",
+    "8",
+    "24",
+    "6"
+   ],
+   "answer": 1,
+   "solution": "Strip one layer from each side: the core measures (6 − 2) × (4 − 2) × (3 − 2) = 4 × 2 × 1 = **8**.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "painted-cubes",
+   "pattern": "pc-p6",
+   "timeSec": 45
+  },
+  {
+   "id": "painted-cubes-p12",
+   "q": "A cuboid 6 × 5 × 4 is painted on all faces and cut into unit cubes. How many unit cubes have **exactly one** face painted?",
+   "figure": null,
+   "options": [
+    "78",
+    "48",
+    "26",
+    "52"
+   ],
+   "answer": 3,
+   "solution": "Each pair of opposite faces keeps a block away from the edges: 2 × [(6 − 2)(5 − 2) + (5 − 2)(4 − 2) + (4 − 2)(6 − 2)] = 2 × (12 + 6 + 8) = 2 × 26 = **52**.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "painted-cubes",
+   "pattern": "pc-p6",
+   "timeSec": 60
+  },
+  {
+   "id": "painted-cubes-p13",
+   "q": "A cube is painted on all its faces and cut into identical small cubes. Exactly **36** small cubes have exactly two painted faces. How many small cubes have exactly **one** painted face?",
+   "figure": null,
+   "options": [
+    "36",
+    "54",
+    "45",
+    "72"
+   ],
+   "answer": 1,
+   "solution": "12(n − 2) = 36 gives n − 2 = 3, so n = 5. Then one-face cubes = 6(n − 2)² = 6 × 3² = 6 × 0 = **54**.",
+   "shortcut": "Divide by 12 to get n − 2, then use 6(n − 2)².",
+   "difficulty": "hard",
+   "subtopic": "painted-cubes",
+   "pattern": "pc-p7",
+   "timeSec": 50
+  },
+  {
+   "id": "painted-cubes-p14",
+   "q": "A painted cube is cut into unit cubes, and exactly **48** of them have exactly two painted faces. How many unit cubes have **no** painted face?",
+   "figure": null,
+   "options": [
+    "8",
+    "56",
+    "27",
+    "64"
+   ],
+   "answer": 3,
+   "solution": "12(n − 2) = 48 gives n − 2 = 4, so n = 6. The unpainted core is (n − 2)³ = 4³ = **64**.",
+   "shortcut": "Find n from 12(n − 2), then use (n − 2)³.",
+   "difficulty": "hard",
+   "subtopic": "painted-cubes",
+   "pattern": "pc-p7",
+   "timeSec": 50
   }
  ]
 }

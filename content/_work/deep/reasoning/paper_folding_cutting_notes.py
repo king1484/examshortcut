@@ -22,7 +22,7 @@ Each full fold doubles the holes: 1 fold gives 2 holes per punch, 2 folds give 4
 ### Where the copies go
 - **Vertical fold line** (left-right fold): the copy keeps its **height** and moves to the other side. A hole near the top-right gets a partner near the top-left.
 - **Horizontal fold line** (top-bottom fold): the copy keeps its **left-right position** and moves up or down.
-- **Diagonal fold** along the line from top-left to bottom-right: a point at (x, y) goes to **(y, x)**. A hole near the middle of the top edge gets a partner near the middle of the right edge.
+- **Diagonal fold** along the line from top-left to bottom-right: a point at (x, y) goes to **(y, x)**. A hole near the middle of the top edge gets a partner near the middle of the left edge.
 - **Other diagonal** (top-right to bottom-left) on a square of side s: (x, y) goes to (s − y, s − x).
 
 ### Quarter fold
@@ -70,8 +70,8 @@ PATTERNS["fold-punch"] = [
     P("fp-p3", "Diagonal fold", "common",
       "A dashed line from corner to corner. The folded sheet is a triangle.",
       "Reflect across the diagonal. For the diagonal from top-left to bottom-right, (x, y) goes to (y, x): a hole near the top edge gets a partner near the left or right edge.",
-      "**Q.** A square is folded along the diagonal from top-left to bottom-right, the top-right half moving over. A punch is made near the middle of the bottom edge. Where is the second hole?",
-      "Near the middle of the left edge. (x, y) becomes (y, x)."),
+      "**Q.** A square is folded along the diagonal from top-left to bottom-right, the top-right half moving over. A punch is made near the middle of the left edge of the folded triangle. Where is the second hole?",
+      "Near the middle of the bottom edge. (x, y) becomes (y, x): (1, 4) goes to (4, 1)."),
     P("fp-p4", "Strip (partial) fold", "common",
       "The dashed line is not through the middle. Only a narrow strip is folded over.",
       "Only the part covered by the strip has 2 layers. Punches in the covered part make 2 holes; punches elsewhere make 1 hole.",
@@ -125,6 +125,9 @@ A punch exactly on a crease joins the two layers that meet there, so the copies 
 
 ### Doubling chain
 Write the count as you read each step: 1 → 2 → 4 → 8. For a strip fold, write two chains, one for the doubled part and one for the single part. Multiply by the punches in each part and add.
+
+### Worked example
+A sheet is folded in half and in half again, then 3 holes are punched through all the layers. Layers: 2 after the first fold, 4 after the second. Holes = 3 × 4 = **12**. But if only the left quarter had been folded over first, only punches made inside that doubled quarter would double, and the count would be smaller.
 
 ### Common mistakes
 - Adding 2 for each fold instead of doubling.
@@ -187,8 +190,8 @@ PYQS = [
         "A corner-to-corner fold makes a triangle.",
         "Reflect across the diagonal: (x, y) → (y, x) for the top-left to bottom-right diagonal.",
         "fold-punch",
-        "**Q.** Folded along the main diagonal, punched near the middle of the bottom edge. Where is the other hole?",
-        "Near the middle of the left edge."),
+        "**Q.** Folded along the main diagonal, punched near the middle of the left edge. Where is the other hole?",
+        "Near the middle of the bottom edge."),
     PYQ("Strip (partial) fold", "occasional",
         "The fold line is not through the centre.",
         "Double only punches inside the folded strip.",
