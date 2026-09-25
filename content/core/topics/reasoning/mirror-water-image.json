@@ -37,6 +37,69 @@
     "Flipping each letter but keeping the original order.",
     "Reversing the order but not flipping the asymmetric letters.",
     "Confusing the mirror image with the water image (top-bottom flip)."
+   ],
+   "notes": "### What a vertical mirror does\nStand in front of a mirror and raise your right hand: the image raises the hand on the **other** side. A vertical mirror swaps **left and right** and keeps **top and bottom**. Whether the mirror is on the left or the right of the object, the image looks the same; only its position changes.\n\nFor a word, number or code this does **two** things together:\n1. The **order** is reversed: the last character comes first.\n2. **Each character** is flipped left-right: R, E, S, N, 2, 4, 7 face the other way.\n\nTop stays top. A letter is never upside down in a mirror image.\n\n### Symmetric letters and digits\nCapital letters with a vertical line of symmetry look the same in a mirror:\n**A H I M O T U V W X Y** (and the digits 0 and 8).\n\nEvery other capital looks reversed: B C D E F G J K L N P Q R S Z.\n\n- A word looks **exactly the same** in a mirror only if it reads the same backwards **and** every letter is in the list above. Examples: MOM, WOW, TOOT, MAAM.\n- A letter looks the same letter by letter only if it is in the list. For single-letter counting, order does not matter.\n\n### Four-step check for option questions\n1. **First character of the image = last character of the word.** Reject options that start with the wrong character.\n2. Check one **asymmetric** character (R, E, S, 4, 7...). It must face the other way.\n3. Make sure **top stays top**. If a letter is upside down, that option is a water image or a 180° turn.\n4. Check the middle characters only if two options are still left.\n\n### The usual wrong options\n- **Water image:** order kept, letters upside down. (Wrong axis.)\n- **180° turn:** order reversed **and** letters upside down. This is a mirror image plus a water image.\n- **Reversed only:** order reversed, but letters not flipped.\n- **Flipped only:** letters flipped, but order kept.\n\n### Figures\nFor a line figure, every point moves to the same distance on the **other side** of the mirror line. Things on the left go to the right; heights do not change. Pick one clear feature (a dot, a shaded corner, a short tail) and check where it lands.\n- A feature in the **top-left** corner goes to the **top-right** in a mirror image.\n- If it went to the bottom-left, that is a water image; bottom-right is a 180° turn.\n\n### Worked example\nMirror image of **REASON**. The image reads N O S A E R from left to right. A and O are symmetric and look the same. N, S, E and R face the other way. An option showing N O S A E R with upside-down letters is a 180° turn, not a mirror image.\n\n### Quick revision\n- Mirror: order reversed + each character flipped left-right; top stays top.\n- Symmetric capitals: A H I M O T U V W X Y; digits 0 and 8.\n- Same word in a mirror = palindrome made only of symmetric letters.\n- Figures: left ↔ right, height unchanged; track one corner feature.\n- Upside-down option = water image or 180° turn, never a mirror image.\n",
+   "patterns": [
+    {
+     "id": "mi-p1",
+     "name": "Mirror image of a word",
+     "frequency": "very common",
+     "howToSpot": "A word in capitals with four image options; mirror placed vertically on one side.",
+     "formula": null,
+     "logic": "1. The image starts with the last letter.\n2. Every letter is flipped left-right; symmetric letters look unchanged.\n3. Nothing is upside down.\n\n**Why:** a vertical mirror only swaps left and right.",
+     "example": {
+      "q": "Which describes the mirror image of REASON?",
+      "solution": "Letters in the order N O S A E R, with N, S, E, R facing the other way and A, O unchanged."
+     }
+    },
+    {
+     "id": "mi-p2",
+     "name": "Mirror image of a number or code",
+     "frequency": "common",
+     "howToSpot": "A number, or a mix of letters and digits, with image options.",
+     "formula": null,
+     "logic": "1. Reverse the order.\n2. Flip each character left-right; 0 and 8 stay the same.\n3. Digits like 2, 3, 4, 5, 7 face the other way.\n\n**Why:** digits follow the same rule as letters.",
+     "example": {
+      "q": "What is the order of characters in the mirror image of 4R95J?",
+      "solution": "Reversed: J 5 9 R 4, each flipped left-right."
+     }
+    },
+    {
+     "id": "mi-p3",
+     "name": "Mirror image of a figure",
+     "frequency": "very common",
+     "howToSpot": "A line figure with a vertical mirror line (often marked M) beside it.",
+     "formula": null,
+     "logic": "1. Pick a clear feature: dot, shaded part or tail.\n2. Move it to the other side at the same height.\n3. Reject options where it moved up or down.\n\n**Why:** a vertical mirror keeps heights and swaps sides.",
+     "example": {
+      "q": "A figure has a dot in its top-left corner. Where is the dot in its mirror image?",
+      "solution": "Top-right corner. Bottom-left would be the water image, bottom-right a 180° turn."
+     }
+    },
+    {
+     "id": "mi-p4",
+     "name": "Letters that look the same in a mirror",
+     "frequency": "common",
+     "howToSpot": "How many letters of a word, or which letters, look unchanged in a mirror.",
+     "formula": null,
+     "logic": "1. Tick letters from A H I M O T U V W X Y.\n2. Count the ticks (repeated letters count each time).\n\n**Why:** only these capitals have a vertical line of symmetry.",
+     "example": {
+      "q": "How many letters of MATHEMATICS look the same in a mirror?",
+      "solution": "M, A, T, H, M, A, T, I = **8**. E, C and S look reversed."
+     }
+    },
+    {
+     "id": "mi-p5",
+     "name": "Word that looks the same in a mirror",
+     "frequency": "occasional",
+     "howToSpot": "Which word (or number) will look exactly the same in a vertical mirror.",
+     "formula": null,
+     "logic": "1. The word must read the same backwards.\n2. Every letter must be symmetric (A H I M O T U V W X Y).\n\n**Why:** the mirror reverses order and flips each letter, so both must be undone.",
+     "example": {
+      "q": "Which looks the same in a mirror: NOON, TOOT or DEED?",
+      "solution": "**TOOT**. NOON and DEED are palindromes, but N, D and E are not symmetric."
+     }
+    }
    ]
   },
   {
@@ -57,6 +120,69 @@
    "mistakes": [
     "Reversing the character order in a water image.",
     "Rotating letters by 180° instead of flipping them top-to-bottom."
+   ],
+   "notes": "### What water does\nA lake below a hill shows the hill upside down. The water surface is a **horizontal** mirror below the object. It swaps **top and bottom** and keeps **left and right**. A question may also say \"the mirror is placed horizontally below\" or \"along the line MN below the figure\". All of these mean a water image.\n\nFor a word, number or code:\n1. The **order stays the same**: the first character is still first.\n2. **Each character** is turned upside down (flipped top to bottom, not spun round).\n\n### Symmetric letters and digits\nCapitals with a horizontal line of symmetry look the same in water:\n**B C D E H I K O X** (and the digits 0, 3 and 8).\n\n- A word looks exactly the same in water if **every** letter is in this list. The order does not matter here because water keeps the order. Examples: CHOICE, BOX, HIDE, CODE, DECIDE.\n- Letters such as A, M, T, U, V, W, Y are symmetric in a mirror but **not** in water. M upside down looks like W.\n\n### Four-step check for option questions\n1. **First character stays first.** An option starting with the last character is a mirror image or a 180° turn.\n2. Check one letter that is not in the list (A, R, T, 4, 7). It must be upside down.\n3. Left-facing parts must still face left. For example, the bowl of R stays on the right side.\n4. Compare the rest only if two options are still left.\n\n### Mirror + water = half turn\nA mirror image followed by a water image (in either order) is the same as turning the object through **180°**. The order is reversed and every character is upside down. The letters H, I, N, O, S, X, Z and the digits 0 and 8 look the same after a half turn. So SOS, NOON and XOX look unchanged after a half turn.\n\n### Figures\nEvery point moves to the same distance on the other side of the horizontal line. Things at the top go to the bottom; left and right do not change.\n- A feature in the **top-left** goes to the **bottom-left**.\n- Top-right is the mirror image (wrong axis); bottom-right is a 180° turn.\n\n### Worked example\nWater image of **BUDGET**. The order stays B U D G E T. B, D and E are symmetric in water and look unchanged. U, G and T appear upside down (T looks like ⊥). An option that begins with T is not a water image.\n\n### Quick revision\n- Water: order kept + each character upside down; left stays left.\n- Symmetric in water: B C D E H I K O X; digits 0, 3, 8.\n- Same word in water = every letter in that list (no palindrome needed).\n- Mirror + water = 180° turn: reversed order + upside down.\n- Figures: top ↔ bottom, left and right unchanged.\n",
+   "patterns": [
+    {
+     "id": "wi-p1",
+     "name": "Water image of a word",
+     "frequency": "very common",
+     "howToSpot": "A word in capitals; mirror placed horizontally below it.",
+     "formula": null,
+     "logic": "1. Keep the order.\n2. Turn each letter upside down; B C D E H I K O X look unchanged.\n3. Left-right direction of each letter stays.\n\n**Why:** a horizontal mirror only swaps top and bottom.",
+     "example": {
+      "q": "Which describes the water image of BUDGET?",
+      "solution": "Order B U D G E T; U, G, T upside down; B, D, E look unchanged."
+     }
+    },
+    {
+     "id": "wi-p2",
+     "name": "Water image of a number or code",
+     "frequency": "common",
+     "howToSpot": "A number or letter-digit code with water image options.",
+     "formula": null,
+     "logic": "1. Keep the order.\n2. Turn each character upside down; 0, 3, 8 look unchanged.\n3. 6 upside down is not 9 (9 is a half turn of 6).\n\n**Why:** water is a flip, not a rotation.",
+     "example": {
+      "q": "Which digits of 83602 look unchanged in water?",
+      "solution": "8, 3 and 0. 6 and 2 appear upside down."
+     }
+    },
+    {
+     "id": "wi-p3",
+     "name": "Water image of a figure",
+     "frequency": "very common",
+     "howToSpot": "A line figure with a horizontal line MN below it.",
+     "formula": null,
+     "logic": "1. Pick a clear feature.\n2. Move it to the other side of the horizontal line; keep its left-right position.\n3. Reject options where it moved sideways.\n\n**Why:** water keeps left and right.",
+     "example": {
+      "q": "A figure has a shaded triangle in its top-right corner. Where is it in the water image?",
+      "solution": "Bottom-right corner."
+     }
+    },
+    {
+     "id": "wi-p4",
+     "name": "Letters or words unchanged in water",
+     "frequency": "common",
+     "howToSpot": "How many letters look the same in water, or which word looks the same.",
+     "formula": null,
+     "logic": "1. Tick letters from B C D E H I K O X.\n2. For a whole word, every letter must be ticked.\n\n**Why:** these letters have a horizontal line of symmetry.",
+     "example": {
+      "q": "Which word looks the same in water: CHOICE or CHANCE?",
+      "solution": "**CHOICE**: every letter is in B C D E H I K O X. CHANCE has A and N."
+     }
+    },
+    {
+     "id": "wi-p5",
+     "name": "Mirror image followed by water image",
+     "frequency": "occasional",
+     "howToSpot": "The mirror image of a word is seen again in water (or the reverse).",
+     "formula": null,
+     "logic": "1. Mirror then water = a 180° turn.\n2. Reverse the order and turn every character upside down.\n\n**Why:** swapping left-right and then top-bottom is a half turn.",
+     "example": {
+      "q": "How does the word SUN look after a mirror image followed by a water image?",
+      "solution": "Turned through 180°: N U S order, each letter upside down. N and S look the same, U looks like ∩."
+     }
+    }
    ]
   },
   {
@@ -83,6 +209,69 @@
    "mistakes": [
     "Subtracting from 12:00 and mis-borrowing the minutes.",
     "Applying the rule to 12:xx without adding 12 first."
+   ],
+   "notes": "### Why the 11:60 rule works\nA clock seen in a vertical mirror has its hands swapped across the 12–6 line. A hand 20 minutes past 12 on the right side appears 20 minutes before 12 on the left. So the **actual time and the image time always add up to 12:00**.\n\n$$\\text{image} = 11{:}60 - \\text{actual}$$\n\nWriting 12:00 as 11:60 saves you from borrowing. The rule works both ways: actual = 11:60 − image.\n\nExamples:\n- 3:45 → 11:60 − 3:45 = **8:15**\n- 10:10 → **1:50**\n- 7:05 → **4:55**\n\n### Special times\n- **12:00 and 6:00** look the same in a mirror. These are the only two such times, because both hands then lie on the 12–6 line.\n- **Times between 12:00 and 1:00** (like 12:20): use 23:60 − time → 11:40. Or treat 12:20 as 0:20 and do 11:60 − 0:20 = 11:40.\n- **Whole hours:** h:00 → (12 − h):00. So 4:00 → 8:00.\n- **With seconds:** use 11:59:60 − time. So 2:25:40 → 9:34:20.\n\n### Reading a clock face in a mirror\nWhen a figure shows a mirrored clock without numbers:\n1. The 12 mark is still at the top.\n2. Read the time the hands seem to show (the image time).\n3. Actual time = 11:60 − image time.\nA hand pointing to the 2 o'clock position in the image was really pointing to the 10 o'clock position.\n\n### Two-step questions\n- \"The mirror shows 4:20. What will the actual time be after 1 hour 15 minutes?\" First find the actual time: 11:60 − 4:20 = 7:40. Then add: 7:40 + 1:15 = **8:55**.\n- Mirror of a mirror gives back the actual time.\n\n### Traps in the options\n- **12:00 − time done wrongly:** 12 − 3 = 9 and 60 − 45 = 15 gives 9:15 for 3:45. The hour must drop by one when the minutes are not zero, so the answer is 8:15.\n- **Half-turn time:** 3:45 + 6:00 = 9:45 is where the hands are after a 180° turn, not a mirror image.\n- **Hours mirrored, minutes kept** (8:45): only half the job.\n\n### Why the hour drops by one\nTake 3:45. The hour hand is three-quarters of the way from 3 to 4. In the mirror it sits three-quarters of the way from 9 to 8, so it is past 8, not past 9. The image shows 8:15, not 9:15. Whenever the minutes are not zero, the image hour is 11 − h, not 12 − h.\n\n### Worked example\nThe mirror image of a clock shows 5:35. Find the actual time.\nActual = 11:60 − 5:35 = 6:25. Check: 5:35 + 6:25 = 12:00. An option of 7:25 comes from forgetting to borrow; 11:35 is the half-turn time.\n\n### Check\nAdd your answer to the given time. The sum must be exactly 12:00 (or 24:00 for 12:xx times).\n\n### Quick revision\n- Image = 11:60 − actual; actual = 11:60 − image.\n- 12:xx → 23:60 − time; with seconds → 11:59:60 − time.\n- 12:00 and 6:00 look unchanged.\n- Mirrored clock face: read it as it looks, then take 11:60 minus that.\n- Check: given + answer = 12:00.\n",
+   "patterns": [
+    {
+     "id": "cm-p1",
+     "name": "Mirror time from actual time",
+     "frequency": "very common",
+     "howToSpot": "A clock shows a time; what time does its mirror image show?",
+     "formula": "\\text{image}=11{:}60-\\text{actual}",
+     "logic": "1. Subtract from 11:60.\n2. Check that the sum is 12:00.\n\n**Why:** each hand is reflected across the 12–6 line, so actual + image = 12 hours.",
+     "example": {
+      "q": "A clock shows 3:45. What does its mirror image show?",
+      "solution": "11:60 − 3:45 = **8:15**."
+     }
+    },
+    {
+     "id": "cm-p2",
+     "name": "Actual time from mirror reading",
+     "frequency": "common",
+     "howToSpot": "The mirror image shows a time; find the actual time.",
+     "formula": null,
+     "logic": "1. Use the same rule: 11:60 − image time.\n\n**Why:** reflecting twice gives back the original, so the rule works in both directions.",
+     "example": {
+      "q": "A clock looks like 2:25 in a mirror. What is the actual time?",
+      "solution": "11:60 − 2:25 = **9:35**."
+     }
+    },
+    {
+     "id": "cm-p3",
+     "name": "Special cases: 12:xx and seconds",
+     "frequency": "occasional",
+     "howToSpot": "Time between 12 and 1, a whole-hour time, or a time with seconds.",
+     "formula": null,
+     "logic": "1. 12:xx → 23:60 − time.\n2. Seconds → 11:59:60 − time.\n3. 12:00 and 6:00 map to themselves.\n\n**Why:** the sum is still 12 hours; only the borrowing changes.",
+     "example": {
+      "q": "What is the mirror image of 12:35?",
+      "solution": "23:60 − 12:35 = **11:25**."
+     }
+    },
+    {
+     "id": "cm-p4",
+     "name": "Mirrored clock face",
+     "frequency": "common",
+     "howToSpot": "A drawn clock (often without numbers) is said to be a mirror image; find the actual time.",
+     "formula": null,
+     "logic": "1. Read the time the hands appear to show.\n2. Actual = 11:60 − that time.\n\n**Why:** reading the picture gives the image time; the rule converts it back.",
+     "example": {
+      "q": "A mirrored clock face appears to show 2:30. What is the actual time?",
+      "solution": "11:60 − 2:30 = **9:30**."
+     }
+    },
+    {
+     "id": "cm-p5",
+     "name": "Mirror time with elapsed time",
+     "frequency": "occasional",
+     "howToSpot": "The mirror time is given and the question asks the actual time some minutes later (or earlier).",
+     "formula": null,
+     "logic": "1. Convert the mirror reading to the actual time first.\n2. Then add or subtract the elapsed time.\n\n**Why:** time passes on the real clock; converting after adding gives a wrong answer.",
+     "example": {
+      "q": "A mirror shows 4:20. What will the actual time be 1 hour 15 minutes later?",
+      "solution": "Actual 11:60 − 4:20 = 7:40; 7:40 + 1:15 = **8:55**."
+     }
+    }
    ]
   }
  ],
@@ -90,38 +279,90 @@
   {
    "pattern": "Mirror image of word / number",
    "frequency": "very common",
-   "howToSpot": "A word, code or number with four image options.",
-   "approach": "Reversed order + each letter flipped; check first and last characters."
+   "howToSpot": "A word, number or code with four image options; mirror on one side.",
+   "approach": "Order reversed + each character flipped left-right. Check the first character (= last of the word) and one asymmetric letter.",
+   "subtopic": "mirror-image",
+   "example": {
+    "q": "What is the first character (from the left) in the mirror image of EXAM25?",
+    "solution": "The last character, **5**, flipped left-right."
+   }
   },
   {
    "pattern": "Water image of word / number",
    "frequency": "common",
-   "howToSpot": "Same, with the mirror below (water).",
-   "approach": "Order unchanged; asymmetric letters upside down."
+   "howToSpot": "Same, but the mirror is below (water or line MN below).",
+   "approach": "Order kept; each character upside down. B C D E H I K O X and 0, 3, 8 look unchanged.",
+   "subtopic": "water-image",
+   "example": {
+    "q": "Which letters of BUDGET look unchanged in water?",
+    "solution": "B, D, E (3 letters)."
+   }
+  },
+  {
+   "pattern": "Mirror image of a figure",
+   "frequency": "very common",
+   "howToSpot": "A line figure with a vertical mirror line beside it.",
+   "approach": "Track one corner feature: left ↔ right, height unchanged. Reject upside-down options.",
+   "subtopic": "mirror-image",
+   "example": {
+    "q": "A dot is at the bottom-left of a figure. Where is it in the mirror image?",
+    "solution": "Bottom-right."
+   }
+  },
+  {
+   "pattern": "Water image of a figure",
+   "frequency": "common",
+   "howToSpot": "A line figure with a horizontal line below it.",
+   "approach": "Track one feature: top ↔ bottom, left and right unchanged.",
+   "subtopic": "water-image",
+   "example": {
+    "q": "A dot is at the bottom-left of a figure. Where is it in the water image?",
+    "solution": "Top-left."
+   }
   },
   {
    "pattern": "Clock mirror time",
-   "frequency": "common",
+   "frequency": "very common",
    "howToSpot": "Time seen in a mirror, or actual time from a mirror reading.",
-   "approach": "11:60 − time."
+   "approach": "11:60 − time, both ways. 12:xx uses 23:60. Check: sum = 12:00.",
+   "subtopic": "clock-mirror",
+   "example": {
+    "q": "A clock shows 7:05. What does the mirror show?",
+    "solution": "11:60 − 7:05 = **4:55**."
+   }
+  },
+  {
+   "pattern": "Mirrored clock face or elapsed time",
+   "frequency": "occasional",
+   "howToSpot": "A drawn mirrored clock, or the actual time some minutes after a mirror reading.",
+   "approach": "Read the image time, convert with 11:60 − time, then add or subtract elapsed time.",
+   "subtopic": "clock-mirror",
+   "example": {
+    "q": "A mirror shows 9:10. What is the actual time 30 minutes later?",
+    "solution": "Actual 2:50; plus 30 minutes = **3:20**."
+   }
   },
   {
    "pattern": "Symmetric letters count",
-   "frequency": "occasional",
-   "howToSpot": "How many letters of a word look the same in a mirror / in water.",
-   "approach": "Match against A H I M O T U V W X Y (mirror) or B C D E H I K O X (water)."
-  },
-  {
-   "pattern": "Figure mirror / water image",
    "frequency": "common",
-   "howToSpot": "A line figure with four image options.",
-   "approach": "Track one asymmetric feature (a flag, a notch) to its reflected position."
+   "howToSpot": "How many letters of a word look the same in a mirror or in water.",
+   "approach": "Mirror list: A H I M O T U V W X Y. Water list: B C D E H I K O X. Count each occurrence.",
+   "subtopic": "mirror-image",
+   "example": {
+    "q": "How many letters of MATHEMATICS look the same in a mirror?",
+    "solution": "M A T H M A T I = **8**."
+   }
   },
   {
-   "pattern": "Identical image words",
+   "pattern": "Word unchanged in mirror / water",
    "frequency": "occasional",
-   "howToSpot": "Which word looks exactly the same in the mirror / in water.",
-   "approach": "Mirror: symmetric letters + palindrome. Water: all letters top-bottom symmetric."
+   "howToSpot": "Which word looks exactly the same in its image.",
+   "approach": "Mirror: palindrome of symmetric letters (WOW, TOOT). Water: every letter in B C D E H I K O X (CHOICE).",
+   "subtopic": "water-image",
+   "example": {
+    "q": "Which looks the same in water: DECIDE or DEFINE?",
+    "solution": "**DECIDE**: every letter is in B C D E H I K O X."
+   }
   }
  ],
  "solvedExamples": [
@@ -468,6 +709,744 @@
    "subtopic": "water-image",
    "pattern": "figure mirror / water image",
    "timeSec": 35
+  },
+  {
+   "id": "mirror-image-p01",
+   "q": "Which option is the **mirror image** of **KINGDOM** when the mirror is placed vertically on its right?",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 101 28\" width=\"101\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\">M</text><text x=\"24.5\" y=\"18.8\">O</text><text x=\"37.5\" y=\"18.8\">D</text><text x=\"50.5\" y=\"18.8\">G</text><text x=\"63.5\" y=\"18.8\">N</text><text x=\"76.5\" y=\"18.8\">I</text><text x=\"89.5\" y=\"18.8\">K</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 101 28\" width=\"101\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">K</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">I</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">N</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">G</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">D</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">O</text><text x=\"89.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">M</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 101 28\" width=\"101\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,0) scale(-1,1)\">M</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,0) scale(-1,1)\">O</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,0) scale(-1,1)\">D</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,0) scale(-1,1)\">G</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,0) scale(-1,1)\">N</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(153,0) scale(-1,1)\">I</text><text x=\"89.5\" y=\"18.8\" transform=\"translate(179,0) scale(-1,1)\">K</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 101 28\" width=\"101\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,26.4) scale(-1,-1)\">M</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,26.4) scale(-1,-1)\">O</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,26.4) scale(-1,-1)\">D</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,26.4) scale(-1,-1)\">G</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,26.4) scale(-1,-1)\">N</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(153,26.4) scale(-1,-1)\">I</text><text x=\"89.5\" y=\"18.8\" transform=\"translate(179,26.4) scale(-1,-1)\">K</text></g></svg>"
+   ],
+   "answer": 2,
+   "solution": "A vertical mirror reverses the order and flips every character left-right; top stays top. Read left to right, the image shows **M O D G N I K**. I, M, O look the same because they are symmetric about a vertical line; K, N, G, D face the other way. Among the other options, one is the water image (order kept, characters upside down); one is a 180° turn (order reversed and characters upside down); one is only reversed in order, with the characters not flipped.",
+   "shortcut": "The image must start with the last character, M, and nothing may be upside down.",
+   "difficulty": "easy",
+   "subtopic": "mirror-image",
+   "pattern": "mi-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "mirror-image-p02",
+   "q": "Which option is the **mirror image** of **PLANETS** when the mirror is placed vertically on its right?",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 101 28\" width=\"101\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\">S</text><text x=\"24.5\" y=\"18.8\">T</text><text x=\"37.5\" y=\"18.8\">E</text><text x=\"50.5\" y=\"18.8\">N</text><text x=\"63.5\" y=\"18.8\">A</text><text x=\"76.5\" y=\"18.8\">L</text><text x=\"89.5\" y=\"18.8\">P</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 101 28\" width=\"101\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">P</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">L</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">A</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">N</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">E</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">T</text><text x=\"89.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">S</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 101 28\" width=\"101\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,0) scale(-1,1)\">S</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,0) scale(-1,1)\">T</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,0) scale(-1,1)\">E</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,0) scale(-1,1)\">N</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,0) scale(-1,1)\">A</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(153,0) scale(-1,1)\">L</text><text x=\"89.5\" y=\"18.8\" transform=\"translate(179,0) scale(-1,1)\">P</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 101 28\" width=\"101\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,26.4) scale(-1,-1)\">S</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,26.4) scale(-1,-1)\">T</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,26.4) scale(-1,-1)\">E</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,26.4) scale(-1,-1)\">N</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,26.4) scale(-1,-1)\">A</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(153,26.4) scale(-1,-1)\">L</text><text x=\"89.5\" y=\"18.8\" transform=\"translate(179,26.4) scale(-1,-1)\">P</text></g></svg>"
+   ],
+   "answer": 2,
+   "solution": "A vertical mirror reverses the order and flips every character left-right; top stays top. Read left to right, the image shows **S T E N A L P**. A, T look the same because they are symmetric about a vertical line; P, L, N, E, S face the other way. Among the other options, one is only reversed in order, with the characters not flipped; one is the water image (order kept, characters upside down); one is a 180° turn (order reversed and characters upside down).",
+   "shortcut": "The image must start with the last character, S, and nothing may be upside down.",
+   "difficulty": "medium",
+   "subtopic": "mirror-image",
+   "pattern": "mi-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "mirror-image-p03",
+   "q": "Which option is the **mirror image** of **JOURNEY** when the mirror is placed vertically on its left?",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 101 28\" width=\"101\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">J</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">O</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">U</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">R</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">N</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">E</text><text x=\"89.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">Y</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 101 28\" width=\"101\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,26.4) scale(-1,-1)\">Y</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,26.4) scale(-1,-1)\">E</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,26.4) scale(-1,-1)\">N</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,26.4) scale(-1,-1)\">R</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,26.4) scale(-1,-1)\">U</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(153,26.4) scale(-1,-1)\">O</text><text x=\"89.5\" y=\"18.8\" transform=\"translate(179,26.4) scale(-1,-1)\">J</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 101 28\" width=\"101\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,0) scale(-1,1)\">Y</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,0) scale(-1,1)\">E</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,0) scale(-1,1)\">N</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,0) scale(-1,1)\">R</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,0) scale(-1,1)\">U</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(153,0) scale(-1,1)\">O</text><text x=\"89.5\" y=\"18.8\" transform=\"translate(179,0) scale(-1,1)\">J</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 101 28\" width=\"101\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,0) scale(-1,1)\">J</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,0) scale(-1,1)\">O</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,0) scale(-1,1)\">U</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,0) scale(-1,1)\">R</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,0) scale(-1,1)\">N</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(153,0) scale(-1,1)\">E</text><text x=\"89.5\" y=\"18.8\" transform=\"translate(179,0) scale(-1,1)\">Y</text></g></svg>"
+   ],
+   "answer": 2,
+   "solution": "A vertical mirror reverses the order and flips every character left-right; top stays top. Read left to right, the image shows **Y E N R U O J**. O, U, Y look the same because they are symmetric about a vertical line; J, R, N, E face the other way. Among the other options, one is flipped characters left in the original order; one is a 180° turn (order reversed and characters upside down); one is the water image (order kept, characters upside down).",
+   "shortcut": "The image must start with the last character, Y, and nothing may be upside down.",
+   "difficulty": "medium",
+   "subtopic": "mirror-image",
+   "pattern": "mi-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "mirror-image-p04",
+   "q": "Which option is the **mirror image** of **SK47R2** when the mirror is placed vertically on its right?",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,26.4) scale(-1,-1)\">2</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,26.4) scale(-1,-1)\">R</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,26.4) scale(-1,-1)\">7</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,26.4) scale(-1,-1)\">4</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,26.4) scale(-1,-1)\">K</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(153,26.4) scale(-1,-1)\">S</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">S</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">K</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">4</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">7</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">R</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">2</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,0) scale(-1,1)\">2</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,0) scale(-1,1)\">R</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,0) scale(-1,1)\">7</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,0) scale(-1,1)\">4</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,0) scale(-1,1)\">K</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(153,0) scale(-1,1)\">S</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\">2</text><text x=\"24.5\" y=\"18.8\">R</text><text x=\"37.5\" y=\"18.8\">7</text><text x=\"50.5\" y=\"18.8\">4</text><text x=\"63.5\" y=\"18.8\">K</text><text x=\"76.5\" y=\"18.8\">S</text></g></svg>"
+   ],
+   "answer": 2,
+   "solution": "A vertical mirror reverses the order and flips every character left-right; top stays top. Read left to right, the image shows **2 R 7 4 K S**. S, K, 4, 7, R, 2 face the other way. Among the other options, one is a 180° turn (order reversed and characters upside down); one is only reversed in order, with the characters not flipped; one is the water image (order kept, characters upside down).",
+   "shortcut": "The image must start with the last character, 2, and nothing may be upside down.",
+   "difficulty": "medium",
+   "subtopic": "mirror-image",
+   "pattern": "mi-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "mirror-image-p05",
+   "q": "Which option is the **mirror image** of **N4J7E5** when the mirror is placed vertically on its right?",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,0) scale(-1,1)\">N</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,0) scale(-1,1)\">4</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,0) scale(-1,1)\">J</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,0) scale(-1,1)\">7</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,0) scale(-1,1)\">E</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(153,0) scale(-1,1)\">5</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">N</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">4</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">J</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">7</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">E</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">5</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\">5</text><text x=\"24.5\" y=\"18.8\">E</text><text x=\"37.5\" y=\"18.8\">7</text><text x=\"50.5\" y=\"18.8\">J</text><text x=\"63.5\" y=\"18.8\">4</text><text x=\"76.5\" y=\"18.8\">N</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,0) scale(-1,1)\">5</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,0) scale(-1,1)\">E</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,0) scale(-1,1)\">7</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,0) scale(-1,1)\">J</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,0) scale(-1,1)\">4</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(153,0) scale(-1,1)\">N</text></g></svg>"
+   ],
+   "answer": 3,
+   "solution": "A vertical mirror reverses the order and flips every character left-right; top stays top. Read left to right, the image shows **5 E 7 J 4 N**. N, 4, J, 7, E, 5 face the other way. Among the other options, one is flipped characters left in the original order; one is the water image (order kept, characters upside down); one is only reversed in order, with the characters not flipped.",
+   "shortcut": "The image must start with the last character, 5, and nothing may be upside down.",
+   "difficulty": "hard",
+   "subtopic": "mirror-image",
+   "pattern": "mi-p2",
+   "timeSec": 50
+  },
+  {
+   "id": "mirror-image-p06",
+   "q": "Which option is the **mirror image** of the number **2024** (mirror placed vertically on its right)?",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 62 28\" width=\"62\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,26.4) scale(-1,-1)\">4</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,26.4) scale(-1,-1)\">2</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,26.4) scale(-1,-1)\">0</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,26.4) scale(-1,-1)\">2</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 62 28\" width=\"62\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\">4</text><text x=\"24.5\" y=\"18.8\">2</text><text x=\"37.5\" y=\"18.8\">0</text><text x=\"50.5\" y=\"18.8\">2</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 62 28\" width=\"62\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">2</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">0</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">2</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">4</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 62 28\" width=\"62\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,0) scale(-1,1)\">4</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,0) scale(-1,1)\">2</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,0) scale(-1,1)\">0</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,0) scale(-1,1)\">2</text></g></svg>"
+   ],
+   "answer": 3,
+   "solution": "A vertical mirror reverses the order and flips every character left-right; top stays top. Read left to right, the image shows **4 2 0 2**. 0 look the same because they are symmetric about a vertical line; 2, 4 face the other way. Among the other options, one is the water image (order kept, characters upside down); one is only reversed in order, with the characters not flipped; one is a 180° turn (order reversed and characters upside down).",
+   "shortcut": "The image must start with the last character, 4, and nothing may be upside down.",
+   "difficulty": "easy",
+   "subtopic": "mirror-image",
+   "pattern": "mi-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "water-image-p01",
+   "q": "Which option is the **water image** of **GARDEN**?",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">G</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">A</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">R</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">D</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">E</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">N</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,0) scale(-1,1)\">N</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,0) scale(-1,1)\">E</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,0) scale(-1,1)\">D</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,0) scale(-1,1)\">R</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,0) scale(-1,1)\">A</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(153,0) scale(-1,1)\">G</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,26.4) scale(-1,-1)\">N</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,26.4) scale(-1,-1)\">E</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,26.4) scale(-1,-1)\">D</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,26.4) scale(-1,-1)\">R</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,26.4) scale(-1,-1)\">A</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(153,26.4) scale(-1,-1)\">G</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">N</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">E</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">D</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">R</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">A</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">G</text></g></svg>"
+   ],
+   "answer": 0,
+   "solution": "Water (a horizontal mirror below) keeps the order and turns every character upside down; left stays left. The image still reads **G A R D E N**. D, E look the same because they are symmetric about a horizontal line; G, A, R, N appear upside down. Among the other options, one is the mirror image (order reversed, letters flipped left-right); one is a 180° turn (order reversed and characters upside down); one is reversed in order with characters upside down but not flipped left-right.",
+   "shortcut": "The image must still start with G, with its characters upside down.",
+   "difficulty": "easy",
+   "subtopic": "water-image",
+   "pattern": "wi-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "water-image-p02",
+   "q": "Which option is the **water image** of **FRUITS**?",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,26.4) scale(-1,-1)\">S</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,26.4) scale(-1,-1)\">T</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,26.4) scale(-1,-1)\">I</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,26.4) scale(-1,-1)\">U</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,26.4) scale(-1,-1)\">R</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(153,26.4) scale(-1,-1)\">F</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">S</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">T</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">I</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">U</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">R</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">F</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">F</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">R</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">U</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">I</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">T</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">S</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,0) scale(-1,1)\">S</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,0) scale(-1,1)\">T</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,0) scale(-1,1)\">I</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,0) scale(-1,1)\">U</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,0) scale(-1,1)\">R</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(153,0) scale(-1,1)\">F</text></g></svg>"
+   ],
+   "answer": 2,
+   "solution": "Water (a horizontal mirror below) keeps the order and turns every character upside down; left stays left. The image still reads **F R U I T S**. I look the same because they are symmetric about a horizontal line; F, R, U, T, S appear upside down. Among the other options, one is a 180° turn (order reversed and characters upside down); one is the mirror image (order reversed, letters flipped left-right); one is reversed in order with characters upside down but not flipped left-right.",
+   "shortcut": "The image must still start with F, with its characters upside down.",
+   "difficulty": "medium",
+   "subtopic": "water-image",
+   "pattern": "wi-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "water-image-p03",
+   "q": "A mirror is placed horizontally below the word **PLURAL** (along a line MN). Which option is its image?",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">P</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">L</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">U</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">R</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">A</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">L</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,26.4) scale(-1,-1)\">L</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,26.4) scale(-1,-1)\">A</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,26.4) scale(-1,-1)\">R</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,26.4) scale(-1,-1)\">U</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,26.4) scale(-1,-1)\">L</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(153,26.4) scale(-1,-1)\">P</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">L</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">A</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">R</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">U</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">L</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">P</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,0) scale(-1,1)\">L</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,0) scale(-1,1)\">A</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,0) scale(-1,1)\">R</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,0) scale(-1,1)\">U</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,0) scale(-1,1)\">L</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(153,0) scale(-1,1)\">P</text></g></svg>"
+   ],
+   "answer": 0,
+   "solution": "Water (a horizontal mirror below) keeps the order and turns every character upside down; left stays left. The image still reads **P L U R A L**. P, L, U, R, A appear upside down. Among the other options, one is reversed in order with characters upside down but not flipped left-right; one is the mirror image (order reversed, letters flipped left-right); one is a 180° turn (order reversed and characters upside down).",
+   "shortcut": "The image must still start with P, with its characters upside down.",
+   "difficulty": "medium",
+   "subtopic": "water-image",
+   "pattern": "wi-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "water-image-p04",
+   "q": "Which option is the **water image** of **Z5K2PQ**?",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,26.4) scale(-1,-1)\">Q</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,26.4) scale(-1,-1)\">P</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,26.4) scale(-1,-1)\">2</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,26.4) scale(-1,-1)\">K</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,26.4) scale(-1,-1)\">5</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(153,26.4) scale(-1,-1)\">Z</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">Z</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">5</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">K</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">2</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">P</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">Q</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,0) scale(-1,1)\">Q</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,0) scale(-1,1)\">P</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,0) scale(-1,1)\">2</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,0) scale(-1,1)\">K</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,0) scale(-1,1)\">5</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(153,0) scale(-1,1)\">Z</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">Q</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">P</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">2</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">K</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">5</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">Z</text></g></svg>"
+   ],
+   "answer": 1,
+   "solution": "Water (a horizontal mirror below) keeps the order and turns every character upside down; left stays left. The image still reads **Z 5 K 2 P Q**. K look the same because they are symmetric about a horizontal line; Z, 5, 2, P, Q appear upside down. Among the other options, one is the mirror image (order reversed, letters flipped left-right); one is a 180° turn (order reversed and characters upside down); one is reversed in order with characters upside down but not flipped left-right.",
+   "shortcut": "The image must still start with Z, with its characters upside down.",
+   "difficulty": "medium",
+   "subtopic": "water-image",
+   "pattern": "wi-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "water-image-p05",
+   "q": "Which option is the **water image** of **TR7A45**?",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,0) scale(-1,1)\">5</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,0) scale(-1,1)\">4</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,0) scale(-1,1)\">A</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,0) scale(-1,1)\">7</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,0) scale(-1,1)\">R</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(153,0) scale(-1,1)\">T</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">T</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">R</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">7</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">A</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">4</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">5</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">5</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">4</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">A</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">7</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">R</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">T</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 88 28\" width=\"88\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,26.4) scale(-1,-1)\">5</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,26.4) scale(-1,-1)\">4</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,26.4) scale(-1,-1)\">A</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,26.4) scale(-1,-1)\">7</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,26.4) scale(-1,-1)\">R</text><text x=\"76.5\" y=\"18.8\" transform=\"translate(153,26.4) scale(-1,-1)\">T</text></g></svg>"
+   ],
+   "answer": 1,
+   "solution": "Water (a horizontal mirror below) keeps the order and turns every character upside down; left stays left. The image still reads **T R 7 A 4 5**. T, R, 7, A, 4, 5 appear upside down. Among the other options, one is a 180° turn (order reversed and characters upside down); one is reversed in order with characters upside down but not flipped left-right; one is the mirror image (order reversed, letters flipped left-right).",
+   "shortcut": "The image must still start with T, with its characters upside down.",
+   "difficulty": "hard",
+   "subtopic": "water-image",
+   "pattern": "wi-p2",
+   "timeSec": 50
+  },
+  {
+   "id": "water-image-p06",
+   "q": "The mirror image of **FRESH** (mirror on the right) is seen again as a water image. Which option shows the final image?",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 75 28\" width=\"75\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,26.4) scale(-1,-1)\">H</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,26.4) scale(-1,-1)\">S</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,26.4) scale(-1,-1)\">E</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,26.4) scale(-1,-1)\">R</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,26.4) scale(-1,-1)\">F</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 75 28\" width=\"75\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">F</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">R</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">E</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">S</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">H</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 75 28\" width=\"75\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,0) scale(-1,1)\">H</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,0) scale(-1,1)\">S</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,0) scale(-1,1)\">E</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,0) scale(-1,1)\">R</text><text x=\"63.5\" y=\"18.8\" transform=\"translate(127,0) scale(-1,1)\">F</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 75 28\" width=\"75\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\">H</text><text x=\"24.5\" y=\"18.8\">S</text><text x=\"37.5\" y=\"18.8\">E</text><text x=\"50.5\" y=\"18.8\">R</text><text x=\"63.5\" y=\"18.8\">F</text></g></svg>"
+   ],
+   "answer": 0,
+   "solution": "A mirror image followed by a water image is a half turn (180°): the order is reversed (**H S E R F**) and every character is upside down and flipped. H, S look the same after a half turn. Among the other options, one is the mirror image (order reversed, letters flipped left-right); one is the water image (order kept, characters upside down); one is only reversed in order, with the characters not flipped.",
+   "shortcut": "Mirror + water = 180° turn: reversed order, characters upside down.",
+   "difficulty": "medium",
+   "subtopic": "water-image",
+   "pattern": "wi-p5",
+   "timeSec": 45
+  },
+  {
+   "id": "water-image-p07",
+   "q": "The mirror image of **LJ42** (mirror on the right) is seen again as a water image. Which option shows the final image?",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 62 28\" width=\"62\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,26.4) scale(-1,-1)\">2</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,26.4) scale(-1,-1)\">4</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,26.4) scale(-1,-1)\">J</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,26.4) scale(-1,-1)\">L</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 62 28\" width=\"62\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(23,0) scale(-1,1)\">2</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(49,0) scale(-1,1)\">4</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(75,0) scale(-1,1)\">J</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(101,0) scale(-1,1)\">L</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 62 28\" width=\"62\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\">2</text><text x=\"24.5\" y=\"18.8\">4</text><text x=\"37.5\" y=\"18.8\">J</text><text x=\"50.5\" y=\"18.8\">L</text></g></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 62 28\" width=\"62\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g font-size=\"16\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\" font-weight=\"600\"><text x=\"11.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">L</text><text x=\"24.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">J</text><text x=\"37.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">4</text><text x=\"50.5\" y=\"18.8\" transform=\"translate(0,26.4) scale(1,-1)\">2</text></g></svg>"
+   ],
+   "answer": 0,
+   "solution": "A mirror image followed by a water image is a half turn (180°): the order is reversed (**2 4 J L**) and every character is upside down and flipped. Among the other options, one is the water image (order kept, characters upside down); one is the mirror image (order reversed, letters flipped left-right); one is only reversed in order, with the characters not flipped.",
+   "shortcut": "Mirror + water = 180° turn: reversed order, characters upside down.",
+   "difficulty": "hard",
+   "subtopic": "water-image",
+   "pattern": "wi-p5",
+   "timeSec": 50
+  },
+  {
+   "id": "mirror-image-p07",
+   "q": "How many letters of the word **AUTOMOBILE** look exactly the same in a vertical mirror (checked one by one)?",
+   "figure": null,
+   "options": [
+    "7",
+    "5",
+    "8",
+    "6"
+   ],
+   "answer": 0,
+   "solution": "Letters that look the same in a vertical mirror: A H I M O T U V W X Y. In A U T O M O B I L E, the matching letters are A, U, T, O, M, O, I = **7**. The rest (B, L, E) change.",
+   "shortcut": "Tick letters from A H I M O T U V W X Y; count repeats.",
+   "difficulty": "easy",
+   "subtopic": "mirror-image",
+   "pattern": "mi-p4",
+   "timeSec": 35
+  },
+  {
+   "id": "mirror-image-p08",
+   "q": "How many letters of the word **HYDROGEN** look exactly the same in a vertical mirror (checked one by one)?",
+   "figure": null,
+   "options": [
+    "3",
+    "5",
+    "2",
+    "4"
+   ],
+   "answer": 0,
+   "solution": "Letters that look the same in a vertical mirror: A H I M O T U V W X Y. In H Y D R O G E N, the matching letters are H, Y, O = **3**. The rest (D, R, G, E, N) change.",
+   "shortcut": "Tick letters from A H I M O T U V W X Y; count repeats.",
+   "difficulty": "easy",
+   "subtopic": "mirror-image",
+   "pattern": "mi-p4",
+   "timeSec": 35
+  },
+  {
+   "id": "water-image-p08",
+   "q": "How many letters of the word **BIOCHEMIST** look exactly the same in a water image (checked one by one)?",
+   "figure": null,
+   "options": [
+    "8",
+    "9",
+    "6",
+    "7"
+   ],
+   "answer": 3,
+   "solution": "Letters that look the same in a water image: B C D E H I K O X. In B I O C H E M I S T, the matching letters are B, I, O, C, H, E, I = **7**. The rest (M, S, T) change.",
+   "shortcut": "Tick letters from B C D E H I K O X; count repeats.",
+   "difficulty": "easy",
+   "subtopic": "water-image",
+   "pattern": "wi-p4",
+   "timeSec": 35
+  },
+  {
+   "id": "mirror-image-p09",
+   "q": "Which word will look **exactly the same** in a vertical mirror?",
+   "figure": null,
+   "options": [
+    "TOOK",
+    "NOON",
+    "TOOT",
+    "DEED"
+   ],
+   "answer": 2,
+   "solution": "In a mirror a word looks unchanged only if it reads the same backwards **and** every letter is in A H I M O T U V W X Y. **TOOT** passes both tests. NOON has N, which is not symmetric; DEED has D, E, which are not symmetric; TOOK does not read the same backwards.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "mirror-image",
+   "pattern": "mi-p5",
+   "timeSec": 40
+  },
+  {
+   "id": "mirror-image-p10",
+   "q": "Which word will look **exactly the same** in a vertical mirror?",
+   "figure": null,
+   "options": [
+    "RADAR",
+    "MAAM",
+    "LEVEL",
+    "HAIM"
+   ],
+   "answer": 1,
+   "solution": "In a mirror a word looks unchanged only if it reads the same backwards **and** every letter is in A H I M O T U V W X Y. **MAAM** passes both tests. RADAR has R, D, which are not symmetric; LEVEL has L, E, which are not symmetric; HAIM does not read the same backwards.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "mirror-image",
+   "pattern": "mi-p5",
+   "timeSec": 40
+  },
+  {
+   "id": "water-image-p09",
+   "q": "Which word will look **exactly the same** in its water image?",
+   "figure": null,
+   "options": [
+    "FIXED",
+    "BOXER",
+    "BOXED",
+    "MIXED"
+   ],
+   "answer": 2,
+   "solution": "Water keeps the order, so a word looks unchanged if every letter is in B C D E H I K O X. **BOXED** uses only these letters. BOXER has R; MIXED has M; FIXED has F.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "water-image",
+   "pattern": "wi-p4",
+   "timeSec": 40
+  },
+  {
+   "id": "water-image-p10",
+   "q": "A word is seen in a vertical mirror, and that image is then seen in water. Which word will look **exactly the same** at the end?",
+   "figure": null,
+   "options": [
+    "SOS",
+    "NUN",
+    "DAD",
+    "TOT"
+   ],
+   "answer": 0,
+   "solution": "A mirror image followed by a water image is a 180° turn: the order is reversed and each letter is turned upside down. The word looks unchanged only if it reads the same backwards and every letter is in H I N O S X Z. **SOS** passes. DAD has D, A, which change in a half turn; TOT has T, which changes in a half turn; NUN has U, which changes in a half turn.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "water-image",
+   "pattern": "wi-p5",
+   "timeSec": 45
+  },
+  {
+   "id": "mirror-image-p11",
+   "q": "Which option is the **mirror image** of the given figure, with the mirror placed vertically along MN on its right?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 86 86\" width=\"86\" height=\"86\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"22\" y1=\"38\" x2=\"54\" y2=\"70\"/><line x1=\"22\" y1=\"38\" x2=\"38\" y2=\"54\"/><line x1=\"38\" y1=\"54\" x2=\"70\" y2=\"22\"/><line x1=\"54\" y1=\"6\" x2=\"70\" y2=\"22\"/><circle cx=\"54\" cy=\"54\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"54,6 70,6 54,22\" fill=\"currentColor\" fill-opacity=\"0.35\"/><line x1=\"80\" y1=\"2\" x2=\"80\" y2=\"74\" stroke-dasharray=\"3 2\"/><text x=\"80\" y=\"85\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">M</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"22\" y1=\"6\" x2=\"54\" y2=\"38\"/><line x1=\"38\" y1=\"22\" x2=\"54\" y2=\"38\"/><line x1=\"6\" y1=\"54\" x2=\"38\" y2=\"22\"/><line x1=\"6\" y1=\"54\" x2=\"22\" y2=\"70\"/><circle cx=\"22\" cy=\"22\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"22,70 6,70 22,54\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"22\" y1=\"70\" x2=\"54\" y2=\"38\"/><line x1=\"38\" y1=\"54\" x2=\"54\" y2=\"38\"/><line x1=\"6\" y1=\"22\" x2=\"38\" y2=\"54\"/><line x1=\"6\" y1=\"22\" x2=\"22\" y2=\"6\"/><circle cx=\"22\" cy=\"54\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"22,6 6,6 22,22\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"22\" y1=\"70\" x2=\"54\" y2=\"38\"/><line x1=\"38\" y1=\"54\" x2=\"54\" y2=\"38\"/><line x1=\"6\" y1=\"22\" x2=\"38\" y2=\"54\"/><line x1=\"6\" y1=\"22\" x2=\"22\" y2=\"6\"/><circle cx=\"54\" cy=\"54\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"22,6 6,6 22,22\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"22\" y1=\"38\" x2=\"54\" y2=\"6\"/><line x1=\"22\" y1=\"38\" x2=\"38\" y2=\"22\"/><line x1=\"38\" y1=\"22\" x2=\"70\" y2=\"54\"/><line x1=\"54\" y1=\"70\" x2=\"70\" y2=\"54\"/><circle cx=\"54\" cy=\"22\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"54,70 70,70 54,54\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>"
+   ],
+   "answer": 1,
+   "solution": "A vertical mirror swaps left and right and keeps every height. Track the dot: it is in the bottom-right part of the figure, so in the image it must be in the bottom-left part. The shaded triangle and the line path move the same way. Among the other options, one is the water image (top and bottom swapped); one is the figure turned through 180°; one is almost right, but the dot has not been moved.",
+   "shortcut": "Follow one feature (the dot) to its new corner, then check one more.",
+   "difficulty": "easy",
+   "subtopic": "mirror-image",
+   "pattern": "mi-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "mirror-image-p12",
+   "q": "Which option is the **mirror image** of the given figure, with the mirror placed vertically along MN on its right?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 86 86\" width=\"86\" height=\"86\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"38\" y1=\"6\" x2=\"54\" y2=\"6\"/><line x1=\"54\" y1=\"6\" x2=\"70\" y2=\"22\"/><line x1=\"54\" y1=\"22\" x2=\"70\" y2=\"22\"/><line x1=\"38\" y1=\"38\" x2=\"54\" y2=\"22\"/><circle cx=\"22\" cy=\"54\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"6,54 22,54 6,70\" fill=\"currentColor\" fill-opacity=\"0.35\"/><line x1=\"80\" y1=\"2\" x2=\"80\" y2=\"74\" stroke-dasharray=\"3 2\"/><text x=\"80\" y=\"85\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">M</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"22\" y1=\"6\" x2=\"38\" y2=\"6\"/><line x1=\"6\" y1=\"22\" x2=\"22\" y2=\"6\"/><line x1=\"6\" y1=\"22\" x2=\"22\" y2=\"22\"/><line x1=\"22\" y1=\"22\" x2=\"38\" y2=\"38\"/><circle cx=\"54\" cy=\"54\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"70,54 54,54 70,70\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"22\" y1=\"6\" x2=\"38\" y2=\"6\"/><line x1=\"6\" y1=\"22\" x2=\"22\" y2=\"6\"/><line x1=\"6\" y1=\"22\" x2=\"22\" y2=\"22\"/><line x1=\"22\" y1=\"22\" x2=\"38\" y2=\"38\"/><circle cx=\"22\" cy=\"54\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"70,54 54,54 70,70\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"38\" y1=\"70\" x2=\"54\" y2=\"70\"/><line x1=\"54\" y1=\"70\" x2=\"70\" y2=\"54\"/><line x1=\"54\" y1=\"54\" x2=\"70\" y2=\"54\"/><line x1=\"38\" y1=\"38\" x2=\"54\" y2=\"54\"/><circle cx=\"22\" cy=\"22\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"6,22 22,22 6,6\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"22\" y1=\"70\" x2=\"38\" y2=\"70\"/><line x1=\"6\" y1=\"54\" x2=\"22\" y2=\"70\"/><line x1=\"6\" y1=\"54\" x2=\"22\" y2=\"54\"/><line x1=\"22\" y1=\"54\" x2=\"38\" y2=\"38\"/><circle cx=\"54\" cy=\"22\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"70,22 54,22 70,6\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>"
+   ],
+   "answer": 0,
+   "solution": "A vertical mirror swaps left and right and keeps every height. Track the dot: it is in the bottom-left part of the figure, so in the image it must be in the bottom-right part. The shaded triangle and the line path move the same way. Among the other options, one is almost right, but the dot has not been moved; one is the figure turned through 180°; one is the water image (top and bottom swapped).",
+   "shortcut": "Follow one feature (the dot) to its new corner, then check one more.",
+   "difficulty": "medium",
+   "subtopic": "mirror-image",
+   "pattern": "mi-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "mirror-image-p13",
+   "q": "Which option is the **mirror image** of the given figure, with the mirror placed vertically along MN on its right?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 86 86\" width=\"86\" height=\"86\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"54\" y1=\"22\" x2=\"70\" y2=\"6\"/><line x1=\"22\" y1=\"54\" x2=\"54\" y2=\"22\"/><line x1=\"22\" y1=\"54\" x2=\"38\" y2=\"54\"/><line x1=\"22\" y1=\"38\" x2=\"38\" y2=\"54\"/><circle cx=\"22\" cy=\"22\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"54,54 70,54 54,70\" fill=\"currentColor\" fill-opacity=\"0.35\"/><line x1=\"80\" y1=\"2\" x2=\"80\" y2=\"74\" stroke-dasharray=\"3 2\"/><text x=\"80\" y=\"85\" font-size=\"9\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"sans-serif\">M</text></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"54\" y1=\"54\" x2=\"70\" y2=\"70\"/><line x1=\"22\" y1=\"22\" x2=\"54\" y2=\"54\"/><line x1=\"22\" y1=\"22\" x2=\"22\" y2=\"38\"/><line x1=\"22\" y1=\"38\" x2=\"38\" y2=\"22\"/><circle cx=\"54\" cy=\"22\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"22,54 22,70 6,54\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"6\" y1=\"6\" x2=\"22\" y2=\"22\"/><line x1=\"22\" y1=\"22\" x2=\"54\" y2=\"54\"/><line x1=\"38\" y1=\"54\" x2=\"54\" y2=\"54\"/><line x1=\"38\" y1=\"54\" x2=\"54\" y2=\"38\"/><circle cx=\"54\" cy=\"22\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"22,54 6,54 22,70\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"6\" y1=\"6\" x2=\"22\" y2=\"22\"/><line x1=\"22\" y1=\"22\" x2=\"54\" y2=\"54\"/><line x1=\"38\" y1=\"54\" x2=\"54\" y2=\"54\"/><line x1=\"38\" y1=\"54\" x2=\"54\" y2=\"38\"/><circle cx=\"22\" cy=\"22\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"22,54 6,54 22,70\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"6\" y1=\"70\" x2=\"22\" y2=\"54\"/><line x1=\"22\" y1=\"54\" x2=\"54\" y2=\"22\"/><line x1=\"38\" y1=\"22\" x2=\"54\" y2=\"22\"/><line x1=\"38\" y1=\"22\" x2=\"54\" y2=\"38\"/><circle cx=\"54\" cy=\"54\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"22,22 6,22 22,6\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>"
+   ],
+   "answer": 1,
+   "solution": "A vertical mirror swaps left and right and keeps every height. Track the dot: it is in the top-left part of the figure, so in the image it must be in the top-right part. The shaded triangle and the line path move the same way. Among the other options, one is the figure turned through 180°; one is almost right, but the dot has not been moved; one is the figure turned through 90°.",
+   "shortcut": "Follow one feature (the dot) to its new corner, then check one more.",
+   "difficulty": "hard",
+   "subtopic": "mirror-image",
+   "pattern": "mi-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "water-image-p11",
+   "q": "Which option is the **water image** of the given figure (mirror placed horizontally below it)?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 84\" width=\"76\" height=\"84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"38\" y1=\"38\" x2=\"54\" y2=\"38\"/><line x1=\"38\" y1=\"38\" x2=\"38\" y2=\"70\"/><line x1=\"38\" y1=\"70\" x2=\"70\" y2=\"38\"/><line x1=\"54\" y1=\"54\" x2=\"70\" y2=\"38\"/><circle cx=\"70\" cy=\"70\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"22,54 22,70 6,54\" fill=\"currentColor\" fill-opacity=\"0.35\"/><line x1=\"2\" y1=\"80\" x2=\"74\" y2=\"80\" stroke-dasharray=\"3 2\"/></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"38\" y1=\"38\" x2=\"54\" y2=\"38\"/><line x1=\"38\" y1=\"6\" x2=\"38\" y2=\"38\"/><line x1=\"38\" y1=\"6\" x2=\"70\" y2=\"38\"/><line x1=\"54\" y1=\"22\" x2=\"70\" y2=\"38\"/><circle cx=\"70\" cy=\"6\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"22,22 22,6 6,22\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"38\" y1=\"38\" x2=\"54\" y2=\"38\"/><line x1=\"38\" y1=\"6\" x2=\"38\" y2=\"38\"/><line x1=\"38\" y1=\"6\" x2=\"70\" y2=\"38\"/><line x1=\"54\" y1=\"22\" x2=\"70\" y2=\"38\"/><circle cx=\"70\" cy=\"70\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"22,22 22,6 6,22\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"22\" y1=\"38\" x2=\"38\" y2=\"38\"/><line x1=\"38\" y1=\"6\" x2=\"38\" y2=\"38\"/><line x1=\"6\" y1=\"38\" x2=\"38\" y2=\"6\"/><line x1=\"6\" y1=\"38\" x2=\"22\" y2=\"22\"/><circle cx=\"6\" cy=\"6\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"54,22 54,6 70,22\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"22\" y1=\"38\" x2=\"38\" y2=\"38\"/><line x1=\"38\" y1=\"38\" x2=\"38\" y2=\"70\"/><line x1=\"6\" y1=\"38\" x2=\"38\" y2=\"70\"/><line x1=\"6\" y1=\"38\" x2=\"22\" y2=\"54\"/><circle cx=\"6\" cy=\"70\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"54,54 54,70 70,54\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>"
+   ],
+   "answer": 0,
+   "solution": "Water swaps top and bottom and keeps left and right. Track the dot: it is in the bottom-right part of the figure, so in the image it must be in the top-right part. The shaded triangle and the line path move the same way. Among the other options, one is the mirror image (left and right swapped); one is the figure turned through 180°; one is almost right, but the dot has not been moved.",
+   "shortcut": "Follow one feature (the dot) to its new corner, then check one more.",
+   "difficulty": "easy",
+   "subtopic": "water-image",
+   "pattern": "wi-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "water-image-p12",
+   "q": "Which option is the **water image** of the given figure (mirror placed horizontally below it)?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 84\" width=\"76\" height=\"84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"54\" y1=\"6\" x2=\"70\" y2=\"22\"/><line x1=\"22\" y1=\"6\" x2=\"54\" y2=\"6\"/><line x1=\"22\" y1=\"6\" x2=\"54\" y2=\"38\"/><line x1=\"38\" y1=\"54\" x2=\"54\" y2=\"38\"/><circle cx=\"70\" cy=\"54\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"22,54 22,70 6,54\" fill=\"currentColor\" fill-opacity=\"0.35\"/><line x1=\"2\" y1=\"80\" x2=\"74\" y2=\"80\" stroke-dasharray=\"3 2\"/></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"54\" y1=\"70\" x2=\"70\" y2=\"54\"/><line x1=\"22\" y1=\"70\" x2=\"54\" y2=\"70\"/><line x1=\"22\" y1=\"70\" x2=\"54\" y2=\"38\"/><line x1=\"38\" y1=\"22\" x2=\"54\" y2=\"38\"/><circle cx=\"70\" cy=\"22\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"22,22 22,6 6,22\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"6\" y1=\"22\" x2=\"22\" y2=\"6\"/><line x1=\"22\" y1=\"6\" x2=\"54\" y2=\"6\"/><line x1=\"22\" y1=\"38\" x2=\"54\" y2=\"6\"/><line x1=\"22\" y1=\"38\" x2=\"38\" y2=\"54\"/><circle cx=\"6\" cy=\"54\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"54,54 54,70 70,54\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"54\" y1=\"70\" x2=\"70\" y2=\"54\"/><line x1=\"22\" y1=\"70\" x2=\"54\" y2=\"70\"/><line x1=\"22\" y1=\"70\" x2=\"54\" y2=\"38\"/><line x1=\"38\" y1=\"22\" x2=\"54\" y2=\"38\"/><circle cx=\"70\" cy=\"54\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"22,22 22,6 6,22\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"54\" y1=\"70\" x2=\"70\" y2=\"54\"/><line x1=\"70\" y1=\"22\" x2=\"70\" y2=\"54\"/><line x1=\"38\" y1=\"54\" x2=\"70\" y2=\"22\"/><line x1=\"22\" y1=\"38\" x2=\"38\" y2=\"54\"/><circle cx=\"22\" cy=\"70\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"22,22 6,22 22,6\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>"
+   ],
+   "answer": 0,
+   "solution": "Water swaps top and bottom and keeps left and right. Track the dot: it is in the bottom-right part of the figure, so in the image it must be in the top-right part. The shaded triangle and the line path move the same way. Among the other options, one is almost right, but the dot has not been moved; one is the mirror image (left and right swapped); one is the figure turned through 90°.",
+   "shortcut": "Follow one feature (the dot) to its new corner, then check one more.",
+   "difficulty": "medium",
+   "subtopic": "water-image",
+   "pattern": "wi-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "water-image-p13",
+   "q": "Which option is the **water image** of the given figure (mirror placed horizontally below it)?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 84\" width=\"76\" height=\"84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"6\" y1=\"6\" x2=\"6\" y2=\"38\"/><line x1=\"6\" y1=\"38\" x2=\"22\" y2=\"22\"/><line x1=\"22\" y1=\"22\" x2=\"38\" y2=\"38\"/><line x1=\"22\" y1=\"38\" x2=\"38\" y2=\"38\"/><circle cx=\"70\" cy=\"6\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"70,54 70,70 54,54\" fill=\"currentColor\" fill-opacity=\"0.35\"/><line x1=\"2\" y1=\"80\" x2=\"74\" y2=\"80\" stroke-dasharray=\"3 2\"/></svg>",
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"6\" y1=\"38\" x2=\"6\" y2=\"70\"/><line x1=\"6\" y1=\"38\" x2=\"22\" y2=\"54\"/><line x1=\"22\" y1=\"54\" x2=\"38\" y2=\"38\"/><line x1=\"22\" y1=\"38\" x2=\"38\" y2=\"38\"/><circle cx=\"70\" cy=\"70\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"70,22 70,6 54,22\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"6\" y1=\"38\" x2=\"6\" y2=\"70\"/><line x1=\"6\" y1=\"38\" x2=\"22\" y2=\"54\"/><line x1=\"22\" y1=\"54\" x2=\"38\" y2=\"38\"/><line x1=\"22\" y1=\"38\" x2=\"38\" y2=\"38\"/><circle cx=\"70\" cy=\"6\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"70,22 70,6 54,22\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"70\" y1=\"6\" x2=\"70\" y2=\"38\"/><line x1=\"54\" y1=\"22\" x2=\"70\" y2=\"38\"/><line x1=\"38\" y1=\"38\" x2=\"54\" y2=\"22\"/><line x1=\"38\" y1=\"38\" x2=\"54\" y2=\"38\"/><circle cx=\"6\" cy=\"6\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"6,54 6,70 22,54\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 76 76\" width=\"76\" height=\"76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"6,6 70,6 70,70 6,70\" stroke-opacity=\"0.35\"/><line x1=\"70\" y1=\"38\" x2=\"70\" y2=\"70\"/><line x1=\"54\" y1=\"54\" x2=\"70\" y2=\"38\"/><line x1=\"38\" y1=\"38\" x2=\"54\" y2=\"54\"/><line x1=\"38\" y1=\"38\" x2=\"54\" y2=\"38\"/><circle cx=\"6\" cy=\"70\" r=\"2.6\" fill=\"currentColor\"/><polygon points=\"6,22 6,6 22,22\" fill=\"currentColor\" fill-opacity=\"0.35\"/></svg>"
+   ],
+   "answer": 0,
+   "solution": "Water swaps top and bottom and keeps left and right. Track the dot: it is in the top-right part of the figure, so in the image it must be in the bottom-right part. The shaded triangle and the line path move the same way. Among the other options, one is the figure turned through 180°; one is almost right, but the dot has not been moved; one is the mirror image (left and right swapped).",
+   "shortcut": "Follow one feature (the dot) to its new corner, then check one more.",
+   "difficulty": "hard",
+   "subtopic": "water-image",
+   "pattern": "wi-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "clock-mirror-p01",
+   "q": "A wall clock shows **4:40**. What time will its mirror image show?",
+   "figure": null,
+   "options": [
+    "10:40",
+    "6:20",
+    "8:20",
+    "7:20"
+   ],
+   "answer": 3,
+   "solution": "Actual time + image time = 12:00, so the answer is 11:60 − 4:40 = **7:20**. Check: 4:40 + 7:20 = 12:00.",
+   "shortcut": "Subtract from 11:60.",
+   "difficulty": "easy",
+   "subtopic": "clock-mirror",
+   "pattern": "cm-p1",
+   "timeSec": 30
+  },
+  {
+   "id": "clock-mirror-p02",
+   "q": "A wall clock shows **8:05**. What time will its mirror image show?",
+   "figure": null,
+   "options": [
+    "4:55",
+    "2:05",
+    "3:55",
+    "2:55"
+   ],
+   "answer": 2,
+   "solution": "Actual time + image time = 12:00, so the answer is 11:60 − 8:05 = **3:55**. Check: 8:05 + 3:55 = 12:00.",
+   "shortcut": "Subtract from 11:60.",
+   "difficulty": "easy",
+   "subtopic": "clock-mirror",
+   "pattern": "cm-p1",
+   "timeSec": 30
+  },
+  {
+   "id": "clock-mirror-p03",
+   "q": "A wall clock shows **1:55**. What time will its mirror image show?",
+   "figure": null,
+   "options": [
+    "9:05",
+    "10:05",
+    "11:05",
+    "7:55"
+   ],
+   "answer": 1,
+   "solution": "Actual time + image time = 12:00, so the answer is 11:60 − 1:55 = **10:05**. Check: 1:55 + 10:05 = 12:00.",
+   "shortcut": "Subtract from 11:60.",
+   "difficulty": "medium",
+   "subtopic": "clock-mirror",
+   "pattern": "cm-p1",
+   "timeSec": 30
+  },
+  {
+   "id": "clock-mirror-p04",
+   "q": "In a mirror, a wall clock appears to show **5:35**. What is the actual time?",
+   "figure": null,
+   "options": [
+    "11:35",
+    "5:25",
+    "7:25",
+    "6:25"
+   ],
+   "answer": 3,
+   "solution": "Actual time + image time = 12:00, so the answer is 11:60 − 5:35 = **6:25**. Check: 5:35 + 6:25 = 12:00.",
+   "shortcut": "Subtract from 11:60.",
+   "difficulty": "easy",
+   "subtopic": "clock-mirror",
+   "pattern": "cm-p2",
+   "timeSec": 30
+  },
+  {
+   "id": "clock-mirror-p05",
+   "q": "In a mirror, a wall clock appears to show **11:20**. What is the actual time?",
+   "figure": null,
+   "options": [
+    "1:40",
+    "5:20",
+    "11:40",
+    "12:40"
+   ],
+   "answer": 3,
+   "solution": "Actual time + image time = 12:00, so the answer is 11:60 − 11:20 = **12:40**. Check: 11:20 + 12:40 = 12:00.",
+   "shortcut": "Subtract from 11:60.",
+   "difficulty": "medium",
+   "subtopic": "clock-mirror",
+   "pattern": "cm-p2",
+   "timeSec": 30
+  },
+  {
+   "id": "clock-mirror-p06",
+   "q": "A wall clock shows **12:35**. What time will its mirror image show?",
+   "figure": null,
+   "options": [
+    "6:35",
+    "10:25",
+    "12:25",
+    "11:25"
+   ],
+   "answer": 3,
+   "solution": "Actual time + image time = 12:00, so the answer is 23:60 − 12:35 = **11:25**. Check: 12:35 + 11:25 = 24:00. For a time between 12 and 1, borrow from 24:00 (23:60).",
+   "shortcut": "Subtract from 23:60.",
+   "difficulty": "medium",
+   "subtopic": "clock-mirror",
+   "pattern": "cm-p3",
+   "timeSec": 30
+  },
+  {
+   "id": "clock-mirror-p07",
+   "q": "A wall clock shows **2:25:40**. What time will its mirror image show?",
+   "figure": null,
+   "options": [
+    "10:34:20",
+    "8:34:20",
+    "8:25:40",
+    "9:34:20"
+   ],
+   "answer": 3,
+   "solution": "Actual time + image time = 12:00, so the answer is 11:59:60 − 2:25:40 = **9:34:20**. Check: 2:25:40 + 9:34:20 = 12:00. With seconds, write 12:00:00 as 11:59:60.",
+   "shortcut": "Subtract from 11:59:60.",
+   "difficulty": "hard",
+   "subtopic": "clock-mirror",
+   "pattern": "cm-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "clock-mirror-p08",
+   "q": "At which of these times will a clock and its mirror image show **the same time**?",
+   "figure": null,
+   "options": [
+    "3:00",
+    "9:30",
+    "12:30",
+    "6:00"
+   ],
+   "answer": 3,
+   "solution": "The image equals the actual time only when both hands lie on the 12–6 line, because only that line is its own mirror image. That happens at 12:00 and **6:00**. At 3:00 the image shows 9:00; at 9:30 it shows 2:30; at 12:30 it shows 11:30.",
+   "shortcut": "Only 12:00 and 6:00 are unchanged.",
+   "difficulty": "medium",
+   "subtopic": "clock-mirror",
+   "pattern": "cm-p3",
+   "timeSec": 35
+  },
+  {
+   "id": "clock-mirror-p09",
+   "q": "A clock seen in a mirror shows **4:20**. What will the **actual** time be 1 hour 15 minutes later?",
+   "figure": null,
+   "options": [
+    "5:35",
+    "8:40",
+    "8:55",
+    "6:25"
+   ],
+   "answer": 2,
+   "solution": "First convert the mirror reading: actual = 11:60 − 4:20 = 7:40. Then add 1 hour 15 minutes: **8:55**. Adding first and converting afterwards gives 6:25, which is wrong because time passes on the real clock.",
+   "shortcut": "Convert to the actual time first, then add or subtract.",
+   "difficulty": "medium",
+   "subtopic": "clock-mirror",
+   "pattern": "cm-p5",
+   "timeSec": 45
+  },
+  {
+   "id": "clock-mirror-p10",
+   "q": "A clock seen in a mirror shows **9:10**. What will the **actual** time be 30 minutes later?",
+   "figure": null,
+   "options": [
+    "9:40",
+    "2:20",
+    "3:20",
+    "3:50"
+   ],
+   "answer": 2,
+   "solution": "First convert the mirror reading: actual = 11:60 − 9:10 = 2:50. Then add 30 minutes: **3:20**. Adding first and converting afterwards gives 2:20, which is wrong because time passes on the real clock.",
+   "shortcut": "Convert to the actual time first, then add or subtract.",
+   "difficulty": "medium",
+   "subtopic": "clock-mirror",
+   "pattern": "cm-p5",
+   "timeSec": 45
+  },
+  {
+   "id": "clock-mirror-p11",
+   "q": "A clock seen in a mirror shows **3:40**. What will the **actual** time be 2 hours 25 minutes earlier?",
+   "figure": null,
+   "options": [
+    "5:55",
+    "10:45",
+    "1:15",
+    "9:20"
+   ],
+   "answer": 0,
+   "solution": "First convert the mirror reading: actual = 11:60 − 3:40 = 8:20. Then subtract 2 hours 25 minutes: **5:55**. Adding first and converting afterwards gives 10:45, which is wrong because time passes on the real clock.",
+   "shortcut": "Convert to the actual time first, then add or subtract.",
+   "difficulty": "hard",
+   "subtopic": "clock-mirror",
+   "pattern": "cm-p5",
+   "timeSec": 45
+  },
+  {
+   "id": "clock-mirror-p12",
+   "q": "The figure shows the **mirror image** of a wall clock (the dot marks 12). What is the actual time?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 80 80\" width=\"80\" height=\"80\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"40\" cy=\"40\" r=\"34\"/><line x1=\"40\" y1=\"12\" x2=\"40\" y2=\"6\"/><line x1=\"55.5\" y1=\"13.2\" x2=\"57\" y2=\"10.6\"/><line x1=\"66.8\" y1=\"24.5\" x2=\"69.4\" y2=\"23\"/><line x1=\"68\" y1=\"40\" x2=\"74\" y2=\"40\"/><line x1=\"66.8\" y1=\"55.5\" x2=\"69.4\" y2=\"57\"/><line x1=\"55.5\" y1=\"66.8\" x2=\"57\" y2=\"69.4\"/><line x1=\"40\" y1=\"68\" x2=\"40\" y2=\"74\"/><line x1=\"24.5\" y1=\"66.8\" x2=\"23\" y2=\"69.4\"/><line x1=\"13.2\" y1=\"55.5\" x2=\"10.6\" y2=\"57\"/><line x1=\"12\" y1=\"40\" x2=\"6\" y2=\"40\"/><line x1=\"13.2\" y1=\"24.5\" x2=\"10.6\" y2=\"23\"/><line x1=\"24.5\" y1=\"13.2\" x2=\"23\" y2=\"10.6\"/><circle cx=\"40\" cy=\"16\" r=\"1.8\" fill=\"currentColor\"/><line x1=\"40\" y1=\"40\" x2=\"56.4\" y2=\"35.6\" stroke-width=\"3\"/><line x1=\"40\" y1=\"40\" x2=\"40\" y2=\"67\" stroke-width=\"1.5\"/><circle cx=\"40\" cy=\"40\" r=\"2\" fill=\"currentColor\"/></svg>",
+   "options": [
+    "9:30",
+    "10:30",
+    "2:30",
+    "8:30"
+   ],
+   "answer": 0,
+   "solution": "The dot marks 12. Read the picture as it is: the hands show **2:30**. That is the mirror image, so the actual time = 11:60 − 2:30 = **9:30**. Check: 2:30 + 9:30 = 12:00.",
+   "shortcut": "Read the picture, then subtract from 11:60.",
+   "difficulty": "easy",
+   "subtopic": "clock-mirror",
+   "pattern": "cm-p4",
+   "timeSec": 40
+  },
+  {
+   "id": "clock-mirror-p13",
+   "q": "The figure shows the **mirror image** of a wall clock (the dot marks 12). What is the actual time?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 80 80\" width=\"80\" height=\"80\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"40\" cy=\"40\" r=\"34\"/><line x1=\"40\" y1=\"12\" x2=\"40\" y2=\"6\"/><line x1=\"55.5\" y1=\"13.2\" x2=\"57\" y2=\"10.6\"/><line x1=\"66.8\" y1=\"24.5\" x2=\"69.4\" y2=\"23\"/><line x1=\"68\" y1=\"40\" x2=\"74\" y2=\"40\"/><line x1=\"66.8\" y1=\"55.5\" x2=\"69.4\" y2=\"57\"/><line x1=\"55.5\" y1=\"66.8\" x2=\"57\" y2=\"69.4\"/><line x1=\"40\" y1=\"68\" x2=\"40\" y2=\"74\"/><line x1=\"24.5\" y1=\"66.8\" x2=\"23\" y2=\"69.4\"/><line x1=\"13.2\" y1=\"55.5\" x2=\"10.6\" y2=\"57\"/><line x1=\"12\" y1=\"40\" x2=\"6\" y2=\"40\"/><line x1=\"13.2\" y1=\"24.5\" x2=\"10.6\" y2=\"23\"/><line x1=\"24.5\" y1=\"13.2\" x2=\"23\" y2=\"10.6\"/><circle cx=\"40\" cy=\"16\" r=\"1.8\" fill=\"currentColor\"/><line x1=\"40\" y1=\"40\" x2=\"26.5\" y2=\"29.7\" stroke-width=\"3\"/><line x1=\"40\" y1=\"40\" x2=\"67\" y2=\"40\" stroke-width=\"1.5\"/><circle cx=\"40\" cy=\"40\" r=\"2\" fill=\"currentColor\"/></svg>",
+   "options": [
+    "4:15",
+    "1:45",
+    "2:45",
+    "12:45"
+   ],
+   "answer": 1,
+   "solution": "The dot marks 12. Read the picture as it is: the hands show **10:15**. That is the mirror image, so the actual time = 11:60 − 10:15 = **1:45**. Check: 10:15 + 1:45 = 12:00.",
+   "shortcut": "Read the picture, then subtract from 11:60.",
+   "difficulty": "medium",
+   "subtopic": "clock-mirror",
+   "pattern": "cm-p4",
+   "timeSec": 40
+  },
+  {
+   "id": "clock-mirror-p14",
+   "q": "The figure shows the **mirror image** of a wall clock (the dot marks 12). What is the actual time?",
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 80 80\" width=\"80\" height=\"80\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"40\" cy=\"40\" r=\"34\"/><line x1=\"40\" y1=\"12\" x2=\"40\" y2=\"6\"/><line x1=\"55.5\" y1=\"13.2\" x2=\"57\" y2=\"10.6\"/><line x1=\"66.8\" y1=\"24.5\" x2=\"69.4\" y2=\"23\"/><line x1=\"68\" y1=\"40\" x2=\"74\" y2=\"40\"/><line x1=\"66.8\" y1=\"55.5\" x2=\"69.4\" y2=\"57\"/><line x1=\"55.5\" y1=\"66.8\" x2=\"57\" y2=\"69.4\"/><line x1=\"40\" y1=\"68\" x2=\"40\" y2=\"74\"/><line x1=\"24.5\" y1=\"66.8\" x2=\"23\" y2=\"69.4\"/><line x1=\"13.2\" y1=\"55.5\" x2=\"10.6\" y2=\"57\"/><line x1=\"12\" y1=\"40\" x2=\"6\" y2=\"40\"/><line x1=\"13.2\" y1=\"24.5\" x2=\"10.6\" y2=\"23\"/><line x1=\"24.5\" y1=\"13.2\" x2=\"23\" y2=\"10.6\"/><circle cx=\"40\" cy=\"16\" r=\"1.8\" fill=\"currentColor\"/><line x1=\"40\" y1=\"40\" x2=\"26.1\" y2=\"49.8\" stroke-width=\"3\"/><line x1=\"40\" y1=\"40\" x2=\"16.6\" y2=\"26.5\" stroke-width=\"1.5\"/><circle cx=\"40\" cy=\"40\" r=\"2\" fill=\"currentColor\"/></svg>",
+   "options": [
+    "3:10",
+    "4:10",
+    "5:10",
+    "1:50"
+   ],
+   "answer": 1,
+   "solution": "The dot marks 12. Read the picture as it is: the hands show **7:50**. That is the mirror image, so the actual time = 11:60 − 7:50 = **4:10**. Check: 7:50 + 4:10 = 12:00.",
+   "shortcut": "Read the picture, then subtract from 11:60.",
+   "difficulty": "hard",
+   "subtopic": "clock-mirror",
+   "pattern": "cm-p4",
+   "timeSec": 40
+  },
+  {
+   "id": "clock-mirror-p15",
+   "q": "A wall clock shows **4:10**. Which option is its mirror image (the dot marks 12)?",
+   "figure": null,
+   "options": [
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 80 80\" width=\"80\" height=\"80\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"40\" cy=\"40\" r=\"34\"/><line x1=\"40\" y1=\"12\" x2=\"40\" y2=\"6\"/><line x1=\"55.5\" y1=\"13.2\" x2=\"57\" y2=\"10.6\"/><line x1=\"66.8\" y1=\"24.5\" x2=\"69.4\" y2=\"23\"/><line x1=\"68\" y1=\"40\" x2=\"74\" y2=\"40\"/><line x1=\"66.8\" y1=\"55.5\" x2=\"69.4\" y2=\"57\"/><line x1=\"55.5\" y1=\"66.8\" x2=\"57\" y2=\"69.4\"/><line x1=\"40\" y1=\"68\" x2=\"40\" y2=\"74\"/><line x1=\"24.5\" y1=\"66.8\" x2=\"23\" y2=\"69.4\"/><line x1=\"13.2\" y1=\"55.5\" x2=\"10.6\" y2=\"57\"/><line x1=\"12\" y1=\"40\" x2=\"6\" y2=\"40\"/><line x1=\"13.2\" y1=\"24.5\" x2=\"10.6\" y2=\"23\"/><line x1=\"24.5\" y1=\"13.2\" x2=\"23\" y2=\"10.6\"/><circle cx=\"40\" cy=\"16\" r=\"1.8\" fill=\"currentColor\"/><line x1=\"40\" y1=\"40\" x2=\"53.9\" y2=\"30.2\" stroke-width=\"3\"/><line x1=\"40\" y1=\"40\" x2=\"63.4\" y2=\"53.5\" stroke-width=\"1.5\"/><circle cx=\"40\" cy=\"40\" r=\"2\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 80 80\" width=\"80\" height=\"80\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"40\" cy=\"40\" r=\"34\"/><line x1=\"40\" y1=\"12\" x2=\"40\" y2=\"6\"/><line x1=\"55.5\" y1=\"13.2\" x2=\"57\" y2=\"10.6\"/><line x1=\"66.8\" y1=\"24.5\" x2=\"69.4\" y2=\"23\"/><line x1=\"68\" y1=\"40\" x2=\"74\" y2=\"40\"/><line x1=\"66.8\" y1=\"55.5\" x2=\"69.4\" y2=\"57\"/><line x1=\"55.5\" y1=\"66.8\" x2=\"57\" y2=\"69.4\"/><line x1=\"40\" y1=\"68\" x2=\"40\" y2=\"74\"/><line x1=\"24.5\" y1=\"66.8\" x2=\"23\" y2=\"69.4\"/><line x1=\"13.2\" y1=\"55.5\" x2=\"10.6\" y2=\"57\"/><line x1=\"12\" y1=\"40\" x2=\"6\" y2=\"40\"/><line x1=\"13.2\" y1=\"24.5\" x2=\"10.6\" y2=\"23\"/><line x1=\"24.5\" y1=\"13.2\" x2=\"23\" y2=\"10.6\"/><circle cx=\"40\" cy=\"16\" r=\"1.8\" fill=\"currentColor\"/><line x1=\"40\" y1=\"40\" x2=\"26.1\" y2=\"30.2\" stroke-width=\"3\"/><line x1=\"40\" y1=\"40\" x2=\"63.4\" y2=\"26.5\" stroke-width=\"1.5\"/><circle cx=\"40\" cy=\"40\" r=\"2\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 80 80\" width=\"80\" height=\"80\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"40\" cy=\"40\" r=\"34\"/><line x1=\"40\" y1=\"12\" x2=\"40\" y2=\"6\"/><line x1=\"55.5\" y1=\"13.2\" x2=\"57\" y2=\"10.6\"/><line x1=\"66.8\" y1=\"24.5\" x2=\"69.4\" y2=\"23\"/><line x1=\"68\" y1=\"40\" x2=\"74\" y2=\"40\"/><line x1=\"66.8\" y1=\"55.5\" x2=\"69.4\" y2=\"57\"/><line x1=\"55.5\" y1=\"66.8\" x2=\"57\" y2=\"69.4\"/><line x1=\"40\" y1=\"68\" x2=\"40\" y2=\"74\"/><line x1=\"24.5\" y1=\"66.8\" x2=\"23\" y2=\"69.4\"/><line x1=\"13.2\" y1=\"55.5\" x2=\"10.6\" y2=\"57\"/><line x1=\"12\" y1=\"40\" x2=\"6\" y2=\"40\"/><line x1=\"13.2\" y1=\"24.5\" x2=\"10.6\" y2=\"23\"/><line x1=\"24.5\" y1=\"13.2\" x2=\"23\" y2=\"10.6\"/><circle cx=\"40\" cy=\"16\" r=\"1.8\" fill=\"currentColor\"/><line x1=\"40\" y1=\"40\" x2=\"53.9\" y2=\"49.8\" stroke-width=\"3\"/><line x1=\"40\" y1=\"40\" x2=\"63.4\" y2=\"26.5\" stroke-width=\"1.5\"/><circle cx=\"40\" cy=\"40\" r=\"2\" fill=\"currentColor\"/></svg>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 80 80\" width=\"80\" height=\"80\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"40\" cy=\"40\" r=\"34\"/><line x1=\"40\" y1=\"12\" x2=\"40\" y2=\"6\"/><line x1=\"55.5\" y1=\"13.2\" x2=\"57\" y2=\"10.6\"/><line x1=\"66.8\" y1=\"24.5\" x2=\"69.4\" y2=\"23\"/><line x1=\"68\" y1=\"40\" x2=\"74\" y2=\"40\"/><line x1=\"66.8\" y1=\"55.5\" x2=\"69.4\" y2=\"57\"/><line x1=\"55.5\" y1=\"66.8\" x2=\"57\" y2=\"69.4\"/><line x1=\"40\" y1=\"68\" x2=\"40\" y2=\"74\"/><line x1=\"24.5\" y1=\"66.8\" x2=\"23\" y2=\"69.4\"/><line x1=\"13.2\" y1=\"55.5\" x2=\"10.6\" y2=\"57\"/><line x1=\"12\" y1=\"40\" x2=\"6\" y2=\"40\"/><line x1=\"13.2\" y1=\"24.5\" x2=\"10.6\" y2=\"23\"/><line x1=\"24.5\" y1=\"13.2\" x2=\"23\" y2=\"10.6\"/><circle cx=\"40\" cy=\"16\" r=\"1.8\" fill=\"currentColor\"/><line x1=\"40\" y1=\"40\" x2=\"26.1\" y2=\"49.8\" stroke-width=\"3\"/><line x1=\"40\" y1=\"40\" x2=\"16.6\" y2=\"26.5\" stroke-width=\"1.5\"/><circle cx=\"40\" cy=\"40\" r=\"2\" fill=\"currentColor\"/></svg>"
+   ],
+   "answer": 3,
+   "solution": "A vertical mirror reflects each hand across the 12–6 line, so the image shows 11:60 − 4:10 = **7:50**. Pick the clock whose hands read 7:50. The other options show the clock turned through 180° (10:10), the clock unchanged (4:10), and the hands flipped top to bottom (a water image).",
+   "shortcut": "Work out the mirror time first, then find the clock that shows it.",
+   "difficulty": "medium",
+   "subtopic": "clock-mirror",
+   "pattern": "cm-p4",
+   "timeSec": 40
   }
  ]
 }

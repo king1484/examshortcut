@@ -74,6 +74,11 @@ assert len(grid(4, 4).rectangles()) == 100 and len(grid(3, 3).rectangles()) == 3
 assert len(grid(2, 2).squares()) == 5 and len(grid(2, 2).rectangles()) == 9
 assert sum(k * k for k in range(1, 9)) == 204
 assert grid(3, 2).count_lines() == 7 and grid(5, 4).count_lines() == 11
+_g22 = grid(2, 2)
+for _x in range(2):
+    for _y in range(2):
+        _g22.add((_x, _y), (_x + 1, _y + 1)).add((_x + 1, _y), (_x, _y + 1))
+assert _g22.count_lines() == 12 and _g22.count_lines('slant') == 6
 
 
 def medians():

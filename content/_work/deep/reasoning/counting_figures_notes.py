@@ -200,6 +200,13 @@ If both long diagonals of the whole grid are also drawn, add 2. If every small c
 - A regular hexagon with its 3 long diagonals has 6 + 3 = 9 lines.
 - A triangle split into rows of small triangles: 3 directions, and each direction has as many lines as there are rows. So 3 rows give 3 × 3 = 9 lines.
 
+### Worked example
+A 2 × 2 grid where every one of the 4 small cells has both its diagonals drawn.
+- Horizontal: 3. Vertical: 3.
+- Down to the right: the two cell diagonals on the main diagonal join into one long line, and there is one shorter line on each side of it, so 3.
+- Down to the left: by the same logic, 3.
+- Total = 3 + 3 + 3 + 3 = **12**, not 6 + 8 = 14. The 8 cell diagonals are only 6 lines because 2 pairs join end to end.
+
 ### Special cases
 - A curve is not a straight line. Circles and arcs are ignored.
 - Lines that only look close are different unless they are exactly in line.

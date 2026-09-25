@@ -332,3 +332,197 @@ def tri_grid(n, u=2):
         for c in range(r + 1):
             f.poly([xy(r, c), xy(r + 1, c), xy(r + 1, c + 1)])
     return f
+
+
+# ------------------------------------------------------------------ shape model (isometries)
+# A Shape lives on a W x H box (model units). Elements:
+#   ("L", (x1,y1), (x2,y2))      segment
+#   ("D", (x,y))                 filled dot
+#   ("C", (x,y), r)              circle outline
+#   ("S", ((x,y),...))           shaded polygon
+#   ("O", ((x,y),...))           outline polygon
+class Shape:
+    def __init__(self, W, H, els=()):
+        self.W, self.H = F(W), F(H)
+        self.els = [self._norm(e) for e in els]
+
+    @staticmethod
+    def _p(p):
+        return (F(p[0]), F(p[1]))
+
+    def _norm(self, e):
+        k = e[0]
+        if k == "L":
+            return ("L",) + tuple(sorted([self._p(e[1]), self._p(e[2])]))
+        if k == "D":
+            return ("D", self._p(e[1]))
+        if k == "C":
+            return ("C", self._p(e[1]), F(e[2]))
+        if k in ("S", "O"):
+            return (k, tuple(self._p(p) for p in e[1]))
+        raise ValueError(k)
+
+    def map(self, fn, W=None, H=None, only=None):
+        """Apply point map fn to all elements (or only to element indexes in `only`)."""
+        out = []
+        for i, e in enumerate(self.els):
+            if only is not None and i not in only:
+                out.append(e)
+                continue
+            k = e[0]
+            if k == "L":
+                out.append(("L", fn(e[1]), fn(e[2])))
+            elif k == "D":
+                out.append(("D", fn(e[1])))
+            elif k == "C":
+                out.append(("C", fn(e[1]), e[2]))
+            else:
+                out.append((k, tuple(fn(p) for p in e[1])))
+        return Shape(W if W is not None else self.W, H if H is not None else self.H, out)
+
+    # isometries of the box
+    def mirror(self, **kw):      # vertical mirror: left <-> right
+        return self.map(lambda p: (self.W - p[0], p[1]), **kw)
+
+    def water(self, **kw):       # horizontal mirror: top <-> bottom
+        return self.map(lambda p: (p[0], self.H - p[1]), **kw)
+
+    def rot180(self, **kw):
+        return self.map(lambda p: (self.W - p[0], self.H - p[1]), **kw)
+
+    def rot90(self, **kw):       # clockwise on screen (y down)
+        return self.map(lambda p: (self.H - p[1], p[0]), W=self.H, H=self.W, **kw)
+
+    def rot270(self, **kw):      # anticlockwise
+        return self.map(lambda p: (p[1], self.W - p[0]), W=self.H, H=self.W, **kw)
+
+    def transpose(self, **kw):   # mirror in the main diagonal
+        return self.map(lambda p: (p[1], p[0]), W=self.H, H=self.W, **kw)
+
+    def key(self):
+        """Canonical form: equal keys <=> identical drawing."""
+        ks = []
+        for e in self.els:
+            k = e[0]
+            if k in ("S", "O"):
+                pts = list(e[1])
+                n = len(pts)
+                cands = []
+                for seq in (pts, pts[::-1]):
+                    for i in range(n):
+                        cands.append(tuple(seq[i:] + seq[:i]))
+                ks.append((k, min(cands)))
+            elif k == "L":
+                ks.append(("L",) + tuple(sorted([e[1], e[2]])))
+            else:
+                ks.append(e)
+        return (self.W, self.H, tuple(sorted(ks)))
+
+    def body(self, u, dx=0, dy=0, sw=None):
+        out = []
+        T = lambda p: (float(p[0]) * u + dx, float(p[1]) * u + dy)  # noqa
+        for e in self.els:
+            k = e[0]
+            if k == "L":
+                a, b = T(e[1]), T(e[2])
+                out.append(ln(a[0], a[1], b[0], b[1]))
+            elif k == "D":
+                a = T(e[1])
+                out.append(circ(a[0], a[1], 2.6, True))
+            elif k == "C":
+                a = T(e[1])
+                out.append(circ(a[0], a[1], float(e[2]) * u))
+            elif k == "S":
+                out.append(poly([T(p) for p in e[1]], SHADE))
+            else:
+                out.append(poly([T(p) for p in e[1]]))
+        return "".join(out)
+
+    def svg(self, u=10, pad=5, frame=False, mirror_line=None):
+        """mirror_line: 'right' or 'below' draws a dashed mirror line next to the shape."""
+        w = float(self.W) * u + 2 * pad
+        h = float(self.H) * u + 2 * pad
+        b = self.body(u, pad, pad)
+        if frame:
+            b = poly([(pad, pad), (w - pad, pad), (w - pad, h - pad), (pad, h - pad)], ' stroke-opacity="0.35"') + b
+        if mirror_line == "right":
+            b += ln(w + 4, 2, w + 4, h - 2, DASH) + txt(w + 4, h + 9, "M", 9)
+            w += 10
+            h += 10
+        elif mirror_line == "below":
+            b += ln(2, h + 4, w - 2, h + 4, DASH)
+            h += 8
+        return svg(w, h, b)
+
+
+# ------------------------------------------------------------------ glyph strings (letters/digits)
+# A glyph state is (char, fx, fy): fx = flipped left-right, fy = flipped top-bottom.
+V_SYM = set("AHIMOTUVWXY08")       # look the same after a left-right flip
+H_SYM = set("BCDEHIKOX038")        # look the same after a top-bottom flip
+R_SYM = set("HINOSXZ08")           # look the same after a 180 degree turn
+
+
+def glyph_canon(s):
+    ch, fx, fy = s
+    if ch == "M" and fy:
+        ch, fy = "W", 0
+    elif ch == "W" and fy:
+        ch, fy = "M", 0
+    if ch in R_SYM and fx and fy:
+        fx = fy = 0
+    if ch in V_SYM:
+        fx = 0
+    if ch in H_SYM:
+        fy = 0
+    if ch in R_SYM and fy and not fx:
+        fx, fy = 1, 0
+    return (ch, fx, fy)
+
+
+def glyph_key(states):
+    return tuple(glyph_canon(s) for s in states)
+
+
+def g_plain(word):
+    return [(c, 0, 0) for c in word]
+
+
+def g_mirror(states):
+    return [(c, 1 - fx, fy) for c, fx, fy in reversed(states)]
+
+
+def g_water(states):
+    return [(c, fx, 1 - fy) for c, fx, fy in states]
+
+
+def g_rot180(states):
+    return g_water(g_mirror(states))
+
+
+def g_flip_in_place(states):
+    """near miss: letters flipped left-right but order not reversed"""
+    return [(c, 1 - fx, fy) for c, fx, fy in states]
+
+
+def g_reverse_only(states):
+    """near miss: order reversed but letters not flipped"""
+    return list(reversed(states))
+
+
+def glyph_svg(states, size=16, step=13):
+    n = len(states)
+    w = 10 + step * n
+    parts = []
+    for i, (c, fx, fy) in enumerate(states):
+        cx = 5 + step * i + step / 2
+        tr = ""
+        if fx and fy:
+            tr = f' transform="translate({num(2 * cx)},26.4) scale(-1,-1)"'
+        elif fx:
+            tr = f' transform="translate({num(2 * cx)},0) scale(-1,1)"'
+        elif fy:
+            tr = ' transform="translate(0,26.4) scale(1,-1)"'
+        parts.append(f'<text x="{num(cx)}" y="18.8"{tr}>{c}</text>')
+    body = (f'<g font-size="{size}" text-anchor="middle" fill="currentColor" stroke="none" '
+            f'font-family="sans-serif" font-weight="600">' + "".join(parts) + "</g>")
+    return svg(w, 28, body)
