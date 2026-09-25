@@ -13,19 +13,11 @@ MARGIN = 5
 
 def norm(edges):
     """Normalize an edge set so its smallest x and y are 0."""
-    xs = [p[0] for e in edges for p in e]
-    ys = [p[1] for e in edges for p in e]
-    mx, my = min(xs), min(ys)
-    return frozenset(frozenset(((x - mx, y - my), (z - mx, w - my)))
-                     for e in edges for x, y in [tuple(e)[0:1] for _ in [0]] for z, w in [tuple(e)[1]] for x, y in [(x, y)])
-
-
-def norm2(edges):
+    mx = min(p[0] for e in edges for p in e)
+    my = min(p[1] for e in edges for p in e)
     return frozenset(frozenset(((x - mx, y - my), (z - mx, w - my)))
                      for e in edges
-                     for (x, y), (z, w) in [sorted(e)]
-                     for mx, my in [(min(p[0] for e2 in edges for p in e2),
-                                     min(p[1] for e2 in edges for p in e2))])
+                     for (x, y), (z, w) in [sorted(e)])
 
 
 def bbox(edges):
@@ -78,6 +70,8 @@ def translate(edges, dx, dy):
 
 def embeds(part, big):
     """(found, offset): does `part` appear in `big` under translation only?"""
+    if not part or not big:
+        return False, None
     pw, ph = bbox(part)
     bw, bh = bbox(big)
     for dx in range(bw - pw + 1):
@@ -104,30 +98,38 @@ def random_part(rng, n_edges, cx=2, cy=2):
     return frozenset(fig)
 
 
-def near_miss(rng, part, pool):
-    """Variants of `part` with one stroke missing, moved or re-angled."""
+def near_miss(rng, part, pool, want=6):
+    """Variants of `part` with one stroke missing, replaced or re-angled.
+    Returns (variant, kind) pairs, all distinct from `part` (normalized)."""
     out = []
+    seen = {norm(part)}
     edges = sorted(part)
     rng.shuffle(edges)
-    extra = sorted(pool - part)
+    extra = sorted(set(pool) - set(part))
     rng.shuffle(extra)
     for e in edges:                                   # missing stroke
-        out.append((frozenset(f for f in part if f != e), "missing"))
+        q = frozenset(f for f in part if f != e)
+        if norm(q) not in seen:
+            seen.add(norm(q))
+            out.append((q, "missing"))
         break
-    for e in edges:                                   # replaced stroke
+    for e in edges:                                   # replaced strokes
         for e2 in extra:
             q = frozenset(f for f in part if f != e) | {e2}
-            if len(q) == len(part) and q != part:
+            if len(q) == len(part) and norm(q) not in seen:
+                seen.add(norm(q))
                 out.append((q, "replaced"))
-                break
-        break
+                if len(out) >= want:
+                    return out
     for e in sorted(part):                            # re-angled diagonal
         (x, y), (z, w) = sorted(e)
         if abs(x - z) == 1 and abs(y - w) == 1:
             e2 = frozenset(((x, w), (z, y)))
             if e2 not in part:
-                out.append((frozenset(f for f in part if f != e) | {e2}, "reangled"))
-                break
+                q = frozenset(f for f in part if f != e) | {e2}
+                if norm(q) not in seen:
+                    seen.add(norm(q))
+                    out.append((q, "reangled"))
     return out
 
 
@@ -152,7 +154,9 @@ def stroke_desc(edges):
         bits.append(f"{nv} vertical stroke" + ("s" if nv > 1 else ""))
     if nd:
         bits.append(f"{nd} slanting stroke" + ("s" if nd > 1 else ""))
-    return " and ".join(bits)
+    if len(bits) <= 1:
+        return bits[0] if bits else "no strokes"
+    return ", ".join(bits[:-1]) + " and " + bits[-1]
 
 
 def fig_svg(edges, cellsx, cellsy=None):
