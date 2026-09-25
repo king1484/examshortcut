@@ -63,6 +63,69 @@
     "Recovering CP as $SP - x\\% \\text{ of } SP$ — that's the SP-based error again.",
     "Mixing up profit and loss chips (0.9 is a 10% loss, not a 10% discount on profit).",
     "Ignoring that 'gain of 25%' and 'marked 25% up' refer to different bases (CP vs MP)."
+   ],
+   "notes": "### The words you need\n- **Cost price (CP)**: what the seller paid for the article, including any extra costs such as transport or repair (\"overheads\").\n- **Selling price (SP)**: what the buyer pays the seller.\n- **Profit (gain)** $= SP - CP$ when SP is bigger; **loss** $= CP - SP$ when SP is smaller.\nA shopkeeper buys a fan for ₹1,250 and sells it for ₹1,400: profit $= ₹150$.\n\n### Profit and loss per cent are always on CP\n$$\\text{Profit\\%} = \\frac{\\text{Profit}}{CP} \\times 100, \\qquad \\text{Loss\\%} = \\frac{\\text{Loss}}{CP} \\times 100$$\nFor the fan: $\\frac{150}{1250} \\times 100 = 12\\%$. Dividing by SP (giving $10\\frac{5}{7}\\%$) is the most common wrong option.\nIf there are overheads, add them to the CP first: bought ₹2,400 + ₹150 transport → CP ₹2,550.\n\n### Multipliers (chips) — the fast way\nProfit of x% means $SP = CP \\times \\frac{100 + x}{100}$; loss of x% means $SP = CP \\times \\frac{100 - x}{100}$.\n| Change | Chip |\n|---|---|\n| 20% profit | $\\frac{6}{5}$ |\n| 25% profit | $\\frac{5}{4}$ |\n| $16\\frac{2}{3}\\%$ profit | $\\frac{7}{6}$ |\n| 10% loss | $\\frac{9}{10}$ |\n| $12\\frac{1}{2}\\%$ loss | $\\frac{7}{8}$ |\nGoing back from SP to CP means **dividing** by the chip: SP ₹1,140 at 5% loss → $CP = 1140 \\div \\frac{19}{20} = ₹1{,}200$.\n\n### Two selling prices, one cost price\n\"At 8% loss; had he sold for ₹336 more he would gain 6%.\" The two SPs differ by $8 + 6 = 14\\%$ of CP. So $14\\%$ of CP $= 336$ → $CP = ₹2{,}400$.\nRule: difference in rupees $=$ difference in percentages (add them when one is a loss and the other a gain) of CP.\nSame idea: \"selling at ₹720 gives as much profit as the loss when selling at ₹560\" → CP is exactly in the middle: $\\frac{720 + 560}{2} = ₹640$.\n\n### Counting articles instead of rupees\n\"CP of 15 articles = SP of 12 articles.\" Take the price of one article as 1. The seller gets money for 15 by giving only 12 → profit $= \\frac{15 - 12}{12} \\times 100 = 25\\%$ (divide by the goods given, which are the ones that cost him).\n\"Buys 4 for ₹15, sells 5 for ₹24\": find per-article prices (₹3.75 and ₹4.80), or use a common count of 20 articles: CP ₹75, SP ₹96 → profit 28%.\n\n### Changing CP and SP together\n\"If he had bought it 20% cheaper and sold it ₹60 cheaper, he would gain 25%.\" Let CP = 100 units and write both stories as chips: $1.1 \\times CP - 60 = 0.8 \\times CP \\times 1.25$ → $0.1 \\times CP = 60$ → $CP = ₹600$.\n\n### Quick revision\n- Profit% and loss% are on CP (plus overheads).\n- SP $= CP \\times$ chip; CP $= SP \\div$ chip.\n- Two SPs: rupee gap $=$ % gap of CP.\n- Article counts: profit% $= \\frac{\\text{extra}}{\\text{articles given}} \\times 100$.\n- Always check the answer by rebuilding SP from CP.\n",
+   "patterns": [
+    {
+     "id": "pl-b1",
+     "name": "Profit or loss per cent from CP and SP",
+     "frequency": "very common",
+     "howToSpot": "CP and SP are given (maybe with transport or repair cost) and the profit or loss per cent is asked.",
+     "formula": "\\text{Profit\\%} = \\frac{SP - CP}{CP} \\times 100",
+     "logic": "1. Add any overheads to the CP.\n2. Profit (or loss) $= SP - CP$.\n3. Divide by CP (never by SP) and multiply by 100.\n\nWhy: profit is measured against the money the seller invested.",
+     "example": {
+      "q": "A fan bought for ₹1,250 is sold for ₹1,400. Find the profit per cent.",
+      "solution": "$\\frac{150}{1250} \\times 100 = 12\\%$."
+     }
+    },
+    {
+     "id": "pl-b2",
+     "name": "Find CP or SP from a profit / loss per cent",
+     "frequency": "very common",
+     "howToSpot": "One price and the profit or loss per cent are given; the other price is asked.",
+     "formula": "SP = CP \\times \\frac{100 \\pm x}{100}, \\qquad CP = SP \\times \\frac{100}{100 \\pm x}",
+     "logic": "1. Write the chip: $\\frac{100 + x}{100}$ for profit, $\\frac{100 - x}{100}$ for loss.\n2. CP → SP: multiply. SP → CP: divide.\n3. Reduce the chip to a small fraction for speed ($\\frac{19}{20}$, $\\frac{7}{6}$ …).\n\nWhy: SP is CP scaled by the chip, so reversing it means dividing.",
+     "example": {
+      "q": "A table sold for ₹1,140 gives a loss of 5%. Find its CP.",
+      "solution": "$1140 \\times \\frac{20}{19} = ₹1{,}200$."
+     }
+    },
+    {
+     "id": "pl-b3",
+     "name": "Two selling prices — 'had he sold for ₹x more'",
+     "frequency": "very common",
+     "howToSpot": "'Sold at a% loss; had he sold for ₹k more he would gain b%' or two SPs giving equal profit and loss.",
+     "formula": "CP = \\frac{k \\times 100}{a + b} \\ \\ (\\text{loss } a\\%, \\text{ gain } b\\%)",
+     "logic": "1. Both SPs are chips of the same CP.\n2. Their rupee difference equals the difference of the percentages of CP (loss and gain → add; two gains → subtract).\n3. Divide the rupees by that percentage of CP.\n\nWhy: the CP is common, so only the percentage gap moves the SP.",
+     "example": {
+      "q": "Sold at 8% loss; had it been sold for ₹336 more, the gain would be 6%. Find the CP.",
+      "solution": "$14\\%$ of CP $= 336$ → $CP = ₹2{,}400$."
+     }
+    },
+    {
+     "id": "pl-b4",
+     "name": "Article-count questions",
+     "frequency": "common",
+     "howToSpot": "'CP of 15 articles = SP of 12', 'buys 4 for ₹15 and sells 5 for ₹24', or lemons sold at so many per rupee.",
+     "formula": "\\text{Profit\\%} = \\frac{\\text{articles bought} - \\text{articles sold}}{\\text{articles sold}} \\times 100",
+     "logic": "1. For 'CP of a = SP of b': profit% $= \\frac{a - b}{b} \\times 100$ (loss if b > a).\n2. For rates like '4 for ₹15', use the LCM of the counts so both prices are for the same number of articles.\n3. For 'how many for ₹k', find the required SP of one article, then divide.\n\nWhy: fixing a common count turns the question into a normal CP–SP comparison.",
+     "example": {
+      "q": "The CP of 15 articles equals the SP of 12. Find the profit per cent.",
+      "solution": "$\\frac{15 - 12}{12} \\times 100 = 25\\%$."
+     }
+    },
+    {
+     "id": "pl-b5",
+     "name": "New SP for a different gain / changed CP and SP",
+     "frequency": "common",
+     "howToSpot": "'Sold at ₹1,530 at a loss of 10%; at what price to gain 10%?' or 'bought 20% cheaper and sold ₹60 less, gain 25%'.",
+     "formula": "SP_2 = SP_1 \\times \\frac{100 + b}{100 - a}",
+     "logic": "1. Go back to CP by dividing by the first chip.\n2. Multiply by the new chip.\n3. For a changed CP and SP, write both stories with the same CP as a variable and equate.\n\nWhy: CP is the anchor that links every selling scenario.",
+     "example": {
+      "q": "An article sold for ₹1,530 gives a loss of 10%. At what price should it be sold to gain 10%?",
+      "solution": "$CP = 1530 \\times \\frac{10}{9} = 1700$; $SP = 1700 \\times \\frac{11}{10} = ₹1{,}870$."
+     }
+    }
    ]
   },
   {
@@ -118,6 +181,69 @@
     "For a profit then a loss, using +ab/100 where the sign must be negative.",
     "Applying the second discount on the original marked price instead of the reduced price.",
     "Assuming the order of changes matters — chip multiplication is commutative."
+   ],
+   "notes": "### What \"successive\" means\nSuccessive changes happen one after another, and **each new change works on the value left by the previous one**. A shop gives 20% off, and then a further 10% off on the reduced bill. The second 10% is on the smaller amount, so the total discount is less than 30%.\n\n### Two changes: the $a + b + \\frac{ab}{100}$ rule\nFor two changes of $a\\%$ and $b\\%$ (use minus for decreases):\n$$\\text{Net change} = a + b + \\frac{ab}{100}$$\nFor two **discounts** $d_1$ and $d_2$ this becomes\n$$\\text{Equivalent single discount} = d_1 + d_2 - \\frac{d_1 d_2}{100}$$\n20% and 15% → $35 - 3 = 32\\%$. 10% and 20% → $30 - 2 = 28\\%$.\n\n### Chips — works for any number of changes\nEach discount $d\\%$ keeps $\\frac{100 - d}{100}$ of the price. Multiply the kept fractions:\n10%, 20%, 25% → $0.9 \\times 0.8 \\times 0.75 = 0.54$ → the customer pays 54% → single discount $= 46\\%$ (not 55%).\nPrice after discounts on a marked price (MP) of ₹5,000 at 10% and 5%: $5000 \\times 0.9 \\times 0.95 = ₹4{,}275$.\nThe order of the discounts does not matter — multiplication gives the same result either way.\n\n### Comparing two offers\n\"40% flat\" versus \"30% + 10%\": the second is $30 + 10 - 3 = 37\\%$, so the flat offer saves 3% of the bill more. If the difference is ₹72, the bill is $\\frac{72}{0.03} = ₹2{,}400$.\nA single discount is always better for the buyer than successive discounts that add up to the same number.\n\n### Finding a missing discount\nMP ₹1,600, first discount 15%, final price ₹1,224. After the first discount the price is ₹1,360; the second discount $= \\frac{1360 - 1224}{1360} = 10\\%$.\nTwo equal discounts taking ₹6,400 to ₹5,184: kept fraction $= \\frac{5184}{6400} = 0.81 = 0.9^2$ → each discount 10%.\n\n### Increase then decrease\nA price raised by 20% and then cut by 20% ends **4% lower**: $1.2 \\times 0.8 = 0.96$. In general, up $x\\%$ then down $x\\%$ (either order) gives a loss of $\\frac{x^2}{100}\\%$. A TV priced ₹30,000 → ₹36,000 → ₹28,800: the buyer pays ₹1,200 less than the original.\nMarkup followed by successive discounts: marked 30% above CP, then 10% and 10% off → $1.3 \\times 0.81 = 1.053$ → profit 5.3%.\n\n### Common traps\n- Adding discounts directly (10% + 20% = 30% is wrong).\n- Taking the second discount on the original MP.\n- For three discounts, using the two-change formula only once.\n\n### Quick revision\n- Two discounts: $d_1 + d_2 - \\frac{d_1 d_2}{100}$.\n- Any number: multiply the kept fractions $\\frac{100 - d}{100}$.\n- Up $x\\%$ then down $x\\%$ → net fall of $\\frac{x^2}{100}\\%$.\n- Missing discount: divide the final price by the price after the known discounts.\n",
+   "patterns": [
+    {
+     "id": "pl-s1",
+     "name": "Equivalent single discount",
+     "frequency": "very common",
+     "howToSpot": "'Successive discounts of 20% and 15% are equal to a single discount of?' — two or three discounts, no rupee values.",
+     "formula": "d = d_1 + d_2 - \\frac{d_1 d_2}{100}",
+     "logic": "1. For two discounts, use $d_1 + d_2 - \\frac{d_1 d_2}{100}$.\n2. For three or more, multiply the kept fractions and subtract from 100%.\n3. Check: the answer is less than the plain sum of discounts.\n\nWhy: each later discount acts on an already reduced price.",
+     "example": {
+      "q": "Find a single discount equivalent to successive discounts of 20% and 15%.",
+      "solution": "$20 + 15 - \\frac{20 \\times 15}{100} = 32\\%$."
+     }
+    },
+    {
+     "id": "pl-s2",
+     "name": "Selling price after successive discounts",
+     "frequency": "very common",
+     "howToSpot": "A marked price and two or three discounts are given; the price paid is asked.",
+     "formula": "SP = MP \\times \\frac{100 - d_1}{100} \\times \\frac{100 - d_2}{100}",
+     "logic": "1. Write each discount as a kept fraction (10% → 0.9, 12.5% → 7/8).\n2. Multiply the MP by all kept fractions.\n\nWhy: every discount scales the current price by its kept fraction.",
+     "example": {
+      "q": "The marked price is ₹5,000; discounts of 10% and 5% are given. Find the price paid.",
+      "solution": "$5000 \\times 0.9 \\times 0.95 = ₹4{,}275$."
+     }
+    },
+    {
+     "id": "pl-s3",
+     "name": "Comparing a single discount with successive discounts",
+     "frequency": "common",
+     "howToSpot": "'The difference between a flat 40% discount and successive 30% and 10% is ₹72' — find the bill or the difference.",
+     "formula": "\\text{difference} = (\\text{single} - \\text{equivalent}) \\% \\text{ of MP}",
+     "logic": "1. Convert the successive discounts to one equivalent discount.\n2. Subtract from the single discount to get the percentage gap.\n3. That gap is a percentage of the MP; use it to find either value.\n\nWhy: both offers start from the same MP, so only the percentages differ.",
+     "example": {
+      "q": "Difference between a 40% discount and successive discounts of 30% and 10% on a bill is ₹72. Find the bill.",
+      "solution": "Successive $= 37\\%$ → gap $3\\%$ of bill $= 72$ → bill $= ₹2{,}400$."
+     }
+    },
+    {
+     "id": "pl-s4",
+     "name": "Find a missing discount",
+     "frequency": "common",
+     "howToSpot": "MP, final price and one discount are given (or 'two equal discounts'); the other discount is asked.",
+     "formula": "\\frac{100 - d_2}{100} = \\frac{SP}{MP \\times \\frac{100 - d_1}{100}}",
+     "logic": "1. Apply the known discount to MP.\n2. Compare the final price with that reduced price to get the second kept fraction.\n3. For two equal discounts, take the square root of $\\frac{SP}{MP}$.\n\nWhy: the second discount is a percentage of the price after the first.",
+     "example": {
+      "q": "MP ₹1,600; after two discounts, the first being 15%, the price is ₹1,224. Find the second discount.",
+      "solution": "After 15%: ₹1,360. $\\frac{1224}{1360} = 0.9$ → second discount $10\\%$."
+     }
+    },
+    {
+     "id": "pl-s5",
+     "name": "Raise then reduce (markup and successive cuts)",
+     "frequency": "common",
+     "howToSpot": "'Price increased by 20% and then decreased by 20%' or 'marked 30% above CP, then two discounts of 10%'.",
+     "formula": "\\text{net} = a + b + \\frac{ab}{100}, \\quad \\text{or multiply all chips}",
+     "logic": "1. Write every rise and fall as a chip (1.3, 0.9, 0.9 …).\n2. Multiply the chips; subtract 1 for the net change.\n3. Same % up and down always ends below the start by $\\frac{x^2}{100}\\%$.\n\nWhy: the second change acts on a different base from the first.",
+     "example": {
+      "q": "An article is marked 30% above CP, then sold after successive discounts of 10% and 10%. Profit%?",
+      "solution": "$1.3 \\times 0.9 \\times 0.9 = 1.053$ → profit $5.3\\%$."
+     }
+    }
    ]
   },
   {
@@ -173,6 +299,69 @@
     "Forgetting that profit % is still on CP while discount % is on MP — the two bases differ.",
     "In trade chains, adding the markups (20 + 25 + 10 = 55%) instead of multiplying chips (65%).",
     "Reading 'marked 25% above cost' as MP = 125 when CP = 100 — right — but then applying discount % to CP."
+   ],
+   "notes": "### The full chain: CP → MP → SP\nA shopkeeper does not sell at cost. He writes a higher price on the label — the **marked price (MP)**, also called the list price or tag price — and then offers a **discount** on it.\n$$\\text{Discount} = MP - SP, \\qquad \\text{Discount\\% is always calculated on MP}$$\nBuying at ₹800, tagging ₹1,000 and selling at ₹900: discount ₹100 = 10% of MP; profit ₹100 = 12.5% of CP. The discount is never a percentage of CP.\n\n### The master relation\n$$MP = CP \\times \\frac{100 + g}{100 - d}$$\nwhere g is the final gain% and d the discount%. Any one of markup, discount, gain fixes the other two. Marked 40% above CP with a 10% discount: $1.4 \\times 0.9 = 1.26$ → profit 26%.\n\n### One-step and two-step versions\n- \"What should the markup be to allow 10% discount and still gain 17%?\" → $\\frac{117}{90} = 1.3$ → mark 30% above CP.\n- Marked ₹1,200, sold at 15% off → SP $= ₹1{,}020$, discount $= ₹180 = 15\\%$ of MP.\n- Find the gain: marked 25% above CP, discount 10% → $1.25 \\times 0.9 = 1.125$ → gain 12.5%.\n\n### Working backwards\nMP ₹1,500 sold for ₹1,275 → discount 15%. If that left a gain of g%, build CP by dividing the SP by the gain chip: SP ₹1,275 at 15% discount and 25% profit → CP $= 1275 \\div 1.25 = ₹1{,}020$. Exam numbers are always chosen to come out whole — if yours do not, re-read the question.\n\n### Multi-level trade chains\nManufacturer → wholesaler → retailer → customer: each stage multiplies its own chip.\nCost ₹4,000, then +25%, +20%, +10%: $4000 \\times 1.25 \\times 1.2 \\times 1.1 = ₹6{,}600$.\nEach trader's profit is on HIS own purchase price, not on the original cost. Working backwards, divide by the chips in reverse order.\n\n### Discount schemes\n- Flat d% is one step × $\\frac{100-d}{100}$.\n- \"Buy 5 get 1 free\" → pay for 5, receive 6 → discount $= \\frac{1}{6} = 16\\frac{2}{3}\\%$.\n- \"Buy 19 get 1 free\" → $\\frac{1}{20} = 5\\%$ — the free item counts against what you RECEIVE, not what you pay for.\n- A flat discount always beats successive discounts of the same total: 40% flat leaves 0.60, while 30% + 10% leaves $0.7 \\times 0.9 = 0.63$.\n\n### Common traps\n- Taking discount% on CP or SP instead of MP.\n- Subtracting the discount from the markup (40% up − 10% down is 26% up, not 30%: $1.4 \\times 0.9 = 1.26$).\n- In a chain, applying every markup to the manufacturer's cost only.\n\n### Quick revision\n- Discount% is on MP; profit% is on CP.\n- $MP = CP \\times \\frac{100+g}{100-d}$; multiply chips through the chain.\n- Markup% $= \\left(\\frac{100+g}{100-d} - 1\\right) \\times 100$.\n- Free-item offers: discount = free ÷ total received.\n",
+   "patterns": [
+    {
+     "id": "pl-m1",
+     "name": "Discount per cent (and discount amount) from MP and SP",
+     "frequency": "very common",
+     "howToSpot": "MP and SP (or the discount in rupees) are given; the discount per cent or amount is asked.",
+     "formula": "\\text{Discount\\%} = \\frac{MP - SP}{MP} \\times 100",
+     "logic": "1. Discount $= MP - SP$.\n2. Divide by MP (never by SP or CP) and multiply by 100.\n3. For the rupee value, take that per cent of MP.\n\nWhy: a discount is a reduction offered on the tagged price.",
+     "example": {
+      "q": "An article marked ₹900 is sold for ₹765. Find the discount per cent.",
+      "solution": "$\\frac{135}{900} \\times 100 = 15\\%$. Discount amount $= ₹135$."
+     }
+    },
+    {
+     "id": "pl-m2",
+     "name": "Marked price for a target profit after discount",
+     "frequency": "very common",
+     "howToSpot": "'At what price should he mark to allow a d% discount and still gain g%?' — CP given, MP asked.",
+     "formula": "MP = CP \\times \\frac{100 + g}{100 - d}",
+     "logic": "1. Write the chain: CP × markup chip × discount chip = SP.\n2. Set $SP = CP \\times \\frac{100+g}{100}$ and divide by the discount chip.\n3. Or apply the formula directly.\n\nWhy: MP must absorb both the discount and the desired gain.",
+     "example": {
+      "q": "An article costing ₹800 is to be sold at a 20% discount and still gain 20%. The marked price should be:",
+      "solution": "$MP = 800 \\times \\frac{120}{80} = ₹1{,}200$. Check: $1200 \\times 0.8 = 960 = 800 \\times 1.2$."
+     }
+    },
+    {
+     "id": "pl-m3",
+     "name": "Markup per cent from discount and profit",
+     "frequency": "very common",
+     "howToSpot": "'Allows d% discount and still gains g% — the marked price is what per cent above cost?'",
+     "formula": "\\text{markup\\%} = \\left(\\frac{100 + g}{100 - d} - 1\\right) \\times 100",
+     "logic": "1. Compute $\\frac{100+g}{100-d}$ — this is MP as a multiple of CP.\n2. Subtract 1 and multiply by 100.\n3. Take CP = 100 and trace the rupees if the formula feels abstract.\n\nWhy: the ratio of MP to CP depends only on the two percentages.",
+     "example": {
+      "q": "A trader allows a 25% discount on the marked price and still gains 20%. The marked price is what per cent above the cost price?",
+      "solution": "$\\frac{120}{75} = 1.6$ → marked 60% above CP. (CP 100 → MP 160 → SP 120.)"
+     }
+    },
+    {
+     "id": "pl-m4",
+     "name": "Multi-level trade chain (profit of the last trader)",
+     "frequency": "common",
+     "howToSpot": "Manufacturer sells to wholesaler, wholesaler to retailer, retailer to customer, each at a profit per cent; the final price or total rise is asked.",
+     "formula": "\\text{final} = \\text{cost} \\times \\prod \\frac{100 + x_i}{100}",
+     "logic": "1. Write each stage's chip ($1.25 = +25\\%$, $1.1 = +10\\%$ …).\n2. Multiply all chips with the base cost (or divide backwards from the final price).\n3. Each trader's profit% is on his own purchase price.\n\nWhy: every stage treats its buying price as its cost.",
+     "example": {
+      "q": "A manufacturer sells a TV to a wholesaler at 25% profit, the wholesaler to a retailer at 20% profit, and the retailer to a customer at 10% profit. If it cost ₹4,000 to make, the customer pays:",
+      "solution": "$4000 \\times 1.25 \\times 1.2 \\times 1.1 = ₹6{,}600$. Total rise $= 65\\%$."
+     }
+    },
+    {
+     "id": "pl-m5",
+     "name": "Discount schemes: free items and flat offers",
+     "frequency": "common",
+     "howToSpot": "'Buy 5 get 1 free', 'pay for 12 take 14', or comparing a scheme with a flat discount.",
+     "formula": "\\text{discount\\%} = \\frac{\\text{free items}}{\\text{items received}} \\times 100",
+     "logic": "1. Count what the customer PAYS for and what he RECEIVES.\n2. Discount% $=$ free ÷ received × 100.\n3. Compare schemes by the kept fraction, not by the label.\n\nWhy: the seller spreads the cost of the free items over the whole batch.",
+     "example": {
+      "q": "'Buy 4 get 1 free' — what discount is the shop really giving?",
+      "solution": "Pay for 4, get 5 → discount $= \\frac{1}{5} \\times 100 = 20\\%$."
+     }
+    }
    ]
   },
   {
@@ -228,6 +417,69 @@
     "Believing a '10% loss' claim without checking the weight.",
     "In both-ends cheating, adding the two percentages instead of multiplying chips.",
     "Mixing up which side the cheat favours — dealer gains when buying AND when selling."
+   ],
+   "notes": "### The idea\nA dishonest dealer cheats on the **quantity**, not on the printed price. He charges for 1 kg but hands over 900 g, or uses a short measure. Compare what he **charges for** against what he **actually gives** — the gain is always bigger than it looks.\n\n### Sells at cost price with a false weight\nHe uses w grams instead of a true W (usually 1000 g), at the cost price:\n$$\\text{gain\\%} = \\frac{W - w}{w} \\times 100$$\n900 g per kg: $\\frac{100}{900} = 11\\frac{1}{9}\\%$. 800 g: $\\frac{200}{800} = 25\\%$. 750 g: $\\frac{250}{750} = 33\\frac{1}{3}\\%$.\n**Why divide by w?** His cost is for the w grams he actually handed over; his income is for W grams. Profit% is measured on the goods that left his shop.\n\n### Reverse: gain given, find the false weight\nGains 25% at cost price → $\\frac{1000 - w}{w} = \\frac{25}{100}$ → $w = 800$ g. In general $w = W \\times \\frac{100}{100 + \\text{gain\\%}}$. The answer is always below the true weight.\n\n### Claims a loss but cheats on weight\n\"Claims a 10% loss but gives only 800 g per kg.\" For every 800 g delivered he charges the price of a \"10%-loss kilo\" = 0.9 of the true kilo price:\n$$\\text{multiplier} = \\frac{100 - L}{100 - c} = \\frac{90}{80} = 1.125 \\ \\Rightarrow\\ 12\\frac{1}{2}\\% \\text{ gain}$$\nEqual claim and shortfall (20% loss, 20% short) give exactly **no profit, no loss** — a favourite option.\n\n### Cheats at both ends\nTakes b% extra while buying and gives s% less while selling (everything at cost price):\n$$\\text{multiplier} = \\frac{100 + b}{100 - s}$$\n10% extra, 10% less: $\\frac{110}{90} = \\frac{11}{9}$ → gain $22\\frac{2}{9}\\%$. 10% extra, 20% less: $\\frac{110}{80} = 1.375$ → 37.5% gain.\n\n### Short weight plus a price rise\nUses an 800 g weight AND sells 20% above cost: money per false kilo $= 1.2 \\times$ the true kilo price, goods given $= 0.8$ → $\\frac{1.2}{0.8} = 1.5$ → 50% gain. Write the two cheats as chips and divide.\n\n### How to attack any version\n1. Fix a true unit (1 kg, 1 litre, 1 metre).\n2. Write what he receives and what he gives, in units of that true measure.\n3. Gain% $= \\left(\\frac{\\text{received}}{\\text{given}} - 1\\right) \\times 100$.\n\nWorked mini-case: a pulse seller takes 110 kg while paying for 100 kg (₹40 per kg → ₹4,000), and later hands over 90 kg while charging for 100 kg (₹4,000). Per ₹4,000 he receives 110 kg and gives away 90 kg, so the multiplier is $\\frac{110}{90} = \\frac{11}{9}$ → gain $22\\frac{2}{9}\\%$ — no rupee arithmetic needed beyond the two counts.\n\n### Quick revision\n- False weight at CP: $\\frac{W - w}{w} \\times 100$ — divide by what he gives.\n- Claimed loss L% with c% short weight: $\\frac{100 - L}{100 - c} - 1$.\n- Both ends: $\\frac{100+b}{100-s} - 1$.\n- Equal claim and shortfall → 0%.\n",
+   "patterns": [
+    {
+     "id": "pl-d1",
+     "name": "False weight sold at cost price",
+     "frequency": "very common",
+     "howToSpot": "'Sells at cost price but uses a weight of 800 g / 900 g for a kilogram' — the gain per cent is asked.",
+     "formula": "\\text{gain\\%} = \\frac{W - w}{w} \\times 100",
+     "logic": "1. Take the true weight W (usually 1000 g) and the false weight w.\n2. Gain% $= \\frac{W - w}{w} \\times 100$ — divide by w, the weight actually given.\n3. Sanity check: smaller w → bigger gain.\n\nWhy: his cost is for w grams, his income is for W grams, and profit% is on the goods he actually parted with.",
+     "example": {
+      "q": "A shopkeeper sells sugar at cost price but uses a weight of 900 g for 1 kg. His gain per cent?",
+      "solution": "$\\frac{1000 - 900}{900} \\times 100 = 11\\frac{1}{9}\\%$."
+     }
+    },
+    {
+     "id": "pl-d2",
+     "name": "Reverse: gain per cent given, find the false weight",
+     "frequency": "common",
+     "howToSpot": "'Gains 25% while selling at cost price — what weight does he use instead of 1 kg?'",
+     "formula": "w = W \\times \\frac{100}{100 + \\text{gain\\%}}",
+     "logic": "1. Write $\\frac{W - w}{w} = \\frac{g}{100}$.\n2. Solve: $w = W \\times \\frac{100}{100 + g}$.\n3. The false weight is always less than W.\n\nWhy: the gain fraction fixes the ratio of true to false weight.",
+     "example": {
+      "q": "A dishonest dealer sells at cost price and gains 25%. What weight does he give for a kilogram?",
+      "solution": "$w = 1000 \\times \\frac{100}{125} = 800$ g."
+     }
+    },
+    {
+     "id": "pl-d3",
+     "name": "Claimed loss with short weight",
+     "frequency": "common",
+     "howToSpot": "'Claims to sell at a loss of L% but gives c% less weight' — the true gain or loss is asked.",
+     "formula": "\\text{multiplier} = \\frac{100 - L}{100 - c}, \\qquad \\text{gain\\%} = (\\text{multiplier} - 1) \\times 100",
+     "logic": "1. Write the price he charges per true kg: $(100 - L)\\%$ of the kilo price.\n2. Write what the goods he gives should have cost: $(100 - c)\\%$.\n3. Divide the two; above 1 means a gain.\n\nWhy: he collects the 'loss-price' of a full kilo but supplies only part of it.",
+     "example": {
+      "q": "A merchant claims a 10% loss but gives only 800 g per kg. His true result?",
+      "solution": "$\\frac{90}{80} = 1.125$ → $12\\frac{1}{2}\\%$ gain."
+     }
+    },
+    {
+     "id": "pl-d4",
+     "name": "Cheats while buying and selling",
+     "frequency": "common",
+     "howToSpot": "'Takes 10% extra while buying and gives 10% less while selling, at cost price' — overall gain per cent.",
+     "formula": "\\text{gain\\%} = \\left(\\frac{100 + b}{100 - s} - 1\\right) \\times 100",
+     "logic": "1. Buying b% extra means he owns $\\frac{100+b}{100}$ units per unit paid.\n2. Selling s% short means each unit sold costs him only $\\frac{100-s}{100}$ units.\n3. Divide the chips; the excess over 1 is his gain.\n\nWhy: the two cheats multiply because they act at different stages.",
+     "example": {
+      "q": "A dealer takes 10% extra goods while buying and gives 10% less while selling, all at cost price. His gain per cent?",
+      "solution": "$\\frac{110}{90} = \\frac{11}{9}$ → gain $= \\frac{2}{9} \\times 100 = 22\\frac{2}{9}\\%$."
+     }
+    },
+    {
+     "id": "pl-d5",
+     "name": "False weight plus a higher price",
+     "frequency": "occasional",
+     "howToSpot": "The dealer both uses a short weight AND sells above cost price — a two-cheat multiplier.",
+     "formula": "\\text{gain\\%} = \\left(\\frac{\\text{price chip} \\times W}{w} - 1\\right) \\times 100",
+     "logic": "1. Price chip: $1 + \\frac{m}{100}$ for a markup m%.\n2. Weight kept: w/W as a fraction.\n3. Gain% $= \\left(\\frac{\\text{price chip} \\times W}{w} - 1\\right) \\times 100$.\n\nWhy: charging more per false kilo and giving less per true kilo are independent chips.",
+     "example": {
+      "q": "A seller uses an 800 g weight and sells 20% above cost price. His gain per cent?",
+      "solution": "$\\frac{1.2 \\times 1000}{800} = 1.5$ → 50% gain."
+     }
+    }
    ]
   },
   {
@@ -271,6 +523,57 @@
     "Using $\\frac{x^2}{100}$ when the profit and loss percentages are unequal — reconstruct CPs instead.",
     "Reporting the loss per cent as the loss amount (₹140 is not 140%).",
     "Dividing SP by the wrong chip (profit article: divide by 1 + x/100, loss article: by 1 − x/100)."
+   ],
+   "notes": "### The setup\nTwo articles are sold for the **same price**: one at a profit of x%, the other at a loss of x%. Most people guess \"no profit no loss\". The answer is always a **net loss**.\n\n### The net loss formula\n$$\\text{Net loss\\%} = \\frac{x^2}{100}\\% \\quad \\text{of the total cost price}$$\n20% and 20% → 4% loss. 25% → $6.25\\%$. 10% → 1%. $16\\frac{2}{3}\\% = \\frac{1}{6}$ → $\\left(\\frac{1}{6}\\right)^2 = \\frac{1}{36} = 2\\frac{7}{9}\\%$.\n\n### Why there must be a loss\nLoss% and gain% act on two **different** cost prices. The article sold at a loss has the bigger CP, so its percentage bites harder. With common SP S:\n$$CP_{\\text{profit}} = \\frac{S}{1 + x/100}, \\qquad CP_{\\text{loss}} = \\frac{S}{1 - x/100}$$\nand the excess of $CP_{\\text{loss}}$ over S is always greater than the excess of S over $CP_{\\text{profit}}$, because dividing by a number below 1 moves further than multiplying by a number above 1.\n\n### Full reconstruction (when rupees are asked)\nTwo watches sold at ₹960 each, at 20% profit and 20% loss:\n- $CP_1 = 960 \\div 1.2 = ₹800$; $CP_2 = 960 \\div 0.8 = ₹1{,}200$.\n- Total CP $= ₹2{,}000$, total SP $= ₹1{,}920$ → loss $= ₹80 = 4\\%$ of ₹2,000. The formula checks out.\n\n### Useful special cases\n- SP ₹1,980 each at ±10%: CPs 1,800 and 2,200 → loss ₹40.\n- SP ₹600 each at ±20%: CPs 500 and 750 → loss ₹50.\n- The loss per cent depends only on x, never on the SP.\n- Unequal percentages (say +20% and −17.5%) break the $x^2/100$ shortcut — rebuild both CPs from the SP and add.\n\n### Where the loss hides — a fuller look\nTake SP ₹100 on each article at ±20%. The profitable article cost $100 \\div 1.2 = ₹83.33$, so the gain is ₹16.67. The loss-making article cost $100 \\div 0.8 = ₹125$, so the loss is ₹25. Same ₹100 selling price, but the loss (₹25) beats the gain (₹16.67) — the gap $25 - 16.67 = ₹8.33$ is exactly 4% of the total CP ₹208.33.\nThe bigger the x, the wider the gap: at ±50% the loss is $\\frac{2500}{100} = 25\\%$ of CP.\n\n### A three-step routine for every version\n1. Name the common SP (call it S, or use the rupee value given).\n2. Recover each CP with its own chip: divide by $1 + \\frac{x}{100}$ for the gain item and by $1 - \\frac{x}{100}$ for the loss item.\n3. Add the CPs, add the SPs, and read off the profit or loss.\n\n### How the options are built\n- \"No profit, no loss\" — the instinct answer; always wrong here.\n- $\\frac{x^2}{200}\\%$ — halves the correct loss.\n- $\\frac{2x^2}{100}\\%$ — doubles it.\n- The correct $\\frac{x^2}{100}\\%$.\nFor rupee versions, one option usually applies the loss per cent to the SP instead of the CP.\n\n### Two quick checks\n- The loss per cent must depend only on x: change the SP and the percentage does not move.\n- The loss item's CP is always the bigger one — if your reconstruction says otherwise, a chip was inverted.\n\n### Quick revision\n- Equal ±x% on the same SP → loss $\\frac{x^2}{100}\\%$.\n- CPs: divide the common SP by $1 \\pm \\frac{x}{100}$.\n- Loss in rupees = total CP − total SP; check it equals $\\frac{x^2}{100}\\%$ of total CP.\n- The result is never zero — \"no profit no loss\" is the trap.\n",
+   "patterns": [
+    {
+     "id": "pl-q1",
+     "name": "Net result per cent for equal gain and loss on the same SP",
+     "frequency": "very common",
+     "howToSpot": "'Two articles sold at the same price, one at x% profit and the other at x% loss — the overall result?'",
+     "formula": "\\text{net loss\\%} = \\frac{x^2}{100}\\%",
+     "logic": "1. Compute $\\frac{x^2}{100}$ — a loss, never zero.\n2. Spot the \"no profit no loss\" option and reject it.\n3. For a fractional x ($16\\frac{2}{3}\\% = \\frac{1}{6}$), square the fraction.\n\nWhy: the loss-side CP is larger, so its percentage dominates.",
+     "example": {
+      "q": "Two articles are sold at the same price, one at 25% profit and the other at 25% loss. The net result?",
+      "solution": "Loss $= \\frac{625}{100} = 6.25\\%$ of the total CP."
+     }
+    },
+    {
+     "id": "pl-q2",
+     "name": "Loss in rupees (reconstruct both cost prices)",
+     "frequency": "very common",
+     "howToSpot": "The common SP is given in rupees; the total loss (or total CP) is asked.",
+     "formula": "\\text{loss} = 2S - \\left(\\frac{S}{1 + x/100} + \\frac{S}{1 - x/100}\\right)",
+     "logic": "1. Divide the SP by $1 + \\frac{x}{100}$ and by $1 - \\frac{x}{100}$ to get the two CPs.\n2. Total CP − total SP = the loss in rupees.\n3. Verify: loss ÷ total CP must equal $\\frac{x^2}{100}\\%$.\n\nWhy: rupee answers need the actual cost prices, which the SP recovers.",
+     "example": {
+      "q": "Two mobiles are sold at ₹960 each, one at 20% profit and the other at 20% loss. The total loss?",
+      "solution": "CPs 800 and 1200 → total 2000; SPs 1920 → loss ₹80 (4% of CP)."
+     }
+    },
+    {
+     "id": "pl-q3",
+     "name": "Same SP with unequal profit and loss percentages",
+     "frequency": "common",
+     "howToSpot": "One at a% profit, the other at b% loss with a ≠ b, same SP — the overall result in rupees or per cent.",
+     "formula": "\\text{loss} = \\left(\\frac{S}{1 - b/100} + \\frac{S}{1 + a/100}\\right) - 2S",
+     "logic": "1. Build each CP from the common SP with its own chip.\n2. Add the CPs; compare with the total SP.\n3. Divide by the total CP for the net per cent.\n\nWhy: unequal percentages break the $x^2/100$ shortcut.",
+     "example": {
+      "q": "Two tables are sold at ₹1,155 each — one at a 10% profit, the other at a 17.5% loss. The net result?",
+      "solution": "CPs 1050 and 1400 → total 2450; SPs 2310 → loss ₹140."
+     }
+    },
+    {
+     "id": "pl-q4",
+     "name": "Find the common SP or the profit per cent from the total loss",
+     "frequency": "occasional",
+     "howToSpot": "The total loss in rupees (or the total CP) is given; the common selling price or x is asked.",
+     "formula": "\\text{loss} = \\frac{x^2}{100} \\times \\frac{2S}{1 - x^2/10000}",
+     "logic": "1. Write both CPs in terms of the common SP: $\\frac{S}{1+x/100} + \\frac{S}{1-x/100}$.\n2. Total loss = that sum − 2S.\n3. Set the loss equal to the rupee value and solve for S (or for x).\n\nWhy: the loss in rupees is a fixed fraction of the total CP, so any one of loss, S or x gives the rest.",
+     "example": {
+      "q": "Two articles are sold at the same price, one at 20% profit and the other at 20% loss. The total loss is ₹50. The selling price of each?",
+      "solution": "CP total $= \\frac{5S}{6} + \\frac{5S}{4} = \\frac{25S}{12}$; loss $= \\frac{25S}{12} - 2S = \\frac{S}{12} = 50$ → $S = ₹600$."
+     }
+    }
    ]
   }
  ],
@@ -278,50 +581,90 @@
   {
    "pattern": "Direct profit/loss per cent",
    "frequency": "very common",
-   "howToSpot": "CP and SP given (or one derivable in one step); find the profit or loss per cent.",
-   "approach": "Find the difference, divide by CP, multiply by 100. Fraction equivalents (1/8 = 12.5%) skip the arithmetic."
+   "howToSpot": "CP and SP are given (or the CP follows in one step, e.g. with a repair cost) and the profit or loss per cent is asked.",
+   "approach": "Profit or loss = SP − CP; divide by CP (never by SP) and multiply by 100. Overheads join the CP first. Fraction chips (12.5% = 1/8) skip the arithmetic.",
+   "subtopic": "pl-basics",
+   "example": {
+    "q": "A cycle bought for ₹850 is sold for ₹1,020. Find the profit per cent.",
+    "solution": "Profit = 170 → 170/850 × 100 = 20%."
+   }
   },
   {
    "pattern": "CP or SP reconstruction",
    "frequency": "very common",
-   "howToSpot": "One of CP/SP given with the profit or loss % — find the other.",
-   "approach": "Apply or undo the chip: SP = CP × (1 ± x/100). 'Had it been sold for ₹k more/less…' ⇒ the k spans the difference of two percentages of CP."
+   "howToSpot": "One of CP/SP is given with the profit or loss per cent — find the other price.",
+   "approach": "Multiply or divide by the chip (100 ± x)/100. 'Had it been sold for ₹k more, gain b% instead of loss a%' ⇒ k = (a + b)% of CP.",
+   "subtopic": "pl-basics",
+   "example": {
+    "q": "A trader sells a scooter at a loss of 5%. Had he sold it for ₹960 more, he would have gained 15%. Find the CP.",
+    "solution": "20% of CP = 960 → CP = ₹4,800."
+   }
   },
   {
    "pattern": "Successive discounts / price changes",
    "frequency": "very common",
-   "howToSpot": "'Two successive discounts of 20% and 10%', or a rise followed by a fall.",
-   "approach": "Chips multiply; equivalent single discount $= d_1 + d_2 - \\frac{d_1d_2}{100}$. Never add discounts."
+   "howToSpot": "'Two successive discounts of 20% and 10%', or a price that rises and then falls by given per cents.",
+   "approach": "Chips multiply; equivalent single discount = d1 + d2 − d1d2/100. Same % up and down ends at −x²/100%. Never add discounts.",
+   "subtopic": "pl-successive",
+   "example": {
+    "q": "The marked price of a sofa is ₹1,600. It is sold after two successive discounts of 20% and 12.5%. Find the selling price.",
+    "solution": "1600 × 4/5 × 7/8 = ₹1,120."
+   }
   },
   {
    "pattern": "MP–discount–profit chain",
    "frequency": "very common",
-   "howToSpot": "Marked x% above cost, discount y% allowed, find gain % (or work back to MP).",
-   "approach": "$\\frac{MP}{CP} = \\frac{100+g}{100-d}$ fixes any one of MP/CP, gain, discount from the other two."
+   "howToSpot": "Marked x% above cost, a discount of y% allowed — find the gain per cent, or work back to the MP for a target gain.",
+   "approach": "MP/CP = (100 + g)/(100 − d) fixes any one of markup, discount, gain from the other two. Trace CP = 100 through the chain to check.",
+   "subtopic": "pl-marked-discount",
+   "example": {
+    "q": "A trader allows a discount of 25% on the marked price and still gains 20%. The marked price is what per cent above the cost price?",
+    "solution": "(120/75 − 1) × 100 = 60%."
+   }
   },
   {
    "pattern": "Dishonest dealer / false weight",
    "frequency": "common",
-   "howToSpot": "False weights, short measure, or a claimed loss with cheating on quantity.",
-   "approach": "$\\text{gain\\%} = \\frac{W - w}{w} \\times 100$; for claims, compare money per TRUE unit. Cheating at both ends multiplies chips."
+   "howToSpot": "False weights, short measures, or a claimed loss with cheating on the quantity.",
+   "approach": "gain% = (W − w)/w × 100 for short weight at CP; for claims compare money per true unit: (100 − L)/(100 − c). Cheating at both ends multiplies chips (100 + b)/(100 − s).",
+   "subtopic": "pl-dishonest",
+   "example": {
+    "q": "A milkman sells at the cost price but gives only 800 mL per litre. Find his gain per cent.",
+    "solution": "200/800 × 100 = 25%."
+   }
   },
   {
    "pattern": "Same SP, one profit one loss",
    "frequency": "common",
-   "howToSpot": "Two items sold at the same price with equal ±x% — the net result.",
-   "approach": "Net loss% $= \\frac{x^2}{100}$; if amounts are asked, reconstruct both CPs."
+   "howToSpot": "Two items sold at the same price with equal ±x% — the net result in per cent or rupees.",
+   "approach": "Net loss% = x²/100 of the total CP. For rupees, reconstruct both CPs by dividing the common SP by the chips.",
+   "subtopic": "pl-same-price-cases",
+   "example": {
+    "q": "Two articles are sold at ₹1,200 each, one at 25% profit and the other at 25% loss. Find the overall loss per cent.",
+    "solution": "(6.25%). CPs 960 and 1600, total 2560; loss ₹160 = 6.25% of CP."
+   }
   },
   {
    "pattern": "Multi-level markup (trade chain)",
    "frequency": "occasional",
-   "howToSpot": "Manufacturer → wholesaler → retailer, each adding a profit %.",
-   "approach": "Multiply the markup chips end to end; divide to walk backwards to the base cost."
+   "howToSpot": "Manufacturer → wholesaler → retailer → customer, each adding a profit per cent.",
+   "approach": "Multiply the markup chips end to end; divide to walk backwards to the base cost. Each trader's profit acts on his own purchase price.",
+   "subtopic": "pl-marked-discount",
+   "example": {
+    "q": "A manufacturer sells at 20% profit to a wholesaler, who sells at 25% profit to a retailer, who sells at 10% profit to a customer. Overall rise over the manufacturing cost?",
+    "solution": "1.2 × 1.25 × 1.1 = 1.65 → 65%."
+   }
   },
   {
    "pattern": "Cost of goods sold / goods-based cases",
    "frequency": "occasional",
-   "howToSpot": "'Sells at CP the quantity equal to the cost of 20 units', 'recover the cost of 12 pens by selling 15'.",
-   "approach": "Set up units: profit in units ÷ cost in units = gain fraction. Translate words into a fraction of CP."
+   "howToSpot": "'The CP of 15 articles equals the SP of 12', 'buys 4 for ₹15, sells 5 for ₹24', free-item offers.",
+   "approach": "Fix a common count of articles (LCM of the counts) and compare CP and SP; for counts, profit% = extra ÷ articles given × 100. Free-item offers: discount = free ÷ received.",
+   "subtopic": "pl-basics",
+   "example": {
+    "q": "If the cost price of 15 articles is equal to the selling price of 12 articles, find the profit per cent.",
+    "solution": "(15 − 12)/12 × 100 = 25%."
+   }
   }
  ],
  "solvedExamples": [
@@ -686,6 +1029,978 @@
    "subtopic": "pl-same-price-cases",
    "pattern": "same SP profit-loss",
    "timeSec": 50
+  },
+  {
+   "id": "pl-basics-p01",
+   "q": "A shopkeeper buys a fan for ₹1,250 and sells it for ₹1,400. His profit per cent is:",
+   "figure": null,
+   "options": [
+    "$10\\frac{5}{7}$%",
+    "12%",
+    "15%",
+    "11%"
+   ],
+   "answer": 1,
+   "solution": "Profit $= ₹150$. Profit% $= \\frac{150}{1250} \\times 100 = 12\\%$.",
+   "shortcut": "$10\\frac{5}{7}\\%$ divides by SP — profit is always on CP.",
+   "difficulty": "easy",
+   "subtopic": "pl-basics",
+   "pattern": "pl-b1",
+   "timeSec": 25
+  },
+  {
+   "id": "pl-basics-p02",
+   "q": "A man buys an old scooter for ₹2,400 and spends ₹150 on its repairs. He sells it for ₹2,856. His profit per cent is:",
+   "figure": null,
+   "options": [
+    "19%",
+    "10.5%",
+    "13%",
+    "12%"
+   ],
+   "answer": 3,
+   "solution": "CP $= 2400 + 150 = ₹2{,}550$. Profit $= 306$. Profit% $= \\frac{306}{2550} \\times 100 = 12\\%$.",
+   "shortcut": "19% ignores the repair cost — overheads are part of CP.",
+   "difficulty": "medium",
+   "subtopic": "pl-basics",
+   "pattern": "pl-b1",
+   "timeSec": 35
+  },
+  {
+   "id": "pl-basics-p03",
+   "q": "By selling a chair for ₹1,140 a trader loses 5%. The cost price of the chair is:",
+   "figure": null,
+   "options": [
+    "₹1,197",
+    "₹1,200",
+    "₹1,083",
+    "₹1,180"
+   ],
+   "answer": 1,
+   "solution": "$CP = 1140 \\times \\frac{100}{95} = ₹1{,}200$.",
+   "shortcut": "₹1,197 adds 5% of SP — the loss is 5% of CP, so divide by 0.95.",
+   "difficulty": "easy",
+   "subtopic": "pl-basics",
+   "pattern": "pl-b2",
+   "timeSec": 25
+  },
+  {
+   "id": "pl-basics-p04",
+   "q": "An article costs ₹2,400. To gain $16\\frac{2}{3}\\%$, it should be sold for:",
+   "figure": null,
+   "options": [
+    "₹2,760",
+    "₹2,880",
+    "₹2,800",
+    "₹2,720"
+   ],
+   "answer": 2,
+   "solution": "$16\\frac{2}{3}\\% = \\frac{1}{6}$ → $SP = 2400 \\times \\frac{7}{6} = ₹2{,}800$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pl-basics",
+   "pattern": "pl-b2",
+   "timeSec": 25
+  },
+  {
+   "id": "pl-basics-p05",
+   "q": "A man sells a watch at a loss of 8%. Had he sold it for ₹336 more, he would have gained 6%. The cost price of the watch is:",
+   "figure": null,
+   "options": [
+    "₹2,400",
+    "₹4,200",
+    "₹5,600",
+    "₹16,800"
+   ],
+   "answer": 0,
+   "solution": "The two SPs differ by $8\\% + 6\\% = 14\\%$ of CP. $14\\%$ of CP $= 336$ → $CP = ₹2{,}400$.",
+   "shortcut": "₹16,800 uses 8 − 6 = 2%; a loss and a gain are on opposite sides of CP, so add.",
+   "difficulty": "medium",
+   "subtopic": "pl-basics",
+   "pattern": "pl-b3",
+   "timeSec": 35
+  },
+  {
+   "id": "pl-basics-p06",
+   "q": "A man bought an article and sold it at a gain of 10%. Had he bought it for 20% less and sold it for ₹60 less, he would have gained 25%. The cost price of the article is:",
+   "figure": null,
+   "options": [
+    "₹500",
+    "₹480",
+    "₹600",
+    "₹660"
+   ],
+   "answer": 2,
+   "solution": "Let CP $= x$. Actual SP $= 1.1x$.\nNew CP $= 0.8x$, new SP $= 0.8x \\times 1.25 = x$.\n$1.1x - 60 = x$ → $x = ₹600$. Check: SP 660; new CP 480, new SP 600, gain $\\frac{120}{480} = 25\\%$.",
+   "shortcut": "0.8 × 1.25 = 1, so the new SP equals the old CP: 10% of CP = ₹60.",
+   "difficulty": "hard",
+   "subtopic": "pl-basics",
+   "pattern": "pl-b5",
+   "timeSec": 55
+  },
+  {
+   "id": "pl-basics-p07",
+   "q": "If the cost price of 15 articles is equal to the selling price of 12 articles, the profit per cent is:",
+   "figure": null,
+   "options": [
+    "25%",
+    "20%",
+    "15%",
+    "30%"
+   ],
+   "answer": 0,
+   "solution": "Let each article cost ₹1. SP of 12 articles $= ₹15$, CP of 12 $= ₹12$ → profit $= \\frac{3}{12} \\times 100 = 25\\%$.",
+   "shortcut": "20% divides by 15 — divide by the articles actually sold (12).",
+   "difficulty": "medium",
+   "subtopic": "pl-basics",
+   "pattern": "pl-b4",
+   "timeSec": 30
+  },
+  {
+   "id": "pl-basics-p08",
+   "q": "A fruit seller buys oranges at 4 for ₹15 and sells them at 5 for ₹24. His profit per cent is:",
+   "figure": null,
+   "options": [
+    "21.875%",
+    "28%",
+    "25%",
+    "30%"
+   ],
+   "answer": 1,
+   "solution": "Take 20 oranges (LCM of 4 and 5). CP $= 5 \\times 15 = ₹75$; SP $= 4 \\times 24 = ₹96$.\nProfit $= \\frac{21}{75} \\times 100 = 28\\%$.",
+   "shortcut": "21.875% divides the gain by SP.",
+   "difficulty": "hard",
+   "subtopic": "pl-basics",
+   "pattern": "pl-b4",
+   "timeSec": 45
+  },
+  {
+   "id": "pl-basics-p09",
+   "q": "By selling 45 lemons for ₹40, a man loses 20%. How many lemons should he sell for ₹24 to gain 20%?",
+   "figure": null,
+   "options": [
+    "20",
+    "16",
+    "24",
+    "18"
+   ],
+   "answer": 3,
+   "solution": "CP of 45 lemons $= 40 \\div 0.8 = ₹50$ → CP of one $= ₹\\frac{10}{9}$.\nSP for 20% gain $= \\frac{10}{9} \\times \\frac{6}{5} = ₹\\frac{4}{3}$ each. Lemons for ₹24 $= 24 \\div \\frac{4}{3} = 18$.",
+   "shortcut": "Money scales by $\\frac{120}{80} = \\frac{3}{2}$ per lemon: for ₹24 at the old rate he gives 27 lemons; at the new rate $27 \\div \\frac{3}{2} = 18$.",
+   "difficulty": "hard",
+   "subtopic": "pl-basics",
+   "pattern": "pl-b4",
+   "timeSec": 55
+  },
+  {
+   "id": "pl-basics-p10",
+   "q": "A mobile phone sold for ₹1,530 gives a loss of 10%. To gain 10%, it should be sold for:",
+   "figure": null,
+   "options": [
+    "₹1,836",
+    "₹1,683",
+    "₹1,870",
+    "₹1,850"
+   ],
+   "answer": 2,
+   "solution": "$CP = 1530 \\div 0.9 = ₹1{,}700$. $SP = 1700 \\times 1.1 = ₹1{,}870$.",
+   "shortcut": "$1530 \\times \\frac{11}{9} = ₹1{,}870$ in one step. (₹1,836 adds 20% of ₹1,530 — wrong base.)",
+   "difficulty": "medium",
+   "subtopic": "pl-basics",
+   "pattern": "pl-b5",
+   "timeSec": 30
+  },
+  {
+   "id": "pl-basics-p11",
+   "q": "The profit earned by selling an article for ₹720 is equal to the loss incurred by selling it for ₹560. At what price should it be sold to make a profit of 25%?",
+   "figure": null,
+   "options": [
+    "₹800",
+    "₹780",
+    "₹900",
+    "₹820"
+   ],
+   "answer": 0,
+   "solution": "Profit = loss → CP is midway: $CP = \\frac{720 + 560}{2} = ₹640$. SP for 25% gain $= 640 \\times \\frac{5}{4} = ₹800$.",
+   "shortcut": "₹900 applies 25% to ₹720, not to the CP.",
+   "difficulty": "medium",
+   "subtopic": "pl-basics",
+   "pattern": "pl-b3",
+   "timeSec": 35
+  },
+  {
+   "id": "pl-successive-p01",
+   "q": "Two successive discounts of 20% and 15% are equivalent to a single discount of:",
+   "figure": null,
+   "options": [
+    "35%",
+    "32%",
+    "33%",
+    "30%"
+   ],
+   "answer": 1,
+   "solution": "$20 + 15 - \\frac{20 \\times 15}{100} = 35 - 3 = 32\\%$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pl-successive",
+   "pattern": "pl-s1",
+   "timeSec": 25
+  },
+  {
+   "id": "pl-successive-p02",
+   "q": "Three successive discounts of 10%, 20% and 25% are equivalent to a single discount of:",
+   "figure": null,
+   "options": [
+    "55%",
+    "45%",
+    "48%",
+    "46%"
+   ],
+   "answer": 3,
+   "solution": "Kept: $0.9 \\times 0.8 \\times 0.75 = 0.54$ → single discount $= 100 - 54 = 46\\%$.",
+   "shortcut": "55% simply adds the three discounts.",
+   "difficulty": "medium",
+   "subtopic": "pl-successive",
+   "pattern": "pl-s1",
+   "timeSec": 35
+  },
+  {
+   "id": "pl-successive-p03",
+   "q": "A single discount equivalent to successive discounts of $12\\frac{1}{2}\\%$, 20% and 10% is:",
+   "figure": null,
+   "options": [
+    "42.5%",
+    "37%",
+    "36%",
+    "38%"
+   ],
+   "answer": 1,
+   "solution": "Kept: $\\frac{7}{8} \\times \\frac{4}{5} \\times \\frac{9}{10} = \\frac{252}{400} = 0.63$ → single discount $37\\%$.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "pl-successive",
+   "pattern": "pl-s1",
+   "timeSec": 40
+  },
+  {
+   "id": "pl-successive-p04",
+   "q": "The marked price of a washing machine is ₹5,000. It is sold after two successive discounts of 10% and 5%. The selling price is:",
+   "figure": null,
+   "options": [
+    "₹4,250",
+    "₹4,300",
+    "₹4,275",
+    "₹4,225"
+   ],
+   "answer": 2,
+   "solution": "$5000 \\times 0.9 = 4500$; $4500 \\times 0.95 = ₹4{,}275$.",
+   "shortcut": "₹4,250 takes a flat 15% — successive discounts give less than their sum.",
+   "difficulty": "easy",
+   "subtopic": "pl-successive",
+   "pattern": "pl-s2",
+   "timeSec": 30
+  },
+  {
+   "id": "pl-successive-p05",
+   "q": "A laptop is marked at ₹12,500. The shopkeeper allows successive discounts of 12% and 5%. The customer pays:",
+   "figure": null,
+   "options": [
+    "₹10,450",
+    "₹10,375",
+    "₹10,625",
+    "₹10,500"
+   ],
+   "answer": 0,
+   "solution": "$12500 \\times 0.88 = 11000$; $11000 \\times 0.95 = ₹10{,}450$.",
+   "shortcut": "₹10,375 applies a flat 17%.",
+   "difficulty": "medium",
+   "subtopic": "pl-successive",
+   "pattern": "pl-s2",
+   "timeSec": 35
+  },
+  {
+   "id": "pl-successive-p06",
+   "q": "On a marked price of ₹8,000, what is the difference between a single discount of 35% and two successive discounts of 30% and 5%?",
+   "figure": null,
+   "options": [
+    "₹0",
+    "₹400",
+    "₹120",
+    "₹160"
+   ],
+   "answer": 2,
+   "solution": "Single: $8000 \\times 0.65 = ₹5{,}200$. Successive: $8000 \\times 0.7 \\times 0.95 = ₹5{,}320$.\nDifference $= ₹120$.",
+   "shortcut": "Successive $= 30 + 5 - 1.5 = 33.5\\%$; gap $1.5\\%$ of 8000 $= ₹120$.",
+   "difficulty": "medium",
+   "subtopic": "pl-successive",
+   "pattern": "pl-s3",
+   "timeSec": 40
+  },
+  {
+   "id": "pl-successive-p07",
+   "q": "The difference between a discount of 40% and two successive discounts of 30% and 10% on a certain bill is ₹72. The amount of the bill is:",
+   "figure": null,
+   "options": [
+    "₹2,400",
+    "₹7,200",
+    "₹1,800",
+    "₹720"
+   ],
+   "answer": 0,
+   "solution": "Successive $= 30 + 10 - 3 = 37\\%$. Gap $= 3\\%$ of bill $= 72$ → bill $= ₹2{,}400$.",
+   "shortcut": "₹720 treats the 10% gap (40 − 30) as the difference.",
+   "difficulty": "hard",
+   "subtopic": "pl-successive",
+   "pattern": "pl-s3",
+   "timeSec": 45
+  },
+  {
+   "id": "pl-successive-p08",
+   "q": "An article marked at ₹1,600 is sold for ₹1,224 after two successive discounts. If the first discount is 15%, the second discount is:",
+   "figure": null,
+   "options": [
+    "8%",
+    "10%",
+    "12%",
+    "9.5%"
+   ],
+   "answer": 1,
+   "solution": "After 15%: $1600 \\times 0.85 = ₹1{,}360$. Second discount $= \\frac{1360 - 1224}{1360} \\times 100 = 10\\%$.",
+   "shortcut": "12% would be (1360 − 1224)/... on the MP — the second discount is on ₹1,360.",
+   "difficulty": "medium",
+   "subtopic": "pl-successive",
+   "pattern": "pl-s4",
+   "timeSec": 40
+  },
+  {
+   "id": "pl-successive-p09",
+   "q": "After two equal successive discounts, an article marked at ₹6,400 is sold for ₹5,184. Each discount is:",
+   "figure": null,
+   "options": [
+    "9%",
+    "12%",
+    "9.5%",
+    "10%"
+   ],
+   "answer": 3,
+   "solution": "Kept fraction $= \\frac{5184}{6400} = 0.81 = 0.9^2$ → each discount $= 10\\%$.",
+   "shortcut": "9.5% halves the total 19% — successive discounts do not split evenly.",
+   "difficulty": "hard",
+   "subtopic": "pl-successive",
+   "pattern": "pl-s4",
+   "timeSec": 40
+  },
+  {
+   "id": "pl-successive-p10",
+   "q": "The price of a TV set, originally ₹30,000, is increased by 20% and later decreased by 20%. Compared with the original price, the final price is:",
+   "figure": null,
+   "options": [
+    "the same",
+    "₹1,200 more",
+    "₹1,200 less",
+    "₹600 less"
+   ],
+   "answer": 2,
+   "solution": "$30000 \\times 1.2 = 36000$; $36000 \\times 0.8 = 28800$ → ₹1,200 less.",
+   "shortcut": "Net $= -\\frac{20^2}{100} = -4\\%$ of ₹30,000 $= ₹1{,}200$ less.",
+   "difficulty": "medium",
+   "subtopic": "pl-successive",
+   "pattern": "pl-s5",
+   "timeSec": 30
+  },
+  {
+   "id": "pl-successive-p11",
+   "q": "A trader marks his goods 30% above the cost price and then allows two successive discounts of 10% each. His profit per cent is:",
+   "figure": null,
+   "options": [
+    "5.3%",
+    "10%",
+    "11%",
+    "6.5%"
+   ],
+   "answer": 0,
+   "solution": "$1.3 \\times 0.9 \\times 0.9 = 1.053$ → profit $= 5.3\\%$.",
+   "shortcut": "10% subtracts 20% from 30%; the two discounts together are only 19%, and they act on 130.",
+   "difficulty": "hard",
+   "subtopic": "pl-successive",
+   "pattern": "pl-s5",
+   "timeSec": 45
+  },
+  {
+   "id": "pl-marked-discount-p01",
+   "q": "An article marked at ₹900 is sold for ₹765. The discount per cent is:",
+   "figure": null,
+   "options": [
+    "13.5%",
+    "17.6%",
+    "15%",
+    "12%"
+   ],
+   "answer": 2,
+   "solution": "Discount $= ₹135$; discount% $= \\frac{135}{900} \\times 100 = 15\\%$ (on MP).",
+   "shortcut": "17.6% wrongly divides by SP — the discount is on the marked price.",
+   "difficulty": "easy",
+   "subtopic": "pl-marked-discount",
+   "pattern": "pl-m1",
+   "timeSec": 25
+  },
+  {
+   "id": "pl-marked-discount-p02",
+   "q": "A shopkeeper marks a bag at ₹750 and sells it for ₹600. The discount per cent is:",
+   "figure": null,
+   "options": [
+    "20%",
+    "25%",
+    "16.67%",
+    "22%"
+   ],
+   "answer": 0,
+   "solution": "$\\frac{150}{750} \\times 100 = 20\\%$.",
+   "shortcut": "25% treats ₹750 as a cost price — ₹600 is 80% of the tag price.",
+   "difficulty": "medium",
+   "subtopic": "pl-marked-discount",
+   "pattern": "pl-m1",
+   "timeSec": 30
+  },
+  {
+   "id": "pl-marked-discount-p03",
+   "q": "A trader buys an article for ₹800 and wants a profit of 20% after allowing a 20% discount. At what price should he mark the article?",
+   "figure": null,
+   "options": [
+    "₹1,280",
+    "₹1,152",
+    "₹1,200",
+    "₹1,000"
+   ],
+   "answer": 2,
+   "solution": "$MP = 800 \\times \\frac{120}{80} = ₹1{,}200$. Check: $1200 - 20\\% = ₹960 = 800 + 20\\%$.",
+   "shortcut": "₹1,000 marks up 20% and forgets the discount comes out of the marked price.",
+   "difficulty": "medium",
+   "subtopic": "pl-marked-discount",
+   "pattern": "pl-m2",
+   "timeSec": 40
+  },
+  {
+   "id": "pl-marked-discount-p04",
+   "q": "A dealer purchases a cycle for ₹1,350 and allows a discount of 25% on the marked price. To gain 20%, the marked price should be:",
+   "figure": null,
+   "options": [
+    "₹2,000",
+    "₹2,160",
+    "₹1,890",
+    "₹2,250"
+   ],
+   "answer": 1,
+   "solution": "Required SP $= 1350 \\times 1.2 = ₹1{,}620$, which is 75% of MP → $MP = 1620 \\times \\frac{4}{3} = ₹2{,}160$.",
+   "shortcut": "₹2,250 adds 25% of ₹1,800 — the chain is $1350 \\times \\frac{6}{5} \\times \\frac{4}{3}$.",
+   "difficulty": "hard",
+   "subtopic": "pl-marked-discount",
+   "pattern": "pl-m2",
+   "timeSec": 45
+  },
+  {
+   "id": "pl-marked-discount-p05",
+   "q": "A shopkeeper allows a discount of 25% on the marked price and still gains 20%. The marked price is what per cent above the cost price?",
+   "figure": null,
+   "options": [
+    "45%",
+    "50%",
+    "66.67%",
+    "60%"
+   ],
+   "answer": 3,
+   "solution": "$\\frac{100+20}{100-25} = \\frac{120}{75} = 1.6$ → 60% above CP. Check: CP 100 → MP 160 → SP 120.",
+   "shortcut": "45% simply adds 20 + 25; the discount eats into the markup.",
+   "difficulty": "easy",
+   "subtopic": "pl-marked-discount",
+   "pattern": "pl-m3",
+   "timeSec": 30
+  },
+  {
+   "id": "pl-marked-discount-p06",
+   "q": "After allowing a discount of 10% on the marked price, a trader gains 8%. The marked price is what per cent above the cost price?",
+   "figure": null,
+   "options": [
+    "18%",
+    "20%",
+    "19.8%",
+    "22%"
+   ],
+   "answer": 1,
+   "solution": "$\\frac{108}{90} = 1.2$ → 20% above CP. (CP 100 → MP 120 → SP 108.)",
+   "shortcut": "18% is 8 + 10 — percentages of different bases do not add.",
+   "difficulty": "medium",
+   "subtopic": "pl-marked-discount",
+   "pattern": "pl-m3",
+   "timeSec": 35
+  },
+  {
+   "id": "pl-marked-discount-p07",
+   "q": "A manufacturer sells a washing machine to a wholesaler at 25% profit, the wholesaler sells it to a retailer at 20% profit, and the retailer sells it to a customer at 10% profit. If the manufacturing cost is ₹4,000, the price paid by the customer is:",
+   "figure": null,
+   "options": [
+    "₹6,160",
+    "₹7,150",
+    "₹5,500",
+    "₹6,600"
+   ],
+   "answer": 3,
+   "solution": "$4000 \\times \\frac{5}{4} \\times \\frac{6}{5} \\times \\frac{11}{10} = 4000 \\times \\frac{33}{20} = ₹6{,}600$.",
+   "shortcut": "₹7,150 is 4000 × 1.25 × 1.2 × 1.1 × 1.1 — the retailer's profit acts once.",
+   "difficulty": "hard",
+   "subtopic": "pl-marked-discount",
+   "pattern": "pl-m4",
+   "timeSec": 50
+  },
+  {
+   "id": "pl-marked-discount-p08",
+   "q": "A product passes from the manufacturer to the wholesaler (20% profit), then to the retailer (33⅓% profit) and finally to the customer (10% profit). The customer's price is what per cent more than the manufacturer's cost?",
+   "figure": null,
+   "options": [
+    "63%",
+    "70%",
+    "76%",
+    "65%"
+   ],
+   "answer": 2,
+   "solution": "$\\frac{6}{5} \\times \\frac{4}{3} \\times \\frac{11}{10} = \\frac{264}{150} = 1.76$ → 76% more.",
+   "shortcut": "63% adds the three percentages; the chips multiply.",
+   "difficulty": "medium",
+   "subtopic": "pl-marked-discount",
+   "pattern": "pl-m4",
+   "timeSec": 40
+  },
+  {
+   "id": "pl-marked-discount-p09",
+   "q": "A stationer announces 'buy 10, get 2 free'. The discount per cent offered is:",
+   "figure": null,
+   "options": [
+    "$16\\frac{2}{3}$%",
+    "20%",
+    "15%",
+    "25%"
+   ],
+   "answer": 0,
+   "solution": "Pay for 10, receive 12 → discount $= \\frac{2}{12} \\times 100 = 16\\frac{2}{3}\\%$.",
+   "shortcut": "20% divides by the paid-for items — divide by what the customer receives.",
+   "difficulty": "medium",
+   "subtopic": "pl-marked-discount",
+   "pattern": "pl-m5",
+   "timeSec": 30
+  },
+  {
+   "id": "pl-marked-discount-p10",
+   "q": "A trader offers 'buy 19, get 1 free' on a book. Another shop offers a flat 6% discount. Which offer is better for the customer, and by how much (per cent)?",
+   "figure": null,
+   "options": [
+    "'Buy 19 get 1 free' is better by 1%",
+    "Flat 6% is better by 1%",
+    "Both are equal",
+    "Flat 6% is better by 0.5%"
+   ],
+   "answer": 1,
+   "solution": "'Buy 19 get 1 free' $= \\frac{1}{20} \\times 100 = 5\\%$ off. Flat 6% gives 1% more.",
+   "shortcut": "The scheme's discount is 1/20 of what you RECEIVE, not 1/19.",
+   "difficulty": "hard",
+   "subtopic": "pl-marked-discount",
+   "pattern": "pl-m5",
+   "timeSec": 35
+  },
+  {
+   "id": "pl-dishonest-p01",
+   "q": "A dishonest shopkeeper sells rice at the cost price but uses a weight of 900 grams in place of 1 kg. His gain per cent is:",
+   "figure": null,
+   "options": [
+    "10%",
+    "$12\\frac{1}{2}$%",
+    "$9\\frac{1}{11}$%",
+    "$11\\frac{1}{9}$%"
+   ],
+   "answer": 3,
+   "solution": "$\\frac{1000 - 900}{900} \\times 100 = 11\\frac{1}{9}\\%$.",
+   "shortcut": "10% divides by 1000 — profit is on the 900 g he actually gave.",
+   "difficulty": "easy",
+   "subtopic": "pl-dishonest",
+   "pattern": "pl-d1",
+   "timeSec": 30
+  },
+  {
+   "id": "pl-dishonest-p02",
+   "q": "A trader sells at cost price but gives only 800 grams per kilogram. His gain per cent is:",
+   "figure": null,
+   "options": [
+    "20%",
+    "25%",
+    "22.5%",
+    "28%"
+   ],
+   "answer": 1,
+   "solution": "$\\frac{1000 - 800}{800} \\times 100 = 25\\%$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pl-dishonest",
+   "pattern": "pl-d1",
+   "timeSec": 25
+  },
+  {
+   "id": "pl-dishonest-p03",
+   "q": "A vegetable vendor sells at the cost price but uses a weight of 750 g for a kilogram. His gain per cent is:",
+   "figure": null,
+   "options": [
+    "25%",
+    "30%",
+    "$37\\frac{1}{2}$%",
+    "$33\\frac{1}{3}$%"
+   ],
+   "answer": 3,
+   "solution": "$\\frac{250}{750} \\times 100 = 33\\frac{1}{3}\\%$.",
+   "shortcut": "Every 3 parts given earn 1 part extra.",
+   "difficulty": "medium",
+   "subtopic": "pl-dishonest",
+   "pattern": "pl-d1",
+   "timeSec": 30
+  },
+  {
+   "id": "pl-dishonest-p04",
+   "q": "A dishonest dealer professes to sell goods at the cost price but earns a profit of 25%. The weight he uses for a kilogram is:",
+   "figure": null,
+   "options": [
+    "800 g",
+    "750 g",
+    "850 g",
+    "700 g"
+   ],
+   "answer": 0,
+   "solution": "$\\frac{1000 - w}{w} = \\frac{25}{100}$ → $w = 800$ g.",
+   "shortcut": "750 g would give 33⅓%, more than the stated gain.",
+   "difficulty": "medium",
+   "subtopic": "pl-dishonest",
+   "pattern": "pl-d2",
+   "timeSec": 35
+  },
+  {
+   "id": "pl-dishonest-p05",
+   "q": "A merchant sells at the cost price and gains $11\\frac{1}{9}\\%$ by cheating on the weight. How many grams does he give in place of one kilogram?",
+   "figure": null,
+   "options": [
+    "890 g",
+    "910 g",
+    "900 g",
+    "850 g"
+   ],
+   "answer": 2,
+   "solution": "$w = 1000 \\times \\frac{100}{100 + \\frac{100}{9}} = 1000 \\times \\frac{900}{1000} = 900$ g.",
+   "shortcut": "$11\\frac{1}{9}\\% = \\frac{1}{9}$ — a ninth of what he gives, so 100 g on 900 g.",
+   "difficulty": "hard",
+   "subtopic": "pl-dishonest",
+   "pattern": "pl-d2",
+   "timeSec": 40
+  },
+  {
+   "id": "pl-dishonest-p06",
+   "q": "A merchant claims to sell at a 10% loss but gives only 800 grams per kilogram. His actual gain or loss per cent is:",
+   "figure": null,
+   "options": [
+    "12.5% gain",
+    "10% loss",
+    "2.5% gain",
+    "No profit, no loss"
+   ],
+   "answer": 0,
+   "solution": "Per true kg he charges 90% of the price but gives 80% of the goods: $\\frac{90}{80} = 1.125$ → $12\\frac{1}{2}\\%$ gain.",
+   "shortcut": "The 'loss' is on a kilo he never gives — compare money against true weight.",
+   "difficulty": "medium",
+   "subtopic": "pl-dishonest",
+   "pattern": "pl-d3",
+   "timeSec": 40
+  },
+  {
+   "id": "pl-dishonest-p07",
+   "q": "A shopkeeper claims to sell at a 20% loss but gives only 20% less in weight. His actual result is:",
+   "figure": null,
+   "options": [
+    "20% gain",
+    "10% loss",
+    "No profit, no loss",
+    "25% gain"
+   ],
+   "answer": 2,
+   "solution": "$\\frac{100-20}{100-20} = 1$ → no profit, no loss.",
+   "shortcut": "He charges for 0.8 kg exactly what 0.8 kg cost him.",
+   "difficulty": "medium",
+   "subtopic": "pl-dishonest",
+   "pattern": "pl-d3",
+   "timeSec": 35
+  },
+  {
+   "id": "pl-dishonest-p08",
+   "q": "A dishonest dealer takes 10% more goods than he pays for while buying and gives 20% less than the true weight while selling, everything at cost price. His gain per cent is:",
+   "figure": null,
+   "options": [
+    "33.33%",
+    "30%",
+    "22.22%",
+    "37.5%"
+   ],
+   "answer": 3,
+   "solution": "$\\frac{110}{80} = \\frac{11}{8} = 1.375$ → 37.5% gain.",
+   "shortcut": "30% adds the two cheats; they multiply instead.",
+   "difficulty": "medium",
+   "subtopic": "pl-dishonest",
+   "pattern": "pl-d4",
+   "timeSec": 40
+  },
+  {
+   "id": "pl-dishonest-p09",
+   "q": "A trader gains extra goods of 10% at the time of buying and sells 10% short of the true weight, charging the cost price throughout. His profit per cent is:",
+   "figure": null,
+   "options": [
+    "20%",
+    "$22\\frac{2}{9}$%",
+    "$21\\frac{1}{9}$%",
+    "25%"
+   ],
+   "answer": 1,
+   "solution": "$\\frac{110}{90} = \\frac{11}{9}$ → gain $= \\frac{2}{9} \\times 100 = 22\\frac{2}{9}\\%$.",
+   "shortcut": "20% would be the gain if only one cheat existed.",
+   "difficulty": "hard",
+   "subtopic": "pl-dishonest",
+   "pattern": "pl-d4",
+   "timeSec": 45
+  },
+  {
+   "id": "pl-dishonest-p10",
+   "q": "A shopkeeper uses a weight of 800 g for a kilogram and sells his goods 20% above the cost price. His gain per cent is:",
+   "figure": null,
+   "options": [
+    "50%",
+    "40%",
+    "45%",
+    "44%"
+   ],
+   "answer": 0,
+   "solution": "$\\frac{1.2 \\times 1000}{800} = \\frac{3}{2}$ → 50% gain.",
+   "shortcut": "44% multiplies 20% and 25% — wrong, because the base changes after each cheat.",
+   "difficulty": "medium",
+   "subtopic": "pl-dishonest",
+   "pattern": "pl-d5",
+   "timeSec": 40
+  },
+  {
+   "id": "pl-dishonest-p11",
+   "q": "A milkman sells 10% above the cost price per litre but his one-litre measure actually holds 950 mL. His gain per cent is:",
+   "figure": null,
+   "options": [
+    "10.5%",
+    "20%",
+    "$15\\frac{15}{19}$%",
+    "$13\\frac{3}{19}$%"
+   ],
+   "answer": 2,
+   "solution": "Per true litre he charges $1.1 \\times \\frac{1000}{950} = \\frac{22}{19}$ times the cost → gain $\\frac{3}{19} \\times 100 = 15\\frac{15}{19}\\%$.",
+   "shortcut": "10.5% treats the two cheats as small additions.",
+   "difficulty": "hard",
+   "subtopic": "pl-dishonest",
+   "pattern": "pl-d5",
+   "timeSec": 50
+  },
+  {
+   "id": "pl-same-price-cases-p01",
+   "q": "Two articles are sold at the same price. One is sold at a profit of 20% and the other at a loss of 20%. On the whole transaction there is:",
+   "figure": null,
+   "options": [
+    "no profit, no loss",
+    "a loss of 2%",
+    "a loss of 4%",
+    "a profit of 4%"
+   ],
+   "answer": 2,
+   "solution": "Net loss $= \\frac{20^2}{100} = 4\\%$ of the total CP.",
+   "shortcut": "'No profit, no loss' is the standard trap — the two percentages act on different costs.",
+   "difficulty": "easy",
+   "subtopic": "pl-same-price-cases",
+   "pattern": "pl-q1",
+   "timeSec": 25
+  },
+  {
+   "id": "pl-same-price-cases-p02",
+   "q": "A man sells two watches at the same price, one at a gain of 25% and the other at a loss of 25%. His overall loss per cent is:",
+   "figure": null,
+   "options": [
+    "6.25%",
+    "12.5%",
+    "5%",
+    "0%"
+   ],
+   "answer": 0,
+   "solution": "$\\frac{25^2}{100} = 6.25\\%$.",
+   "shortcut": "12.5% adds the percentages — they act on different costs.",
+   "difficulty": "easy",
+   "subtopic": "pl-same-price-cases",
+   "pattern": "pl-q1",
+   "timeSec": 25
+  },
+  {
+   "id": "pl-same-price-cases-p03",
+   "q": "Two cycles are sold at the same price, one at a gain of $16\\frac{2}{3}\\%$ and the other at a loss of $16\\frac{2}{3}\\%$. The net loss per cent on the total cost is:",
+   "figure": null,
+   "options": [
+    "3%",
+    "$1\\frac{7}{9}$%",
+    "$2\\frac{7}{9}$%",
+    "$2\\frac{2}{9}$%"
+   ],
+   "answer": 2,
+   "solution": "$16\\frac{2}{3}\\% = \\frac{1}{6}$ → net loss $= \\left(\\frac{1}{6}\\right)^2 = \\frac{1}{36} = 2\\frac{7}{9}\\%$.",
+   "shortcut": "3% rounds the exact fraction 1/36 — keep it exact.",
+   "difficulty": "hard",
+   "subtopic": "pl-same-price-cases",
+   "pattern": "pl-q1",
+   "timeSec": 40
+  },
+  {
+   "id": "pl-same-price-cases-p04",
+   "q": "Two mobile phones are sold at ₹960 each — one at a profit of 20% and the other at a loss of 20%. The loss on the whole transaction is:",
+   "figure": null,
+   "options": [
+    "₹60",
+    "₹80",
+    "₹100",
+    "₹96"
+   ],
+   "answer": 1,
+   "solution": "CPs: $\\frac{960}{1.2} = 800$ and $\\frac{960}{0.8} = 1200$ → total ₹2,000. SPs ₹1,920 → loss ₹80.",
+   "shortcut": "₹96 is 4% of the SPs; the loss per cent is on the CP.",
+   "difficulty": "medium",
+   "subtopic": "pl-same-price-cases",
+   "pattern": "pl-q2",
+   "timeSec": 35
+  },
+  {
+   "id": "pl-same-price-cases-p05",
+   "q": "Two fans are sold at ₹1,980 each, one at a gain of 10% and the other at a loss of 10%. The total loss is:",
+   "figure": null,
+   "options": [
+    "₹36",
+    "₹44",
+    "₹198",
+    "₹40"
+   ],
+   "answer": 3,
+   "solution": "CPs: 1800 and 2200 → ₹4,000 total; SPs ₹3,960 → loss ₹40 (1% of CP).",
+   "shortcut": "₹36 takes 1% of the two SPs — wrong base.",
+   "difficulty": "medium",
+   "subtopic": "pl-same-price-cases",
+   "pattern": "pl-q2",
+   "timeSec": 35
+  },
+  {
+   "id": "pl-same-price-cases-p06",
+   "q": "Two toy cars are sold at ₹600 each, one at a 20% profit and the other at a 20% loss. The total loss in rupees is:",
+   "figure": null,
+   "options": [
+    "40",
+    "50",
+    "60",
+    "24"
+   ],
+   "answer": 1,
+   "solution": "CPs: 500 and 750 → total ₹1,250; SPs ₹1,200 → loss ₹50. Check: $\\frac{50}{1250} = 4\\%$.",
+   "shortcut": "The 4% acts on the total CP, not on the SPs.",
+   "difficulty": "hard",
+   "subtopic": "pl-same-price-cases",
+   "pattern": "pl-q2",
+   "timeSec": 35
+  },
+  {
+   "id": "pl-same-price-cases-p07",
+   "q": "A man sells two cycles at the same price. On the first, which cost ₹1,500, he gains 25%. On the second he loses 25%. His total loss (in ₹) is:",
+   "figure": null,
+   "options": [
+    "₹375",
+    "₹150",
+    "₹625",
+    "₹250"
+   ],
+   "answer": 3,
+   "solution": "SP $= 1500 \\times 1.25 = ₹1{,}875$; second CP $= 1875 \\div 0.75 = ₹2{,}500$. Total CP ₹4,000, SP ₹3,750 → loss ₹250.",
+   "shortcut": "The 6.25% loss acts on ₹4,000: $4000 \\times 0.0625 = 250$.",
+   "difficulty": "hard",
+   "subtopic": "pl-same-price-cases",
+   "pattern": "pl-q2",
+   "timeSec": 45
+  },
+  {
+   "id": "pl-same-price-cases-p08",
+   "q": "Two tables are sold at ₹1,155 each — one at a profit of 10% and the other at a loss of 17.5%. The total loss (in ₹) is:",
+   "figure": null,
+   "options": [
+    "₹82.50",
+    "₹115.50",
+    "₹140",
+    "₹210"
+   ],
+   "answer": 2,
+   "solution": "CPs: $\\frac{1155}{1.1} = 1050$ and $\\frac{1155}{0.825} = 1400$ → total ₹2,450. SPs ₹2,310 → loss ₹140.",
+   "shortcut": "Unequal percentages need both CPs; 82.50 wrongly takes 7.5% of the SPs.",
+   "difficulty": "hard",
+   "subtopic": "pl-same-price-cases",
+   "pattern": "pl-q3",
+   "timeSec": 50
+  },
+  {
+   "id": "pl-same-price-cases-p09",
+   "q": "A dealer sells two computers at ₹1,200 each, gaining 20% on the first and losing 25% on the second. On the whole transaction he:",
+   "figure": null,
+   "options": [
+    "loses ₹200",
+    "gains ₹100",
+    "loses ₹120",
+    "neither gains nor loses"
+   ],
+   "answer": 0,
+   "solution": "CPs: $\\frac{1200}{1.2} = 1000$ and $\\frac{1200}{0.75} = 1600$ → total ₹2,600; SPs ₹2,400 → loss ₹200.",
+   "shortcut": "The 25% loss (₹400) outweighs the 20% gain (₹200) because it acts on the bigger CP.",
+   "difficulty": "hard",
+   "subtopic": "pl-same-price-cases",
+   "pattern": "pl-q3",
+   "timeSec": 50
+  },
+  {
+   "id": "pl-same-price-cases-p10",
+   "q": "Two articles are sold at the same price, one at a profit of 20% and the other at a loss of 20%. If the total loss is ₹50, the selling price of each article is:",
+   "figure": null,
+   "options": [
+    "₹500",
+    "₹600",
+    "₹750",
+    "₹625"
+   ],
+   "answer": 1,
+   "solution": "CPs: $\\frac{S}{1.2} = \\frac{5S}{6}$ and $\\frac{S}{0.8} = \\frac{5S}{4}$ → total $\\frac{25S}{12}$. Loss $= \\frac{25S}{12} - 2S = \\frac{S}{12} = 50$ → $S = ₹600$.",
+   "shortcut": "Check: CPs 500 and 750, total 1250; 4% of 1250 = 50.",
+   "difficulty": "hard",
+   "subtopic": "pl-same-price-cases",
+   "pattern": "pl-q4",
+   "timeSec": 50
+  },
+  {
+   "id": "pl-same-price-cases-p11",
+   "q": "Two tables are sold at ₹960 each, one at a profit of x% and the other at a loss of x%. If the total loss is ₹80, x equals:",
+   "figure": null,
+   "options": [
+    "10",
+    "25",
+    "5",
+    "20"
+   ],
+   "answer": 3,
+   "solution": "CPs: 800 and 1200 → total ₹2,000. Loss% $= \\frac{80}{2000} \\times 100 = 4\\% = \\frac{x^2}{100}$ → $x = 20$.",
+   "shortcut": "₹80 is 4% of the CP — never of the SP (that would suggest x ≈ 4.1).",
+   "difficulty": "medium",
+   "subtopic": "pl-same-price-cases",
+   "pattern": "pl-q4",
+   "timeSec": 45
   }
  ]
 }

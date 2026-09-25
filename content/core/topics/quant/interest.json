@@ -67,6 +67,69 @@
     "For 'becomes n times', using n instead of n − 1 in the interest.",
     "Forgetting to convert months to years ($T = 9/12$) or paise-paise rate mix-ups.",
     "Adding SI of different sums without weighting by their time periods."
+   ],
+   "notes": "### What interest is\nWhen you borrow money, you pay a charge for using it; when you lend or deposit, you earn it. That charge is **interest**. The money borrowed or invested is the **principal (P)**, the charge is a per-cent per year called the **rate (R% per annum)**, and the period is the **time (T, in years)**.\n\n### Simple interest — the formula and its four faces\nIn simple interest (SI) the interest each year is a fixed slice of the **original** principal only. The earlier interest earns nothing more.\n$$SI = \\frac{P \\times R \\times T}{100}$$\nKeep the units straight: T in years (8 months $= \\frac{8}{12} = \\frac{2}{3}$ year), R per year. Any one of P, R, T, SI can be found from the other three:\n$$P = \\frac{100 \\times SI}{RT}, \\quad R = \\frac{100 \\times SI}{PT}, \\quad T = \\frac{100 \\times SI}{PR}$$\nSI on ₹6,500 at 8% for 3 years: $\\frac{6500 \\times 8 \\times 3}{100} = ₹1{,}560$.\n\n### Amount\n**Amount (A)** = what you finally get back or owe: $A = P + SI$. Amount questions: first get SI $= A - P$, then use the formula.\nA sum amounts to ₹1,560 in 2 years at 5%: SI $= 1560 - P$ and SI $= \\frac{P \\times 5 \\times 2}{100} = 0.1P$ → $1.1P = 1560$ → P $= ₹1{,}418.18$ — exam numbers are chosen cleaner: A ₹1,540 → P ₹1,400.\n\n### Growth is LINEAR at SI\nThe amount grows by the same rupee amount every year, so the yearly amounts form an arithmetic progression. Two consequences:\n- **n times in T years**: if a sum becomes n times in T years, the interest earned is $(n-1)P$, so\n$$R = \\frac{100(n-1)}{T}$$\nDoubles in 8 years → $\\frac{100}{8} = 12.5\\%$. Triples in 16 → $\\frac{200}{16} = 12.5\\%$.\n- **T from n and R**: $T = \\frac{100(n-1)}{R}$. \"In what time will a sum become 5 times at 12%?\" → $\\frac{400}{12} = 33\\frac{1}{3}$ years.\nThe word \"amounts to n times\" includes the principal, so the interest part is only $(n-1)$ times P — the classic trap is using n instead of n−1.\n\n### Fraction-of-principal questions\n\"The SI is $\\frac{1}{5}$ of the sum at 4% — find the time.\" Write $\\frac{PRT}{100} = \\frac{P}{5}$ → $T = \\frac{100}{5 \\times 4} = 5$ years. The P cancels; only the fraction, R and T matter.\nSame shape: \"In what time will the SI be $\\frac{2}{9}$ of P at 8%?\" → $T = \\frac{200}{9 \\times 8} = 2\\frac{7}{9}$ years.\n\n### Money scaling and comparison\nSI is directly proportional to P, R and T. Doubling the sum doubles the interest; halving the rate halves it; the interest on 2P at half the rate equals the original interest.\nDifference questions subtract two SI computations, or use ratios: SI on 3P at r% : SI on 2P at 2r% $= 3 : 4$.\n\n### Where the marks are lost\n- Mixing months and years (R is per annum; convert months to a fraction of a year).\n- Using n instead of n−1 in n-times questions.\n- Dividing by the amount when the question gives SI, or the reverse.\n\n### Quick revision\n- $SI = \\frac{PRT}{100}$; $A = P + SI$; solve for any missing input.\n- n times in T years at SI: $R = \\frac{100(n-1)}{T}$, $T = \\frac{100(n-1)}{R}$.\n- Growth is linear: equal rupee growth every year.\n- Fraction of P as SI: $T = \\frac{100 \\times \\text{fraction}}{R}$.\n- Months to years: divide by 12.\n",
+   "patterns": [
+    {
+     "id": "int-s1",
+     "name": "Direct simple interest",
+     "frequency": "very common",
+     "howToSpot": "P, R and T are given and the SI (or the amount) is asked directly.",
+     "formula": "SI = \\frac{PRT}{100}, \\qquad A = P + SI",
+     "logic": "1. Convert T to years (months ÷ 12).\n2. Multiply P × R × T and divide by 100.\n3. For the amount, add P to the SI.\n\nWhy: SI is a fixed fraction of the principal every year.",
+     "example": {
+      "q": "Find the simple interest on ₹6,500 at 8% per annum for 3 years.",
+      "solution": "$\\frac{6500 \\times 8 \\times 3}{100} = ₹1{,}560$. Amount $= ₹8{,}060$."
+     }
+    },
+    {
+     "id": "int-s2",
+     "name": "Find P, R or T from the interest or amount",
+     "frequency": "very common",
+     "howToSpot": "Three of P, R, T, SI (or A) are given; the fourth is asked.",
+     "formula": "P = \\frac{100 \\times SI}{RT}, \\quad R = \\frac{100 \\times SI}{PT}, \\quad T = \\frac{100 \\times SI}{PR}",
+     "logic": "1. If an amount is given, first take SI = A − P.\n2. Rearrange $SI = \\frac{PRT}{100}$ for the missing input.\n3. Amount-only version: $A = P\\left(1 + \\frac{RT}{100}\\right)$ — one linear equation.\n\nWhy: the four quantities are linked by one formula, so any three fix the fourth.",
+     "example": {
+      "q": "At what rate per cent per annum will ₹1,250 amount to ₹2,000 in 12 years at simple interest?",
+      "solution": "SI $= 750$ → $R = \\frac{750 \\times 100}{1250 \\times 12} = 5\\%$."
+     }
+    },
+    {
+     "id": "int-s3",
+     "name": "n times in T years (doubling, tripling)",
+     "frequency": "very common",
+     "howToSpot": "'A sum doubles / triples / becomes n times itself in T years — find the rate or time.'",
+     "formula": "R = \\frac{100(n-1)}{T}, \\qquad T = \\frac{100(n-1)}{R}",
+     "logic": "1. Interest earned = (n − 1) × P — subtract the principal once.\n2. Rate: $\\frac{100(n-1)}{T}$; Time: $\\frac{100(n-1)}{R}$.\n3. Chain: doubling in T means tripling in 2T, quadrupling in 3T (linear growth).\n\nWhy: 'becomes n times' gives SI = (n−1)P, and P cancels out.",
+     "example": {
+      "q": "A sum of money triples itself in 16 years at simple interest. The rate per annum is:",
+      "solution": "$R = \\frac{100(3-1)}{16} = 12.5\\%$. (Doubles in 8 years too.)"
+     }
+    },
+    {
+     "id": "int-s4",
+     "name": "Interest as a fraction of the principal",
+     "frequency": "common",
+     "howToSpot": "'The SI is 1/5 (or 2/9 …) of the sum after T years at R%' — find T or R.",
+     "formula": "\\frac{PRT}{100} = \\frac{P}{k} \\ \\Rightarrow\\ T = \\frac{100}{kR}",
+     "logic": "1. Set the fraction equal to $\\frac{PRT}{100}$.\n2. Cancel P from both sides.\n3. Solve for the missing variable.\n\nWhy: the principal is common to both sides, so it never enters the answer.",
+     "example": {
+      "q": "The simple interest on a sum at 4% per annum is $\\frac{1}{5}$ of the sum. The number of years is:",
+      "solution": "$\\frac{4T}{100} = \\frac{1}{5}$ → $T = 5$ years."
+     }
+    },
+    {
+     "id": "int-s5",
+     "name": "Comparing two SI situations",
+     "frequency": "common",
+     "howToSpot": "Two principals, rates or times are compared — 'how much more interest', or SI on a scaled sum.",
+     "formula": "\\frac{SI_1}{SI_2} = \\frac{P_1 R_1 T_1}{P_2 R_2 T_2}",
+     "logic": "1. SI is proportional to each of P, R, T — build the ratio.\n2. For a difference, compute the two SIs and subtract.\n3. 'Double P, half R' leaves SI unchanged (2 × ½ = 1).\n\nWhy: the formula is a product, so scaling factors multiply.",
+     "example": {
+      "q": "The SI on ₹12,000 at 8% for 3 years exceeds the SI on ₹10,000 at 7.5% for 3 years by:",
+      "solution": "$2880 - 2250 = ₹630$."
+     }
+    }
    ]
   },
   {
@@ -127,6 +190,69 @@
     "For half-yearly compounding, halving the time instead of the rate.",
     "Reporting the amount A when the question asks for CI (or the reverse).",
     "Using $\\frac{R}{200}$ but forgetting the exponent $2T$ (or vice versa)."
+   ],
+   "notes": "### What compounding means\nIn **compound interest (CI)**, each year's interest is added to the principal before the next year's interest is worked out. The interest earns interest, so the amount grows **geometrically** — by the same *factor* each year, not the same rupees.\n$$A = P\\left(1 + \\frac{R}{100}\\right)^T, \\qquad CI = A - P$$\n\n### Multipliers (chips) — the everyday method\nWrite $1 + \\frac{R}{100}$ as a fraction and multiply it T times:\n| Rate | Chip |\n|---|---|\n| 10% | $\\frac{11}{10}$ |\n| 20% | $\\frac{6}{5}$ |\n| $12\\frac{1}{2}\\%$ | $\\frac{9}{8}$ |\n| $6\\frac{1}{4}\\%$ | $\\frac{17}{16}$ |\n| 8% | $\\frac{27}{25}$ |\nCI on ₹12,000 at 10% for 2 years: $12000 \\times \\frac{11}{10} \\times \\frac{11}{10} = ₹14{,}520$ → CI $= ₹2{,}520$.\n\n### The net-effect percentages\nTwo years at R% → net factor $\\left(1+\\frac{R}{100}\\right)^2$: 10% → 21% (not 20%); 20% → 44%; 25% → 56.25%; 5% → 10.25%.\nThree years at 10% → 33.1%; at 20% → 72.8%. These small tables answer \"find the amount as % of P\" questions instantly.\nA 12.5% rate is $\\frac{1}{8}$: two years multiply by $\\frac{81}{64}$ → amount $= \\frac{81}{64}P$, CI $= \\frac{17}{64}P$. Fraction chips keep everything exact — prefer them to decimals.\n\n### Fractional years and broken periods\n$2\\frac{1}{2}$ years at R% (annual compounding) = 2 full years by chips, then **simple interest for the half year** on the amount:\n₹10,000 at 10% for $2\\frac{1}{2}$ years → $10000 \\times 1.1 \\times 1.1 = 12{,}100$; half-year SI on it $= 12100 \\times \\frac{5}{100} = 605$ → ₹12,705.\n(Compounded half-yearly instead? See the half-yearly pattern — different answer, different question.)\n\n### Compounding more than once a year\n- **Half-yearly**: rate halves, periods double: $A = P\\left(1 + \\frac{R}{200}\\right)^{2T}$.\n- **Quarterly**: rate quarters, periods quadruple: $A = P\\left(1 + \\frac{R}{400}\\right)^{4T}$.\n₹10,000 at 20% p.a. half-yearly for $1\\frac{1}{2}$ years → 3 half-years at 10%: $10000 \\times 1.1^3 = ₹13{,}310$.\nMore frequent compounding always gives more interest than annual compounding at the same nominal rate.\n\n### Different rates in different years\nMultiply the year-wise chips: $A = P\\left(1+\\frac{r_1}{100}\\right)\\left(1+\\frac{r_2}{100}\\right)\\cdots$\n₹25,000 with 10% then 20%: $25000 \\times 1.1 \\times 1.2 = ₹33{,}000$. A year of gain and a year of loss simply use their own chips.\n\n### Scaling and finding P\nCI is proportional to P (same rate and time): CI on ₹30,000 = 1.5 × CI on ₹20,000.\nFrom an amount: divide by the chips. ₹6,655 after 3 years at 10% → $\\frac{6655}{1.331} = ₹5{,}000$.\n\n### Quick revision\n- $A = P(1 + R/100)^T$; multiply chips T times.\n- Net %: 2 years at 10% → 21%; at 20% → 44%; 3 years at 10% → 33.1%.\n- Half-yearly: R/2, 2T. Quarterly: R/4, 4T.\n- Broken period: full years by chips, then SI on the amount.\n- Different yearly rates: multiply their chips.\n",
+   "patterns": [
+    {
+     "id": "int-c1",
+     "name": "Amount or CI by the multiplier method",
+     "frequency": "very common",
+     "howToSpot": "P, R and whole-year T are given; the amount or CI is asked.",
+     "formula": "A = P\\left(1 + \\frac{R}{100}\\right)^T",
+     "logic": "1. Write the chip $1 + \\frac{R}{100}$ as a small fraction.\n2. Multiply P by the chip T times.\n3. CI = A − P.\n\nWhy: each year scales the running total by the same factor.",
+     "example": {
+      "q": "Find the compound interest on ₹12,000 at 10% per annum for 2 years.",
+      "solution": "$12000 \\times \\frac{11}{10} \\times \\frac{11}{10} = 14520$ → CI $= ₹2{,}520$. (SI would be ₹2,400.)"
+     }
+    },
+    {
+     "id": "int-c2",
+     "name": "Net per cent / fraction-rate compounding",
+     "frequency": "very common",
+     "howToSpot": "'A sum becomes 1.21 times in 2 years' or 'CI as a per cent of P' — the net effect of compounding.",
+     "formula": "\\text{net factor} = \\left(1 + \\frac{R}{100}\\right)^2 = 1 + \\frac{2R}{100} + \\frac{R^2}{10000}",
+     "logic": "1. Square the chip for 2 years, cube it for 3.\n2. Read the percentage: 10% → 21%, 20% → 44%, 12.5% → 26.5625% ($\\frac{81}{64}$).\n3. For a given multiple, take the square root: 1.44 → chip 1.2 → 20%.\n\nWhy: compounding applies the same growth twice, so the effects multiply.",
+     "example": {
+      "q": "A sum invested at compound interest becomes 1.44 times itself in 2 years. The annual rate is:",
+      "solution": "Chip $= \\sqrt{1.44} = 1.2$ → 20% per annum."
+     }
+    },
+    {
+     "id": "int-c3",
+     "name": "Half-yearly or quarterly compounding",
+     "frequency": "very common",
+     "howToSpot": "'Compounded half-yearly / quarterly' appears in the question — usually for $1$ to $2$ years.",
+     "formula": "A = P\\left(1 + \\frac{R}{200}\\right)^{2T} = P\\left(1 + \\frac{R}{400}\\right)^{4T}",
+     "logic": "1. Halve (or quarter) the rate and double (quadruple) the number of periods.\n2. Work the periods with chips as usual.\n3. Watch $1\\frac{1}{2}$ years: half-yearly means 3 periods.\n\nWhy: each compounding period uses the rate for that fraction of a year.",
+     "example": {
+      "q": "Find the CI on ₹10,000 at 20% per annum for 1½ years, compounded half-yearly.",
+      "solution": "3 half-years at 10%: $10000 \\times 1.1^3 = 13310$ → CI $= ₹3{,}310$."
+     }
+    },
+    {
+     "id": "int-c4",
+     "name": "Different rates in different years",
+     "frequency": "common",
+     "howToSpot": "'8% in the first year and 10% in the second, compounded annually' — sometimes a loss year too.",
+     "formula": "A = P\\left(1+\\frac{r_1}{100}\\right)\\left(1+\\frac{r_2}{100}\\right)\\cdots",
+     "logic": "1. Write each year's own chip.\n2. Multiply them all with P.\n3. CI = A − P (or compare with another scenario).\n\nWhy: each year compounds on the running amount at its own rate.",
+     "example": {
+      "q": "₹25,000 is invested at 10% for the first year and 20% for the second, compounded annually. The amount is:",
+      "solution": "$25000 \\times 1.1 \\times 1.2 = ₹33{,}000$."
+     }
+    },
+    {
+     "id": "int-c5",
+     "name": "Scaling the CI (same rate, proportional principal)",
+     "frequency": "common",
+     "howToSpot": "The CI for one sum is given; the CI for another sum at the same rate and time is asked.",
+     "formula": "\\frac{CI_2}{CI_1} = \\frac{P_2}{P_1}",
+     "logic": "1. CI is proportional to P at fixed rate and time.\n2. Ratio the principals; scale the CI.\n3. For a changed time, apply the net-per-cent of the new period instead.\n\nWhy: every term of the CI formula is linear in P.",
+     "example": {
+      "q": "The CI on ₹20,000 for 2 years at 10% is ₹4,200. The CI on ₹30,000 for the same period and rate is:",
+      "solution": "$4200 \\times \\frac{30}{20} = ₹6{,}300$."
+     }
+    }
    ]
   },
   {
@@ -186,6 +312,69 @@
     "Applying the CI doubling chain to SI problems (SI doubles in T ⇒ 4× in 2T is FALSE at SI; it is 3×).",
     "Forgetting to compute SI from the given amounts before using the difference.",
     "Mixing up which of CI/SI is larger — CI is always ≥ SI for T ≥ 1."
+   ],
+   "notes": "### Why CI and SI differ\nFor the **first** year, CI and SI on the same sum at the same rate are identical. They part ways from the second year: CI earns interest on the earlier interest, SI never does. So the gap is exactly the *interest earned on the accumulated interest*.\n\n### Two years — the one-line formula\nThe difference is the first year's interest, re-earned once in the second year:\n$$CI - SI = P\\left(\\frac{R}{100}\\right)^2$$\n₹12,500 at 12%: $12500 \\times 0.12^2 = ₹180$.\nReverse: difference ₹50 at 10% → $P = \\frac{50 \\times 10000}{100} = ₹5{,}000$.\nNotice the shape: P × rate-fraction × rate-fraction. The rate fraction $\\frac{R}{100}$ appears once per extra year.\n\n### Three years\nThe second year's interest also re-earns in the third, and the first year's interest re-earns twice:\n$$CI - SI = P\\left(\\frac{R}{100}\\right)^2\\left(3 + \\frac{R}{100}\\right)$$\n₹10,000 at 10%: $10000 \\times 0.01 \\times 3.1 = ₹310$.\nAt small rates the factor is roughly 3 (for 3 years) or 2 (for 2 years) times $\\left(\\frac{R}{100}\\right)^2 P$.\n\n### CI and SI both given\nGiven both figures for the same sum, the **difference isolates the rate**:\n- 2 years: difference $= P\\left(\\frac{R}{100}\\right)^2$ and SI $= \\frac{2PR}{100}$ → divide: $\\frac{R}{100} = \\frac{\\text{difference} \\times 2}{SI}$ → $R = \\frac{200 \\times \\text{difference}}{SI}$.\nSI ₹800, CI ₹820 → $R = \\frac{200 \\times 20}{800} = 5\\%$, then $P = \\frac{800 \\times 100}{2 \\times 5} = ₹8{,}000$.\n- Then the CI itself is just SI + difference.\n\n### Doubling chains at CI\nAt CI a sum multiplies by the same factor every fixed period. If it **doubles in T years**:\n- 4 times in 2T, 8 times in 3T — powers of 2.\n- \"16 times\" = $2^4$ → 4T.\n₹P doubling in 6 years → 8 times in 18 years. At SI this does **not** work (linear growth: 3 times takes 2T) — check which interest the question uses.\n\n### Multiplier → rate\nAmounts given as multiples: \"becomes 1.44 times in 2 years at CI\" → chip² $= 1.44$ → chip $= 1.2$ → 20%. Common squares: 1.21 → 10%, 1.44 → 20%, 2.25 → 50%; cubes: 1.728 → 20%, 1.331 → 10%.\n\n### A quick worked case\n₹8,000 at 5% for 2 years: SI $= 800$, CI $= 8000(1.05^2 - 1) = 820$ — difference ₹20, which is exactly $8000 \\times 0.05^2$. Every 2-year question is this single multiplication in disguise; train yourself to see the rate fraction squared.\n\n### Quick revision\n- 2 years: $CI - SI = P\\left(\\frac{R}{100}\\right)^2$.\n- 3 years: $CI - SI = P\\left(\\frac{R}{100}\\right)^2\\left(3 + \\frac{R}{100}\\right)$.\n- Difference and SI given: $R = \\frac{200 \\times \\text{diff}}{SI}$ (2 years), then $P = \\frac{100 \\times SI}{2R}$.\n- CI doubling chain: ×2 in T → ×$2^k$ in kT.\n- Multiplier m in 2 years → rate $= 100(\\sqrt{m} - 1)$.\n",
+   "patterns": [
+    {
+     "id": "int-x1",
+     "name": "CI − SI for 2 years",
+     "frequency": "very common",
+     "howToSpot": "Same sum at the same rate for exactly 2 years — find the difference, or the sum from the difference.",
+     "formula": "CI - SI = P\\left(\\frac{R}{100}\\right)^2",
+     "logic": "1. Apply the formula directly for the difference.\n2. Reverse: $P = \\frac{\\text{difference} \\times 10000}{R^2}$.\n3. Check magnitude: at 10% the difference is only 1% of P.\n\nWhy: only the first year's interest is re-earned, once.",
+     "example": {
+      "q": "The difference between the compound and simple interest on a sum for 2 years at 10% per annum is ₹50. Find the sum.",
+      "solution": "$P = \\frac{50 \\times 10000}{100} = ₹5{,}000$. Check: $5000 \\times 0.01 = 50$."
+     }
+    },
+    {
+     "id": "int-x2",
+     "name": "CI − SI for 3 years",
+     "frequency": "very common",
+     "howToSpot": "'For 3 years' with both interests asked or their difference.",
+     "formula": "CI - SI = P\\left(\\frac{R}{100}\\right)^2\\left(3 + \\frac{R}{100}\\right)",
+     "logic": "1. Compute $\\left(\\frac{R}{100}\\right)^2$ and multiply by $\\left(3 + \\frac{R}{100}\\right)$.\n2. Multiply by P (or divide the difference by this factor to get P).\n3. At 10% the factor is 3.1; the difference is 3.1% of P.\n\nWhy: two extra 'interest-on-interest' effects stack up in year three.",
+     "example": {
+      "q": "The difference between CI and SI on ₹10,000 for 3 years at 10% per annum is:",
+      "solution": "$10000 \\times (0.1)^2 \\times 3.1 = ₹310$."
+     }
+    },
+    {
+     "id": "int-x3",
+     "name": "CI and SI both given — find rate and sum",
+     "frequency": "common",
+     "howToSpot": "Both the SI and the CI (2 or 3 years) are given for the same sum; the rate or the sum is asked.",
+     "formula": "\\frac{CI - SI}{SI} = \\frac{\\frac{R}{100}}{n}\\ \\ (n \\text{ years}) \\Rightarrow R = \\frac{200\\,(CI-SI)}{SI}\\ \\text{for 2 years}",
+     "logic": "1. Difference = interest-on-interest; SI = n × first-year interest.\n2. Divide difference by SI to get $\\frac{R}{100n}$; find R.\n3. Then $P = \\frac{100 \\times SI}{nR}$; CI = SI + difference if asked.\n\nWhy: both quantities share the same P and first-year interest.",
+     "example": {
+      "q": "The simple interest on a sum for 2 years is ₹800 and the compound interest is ₹820. Find the rate per cent.",
+      "solution": "$R = \\frac{200 \\times 20}{800} = 5\\%$; P $= ₹8{,}000$."
+     }
+    },
+    {
+     "id": "int-x4",
+     "name": "Doubling chain at CI (powers)",
+     "frequency": "common",
+     "howToSpot": "'A sum doubles in T years at CI — when is it 4, 8, 16 times?'",
+     "formula": "\\times 2 \\text{ in } T \\ \\Rightarrow\\ \\times 2^k \\text{ in } kT",
+     "logic": "1. Write the target as a power of 2: 8 = 2³, 16 = 2⁴.\n2. Multiply T by that power.\n3. At SI the same question gives T × (n − 1) — don't mix the two.\n\nWhy: CI multiplies by a constant factor per period.",
+     "example": {
+      "q": "A sum doubles itself in 6 years at compound interest. In how many years will it become 8 times itself?",
+      "solution": "$8 = 2^3$ → $3 \\times 6 = 18$ years."
+     }
+    },
+    {
+     "id": "int-x5",
+     "name": "Multiplier in 2 years — root the chip",
+     "frequency": "common",
+     "howToSpot": "'Becomes 2.25 times / 1.69 times itself in 2 years at CI' — find the rate.",
+     "formula": "R = 100\\left(\\sqrt{m} - 1\\right)",
+     "logic": "1. Take the square root of the multiplier (2 years) or cube root (3 years).\n2. Subtract 1 and convert to a per cent.\n3. Known pairs: 1.21 → 10%, 1.44 → 20%, 2.25 → 50%; 1.728 → 20% (3 years).\n\nWhy: the multiplier is the chip raised to the number of years.",
+     "example": {
+      "q": "A sum becomes 2.25 times itself in 2 years at compound interest. The rate per annum is:",
+      "solution": "$\\sqrt{2.25} = 1.5$ → $R = 50\\%$."
+     }
+    }
    ]
   },
   {
@@ -237,6 +426,69 @@
     "Counting n instalments but compounding only n − 1 times (or the reverse).",
     "In the SI formula, taking $\\frac{n(n+1)}{2}$ instead of $\\frac{n(n-1)}{2}$.",
     "Forgetting the final row must hit exactly zero — always verify the tabular closure."
+   ],
+   "notes": "### The idea: instalments repay principal plus interest\nA loan of P is cleared by **n equal annual instalments** of ₹x paid at the **end** of each year. Each instalment must cover (a) its share of the principal and (b) interest for the time the money stayed with the borrower.\n\n### Present value — the one rule\nThe instalment paid after k years is worth only $\\frac{x}{(1+r)^k}$ **today**, where $r = \\frac{R}{100}$. The loan equals the present values of all instalments:\n$$P = \\frac{x}{1+r} + \\frac{x}{(1+r)^2} + \\cdots + \\frac{x}{(1+r)^n}$$\nTake the common denominator and solve for x. At 10% for 2 years:\n$$P = x\\left(\\frac{10}{11} + \\frac{100}{121}\\right) = \\frac{210x}{121}$$\nso P = 2,520 → $x = \\frac{2520 \\times 121}{210} = ₹1{,}452$.\nThe tabular check: year 1 debt $= 2520 \\times 1.1 - 1452 = 1320$; year 2: $1320 \\times 1.1 - 1452 = 0$. Zero after the last instalment confirms the answer.\n\n### Ready denominators\n| Rate | 2 instalments | 3 instalments |\n|---|---|---|\n| 10% | $\\frac{210}{121}x$ | $\\frac{3310}{1331}x$ |\n| 20% | $\\frac{55}{36}x$ | $\\frac{455}{216}x$ |\n| 25% | $\\frac{36}{25}x$ | $\\frac{244}{125}x$ |\nEach entry: P = factor × x, so $x = P \\div$ factor. Every fraction comes from chips: $\\frac{10}{11} + \\frac{100}{121}$ etc.\n\n### Simple-interest instalments\nHere interest accrues on the **outstanding principal**, but the standard exam shortcut (which is exact for the usual 'interest on whole period deducted' reading) is:\n$$P = nx - \\frac{r}{100}\\,x\\,\\frac{n(n-1)}{2}$$\nThe second term knocks off the interest not payable because later instalments return their money earlier. ₹1,200 at 10% in 5 annual instalments: $1200 = 5x - 0.1x \\times 10 = 4x$ → x = ₹300.\nA tabular SI walk (add interest on the balance, subtract the instalment) must end at zero; use it to verify small cases.\n\n### Hire purchase / down payment\nTwo shapes:\n1. **Balance carried at a rate, cleared by equal instalments** — apply the present-value rule to the *balance*, not the cash price. Cash price 2,500, down 400, balance 2,100 at 10% in 2 instalments: $\\frac{210x}{121} = 2100$ → x = ₹1{,}210.\n2. **Flat interest on the whole balance**: instalment $= \\frac{\\text{balance} + \\text{balance} \\times R \\times T/100}{\\text{number of instalments}}$. Balance 6,000 at 12% for 1 year in 12 monthly pieces: $\\frac{6000 + 720}{12} = ₹560$.\n\n### Present worth of a future payment\nThe same rule with one term: ₹1,815 due 2 years from now at 10% CI is worth $\\frac{1815}{1.21} = ₹1{,}500$ today. Discounting is the reverse of compounding.\n\n### Quick revision\n- $P = \\sum \\frac{x}{(1+r)^k}$ — one equation, one unknown x.\n- 10%, 2 years: $P = \\frac{210x}{121}$; 20%: $\\frac{55x}{36}$; 25%: $\\frac{36x}{25}$.\n- Verify by the zero-balance table.\n- SI shortcut: $P = nx - \\frac{rx}{100} \\cdot \\frac{n(n-1)}{2}$.\n- H.P. flat rate: (balance + flat interest) ÷ instalments.\n- Present worth = future value ÷ chip.\n",
+   "patterns": [
+    {
+     "id": "int-t1",
+     "name": "Two equal annual instalments (CI)",
+     "frequency": "very common",
+     "howToSpot": "'A loan is returned in 2 equal annual instalments of ₹x at R% CI' — find x, or the loan from x.",
+     "formula": "P = \\frac{x}{1+r} + \\frac{x}{(1+r)^2}",
+     "logic": "1. Set chips: 10% → $\\frac{10}{11}, \\frac{100}{121}$; 20% → $\\frac{5}{6}, \\frac{25}{36}$; 25% → $\\frac{4}{5}, \\frac{16}{25}$.\n2. Add the two fractions; P = x × their sum.\n3. $x = P \\times \\frac{\\text{denominator}}{\\text{numerator}}$. Verify with the zero-balance table.\n\nWhy: each instalment is discounted for the years it is delayed.",
+     "example": {
+      "q": "A borrows ₹2,520 from B at 10% CI and returns it in 2 equal annual instalments. Find each instalment.",
+      "solution": "$x = 2520 \\times \\frac{121}{210} = ₹1{,}452$. Table: 2520×1.1 − 1452 = 1320; 1320×1.1 − 1452 = 0."
+     }
+    },
+    {
+     "id": "int-t2",
+     "name": "Three equal annual instalments (CI)",
+     "frequency": "common",
+     "howToSpot": "'Cleared in 3 equal annual instalments' — same rule, one more term.",
+     "formula": "P = x\\left(\\frac{1}{1+r} + \\frac{1}{(1+r)^2} + \\frac{1}{(1+r)^3}\\right)",
+     "logic": "1. Build the three discounted fractions.\n2. 10%: $\\frac{13310 + 12100 + 11000}{14641}x = \\frac{36410x}{14641} = \\frac{3310x}{1331}$.\n3. $x = P \\times \\frac{1331}{3310}$ at 10% (for P = 3,310 → x = 1,331).\n\nWhy: one extra year means one extra discount factor.",
+     "example": {
+      "q": "A loan of ₹3,310 at 10% CI is to be repaid in 3 equal annual instalments. The value of each instalment is:",
+      "solution": "$x = 3310 \\times \\frac{1331}{3310} = ₹1{,}331$. (1210 + 1100 + 1000 = 3310.)"
+     }
+    },
+    {
+     "id": "int-t3",
+     "name": "Instalments with simple interest",
+     "frequency": "common",
+     "howToSpot": "'Repaid in n equal annual instalments at R% simple interest.'",
+     "formula": "P = nx - \\frac{r}{100}\\,x\\,\\frac{n(n-1)}{2}",
+     "logic": "1. Compute the deduction term $\\frac{n(n-1)}{2}$.\n2. Write $P = x\\left[n - \\frac{r}{100}\\cdot\\frac{n(n-1)}{2}\\right]$ and divide.\n3. Cross-check small cases with a balance table.\n\nWhy: instalments paid earlier save part of the interest.",
+     "example": {
+      "q": "A man borrows ₹1,200 at 10% simple interest and agrees to pay it in 5 equal annual instalments. Each instalment is:",
+      "solution": "$1200 = 5x - 0.1x(10) = 4x$ → x = ₹300."
+     }
+    },
+    {
+     "id": "int-t4",
+     "name": "Hire purchase with a down payment",
+     "frequency": "common",
+     "howToSpot": "'Cash price ₹C, ₹D paid down, the balance with interest in equal instalments.'",
+     "formula": "\\text{instalment} = \\frac{\\text{balance}(1 + RT/100)}{n}\\ \\ \\text{(flat) or PV on the balance}",
+     "logic": "1. Balance = cash price − down payment; work only with the balance.\n2. Flat interest: add balance × R × T/100 and split into instalments.\n3. Rate on balance: use the present-value rule with P = balance.\n\nWhy: the down payment never earns interest for the seller.",
+     "example": {
+      "q": "A TV costs ₹7,200 cash. A buyer pays ₹1,200 down and the balance with 12% per annum interest for 1 year in 12 equal monthly instalments (interest on the full balance). Find the monthly instalment.",
+      "solution": "Balance 6,000; interest $= 6000 \\times \\frac{12}{100} = 720$; total 6,720 → ₹560 per month."
+     }
+    },
+    {
+     "id": "int-t5",
+     "name": "Present worth of a future payment",
+     "frequency": "occasional",
+     "howToSpot": "'What is the present value of ₹A due in T years at R%?'",
+     "formula": "\\text{PW} = \\frac{A}{(1 + r)^T}",
+     "logic": "1. Divide the future amount by the chip T times.\n2. For instalment streams, do it term by term and add.\n3. Recognise it as the instalment formula with a single term.\n\nWhy: discounting is compounding in reverse.",
+     "example": {
+      "q": "Find the present worth of ₹1,815 due 2 years hence at 10% per annum compound interest.",
+      "solution": "$\\frac{1815}{1.1 \\times 1.1} = ₹1{,}500$."
+     }
+    }
    ]
   },
   {
@@ -292,57 +544,160 @@
     "For consecutive amounts, subtracting when you must divide (CI) or dividing when you must subtract (SI).",
     "Answering the rate as the chip (1.1) instead of 10%.",
     "In two-amount problems, forgetting to verify P comes out positive and sensible."
+   ],
+   "notes": "### Reading rates out of amounts\nWhen a sum **amounts** to given figures after whole years, the *growth between consecutive years* tells the story.\n\n### At compound interest — the ratio trick\nConsecutive yearly amounts differ by the year's interest, and\n$$\\frac{A_{T+1}}{A_T} = 1 + \\frac{R}{100}$$\nAmounts ₹4,840 (after 2 years) and ₹5,324 (after 3 years): $\\frac{5324}{4840} = 1.1$ → 10%. The principal itself is not needed. From the rate, walk back to P: $\\frac{4840}{1.21} = ₹4{,}000$.\n\n### At simple interest — the constant difference\nSI adds the **same rupees** every year, so consecutive amounts differ by exactly one year's interest:\n$$A_{T+1} - A_T = \\frac{PR}{100}$$\n₹4,500 and ₹5,000: yearly interest ₹500; the sum at the start $= 4500 - 500 = ₹4{,}000$; rate $= \\frac{500 \\times 100}{4000} = 12.5\\%$.\nNon-consecutive years: divide the amount gap by the year gap first. ₹6,800 in 3 years and ₹8,000 in 5 years → $\\frac{8000 - 6800}{2} = ₹600$ per year.\n\n### Two SIs on one sum\nIf the SI for 2 years is 1,200 and for 3 years 1,800, the difference (₹600) is one year's interest — and $\\frac{PR}{100} = 600$. That is one equation in two unknowns, so the question must supply P or R as well: P ₹10,000 → rate 6%; rate 6% → P ₹10,000. The two SIs together never determine both by themselves.\n\n### Amounts spanning 2y and 3y at SI — the classic pair\n'A sum amounts to A in 2 years and B in 3 years at SI':\nyearly interest $= B - A$; P $= A - 2(B - A) = 3A - 2B$; rate $= \\frac{(B-A) \\times 100}{P}$.\n₹5,200 (3 years) and ₹5,600 (4 years): yearly ₹400, P $= 5200 - 3 \\times 400 = ₹4{,}000$, rate 10%.\n\n### Finding P from an amount at CI\nDivide by the chips: amount ₹6,655 after 3 years at 10% → $\\frac{6655}{1.331} = ₹5{,}000$. Recognise $1.1^3 = 1.331$, $1.1^2 = 1.21$, $1.2^2 = 1.44$, $1.25^2 = 1.5625$.\n\n### A quick worked case\nCI, amounts 4,840 → 5,324: ratio 1.1, so 10% — and P $= \\frac{4840}{1.21} = ₹4{,}000$ if asked. The same pair at SI would mean yearly interest ₹484, P $= 4356$, rate $= \\frac{48400}{4356} = 11\\frac{1}{9}\\%$ — different answers from the same numbers, because the growth laws differ. Decide CI or SI first; the reading of the gap depends on it.\n\n### Where the marks go\n- Reading a CI gap as a rupee amount (it grows every year) or an SI gap as a ratio (it is constant) — the two standard swaps.\n- Forgetting to divide non-consecutive gaps by the year count: 3 → 5 years is TWO years of interest.\n- Discounting only once from a 3-year amount, or compounding when the question says simple.\n\n### Quick revision\n- CI: $\\frac{A_{T+1}}{A_T} = 1 + \\frac{R}{100}$ — rate needs no P.\n- SI: $A_{T+1} - A_T = $ one year's interest, constant every year.\n- Non-consecutive: divide the gap by the year gap.\n- P from SI amounts: subtract the accrued interest years × yearly interest.\n- P from CI amounts: divide by the chip power.\n",
+   "patterns": [
+    {
+     "id": "int-r1",
+     "name": "Principal from an amount at CI",
+     "frequency": "very common",
+     "howToSpot": "An amount after 2 or 3 whole years at a known CI rate is given; the original sum is asked.",
+     "formula": "P = \\frac{A}{\\left(1 + \\frac{R}{100}\\right)^T}",
+     "logic": "1. Recall the chip powers: $1.1^2 = 1.21$, $1.1^3 = 1.331$, $1.2^2 = 1.44$.\n2. Divide the amount by the right power.\n3. Sanity check: P must be smaller than the amount.\n\nWhy: discounting undoes the compounding exactly.",
+     "example": {
+      "q": "A sum amounts to ₹6,655 in 3 years at 10% per annum compound interest. The sum is:",
+      "solution": "$\\frac{6655}{1.331} = ₹5{,}000$. (1.331 = 1.1³.)"
+     }
+    },
+    {
+     "id": "int-r2",
+     "name": "Rate from consecutive CI amounts",
+     "frequency": "very common",
+     "howToSpot": "Amounts after T and T+1 years are given at CI; the rate is asked.",
+     "formula": "1 + \\frac{R}{100} = \\frac{A_{T+1}}{A_T}",
+     "logic": "1. Divide the later amount by the earlier one.\n2. Subtract 1 and read the rate.\n3. If P is asked, discount the given amount by the chips.\n\nWhy: one year of growth is exactly one chip.",
+     "example": {
+      "q": "A sum amounts to ₹4,840 in 2 years and to ₹5,324 in 3 years at compound interest. The rate per annum is:",
+      "solution": "$\\frac{5324}{4840} = 1.1$ → 10%."
+     }
+    },
+    {
+     "id": "int-r3",
+     "name": "Rate from consecutive SI amounts",
+     "frequency": "very common",
+     "howToSpot": "Amounts after T and T+1 years at SI; the rate (or the sum) is asked.",
+     "formula": "A_{T+1} - A_T = \\frac{PR}{100}, \\qquad P = A_T - (A_{T+1} - A_T)",
+     "logic": "1. The difference is one year's interest — constant at SI.\n2. Subtract it from the earlier amount to get P.\n3. Rate = difference ÷ P × 100.\n\nWhy: SI growth is arithmetic, so equal gaps hold equal interest.",
+     "example": {
+      "q": "A sum amounts to ₹4,500 in 1 year and ₹5,000 in 2 years at simple interest. Find the rate per annum.",
+      "solution": "Yearly interest $= 500$; P $= 4000$; rate $= \\frac{500 \\times 100}{4000} = 12.5\\%$."
+     }
+    },
+    {
+     "id": "int-r4",
+     "name": "Amounts spanning several years at SI",
+     "frequency": "common",
+     "howToSpot": "'Amounts to A in m years and B in n years (m ≠ n ± 1)' — or two SIs over different periods.",
+     "formula": "\\text{yearly interest} = \\frac{B - A}{n - m}",
+     "logic": "1. Divide the amount gap by the year gap.\n2. P = A − m × yearly interest.\n3. Rate = yearly ÷ P × 100. For two plain SIs, the difference of the SIs over 1 year is the yearly interest.\n\nWhy: the linear growth makes any two points fix the line.",
+     "example": {
+      "q": "A sum amounts to ₹6,800 in 3 years and ₹8,000 in 5 years at simple interest. Find the rate per annum.",
+      "solution": "Yearly $= \\frac{1200}{2} = 600$; P $= 6800 - 1800 = ₹5{,}000$; rate 12%."
+     }
+    },
+    {
+     "id": "int-r5",
+     "name": "Two SIs on the same sum",
+     "frequency": "common",
+     "howToSpot": "'SI for 2 years is x, for 3 years is y' — the difference pins the yearly interest; P or R comes from the question.",
+     "formula": "\\text{yearly interest} = \\frac{y - x}{\\Delta n}, \\quad R = \\frac{100 \\times \\text{yearly}}{P}, \\quad P = \\frac{100 \\times \\text{yearly}}{R}",
+     "logic": "1. Yearly interest = difference of the two SIs ÷ year gap.\n2. The yearly figure equals $\\frac{PR}{100}$ — one equation. If the question gives P, get R; if it gives R, get P.\n3. Check by recomputing both SIs.\n\nWhy: same sum, same rate — every extra year adds the same rupees.",
+     "example": {
+      "q": "The simple interest on a sum of ₹10,000 for 2 years is ₹1,200 and for 3 years is ₹1,800. The rate per annum is:",
+      "solution": "Yearly $= 1800 - 1200 = 600$; $R = \\frac{600 \\times 100}{10000} = 6\\%$."
+     }
+    }
    ]
   }
  ],
  "pyqPatterns": [
   {
-   "pattern": "SI: find P / R / T / interest",
+   "pattern": "Direct SI — find P, R or T",
    "frequency": "very common",
-   "howToSpot": "Direct SI = PRT/100 recall with one quantity missing, often disguised as 'amounts to ₹…'.",
-   "approach": "Convert amount to SI (SI = A − P), then flip the formula. n-times-in-T-years ⇒ R = 100(n−1)/T."
+   "howToSpot": "Three of principal, rate, time and SI (or the amount) are given; the fourth is asked.",
+   "approach": "SI = PRT/100; if an amount is given take SI = A − P first. 'n times in T years' gives R = 100(n−1)/T — the interest is only (n−1) times the principal.",
+   "subtopic": "int-si",
+   "example": {
+    "q": "A sum of money doubles itself in 10 years at simple interest. In how many years will it become triple itself?",
+    "solution": "R = 100/10 = 10%; tripling needs 200% interest → 20 years."
+   }
   },
   {
-   "pattern": "Amount at CI (P, A, R or T unknown)",
+   "pattern": "Amount at compound interest (chips)",
    "frequency": "very common",
-   "howToSpot": "A = P(1 + r/100)^T with one blank; clean chips like 11/10 or 6/5 are the norm.",
-   "approach": "Run or reverse the multiplier chips. Consecutive-year amounts: their ratio IS the chip."
+   "howToSpot": "P, R and a small whole number of years are given, compounded annually — amount or CI asked.",
+   "approach": "A = P(1 + R/100)^T using fraction chips (10% → 11/10). Net per cents: 2 years at 10% → 21%, at 20% → 44%. For P from A, divide by the chip power.",
+   "subtopic": "int-ci",
+   "example": {
+    "q": "What sum will amount to ₹6,655 in 3 years at 10% per annum compound interest?",
+    "solution": "6655 ÷ 1.1³ = 6655 ÷ 1.331 = ₹5,000."
+   }
   },
   {
-   "pattern": "CI − SI difference for 2 or 3 years",
+   "pattern": "CI − SI difference (2 or 3 years)",
    "frequency": "very common",
-   "howToSpot": "'The difference between CI and SI for 2 years at 10% is ₹50' — find P, R, or the difference itself.",
-   "approach": "2 years: $P(R/100)^2$. 3 years: $P(R/100)^2(3 + R/100)$. With CI and SI both given, the gap and the SI together pin down P and R."
+   "howToSpot": "'The difference between CI and SI for 2 (or 3) years is ₹d' — find the sum or the rate.",
+   "approach": "2 years: P(R/100)². 3 years: P(R/100)²(3 + R/100). Reverse the factor to get P. With both CI and SI given, R = 200 × difference/SI for 2 years.",
+   "subtopic": "int-ci-si-diff",
+   "example": {
+    "q": "The difference between the compound interest and simple interest on a sum for 2 years at 10% per annum is ₹50. The sum is:",
+    "solution": "P = 50 × 10000/100 = ₹5,000."
+   }
   },
   {
    "pattern": "Half-yearly / quarterly compounding",
-   "frequency": "common",
-   "howToSpot": "'Compounded half-yearly/quarterly' appears in the question — the trap is mechanical.",
-   "approach": "Halve (or quarter) the rate and double (quadruple) the number of periods, then run chips."
+   "frequency": "very common",
+   "howToSpot": "'Compounded half-yearly or quarterly', usually for 1–2 years including halves like 1½ years.",
+   "approach": "Halve the rate and double the periods (quarter them for quarterly): A = P(1 + R/200)^(2T). Count periods carefully — 1½ years half-yearly is 3 periods.",
+   "subtopic": "int-ci",
+   "example": {
+    "q": "Find the compound interest on ₹10,000 at 20% per annum for 1½ years, compounded half-yearly.",
+    "solution": "3 half-years at 10%: 10000 × 1.1³ = 13310 → CI ₹3,310."
+   }
   },
   {
-   "pattern": "Doubling / tripling time",
+   "pattern": "Doubling / tripling chain",
    "frequency": "common",
-   "howToSpot": "'A sum doubles in 8 years; when 8 times?' (CI) or the SI version.",
-   "approach": "CI: powers of 2 chain (kT years for 2^k). SI: linear — 8× needs 7 units of the doubling interest."
+   "howToSpot": "'Doubles in T years — when is it 4, 8, 16 times?' at CI, or the same chain at SI.",
+   "approach": "CI: powers of 2 — 8 times in 3T. SI: linear — (n−1) rule, R = 100(n−1)/T. Mixing the two growth laws is the trap.",
+   "subtopic": "int-ci-si-diff",
+   "example": {
+    "q": "A sum doubles itself in 8 years at compound interest. In how many years will it become 8 times itself?",
+    "solution": "8 = 2³ → 3 × 8 = 24 years."
+   }
   },
   {
    "pattern": "Equal annual instalments",
    "frequency": "common",
-   "howToSpot": "Loan cleared in equal yearly payments at SI or CI; find the instalment or the loan.",
-   "approach": "Tabular grow-and-subtract for small cases; present-value sum for CI; the n·x − x·r·n(n−1)/200 formula for SI."
+   "howToSpot": "'A loan is repaid in 2 or 3 equal annual instalments at R% interest' — find the instalment or the loan.",
+   "approach": "Discount each instalment: P = Σ x/(1+r)^k. 10%, 2 years: P = 210x/121. Verify with a zero-balance table. SI version: P = nx − (r/100)x·n(n−1)/2.",
+   "subtopic": "int-instalments",
+   "example": {
+    "q": "A loan of ₹3,310 at 10% per annum compound interest is repaid in 3 equal annual instalments. Each instalment is:",
+    "solution": "3310 = x(10/11 + 100/121 + 1000/1331) → x = ₹1,331."
+   }
   },
   {
    "pattern": "Different rates in different years",
-   "frequency": "occasional",
-   "howToSpot": "'8% in the first year, 10% in the second…' — one sum, year-wise rates.",
-   "approach": "Multiply the year chips: (1.08)(1.10). Never average the rates."
+   "frequency": "common",
+   "howToSpot": "'8% in the first year, 10% in the second', compounded annually.",
+   "approach": "Multiply year-wise chips: A = P(1+r₁)(1+r₂). A negative year (loss) uses its own chip. Never average the rates.",
+   "subtopic": "int-ci",
+   "example": {
+    "q": "₹25,000 is invested at 10% for the first year and 20% for the second, compounded annually. The amount is:",
+    "solution": "25000 × 1.1 × 1.2 = ₹33,000."
+   }
   },
   {
-   "pattern": "CI and SI both given, find sum and rate",
+   "pattern": "Rate from consecutive amounts",
    "frequency": "common",
-   "howToSpot": "'SI for 2 years is ₹800, CI for 2 years is ₹832' — find P and R.",
-   "approach": "Gap = P(R/100)² and SI = PR·2/100: divide the equations to get R first, then P."
+   "howToSpot": "Amounts after two consecutive years are given — at CI they fix the ratio, at SI the difference.",
+   "approach": "CI: A₂/A₁ = 1 + R/100. SI: A₂ − A₁ = one year's interest = PR/100; subtract from the amount for P. Non-consecutive gaps: divide by the year gap.",
+   "subtopic": "int-rate-time-cases",
+   "example": {
+    "q": "A sum amounts to ₹4,840 in 2 years and ₹5,324 in 3 years at compound interest. The rate per annum is:",
+    "solution": "5324/4840 = 1.1 → 10%."
+   }
   }
  ],
  "solvedExamples": [
@@ -707,6 +1062,960 @@
    "subtopic": "int-rate-time-cases",
    "pattern": "consecutive SI amounts",
    "timeSec": 50
+  },
+  {
+   "id": "int-si-p01",
+   "q": "What is the simple interest on ₹6,500 at 8% per annum for 3 years?",
+   "figure": null,
+   "options": [
+    "₹1,500",
+    "₹1,560",
+    "₹1,620",
+    "₹1,440"
+   ],
+   "answer": 1,
+   "solution": "$\\frac{6500 \\times 8 \\times 3}{100} = ₹1{,}560$.",
+   "shortcut": "₹520 per year × 3 = ₹1,560.",
+   "difficulty": "easy",
+   "subtopic": "int-si",
+   "pattern": "int-s1",
+   "timeSec": 25
+  },
+  {
+   "id": "int-si-p02",
+   "q": "Find the simple interest on ₹9,000 at $6\\frac{1}{4}$% per annum for 2 years.",
+   "figure": null,
+   "options": [
+    "₹1,120",
+    "₹1,150",
+    "₹1,080",
+    "₹1,125"
+   ],
+   "answer": 3,
+   "solution": "$6\\frac{1}{4}\\% = \\frac{1}{16}$ → SI $= \\frac{9000 \\times 2}{16} = ₹1{,}125$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "int-si",
+   "pattern": "int-s1",
+   "timeSec": 25
+  },
+  {
+   "id": "int-si-p03",
+   "q": "A sum amounts to ₹5,475 in 4 years at 12.5% per annum simple interest. The sum is:",
+   "figure": null,
+   "options": [
+    "₹3,750",
+    "₹3,650",
+    "₹3,600",
+    "₹4,380"
+   ],
+   "answer": 1,
+   "solution": "SI in 4 years $= \\frac{12.5 \\times 4}{100} = \\frac{1}{2}$ of P → $1.5P = 5475$ → $P = ₹3{,}650$.",
+   "shortcut": "₹4,380 divides by 1.25 — the rate acts for 4 years, so the factor is 1.5.",
+   "difficulty": "medium",
+   "subtopic": "int-si",
+   "pattern": "int-s2",
+   "timeSec": 35
+  },
+  {
+   "id": "int-si-p04",
+   "q": "At what rate of simple interest per annum will ₹1,250 amount to ₹2,000 in 12 years?",
+   "figure": null,
+   "options": [
+    "4%",
+    "6%",
+    "5%",
+    "5.5%"
+   ],
+   "answer": 2,
+   "solution": "SI $= 750$; $R = \\frac{750 \\times 100}{1250 \\times 12} = 5\\%$.",
+   "shortcut": "₹62.50 per year on ₹1,250 = 5%.",
+   "difficulty": "easy",
+   "subtopic": "int-si",
+   "pattern": "int-s2",
+   "timeSec": 30
+  },
+  {
+   "id": "int-si-p05",
+   "q": "A sum of money becomes three times itself in 16 years at simple interest. The rate of interest per annum is:",
+   "figure": null,
+   "options": [
+    "12.5%",
+    "8.33%",
+    "20%",
+    "10%"
+   ],
+   "answer": 0,
+   "solution": "$R = \\frac{100(3-1)}{16} = 12.5\\%$.",
+   "shortcut": "20% uses n = 3 instead of n − 1 = 2 — the principal itself is not interest.",
+   "difficulty": "easy",
+   "subtopic": "int-si",
+   "pattern": "int-s3",
+   "timeSec": 25
+  },
+  {
+   "id": "int-si-p06",
+   "q": "In how many years will a sum of money become five times itself at 12% per annum simple interest?",
+   "figure": null,
+   "options": [
+    "25 years",
+    "40 years",
+    "$33\\frac{1}{3}$ years",
+    "30 years"
+   ],
+   "answer": 2,
+   "solution": "$T = \\frac{100(5-1)}{12} = \\frac{400}{12} = 33\\frac{1}{3}$ years.",
+   "shortcut": "25 years divides by 5 — the interest is only 4 times the principal.",
+   "difficulty": "medium",
+   "subtopic": "int-si",
+   "pattern": "int-s3",
+   "timeSec": 30
+  },
+  {
+   "id": "int-si-p07",
+   "q": "The simple interest on a sum at 4% per annum is $\\frac{1}{5}$ of the sum. The number of years for which the sum is invested is:",
+   "figure": null,
+   "options": [
+    "5 years",
+    "4 years",
+    "8 years",
+    "20 years"
+   ],
+   "answer": 0,
+   "solution": "$\\frac{4T}{100} = \\frac{1}{5}$ → $T = 5$ years.",
+   "shortcut": "20 years inverts the fraction (SI would be 5 times P).",
+   "difficulty": "easy",
+   "subtopic": "int-si",
+   "pattern": "int-s4",
+   "timeSec": 25
+  },
+  {
+   "id": "int-si-p08",
+   "q": "The simple interest on ₹15,000 at 6% per annum for 8 months is:",
+   "figure": null,
+   "options": [
+    "₹720",
+    "₹600",
+    "₹540",
+    "₹900"
+   ],
+   "answer": 1,
+   "solution": "8 months $= \\frac{2}{3}$ year → SI $= \\frac{15000 \\times 6 \\times 2}{100 \\times 3} = ₹600$.",
+   "shortcut": "₹900 forgets to convert months to years.",
+   "difficulty": "medium",
+   "subtopic": "int-si",
+   "pattern": "int-s4",
+   "timeSec": 30
+  },
+  {
+   "id": "int-si-p09",
+   "q": "The simple interest on ₹12,000 at 8% per annum for 3 years exceeds the simple interest on ₹10,000 at 7.5% per annum for 3 years by:",
+   "figure": null,
+   "options": [
+    "₹450",
+    "₹780",
+    "₹300",
+    "₹630"
+   ],
+   "answer": 3,
+   "solution": "$\\frac{12000 \\times 8 \\times 3}{100} = 2880$ and $\\frac{10000 \\times 7.5 \\times 3}{100} = 2250$. Difference $= ₹630$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "int-si",
+   "pattern": "int-s5",
+   "timeSec": 35
+  },
+  {
+   "id": "int-si-p10",
+   "q": "The simple interest on a certain sum at 6% per annum for 2 years is ₹1,680. The simple interest on double the sum at half the rate for the same time is:",
+   "figure": null,
+   "options": [
+    "₹840",
+    "₹3,360",
+    "₹1,680",
+    "₹2,520"
+   ],
+   "answer": 2,
+   "solution": "SI scales as P × R: $2 \\times \\frac{1}{2} = 1$ → the interest is unchanged, ₹1,680.",
+   "shortcut": "₹3,360 doubles only the principal; the halved rate pulls it back.",
+   "difficulty": "hard",
+   "subtopic": "int-si",
+   "pattern": "int-s5",
+   "timeSec": 40
+  },
+  {
+   "id": "int-ci-p01",
+   "q": "The compound interest on ₹12,000 at 10% per annum for 2 years, compounded annually, is:",
+   "figure": null,
+   "options": [
+    "₹2,400",
+    "₹2,640",
+    "₹2,520",
+    "₹2,200"
+   ],
+   "answer": 2,
+   "solution": "$12000 \\times \\frac{11}{10} \\times \\frac{11}{10} = 14520$ → CI $= 14520 - 12000 = ₹2{,}520$.",
+   "shortcut": "₹2,400 is the simple interest — compounding adds ₹120 more.",
+   "difficulty": "easy",
+   "subtopic": "int-ci",
+   "pattern": "int-c1",
+   "timeSec": 25
+  },
+  {
+   "id": "int-ci-p02",
+   "q": "Find the compound interest on ₹8,000 at 15% per annum for 2 years.",
+   "figure": null,
+   "options": [
+    "₹2,580",
+    "₹2,400",
+    "₹2,500",
+    "₹2,700"
+   ],
+   "answer": 0,
+   "solution": "$8000 \\times \\frac{23}{20} \\times \\frac{23}{20} = 10580$ → CI $= ₹2{,}580$.",
+   "shortcut": "Net $= 32.25\\%$ (not 30%): $15 + 15 + 2.25$.",
+   "difficulty": "medium",
+   "subtopic": "int-ci",
+   "pattern": "int-c1",
+   "timeSec": 30
+  },
+  {
+   "id": "int-ci-p03",
+   "q": "Find the compound interest on ₹6,250 at 4% per annum for 2 years.",
+   "figure": null,
+   "options": [
+    "₹500",
+    "₹525",
+    "₹510",
+    "₹520"
+   ],
+   "answer": 2,
+   "solution": "$4\\% = \\frac{1}{25}$ → $6250 \\times \\frac{26}{25} \\times \\frac{26}{25} = 6760$. CI $= ₹510$.",
+   "shortcut": "₹500 is SI; the extra ₹10 is interest on the first year's interest.",
+   "difficulty": "medium",
+   "subtopic": "int-ci",
+   "pattern": "int-c2",
+   "timeSec": 30
+  },
+  {
+   "id": "int-ci-p04",
+   "q": "Find the compound interest on ₹20,000 at $12\\frac{1}{2}\\%$ per annum for 2 years.",
+   "figure": null,
+   "options": [
+    "₹5,000",
+    "₹5,312.50",
+    "₹5,400",
+    "₹5,250"
+   ],
+   "answer": 1,
+   "solution": "$12\\frac{1}{2}\\% = \\frac{1}{8}$ → $20000 \\times \\frac{81}{64} = ₹25{,}312.50$. CI $= ₹5{,}312.50$.",
+   "shortcut": "Net factor $\\frac{81}{64} = 1.265625$ → 26.5625% of 20,000.",
+   "difficulty": "hard",
+   "subtopic": "int-ci",
+   "pattern": "int-c2",
+   "timeSec": 40
+  },
+  {
+   "id": "int-ci-p05",
+   "q": "Find the compound interest on ₹10,000 at 20% per annum for 1½ years, interest compounded half-yearly.",
+   "figure": null,
+   "options": [
+    "₹3,200",
+    "₹3,000",
+    "₹3,410",
+    "₹3,310"
+   ],
+   "answer": 3,
+   "solution": "Rate per half-year $= 10\\%$, 3 periods → $10000 \\times 1.1^3 = 13310$. CI $= ₹3{,}310$.",
+   "shortcut": "₹3,000 treats it as one year at 20% plus simple half-year.",
+   "difficulty": "easy",
+   "subtopic": "int-ci",
+   "pattern": "int-c3",
+   "timeSec": 30
+  },
+  {
+   "id": "int-ci-p06",
+   "q": "Find the compound interest on ₹4,000 at 10% per annum for 1 year, compounded quarterly.",
+   "figure": null,
+   "options": [
+    "₹400",
+    "₹415.25",
+    "₹410",
+    "₹420.50"
+   ],
+   "answer": 1,
+   "solution": "4 quarters at $2.5\\%$: $4000 \\times \\left(\\frac{41}{40}\\right)^4 = ₹4{,}415.25$. CI $= ₹415.25$.",
+   "shortcut": "₹400 is the annual-compounding figure; quarterly always beats it.",
+   "difficulty": "hard",
+   "subtopic": "int-ci",
+   "pattern": "int-c3",
+   "timeSec": 45
+  },
+  {
+   "id": "int-ci-p07",
+   "q": "A man invests ₹25,000 for two years, compounded annually. The rate is 10% for the first year and 20% for the second year. The amount he receives is:",
+   "figure": null,
+   "options": [
+    "₹32,500",
+    "₹30,250",
+    "₹33,750",
+    "₹33,000"
+   ],
+   "answer": 3,
+   "solution": "$25000 \\times \\frac{11}{10} \\times \\frac{6}{5} = ₹33{,}000$.",
+   "shortcut": "₹32,500 averages the two rates — multiply the chips instead.",
+   "difficulty": "easy",
+   "subtopic": "int-ci",
+   "pattern": "int-c4",
+   "timeSec": 30
+  },
+  {
+   "id": "int-ci-p08",
+   "q": "₹40,000 is invested at compound interest: 5% in the first year and 8% in the second year. The compound interest earned is:",
+   "figure": null,
+   "options": [
+    "₹5,200",
+    "₹5,600",
+    "₹5,360",
+    "₹5,408"
+   ],
+   "answer": 2,
+   "solution": "$40000 \\times \\frac{21}{20} \\times \\frac{27}{25} = ₹45{,}360$ → CI $= ₹5{,}360$.",
+   "shortcut": "₹5,408 wrongly applies 8% to the interest earned in year one.",
+   "difficulty": "hard",
+   "subtopic": "int-ci",
+   "pattern": "int-c4",
+   "timeSec": 40
+  },
+  {
+   "id": "int-ci-p09",
+   "q": "The compound interest on ₹20,000 for 2 years at 10% per annum is ₹4,200. The compound interest on ₹30,000 for the same period at the same rate is:",
+   "figure": null,
+   "options": [
+    "₹6,300",
+    "₹6,200",
+    "₹6,600",
+    "₹6,000"
+   ],
+   "answer": 0,
+   "solution": "CI is proportional to P: $4200 \\times \\frac{30}{20} = ₹6{,}300$.",
+   "shortcut": "₹6,600 would follow 3 × 2,200 (SI scaling) — keep the CI base 4,200.",
+   "difficulty": "medium",
+   "subtopic": "int-ci",
+   "pattern": "int-c5",
+   "timeSec": 30
+  },
+  {
+   "id": "int-ci-p10",
+   "q": "The compound interest on a certain sum for 2 years at 20% per annum is ₹880. The compound interest on triple the sum for 1 year at the same rate is:",
+   "figure": null,
+   "options": [
+    "₹1,320",
+    "₹1,200",
+    "₹1,100",
+    "₹1,440"
+   ],
+   "answer": 1,
+   "solution": "$CI = 44\\%$ of P → $P = \\frac{880}{0.44} = ₹2{,}000$. Triple sum $= ₹6{,}000$; 1 year at 20% → CI $= ₹1{,}200$.",
+   "shortcut": "₹1,320 scales the 2-year figure — the new period is only 1 year.",
+   "difficulty": "hard",
+   "subtopic": "int-ci",
+   "pattern": "int-c5",
+   "timeSec": 45
+  },
+  {
+   "id": "int-ci-si-diff-p01",
+   "q": "The difference between the compound interest and the simple interest on ₹12,500 at 12% per annum for 2 years is:",
+   "figure": null,
+   "options": [
+    "₹150",
+    "₹180",
+    "₹200",
+    "₹160"
+   ],
+   "answer": 1,
+   "solution": "$12500 \\times \\left(\\frac{12}{100}\\right)^2 = ₹180$.",
+   "shortcut": "₹150 scales linearly with the rate; the difference grows as the square.",
+   "difficulty": "easy",
+   "subtopic": "int-ci-si-diff",
+   "pattern": "int-x1",
+   "timeSec": 25
+  },
+  {
+   "id": "int-ci-si-diff-p02",
+   "q": "The difference between the compound interest and the simple interest on a sum for 2 years at 10% per annum is ₹50. The sum is:",
+   "figure": null,
+   "options": [
+    "₹4,500",
+    "₹5,500",
+    "₹6,000",
+    "₹5,000"
+   ],
+   "answer": 3,
+   "solution": "$P = \\frac{50 \\times 10000}{10^2} = ₹5{,}000$.",
+   "shortcut": "₹500 divides by 10 — the difference uses the rate squared.",
+   "difficulty": "medium",
+   "subtopic": "int-ci-si-diff",
+   "pattern": "int-x1",
+   "timeSec": 30
+  },
+  {
+   "id": "int-ci-si-diff-p03",
+   "q": "The difference between the compound interest and the simple interest on ₹10,000 for 3 years at 10% per annum is:",
+   "figure": null,
+   "options": [
+    "₹300",
+    "₹310",
+    "₹331",
+    "₹210"
+   ],
+   "answer": 1,
+   "solution": "$10000 \\times (0.1)^2 \\times (3 + 0.1) = 10000 \\times 0.031 = ₹310$.",
+   "shortcut": "₹331 is the full third-year CI on 10,000, not the difference.",
+   "difficulty": "medium",
+   "subtopic": "int-ci-si-diff",
+   "pattern": "int-x2",
+   "timeSec": 30
+  },
+  {
+   "id": "int-ci-si-diff-p04",
+   "q": "The difference between the compound interest and the simple interest on a sum for 3 years at 10% per annum is ₹310. The sum is:",
+   "figure": null,
+   "options": [
+    "₹9,000",
+    "₹12,000",
+    "₹10,000",
+    "₹10,500"
+   ],
+   "answer": 2,
+   "solution": "Factor $= (0.1)^2 \\times 3.1 = 0.031$ → $P = \\frac{310}{0.031} = ₹10{,}000$.",
+   "shortcut": "Using the 2-year formula gives ₹31,000 — count 3 years here.",
+   "difficulty": "hard",
+   "subtopic": "int-ci-si-diff",
+   "pattern": "int-x2",
+   "timeSec": 40
+  },
+  {
+   "id": "int-ci-si-diff-p05",
+   "q": "The simple interest on a certain sum for 2 years at the same rate is ₹800 and the compound interest is ₹820. The rate of interest per annum is:",
+   "figure": null,
+   "options": [
+    "5%",
+    "4%",
+    "2.5%",
+    "6.25%"
+   ],
+   "answer": 0,
+   "solution": "$R = \\frac{200 \\times (820-800)}{800} = 5\\%$.",
+   "shortcut": "2.5% halves where it should double: difference = P(R/100)², SI = 2PR/100.",
+   "difficulty": "medium",
+   "subtopic": "int-ci-si-diff",
+   "pattern": "int-x3",
+   "timeSec": 35
+  },
+  {
+   "id": "int-ci-si-diff-p06",
+   "q": "The simple interest on a sum for 2 years is ₹960 and the compound interest is ₹998.40. The rate of interest per annum is:",
+   "figure": null,
+   "options": [
+    "5%",
+    "4%",
+    "8%",
+    "10%"
+   ],
+   "answer": 2,
+   "solution": "Difference $= 38.40 = P\\left(\\frac{R}{100}\\right)^2$ and $\\frac{2PR}{100} = 960$ → $PR = 48000$. So $48000 \\times \\frac{R}{10000} = 38.40$ → $R = 8\\%$.",
+   "shortcut": "Then P = 6,000; the CI checks as 998.40.",
+   "difficulty": "hard",
+   "subtopic": "int-ci-si-diff",
+   "pattern": "int-x3",
+   "timeSec": 45
+  },
+  {
+   "id": "int-ci-si-diff-p07",
+   "q": "A sum of money doubles itself in 6 years at compound interest. In how many years will it become 8 times itself?",
+   "figure": null,
+   "options": [
+    "18 years",
+    "12 years",
+    "24 years",
+    "21 years"
+   ],
+   "answer": 0,
+   "solution": "$8 = 2^3$ → $3 \\times 6 = 18$ years.",
+   "shortcut": "24 years is the SI-style chain (1 + 3 × 6 used loosely) — powers, not multiples, at CI.",
+   "difficulty": "easy",
+   "subtopic": "int-ci-si-diff",
+   "pattern": "int-x4",
+   "timeSec": 25
+  },
+  {
+   "id": "int-ci-si-diff-p08",
+   "q": "A sum becomes four times itself in 10 years at compound interest. In how many years will the same sum become 32 times itself?",
+   "figure": null,
+   "options": [
+    "40 years",
+    "25 years",
+    "30 years",
+    "50 years"
+   ],
+   "answer": 1,
+   "solution": "$4 = 2^2$ → doubling time 5 years; $32 = 2^5$ → $5 \\times 5 = 25$ years.",
+   "shortcut": "The doubling time is 5, not 10 — 4 times needs only two doublings.",
+   "difficulty": "medium",
+   "subtopic": "int-ci-si-diff",
+   "pattern": "int-x4",
+   "timeSec": 30
+  },
+  {
+   "id": "int-ci-si-diff-p09",
+   "q": "A sum invested at compound interest becomes 2.25 times itself in 2 years. The rate of interest per annum is:",
+   "figure": null,
+   "options": [
+    "25%",
+    "60%",
+    "45%",
+    "50%"
+   ],
+   "answer": 3,
+   "solution": "Chip $= \\sqrt{2.25} = 1.5$ → $R = 50\\%$.",
+   "shortcut": "25% would compound to only 1.5625 times.",
+   "difficulty": "medium",
+   "subtopic": "int-ci-si-diff",
+   "pattern": "int-x5",
+   "timeSec": 30
+  },
+  {
+   "id": "int-ci-si-diff-p10",
+   "q": "A sum becomes 1.728 times itself in 3 years at compound interest, compounded annually. The rate of interest per annum is:",
+   "figure": null,
+   "options": [
+    "12%",
+    "24%",
+    "20%",
+    "18%"
+   ],
+   "answer": 2,
+   "solution": "Cube root: $1.2^3 = 1.728$ → $R = 20\\%$.",
+   "shortcut": "24% would give $1.24^3 \\approx 1.907$ — test the known cube 1.728 = 1.2³.",
+   "difficulty": "hard",
+   "subtopic": "int-ci-si-diff",
+   "pattern": "int-x5",
+   "timeSec": 40
+  },
+  {
+   "id": "int-instalments-p01",
+   "q": "A borrows ₹2,520 from B at 10% per annum compound interest and agrees to return the whole amount in 2 equal annual instalments. The value of each instalment is:",
+   "figure": null,
+   "options": [
+    "₹1,260",
+    "₹1,386",
+    "₹1,500",
+    "₹1,452"
+   ],
+   "answer": 3,
+   "solution": "$2520 = x\\left(\\frac{10}{11} + \\frac{100}{121}\\right) = \\frac{210x}{121}$ → x = ₹1,452.",
+   "shortcut": "₹1,260 is just half the loan — interest is still due on the unpaid half.",
+   "difficulty": "medium",
+   "subtopic": "int-instalments",
+   "pattern": "int-t1",
+   "timeSec": 35
+  },
+  {
+   "id": "int-instalments-p02",
+   "q": "A sum of ₹660 is borrowed at 20% per annum compound interest and repaid in 2 equal annual instalments. Each instalment is:",
+   "figure": null,
+   "options": [
+    "₹330",
+    "₹432",
+    "₹400",
+    "₹450"
+   ],
+   "answer": 1,
+   "solution": "$660 = x\\left(\\frac{5}{6} + \\frac{25}{36}\\right) = \\frac{55x}{36}$ → x = ₹432.",
+   "shortcut": "Table check: 660×1.2 − 432 = 360; 360×1.2 − 432 = 0.",
+   "difficulty": "hard",
+   "subtopic": "int-instalments",
+   "pattern": "int-t1",
+   "timeSec": 40
+  },
+  {
+   "id": "int-instalments-p03",
+   "q": "A man takes a loan of ₹900 at 25% per annum compound interest and clears it in two equal annual instalments. The amount of each instalment is:",
+   "figure": null,
+   "options": [
+    "₹450",
+    "₹562.50",
+    "₹700",
+    "₹625"
+   ],
+   "answer": 3,
+   "solution": "$900 = x\\left(\\frac{4}{5} + \\frac{16}{25}\\right) = \\frac{36x}{25}$ → x = ₹625.",
+   "shortcut": "Check: 900×1.25 − 625 = 500; 500×1.25 − 625 = 0.",
+   "difficulty": "hard",
+   "subtopic": "int-instalments",
+   "pattern": "int-t1",
+   "timeSec": 40
+  },
+  {
+   "id": "int-instalments-p04",
+   "q": "A loan of ₹3,310 is to be repaid in 3 equal annual instalments at 10% per annum compound interest. Each instalment is:",
+   "figure": null,
+   "options": [
+    "₹1,331",
+    "₹1,210",
+    "₹1,100",
+    "₹1,440"
+   ],
+   "answer": 0,
+   "solution": "$3310 = x\\left(\\frac{10}{11} + \\frac{100}{121} + \\frac{1000}{1331}\\right) = \\frac{3310x}{1331}$ → x = ₹1,331.",
+   "shortcut": "The present values 1,210 + 1,100 + 1,000 add back to 3,310.",
+   "difficulty": "medium",
+   "subtopic": "int-instalments",
+   "pattern": "int-t2",
+   "timeSec": 35
+  },
+  {
+   "id": "int-instalments-p05",
+   "q": "A debt of ₹910 at 20% per annum compound interest is discharged in 3 equal annual instalments. The value of each instalment is:",
+   "figure": null,
+   "options": [
+    "₹350",
+    "₹400",
+    "₹432",
+    "₹455"
+   ],
+   "answer": 2,
+   "solution": "$910 = x\\left(\\frac{5}{6} + \\frac{25}{36} + \\frac{125}{216}\\right) = \\frac{455x}{216}$ → x = ₹432.",
+   "shortcut": "Fractions $\\frac{180 + 150 + 125}{216}$ share the denominator $6^3$.",
+   "difficulty": "hard",
+   "subtopic": "int-instalments",
+   "pattern": "int-t2",
+   "timeSec": 45
+  },
+  {
+   "id": "int-instalments-p06",
+   "q": "A man borrows ₹488 at 25% per annum compound interest and repays it in 3 equal annual instalments. Each instalment is:",
+   "figure": null,
+   "options": [
+    "₹250",
+    "₹200",
+    "₹300",
+    "₹244"
+   ],
+   "answer": 0,
+   "solution": "$488 = x\\left(\\frac{4}{5} + \\frac{16}{25} + \\frac{64}{125}\\right) = \\frac{244x}{125}$ → x = ₹250.",
+   "shortcut": "Sum of fractions $\\frac{100 + 80 + 64}{125} = \\frac{244}{125}$.",
+   "difficulty": "hard",
+   "subtopic": "int-instalments",
+   "pattern": "int-t2",
+   "timeSec": 45
+  },
+  {
+   "id": "int-instalments-p07",
+   "q": "A man borrows ₹1,200 at 10% per annum simple interest and agrees to repay it in 5 equal annual instalments. The value of each instalment is:",
+   "figure": null,
+   "options": [
+    "₹240",
+    "₹320",
+    "₹300",
+    "₹360"
+   ],
+   "answer": 2,
+   "solution": "$1200 = 5x - \\frac{10}{100}x \\times 10 = 4x$ → x = ₹300.",
+   "shortcut": "₹240 ignores the interest; ₹360 adds it the wrong way.",
+   "difficulty": "medium",
+   "subtopic": "int-instalments",
+   "pattern": "int-t3",
+   "timeSec": 35
+  },
+  {
+   "id": "int-instalments-p08",
+   "q": "A sum of ₹740 is lent at 5% per annum simple interest and is to be paid back in 4 equal annual instalments. Each instalment is:",
+   "figure": null,
+   "options": [
+    "₹185",
+    "₹210",
+    "₹222",
+    "₹200"
+   ],
+   "answer": 3,
+   "solution": "$740 = 4x - \\frac{5}{100}x \\times 6 = 3.7x$ → x = ₹200.",
+   "shortcut": "The deduction $\\frac{n(n-1)}{2} = 6$ instalment-years of interest.",
+   "difficulty": "hard",
+   "subtopic": "int-instalments",
+   "pattern": "int-t3",
+   "timeSec": 40
+  },
+  {
+   "id": "int-instalments-p09",
+   "q": "The cash price of a scooter is ₹2,500. A buyer pays ₹400 down and agrees to pay the balance with interest at 10% per annum compound interest in 2 equal annual instalments. The value of each instalment is:",
+   "figure": null,
+   "options": [
+    "₹1,100",
+    "₹1,210",
+    "₹1,155",
+    "₹1,260"
+   ],
+   "answer": 1,
+   "solution": "Balance $= 2100 = \\frac{210x}{121}$ → x = ₹1,210.",
+   "shortcut": "Table check: 2100×1.1 − 1210 = 1100; 1100×1.1 − 1210 = 0.",
+   "difficulty": "hard",
+   "subtopic": "int-instalments",
+   "pattern": "int-t4",
+   "timeSec": 40
+  },
+  {
+   "id": "int-instalments-p10",
+   "q": "A television costs ₹7,200 in cash. A customer pays ₹1,200 as down payment and the balance with 12% per annum simple interest for 1 year in 12 equal monthly instalments, the interest being charged on the full balance. The monthly instalment is:",
+   "figure": null,
+   "options": [
+    "₹560",
+    "₹500",
+    "₹600",
+    "₹620"
+   ],
+   "answer": 0,
+   "solution": "Balance 6,000 + interest 720 = 6,720 → $\\frac{6720}{12} = ₹560$ per month.",
+   "shortcut": "₹500 ignores interest; ₹600 charges interest on the cash price.",
+   "difficulty": "medium",
+   "subtopic": "int-instalments",
+   "pattern": "int-t4",
+   "timeSec": 30
+  },
+  {
+   "id": "int-instalments-p11",
+   "q": "Find the present worth of ₹1,815 due 2 years hence at 10% per annum compound interest.",
+   "figure": null,
+   "options": [
+    "₹1,650",
+    "₹1,480",
+    "₹1,500",
+    "₹1,550"
+   ],
+   "answer": 2,
+   "solution": "$\\frac{1815}{1.1^2} = \\frac{1815}{1.21} = ₹1{,}500$.",
+   "shortcut": "₹1,650 discounts only one year.",
+   "difficulty": "easy",
+   "subtopic": "int-instalments",
+   "pattern": "int-t5",
+   "timeSec": 25
+  },
+  {
+   "id": "int-instalments-p12",
+   "q": "What sum of money today is equivalent to ₹1,331 payable 3 years from now, compound interest being 10% per annum?",
+   "figure": null,
+   "options": [
+    "₹1,000",
+    "₹1,100",
+    "₹1,210",
+    "₹900"
+   ],
+   "answer": 0,
+   "solution": "$\\frac{1331}{1.1^3} = ₹1{,}000$.",
+   "shortcut": "₹1,210 uses $1.1^2$ — three years need three chips.",
+   "difficulty": "medium",
+   "subtopic": "int-instalments",
+   "pattern": "int-t5",
+   "timeSec": 30
+  },
+  {
+   "id": "int-rate-time-cases-p01",
+   "q": "A sum amounts to ₹6,655 in 3 years at 10% per annum compound interest. The original sum is:",
+   "figure": null,
+   "options": [
+    "₹4,800",
+    "₹5,000",
+    "₹5,200",
+    "₹4,500"
+   ],
+   "answer": 1,
+   "solution": "$\\frac{6655}{1.331} = ₹5{,}000$.",
+   "shortcut": "₹6,000 forgets that 6,655 already includes three years of growth.",
+   "difficulty": "easy",
+   "subtopic": "int-rate-time-cases",
+   "pattern": "int-r1",
+   "timeSec": 25
+  },
+  {
+   "id": "int-rate-time-cases-p02",
+   "q": "What sum will amount to ₹24,200 in 2 years at 10% per annum compound interest?",
+   "figure": null,
+   "options": [
+    "₹19,800",
+    "₹21,000",
+    "₹22,000",
+    "₹20,000"
+   ],
+   "answer": 3,
+   "solution": "$\\frac{24200}{1.21} = ₹20{,}000$.",
+   "shortcut": "₹22,000 divides only one chip (1.1).",
+   "difficulty": "medium",
+   "subtopic": "int-rate-time-cases",
+   "pattern": "int-r1",
+   "timeSec": 30
+  },
+  {
+   "id": "int-rate-time-cases-p03",
+   "q": "A sum amounts to ₹4,840 in 2 years and ₹5,324 in 3 years at compound interest. The rate of interest per annum is:",
+   "figure": null,
+   "options": [
+    "5%",
+    "10%",
+    "11%",
+    "12.5%"
+   ],
+   "answer": 1,
+   "solution": "$\\frac{5324}{4840} = 1.1$ → 10%.",
+   "shortcut": "The gap ₹484 is one year's interest on 4,840 — no principal needed.",
+   "difficulty": "easy",
+   "subtopic": "int-rate-time-cases",
+   "pattern": "int-r2",
+   "timeSec": 25
+  },
+  {
+   "id": "int-rate-time-cases-p04",
+   "q": "A sum amounts to ₹2,000 in 1 year and ₹2,120 in 2 years at compound interest. The rate per annum is:",
+   "figure": null,
+   "options": [
+    "6.5%",
+    "5%",
+    "6%",
+    "7%"
+   ],
+   "answer": 2,
+   "solution": "$\\frac{2120}{2000} = 1.06$ → 6%.",
+   "shortcut": "6.5% assumes simple-interest scaling.",
+   "difficulty": "medium",
+   "subtopic": "int-rate-time-cases",
+   "pattern": "int-r2",
+   "timeSec": 25
+  },
+  {
+   "id": "int-rate-time-cases-p05",
+   "q": "A sum amounts to ₹4,500 in 1 year and ₹5,000 in 2 years at simple interest. The rate of interest per annum is:",
+   "figure": null,
+   "options": [
+    "12.5%",
+    "10%",
+    "11%",
+    "15%"
+   ],
+   "answer": 0,
+   "solution": "Yearly interest $= 500$; P $= 4500 - 500 = 4000$; rate $= 12.5\\%$.",
+   "shortcut": "10% would need yearly interest 450, but the amounts differ by 500.",
+   "difficulty": "easy",
+   "subtopic": "int-rate-time-cases",
+   "pattern": "int-r3",
+   "timeSec": 25
+  },
+  {
+   "id": "int-rate-time-cases-p06",
+   "q": "A sum amounts to ₹5,500 in 2 years and ₹6,000 in 3 years at simple interest. The rate of interest per annum is:",
+   "figure": null,
+   "options": [
+    "9.09%",
+    "12%",
+    "10%",
+    "11%"
+   ],
+   "answer": 2,
+   "solution": "Yearly interest $= 500$; P $= 5500 - 1000 = 5000$; rate 10%.",
+   "shortcut": "₹500 is one year's interest; subtract two of them for P.",
+   "difficulty": "medium",
+   "subtopic": "int-rate-time-cases",
+   "pattern": "int-r3",
+   "timeSec": 30
+  },
+  {
+   "id": "int-rate-time-cases-p07",
+   "q": "A sum amounts to ₹6,800 in 3 years and ₹8,000 in 5 years at simple interest. The rate of interest per annum is:",
+   "figure": null,
+   "options": [
+    "12%",
+    "11.76%",
+    "10%",
+    "15%"
+   ],
+   "answer": 0,
+   "solution": "Yearly $= \\frac{8000 - 6800}{2} = 600$; P $= 6800 - 3(600) = 5000$; rate 12%.",
+   "shortcut": "₹600 per year, not 1,200 — the years 3 → 5 span two years.",
+   "difficulty": "medium",
+   "subtopic": "int-rate-time-cases",
+   "pattern": "int-r4",
+   "timeSec": 35
+  },
+  {
+   "id": "int-rate-time-cases-p08",
+   "q": "A sum amounts to ₹5,200 in 3 years and ₹5,600 in 4 years at simple interest. The sum and the rate are:",
+   "figure": null,
+   "options": [
+    "₹4,400 at 9.09%",
+    "₹4,000 at 10%",
+    "₹3,600 at 11.1%",
+    "₹4,800 at 8.33%"
+   ],
+   "answer": 1,
+   "solution": "Yearly interest $= 400$; P $= 5200 - 1200 = ₹4{,}000$; rate $= \\frac{400 \\times 100}{4000} = 10\\%$.",
+   "shortcut": "Divide the ₹400 gap by 1 year here; check P = 4000 + 1200 = 5200.",
+   "difficulty": "hard",
+   "subtopic": "int-rate-time-cases",
+   "pattern": "int-r4",
+   "timeSec": 40
+  },
+  {
+   "id": "int-rate-time-cases-p09",
+   "q": "The simple interest on a sum of ₹10,000 is ₹1,200 for 2 years and ₹1,800 for 3 years. The rate of interest per annum is:",
+   "figure": null,
+   "options": [
+    "5%",
+    "7.5%",
+    "8%",
+    "6%"
+   ],
+   "answer": 3,
+   "solution": "Yearly interest $= 1800 - 1200 = 600$; rate $= \\frac{600 \\times 100}{10000} = 6\\%$.",
+   "shortcut": "The two SIs must differ by exactly one year's interest — ₹600.",
+   "difficulty": "easy",
+   "subtopic": "int-rate-time-cases",
+   "pattern": "int-r5",
+   "timeSec": 30
+  },
+  {
+   "id": "int-rate-time-cases-p10",
+   "q": "The simple interest on a certain sum is ₹2,400 in 4 years and ₹3,600 in 6 years. If the rate is 10% per annum, the sum is:",
+   "figure": null,
+   "options": [
+    "₹5,400",
+    "₹6,600",
+    "₹6,000",
+    "₹4,800"
+   ],
+   "answer": 2,
+   "solution": "Yearly interest $= \\frac{3600 - 2400}{2} = 600$; P $= \\frac{600 \\times 100}{10} = ₹6{,}000$.",
+   "shortcut": "Check: $6000 \\times 10 \\times 4/100 = 2400$ and $\\times 6 = 3600$.",
+   "difficulty": "medium",
+   "subtopic": "int-rate-time-cases",
+   "pattern": "int-r5",
+   "timeSec": 35
+  },
+  {
+   "id": "int-rate-time-cases-p11",
+   "q": "A sum becomes 1.69 times itself in 2 years at compound interest. The rate of interest per annum is:",
+   "figure": null,
+   "options": [
+    "30%",
+    "34.5%",
+    "25%",
+    "32%"
+   ],
+   "answer": 0,
+   "solution": "$\\sqrt{1.69} = 1.3$ → 30% per annum.",
+   "shortcut": "34.5% divides the total growth by 2 — compounding needs the root.",
+   "difficulty": "hard",
+   "subtopic": "int-rate-time-cases",
+   "pattern": "int-r5",
+   "timeSec": 35
   }
  ]
 }
