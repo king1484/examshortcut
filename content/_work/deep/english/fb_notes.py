@@ -5,7 +5,7 @@ S["fb-collocations"] = {
 "notes": """### What a collocation blank really tests
 The sentence is grammatically complete with almost every option — *give attention, do attention, make attention* all parse. What decides the answer is partnership: English fixes which word teams up with which. You are not choosing the best word; you are recognising the only word that native usage allows.
 
-### The verb+ noun swaps that papers love
+### The verb + noun swaps that papers love
 - **pay** attention / a visit / a compliment / heed — never give, do or make.
 - **take** place / a decision / a step / a risk — never give or do.
 - **make** a mistake / progress / an effort / a noise — never do.
@@ -38,7 +38,7 @@ Ten chunks a day, tested in both directions (verb → partner, partner → verb)
  {"id": "fbc1", "name": "do / make / take / give / pay verb swap", "frequency": "very common",
   "howToSpot": "The blank is a verb before a noun like attention, place, a visit, a decision; the options are the swap-family (pay, give, do, make, take).",
   "formula": None,
-  "logic": "1. Read the noun after the blank — attention, place, visit are the tells.\n2. Recall the chunk: pay attention, take place, pay a visit, take a decision.\n3. Reject options that parse but do not partner (*give attention, make place for the event... unless 'make way' sense is meant — check the sentence).\n\n*Why it works:* the do/make/take family all fit grammar; only the fixed chunk fits usage, and the exam is testing exactly that.",
+  "logic": "1. Read the noun after the blank — attention, place, visit are the tells.\n2. Recall the chunk: pay attention, take place, pay a visit, take a decision.\n3. Reject options that parse but do not partner: *give attention*, *do a visit*, *make place* are all un-English.\n\n*Why it works:* the do/make/take family all fit grammar; only the fixed chunk fits usage, and the exam is testing exactly that.",
   "example": {"q": "Please ___ attention to the instructions before the demo begins.", "solution": "**pay** attention — the chunk is pay attention; give, do and make attention are all un-English."}},
  {"id": "fbc2", "name": "Adjective + noun partnership", "frequency": "very common",
   "howToSpot": "The blank is an adjective before rain, escape, sleep, pledge; the options are near-synonym adjectives (heavy/strong, narrow/close, fast/quick).",
@@ -249,7 +249,7 @@ Confusable blanks offer pairs that differ by one letter or one sound: advice/adv
 - **practice** (noun) / **practise** (verb, British spelling): medical *practice*; lawyers *practise*.
 - **licence** (noun) / **license** (verb): a driving *licence*; premises *licensed*.
 - **belief** (noun) / **believe** (verb); **proof** (noun) / **prove** (verb); **bath** (noun) / **bathe** (verb).
-The noun ends in -ce / -ce-sound pairs the exam recycles endlessly. If the blank follows a or the, the noun is wanted; if it follows to or a subject, the verb.
+These -ce (noun) / -se (verb) pairs are recycled endlessly. If the blank follows a or the, the noun is wanted; if it follows to or a subject, the verb.
 
 ### The meaning twins
 - **lose** (misplace, fail to win) / **loose** (not tight): *come loose*, *lose the keys*.
@@ -270,9 +270,9 @@ Ask: what part of speech is the blank? Noun slots (after the, a, his, solemn...)
 Unlike collocations, confusables have no grey zone: only one member of each pair means what the sentence needs. One careful read beats guesswork; the decoys exist purely for candidates answering on shape-memory.
 
 ### Quick revision
-- advice/practise/licence = nouns; advise/practice(Br. verb)/license = verbs — check the slot.
+- advice/practice/licence = nouns; advise/practise/license = verbs (British usage) — check the slot.
 - lose = misplace; loose = not tight. affect = verb; effect = noun (usually).
-- stationary still; stationery pens. principal head/rule of money; principle belief.
+- stationary still; stationery pens. principal = head, chief or capital sum; principle = rule or belief.
 - censure = rebuke; censor = ban. allusion = reference; illusion = mirage.
 - continual = repeated; continuous = unbroken. personnel = staff; personal = private.
 """,
@@ -281,7 +281,7 @@ Unlike collocations, confusables have no grey zone: only one member of each pair
   "howToSpot": "Options are advice/advise, practice/practise, licence/license type pairs; the blank follows an article or a subject respectively.",
   "formula": None,
   "logic": "1. Fix the part of speech the slot needs: after the/a/his → noun; after to / a subject → verb.\n2. Take the matching twin: advice (n) vs advise (v); practise (v) vs practice (n).\n3. Read back — the completed phrase must be a standard unit (sound advice, advise somebody).\n\n*Why it works:* the twins share sound and differ only in class; the slot's neighbours (article vs to) already announce the class.",
-  "example": {"q": "The dietician gave me sound ___ on portion control.", "solution": "**advice** — the noun is wanted after 'gave me sound'; 'advise' is the verb and cannot follow an adjective as its object."}},
+  "example": {"q": "The dietician gave me sound ___ on portion control.", "solution": "**advice** — the noun is wanted after 'gave me sound'; 'advise' is a verb and cannot follow the adjective 'sound'."}},
  {"id": "fbh2", "name": "lose / loose and affect / effect", "frequency": "very common",
   "howToSpot": "The sentence is about misplacing, tightness, influence or results; the options are the two shape-twins plus derivatives.",
   "formula": None,
@@ -347,7 +347,7 @@ A whole family of idioms is two words long: **null and void** (invalid), **part 
   "howToSpot": "The sentence spans a time range or links exactly two parties; options are preposition pairs.",
   "formula": None,
   "logic": "1. Range (start ... end) → from ... to.\n2. Exactly two linked parties → between ... and; three or more → among.\n3. Confirm the pair's grammar — from never partners with and, between never with to.\n\n*Why it works:* the pairs are fixed by convention; the decoys mix partners that never travel together.",
-  "example": {"q": "The route runs ___ the tunnel ___ the old bridge.", "solution": "**from ... to** — a start-to-end range; 'between the tunnel and the bridge' would place the route physically between two objects."}},
+  "example": {"q": "The summer sale runs ___ 1 May ___ 15 May.", "solution": "**from ... to** — the fixed range pair; 'from ... and' and 'between ... to' mix partners that never travel together."}},
  {"id": "fbd4", "name": "Hardly / no sooner paired frames", "frequency": "common",
   "howToSpot": "The sentence opens with a fronted adverb frame and the blank completes it: options carry the second partner (than, when, then).",
   "formula": None,
