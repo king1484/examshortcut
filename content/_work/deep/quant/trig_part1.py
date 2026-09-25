@@ -1,4 +1,5 @@
 """Phase-2 deep content for quant/trigonometry — ratios, identities."""
+import math
 from fractions import Fraction as F
 
 from _lib import Sub
@@ -25,6 +26,9 @@ Given two sides of the right triangle: third side first (Pythagoras), then name 
 
 ### Combining ratios safely
 When an expression mixes functions ($\sec 60^\circ + \cosec 30^\circ$, $\cot 30^\circ + \tan 60^\circ$), reduce each term to the $\sin$/$\cos$ table values first, then add — do not invent product rules. The angle-difference formula $\tan(A - B) = \frac{\tan A - \tan B}{1 + \tan A \tan B}$ occasionally appears disguised as a pure 60/30 evaluation; recognising it turns a messy fraction into $\tan 30^\circ$.
+
+### The reciprocal rows (never leave home without them)
+Flip the main table for the rest: $\cosec 30^\circ = 2$, $\cosec 45^\circ = \sqrt2$, $\cosec 60^\circ = \frac{2}{\sqrt3}$; $\sec 60^\circ = 2$, $\sec 45^\circ = \sqrt2$, $\sec 30^\circ = \frac{2}{\sqrt3}$ (sec runs opposite to cosec); $\cot 30^\circ = \sqrt3$, $\cot 45^\circ = 1$, $\cot 60^\circ = \frac{1}{\sqrt3}$ — cot is tan read backwards. Expressions like $\cosec^2 30^\circ + \sec^2 45^\circ$ are then pure table work: $4 + 2 = 6$. Spot the reciprocal twins that cancel: $\cosec 30^\circ - \sec 60^\circ = 2 - 2 = 0$ and $\tan 30^\circ \tan 60^\circ = 1$.
 
 ### Quick revision
 - $\sin$ column $\frac{\sqrt{0,1,2,3,4}}{2}$; cos reversed; tan $= \frac{\sin}{\cos}$.
@@ -102,7 +106,7 @@ Why: the fraction pattern is invisible until you look for it — that's the enti
 
 $\sec\theta - \tan\theta = \frac{13 - 5}{12} = \frac{8}{12} = \frac23$.""",
         r"$\frac{13}{12} - \frac{5}{12} = \frac23$. Trap: $\frac{5}{12}$ — that is $\tan\theta$ itself.", 40)
-    assert 1 + 7 == 8 and (2 * 2 ** F(1, 2)) ** 2 == 8
+    assert 1 + 7 == 8 and abs((2 * (2 ** 0.5)) ** 2 - 8) < 1e-9  # hyp = sqrt(1+7) = 2*sqrt(2), squared = 8
     S.q("trig-ra-p2", "hard", "If $\\tan\\theta = \\frac{1}{\\sqrt{7}}$ ($\\theta$ acute), the value of $\\cosec^2\\theta$ is:",
         ["$8$", "$7$", "$\\sqrt{8}$", "$\\frac{8}{7}$"], "$8$",
         r"""opp $= 1$, adj $= \sqrt7$ → hyp $= \sqrt{1 + 7} = 2\sqrt2$.
@@ -153,6 +157,11 @@ Given $\sin\theta + \cos\theta = m$: squaring gives $\sin\theta\cos\theta = \fra
 
 ### Convert-to-sin-cos for anything composite
 For fractions mixing tan/sin/cos with an unknown coefficient ("if $\tan\theta = \frac34$, find $\frac{4\sin\theta - \cos\theta}{4\cos\theta + \sin\theta}$"): divide numerator and denominator by $\cos\theta$ — everything becomes $t = \tan\theta$, one substitution, one fraction. Squared combos like $\tan^2\theta + \cot^2\theta$ come from squaring $\tan\theta + \cot\theta$ and subtracting 2.
+
+### The fourth- and sixth-power chains
+Two reduced forms answer a whole question family:
+$$\sin^4\theta + \cos^4\theta = 1 - 2\sin^2\theta\cos^2\theta, \qquad \sin^6\theta + \cos^6\theta = 1 - 3\sin^2\theta\cos^2\theta$$
+Both come from squaring/cubing $\sin^2 + \cos^2 = 1$. The classic combination $2(\sin^6 + \cos^6) - 3(\sin^4 + \cos^4) + 1$ then collapses: $2 - 6s^2c^2 - 3 + 6s^2c^2 + 1 = 0$ for every $\theta$ — the cross terms cancel by design. When a question mixes powers, reduce each bracket to these two forms first and only then simplify; almost always the $s^2c^2$ terms cancel and a constant survives.
 
 ### Quick revision
 - $\sin^2 + \cos^2 = 1$; divide it by $\cos^2$ or $\sin^2$ for the other two.
@@ -218,7 +227,8 @@ So $\sec\theta - \tan\theta = \frac15$.""",
 
 (5-12-13 triangle: $\sin\theta = \frac{5}{13}$ if ever asked.)""",
         r"$\tan = \frac{m - 1/m}{2} = \frac{12}{5}$. Trap: $\frac{5}{12}$ — the inverse fraction.", 50)
-    assert (F(1, 2) + F(1, 2)) ** 2 + (F(1, 2) - F(1, 2)) ** 2 == 2
+    _r2 = 0.5 ** 0.5  # sin45 = cos45 = 1/√2
+    assert abs((_r2 + _r2) ** 2 + (_r2 - _r2) ** 2 - 2) < 1e-9  # (s+c)² + (s−c)² = 2(s²+c²) = 2
     S.q("trig-id-p2", "easy", "The value of $(\\sin\\theta + \\cos\\theta)^2 + (\\sin\\theta - \\cos\\theta)^2$ is:",
         ["$2$", "$1$", "$0$", "$4$"], "$2$",
         r"""Expanding: $(1 + 2sc) + (1 - 2sc) = 2$ for every $\theta$.""",
@@ -258,4 +268,33 @@ $\frac{2\tan\theta + 1}{\tan\theta - 2} = \frac{6 + 1}{3 - 2} = \frac71 = 7$."""
 
 So $\sin\theta = 1$, and $\sin^2\theta + \cosec^2\theta = 1 + 1 = 2$.""",
         r"The sum 2 forces $\sin\theta = 1$: both squares are 1. Trap: $4$ (squaring the given sum).", 50)
+    _s2c2 = math.sin(math.radians(30)) ** 2 * math.cos(math.radians(30)) ** 2
+    assert abs((1 - 2 * _s2c2) - (math.sin(math.radians(30)) ** 4 + math.cos(math.radians(30)) ** 4)) < 1e-9
+    S.q("trig-id-p2", "medium", "The value of $\\sin^4\\theta + \\cos^4\\theta$ is:",
+        ["$1 - 2\\sin^2\\theta\\cos^2\\theta$", "$1 - \\sin^2\\theta\\cos^2\\theta$", "$1 + 2\\sin^2\\theta\\cos^2\\theta$", "$2\\sin^2\\theta\\cos^2\\theta$"], "$1 - 2\\sin^2\\theta\\cos^2\\theta$",
+        r"""Square the identity: $(\sin^2\theta + \cos^2\theta)^2 = 1$ gives
+
+$\sin^4\theta + \cos^4\theta = 1 - 2\sin^2\theta\cos^2\theta$.""",
+        r"Squaring $s^2 + c^2 = 1$ is the whole proof. Trap: $1$ — true only when one function is zero.", 40)
+    assert abs((1 - 3 * _s2c2) - (math.sin(math.radians(30)) ** 6 + math.cos(math.radians(30)) ** 6)) < 1e-9
+    S.q("trig-id-p2", "medium", "The value of $\\sin^6\\theta + \\cos^6\\theta$ is:",
+        ["$1 - 3\\sin^2\\theta\\cos^2\\theta$", "$1 - 2\\sin^2\\theta\\cos^2\\theta$", "$1 - \\sin^2\\theta\\cos^2\\theta$", "$1 + 3\\sin^2\\theta\\cos^2\\theta$"], "$1 - 3\\sin^2\\theta\\cos^2\\theta$",
+        r"""Cube the identity: $(\sin^2\theta + \cos^2\theta)^3 = 1$ expands to
+
+$\sin^6\theta + \cos^6\theta + 3\sin^2\theta\cos^2\theta = 1$, so the sum is $1 - 3\sin^2\theta\cos^2\theta$.""",
+        r"$x^3 + y^3 = (x+y)^3 - 3xy(x+y)$ with $x+y = 1$. Trap: $1 - 2s^2c^2$ — that is the FOURTH-power form.", 45)
+    assert F(1, 1) ** 2 + F(1, 1) ** 2 == 2
+    S.q("trig-id-p4", "easy", "If $\\tan\\theta + \\cot\\theta = 2$ ($\\theta$ acute), the value of $\\tan\\theta$ is:",
+        ["$1$", "$2$", "$\\frac{1}{2}$", "$\\sqrt{2}$"], "$1$",
+        r"""$x + \frac1x = 2$ forces $x = 1$ (a positive number and its reciprocal sum to 2 only at equality).
+
+So $\tan\theta = 1$, i.e. $\theta = 45^\circ$.""",
+        r"$x + \frac{1}{x} \ge 2$ with equality only at $x = 1$. Trap: $2$ (confusing the sum with the value).", 30)
+    assert (3 + F(1, 3)) / 2 == F(5, 3)
+    S.q("trig-id-p1", "hard", "If $\\sec\\theta - \\tan\\theta = \\frac{1}{3}$ ($\\theta$ acute), the value of $\\sec\\theta$ is:",
+        ["$\\frac{5}{3}$", "$\\frac{3}{5}$", "$\\frac{4}{3}$", "$\\frac{10}{3}$"], "$\\frac{5}{3}$",
+        r"""Conjugate: $\sec\theta + \tan\theta = 3$. Adding the pair:
+
+$2\sec\theta = 3 + \frac13 = \frac{10}{3}$ → $\sec\theta = \frac53$.""",
+        r"Average the pair: $\frac{3 + \frac13}{2} = \frac53$. Trap: $\frac{10}{3}$ (forgot to halve).", 45)
     return S

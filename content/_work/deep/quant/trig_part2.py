@@ -26,6 +26,9 @@ Products like $\tan 5^\circ \tan 25^\circ \tan 45^\circ \tan 65^\circ \tan 85^\c
 ### Finding the angle itself
 Equations pairing different functions at related angles resolve by forcing the SAME function: $\sin 3A = \cos(A - 10^\circ)$ becomes $\sin 3A = \sin(90^\circ - (A - 10^\circ))$, so the angles match: $3A = 100^\circ - A$. Equivalently, complementary-function arguments must sum to $90^\circ$: $\sec 2\theta = \cosec(\theta + 30^\circ)$ gives $2\theta + \theta + 30^\circ = 90^\circ$.
 
+### The tan 45° anchor and half-chain variants
+$\tan 45^\circ = 1$ is the middle term of every full chain and the most common "unpaired" value in short products. Half-chains behave the same: $\tan 10^\circ \tan 20^\circ \tan 70^\circ \tan 80^\circ = (10,80)(20,70) = 1$, and cot chains like $\cot 15^\circ \cot 35^\circ \cot 55^\circ \cot 75^\circ$ collapse identically because complementary cots are still reciprocals. One caution: the collapse needs PAIRS summing to $90^\circ$ — if a product holds $\tan 20^\circ \tan 50^\circ \tan 40^\circ$, the $20/70$ pairing is absent, so convert through cot and simplify before trusting a pattern.
+
 ### Quick revision
 - Only three switches exist: sin↔cos, tan↔cot, sec↔cosec, argument → $90^\circ - x$.
 - Hunt pairs summing to $90^\circ$; convert, then cancel.
@@ -137,6 +140,20 @@ $\tan 45^\circ = 1$ remains in the middle. Product $= 1$.""",
 
 Product $= 1$.""",
         r"Pairs $(15, 75)$ and $(35, 55)$: $1 \times 1 = 1$. Trap: assuming cot-cot pairs don't cancel — complementary cots are still reciprocals.", 40)
+    assert 27 + 63 == 90 and 35 + 55 == 90
+    S.q("trig-co-p2", "medium", "The value of $\\tan 27^\\circ \\tan 35^\\circ \\tan 45^\\circ \\tan 55^\\circ \\tan 63^\\circ$ is:",
+        ["$1$", "$0$", "$45$", "$\\sqrt{3}$"], "$1$",
+        r"""$27 + 63 = 90$ and $35 + 55 = 90$: both pairs multiply to 1; $\tan 45^\circ = 1$.
+
+Product $= 1$.""",
+        r"Two complementary pairs + the 45° anchor: $1$. Trap: $0$ — no factor vanishes.", 40)
+    assert 14 + 76 == 90 and 31 + 59 == 90
+    S.q("trig-co-p1", "hard", "The value of $\\sin^2 14^\\circ + \\sin^2 31^\\circ + \\sin^2 59^\\circ + \\sin^2 76^\\circ$ is:",
+        ["$2$", "$1$", "$4$", "$\\sqrt{2}$"], "$2$",
+        r"""$\sin 76^\circ = \cos 14^\circ$ and $\sin 59^\circ = \cos 31^\circ$ (each pair sums to $90^\circ$).
+
+So the sum $= (\sin^2 14^\circ + \cos^2 14^\circ) + (\sin^2 31^\circ + \cos^2 31^\circ) = 1 + 1 = 2$.""",
+        r"Re-pair into two $\sin^2 + \cos^2 = 1$ groups. Trap: $1$ — there are TWO independent pairs here.", 55)
     return S
 
 
@@ -161,6 +178,12 @@ $\cot\theta = \frac{21}{20}$ means a 20-21-29 triangle: $\cos\theta = \frac{21}{
 
 ### Reducing linear fractions in sin and cos
 $\frac{a\sin\theta + b\cos\theta}{c\cos\theta + d\sin\theta} \to \frac{a\tan\theta + b}{c + d\tan\theta}$ — divide by $\cos\theta$, substitute $t$, simplify. Works the same with $\cot$ if the expression is cot-heavy.
+
+### The cosec/cot condition twin
+Given $\cosec\theta + \cot\theta = k$: its conjugate $\cosec\theta - \cot\theta = \frac{1}{k}$ (product 1), so $\cosec\theta = \frac{k + \frac1k}{2}$ and $\cot\theta = \frac{k - \frac1k}{2}$. Since $\cosec^2 - \cot^2 = 1$, this family is the sec±tan engine wearing a different coat — and it finishes with $\sin\theta = \frac{2k}{k^2 + 1}$ directly. Example: $\cosec\theta + \cot\theta = 3$ gives $\cosec\theta = \frac{3 + \frac13}{2} = \frac53$, so $\sin\theta = \frac35$ — a 3-4-5 triangle in disguise.
+
+### Reading the options like a setter
+Options in this family are built from predictable slips: substituting the reciprocal of the given tan, forgetting the constant $+b$ term, dropping a minus sign when the denominator is negative, or reporting $\tan^2$ when $\tan$ was asked. After computing, name the slip each wrong option encodes — if you cannot, re-check your own arithmetic. And keep every substitution exact: $\tan\theta = \frac43$ stays a fraction; a decimal 1.33 is how sign and size errors sneak in.
 
 ### Quick revision
 - Table entries at $0/30/45/60/90$; reduce everything to them.
@@ -262,6 +285,20 @@ $\cos\theta = \frac{21}{29}$.""",
         ["$\\frac{1}{\\sqrt{2}}$", "$\\frac{1}{2}$", "$1$", "$\\frac{\\sqrt{3}}{2}$"], "$\\frac{1}{\\sqrt{2}}$",
         r"""$\sin\theta = \cos\theta$ → $\tan\theta = 1$ → $\theta = 45^\circ$ → $\sin\theta = \frac{1}{\sqrt2}$.""",
         r"$45^\circ$: $\sin = \frac{1}{\sqrt2}$. Trap: $1$ (that is $\sin 90^\circ$).", 30)
+    assert 2 * F(4, 5) - 1 == F(3, 5) and 2 + 3 * F(4, 5) == F(22, 5)
+    S.q("trig-vp-p3", "medium", "If $2\\tan\\theta = \\frac{8}{5}$, the value of $\\frac{2\\sin\\theta - \\cos\\theta}{2\\cos\\theta + 3\\sin\\theta}$ is:",
+        ["$\\frac{3}{22}$", "$\\frac{22}{3}$", "$\\frac{1}{11}$", "$\\frac{5}{22}$"], "$\\frac{3}{22}$",
+        r"""$\tan\theta = \frac45$. Divide by $\cos\theta$:
+
+$\frac{2 \times \frac45 - 1}{2 + 3 \times \frac45} = \frac{\frac35}{\frac{22}{5}} = \frac{3}{22}$.""",
+        r"$\frac{2t - 1}{2 + 3t} = \frac{3}{22}$. Trap: $\frac{22}{3}$ — the fraction inverted.", 45)
+    assert 3 + 4 == 7 and 4 - 3 == 1
+    S.q("trig-vp-p2", "medium", "If $\\sin\\theta + \\cos\\theta = \\frac{7}{5}$, the value of $\\sin\\theta - \\cos\\theta$ is:",
+        ["$\\frac{1}{5}$", "$\\frac{7}{5}$", "$\\frac{2}{5}$", "$\\frac{1}{7}$"], "$\\frac{1}{5}$",
+        r"""$(\sin\theta - \cos\theta)^2 = 2 - \left(\frac75\right)^2 = 2 - \frac{49}{25} = \frac{1}{25}$.
+
+So $\sin\theta - \cos\theta = \frac15$ (positive root for the acute $\theta$ in the standard exam setup).""",
+        r"$\sqrt{2 - m^2} = \sqrt{\frac{1}{25}} = \frac15$. Trap: $\frac{7}{5}$ — that is the given sum itself.", 50)
     return S
 
 
@@ -286,6 +323,9 @@ All attained at $\theta = 45^\circ$. The $\sec^2 + \cosec^2$ version: $\frac{1}{
 
 ### Ordering and comparison facts
 On $(0^\circ, 90^\circ)$: $\sin$ rises $0 \to 1$, $\cos$ falls $1 \to 0$, $\tan$ rises $0 \to \infty$. So $\sin 60^\circ > \sin 45^\circ > \sin 30^\circ$; $\sin\theta > \cos\theta \iff \theta > 45^\circ$; $\tan\theta = \cot\theta$ only at $45^\circ$. Also $\frac{1}{1+\sin^2\theta}$ is smallest when $\sin^2\theta$ is largest ($= 1$), giving minimum $\frac12$.
+
+### The 45° equality case and restricted domains
+Every bound in this block is attained at $\theta = 45^\circ$: the amplitude expressions reach $\pm\sqrt{a^2+b^2}$ only for unrestricted $\theta$ (the peak of $a\sin\theta + b\cos\theta$ sits at $\tan\theta = \frac{a}{b}$, which is acute for positive $a, b$ — so on $0^\circ$ to $90^\circ$ the max $\sqrt{a^2+b^2}$ IS reachable, while the negative minimum is cut off at the endpoint $-b$). Always read the domain: "for all $\theta$" allows the negative amplitude; "$0^\circ \le \theta \le 90^\circ$" floors the minimum at the endpoint value. Options often include both — the domain decides.
 
 ### Quick revision
 - $a\sin\theta + b\cos\theta$: max $\sqrt{a^2+b^2}$, min $-\sqrt{a^2+b^2}$.
@@ -394,4 +434,16 @@ Since $\sin\theta\cos\theta \le \frac12$: the expression $\ge 4$, at $45^\circ$.
 
 Minimum $= \frac12$.""",
         r"$\frac12$ at $\theta = 90^\circ$. Trap: $0$ — the fraction never reaches zero since $1 + \sin^2 \ge 1 > 0$.", 40)
+    assert 8 ** 2 + 15 ** 2 == 17 ** 2
+    S.q("trig-mm-p1", "hard", "The minimum value of $8\\sin\\theta - 15\\cos\\theta$ over all real $\\theta$ is:",
+        ["$-17$", "$17$", "$-7$", "$-15$"], "$-17$",
+        r"""Amplitude $= \sqrt{8^2 + 15^2} = \sqrt{289} = 17$; the expression ranges over $[-17, 17]$.
+
+Minimum $= -17$.""",
+        r"$-\sqrt{64 + 225} = -17$. Trap: $17$ (missing the minus) or $-7$ (subtracting the coefficients).", 50)
+    assert F(36, 1) == 6 * 6
+    S.q("trig-mm-p3", "medium", "The minimum value of $9\\tan^2\\theta + 4\\cot^2\\theta$ ($\\theta$ acute) is:",
+        ["$12$", "$13$", "$6$", "$36$"], "$12$",
+        r"""AM–GM: $9\tan^2\theta + 4\cot^2\theta \ge 2\sqrt{36} = 12$, equality at $\tan^2\theta = \frac23$.""",
+        r"$2\sqrt{9 \times 4} = 12$. Trap: $13$ ($a + b$) or $6$ ($\sqrt{ab}$, forgot to double).", 45)
     return S

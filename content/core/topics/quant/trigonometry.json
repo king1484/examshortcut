@@ -1,650 +1,2005 @@
 {
-  "id": "trigonometry",
-  "sectionId": "quant",
-  "title": "Trigonometry",
-  "order": 16,
-  "importance": "high",
-  "avgQuestions": {
-    "tier1": 3,
-    "tier2": 4
+ "id": "trigonometry",
+ "sectionId": "quant",
+ "title": "Trigonometry",
+ "order": 16,
+ "importance": "high",
+ "avgQuestions": {
+  "tier1": 3,
+  "tier2": 4
+ },
+ "summary": "Ratios, the standard-value table, the three identities, complementary angles, value-putting and max-min values. Tier 1 reliably holds 2-4 trig questions and they fall almost mechanically to the value table, one identity, or a 3-4-5 style triangle — among the cheapest marks in the paper.",
+ "subtopics": [
+  {
+   "id": "trig-ratios",
+   "title": "Ratios and standard values",
+   "concept": "For an acute angle $\\theta$ in a right triangle: $\\sin\\theta=\\frac{\\text{opp}}{\\text{hyp}}$,\n$\\cos\\theta=\\frac{\\text{adj}}{\\text{hyp}}$, $\\tan\\theta=\\frac{\\text{opp}}{\\text{adj}}$, and\n$\\text{cosec}=\\frac1{\\sin}$, $\\sec=\\frac1{\\cos}$, $\\cot=\\frac1{\\tan}$.\n\n**Standard value table (memorise cold — most CGL questions are one lookup away):**\n\n| $\\theta$ | $0^\\circ$ | $30^\\circ$ | $45^\\circ$ | $60^\\circ$ | $90^\\circ$ |\n|---|---|---|---|---|---|\n| $\\sin$ | $0$ | $\\frac12$ | $\\frac{1}{\\sqrt2}$ | $\\frac{\\sqrt3}{2}$ | $1$ |\n| $\\cos$ | $1$ | $\\frac{\\sqrt3}{2}$ | $\\frac{1}{\\sqrt2}$ | $\\frac12$ | $0$ |\n| $\\tan$ | $0$ | $\\frac{1}{\\sqrt3}$ | $1$ | $\\sqrt3$ | undef. |",
+   "formulas": [
+    {
+     "name": "Reciprocal pairs",
+     "tex": "\\text{cosec}\\theta=\\frac{1}{\\sin\\theta},\\quad \\sec\\theta=\\frac{1}{\\cos\\theta},\\quad \\cot\\theta=\\frac{1}{\\tan\\theta}"
+    },
+    {
+     "name": "sin column",
+     "tex": "\\sin0^\\circ=0,\\ \\sin30^\\circ=\\frac12,\\ \\sin45^\\circ=\\frac{1}{\\sqrt2},\\ \\sin60^\\circ=\\frac{\\sqrt3}{2},\\ \\sin90^\\circ=1"
+    },
+    {
+     "name": "cos column",
+     "tex": "\\cos\\theta=\\sin(90^\\circ-\\theta)"
+    },
+    {
+     "name": "tan column",
+     "tex": "\\tan0^\\circ=0,\\ \\tan30^\\circ=\\frac{1}{\\sqrt3},\\ \\tan45^\\circ=1,\\ \\tan60^\\circ=\\sqrt3"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "The 1-2-3 memory trick for sin",
+     "body": "Write $\\frac{\\sqrt0}{2},\\frac{\\sqrt1}{2},\\frac{\\sqrt2}{2},\\frac{\\sqrt3}{2},\\frac{\\sqrt4}{2}$ for\n$0^\\circ,30^\\circ,45^\\circ,60^\\circ,90^\\circ$ — the sin row falls out; the cos row is the same read backwards.\nDivide the two rows to get tan.",
+     "example": {
+      "q": "Find the value of $\\sin30^\\circ+\\cos60^\\circ+\\tan45^\\circ$.",
+      "solution": "$\\frac12+\\frac12+1=2$."
+     }
+    },
+    {
+     "title": "Reciprocal first, table second",
+     "body": "When an expression has cosec/sec/cot, flip each to sin/cos/tan before touching the table.",
+     "example": {
+      "q": "Find the value of $\\text{cosec}30^\\circ-\\sec60^\\circ$.",
+      "solution": "$2-2=0$ — both flip to $\\frac{1}{1/2}=2$."
+     }
+    }
+   ],
+   "mistakes": [
+    "$\\sin45^\\circ$ written as $\\frac{1}{2}$ (confusing the 45 and 30 entries).",
+    "$\\tan90^\\circ$ treated as $0$ or $1$ — it is undefined.",
+    "Reciprocal flipped the wrong way ($\\sec\\theta$ taken as $\\frac{1}{\\sin\\theta}$)."
+   ],
+   "notes": "### The standard-value table (build it, don't memorise it)\n$$\\sin: \\frac{\\sqrt0}{2}, \\frac{\\sqrt1}{2}, \\frac{\\sqrt2}{2}, \\frac{\\sqrt3}{2}, \\frac{\\sqrt4}{2} \\text{ at } 0^\\circ, 30^\\circ, 45^\\circ, 60^\\circ, 90^\\circ$$\ncos is the same list read backwards; tan = sin/cos gives $0, \\frac{1}{\\sqrt3}, 1, \\sqrt3, \\infty$. Then reciprocals give cosec, sec, cot. The $\\frac{\\sqrt{k}}{2}$ construction means the table can never be forgotten under pressure.\n\n### One ratio → the whole triangle\nAny single ratio pins the triangle's SHAPE: draw a right triangle with sides in that ratio, get the third side by Pythagoras, read off every other ratio.\n- $\\sin\\theta = \\frac{3}{5}$ → sides 3-4-5 → $\\tan\\theta = \\frac34$.\n- $\\cos\\theta = \\frac{12}{13}$ → 5-12-13 → $\\sin\\theta = \\frac{5}{13}$, $\\tan\\theta = \\frac{5}{12}$.\n- $\\tan\\theta = \\frac{1}{\\sqrt7}$ → hyp $\\sqrt{1+7} = 2\\sqrt2$ → $\\cosec\\theta = 2\\sqrt2$.\nKeep ratios as fractions to the end; rationalise only the final answer if options are surd-free.\n\n### Two sides → every ratio\nGiven two sides of the right triangle: third side first (Pythagoras), then name the angle carefully — the ratio asked is relative to a SPECIFIC acute angle: opposite/hyp for its sine, adjacent/hyp for its cosine. \"The smaller angle\" sits opposite the shorter leg. Triangles 5-12-13, 7-24-25, 8-15-17, 9-40-41 and their multiples supply almost all exam numbers.\n\n### Combining ratios safely\nWhen an expression mixes functions ($\\sec 60^\\circ + \\cosec 30^\\circ$, $\\cot 30^\\circ + \\tan 60^\\circ$), reduce each term to the $\\sin$/$\\cos$ table values first, then add — do not invent product rules. The angle-difference formula $\\tan(A - B) = \\frac{\\tan A - \\tan B}{1 + \\tan A \\tan B}$ occasionally appears disguised as a pure 60/30 evaluation; recognising it turns a messy fraction into $\\tan 30^\\circ$.\n\n### The reciprocal rows (never leave home without them)\nFlip the main table for the rest: $\\cosec 30^\\circ = 2$, $\\cosec 45^\\circ = \\sqrt2$, $\\cosec 60^\\circ = \\frac{2}{\\sqrt3}$; $\\sec 60^\\circ = 2$, $\\sec 45^\\circ = \\sqrt2$, $\\sec 30^\\circ = \\frac{2}{\\sqrt3}$ (sec runs opposite to cosec); $\\cot 30^\\circ = \\sqrt3$, $\\cot 45^\\circ = 1$, $\\cot 60^\\circ = \\frac{1}{\\sqrt3}$ — cot is tan read backwards. Expressions like $\\cosec^2 30^\\circ + \\sec^2 45^\\circ$ are then pure table work: $4 + 2 = 6$. Spot the reciprocal twins that cancel: $\\cosec 30^\\circ - \\sec 60^\\circ = 2 - 2 = 0$ and $\\tan 30^\\circ \\tan 60^\\circ = 1$.\n\n### Quick revision\n- $\\sin$ column $\\frac{\\sqrt{0,1,2,3,4}}{2}$; cos reversed; tan $= \\frac{\\sin}{\\cos}$.\n- One ratio → 3-4-5 / 5-12-13 / 7-24-25 triangle → all ratios.\n- Smaller acute angle ⟷ shorter opposite leg.\n- $\\tan(60^\\circ - 30^\\circ)$ identity rescues $\\frac{\\tan A - \\tan B}{1+\\tan A\\tan B}$ expressions.\n",
+   "patterns": [
+    {
+     "id": "trig-ra-p1",
+     "name": "Standard values at 0/30/45/60/90",
+     "frequency": "very common",
+     "howToSpot": "A sum/difference of ratios at special angles asked directly.",
+     "formula": "Read each term off the $\\frac{\\sqrt{k}}{2}$ table; add last.",
+     "logic": "1. Convert every function to its table value (sec/cot too — reciprocals of the cos/tan rows).\n2. Keep surds as surds; add only matching radicals.\n3. Rationalise only at the very end if options demand it.\n\nWhy: each term is a fixed constant — the question only tests retrieval plus one line of arithmetic.",
+     "example": {
+      "q": "The value of $\\sin 30^\\circ + \\cos 60^\\circ$ is:",
+      "solution": "$\\frac12 + \\frac12 = 1$. Both are the table's middle entries."
+     }
+    },
+    {
+     "id": "trig-ra-p2",
+     "name": "One given ratio → the other ratios",
+     "frequency": "very common",
+     "howToSpot": "'If sinθ = 3/5, find tanθ' — one ratio given (sometimes in a surd form), others asked.",
+     "formula": "Construct the 3-4-5 (or matching) triangle; read the asked ratio off it.",
+     "logic": "1. Write opp/adj from the given ratio; complete the triangle with Pythagoras.\n2. Read the asked ratio; rationalise surds at the end.\n3. Sign checks are unnecessary for acute exam angles — everything positive.\n\nWhy: one ratio fixes the shape, so every other ratio is a re-reading of the same triangle.",
+     "example": {
+      "q": "If $\\sin\\theta = \\frac{3}{5}$ ($\\theta$ acute), the value of $\\tan\\theta$ is:",
+      "solution": "Triangle 3-4-5: $\\tan\\theta = \\frac{\\text{opp}}{\\text{adj}} = \\frac34$."
+     }
+    },
+    {
+     "id": "trig-ra-p3",
+     "name": "Two sides of the triangle → ratios",
+     "frequency": "common",
+     "howToSpot": "Two sides of a right triangle given (or hyp + one side); a named ratio of one acute angle asked.",
+     "formula": "Third side by Pythagoras, then $\\sin = \\frac{\\text{opp}}{\\text{hyp}}$, $\\cos = \\frac{\\text{adj}}{\\text{hyp}}$ w.r.t. the NAMED angle.",
+     "logic": "1. Complete the triangle (5-12-13, 7-24-25, 8-15-17 multiples).\n2. Identify the angle: 'opposite the shorter leg' = smaller angle.\n3. Opposite/adjacent w.r.t. that angle — the top exam trap is flipping them.\n\nWhy: the triangle is fully determined; only the naming of the angle can go wrong.",
+     "example": {
+      "q": "In a triangle right-angled at B, AB = 5 cm and BC = 12 cm. The value of sin A is:",
+      "solution": "AC $= 13$; $\\sin A = \\frac{\\text{opp}}{\\text{hyp}} = \\frac{BC}{AC} = \\frac{12}{13}$. Note the opposite side to A is BC, not AB."
+     }
+    },
+    {
+     "id": "trig-ra-p4",
+     "name": "Mixed-function combinations",
+     "frequency": "common",
+     "howToSpot": "Expressions mixing sec, cosec, cot at special angles — or a tan-difference formula hidden inside a fraction.",
+     "formula": "Reciprocal table entries; $\\tan(A-B) = \\frac{\\tan A - \\tan B}{1 + \\tan A\\tan B}$ rescues the disguised ones.",
+     "logic": "1. Replace sec/cosec/cot by reciprocals of table values.\n2. If the expression matches $\\frac{\\tan A - \\tan B}{1 + \\tan A \\tan B}$, rewrite as $\\tan(A - B)$ and read the table once.\n3. Compare with the options in surd form first; rationalise only if needed.\n\nWhy: the fraction pattern is invisible until you look for it — that's the entire difficulty of these questions.",
+     "example": {
+      "q": "The value of $\\frac{\\tan 60^\\circ - \\tan 30^\\circ}{1 + \\tan 60^\\circ \\tan 30^\\circ}$ is:",
+      "solution": "$= \\tan(60^\\circ - 30^\\circ) = \\tan 30^\\circ = \\frac{1}{\\sqrt3}$."
+     }
+    }
+   ]
   },
-  "summary": "Ratios, the standard-value table, the three identities, complementary angles, value-putting and max-min values. Tier 1 reliably holds 2-4 trig questions and they fall almost mechanically to the value table, one identity, or a 3-4-5 style triangle — among the cheapest marks in the paper.",
-  "subtopics": [
+  {
+   "id": "trig-identities",
+   "title": "Fundamental identities",
+   "concept": "Three identities drive almost every simplification:\n$$\\sin^2\\theta+\\cos^2\\theta=1,\\qquad 1+\\tan^2\\theta=\\sec^2\\theta,\\qquad 1+\\cot^2\\theta=\\text{cosec}^2\\theta$$\nEach splits into handy parts: $\\sin^2\\theta=1-\\cos^2\\theta$, $\\sec^2\\theta-\\tan^2\\theta=1$,\n$\\text{cosec}^2\\theta-\\cot^2\\theta=1$. Expressions with $\\sin^6+\\cos^6$ or $\\sin^4+\\cos^4$ reduce through\nthese — treat $x=\\sin^2\\theta$ so $x+(1-x)=1$.",
+   "formulas": [
     {
-      "id": "trig-ratios",
-      "title": "Ratios and standard values",
-      "concept": "For an acute angle $\\theta$ in a right triangle: $\\sin\\theta=\\frac{\\text{opp}}{\\text{hyp}}$,\n$\\cos\\theta=\\frac{\\text{adj}}{\\text{hyp}}$, $\\tan\\theta=\\frac{\\text{opp}}{\\text{adj}}$, and\n$\\text{cosec}=\\frac1{\\sin}$, $\\sec=\\frac1{\\cos}$, $\\cot=\\frac1{\\tan}$.\n\n**Standard value table (memorise cold — most CGL questions are one lookup away):**\n\n| $\\theta$ | $0^\\circ$ | $30^\\circ$ | $45^\\circ$ | $60^\\circ$ | $90^\\circ$ |\n|---|---|---|---|---|---|\n| $\\sin$ | $0$ | $\\frac12$ | $\\frac{1}{\\sqrt2}$ | $\\frac{\\sqrt3}{2}$ | $1$ |\n| $\\cos$ | $1$ | $\\frac{\\sqrt3}{2}$ | $\\frac{1}{\\sqrt2}$ | $\\frac12$ | $0$ |\n| $\\tan$ | $0$ | $\\frac{1}{\\sqrt3}$ | $1$ | $\\sqrt3$ | undef. |",
-      "formulas": [
-        {
-          "name": "Reciprocal pairs",
-          "tex": "\\text{cosec}\\theta=\\frac{1}{\\sin\\theta},\\quad \\sec\\theta=\\frac{1}{\\cos\\theta},\\quad \\cot\\theta=\\frac{1}{\\tan\\theta}"
-        },
-        {
-          "name": "sin column",
-          "tex": "\\sin0^\\circ=0,\\ \\sin30^\\circ=\\frac12,\\ \\sin45^\\circ=\\frac{1}{\\sqrt2},\\ \\sin60^\\circ=\\frac{\\sqrt3}{2},\\ \\sin90^\\circ=1"
-        },
-        {
-          "name": "cos column",
-          "tex": "\\cos\\theta=\\sin(90^\\circ-\\theta)"
-        },
-        {
-          "name": "tan column",
-          "tex": "\\tan0^\\circ=0,\\ \\tan30^\\circ=\\frac{1}{\\sqrt3},\\ \\tan45^\\circ=1,\\ \\tan60^\\circ=\\sqrt3"
-        }
-      ],
-      "tricks": [
-        {
-          "title": "The 1-2-3 memory trick for sin",
-          "body": "Write $\\frac{\\sqrt0}{2},\\frac{\\sqrt1}{2},\\frac{\\sqrt2}{2},\\frac{\\sqrt3}{2},\\frac{\\sqrt4}{2}$ for\n$0^\\circ,30^\\circ,45^\\circ,60^\\circ,90^\\circ$ — the sin row falls out; the cos row is the same read backwards.\nDivide the two rows to get tan.",
-          "example": {
-            "q": "Find the value of $\\sin30^\\circ+\\cos60^\\circ+\\tan45^\\circ$.",
-            "solution": "$\\frac12+\\frac12+1=2$."
-          }
-        },
-        {
-          "title": "Reciprocal first, table second",
-          "body": "When an expression has cosec/sec/cot, flip each to sin/cos/tan before touching the table.",
-          "example": {
-            "q": "Find the value of $\\text{cosec}30^\\circ-\\sec60^\\circ$.",
-            "solution": "$2-2=0$ — both flip to $\\frac{1}{1/2}=2$."
-          }
-        }
-      ],
-      "mistakes": [
-        "$\\sin45^\\circ$ written as $\\frac{1}{2}$ (confusing the 45 and 30 entries).",
-        "$\\tan90^\\circ$ treated as $0$ or $1$ — it is undefined.",
-        "Reciprocal flipped the wrong way ($\\sec\\theta$ taken as $\\frac{1}{\\sin\\theta}$)."
-      ]
+     "name": "Pythagorean identities",
+     "tex": "\\sin^2\\theta+\\cos^2\\theta=1,\\quad 1+\\tan^2\\theta=\\sec^2\\theta,\\quad 1+\\cot^2\\theta=\\text{cosec}^2\\theta"
     },
     {
-      "id": "trig-identities",
-      "title": "Fundamental identities",
-      "concept": "Three identities drive almost every simplification:\n$$\\sin^2\\theta+\\cos^2\\theta=1,\\qquad 1+\\tan^2\\theta=\\sec^2\\theta,\\qquad 1+\\cot^2\\theta=\\text{cosec}^2\\theta$$\nEach splits into handy parts: $\\sin^2\\theta=1-\\cos^2\\theta$, $\\sec^2\\theta-\\tan^2\\theta=1$,\n$\\text{cosec}^2\\theta-\\cot^2\\theta=1$. Expressions with $\\sin^6+\\cos^6$ or $\\sin^4+\\cos^4$ reduce through\nthese — treat $x=\\sin^2\\theta$ so $x+(1-x)=1$.",
-      "formulas": [
-        {
-          "name": "Pythagorean identities",
-          "tex": "\\sin^2\\theta+\\cos^2\\theta=1,\\quad 1+\\tan^2\\theta=\\sec^2\\theta,\\quad 1+\\cot^2\\theta=\\text{cosec}^2\\theta"
-        },
-        {
-          "name": "Fourth powers",
-          "tex": "\\sin^4\\theta+\\cos^4\\theta=1-2\\sin^2\\theta\\cos^2\\theta"
-        },
-        {
-          "name": "Sixth powers",
-          "tex": "\\sin^6\\theta+\\cos^6\\theta=1-3\\sin^2\\theta\\cos^2\\theta"
-        },
-        {
-          "name": "Product-to-sum bridge",
-          "tex": "\\tan\\theta=\\frac{\\sin\\theta}{\\cos\\theta},\\quad \\cot\\theta=\\frac{\\cos\\theta}{\\sin\\theta}"
-        }
-      ],
-      "tricks": [
-        {
-          "title": "Substitute $x=\\sin^2\\theta$",
-          "body": "Everything above degree 4 collapses with $x$ and $1-x$. Memorise the two reduced forms for 4th and 6th powers.",
-          "example": {
-            "q": "Find the value of $2(\\sin^6\\theta+\\cos^6\\theta)-3(\\sin^4\\theta+\\cos^4\\theta)+1$.",
-            "solution": "$2(1-3s^2c^2)-3(1-2s^2c^2)+1=2-3+1+( -6+6)s^2c^2=0$ for every $\\theta$."
-          }
-        },
-        {
-          "title": "Sec/tan pairs move as one",
-          "body": "See $\\sec^2$ and $\\tan^2$ together → replace by 1 (or by each other via $\\sec^2=1+\\tan^2$). Same for\ncosec/cot.",
-          "example": {
-            "q": "Simplify $\\dfrac{\\sec^2\\theta-\\tan^2\\theta}{1+\\cot^2\\theta}\\times\\text{cosec}^2\\theta$.",
-            "solution": "Numerator $=1$, $1+\\cot^2=\\text{cosec}^2$, so the value is $1$."
-          }
-        }
-      ],
-      "mistakes": [
-        "Writing $\\tan^2\\theta+1=\\sec\\theta$ (the square is dropped).",
-        "Expanding $\\sin^6+\\cos^6$ as $(\\sin^2+\\cos^2)^3$ without subtracting the cross terms.",
-        "Mixing degrees of powers: $\\sin^4+\\cos^4\\neq1$."
-      ]
+     "name": "Fourth powers",
+     "tex": "\\sin^4\\theta+\\cos^4\\theta=1-2\\sin^2\\theta\\cos^2\\theta"
     },
     {
-      "id": "trig-complementary",
-      "title": "Complementary angles",
-      "concept": "For angles that add to $90^\\circ$:\n$$\\sin(90^\\circ-\\theta)=\\cos\\theta,\\quad \\tan(90^\\circ-\\theta)=\\cot\\theta,\\quad \\sec(90^\\circ-\\theta)=\\text{cosec}\\theta$$\nand similarly in reverse. This converts \"odd\" angles ($67\\tfrac12^\\circ$, $72^\\circ$, ...) into their partners and\nmakes paired products equal 1: $\\tan\\theta\\cdot\\tan(90^\\circ-\\theta)=1$.\n\nAn equation like $\\sin(A+\\theta)=\\cos(B+\\theta)$ forces $(A+\\theta)+(B+\\theta)=90^\\circ$.",
-      "formulas": [
-        {
-          "name": "Complementary pairs",
-          "tex": "\\sin(90-\\theta)=\\cos\\theta,\\ \\tan(90-\\theta)=\\cot\\theta,\\ \\sec(90-\\theta)=\\text{cosec}\\theta"
-        },
-        {
-          "name": "Paired products",
-          "tex": "\\tan\\theta\\,\\tan(90^\\circ-\\theta)=1,\\quad \\sin\\theta\\,\\text{cosec}\\theta=1"
-        },
-        {
-          "name": "Angle-equation rule",
-          "tex": "\\sin(A+\\theta)=\\cos(B+\\theta)\\Rightarrow A+B+2\\theta=90^\\circ"
-        }
-      ],
-      "tricks": [
-        {
-          "title": "Pair the angles that add to 90°",
-          "body": "In a long product, look for $\\theta$ and $90-\\theta$ pairs first — each pair collapses to 1. The classic\n$\\tan1^\\circ\\tan2^\\circ\\cdots\\tan89^\\circ$ collapses completely.",
-          "example": {
-            "q": "Find the value of $\\tan15^\\circ\\tan25^\\circ\\tan45^\\circ\\tan65^\\circ\\tan75^\\circ$.",
-            "solution": "$(\\tan15\\tan75)(\\tan25\\tan65)(\\tan45)=1\\times1\\times1=1$."
-          }
-        },
-        {
-          "title": "Convert everything to one angle",
-          "body": "Rewrite each term at its complementary partner until only one angle remains; a $\\sin^2+\\cos^2$ pair may then\ncollapse.",
-          "example": {
-            "q": "Find the value of $\\sin^265^\\circ+\\sin^225^\\circ$.",
-            "solution": "$\\sin65^\\circ=\\cos25^\\circ$, so the sum $=\\cos^225^\\circ+\\sin^225^\\circ=1$."
-          }
-        },
-        {
-          "title": "Equation → sum to 90°",
-          "body": "When $\\sin(\\ldots)=\\cos(\\ldots)$, set the two bracketed angles to sum to $90^\\circ$ and solve.",
-          "example": {
-            "q": "If $\\sin(40^\\circ+\\theta)=\\cos(30^\\circ+\\theta)$ and both angles are acute, find $\\theta$.",
-            "solution": "$40+\\theta+30+\\theta=90\\Rightarrow2\\theta=20\\Rightarrow\\theta=10^\\circ$."
-          }
-        }
-      ],
-      "mistakes": [
-        "Complementary conversion applied to the wrong function ($\\sec(90-\\theta)=\\sec\\theta$ is wrong).",
-        "Setting $\\sin A=\\cos B\\Rightarrow A+B=180^\\circ$ — it is $90^\\circ$.",
-        "Products paired as $\\tan\\theta\\cdot\\cot\\theta=1$ but evaluated before converting to the same angle."
-      ]
+     "name": "Sixth powers",
+     "tex": "\\sin^6\\theta+\\cos^6\\theta=1-3\\sin^2\\theta\\cos^2\\theta"
     },
     {
-      "id": "trig-valueput",
-      "title": "Value-putting and given-ratio questions",
-      "concept": "Two CGL workhorses:\n\n1. **Given one ratio, draw the triangle.** If $\\sin\\theta=\\frac{5}{13}$, take opposite $=5$, hypotenuse $=13$,\n   adjacent $=\\sqrt{13^2-5^2}=12$ (a 5-12-13 triplet!) and read off every other ratio.\n2. **Value-putting an identity.** If only $\\sin\\theta+\\text{cosec}\\theta$ or a quadratic condition like\n   $\\sin\\theta+\\sin^2\\theta=1$ is given, convert the asked expression into the given pieces — or test a\n   convenient $\\theta$ when the expression is identically constant.",
-      "formulas": [
-        {
-          "name": "From sin to the rest",
-          "tex": "\\sin\\theta=\\frac{p}{h}\\Rightarrow \\cos\\theta=\\frac{\\sqrt{h^2-p^2}}{h},\\ \\tan\\theta=\\frac{p}{\\sqrt{h^2-p^2}}"
-        },
-        {
-          "name": "Standard triplets",
-          "tex": "(3,4,5),\\ (5,12,13),\\ (7,24,25),\\ (8,15,17),\\ (9,40,41)"
-        },
-        {
-          "name": "Sum-product of a ratio and reciprocal",
-          "tex": "x+\\frac1x=k\\Rightarrow x^2+\\frac{1}{x^2}=k^2-2"
-        }
-      ],
-      "tricks": [
-        {
-          "title": "Draw the triplet triangle",
-          "body": "Ratio given → sides in hand in 5 seconds. Check the triplet table before any algebra.",
-          "example": {
-            "q": "If $\\cos\\theta=\\dfrac{7}{25}$, find $\\tan\\theta$.",
-            "solution": "Adjacent 7, hypotenuse 25 → opposite $\\sqrt{625-49}=24$; $\\tan\\theta=\\frac{24}{7}$."
-          }
-        },
-        {
-          "title": "Reduce the asked expression",
-          "body": "Rewrite the target in terms of the given relation. For $x+\\frac1x$ chains, square and subtract 2.",
-          "example": {
-            "q": "If $\\sin\\theta+\\text{cosec}\\theta=2$, find $\\sin^2\\theta+\\text{cosec}^2\\theta$.",
-            "solution": "$(x+\\frac1x)^2=x^2+\\frac1{x^2}+2\\Rightarrow 4-2=2$. (Here $x=1$ in fact.)"
-          }
-        }
-      ],
-      "mistakes": [
-        "Triplets applied with hypotenuse as a leg ($\\sqrt{13^2-12^2}$ vs $\\sqrt{13^2+12^2}$).",
-        "Forgetting that a given ratio fixes $\\theta$ up to the quadrant — CGL keeps $\\theta$ acute, so take the positive root.",
-        "Value-putting with $\\theta=45^\\circ$ when the expression is not constant — verify a second angle before trusting it."
-      ]
-    },
-    {
-      "id": "trig-maxmin",
-      "title": "Maximum and minimum values",
-      "concept": "For $0^\\circ\\le\\theta\\le90^\\circ$:\n- $0\\le\\sin\\theta,\\cos\\theta\\le1$; $\\sec\\theta,\\text{cosec}\\theta\\ge1$; $\\tan\\theta,\\cot\\theta$ are unbounded.\n- $\\sin\\theta+\\cos\\theta\\in[1,\\sqrt2]$; $\\sin\\theta-\\cos\\theta\\in[-1,1]$; $\\sin\\theta\\cos\\theta\\le\\frac12$.\n- $a\\sin^2\\theta+b\\cos^2\\theta$ has minimum $\\min(a,b)$ and maximum $\\max(a,b)$.\n- $a\\tan^2\\theta+b\\cot^2\\theta\\ (\\text{and } a\\sin^2+b\\,\\text{cosec}^2)$ has minimum $2\\sqrt{ab}$ by AM–GM.\n- $\\sec^2\\theta+\\text{cosec}^2\\theta$ has minimum $2+2=4$ (at $45^\\circ$).",
-      "formulas": [
-        {
-          "name": "Ranges",
-          "tex": "0\\le\\sin\\theta\\le1,\\quad \\sec\\theta\\ge1,\\quad \\sin\\theta+\\cos\\theta\\in[1,\\sqrt2]"
-        },
-        {
-          "name": "Weighted square form",
-          "tex": "a\\sin^2\\theta+b\\cos^2\\theta\\in[\\min(a,b),\\max(a,b)]"
-        },
-        {
-          "name": "AM-GM forms",
-          "tex": "a\\tan^2\\theta+b\\cot^2\\theta\\ge2\\sqrt{ab},\\quad a\\sin^2\\theta+b\\,\\text{cosec}^2\\theta\\ge2\\sqrt{ab}"
-        },
-        {
-          "name": "Combined sec-cosec",
-          "tex": "\\sec^2\\theta+\\text{cosec}^2\\theta=2+\\tan^2\\theta+\\cot^2\\theta\\ge4"
-        },
-        {
-          "name": "Linear combination",
-          "tex": "a\\sin\\theta+b\\cos\\theta\\text{ has maximum }\\sqrt{a^2+b^2}"
-        }
-      ],
-      "tricks": [
-        {
-          "title": "Match the question to a range",
-          "body": "Bounded pairs ($\\sin+\\cos$ etc.) → memorised range. Weighted square sums → min of coefficients or $2\\sqrt{ab}$.",
-          "example": {
-            "q": "Find the minimum value of $4\\tan^2\\theta+9\\cot^2\\theta$ for $0^\\circ<\\theta<90^\\circ$.",
-            "solution": "$2\\sqrt{4\\times9}=12$ (at $\\tan^2\\theta=\\frac32$)."
-          }
-        },
-        {
-          "title": "Weighted sin-cos squares are bounded by coefficients",
-          "body": "$2\\sin^2\\theta+3\\cos^2\\theta=2+\\cos^2\\theta$, so it ranges from 2 to 3 — min 2, max 3, no calculus.",
-          "example": {
-            "q": "Find the minimum value of $5\\sin^2\\theta+12\\cos^2\\theta$.",
-            "solution": "$=5+7\\cos^2\\theta\\ge5$; minimum $5$ (at $\\theta=0$)."
-          }
-        }
-      ],
-      "mistakes": [
-        "AM-GM applied to $a\\sin\\theta+b\\text{cosec}\\theta$ where the equality point may be unreachable — for the square versions it is safe, check before using.",
-        "Quoting $\\sqrt2$ as the **minimum** of $\\sin+\\cos$ — $\\sqrt2$ is the maximum.",
-        "$\\sec^2+\\text{cosec}^2$ minimum quoted as 2 instead of 4."
-      ]
+     "name": "Product-to-sum bridge",
+     "tex": "\\tan\\theta=\\frac{\\sin\\theta}{\\cos\\theta},\\quad \\cot\\theta=\\frac{\\cos\\theta}{\\sin\\theta}"
     }
-  ],
-  "pyqPatterns": [
+   ],
+   "tricks": [
     {
-      "pattern": "Standard-value evaluation",
-      "frequency": "very common",
-      "howToSpot": "A short expression built from $0^\\circ,30^\\circ,45^\\circ,60^\\circ,90^\\circ$ values.",
-      "approach": "Flip reciprocals first, then read the table; the answer is usually 0, 1 or 2 — use it to sanity-check."
+     "title": "Substitute $x=\\sin^2\\theta$",
+     "body": "Everything above degree 4 collapses with $x$ and $1-x$. Memorise the two reduced forms for 4th and 6th powers.",
+     "example": {
+      "q": "Find the value of $2(\\sin^6\\theta+\\cos^6\\theta)-3(\\sin^4\\theta+\\cos^4\\theta)+1$.",
+      "solution": "$2(1-3s^2c^2)-3(1-2s^2c^2)+1=2-3+1+( -6+6)s^2c^2=0$ for every $\\theta$."
+     }
     },
     {
-      "pattern": "Given one ratio, find others",
-      "frequency": "very common",
-      "howToSpot": "$\\sin\\theta=\\frac{p}{h}$ (or tan/cos) given; find another ratio or an expression in two of them.",
-      "approach": "Triplet triangle: adjacent $=\\sqrt{h^2-p^2}$; read all ratios at once."
-    },
-    {
-      "pattern": "Complementary-angle simplification",
-      "frequency": "very common",
-      "howToSpot": "Angles like $70^\\circ$ beside $20^\\circ$, or $\\sin(90-\\theta)$ inside expressions, or long tan products.",
-      "approach": "Pair angles summing to $90^\\circ$ (each product = 1); convert to one function family; equation form gives $A+B+2\\theta=90^\\circ$."
-    },
-    {
-      "pattern": "Identity simplification (sin^4/sin^6 chains)",
-      "frequency": "common",
-      "howToSpot": "Expressions in $\\sin^4+\\cos^4$, $\\sin^6+\\cos^6$, $\\sec^2-\\tan^2$ chains; answer often constant.",
-      "approach": "$x=\\sin^2\\theta$ with $x+(1-x)=1$; memorise the 4th/6th-power reductions."
-    },
-    {
-      "pattern": "Maximum/minimum value",
-      "frequency": "common",
-      "howToSpot": "'Least/greatest value of $a\\sin^2+b\\cos^2$', '$a\\tan^2+b\\cot^2$', '$\\sin\\theta+\\cos\\theta$'.",
-      "approach": "Bounded → coefficient min/max; unbounded reciprocal pairs → $2\\sqrt{ab}$."
-    },
-    {
-      "pattern": "Condition-based expression",
-      "frequency": "occasional",
-      "howToSpot": "A condition like $\\sin\\theta+\\sin^2\\theta=1$ or $\\text{cosec}\\theta+\\cot\\theta=k$; find a related expression.",
-      "approach": "Derive companions: $\\cos^2=1-\\sin^2$, $\\text{cosec}-\\cot=\\frac{1}{k}$; eliminate $\\theta$."
+     "title": "Sec/tan pairs move as one",
+     "body": "See $\\sec^2$ and $\\tan^2$ together → replace by 1 (or by each other via $\\sec^2=1+\\tan^2$). Same for\ncosec/cot.",
+     "example": {
+      "q": "Simplify $\\dfrac{\\sec^2\\theta-\\tan^2\\theta}{1+\\cot^2\\theta}\\times\\text{cosec}^2\\theta$.",
+      "solution": "Numerator $=1$, $1+\\cot^2=\\text{cosec}^2$, so the value is $1$."
+     }
     }
-  ],
-  "solvedExamples": [
+   ],
+   "mistakes": [
+    "Writing $\\tan^2\\theta+1=\\sec\\theta$ (the square is dropped).",
+    "Expanding $\\sin^6+\\cos^6$ as $(\\sin^2+\\cos^2)^3$ without subtracting the cross terms.",
+    "Mixing degrees of powers: $\\sin^4+\\cos^4\\neq1$."
+   ],
+   "notes": "### The three identity engines\n$$\\sin^2\\theta + \\cos^2\\theta = 1,\\qquad 1 + \\tan^2\\theta = \\sec^2\\theta,\\qquad 1 + \\cot^2\\theta = \\cosec^2\\theta$$\nEvery identity question runs one of three engines:\n1. **Divide by $\\cos^2$** (or $\\sin^2$): $\\frac{\\sin^2}{\\cos^2} + 1 = \\frac{1}{\\cos^2}$ is the second identity — so any $\\sec^2 \\pm \\tan^2$ combination converts to a single ratio.\n2. **Pair products**: $(\\sec\\theta + \\tan\\theta)(\\sec\\theta - \\tan\\theta) = 1$, $(\\cosec\\theta + \\cot\\theta)(\\cosec\\theta - \\cot\\theta) = 1$ — conjugate pairs whose product is 1.\n3. **Squares of sums**: $(\\sin\\theta \\pm \\cos\\theta)^2 = 1 \\pm 2\\sin\\theta\\cos\\theta$ — links \"sin+cos = m\" questions to \"sin·cos\" questions.\n\n### The sin+cos / sin−cos web\nGiven $\\sin\\theta + \\cos\\theta = m$: squaring gives $\\sin\\theta\\cos\\theta = \\frac{m^2 - 1}{2}$, and $(\\sin\\theta - \\cos\\theta)^2 = 2 - m^2$. Given $\\sec\\theta + \\tan\\theta = m$, the conjugate gives $\\sec\\theta - \\tan\\theta = \\frac1m$ — then adding/subtracting the pair returns $\\sec\\theta$ and $\\tan\\theta$ individually (this 2-step unlocks $\\sin\\theta$ via a triangle).\n\n### Convert-to-sin-cos for anything composite\nFor fractions mixing tan/sin/cos with an unknown coefficient (\"if $\\tan\\theta = \\frac34$, find $\\frac{4\\sin\\theta - \\cos\\theta}{4\\cos\\theta + \\sin\\theta}$\"): divide numerator and denominator by $\\cos\\theta$ — everything becomes $t = \\tan\\theta$, one substitution, one fraction. Squared combos like $\\tan^2\\theta + \\cot^2\\theta$ come from squaring $\\tan\\theta + \\cot\\theta$ and subtracting 2.\n\n### The fourth- and sixth-power chains\nTwo reduced forms answer a whole question family:\n$$\\sin^4\\theta + \\cos^4\\theta = 1 - 2\\sin^2\\theta\\cos^2\\theta, \\qquad \\sin^6\\theta + \\cos^6\\theta = 1 - 3\\sin^2\\theta\\cos^2\\theta$$\nBoth come from squaring/cubing $\\sin^2 + \\cos^2 = 1$. The classic combination $2(\\sin^6 + \\cos^6) - 3(\\sin^4 + \\cos^4) + 1$ then collapses: $2 - 6s^2c^2 - 3 + 6s^2c^2 + 1 = 0$ for every $\\theta$ — the cross terms cancel by design. When a question mixes powers, reduce each bracket to these two forms first and only then simplify; almost always the $s^2c^2$ terms cancel and a constant survives.\n\n### Quick revision\n- $\\sin^2 + \\cos^2 = 1$; divide it by $\\cos^2$ or $\\sin^2$ for the other two.\n- $(\\sec + \\tan)(\\sec - \\tan) = 1$; same for cosec/cot.\n- $(\\sin \\pm \\cos)^2 = 1 \\pm 2\\sin\\cos$; $\\sin\\cos = \\frac{(\\sin+\\cos)^2 - 1}{2}$.\n- Composite fractions: divide top and bottom by $\\cos\\theta$.\n- $\\tan\\theta + \\cot\\theta = \\sec\\theta\\,\\cosec\\theta$; squaring then subtracting 2 gives the squared sum.\n",
+   "patterns": [
     {
-      "id": "trig-s01",
-      "q": "Find the value of $\\dfrac{2\\tan30^\\circ}{1-\\tan^230^\\circ}$.",
-      "figure": null,
-      "options": [
-        "$\\frac{1}{\\sqrt{3}}$",
-        "1",
-        "$\\frac{\\sqrt{3}}{2}$",
-        "$\\sqrt{3}$"
-      ],
-      "answer": 3,
-      "solution": "$\\tan30^\\circ=\\frac{1}{\\sqrt3}$:\n\n$\\dfrac{2/\\sqrt3}{1-\\frac13}=\\dfrac{2/\\sqrt3}{2/3}=\\dfrac{3}{\\sqrt3}=\\sqrt3$.",
-      "shortcut": "Recognise the form: $\\frac{2t}{1-t^2}=\\tan2\\theta$ with $\\theta=30^\\circ$ → $\\tan60^\\circ=\\sqrt3$, no fractions at all.",
-      "difficulty": "easy",
-      "subtopic": "trig-ratios",
-      "pattern": "standard values in double-angle form",
-      "timeSec": 35
+     "id": "trig-id-p1",
+     "name": "Conjugate pairs: sec±tan, cosec±cot",
+     "frequency": "very common",
+     "howToSpot": "'If secθ + tanθ = m, find secθ − tanθ' (or the reverse) — or the pair used to extract individual ratios.",
+     "formula": "(\\sec\\theta + \\tan\\theta)(\\sec\\theta - \\tan\\theta) = 1",
+     "logic": "1. The conjugate is its reciprocal: $\\sec\\theta - \\tan\\theta = \\frac1m$.\n2. To extract $\\tan\\theta$: subtract the pair ($2\\tan\\theta = m - \\frac1m$).\n3. Then a 3-4-5 style triangle gives sin/cos if asked.\n\nWhy: the product being exactly 1 makes every question in this family a two-line reciprocal computation.",
+     "example": {
+      "q": "If $\\sec\\theta + \\tan\\theta = 5$ ($\\theta$ acute), the value of $\\sec\\theta - \\tan\\theta$ is:",
+      "solution": "$\\sec\\theta - \\tan\\theta = \\frac{1}{\\sec\\theta + \\tan\\theta} = \\frac15$."
+     }
     },
     {
-      "id": "trig-s02",
-      "q": "If $\\cos\\theta=\\dfrac{7}{25}$, then the value of $\\tan\\theta$ is:",
-      "figure": null,
-      "options": [
-        "$\\frac{24}{25}$",
-        "$\\frac{24}{7}$",
-        "$\\frac{7}{24}$",
-        "$\\frac{25}{24}$"
-      ],
-      "answer": 1,
-      "solution": "Adjacent side $=7$, hypotenuse $=25$; opposite $=\\sqrt{25^2-7^2}=\\sqrt{576}=24$.\n\n$\\tan\\theta=\\frac{24}{7}$.",
-      "shortcut": "7-24-25 triplet: see 7 and 25, write 24 instantly. Trap: $\\frac{7}{24}$ is $\\cot\\theta$.",
-      "difficulty": "easy",
-      "subtopic": "trig-valueput",
-      "pattern": "given ratio → triplet triangle",
-      "timeSec": 30
+     "id": "trig-id-p2",
+     "name": "sin²+cos² expansions and squares of sums",
+     "frequency": "very common",
+     "howToSpot": "Expressions like (sinθ ± cosθ)², or a product like (cosecθ − sinθ)(secθ − cosθ)(tanθ + cotθ) to simplify.",
+     "formula": "(\\sin\\theta \\pm \\cos\\theta)^2 = 1 \\pm 2\\sin\\theta\\cos\\theta; convert everything to sin/cos and cancel.",
+     "logic": "1. Expand squares: the cross term $2\\sin\\theta\\cos\\theta$ and the 1 dominate.\n2. For composite products, convert each bracket to sin/cos: $\\cosec\\theta - \\sin\\theta = \\frac{\\cos^2\\theta}{\\sin\\theta}$ etc., then cancel.\n3. Constants fall out — most of these expressions are pure numbers (1 or 2).\n\nWhy: every term is secretly $\\sin^2 + \\cos^2 = 1$ wearing a costume.",
+     "example": {
+      "q": "The value of $(\\sin\\theta + \\cos\\theta)^2 + (\\sin\\theta - \\cos\\theta)^2$ is:",
+      "solution": "$= 1 + 2\\sin\\theta\\cos\\theta + 1 - 2\\sin\\theta\\cos\\theta = 2$. Cross terms cancel."
+     }
     },
     {
-      "id": "trig-s03",
-      "q": "The value of $\\tan1^\\circ\\tan2^\\circ\\tan3^\\circ\\cdots\\tan89^\\circ$ is:",
-      "figure": null,
-      "options": [
-        "0",
-        "$\\sqrt{3}$",
-        "89",
-        "1"
-      ],
-      "answer": 3,
-      "solution": "Pair $\\tan\\theta$ with $\\tan(90^\\circ-\\theta)=\\cot\\theta$: each pair multiplies to 1.\n\n44 such pairs plus $\\tan45^\\circ=1$ give the product 1.",
-      "shortcut": "Every angle pairs with its complement; middle term is $\\tan45^\\circ=1$. Product $=1$.",
-      "difficulty": "medium",
-      "subtopic": "trig-complementary",
-      "pattern": "tan product 1 to 89",
-      "timeSec": 40
+     "id": "trig-id-p3",
+     "name": "Substituting tan via divide-by-cos",
+     "frequency": "very common",
+     "howToSpot": "tanθ given; a linear fraction in sinθ and cosθ asked — coefficients on both.",
+     "formula": "Divide numerator and denominator by $\\cos\\theta$; the fraction becomes one in $t = \\tan\\theta$.",
+     "logic": "1. $\\frac{a\\sin\\theta + b\\cos\\theta}{c\\cos\\theta + d\\sin\\theta} = \\frac{a\\tan\\theta + b}{c + d\\tan\\theta}$.\n2. Substitute $t$; simplify the single fraction.\n3. Keep fractions exact ($t = \\frac34$, not 0.75).\n\nWhy: division by $\\cos\\theta$ is legal (nonzero for acute angles) and converts two unknowns into one.",
+     "example": {
+      "q": "If $\\tan\\theta = \\frac{3}{4}$, the value of $\\frac{4\\sin\\theta - \\cos\\theta}{4\\cos\\theta + \\sin\\theta}$ is:",
+      "solution": "Divide by $\\cos\\theta$: $\\frac{4 \\times \\frac34 - 1}{4 + \\frac34} = \\frac{2}{\\frac{19}{4}} = \\frac{8}{19}$."
+     }
     },
     {
-      "id": "trig-s04",
-      "q": "The value of $(\\text{cosec}\\theta-\\sin\\theta)(\\sec\\theta-\\cos\\theta)(\\tan\\theta+\\cot\\theta)$ is:",
-      "figure": null,
-      "options": [
-        "2",
-        "$\\tan\\theta$",
-        "1",
-        "0"
-      ],
-      "answer": 2,
-      "solution": "Write everything over sin/cos:\n\n$\\text{cosec}\\theta-\\sin\\theta=\\frac{\\cos^2\\theta}{\\sin\\theta},\\quad\n\\sec\\theta-\\cos\\theta=\\frac{\\sin^2\\theta}{\\cos\\theta},\\quad\n\\tan\\theta+\\cot\\theta=\\frac{1}{\\sin\\theta\\cos\\theta}$.\n\nProduct $=\\frac{\\cos^2\\theta}{\\sin\\theta}\\cdot\\frac{\\sin^2\\theta}{\\cos\\theta}\\cdot\\frac{1}{\\sin\\theta\\cos\\theta}=1$.",
-      "shortcut": "Reduce each bracket to a single fraction; the $\\sin^2\\cos^2$ cancels completely → 1. (Check at $45^\\circ$: $(\\frac{1}{\\sqrt2})^2\\times2=1$.)",
-      "difficulty": "medium",
-      "subtopic": "trig-identities",
-      "pattern": "cosec-sin / sec-cos product identity",
-      "timeSec": 50
-    },
-    {
-      "id": "trig-s05",
-      "q": "The greatest value of $3\\sin\\theta+4\\cos\\theta+5$ (for $0^\\circ\\le\\theta\\le90^\\circ$) is:",
-      "figure": null,
-      "options": [
-        "10",
-        "5",
-        "12",
-        "9"
-      ],
-      "answer": 0,
-      "solution": "$a\\sin\\theta+b\\cos\\theta$ peaks at $\\sqrt{a^2+b^2}$: here $\\sqrt{3^2+4^2}=5$ (at $\\tan\\theta=\\frac34$).\n\nSo the greatest value of the expression is $5+5=10$.",
-      "shortcut": "$\\sqrt{a^2+b^2}=5$ for the trig part, then add the constant: $5+5=10$. Trap: 12 (added $3+4+5$ directly).",
-      "difficulty": "medium",
-      "subtopic": "trig-maxmin",
-      "pattern": "max of a sin + b cos + c",
-      "timeSec": 45
+     "id": "trig-id-p4",
+     "name": "Squared sums via squaring (tan+cot, sin+cosec)",
+     "frequency": "common",
+     "howToSpot": "'If tanθ + cotθ = k, find tan²θ + cot²θ' — or an equation like sinθ + cosecθ = 2 that forces a special value.",
+     "formula": "Square the given: $(x + \\frac{1}{x})^2 = x^2 + \\frac{1}{x^2} + 2$, so subtract 2. Equations equal to 2 force $x = 1$.",
+     "logic": "1. Square the given sum; subtract 2 for the squared-pair answer.\n2. AM-GM shortcut: $x + \\frac1x \\ge 2$, with equality only at $x = 1$ — so \"= 2\" means $\\tan\\theta = \\sin\\theta = 1$, i.e. $\\theta = 45^\\circ$ / $90^\\circ$ respectively.\n3. Read off the asked power exactly (squared vs fourth).\n\nWhy: the self-reciprocal structure makes both the bound and the equality case immediate.",
+     "example": {
+      "q": "If $\\tan\\theta + \\cot\\theta = 5$ ($\\theta$ acute), the value of $\\tan^2\\theta + \\cot^2\\theta$ is:",
+      "solution": "Square: $25 = \\tan^2\\theta + \\cot^2\\theta + 2$, so $\\tan^2\\theta + \\cot^2\\theta = 23$."
+     }
     }
-  ],
-  "practice": [
+   ]
+  },
+  {
+   "id": "trig-complementary",
+   "title": "Complementary angles",
+   "concept": "For angles that add to $90^\\circ$:\n$$\\sin(90^\\circ-\\theta)=\\cos\\theta,\\quad \\tan(90^\\circ-\\theta)=\\cot\\theta,\\quad \\sec(90^\\circ-\\theta)=\\text{cosec}\\theta$$\nand similarly in reverse. This converts \"odd\" angles ($67\\tfrac12^\\circ$, $72^\\circ$, ...) into their partners and\nmakes paired products equal 1: $\\tan\\theta\\cdot\\tan(90^\\circ-\\theta)=1$.\n\nAn equation like $\\sin(A+\\theta)=\\cos(B+\\theta)$ forces $(A+\\theta)+(B+\\theta)=90^\\circ$.",
+   "formulas": [
     {
-      "id": "trig-q01",
-      "q": "The value of $\\sin30^\\circ+\\cos60^\\circ+\\cot45^\\circ$ is:",
-      "figure": null,
-      "options": [
-        "$\\frac{\\sqrt{3}}{2}$",
-        "2",
-        "1",
-        "3"
-      ],
-      "answer": 1,
-      "solution": "$\\frac12+\\frac12+1=2$.",
-      "shortcut": "Read the table: $\\frac12+\\frac12+1=2$. $\\cot45^\\circ=1$, not 0.",
-      "difficulty": "easy",
-      "subtopic": "trig-ratios",
-      "pattern": "standard values sum",
-      "timeSec": 25
+     "name": "Complementary pairs",
+     "tex": "\\sin(90-\\theta)=\\cos\\theta,\\ \\tan(90-\\theta)=\\cot\\theta,\\ \\sec(90-\\theta)=\\text{cosec}\\theta"
     },
     {
-      "id": "trig-q02",
-      "q": "The value of $\\sec^2\\theta-\\tan^2\\theta-\\sin^2\\theta$ is:",
-      "figure": null,
-      "options": [
-        "1",
-        "0",
-        "$\\sin^2\\theta$",
-        "$\\cos^2\\theta$"
-      ],
-      "answer": 3,
-      "solution": "$\\sec^2\\theta-\\tan^2\\theta=1$, so the expression $=1-\\sin^2\\theta=\\cos^2\\theta$.",
-      "shortcut": "$\\sec^2-\\tan^2=1$ (identity pair), then $1-\\sin^2=\\cos^2$.",
-      "difficulty": "easy",
-      "subtopic": "trig-identities",
-      "pattern": "sec-tan identity pair",
-      "timeSec": 30
+     "name": "Paired products",
+     "tex": "\\tan\\theta\\,\\tan(90^\\circ-\\theta)=1,\\quad \\sin\\theta\\,\\text{cosec}\\theta=1"
     },
     {
-      "id": "trig-q03",
-      "q": "The value of $\\sin60^\\circ\\cos30^\\circ+\\cos60^\\circ\\sin30^\\circ$ is:",
-      "figure": null,
-      "options": [
-        "$\\frac{3}{4}$",
-        "1",
-        "$\\frac{\\sqrt{3}}{2}$",
-        "$\\frac{1}{2}$"
-      ],
-      "answer": 1,
-      "solution": "$\\frac{\\sqrt3}{2}\\cdot\\frac{\\sqrt3}{2}+\\frac12\\cdot\\frac12=\\frac34+\\frac14=1$.",
-      "shortcut": "This is $\\sin(60+30)=\\sin90^\\circ=1$ — recognise the sine-addition shape instead of multiplying.",
-      "difficulty": "easy",
-      "subtopic": "trig-ratios",
-      "pattern": "standard values product sum",
-      "timeSec": 30
-    },
-    {
-      "id": "trig-q04",
-      "q": "If $\\sin\\theta=\\dfrac{5}{13}$, then $\\tan\\theta$ equals:",
-      "figure": null,
-      "options": [
-        "$\\frac{5}{12}$",
-        "$\\frac{12}{5}$",
-        "$\\frac{12}{13}$",
-        "$\\frac{5}{13}$"
-      ],
-      "answer": 0,
-      "solution": "Adjacent $=\\sqrt{13^2-5^2}=12$, so $\\tan\\theta=\\frac{5}{12}$.",
-      "shortcut": "5-12-13 triplet → $\\frac{5}{12}$. Trap: $\\frac{12}{5}$ is $\\cot\\theta$.",
-      "difficulty": "easy",
-      "subtopic": "trig-valueput",
-      "pattern": "given sin → tan by triplet",
-      "timeSec": 25
-    },
-    {
-      "id": "trig-q05",
-      "q": "If $\\tan\\theta=\\dfrac{3}{4}$, the value of $\\dfrac{\\sin\\theta+\\cos\\theta}{\\sin\\theta-\\cos\\theta}$ is:",
-      "figure": null,
-      "options": [
-        "$-\\frac{1}{7}$",
-        "$\\frac{7}{4}$",
-        "-7",
-        "7"
-      ],
-      "answer": 2,
-      "solution": "Divide numerator and denominator by $\\cos\\theta$:\n\n$\\dfrac{\\tan\\theta+1}{\\tan\\theta-1}=\\dfrac{\\frac34+1}{\\frac34-1}=\\dfrac{7/4}{-1/4}=-7$.",
-      "shortcut": "Divide through by $\\cos\\theta$: $(t+1)/(t-1)$ with $t=\\frac34$ → $-7$. (Same trick works for any sin/cos ratio expression.)",
-      "difficulty": "medium",
-      "subtopic": "trig-valueput",
-      "pattern": "divide by cos to use tan",
-      "timeSec": 40
-    },
-    {
-      "id": "trig-q06",
-      "q": "If $\\sin(40^\\circ+\\theta)=\\cos(30^\\circ+\\theta)$, where both angles are acute, then $\\theta$ equals:",
-      "figure": null,
-      "options": [
-        "10°",
-        "20°",
-        "5°",
-        "15°"
-      ],
-      "answer": 0,
-      "solution": "The angles must add to $90^\\circ$: $(40+\\theta)+(30+\\theta)=90\\Rightarrow2\\theta=20\\Rightarrow\\theta=10^\\circ$.",
-      "shortcut": "Sum to 90: $70+2\\theta=90$ → $\\theta=10^\\circ$. Trap: 20 (forgot to halve).",
-      "difficulty": "medium",
-      "subtopic": "trig-complementary",
-      "pattern": "sin A = cos B angle equation",
-      "timeSec": 35
-    },
-    {
-      "id": "trig-q07",
-      "q": "If $\\sin\\theta+\\sin^2\\theta=1$, then the value of $\\cos^2\\theta+\\cos^4\\theta$ is:",
-      "figure": null,
-      "options": [
-        "2",
-        "$\\frac{1}{2}$",
-        "1",
-        "0"
-      ],
-      "answer": 2,
-      "solution": "From the condition, $\\sin^2\\theta=1-\\sin\\theta$, so $\\cos^2\\theta=1-\\sin^2\\theta=\\sin\\theta$.\n\nThen $\\cos^4\\theta=\\sin^2\\theta=1-\\sin\\theta$.\n\nSum $=\\sin\\theta+1-\\sin\\theta=1$.",
-      "shortcut": "$\\cos^2=\\sin$ and $\\cos^4=\\sin^2=1-\\sin$ → total 1, without ever finding $\\theta$.",
-      "difficulty": "medium",
-      "subtopic": "trig-identities",
-      "pattern": "condition sin+sin^2=1",
-      "timeSec": 45
-    },
-    {
-      "id": "trig-q08",
-      "q": "The minimum value of $\\sin\\theta+\\cos\\theta$ for $0^\\circ\\le\\theta\\le90^\\circ$ is:",
-      "figure": null,
-      "options": [
-        "$\\frac{1}{\\sqrt{2}}$",
-        "1",
-        "$\\sqrt{2}$",
-        "0"
-      ],
-      "answer": 1,
-      "solution": "$\\sin\\theta+\\cos\\theta$ ranges from 1 (at $\\theta=0^\\circ$ or $90^\\circ$) to $\\sqrt2$ (at $45^\\circ$). The minimum is 1.",
-      "shortcut": "Range $[1,\\sqrt2]$: min 1, max $\\sqrt2$. Trap: $\\sqrt2$ is the **maximum**.",
-      "difficulty": "medium",
-      "subtopic": "trig-maxmin",
-      "pattern": "min of sin+cos",
-      "timeSec": 30
-    },
-    {
-      "id": "trig-q09",
-      "q": "The value of $\\tan15^\\circ\\tan25^\\circ\\tan45^\\circ\\tan65^\\circ\\tan75^\\circ$ is:",
-      "figure": null,
-      "options": [
-        "0",
-        "$\\sqrt{3}$",
-        "5",
-        "1"
-      ],
-      "answer": 3,
-      "solution": "$\\tan\\theta\\tan(90-\\theta)=1$ pairs: $(\\tan15\\tan75)(\\tan25\\tan65)(\\tan45)=1\\cdot1\\cdot1=1$.",
-      "shortcut": "Complementary pairs collapse; $\\tan45^\\circ=1$ stands alone.",
-      "difficulty": "medium",
-      "subtopic": "trig-complementary",
-      "pattern": "tan product with complementary pairs",
-      "timeSec": 40
-    },
-    {
-      "id": "trig-q10",
-      "q": "The value of $2(\\sin^6\\theta+\\cos^6\\theta)-3(\\sin^4\\theta+\\cos^4\\theta)+1$ is:",
-      "figure": null,
-      "options": [
-        "0",
-        "1",
-        "2",
-        "$\\sin^2\\theta$"
-      ],
-      "answer": 0,
-      "solution": "Use $\\sin^6+\\cos^6=1-3s^2c^2$ and $\\sin^4+\\cos^4=1-2s^2c^2$ (where $s^2c^2=\\sin^2\\theta\\cos^2\\theta$):\n\n$2(1-3s^2c^2)-3(1-2s^2c^2)+1=2-3+1+0=0$.",
-      "shortcut": "The $s^2c^2$ terms cancel exactly: $-6+6=0$ → answer 0 for every $\\theta$. (Try $\\theta=45^\\circ$ to confirm.)",
-      "difficulty": "medium",
-      "subtopic": "trig-identities",
-      "pattern": "sin^6+cos^6 chain",
-      "timeSec": 50
-    },
-    {
-      "id": "trig-q11",
-      "q": "If $\\cos\\theta=\\dfrac{12}{13}$, then $\\text{cosec}\\,\\theta$ equals:",
-      "figure": null,
-      "options": [
-        "$\\frac{13}{12}$",
-        "$\\frac{12}{5}$",
-        "$\\frac{13}{5}$",
-        "$\\frac{5}{13}$"
-      ],
-      "answer": 2,
-      "solution": "Opposite $=\\sqrt{13^2-12^2}=5$, so $\\sin\\theta=\\frac5{13}$ and $\\text{cosec}\\theta=\\frac{13}{5}$.",
-      "shortcut": "5-12-13: $\\sin=\\frac5{13}$ → cosec $=\\frac{13}{5}$ (flip). Trap: $\\frac{13}{12}$ is $\\sec\\theta$.",
-      "difficulty": "easy",
-      "subtopic": "trig-valueput",
-      "pattern": "given cos → cosec",
-      "timeSec": 30
-    },
-    {
-      "id": "trig-q12",
-      "q": "The minimum value of $4\\tan^2\\theta+9\\cot^2\\theta$ (for acute $\\theta$) is:",
-      "figure": null,
-      "options": [
-        "12",
-        "13",
-        "36",
-        "6"
-      ],
-      "answer": 0,
-      "solution": "By AM–GM, $4\\tan^2\\theta+9\\cot^2\\theta\\ge2\\sqrt{4\\times9}=12$,\n\nwith equality when $2\\tan\\theta=3\\cot\\theta$, i.e. $\\tan^2\\theta=\\frac32$ (reachable since tan is unbounded).",
-      "shortcut": "$2\\sqrt{ab}=2\\sqrt{36}=12$. Trap: 6 is $\\sqrt{ab}$ (forgot to double), 13 is $a+b$.",
-      "difficulty": "hard",
-      "subtopic": "trig-maxmin",
-      "pattern": "AM-GM min of tan^2+cot^2",
-      "timeSec": 45
-    },
-    {
-      "id": "trig-q13",
-      "q": "If $\\text{cosec}\\theta+\\cot\\theta=3$, then $\\sin\\theta$ equals:",
-      "figure": null,
-      "options": [
-        "$\\frac{4}{5}$",
-        "$\\frac{1}{3}$",
-        "$\\frac{3}{5}$",
-        "$\\frac{5}{3}$"
-      ],
-      "answer": 2,
-      "solution": "$\\text{cosec}\\theta-\\cot\\theta=\\frac13$ (reciprocal pair). Adding the two:\n\n$2\\,\\text{cosec}\\theta=\\frac{10}{3}\\Rightarrow\\text{cosec}\\theta=\\frac53\\Rightarrow\\sin\\theta=\\frac35$.",
-      "shortcut": "Companion is $\\frac1k=\\frac13$; average the pair: cosec $=\\frac{3+\\frac13}{2}=\\frac53$ → $\\sin=\\frac35$.",
-      "difficulty": "medium",
-      "subtopic": "trig-valueput",
-      "pattern": "cosec+cot given",
-      "timeSec": 50
-    },
-    {
-      "id": "trig-q14",
-      "q": "The expression $(\\tan\\theta+\\sec\\theta-1)(\\tan\\theta-\\sec\\theta+1)$ equals:",
-      "figure": null,
-      "options": [
-        "1",
-        "$2\\sec\\theta$",
-        "$\\tan^2\\theta$",
-        "$2(\\sec\\theta-1)$"
-      ],
-      "answer": 3,
-      "solution": "Write the brackets as $[t+(s-1)][t-(s-1)]=t^2-(s-1)^2$ where $t=\\tan\\theta$, $s=\\sec\\theta$.\n\n$=t^2-s^2+2s-1=-1+2s-1=2(\\sec\\theta-1)$, using $s^2-t^2=1$.",
-      "shortcut": "Difference of squares, then $t^2-s^2=-1$: answer $2(\\sec\\theta-1)$. Quick check at $30^\\circ$: LHS $\\approx0.309$ = RHS.",
-      "difficulty": "hard",
-      "subtopic": "trig-identities",
-      "pattern": "tan-sec difference of squares",
-      "timeSec": 60
-    },
-    {
-      "id": "trig-q15",
-      "q": "If $2\\sin^2\\theta+7\\cos^2\\theta=6$ and $0^\\circ<\\theta<90^\\circ$, then $\\tan\\theta$ equals:",
-      "figure": null,
-      "options": [
-        "$\\frac{1}{5}$",
-        "$\\frac{1}{2}$",
-        "2",
-        "$\\frac{1}{4}$"
-      ],
-      "answer": 1,
-      "solution": "Write the left side as $2(\\sin^2\\theta+\\cos^2\\theta)+5\\cos^2\\theta=2+5\\cos^2\\theta$.\n\nSo $2+5\\cos^2\\theta=6\\Rightarrow\\cos^2\\theta=\\frac45$, hence $\\sin^2\\theta=\\frac15$.\n\n$\\tan^2\\theta=\\frac{\\sin^2\\theta}{\\cos^2\\theta}=\\frac{1/5}{4/5}=\\frac14\\Rightarrow\\tan\\theta=\\frac12$ (acute).",
-      "shortcut": "Anchor to $a(\\sin^2+\\cos^2)+(b-a)\\cos^2$: solve for $\\cos^2$, then $\\tan^2=\\frac{1-\\cos^2}{\\cos^2}$. Traps: 2 (reciprocal), $\\frac14$ ($\\tan^2$, forgot the root).",
-      "difficulty": "hard",
-      "subtopic": "trig-identities",
-      "pattern": "weighted sin^2+cos^2 equation",
-      "timeSec": 70
+     "name": "Angle-equation rule",
+     "tex": "\\sin(A+\\theta)=\\cos(B+\\theta)\\Rightarrow A+B+2\\theta=90^\\circ"
     }
-  ]
+   ],
+   "tricks": [
+    {
+     "title": "Pair the angles that add to 90°",
+     "body": "In a long product, look for $\\theta$ and $90-\\theta$ pairs first — each pair collapses to 1. The classic\n$\\tan1^\\circ\\tan2^\\circ\\cdots\\tan89^\\circ$ collapses completely.",
+     "example": {
+      "q": "Find the value of $\\tan15^\\circ\\tan25^\\circ\\tan45^\\circ\\tan65^\\circ\\tan75^\\circ$.",
+      "solution": "$(\\tan15\\tan75)(\\tan25\\tan65)(\\tan45)=1\\times1\\times1=1$."
+     }
+    },
+    {
+     "title": "Convert everything to one angle",
+     "body": "Rewrite each term at its complementary partner until only one angle remains; a $\\sin^2+\\cos^2$ pair may then\ncollapse.",
+     "example": {
+      "q": "Find the value of $\\sin^265^\\circ+\\sin^225^\\circ$.",
+      "solution": "$\\sin65^\\circ=\\cos25^\\circ$, so the sum $=\\cos^225^\\circ+\\sin^225^\\circ=1$."
+     }
+    },
+    {
+     "title": "Equation → sum to 90°",
+     "body": "When $\\sin(\\ldots)=\\cos(\\ldots)$, set the two bracketed angles to sum to $90^\\circ$ and solve.",
+     "example": {
+      "q": "If $\\sin(40^\\circ+\\theta)=\\cos(30^\\circ+\\theta)$ and both angles are acute, find $\\theta$.",
+      "solution": "$40+\\theta+30+\\theta=90\\Rightarrow2\\theta=20\\Rightarrow\\theta=10^\\circ$."
+     }
+    }
+   ],
+   "mistakes": [
+    "Complementary conversion applied to the wrong function ($\\sec(90-\\theta)=\\sec\\theta$ is wrong).",
+    "Setting $\\sin A=\\cos B\\Rightarrow A+B=180^\\circ$ — it is $90^\\circ$.",
+    "Products paired as $\\tan\\theta\\cdot\\cot\\theta=1$ but evaluated before converting to the same angle."
+   ],
+   "notes": "### The complementary pair rules\nFor any angle $\\theta$: $\\sin(90^\\circ - \\theta) = \\cos\\theta$, $\\tan(90^\\circ - \\theta) = \\cot\\theta$, $\\sec(90^\\circ - \\theta) = \\cosec\\theta$ — and each reversed. The switch only happens between the three PAIRS (sin↔cos, tan↔cot, sec↔cosec); sin to sin at $90^\\circ - \\theta$ never changes function.\n$$\\sin\\theta = \\cos(90^\\circ - \\theta),\\quad \\tan\\theta = \\cot(90^\\circ - \\theta),\\quad \\sec\\theta = \\cosec(90^\\circ - \\theta)$$\n\n### The working algorithm\n1. Scan the expression for angles that sum to $90^\\circ$ in pairs ($20^\\circ$ & $70^\\circ$, $35^\\circ$ & $55^\\circ$, $5^\\circ$ & $85^\\circ$...).\n2. Convert ONE angle of each pair so both terms share an angle: $\\sec 55^\\circ = \\cosec 35^\\circ = \\frac{1}{\\sin 35^\\circ}$.\n3. Fractions collapse ($x \\cdot \\frac1x$), products of the form $\\tan\\theta\\cot\\theta$ become 1, and the expression evaluates to a small constant.\n\n### Product chains\nProducts like $\\tan 5^\\circ \\tan 25^\\circ \\tan 45^\\circ \\tan 65^\\circ \\tan 85^\\circ$ pair into $\\tan\\theta \\cdot \\tan(90^\\circ - \\theta) = \\tan\\theta\\cot\\theta = 1$ with $\\tan 45^\\circ = 1$ left over. The full run $\\tan 1^\\circ \\tan 2^\\circ \\cdots \\tan 89^\\circ$ is 1 for the same reason — 44 cancelling pairs around the middle term.\n\n### Finding the angle itself\nEquations pairing different functions at related angles resolve by forcing the SAME function: $\\sin 3A = \\cos(A - 10^\\circ)$ becomes $\\sin 3A = \\sin(90^\\circ - (A - 10^\\circ))$, so the angles match: $3A = 100^\\circ - A$. Equivalently, complementary-function arguments must sum to $90^\\circ$: $\\sec 2\\theta = \\cosec(\\theta + 30^\\circ)$ gives $2\\theta + \\theta + 30^\\circ = 90^\\circ$.\n\n### The tan 45° anchor and half-chain variants\n$\\tan 45^\\circ = 1$ is the middle term of every full chain and the most common \"unpaired\" value in short products. Half-chains behave the same: $\\tan 10^\\circ \\tan 20^\\circ \\tan 70^\\circ \\tan 80^\\circ = (10,80)(20,70) = 1$, and cot chains like $\\cot 15^\\circ \\cot 35^\\circ \\cot 55^\\circ \\cot 75^\\circ$ collapse identically because complementary cots are still reciprocals. One caution: the collapse needs PAIRS summing to $90^\\circ$ — if a product holds $\\tan 20^\\circ \\tan 50^\\circ \\tan 40^\\circ$, the $20/70$ pairing is absent, so convert through cot and simplify before trusting a pattern.\n\n### Quick revision\n- Only three switches exist: sin↔cos, tan↔cot, sec↔cosec, argument → $90^\\circ - x$.\n- Hunt pairs summing to $90^\\circ$; convert, then cancel.\n- $\\tan\\theta \\cdot \\tan(90^\\circ - \\theta) = 1$; full chains $\\tan 1^\\circ \\cdots \\tan 89^\\circ = 1$.\n- Angle equations: set complementary arguments to sum to $90^\\circ$, solve linearly.\n",
+   "patterns": [
+    {
+     "id": "trig-co-p1",
+     "name": "Pair conversion to collapse a sum",
+     "frequency": "very common",
+     "howToSpot": "A short sum/product whose angles pair to 90 degrees (35 & 55, 20 & 70...).",
+     "formula": "$\\sin\\theta = \\cos(90^\\circ-\\theta)$ etc.; convert one of each pair and cancel.",
+     "logic": "1. List the angles; find the 90-degree pairs.\n2. Convert the odd-pair function: $\\sec 55^\\circ = \\frac{1}{\\cos 55^\\circ} = \\frac{1}{\\sin 35^\\circ}$.\n3. Each term becomes $x \\cdot \\frac1x = 1$; read the sum.\n\nWhy: the exam numbers never share a function until you flip one — that flip is the entire question.",
+     "example": {
+      "q": "The value of $\\sin 35^\\circ \\sec 55^\\circ + \\cos 35^\\circ \\cosec 55^\\circ$ is:",
+      "solution": "$\\sec 55^\\circ = \\frac{1}{\\sin 35^\\circ}$ and $\\cosec 55^\\circ = \\frac{1}{\\cos 35^\\circ}$: sum $= 1 + 1 = 2$."
+     }
+    },
+    {
+     "id": "trig-co-p2",
+     "name": "Product chains pairing to 1",
+     "frequency": "common",
+     "howToSpot": "Long products of tangents/cots at many small angles, with 45 in the middle or symmetric ends.",
+     "formula": "$\\tan\\theta \\cdot \\tan(90^\\circ - \\theta) = 1$; pair from the ends inward.",
+     "logic": "1. Pair $\\theta$ with $90^\\circ - \\theta$ from both ends.\n2. Each pair contributes 1; any middle $\\tan 45^\\circ$ also contributes 1.\n3. The product is 1 unless an unpaired angle remains — rare, and then it is stated.\n\nWhy: complementary tangents are reciprocals, so the chain self-destructs into a product of ones.",
+     "example": {
+      "q": "The value of $\\tan 5^\\circ \\tan 25^\\circ \\tan 45^\\circ \\tan 65^\\circ \\tan 85^\\circ$ is:",
+      "solution": "Pairs: $\\tan 5 \\tan 85 = 1$, $\\tan 25 \\tan 65 = 1$, $\\tan 45 = 1$. Product $= 1$."
+     }
+    },
+    {
+     "id": "trig-co-p3",
+     "name": "Finding the angle from complementary equality",
+     "frequency": "very common",
+     "howToSpot": "'If sin 3A = cos(A − 10), find A' — different functions at related angles, one unknown angle.",
+     "formula": "Force the same function: $\\cos x = \\sin(90^\\circ - x)$; then equate arguments. Shortcut: complementary arguments sum to 90.",
+     "logic": "1. Rewrite so both sides carry the same function.\n2. Equate the arguments (or set them to sum to $90^\\circ$ for complementary pairs).\n3. Solve the resulting linear equation; verify the angle keeps every argument in range.\n\nWhy: equality of different functions is meaningless until one side is converted — then it is class-8 algebra.",
+     "example": {
+      "q": "If $\\sin 3A = \\cos(A - 10^\\circ)$, the value of $A$ is:",
+      "solution": "$\\cos(A - 10^\\circ) = \\sin(90^\\circ - A + 10^\\circ)$, so $3A = 100^\\circ - A$ → $A = 25^\\circ$."
+     }
+    },
+    {
+     "id": "trig-co-p4",
+     "name": "Difference of complementary twins = 0",
+     "frequency": "common",
+     "howToSpot": "'Find cos 50° − sin 40°' style — two terms that LOOK unrelated.",
+     "formula": "$\\sin(90^\\circ - \\theta) = \\cos\\theta$: the two terms are identical; the difference is 0.",
+     "logic": "1. Check the arguments: $50 + 40 = 90$ → twins.\n2. $\\sin 40^\\circ = \\cos 50^\\circ$; the expression is zero.\n3. Same trick for $\\cosec 68^\\circ - \\sec 22^\\circ$, $\\tan 81^\\circ - \\cot 9^\\circ$.\n\nWhy: the question only wins if you don't check for the 90-degree sum — checking it ends the question instantly.",
+     "example": {
+      "q": "The value of $\\cosec 68^\\circ - \\sec 22^\\circ$ is:",
+      "solution": "$\\sec 22^\\circ = \\cosec(90^\\circ - 22^\\circ) = \\cosec 68^\\circ$; difference $= 0$."
+     }
+    }
+   ]
+  },
+  {
+   "id": "trig-valueput",
+   "title": "Value-putting and given-ratio questions",
+   "concept": "Two CGL workhorses:\n\n1. **Given one ratio, draw the triangle.** If $\\sin\\theta=\\frac{5}{13}$, take opposite $=5$, hypotenuse $=13$,\n   adjacent $=\\sqrt{13^2-5^2}=12$ (a 5-12-13 triplet!) and read off every other ratio.\n2. **Value-putting an identity.** If only $\\sin\\theta+\\text{cosec}\\theta$ or a quadratic condition like\n   $\\sin\\theta+\\sin^2\\theta=1$ is given, convert the asked expression into the given pieces — or test a\n   convenient $\\theta$ when the expression is identically constant.",
+   "formulas": [
+    {
+     "name": "From sin to the rest",
+     "tex": "\\sin\\theta=\\frac{p}{h}\\Rightarrow \\cos\\theta=\\frac{\\sqrt{h^2-p^2}}{h},\\ \\tan\\theta=\\frac{p}{\\sqrt{h^2-p^2}}"
+    },
+    {
+     "name": "Standard triplets",
+     "tex": "(3,4,5),\\ (5,12,13),\\ (7,24,25),\\ (8,15,17),\\ (9,40,41)"
+    },
+    {
+     "name": "Sum-product of a ratio and reciprocal",
+     "tex": "x+\\frac1x=k\\Rightarrow x^2+\\frac{1}{x^2}=k^2-2"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Draw the triplet triangle",
+     "body": "Ratio given → sides in hand in 5 seconds. Check the triplet table before any algebra.",
+     "example": {
+      "q": "If $\\cos\\theta=\\dfrac{7}{25}$, find $\\tan\\theta$.",
+      "solution": "Adjacent 7, hypotenuse 25 → opposite $\\sqrt{625-49}=24$; $\\tan\\theta=\\frac{24}{7}$."
+     }
+    },
+    {
+     "title": "Reduce the asked expression",
+     "body": "Rewrite the target in terms of the given relation. For $x+\\frac1x$ chains, square and subtract 2.",
+     "example": {
+      "q": "If $\\sin\\theta+\\text{cosec}\\theta=2$, find $\\sin^2\\theta+\\text{cosec}^2\\theta$.",
+      "solution": "$(x+\\frac1x)^2=x^2+\\frac1{x^2}+2\\Rightarrow 4-2=2$. (Here $x=1$ in fact.)"
+     }
+    }
+   ],
+   "mistakes": [
+    "Triplets applied with hypotenuse as a leg ($\\sqrt{13^2-12^2}$ vs $\\sqrt{13^2+12^2}$).",
+    "Forgetting that a given ratio fixes $\\theta$ up to the quadrant — CGL keeps $\\theta$ acute, so take the positive root.",
+    "Value-putting with $\\theta=45^\\circ$ when the expression is not constant — verify a second angle before trusting it."
+   ],
+   "notes": "### Putting values into expressions\nTwo flavours: (a) the angle is a STANDARD one ($30^\\circ, 45^\\circ, 60^\\circ$) — read the table and compute; (b) an angle satisfying a condition (\"$\\tan\\theta = 2$\") — reduce the expression to a single ratio, then substitute. Both end in one small fraction; the work is entirely in the reduction.\n$$2\\tan^2 45^\\circ + \\cos^2 30^\\circ - \\sin^2 60^\\circ = 2 + \\tfrac34 - \\tfrac34 = 2$$\n\n### The sin+cos condition web\nGiven $\\sin\\theta + \\cos\\theta = m$:\n- $\\sin\\theta\\cos\\theta = \\frac{m^2 - 1}{2}$ (square the given).\n- $\\sin\\theta - \\cos\\theta = \\sqrt{2 - m^2}$ (from the difference squared).\n- $\\sin^3\\theta + \\cos^3\\theta = m^3 - 3\\sin\\theta\\cos\\theta \\cdot m$ via $x^3 + y^3 = (x+y)(x^2 - xy + y^2)$.\nSpecial anchors: $m = \\sqrt2$ gives $\\sin\\theta\\cos\\theta = \\frac12$ ($\\theta = 45^\\circ$); $m = 1$ gives $\\sin\\theta\\cos\\theta = 0$ (endpoints).\n\n### cot/tan triplet substitution\n$\\cot\\theta = \\frac{21}{20}$ means a 20-21-29 triangle: $\\cos\\theta = \\frac{21}{29}$ directly. Any cot/tan given as a fraction of smallish integers is a triangle waiting to be drawn — faster than identities and immune to sign slips.\n\n### Reducing linear fractions in sin and cos\n$\\frac{a\\sin\\theta + b\\cos\\theta}{c\\cos\\theta + d\\sin\\theta} \\to \\frac{a\\tan\\theta + b}{c + d\\tan\\theta}$ — divide by $\\cos\\theta$, substitute $t$, simplify. Works the same with $\\cot$ if the expression is cot-heavy.\n\n### The cosec/cot condition twin\nGiven $\\cosec\\theta + \\cot\\theta = k$: its conjugate $\\cosec\\theta - \\cot\\theta = \\frac{1}{k}$ (product 1), so $\\cosec\\theta = \\frac{k + \\frac1k}{2}$ and $\\cot\\theta = \\frac{k - \\frac1k}{2}$. Since $\\cosec^2 - \\cot^2 = 1$, this family is the sec±tan engine wearing a different coat — and it finishes with $\\sin\\theta = \\frac{2k}{k^2 + 1}$ directly. Example: $\\cosec\\theta + \\cot\\theta = 3$ gives $\\cosec\\theta = \\frac{3 + \\frac13}{2} = \\frac53$, so $\\sin\\theta = \\frac35$ — a 3-4-5 triangle in disguise.\n\n### Reading the options like a setter\nOptions in this family are built from predictable slips: substituting the reciprocal of the given tan, forgetting the constant $+b$ term, dropping a minus sign when the denominator is negative, or reporting $\\tan^2$ when $\\tan$ was asked. After computing, name the slip each wrong option encodes — if you cannot, re-check your own arithmetic. And keep every substitution exact: $\\tan\\theta = \\frac43$ stays a fraction; a decimal 1.33 is how sign and size errors sneak in.\n\n### Quick revision\n- Table entries at $0/30/45/60/90$; reduce everything to them.\n- $\\sin\\cos = \\frac{(\\sin+\\cos)^2 - 1}{2}$; $(\\sin-\\cos)^2 = 2 - (\\sin+\\cos)^2$.\n- cot given as $\\frac{p}{q}$ → triangle $(q, p, \\sqrt{p^2+q^2})$.\n- Divide linear fractions by $\\cos\\theta$; one substitution finishes them.\n",
+   "patterns": [
+    {
+     "id": "trig-vp-p1",
+     "name": "Standard angles in an expression",
+     "frequency": "very common",
+     "howToSpot": "An arithmetic expression in sin/cos/tan of 0/30/45/60/90 asked as a single value.",
+     "formula": "Substitute table values; simplify with exact fractions.",
+     "logic": "1. Replace each ratio with its table entry (reciprocal functions included).\n2. Compute with fractions ($\\frac14, \\frac34, \\frac12$) — no decimals.\n3. Cancel before adding where possible.\n\nWhy: it is pure table recall plus one tidy computation — the marks are in avoiding the $\\sin^2 60$ vs $\\sin 60$ slips.",
+     "example": {
+      "q": "The value of $2\\tan^2 45^\\circ + \\cos^2 30^\\circ - \\sin^2 60^\\circ$ is:",
+      "solution": "$2(1) + \\frac34 - \\frac34 = 2$. The last two terms cancel exactly."
+     }
+    },
+    {
+     "id": "trig-vp-p2",
+     "name": "sin+cos given → products and differences",
+     "frequency": "very common",
+     "howToSpot": "'sinθ + cosθ = m' given; sinθcosθ, sinθ − cosθ, or a cubic combo asked.",
+     "formula": "$\\sin\\cos = \\frac{m^2-1}{2}$; $(\\sin-\\cos)^2 = 2 - m^2$; cube sums via $x^3+y^3 = (x+y)(x^2-xy+y^2)$.",
+     "logic": "1. Square the given: $m^2 = 1 + 2\\sin\\theta\\cos\\theta$ → the product.\n2. Difference: square root of $2 - m^2$ (positive since sin > cos or vice versa is possible — check signs only if options demand).\n3. Cubes: factor as $(\\sin + \\cos)(1 - \\sin\\cos)$ and substitute both knowns.\n\nWhy: every quantity in this family is a symmetric function of $\\sin$ and $\\cos$ — the pair $(m, \\sin\\cos)$ determines all of them.",
+     "example": {
+      "q": "If $\\sin\\theta + \\cos\\theta = \\sqrt{2}$, the value of $\\sin\\theta\\cos\\theta$ is:",
+      "solution": "$2 = 1 + 2\\sin\\theta\\cos\\theta$ → $\\sin\\theta\\cos\\theta = \\frac12$ (indeed $\\theta = 45^\\circ$)."
+     }
+    },
+    {
+     "id": "trig-vp-p3",
+     "name": "tan/cot condition into a linear fraction",
+     "frequency": "very common",
+     "howToSpot": "'If 5 tanθ = 4' or tanθ = p/q; a fraction like (5sinθ − 3cosθ)/(5sinθ + 3cosθ) asked.",
+     "formula": "Divide by $\\cos\\theta$; the fraction becomes $\\frac{5t - 3}{5t + 3}$ in $t = \\tan\\theta$.",
+     "logic": "1. Convert the condition to $t = \\tan\\theta$ first.\n2. Divide numerator and denominator by $\\cos\\theta$.\n3. Substitute and simplify the single fraction exactly.\n\nWhy: the coefficients of the question are the SAME numbers as in the fraction — substitution must be mechanical, not improvised.",
+     "example": {
+      "q": "If $5\\tan\\theta = 4$, the value of $\\frac{5\\sin\\theta - 3\\cos\\theta}{5\\sin\\theta + 3\\cos\\theta}$ is:",
+      "solution": "$= \\frac{5 \\times \\frac45 - 3}{5 \\times \\frac45 + 3} = \\frac{1}{7}$. (Divide top and bottom by $\\cos\\theta$ first.)"
+     }
+    },
+    {
+     "id": "trig-vp-p4",
+     "name": "cot/tan fraction → triangle → ratio",
+     "frequency": "common",
+     "howToSpot": "cotθ or tanθ given as a fraction like 21/20; a DIFFERENT ratio (cos, sin, sec) asked.",
+     "formula": "Draw the triangle with legs $q, p$; hyp $= \\sqrt{p^2+q^2}$; read the asked ratio.",
+     "logic": "1. $\\cot\\theta = \\frac{21}{20}$ → adj 21, opp 20 → hyp 29.\n2. Read the requested ratio from the same triangle.\n3. Triplet families (3-4-5, 5-12-13, 8-15-17, 20-21-29) cover the exams.\n\nWhy: the condition fully determines the shape — one drawing replaces three identity manipulations.",
+     "example": {
+      "q": "If $\\cot\\theta = \\frac{21}{20}$ ($\\theta$ acute), the value of $\\cos\\theta$ is:",
+      "solution": "Triangle 20-21-29: $\\cos\\theta = \\frac{\\text{adj}}{\\text{hyp}} = \\frac{21}{29}$."
+     }
+    }
+   ]
+  },
+  {
+   "id": "trig-maxmin",
+   "title": "Maximum and minimum values",
+   "concept": "For $0^\\circ\\le\\theta\\le90^\\circ$:\n- $0\\le\\sin\\theta,\\cos\\theta\\le1$; $\\sec\\theta,\\text{cosec}\\theta\\ge1$; $\\tan\\theta,\\cot\\theta$ are unbounded.\n- $\\sin\\theta+\\cos\\theta\\in[1,\\sqrt2]$; $\\sin\\theta-\\cos\\theta\\in[-1,1]$; $\\sin\\theta\\cos\\theta\\le\\frac12$.\n- $a\\sin^2\\theta+b\\cos^2\\theta$ has minimum $\\min(a,b)$ and maximum $\\max(a,b)$.\n- $a\\tan^2\\theta+b\\cot^2\\theta\\ (\\text{and } a\\sin^2+b\\,\\text{cosec}^2)$ has minimum $2\\sqrt{ab}$ by AM–GM.\n- $\\sec^2\\theta+\\text{cosec}^2\\theta$ has minimum $2+2=4$ (at $45^\\circ$).",
+   "formulas": [
+    {
+     "name": "Ranges",
+     "tex": "0\\le\\sin\\theta\\le1,\\quad \\sec\\theta\\ge1,\\quad \\sin\\theta+\\cos\\theta\\in[1,\\sqrt2]"
+    },
+    {
+     "name": "Weighted square form",
+     "tex": "a\\sin^2\\theta+b\\cos^2\\theta\\in[\\min(a,b),\\max(a,b)]"
+    },
+    {
+     "name": "AM-GM forms",
+     "tex": "a\\tan^2\\theta+b\\cot^2\\theta\\ge2\\sqrt{ab},\\quad a\\sin^2\\theta+b\\,\\text{cosec}^2\\theta\\ge2\\sqrt{ab}"
+    },
+    {
+     "name": "Combined sec-cosec",
+     "tex": "\\sec^2\\theta+\\text{cosec}^2\\theta=2+\\tan^2\\theta+\\cot^2\\theta\\ge4"
+    },
+    {
+     "name": "Linear combination",
+     "tex": "a\\sin\\theta+b\\cos\\theta\\text{ has maximum }\\sqrt{a^2+b^2}"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Match the question to a range",
+     "body": "Bounded pairs ($\\sin+\\cos$ etc.) → memorised range. Weighted square sums → min of coefficients or $2\\sqrt{ab}$.",
+     "example": {
+      "q": "Find the minimum value of $4\\tan^2\\theta+9\\cot^2\\theta$ for $0^\\circ<\\theta<90^\\circ$.",
+      "solution": "$2\\sqrt{4\\times9}=12$ (at $\\tan^2\\theta=\\frac32$)."
+     }
+    },
+    {
+     "title": "Weighted sin-cos squares are bounded by coefficients",
+     "body": "$2\\sin^2\\theta+3\\cos^2\\theta=2+\\cos^2\\theta$, so it ranges from 2 to 3 — min 2, max 3, no calculus.",
+     "example": {
+      "q": "Find the minimum value of $5\\sin^2\\theta+12\\cos^2\\theta$.",
+      "solution": "$=5+7\\cos^2\\theta\\ge5$; minimum $5$ (at $\\theta=0$)."
+     }
+    }
+   ],
+   "mistakes": [
+    "AM-GM applied to $a\\sin\\theta+b\\text{cosec}\\theta$ where the equality point may be unreachable — for the square versions it is safe, check before using.",
+    "Quoting $\\sqrt2$ as the **minimum** of $\\sin+\\cos$ — $\\sqrt2$ is the maximum.",
+    "$\\sec^2+\\text{cosec}^2$ minimum quoted as 2 instead of 4."
+   ],
+   "notes": "### The amplitude formula (the workhorse)\nFor any angle $\\theta$:\n$$-\\sqrt{a^2 + b^2} \\ \\le\\ a\\sin\\theta + b\\cos\\theta \\ \\le\\ +\\sqrt{a^2 + b^2}$$\nThe maximum of $a\\sin\\theta + b\\cos\\theta$ is $\\sqrt{a^2+b^2}$ and the minimum is its negative (unrestricted $\\theta$); restricted to acute angles the range sits between the endpoint values — usually stated so the interior extremum is the answer. Instant values: $4\\sin\\theta + 3\\cos\\theta \\to 5$, $5\\sin\\theta + 12\\cos\\theta \\to 13$, $8\\sin\\theta - 15\\cos\\theta \\to 17$ — Pythagorean pairs every time.\nOn $0^\\circ \\le \\theta \\le 90^\\circ$: $\\sin\\theta + \\cos\\theta$ ranges from $1$ to $\\sqrt2$ — max $\\sqrt2$ at $45^\\circ$, min $1$ at the endpoints.\n\n### The product bound\n$$\\sin\\theta\\cos\\theta \\le \\frac12, \\qquad 2\\sin\\theta\\cos\\theta = \\sin 2\\theta \\le 1$$\nBoth maxima occur at $\\theta = 45^\\circ$. Any multiple $k\\sin\\theta\\cos\\theta$ peaks at $\\frac{k}{2}$.\n\n### Self-reciprocal sums (AM-GM)\n$$\\tan^2\\theta + \\cot^2\\theta \\ge 2,\\qquad \\sec^2\\theta + \\cosec^2\\theta \\ge 4,\\qquad \\tan\\theta + \\cot\\theta \\ge 2$$\nAll attained at $\\theta = 45^\\circ$. The $\\sec^2 + \\cosec^2$ version: $\\frac{1}{\\sin^2\\cos^2} \\ge 4$ since $\\sin^2\\cos^2 \\le \\frac14$. Any $x + \\frac1x \\ge 2$ shape with $x > 0$ follows the same rule, equality at $x = 1$.\n\n### Ordering and comparison facts\nOn $(0^\\circ, 90^\\circ)$: $\\sin$ rises $0 \\to 1$, $\\cos$ falls $1 \\to 0$, $\\tan$ rises $0 \\to \\infty$. So $\\sin 60^\\circ > \\sin 45^\\circ > \\sin 30^\\circ$; $\\sin\\theta > \\cos\\theta \\iff \\theta > 45^\\circ$; $\\tan\\theta = \\cot\\theta$ only at $45^\\circ$. Also $\\frac{1}{1+\\sin^2\\theta}$ is smallest when $\\sin^2\\theta$ is largest ($= 1$), giving minimum $\\frac12$.\n\n### The 45° equality case and restricted domains\nEvery bound in this block is attained at $\\theta = 45^\\circ$: the amplitude expressions reach $\\pm\\sqrt{a^2+b^2}$ only for unrestricted $\\theta$ (the peak of $a\\sin\\theta + b\\cos\\theta$ sits at $\\tan\\theta = \\frac{a}{b}$, which is acute for positive $a, b$ — so on $0^\\circ$ to $90^\\circ$ the max $\\sqrt{a^2+b^2}$ IS reachable, while the negative minimum is cut off at the endpoint $-b$). Always read the domain: \"for all $\\theta$\" allows the negative amplitude; \"$0^\\circ \\le \\theta \\le 90^\\circ$\" floors the minimum at the endpoint value. Options often include both — the domain decides.\n\n### Quick revision\n- $a\\sin\\theta + b\\cos\\theta$: max $\\sqrt{a^2+b^2}$, min $-\\sqrt{a^2+b^2}$.\n- $\\sin\\theta\\cos\\theta \\le \\frac12$; $2\\sin\\theta\\cos\\theta \\le 1$, both at $45^\\circ$.\n- $\\tan^2 + \\cot^2 \\ge 2$; $\\sec^2 + \\cosec^2 \\ge 4$; $x + \\frac1x \\ge 2$ with equality at $x=1$.\n- $\\sin$ up, $\\cos$ down on $(0^\\circ, 90^\\circ)$; crossover at $45^\\circ$.\n",
+   "patterns": [
+    {
+     "id": "trig-mm-p1",
+     "name": "Max/min of a sinθ ± b cosθ",
+     "frequency": "very common",
+     "howToSpot": "'Find the maximum of 4sinθ + 3cosθ' — a linear combination with Pythagorean coefficients.",
+     "formula": "Max $= +\\sqrt{a^2+b^2}$, min $= -\\sqrt{a^2+b^2}$ for $a\\sin\\theta + b\\cos\\theta$.",
+     "logic": "1. Read off $(a, b)$; compute $\\sqrt{a^2 + b^2}$ — expect a triplet.\n2. Maximum positive, minimum negative (unless $\\theta$ is restricted; then check endpoints).\n3. Quote both if 'range' is asked.\n\nWhy: the expression is a single wave with amplitude $\\sqrt{a^2+b^2}$ — the formula IS the answer.",
+     "example": {
+      "q": "The maximum value of $4\\sin\\theta + 3\\cos\\theta$ is:",
+      "solution": "$\\sqrt{4^2 + 3^2} = 5$. Minimum: $-5$ (unrestricted $\\theta$)."
+     }
+    },
+    {
+     "id": "trig-mm-p2",
+     "name": "Bounds of sinθ cosθ",
+     "frequency": "common",
+     "howToSpot": "Max/min of sinθcosθ or 2sinθcosθ (sometimes with a coefficient or a plus-one).",
+     "formula": "$\\sin\\theta\\cos\\theta \\le \\frac12$; $2\\sin\\theta\\cos\\theta = \\sin2\\theta \\le 1$; both peak at $45^\\circ$.",
+     "logic": "1. Recognise the product form; halve the coefficient for the max of $k\\sin\\theta\\cos\\theta$.\n2. Or convert to $\\sin 2\\theta$ and use the wave range.\n3. Minimum on acute angles is $0$ (endpoint); quote only if asked.\n\nWhy: the product is the double-angle formula in disguise — one conversion bounds it.",
+     "example": {
+      "q": "The maximum value of $2\\sin\\theta\\cos\\theta$ ($\\theta$ acute) is:",
+      "solution": "$2\\sin\\theta\\cos\\theta = \\sin 2\\theta \\le 1$, attained at $\\theta = 45^\\circ$."
+     }
+    },
+    {
+     "id": "trig-mm-p3",
+     "name": "AM-GM self-reciprocal sums",
+     "frequency": "common",
+     "howToSpot": "Minimum of tan²+cot², sec²+cosec², tan+cot — or an equation whose sum equals the bound.",
+     "formula": "$x + \\frac1x \\ge 2$; $\\sec^2\\theta + \\cosec^2\\theta = \\frac{1}{\\sin^2\\theta\\cos^2\\theta} \\ge 4$.",
+     "logic": "1. Identify the self-reciprocal pair; quote the AM-GM bound.\n2. $\\sec^2 + \\cosec^2$: combine to $\\frac{1}{\\sin^2\\cos^2}$, then use $\\sin\\cos \\le \\frac12$.\n3. Equality case: $\\theta = 45^\\circ$ in every one of these.\n\nWhy: reciprocal pairs cannot be small simultaneously — the product $x \\cdot \\frac1x = 1$ forces the sum up.",
+     "example": {
+      "q": "The minimum value of $\\sec^2\\theta + \\cosec^2\\theta$ is:",
+      "solution": "$= \\frac{1}{\\sin^2\\theta\\cos^2\\theta} \\ge \\frac{1}{(1/2)^2} = 4$, at $\\theta = 45^\\circ$."
+     }
+    },
+    {
+     "id": "trig-mm-p4",
+     "name": "Ordering and crossover comparisons",
+     "frequency": "common",
+     "howToSpot": "'Which is largest: sin 30, sin 45, sin 60?'; 'sinθ > cosθ for which θ?'; minimum of 1/(1+sin²θ).",
+     "formula": "On $(0^\\circ, 90^\\circ)$: sin increases, cos decreases; crossover at $45^\\circ$; denominators largest → fraction smallest.",
+     "logic": "1. Monotonicity orders same-function comparisons instantly.\n2. sin vs cos comparisons pivot at $45^\\circ$.\n3. For $\\frac{1}{1+\\sin^2\\theta}$: minimise by maximising the denominator ($\\sin^2\\theta = 1$).\n\nWhy: the monotone staircase of the three functions on the acute quadrant decides everything without computation.",
+     "example": {
+      "q": "For $0^\\circ < \\theta < 90^\\circ$, $\\sin\\theta > \\cos\\theta$ holds when:",
+      "solution": "$\\theta > 45^\\circ$ — the crossover of the two graphs is at $45^\\circ$."
+     }
+    }
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Standard values at special angles",
+   "frequency": "very common",
+   "howToSpot": "A sum/difference/product of sin/cos/tan (often sec/cosec/cot too) at 0°, 30°, 45°, 60°, 90° asked as one value.",
+   "approach": "Convert every function to its table value via the $\\frac{\\sqrt{k}}{2}$ construction (reciprocals for sec/cosec/cot), then compute with exact fractions. Keep surds as surds; rationalise only the final answer.",
+   "subtopic": "trig-ratios",
+   "example": {
+    "q": "The value of $\\tan 45^\\circ + \\cot 45^\\circ$ is:",
+    "solution": "$\\tan 45^\\circ = 1$ and $\\cot 45^\\circ = 1$: sum $= 2$."
+   }
+  },
+  {
+   "pattern": "One ratio given → the rest of the triangle",
+   "frequency": "very common",
+   "howToSpot": "'If sinθ = 3/5 find tanθ' style — one ratio (sometimes surd form), other ratios asked.",
+   "approach": "Draw the right triangle from the given ratio, complete the third side by Pythagoras (expect a triplet), and read the asked ratio off the same triangle w.r.t. the named angle.",
+   "subtopic": "trig-ratios",
+   "example": {
+    "q": "If $\\cosec\\theta = \\frac{13}{5}$ ($\\theta$ acute), the value of $\\tan\\theta$ is:",
+    "solution": "$\\sin\\theta = \\frac{5}{13}$ → triangle 5-12-13: $\\tan\\theta = \\frac{5}{12}$."
+   }
+  },
+  {
+   "pattern": "Conjugate pairs: sec±tan, cosec±cot",
+   "frequency": "very common",
+   "howToSpot": "'If secθ + tanθ = m, find secθ − tanθ' — or the pair subtracted/added to extract an individual ratio.",
+   "approach": "$(\\sec\\theta + \\tan\\theta)(\\sec\\theta - \\tan\\theta) = 1$, so the conjugate is its reciprocal $\\frac{1}{m}$. Adding/subtracting the pair gives $2\\sec\\theta$ and $2\\tan\\theta$ individually; a triangle then returns sin/cos.",
+   "subtopic": "trig-identities",
+   "example": {
+    "q": "If $\\cosec\\theta + \\cot\\theta = 3$ ($\\theta$ acute), the value of $\\cosec\\theta - \\cot\\theta$ is:",
+    "solution": "$\\cosec\\theta - \\cot\\theta = \\frac{1}{\\cosec\\theta + \\cot\\theta} = \\frac13$."
+   }
+  },
+  {
+   "pattern": "sinθ + cosθ = m family",
+   "frequency": "very common",
+   "howToSpot": "A sum (or difference) of sin and cos given as m; the product sinθcosθ, the opposite difference, or a cubic combination asked.",
+   "approach": "Square the given: $\\sin\\theta\\cos\\theta = \\frac{m^2-1}{2}$; $(\\sin\\theta - \\cos\\theta)^2 = 2 - m^2$; cubes via $x^3+y^3=(x+y)(x^2-xy+y^2)$. Sub-specials: $m = \\sqrt2$ → product $\\frac12$; $m = 1$ → product $0$.",
+   "subtopic": "trig-valueput",
+   "example": {
+    "q": "If $\\sin\\theta + \\cos\\theta = \\frac{6}{5}$, the value of $\\sin\\theta\\cos\\theta$ is:",
+    "solution": "$\\frac{m^2-1}{2} = \\frac{\\frac{36}{25}-1}{2} = \\frac{11}{50}$."
+   }
+  },
+  {
+   "pattern": "tanθ given → linear fraction in sin and cos",
+   "frequency": "very common",
+   "howToSpot": "tanθ = p/q (or 5tanθ = 4 style); a fraction like (a·sinθ + b·cosθ)/(c·cosθ + d·sinθ) asked.",
+   "approach": "Divide numerator and denominator by $\\cos\\theta$: the fraction becomes $\\frac{a\\tan\\theta + b}{c + d\\tan\\theta}$. Substitute $t = \\frac{p}{q}$ exactly (fractions, not decimals) and simplify once.",
+   "subtopic": "trig-valueput",
+   "example": {
+    "q": "If $\\tan\\theta = \\frac{4}{3}$, the value of $\\frac{3\\sin\\theta + 2\\cos\\theta}{3\\cos\\theta - 2\\sin\\theta}$ is:",
+    "solution": "Divide by $\\cos\\theta$: $\\frac{3\\cdot\\frac43 + 2}{3 - 2\\cdot\\frac43} = \\frac{6}{\\frac13} = 18$."
+   }
+  },
+  {
+   "pattern": "Complementary pairs collapse a sum/product",
+   "frequency": "very common",
+   "howToSpot": "Angles pair to 90° (35 & 55, 20 & 70...) across different functions — or a long tangent chain with 45° in the middle.",
+   "approach": "Flip one function of each pair: $\\sec 55^\\circ = \\frac{1}{\\sin 35^\\circ}$ etc.; products like $\\tan\\theta\\tan(90^\\circ-\\theta) = 1$. Chains $\\tan 1^\\circ \\cdots \\tan 89^\\circ$ collapse to 1. Difference-of-twins questions ($\\cos 50^\\circ - \\sin 40^\\circ$) are instantly 0.",
+   "subtopic": "trig-complementary",
+   "example": {
+    "q": "The value of $\\tan 10^\\circ \\tan 20^\\circ \\tan 70^\\circ \\tan 80^\\circ$ is:",
+    "solution": "Pairs: $10+80 = 90$ and $20+70 = 90$; each pair multiplies to 1, so the product is 1."
+   }
+  },
+  {
+   "pattern": "Angle from a complementary-function equality",
+   "frequency": "very common",
+   "howToSpot": "'If sin 3A = cos(A − 10°), find A' — different functions at related angles, one unknown.",
+   "approach": "Force the same function ($\\cos x = \\sin(90^\\circ - x)$) or use the shortcut: complementary-function arguments sum to $90^\\circ$. Solve the resulting linear equation; sanity-check the angle keeps all arguments in range.",
+   "subtopic": "trig-complementary",
+   "example": {
+    "q": "If $\\tan 2\\theta = \\cot(\\theta - 12^\\circ)$, the value of $\\theta$ is:",
+    "solution": "$2\\theta + \\theta - 12^\\circ = 90^\\circ \\Rightarrow 3\\theta = 102^\\circ \\Rightarrow \\theta = 34^\\circ$."
+   }
+  },
+  {
+   "pattern": "Max/min of a·sinθ ± b·cosθ",
+   "frequency": "very common",
+   "howToSpot": "'Find the maximum of 4sinθ + 3cosθ' — Pythagorean coefficients; minimum may be asked instead.",
+   "approach": "Max $= +\\sqrt{a^2+b^2}$, min $= -\\sqrt{a^2+b^2}$ (unrestricted θ); with $0^\\circ \\le \\theta \\le 90^\\circ$ check endpoints too. Expect triplets: (3,4,5), (5,12,13), (8,15,17).",
+   "subtopic": "trig-maxmin",
+   "example": {
+    "q": "The maximum value of $8\\sin\\theta - 15\\cos\\theta$ is:",
+    "solution": "$\\sqrt{8^2 + 15^2} = 17$ (minimum $-17$)."
+   }
+  },
+  {
+   "pattern": "AM-GM bounds and sinθcosθ ≤ ½",
+   "frequency": "common",
+   "howToSpot": "Minimum of tan²+cot², sec²+cosec², tan+cot — or the max of sinθcosθ / 2sinθcosθ.",
+   "approach": "$x + \\frac1x \\ge 2$ (equality $x=1$, i.e. 45°); $\\sec^2\\theta + \\cosec^2\\theta = \\frac{1}{\\sin^2\\theta\\cos^2\\theta} \\ge 4$; $\\sin\\theta\\cos\\theta \\le \\frac12$ peaking at 45°.",
+   "subtopic": "trig-maxmin",
+   "example": {
+    "q": "The minimum value of $\\tan\\theta + \\cot\\theta$ ($\\theta$ acute) is:",
+    "solution": "$\\tan\\theta + \\frac{1}{\\tan\\theta} \\ge 2$, equality at $\\theta = 45^\\circ$."
+   }
+  },
+  {
+   "pattern": "Two sides of the right triangle → a named ratio",
+   "frequency": "common",
+   "howToSpot": "Two sides given (or hyp + one leg); sin/cos/tan of one acute angle asked — the angle described in words ('opposite the longer leg').",
+   "approach": "Third side by Pythagoras, then attach opposite/adjacent to the NAMED angle — 'opposite the shorter leg' is the smaller angle. Triplet multiples supply the exam numbers.",
+   "subtopic": "trig-ratios",
+   "example": {
+    "q": "In a right triangle, the legs adjacent to and opposite an acute angle are $15$ cm and $8$ cm. The hypotenuse is:",
+    "solution": "$\\sqrt{15^2 + 8^2} = \\sqrt{289} = 17$ cm (8-15-17)."
+   }
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "trig-s01",
+   "q": "Find the value of $\\dfrac{2\\tan30^\\circ}{1-\\tan^230^\\circ}$.",
+   "figure": null,
+   "options": [
+    "$\\frac{1}{\\sqrt{3}}$",
+    "1",
+    "$\\frac{\\sqrt{3}}{2}$",
+    "$\\sqrt{3}$"
+   ],
+   "answer": 3,
+   "solution": "$\\tan30^\\circ=\\frac{1}{\\sqrt3}$:\n\n$\\dfrac{2/\\sqrt3}{1-\\frac13}=\\dfrac{2/\\sqrt3}{2/3}=\\dfrac{3}{\\sqrt3}=\\sqrt3$.",
+   "shortcut": "Recognise the form: $\\frac{2t}{1-t^2}=\\tan2\\theta$ with $\\theta=30^\\circ$ → $\\tan60^\\circ=\\sqrt3$, no fractions at all.",
+   "difficulty": "easy",
+   "subtopic": "trig-ratios",
+   "pattern": "standard values in double-angle form",
+   "timeSec": 35
+  },
+  {
+   "id": "trig-s02",
+   "q": "If $\\cos\\theta=\\dfrac{7}{25}$, then the value of $\\tan\\theta$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{24}{25}$",
+    "$\\frac{24}{7}$",
+    "$\\frac{7}{24}$",
+    "$\\frac{25}{24}$"
+   ],
+   "answer": 1,
+   "solution": "Adjacent side $=7$, hypotenuse $=25$; opposite $=\\sqrt{25^2-7^2}=\\sqrt{576}=24$.\n\n$\\tan\\theta=\\frac{24}{7}$.",
+   "shortcut": "7-24-25 triplet: see 7 and 25, write 24 instantly. Trap: $\\frac{7}{24}$ is $\\cot\\theta$.",
+   "difficulty": "easy",
+   "subtopic": "trig-valueput",
+   "pattern": "given ratio → triplet triangle",
+   "timeSec": 30
+  },
+  {
+   "id": "trig-s03",
+   "q": "The value of $\\tan1^\\circ\\tan2^\\circ\\tan3^\\circ\\cdots\\tan89^\\circ$ is:",
+   "figure": null,
+   "options": [
+    "0",
+    "$\\sqrt{3}$",
+    "89",
+    "1"
+   ],
+   "answer": 3,
+   "solution": "Pair $\\tan\\theta$ with $\\tan(90^\\circ-\\theta)=\\cot\\theta$: each pair multiplies to 1.\n\n44 such pairs plus $\\tan45^\\circ=1$ give the product 1.",
+   "shortcut": "Every angle pairs with its complement; middle term is $\\tan45^\\circ=1$. Product $=1$.",
+   "difficulty": "medium",
+   "subtopic": "trig-complementary",
+   "pattern": "tan product 1 to 89",
+   "timeSec": 40
+  },
+  {
+   "id": "trig-s04",
+   "q": "The value of $(\\text{cosec}\\theta-\\sin\\theta)(\\sec\\theta-\\cos\\theta)(\\tan\\theta+\\cot\\theta)$ is:",
+   "figure": null,
+   "options": [
+    "2",
+    "$\\tan\\theta$",
+    "1",
+    "0"
+   ],
+   "answer": 2,
+   "solution": "Write everything over sin/cos:\n\n$\\text{cosec}\\theta-\\sin\\theta=\\frac{\\cos^2\\theta}{\\sin\\theta},\\quad\n\\sec\\theta-\\cos\\theta=\\frac{\\sin^2\\theta}{\\cos\\theta},\\quad\n\\tan\\theta+\\cot\\theta=\\frac{1}{\\sin\\theta\\cos\\theta}$.\n\nProduct $=\\frac{\\cos^2\\theta}{\\sin\\theta}\\cdot\\frac{\\sin^2\\theta}{\\cos\\theta}\\cdot\\frac{1}{\\sin\\theta\\cos\\theta}=1$.",
+   "shortcut": "Reduce each bracket to a single fraction; the $\\sin^2\\cos^2$ cancels completely → 1. (Check at $45^\\circ$: $(\\frac{1}{\\sqrt2})^2\\times2=1$.)",
+   "difficulty": "medium",
+   "subtopic": "trig-identities",
+   "pattern": "cosec-sin / sec-cos product identity",
+   "timeSec": 50
+  },
+  {
+   "id": "trig-s05",
+   "q": "The greatest value of $3\\sin\\theta+4\\cos\\theta+5$ (for $0^\\circ\\le\\theta\\le90^\\circ$) is:",
+   "figure": null,
+   "options": [
+    "10",
+    "5",
+    "12",
+    "9"
+   ],
+   "answer": 0,
+   "solution": "$a\\sin\\theta+b\\cos\\theta$ peaks at $\\sqrt{a^2+b^2}$: here $\\sqrt{3^2+4^2}=5$ (at $\\tan\\theta=\\frac34$).\n\nSo the greatest value of the expression is $5+5=10$.",
+   "shortcut": "$\\sqrt{a^2+b^2}=5$ for the trig part, then add the constant: $5+5=10$. Trap: 12 (added $3+4+5$ directly).",
+   "difficulty": "medium",
+   "subtopic": "trig-maxmin",
+   "pattern": "max of a sin + b cos + c",
+   "timeSec": 45
+  }
+ ],
+ "practice": [
+  {
+   "id": "trig-q01",
+   "q": "The value of $\\sin30^\\circ+\\cos60^\\circ+\\cot45^\\circ$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{\\sqrt{3}}{2}$",
+    "2",
+    "1",
+    "3"
+   ],
+   "answer": 1,
+   "solution": "$\\frac12+\\frac12+1=2$.",
+   "shortcut": "Read the table: $\\frac12+\\frac12+1=2$. $\\cot45^\\circ=1$, not 0.",
+   "difficulty": "easy",
+   "subtopic": "trig-ratios",
+   "pattern": "standard values sum",
+   "timeSec": 25
+  },
+  {
+   "id": "trig-q02",
+   "q": "The value of $\\sec^2\\theta-\\tan^2\\theta-\\sin^2\\theta$ is:",
+   "figure": null,
+   "options": [
+    "1",
+    "0",
+    "$\\sin^2\\theta$",
+    "$\\cos^2\\theta$"
+   ],
+   "answer": 3,
+   "solution": "$\\sec^2\\theta-\\tan^2\\theta=1$, so the expression $=1-\\sin^2\\theta=\\cos^2\\theta$.",
+   "shortcut": "$\\sec^2-\\tan^2=1$ (identity pair), then $1-\\sin^2=\\cos^2$.",
+   "difficulty": "easy",
+   "subtopic": "trig-identities",
+   "pattern": "sec-tan identity pair",
+   "timeSec": 30
+  },
+  {
+   "id": "trig-q03",
+   "q": "The value of $\\sin60^\\circ\\cos30^\\circ+\\cos60^\\circ\\sin30^\\circ$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{3}{4}$",
+    "1",
+    "$\\frac{\\sqrt{3}}{2}$",
+    "$\\frac{1}{2}$"
+   ],
+   "answer": 1,
+   "solution": "$\\frac{\\sqrt3}{2}\\cdot\\frac{\\sqrt3}{2}+\\frac12\\cdot\\frac12=\\frac34+\\frac14=1$.",
+   "shortcut": "This is $\\sin(60+30)=\\sin90^\\circ=1$ — recognise the sine-addition shape instead of multiplying.",
+   "difficulty": "easy",
+   "subtopic": "trig-ratios",
+   "pattern": "standard values product sum",
+   "timeSec": 30
+  },
+  {
+   "id": "trig-q04",
+   "q": "If $\\sin\\theta=\\dfrac{5}{13}$, then $\\tan\\theta$ equals:",
+   "figure": null,
+   "options": [
+    "$\\frac{5}{12}$",
+    "$\\frac{12}{5}$",
+    "$\\frac{12}{13}$",
+    "$\\frac{5}{13}$"
+   ],
+   "answer": 0,
+   "solution": "Adjacent $=\\sqrt{13^2-5^2}=12$, so $\\tan\\theta=\\frac{5}{12}$.",
+   "shortcut": "5-12-13 triplet → $\\frac{5}{12}$. Trap: $\\frac{12}{5}$ is $\\cot\\theta$.",
+   "difficulty": "easy",
+   "subtopic": "trig-valueput",
+   "pattern": "given sin → tan by triplet",
+   "timeSec": 25
+  },
+  {
+   "id": "trig-q05",
+   "q": "If $\\tan\\theta=\\dfrac{3}{4}$, the value of $\\dfrac{\\sin\\theta+\\cos\\theta}{\\sin\\theta-\\cos\\theta}$ is:",
+   "figure": null,
+   "options": [
+    "$-\\frac{1}{7}$",
+    "$\\frac{7}{4}$",
+    "-7",
+    "7"
+   ],
+   "answer": 2,
+   "solution": "Divide numerator and denominator by $\\cos\\theta$:\n\n$\\dfrac{\\tan\\theta+1}{\\tan\\theta-1}=\\dfrac{\\frac34+1}{\\frac34-1}=\\dfrac{7/4}{-1/4}=-7$.",
+   "shortcut": "Divide through by $\\cos\\theta$: $(t+1)/(t-1)$ with $t=\\frac34$ → $-7$. (Same trick works for any sin/cos ratio expression.)",
+   "difficulty": "medium",
+   "subtopic": "trig-valueput",
+   "pattern": "divide by cos to use tan",
+   "timeSec": 40
+  },
+  {
+   "id": "trig-q06",
+   "q": "If $\\sin(40^\\circ+\\theta)=\\cos(30^\\circ+\\theta)$, where both angles are acute, then $\\theta$ equals:",
+   "figure": null,
+   "options": [
+    "10°",
+    "20°",
+    "5°",
+    "15°"
+   ],
+   "answer": 0,
+   "solution": "The angles must add to $90^\\circ$: $(40+\\theta)+(30+\\theta)=90\\Rightarrow2\\theta=20\\Rightarrow\\theta=10^\\circ$.",
+   "shortcut": "Sum to 90: $70+2\\theta=90$ → $\\theta=10^\\circ$. Trap: 20 (forgot to halve).",
+   "difficulty": "medium",
+   "subtopic": "trig-complementary",
+   "pattern": "sin A = cos B angle equation",
+   "timeSec": 35
+  },
+  {
+   "id": "trig-q07",
+   "q": "If $\\sin\\theta+\\sin^2\\theta=1$, then the value of $\\cos^2\\theta+\\cos^4\\theta$ is:",
+   "figure": null,
+   "options": [
+    "2",
+    "$\\frac{1}{2}$",
+    "1",
+    "0"
+   ],
+   "answer": 2,
+   "solution": "From the condition, $\\sin^2\\theta=1-\\sin\\theta$, so $\\cos^2\\theta=1-\\sin^2\\theta=\\sin\\theta$.\n\nThen $\\cos^4\\theta=\\sin^2\\theta=1-\\sin\\theta$.\n\nSum $=\\sin\\theta+1-\\sin\\theta=1$.",
+   "shortcut": "$\\cos^2=\\sin$ and $\\cos^4=\\sin^2=1-\\sin$ → total 1, without ever finding $\\theta$.",
+   "difficulty": "medium",
+   "subtopic": "trig-identities",
+   "pattern": "condition sin+sin^2=1",
+   "timeSec": 45
+  },
+  {
+   "id": "trig-q08",
+   "q": "The minimum value of $\\sin\\theta+\\cos\\theta$ for $0^\\circ\\le\\theta\\le90^\\circ$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{1}{\\sqrt{2}}$",
+    "1",
+    "$\\sqrt{2}$",
+    "0"
+   ],
+   "answer": 1,
+   "solution": "$\\sin\\theta+\\cos\\theta$ ranges from 1 (at $\\theta=0^\\circ$ or $90^\\circ$) to $\\sqrt2$ (at $45^\\circ$). The minimum is 1.",
+   "shortcut": "Range $[1,\\sqrt2]$: min 1, max $\\sqrt2$. Trap: $\\sqrt2$ is the **maximum**.",
+   "difficulty": "medium",
+   "subtopic": "trig-maxmin",
+   "pattern": "min of sin+cos",
+   "timeSec": 30
+  },
+  {
+   "id": "trig-q09",
+   "q": "The value of $\\tan15^\\circ\\tan25^\\circ\\tan45^\\circ\\tan65^\\circ\\tan75^\\circ$ is:",
+   "figure": null,
+   "options": [
+    "0",
+    "$\\sqrt{3}$",
+    "5",
+    "1"
+   ],
+   "answer": 3,
+   "solution": "$\\tan\\theta\\tan(90-\\theta)=1$ pairs: $(\\tan15\\tan75)(\\tan25\\tan65)(\\tan45)=1\\cdot1\\cdot1=1$.",
+   "shortcut": "Complementary pairs collapse; $\\tan45^\\circ=1$ stands alone.",
+   "difficulty": "medium",
+   "subtopic": "trig-complementary",
+   "pattern": "tan product with complementary pairs",
+   "timeSec": 40
+  },
+  {
+   "id": "trig-q10",
+   "q": "The value of $2(\\sin^6\\theta+\\cos^6\\theta)-3(\\sin^4\\theta+\\cos^4\\theta)+1$ is:",
+   "figure": null,
+   "options": [
+    "0",
+    "1",
+    "2",
+    "$\\sin^2\\theta$"
+   ],
+   "answer": 0,
+   "solution": "Use $\\sin^6+\\cos^6=1-3s^2c^2$ and $\\sin^4+\\cos^4=1-2s^2c^2$ (where $s^2c^2=\\sin^2\\theta\\cos^2\\theta$):\n\n$2(1-3s^2c^2)-3(1-2s^2c^2)+1=2-3+1+0=0$.",
+   "shortcut": "The $s^2c^2$ terms cancel exactly: $-6+6=0$ → answer 0 for every $\\theta$. (Try $\\theta=45^\\circ$ to confirm.)",
+   "difficulty": "medium",
+   "subtopic": "trig-identities",
+   "pattern": "sin^6+cos^6 chain",
+   "timeSec": 50
+  },
+  {
+   "id": "trig-q11",
+   "q": "If $\\cos\\theta=\\dfrac{12}{13}$, then $\\text{cosec}\\,\\theta$ equals:",
+   "figure": null,
+   "options": [
+    "$\\frac{13}{12}$",
+    "$\\frac{12}{5}$",
+    "$\\frac{13}{5}$",
+    "$\\frac{5}{13}$"
+   ],
+   "answer": 2,
+   "solution": "Opposite $=\\sqrt{13^2-12^2}=5$, so $\\sin\\theta=\\frac5{13}$ and $\\text{cosec}\\theta=\\frac{13}{5}$.",
+   "shortcut": "5-12-13: $\\sin=\\frac5{13}$ → cosec $=\\frac{13}{5}$ (flip). Trap: $\\frac{13}{12}$ is $\\sec\\theta$.",
+   "difficulty": "easy",
+   "subtopic": "trig-valueput",
+   "pattern": "given cos → cosec",
+   "timeSec": 30
+  },
+  {
+   "id": "trig-q12",
+   "q": "The minimum value of $4\\tan^2\\theta+9\\cot^2\\theta$ (for acute $\\theta$) is:",
+   "figure": null,
+   "options": [
+    "12",
+    "13",
+    "36",
+    "6"
+   ],
+   "answer": 0,
+   "solution": "By AM–GM, $4\\tan^2\\theta+9\\cot^2\\theta\\ge2\\sqrt{4\\times9}=12$,\n\nwith equality when $2\\tan\\theta=3\\cot\\theta$, i.e. $\\tan^2\\theta=\\frac32$ (reachable since tan is unbounded).",
+   "shortcut": "$2\\sqrt{ab}=2\\sqrt{36}=12$. Trap: 6 is $\\sqrt{ab}$ (forgot to double), 13 is $a+b$.",
+   "difficulty": "hard",
+   "subtopic": "trig-maxmin",
+   "pattern": "AM-GM min of tan^2+cot^2",
+   "timeSec": 45
+  },
+  {
+   "id": "trig-q13",
+   "q": "If $\\text{cosec}\\theta+\\cot\\theta=3$, then $\\sin\\theta$ equals:",
+   "figure": null,
+   "options": [
+    "$\\frac{4}{5}$",
+    "$\\frac{1}{3}$",
+    "$\\frac{3}{5}$",
+    "$\\frac{5}{3}$"
+   ],
+   "answer": 2,
+   "solution": "$\\text{cosec}\\theta-\\cot\\theta=\\frac13$ (reciprocal pair). Adding the two:\n\n$2\\,\\text{cosec}\\theta=\\frac{10}{3}\\Rightarrow\\text{cosec}\\theta=\\frac53\\Rightarrow\\sin\\theta=\\frac35$.",
+   "shortcut": "Companion is $\\frac1k=\\frac13$; average the pair: cosec $=\\frac{3+\\frac13}{2}=\\frac53$ → $\\sin=\\frac35$.",
+   "difficulty": "medium",
+   "subtopic": "trig-valueput",
+   "pattern": "cosec+cot given",
+   "timeSec": 50
+  },
+  {
+   "id": "trig-q14",
+   "q": "The expression $(\\tan\\theta+\\sec\\theta-1)(\\tan\\theta-\\sec\\theta+1)$ equals:",
+   "figure": null,
+   "options": [
+    "1",
+    "$2\\sec\\theta$",
+    "$\\tan^2\\theta$",
+    "$2(\\sec\\theta-1)$"
+   ],
+   "answer": 3,
+   "solution": "Write the brackets as $[t+(s-1)][t-(s-1)]=t^2-(s-1)^2$ where $t=\\tan\\theta$, $s=\\sec\\theta$.\n\n$=t^2-s^2+2s-1=-1+2s-1=2(\\sec\\theta-1)$, using $s^2-t^2=1$.",
+   "shortcut": "Difference of squares, then $t^2-s^2=-1$: answer $2(\\sec\\theta-1)$. Quick check at $30^\\circ$: LHS $\\approx0.309$ = RHS.",
+   "difficulty": "hard",
+   "subtopic": "trig-identities",
+   "pattern": "tan-sec difference of squares",
+   "timeSec": 60
+  },
+  {
+   "id": "trig-q15",
+   "q": "If $2\\sin^2\\theta+7\\cos^2\\theta=6$ and $0^\\circ<\\theta<90^\\circ$, then $\\tan\\theta$ equals:",
+   "figure": null,
+   "options": [
+    "$\\frac{1}{5}$",
+    "$\\frac{1}{2}$",
+    "2",
+    "$\\frac{1}{4}$"
+   ],
+   "answer": 1,
+   "solution": "Write the left side as $2(\\sin^2\\theta+\\cos^2\\theta)+5\\cos^2\\theta=2+5\\cos^2\\theta$.\n\nSo $2+5\\cos^2\\theta=6\\Rightarrow\\cos^2\\theta=\\frac45$, hence $\\sin^2\\theta=\\frac15$.\n\n$\\tan^2\\theta=\\frac{\\sin^2\\theta}{\\cos^2\\theta}=\\frac{1/5}{4/5}=\\frac14\\Rightarrow\\tan\\theta=\\frac12$ (acute).",
+   "shortcut": "Anchor to $a(\\sin^2+\\cos^2)+(b-a)\\cos^2$: solve for $\\cos^2$, then $\\tan^2=\\frac{1-\\cos^2}{\\cos^2}$. Traps: 2 (reciprocal), $\\frac14$ ($\\tan^2$, forgot the root).",
+   "difficulty": "hard",
+   "subtopic": "trig-identities",
+   "pattern": "weighted sin^2+cos^2 equation",
+   "timeSec": 70
+  },
+  {
+   "id": "trig-ratios-p01",
+   "q": "The value of $\\sin 30^\\circ + \\cos 60^\\circ$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{1}{2}$",
+    "$1$",
+    "$\\frac{\\sqrt{3}}{2}$",
+    "$2$"
+   ],
+   "answer": 1,
+   "solution": "$\\sin 30^\\circ = \\frac12$ and $\\cos 60^\\circ = \\sin 30^\\circ = \\frac12$; sum $= 1$.",
+   "shortcut": "Complementary twins: both read $\\frac{\\sqrt1}{2}$. Trap: $\\frac12$ (evaluating only one term).",
+   "difficulty": "easy",
+   "subtopic": "trig-ratios",
+   "pattern": "trig-ra-p1",
+   "timeSec": 30
+  },
+  {
+   "id": "trig-ratios-p02",
+   "q": "The value of $\\tan 45^\\circ + 2\\cos 60^\\circ - \\sin 90^\\circ$ is:",
+   "figure": null,
+   "options": [
+    "$2$",
+    "$0$",
+    "$\\frac{1}{2}$",
+    "$1$"
+   ],
+   "answer": 3,
+   "solution": "$1 + 2 \\times \\frac12 - 1 = 1 + 1 - 1 = 1$.",
+   "shortcut": "$1 + 1 - 1 = 1$. Trap: $2$ (forgetting the coefficient is already consumed).",
+   "difficulty": "medium",
+   "subtopic": "trig-ratios",
+   "pattern": "trig-ra-p1",
+   "timeSec": 30
+  },
+  {
+   "id": "trig-ratios-p03",
+   "q": "The value of $\\cot 30^\\circ + \\tan 60^\\circ$ is:",
+   "figure": null,
+   "options": [
+    "$\\sqrt{3}$",
+    "$2\\sqrt{3}$",
+    "$2\\sqrt{2}$",
+    "$\\frac{2}{\\sqrt{3}}$"
+   ],
+   "answer": 1,
+   "solution": "$\\cot 30^\\circ = \\sqrt3$ and $\\tan 60^\\circ = \\sqrt3$; sum $= 2\\sqrt3$.",
+   "shortcut": "Both terms are $\\sqrt3$. Trap: $\\sqrt3$ (assuming they cancel or one is $\\frac{1}{\\sqrt3}$).",
+   "difficulty": "medium",
+   "subtopic": "trig-ratios",
+   "pattern": "trig-ra-p1",
+   "timeSec": 30
+  },
+  {
+   "id": "trig-ratios-p04",
+   "q": "If $\\sin\\theta = \\frac{3}{5}$ ($\\theta$ acute), the value of $\\tan\\theta$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{4}{3}$",
+    "$\\frac{4}{5}$",
+    "$\\frac{3}{4}$",
+    "$\\frac{5}{4}$"
+   ],
+   "answer": 2,
+   "solution": "opp $= 3k$, hyp $= 5k$ → adj $= 4k$ (3-4-5). $\\tan\\theta = \\frac34$.",
+   "shortcut": "$\\tan = \\frac{3}{4}$. Trap: $\\frac43$ (tan of the OTHER acute angle).",
+   "difficulty": "easy",
+   "subtopic": "trig-ratios",
+   "pattern": "trig-ra-p2",
+   "timeSec": 30
+  },
+  {
+   "id": "trig-ratios-p05",
+   "q": "If $\\cos\\theta = \\frac{12}{13}$ ($\\theta$ acute), the value of $\\sec\\theta - \\tan\\theta$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{2}{3}$",
+    "$\\frac{5}{12}$",
+    "$\\frac{13}{5}$",
+    "$\\frac{3}{2}$"
+   ],
+   "answer": 0,
+   "solution": "Triangle 5-12-13: $\\sec\\theta = \\frac{13}{12}$, $\\tan\\theta = \\frac{5}{12}$.\n\n$\\sec\\theta - \\tan\\theta = \\frac{13 - 5}{12} = \\frac{8}{12} = \\frac23$.",
+   "shortcut": "$\\frac{13}{12} - \\frac{5}{12} = \\frac23$. Trap: $\\frac{5}{12}$ — that is $\\tan\\theta$ itself.",
+   "difficulty": "medium",
+   "subtopic": "trig-ratios",
+   "pattern": "trig-ra-p2",
+   "timeSec": 40
+  },
+  {
+   "id": "trig-ratios-p06",
+   "q": "If $\\tan\\theta = \\frac{1}{\\sqrt{7}}$ ($\\theta$ acute), the value of $\\cosec^2\\theta$ is:",
+   "figure": null,
+   "options": [
+    "$7$",
+    "$\\sqrt{8}$",
+    "$8$",
+    "$\\frac{8}{7}$"
+   ],
+   "answer": 2,
+   "solution": "opp $= 1$, adj $= \\sqrt7$ → hyp $= \\sqrt{1 + 7} = 2\\sqrt2$.\n\n$\\cosec\\theta = \\frac{\\text{hyp}}{\\text{opp}} = 2\\sqrt2$; $\\cosec^2\\theta = 8$.",
+   "shortcut": "$\\cosec^2 = 1 + \\cot^2 = 1 + 7 = 8$ — the identity does it in one line. Trap: $\\sqrt8$ (forgot to square).",
+   "difficulty": "hard",
+   "subtopic": "trig-ratios",
+   "pattern": "trig-ra-p2",
+   "timeSec": 50
+  },
+  {
+   "id": "trig-ratios-p07",
+   "q": "In $\\triangle ABC$ right-angled at $B$, $AB = 5$ cm and $BC = 12$ cm. The value of $\\sin A$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{12}{13}$",
+    "$\\frac{5}{13}$",
+    "$\\frac{5}{12}$",
+    "$\\frac{12}{5}$"
+   ],
+   "answer": 0,
+   "solution": "AC $= \\sqrt{25 + 144} = 13$. Side opposite to $A$ is $BC = 12$: $\\sin A = \\frac{12}{13}$.",
+   "shortcut": "Opposite to A is BC, not AB. Trap: $\\frac{5}{13}$ (reading the wrong leg as opposite).",
+   "difficulty": "easy",
+   "subtopic": "trig-ratios",
+   "pattern": "trig-ra-p3",
+   "timeSec": 30
+  },
+  {
+   "id": "trig-ratios-p08",
+   "q": "In a right triangle the hypotenuse is $25$ cm and one leg is $7$ cm. The cosine of the angle opposite the $7$ cm leg is:",
+   "figure": null,
+   "options": [
+    "$\\frac{7}{25}$",
+    "$\\frac{24}{25}$",
+    "$\\frac{7}{24}$",
+    "$\\frac{24}{7}$"
+   ],
+   "answer": 1,
+   "solution": "Third leg $= \\sqrt{625 - 49} = 24$ (7-24-25). The angle opposite $7$ has adjacent leg $24$:\n\n$\\cos = \\frac{24}{25}$.",
+   "shortcut": "Opposite 7 → adjacent is 24 → $\\cos = \\frac{24}{25}$. Trap: $\\frac{7}{25}$ (that is the SINE of the same angle).",
+   "difficulty": "medium",
+   "subtopic": "trig-ratios",
+   "pattern": "trig-ra-p3",
+   "timeSec": 40
+  },
+  {
+   "id": "trig-ratios-p09",
+   "q": "The value of $\\sec 60^\\circ + \\cosec 30^\\circ$ is:",
+   "figure": null,
+   "options": [
+    "$2$",
+    "$2\\sqrt{3}$",
+    "$3$",
+    "$4$"
+   ],
+   "answer": 3,
+   "solution": "$\\sec 60^\\circ = \\frac{1}{\\cos 60^\\circ} = 2$ and $\\cosec 30^\\circ = \\frac{1}{\\sin 30^\\circ} = 2$; sum $= 4$.",
+   "shortcut": "$2 + 2 = 4$. Trap: $2$ (assuming the two terms cancel or equal 1).",
+   "difficulty": "medium",
+   "subtopic": "trig-ratios",
+   "pattern": "trig-ra-p4",
+   "timeSec": 30
+  },
+  {
+   "id": "trig-ratios-p10",
+   "q": "The value of $\\sec^2 30^\\circ - \\tan^2 30^\\circ$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{1}{3}$",
+    "$0$",
+    "$1$",
+    "$2$"
+   ],
+   "answer": 2,
+   "solution": "$\\sec^2\\theta - \\tan^2\\theta = 1$ for every $\\theta$ where defined — the answer is $1$ without any table work.\n\n(Indeed $\\sec^2 30^\\circ = \\frac43$, $\\tan^2 30^\\circ = \\frac13$.)",
+   "shortcut": "The identity $\\sec^2 - \\tan^2 = 1$ is angle-independent. Trap: $\\frac13$ — computing entries and slipping.",
+   "difficulty": "medium",
+   "subtopic": "trig-ratios",
+   "pattern": "trig-ra-p4",
+   "timeSec": 25
+  },
+  {
+   "id": "trig-identities-p01",
+   "q": "If $\\sec\\theta + \\tan\\theta = 5$ ($\\theta$ acute), the value of $\\sec\\theta - \\tan\\theta$ is:",
+   "figure": null,
+   "options": [
+    "$5$",
+    "$\\frac{1}{5}$",
+    "$\\frac{1}{3}$",
+    "$4$"
+   ],
+   "answer": 1,
+   "solution": "$(\\sec\\theta + \\tan\\theta)(\\sec\\theta - \\tan\\theta) = \\sec^2\\theta - \\tan^2\\theta = 1$.\n\nSo $\\sec\\theta - \\tan\\theta = \\frac15$.",
+   "shortcut": "Conjugate = reciprocal: $\\frac15$. Trap: $4$ (subtracting instead of using the product).",
+   "difficulty": "medium",
+   "subtopic": "trig-identities",
+   "pattern": "trig-id-p1",
+   "timeSec": 35
+  },
+  {
+   "id": "trig-identities-p02",
+   "q": "If $\\sec\\theta + \\tan\\theta = 5$ ($\\theta$ acute), the value of $\\tan\\theta$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{5}{12}$",
+    "$\\frac{13}{12}$",
+    "$\\frac{3}{5}$",
+    "$\\frac{12}{5}$"
+   ],
+   "answer": 3,
+   "solution": "Subtract the conjugate: $2\\tan\\theta = 5 - \\frac15 = \\frac{24}{5}$ → $\\tan\\theta = \\frac{12}{5}$.\n\n(5-12-13 triangle: $\\sin\\theta = \\frac{5}{13}$ if ever asked.)",
+   "shortcut": "$\\tan = \\frac{m - 1/m}{2} = \\frac{12}{5}$. Trap: $\\frac{5}{12}$ — the inverse fraction.",
+   "difficulty": "hard",
+   "subtopic": "trig-identities",
+   "pattern": "trig-id-p1",
+   "timeSec": 50
+  },
+  {
+   "id": "trig-identities-p03",
+   "q": "The value of $(\\sin\\theta + \\cos\\theta)^2 + (\\sin\\theta - \\cos\\theta)^2$ is:",
+   "figure": null,
+   "options": [
+    "$1$",
+    "$2$",
+    "$0$",
+    "$4$"
+   ],
+   "answer": 1,
+   "solution": "Expanding: $(1 + 2sc) + (1 - 2sc) = 2$ for every $\\theta$.",
+   "shortcut": "Cross terms cancel: $2$. Trap: $1$ (using $\\sin^2 + \\cos^2 = 1$ and forgetting the second bracket).",
+   "difficulty": "easy",
+   "subtopic": "trig-identities",
+   "pattern": "trig-id-p2",
+   "timeSec": 25
+  },
+  {
+   "id": "trig-identities-p04",
+   "q": "The value of $(\\cosec\\theta - \\sin\\theta)(\\sec\\theta - \\cos\\theta)(\\tan\\theta + \\cot\\theta)$ is:",
+   "figure": null,
+   "options": [
+    "$0$",
+    "$2$",
+    "$1$",
+    "$\\tan\\theta\\,\\cot\\theta$"
+   ],
+   "answer": 2,
+   "solution": "$\\cosec\\theta - \\sin\\theta = \\frac{\\cos^2\\theta}{\\sin\\theta}$; $\\sec\\theta - \\cos\\theta = \\frac{\\sin^2\\theta}{\\cos\\theta}$; $\\tan\\theta + \\cot\\theta = \\frac{1}{\\sin\\theta\\cos\\theta}$.\n\nProduct $= \\frac{\\cos^2 \\cdot \\sin^2}{\\sin\\theta \\cdot \\cos\\theta \\cdot \\sin\\theta\\cos\\theta} = 1$.",
+   "shortcut": "Convert all three, cancel to $1$. Trap: $0$ (assuming one bracket vanishes — none does).",
+   "difficulty": "medium",
+   "subtopic": "trig-identities",
+   "pattern": "trig-id-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "trig-identities-p05",
+   "q": "If $\\tan\\theta = \\frac{3}{4}$, the value of $\\frac{4\\sin\\theta - \\cos\\theta}{4\\cos\\theta + \\sin\\theta}$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{8}{19}$",
+    "$\\frac{19}{8}$",
+    "$\\frac{1}{2}$",
+    "$\\frac{8}{13}$"
+   ],
+   "answer": 0,
+   "solution": "Divide top and bottom by $\\cos\\theta$:\n\n$\\frac{4 \\times \\frac34 - 1}{4 + \\frac34} = \\frac{2}{\\frac{19}{4}} = \\frac{8}{19}$.",
+   "shortcut": "$\\frac{4t - 1}{4 + t} = \\frac{8}{19}$. Trap: $\\frac{8}{13}$ (using $t = \\frac34$ as $t = \\frac43$).",
+   "difficulty": "medium",
+   "subtopic": "trig-identities",
+   "pattern": "trig-id-p3",
+   "timeSec": 40
+  },
+  {
+   "id": "trig-identities-p06",
+   "q": "If $\\tan\\theta = 3$, the value of $\\frac{2\\sin\\theta + \\cos\\theta}{\\sin\\theta - 2\\cos\\theta}$ is:",
+   "figure": null,
+   "options": [
+    "$-7$",
+    "$\\frac{7}{5}$",
+    "$7$",
+    "$-\\frac{1}{7}$"
+   ],
+   "answer": 2,
+   "solution": "Divide top and bottom by $\\cos\\theta$:\n\n$\\frac{2\\tan\\theta + 1}{\\tan\\theta - 2} = \\frac{6 + 1}{3 - 2} = \\frac71 = 7$.",
+   "shortcut": "$\\frac{2t+1}{t-2} = 7$. Trap: $-7$ — a sign slip reading $t - 2$ as $2 - t$.",
+   "difficulty": "medium",
+   "subtopic": "trig-identities",
+   "pattern": "trig-id-p3",
+   "timeSec": 35
+  },
+  {
+   "id": "trig-identities-p07",
+   "q": "If $\\sin\\theta = \\cos\\theta$ ($\\theta$ acute), then $\\theta$ equals:",
+   "figure": null,
+   "options": [
+    "$45^\\circ$",
+    "$30^\\circ$",
+    "$60^\\circ$",
+    "$90^\\circ$"
+   ],
+   "answer": 0,
+   "solution": "Divide by $\\cos\\theta$: $\\tan\\theta = 1$ → $\\theta = 45^\\circ$.",
+   "shortcut": "$\\tan = 1$ at $45^\\circ$ only. Trap: $90^\\circ$ (where $\\sin = 1$, $\\cos = 0$ — not equal).",
+   "difficulty": "easy",
+   "subtopic": "trig-identities",
+   "pattern": "trig-id-p4",
+   "timeSec": 25
+  },
+  {
+   "id": "trig-identities-p08",
+   "q": "If $\\sin\\theta + \\cosec\\theta = 2$ ($\\theta$ acute), the value of $\\sin^2\\theta + \\cosec^2\\theta$ is:",
+   "figure": null,
+   "options": [
+    "$4$",
+    "$2$",
+    "$1$",
+    "$\\sqrt{2}$"
+   ],
+   "answer": 1,
+   "solution": "$s + \\frac1s = 2 \\Rightarrow s^2 - 2s + 1 = 0 \\Rightarrow s = 1$.\n\nSo $\\sin\\theta = 1$, and $\\sin^2\\theta + \\cosec^2\\theta = 1 + 1 = 2$.",
+   "shortcut": "The sum 2 forces $\\sin\\theta = 1$: both squares are 1. Trap: $4$ (squaring the given sum).",
+   "difficulty": "hard",
+   "subtopic": "trig-identities",
+   "pattern": "trig-id-p4",
+   "timeSec": 50
+  },
+  {
+   "id": "trig-identities-p09",
+   "q": "The value of $\\sin^4\\theta + \\cos^4\\theta$ is:",
+   "figure": null,
+   "options": [
+    "$1 - \\sin^2\\theta\\cos^2\\theta$",
+    "$1 + 2\\sin^2\\theta\\cos^2\\theta$",
+    "$2\\sin^2\\theta\\cos^2\\theta$",
+    "$1 - 2\\sin^2\\theta\\cos^2\\theta$"
+   ],
+   "answer": 3,
+   "solution": "Square the identity: $(\\sin^2\\theta + \\cos^2\\theta)^2 = 1$ gives\n\n$\\sin^4\\theta + \\cos^4\\theta = 1 - 2\\sin^2\\theta\\cos^2\\theta$.",
+   "shortcut": "Squaring $s^2 + c^2 = 1$ is the whole proof. Trap: $1$ — true only when one function is zero.",
+   "difficulty": "medium",
+   "subtopic": "trig-identities",
+   "pattern": "trig-id-p2",
+   "timeSec": 40
+  },
+  {
+   "id": "trig-identities-p10",
+   "q": "The value of $\\sin^6\\theta + \\cos^6\\theta$ is:",
+   "figure": null,
+   "options": [
+    "$1 - 2\\sin^2\\theta\\cos^2\\theta$",
+    "$1 - \\sin^2\\theta\\cos^2\\theta$",
+    "$1 - 3\\sin^2\\theta\\cos^2\\theta$",
+    "$1 + 3\\sin^2\\theta\\cos^2\\theta$"
+   ],
+   "answer": 2,
+   "solution": "Cube the identity: $(\\sin^2\\theta + \\cos^2\\theta)^3 = 1$ expands to\n\n$\\sin^6\\theta + \\cos^6\\theta + 3\\sin^2\\theta\\cos^2\\theta = 1$, so the sum is $1 - 3\\sin^2\\theta\\cos^2\\theta$.",
+   "shortcut": "$x^3 + y^3 = (x+y)^3 - 3xy(x+y)$ with $x+y = 1$. Trap: $1 - 2s^2c^2$ — that is the FOURTH-power form.",
+   "difficulty": "medium",
+   "subtopic": "trig-identities",
+   "pattern": "trig-id-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "trig-identities-p11",
+   "q": "If $\\tan\\theta + \\cot\\theta = 2$ ($\\theta$ acute), the value of $\\tan\\theta$ is:",
+   "figure": null,
+   "options": [
+    "$1$",
+    "$2$",
+    "$\\frac{1}{2}$",
+    "$\\sqrt{2}$"
+   ],
+   "answer": 0,
+   "solution": "$x + \\frac1x = 2$ forces $x = 1$ (a positive number and its reciprocal sum to 2 only at equality).\n\nSo $\\tan\\theta = 1$, i.e. $\\theta = 45^\\circ$.",
+   "shortcut": "$x + \\frac{1}{x} \\ge 2$ with equality only at $x = 1$. Trap: $2$ (confusing the sum with the value).",
+   "difficulty": "easy",
+   "subtopic": "trig-identities",
+   "pattern": "trig-id-p4",
+   "timeSec": 30
+  },
+  {
+   "id": "trig-identities-p12",
+   "q": "If $\\sec\\theta - \\tan\\theta = \\frac{1}{3}$ ($\\theta$ acute), the value of $\\sec\\theta$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{3}{5}$",
+    "$\\frac{4}{3}$",
+    "$\\frac{5}{3}$",
+    "$\\frac{10}{3}$"
+   ],
+   "answer": 2,
+   "solution": "Conjugate: $\\sec\\theta + \\tan\\theta = 3$. Adding the pair:\n\n$2\\sec\\theta = 3 + \\frac13 = \\frac{10}{3}$ → $\\sec\\theta = \\frac53$.",
+   "shortcut": "Average the pair: $\\frac{3 + \\frac13}{2} = \\frac53$. Trap: $\\frac{10}{3}$ (forgot to halve).",
+   "difficulty": "hard",
+   "subtopic": "trig-identities",
+   "pattern": "trig-id-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "trig-complementary-p01",
+   "q": "The value of $\\cos 50^\\circ - \\sin 40^\\circ$ is:",
+   "figure": null,
+   "options": [
+    "$0$",
+    "$1$",
+    "$\\frac{1}{2}$",
+    "$\\sqrt{2}$"
+   ],
+   "answer": 0,
+   "solution": "$50^\\circ + 40^\\circ = 90^\\circ$: $\\sin 40^\\circ = \\cos 50^\\circ$; difference $= 0$.",
+   "shortcut": "Twins cancel. Trap: $1$ or $\\frac12$ — treating them as unrelated values.",
+   "difficulty": "easy",
+   "subtopic": "trig-complementary",
+   "pattern": "trig-co-p4",
+   "timeSec": 25
+  },
+  {
+   "id": "trig-complementary-p02",
+   "q": "The value of $\\sin 35^\\circ \\sec 55^\\circ + \\cos 35^\\circ \\cosec 55^\\circ$ is:",
+   "figure": null,
+   "options": [
+    "$1$",
+    "$0$",
+    "$2$",
+    "$\\sqrt{2}$"
+   ],
+   "answer": 2,
+   "solution": "$\\sec 55^\\circ = \\frac{1}{\\cos 55^\\circ} = \\frac{1}{\\sin 35^\\circ}$; $\\cosec 55^\\circ = \\frac{1}{\\sin 55^\\circ} = \\frac{1}{\\cos 35^\\circ}$.\n\nEach product is 1: sum $= 2$.",
+   "shortcut": "Both flip to reciprocals: $1 + 1 = 2$. Trap: $1$ (cancelling only one pair).",
+   "difficulty": "medium",
+   "subtopic": "trig-complementary",
+   "pattern": "trig-co-p1",
+   "timeSec": 40
+  },
+  {
+   "id": "trig-complementary-p03",
+   "q": "The value of $\\sec 22^\\circ - \\cosec 68^\\circ$ is:",
+   "figure": null,
+   "options": [
+    "$0$",
+    "$1$",
+    "$2$",
+    "$\\sec 22^\\circ$"
+   ],
+   "answer": 0,
+   "solution": "$\\cosec 68^\\circ = \\sec(90^\\circ - 68^\\circ) = \\sec 22^\\circ$; difference $= 0$.",
+   "shortcut": "$22 + 68 = 90$: identical twins. Trap: $\\sec 22^\\circ$ (dropping the second term).",
+   "difficulty": "easy",
+   "subtopic": "trig-complementary",
+   "pattern": "trig-co-p4",
+   "timeSec": 25
+  },
+  {
+   "id": "trig-complementary-p04",
+   "q": "The value of $\\tan 5^\\circ \\tan 25^\\circ \\tan 45^\\circ \\tan 65^\\circ \\tan 85^\\circ$ is:",
+   "figure": null,
+   "options": [
+    "$0$",
+    "$\\sqrt{3}$",
+    "$5$",
+    "$1$"
+   ],
+   "answer": 3,
+   "solution": "$\\tan 5^\\circ \\tan 85^\\circ = 1$ and $\\tan 25^\\circ \\tan 65^\\circ = 1$ (complementary pairs); $\\tan 45^\\circ = 1$.\n\nProduct $= 1$.",
+   "shortcut": "Pair the ends: $1$. Trap: $0$ — nothing here is zero; every factor is finite and positive.",
+   "difficulty": "medium",
+   "subtopic": "trig-complementary",
+   "pattern": "trig-co-p2",
+   "timeSec": 40
+  },
+  {
+   "id": "trig-complementary-p05",
+   "q": "The value of $\\tan 12^\\circ \\tan 30^\\circ \\tan 60^\\circ \\tan 78^\\circ$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{1}{\\sqrt{3}}$",
+    "$1$",
+    "$\\sqrt{3}$",
+    "$\\frac{1}{3}$"
+   ],
+   "answer": 1,
+   "solution": "$\\tan 12^\\circ \\tan 78^\\circ = 1$; $\\tan 30^\\circ \\tan 60^\\circ = \\frac{1}{\\sqrt3} \\times \\sqrt3 = 1$.\n\nProduct $= 1$.",
+   "shortcut": "Two pairs: $1 \\times 1 = 1$. Trap: $\\frac{1}{3}$ (squaring the 30-60 pair instead of multiplying).",
+   "difficulty": "medium",
+   "subtopic": "trig-complementary",
+   "pattern": "trig-co-p2",
+   "timeSec": 40
+  },
+  {
+   "id": "trig-complementary-p06",
+   "q": "If $\\sin 3A = \\cos(A - 10^\\circ)$, the value of $A$ is:",
+   "figure": null,
+   "options": [
+    "$20^\\circ$",
+    "$30^\\circ$",
+    "$15^\\circ$",
+    "$25^\\circ$"
+   ],
+   "answer": 3,
+   "solution": "Complementary arguments: $3A + (A - 10^\\circ) = 90^\\circ$ → $4A = 100^\\circ$ → $A = 25^\\circ$.",
+   "shortcut": "$4A = 100$: $A = 25^\\circ$. Trap: $20^\\circ$ (dropping the $-10^\\circ$).",
+   "difficulty": "medium",
+   "subtopic": "trig-complementary",
+   "pattern": "trig-co-p3",
+   "timeSec": 40
+  },
+  {
+   "id": "trig-complementary-p07",
+   "q": "If $\\sec 2\\theta = \\cosec(\\theta + 30^\\circ)$, the value of $\\theta$ is:",
+   "figure": null,
+   "options": [
+    "$30^\\circ$",
+    "$20^\\circ$",
+    "$15^\\circ$",
+    "$25^\\circ$"
+   ],
+   "answer": 1,
+   "solution": "$\\sec x = \\cosec(90^\\circ - x)$: the arguments must satisfy $2\\theta + \\theta + 30^\\circ = 90^\\circ$.\n\n$3\\theta = 60^\\circ$ → $\\theta = 20^\\circ$.",
+   "shortcut": "$3\\theta = 60$: $\\theta = 20^\\circ$. Trap: $30^\\circ$ (setting $2\\theta = \\theta + 30$, the wrong pairing).",
+   "difficulty": "medium",
+   "subtopic": "trig-complementary",
+   "pattern": "trig-co-p3",
+   "timeSec": 40
+  },
+  {
+   "id": "trig-complementary-p08",
+   "q": "If $\\tan\\theta = \\cot(30^\\circ + \\theta)$, the value of $\\theta$ is:",
+   "figure": null,
+   "options": [
+    "$30^\\circ$",
+    "$45^\\circ$",
+    "$15^\\circ$",
+    "$60^\\circ$"
+   ],
+   "answer": 0,
+   "solution": "Complementary arguments: $\\theta + 30^\\circ + \\theta = 90^\\circ$ → $2\\theta = 60^\\circ$ → $\\theta = 30^\\circ$.",
+   "shortcut": "$2\\theta = 60$: $\\theta = 30^\\circ$. Trap: $45^\\circ$ (tan $=$ cot only at 45 when the angles are EQUAL, not complementary).",
+   "difficulty": "easy",
+   "subtopic": "trig-complementary",
+   "pattern": "trig-co-p3",
+   "timeSec": 30
+  },
+  {
+   "id": "trig-complementary-p09",
+   "q": "The value of $\\tan 1^\\circ \\tan 2^\\circ \\tan 3^\\circ \\cdots \\tan 89^\\circ$ is:",
+   "figure": null,
+   "options": [
+    "$0$",
+    "$89$",
+    "$1$",
+    "$\\sqrt{3}$"
+   ],
+   "answer": 2,
+   "solution": "Pair $1^\\circ$ with $89^\\circ$, $2^\\circ$ with $88^\\circ$, ..., $44^\\circ$ with $46^\\circ$: 44 pairs each multiplying to 1.\n\n$\\tan 45^\\circ = 1$ remains in the middle. Product $= 1$.",
+   "shortcut": "44 cancelling pairs + $\\tan 45^\\circ$: product $1$. Trap: $0$ — no factor is zero (tan 0 is absent).",
+   "difficulty": "hard",
+   "subtopic": "trig-complementary",
+   "pattern": "trig-co-p2",
+   "timeSec": 55
+  },
+  {
+   "id": "trig-complementary-p10",
+   "q": "The value of $\\cot 15^\\circ \\cot 35^\\circ \\cot 55^\\circ \\cot 75^\\circ$ is:",
+   "figure": null,
+   "options": [
+    "$0$",
+    "$\\sqrt{3}$",
+    "$\\cot 15^\\circ$",
+    "$1$"
+   ],
+   "answer": 3,
+   "solution": "Complementary cots are reciprocals: $\\cot 15^\\circ \\cot 75^\\circ = 1$ (since $15 + 75 = 90$) and $\\cot 35^\\circ \\cot 55^\\circ = 1$.\n\nProduct $= 1$.",
+   "shortcut": "Pairs $(15, 75)$ and $(35, 55)$: $1 \\times 1 = 1$. Trap: assuming cot-cot pairs don't cancel — complementary cots are still reciprocals.",
+   "difficulty": "medium",
+   "subtopic": "trig-complementary",
+   "pattern": "trig-co-p1",
+   "timeSec": 40
+  },
+  {
+   "id": "trig-complementary-p11",
+   "q": "The value of $\\tan 27^\\circ \\tan 35^\\circ \\tan 45^\\circ \\tan 55^\\circ \\tan 63^\\circ$ is:",
+   "figure": null,
+   "options": [
+    "$0$",
+    "$1$",
+    "$45$",
+    "$\\sqrt{3}$"
+   ],
+   "answer": 1,
+   "solution": "$27 + 63 = 90$ and $35 + 55 = 90$: both pairs multiply to 1; $\\tan 45^\\circ = 1$.\n\nProduct $= 1$.",
+   "shortcut": "Two complementary pairs + the 45° anchor: $1$. Trap: $0$ — no factor vanishes.",
+   "difficulty": "medium",
+   "subtopic": "trig-complementary",
+   "pattern": "trig-co-p2",
+   "timeSec": 40
+  },
+  {
+   "id": "trig-complementary-p12",
+   "q": "The value of $\\sin^2 14^\\circ + \\sin^2 31^\\circ + \\sin^2 59^\\circ + \\sin^2 76^\\circ$ is:",
+   "figure": null,
+   "options": [
+    "$1$",
+    "$4$",
+    "$\\sqrt{2}$",
+    "$2$"
+   ],
+   "answer": 3,
+   "solution": "$\\sin 76^\\circ = \\cos 14^\\circ$ and $\\sin 59^\\circ = \\cos 31^\\circ$ (each pair sums to $90^\\circ$).\n\nSo the sum $= (\\sin^2 14^\\circ + \\cos^2 14^\\circ) + (\\sin^2 31^\\circ + \\cos^2 31^\\circ) = 1 + 1 = 2$.",
+   "shortcut": "Re-pair into two $\\sin^2 + \\cos^2 = 1$ groups. Trap: $1$ — there are TWO independent pairs here.",
+   "difficulty": "hard",
+   "subtopic": "trig-complementary",
+   "pattern": "trig-co-p1",
+   "timeSec": 55
+  },
+  {
+   "id": "trig-valueput-p01",
+   "q": "The value of $2\\tan^2 45^\\circ + \\cos^2 30^\\circ - \\sin^2 60^\\circ$ is:",
+   "figure": null,
+   "options": [
+    "$1$",
+    "$3$",
+    "$2$",
+    "$\\frac{3}{2}$"
+   ],
+   "answer": 2,
+   "solution": "$2(1)^2 + \\left(\\frac{\\sqrt3}{2}\\right)^2 - \\left(\\frac{\\sqrt3}{2}\\right)^2 = 2 + \\frac34 - \\frac34 = 2$.",
+   "shortcut": "Complementary squares cancel. Trap: $3$ (using $\\sin^2 60 = \\frac34$ for BOTH terms wrongly) or $\\frac32$.",
+   "difficulty": "medium",
+   "subtopic": "trig-valueput",
+   "pattern": "trig-vp-p1",
+   "timeSec": 35
+  },
+  {
+   "id": "trig-valueput-p02",
+   "q": "The value of $\\sin^2 30^\\circ + \\cos^2 60^\\circ + \\tan^2 45^\\circ$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{3}{2}$",
+    "$2$",
+    "$1$",
+    "$\\frac{5}{4}$"
+   ],
+   "answer": 0,
+   "solution": "$\\sin^2 30^\\circ = \\frac14$, $\\cos^2 60^\\circ = \\frac14$, $\\tan^2 45^\\circ = 1$.\n\nSum $= \\frac14 + \\frac14 + 1 = \\frac32$.",
+   "shortcut": "$\\frac14 + \\frac14 + 1 = \\frac32$. Trap: $2$ — counting $\\tan^2 45^\\circ$ twice.",
+   "difficulty": "easy",
+   "subtopic": "trig-valueput",
+   "pattern": "trig-vp-p1",
+   "timeSec": 25
+  },
+  {
+   "id": "trig-valueput-p03",
+   "q": "If $\\sin\\theta + \\cos\\theta = \\sqrt{2}$, the value of $\\sin\\theta\\cos\\theta$ is:",
+   "figure": null,
+   "options": [
+    "$1$",
+    "$\\frac{\\sqrt{2}}{2}$",
+    "$\\frac{1}{2}$",
+    "$\\frac{1}{4}$"
+   ],
+   "answer": 2,
+   "solution": "Squaring: $2 = 1 + 2\\sin\\theta\\cos\\theta$ → $\\sin\\theta\\cos\\theta = \\frac12$.",
+   "shortcut": "$\\frac{m^2 - 1}{2} = \\frac12$. Trap: $1$ (forgetting to divide by 2).",
+   "difficulty": "medium",
+   "subtopic": "trig-valueput",
+   "pattern": "trig-vp-p2",
+   "timeSec": 35
+  },
+  {
+   "id": "trig-valueput-p04",
+   "q": "If $\\sin\\theta + \\cos\\theta = \\sqrt{2}$, the value of $\\sin\\theta - \\cos\\theta$ is:",
+   "figure": null,
+   "options": [
+    "$1$",
+    "$0$",
+    "$\\frac{1}{\\sqrt{2}}$",
+    "$\\sqrt{2}$"
+   ],
+   "answer": 1,
+   "solution": "$(\\sin\\theta - \\cos\\theta)^2 = 2 - (\\sin\\theta + \\cos\\theta)^2 = 2 - 2 = 0$.\n\nSo $\\sin\\theta = \\cos\\theta$ — indeed $\\theta = 45^\\circ$.",
+   "shortcut": "$\\sqrt{2 - 2} = 0$: at $45^\\circ$ the difference vanishes. Trap: $1$ (using $2 - m$ instead of $2 - m^2$).",
+   "difficulty": "hard",
+   "subtopic": "trig-valueput",
+   "pattern": "trig-vp-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "trig-valueput-p05",
+   "q": "If $5\\tan\\theta = 4$, the value of $\\frac{5\\sin\\theta - 3\\cos\\theta}{5\\sin\\theta + 3\\cos\\theta}$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{1}{2}$",
+    "$7$",
+    "$\\frac{2}{7}$",
+    "$\\frac{1}{7}$"
+   ],
+   "answer": 3,
+   "solution": "Divide by $\\cos\\theta$: $\\frac{5\\tan\\theta - 3}{5\\tan\\theta + 3} = \\frac{4 - 3}{4 + 3} = \\frac17$.",
+   "shortcut": "$\\frac{5t - 3}{5t + 3} = \\frac{1}{7}$. Trap: $\\frac12$ (substituting $t = \\frac54$ upside down).",
+   "difficulty": "hard",
+   "subtopic": "trig-valueput",
+   "pattern": "trig-vp-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "trig-valueput-p06",
+   "q": "If $\\tan\\theta = 2$, the value of $\\frac{3\\sin\\theta + \\cos\\theta}{\\sin\\theta + 3\\cos\\theta}$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{5}{7}$",
+    "$\\frac{7}{5}$",
+    "$\\frac{3}{2}$",
+    "$2$"
+   ],
+   "answer": 1,
+   "solution": "Divide by $\\cos\\theta$: $\\frac{3\\tan\\theta + 1}{\\tan\\theta + 3} = \\frac{6 + 1}{2 + 3} = \\frac75$.",
+   "shortcut": "$\\frac{3t+1}{t+3} = \\frac75$. Trap: $\\frac57$ — inverting the final fraction.",
+   "difficulty": "medium",
+   "subtopic": "trig-valueput",
+   "pattern": "trig-vp-p3",
+   "timeSec": 35
+  },
+  {
+   "id": "trig-valueput-p07",
+   "q": "If $\\cot\\theta = \\frac{21}{20}$ ($\\theta$ acute), the value of $\\cos\\theta$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{20}{29}$",
+    "$\\frac{21}{20}$",
+    "$\\frac{20}{21}$",
+    "$\\frac{21}{29}$"
+   ],
+   "answer": 3,
+   "solution": "$\\cot\\theta = \\frac{\\text{adj}}{\\text{opp}} = \\frac{21}{20}$ → triangle 20-21-29.\n\n$\\cos\\theta = \\frac{21}{29}$.",
+   "shortcut": "$\\frac{21}{29}$. Trap: $\\frac{20}{29}$ — that is $\\sin\\theta$ (cot's numerator is the ADJACENT side).",
+   "difficulty": "medium",
+   "subtopic": "trig-valueput",
+   "pattern": "trig-vp-p4",
+   "timeSec": 40
+  },
+  {
+   "id": "trig-valueput-p08",
+   "q": "If $\\tan\\theta = \\frac{4}{3}$ ($\\theta$ acute), the value of $\\sec\\theta$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{3}{5}$",
+    "$\\frac{5}{4}$",
+    "$\\frac{5}{3}$",
+    "$\\frac{4}{5}$"
+   ],
+   "answer": 2,
+   "solution": "Triangle 3-4-5 with opp 4, adj 3: $\\sec\\theta = \\frac{\\text{hyp}}{\\text{adj}} = \\frac53$.",
+   "shortcut": "$\\frac53$. Trap: $\\frac35$ — sec is hyp/ADJ, not adj/hyp.",
+   "difficulty": "easy",
+   "subtopic": "trig-valueput",
+   "pattern": "trig-vp-p4",
+   "timeSec": 30
+  },
+  {
+   "id": "trig-valueput-p09",
+   "q": "If $\\sin\\theta - \\cos\\theta = 0$ and $\\theta$ is acute, the value of $\\sin\\theta$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{1}{\\sqrt{2}}$",
+    "$\\frac{1}{2}$",
+    "$1$",
+    "$\\frac{\\sqrt{3}}{2}$"
+   ],
+   "answer": 0,
+   "solution": "$\\sin\\theta = \\cos\\theta$ → $\\tan\\theta = 1$ → $\\theta = 45^\\circ$ → $\\sin\\theta = \\frac{1}{\\sqrt2}$.",
+   "shortcut": "$45^\\circ$: $\\sin = \\frac{1}{\\sqrt2}$. Trap: $1$ (that is $\\sin 90^\\circ$).",
+   "difficulty": "medium",
+   "subtopic": "trig-valueput",
+   "pattern": "trig-vp-p2",
+   "timeSec": 30
+  },
+  {
+   "id": "trig-valueput-p10",
+   "q": "If $2\\tan\\theta = \\frac{8}{5}$, the value of $\\frac{2\\sin\\theta - \\cos\\theta}{2\\cos\\theta + 3\\sin\\theta}$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{22}{3}$",
+    "$\\frac{3}{22}$",
+    "$\\frac{1}{11}$",
+    "$\\frac{5}{22}$"
+   ],
+   "answer": 1,
+   "solution": "$\\tan\\theta = \\frac45$. Divide by $\\cos\\theta$:\n\n$\\frac{2 \\times \\frac45 - 1}{2 + 3 \\times \\frac45} = \\frac{\\frac35}{\\frac{22}{5}} = \\frac{3}{22}$.",
+   "shortcut": "$\\frac{2t - 1}{2 + 3t} = \\frac{3}{22}$. Trap: $\\frac{22}{3}$ — the fraction inverted.",
+   "difficulty": "medium",
+   "subtopic": "trig-valueput",
+   "pattern": "trig-vp-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "trig-valueput-p11",
+   "q": "If $\\sin\\theta + \\cos\\theta = \\frac{7}{5}$, the value of $\\sin\\theta - \\cos\\theta$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{7}{5}$",
+    "$\\frac{2}{5}$",
+    "$\\frac{1}{7}$",
+    "$\\frac{1}{5}$"
+   ],
+   "answer": 3,
+   "solution": "$(\\sin\\theta - \\cos\\theta)^2 = 2 - \\left(\\frac75\\right)^2 = 2 - \\frac{49}{25} = \\frac{1}{25}$.\n\nSo $\\sin\\theta - \\cos\\theta = \\frac15$ (positive root for the acute $\\theta$ in the standard exam setup).",
+   "shortcut": "$\\sqrt{2 - m^2} = \\sqrt{\\frac{1}{25}} = \\frac15$. Trap: $\\frac{7}{5}$ — that is the given sum itself.",
+   "difficulty": "medium",
+   "subtopic": "trig-valueput",
+   "pattern": "trig-vp-p2",
+   "timeSec": 50
+  },
+  {
+   "id": "trig-maxmin-p01",
+   "q": "The maximum value of $4\\sin\\theta + 3\\cos\\theta$ is:",
+   "figure": null,
+   "options": [
+    "$7$",
+    "$4$",
+    "$5$",
+    "$\\sqrt{7}$"
+   ],
+   "answer": 2,
+   "solution": "Amplitude $= \\sqrt{4^2 + 3^2} = 5$; maximum $= 5$.",
+   "shortcut": "$\\sqrt{25} = 5$. Trap: $7$ (adding the coefficients) or $\\sqrt7$ (adding squares without the root).",
+   "difficulty": "medium",
+   "subtopic": "trig-maxmin",
+   "pattern": "trig-mm-p1",
+   "timeSec": 35
+  },
+  {
+   "id": "trig-maxmin-p02",
+   "q": "The minimum value of $5\\sin\\theta + 12\\cos\\theta$ (for all $\\theta$) is:",
+   "figure": null,
+   "options": [
+    "$-13$",
+    "$13$",
+    "$-17$",
+    "$5$"
+   ],
+   "answer": 0,
+   "solution": "Amplitude $= \\sqrt{25 + 144} = 13$; the minimum is $-13$.",
+   "shortcut": "$-\\sqrt{169} = -13$. Trap: $13$ (forgetting the minus on the minimum).",
+   "difficulty": "medium",
+   "subtopic": "trig-maxmin",
+   "pattern": "trig-mm-p1",
+   "timeSec": 35
+  },
+  {
+   "id": "trig-maxmin-p03",
+   "q": "For $0^\\circ \\le \\theta \\le 90^\\circ$, the maximum value of $\\sin\\theta + \\cos\\theta$ is:",
+   "figure": null,
+   "options": [
+    "$1$",
+    "$2$",
+    "$\\sqrt{2}$",
+    "$\\frac{1}{\\sqrt{2}}$"
+   ],
+   "answer": 2,
+   "solution": "$(\\sin\\theta + \\cos\\theta)^2 = 1 + 2\\sin\\theta\\cos\\theta \\le 1 + 1 = 2$, so the max is $\\sqrt2$ at $45^\\circ$.\n\n(Or: amplitude of the combination is $\\sqrt{1^2+1^2} = \\sqrt2$.)",
+   "shortcut": "$\\sqrt{1+1} = \\sqrt2$ at $45^\\circ$. Trap: $2$ (adding the individual maxima — they occur at different angles).",
+   "difficulty": "easy",
+   "subtopic": "trig-maxmin",
+   "pattern": "trig-mm-p1",
+   "timeSec": 30
+  },
+  {
+   "id": "trig-maxmin-p04",
+   "q": "The maximum value of $\\sin\\theta\\cos\\theta$ ($\\theta$ acute) is:",
+   "figure": null,
+   "options": [
+    "$1$",
+    "$\\frac{1}{2}$",
+    "$\\frac{1}{4}$",
+    "$\\frac{\\sqrt{3}}{4}$"
+   ],
+   "answer": 1,
+   "solution": "$\\sin\\theta\\cos\\theta = \\frac{\\sin 2\\theta}{2} \\le \\frac12$, at $\\theta = 45^\\circ$.",
+   "shortcut": "$\\frac12$ at $45^\\circ$. Trap: $1$ — that is the max of $2\\sin\\theta\\cos\\theta$, not of the product.",
+   "difficulty": "medium",
+   "subtopic": "trig-maxmin",
+   "pattern": "trig-mm-p2",
+   "timeSec": 30
+  },
+  {
+   "id": "trig-maxmin-p05",
+   "q": "The value of $2\\sin 45^\\circ \\cos 45^\\circ$ is:",
+   "figure": null,
+   "options": [
+    "$\\frac{1}{2}$",
+    "$\\frac{\\sqrt{3}}{2}$",
+    "$2$",
+    "$1$"
+   ],
+   "answer": 3,
+   "solution": "$\\sin 45^\\circ = \\cos 45^\\circ = \\frac{1}{\\sqrt2}$: $2 \\times \\frac12 = 1$.\n\n(Equivalently $2\\sin\\theta\\cos\\theta = \\sin 2\\theta = \\sin 90^\\circ = 1$.)",
+   "shortcut": "$\\sin 90^\\circ = 1$ via the double angle. Trap: $\\frac12$ — halving twice.",
+   "difficulty": "easy",
+   "subtopic": "trig-maxmin",
+   "pattern": "trig-mm-p2",
+   "timeSec": 25
+  },
+  {
+   "id": "trig-maxmin-p06",
+   "q": "The minimum value of $\\tan^2\\theta + \\cot^2\\theta$ ($\\theta$ acute) is:",
+   "figure": null,
+   "options": [
+    "$1$",
+    "$2$",
+    "$4$",
+    "$0$"
+   ],
+   "answer": 1,
+   "solution": "With $x = \\tan^2\\theta$: $x + \\frac1x \\ge 2$, equality at $x = 1$ i.e. $\\theta = 45^\\circ$.",
+   "shortcut": "$2$ at $45^\\circ$. Trap: $0$ — a positive term and its reciprocal cannot both vanish.",
+   "difficulty": "medium",
+   "subtopic": "trig-maxmin",
+   "pattern": "trig-mm-p3",
+   "timeSec": 35
+  },
+  {
+   "id": "trig-maxmin-p07",
+   "q": "The minimum value of $\\sec^2\\theta + \\cosec^2\\theta$ ($\\theta$ acute) is:",
+   "figure": null,
+   "options": [
+    "$2$",
+    "$8$",
+    "$1$",
+    "$4$"
+   ],
+   "answer": 3,
+   "solution": "$\\sec^2\\theta + \\cosec^2\\theta = \\frac{1}{\\cos^2\\theta} + \\frac{1}{\\sin^2\\theta} = \\frac{\\sin^2\\theta + \\cos^2\\theta}{\\sin^2\\theta\\cos^2\\theta} = \\frac{1}{\\sin^2\\theta\\cos^2\\theta}$.\n\nSince $\\sin\\theta\\cos\\theta \\le \\frac12$: the expression $\\ge 4$, at $45^\\circ$.",
+   "shortcut": "$\\frac{1}{(\\sin\\cos)^2} \\ge 4$. Trap: $2$ — the bound for $\\tan^2 + \\cot^2$, not this pair.",
+   "difficulty": "hard",
+   "subtopic": "trig-maxmin",
+   "pattern": "trig-mm-p3",
+   "timeSec": 50
+  },
+  {
+   "id": "trig-maxmin-p08",
+   "q": "Which of the following is the largest?",
+   "figure": null,
+   "options": [
+    "$\\sin 30^\\circ$",
+    "$\\sin 45^\\circ$",
+    "$\\sin 60^\\circ$",
+    "$\\cos 60^\\circ$"
+   ],
+   "answer": 2,
+   "solution": "$\\sin$ increases on $(0^\\circ, 90^\\circ)$: $\\sin 60^\\circ = \\frac{\\sqrt3}{2} \\approx 0.87$ beats $\\sin 45^\\circ \\approx 0.71$, $\\sin 30^\\circ = 0.5$, and $\\cos 60^\\circ = 0.5$.",
+   "shortcut": "$\\sin 60^\\circ$. Trap: $\\cos 60^\\circ = \\sin 30^\\circ$ — they tie at $0.5$, well below $\\sin 45^\\circ$.",
+   "difficulty": "easy",
+   "subtopic": "trig-maxmin",
+   "pattern": "trig-mm-p4",
+   "timeSec": 25
+  },
+  {
+   "id": "trig-maxmin-p09",
+   "q": "For $0^\\circ < \\theta < 90^\\circ$, the inequality $\\sin\\theta > \\cos\\theta$ holds when:",
+   "figure": null,
+   "options": [
+    "$\\theta > 45^\\circ$",
+    "$\\theta < 45^\\circ$",
+    "$\\theta = 45^\\circ$",
+    "all acute $\\theta$"
+   ],
+   "answer": 0,
+   "solution": "$\\sin$ rises and $\\cos$ falls; they cross at $45^\\circ$. Beyond it, $\\sin$ is on top.",
+   "shortcut": "$\\theta > 45^\\circ$. Trap: $<$ — the directions of the two functions are easy to swap.",
+   "difficulty": "medium",
+   "subtopic": "trig-maxmin",
+   "pattern": "trig-mm-p4",
+   "timeSec": 30
+  },
+  {
+   "id": "trig-maxmin-p10",
+   "q": "The minimum value of $\\frac{1}{1 + \\sin^2\\theta}$ ($\\theta$ real) is:",
+   "figure": null,
+   "options": [
+    "$1$",
+    "$\\frac{1}{2}$",
+    "$\\frac{1}{\\sqrt{2}}$",
+    "$0$"
+   ],
+   "answer": 1,
+   "solution": "The fraction is smallest when the denominator is largest: $\\sin^2\\theta = 1$ gives $1 + 1 = 2$.\n\nMinimum $= \\frac12$.",
+   "shortcut": "$\\frac12$ at $\\theta = 90^\\circ$. Trap: $0$ — the fraction never reaches zero since $1 + \\sin^2 \\ge 1 > 0$.",
+   "difficulty": "medium",
+   "subtopic": "trig-maxmin",
+   "pattern": "trig-mm-p4",
+   "timeSec": 40
+  },
+  {
+   "id": "trig-maxmin-p11",
+   "q": "The minimum value of $8\\sin\\theta - 15\\cos\\theta$ over all real $\\theta$ is:",
+   "figure": null,
+   "options": [
+    "$17$",
+    "$-7$",
+    "$-15$",
+    "$-17$"
+   ],
+   "answer": 3,
+   "solution": "Amplitude $= \\sqrt{8^2 + 15^2} = \\sqrt{289} = 17$; the expression ranges over $[-17, 17]$.\n\nMinimum $= -17$.",
+   "shortcut": "$-\\sqrt{64 + 225} = -17$. Trap: $17$ (missing the minus) or $-7$ (subtracting the coefficients).",
+   "difficulty": "hard",
+   "subtopic": "trig-maxmin",
+   "pattern": "trig-mm-p1",
+   "timeSec": 50
+  },
+  {
+   "id": "trig-maxmin-p12",
+   "q": "The minimum value of $9\\tan^2\\theta + 4\\cot^2\\theta$ ($\\theta$ acute) is:",
+   "figure": null,
+   "options": [
+    "$13$",
+    "$12$",
+    "$6$",
+    "$36$"
+   ],
+   "answer": 1,
+   "solution": "AM–GM: $9\\tan^2\\theta + 4\\cot^2\\theta \\ge 2\\sqrt{36} = 12$, equality at $\\tan^2\\theta = \\frac23$.",
+   "shortcut": "$2\\sqrt{9 \\times 4} = 12$. Trap: $13$ ($a + b$) or $6$ ($\\sqrt{ab}$, forgot to double).",
+   "difficulty": "medium",
+   "subtopic": "trig-maxmin",
+   "pattern": "trig-mm-p3",
+   "timeSec": 45
+  }
+ ]
 }
