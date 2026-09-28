@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { availableSections, SECTION_META, listTopics, getSection } from '@/lib/content';
+import { Md } from '@/components/Md';
 
 export const dynamic = 'force-static';
 export const metadata: Metadata = {
@@ -38,7 +39,7 @@ export default function SyllabusPage() {
                     <span className="font-bold text-sm">{t.title}</span>
                     {t.importance && <span className={`chip ml-auto ${t.importance === 'high' ? 'chip-high' : t.importance === 'medium' ? 'chip-medium' : 'chip-low'}`}>{t.importance}</span>}
                   </div>
-                  <span className="text-xs muted mt-1 line-clamp-2">{t.summary}</span>
+                  <Md inline className="text-xs muted mt-1 line-clamp-2 [&_p]:text-xs">{t.summary}</Md>
                   <span className="text-xs faint mt-2">
                     {t.subtopics.length} subtopics
                     {t.avgQuestions?.tier1 ? ` · ~${t.avgQuestions.tier1} Q in Tier 1` : ''}

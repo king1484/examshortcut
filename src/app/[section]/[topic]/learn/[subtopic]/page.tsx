@@ -93,7 +93,7 @@ export default async function SubtopicPage({ params }: { params: Promise<{ secti
                   {p.frequency && <span className={`chip ${FREQ_CHIP[p.frequency] ?? ''}`}>{p.frequency}</span>}
                   {byPattern[p.id] ? <span className="chip">{byPattern[p.id]} practice Q</span> : null}
                 </summary>
-                {p.howToSpot && <p className="text-sm mt-2.5"><b>How to spot it:</b> {p.howToSpot}</p>}
+                {p.howToSpot && <div className="text-sm mt-2.5"><b>How to spot it:</b> <Md inline>{p.howToSpot}</Md></div>}
                 {p.formula && <div className="mt-2 overflow-x-auto rounded-lg px-3 py-2" style={{ background: 'var(--surface-2)' }}><Tex tex={p.formula} display /></div>}
                 {p.logic && <Md className="mt-2 text-[15px]">{p.logic}</Md>}
                 {p.example && (

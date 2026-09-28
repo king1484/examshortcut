@@ -96,7 +96,7 @@ export default async function TopicOverviewPage({ params }: { params: Promise<{ 
                   <h3 className="font-bold text-sm">{p.pattern}</h3>
                   {p.frequency && <span className={`chip ${FREQ_CHIP[p.frequency] ?? ''}`}>{p.frequency}</span>}
                 </div>
-                {p.howToSpot && <p className="text-sm mt-1.5"><b>Spot it:</b> {p.howToSpot}</p>}
+                {p.howToSpot && <div className="text-sm mt-1.5"><b>Spot it:</b> <Md inline>{p.howToSpot}</Md></div>}
                 {p.approach && <Md className="text-sm mt-1">{`**How to solve:** ${p.approach}`}</Md>}
                 {p.example && (
                   <div className="mt-2.5 rounded-xl p-3 text-sm" style={{ background: 'var(--surface-2)' }}>

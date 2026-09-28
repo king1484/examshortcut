@@ -13,15 +13,15 @@
   {
    "id": "me-basics",
    "title": "Workbook, cells and references",
-   "concept": "**Excel** is a spreadsheet program: data goes into **cells** at the crossing of rows and columns. A file = **workbook**; each tab = **worksheet**.\n\n**Dimensions (Excel 2007 onwards):** rows **10,48,576** (2^20, numbered 1...1048576) x columns **16,384** (2^14, named A...XFD) = 17,17,98,86,928 cells per sheet. (Excel 2003 and earlier: 65,536 x 256, last column IV.)\n\n**References:** a cell address = column letter + row number (C5). A range = top-left:bottom-right (A1:B5 covers 2 columns x 3 rows = 6 cells).\n\n| Reference type | Form | What happens when copied |\n|---|---|---|\n| Relative | A1 | Row/column shift with the formula |\n| Absolute | $A$1 | Fully locked |\n| Mixed | $A1 or A$1 | Column locked, or row locked |\n\n**F4** cycles A1 -> $A$1 -> A$1 -> $A1 while editing. Cross-sheet reference: Sheet2!B4; cross-workbook adds [Book1] before the sheet name. The **Name Box** (left of formula bar) shows/renames the active cell; the **formula bar** shows the cell's real content. The **fill handle** (small square at the active cell's corner) copies formulas or extends series (AutoFill). Formulas always begin with **=**.",
+   "concept": "**Excel** is a spreadsheet program: data goes into **cells** at the crossing of rows and columns. A file = **workbook**; each tab = **worksheet**.\n\n**Dimensions (Excel 2007 onwards):** rows **10,48,576** (2^20, numbered 1...1048576) x columns **16,384** (2^14, named A...XFD) = 17,17,98,86,928 cells per sheet. (Excel 2003 and earlier: 65,536 x 256, last column IV.)\n\n**References:** a cell address = column letter + row number (C5). A range = top-left:bottom-right (A1:B5 covers 2 columns x 3 rows = 6 cells).\n\n| Reference type | Form | What happens when copied |\n|---|---|---|\n| Relative | A1 | Row/column shift with the formula |\n| Absolute | \\$A\\$1 | Fully locked |\n| Mixed | \\$A1 or A\\$1 | Column locked, or row locked |\n\n**F4** cycles A1 -> \\$A\\$1 -> A\\$1 -> \\$A1 while editing. Cross-sheet reference: Sheet2!B4; cross-workbook adds [Book1] before the sheet name. The **Name Box** (left of formula bar) shows/renames the active cell; the **formula bar** shows the cell's real content. The **fill handle** (small square at the active cell's corner) copies formulas or extends series (AutoFill). Formulas always begin with **=**.",
    "formulas": [],
    "tricks": [
     {
      "title": "Dollar locks",
-     "body": "A **$** before the letter locks the column; before the number locks the row. $A$1 = both locked ('dollar = padlock'). F4 taps through the four states.",
+     "body": "A **\\$** before the letter locks the column; before the number locks the row. \\$A\\$1 = both locked ('dollar = padlock'). F4 taps through the four states.",
      "example": {
       "q": "Which reference keeps the row fixed but lets the column change?",
-      "solution": "Mixed reference like A$1."
+      "solution": "Mixed reference like A\\$1."
      }
     },
     {
@@ -38,7 +38,7 @@
     "Writing a range as A1-B5; the separator is a colon (A1:B5).",
     "Forgetting that F4 toggles references only while editing a formula (outside editing it repeats the last action)."
    ],
-   "notes": "### What Excel is\n**Excel** is the **spreadsheet** program of Microsoft Office. A spreadsheet is a giant grid made for numbers: marksheets, budgets, attendance, bills. The file is called a **workbook** and each tab inside it is a **worksheet** (or sheet).\n\n### The grid: rows, columns and cells\n- **Rows** are numbered 1, 2, 3... and **columns** are lettered A, B, C... Z, then AA, AB... up to **XFD**.\n- From Excel **2007 onwards** there are **1,048,576 rows** and **16,384 columns** — about **17.18 billion cells** per sheet. (Excel 2003 and older had only 65,536 rows and 256 columns — a favourite trap.)\n- A **cell** is one box at the crossing of a column and a row. Its **cell address** = column letter + row number: **A1, C5, XFD1048576**.\n- The **active cell** has a thick green border; the **Name Box** (top-left) shows its address and the **Formula Bar** shows what is really typed in it (text, number or formula).\n- A **range** is a rectangle of cells written with a **colon**: A1:B5 means A1 to B5.\n\n### References — what happens on copy\n| Type | Written as | When copied |\n|---|---|---|\n| Relative | A1 | changes with the new position |\n| Absolute | $A$1 | stays fixed (the dollar signs lock it) |\n| Mixed | $A1 or A$1 | only the unmarked part moves |\n\nWhile editing a formula, **F4** cycles a reference through A1, $A$1, A$1 and $A1.\n\n### Working with sheets and data\n- A new workbook contains **one worksheet** by default (older versions had three). Add another with the **+ button** or **Shift+F11**; rename by **double-clicking the sheet tab**.\n- **Text aligns left, numbers align right** automatically — a quick check of what Excel thinks your data is.\n- **#####** in a cell only means the **column is too narrow** — widen it; nothing is broken.\n- **Ctrl+A** selects the whole sheet; **Ctrl+Home** jumps to A1; **Freeze Panes** (View tab) keeps headings visible while scrolling.\n- **AutoFill** — drag the tiny square (fill handle) at the corner of the active cell to copy content or continue a series (Jan, Feb, Mar...). **Ctrl+D** fills the cell above down; **Ctrl+R** fills the cell to the left rightwards.\n- Rows and columns can be **hidden** and unhidden (right-click the row number or column letter) — hidden is not deleted.\n- **Wrap Text** shows long text on several lines inside one cell; **Merge and Centre** joins selected cells into one wide cell.\n\n### Why the grid is powerful\nExcel recalculates automatically: change one mark and every total, average and chart built on it updates at once. This single idea — **formulas store relationships, not fixed numbers** — is why spreadsheets replaced hand-written ledgers, and it is the idea behind most Excel questions: \"if this cell changes, what does that formula show?\"\n\n### Quick revision\n- Workbook = file; worksheet = tab; cell = column letter + row number.\n- 2007+: 1,048,576 rows, 16,384 columns (XFD), ~17.18 billion cells.\n- $A$1 absolute (locked), A1 relative (moves), F4 toggles while editing.\n- Range separator = colon (A1:B5).\n- Text left, numbers right; ##### = narrow column, not an error.",
+   "notes": "### What Excel is\n**Excel** is the **spreadsheet** program of Microsoft Office. A spreadsheet is a giant grid made for numbers: marksheets, budgets, attendance, bills. The file is called a **workbook** and each tab inside it is a **worksheet** (or sheet).\n\n### The grid: rows, columns and cells\n- **Rows** are numbered 1, 2, 3... and **columns** are lettered A, B, C... Z, then AA, AB... up to **XFD**.\n- From Excel **2007 onwards** there are **1,048,576 rows** and **16,384 columns** — about **17.18 billion cells** per sheet. (Excel 2003 and older had only 65,536 rows and 256 columns — a favourite trap.)\n- A **cell** is one box at the crossing of a column and a row. Its **cell address** = column letter + row number: **A1, C5, XFD1048576**.\n- The **active cell** has a thick green border; the **Name Box** (top-left) shows its address and the **Formula Bar** shows what is really typed in it (text, number or formula).\n- A **range** is a rectangle of cells written with a **colon**: A1:B5 means A1 to B5.\n\n### References — what happens on copy\n| Type | Written as | When copied |\n|---|---|---|\n| Relative | A1 | changes with the new position |\n| Absolute | \\$A\\$1 | stays fixed (the dollar signs lock it) |\n| Mixed | \\$A1 or A\\$1 | only the unmarked part moves |\n\nWhile editing a formula, **F4** cycles a reference through A1, \\$A\\$1, A\\$1 and \\$A1.\n\n### Working with sheets and data\n- A new workbook contains **one worksheet** by default (older versions had three). Add another with the **+ button** or **Shift+F11**; rename by **double-clicking the sheet tab**.\n- **Text aligns left, numbers align right** automatically — a quick check of what Excel thinks your data is.\n- **#####** in a cell only means the **column is too narrow** — widen it; nothing is broken.\n- **Ctrl+A** selects the whole sheet; **Ctrl+Home** jumps to A1; **Freeze Panes** (View tab) keeps headings visible while scrolling.\n- **AutoFill** — drag the tiny square (fill handle) at the corner of the active cell to copy content or continue a series (Jan, Feb, Mar...). **Ctrl+D** fills the cell above down; **Ctrl+R** fills the cell to the left rightwards.\n- Rows and columns can be **hidden** and unhidden (right-click the row number or column letter) — hidden is not deleted.\n- **Wrap Text** shows long text on several lines inside one cell; **Merge and Centre** joins selected cells into one wide cell.\n\n### Why the grid is powerful\nExcel recalculates automatically: change one mark and every total, average and chart built on it updates at once. This single idea — **formulas store relationships, not fixed numbers** — is why spreadsheets replaced hand-written ledgers, and it is the idea behind most Excel questions: \"if this cell changes, what does that formula show?\"\n\n### Quick revision\n- Workbook = file; worksheet = tab; cell = column letter + row number.\n- 2007+: 1,048,576 rows, 16,384 columns (XFD), ~17.18 billion cells.\n- \\$A\\$1 absolute (locked), A1 relative (moves), F4 toggles while editing.\n- Range separator = colon (A1:B5).\n- Text left, numbers right; ##### = narrow column, not an error.",
    "patterns": [
     {
      "id": "me-b1",
@@ -56,9 +56,9 @@
      "id": "me-b2",
      "name": "Reference behaviour on copy",
      "frequency": "very common",
-     "howToSpot": "A formula like =A1*$B$1 is copied from one cell to another and the changed formula is asked — or the type (relative/absolute/mixed) of a written reference is asked.",
+     "howToSpot": "A formula like =A1*\\$B\\$1 is copied from one cell to another and the changed formula is asked — or the type (relative/absolute/mixed) of a written reference is asked.",
      "formula": null,
-     "logic": "1. Plain A1 is relative: both parts slide when copied. $A$1 is absolute: frozen. $A1 and A$1 are mixed: only the part without $ moves.\n2. Rewrite the row and column offsets, then rebuild the formula.\n3. F4 cycles A1 to $A$1 to A$1 to $A1 while the formula is being edited.",
+     "logic": "1. Plain A1 is relative: both parts slide when copied. \\$A\\$1 is absolute: frozen. \\$A1 and A\\$1 are mixed: only the part without \\$ moves.\n2. Rewrite the row and column offsets, then rebuild the formula.\n3. F4 cycles A1 to \\$A\\$1 to A\\$1 to \\$A1 while the formula is being edited.",
      "example": {
       "q": "Cell C1 holds =A1+B1. It is copied to C3. What does C3 contain?",
       "solution": "**=A3+B3** — both references are relative, so each moves down 2 rows with the copy."
@@ -281,7 +281,7 @@
   {
    "id": "me-shortcuts",
    "title": "Excel shortcuts and file facts",
-   "concept": "| Action | Shortcut |\n|---|---|\n| Insert current date / time | Ctrl+; / Ctrl+Shift+; |\n| AutoSum | Alt+= |\n| Edit active cell | F2 |\n| Toggle $ references | F4 (while editing) |\n| Format Cells dialog | Ctrl+1 |\n| Fill down / right | Ctrl+D / Ctrl+R |\n| Select column / row | Ctrl+Space / Shift+Space |\n| Insert new worksheet | Shift+F11 |\n| Chart on new sheet | F11 |\n| Next / previous sheet | Ctrl+PgDn / Ctrl+PgUp |\n| New line inside a cell | Alt+Enter |\n| Toggle filters | Ctrl+Shift+L |\n| Show formulas instead of results | Ctrl+` |\n| Hide rows | Ctrl+9 (restore Ctrl+Shift+9) |\n| Spell check | F7 |\n| Create Table | Ctrl+T |\n| Percent / currency / date format | Ctrl+Shift+% / $ / # |\n\n**File facts:** default extension .xlsx from Excel 2007 (before: .xls); macro workbook .xlsm; template .xltx; CSV .csv; OpenDocument .ods. Default chart is a Clustered Column. A quick printed grid = Page Layout view / Page Break Preview.",
+   "concept": "| Action | Shortcut |\n|---|---|\n| Insert current date / time | Ctrl+; / Ctrl+Shift+; |\n| AutoSum | Alt+= |\n| Edit active cell | F2 |\n| Toggle \\$ references | F4 (while editing) |\n| Format Cells dialog | Ctrl+1 |\n| Fill down / right | Ctrl+D / Ctrl+R |\n| Select column / row | Ctrl+Space / Shift+Space |\n| Insert new worksheet | Shift+F11 |\n| Chart on new sheet | F11 |\n| Next / previous sheet | Ctrl+PgDn / Ctrl+PgUp |\n| New line inside a cell | Alt+Enter |\n| Toggle filters | Ctrl+Shift+L |\n| Show formulas instead of results | Ctrl+` |\n| Hide rows | Ctrl+9 (restore Ctrl+Shift+9) |\n| Spell check | F7 |\n| Create Table | Ctrl+T |\n| Percent / currency / date format | Ctrl+Shift+% / \\$ / # |\n\n**File facts:** default extension .xlsx from Excel 2007 (before: .xls); macro workbook .xlsm; template .xltx; CSV .csv; OpenDocument .ods. Default chart is a Clustered Column. A quick printed grid = Page Layout view / Page Break Preview.",
    "formulas": [],
    "tricks": [
     {
@@ -314,7 +314,7 @@
     "Saying F4 always toggles references - only while a reference is being edited; otherwise F4 repeats the last action.",
     "Answering .xls for Excel 2016 files - .xls is 97-2003; the default is .xlsx."
    ],
-   "notes": "### The Excel shortcut families\n| Action | Shortcut |\n|---|---|\n| Insert today's **date** (fixed) | **Ctrl+;** |\n| Insert current **time** (fixed) | **Ctrl+Shift+;** |\n| **AutoSum** | **Alt+=** |\n| Edit the active cell | **F2** |\n| Toggle $A$1 reference types (while editing) | **F4** |\n| Format Cells dialog | **Ctrl+1** |\n| Fill down / fill right | Ctrl+D / Ctrl+R |\n| New workbook / open / save / print | Ctrl+N / Ctrl+O / Ctrl+S / Ctrl+P |\n| Save As | **F12** |\n\nThe date trap repeats every year: **Ctrl+;** stamps the date — Ctrl+D instead fills the cell above down.\n\n### Moving around a filled sheet\n- **Ctrl+Home** jumps to **A1**; **Ctrl+End** jumps to the **last used cell** of the data.\n- **Ctrl + arrow key** jumps to the edge of the data block in that direction.\n- **Ctrl+Page Down / Page Up** moves between worksheets.\n- **Shift+F11** inserts a new worksheet.\n\n### F-key row for Excel\n**F2** edit cell, **F4** toggle references (or repeat last action outside editing), **F7** spell check, **F11** instant chart of the selection, **F12** Save As, **Shift+F11** new sheet.\n\n### File formats of Excel\n| Extension | Meaning |\n|---|---|\n| **.xlsx** | default workbook, Excel 2007+ (X = XML) |\n| **.xls** | Excel 97-2003 workbook |\n| **.xlsm** | macro-enabled workbook |\n| **.csv** | comma-separated plain text — opens anywhere, no formatting, one sheet |\n| **.xltx / .xltm** | template / macro template |\n\nThe same X/m/t rule of Office applies: X = 2007+ default, m = macro, t = template. A **.csv** stores one sheet only and loses formulas' formatting — plain values separated by commas.\n\n### How shortcut questions are framed\nCompetitive exams ask shortcuts in three shapes: the **direct recall** (\"shortcut of AutoSum\"), the **reverse** (\"Ctrl+; does what?\"), and the **trap pair** (\"Ctrl+D inserts the date — true or false?\"). The trap pairs to burn in:\n1. **Ctrl+;** (date) vs **Ctrl+D** (fill down).\n2. **F2** (edit cell) vs **F12** (Save As).\n3. **Shift+F11** (new sheet) vs **F11** (new chart) vs **Ctrl+N** (new workbook).\n4. **Ctrl+1** opens the Format Cells dialog — a plain 1, no Shift, no Ctrl partner.\nA few more that appear: **Ctrl+Shift+L** switches filters on and off, **Ctrl+Tab** moves between open workbooks, **Ctrl+W** closes the workbook, and **Ctrl+P** prints — the same Print shortcut as every Office program.\n\n### Quick revision\n- Ctrl+; date, Ctrl+Shift+; time, Alt+= AutoSum, F2 edit, F4 reference toggle.\n- Ctrl+1 Format Cells, F12 Save As, Shift+F11 new sheet, F11 quick chart.\n- Ctrl+Home A1, Ctrl+End last cell, Ctrl+arrows edges of data.\n- Default file .xlsx; .xls old; .xlsm macro; .csv = comma-separated plain text.",
+   "notes": "### The Excel shortcut families\n| Action | Shortcut |\n|---|---|\n| Insert today's **date** (fixed) | **Ctrl+;** |\n| Insert current **time** (fixed) | **Ctrl+Shift+;** |\n| **AutoSum** | **Alt+=** |\n| Edit the active cell | **F2** |\n| Toggle \\$A\\$1 reference types (while editing) | **F4** |\n| Format Cells dialog | **Ctrl+1** |\n| Fill down / fill right | Ctrl+D / Ctrl+R |\n| New workbook / open / save / print | Ctrl+N / Ctrl+O / Ctrl+S / Ctrl+P |\n| Save As | **F12** |\n\nThe date trap repeats every year: **Ctrl+;** stamps the date — Ctrl+D instead fills the cell above down.\n\n### Moving around a filled sheet\n- **Ctrl+Home** jumps to **A1**; **Ctrl+End** jumps to the **last used cell** of the data.\n- **Ctrl + arrow key** jumps to the edge of the data block in that direction.\n- **Ctrl+Page Down / Page Up** moves between worksheets.\n- **Shift+F11** inserts a new worksheet.\n\n### F-key row for Excel\n**F2** edit cell, **F4** toggle references (or repeat last action outside editing), **F7** spell check, **F11** instant chart of the selection, **F12** Save As, **Shift+F11** new sheet.\n\n### File formats of Excel\n| Extension | Meaning |\n|---|---|\n| **.xlsx** | default workbook, Excel 2007+ (X = XML) |\n| **.xls** | Excel 97-2003 workbook |\n| **.xlsm** | macro-enabled workbook |\n| **.csv** | comma-separated plain text — opens anywhere, no formatting, one sheet |\n| **.xltx / .xltm** | template / macro template |\n\nThe same X/m/t rule of Office applies: X = 2007+ default, m = macro, t = template. A **.csv** stores one sheet only and loses formulas' formatting — plain values separated by commas.\n\n### How shortcut questions are framed\nCompetitive exams ask shortcuts in three shapes: the **direct recall** (\"shortcut of AutoSum\"), the **reverse** (\"Ctrl+; does what?\"), and the **trap pair** (\"Ctrl+D inserts the date — true or false?\"). The trap pairs to burn in:\n1. **Ctrl+;** (date) vs **Ctrl+D** (fill down).\n2. **F2** (edit cell) vs **F12** (Save As).\n3. **Shift+F11** (new sheet) vs **F11** (new chart) vs **Ctrl+N** (new workbook).\n4. **Ctrl+1** opens the Format Cells dialog — a plain 1, no Shift, no Ctrl partner.\nA few more that appear: **Ctrl+Shift+L** switches filters on and off, **Ctrl+Tab** moves between open workbooks, **Ctrl+W** closes the workbook, and **Ctrl+P** prints — the same Print shortcut as every Office program.\n\n### Quick revision\n- Ctrl+; date, Ctrl+Shift+; time, Alt+= AutoSum, F2 edit, F4 reference toggle.\n- Ctrl+1 Format Cells, F12 Save As, Shift+F11 new sheet, F11 quick chart.\n- Ctrl+Home A1, Ctrl+End last cell, Ctrl+arrows edges of data.\n- Default file .xlsx; .xls old; .xlsm macro; .csv = comma-separated plain text.",
    "patterns": [
     {
      "id": "me-s1",
@@ -322,7 +322,7 @@
      "frequency": "very common",
      "howToSpot": "'Shortcut to insert the current date', 'which key runs AutoSum', 'which key edits the active cell' — with Ctrl+D planted as the date trap.",
      "formula": null,
-     "logic": "1. Date = Ctrl+; (semicolon), time = Ctrl+Shift+;, AutoSum = Alt+= , edit cell = F2.\n2. Ctrl+D is FILL DOWN, not date — the recurring trap.\n3. F4 toggles $ references only while a formula is being edited.",
+     "logic": "1. Date = Ctrl+; (semicolon), time = Ctrl+Shift+;, AutoSum = Alt+= , edit cell = F2.\n2. Ctrl+D is FILL DOWN, not date — the recurring trap.\n3. F4 toggles \\$ references only while a formula is being edited.",
      "example": {
       "q": "The keyboard shortcut to insert the current date into a cell is:",
       "solution": "**Ctrl+;** — it stamps a fixed date. Ctrl+Shift+; stamps the time; Ctrl+D fills the cell above down."
@@ -382,7 +382,7 @@
   {
    "pattern": "Shortcut-key recall",
    "frequency": "very common",
-   "howToSpot": "'Shortcut to insert the current date', 'which key runs AutoSum / edits a cell / toggles $ references' — with Ctrl+D planted as the fake date key.",
+   "howToSpot": "'Shortcut to insert the current date', 'which key runs AutoSum / edits a cell / toggles \\$ references' — with Ctrl+D planted as the fake date key.",
    "approach": "Keep the card: Ctrl+; date, Ctrl+Shift+; time, Alt+= AutoSum, F2 edit cell, F4 reference toggle (only while editing), Ctrl+1 Format Cells, F12 Save As, Shift+F11 new sheet, Ctrl+Home A1, Ctrl+End last used cell. Ctrl+D is FILL DOWN, never date.",
    "subtopic": "me-shortcuts",
    "example": {
@@ -415,8 +415,8 @@
   {
    "pattern": "Reference behaviour on copy",
    "frequency": "common",
-   "howToSpot": "A formula like =A1*$B$1 is copied to another cell and the resulting formula is asked — or the type of a written reference (relative/absolute/mixed) is asked.",
-   "approach": "Slide only the parts without dollar signs, by the exact rows/columns moved. A1 relative moves fully; $A$1 never moves; $A1 and A$1 move partially. F4 cycles A1, $A$1, A$1, $A1 while editing.",
+   "howToSpot": "A formula like =A1*\\$B\\$1 is copied to another cell and the resulting formula is asked — or the type of a written reference (relative/absolute/mixed) is asked.",
+   "approach": "Slide only the parts without dollar signs, by the exact rows/columns moved. A1 relative moves fully; \\$A\\$1 never moves; \\$A1 and A\\$1 move partially. F4 cycles A1, \\$A\\$1, A\\$1, \\$A1 while editing.",
    "subtopic": "me-basics",
    "example": {
     "q": "C1 holds =A1+B1. Copied to C3 (two rows down), C3 contains:",
@@ -485,17 +485,17 @@
   },
   {
    "id": "me-se03",
-   "q": "B1 contains the formula =$A$1*2 and is copied to B2. B2 will contain:",
+   "q": "B1 contains the formula =\\$A\\$1*2 and is copied to B2. B2 will contain:",
    "figure": null,
    "options": [
-    "=$A$2*2",
-    "=$A$1*2",
+    "=\\$A\\$2*2",
+    "=\\$A\\$1*2",
     "=A2*2",
-    "=$A$1*3"
+    "=\\$A\\$1*3"
    ],
    "answer": 1,
-   "solution": "$A$1 is fully absolute, so the copied formula is unchanged: =$A$1*2. Only relative parts (like A1) would shift row-wise on copying.",
-   "shortcut": "Dollar = padlock. $A$1 never moves; A1 becomes A2 on a one-row copy.",
+   "solution": "\\$A\\$1 is fully absolute, so the copied formula is unchanged: =\\$A\\$1*2. Only relative parts (like A1) would shift row-wise on copying.",
+   "shortcut": "Dollar = padlock. \\$A\\$1 never moves; A1 becomes A2 on a one-row copy.",
    "difficulty": "medium",
    "subtopic": "me-basics",
    "pattern": "absolute reference copy",
@@ -797,13 +797,13 @@
    "figure": null,
    "options": [
     "A2",
-    "$A$1",
-    "A$2",
+    "\\$A\\$1",
+    "A\\$2",
     "#REF!"
    ],
    "answer": 1,
-   "solution": "F4 cycles the reference through A1 -> $A$1 -> A$1 -> $A1 -> A1. The first press makes it fully absolute.",
-   "shortcut": "One tap of F4 = full lock ($ before both letter and number).",
+   "solution": "F4 cycles the reference through A1 -> \\$A\\$1 -> A\\$1 -> \\$A1 -> A1. The first press makes it fully absolute.",
+   "shortcut": "One tap of F4 = full lock (\\$ before both letter and number).",
    "difficulty": "medium",
    "subtopic": "me-basics",
    "pattern": "reference toggling",
@@ -887,12 +887,12 @@
    "figure": null,
    "options": [
     "A1",
-    "$A$1",
-    "$A1",
-    "A$1"
+    "\\$A\\$1",
+    "\\$A1",
+    "A\\$1"
    ],
    "answer": 1,
-   "solution": "**$A$1 is absolute** — dollar signs lock both the column and the row. $A1 and A$1 are mixed; only the plain part moves.",
+   "solution": "**\\$A\\$1 is absolute** — dollar signs lock both the column and the row. \\$A1 and A\\$1 are mixed; only the plain part moves.",
    "shortcut": "Two dollars = fully locked.",
    "difficulty": "easy",
    "subtopic": "me-basics",
@@ -901,16 +901,16 @@
   },
   {
    "id": "me-basics-p06",
-   "q": "Cell C1 holds =A1*$B$1. It is copied to cell C2 (one row down). C2 will contain —",
+   "q": "Cell C1 holds =A1*\\$B\\$1. It is copied to cell C2 (one row down). C2 will contain —",
    "figure": null,
    "options": [
-    "=A1*$B$1",
+    "=A1*\\$B\\$1",
     "=A2*B2",
-    "=A3*$B$1",
-    "=A2*$B$1"
+    "=A3*\\$B\\$1",
+    "=A2*\\$B\\$1"
    ],
    "answer": 3,
-   "solution": "A1 is relative, so it slides to A2; $B$1 is absolute, so it stays. Result: **=A2*$B$1**.",
+   "solution": "A1 is relative, so it slides to A2; \\$B\\$1 is absolute, so it stays. Result: **=A2*\\$B\\$1**.",
    "shortcut": "Relative moves, absolute sits.",
    "difficulty": "medium",
    "subtopic": "me-basics",
@@ -922,13 +922,13 @@
    "q": "While editing the formula =A1*2, pressing F4 once changes A1 to —",
    "figure": null,
    "options": [
-    "A$1",
-    "$A$1",
-    "$A1",
+    "A\\$1",
+    "\\$A\\$1",
+    "\\$A1",
     "B1"
    ],
    "answer": 1,
-   "solution": "**F4 adds both dollars first** (A1 to $A$1); further presses cycle A$1, $A1 and back to A1.",
+   "solution": "**F4 adds both dollars first** (A1 to \\$A\\$1); further presses cycle A\\$1, \\$A1 and back to A1.",
    "shortcut": "First press = full lock.",
    "difficulty": "medium",
    "subtopic": "me-basics",
@@ -937,16 +937,16 @@
   },
   {
    "id": "me-basics-p08",
-   "q": "Cell D2 holds =B2+$C$3. It is copied to E2 (one column right). E2 will contain —",
+   "q": "Cell D2 holds =B2+\\$C\\$3. It is copied to E2 (one column right). E2 will contain —",
    "figure": null,
    "options": [
-    "=C2+$C$3",
-    "=C2+$D$3",
-    "=B2+$C$3",
+    "=C2+\\$C\\$3",
+    "=C2+\\$D\\$3",
+    "=B2+\\$C\\$3",
     "=C2+C3"
    ],
    "answer": 0,
-   "solution": "Moving right by one column shifts relative references one letter (B2 to C2); $C$3 is locked, so it stays $C$3.",
+   "solution": "Moving right by one column shifts relative references one letter (B2 to C2); \\$C\\$3 is locked, so it stays \\$C\\$3.",
    "shortcut": "Slide only the unmarked parts.",
    "difficulty": "hard",
    "subtopic": "me-basics",

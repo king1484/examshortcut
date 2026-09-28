@@ -126,7 +126,7 @@ export default function ExamPage() {
         <Row k="Nationality" v={<Md inline>{exam.eligibility?.nationality}</Md>} />
         <Row k="Education" v={
           <div className="space-y-1">{(exam.eligibility?.education ?? []).map((e: any, i: number) => (
-            <div key={i}><b>{e.posts}:</b> {e.requirement}</div>))}</div>} />
+            <div key={i}><b>{e.posts}:</b> <Md inline>{e.requirement}</Md></div>))}</div>} />
         <Row k="Age" v={
           <div className="space-y-1">{(exam.eligibility?.age ?? []).map((e: any, i: number) => (
             <div key={i}><b>{e.posts}:</b> {e.range}</div>))}</div>} />

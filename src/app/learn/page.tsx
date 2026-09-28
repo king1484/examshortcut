@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { availableSections, SECTION_META, listTopics, getSection } from '@/lib/content';
+import { Md } from '@/components/Md';
 import { LearnExamFilter } from '@/components/LearnExamFilter';
 
 export const dynamic = 'force-static';
@@ -36,7 +37,7 @@ export default function LearnPage() {
               <Link href={`/${sid}/`} className="text-sm underline decoration-dotted">Subject overview &amp; strategy →</Link>
             </div>
             <p className="text-xs faint mt-0.5">{topics.length} topics · {subs} subtopics · {qs} practice questions</p>
-            {sec?.overview && <p className="text-sm muted mt-1 max-w-3xl line-clamp-2">{sec.overview}</p>}
+            {sec?.overview && <Md inline className="text-sm muted mt-1 max-w-3xl line-clamp-2">{sec.overview.split('\n\n')[0]}</Md>}
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2.5 mt-3">
               {topics.map((t) => (
                 <Link key={t.id} href={`/${sid}/${t.id}/`} className="card p-3.5 flex flex-col hover:-translate-y-0.5 transition-transform">
@@ -44,7 +45,7 @@ export default function LearnPage() {
                     <span className="font-bold text-sm">{t.title}</span>
                     {t.importance && <span className={`chip ml-auto ${t.importance === 'high' ? 'chip-high' : t.importance === 'medium' ? 'chip-medium' : 'chip-low'}`}>{t.importance}</span>}
                   </div>
-                  <span className="text-xs muted mt-1 line-clamp-2">{t.summary}</span>
+                  <Md inline className="text-xs muted mt-1 line-clamp-2 [&_p]:text-xs">{t.summary}</Md>
                   <span className="text-xs faint mt-2">
                     {t.subtopics.length} subtopics
                     {t.subtopics.some((s) => s.patterns?.length) ? ` · ${t.subtopics.reduce((n, s) => n + (s.patterns?.length ?? 0), 0)} question types` : ''}

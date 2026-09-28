@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { store, useStore } from '@/lib/store';
+import { Md } from './Md';
 
 export type GridTopic = {
   id: string; title: string; summary: string; importance?: string;
@@ -37,7 +38,7 @@ export function TopicGrid({ section, topics }: { section: string; topics: GridTo
               )}
               {t.importance && <span className={`chip ml-auto ${IMP_CHIP[t.importance]}`}>{t.importance}</span>}
             </div>
-            <p className="text-sm muted mt-1.5 line-clamp-2 flex-1">{t.summary}</p>
+            <Md inline className="text-sm muted mt-1.5 line-clamp-2 flex-1">{t.summary}</Md>
             {total > 0 && (
               <div className="flex h-1.5 rounded-full overflow-hidden mt-2.5" style={{ background: 'var(--surface-2)' }}>
                 <div style={{ width: `${(t.difficulty.easy / total) * 100}%`, background: DIFF_COLORS.easy }} />
