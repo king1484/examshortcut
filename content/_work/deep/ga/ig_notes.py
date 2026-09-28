@@ -4,11 +4,11 @@ NOTES = {}
 
 NOTES["ig-location"] = """
 ### Where India sits on the map
-India lies wholly in the **Northern and Eastern hemispheres**. The mainland runs from **8 deg 4'N to 37 deg 6'N** latitude and from **68 deg 7'E to 97 deg 25'E** longitude. The **Tropic of Cancer (23.5 deg N)** cuts the country roughly into two halves and passes through **8 states** (west to east): Gujarat, Rajasthan, Madhya Pradesh, Chhattisgarh, Jharkhand, West Bengal, Tripura and Mizoram. Odisha, Bihar and Uttar Pradesh are the classic traps - the Tropic misses all three.
+India lies wholly in the **Northern and Eastern hemispheres**. The mainland runs from **8°4'N to 37°6'N** latitude and from **68°7'E to 97°25'E** longitude. The **Tropic of Cancer (23.5°N)** cuts the country roughly into two halves and passes through **8 states** (west to east): Gujarat, Rajasthan, Madhya Pradesh, Chhattisgarh, Jharkhand, West Bengal, Tripura and Mizoram. Odisha, Bihar and Uttar Pradesh are the classic traps - the Tropic misses all three.
 
 ### Size, area and the Standard Meridian
 India's area is about **32.87 lakh sq km (3.28 million sq km)** - only **2.4%** of the world's land, yet the country holds roughly **17.5%** of the world's people (Census 2011). By area India is the **7th largest** country. **Rajasthan** is the largest state and **Goa** the smallest; **Madhya Pradesh** is second largest.
-Because the Sun rises about two hours earlier in Arunachal Pradesh than in Gujarat, the country needs one reference line: the **Standard Meridian of India, 82 deg 30'E**, which passes near **Mirzapur** in Uttar Pradesh. It crosses **UP, Madhya Pradesh, Chhattisgarh, Odisha and Andhra Pradesh**. Indian Standard Time is always **GMT + 5:30** (82.5 x 4 minutes = 330 minutes).
+Because the Sun rises about two hours earlier in Arunachal Pradesh than in Gujarat, the country needs one reference line: the **Standard Meridian of India, 82°30'E**, which passes near **Mirzapur** in Uttar Pradesh. It crosses **UP, Madhya Pradesh, Chhattisgarh, Odisha and Andhra Pradesh**. Indian Standard Time is always **GMT + 5:30** (82.5 x 4 minutes = 330 minutes).
 
 ### Land neighbours and border lengths
 India has **7 land neighbours** (Afghanistan, Bangladesh, Bhutan, China, Myanmar, Nepal, Pakistan) plus two **maritime** neighbours - Sri Lanka and the Maldives. Border lengths (Home Ministry figures):
@@ -21,16 +21,16 @@ India has **7 land neighbours** (Afghanistan, Bangladesh, Bhutan, China, Myanmar
 States touching each neighbour: **Bangladesh 5** (West Bengal, Assam, Meghalaya, Tripura, Mizoram); **China 5** (Ladakh/J&K, Himachal Pradesh, Uttarakhand, Sikkim, Arunachal Pradesh); **Nepal 5** (Uttarakhand, UP, Bihar, West Bengal, Sikkim); **Myanmar 4** (Arunachal Pradesh, Nagaland, Manipur, Mizoram); **Bhutan 4** (Sikkim, West Bengal, Assam, Arunachal Pradesh).
 
 ### Sea around three sides
-The **Arabian Sea** washes the west coast, the **Bay of Bengal** the east coast, and the **Indian Ocean** lies to the south - hence the name of the ocean itself comes from India. The total coastline (mainland plus islands) is **7,516.6 km**, with **Gujarat** holding the longest state coastline. The **Palk Strait** and the **Gulf of Mannar** separate India from Sri Lanka, and the chain of shoals called **Adam's Bridge (Ram Setu)** lies between them.
+The **Arabian Sea** washes the west coast, the **Bay of Bengal** the east coast, and the **Indian Ocean** lies to the south - hence the name of the ocean itself comes from India. The total coastline (mainland plus islands) was long quoted as **7,516.6 km**; a 2024 re-measurement on more detailed maps gives about **11,098 km**. On both counts **Gujarat** has the longest state coastline. The **Palk Strait** and the **Gulf of Mannar** separate India from Sri Lanka, and the chain of shoals called **Adam's Bridge (Ram Setu)** lies between them.
 
 ### The island groups
 The **Andaman and Nicobar Islands** are about **572 islands** (only around 38 inhabited) - the peaks of a submerged mountain chain. The **Ten Degree Channel** splits the **Andaman** group from the **Nicobar** group. **Barren Island** in the Andaman Sea is India's **only active volcano**; Narcondam nearby is dormant. **Indira Point** (Great Nicobar) is the southernmost point of India, while the mainland tip is **Kanyakumari**; the northernmost point is **Indira Col** in the Siachen area of Ladakh.
 **Lakshadweep** in the Arabian Sea is a group of **coral islands** (atolls) with its capital at Kavaratti; **Minicoy** is its southernmost island. Around them: the **Nine Degree Channel** separates Minicoy from the main Lakshadweep group, and the **Eight Degree Channel** separates Minicoy from the **Maldives**. The **Duncan Passage** lies between South Andaman and Little Andaman; the **Coco Channel** between North Andaman and Myanmar's Coco Islands; the **Great Channel** between Great Nicobar and Sumatra (Indonesia).
 
 ### Quick revision
-- Lat 8 deg 4'N to 37 deg 6'N; long 68 deg 7'E to 97 deg 25'E; Tropic of Cancer through 8 states (no Odisha, Bihar, UP).
+- Lat 8°4'N to 37°6'N; long 68°7'E to 97°25'E; Tropic of Cancer through 8 states (no Odisha, Bihar, UP).
 - Area 32.87 lakh sq km = 2.4% of world land = 7th largest; Rajasthan largest state, Goa smallest, MP second.
-- Standard Meridian 82 deg 30'E (Mirzapur); IST = GMT + 5:30; crosses UP, MP, Chhattisgarh, Odisha, AP.
+- Standard Meridian 82°30'E (Mirzapur); IST = GMT + 5:30; crosses UP, MP, Chhattisgarh, Odisha, AP.
 - Longest border Bangladesh (4,096.7 km), shortest Afghanistan (106 km); 7 land + 2 maritime neighbours.
 - Indira Point = southernmost point, Kanyakumari = mainland tip, Indira Col = northernmost.
 - Channels: Ten Degree (Andaman|Nicobar), Nine Degree (Minicoy|Lakshadweep), Eight Degree (Minicoy|Maldives).
@@ -52,8 +52,8 @@ In the north-east the ranges bend south as the **Purvanchal** hills: **Patkai Bu
 ### The peak ladder (superlatives asked again and again)
 | Peak | Range / state | Claim to fame |
 |---|---|---|
-| **K2 (Godwin Austen), 8,611 m** | Karakoram, Ladakh (PoK area) | Highest peak of India (claimed) |
-| **Kangchenjunga, 8,586 m** | Sikkim | Highest peak within Indian-administered territory |
+| **K2 (Godwin Austen), 8,611 m** | Karakoram, Ladakh (India's official map) | Highest peak of India; 2nd highest in the world |
+| **Kangchenjunga, 8,586 m** | Sikkim | Highest peak of Sikkim; 3rd highest in the world |
 | **Nanda Devi, 7,816 m** | Uttarakhand | Highest peak entirely within India |
 | **Anamudi, 2,695 m** | Anaimalai Hills, Kerala | Highest peak of South India |
 | **Doddabetta, 2,637 m** | Nilgiris, Tamil Nadu | Highest of the Nilgiris |
@@ -77,7 +77,7 @@ Superlative lakes: **Wular** (J&K, on the Jhelum) - largest **freshwater** lake;
 ### Quick revision
 - Six divisions: Himalayas, Northern Plains, Peninsular Plateau, Desert, Coastal Plains, Islands.
 - Himadri > Himachal > Shiwalik (north to south); Duns lie between Himachal and Shiwalik; Purvanchal = Patkai, Naga, Manipur, Mizo.
-- K2 (claimed) - Kangchenjunga (Sikkim) - Nanda Devi (fully inside) - Anamudi (South) - Guru Shikhar (Aravalli) - Dhupgarh (Satpura).
+- K2 (Karakoram) - Kangchenjunga (Sikkim) - Nanda Devi (fully inside) - Anamudi (South) - Guru Shikhar (Aravalli) - Dhupgarh (Satpura).
 - Passes: ZK-K = Ladakh, R-S-B = Himachal, L-M = Uttarakhand, N-J = Sikkim, Bomdi = Arunachal.
 - Fresh Wular, brackish Chilika, salty Sambhar, floating Loktak, meteoric Lonar.
 """
@@ -87,7 +87,7 @@ NOTES["ig-rivers"] = """
 Himalayan rivers are **perennial** (snow-fed), long, and cut deep gorges; peninsular rivers are mostly **rain-fed** and seasonal. East-flowing peninsular rivers build **deltas**; west-flowing ones (Narmada, Tapi) enter the sea through **estuaries**.
 
 ### The Indus system (rivers of Punjab)
-The Indus rises near Lake Mansarovar (Tibet) and flows through Ladakh into Pakistan. Its five tributaries: **Jhelum** (rises at Verinag spring, flows through Srinagar and Wular lake), **Chenab** (Chandra + Bhaga meet at Tandi; the biggest by volume), **Ravi**, **Beas** (rises at Beas Kund near Rohtang; joins the Sutlej at **Harike**), and **Sutlej** (rises at Rakas Tal; enters India at **Shipki La**; the **Bhakra Nangal** dam stands on it). The **Indus Waters Treaty (1960)** gave India the three eastern rivers (Ravi, Beas, Sutlej) and Pakistan the three western ones.
+The Indus rises near Lake Mansarovar (Tibet) and flows through Ladakh into Pakistan. Its five tributaries: **Jhelum** (rises at Verinag spring, flows through Srinagar and Wular lake), **Chenab** (formed where the Chandra and Bhaga meet at Tandi in Himachal Pradesh), **Ravi**, **Beas** (rises at Beas Kund near Rohtang; joins the Sutlej at **Harike**), and **Sutlej** (rises at Rakas Tal; enters India at **Shipki La**; the **Bhakra Nangal** dam stands on it). The **Indus Waters Treaty (1960)** gave India the three eastern rivers (Ravi, Beas, Sutlej) and Pakistan the three western ones.
 
 ### The Ganga system
 The Ganga is formed when the **Bhagirathi** (from the Gangotri glacier, emerging at Gaumukh) meets the **Alaknanda** at **Devprayag**. It is the **longest river of India (about 2,525 km)** and leaves the Himalayas at Haridwar. The **Panch Prayag** (confluences on the Alaknanda, upstream to downstream): **Vishnuprayag** (Dhauliganga), **Nandprayag** (Nandakini), **Karnaprayag** (Pindar), **Rudraprayag** (Mandakini), **Devprayag** (Bhagirathi).
@@ -120,7 +120,7 @@ Rises near Mansarovar (Chemayungdung glacier) as the **Tsangpo** in Tibet, enter
 | **Idukki** (arch dam) | Periyar | | |
 | **Farakka Barrage** | Ganga | | |
 
-Shivanasamudra (Kaveri) hosted Asia's first hydro-electric station (1902). The **Indira Gandhi Canal** carries Sutlej-Beas water deep into Rajasthan.
+Shivanasamudra (Kaveri) hosted one of Asia's earliest hydro-electric stations (1902). The **Indira Gandhi Canal** carries Sutlej-Beas water deep into Rajasthan.
 
 ### Quick revision
 - Indus tributaries J-C-R-B-S; Sutlej enters at Shipki La; Beas meets Sutlej at Harike.
@@ -132,10 +132,10 @@ Shivanasamudra (Kaveri) hosted Asia's first hydro-electric station (1902). The *
 
 NOTES["ig-climate-soils"] = """
 ### Why India has a monsoon climate
-India has a **tropical monsoon type** of climate: the whole year turns around the seasonal reversal of winds. In summer, heated land draws in moist ocean winds - the **south-west (SW) monsoon** - which normally strikes the **Kerala coast around 1 June** ("burst of the monsoon") and covers the whole country by **mid-July**. It has two branches: the **Arabian Sea branch** (dumps very heavy rain on the Western Ghats windward side) and the **Bay of Bengal branch** (up the Ganga plain into the north-east). By **mid-September** the monsoon begins to withdraw from the north-west.
+India has a **tropical monsoon type** of climate: the whole year turns around the seasonal reversal of winds. In summer, heated land draws in moist ocean winds - the **south-west (SW) monsoon** - which normally strikes the **Kerala coast around 1 June** ("burst of the monsoon") and normally covers the whole country by about **mid-July**. It has two branches: the **Arabian Sea branch** (dumps very heavy rain on the Western Ghats windward side) and the **Bay of Bengal branch** (up the Ganga plain into the north-east). By **mid-September** the monsoon begins to withdraw from the north-west.
 
 ### Where the rain falls - and where it does not
-The windward side of the Western Ghats (Mumbai, Konkan, Kerala) gets drenched; the leeward side (Pune, interior Karnataka, Marathwada) lies in the **rain shadow**. **Mawsynram** and **Cherrapunji (Sohra)** in the Meghalaya's Khasi hills record some of the highest rainfall on Earth. Rajasthan's west (Jaisalmer) stays driest. A long dry spell inside the season is called a **break** in the monsoon. The **El Nino** warming of the eastern Pacific is linked with weaker Indian monsoons.
+The windward side of the Western Ghats (Mumbai, Konkan, Kerala) gets drenched; the leeward side (Pune, interior Karnataka, Marathwada) lies in the **rain shadow**. **Mawsynram** and **Cherrapunji (Sohra)** in Meghalaya's Khasi hills record some of the highest rainfall on Earth. Rajasthan's west (Jaisalmer) stays driest. A long dry spell inside the season is called a **break** in the monsoon. The **El Nino** warming of the eastern Pacific is linked with weaker Indian monsoons.
 
 ### The retreating monsoon and local winds
 In October the monsoon winds leave; hot, humid days of this month are called **October heat**. As the winds retreat south they pick up moisture from the Bay of Bengal and give **October-December rain to the Tamil Nadu (Coromandel) coast** - the **north-east (NE) monsoon**, Tamil Nadu's main rain.
@@ -181,7 +181,7 @@ NOTES["ig-agri-minerals"] = """
 Monsoon-sown = kharif; winter-sown = rabi; summer catch-crop = zaid. In most of India maize is kharif.
 
 ### Crops and their leading states (stable, frequently asked)
-**Tea - Assam** (world's second largest producer) - **Coffee - Karnataka** (roughly 70% of Indian coffee; arrived at the **Baba Budan hills**), **Rubber - Kerala**, **Jute - West Bengal** ("golden fibre"), **Sugarcane - Uttar Pradesh**, **Cotton - Gujarat**, **Groundnut - Gujarat**, **Rice - West Bengal**, **Wheat - Uttar Pradesh**, **Total food-grain state - UP**, **Spices - Kerala**.
+**Tea - Assam** (world's second largest producer) - **Coffee - Karnataka** (roughly 70% of Indian coffee; arrived at the **Baba Budan hills**), **Rubber - Kerala**, **Jute - West Bengal** ("golden fibre"), **Sugarcane - Uttar Pradesh**, **Wheat - Uttar Pradesh**, **Groundnut - Gujarat**. Leadership in rice and cotton moves between states from year to year, so treat those as current-affairs facts, not static ones. **Kerala** is called the "spice garden of India" (pepper, cardamom).
 
 ### The coloured revolutions
 | Revolution | Product | Person / programme |
@@ -201,7 +201,7 @@ India is the world's largest producer of **milk, pulses and jute** - three stabl
 | **Coal** | **Jharia** (Jharkhand) - largest coking-coal field; **Raniganj** (West Bengal) - oldest (1774); Bokaro, Korba (Chhattisgarh), Talcher (Odisha), Singrauli |
 | **Lignite** | **Neyveli** (Tamil Nadu) |
 | **Petroleum** | **Digboi** (Assam) - oldest refinery (1901); **Mumbai High** - offshore field; Ankleshwar and Koyali (Gujarat) |
-| **Iron ore** | **Bailadila** (Chhattisgarh); Kudremukh and Bellary (Karnataka); Singhbhum (Jharkhand); Mayurbhanj (Odisha) |
+| **Iron ore** | **Bailadila** (Chhattisgarh); Bellary-Sandur (Karnataka; the Kudremukh mine closed in 2005); Singhbhum (Jharkhand); Mayurbhanj (Odisha) |
 | **Bauxite** | Odisha (Panchpatmali, Koraput) - largest reserves |
 | **Mica** | **Koderma** (Jharkhand); Nellore (AP) |
 | **Copper** | **Khetri** (Rajasthan); Singhbhum (Jharkhand); Malanjkhand (MP) |
@@ -210,7 +210,7 @@ India is the world's largest producer of **milk, pulses and jute** - three stabl
 | **Thorium** | Monazite sands of Kerala (and Tamil Nadu) |
 
 ### Ports - one line each
-West coast: **Deendayal (Kandla)**, Gujarat - a **tidal port**; **Mumbai** - largest natural harbour; **JNPT (Nhava Sheva)** - largest **container** port; **Mormugao** (Goa) - **iron-ore** exports; New Mangalore; **Kochi**.
+West coast: **Deendayal (Kandla)**, Gujarat - a **tidal port**; **Mumbai** - largest natural harbour; **JNPT (Nhava Sheva)** - largest **container** port among the major (central government) ports; **Mormugao** (Goa) - **iron-ore** exports; New Mangalore; **Kochi**.
 East coast: **V.O. Chidambaranar (Tuticorin)**; **Chennai** - an **artificial** harbour; **Kamarajar (Ennore)** - first **corporatised** major port; **Visakhapatnam** - **deepest landlocked** and protected port; **Paradip** (Odisha); **Syama Prasad Mookerjee (Kolkata)** - **riverine** port with the Haldia dock.
 
 ### Quick revision
@@ -253,11 +253,11 @@ Learn any two corners and you can answer the third:
 **Gahirmatha** (Odisha) marine sanctuary - mass nesting (*arribada*) of **Olive Ridley turtles**. **Chilika** (Odisha) - Irrawaddy dolphins and winter birds. **Keibul Lamjao's** floating meadows (*phumdis*) carry the Sangai deer of Loktak lake.
 
 ### State-level superlatives
-**Madhya Pradesh** holds the largest number of national parks and the largest tiger population ("tiger state"). Assam's Kaziranga, Manas and the Siberian-crane story of Keoladeo are the evergreen one-liners of this section.
+**Madhya Pradesh** holds the largest number of national parks and is called the **"Tiger State"** (it led the last tiger counts). Assam's Kaziranga, Manas and the Siberian-crane story of Keoladeo are the evergreen one-liners of this section.
 
 ### Quick revision
 - Year chain: 1936 Corbett - 1973 Project Tiger - 1986 Nilgiri Biosphere - 1992 Project Elephant.
 - Rhino-Kaziranga, Lion-Gir, Cheetah-Kuno, Snow leopard-Hemis, Hangul-Dachigam, Sangai-Keibul Lamjao, Tahr-Eravikulam, Macaque-Silent Valley, Crocodile-Bhitarkanika, Olive Ridley-Gahirmatha.
 - Kaziranga/Manas/Keoladeo UNESCO 1985; Sundarbans 1987; Khangchendzonga = mixed site.
-- MP = most national parks and most tigers; Hemis = largest NP; Kuno cheetahs came from Namibia.
+- MP = most national parks, "Tiger State"; Hemis = largest NP; Kuno cheetahs came from Namibia.
 """
