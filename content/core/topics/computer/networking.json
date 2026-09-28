@@ -45,6 +45,69 @@
     "Using the bus topology's weaknesses for star questions.",
     "Counting mesh links as n^2 - duplicates don't count; it's n(n-1)/2.",
     "Calling Wi-Fi 'IEEE 802.3' - 802.3 is wired Ethernet; Wi-Fi is 802.11."
+   ],
+   "notes": "### Networks by their reach\n| Type | Span | Everyday example |\n|---|---|---|\n| **PAN** (Personal Area Network) | ~10 metres around one person | Bluetooth headset with a phone |\n| **LAN** (Local Area Network) | one building or campus | school computer lab, office floor |\n| **MAN** (Metropolitan Area Network) | one city | city cable network |\n| **WAN** (Wide Area Network) | country or the world | the **Internet is the largest WAN** |\n\nLANs are privately owned and fast; WANs use leased/telecom links over long distances. The span ladder **PAN < LAN < MAN < WAN** answers most identification questions.\n\n### Topologies — the shape of the wiring\nA **topology** is how computers are arranged and connected.\n| Topology | Layout | Strength | Weakness |\n|---|---|---|---|\n| **Bus** | all nodes tap into ONE backbone cable with terminators at both ends | cheapest, least cable | backbone break kills the whole network; collisions |\n| **Ring** | each node joins exactly two neighbours, forming a circle | orderly token passing | one broken node/link can break the ring |\n| **Star** | every node connects to a **central device** (hub/switch) | one cable failure hurts only one node; easy to extend | the central device is the single point of failure |\n| **Mesh** | every node connects to **every other** node | most reliable, no traffic jams | most cables, costliest |\n| **Tree** (hierarchical) | star networks joined on a bus | scalable for big campuses | root failure splits the tree |\n\n**Star is the shape used in modern offices** — switches sit at the centre. **Mesh is the most fault-tolerant**.\n\n### Mesh arithmetic — the one formula\nIn a full mesh of **n** computers, every computer connects to the other n-1 computers, so each of the n nodes has n-1 lines; counting every line twice (A-B and B-A) gives:\n\nlinks = **n x (n-1) / 2**\n\nFor n = 4: 4x3/2 = 6 links. For n = 5: 10. For n = 6: 15. This is the classic numeric question of the topic — halve the product, never use n squared.\n\n### Standards that name the wires\n- **Ethernet (wired LAN) = IEEE 802.3**; **Wi-Fi (wireless LAN) = IEEE 802.11**; **Bluetooth = IEEE 802.15**.\n- Trap: calling Wi-Fi \"802.3\" — 802.3 is the wired Ethernet standard.\n\n### Quick revision\n- PAN (10 m) < LAN (building) < MAN (city) < WAN (country/world); Internet = biggest WAN.\n- Bus = one backbone; Ring = circle of neighbours; **Star = central hub/switch**; Mesh = all-to-all.\n- **Mesh links = n(n-1)/2** (6 computers = 15 links).\n- Star's weakness = central device; Bus's weakness = backbone break.\n- Ethernet 802.3, Wi-Fi 802.11, Bluetooth 802.15.",
+   "patterns": [
+    {
+     "id": "nw-t1",
+     "name": "Network type by span",
+     "frequency": "very common",
+     "howToSpot": "A situation is described (school lab, city cable, worldwide web, one person's Bluetooth) and PAN/LAN/MAN/WAN is asked — or 'the Internet is the largest ___'.",
+     "formula": null,
+     "logic": "1. Line up the ladder: PAN (~10 m, one person) < LAN (building/campus) < MAN (city) < WAN (country/world).\n2. Match the situation's span, not its technology.\n3. Standard facts: Internet = largest WAN; school lab = LAN; Bluetooth headset = PAN.",
+     "example": {
+      "q": "A computer lab of one school connected by a switch forms a —",
+      "solution": "**LAN (Local Area Network)** — a single-building privately owned network."
+     }
+    },
+    {
+     "id": "nw-t2",
+     "name": "Topology identification by description",
+     "frequency": "very common",
+     "howToSpot": "The layout is described (every node to a central device; every node to every other; a single backbone; a circle) and the topology is asked.",
+     "formula": null,
+     "logic": "1. Central device with all nodes hanging off = **Star**.\n2. Every node linked to every other = **Mesh**.\n3. One shared backbone cable with terminators = **Bus**; closed circle of neighbours = **Ring**; stars joined on a backbone = **Tree**.",
+     "example": {
+      "q": "In which topology is every computer connected to a central hub or switch?",
+      "solution": "**Star topology** — one cable break isolates only that node, but the central device is the single point of failure."
+     }
+    },
+    {
+     "id": "nw-t3",
+     "name": "Mesh link count (numeric)",
+     "frequency": "common",
+     "howToSpot": "'How many links are needed for a full mesh of n computers?' — pure arithmetic on n(n-1)/2.",
+     "formula": null,
+     "logic": "1. Use links = n x (n-1) / 2 — every node talks to the other n-1, and each line would be counted twice.\n2. Never use n squared; halve the product.\n3. Check: n = 4 gives 6, n = 5 gives 10, n = 6 gives 15.",
+     "example": {
+      "q": "How many cable links are needed for a full mesh of 6 computers?",
+      "solution": "6 x 5 / 2 = **15 links**."
+     }
+    },
+    {
+     "id": "nw-t4",
+     "name": "Topology strengths and failure points",
+     "frequency": "common",
+     "howToSpot": "A statement about which topology is cheapest, most reliable, has a single point of failure, or what happens when a cable breaks.",
+     "formula": null,
+     "logic": "1. Star: one cable break = one node only; **central hub/switch failure = whole network down**.\n2. Bus: backbone break = total failure; cheapest.\n3. Mesh: most reliable, most cable (costliest).\n4. Ring: one broken node/link can stop the ring (token passing).",
+     "example": {
+      "q": "In a star topology, failure of the central hub results in —",
+      "solution": "**The whole network stops communicating** — every node depends on the hub; the individual cables are irrelevant."
+     }
+    },
+    {
+     "id": "nw-t5",
+     "name": "IEEE standards and LAN jargon",
+     "frequency": "occasional",
+     "howToSpot": "'Wi-Fi is IEEE ___' or 'Ethernet works on which standard' — matching 802.x numbers to technologies.",
+     "formula": null,
+     "logic": "1. **Ethernet (wired) = IEEE 802.3**; **Wi-Fi (wireless) = IEEE 802.11**; **Bluetooth = 802.15**.\n2. The recurring trap: pairing Wi-Fi with 802.3.\n3. LAN = Ethernet/Wi-Fi family; the Internet = a WAN built of many networks.",
+     "example": {
+      "q": "Wi-Fi networks are standardised under IEEE —",
+      "solution": "**802.11** — 802.3 is wired Ethernet, 802.15 is Bluetooth."
+     }
+    }
    ]
   },
   {
@@ -74,6 +137,57 @@
     "Saying a hub forwards selectively - that is the switch; hubs always broadcast.",
     "Placing the router at the Data Link layer - routers work on IP (Network layer, 3).",
     "Confusing gateway (protocol converter) with router (route selector)."
+   ],
+   "notes": "### The device ladder — hub to gateway\n| Device | Layer | What it does |\n|---|---|---|\n| **Hub** | Physical (1) | joins many machines; **broadcasts every bit to every port** — no intelligence |\n| **Switch** | Data Link (2) | **learns MAC addresses** and sends frames only to the right port |\n| **Router** | Network (3) | **joins different networks and chooses routes using IP addresses** |\n| **Repeater** | Physical (1) | **regenerates a weak signal** to extend the cable's range |\n| **Bridge** | Data Link (2) | joins **two LAN segments**, filtering local traffic |\n| **Gateway** | up to Application | a **protocol converter** between different systems (\"entry/exit door\" of a network) |\n| **Modem** | — | **MOdulator-DEModulator**: digital data of the PC to the analog phone line and back |\n| **NIC** (Network Interface Card) | 2 | the card that connects one machine to the network; carries its **MAC address** |\n| **Access Point** | 2 | lets wireless devices join a wired network (Wi-Fi) |\n\n### The one-line differences exams ask\n- **Hub vs Switch**: hub shouts to everyone; a **switch forwards only to the destination port** — faster and safer.\n- **Switch vs Router**: a switch moves traffic **inside** one network (by MAC); a **router moves traffic between networks by IP** and picks the best path — your home router joins your LAN to the Internet.\n- **Repeater vs Amplifier**: a repeater regenerates the clean digital signal; an amplifier would boost the noise along with it.\n- **Gateway vs Router**: a router selects routes; a **gateway translates between different protocol worlds** (e.g. a mail network to a phone network).\n- **Modem**: the name is the definition — modulate (digital to analog) + demodulate (analog to digital).\n\n### MAC address — the burnt-in identity\nEvery NIC carries a **48-bit physical address** (written like 1A:2B:3C:4D:5E:6F) fixed by the maker. The **MAC is physical and permanent**; the **IP is logical and assigned**. Switches read MACs; routers read IPs.\n\n### Reading a device question in the exam\nFind the **verb** first: \"sends to all ports\" = hub; \"sends only to the destination\" = switch; \"connects two different networks / chooses a path\" = router; \"regenerates a weak signal\" = repeater; \"converts protocols\" = gateway; \"digital to analog and back\" = modem. Exams rarely name the device — they name its job. And when the layer is asked, remember the ladder: no brain (L1) < MAC reader (L2) < IP reader (L3).\n\n### Quick revision\n- Hub = broadcast (L1); **Switch = learns MAC, sends to the right port (L2)**; **Router = routes between networks by IP (L3)**.\n- Repeater regenerates signals (L1); Bridge joins two LANs (L2); Gateway = protocol converter.\n- **Modem = modulator + demodulator** (digital to analog and back).\n- NIC carries the **48-bit MAC address**; MAC permanent, IP assigned.",
+   "patterns": [
+    {
+     "id": "nw-d1",
+     "name": "Hub vs switch vs router",
+     "frequency": "very common",
+     "howToSpot": "A behaviour is described (sends to all ports, forwards to the right port, connects two networks and picks a path) and the device is asked.",
+     "formula": null,
+     "logic": "1. **Hub**: broadcasts every bit to every port — no intelligence (Layer 1).\n2. **Switch**: learns MAC addresses, forwards frames to the correct port only (Layer 2).\n3. **Router**: connects DIFFERENT networks and routes packets by IP address (Layer 3).\n4. 'Which device is more intelligent than a hub?' = switch; 'which joins two networks?' = router.",
+     "example": {
+      "q": "Which device forwards data only to the intended port instead of all ports?",
+      "solution": "**A switch** — it reads MAC addresses; a hub would broadcast to every port."
+     }
+    },
+    {
+     "id": "nw-d2",
+     "name": "Modem, repeater, bridge, gateway functions",
+     "frequency": "common",
+     "howToSpot": "'A modem is used for', 'device that regenerates a weak signal', 'device that converts between protocols' — function-to-device matching.",
+     "formula": null,
+     "logic": "1. **Modem = MOdulator-DEModulator**: computer's digital signal to the analog line and back.\n2. **Repeater**: regenerates weak signals to extend range (Layer 1).\n3. **Bridge**: joins two LAN segments (Layer 2).\n4. **Gateway**: translates between different protocol systems — the entry/exit door.",
+     "example": {
+      "q": "The device that regenerates and retransmits a weakening signal is a —",
+      "solution": "**Repeater** — it restores the clean digital signal so the cable can run farther."
+     }
+    },
+    {
+     "id": "nw-d3",
+     "name": "Device-to-layer matching",
+     "frequency": "common",
+     "howToSpot": "'A router works on which OSI layer?', 'a hub operates at layer ___' — device and OSI layer pairs.",
+     "formula": null,
+     "logic": "1. Hub, repeater = **Layer 1 (Physical)**.\n2. Switch, bridge, NIC = **Layer 2 (Data Link)**.\n3. **Router = Layer 3 (Network)** — it reads IP addresses.\n4. Gateway spans up to the Application layer.",
+     "example": {
+      "q": "A router operates on which layer of the OSI model?",
+      "solution": "**Layer 3 (Network)** — routing decisions use IP addresses; switching by MAC happens on Layer 2."
+     }
+    },
+    {
+     "id": "nw-d4",
+     "name": "NIC and MAC-address facts",
+     "frequency": "common",
+     "howToSpot": "'A MAC address is ___ bits', 'where is the MAC address stored', 'MAC vs IP difference' questions.",
+     "formula": null,
+     "logic": "1. MAC = **48-bit physical address** burnt into the NIC by the maker (like 1A:2B:3C:4D:5E:6F).\n2. MAC is permanent; IP is logical and changes with the network.\n3. Switches work on MAC (Layer 2); routers on IP (Layer 3).",
+     "example": {
+      "q": "The physical address burnt into a network interface card is the —",
+      "solution": "**MAC address** — 48 bits, factory-fixed; the IP address is only a logical label assigned by software."
+     }
+    }
    ]
   },
   {
@@ -103,6 +217,57 @@
     "Counting 4 or 5 OSI layers - the model has 7 (the TCP/IP model has 4).",
     "Putting encryption at the Application layer - classic encryption/formatting sits in Presentation (6).",
     "Saying the Session layer routes packets - routing is Network (3)."
+   ],
+   "notes": "### Why a reference model exists\nMoving data from one machine to another needs many different jobs: signalling, framing, addressing, delivery, dialogue control, translation, and the user's service. The **OSI (Open Systems Interconnection) model** splits these into **7 layers**, so each layer can be designed and replaced independently.\n\n### The 7 layers — bottom to top\n| # | Layer | One-line job | Works with |\n|---|---|---|---|\n| 1 | **Physical** | raw **bits on cables/signals** | cables, hubs, repeaters |\n| 2 | **Data Link** | **frames**, MAC addresses, error detection | switches, bridges, NIC |\n| 3 | **Network** | **IP addressing and routing** | routers, IP |\n| 4 | **Transport** | **end-to-end delivery**, segmentation, ports | TCP, UDP |\n| 5 | **Session** | opens, manages, closes **dialogues** | session setup tokens |\n| 6 | **Presentation** | **translation, encryption, compression** | formats, SSL/TLS |\n| 7 | **Application** | the **user-facing services** | HTTP, FTP, SMTP, browsers |\n\nMnemonics, top-down: \"**A**ll **P**eople **S**eem **T**o **N**eed **D**ata **P**rocessing\". Bottom-up: \"**P**lease **D**o **N**ot **T**hrow **S**ausage **P**izza **A**way\".\n\n### How the layers are tested\n- **Device-to-layer**: hub/repeater = 1, switch/bridge = 2, **router = 3**.\n- **Function-to-layer**: routing = Network (3); framing/MAC = Data Link (2); **encryption and compression = Presentation (6)**; mail/web services = Application (7).\n- **Number questions**: 7 layers (OSI) vs 4 layers (TCP/IP). The middle is Transport in both.\n- Data flows DOWN the sender's stack (7 to 1), across the wire, and UP the receiver's stack (1 to 7).\n\n### The TCP/IP model — the practical cousin\n| TCP/IP layer | OSI layers it swallows |\n|---|---|\n| **Application** | 5 + 6 + 7 (Session, Presentation, Application) |\n| **Transport** | 4 |\n| **Internet** | 3 (Network) |\n| **Network Access / Link** | 1 + 2 (Physical, Data Link) |\n\nThe Internet actually runs on TCP/IP; OSI is the teaching map. \"Which model has 4 layers?\" — TCP/IP.\n\n### Reading a layer question in the exam\nFirst decide what the question is really asking: a **number** (7 layers, 4 in TCP/IP), an **order** (which sits above which), a **function** (what does this layer do), or a **worker** (which device or protocol lives here). For function questions, test the planted option against its neighbour: routing is NOT Transport (Transport only delivers end to end after Network has found the path), and encryption is NOT Application (Application serves the user; Presentation prepares the data format for it).\n\n### Quick revision\n- OSI = **7 layers**: Physical, Data Link, Network, Transport, Session, Presentation, Application.\n- Router L3, Switch L2, Hub L1; routing = Network; encryption/compression = Presentation.\n- Transport layer = TCP/UDP and ports; Session = dialogues.\n- **TCP/IP model = 4 layers** (Network Access, Internet, Transport, Application).",
+   "patterns": [
+    {
+     "id": "nw-o1",
+     "name": "OSI layer count and order",
+     "frequency": "very common",
+     "howToSpot": "'How many layers does the OSI model have?', correct ordering questions, or the layer that sits directly above/below another.",
+     "formula": null,
+     "logic": "1. OSI = **7 layers**: Physical, Data Link, Network, Transport, Session, Presentation, Application (bottom to top).\n2. Mnemonic top-down: All People Seem To Need Data Processing.\n3. Transport is the middle (4th); Application is 7th, Physical 1st.",
+     "example": {
+      "q": "How many layers are there in the OSI reference model?",
+      "solution": "**7** — the TCP/IP model has only 4; the count mix-up is the standard trap."
+     }
+    },
+    {
+     "id": "nw-o2",
+     "name": "Function-to-layer matching",
+     "frequency": "very common",
+     "howToSpot": "'Routing is done at which layer?', 'encryption/compression is a ___ layer function', 'framing and MAC addressing belong to ___'.",
+     "formula": null,
+     "logic": "1. Bits/cables = Physical (1); frames, MAC = Data Link (2); **addressing and routing = Network (3)**; end-to-end delivery, ports = Transport (4); dialogues = Session (5); **translation, encryption, compression = Presentation (6)**; user services = Application (7).\n2. The planted traps: encryption at Application, routing at Transport.\n3. Ports and TCP/UDP live in Transport, never Network.",
+     "example": {
+      "q": "Encryption and data compression are functions of which OSI layer?",
+      "solution": "**Presentation (Layer 6)** — it prepares data formats before the Application's services use them."
+     }
+    },
+    {
+     "id": "nw-o3",
+     "name": "Device/protocol-to-layer matching",
+     "frequency": "common",
+     "howToSpot": "'A switch works at which layer', 'HTTP is a ___ layer protocol', 'TCP sits in which layer'.",
+     "formula": null,
+     "logic": "1. Hub/repeater L1; switch/bridge L2; **router L3**; TCP/UDP L4.\n2. HTTP, FTP, SMTP = Application (7); IP = Network (3).\n3. Match the job before the name: a router routes (3), a switch switches frames (2).",
+     "example": {
+      "q": "TCP and UDP work at which layer of the OSI model?",
+      "solution": "**Transport (Layer 4)** — end-to-end delivery, segmentation and port numbers."
+     }
+    },
+    {
+     "id": "nw-o4",
+     "name": "TCP/IP model vs OSI",
+     "frequency": "common",
+     "howToSpot": "'The TCP/IP model has how many layers', 'which OSI layers merge into TCP/IP Application', or mapping the four TCP/IP layers.",
+     "formula": null,
+     "logic": "1. TCP/IP = **4 layers**: Network Access (1+2), Internet (3), Transport (4), Application (5+6+7).\n2. OSI's top three merge into TCP/IP's Application.\n3. The Internet runs on TCP/IP; OSI is the reference map.",
+     "example": {
+      "q": "How many layers does the TCP/IP model have?",
+      "solution": "**4** — Network Access, Internet, Transport and Application (the last swallowing OSI layers 5-7)."
+     }
+    }
    ]
   },
   {
@@ -140,6 +305,57 @@
     "Placing 127.0.0.1 in Class A usage - 127 is reserved loopback; Class A networks proper end at 126.",
     "Calling 192.168.1.1 a public address - it is the classic private home-router address.",
     "Confusing MAC (48-bit, physical, burnt into NIC) with IP (logical, assignable)."
+   ],
+   "notes": "### IPv4 — the 32-bit address\nAn **IPv4 address** is **32 bits** written as four numbers 0-255 separated by dots: 192.168.1.1. Each of the four blocks is an **octet** (8 bits). The leading numbers decide the **class**:\n\n| Class | First octet | Default mask | Use |\n|---|---|---|---|\n| **A** | 1 - 126 | 255.0.0.0 | giant networks |\n| **B** | 128 - 191 | 255.255.0.0 | medium networks |\n| **C** | 192 - 223 | 255.255.255.0 | small networks (most common) |\n| **D** | 224 - 239 | — | **multicasting** |\n| **E** | 240 - 255 | — | experimental/research |\n\nClass ruler: **1(A), 128(B), 192(C), 224(D), 240(E)**. Note 127 is NOT a class-A start — see below.\n\n### Special addresses\n- **127.0.0.1 = loopback / localhost** — a machine talking to itself; the whole 127 block is reserved.\n- **Private (non-routable) ranges**: **10.0.0.0 - 10.255.255.255**, **172.16.0.0 - 172.31.255.255**, **192.168.0.0 - 192.168.255.255**. Home routers hand out 192.168.x.x — that is why 192.168.1.1 is a private address, never a public one.\n- Hosts per network: Class C gives 256 addresses minus network & broadcast = **254 usable hosts**.\n\n### IPv6 — the 128-bit successor\nIPv4 offers about 4.3 billion addresses — too few for a connected planet. **IPv6 uses 128 bits**, written as **eight groups of hexadecimal digits separated by colons** (e.g. 2001:0db8:85a3:0000:0000:8a2e:0370:7334, which can be shortened with :: ). Benefits: a huge address space, built-in auto-configuration, better security support.\n\n### MAC vs IP — the twins that get swapped\n| | MAC address | IP address |\n|---|---|---|\n| Type | **physical**, burnt into the NIC | **logical**, assigned by network/DHCP |\n| Size | **48 bits** | IPv4 **32 bits** / IPv6 128 bits |\n| Changes | never (factory-fixed) | changes with the network |\n| Used by | switches (L2) | routers (L3) |\n\n### Reading an address question in the exam\nFor a class question, cover everything after the first dot — the answer lives only in the **first octet**. Anchor the ruler at 1, 128, 192, 224, 240 and drop the given number between the anchors. For \"which is private\" questions, check the three ranges like passwords: does it start with 10, or 172 with a second number 16-31, or 192.168? A 172 address with second number 32 or more is public — that is the planted trap. And loopback 127.x is its own reserved world, never listed as \"Class A hosts\".\n\n### Quick revision\n- IPv4 = **32 bits**, four octets 0-255; IPv6 = **128 bits**, hexadecimal, colon-separated.\n- Classes by first octet: A 1-126, B 128-191, C 192-223, D 224-239, E 240-255.\n- **127.0.0.1 = loopback**; private ranges 10.x, 172.16-31.x, 192.168.x.\n- Class C network = **254 usable hosts**; MAC = 48-bit physical, IP = logical.",
+   "patterns": [
+    {
+     "id": "nw-p1",
+     "name": "IP class identification",
+     "frequency": "very common",
+     "howToSpot": "An address is given (10.0.0.5, 130.10.5.2, 196.1.2.3, 225.5.4.1) and its class is asked — or the first-octet range of a class is asked.",
+     "formula": null,
+     "logic": "1. Read the FIRST octet only: 1-126 = A, 128-191 = B, 192-223 = C, 224-239 = D (multicast), 240-255 = E.\n2. 127 is loopback, not Class A usage.\n3. Anchor the ruler: 1, 128, 192, 224, 240.",
+     "example": {
+      "q": "The IP address 196.20.5.1 belongs to which class?",
+      "solution": "**Class C** — the first octet 196 lies between 192 and 223."
+     }
+    },
+    {
+     "id": "nw-p2",
+     "name": "Private ranges and loopback",
+     "frequency": "very common",
+     "howToSpot": "'Which is a private IP address', 'what is 127.0.0.1', 'which address is reserved for testing/localhost'.",
+     "formula": null,
+     "logic": "1. Private ranges: **10.x.x.x, 172.16-31.x.x, 192.168.x.x** — home routers use 192.168.x.x.\n2. **127.0.0.1 = loopback/localhost** — the machine testing itself.\n3. 169.254.x.x = auto-configuration failure (APIPA) — optional extra.",
+     "example": {
+      "q": "The address 127.0.0.1 is used for —",
+      "solution": "**Loopback testing (localhost)** — the computer communicates with itself without touching the network."
+     }
+    },
+    {
+     "id": "nw-p3",
+     "name": "IPv4 vs IPv6 facts",
+     "frequency": "common",
+     "howToSpot": "'IPv4 has how many bits', 'IPv6 addresses are written in ___', 'how many groups in an IPv6 address', or why IPv6 was needed.",
+     "formula": null,
+     "logic": "1. IPv4 = **32 bits**, four dotted decimal octets (0-255), about 4.3 billion addresses.\n2. IPv6 = **128 bits**, **8 groups of hexadecimal** digits separated by colons.\n3. The need: IPv4 addresses ran out — 4.3 billion is less than the connected world.",
+     "example": {
+      "q": "An IPv6 address is how many bits long?",
+      "solution": "**128 bits** — eight hexadecimal groups, e.g. 2001:0db8:85a3::8a2e:0370:7334."
+     }
+    },
+    {
+     "id": "nw-p4",
+     "name": "MAC vs IP and usable-host counts",
+     "frequency": "common",
+     "howToSpot": "'Difference between MAC and IP address', 'how many hosts can a Class C network have', 'which address changes when you shift networks'.",
+     "formula": null,
+     "logic": "1. MAC = 48-bit, physical, burnt in, permanent; IP = logical, assigned, changes with network.\n2. Class C hosts: 256 addresses minus network and broadcast = **254 usable**.\n3. Class B: 65,534 usable; Class A: 1,67,77,214 usable.",
+     "example": {
+      "q": "How many usable host addresses does a Class C network provide?",
+      "solution": "**254** — 256 total minus the network address and the broadcast address."
+     }
+    }
    ]
   },
   {
@@ -169,6 +385,57 @@
     "Giving HTTP the 443 port - 443 is HTTPS; plain HTTP is 80.",
     "Choosing TCP for live streaming in the classic question - the intended answer is UDP (speed first).",
     "Saying Telnet is secure - SSH (22) is the encrypted one; Telnet (23) sends everything in clear text."
+   ],
+   "notes": "### Ports — numbered doors on a machine\nWhile the IP address finds the computer, the **port number** finds the service (door) on it. The classic exam set:\n\n| Protocol | Port | Job |\n|---|---|---|\n| **HTTP** | **80** | web pages (plain) |\n| **HTTPS** | **443** | web pages **encrypted** (TLS/SSL) |\n| **FTP** | **21** (control; 20 = data) | file transfer |\n| **SSH** | **22** | secure remote login |\n| **Telnet** | **23** | remote login (NOT encrypted) |\n| **SMTP** | **25** | sending e-mail |\n| **DNS** | **53** | name to IP resolution |\n| **POP3** | **110** | receiving e-mail (download) |\n| **IMAP** | **143** | receiving e-mail (sync) |\n\nAnchor pairs: 80/443 web, 21/23/25 climbing odd numbers (FTP, Telnet, SMTP), 53 DNS, 110/143 mail-in.\n\n### TCP vs UDP — the two delivery styles\n| | **TCP** (Transmission Control Protocol) | **UDP** (User Datagram Protocol) |\n|---|---|---|\n| Connection | **connection-oriented** (handshake first) | **connectionless** (just send) |\n| Reliability | guaranteed, ordered, error-checked | **no guarantee** — fast but unsafe |\n| Speed | slower | faster |\n| Used by | **web (HTTP/HTTPS), e-mail (SMTP), file transfer (FTP)** | **live streaming, gaming, VoIP, DNS queries, DHCP** |\n\nMemory hook: **TCP = Tracked, Careful, Precise; UDP = Untracked, Dashes**. Live cricket streaming chooses UDP — one lost frame is better than a paused match.\n\n### The protocols behind one web visit\n1. **DNS** (UDP 53) turns the name into an IP.\n2. **TCP** opens the connection.\n3. **HTTPS** (TCP 443) requests and delivers the page encrypted.\nFor e-mail: SMTP sends, POP3/IMAP receive — over TCP.\n\n### Full forms worth memorising\nHTTP HyperText Transfer Protocol; HTTPS secure HTTP over TLS/SSL; FTP File Transfer Protocol; SMTP Simple Mail Transfer Protocol; POP Post Office Protocol; IMAP Internet Message Access Protocol; TCP Transmission Control Protocol; UDP User Datagram Protocol; DNS Domain Name System; DHCP Dynamic Host Configuration Protocol; SSH Secure Shell.\n\n### Reading a protocol question in the exam\nAsk first: is the question about a **direction** (send mail = SMTP, receive = POP3/IMAP), a **number** (port), a **style** (reliable or fast), or a **full form**? For port questions, if you cannot recall the exact number, eliminate by neighbourhood — 21-22-23 are the file/remote trio, 25 is the mail sender, 80/443 the web pair, 110/143 the mail-in pair. For TCP-or-UDP questions, ask what a lost packet would cost: a corrupted file (use TCP) or one blurred frame (UDP is fine).\n\n### Quick revision\n- HTTP 80, **HTTPS 443**, FTP 21, SSH 22, Telnet 23, SMTP 25, DNS 53, POP3 110, IMAP 143.\n- **TCP = reliable, connection-oriented** (web, mail, FTP); **UDP = fast, connectionless** (streaming, games, VoIP).\n- Telnet is plaintext; **SSH (22) is its encrypted replacement**.\n- HTTPS = HTTP + TLS/SSL encryption.",
+   "patterns": [
+    {
+     "id": "nw-r1",
+     "name": "Port-number matching",
+     "frequency": "very common",
+     "howToSpot": "'HTTPS works on which port', 'port of SMTP/FTP/DNS/POP3', or a matched pair with one number shifted.",
+     "formula": null,
+     "logic": "1. Anchors: **HTTP 80, HTTPS 443, FTP 21, SSH 22, Telnet 23, SMTP 25, DNS 53, POP3 110, IMAP 143**.\n2. The classic trap: 443 for plain HTTP or 80 for HTTPS.\n3. Remember 21-22-23 climbing (FTP, SSH, Telnet) and 25 as the mail sender's door.",
+     "example": {
+      "q": "HTTPS uses which port number by default?",
+      "solution": "**443** — plain HTTP uses 80; the S (secure) doubles the number in exam memory: 80 becomes 443."
+     }
+    },
+    {
+     "id": "nw-r2",
+     "name": "TCP vs UDP selection",
+     "frequency": "very common",
+     "howToSpot": "'Which protocol is used for live streaming / file transfer', 'which is connection-oriented', reliability-vs-speed statements.",
+     "formula": null,
+     "logic": "1. **TCP**: connection-oriented, reliable, ordered — web, e-mail, FTP.\n2. **UDP**: connectionless, fast, no delivery guarantee — **live streaming, gaming, VoIP, DNS queries**.\n3. The classic exam answer: live video streaming = UDP; downloading a file = TCP.",
+     "example": {
+      "q": "Which transport protocol suits a live cricket stream?",
+      "solution": "**UDP** — speed matters more than perfect delivery; TCP's retransmissions would only pause the match."
+     }
+    },
+    {
+     "id": "nw-r3",
+     "name": "Protocol purpose identification",
+     "frequency": "common",
+     "howToSpot": "'Which protocol transfers files', 'which protocol sends e-mail', 'which service resolves names' — purpose matching across the famous protocols.",
+     "formula": null,
+     "logic": "1. File transfer = **FTP**; send mail = **SMTP**; receive mail = POP3/IMAP; web pages = **HTTP/HTTPS**; names = **DNS**; remote login = Telnet (plain) / SSH (secure).\n2. FTP has two ports: 21 control, 20 data.\n3. DHCP assigns IP addresses automatically.",
+     "example": {
+      "q": "Which protocol is used to transfer files between computers?",
+      "solution": "**FTP (File Transfer Protocol)** — control on port 21, data on port 20."
+     }
+    },
+    {
+     "id": "nw-r4",
+     "name": "Protocol full forms and security",
+     "frequency": "common",
+     "howToSpot": "'Full form of FTP/TCP/UDP/DHCP', 'which remote-login protocol is secure', or Telnet-vs-SSH statements.",
+     "formula": null,
+     "logic": "1. FTP = File Transfer Protocol; TCP = Transmission Control Protocol; UDP = User Datagram Protocol; DHCP = Dynamic Host Configuration Protocol; SSH = Secure Shell.\n2. **Telnet (23) sends everything in plaintext; SSH (22) is the encrypted replacement**.\n3. HTTPS = HTTP over TLS/SSL.",
+     "example": {
+      "q": "Which protocol provides an ENCRYPTED remote login?",
+      "solution": "**SSH (Secure Shell), port 22** — Telnet on port 23 sends passwords as plain text."
+     }
+    }
    ]
   }
  ],
@@ -176,32 +443,79 @@
   {
    "pattern": "Device identification by job",
    "frequency": "very common",
-   "howToSpot": "'Which device connects two different networks?' / 'forwards using MAC table?'.",
-   "approach": "Router = between networks (IP); switch = within a LAN by MAC; hub = broadcast to all; repeater = signal booster; modem = digital-analog; gateway = protocol conversion."
+   "howToSpot": "'Which device sends data to all ports', 'which device connects two different networks', 'which device regenerates a weak signal' — a behaviour is described and the device named.",
+   "approach": "Climb the ladder: hub = broadcasts to every port (Layer 1); switch = learns MAC addresses, sends only to the right port (Layer 2); router = joins different networks and routes by IP (Layer 3); repeater = regenerates signals; modem = modulator-demodulator; gateway = protocol converter. Match the verb in the question to the one-line job.",
+   "subtopic": "nw-devices",
+   "example": {
+    "q": "Which device forwards a data packet towards the correct network using IP addresses?",
+    "solution": "Router — it works on Layer 3, reading IP addresses and choosing the best path between networks."
+   }
   },
   {
-   "pattern": "OSI layer count/function/device",
+   "pattern": "OSI layer count, order and functions",
    "frequency": "very common",
-   "howToSpot": "'How many layers in OSI?' / 'router works at which layer?'.",
-   "approach": "7 layers; device by address type (no address = 1, MAC = 2, IP = 3); encryption = Presentation; routing = Network."
+   "howToSpot": "'How many layers in the OSI model', 'routing/encryption/framing is a ___ layer function', 'a router/switch works at which layer', correct-order statements.",
+   "approach": "Fix the map: 7 layers — Physical (bits), Data Link (frames, MAC), Network (IP, routing), Transport (TCP/UDP, ports), Session (dialogues), Presentation (translation, encryption, compression), Application (HTTP, FTP, SMTP). Devices: hub 1, switch 2, router 3. The planted traps: encryption at Application, routing at Transport.",
+   "subtopic": "nw-osi",
+   "example": {
+    "q": "In the OSI model, routing of packets is the function of which layer?",
+    "solution": "Network (Layer 3) — IP addressing and route selection; Transport (4) only delivers end to end."
+   }
   },
   {
    "pattern": "IP class identification",
-   "frequency": "common",
-   "howToSpot": "'Which class does 172.16.5.4 belong to?' / 'which range is Class C?'.",
-   "approach": "First-octet ruler 1-126 / 128-191 / 192-223 / 224-239 / 240-255; 127 = loopback, 192.168.x = private."
+   "frequency": "very common",
+   "howToSpot": "An address is printed (10.0.0.5, 130.10.5.2, 196.1.2.3, 225.1.1.1) and its class asked; or the first-octet range of a class; or 'which is a private address'; 'what is 127.0.0.1'.",
+   "approach": "Read the FIRST octet only against the ruler 1(A) - 128(B) - 192(C) - 224(D) - 240(E); 127 = loopback. Private ranges: 10.x.x.x, 172.16-31.x.x, 192.168.x.x. Multicast = Class D. One octet decides everything — do not read the second number.",
+   "subtopic": "nw-ip",
+   "example": {
+    "q": "The IP address 130.10.5.2 belongs to which class?",
+    "solution": "Class B — the first octet 130 lies between 128 and 191."
+   }
   },
   {
    "pattern": "Port-number matching",
-   "frequency": "common",
-   "howToSpot": "'Port 443 is used by?' or a match-the-columns of protocols and ports.",
-   "approach": "Anchor six ports (80/443/25/53/110/21) and pair the rest logically (22/23 secure-insecure login, 67/68 DHCP)."
+   "frequency": "very common",
+   "howToSpot": "'HTTPS works on which port', 'SMTP port', 'FTP uses which ports', or a matched pair where one number is shifted.",
+   "approach": "Anchors: HTTP 80, HTTPS 443, FTP 21 (data 20), SSH 22, Telnet 23, SMTP 25, DNS 53, POP3 110, IMAP 143. The classic trap swaps 80 and 443, or pairs POP3 with 143 (that is IMAP). Climb 21-22-23 for FTP-SSH-Telnet.",
+   "subtopic": "nw-protocols",
+   "example": {
+    "q": "Data transfer of the World Wide Web over an encrypted connection uses which default port?",
+    "solution": "443 — HTTPS; plain HTTP uses port 80."
+   }
   },
   {
    "pattern": "TCP vs UDP selection",
+   "frequency": "very common",
+   "howToSpot": "'Which protocol for live streaming / file download', 'which is connection-oriented', statements about reliability and speed.",
+   "approach": "TCP = connection-oriented, reliable, ordered — web pages, e-mail, file transfer. UDP = connectionless, fast, no guarantee — live streaming, gaming, VoIP, DNS queries. The recurring answer: live video = UDP; downloading a file = TCP.",
+   "subtopic": "nw-protocols",
+   "example": {
+    "q": "Which protocol would a live video streaming service prefer?",
+    "solution": "UDP — speed matters more than perfect delivery; TCP's retransmissions would only pause the stream."
+   }
+  },
+  {
+   "pattern": "Topology identification",
    "frequency": "common",
-   "howToSpot": "'Which protocol for streaming?' / 'connection-oriented protocol?'.",
-   "approach": "Reliability/ordered/connection = TCP; speed/no-guarantee/streaming = UDP."
+   "howToSpot": "'Every computer connected to a central hub', 'every node connected to every other node', 'all computers share a single backbone' — the layout described and the topology asked.",
+   "approach": "Central device with all nodes = Star; every node to every other = Mesh; one shared backbone with terminators = Bus; circle of neighbours = Ring; stars joined on a backbone = Tree. Also know failure points: star dies with its hub, bus dies with its backbone, mesh is the most reliable.",
+   "subtopic": "nw-types-topologies",
+   "example": {
+    "q": "In which topology does every node have a direct link to every other node?",
+    "solution": "Mesh — the most reliable topology, needing n(n-1)/2 links."
+   }
+  },
+  {
+   "pattern": "Mesh link count (numeric)",
+   "frequency": "occasional",
+   "howToSpot": "'How many links are required for a mesh of 5/6/8 computers' — pure arithmetic.",
+   "approach": "links = n x (n-1) / 2. For n = 4 give 6; n = 5 give 10; n = 6 give 15; n = 8 give 28. The trap option is n squared or the unhalved n(n-1).",
+   "subtopic": "nw-types-topologies",
+   "example": {
+    "q": "How many cable links are needed for a full mesh of 6 computers?",
+    "solution": "6 x 5 / 2 = 15 links."
+   }
   }
  ],
  "solvedExamples": [
@@ -548,6 +862,1230 @@
    "subtopic": "nw-types-topologies",
    "pattern": "topology properties",
    "timeSec": 35
+  },
+  {
+   "id": "nw-types-topologies-p01",
+   "q": "A network limited to a single building or campus is a —",
+   "figure": null,
+   "options": [
+    "WAN",
+    "MAN",
+    "PAN",
+    "LAN"
+   ],
+   "answer": 3,
+   "solution": "**LAN = Local Area Network** — one building or campus, privately owned, fast.",
+   "shortcut": "Local = one building.",
+   "difficulty": "easy",
+   "subtopic": "nw-types-topologies",
+   "pattern": "nw-t1",
+   "timeSec": 20
+  },
+  {
+   "id": "nw-types-topologies-p02",
+   "q": "The Internet is the largest example of a —",
+   "figure": null,
+   "options": [
+    "LAN",
+    "WAN",
+    "PAN",
+    "Intranet"
+   ],
+   "answer": 1,
+   "solution": "**WAN = Wide Area Network** spanning countries and continents — the Internet is the biggest WAN.",
+   "shortcut": "World-wide = WAN.",
+   "difficulty": "medium",
+   "subtopic": "nw-types-topologies",
+   "pattern": "nw-t1",
+   "timeSec": 20
+  },
+  {
+   "id": "nw-types-topologies-p03",
+   "q": "A Bluetooth connection between a phone and a wireless earphone is a —",
+   "figure": null,
+   "options": [
+    "LAN",
+    "MAN",
+    "WAN",
+    "PAN"
+   ],
+   "answer": 3,
+   "solution": "**PAN = Personal Area Network** — about 10 metres around one person.",
+   "shortcut": "Personal space = PAN.",
+   "difficulty": "medium",
+   "subtopic": "nw-types-topologies",
+   "pattern": "nw-t1",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-types-topologies-p04",
+   "q": "Arrange by increasing span: 1. MAN 2. PAN 3. WAN 4. LAN",
+   "figure": null,
+   "options": [
+    "2, 4, 1, 3",
+    "4, 2, 1, 3",
+    "2, 1, 4, 3",
+    "4, 1, 2, 3"
+   ],
+   "answer": 0,
+   "solution": "PAN (person) < LAN (building) < MAN (city) < WAN (world).",
+   "shortcut": "Person, building, city, world.",
+   "difficulty": "hard",
+   "subtopic": "nw-types-topologies",
+   "pattern": "nw-t1",
+   "timeSec": 35
+  },
+  {
+   "id": "nw-types-topologies-p05",
+   "q": "Which topology connects every node to a central hub or switch?",
+   "figure": null,
+   "options": [
+    "Bus",
+    "Ring",
+    "Star",
+    "Mesh"
+   ],
+   "answer": 2,
+   "solution": "**Star topology** — all nodes hang off one central device.",
+   "shortcut": "Central device = star.",
+   "difficulty": "easy",
+   "subtopic": "nw-types-topologies",
+   "pattern": "nw-t2",
+   "timeSec": 20
+  },
+  {
+   "id": "nw-types-topologies-p06",
+   "q": "In which topology does every node have a dedicated link to EVERY other node?",
+   "figure": null,
+   "options": [
+    "Mesh",
+    "Star",
+    "Bus",
+    "Ring"
+   ],
+   "answer": 0,
+   "solution": "**Mesh** = all-to-all links — maximum reliability, maximum cable.",
+   "shortcut": "Everyone to everyone.",
+   "difficulty": "medium",
+   "subtopic": "nw-types-topologies",
+   "pattern": "nw-t2",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-types-topologies-p07",
+   "q": "A network where all computers share ONE common backbone cable uses —",
+   "figure": null,
+   "options": [
+    "Star topology",
+    "Mesh topology",
+    "Bus topology",
+    "Tree topology"
+   ],
+   "answer": 2,
+   "solution": "**Bus topology** taps every node into one backbone with terminators at both ends.",
+   "shortcut": "One road, many stops.",
+   "difficulty": "medium",
+   "subtopic": "nw-types-topologies",
+   "pattern": "nw-t2",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-types-topologies-p08",
+   "q": "Which topology joins several star networks onto a single backbone?",
+   "figure": null,
+   "options": [
+    "Ring",
+    "Mesh",
+    "Bus",
+    "Tree"
+   ],
+   "answer": 3,
+   "solution": "**Tree (hierarchical)** = star networks connected by a bus backbone — scalable for large campuses.",
+   "shortcut": "Tree = stars on a branch line.",
+   "difficulty": "hard",
+   "subtopic": "nw-types-topologies",
+   "pattern": "nw-t2",
+   "timeSec": 35
+  },
+  {
+   "id": "nw-types-topologies-p09",
+   "q": "How many links are required for a full mesh of 6 computers?",
+   "figure": null,
+   "options": [
+    "30",
+    "15",
+    "12",
+    "36"
+   ],
+   "answer": 1,
+   "solution": "n(n-1)/2 = 6x5/2 = **15 links**. 30 forgets the halving; 36 is n squared.",
+   "shortcut": "Half of n x (n-1).",
+   "difficulty": "medium",
+   "subtopic": "nw-types-topologies",
+   "pattern": "nw-t3",
+   "timeSec": 30
+  },
+  {
+   "id": "nw-types-topologies-p10",
+   "q": "A full mesh of 8 computers needs how many links?",
+   "figure": null,
+   "options": [
+    "28",
+    "64",
+    "56",
+    "16"
+   ],
+   "answer": 0,
+   "solution": "8x7/2 = **28**. 56 skips the halving; 64 is 8 squared.",
+   "shortcut": "Halve n x (n-1).",
+   "difficulty": "medium",
+   "subtopic": "nw-types-topologies",
+   "pattern": "nw-t3",
+   "timeSec": 30
+  },
+  {
+   "id": "nw-types-topologies-p11",
+   "q": "Adding a 5th computer to a full mesh of 4 requires how many NEW links?",
+   "figure": null,
+   "options": [
+    "10",
+    "6",
+    "4",
+    "5"
+   ],
+   "answer": 2,
+   "solution": "Mesh of 4 has 6 links, of 5 has 10 — the new computer connects to each existing node: **4 new links**.",
+   "shortcut": "New node joins every old node.",
+   "difficulty": "hard",
+   "subtopic": "nw-types-topologies",
+   "pattern": "nw-t3",
+   "timeSec": 40
+  },
+  {
+   "id": "nw-types-topologies-p12",
+   "q": "Which topology has a SINGLE POINT of total failure at its central device?",
+   "figure": null,
+   "options": [
+    "Star",
+    "Mesh",
+    "Fully distributed ring",
+    "Partial mesh"
+   ],
+   "answer": 0,
+   "solution": "If the **central hub/switch dies in a star, the whole network dies** — its one weakness.",
+   "shortcut": "Everything hangs on the centre.",
+   "difficulty": "medium",
+   "subtopic": "nw-types-topologies",
+   "pattern": "nw-t4",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-types-topologies-p13",
+   "q": "Which topology is the MOST reliable but also the most expensive to cable?",
+   "figure": null,
+   "options": [
+    "Bus",
+    "Star",
+    "Mesh",
+    "Ring"
+   ],
+   "answer": 2,
+   "solution": "**Mesh** — every node has many alternate paths, so no single cut disconnects anyone; the price is n(n-1)/2 cables.",
+   "shortcut": "Reliability costs cables.",
+   "difficulty": "medium",
+   "subtopic": "nw-types-topologies",
+   "pattern": "nw-t4",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-types-topologies-p14",
+   "q": "In a bus topology, what happens if the main backbone cable is cut?",
+   "figure": null,
+   "options": [
+    "Only the nearest node fails",
+    "The entire network stops communicating",
+    "Traffic reverses direction",
+    "Nothing changes"
+   ],
+   "answer": 1,
+   "solution": "The backbone IS the bus — a cut splits it and no node can reach another (that is why terminators and cable quality matter).",
+   "shortcut": "One road cut = no travel.",
+   "difficulty": "hard",
+   "subtopic": "nw-types-topologies",
+   "pattern": "nw-t4",
+   "timeSec": 35
+  },
+  {
+   "id": "nw-types-topologies-p15",
+   "q": "Wired Ethernet is standardised as IEEE —",
+   "figure": null,
+   "options": [
+    "802.11",
+    "802.15",
+    "802.1",
+    "802.3"
+   ],
+   "answer": 3,
+   "solution": "**802.3 = Ethernet (wired LAN)**; 802.11 = Wi-Fi; 802.15 = Bluetooth.",
+   "shortcut": "3 = wire.",
+   "difficulty": "medium",
+   "subtopic": "nw-types-topologies",
+   "pattern": "nw-t5",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-types-topologies-p16",
+   "q": "Which pair is wrongly matched?",
+   "figure": null,
+   "options": [
+    "Bluetooth — IEEE 802.15",
+    "Wi-Fi — IEEE 802.3",
+    "Ethernet — IEEE 802.3",
+    "Wi-Fi — IEEE 802.11"
+   ],
+   "answer": 1,
+   "solution": "Wi-Fi is **802.11**; 802.3 is the wired Ethernet standard — the planted swap.",
+   "shortcut": "Wireless is not 802.3.",
+   "difficulty": "hard",
+   "subtopic": "nw-types-topologies",
+   "pattern": "nw-t5",
+   "timeSec": 35
+  },
+  {
+   "id": "nw-devices-p01",
+   "q": "Which network device broadcasts incoming data to ALL its ports?",
+   "figure": null,
+   "options": [
+    "Switch",
+    "Hub",
+    "Router",
+    "Gateway"
+   ],
+   "answer": 1,
+   "solution": "A **hub shouts to everyone**; it cannot read addresses (Layer 1 only).",
+   "shortcut": "Hub = loudspeaker.",
+   "difficulty": "easy",
+   "subtopic": "nw-devices",
+   "pattern": "nw-d1",
+   "timeSec": 20
+  },
+  {
+   "id": "nw-devices-p02",
+   "q": "Which device reads MAC addresses and sends frames only to the correct port?",
+   "figure": null,
+   "options": [
+    "Hub",
+    "Repeater",
+    "Modem",
+    "Switch"
+   ],
+   "answer": 3,
+   "solution": "**Switch (Layer 2)** learns which MAC lives on which port — no wasted broadcasting.",
+   "shortcut": "Switch = smart delivery.",
+   "difficulty": "medium",
+   "subtopic": "nw-devices",
+   "pattern": "nw-d1",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-devices-p03",
+   "q": "Which device connects two DIFFERENT networks and selects the best path for packets?",
+   "figure": null,
+   "options": [
+    "Hub",
+    "Router",
+    "Switch",
+    "Repeater"
+   ],
+   "answer": 1,
+   "solution": "**Router (Layer 3)** works on IP addresses and chooses routes between networks.",
+   "shortcut": "Router = route chooser.",
+   "difficulty": "medium",
+   "subtopic": "nw-devices",
+   "pattern": "nw-d1",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-devices-p04",
+   "q": "Your home Wi-Fi router joins your family's devices to the Internet. In networking terms it is acting as a —",
+   "figure": null,
+   "options": [
+    "Repeater extending a cable",
+    "Hub broadcasting frames",
+    "Router connecting a LAN to a WAN",
+    "Modem modulating analog signals"
+   ],
+   "answer": 2,
+   "solution": "The home box routes between your **LAN** and the ISP's network (**WAN/Internet**), besides serving Wi-Fi.",
+   "shortcut": "Home = LAN to WAN door.",
+   "difficulty": "hard",
+   "subtopic": "nw-devices",
+   "pattern": "nw-d1",
+   "timeSec": 35
+  },
+  {
+   "id": "nw-devices-p05",
+   "q": "A modem is a short form of —",
+   "figure": null,
+   "options": [
+    "Modulator-Demodulator",
+    "Mode Manager",
+    "Modern Terminal",
+    "Module Demander"
+   ],
+   "answer": 0,
+   "solution": "**MOdulator-DEModulator** — converts the computer's digital signals to the phone line's analog form and back.",
+   "shortcut": "MO + DEMO = modem.",
+   "difficulty": "easy",
+   "subtopic": "nw-devices",
+   "pattern": "nw-d2",
+   "timeSec": 20
+  },
+  {
+   "id": "nw-devices-p06",
+   "q": "Which device regenerates a weak signal to extend the length of a network run?",
+   "figure": null,
+   "options": [
+    "Router",
+    "Gateway",
+    "Repeater",
+    "Bridge"
+   ],
+   "answer": 2,
+   "solution": "**Repeater (Layer 1)** rebuilds the clean signal so it can travel farther.",
+   "shortcut": "Repeat = say it again, fresh.",
+   "difficulty": "medium",
+   "subtopic": "nw-devices",
+   "pattern": "nw-d2",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-devices-p07",
+   "q": "A gateway differs from a router mainly because it —",
+   "figure": null,
+   "options": [
+    "Converts between different protocol systems",
+    "Works only on copper cables",
+    "Cannot connect to the Internet",
+    "Is always a wireless device"
+   ],
+   "answer": 0,
+   "solution": "A **gateway is a protocol converter** — the entry/exit door between different worlds; a router only selects routes.",
+   "shortcut": "Gateway = translator door.",
+   "difficulty": "medium",
+   "subtopic": "nw-devices",
+   "pattern": "nw-d2",
+   "timeSec": 30
+  },
+  {
+   "id": "nw-devices-p08",
+   "q": "Which device joins TWO LAN segments and filters traffic between them at Layer 2?",
+   "figure": null,
+   "options": [
+    "Repeater",
+    "Bridge",
+    "Modem",
+    "Hub"
+   ],
+   "answer": 1,
+   "solution": "**Bridge (Layer 2)** connects two segments and holds local traffic back — an ancestor of the switch.",
+   "shortcut": "Bridge between two banks.",
+   "difficulty": "hard",
+   "subtopic": "nw-devices",
+   "pattern": "nw-d2",
+   "timeSec": 30
+  },
+  {
+   "id": "nw-devices-p09",
+   "q": "A hub operates at which OSI layer?",
+   "figure": null,
+   "options": [
+    "Layer 2 (Data Link)",
+    "Layer 3 (Network)",
+    "Layer 4 (Transport)",
+    "Layer 1 (Physical)"
+   ],
+   "answer": 3,
+   "solution": "A hub only repeats electrical signals — **Layer 1**, no addressing at all.",
+   "shortcut": "Dumbest device = lowest layer.",
+   "difficulty": "easy",
+   "subtopic": "nw-devices",
+   "pattern": "nw-d3",
+   "timeSec": 20
+  },
+  {
+   "id": "nw-devices-p10",
+   "q": "A switch operates at which OSI layer?",
+   "figure": null,
+   "options": [
+    "Layer 1 (Physical)",
+    "Layer 3 (Network)",
+    "Layer 2 (Data Link)",
+    "Layer 7 (Application)"
+   ],
+   "answer": 2,
+   "solution": "**Layer 2** — switches read MAC addresses inside frames.",
+   "shortcut": "MAC = Layer 2.",
+   "difficulty": "medium",
+   "subtopic": "nw-devices",
+   "pattern": "nw-d3",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-devices-p11",
+   "q": "Which sequence of devices is in ASCENDING order of intelligence?",
+   "figure": null,
+   "options": [
+    "Hub, Switch, Router",
+    "Router, Switch, Hub",
+    "Switch, Hub, Router",
+    "Hub, Router, Switch"
+   ],
+   "answer": 0,
+   "solution": "Hub (no brain, L1) < Switch (MAC, L2) < Router (IP routing, L3).",
+   "shortcut": "Climb the layers.",
+   "difficulty": "hard",
+   "subtopic": "nw-devices",
+   "pattern": "nw-d3",
+   "timeSec": 35
+  },
+  {
+   "id": "nw-devices-p12",
+   "q": "A MAC address is a —",
+   "figure": null,
+   "options": [
+    "32-bit logical address assigned by DHCP",
+    "128-bit hexadecimal address",
+    "48-bit physical address fixed by the manufacturer",
+    "16-bit port number"
+   ],
+   "answer": 2,
+   "solution": "**MAC = 48 bits, burnt into the NIC**; 32-bit logical describes an IPv4 address.",
+   "shortcut": "MAC = maker's mark.",
+   "difficulty": "medium",
+   "subtopic": "nw-devices",
+   "pattern": "nw-d4",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-devices-p13",
+   "q": "Which address CHANGES when a laptop moves from your home network to office Wi-Fi?",
+   "figure": null,
+   "options": [
+    "IP address",
+    "MAC address",
+    "NIC serial number",
+    "None of these"
+   ],
+   "answer": 0,
+   "solution": "The **IP is logical and network-dependent**; the MAC stays burnt into the card forever.",
+   "shortcut": "IP follows the network.",
+   "difficulty": "medium",
+   "subtopic": "nw-devices",
+   "pattern": "nw-d4",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-osi-p01",
+   "q": "The OSI reference model has how many layers?",
+   "figure": null,
+   "options": [
+    "4",
+    "5",
+    "6",
+    "7"
+   ],
+   "answer": 3,
+   "solution": "**OSI = 7 layers**; the TCP/IP model has 4.",
+   "shortcut": "Seven floors in OSI.",
+   "difficulty": "easy",
+   "subtopic": "nw-osi",
+   "pattern": "nw-o1",
+   "timeSec": 20
+  },
+  {
+   "id": "nw-osi-p02",
+   "q": "Which is the correct order of OSI layers from BOTTOM to TOP?",
+   "figure": null,
+   "options": [
+    "Application, Presentation, Session, Transport, Network, Data Link, Physical",
+    "Physical, Data Link, Network, Transport, Session, Presentation, Application",
+    "Physical, Network, Data Link, Transport, Session, Presentation, Application",
+    "Data Link, Physical, Transport, Network, Session, Presentation, Application"
+   ],
+   "answer": 1,
+   "solution": "Bottom-up: **P**lease **D**o **N**ot **T**hrow **S**ausage **P**izza **A**way.",
+   "shortcut": "Please Do Not Throw Sausage Pizza Away.",
+   "difficulty": "medium",
+   "subtopic": "nw-osi",
+   "pattern": "nw-o1",
+   "timeSec": 30
+  },
+  {
+   "id": "nw-osi-p03",
+   "q": "Which OSI layer sits DIRECTLY above the Transport layer?",
+   "figure": null,
+   "options": [
+    "Presentation",
+    "Application",
+    "Network",
+    "Session"
+   ],
+   "answer": 3,
+   "solution": "Order above Transport: **Session (5), Presentation (6), Application (7)**.",
+   "shortcut": "Session is 5.",
+   "difficulty": "medium",
+   "subtopic": "nw-osi",
+   "pattern": "nw-o1",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-osi-p04",
+   "q": "Routing of packets is the job of which OSI layer?",
+   "figure": null,
+   "options": [
+    "Network",
+    "Data Link",
+    "Transport",
+    "Session"
+   ],
+   "answer": 0,
+   "solution": "**Network (Layer 3)** handles IP addressing and routing.",
+   "shortcut": "Routing = Layer 3.",
+   "difficulty": "easy",
+   "subtopic": "nw-osi",
+   "pattern": "nw-o2",
+   "timeSec": 20
+  },
+  {
+   "id": "nw-osi-p05",
+   "q": "Framing and MAC addressing are functions of the —",
+   "figure": null,
+   "options": [
+    "Network layer",
+    "Physical layer",
+    "Data Link layer",
+    "Application layer"
+   ],
+   "answer": 2,
+   "solution": "**Data Link (Layer 2)** wraps bits into frames and uses MAC addresses; switches live here.",
+   "shortcut": "Frames and MAC = 2.",
+   "difficulty": "medium",
+   "subtopic": "nw-osi",
+   "pattern": "nw-o2",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-osi-p06",
+   "q": "Encryption and compression of data are handled by the —",
+   "figure": null,
+   "options": [
+    "Presentation layer",
+    "Application layer",
+    "Session layer",
+    "Network layer"
+   ],
+   "answer": 0,
+   "solution": "**Presentation (Layer 6)** = translation, encryption, compression — the format preparer.",
+   "shortcut": "Presentation dresses the data.",
+   "difficulty": "medium",
+   "subtopic": "nw-osi",
+   "pattern": "nw-o2",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-osi-p07",
+   "q": "Which statement about the Transport layer is TRUE?",
+   "figure": null,
+   "options": [
+    "It routes packets between networks",
+    "It encrypts data before sending",
+    "It provides end-to-end delivery using ports (TCP/UDP)",
+    "It generates electrical signals"
+   ],
+   "answer": 2,
+   "solution": "Transport (4) = segmentation, ports, TCP/UDP. Routing is Layer 3, encryption Layer 6, signals Layer 1.",
+   "shortcut": "Ports and TCP live on 4.",
+   "difficulty": "hard",
+   "subtopic": "nw-osi",
+   "pattern": "nw-o2",
+   "timeSec": 35
+  },
+  {
+   "id": "nw-osi-p08",
+   "q": "At which OSI layer does a ROUTER work?",
+   "figure": null,
+   "options": [
+    "Layer 1 (Physical)",
+    "Layer 2 (Data Link)",
+    "Layer 5 (Session)",
+    "Layer 3 (Network)"
+   ],
+   "answer": 3,
+   "solution": "Routers read IP addresses and route — **Layer 3**.",
+   "shortcut": "Router = 3.",
+   "difficulty": "easy",
+   "subtopic": "nw-osi",
+   "pattern": "nw-o3",
+   "timeSec": 20
+  },
+  {
+   "id": "nw-osi-p09",
+   "q": "HTTP, FTP and SMTP belong to which OSI layer?",
+   "figure": null,
+   "options": [
+    "Transport",
+    "Application",
+    "Network",
+    "Session"
+   ],
+   "answer": 1,
+   "solution": "User-facing services sit on **Layer 7 (Application)**.",
+   "shortcut": "Mail and web on top.",
+   "difficulty": "medium",
+   "subtopic": "nw-osi",
+   "pattern": "nw-o3",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-osi-p10",
+   "q": "IP as a protocol operates at the —",
+   "figure": null,
+   "options": [
+    "Network layer",
+    "Transport layer",
+    "Data Link layer",
+    "Session layer"
+   ],
+   "answer": 0,
+   "solution": "**IP = Internet Protocol, Layer 3** — addressing and routing; TCP/UDP sit above it on Layer 4.",
+   "shortcut": "IP = Layer 3.",
+   "difficulty": "medium",
+   "subtopic": "nw-osi",
+   "pattern": "nw-o3",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-osi-p11",
+   "q": "The TCP/IP model has how many layers?",
+   "figure": null,
+   "options": [
+    "7",
+    "5",
+    "4",
+    "6"
+   ],
+   "answer": 2,
+   "solution": "**TCP/IP = 4 layers**: Network Access, Internet, Transport, Application.",
+   "shortcut": "Four in practice.",
+   "difficulty": "easy",
+   "subtopic": "nw-osi",
+   "pattern": "nw-o4",
+   "timeSec": 20
+  },
+  {
+   "id": "nw-osi-p12",
+   "q": "Which OSI layers are merged into the Application layer of the TCP/IP model?",
+   "figure": null,
+   "options": [
+    "Session, Presentation, Application (5-7)",
+    "Physical and Data Link (1-2)",
+    "Transport and Network (3-4)",
+    "None"
+   ],
+   "answer": 0,
+   "solution": "TCP/IP's **Application swallows OSI 5+6+7**; its Network Access layer takes 1+2.",
+   "shortcut": "Top three become one.",
+   "difficulty": "medium",
+   "subtopic": "nw-osi",
+   "pattern": "nw-o4",
+   "timeSec": 30
+  },
+  {
+   "id": "nw-ip-p01",
+   "q": "The IP address 130.10.5.2 belongs to which class?",
+   "figure": null,
+   "options": [
+    "Class A",
+    "Class C",
+    "Class B",
+    "Class D"
+   ],
+   "answer": 2,
+   "solution": "First octet 130 lies in **128-191 = Class B**.",
+   "shortcut": "128-191 = B.",
+   "difficulty": "easy",
+   "subtopic": "nw-ip",
+   "pattern": "nw-p1",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-ip-p02",
+   "q": "Which class does the address 196.20.5.1 belong to?",
+   "figure": null,
+   "options": [
+    "Class C",
+    "Class B",
+    "Class A",
+    "Class E"
+   ],
+   "answer": 0,
+   "solution": "First octet 196 is in **192-223 = Class C** — the small-network class.",
+   "shortcut": "192-223 = C.",
+   "difficulty": "medium",
+   "subtopic": "nw-ip",
+   "pattern": "nw-p1",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-ip-p03",
+   "q": "Class D IP addresses are used for —",
+   "figure": null,
+   "options": [
+    "Experimental research",
+    "Small office networks",
+    "Multicasting",
+    "Loopback testing"
+   ],
+   "answer": 2,
+   "solution": "**Class D (224-239) = multicast groups**; Class E (240-255) is experimental.",
+   "shortcut": "D distributes to many.",
+   "difficulty": "medium",
+   "subtopic": "nw-ip",
+   "pattern": "nw-p1",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-ip-p04",
+   "q": "The first octet of a Class A address runs from —",
+   "figure": null,
+   "options": [
+    "1 to 127",
+    "1 to 126",
+    "128 to 191",
+    "192 to 223"
+   ],
+   "answer": 1,
+   "solution": "Class A = **1-126**; the 127 block is reserved for loopback, not ordinary Class A use.",
+   "shortcut": "Stop at 126; 127 loops.",
+   "difficulty": "hard",
+   "subtopic": "nw-ip",
+   "pattern": "nw-p1",
+   "timeSec": 30
+  },
+  {
+   "id": "nw-ip-p05",
+   "q": "The address 127.0.0.1 refers to —",
+   "figure": null,
+   "options": [
+    "A Google server",
+    "The network's router",
+    "A Class B broadcast",
+    "The local machine itself (loopback)"
+   ],
+   "answer": 3,
+   "solution": "**127.0.0.1 = localhost** — a machine talking to itself for testing.",
+   "shortcut": "Loopback = look at yourself.",
+   "difficulty": "easy",
+   "subtopic": "nw-ip",
+   "pattern": "nw-p2",
+   "timeSec": 20
+  },
+  {
+   "id": "nw-ip-p06",
+   "q": "Which of these is a PRIVATE IP address?",
+   "figure": null,
+   "options": [
+    "8.8.8.8",
+    "192.168.1.1",
+    "172.32.10.1",
+    "203.0.113.5"
+   ],
+   "answer": 1,
+   "solution": "Private ranges: **10.x.x.x, 172.16-31.x.x, 192.168.x.x**. Note 172.32 is outside 16-31, hence public.",
+   "shortcut": "Home routers = 192.168.",
+   "difficulty": "medium",
+   "subtopic": "nw-ip",
+   "pattern": "nw-p2",
+   "timeSec": 30
+  },
+  {
+   "id": "nw-ip-p07",
+   "q": "The typical default address typed to open a home router's settings page is —",
+   "figure": null,
+   "options": [
+    "127.0.0.1",
+    "10.0.0.255",
+    "169.254.9.9",
+    "192.168.1.1"
+   ],
+   "answer": 3,
+   "solution": "Home routers commonly sit at **192.168.1.1** — a private Class C address.",
+   "shortcut": "The router's home door.",
+   "difficulty": "medium",
+   "subtopic": "nw-ip",
+   "pattern": "nw-p2",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-ip-p08",
+   "q": "An IPv4 address is how many bits long?",
+   "figure": null,
+   "options": [
+    "64",
+    "128",
+    "32",
+    "16"
+   ],
+   "answer": 2,
+   "solution": "**IPv4 = 32 bits** — four octets of 8 bits each.",
+   "shortcut": "4 octets x 8 bits.",
+   "difficulty": "easy",
+   "subtopic": "nw-ip",
+   "pattern": "nw-p3",
+   "timeSec": 20
+  },
+  {
+   "id": "nw-ip-p09",
+   "q": "An IPv6 address is written as —",
+   "figure": null,
+   "options": [
+    "Eight hexadecimal groups separated by colons",
+    "Four decimal numbers separated by dots",
+    "Six binary groups separated by dashes",
+    "Twelve octal numbers"
+   ],
+   "answer": 0,
+   "solution": "**IPv6 = 128 bits in 8 hex groups with colons**, e.g. 2001:0db8::7334; IPv4 is dotted decimal.",
+   "shortcut": "Colons and hex = IPv6.",
+   "difficulty": "medium",
+   "subtopic": "nw-ip",
+   "pattern": "nw-p3",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-ip-p10",
+   "q": "IPv6 was developed mainly because —",
+   "figure": null,
+   "options": [
+    "IPv4 was too secure",
+    "IPv4 addresses were running out",
+    "IPv4 had no ports",
+    "IPv4 cables were slow"
+   ],
+   "answer": 1,
+   "solution": "32 bits give about **4.3 billion addresses** — too few for the connected world; 128 bits give a practically endless supply.",
+   "shortcut": "More devices than addresses.",
+   "difficulty": "medium",
+   "subtopic": "nw-ip",
+   "pattern": "nw-p3",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-ip-p11",
+   "q": "Which statement about MAC and IP addresses is TRUE?",
+   "figure": null,
+   "options": [
+    "MAC is logical; IP is burnt into the NIC",
+    "Both are burnt into the NIC",
+    "Both change with every network",
+    "MAC is physical and fixed; IP is logical and assignable"
+   ],
+   "answer": 3,
+   "solution": "**MAC = 48-bit hardware identity; IP = software-assigned logical address** that changes with the network.",
+   "shortcut": "MAC permanent, IP portable.",
+   "difficulty": "medium",
+   "subtopic": "nw-ip",
+   "pattern": "nw-p4",
+   "timeSec": 30
+  },
+  {
+   "id": "nw-ip-p12",
+   "q": "A Class C network provides how many USABLE host addresses?",
+   "figure": null,
+   "options": [
+    "256",
+    "254",
+    "255",
+    "65,534"
+   ],
+   "answer": 1,
+   "solution": "256 total minus the **network address** and the **broadcast address** = **254 usable**.",
+   "shortcut": "256 minus two reserved.",
+   "difficulty": "medium",
+   "subtopic": "nw-ip",
+   "pattern": "nw-p4",
+   "timeSec": 30
+  },
+  {
+   "id": "nw-ip-p13",
+   "q": "A device address reads 00:1A:2B:3C:4D:5E with colons and hexadecimal pairs. This is a —",
+   "figure": null,
+   "options": [
+    "IPv4 address",
+    "IPv6 address",
+    "Port number",
+    "MAC address"
+   ],
+   "answer": 3,
+   "solution": "Six hexadecimal pairs = **48-bit MAC** (IPv6 would show eight groups; IPv4 four decimal numbers).",
+   "shortcut": "Six pairs = MAC.",
+   "difficulty": "hard",
+   "subtopic": "nw-ip",
+   "pattern": "nw-p4",
+   "timeSec": 30
+  },
+  {
+   "id": "nw-protocols-p01",
+   "q": "HTTPS uses which default port?",
+   "figure": null,
+   "options": [
+    "80",
+    "21",
+    "443",
+    "25"
+   ],
+   "answer": 2,
+   "solution": "**HTTPS = 443**; plain HTTP uses 80.",
+   "shortcut": "Secure = 443.",
+   "difficulty": "easy",
+   "subtopic": "nw-protocols",
+   "pattern": "nw-r1",
+   "timeSec": 20
+  },
+  {
+   "id": "nw-protocols-p02",
+   "q": "SMTP sends mail through port —",
+   "figure": null,
+   "options": [
+    "25",
+    "110",
+    "143",
+    "21"
+   ],
+   "answer": 0,
+   "solution": "**SMTP = 25**; POP3 receives on 110 and IMAP on 143.",
+   "shortcut": "Mail out = 25.",
+   "difficulty": "medium",
+   "subtopic": "nw-protocols",
+   "pattern": "nw-r1",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-protocols-p03",
+   "q": "Which pair of ports belongs to FTP?",
+   "figure": null,
+   "options": [
+    "80 and 443",
+    "22 and 23",
+    "21 and 20",
+    "53 and 110"
+   ],
+   "answer": 2,
+   "solution": "**FTP: 21 = control commands, 20 = data** — the two-channel protocol.",
+   "shortcut": "Commands first, data second.",
+   "difficulty": "medium",
+   "subtopic": "nw-protocols",
+   "pattern": "nw-r1",
+   "timeSec": 30
+  },
+  {
+   "id": "nw-protocols-p04",
+   "q": "Match: 1. DNS 2. Telnet 3. POP3 — a. 23 b. 110 c. 53",
+   "figure": null,
+   "options": [
+    "1-a, 2-c, 3-b",
+    "1-c, 2-a, 3-b",
+    "1-c, 2-b, 3-a",
+    "1-b, 2-a, 3-c"
+   ],
+   "answer": 1,
+   "solution": "DNS = 53, Telnet = 23, POP3 = 110.",
+   "shortcut": "53, 23, 110.",
+   "difficulty": "hard",
+   "subtopic": "nw-protocols",
+   "pattern": "nw-r1",
+   "timeSec": 35
+  },
+  {
+   "id": "nw-protocols-p05",
+   "q": "Which transport protocol is CONNECTION-ORIENTED and reliable?",
+   "figure": null,
+   "options": [
+    "UDP",
+    "IP",
+    "ICMP",
+    "TCP"
+   ],
+   "answer": 3,
+   "solution": "**TCP** opens a connection, numbers segments and retransmits losses — reliable delivery.",
+   "shortcut": "TCP = tracked.",
+   "difficulty": "easy",
+   "subtopic": "nw-protocols",
+   "pattern": "nw-r2",
+   "timeSec": 20
+  },
+  {
+   "id": "nw-protocols-p06",
+   "q": "Live video streaming and online gaming normally use —",
+   "figure": null,
+   "options": [
+    "TCP",
+    "UDP",
+    "FTP",
+    "SMTP"
+   ],
+   "answer": 1,
+   "solution": "**UDP** is fast and never pauses to retransmit — one lost frame beats a frozen picture.",
+   "shortcut": "Live = UDP.",
+   "difficulty": "medium",
+   "subtopic": "nw-protocols",
+   "pattern": "nw-r2",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-protocols-p07",
+   "q": "Downloading a large software file from the Internet should use —",
+   "figure": null,
+   "options": [
+    "UDP",
+    "DHCP",
+    "ARP",
+    "TCP"
+   ],
+   "answer": 3,
+   "solution": "A file must arrive complete and in order — **TCP's reliability** is worth its slowness.",
+   "shortcut": "Files need all bytes = TCP.",
+   "difficulty": "medium",
+   "subtopic": "nw-protocols",
+   "pattern": "nw-r2",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-protocols-p08",
+   "q": "Which service typically runs its queries over UDP?",
+   "figure": null,
+   "options": [
+    "Sending e-mail with SMTP",
+    "Uploading files with FTP",
+    "DNS name lookups",
+    "Loading a page over HTTPS"
+   ],
+   "answer": 2,
+   "solution": "A single quick query-and-reply fits **UDP** (port 53); mail, FTP and HTTPS ride on reliable TCP.",
+   "shortcut": "Quick question = UDP.",
+   "difficulty": "hard",
+   "subtopic": "nw-protocols",
+   "pattern": "nw-r2",
+   "timeSec": 35
+  },
+  {
+   "id": "nw-protocols-p09",
+   "q": "Which protocol is used to transfer files between computers over a network?",
+   "figure": null,
+   "options": [
+    "FTP",
+    "SMTP",
+    "POP3",
+    "DHCP"
+   ],
+   "answer": 0,
+   "solution": "**FTP = File Transfer Protocol** — control on port 21, data on 20.",
+   "shortcut": "F = File.",
+   "difficulty": "easy",
+   "subtopic": "nw-protocols",
+   "pattern": "nw-r3",
+   "timeSec": 20
+  },
+  {
+   "id": "nw-protocols-p10",
+   "q": "Which service automatically assigns IP addresses to devices joining a network?",
+   "figure": null,
+   "options": [
+    "DNS",
+    "DHCP",
+    "FTP",
+    "SNMP"
+   ],
+   "answer": 1,
+   "solution": "**DHCP = Dynamic Host Configuration Protocol** — hands each device its IP settings.",
+   "shortcut": "DHCP hands addresses.",
+   "difficulty": "medium",
+   "subtopic": "nw-protocols",
+   "pattern": "nw-r3",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-protocols-p11",
+   "q": "HTTPS differs from HTTP because it —",
+   "figure": null,
+   "options": [
+    "Uses a different type of cable",
+    "Only works on intranets",
+    "Sends no headers",
+    "Encrypts the traffic using TLS/SSL"
+   ],
+   "answer": 3,
+   "solution": "HTTPS = **HTTP inside an encrypted TLS/SSL tunnel** (port 443) — same web, locked line.",
+   "shortcut": "S = secure tunnel.",
+   "difficulty": "medium",
+   "subtopic": "nw-protocols",
+   "pattern": "nw-r3",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-protocols-p12",
+   "q": "Which remote-login protocol sends data, including passwords, WITHOUT encryption?",
+   "figure": null,
+   "options": [
+    "SSH",
+    "Telnet",
+    "HTTPS",
+    "SFTP"
+   ],
+   "answer": 1,
+   "solution": "**Telnet (23) is plaintext** — SSH (22) is its encrypted modern replacement.",
+   "shortcut": "Telnet = no lock.",
+   "difficulty": "medium",
+   "subtopic": "nw-protocols",
+   "pattern": "nw-r4",
+   "timeSec": 25
+  },
+  {
+   "id": "nw-protocols-p13",
+   "q": "UDP stands for —",
+   "figure": null,
+   "options": [
+    "Unified Data Protocol",
+    "Universal Delivery Process",
+    "User Data Program",
+    "User Datagram Protocol"
+   ],
+   "answer": 3,
+   "solution": "**UDP = User Datagram Protocol** — connectionless, no delivery guarantee, very fast.",
+   "shortcut": "Datagram = fire and forget.",
+   "difficulty": "medium",
+   "subtopic": "nw-protocols",
+   "pattern": "nw-r4",
+   "timeSec": 20
+  },
+  {
+   "id": "nw-protocols-p14",
+   "q": "Arrange the ports in ASCENDING order: 1. SMTP 2. SSH 3. HTTP 4. FTP-control",
+   "figure": null,
+   "options": [
+    "4, 2, 1, 3",
+    "2, 4, 1, 3",
+    "2, 1, 4, 3",
+    "4, 1, 2, 3"
+   ],
+   "answer": 0,
+   "solution": "FTP 21 < SSH 22 < SMTP 25 < HTTP 80 = **4, 2, 1, 3**.",
+   "shortcut": "21, 22, 25, 80.",
+   "difficulty": "hard",
+   "subtopic": "nw-protocols",
+   "pattern": "nw-r4",
+   "timeSec": 40
   }
  ]
 }

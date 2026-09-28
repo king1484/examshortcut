@@ -37,6 +37,57 @@
     "Saying a trojan self-replicates - only viruses and worms replicate; a trojan relies on disguise.",
     "Saying a worm needs a host file - the worm is host-free by definition.",
     "Calling ransomware a 'data thief' - its business model is encryption + extortion."
+   ],
+   "notes": "### Malware — hostile software\n**Malware** (MALicious softWARE) is any program written to harm, steal or spy. Exams test one skill: matching the malware's **behaviour** to its **name**.\n\n| Malware | Signature behaviour |\n|---|---|\n| **Virus** | attaches itself to a file/program and spreads when that file is **run** — needs a host |\n| **Worm** | **self-replicates on its own** across networks — needs **no host file** |\n| **Trojan horse** | hides inside **useful-looking software** (free game, \"update\"); **does not replicate** |\n| **Ransomware** | **locks/encrypts your files and demands money** (e.g. WannaCry, 2017) |\n| **Spyware** | secretly **collects your information** and sends it out |\n| **Keylogger** | records **every keystroke** — passwords typed are captured (a spyware cousin) |\n| **Adware** | floods the screen with unwanted **advertisements** |\n| **Botnet** | many infected \"zombie\" machines remotely **controlled as one army** (for spam/DDoS) |\n| **Rootkit** | buries itself deep in the system, **hides its presence**, grants attacker admin rights |\n\n### The three distinctions exams plant\n1. **Virus vs Worm**: a virus rides on a host file and waits for you to run it; a **worm needs no host** — it crawls through the network by itself.\n2. **Trojan vs Virus**: a trojan **never replicates** — it waits, disguised as legitimate software, and opens the door from inside (backdoor).\n3. **Ransomware vs Spyware**: ransomware takes your files hostage for money; spyware takes copies quietly and leaves everything in place.\n\n### How malware arrives\nInfected email attachments and links, pirated software, infected USB drives, drive-by downloads from unsafe sites, and fake \"your PC is infected\" pop-ups. Once inside, malware may slow the machine, corrupt or delete files, steal data, or enlist the machine into a botnet without the owner noticing anything beyond sluggishness.\n\n### Symptoms of an infected machine\nUnexplained slowness, files renamed or missing, programs opening on their own, browser home page changed, sudden pop-ups, the fan and disk working when you do nothing. None of these proves malware alone — but together they are the exam's favourite scenario line.\n\n### Quick revision\n- **Virus needs a host; Worm needs none; Trojan replicates not.**\n- **Ransomware = lock and demand money** (WannaCry 2017); Spyware spies; Keylogger records keystrokes.\n- **Botnet = army of zombie machines**; Rootkit = hidden admin-level intruder.\n- Malware spreads by attachments, pirated software, unsafe downloads.",
+   "patterns": [
+    {
+     "id": "cs-m1",
+     "name": "Malware identification by behaviour",
+     "frequency": "very common",
+     "howToSpot": "A behaviour is described ('self-replicates without a host', 'disguises as useful software', 'encrypts files for ransom') and the malware is asked.",
+     "formula": null,
+     "logic": "1. Needs a host file = **Virus**; self-replicates alone over the network = **Worm**.\n2. Disguised as useful software, does not replicate = **Trojan horse**.\n3. Locks files and demands money = **Ransomware**; watches silently = Spyware/Keylogger.",
+     "example": {
+      "q": "A program that enters a computer disguised as a free game and does not replicate is a:",
+      "solution": "**Trojan horse** — the disguise is its signature; replication belongs to virus/worm."
+     }
+    },
+    {
+     "id": "cs-m2",
+     "name": "Ransomware scenarios",
+     "frequency": "common",
+     "howToSpot": "'Files are locked and money is demanded', 'WannaCry' or any hostage-style scenario.",
+     "formula": null,
+     "logic": "1. Encrypt-and-demand-money = **Ransomware** — the fastest identification in the topic.\n2. Defence = **offline backups**; paying the ransom is never advised.\n3. WannaCry (2017) is the named example exams use.",
+     "example": {
+      "q": "A hospital finds all its patient records encrypted with a demand for money to unlock them. This is:",
+      "solution": "**Ransomware** — data taken hostage; restored from backups, not by paying."
+     }
+    },
+    {
+     "id": "cs-m3",
+     "name": "Spyware, keylogger and adware",
+     "frequency": "common",
+     "howToSpot": "'Records every keystroke', 'secretly collects browsing data', 'shows endless advertisements' — the quiet watchers.",
+     "formula": null,
+     "logic": "1. Records keystrokes = **Keylogger** (passwords captured as you type).\n2. Secretly gathers and sends your information = **Spyware**.\n3. Throws unwanted ads = **Adware**. All three spy or annoy — none of them locks files.",
+     "example": {
+      "q": "Ravi suspects his typed passwords are being captured as he types them. Which malware fits?",
+      "solution": "**Keylogger** — it records every keystroke, so even a strong password leaks."
+     }
+    },
+    {
+     "id": "cs-m4",
+     "name": "Botnet and zombies",
+     "frequency": "occasional",
+     "howToSpot": "'A network of infected computers controlled by an attacker', 'zombie machines used for spam/DDoS'.",
+     "formula": null,
+     "logic": "1. **Botnet = many infected 'zombie' machines remotely commanded as one** — owners usually unaware.\n2. Botnets are the muscle behind **DDoS floods and mass spam**.\n3. The controller is the 'bot herder'; your slow machine may be someone's soldier.",
+     "example": {
+      "q": "Thousands of infected home computers are ordered together to flood one server. The infected network is a:",
+      "solution": "**Botnet** — the army of zombies that powers DDoS attacks."
+     }
+    }
    ]
   },
   {
@@ -66,6 +117,57 @@
     "Confusing pharming with phishing - pharming needs no victim click; DNS is poisoned.",
     "Calling DDoS a single-machine attack - the D means distributed (botnet).",
     "Believing strong passwords alone stop phishing - awareness + 2FA are needed; no password resists a fake site."
+   ],
+   "notes": "### Attacks on people and systems\nBeyond malware, exams list named **attacks** — methods of cheating users or breaking services. Group them by target.\n\n### Attacks that target PEOPLE (social engineering)\n- **Phishing**: a fake mail/site dressed as your bank or company, asking for passwords, OTPs, card details. \"Phish\" = fishing for victims with bait.\n- **Spear phishing**: phishing **aimed at one specific person or office**, with personal details to look genuine.\n- **Vishing** (Voice) and **smishing** (SMS): the same bait delivered by **phone call** or **SMS**.\n- **Pharming**: even a **correctly typed URL** lands you on a fake site — the attacker poisons the DNS/server side.\n- **Social engineering** is the umbrella: manipulating **people** (fear, urgency, authority — \"your account will be blocked in 1 hour\") instead of breaking code.\n\n### Attacks that target SERVICES\n- **DoS** (Denial of Service): flooding a server with useless requests so genuine users are shut out.\n- **DDoS** (Distributed DoS): the flood comes from **many machines at once**, usually a botnet.\n- **Man-in-the-Middle (MITM)**: the attacker secretly sits **between two parties**, reading or altering what they exchange (e.g. on open Wi-Fi).\n\n### Classic named attacks from exam history\n| Attack | Trick |\n|---|---|\n| **Salami slicing/salami attack** | stealing **tiny amounts from very many accounts** — paise shaved off, hard to notice |\n| **Data diddling** | changing data **before or during entry** into the system (false figures) |\n| **Logic bomb** | malicious code that **sleeps until a trigger** — a date or event — then detonates |\n| **SQL injection** | typing database commands into a web form's input box to read the database |\n| **Brute force** | trying **every possible password** combination until one works |\n| **Eavesdropping** | passively **listening** to data as it travels |\n\n### Telling the twins apart\nPhishing asks the **user** to hand over data; pharming needs no user mistake — the **address itself is hijacked**. DoS asks nothing of users — it **drowns the server**. MITM does not flood or fake a site — it **listens in the middle** of a real conversation. Salami steals **small and often**; data diddling **alters records**; a logic bomb waits for its **trigger**.\n\n### Quick revision\n- **Phishing = mail bait; Vishing = voice; Smishing = SMS; Pharming = fake site despite correct URL.**\n- **DoS/DDoS = flood the server** (DDoS from a botnet); **MITM = listen between two parties**.\n- **Salami = tiny thefts, many accounts; Logic bomb = waits for a trigger; SQL injection = commands in a form.**\n- Social engineering = attacking the person, not the machine.",
+   "patterns": [
+    {
+     "id": "cs-a1",
+     "name": "Phishing family (mail, voice, SMS, pharming)",
+     "frequency": "very common",
+     "howToSpot": "A fake-bank-mail / fake-call / fake-SMS / correct-URL-fake-site scenario asking for the attack's name, or 'vishing/smishing mean ___'.",
+     "formula": null,
+     "logic": "1. Bait by **e-mail or fake site** = Phishing; by **phone call** = Vishing; by **SMS** = Smishing.\n2. **Correct URL still lands on a fake site** = Pharming (address hijacked, no user mistake).\n3. Aimed at ONE chosen person = **Spear phishing**. All are social engineering — attacking the person, not the machine.",
+     "example": {
+      "q": "A caller claiming to be from the bank asks for the OTP sent to Meena's phone. This fraud is:",
+      "solution": "**Vishing** — voice phishing; a real bank never asks for OTPs."
+     }
+    },
+    {
+     "id": "cs-a2",
+     "name": "DoS, DDoS and botnet floods",
+     "frequency": "common",
+     "howToSpot": "'Server is flooded with requests and genuine users are shut out', 'attack from thousands of machines at once'.",
+     "formula": null,
+     "logic": "1. Flood from **one source** = **DoS**; from **many machines at once** (usually a botnet) = **DDoS**.\n2. The aim is **denial of service**, not data theft — the service drowns.\n3. DDoS question almost always names 'distributed/thousands of computers' — that word IS the answer key.",
+     "example": {
+      "q": "A shopping site crashes as thousands of hijacked machines hammer it with fake requests together. This is:",
+      "solution": "**DDoS** — Distributed Denial of Service; 'distributed' = many sources at once."
+     }
+    },
+    {
+     "id": "cs-a3",
+     "name": "Man-in-the-Middle and eavesdropping",
+     "frequency": "occasional",
+     "howToSpot": "'Communication between A and B is read/changed by a hidden third party', risks of open public Wi-Fi.",
+     "formula": null,
+     "logic": "1. **MITM = attacker sits silently between two parties**, reading or altering the exchange — neither side notices.\n2. Classic setting: **open public Wi-Fi** without encryption.\n3. Defence: encrypted connections (**HTTPS/VPN**) — the middle man sees only ciphertext.",
+     "example": {
+      "q": "On free airport Wi-Fi, an attacker secretly reads the data exchange between Amit and the site he is using. This attack is:",
+      "solution": "**Man-in-the-Middle (MITM)** — the hidden listener between two ends."
+     }
+    },
+    {
+     "id": "cs-a4",
+     "name": "Classic named attacks (salami, diddling, logic bomb, SQLi)",
+     "frequency": "common",
+     "howToSpot": "'Tiny amounts stolen from many accounts', 'records changed during entry', 'code that waits for a date', 'commands typed into a login box'.",
+     "formula": null,
+     "logic": "1. **Salami attack** = many tiny thefts (paise from lakhs of accounts).\n2. **Data diddling** = data changed before/during entry.\n3. **Logic bomb** = sleeps until a trigger (date/event).\n4. **SQL injection** = database commands typed into a web form; **Brute force** = trying every password.",
+     "example": {
+      "q": "A bank clerk's program quietly takes one rupee from thousands of accounts into his own. This is a:",
+      "solution": "**Salami attack** — slicing tiny amounts off very many accounts."
+     }
+    }
    ]
   },
   {
@@ -95,6 +197,57 @@
     "Treating antivirus as the network gatekeeper - that is the firewall's role.",
     "Thinking updated antivirus alone guarantees safety - zero-days and phishing bypass it.",
     "Writing passwords on sticky notes or reusing one password everywhere - both kill the 'strong password' measure."
+   ],
+   "notes": "### The defence line-up\n| Defence | What it does |\n|---|---|\n| **Firewall** | a barrier (hardware/software) that **monitors and filters traffic** between your network and the outside, by rules — allow or block |\n| **Antivirus** | **detects and removes malware**, mainly by matching **virus signatures** — so it must be **updated regularly** |\n| **Encryption** | scrambles data so only the key-holder can read it — **plaintext (readable) to ciphertext (scrambled)**; reading back is decryption |\n| **Two-factor authentication (2FA)** | password **plus** a second proof — OTP on phone, fingerprint — so a stolen password alone is useless |\n| **Backup** | a safe copy of data kept separately, so ransomware or disk failure cannot erase you |\n| **Updates/patches** | fixes for newly discovered security holes — unpatched systems stay open doors |\n\n### Firewall vs antivirus — the roles exams swap\nA **firewall guards the doorway**: it watches network traffic in and out and blocks what breaks the rules — it does not clean infections. **Antivirus works inside**: it scans files and memory and removes malware that got in — it does not filter network traffic. A machine can have both, and each answers a different exam line: \"which filters incoming/outgoing traffic?\" = firewall; \"which detects and removes viruses?\" = antivirus.\n\n### Encryption — the one diagram\n**Plaintext** (HELLO) is fed with a **key** through an encryption algorithm to produce unreadable **ciphertext**; the receiver applies the key to decrypt. **AES** (Advanced Encryption Standard) is the widely used modern standard. When you see the **padlock and https://** in a browser, the web session is encrypted — the S means Secure. Encryption protects data even if it is stolen in transit; it is why open public Wi-Fi without HTTPS is risky.\n\n### Password hygiene and safe habits\n- Long passwords mixing letters, digits and symbols; **never name, birthdate, or 123456**; different password for each important account; changed periodically.\n- **2FA everywhere it is offered** — the OTP is the second lock.\n- Never share OTPs/PINs; banks never ask for them. Do not click links in unknown mails; download software only from official sources; keep the OS and antivirus updated; take backups.\n\n### Quick revision\n- **Firewall filters traffic by rules; antivirus finds and removes malware; they are not the same job.**\n- **Encryption: plaintext + key = ciphertext; decryption reverses it; AES = the standard; https = encrypted web.**\n- **2FA = password + OTP/biometric** — a stolen password alone fails.\n- Backups defeat ransomware; updates close known holes.",
+   "patterns": [
+    {
+     "id": "cs-v1",
+     "name": "Firewall purpose",
+     "frequency": "very common",
+     "howToSpot": "'A firewall is used for', 'which device/software filters traffic between networks by rules', hardware-or-software barrier statements.",
+     "formula": null,
+     "logic": "1. **Firewall = rule-based barrier** between your network and the outside — allows or blocks traffic.\n2. It **filters the doorway**; it does not scan or clean infected files.\n3. Can be hardware, software or both.",
+     "example": {
+      "q": "The security system that monitors and filters data entering or leaving a network according to rules is a:",
+      "solution": "**Firewall** — the doorman of the network."
+     }
+    },
+    {
+     "id": "cs-v2",
+     "name": "Antivirus vs firewall roles",
+     "frequency": "common",
+     "howToSpot": "'Which removes an infection already inside', odd-one-out items where one role is swapped between firewall and antivirus.",
+     "formula": null,
+     "logic": "1. **Antivirus scans, detects and removes malware**, chiefly by signature matching — so **updates are compulsory**.\n2. **Firewall filters traffic; antivirus cleans inside** — the swap is the classic trap.\n3. Neither replaces the other; a protected machine keeps both.",
+     "example": {
+      "q": "Which tool detects and removes a virus that has already entered a computer?",
+      "solution": "**Antivirus** — firewall could not have let it in if configured well, but only antivirus cleans inside."
+     }
+    },
+    {
+     "id": "cs-v3",
+     "name": "Password hygiene and 2FA",
+     "frequency": "very common",
+     "howToSpot": "'Strong password' pick-the-best-option, 'two-factor authentication means ___', scenarios where a password alone failed.",
+     "formula": null,
+     "logic": "1. Strong = **long, mixed (letters+digits+symbols), no name/birthdate/123456, unique per account**.\n2. **2FA = password + a second proof** (OTP, fingerprint) — a stolen password alone is not enough.\n3. Never share OTP/PIN; banks never ask for them — any such message is fraud.",
+     "example": {
+      "q": "Which of these is the STRONGEST password?",
+      "solution": "A long mix of letters, digits and symbols unique to that account — not a name, birthdate or 123456."
+     }
+    },
+    {
+     "id": "cs-v4",
+     "name": "Encryption basics (plaintext, ciphertext, AES, https)",
+     "frequency": "common",
+     "howToSpot": "'Scrambled unreadable data is called ___', 'plaintext to ciphertext', 'the padlock/https means ___', 'AES is a ___'.",
+     "formula": null,
+     "logic": "1. Readable original = **plaintext**; scrambled form = **ciphertext**; reversing = decryption, done with the **key**.\n2. **AES** = Advanced Encryption Standard, the widely used modern standard.\n3. **https + padlock = encrypted web session** — the S stands for Secure.",
+     "example": {
+      "q": "Data that has been scrambled so that unauthorised people cannot read it is called:",
+      "solution": "**Ciphertext** — the encrypted form; plaintext is the readable original."
+     }
+    }
    ]
   },
   {
@@ -132,6 +285,57 @@
     "Saying the IT Act was enacted in 2008 - 2008 is the AMENDMENT; the Act is 2000.",
     "Quoting Sec 66A as current law - it was struck down in 2015 (Shreya Singhal case).",
     "Mixing CERT-In (incident response, MeitY) with NCIIPC (critical-infrastructure protection)."
+   ],
+   "notes": "### The Information Technology Act, 2000\nIndia's law for the electronic world is the **IT Act, 2000**, in force from **17 October 2000**. It grew out of the **UNCITRAL model law** (United Nations Commission on International Trade Law) on electronic commerce, which recommended that countries give legal recognition to electronic records and signatures. The Act legalised **electronic records and digital signatures** and created punishments for computer crimes. It was **amended in 2008** (effective 2009), adding identity theft, cyber-terrorism provisions and the CERT-In mandate.\n\n### Sections the exams keep asking\n| Section | Subject |\n|---|---|\n| **Sec 3** | authentication by **digital (electronic) signature** |\n| **Sec 43** | penalty/compensation for **unauthorised access and damage** to computer, data (hacking-type harm) |\n| **Sec 65** | **tampering with computer source code** |\n| **Sec 66** | **computer-related offences** — the \"hacking\" section (dishonest intent) |\n| **Sec 66C** | **identity theft** (fraudulent use of password/digital signature/biometric) |\n| **Sec 66D** | **cheating by personation** using a computer resource (fake profiles) |\n| **Sec 67** | publishing/transmitting **obscene material** in electronic form |\n| **Sec 72** | **breach of confidentiality and privacy** (by those with lawful access to data) |\n\n**Section 66A** (punishment for \"offensive messages\") was **struck down by the Supreme Court in Shreya Singhal v. Union of India (2015)** as violative of free speech — a favourite trick option presented as still-valid law.\n\n### The watchdogs\n- **CERT-In** (Indian Computer Emergency Response Team) — the national incident-response agency under **MeitY** (Ministry of Electronics and IT); set up 2004, statutory backing via Sec 70B after the 2008 amendment.\n- **NCIIPC** (National Critical Information Infrastructure Protection Centre) — protects **critical infrastructure** (power, banking, telecom) under Sec 70A.\n- **MeitY** is the parent ministry for cyber laws and policy; the **DPDP Act, 2023** (Digital Personal Data Protection Act) now governs personal-data privacy alongside the IT Act.\n- Reporting: national cyber-crime helpline **1930** and the portal **cybercrime.gov.in**.\n\n### Digital signature in one line\nA **digital signature** (Sec 3) is the electronic equivalent of a handwritten signature: created with the signer's **private key** and verified by anyone with the **public key** (Certificate Authorities issue the keys). It proves **who** signed and that the document was **not altered** — authentication plus integrity.\n\n### Quick revision\n- **IT Act 2000, effective 17 Oct 2000, based on UNCITRAL; amended 2008.**\n- 65 = source code; **66 = hacking; 66C = identity theft; 66D = online cheating; 67 = obscenity**; 43 = unauthorised access penalty; **66A struck down 2015**.\n- **CERT-In = incident response under MeitY; NCIIPC = critical infrastructure**; helpline 1930.\n- Digital signature = private key signs, public key verifies (Sec 3).",
+   "patterns": [
+    {
+     "id": "cs-l1",
+     "name": "IT Act basics (year, origin, amendment)",
+     "frequency": "very common",
+     "howToSpot": "'The IT Act was passed in ___', 'in force from 17 October 2000', 'based on which UN model law', 'the 2008 amendment'.",
+     "formula": null,
+     "logic": "1. **IT Act 2000, in force 17 October 2000** — India's cyber law.\n2. Based on the **UNCITRAL model law** on e-commerce (UN Commission on International Trade Law).\n3. **Amended 2008** (effective 2009) — added identity theft (66C/66D), cyber-terrorism (66F), CERT-In backing.",
+     "example": {
+      "q": "India's Information Technology Act came into force on:",
+      "solution": "**17 October 2000** — based on the UNCITRAL model law; amended in 2008."
+     }
+    },
+    {
+     "id": "cs-l2",
+     "name": "Section-to-offence matching",
+     "frequency": "very common",
+     "howToSpot": "'Section 66 deals with ___', 'identity theft is which section', 'which section was struck down' — 43/65/66/66C/66D/67/72 and 66A.",
+     "formula": null,
+     "logic": "1. **43** unauthorised access/damage penalty; **65** source-code tampering; **66** hacking (computer-related offences).\n2. **66C identity theft; 66D cheating by personation; 67 obscene material; 72 breach of privacy.**\n3. **66A (offensive messages) was STRUCK DOWN in 2015** — Shreya Singhal case. Any option using 66A as live law is wrong.",
+     "example": {
+      "q": "Under which section of the IT Act is identity theft punished?",
+      "solution": "**Section 66C** — fraudulent use of another's password, digital signature or biometric."
+     }
+    },
+    {
+     "id": "cs-l3",
+     "name": "Authorities: CERT-In, NCIIPC, MeitY, helpline",
+     "frequency": "common",
+     "howToSpot": "'CERT-In stands for / works under ___', 'critical infrastructure is protected by ___', 'the cyber-fraud helpline number'.",
+     "formula": null,
+     "logic": "1. **CERT-In** (Indian Computer Emergency Response Team) = national incident-response agency, **under MeitY**.\n2. **NCIIPC** protects **critical information infrastructure** (power, banking, telecom).\n3. Report fraud on **1930** or **cybercrime.gov.in**; personal-data privacy now also under the **DPDP Act 2023**.",
+     "example": {
+      "q": "CERT-In, India's cyber incident response agency, functions under which ministry?",
+      "solution": "**MeitY** — Ministry of Electronics and Information Technology."
+     }
+    },
+    {
+     "id": "cs-l4",
+     "name": "Digital signature and e-record legality",
+     "frequency": "occasional",
+     "howToSpot": "'A digital signature is used for ___', 'which section gives digital signatures legal status', authentication/integrity statements.",
+     "formula": null,
+     "logic": "1. **Digital signature (Sec 3)** = electronic equivalent of a handwritten signature.\n2. It proves **who signed (authentication)** and that the document was **not altered (integrity)** — not secrecy.\n3. Signed with the signer's **private key**, verified with the **public key**; Certificate Authorities issue the credentials.",
+     "example": {
+      "q": "A digital signature primarily guarantees:",
+      "solution": "**Authenticity of the sender and integrity of the document** — the file cannot be altered unnoticed; it is not encryption for secrecy."
+     }
+    }
    ]
   }
  ],
@@ -139,32 +343,68 @@
   {
    "pattern": "Malware identification",
    "frequency": "very common",
-   "howToSpot": "'Which program disguises as useful software?' / statement-based 'which are true about a worm?'.",
-   "approach": "Replicates + host file = virus; replicates alone = worm; disguise, no replication = trojan; encrypts for money = ransomware; records keys = keylogger."
+   "howToSpot": "'A program that replicates itself is ___', 'which malware disguises as useful software', 'files locked for ransom' — behaviour described, malware named.",
+   "approach": "Match the behaviour: needs a host file = virus; self-replicates alone = worm; disguised as useful software, no replication = trojan; locks files for money = ransomware; spies = spyware; records keystrokes = keylogger; shows ads = adware; army of zombie machines = botnet. The plant swaps virus and worm — check who needs the host.",
+   "subtopic": "cs-malware",
+   "example": {
+    "q": "Which type of malware spreads on its own through a network without a host file?",
+    "solution": "Worm — viruses ride on host files; worms crawl the network independently."
+   }
   },
   {
    "pattern": "Phishing-family matching",
-   "frequency": "common",
-   "howToSpot": "'Fraud call asking for OTP' / 'fake website via DNS poisoning'.",
-   "approach": "Mail/site = phishing; voice = vishing; SMS = smishing; no-click DNS redirect = pharming; targeted mail = spear phishing."
+   "frequency": "very common",
+   "howToSpot": "A fraud scenario by e-mail, phone call, SMS, or a correct URL landing on a fake site — the attack's name is asked; 'full form / meaning of vishing, smishing'.",
+   "approach": "Follow the channel: e-mail/fake site = phishing; phone call = vishing; SMS = smishing; correct address, fake destination = pharming; aimed at one chosen victim = spear phishing. All of them are social engineering — attacking the person, and the fix is never sharing OTP/PIN.",
+   "subtopic": "cs-attacks",
+   "example": {
+    "q": "An SMS claiming your account will be blocked asks you to open a link and enter your bank password. This is:",
+    "solution": "Smishing — phishing delivered by SMS; the link leads to a credential-stealing fake."
+   }
   },
   {
    "pattern": "Preventive-measure odd-one-out",
    "frequency": "common",
-   "howToSpot": "'Which is NOT a security measure?' or matching tool-to-role (firewall vs antivirus).",
-   "approach": "Firewall filters traffic by rules; antivirus detects/removes malware; updates patch holes; 2FA adds a second factor."
+   "howToSpot": "'Which of these is NOT a security measure', 'which measure protects against ransomware', lists where one protection role is swapped (firewall cleaning viruses, antivirus filtering traffic).",
+   "approach": "Fix the roles: firewall = filters network traffic by rules at the doorway; antivirus = scans and removes malware inside (needs updates); encryption = scrambles data (plaintext to ciphertext, AES, https padlock); 2FA = password + OTP/biometric; backups = the ransomware antidote. The plant: crediting the firewall with cleaning infections.",
+   "subtopic": "cs-prevention",
+   "example": {
+    "q": "Which of the following does a firewall do?",
+    "solution": "Filters incoming and outgoing network traffic by rules — it does not scan or clean files inside."
+   }
   },
   {
-   "pattern": "IT Act sections/authorities",
+   "pattern": "IT Act sections and authorities",
    "frequency": "common",
-   "howToSpot": "'Identity theft is punished under?' / 'CERT-In stands for?'.",
-   "approach": "Drill the section table (43/65/66/66C/66D/66F/67) and pair CERT-In with incident response, 1930 with fraud reporting."
+   "howToSpot": "'Hacking is punished under which section', 'identity theft section', 'which section was struck down', 'CERT-In works under ___', 'the IT Act was enacted in ___'.",
+   "approach": "Memorise the ladder: 43 unauthorised access, 65 source code, 66 hacking, 66C identity theft, 66D online cheating, 67 obscenity, 72 privacy; 66A struck down in 2015 (Shreya Singhal). Act = 2000 (from 17 Oct, UNCITRAL-based, amended 2008). CERT-In under MeitY; NCIIPC guards critical infrastructure; helpline 1930.",
+   "subtopic": "cs-it-act",
+   "example": {
+    "q": "Identity theft (misusing another's password or digital signature) is an offence under which section of the IT Act?",
+    "solution": "Section 66C — added by the 2008 amendment."
+   }
   },
   {
    "pattern": "Attack-mechanism statements",
-   "frequency": "occasional",
-   "howToSpot": "Two-statement questions on DDoS, MITM or SQL injection.",
-   "approach": "DDoS = many sources flooding; MITM = secret relay; SQLi = input fields touching the database; brute force = every combination."
+   "frequency": "common",
+   "howToSpot": "'Which statement about a salami attack / logic bomb / DoS is true', a scenario (tiny thefts, waiting code, flooded server, hidden listener) matched to its attack name.",
+   "approach": "Anchor the classics: salami = many tiny thefts; data diddling = records changed at entry; logic bomb = code that waits for a trigger; SQL injection = commands typed into a form; DoS/DDoS = flooding (DDoS from many machines); MITM = secretly reading between two parties, typical on open Wi-Fi.",
+   "subtopic": "cs-attacks",
+   "example": {
+    "q": "A malicious program lies dormant in a bank's system until 1 April and then deletes all records. This is a:",
+    "solution": "Logic bomb — malware waiting for a trigger event before it detonates."
+   }
+  },
+  {
+   "pattern": "Encryption and password basics",
+   "frequency": "common",
+   "howToSpot": "'Scrambled data is called ___', 'https/padlock means ___', 'AES full form', 'strongest password' and 2FA meaning.",
+   "approach": "Plaintext = readable, ciphertext = scrambled; decryption needs the key; AES = Advanced Encryption Standard; https + padlock = encrypted connection (TLS/SSL). Strong password = long, mixed characters, not personal; 2FA = password plus a second proof so a stolen password alone fails.",
+   "subtopic": "cs-prevention",
+   "example": {
+    "q": "The padlock icon next to https:// in a browser indicates:",
+    "solution": "The connection to that site is encrypted — data travels as unreadable ciphertext."
+   }
   }
  ],
  "solvedExamples": [
@@ -511,6 +751,978 @@
    "subtopic": "cs-it-act",
    "pattern": "cyber reporting",
    "timeSec": 35
+  },
+  {
+   "id": "cs-malware-p01",
+   "q": "A program that attaches itself to a file and spreads when the file is shared and run is a —",
+   "figure": null,
+   "options": [
+    "Firewall",
+    "Virus",
+    "Compiler",
+    "Browser"
+   ],
+   "answer": 1,
+   "solution": "**Virus** = needs a host file and a run to spread.",
+   "shortcut": "Virus rides a host.",
+   "difficulty": "easy",
+   "subtopic": "cs-malware",
+   "pattern": "cs-m1",
+   "timeSec": 20
+  },
+  {
+   "id": "cs-malware-p02",
+   "q": "Which malware can spread by itself across a network WITHOUT needing a host file?",
+   "figure": null,
+   "options": [
+    "Virus",
+    "Trojan horse",
+    "Adware",
+    "Worm"
+   ],
+   "answer": 3,
+   "solution": "**Worm** self-replicates standalone — no host, no user click needed.",
+   "shortcut": "Worm crawls alone.",
+   "difficulty": "medium",
+   "subtopic": "cs-malware",
+   "pattern": "cs-m1",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-malware-p03",
+   "q": "A 'free' PDF-reader downloaded from an unknown site secretly opens a backdoor for hackers. It does not copy itself. This is a —",
+   "figure": null,
+   "options": [
+    "Worm",
+    "Trojan horse",
+    "Virus",
+    "Rootkit"
+   ],
+   "answer": 1,
+   "solution": "**Trojan** — disguised as useful software and never self-replicates; the backdoor is its payload.",
+   "shortcut": "Gift horse with soldiers inside.",
+   "difficulty": "medium",
+   "subtopic": "cs-malware",
+   "pattern": "cs-m1",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-malware-p04",
+   "q": "Which statement is TRUE?",
+   "figure": null,
+   "options": [
+    "A worm needs a host file; a virus does not",
+    "Both always need host files",
+    "A virus needs a host file; a worm does not",
+    "A trojan horse replicates fastest"
+   ],
+   "answer": 2,
+   "solution": "The classic distinction: **virus = host-dependent; worm = independent**; trojan never replicates at all.",
+   "shortcut": "Virus waits, worm walks.",
+   "difficulty": "hard",
+   "subtopic": "cs-malware",
+   "pattern": "cs-m1",
+   "timeSec": 35
+  },
+  {
+   "id": "cs-malware-p05",
+   "q": "Malware that locks your files and demands money to release them is —",
+   "figure": null,
+   "options": [
+    "Ransomware",
+    "Spyware",
+    "Adware",
+    "Worm"
+   ],
+   "answer": 0,
+   "solution": "**Ransomware** holds data hostage — encrypt now, demand payment later (WannaCry, 2017).",
+   "shortcut": "Ransom = money demand.",
+   "difficulty": "easy",
+   "subtopic": "cs-malware",
+   "pattern": "cs-m2",
+   "timeSec": 20
+  },
+  {
+   "id": "cs-malware-p06",
+   "q": "Which defence lets a ransomware victim recover WITHOUT paying?",
+   "figure": null,
+   "options": [
+    "Sharing the ransom with friends",
+    "Restarting the computer many times",
+    "Recent offline backups",
+    "Turning off the monitor"
+   ],
+   "answer": 2,
+   "solution": "Backups kept **offline** (disconnected) escape the encryption — restore instead of paying.",
+   "shortcut": "Backup beats ransom.",
+   "difficulty": "medium",
+   "subtopic": "cs-malware",
+   "pattern": "cs-m2",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-malware-p07",
+   "q": "WannaCry, which crippled systems worldwide in 2017, was an outbreak of —",
+   "figure": null,
+   "options": [
+    "Ransomware",
+    "Adware",
+    "A browser hijacker",
+    "A keylogger only"
+   ],
+   "answer": 0,
+   "solution": "**WannaCry (2017)** = the named ransomware epidemic exams quote.",
+   "shortcut": "WannaCry wanted money.",
+   "difficulty": "hard",
+   "subtopic": "cs-malware",
+   "pattern": "cs-m2",
+   "timeSec": 30
+  },
+  {
+   "id": "cs-malware-p08",
+   "q": "Which malware records every key pressed on a keyboard?",
+   "figure": null,
+   "options": [
+    "Adware",
+    "Keylogger",
+    "Worm",
+    "Rootkit"
+   ],
+   "answer": 1,
+   "solution": "**Keylogger** captures keystrokes — passwords included — as you type.",
+   "shortcut": "Every key, logged.",
+   "difficulty": "medium",
+   "subtopic": "cs-malware",
+   "pattern": "cs-m3",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-malware-p09",
+   "q": "Software that quietly collects information about a user and sends it to a third party is —",
+   "figure": null,
+   "options": [
+    "Shareware",
+    "Firmware",
+    "Malware-free trialware",
+    "Spyware"
+   ],
+   "answer": 3,
+   "solution": "**Spyware** spies — gathers your data in secret and ships it out.",
+   "shortcut": "Spy = spyware.",
+   "difficulty": "medium",
+   "subtopic": "cs-malware",
+   "pattern": "cs-m3",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-malware-p10",
+   "q": "Programs that flood your screen with unwanted advertisements are called —",
+   "figure": null,
+   "options": [
+    "Hardware",
+    "Groupware",
+    "Adware",
+    "Worms"
+   ],
+   "answer": 2,
+   "solution": "**Adware** = advertisement-software; annoying more than damaging.",
+   "shortcut": "Ad + ware.",
+   "difficulty": "easy",
+   "subtopic": "cs-malware",
+   "pattern": "cs-m3",
+   "timeSec": 20
+  },
+  {
+   "id": "cs-malware-p11",
+   "q": "A network of infected computers remotely controlled by an attacker is a —",
+   "figure": null,
+   "options": [
+    "Botnet",
+    "Intranet",
+    "Ethernet",
+    "Internet"
+   ],
+   "answer": 0,
+   "solution": "**Botnet** — an army of 'zombie' machines commanded together, owners unaware.",
+   "shortcut": "Robots in a net.",
+   "difficulty": "medium",
+   "subtopic": "cs-malware",
+   "pattern": "cs-m4",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-malware-p12",
+   "q": "Botnets are MOST commonly used to launch —",
+   "figure": null,
+   "options": [
+    "Print jobs",
+    "Screen savers",
+    "DDoS attacks and mass spam",
+    "Software updates"
+   ],
+   "answer": 2,
+   "solution": "A botnet's muscle powers **DDoS floods and spam campaigns** — thousands of machines acting as one.",
+   "shortcut": "Zombies flood and spam.",
+   "difficulty": "hard",
+   "subtopic": "cs-malware",
+   "pattern": "cs-m4",
+   "timeSec": 30
+  },
+  {
+   "id": "cs-malware-p13",
+   "q": "Malware that hides deep in a system and conceals its own presence while giving an attacker administrator-level access is a —",
+   "figure": null,
+   "options": [
+    "Rootkit",
+    "Keylogger",
+    "Adware",
+    "Worm"
+   ],
+   "answer": 0,
+   "solution": "**Rootkit** = root (admin) + kit — hides itself and hands over admin control.",
+   "shortcut": "Root = admin, kit = tools.",
+   "difficulty": "medium",
+   "subtopic": "cs-malware",
+   "pattern": "cs-m4",
+   "timeSec": 30
+  },
+  {
+   "id": "cs-attacks-p01",
+   "q": "Fraudulent e-mails that look like your bank's and ask for your password are an example of —",
+   "figure": null,
+   "options": [
+    "Debugging",
+    "Booting",
+    "Surfing",
+    "Phishing"
+   ],
+   "answer": 3,
+   "solution": "**Phishing** — fishing for your credentials with fake bait mails/sites.",
+   "shortcut": "Phishing = fake bait.",
+   "difficulty": "easy",
+   "subtopic": "cs-attacks",
+   "pattern": "cs-a1",
+   "timeSec": 20
+  },
+  {
+   "id": "cs-attacks-p02",
+   "q": "Phishing carried out over a PHONE CALL is called —",
+   "figure": null,
+   "options": [
+    "Smishing",
+    "Vishing",
+    "Pharming",
+    "Spamming"
+   ],
+   "answer": 1,
+   "solution": "**Vishing** = Voice phishing; SMS-based phishing is smishing.",
+   "shortcut": "V for voice.",
+   "difficulty": "medium",
+   "subtopic": "cs-attacks",
+   "pattern": "cs-a1",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-attacks-p03",
+   "q": "Phishing messages delivered by SMS are called —",
+   "figure": null,
+   "options": [
+    "Vishing",
+    "Pharming",
+    "Snooping",
+    "Smishing"
+   ],
+   "answer": 3,
+   "solution": "**Smishing** = SMS phishing — the bait travels by text message.",
+   "shortcut": "SM = SMS.",
+   "difficulty": "medium",
+   "subtopic": "cs-attacks",
+   "pattern": "cs-a1",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-attacks-p04",
+   "q": "Sunil types his bank's web address CORRECTLY, but is still taken to a fake identical site that steals his login. This is —",
+   "figure": null,
+   "options": [
+    "Pharming",
+    "Phishing",
+    "Salami attack",
+    "Brute force"
+   ],
+   "answer": 0,
+   "solution": "**Pharming** — the address itself is hijacked (DNS poisoning); no user typing mistake occurred.",
+   "shortcut": "Pharming farms fakes at the address level.",
+   "difficulty": "hard",
+   "subtopic": "cs-attacks",
+   "pattern": "cs-a1",
+   "timeSec": 35
+  },
+  {
+   "id": "cs-attacks-p05",
+   "q": "Flooding a server with useless requests so genuine users cannot use it is a —",
+   "figure": null,
+   "options": [
+    "Data diddling attack",
+    "Salami attack",
+    "Denial of Service attack",
+    "Logic bomb"
+   ],
+   "answer": 2,
+   "solution": "**DoS** drowns the service — the goal is shutdown, not data theft.",
+   "shortcut": "Service denied.",
+   "difficulty": "medium",
+   "subtopic": "cs-attacks",
+   "pattern": "cs-a2",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-attacks-p06",
+   "q": "A DoS attack launched SIMULTANEOUSLY from thousands of hijacked computers is called —",
+   "figure": null,
+   "options": [
+    "DDoS",
+    "DNS",
+    "DHCP",
+    "MITM"
+   ],
+   "answer": 0,
+   "solution": "**DDoS** = Distributed DoS — 'distributed' means many sources at once, usually a botnet.",
+   "shortcut": "Distributed = many.",
+   "difficulty": "medium",
+   "subtopic": "cs-attacks",
+   "pattern": "cs-a2",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-attacks-p07",
+   "q": "The army of hijacked machines that powers a DDoS flood is called a —",
+   "figure": null,
+   "options": [
+    "Backbone",
+    "Bridge",
+    "Botnet",
+    "Buffer"
+   ],
+   "answer": 2,
+   "solution": "The DDoS muscle comes from a **botnet of zombie machines**.",
+   "shortcut": "Zombies do the flooding.",
+   "difficulty": "hard",
+   "subtopic": "cs-attacks",
+   "pattern": "cs-a2",
+   "timeSec": 30
+  },
+  {
+   "id": "cs-attacks-p08",
+   "q": "An attacker secretly positions himself between two parties and reads/alters their messages. This is a —",
+   "figure": null,
+   "options": [
+    "Denial of Service attack",
+    "Logic bomb",
+    "Salami attack",
+    "Man-in-the-Middle attack"
+   ],
+   "answer": 3,
+   "solution": "**MITM** — the hidden middleman between sender and receiver.",
+   "shortcut": "Middle man listens.",
+   "difficulty": "medium",
+   "subtopic": "cs-attacks",
+   "pattern": "cs-a3",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-attacks-p09",
+   "q": "Users of open public Wi-Fi are most exposed to which attack?",
+   "figure": null,
+   "options": [
+    "Salami attack",
+    "Man-in-the-Middle",
+    "Logic bomb",
+    "Data diddling"
+   ],
+   "answer": 1,
+   "solution": "Unencrypted traffic on open Wi-Fi is read by anyone in the middle — **MITM territory**; HTTPS/VPN protect you.",
+   "shortcut": "Open Wi-Fi, open ears.",
+   "difficulty": "medium",
+   "subtopic": "cs-attacks",
+   "pattern": "cs-a3",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-attacks-p10",
+   "q": "Which defence makes a man-in-the-middle attack ineffective?",
+   "figure": null,
+   "options": [
+    "End-to-end encryption (HTTPS/VPN)",
+    "A bigger monitor",
+    "More RAM",
+    "Turning off Bluetooth"
+   ],
+   "answer": 0,
+   "solution": "With encryption the middleman intercepts only **ciphertext** he cannot read.",
+   "shortcut": "Encrypt the middle away.",
+   "difficulty": "hard",
+   "subtopic": "cs-attacks",
+   "pattern": "cs-a3",
+   "timeSec": 30
+  },
+  {
+   "id": "cs-attacks-p11",
+   "q": "A program hidden in a payroll system that waits for 1 April and then wipes the database is a —",
+   "figure": null,
+   "options": [
+    "Worm",
+    "Firewall",
+    "Logic bomb",
+    "Bot"
+   ],
+   "answer": 2,
+   "solution": "**Logic bomb** — sleeps until its trigger condition (a date or event), then detonates.",
+   "shortcut": "Bomb with a date fuse.",
+   "difficulty": "medium",
+   "subtopic": "cs-attacks",
+   "pattern": "cs-a4",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-attacks-p12",
+   "q": "Stealing one rupee from each of ten lakh accounts is a —",
+   "figure": null,
+   "options": [
+    "Salami attack",
+    "Phishing attack",
+    "DDoS attack",
+    "MITM attack"
+   ],
+   "answer": 0,
+   "solution": "**Salami slicing** — many tiny slices nobody notices, adding up to a fortune.",
+   "shortcut": "Thin slices, big total.",
+   "difficulty": "hard",
+   "subtopic": "cs-attacks",
+   "pattern": "cs-a4",
+   "timeSec": 30
+  },
+  {
+   "id": "cs-attacks-p13",
+   "q": "Entering SQL commands into a website's input box to trick its database is —",
+   "figure": null,
+   "options": [
+    "Data mining",
+    "Web browsing",
+    "SQL injection",
+    "Packet switching"
+   ],
+   "answer": 2,
+   "solution": "**SQL injection** — hostile database commands injected through a form field.",
+   "shortcut": "Inject commands into the form.",
+   "difficulty": "medium",
+   "subtopic": "cs-attacks",
+   "pattern": "cs-a4",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-attacks-p14",
+   "q": "Changing figures in a record while they are being entered into a computer system is —",
+   "figure": null,
+   "options": [
+    "Data mining",
+    "Data diddling",
+    "Debugging",
+    "Defragmentation"
+   ],
+   "answer": 1,
+   "solution": "**Data diddling** = data altered before/during entry — the record itself lies.",
+   "shortcut": "Diddle the data at the door.",
+   "difficulty": "medium",
+   "subtopic": "cs-attacks",
+   "pattern": "cs-a4",
+   "timeSec": 30
+  },
+  {
+   "id": "cs-prevention-p01",
+   "q": "A hardware or software barrier that filters traffic between your network and the Internet by rules is a —",
+   "figure": null,
+   "options": [
+    "Compiler",
+    "Plotter",
+    "Router table",
+    "Firewall"
+   ],
+   "answer": 3,
+   "solution": "**Firewall** = the rule-based doorman of a network.",
+   "shortcut": "Wall of rules.",
+   "difficulty": "easy",
+   "subtopic": "cs-prevention",
+   "pattern": "cs-v1",
+   "timeSec": 20
+  },
+  {
+   "id": "cs-prevention-p02",
+   "q": "A firewall primarily decides —",
+   "figure": null,
+   "options": [
+    "Which files to delete",
+    "Which network traffic to allow or block",
+    "Which printer to use",
+    "Which wallpaper to show"
+   ],
+   "answer": 1,
+   "solution": "Its whole job is **allow/block on traffic** passing the boundary — nothing about files or printing.",
+   "shortcut": "Traffic in, traffic out.",
+   "difficulty": "medium",
+   "subtopic": "cs-prevention",
+   "pattern": "cs-v1",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-prevention-p03",
+   "q": "Which statement about a firewall is TRUE?",
+   "figure": null,
+   "options": [
+    "It removes viruses from the hard disk",
+    "It replaces the need for backups",
+    "It encrypts every file automatically",
+    "It filters the doorway but does not clean an infection inside"
+   ],
+   "answer": 3,
+   "solution": "**Firewall filters traffic**; cleaning inside files is the antivirus's job.",
+   "shortcut": "Doorman, not doctor.",
+   "difficulty": "hard",
+   "subtopic": "cs-prevention",
+   "pattern": "cs-v1",
+   "timeSec": 35
+  },
+  {
+   "id": "cs-prevention-p04",
+   "q": "Software that scans the computer to find and remove viruses is —",
+   "figure": null,
+   "options": [
+    "Antivirus",
+    "Antenna",
+    "Assembler",
+    "Application suite"
+   ],
+   "answer": 0,
+   "solution": "**Antivirus** scans, detects and removes malware.",
+   "shortcut": "Anti = against viruses.",
+   "difficulty": "easy",
+   "subtopic": "cs-prevention",
+   "pattern": "cs-v2",
+   "timeSec": 20
+  },
+  {
+   "id": "cs-prevention-p05",
+   "q": "Why must antivirus software be updated regularly?",
+   "figure": null,
+   "options": [
+    "Updates make the computer faster",
+    "Old versions stop the Internet",
+    "New malware and new signatures appear every day",
+    "Updates change the wallpaper"
+   ],
+   "answer": 2,
+   "solution": "Antivirus matches **signatures**; without updates it cannot recognise yesterday's new malware.",
+   "shortcut": "New germs, new medicine.",
+   "difficulty": "medium",
+   "subtopic": "cs-prevention",
+   "pattern": "cs-v2",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-prevention-p06",
+   "q": "In an odd-one-out list, which item does NOT belong with the others?",
+   "figure": null,
+   "options": [
+    "Firewall",
+    "Virus",
+    "Trojan horse",
+    "Worm"
+   ],
+   "answer": 0,
+   "solution": "Virus, trojan, worm are **malware (attacks)**; a firewall is **protection** — the odd one out.",
+   "shortcut": "Three attacks, one defence.",
+   "difficulty": "hard",
+   "subtopic": "cs-prevention",
+   "pattern": "cs-v2",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-prevention-p07",
+   "q": "Two-factor authentication means —",
+   "figure": null,
+   "options": [
+    "Typing the password twice",
+    "Two people sharing one password",
+    "Password plus a second proof such as an OTP",
+    "Two browsers logged in"
+   ],
+   "answer": 2,
+   "solution": "**2FA = something you know + something you have/are** — password plus OTP or fingerprint.",
+   "shortcut": "Two locks, one door.",
+   "difficulty": "easy",
+   "subtopic": "cs-prevention",
+   "pattern": "cs-v3",
+   "timeSec": 20
+  },
+  {
+   "id": "cs-prevention-p08",
+   "q": "Which is the STRONGEST password?",
+   "figure": null,
+   "options": [
+    "sunita1990",
+    "12345678",
+    "password",
+    "K7#mQx9!pLz2"
+   ],
+   "answer": 3,
+   "solution": "Long + mixed character types + not a personal fact = strong; the rest are the top of every 'worst passwords' list.",
+   "shortcut": "Long, mixed, personal-free.",
+   "difficulty": "medium",
+   "subtopic": "cs-prevention",
+   "pattern": "cs-v3",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-prevention-p09",
+   "q": "A caller says he is from your bank and asks for the OTP you just received. You should —",
+   "figure": null,
+   "options": [
+    "Share it, he sounds genuine",
+    "Refuse — banks never ask for OTPs",
+    "Share only half of it",
+    "Share it if he knows your name"
+   ],
+   "answer": 1,
+   "solution": "**No genuine bank ever asks for OTP/PIN/CVV** — an OTP shared is money gone.",
+   "shortcut": "OTP is never shared.",
+   "difficulty": "medium",
+   "subtopic": "cs-prevention",
+   "pattern": "cs-v3",
+   "timeSec": 20
+  },
+  {
+   "id": "cs-prevention-p10",
+   "q": "Why does 2FA defeat a thief who has stolen your password?",
+   "figure": null,
+   "options": [
+    "He still lacks the second factor (OTP/biometric)",
+    "The password automatically changes",
+    "The computer shuts down",
+    "Stolen passwords work only on Fridays"
+   ],
+   "answer": 0,
+   "solution": "2FA's whole design: **knowing the password alone is not enough** — the second proof is missing.",
+   "shortcut": "One key opens nothing.",
+   "difficulty": "hard",
+   "subtopic": "cs-prevention",
+   "pattern": "cs-v3",
+   "timeSec": 30
+  },
+  {
+   "id": "cs-prevention-p11",
+   "q": "Readable, unscrambled data is called —",
+   "figure": null,
+   "options": [
+    "Ciphertext",
+    "Hypertext",
+    "Plaintext",
+    "Notepad"
+   ],
+   "answer": 2,
+   "solution": "**Plaintext** = the readable original; scrambling turns it into ciphertext.",
+   "shortcut": "Plain before cipher.",
+   "difficulty": "easy",
+   "subtopic": "cs-prevention",
+   "pattern": "cs-v4",
+   "timeSec": 20
+  },
+  {
+   "id": "cs-prevention-p12",
+   "q": "Data scrambled into unreadable form is called —",
+   "figure": null,
+   "options": [
+    "Ciphertext",
+    "Plaintext",
+    "Wikitext",
+    "Context"
+   ],
+   "answer": 0,
+   "solution": "**Ciphertext** = the encrypted form; decryption with the key returns plaintext.",
+   "shortcut": "Cipher = code.",
+   "difficulty": "easy",
+   "subtopic": "cs-prevention",
+   "pattern": "cs-v4",
+   "timeSec": 20
+  },
+  {
+   "id": "cs-prevention-p13",
+   "q": "AES, the widely used modern encryption standard, expands to —",
+   "figure": null,
+   "options": [
+    "American Electronic Security",
+    "Applied Email Safety",
+    "Advanced Encryption Standard",
+    "Automatic Encrypted System"
+   ],
+   "answer": 2,
+   "solution": "**AES = Advanced Encryption Standard** — the world's workhorse cipher.",
+   "shortcut": "Advanced, not American.",
+   "difficulty": "medium",
+   "subtopic": "cs-prevention",
+   "pattern": "cs-v4",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-prevention-p14",
+   "q": "The padlock symbol with https:// in the browser's address bar means —",
+   "figure": null,
+   "options": [
+    "The site is government-approved",
+    "The connection to the site is encrypted",
+    "The site has no advertisements",
+    "The page will load faster"
+   ],
+   "answer": 1,
+   "solution": "**https = HTTP inside an encrypted TLS/SSL tunnel** — the padlock certifies the tunnel, not the site's honesty.",
+   "shortcut": "Padlock = locked line.",
+   "difficulty": "medium",
+   "subtopic": "cs-prevention",
+   "pattern": "cs-v4",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-it-act-p01",
+   "q": "India's Information Technology Act was enacted in —",
+   "figure": null,
+   "options": [
+    "1990",
+    "2010",
+    "2000",
+    "2005"
+   ],
+   "answer": 2,
+   "solution": "**IT Act, 2000** — in force from 17 October 2000.",
+   "shortcut": "Cyber law born in 2000.",
+   "difficulty": "easy",
+   "subtopic": "cs-it-act",
+   "pattern": "cs-l1",
+   "timeSec": 20
+  },
+  {
+   "id": "cs-it-act-p02",
+   "q": "The IT Act, 2000 was based on the model law of —",
+   "figure": null,
+   "options": [
+    "UNCITRAL",
+    "UNESCO",
+    "UNICEF",
+    "NATO"
+   ],
+   "answer": 0,
+   "solution": "**UNCITRAL** — the UN Commission on International Trade Law — recommended legal recognition of e-records.",
+   "shortcut": "Trade law, not education.",
+   "difficulty": "medium",
+   "subtopic": "cs-it-act",
+   "pattern": "cs-l1",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-it-act-p03",
+   "q": "The IT Act received its major amendment in —",
+   "figure": null,
+   "options": [
+    "2002",
+    "2015",
+    "2008",
+    "1999"
+   ],
+   "answer": 2,
+   "solution": "The **2008 amendment** (effective 2009) added 66C identity theft, 66D cheating, 66F cyber-terrorism and CERT-In's statutory role.",
+   "shortcut": "First big revision in 2008.",
+   "difficulty": "medium",
+   "subtopic": "cs-it-act",
+   "pattern": "cs-l1",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-it-act-p04",
+   "q": "Hacking (computer-related offences) is punished under which section of the IT Act?",
+   "figure": null,
+   "options": [
+    "Section 21",
+    "Section 66",
+    "Section 80",
+    "Section 101"
+   ],
+   "answer": 1,
+   "solution": "**Sec 66** = computer-related offences — the 'hacking' section with dishonest intent.",
+   "shortcut": "66 = hacking.",
+   "difficulty": "medium",
+   "subtopic": "cs-it-act",
+   "pattern": "cs-l2",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-it-act-p05",
+   "q": "Tampering with computer source code is an offence under —",
+   "figure": null,
+   "options": [
+    "Section 43",
+    "Section 72",
+    "Section 67",
+    "Section 65"
+   ],
+   "answer": 3,
+   "solution": "**Sec 65 = source code tampering**; 43 is unauthorised access/damage; 67 is obscenity.",
+   "shortcut": "65 = source code.",
+   "difficulty": "medium",
+   "subtopic": "cs-it-act",
+   "pattern": "cs-l2",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-it-act-p06",
+   "q": "Which section of the IT Act was STRUCK DOWN by the Supreme Court in 2015?",
+   "figure": null,
+   "options": [
+    "Section 66C",
+    "Section 66A",
+    "Section 67",
+    "Section 65"
+   ],
+   "answer": 1,
+   "solution": "**66A ('offensive messages') died in Shreya Singhal v. Union of India (2015)** — free speech prevailed; the others remain live law.",
+   "shortcut": "66A is dead law.",
+   "difficulty": "hard",
+   "subtopic": "cs-it-act",
+   "pattern": "cs-l2",
+   "timeSec": 35
+  },
+  {
+   "id": "cs-it-act-p07",
+   "q": "Publishing or transmitting obscene material in electronic form is punished under —",
+   "figure": null,
+   "options": [
+    "Section 65",
+    "Section 66C",
+    "Section 72",
+    "Section 67"
+   ],
+   "answer": 3,
+   "solution": "**Sec 67 = obscene electronic material** — 67A/67B variants were added in 2008.",
+   "shortcut": "67 = obscenity.",
+   "difficulty": "medium",
+   "subtopic": "cs-it-act",
+   "pattern": "cs-l2",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-it-act-p08",
+   "q": "CERT-In, the agency that responds to cyber security incidents in India, works under —",
+   "figure": null,
+   "options": [
+    "RBI",
+    "ISRO",
+    "MeitY",
+    "Election Commission"
+   ],
+   "answer": 2,
+   "solution": "**CERT-In functions under MeitY** (Ministry of Electronics and IT).",
+   "shortcut": "IT ministry runs CERT-In.",
+   "difficulty": "medium",
+   "subtopic": "cs-it-act",
+   "pattern": "cs-l3",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-it-act-p09",
+   "q": "Which body protects India's CRITICAL information infrastructure such as power grids and banking systems?",
+   "figure": null,
+   "options": [
+    "NCIIPC",
+    "CERT-In",
+    "TRAI",
+    "SEBI"
+   ],
+   "answer": 0,
+   "solution": "**NCIIPC** (under Sec 70A) guards critical infrastructure; CERT-In handles incident response generally.",
+   "shortcut": "Critical = NCIIPC.",
+   "difficulty": "hard",
+   "subtopic": "cs-it-act",
+   "pattern": "cs-l3",
+   "timeSec": 30
+  },
+  {
+   "id": "cs-it-act-p10",
+   "q": "The national helpline number for reporting cyber fraud in India is —",
+   "figure": null,
+   "options": [
+    "100",
+    "1930",
+    "181",
+    "139"
+   ],
+   "answer": 1,
+   "solution": "**1930** — the national cyber-crime helpline (and cybercrime.gov.in online).",
+   "shortcut": "1930 = cyber helpline.",
+   "difficulty": "easy",
+   "subtopic": "cs-it-act",
+   "pattern": "cs-l3",
+   "timeSec": 20
+  },
+  {
+   "id": "cs-it-act-p11",
+   "q": "A digital signature is created with the signer's —",
+   "figure": null,
+   "options": [
+    "Public key and verified with the private key",
+    "Aadhaar number",
+    "Fingerprint scanner only",
+    "Private key and verified with the public key"
+   ],
+   "answer": 3,
+   "solution": "**Sign with your private key; anyone verifies with your public key** — secrecy of the private key is everything.",
+   "shortcut": "Private signs, public checks.",
+   "difficulty": "medium",
+   "subtopic": "cs-it-act",
+   "pattern": "cs-l4",
+   "timeSec": 30
+  },
+  {
+   "id": "cs-it-act-p12",
+   "q": "A digital signature mainly provides —",
+   "figure": null,
+   "options": [
+    "Free storage",
+    "Authentication and integrity of the document",
+    "Faster download",
+    "Anonymity"
+   ],
+   "answer": 1,
+   "solution": "It proves **who signed** and that **nothing changed after signing** — not secrecy, not speed.",
+   "shortcut": "Who + unaltered.",
+   "difficulty": "medium",
+   "subtopic": "cs-it-act",
+   "pattern": "cs-l4",
+   "timeSec": 25
+  },
+  {
+   "id": "cs-it-act-p13",
+   "q": "Which section of the IT Act gives legal recognition to digital signatures?",
+   "figure": null,
+   "options": [
+    "Section 9",
+    "Section 33",
+    "Section 90",
+    "Section 3"
+   ],
+   "answer": 3,
+   "solution": "**Sec 3 = authentication by digital (electronic) signature.**",
+   "shortcut": "3 signs.",
+   "difficulty": "easy",
+   "subtopic": "cs-it-act",
+   "pattern": "cs-l4",
+   "timeSec": 20
   }
  ]
 }
