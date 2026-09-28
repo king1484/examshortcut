@@ -3,11 +3,15 @@ import type { Metadata } from 'next';
 import { getExam, contentStats, availableSections, SECTION_META, listTopics } from '@/lib/content';
 import { Md } from '@/components/Md';
 import { CountdownChip } from '@/components/CountdownChip';
+import { DatePhases } from '@/components/DatePhases';
+import { CycleTimeline } from '@/components/CycleTimeline';
+
+const BUILT_AT = Date.now();
 
 export const dynamic = 'force-static';
 export const metadata: Metadata = {
-  title: 'SSC CGL 2026 — complete free guide: pattern, syllabus, cutoffs, mocks',
-  description: 'SSC CGL exam pattern, eligibility, posts & pay, selection process, topic-wise syllabus with shortcut tricks, cutoff trends and free mock tests in a real CBT interface.',
+  title: 'SSC CGL 2026 — complete guide: pattern, syllabus, cutoffs, mocks',
+  description: 'SSC CGL exam pattern, eligibility, posts & pay, selection process, topic-wise syllabus with shortcut tricks, cutoff trends and mock tests in a real CBT interface.',
 };
 
 function Row({ k, v }: { k: string; v: React.ReactNode }) {
@@ -45,35 +49,39 @@ export default function ExamPage() {
   return (
     <article className="max-w-4xl mx-auto">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
-      <p className="text-xs font-bold uppercase tracking-wide" style={{ color: 'var(--brand)' }}>Free complete guide</p>
+      <p className="text-xs font-bold uppercase tracking-wide" style={{ color: 'var(--brand)' }}>Complete exam guide</p>
       <h1 className="text-3xl sm:text-4xl font-extrabold mt-1">{exam.fullName}</h1>
       <Md className="mt-3 text-[15px] muted">{exam.overview}</Md>
 
-      <div className="card p-5 mt-6">
+      <div id="status" className="card p-5 mt-6 scroll-mt-28">
         <div className="flex items-center justify-between flex-wrap gap-2">
           <h2 className="text-lg font-extrabold">{lc.year} cycle — live status</h2>
           <span className="flex items-center gap-2 flex-wrap">
-            {lc.tier1 && <CountdownChip date="2026-09-30" />}
-            <span className="chip chip-high">Verified {exam.lastVerified}</span>
+            {lc.tier1 && <CountdownChip date="2026-09-30" end="2026-10-30" />}
+            <span className="chip">✓ Verified {new Date(`${exam.lastVerified}T00:00:00+05:30`).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' })}</span>
           </span>
         </div>
-        <Md className="mt-2 muted">{lc.status}</Md>
-        <div className="grid sm:grid-cols-2 gap-3 mt-3 text-sm">
-          {[['Notification', lc.notificationDate], ['Application window', lc.applicationWindow], ['Tier 1', lc.tier1], ['Tier 2', lc.tier2], ['Vacancies', lc.vacancies ? Number(lc.vacancies).toLocaleString('en-IN') : null], ['Fee', lc.fee]].map(([k, v]) => (
-            <div key={k} className="rounded-xl p-3" style={{ background: 'var(--surface-2)' }}>
-              <div className="text-xs faint font-semibold uppercase">{k}</div>
-              <div className="mt-1">{v ?? 'To be announced'}</div>
-            </div>
-          ))}
+        <div className="status-callout">
+          <span className="status-kicker">Latest</span>
+          <div className="mt-1.5"><DatePhases phases={[{ node: <Md>{lc.status}</Md> }, ...(lc.statusPhases ?? []).map((ph: { from: string; status: string }) => ({ from: ph.from, node: <Md>{ph.status}</Md> }))]} /></div>
         </div>
-        {lc.notes && <Md className="mt-3 text-sm">{lc.notes}</Md>}
+        {lc.milestones && (
+          <div style={{ ['--cycle-n' as string]: lc.milestones.length }}>
+            <CycleTimeline milestones={lc.milestones} builtAt={BUILT_AT} />
+          </div>
+        )}
+        <div className="cycle-facts">
+          {lc.vacancies && <span className="cycle-fact"><b>Vacancies</b>{Number(lc.vacancies).toLocaleString('en-IN')}</span>}
+          {lc.fee && <span className="cycle-fact"><b>Fee</b>{lc.fee}</span>}
+        </div>
+        {lc.notes && <Md className="mt-3 text-sm muted">{lc.notes}</Md>}
       </div>
 
       <nav className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-6">
         {[
           ['/learn/', '📚 Syllabus & topic notes', `${stats.topics} topics, ${stats.formulas}+ formulas`],
           ['/exams/ssc-cgl/weightage/', '📊 Topic weightage', 'Questions per shift, by topic'],
-          ['/exams/ssc-cgl/mocks/', '🖥️ Free mock tests', 'Real CBT interface + analysis'],
+          ['/exams/ssc-cgl/mocks/', '🖥️ Mock tests', 'Real CBT interface + analysis'],
           ['/exams/ssc-cgl/cutoffs/', '📈 Cutoff trends', 'Year × category official cutoffs'],
           ['/exams/ssc-cgl/score-calculator/', '🧮 Score calculator', 'Safe-score estimator'],
           ['/exams/ssc-cgl/rank-estimator/', '🏅 Rank estimator', 'Marks → percentile + all-India rank'],

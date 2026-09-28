@@ -19,7 +19,7 @@ export function ThemeToggle() {
   };
   return (
     <button className="btn" style={{ padding: '.4rem .7rem', fontSize: '.8rem' }} onClick={cycle} aria-label={`Theme: ${LABEL[mode]}. Click to change`}>
-      {mode === 'dark' ? '☾' : mode === 'light' ? '☀' : '◐'} {LABEL[mode]}
+      {mode === 'dark' ? '☾' : mode === 'light' ? '☀' : '◐'}<span className="hidden min-[400px]:inline ml-1">{LABEL[mode]}</span>
     </button>
   );
 }

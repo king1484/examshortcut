@@ -6,9 +6,9 @@ import { LearnExamFilter } from '@/components/LearnExamFilter';
 
 export const dynamic = 'force-static';
 export const metadata: Metadata = {
-  title: 'All subjects — free topic-wise notes, question types, formulas & practice',
+  title: 'All subjects — topic-wise notes, question types, formulas & practice',
   description:
-    'Quantitative Aptitude, Reasoning, English, General Awareness and Computer — the common subjects of SSC, Railway, Banking, Defence and entrance exams. Every topic has detailed notes, every question type with its formula and logic, and practice sets.',
+    'Quantitative Aptitude, Reasoning, English, General Awareness and Computer — the common subjects of SSC, Railway, teaching and entrance exams. Every topic has detailed notes, every question type with its formula and logic, and practice sets.',
   alternates: { canonical: '/learn/' },
 };
 

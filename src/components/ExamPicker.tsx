@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { EXAMS, EXAM_CATEGORIES } from '@/lib/exams';
+import { EXAMS, EXAM_CATEGORIES, type ExamInfo } from '@/lib/exams';
 import { SECTION_META } from '@/lib/sections';
 import { setSelectedExam, useSelectedExam } from '@/lib/useExam';
 
@@ -32,7 +32,7 @@ export function ExamPicker({ heading = 'Which exam are you preparing for?' }: { 
                     style={on ? { borderColor: 'var(--brand)', boxShadow: '0 0 0 2px var(--brand)' } : undefined}>
                     <span className="flex items-center gap-1.5">
                       <span className="font-bold text-sm">{e.name}</span>
-                      {e.status === 'soon' && <span className="chip chip-low ml-auto" style={{ fontSize: 10 }}>hub soon</span>}
+                      {e.status === 'soon' && <span className="chip chip-low ml-auto" style={{ fontSize: 10 }}>soon</span>}
                       {on && <span className="ml-auto text-xs font-bold" style={{ color: 'var(--brand)' }}>✓</span>}
                     </span>
                     <span className="text-[11px] muted mt-1 block line-clamp-2">{e.blurb}</span>
@@ -47,6 +47,26 @@ export function ExamPicker({ heading = 'Which exam are you preparing for?' }: { 
   );
 }
 
+/** Conducting body, eligibility, stages and applicant count — the basic facts shown for every exam. */
+export function ExamBasicsList({ exam, className = '' }: { exam: ExamInfo; className?: string }) {
+  const rows: [string, string][] = [
+    ['Conducted by', exam.basics.conductingBody],
+    ['Eligibility', exam.basics.eligibility],
+    ['Stages', exam.basics.stages],
+    ['Applicants', exam.basics.applicants],
+  ];
+  return (
+    <dl className={`grid grid-cols-[6.5rem_1fr] gap-x-3 gap-y-1 text-sm ${className}`}>
+      {rows.map(([k, v]) => (
+        <div key={k} className="contents">
+          <dt className="faint">{k}</dt>
+          <dd>{v}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
 /** What the chosen exam covers, with links into the shared subjects. */
 export function SelectedExamPanel() {
   const exam = useSelectedExam();
@@ -58,9 +78,14 @@ export function SelectedExamPanel() {
         <span className="text-lg font-extrabold">{exam.name}</span>
         {exam.status === 'live'
           ? <Link href={`/exams/${exam.id}/`} className="btn btn-brand ml-auto" style={{ padding: '.35rem .8rem' }}>Open {exam.short} hub →</Link>
-          : <span className="chip chip-low ml-auto">Exam hub (pattern, cutoffs, mocks) coming next</span>}
+          : <span className="chip chip-low ml-auto">Full hub coming soon</span>}
       </div>
-      <p className="text-sm muted mt-2">Subjects in this exam — notes, question types and practice are ready now:</p>
+      {exam.status === 'soon' && <ExamBasicsList exam={exam} className="mt-3" />}
+      <p className="text-sm muted mt-3">
+        {exam.sections.length
+          ? 'Subjects in this exam — notes, question types and practice are ready now:'
+          : `${exam.short} subjects aren't on ExamShortcut yet — meanwhile, sharpen speed and accuracy here:`}
+      </p>
       <div className="flex flex-wrap gap-2 mt-2">
         {exam.sections.map((s) => (
           <Link key={s} href={`/${s}/`} className="btn" style={{ padding: '.35rem .75rem' }}>

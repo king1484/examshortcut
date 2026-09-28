@@ -12,9 +12,9 @@ const sans = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-sans', di
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://examshortcut.in'),
-  title: { default: 'ExamShortcut — Free government & entrance exam preparation: notes, shortcuts, mocks', template: '%s · ExamShortcut' },
+  title: { default: 'ExamShortcut — Government & entrance exam preparation: notes, shortcuts, mocks', template: '%s · ExamShortcut' },
   description:
-    'Free preparation for SSC, Railway, Banking, Defence and entrance exams: detailed topic notes, every question type with formulas and shortcuts, practice sets, daily quiz, full mocks, cutoffs and 5 years of current affairs.',
+    'Preparation for SSC, Railway, teaching and entrance exams: detailed topic notes, every question type with formulas and shortcuts, practice sets, daily quiz, full mocks, cutoffs and 5 years of current affairs.',
   manifest: '/manifest.webmanifest',
   icons: { icon: '/icon.svg', apple: '/icon-192.png' },
   openGraph: { siteName: 'ExamShortcut', type: 'website', locale: 'en_IN' },

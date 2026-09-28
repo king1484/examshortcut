@@ -15,8 +15,8 @@ export async function generateMetadata({ params }: { params: Promise<{ section: 
   const nFormulas = t.subtopics.reduce((n, s) => n + (s.formulas?.length ?? 0), 0);
   const nTricks = t.subtopics.reduce((n, s) => n + (s.tricks?.length ?? 0), 0);
   return {
-    title: `${t.title}: notes, formulas, shortcut tricks & free practice`,
-    description: `${t.title} for SSC, Railway, Banking & other govt exams: ${nFormulas}+ formulas, ${nTricks} shortcut tricks with examples, recurring PYQ patterns, solved questions and a free ${t.practice?.length ?? 0}-question topic test.`,
+    title: `${t.title}: notes, formulas, shortcut tricks & practice`,
+    description: `${t.title} for SSC, Railway & other govt exams: ${nFormulas}+ formulas, ${nTricks} shortcut tricks with examples, recurring PYQ patterns, solved questions and a ${t.practice?.length ?? 0}-question topic test.`,
   };
 }
 

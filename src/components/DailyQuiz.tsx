@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { store, useStore } from '@/lib/store';
 import { SECTION_META, type SectionId } from '@/lib/sections';
 import { useSelectedExam } from '@/lib/useExam';
+import { examHasSection } from '@/lib/exams';
 import { TopicQuiz } from './TopicQuiz';
 import type { Question } from '@/lib/types';
 
@@ -25,7 +26,7 @@ export function DailyQuiz() {
   }, []);
 
   const secs = useMemo(
-    () => (bucket?.sections ?? []).filter((s) => !exam || exam.sections.includes(s.section as never)),
+    () => (bucket?.sections ?? []).filter((s) => examHasSection(exam, s.section)),
     [bucket, exam],
   );
 

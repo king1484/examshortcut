@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ section: 
   if (!t || !s) return {};
   return {
     title: `${s.title} — notes, question types & practice · ${t.title}`,
-    description: `${s.title} explained in simple English: detailed notes, every question type asked in SSC, Railway, Banking and other exams with formulas and logic, shortcut tricks and free practice sets.`,
+    description: `${s.title} explained in simple English: detailed notes, every question type asked in SSC, Railway and other exams with formulas and logic, shortcut tricks and practice sets.`,
   };
 }
 

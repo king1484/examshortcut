@@ -41,9 +41,9 @@ export function SiteHeader() {
   if (/\/mocks\/[^/]+\/?$/.test(path) && path !== '/exams/ssc-cgl/mocks/') return null;
   return (
     <header className="sticky top-0 z-30 border-b backdrop-blur" style={{ borderColor: 'var(--line)', background: 'color-mix(in srgb, var(--bg) 88%, transparent)' }}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-2 sm:gap-3">
         <Link href="/" aria-label="ExamShortcut home"><Logo /></Link>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           <Link href="/search/" aria-label="Search" className="btn" style={{ padding: '.4rem .7rem' }}>🔍<span className="hidden md:inline ml-1">Search</span></Link>
           <Link href="/exams/" className="btn hidden sm:inline-flex" style={{ padding: '.4rem .75rem' }} title="Change exam">
             🎯 {exam ? exam.short : 'Choose exam'}

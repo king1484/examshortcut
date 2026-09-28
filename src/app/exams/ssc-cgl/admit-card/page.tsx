@@ -73,7 +73,7 @@ export default function AdmitCardPage() {
       <div className="grid sm:grid-cols-3 gap-3 mt-6">
         <Link href="/exams/ssc-cgl/calendar/" className="card p-4"><div className="font-bold text-sm">⏳ All 2026 dates</div><div className="text-xs faint mt-1">Countdown + add to your calendar</div></Link>
         <Link href="/exams/ssc-cgl/score-calculator/" className="card p-4"><div className="font-bold text-sm">🧮 Estimate your score</div><div className="text-xs faint mt-1">From response-sheet counts, vs cut-offs</div></Link>
-        <Link href="/exams/ssc-cgl/mocks/" className="card p-4"><div className="font-bold text-sm">🖥️ Practise the interface</div><div className="text-xs faint mt-1">Free full mocks in the real CBT layout</div></Link>
+        <Link href="/exams/ssc-cgl/mocks/" className="card p-4"><div className="font-bold text-sm">🖥️ Practise the interface</div><div className="text-xs faint mt-1">Full mocks in the real CBT layout</div></Link>
       </div>
 
       <h2 className="text-2xl font-extrabold mt-10">Frequently asked</h2>

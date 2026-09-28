@@ -18,8 +18,8 @@ export async function generateMetadata({ params }: { params: Promise<{ section: 
   const sec = getSection(section as SectionId);
   if (!sec) return {};
   return {
-    title: `${sec.name} for competitive exams — notes, topics & free tests`,
-    description: `How to prepare ${sec.name} for SSC, Railway, Banking and other govt exams: topic priority, detailed notes, question types, shortcut tricks and free topic-wise tests.`,
+    title: `${sec.name} for competitive exams — notes, topics & tests`,
+    description: `How to prepare ${sec.name} for SSC, Railway and other govt exams: topic priority, detailed notes, question types, shortcut tricks and topic-wise tests.`,
   };
 }
 

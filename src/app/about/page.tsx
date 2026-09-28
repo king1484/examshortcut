@@ -11,7 +11,7 @@ export default function AboutPage() {
     <div className="max-w-3xl mx-auto">
       <h1 className="text-3xl font-extrabold">About ExamShortcut</h1>
       <p className="mt-3">
-        ExamShortcut is a free, no-login preparation site for Indian government exams, starting with SSC CGL.
+        ExamShortcut is a preparation site for Indian government and entrance exams, starting with SSC CGL.
         All learning content is open to everyone. Your mock attempts, mistake notebook and progress are saved on your
         device, and — if you log in — synced to your private account so they follow you to every device.
       </p>
@@ -39,7 +39,7 @@ export default function AboutPage() {
       <h2 className="text-2xl font-extrabold mt-10">Roadmap</h2>
       <ul className="list-disc pl-5 mt-3 space-y-1.5 text-sm">
         <li><b>Now</b> — the common subjects (Quant, Reasoning, English, GA, Computer) in depth, daily quiz, 5 years of current affairs, and the full SSC CGL hub.</li>
-        <li><b>Next</b> — full hubs for SSC CHSL, MTS, GD, CPO, RRB NTPC / Group D, banking and entrance exams on the same subjects.</li>
+        <li><b>Next</b> — full hubs for SSC CHSL, MTS, GD, RRB NTPC / Group D, CTET, NEET UG, JEE Main and CUET UG.</li>
         <li><b>Later</b> — Hindi medium, error reporting on every question, spaced-repetition revision.</li>
       </ul>
 

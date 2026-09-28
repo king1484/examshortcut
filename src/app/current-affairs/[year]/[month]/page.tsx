@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ year: str
   if (!m) return {};
   return {
     title: `Current affairs ${m.label} — exam headlines + quiz`,
-    description: `${m.items.length} exam-relevant current-affairs headlines from ${m.label} in simple English — appointments, awards, sports, schemes, summits, defence, science and economy — with a free ${m.quiz?.length ?? 0}-question quiz.`,
+    description: `${m.items.length} exam-relevant current-affairs headlines from ${m.label} in simple English — appointments, awards, sports, schemes, summits, defence, science and economy — with a ${m.quiz?.length ?? 0}-question quiz.`,
   };
 }
 

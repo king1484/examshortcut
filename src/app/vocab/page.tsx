@@ -4,7 +4,7 @@ import { VocabBank } from '@/components/VocabBank';
 export const dynamic = 'force-static';
 export const metadata: Metadata = {
   title: 'SSC CGL vocabulary — idioms, one word substitution, synonyms, antonyms & spellings',
-  description: 'Free SSC CGL English vocab bank: idioms and phrases, one word substitution, synonyms, antonyms and commonly misspelt words with meanings and examples. Searchable lists plus flashcards that track what you know.',
+  description: 'SSC CGL English vocab bank: idioms and phrases, one word substitution, synonyms, antonyms and commonly misspelt words with meanings and examples. Searchable lists plus flashcards that track what you know.',
 };
 
 export default function VocabPage() {

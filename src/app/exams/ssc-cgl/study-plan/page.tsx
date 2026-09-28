@@ -6,7 +6,7 @@ import { StudyPlanner, type PlanTopic, type PlanMock } from '@/components/StudyP
 export const dynamic = 'force-static';
 export const metadata: Metadata = {
   title: 'SSC CGL study plan generator — day-by-day timetable till exam day',
-  description: 'Free SSC CGL study plan: enter your exam date, daily study hours and weak sections to get a day-by-day timetable covering every topic, with weekly full mocks and a revision block. You can tick off progress, and it saves on your device.',
+  description: 'SSC CGL study plan: enter your exam date, daily study hours and weak sections to get a day-by-day timetable covering every topic, with weekly full mocks and a revision block. You can tick off progress, and it saves on your device.',
 };
 
 export default function StudyPlanPage() {

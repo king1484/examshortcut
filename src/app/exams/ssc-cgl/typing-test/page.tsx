@@ -5,8 +5,8 @@ import { DestTyping } from '@/components/DestTyping';
 
 export const dynamic = 'force-static';
 export const metadata: Metadata = {
-  title: 'SSC CGL typing test (DEST) practice — free, with SSC-style error marking',
-  description: 'Free SSC CGL DEST practice: type a 2000-key-depression passage in 15 minutes with paste and spell-check disabled. Each full and half mistake is marked on the passage, and you get your error % against the UR, OBC and SC/ST limits.',
+  title: 'SSC CGL typing test (DEST) practice — with SSC-style error marking',
+  description: 'SSC CGL DEST practice: type a 2000-key-depression passage in 15 minutes with paste and spell-check disabled. Each full and half mistake is marked on the passage, and you get your error % against the UR, OBC and SC/ST limits.',
 };
 
 export default function TypingTestPage() {

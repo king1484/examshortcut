@@ -59,7 +59,7 @@ export function LoginForm() {
     <div className="card p-6 sm:p-8">
       <h1 className="text-2xl font-extrabold">Log in to ExamShortcut</h1>
       <p className="muted text-sm mt-2">
-        Notes, practice, calculators, cutoffs and free mocks are open to everyone — no account needed.
+        Notes, practice, calculators, cutoffs and open mocks are available to everyone — no account needed.
         Log in only to <b>save and sync</b> your revision list, studied topics, daily-quiz streak and test scores.
       </p>
 

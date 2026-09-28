@@ -158,7 +158,7 @@ export function Dashboard() {
           <h1 className="text-3xl font-extrabold">Your dashboard</h1>
           <p className="muted text-sm mt-1">Everything you've done on this device, and what to do next.</p>
         </div>
-        <CountdownChip date="2026-09-30" />
+        <CountdownChip date="2026-09-30" end="2026-10-30" />
       </div>
 
       {isEmpty && catalog !== null && (

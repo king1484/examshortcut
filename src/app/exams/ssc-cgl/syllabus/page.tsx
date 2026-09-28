@@ -5,8 +5,8 @@ import { Md } from '@/components/Md';
 
 export const dynamic = 'force-static';
 export const metadata: Metadata = {
-  title: 'SSC CGL syllabus 2026 — topic-wise, with free notes & shortcut tricks',
-  description: 'Complete SSC CGL Tier 1 + Tier 2 syllabus organised topic by topic: Quant, Reasoning, English, General Awareness and Computer. Each topic has formulas, shortcuts, tricks and a free topic test.',
+  title: 'SSC CGL syllabus 2026 — topic-wise, with notes & shortcut tricks',
+  description: 'Complete SSC CGL Tier 1 + Tier 2 syllabus organised topic by topic: Quant, Reasoning, English, General Awareness and Computer. Each topic has formulas, shortcuts, tricks and a topic test.',
 };
 
 export default function SyllabusPage() {
@@ -18,7 +18,7 @@ export default function SyllabusPage() {
       <p className="muted mt-2 max-w-3xl">
         The exact topics SSC asks, ordered by what gives the most marks for your time. Every topic page has:
         concept notes → all formulas → <b>shortcut tricks with worked examples</b> → mistakes to avoid → the recurring
-        question patterns → a free topic test.
+        question patterns → a topic test.
       </p>
 
       {sections.map((sid) => {
