@@ -1,638 +1,2479 @@
 {
-  "id": "hardware-memory",
-  "sectionId": "computer",
-  "title": "Hardware, Memory & Number Systems",
-  "order": 2,
-  "importance": "high",
-  "avgQuestions": {
-    "tier1": 0,
-    "tier2": 3
+ "id": "hardware-memory",
+ "sectionId": "computer",
+ "title": "Hardware, Memory & Number Systems",
+ "order": 2,
+ "importance": "high",
+ "avgQuestions": {
+  "tier1": 0,
+  "tier2": 3
+ },
+ "summary": "Memory hierarchy and units, binary/octal/decimal/hex conversions, input-output devices, ports and storage media. Number-conversion and memory-unit questions are near-guaranteed marks because they need no theory recall - only method.",
+ "subtopics": [
+  {
+   "id": "hm-memory-hierarchy",
+   "title": "Memory hierarchy, RAM/ROM and cache",
+   "concept": "Storage is arranged by speed vs cost vs size. Going up the ladder: faster, costlier, smaller.\n\n| Level | Example | Volatile? | Typical size |\n|---|---|---|---|\n| Registers | Inside CPU | Yes | Bytes |\n| Cache (L1/L2/L3) | SRAM on/near CPU | Yes | KB - MB |\n| Main memory | RAM (DRAM) | Yes | GB |\n| Solid-state storage | SSD, pen drive | No | GB - TB |\n| Magnetic/optical | HDD, DVD | No | GB - TB |\n| Archival | Magnetic tape, cloud cold storage | No | TB - PB |\n\n**RAM (volatile - contents vanish at power-off):** **SRAM** - fast, costly, no refresh, used for cache; **DRAM** - slower, cheap, needs constant refreshing, used for main memory.\n\n**ROM (non-volatile, firmware):** PROM (programmed once) -> EPROM (erased by **UV light**) -> EEPROM (erased **electrically**; the BIOS chip is EEPROM/flash). **Flash memory** (pen drives, SSDs) is electrically erasable like EEPROM but block-wise.\n\n**Cache memory** sits between CPU and RAM and keeps copies of frequently used data (L1 smallest/fastest, L3 largest/slowest of the three). **Virtual memory** uses a disk area (page file) as an overflow extension of RAM - slow but lets big programs run.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Volatile = Vanishes",
+     "body": "**V**olatile memories **V**anish when power goes: registers, cache, RAM. Everything you *keep files on* (ROM, SSD, HDD, pen drive) is non-volatile.",
+     "example": {
+      "q": "Which is volatile - ROM or DRAM?",
+      "solution": "DRAM. ROM = Read Only Memory 'Remembers' even without power."
+     }
+    },
+    {
+     "title": "ROM family eraser",
+     "body": "P**ROM** (once) -> **EP**ROM (**E**rase with **P**hotons = UV) -> **EEP**ROM (**E**lectrically Erasable). The more E's, the more Electrical.",
+     "example": {
+      "q": "How is EPROM erased?",
+      "solution": "Exposure to ultraviolet light through the quartz window."
+     }
+    },
+    {
+     "title": "Cache position",
+     "body": "Cache is the CPU's personal notepad between CPU and RAM: L1 inside the core (fastest), then L2, then L3 shared. Any question 'memory between CPU and main memory' = cache.",
+     "example": {
+      "q": "Memory placed between CPU and RAM?",
+      "solution": "Cache memory (SRAM)."
+     }
+    }
+   ],
+   "mistakes": [
+    "Calling ROM volatile - RAM is volatile, ROM is not.",
+    "Saying cache is bigger than RAM - cache is tiny but fast.",
+    "Believing virtual memory is physical RAM - it is disk space acting as RAM overflow."
+   ],
+   "notes": "### The memory ladder\nComputer memory is a trade-off: the **faster** a memory is, the **smaller and costlier** it is. So machines stack several kinds, from tiny-fast to huge-slow:\n\n| Level | Technology | Volatile? | Typical size |\n|---|---|---|---|\n| Registers | Inside the CPU | Yes | Bytes |\n| **Cache** (L1/L2/L3) | **SRAM**, on/near the CPU | Yes | KB to MB |\n| **Main memory** | **RAM (DRAM)** | Yes | GB |\n| SSD | Flash chips | No | 100s of GB |\n| Hard disk / tape | Magnetic | No | TB |\n\nClimbing up = faster, costlier, smaller. The CPU keeps its most-wanted data as high on this ladder as possible.\n\n### Volatile vs non-volatile\n- **Volatile** memory **loses its content when power goes off**: registers, cache, RAM. The **V**ol **V**anishes rule.\n- **Non-volatile** keeps data without power: ROM, flash (SSD, pen drive, memory card), hard disk, DVD.\n\n### RAM — the working desk\nRAM holds the programs and data currently in use; it is **read and written** freely but wiped at power-off. Two flavours:\n| Type | Full form | Trait |\n|---|---|---|\n| **SRAM** | Static RAM | Flip-flop cells, no refresh needed, **fast, costly** → used for **cache** |\n| **DRAM** | Dynamic RAM | One transistor + capacitor per bit; the capacitor **leaks, so it needs constant refreshing**; cheaper, denser → used for **main memory** |\n\n### ROM family — the printed pages\nROM (**Read Only Memory**) is non-volatile; ordinary programs can only read it. Its family differs only in **how it can be written/erased**:\n| Type | Written | Erased |\n|---|---|---|\n| PROM | Once, by the user/manufacturer | Never |\n| **EPROM** | Reprogrammable | **Ultraviolet (UV) light** |\n| **EEPROM** | Reprogrammable | **Electrically**, in circuit |\n| Flash | Reprogrammable in blocks | Electrically (fast) — SSDs and pen drives are flash |\n\nThe PC's start-up firmware (**BIOS/UEFI**) lives in ROM/flash — that is why it survives every power cut.\n\n### Two bridge concepts\n- **Cache** — a small SRAM buffer between CPU and RAM (L1 inside the core is fastest and smallest, then L2, then L3). It keeps copies of recently used data so the CPU rarely waits for slow RAM.\n- **Virtual memory** — when RAM is full, the OS uses **disk space as extra RAM** (page file). It saves the machine from crashing but is far slower than real RAM. It is **not** physical memory.\n\n### Quick revision\n- Ladder (fast→slow): Registers → Cache (SRAM) → RAM (DRAM) → SSD → HDD → Tape.\n- Volatile = vanishes: registers, cache, RAM. Non-volatile: ROM, flash, disk.\n- SRAM = cache (fast, no refresh); DRAM = main RAM (cheap, needs refresh).\n- PROM once → EPROM (UV erase) → EEPROM (electrical erase) → flash (blocks).\n- Virtual memory = disk acting as RAM overflow, not real RAM.",
+   "patterns": [
+    {
+     "id": "hm-hie-p1",
+     "name": "Volatile vs non-volatile identification",
+     "frequency": "very common",
+     "howToSpot": "'Which of these is volatile?', 'content of which memory is lost on power failure?', statement lists mixing RAM, ROM, cache, disk.",
+     "formula": null,
+     "logic": "1. Volatile = vanishes with power: registers, cache, RAM (SRAM and DRAM both).\n2. Non-volatile: ROM and its family, flash (SSD, pen drive), magnetic disk, DVD.\n3. In statement questions, test each memory against this split — ROM is never volatile.",
+     "example": {
+      "q": "Which of the following is **non-volatile**?",
+      "solution": "**ROM** — it keeps its content without power. RAM, cache and registers are all volatile."
+     }
+    },
+    {
+     "id": "hm-hie-p2",
+     "name": "Hierarchy ordering and cache position",
+     "frequency": "very common",
+     "howToSpot": "Arrange memories by speed or size, or identify the memory between CPU and RAM, or the levels L1/L2/L3.",
+     "formula": null,
+     "logic": "1. Speed order: Registers > Cache > RAM > SSD > HDD > Tape; size order is the exact reverse.\n2. Cache = small SRAM buffer between CPU and RAM; L1 smallest-fastest, then L2, L3.\n3. 'Smallest but fastest' always points to registers, not cache.",
+     "example": {
+      "q": "Arrange by access speed (fastest first): RAM, Registers, Hard disk, Cache",
+      "solution": "**Registers → Cache → RAM → Hard disk.** Each step down trades speed for size and cheapness."
+     }
+    },
+    {
+     "id": "hm-hie-p3",
+     "name": "SRAM vs DRAM",
+     "frequency": "common",
+     "howToSpot": "'Why does DRAM need refreshing?', 'which RAM is used in cache?', 'SRAM vs DRAM statements'.",
+     "formula": null,
+     "logic": "1. DRAM stores each bit in a capacitor that leaks charge → needs **constant refreshing**; cheaper, denser → main memory.\n2. SRAM uses flip-flops, no refresh, faster, costlier → **cache**.\n3. S = Static (stands still), D = Dynamic (must be refreshed).",
+     "example": {
+      "q": "DRAM needs to be refreshed periodically because —",
+      "solution": "Each DRAM bit sits in a tiny **capacitor that gradually loses its charge**, so the cells are re-read and re-written thousands of times a second to keep the data alive."
+     }
+    },
+    {
+     "id": "hm-hie-p4",
+     "name": "ROM family: PROM / EPROM / EEPROM / firmware",
+     "frequency": "common",
+     "howToSpot": "'EPROM is erased by…', 'EEPROM differs from EPROM because…', 'where is the BIOS stored?', 'which ROM can be programmed only once?'",
+     "formula": null,
+     "logic": "1. Erasing ladder: PROM (never) → EPROM (UV light) → EEPROM (electrically) → flash (electrically, in blocks).\n2. BIOS/firmware lives in ROM/flash — non-volatile by definition.\n3. 'Programmed only once' = PROM; 'electrically erasable' = EEPROM.",
+     "example": {
+      "q": "Which memory is used to store the **BIOS** firmware of a PC?",
+      "solution": "A **ROM/flash (EEPROM-type) chip** on the motherboard — the firmware must survive every power cut, so volatile RAM is impossible."
+     }
+    },
+    {
+     "id": "hm-hie-p5",
+     "name": "Cache and virtual memory concepts",
+     "frequency": "common",
+     "howToSpot": "'Virtual memory is…', 'cache memory is placed…', 'which is faster, L1 or L3?', 'cache is made of which RAM?'.",
+     "formula": null,
+     "logic": "1. Cache = SRAM buffer between CPU and RAM; L1 (inside the core) fastest-smallest, then L2, L3.\n2. Virtual memory = **disk space** used as RAM overflow — big but slow, not physical RAM.\n3. Trap: 'virtual memory is part of RAM' — false; it lives on the storage disk.",
+     "example": {
+      "q": "**Virtual memory** is best described as —",
+      "solution": "Disk space managed by the OS as an overflow area when RAM fills up (the page file) — it prevents crashes but works far slower than real RAM."
+     }
+    }
+   ]
   },
-  "summary": "Memory hierarchy and units, binary/octal/decimal/hex conversions, input-output devices, ports and storage media. Number-conversion and memory-unit questions are near-guaranteed marks because they need no theory recall - only method.",
-  "subtopics": [
+  {
+   "id": "hm-memory-units",
+   "title": "Memory units and conversions",
+   "concept": "The ladder (exam convention: each step is x1024):\n\n| Unit | Equals | Value in bytes |\n|---|---|---|\n| 1 bit | smallest unit (0 or 1) | - |\n| 1 Nibble | 4 bits | - |\n| 1 Byte | 8 bits | 1 |\n| 1 KiloByte (KB) | 1024 B | 2^10 |\n| 1 MegaByte (MB) | 1024 KB | 2^20 = 1,048,576 B |\n| 1 GigaByte (GB) | 1024 MB | 2^30 = 1,07,37,41,824 B |\n| 1 TeraByte (TB) | 1024 GB | 2^40 |\n| 1 PetaByte (PB) | 1024 TB | 2^50 |\n| 1 ExaByte (EB) | 1024 PB | 2^60 |\n\nA **word** is the number of bits a CPU handles at once (16/32/64-bit). Careful: lowercase **b = bit**, uppercase **B = byte** - 1 Mbps (megabit/s) = 0.125 MB/s. (Purists use KiB/MiB for the 1024-based values; SSC uses the KB = 1024 B convention.)",
+   "formulas": [
     {
-      "id": "hm-memory-hierarchy",
-      "title": "Memory hierarchy, RAM/ROM and cache",
-      "concept": "Storage is arranged by speed vs cost vs size. Going up the ladder: faster, costlier, smaller.\n\n| Level | Example | Volatile? | Typical size |\n|---|---|---|---|\n| Registers | Inside CPU | Yes | Bytes |\n| Cache (L1/L2/L3) | SRAM on/near CPU | Yes | KB - MB |\n| Main memory | RAM (DRAM) | Yes | GB |\n| Solid-state storage | SSD, pen drive | No | GB - TB |\n| Magnetic/optical | HDD, DVD | No | GB - TB |\n| Archival | Magnetic tape, cloud cold storage | No | TB - PB |\n\n**RAM (volatile - contents vanish at power-off):** **SRAM** - fast, costly, no refresh, used for cache; **DRAM** - slower, cheap, needs constant refreshing, used for main memory.\n\n**ROM (non-volatile, firmware):** PROM (programmed once) -> EPROM (erased by **UV light**) -> EEPROM (erased **electrically**; the BIOS chip is EEPROM/flash). **Flash memory** (pen drives, SSDs) is electrically erasable like EEPROM but block-wise.\n\n**Cache memory** sits between CPU and RAM and keeps copies of frequently used data (L1 smallest/fastest, L3 largest/slowest of the three). **Virtual memory** uses a disk area (page file) as an overflow extension of RAM - slow but lets big programs run.",
-      "formulas": [],
-      "tricks": [
-        {
-          "title": "Volatile = Vanishes",
-          "body": "**V**olatile memories **V**anish when power goes: registers, cache, RAM. Everything you *keep files on* (ROM, SSD, HDD, pen drive) is non-volatile.",
-          "example": {
-            "q": "Which is volatile - ROM or DRAM?",
-            "solution": "DRAM. ROM = Read Only Memory 'Remembers' even without power."
-          }
-        },
-        {
-          "title": "ROM family eraser",
-          "body": "P**ROM** (once) -> **EP**ROM (**E**rase with **P**hotons = UV) -> **EEP**ROM (**E**lectrically Erasable). The more E's, the more Electrical.",
-          "example": {
-            "q": "How is EPROM erased?",
-            "solution": "Exposure to ultraviolet light through the quartz window."
-          }
-        },
-        {
-          "title": "Cache position",
-          "body": "Cache is the CPU's personal notepad between CPU and RAM: L1 inside the core (fastest), then L2, then L3 shared. Any question 'memory between CPU and main memory' = cache.",
-          "example": {
-            "q": "Memory placed between CPU and RAM?",
-            "solution": "Cache memory (SRAM)."
-          }
-        }
-      ],
-      "mistakes": [
-        "Calling ROM volatile - RAM is volatile, ROM is not.",
-        "Saying cache is bigger than RAM - cache is tiny but fast.",
-        "Believing virtual memory is physical RAM - it is disk space acting as RAM overflow."
-      ]
+     "name": "Step multiplier",
+     "tex": "1\\ \\text{unit}_{next} = 2^{10} = 1024\\ \\text{units}_{prev}",
+     "note": "KB->MB->GB->TB->PB all multiply by 1024"
     },
     {
-      "id": "hm-memory-units",
-      "title": "Memory units and conversions",
-      "concept": "The ladder (exam convention: each step is x1024):\n\n| Unit | Equals | Value in bytes |\n|---|---|---|\n| 1 bit | smallest unit (0 or 1) | - |\n| 1 Nibble | 4 bits | - |\n| 1 Byte | 8 bits | 1 |\n| 1 KiloByte (KB) | 1024 B | 2^10 |\n| 1 MegaByte (MB) | 1024 KB | 2^20 = 1,048,576 B |\n| 1 GigaByte (GB) | 1024 MB | 2^30 = 1,07,37,41,824 B |\n| 1 TeraByte (TB) | 1024 GB | 2^40 |\n| 1 PetaByte (PB) | 1024 TB | 2^50 |\n| 1 ExaByte (EB) | 1024 PB | 2^60 |\n\nA **word** is the number of bits a CPU handles at once (16/32/64-bit). Careful: lowercase **b = bit**, uppercase **B = byte** - 1 Mbps (megabit/s) = 0.125 MB/s. (Purists use KiB/MiB for the 1024-based values; SSC uses the KB = 1024 B convention.)",
-      "formulas": [
-        {
-          "name": "Step multiplier",
-          "tex": "1\\ \\text{unit}_{next} = 2^{10} = 1024\\ \\text{units}_{prev}",
-          "note": "KB->MB->GB->TB->PB all multiply by 1024"
-        },
-        {
-          "name": "Byte identity",
-          "tex": "1\\ \\text{Byte} = 8\\ \\text{bits},\\quad 1\\ \\text{Nibble} = 4\\ \\text{bits}",
-          "note": "half a byte = nibble"
-        },
-        {
-          "name": "Common ladders",
-          "tex": "1\\ \\text{GB} = 1024\\ \\text{MB} = 2^{20}\\ \\text{KB} = 2^{30}\\ \\text{B}",
-          "note": "4 GB = 4096 MB = 2^22 KB"
-        },
-        {
-          "name": "bits vs bytes",
-          "tex": "1\\ \\text{MB} = 8\\ \\text{Mb}",
-          "note": "capital B = byte, small b = bit (speeds are usually bits)"
-        }
-      ],
-      "tricks": [
-        {
-          "title": "x1024 ladder",
-          "body": "Every step up multiplies by **1024** (2^10), never 1000 in SSC convention. 4 GB = 4 x 1024 = **4096 MB**. Half a KB = **512 B**.",
-          "example": {
-            "q": "2 GB = ? KB",
-            "solution": "2 x 1024 x 1024 = 2^21 = 2,048 KB x 1024 = 20,97,152 KB - or 2^21 KB."
-          }
-        },
-        {
-          "title": "Bit-vs-byte speed check",
-          "body": "Line speeds are in **bits** (Mbps), file sizes in **bytes** (MB). To convert a download speed to MB/s, divide by 8: 8 Mbps = 1 MB/s.",
-          "example": {
-            "q": "16 Mbps line - max MB downloaded per second?",
-            "solution": "16/8 = 2 MB per second."
-          }
-        }
-      ],
-      "mistakes": [
-        "Using 1000 instead of 1024 for unit steps in exam questions.",
-        "Confusing Mb (megabit) with MB (megabyte) in speed questions.",
-        "Saying a nibble is 8 bits - a nibble is 4 bits (half a byte)."
-      ]
+     "name": "Byte identity",
+     "tex": "1\\ \\text{Byte} = 8\\ \\text{bits},\\quad 1\\ \\text{Nibble} = 4\\ \\text{bits}",
+     "note": "half a byte = nibble"
     },
     {
-      "id": "hm-number-systems",
-      "title": "Number systems: binary, octal, decimal, hexadecimal",
-      "concept": "| System | Base | Digits | Example |\n|---|---|---|---|\n| Binary | 2 | 0,1 | 1101 |\n| Octal | 8 | 0-7 | 65 |\n| Decimal | 10 | 0-9 | 91 |\n| Hexadecimal | 16 | 0-9, A-F (A=10 ... F=15) | 2F |\n\n**Any base -> decimal:** multiply each digit by (base)^position, counting positions from 0 at the right. Example: 1011011 = 1x2^6 + 0x2^5 + 1x2^4 + 1x2^3 + 0x2^2 + 1x2^1 + 1x2^0 = 64+16+8+2+1 = **91**.\n\n**Decimal -> base b:** repeatedly divide by b and read remainders **bottom to top**. 58 -> binary: 58/2=29 r0, 29/2=14 r1, 14/2=7 r0, 7/2=3 r1, 3/2=1 r1, 1/2=0 r1 -> **111010**.\n\n**Binary -> octal:** group bits in **3s from the right** (each octal digit = 3 bits). 11010111 -> 011 010 111 -> **327**.\n\n**Binary -> hexadecimal:** group bits in **4s from the right**. 10101111 -> 1010 1111 -> **AF**.\n\n**Hex/octal -> binary:** expand each digit into 4/3 bits. **Hex -> decimal:** digits x 16^position (2F = 2x16 + 15 = **47**).\n\nASCII anchors: 'A'=65, 'B'=66, ..., 'Z'=90; 'a'=97; '0'=48. Largest 8-bit binary value 11111111 = **255**.",
-      "formulas": [
-        {
-          "name": "Positional value",
-          "tex": "N = \\sum d_i \\cdot b^{i}",
-          "note": "digit d_i at position i (from 0, rightmost), base b"
-        },
-        {
-          "name": "Decimal to base b",
-          "tex": "N = (\\ldots r_2 r_1 r_0)_b\\ \\text{from repeated division by } b",
-          "note": "read remainders bottom to top"
-        },
-        {
-          "name": "Grouping shortcuts",
-          "tex": "1\\ \\text{octal digit} \\leftrightarrow 3\\ \\text{bits},\\quad 1\\ \\text{hex digit} \\leftrightarrow 4\\ \\text{bits}",
-          "note": "group binary from the RIGHT; pad with leading zeros"
-        }
-      ],
-      "tricks": [
-        {
-          "title": "3-4 grouping",
-          "body": "**Octal = 3-bit groups, Hex = 4-bit groups**, always made **from the right** (pad the left with zeros). Binary -> octal/hex needs no division at all.",
-          "example": {
-            "q": "11010111 in octal?",
-            "solution": "011 010 111 -> 3 2 7 = 327."
-          }
-        },
-        {
-          "title": "Hex letter wheel",
-          "body": "A=10, B=11, C=12, D=13, E=14, F=15. So 2F = 2x16+15 = 47; FF = 15x16+15 = **255** = 11111111. 'F fills: F=15, FF=255'.",
-          "example": {
-            "q": "Decimal value of C8?",
-            "solution": "12x16 + 8 = 200."
-          }
-        },
-        {
-          "title": "Power-of-2 positions",
-          "body": "Memorise 1,2,4,8,16,32,64,128 - then any binary->decimal is just picking positions: 11010111 = 128+64+16+8+4+2+1 = 215. No working needed beyond addition.",
-          "example": {
-            "q": "111010 in decimal?",
-            "solution": "32+16+8+2 = 58."
-          }
-        }
-      ],
-      "mistakes": [
-        "Grouping binary digits from the LEFT for octal/hex - groups always start at the right end.",
-        "Treating hex A-F as invalid digits or computing 2F as 2x10+15.",
-        "Reading division remainders top-to-bottom - the answer reads bottom-to-top.",
-        "Forgetting 0-7 are legal octal digits; an option containing 8 or 9 cannot be octal."
-      ]
+     "name": "Common ladders",
+     "tex": "1\\ \\text{GB} = 1024\\ \\text{MB} = 2^{20}\\ \\text{KB} = 2^{30}\\ \\text{B}",
+     "note": "4 GB = 4096 MB = 2^22 KB"
     },
     {
-      "id": "hm-io-devices",
-      "title": "Input and output devices",
-      "concept": "**Input devices** feed data to the CPU: keyboard, mouse, trackball, joystick, light pen, touch screen, scanner, digital camera, webcam, microphone, barcode/QR reader, biometric (fingerprint/retina) scanner, stylus, and the classic readers:\n\n| Device | Reads | Used in |\n|---|---|---|\n| OMR (Optical Mark Recognition) | Pencil/ink marks (bubbles) | OMR answer sheets, surveys |\n| OCR (Optical Character Recognition) | Printed/written characters into editable text | Digitising documents |\n| MICR (Magnetic Ink Character Recognition) | Iron-oxide ink characters | Cheque processing (9-digit code) |\n| Barcode reader | Parallel black-white bars | Shops, libraries |\n\n**Output devices:** monitor/VDU (CRT -> LCD/LED/OLED), printer, plotter, speaker, projector, headphone.\n\n**Printers:** **Impact** (physical strike - Dot Matrix, Daisy Wheel; noisy, carbon-copy possible) vs **Non-impact** (no strike - **Inkjet** (sprays ink), **Laser** (electrophotographic, fast, office standard), Thermal (bills, ATMs)). **Plotter** draws large precise hard copies (engineering drawings).\n\n**Both input & output:** touch screen, modem, network card, headsets with mic, and storage devices generally.",
-      "formulas": [],
-      "tricks": [
-        {
-          "title": "Mark-Character-Ink",
-          "body": "**OMR = Marks** (bubbles), **OCR = Characters** (text), **MICR = Ink on cheques** (banks). Marks, Characters, Ink - match the noun in the question.",
-          "example": {
-            "q": "Bank cheque reading uses?",
-            "solution": "MICR - magnetic ink characters."
-          }
-        },
-        {
-          "title": "Impact = hit",
-          "body": "If the printer physically *hits* paper (dot matrix, daisy wheel) it is impact - noisy but makes carbon copies. Inkjet/Laser/Thermal never touch with force: non-impact.",
-          "example": {
-            "q": "Which is a non-impact printer - Dot Matrix or Laser?",
-            "solution": "Laser (dot matrix strikes the ribbon)."
-          }
-        }
-      ],
-      "mistakes": [
-        "Marking a touch screen as input-only - it is both input and output.",
-        "Calling MICR an optical technology - it reads magnetic ink.",
-        "Saying plotters are for office documents - plotters are for large-format drawings/graphs."
-      ]
-    },
-    {
-      "id": "hm-ports",
-      "title": "Ports and connectors",
-      "concept": "A port is an interface on the cabinet for connecting peripherals.\n\n| Port | Purpose / notes |\n|---|---|\n| Serial (COM/RS-232) | Sends **one bit at a time**; suits slow data over long distances; old modems/mice |\n| Parallel (LPT, 25-pin) | Sends **8 bits (a byte) at once**; traditional printer port; short distance |\n| PS/2 | 6-pin round; keyboard (purple) & mouse (green); legacy |\n| USB | Universal Serial Bus; hot-swappable, power + data. USB 2.0 = 480 Mbps, USB 3.x = 5-20 Gbps; Type-A/B/C |\n| VGA (DB-15) | **15-pin, analog video only** to monitors/projectors |\n| DVI | Digital video (older digital standard) |\n| HDMI | **Digital audio + video** in one cable; TVs/monitors |\n| DisplayPort | Digital audio + video, daisy-chaining; PCs |\n| Thunderbolt | Combines DisplayPort + PCIe over USB-C; very high speed |\n| Ethernet (RJ-45) | Wired LAN |\n| Audio jacks (3.5 mm) | Green = line-out/speakers, Pink = mic, Blue = line-in |\n| Game port / FireWire (IEEE 1394) | Legacy joystick; high-speed media, superseded by USB |\n\n**Hot-swappable** = connect/disconnect while the PC runs (USB, FireWire) - serial/parallel ports are not.",
-      "formulas": [],
-      "tricks": [
-        {
-          "title": "Serial = Single lane",
-          "body": "**S**erial sends a **S**ingle stream (1 bit at a time, slow, long distance); **P**arallel sends a **P**acket (whole byte across 8 wires, fast, short distance - old printers).",
-          "example": {
-            "q": "Which port transmits one bit at a time?",
-            "solution": "Serial port."
-          }
-        },
-        {
-          "title": "VGA vs HDMI",
-          "body": "**V**GA = **V**ideo only (15 pins, analog); **HDMI** = **H**ome-theatre cable: **audio + video**, digital. If the question says 'sound and picture together' -> HDMI.",
-          "example": {
-            "q": "Which port carries digital audio and video?",
-            "solution": "HDMI."
-          }
-        }
-      ],
-      "mistakes": [
-        "Calling VGA capable of audio - VGA is video-only.",
-        "Saying serial ports are faster than parallel - parallel moves a byte per transfer (over short runs).",
-        "Forgetting USB is hot-swappable - that phrase in the question usually points to USB."
-      ]
-    },
-    {
-      "id": "hm-storage",
-      "title": "Storage and backup media",
-      "concept": "| Medium | Technology | Capacity (typical) |\n|---|---|---|\n| Hard Disk Drive (HDD) | Magnetic platters, spinning | 500 GB - 20 TB |\n| SSD / NVMe | Flash chips, no moving parts | 128 GB - 8 TB, much faster than HDD |\n| CD-ROM | Optical, 1 side | ~700 MB |\n| DVD (single layer) | Optical | **4.7 GB** (dual-layer 8.5 GB) |\n| Blu-ray (single layer) | Blue-violet laser | **25 GB** (dual 50 GB) |\n| Pen drive / SD card | Flash | GBs - TBs |\n| Magnetic tape (LTO) | Sequential magnetic | TBs per cartridge; archival backup |\n| Cloud storage | Remote servers | TB plans; off-site backup |\n\nOptical discs store bits as pits/lands read by laser; the shorter the wavelength (IR -> red -> blue-violet), the denser the storage (CD -> DVD -> Blu-ray). **Backup rule of thumb:** keep at least one copy **off-site** and on a different medium than the live data. **NAS** (Network Attached Storage) gives shared disk over the LAN.",
-      "formulas": [],
-      "tricks": [
-        {
-          "title": "Optical capacity ladder",
-          "body": "**CD 700 MB -> DVD 4.7 GB -> Blu-ray 25 GB** (single layer). Roughly: CD 0.7, DVD 4.7, BR 25 - '700, 4.7, 25'.",
-          "example": {
-            "q": "Storage capacity of a single-layer DVD?",
-            "solution": "4.7 GB."
-          }
-        },
-        {
-          "title": "SSD vs HDD one-liner",
-          "body": "SSD = **no moving parts** (flash), silent, shock-proof, faster, costlier per GB. HDD = spinning platters, cheap bulk storage. 'No moving parts' in a question = SSD.",
-          "example": {
-            "q": "Which storage has no moving parts?",
-            "solution": "Solid State Drive (flash memory)."
-          }
-        }
-      ],
-      "mistakes": [
-        "Quoting 700 MB for a DVD - that is a CD; a single-layer DVD is 4.7 GB.",
-        "Saying Blu-ray uses a red laser - Blu-ray uses the shorter blue-violet laser.",
-        "Believing tape is obsolete - LTO tape is still standard for archival backups."
-      ]
+     "name": "bits vs bytes",
+     "tex": "1\\ \\text{MB} = 8\\ \\text{Mb}",
+     "note": "capital B = byte, small b = bit (speeds are usually bits)"
     }
-  ],
-  "pyqPatterns": [
+   ],
+   "tricks": [
     {
-      "pattern": "Memory-unit ladder conversion",
-      "frequency": "very common",
-      "howToSpot": "'1 GB = ? MB', 'How many KB make 4 GB?' - pure x1024 arithmetic.",
-      "approach": "Multiply/divide by 1024 per step; keep powers of 2 (2^10, 2^20, 2^30) ready."
+     "title": "x1024 ladder",
+     "body": "Every step up multiplies by **1024** (2^10), never 1000 in SSC convention. 4 GB = 4 x 1024 = **4096 MB**. Half a KB = **512 B**.",
+     "example": {
+      "q": "2 GB = ? KB",
+      "solution": "2 x 1024 x 1024 = 2^21 = 2,048 KB x 1024 = 20,97,152 KB - or 2^21 KB."
+     }
     },
     {
-      "pattern": "Binary/decimal/hex/octal conversion",
-      "frequency": "very common",
-      "howToSpot": "'Convert 1011011 to decimal', 'hexadecimal 2F = ?' - one short computation per question.",
-      "approach": "Use positional powers for to-decimal, repeated division for from-decimal, and 3/4-bit grouping for binary-octal-hex."
-    },
-    {
-      "pattern": "Port/device identification",
-      "frequency": "common",
-      "howToSpot": "'Which port transmits one bit at a time?', 'which carries audio and video?'.",
-      "approach": "Serial=1-bit stream, Parallel=byte, VGA=video-only analog, HDMI=audio+video digital, USB=hot-swappable."
-    },
-    {
-      "pattern": "Printer/device classification",
-      "frequency": "common",
-      "howToSpot": "'Which is a non-impact printer?' or 'OMR is used for?'.",
-      "approach": "Impact = physical strike (dot matrix, daisy wheel); non-impact = inkjet/laser/thermal. OMR marks, OCR characters, MICR cheque ink."
-    },
-    {
-      "pattern": "Volatile memory / ROM family",
-      "frequency": "common",
-      "howToSpot": "'Which memory loses data on power failure?', 'EPROM is erased by?'.",
-      "approach": "Volatile = registers/cache/RAM; EPROM=UV, EEPROM=electrical; ROM family is non-volatile."
+     "title": "Bit-vs-byte speed check",
+     "body": "Line speeds are in **bits** (Mbps), file sizes in **bytes** (MB). To convert a download speed to MB/s, divide by 8: 8 Mbps = 1 MB/s.",
+     "example": {
+      "q": "16 Mbps line - max MB downloaded per second?",
+      "solution": "16/8 = 2 MB per second."
+     }
     }
-  ],
-  "solvedExamples": [
+   ],
+   "mistakes": [
+    "Using 1000 instead of 1024 for unit steps in exam questions.",
+    "Confusing Mb (megabit) with MB (megabyte) in speed questions.",
+    "Saying a nibble is 8 bits - a nibble is 4 bits (half a byte)."
+   ],
+   "notes": "### The unit ladder\nAll data is stored as bits. The units stack up by **1024 (2 to the power 10)** at each step — exam convention, never 1000:\n\n| Unit | Equals | In bytes |\n|---|---|---|\n| 1 **bit** | smallest unit — one 0 or 1 | — |\n| 1 **Nibble** | **4 bits** | — |\n| 1 **Byte (B)** | **8 bits** | 1 |\n| 1 **KiloByte (KB)** | 1024 B | 2¹⁰ |\n| 1 **MegaByte (MB)** | 1024 KB | 2²⁰ = 10,48,576 B |\n| 1 **GigaByte (GB)** | 1024 MB | 2³⁰ = 1,07,37,41,824 B |\n| 1 **TeraByte (TB)** | 1024 GB | 2⁴⁰ |\n| 1 **PetaByte (PB)** | 1024 TB | 2⁵⁰ |\n\n**How to convert:** going up → divide by 1024 at each step; going down → multiply by 1024. Example: 4 GB = 4 × 1024 = **4096 MB**; 2048 KB = 2048 ÷ 1024 = **2 MB**.\n\n### Bits vs bytes — the speed trap\n- File sizes and storage are measured in **bytes** (MB, GB).\n- **Line speeds are measured in bits**: Mbps = **megaBITS** per second.\n- 8 bits = 1 byte, so an **8 Mbps** line moves about **1 MB** of file data per second. A 16 Mbps connection downloads a 10 MB file in about 10 × 8 ÷ 16 = **5 seconds**.\nWatch the case: **Mb** = megabit, **MB** = megabyte.\n\n### Other asked units\n- **Word length** — the number of bits a CPU handles in one go (a '64-bit processor').\n- **Smallest unit of data** = bit; **smallest unit of memory addressable** = usually 1 byte.\n- Half a byte (4 bits) = **nibble** — one hexadecimal digit is exactly one nibble.\n\n### Worked examples in exam style\n1. **4 GB to MB:** climb down one rung — 4 × 1024 = **4096 MB**.\n2. **2048 KB to MB:** climb up — 2048 ÷ 1024 = **2 MB**.\n3. **Bits in 2 KB:** 2 × 1024 = 2048 bytes, then × 8 = **16,384 bits**.\n4. **Download time:** a 10 MB file on a 16 Mbps line: file = 10 × 8 = 80 megabits; 80 ÷ 16 = **5 seconds**.\n5. **Which is largest** among 1024 KB, 1 MB, 10,00,000 bytes, 0.5 GB: put everything in KB — 1024, 1024, about 977, 5,24,288 → **0.5 GB** wins.\n\n### Where you already use this ladder\n- Internet plans are sold in **Mbps (bits)**, but your browser shows **MB/s (bytes)** — an 80 Mbps line downloads near 10 MB/s.\n- A phone photo ≈ 2–5 MB, a movie ≈ 1–4 GB, a good laptop SSD ≈ 512 GB–1 TB. These everyday anchors help you reject absurd options instantly.\n\n### Two traps that decide the mark\n1. Using 1000 instead of 1024 — every ladder question in exams assumes **1024**.\n2. Confusing Mb (bits) with MB (bytes) in speed questions — divide by 8 to go bits → bytes.\n\n### Quick revision\n- Bit → Nibble (4) → Byte (8) → KB (1024) → MB → GB → TB → PB; each step ×1024.\n- 4 GB = 4096 MB; 2048 KB = 2 MB; 1 TB = 1024 GB.\n- Speeds are in bits: 8 Mbps ≈ 1 MB/s of file data.\n- Nibble = 4 bits = one hex digit. Smallest unit = bit.",
+   "patterns": [
     {
-      "id": "hm-se01",
-      "q": "What is the decimal equivalent of the binary number 1011011?",
-      "figure": null,
-      "options": [
-        "87",
-        "89",
-        "91",
-        "93"
-      ],
-      "answer": 2,
-      "solution": "Write positional powers of 2 under the digits: 1x64 + 0x32 + 1x16 + 1x8 + 0x4 + 1x2 + 1x1 = 64+16+8+2+1 = 91.",
-      "shortcut": "Powers row 64 32 16 8 4 2 1; pick the positions with 1s: 64+16+8+2+1 = 91. (Verified computationally.)",
-      "difficulty": "medium",
-      "subtopic": "hm-number-systems",
-      "pattern": "binary to decimal conversion",
-      "timeSec": 45
+     "id": "hm-uni-p1",
+     "name": "Bit / nibble / byte definitions",
+     "frequency": "very common",
+     "howToSpot": "'How many bits in a byte/nibble?', 'how many nibbles in a byte?', 'bits in 3 bytes?' — direct small-number questions.",
+     "formula": null,
+     "logic": "1. Fixed facts: 1 byte = 8 bits, 1 nibble = 4 bits, so a byte = 2 nibbles.\n2. Multiply for bigger counts: 3 bytes = 3 × 8 = 24 bits.\n3. One hex digit = one nibble — a free link to hexadecimal questions.",
+     "example": {
+      "q": "How many **bits** are there in 3 bytes?",
+      "solution": "3 × 8 = **24 bits** — one byte always carries exactly 8 bits."
+     }
     },
     {
-      "id": "hm-se02",
-      "q": "The decimal number 58 in binary is:",
-      "figure": null,
-      "options": [
-        "111010",
-        "110110",
-        "101110",
-        "111100"
-      ],
-      "answer": 0,
-      "solution": "Repeated division by 2: 58->29 r0, 29->14 r1, 14->7 r0, 7->3 r1, 3->1 r1, 1->0 r1. Reading remainders bottom to top: 111010. Check: 32+16+8+2 = 58.",
-      "shortcut": "Subtract powers of 2 from 58: 32 leaves 26, 16 leaves 10, 8 leaves 2, 2 leaves 0 -> bits at 32,16,8,2 -> 111010.",
-      "difficulty": "medium",
-      "subtopic": "hm-number-systems",
-      "pattern": "decimal to binary conversion",
-      "timeSec": 50
+     "id": "hm-uni-p2",
+     "name": "KB → MB → GB → TB ladder conversion",
+     "frequency": "very common",
+     "howToSpot": "'4 GB = how many MB?', '2 TB = how many GB?', 'which is largest', 'a folder of n files of 512 KB is how many MB'.",
+     "formula": null,
+     "logic": "1. Every step is ×1024 going up, ÷1024 going down — never 1000.\n2. 4 GB = 4 × 1024 = 4096 MB; 2048 KB = 2 MB; 1 TB = 1024 GB.\n3. For 'which is largest', convert everything to one unit (say KB) before comparing.",
+     "example": {
+      "q": "A pen drive holds **4 GB**. How many **MB** is that (exam convention)?",
+      "solution": "4 × 1024 = **4096 MB**. Each step up the ladder multiplies by 1024, so going from GB to MB multiplies by 1024."
+     }
     },
     {
-      "id": "hm-se03",
-      "q": "The octal equivalent of the binary number 11010111 is:",
-      "figure": null,
-      "options": [
-        "327",
-        "315",
-        "647",
-        "326"
-      ],
-      "answer": 0,
-      "solution": "Group the bits in threes from the right: 011 010 111. Convert each group: 011=3, 010=2, 111=7, giving 327 (octal). Cross-check: 327 in octal = 3x64+2x8+7 = 215 = value of 11010111 in decimal.",
-      "shortcut": "3-bit groups from the right; pad the left with zero. Octal digits can never include 8 or 9 - that kills two options instantly.",
-      "difficulty": "medium",
-      "subtopic": "hm-number-systems",
-      "pattern": "binary to octal grouping",
-      "timeSec": 50
+     "id": "hm-uni-p3",
+     "name": "Bits vs bytes in data-transfer speed",
+     "frequency": "common",
+     "howToSpot": "'A 16 Mbps line downloads a 10 MB file in how long?', '8 Mbps equals how many MB/s?' — speed given in megabits, file in megabytes.",
+     "formula": null,
+     "logic": "1. Convert the file to bits (×8) or the speed to bytes (÷8) before dividing.\n2. 8 Mbps = 1 MB/s; 16 Mbps = 2 MB/s.\n3. Time = file size ÷ effective speed, both in the same unit.",
+     "example": {
+      "q": "A connection delivers **16 Mbps** (megabits per second). How many **megabytes** is that per second?",
+      "solution": "16 ÷ 8 = **2 MB per second** — eight bits make one byte, so divide the bit-rate by 8."
+     }
     },
     {
-      "id": "hm-se04",
-      "q": "How many megabytes are there in 4 GB (exam convention)?",
-      "figure": null,
-      "options": [
-        "1024",
-        "2048",
-        "4096",
-        "8192"
-      ],
-      "answer": 2,
-      "solution": "1 GB = 1024 MB, so 4 GB = 4 x 1024 = 4096 MB. In powers of two: 4 GB = 2^2 x 2^30 B = 2^32 B = 2^22 KB x 1024 = 4096 MB.",
-      "shortcut": "Each ladder step is x1024, so GB->MB is just 4 x 1024 = 4096. Options 1024/2048/8192 are the x1024 answers for 1, 2 and 8 GB - read the question's number carefully.",
-      "difficulty": "easy",
-      "subtopic": "hm-memory-units",
-      "pattern": "memory-unit ladder",
-      "timeSec": 35
-    },
-    {
-      "id": "hm-se05",
-      "q": "Which of the following devices reads the characters printed at the bottom of bank cheques using magnetic ink?",
-      "figure": null,
-      "options": [
-        "OCR",
-        "OMR",
-        "MICR",
-        "Barcode reader"
-      ],
-      "answer": 2,
-      "solution": "MICR (Magnetic Ink Character Recognition) reads the 9-digit code printed in iron-oxide ink along a cheque's bottom strip. OCR reads ordinary printed text, OMR reads pencil marks/bubbles, barcode readers read retail bar patterns.",
-      "shortcut": "Cheque -> MICR (Ink). Marks -> OMR. Characters -> OCR. Bars -> barcode.",
-      "difficulty": "easy",
-      "subtopic": "hm-io-devices",
-      "pattern": "input-device identification",
-      "timeSec": 30
+     "id": "hm-uni-p4",
+     "name": "Unit odd-one-out and definitions",
+     "frequency": "common",
+     "howToSpot": "'The smallest unit of data is', 'word length means', 'which is not a unit of memory'.",
+     "formula": null,
+     "logic": "1. Bit = smallest unit; byte = 8 bits; nibble = 4 bits.\n2. Word length = bits the CPU processes in one operation (hence '64-bit processor').\n3. Odd-one-out versions usually slip in a speed unit (Mbps) among size units (KB, MB, GB).",
+     "example": {
+      "q": "Which of the following is **NOT** a unit of data size?",
+      "solution": "**Mbps** — megabits per **second**, a speed unit. KB, MB and GB measure size."
+     }
     }
-  ],
-  "practice": [
+   ]
+  },
+  {
+   "id": "hm-number-systems",
+   "title": "Number systems: binary, octal, decimal, hexadecimal",
+   "concept": "| System | Base | Digits | Example |\n|---|---|---|---|\n| Binary | 2 | 0,1 | 1101 |\n| Octal | 8 | 0-7 | 65 |\n| Decimal | 10 | 0-9 | 91 |\n| Hexadecimal | 16 | 0-9, A-F (A=10 ... F=15) | 2F |\n\n**Any base -> decimal:** multiply each digit by (base)^position, counting positions from 0 at the right. Example: 1011011 = 1x2^6 + 0x2^5 + 1x2^4 + 1x2^3 + 0x2^2 + 1x2^1 + 1x2^0 = 64+16+8+2+1 = **91**.\n\n**Decimal -> base b:** repeatedly divide by b and read remainders **bottom to top**. 58 -> binary: 58/2=29 r0, 29/2=14 r1, 14/2=7 r0, 7/2=3 r1, 3/2=1 r1, 1/2=0 r1 -> **111010**.\n\n**Binary -> octal:** group bits in **3s from the right** (each octal digit = 3 bits). 11010111 -> 011 010 111 -> **327**.\n\n**Binary -> hexadecimal:** group bits in **4s from the right**. 10101111 -> 1010 1111 -> **AF**.\n\n**Hex/octal -> binary:** expand each digit into 4/3 bits. **Hex -> decimal:** digits x 16^position (2F = 2x16 + 15 = **47**).\n\nASCII anchors: 'A'=65, 'B'=66, ..., 'Z'=90; 'a'=97; '0'=48. Largest 8-bit binary value 11111111 = **255**.",
+   "formulas": [
     {
-      "id": "hm-q01",
-      "q": "A nibble consists of how many bits?",
-      "figure": null,
-      "options": [
-        "2",
-        "4",
-        "8",
-        "16"
-      ],
-      "answer": 1,
-      "solution": "A nibble is half a byte: 4 bits. A byte is 8 bits; a word is CPU-dependent (16/32/64 bits).",
-      "shortcut": "Nibble = half a byte = 4 bits ('nybble nibbles off half').",
-      "difficulty": "easy",
-      "subtopic": "hm-memory-units",
-      "pattern": "memory-unit definition",
-      "timeSec": 25
+     "name": "Positional value",
+     "tex": "N = \\sum d_i \\cdot b^{i}",
+     "note": "digit d_i at position i (from 0, rightmost), base b"
     },
     {
-      "id": "hm-q02",
-      "q": "Which of the following is a volatile memory?",
-      "figure": null,
-      "options": [
-        "ROM",
-        "DRAM",
-        "PROM",
-        "SSD"
-      ],
-      "answer": 1,
-      "solution": "DRAM (dynamic RAM) loses its contents the moment power is cut. The ROM family (PROM, EPROM, EEPROM) and flash-based SSDs are non-volatile.",
-      "shortcut": "Volatile = Vanishes: registers, cache, RAM. Everything with 'ROM' or flash in the name stays put.",
-      "difficulty": "easy",
-      "subtopic": "hm-memory-hierarchy",
-      "pattern": "volatile memory identification",
-      "timeSec": 30
+     "name": "Decimal to base b",
+     "tex": "N = (\\ldots r_2 r_1 r_0)_b\\ \\text{from repeated division by } b",
+     "note": "read remainders bottom to top"
     },
     {
-      "id": "hm-q03",
-      "q": "The small, very fast memory placed between the CPU and main memory is:",
-      "figure": null,
-      "options": [
-        "Virtual memory",
-        "Cache memory",
-        "Buffer register",
-        "CMOS memory"
-      ],
-      "answer": 1,
-      "solution": "Cache (usually SRAM, levels L1-L3) stores frequently used data between the CPU and RAM. Virtual memory is disk-based overflow; buffers smooth I/O transfers; CMOS holds BIOS settings.",
-      "shortcut": "'Between CPU and RAM' is the exact address of cache.",
-      "difficulty": "easy",
-      "subtopic": "hm-memory-hierarchy",
-      "pattern": "memory hierarchy position",
-      "timeSec": 30
-    },
-    {
-      "id": "hm-q04",
-      "q": "EPROM differs from PROM because it can be erased by:",
-      "figure": null,
-      "options": [
-        "Electrical signals",
-        "Ultraviolet light",
-        "Magnetic field",
-        "X-rays"
-      ],
-      "answer": 1,
-      "solution": "EPROM (Erasable Programmable ROM) is erased by exposing the quartz window to ultraviolet light. PROM cannot be erased once programmed; EEPROM is the electrically erasable version.",
-      "shortcut": "One E = light (EPROM, UV); two E's = electricity (EEPROM).",
-      "difficulty": "medium",
-      "subtopic": "hm-memory-hierarchy",
-      "pattern": "ROM family differences",
-      "timeSec": 35
-    },
-    {
-      "id": "hm-q05",
-      "q": "The decimal value of the binary number 111010 is:",
-      "figure": null,
-      "options": [
-        "54",
-        "56",
-        "58",
-        "60"
-      ],
-      "answer": 2,
-      "solution": "32+16+8+0+2+0 = 58.",
-      "shortcut": "Powers 32 16 8 4 2 1; pick 1-positions: 32+16+8+2 = 58.",
-      "difficulty": "easy",
-      "subtopic": "hm-number-systems",
-      "pattern": "binary to decimal conversion",
-      "timeSec": 40
-    },
-    {
-      "id": "hm-q06",
-      "q": "The binary equivalent of decimal 156 is:",
-      "figure": null,
-      "options": [
-        "10011100",
-        "10100110",
-        "11001100",
-        "10010110"
-      ],
-      "answer": 0,
-      "solution": "156 = 128+16+8+4, so bits at 2^7, 2^4, 2^3, 2^2: 10011100. Division check: 156->78 r0, 78->39 r0, 39->19 r1, 19->9 r1, 9->4 r1, 4->2 r0, 2->1 r0, 1->0 r1 -> bottom-up 10011100.",
-      "shortcut": "Subtract 128 first (156-128 = 28), then 16 (12), then 8 (4), then 4 (0): bits 128,16,8,4 = 10011100.",
-      "difficulty": "medium",
-      "subtopic": "hm-number-systems",
-      "pattern": "decimal to binary conversion",
-      "timeSec": 50
-    },
-    {
-      "id": "hm-q07",
-      "q": "The decimal number 200 in hexadecimal is:",
-      "figure": null,
-      "options": [
-        "B8",
-        "C8",
-        "C9",
-        "D8"
-      ],
-      "answer": 1,
-      "solution": "200 = 12x16 + 8 = C8 (C = 12).",
-      "shortcut": "Divide by 16: 200/16 = 12 r 8 -> C8. The remainder is the last hex digit, the quotient the first.",
-      "difficulty": "medium",
-      "subtopic": "hm-number-systems",
-      "pattern": "decimal to hexadecimal conversion",
-      "timeSec": 45
-    },
-    {
-      "id": "hm-q08",
-      "q": "The hexadecimal number 2F equals which decimal number?",
-      "figure": null,
-      "options": [
-        "37",
-        "45",
-        "47",
-        "57"
-      ],
-      "answer": 2,
-      "solution": "2F = 2x16^1 + 15x16^0 = 32 + 15 = 47 (F = 15).",
-      "shortcut": "F=15: so 32+15 = 47. Options built from F=5, 7 or 13 are the traps.",
-      "difficulty": "easy",
-      "subtopic": "hm-number-systems",
-      "pattern": "hexadecimal to decimal conversion",
-      "timeSec": 40
-    },
-    {
-      "id": "hm-q09",
-      "q": "The largest decimal number that can be stored in 8 binary bits is:",
-      "figure": null,
-      "options": [
-        "127",
-        "128",
-        "255",
-        "256"
-      ],
-      "answer": 2,
-      "solution": "11111111 = 2^8 - 1 = 255. (256 needs 9 bits; 127 is the largest for 7-bit or the max of a signed 8-bit byte.)",
-      "shortcut": "n bits -> largest unsigned value 2^n - 1. 8 bits -> 255.",
-      "difficulty": "easy",
-      "subtopic": "hm-number-systems",
-      "pattern": "range of n-bit numbers",
-      "timeSec": 35
-    },
-    {
-      "id": "hm-q10",
-      "q": "Which input device is used to evaluate answers marked with pencil bubbles on an OMR answer sheet?",
-      "figure": null,
-      "options": [
-        "OCR",
-        "OMR",
-        "MICR",
-        "Plotter"
-      ],
-      "answer": 1,
-      "solution": "OMR (Optical Mark Recognition) detects the presence/absence of marks in fixed positions - exactly the bubble-sheet use case.",
-      "shortcut": "Bubbles/marks -> OMR. Printed text -> OCR. Cheques -> MICR. Plotter is an output device.",
-      "difficulty": "easy",
-      "subtopic": "hm-io-devices",
-      "pattern": "input-device identification",
-      "timeSec": 30
-    },
-    {
-      "id": "hm-q11",
-      "q": "Which of the following is a non-impact printer?",
-      "figure": null,
-      "options": [
-        "Dot Matrix printer",
-        "Daisy Wheel printer",
-        "Laser printer",
-        "Ball printer"
-      ],
-      "answer": 2,
-      "solution": "Laser printers form images with electrostatic toner - no physical strike - so they are non-impact (as are inkjet and thermal). Dot matrix and daisy wheel strike an inked ribbon.",
-      "shortcut": "Impact family is short: dot matrix + daisy wheel. Almost every other printer is non-impact.",
-      "difficulty": "easy",
-      "subtopic": "hm-io-devices",
-      "pattern": "printer classification",
-      "timeSec": 30
-    },
-    {
-      "id": "hm-q12",
-      "q": "A hard copy of large engineering drawings is best produced on a:",
-      "figure": null,
-      "options": [
-        "Laser printer",
-        "Plotter",
-        "Thermal printer",
-        "Scanner"
-      ],
-      "answer": 1,
-      "solution": "Plotters draw precise, large-format line art (A0/A1 sheets) with a pen or cutting head - standard for CAD output. Printers handle page-size documents; a scanner is an input device.",
-      "shortcut": "Drawings/CAD/large sheets -> plotter.",
-      "difficulty": "easy",
-      "subtopic": "hm-io-devices",
-      "pattern": "output-device selection",
-      "timeSec": 30
-    },
-    {
-      "id": "hm-q13",
-      "q": "Which port carries digital audio and video signals over a single cable to a monitor or TV?",
-      "figure": null,
-      "options": [
-        "VGA",
-        "PS/2",
-        "HDMI",
-        "Serial COM"
-      ],
-      "answer": 2,
-      "solution": "HDMI transmits uncompressed digital video plus audio in one cable. VGA is analog video-only, PS/2 is for keyboard/mouse, and serial COM ports carry slow bit-serial data.",
-      "shortcut": "Audio AND video together -> HDMI (or DisplayPort, if listed).",
-      "difficulty": "medium",
-      "subtopic": "hm-ports",
-      "pattern": "port identification",
-      "timeSec": 35
-    },
-    {
-      "id": "hm-q14",
-      "q": "The port that transmits data one bit at a time as a single stream, traditionally used for slow data over long distances, is the:",
-      "figure": null,
-      "options": [
-        "Parallel port",
-        "Serial port",
-        "SCSI port",
-        "FireWire port"
-      ],
-      "answer": 1,
-      "solution": "A serial port (COM/RS-232) sends bits sequentially over one channel - slower but reliable over longer cable runs. Parallel ports send a byte across 8 wires simultaneously but only over short distances.",
-      "shortcut": "'One bit at a time / single stream' = serial, word for word.",
-      "difficulty": "easy",
-      "subtopic": "hm-ports",
-      "pattern": "serial vs parallel port",
-      "timeSec": 30
-    },
-    {
-      "id": "hm-q15",
-      "q": "Which statement about SSDs and HDDs is correct?",
-      "figure": null,
-      "options": [
-        "SSDs use spinning magnetic platters",
-        "HDDs have no moving parts",
-        "SSDs use flash memory with no moving parts",
-        "HDDs are always faster than SSDs"
-      ],
-      "answer": 2,
-      "solution": "An SSD stores data in NAND flash chips with no mechanical parts, making it faster and shock-resistant; an HDD stores data magnetically on spinning platters with a moving head, and is slower but cheaper per GB.",
-      "shortcut": "'No moving parts' -> SSD, always. Any option giving moving parts to SSD or calling HDD faster is upside down.",
-      "difficulty": "easy",
-      "subtopic": "hm-storage",
-      "pattern": "SSD vs HDD",
-      "timeSec": 35
+     "name": "Grouping shortcuts",
+     "tex": "1\\ \\text{octal digit} \\leftrightarrow 3\\ \\text{bits},\\quad 1\\ \\text{hex digit} \\leftrightarrow 4\\ \\text{bits}",
+     "note": "group binary from the RIGHT; pad with leading zeros"
     }
-  ]
+   ],
+   "tricks": [
+    {
+     "title": "3-4 grouping",
+     "body": "**Octal = 3-bit groups, Hex = 4-bit groups**, always made **from the right** (pad the left with zeros). Binary -> octal/hex needs no division at all.",
+     "example": {
+      "q": "11010111 in octal?",
+      "solution": "011 010 111 -> 3 2 7 = 327."
+     }
+    },
+    {
+     "title": "Hex letter wheel",
+     "body": "A=10, B=11, C=12, D=13, E=14, F=15. So 2F = 2x16+15 = 47; FF = 15x16+15 = **255** = 11111111. 'F fills: F=15, FF=255'.",
+     "example": {
+      "q": "Decimal value of C8?",
+      "solution": "12x16 + 8 = 200."
+     }
+    },
+    {
+     "title": "Power-of-2 positions",
+     "body": "Memorise 1,2,4,8,16,32,64,128 - then any binary->decimal is just picking positions: 11010111 = 128+64+16+8+4+2+1 = 215. No working needed beyond addition.",
+     "example": {
+      "q": "111010 in decimal?",
+      "solution": "32+16+8+2 = 58."
+     }
+    }
+   ],
+   "mistakes": [
+    "Grouping binary digits from the LEFT for octal/hex - groups always start at the right end.",
+    "Treating hex A-F as invalid digits or computing 2F as 2x10+15.",
+    "Reading division remainders top-to-bottom - the answer reads bottom-to-top.",
+    "Forgetting 0-7 are legal octal digits; an option containing 8 or 9 cannot be octal."
+   ],
+   "notes": "### The four systems\n| System | Base | Digits used | Example |\n|---|---|---|---|\n| Binary | 2 | 0, 1 | 1101 |\n| Octal | 8 | 0–7 | 65 |\n| Decimal | 10 | 0–9 | 91 |\n| Hexadecimal | 16 | 0–9, A–F (A=10 … F=15) | 2F |\n\nA digit's value = digit × (base ^ position), counting positions **from 0 at the right**.\n\n### Any base → decimal (multiply and add)\n(1101)₂ = 1×2³ + 1×2² + 0×2¹ + 1×2⁰ = 8 + 4 + 0 + 1 = **13**.\n(2F)₁₆ = 2×16 + 15 = **47** (F = 15). (67)₈ = 6×8 + 7 = **55**.\n\n### Decimal → any base (divide and read upward)\nDivide repeatedly by the base and read the **remainders bottom to top**:\n45 ÷ 2 = 22 r **1** → 22 ÷ 2 = 11 r **0** → 11 ÷ 2 = 5 r **1** → 5 ÷ 2 = 2 r **1** → 2 ÷ 2 = 1 r **0** → 1 ÷ 2 = 0 r **1**; reading up: (101101)₂ = 45. ✔ (32+8+4+1 = 45)\n\n### The grouping shortcuts (seconds-saving)\n- **1 octal digit = 3 bits**, **1 hex digit = 4 bits**; make groups **from the right**, padding the left with zeros.\n- (1101011)₂ → 001 101 011 → **153**₈; (11011011)₂ → 1101 1011 → **DB**₁₆.\n- Hex letters: A=10, B=11, C=12, D=13, E=14, **F=15**; FF = 255 = the largest 8-bit value.\n\n### Ranges and validity\n- **n bits hold 2ⁿ different values**, from 0 to 2ⁿ − 1: 8 bits → 256 values (0–255).\n- **Octal digits stop at 7** — any number containing 8 or 9 cannot be octal.\n- Hex digits stop at F: 'G' or '2H' cannot be hexadecimal.\n\n### Exam workflow\n1. Read the stem: which base to which base?\n2. Conversions through **binary** are fastest for octal/hex (grouping), direct division/multiplication for decimal.\n3. Always check: does each digit exist in the source base? Is the remainder order bottom-to-top?\n\n### More worked pairs you can reuse\n- (1010)₂ = 8 + 2 = **10**; (1111)₂ = 8+4+2+1 = **15**; (10000)₂ = **16**.\n- (255)₁₀ = **FF**₁₆ (15×16 + 15); (128)₁₀ = **(10000000)₂**.\n- (777)₈ = 7×64 + 7×8 + 7 = **511** — the largest 3-digit octal, exactly like FF caps hex.\n- (100)₈ = 64, (20)₁₆ = 32, (11)₂ = 3 — small anchors to sanity-check options.\n\n### Powers of 2 worth memorising\n2⁰=1, 2¹=2, 2²=4, 2³=8, 2⁴=16, 2⁵=32, 2⁶=64, 2⁷=128, 2⁸=256, 2⁹=512, 2¹⁰=1024.\nTen lines that answer half the number-system paper: binary→decimal becomes addition, ranges become 2ⁿ, and KB/MB conversions reuse the same ladder.\n\n### Two elimination shortcuts\n1. **Digit validity:** an option with 8 or 9 is never octal; one with G or beyond is never hexadecimal — strike it out before computing.\n2. **Parity check:** a binary number ending in 0 is even, ending in 1 is odd — if the decimal in the stem is even, the correct binary must end in 0.\n\n### Quick revision\n- Bases: 2 (0,1), 8 (0–7), 10 (0–9), 16 (0–9, A–F).\n- Base→decimal: digit × base^position, right to left. Decimal→base: divide, read remainders upward.\n- Octal = 3-bit groups, hex = 4-bit groups, grouped from the right.\n- F = 15; FF = 255; 8 bits = 256 values (0–255).\n- Octal has no 8 or 9; hex has nothing after F.",
+   "patterns": [
+    {
+     "id": "hm-num-p1",
+     "name": "Any base → decimal conversion",
+     "frequency": "very common",
+     "howToSpot": "'The decimal value of (1101)₂ is', '(2F)₁₆ in decimal is', '(67)₈ equals' — a number with a base subscript and four plain decimals.",
+     "formula": null,
+     "logic": "1. Multiply each digit by base^position, positions counted from 0 at the right.\n2. Hex: convert letters first (A=10 … F=15) — 2F = 2×16 + 15 = 47.\n3. Sanity-check with the binary powers 1, 2, 4, 8, 16, 32, 64, 128.",
+     "example": {
+      "q": "The decimal value of the binary number **110101** is —",
+      "solution": "1×32 + 1×16 + 0×8 + 1×4 + 0×2 + 1×1 = **53**. Pick the positions where 1s sit (32, 16, 4, 1) and add."
+     }
+    },
+    {
+     "id": "hm-num-p2",
+     "name": "Decimal → any base conversion",
+     "frequency": "very common",
+     "howToSpot": "'The binary equivalent of 45 is', '100 in hexadecimal is', '58 in octal is' — a plain decimal and four base-tagged options.",
+     "formula": null,
+     "logic": "1. Divide repeatedly by the target base, writing each remainder.\n2. Read the remainders **bottom to top** — the top-to-bottom reading is the standard trap.\n3. Verify by converting back: expand your answer's digits by powers of the base; it must return the original number.",
+     "example": {
+      "q": "The **binary** equivalent of decimal **45** is —",
+      "solution": "Repeated division by 2 gives remainders 1, 0, 1, 1, 0, 1 read upward → **101101**. Check: 32+8+4+1 = 45. ✔"
+     }
+    },
+    {
+     "id": "hm-num-p3",
+     "name": "Binary ↔ octal / hex by grouping",
+     "frequency": "common",
+     "howToSpot": "'1101011 in octal', '11011011 in hexadecimal', 'convert binary using grouping' — a long binary string and base-8 or base-16 options.",
+     "formula": null,
+     "logic": "1. Octal: group the bits in **3s from the right**; hex: group in **4s from the right**; pad the left with zeros.\n2. Convert each group separately: 001 101 011 → 1 5 3 → 153₈.\n3. Cross-check the hex letters: 10–15 map to A–F.",
+     "example": {
+      "q": "The binary number **1101011** in **octal** is —",
+      "solution": "Group in 3s from the right: 001 101 011 → 1, 5, 3 → **153₈**. (Each octal digit is exactly 3 bits.)"
+     }
+    },
+    {
+     "id": "hm-num-p4",
+     "name": "n-bit range and digit validity",
+     "frequency": "common",
+     "howToSpot": "'How many values can 8 bits represent?', 'largest number in n bits', 'which of these cannot be an octal/hexadecimal number'.",
+     "formula": null,
+     "logic": "1. n bits → 2ⁿ values, spanning 0 to 2ⁿ − 1: 8 bits = 256 values, largest 255.\n2. Digit check: octal allows only 0–7; hexadecimal only 0–9 and A–F.\n3. An option containing 8 or 9 cannot be octal; one containing G or H cannot be hex.",
+     "example": {
+      "q": "How many **different values** can be represented by **8 bits**?",
+      "solution": "2⁸ = **256** different values (0 to 255). The largest value is one less: 2⁸ − 1 = 255."
+     }
+    }
+   ]
+  },
+  {
+   "id": "hm-io-devices",
+   "title": "Input and output devices",
+   "concept": "**Input devices** feed data to the CPU: keyboard, mouse, trackball, joystick, light pen, touch screen, scanner, digital camera, webcam, microphone, barcode/QR reader, biometric (fingerprint/retina) scanner, stylus, and the classic readers:\n\n| Device | Reads | Used in |\n|---|---|---|\n| OMR (Optical Mark Recognition) | Pencil/ink marks (bubbles) | OMR answer sheets, surveys |\n| OCR (Optical Character Recognition) | Printed/written characters into editable text | Digitising documents |\n| MICR (Magnetic Ink Character Recognition) | Iron-oxide ink characters | Cheque processing (9-digit code) |\n| Barcode reader | Parallel black-white bars | Shops, libraries |\n\n**Output devices:** monitor/VDU (CRT -> LCD/LED/OLED), printer, plotter, speaker, projector, headphone.\n\n**Printers:** **Impact** (physical strike - Dot Matrix, Daisy Wheel; noisy, carbon-copy possible) vs **Non-impact** (no strike - **Inkjet** (sprays ink), **Laser** (electrophotographic, fast, office standard), Thermal (bills, ATMs)). **Plotter** draws large precise hard copies (engineering drawings).\n\n**Both input & output:** touch screen, modem, network card, headsets with mic, and storage devices generally.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Mark-Character-Ink",
+     "body": "**OMR = Marks** (bubbles), **OCR = Characters** (text), **MICR = Ink on cheques** (banks). Marks, Characters, Ink - match the noun in the question.",
+     "example": {
+      "q": "Bank cheque reading uses?",
+      "solution": "MICR - magnetic ink characters."
+     }
+    },
+    {
+     "title": "Impact = hit",
+     "body": "If the printer physically *hits* paper (dot matrix, daisy wheel) it is impact - noisy but makes carbon copies. Inkjet/Laser/Thermal never touch with force: non-impact.",
+     "example": {
+      "q": "Which is a non-impact printer - Dot Matrix or Laser?",
+      "solution": "Laser (dot matrix strikes the ribbon)."
+     }
+    }
+   ],
+   "mistakes": [
+    "Marking a touch screen as input-only - it is both input and output.",
+    "Calling MICR an optical technology - it reads magnetic ink.",
+    "Saying plotters are for office documents - plotters are for large-format drawings/graphs."
+   ],
+   "notes": "### Input devices — data goes IN\nAnything that feeds data or commands to the computer is an **input** device.\n\n| Group | Devices |\n|---|---|\n| Typing / pointing | Keyboard, mouse, trackball, touchpad, joystick, light pen, stylus |\n| Capture | Scanner, digital camera, webcam, microphone |\n| Readers | **Barcode/QR reader** (shops), **OMR** (answer sheets), **OCR** (scanned text), **MICR** (bank cheques), biometric scanner (fingerprint, iris) |\n\nThe reader trio by one word each: **OMR = Marks** (pencil bubbles), **OCR = Characters** (printed text becomes editable text), **MICR = Ink** (magnetic characters on cheques).\n\n### Output devices — results come OUT\n| Device | Gives |\n|---|---|\n| **Monitor** | **Soft copy** — output you can see but not touch |\n| **Printer** | **Hard copy** — output on paper |\n| **Speaker / headphones** | Sound |\n| **Plotter** | Hard copy of **large drawings and maps** (engineering, architecture) |\n| **Projector** | A big soft copy on a screen |\n\n### Printers: impact vs non-impact\n| Type | How it works | Examples |\n|---|---|---|\n| **Impact** | Physically **strikes** the paper through a ribbon | **Dot matrix**, daisy wheel — noisy, cheap, multi-copy forms |\n| **Non-impact** | No hitting — sprays ink, fuses toner, or heats paper | **Laser** (toner, fast, office), **inkjet** (liquid ink, home), thermal (bills) |\n\n### Devices that do BOTH\nA **touch screen** takes your finger's input and displays output. A **headset** has a mic (in) and speakers (out). Exams ask 'which is both input and output?' — touch screen is the standard answer.\n\n### Pointing devices in one line each\n- **Mouse** — the standard pointing device; a ball or optical sensor tracks movement.\n- **Trackball** — an upside-down mouse: you roll the ball, the device stays put.\n- **Touchpad** — the laptop's flat mouse replacement.\n- **Joystick** — direction control for games and flight simulators.\n- **Light pen / stylus** — draw or point directly on the screen.\n- **Touchpad + pointers all feed position data IN — every one is an input device.**\n\n### Pairing questions (device ↔ use)\n| Device | Classic use in exams |\n|---|---|\n| Barcode reader | Supermarket billing |\n| OMR | Evaluating pencil-bubble answer sheets |\n| MICR | Reading the cheque code line in banks |\n| OCR | Converting a scanned page into editable text |\n| Biometric scanner | Attendance, Aadhaar-style identity checks |\n| Plotter | Engineering drawings, maps, posters |\n| Webcam + mic | Video calls |\n\n### Modern extras\n- **3D printer** — builds a physical solid object layer by layer (an output device).\n- **Webcam + microphone** — the video-call input pair.\n\n### Quick revision\n- Input: keyboard, mouse, scanner, mic, camera, barcode/OMR/OCR/MICR readers, biometrics.\n- OMR = Marks, OCR = Characters, MICR = magnetic Ink (cheques).\n- Output: monitor (soft copy), printer/plotter (hard copy), speaker, projector.\n- Impact = hits paper (dot matrix); non-impact = laser, inkjet, thermal.\n- Touch screen = both input and output. 3D printer = solid object output.",
+   "patterns": [
+    {
+     "id": "hm-io-p1",
+     "name": "Input device identification",
+     "frequency": "very common",
+     "howToSpot": "'Which is an input device?', 'a barcode reader is used to…', 'joystick is used in…' — pick the device that feeds data in.",
+     "formula": null,
+     "logic": "1. Test each option: does data flow INTO the computer (input) or OUT (output)?\n2. Scanner, microphone and camera are input even though they feel like 'media' devices.\n3. Monitor, printer, speaker, plotter, projector are always output.",
+     "example": {
+      "q": "Which of the following is an **input** device?",
+      "solution": "**Scanner** — it feeds a paper document into the computer as an image. Monitor, speaker and plotter all send data out."
+     }
+    },
+    {
+     "id": "hm-io-p2",
+     "name": "Output device identification; soft vs hard copy",
+     "frequency": "very common",
+     "howToSpot": "'Which is an output device?', 'printed output is called a … copy', 'monitor output is called a … copy'.",
+     "formula": null,
+     "logic": "1. Soft copy = on screen (monitor, projector); hard copy = on paper (printer, plotter).\n2. Speaker and headphones are output (sound).\n3. 'Touch screen' is the planted trap in output-only questions — it is both.",
+     "example": {
+      "q": "Output shown **on paper** (a printout) is called a —",
+      "solution": "**Hard copy** — permanent, touchable output. Output on a monitor is a soft copy."
+     }
+    },
+    {
+     "id": "hm-io-p3",
+     "name": "Both input and output / odd one out",
+     "frequency": "common",
+     "howToSpot": "'Which device works as both input and output?', 'which is NOT an input device?' — one option breaks the family.",
+     "formula": null,
+     "logic": "1. Both-direction devices: touch screen, headset (mic + speaker), fax machine (classic), smart TV with voice remote.\n2. For 'not an input', look for the printer, monitor or speaker hiding in the list.\n3. Classify each option before reading the stem twice — speed comes from the table.",
+     "example": {
+      "q": "Which device acts as **both an input and an output** device?",
+      "solution": "**Touch screen** — your touch is input and the display is output. A mouse is input-only; a monitor is output-only."
+     }
+    },
+    {
+     "id": "hm-io-p4",
+     "name": "Printer technology and reader classification",
+     "frequency": "common",
+     "howToSpot": "'Which is an impact printer?', 'laser printer is non-impact because…', 'OCR converts…', 'plotter is used for…', '3D printer makes…'.",
+     "formula": null,
+     "logic": "1. Impact = physical strike (dot matrix, daisy wheel); non-impact = laser, inkjet, thermal.\n2. Readers by one word: OMR marks, OCR characters, MICR magnetic ink.\n3. Plotter = large-format drawings; 3D printer = solid objects layer by layer.",
+     "example": {
+      "q": "Which of the following is an **impact** printer?",
+      "solution": "**Dot matrix** — its pins physically strike the ribbon against the paper. Laser, inkjet and thermal printers never touch the paper with force."
+     }
+    }
+   ]
+  },
+  {
+   "id": "hm-ports",
+   "title": "Ports and connectors",
+   "concept": "A port is an interface on the cabinet for connecting peripherals.\n\n| Port | Purpose / notes |\n|---|---|\n| Serial (COM/RS-232) | Sends **one bit at a time**; suits slow data over long distances; old modems/mice |\n| Parallel (LPT, 25-pin) | Sends **8 bits (a byte) at once**; traditional printer port; short distance |\n| PS/2 | 6-pin round; keyboard (purple) & mouse (green); legacy |\n| USB | Universal Serial Bus; hot-swappable, power + data. USB 2.0 = 480 Mbps, USB 3.x = 5-20 Gbps; Type-A/B/C |\n| VGA (DB-15) | **15-pin, analog video only** to monitors/projectors |\n| DVI | Digital video (older digital standard) |\n| HDMI | **Digital audio + video** in one cable; TVs/monitors |\n| DisplayPort | Digital audio + video, daisy-chaining; PCs |\n| Thunderbolt | Combines DisplayPort + PCIe over USB-C; very high speed |\n| Ethernet (RJ-45) | Wired LAN |\n| Audio jacks (3.5 mm) | Green = line-out/speakers, Pink = mic, Blue = line-in |\n| Game port / FireWire (IEEE 1394) | Legacy joystick; high-speed media, superseded by USB |\n\n**Hot-swappable** = connect/disconnect while the PC runs (USB, FireWire) - serial/parallel ports are not.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Serial = Single lane",
+     "body": "**S**erial sends a **S**ingle stream (1 bit at a time, slow, long distance); **P**arallel sends a **P**acket (whole byte across 8 wires, fast, short distance - old printers).",
+     "example": {
+      "q": "Which port transmits one bit at a time?",
+      "solution": "Serial port."
+     }
+    },
+    {
+     "title": "VGA vs HDMI",
+     "body": "**V**GA = **V**ideo only (15 pins, analog); **HDMI** = **H**ome-theatre cable: **audio + video**, digital. If the question says 'sound and picture together' -> HDMI.",
+     "example": {
+      "q": "Which port carries digital audio and video?",
+      "solution": "HDMI."
+     }
+    }
+   ],
+   "mistakes": [
+    "Calling VGA capable of audio - VGA is video-only.",
+    "Saying serial ports are faster than parallel - parallel moves a byte per transfer (over short runs).",
+    "Forgetting USB is hot-swappable - that phrase in the question usually points to USB."
+   ],
+   "notes": "### What a port is\nA **port** is a socket on the cabinet where a cable or device plugs in. Each port has a job — carry video, connect a network, take a keyboard — and exams ask \"which port for which job?\".\n\n### Serial vs parallel — the classic comparison\n| | Serial port | Parallel port |\n|---|---|---|\n| Bits per transfer | **One bit at a time** | **A whole byte (8 bits) at once** |\n| Wires | Few | Many |\n| Distance | Long distances, less interference | Short distances |\n| Classic use | Old modems, mice (COM port) | Old printers (LPT port) |\n\nMemory hook: **S**erial = **S**ingle lane; **P**arallel = multi-lane highway.\n\n### The port table\n| Port | Job |\n|---|---|\n| **USB** (Universal Serial Bus) | Everything today — pen drives, keyboards, phones. **Hot-swappable** and **supplies power (5 V)** |\n| **HDMI** | **Digital video + audio** in one cable — monitor, TV, projector |\n| **VGA** | **Analog video only** (15-pin, blue) — older monitors; no sound |\n| **DisplayPort** | Digital video + audio, common on PCs and monitors |\n| **Ethernet (RJ-45)** | Wired network/LAN connection |\n| **PS/2** | Round 6-pin — old **keyboard and mouse** |\n| **Audio jack (3.5 mm)** | Speakers, headphones, mic (green = out, pink = mic) |\n| **Serial (COM/RS-232)** | One-bit-at-a-time legacy data link |\n| **Parallel (LPT)** | Legacy 25-pin printer port |\n\n### USB facts exams like\n- **Hot-swappable** — connect or remove **while the computer runs**, no restart.\n- USB **supplies power**, so pen drives and small keyboards need no adapter.\n- Speeds grew by generation: USB 2.0 ≈ 480 Mbps, USB 3.0 ≈ 5 Gbps.\n- USB Type-C — the small reversible oval plug now common on phones and laptops.\n\n### How exam questions sound\n| Stem words | Answer |\n|---|---|\n| 'Picture and sound, one digital cable' | HDMI |\n| 'Old blue connector, video only' | VGA |\n| 'One bit at a time' | Serial (COM) |\n| 'Printer port of old machines' | Parallel (LPT) |\n| 'Network cable socket' | Ethernet / RJ-45 |\n| 'Round purple and green sockets' | PS/2 keyboard and mouse |\n| 'Plug in without restarting' | USB (hot-swap) |\n| 'Speakers, green round hole' | 3.5 mm audio jack |\n\n### A 10-second method\n1. Underline the JOB in the stem (video? sound? network? data direction?).\n2. Match the job to the table row — ports are defined by what they carry.\n3. If two options look close, drop the one whose extra capability the stem excludes (VGA fails any 'audio' stem; parallel fails any 'long distance' stem).\n\n### Quick revision\n- Serial = 1 bit at a time, long distance; parallel = 8 bits (a byte), printers (LPT).\n- HDMI = digital audio + video; VGA = analog video only, no audio.\n- Ethernet/RJ-45 = network; PS/2 = old keyboard/mouse; 3.5 mm = audio.\n- USB = hot-swappable + supplies power; USB 2.0 ≈ 480 Mbps, USB 3.0 ≈ 5 Gbps.",
+   "patterns": [
+    {
+     "id": "hm-por-p1",
+     "name": "Serial vs parallel comparison",
+     "frequency": "very common",
+     "howToSpot": "'How many bits does a parallel port send?', 'which port sends one bit at a time?', 'which port was used for printers (LPT)?', statement pairs on wires and distance.",
+     "formula": null,
+     "logic": "1. Serial = 1 bit at a time, few wires, long distance. Parallel = 8 bits (a byte) at once, short distance, old printer port (LPT).\n2. 'One bit at a time' always means serial — even if USB is also serial inside.\n3. Statement versions plant a reversal (serial = 8 bits) — check each number.",
+     "example": {
+      "q": "A **parallel port** transfers how much data per transfer?",
+      "solution": "**A full byte (8 bits) at once** — eight wires side by side. A serial port moves the same byte as 8 single bits in sequence."
+     }
+    },
+    {
+     "id": "hm-por-p2",
+     "name": "Port identification by purpose",
+     "frequency": "very common",
+     "howToSpot": "'Which port connects to a network?', 'video + audio in one digital cable', 'the round port for an old keyboard', 'green socket for speakers'.",
+     "formula": null,
+     "logic": "1. Network = Ethernet/RJ-45; digital AV = HDMI/DisplayPort; analog video only = VGA; old keyboard/mouse = PS/2; speakers/headphones = 3.5 mm audio jack.\n2. 'Single cable, picture and sound, digital' = HDMI in exam language.\n3. USB is the universal fallback — if no specific job matches, USB fits.",
+     "example": {
+      "q": "Which port connects a computer to a **wired LAN/network**?",
+      "solution": "The **Ethernet port (RJ-45)** — the wide tabbed socket that takes the network cable."
+     }
+    },
+    {
+     "id": "hm-por-p3",
+     "name": "USB facts (hot-swap, power, versions)",
+     "frequency": "common",
+     "howToSpot": "'Hot-swappable means…', 'why does a pen drive work without its own power?', 'USB 3.0 is faster than 2.0 because…'.",
+     "formula": null,
+     "logic": "1. Hot-swappable = plug/unplug **while the PC is running**, no restart.\n2. USB carries **power (5 V)** along with data — that is why pen drives need no adapter.\n3. Version speeds: USB 2.0 ≈ 480 Mbps, USB 3.0 ≈ 5 Gbps (about 10× faster).",
+     "example": {
+      "q": "USB is called **hot-swappable** because —",
+      "solution": "You can connect or remove a USB device **while the computer is running** — no shutdown or restart needed."
+     }
+    },
+    {
+     "id": "hm-por-p4",
+     "name": "Display and audio ports",
+     "frequency": "common",
+     "howToSpot": "'Which port carries only video?', 'VGA vs HDMI', 'which port for speakers?', statements about analog/digital video.",
+     "formula": null,
+     "logic": "1. VGA = analog, **video only**, 15 pins. HDMI and DisplayPort = digital, video **+ audio**.\n2. The green 3.5 mm socket = line-out for speakers; pink = microphone.\n3. 'No sound from my VGA monitor cable' is the everyday proof of the exam line.",
+     "example": {
+      "q": "Which port carries **analog video only**, with no audio?",
+      "solution": "**VGA** — the 15-pin blue connector of older monitors. HDMI and DisplayPort carry both video and audio in digital form."
+     }
+    }
+   ]
+  },
+  {
+   "id": "hm-storage",
+   "title": "Storage and backup media",
+   "concept": "| Medium | Technology | Capacity (typical) |\n|---|---|---|\n| Hard Disk Drive (HDD) | Magnetic platters, spinning | 500 GB - 20 TB |\n| SSD / NVMe | Flash chips, no moving parts | 128 GB - 8 TB, much faster than HDD |\n| CD-ROM | Optical, 1 side | ~700 MB |\n| DVD (single layer) | Optical | **4.7 GB** (dual-layer 8.5 GB) |\n| Blu-ray (single layer) | Blue-violet laser | **25 GB** (dual 50 GB) |\n| Pen drive / SD card | Flash | GBs - TBs |\n| Magnetic tape (LTO) | Sequential magnetic | TBs per cartridge; archival backup |\n| Cloud storage | Remote servers | TB plans; off-site backup |\n\nOptical discs store bits as pits/lands read by laser; the shorter the wavelength (IR -> red -> blue-violet), the denser the storage (CD -> DVD -> Blu-ray). **Backup rule of thumb:** keep at least one copy **off-site** and on a different medium than the live data. **NAS** (Network Attached Storage) gives shared disk over the LAN.",
+   "formulas": [],
+   "tricks": [
+    {
+     "title": "Optical capacity ladder",
+     "body": "**CD 700 MB -> DVD 4.7 GB -> Blu-ray 25 GB** (single layer). Roughly: CD 0.7, DVD 4.7, BR 25 - '700, 4.7, 25'.",
+     "example": {
+      "q": "Storage capacity of a single-layer DVD?",
+      "solution": "4.7 GB."
+     }
+    },
+    {
+     "title": "SSD vs HDD one-liner",
+     "body": "SSD = **no moving parts** (flash), silent, shock-proof, faster, costlier per GB. HDD = spinning platters, cheap bulk storage. 'No moving parts' in a question = SSD.",
+     "example": {
+      "q": "Which storage has no moving parts?",
+      "solution": "Solid State Drive (flash memory)."
+     }
+    }
+   ],
+   "mistakes": [
+    "Quoting 700 MB for a DVD - that is a CD; a single-layer DVD is 4.7 GB.",
+    "Saying Blu-ray uses a red laser - Blu-ray uses the shorter blue-violet laser.",
+    "Believing tape is obsolete - LTO tape is still standard for archival backups."
+   ],
+   "notes": "### Primary vs secondary storage\n**Primary memory** (RAM, cache) is fast but small and (for RAM) volatile. **Secondary storage** is large, permanent and cheaper per GB — everything below is secondary.\n\n### The three technologies\n| Family | How it stores | Examples |\n|---|---|---|\n| **Magnetic** | Magnetised spots on spinning platters or tape | **HDD** (hard disk), old floppy, **magnetic tape (LTO)** |\n| **Optical** | Tiny pits read by a **laser** | **CD, DVD, Blu-ray** |\n| **Flash (solid-state)** | Floating-gate memory chips, no moving parts | **SSD, pen drive, memory card, smartphone storage** |\n\n### Capacities to memorise (the exam's favourite row)\n| Disc | Capacity (single layer) | Laser |\n|---|---|---|\n| **CD** | **700 MB** | infrared/red |\n| **DVD** | **4.7 GB** (dual-layer ≈ 8.5 GB) | red |\n| **Blu-ray** | **25 GB** (dual-layer ≈ 50 GB) | **blue-violet** (shorter wavelength → tighter pits → more data) |\n\nLadder for one-mark questions: **CD (0.7 GB) < DVD (4.7 GB) < Blu-ray (25 GB)**.\n\n### HDD vs SSD (asked almost every year)\n| | HDD | SSD |\n|---|---|---|\n| Parts | Spinning **magnetic platters** + moving heads | **Flash chips**, no moving parts |\n| Speed | Slower (heads must seek) | Much faster |\n| Shock / noise | Sensitive, some noise | Shock-resistant, silent |\n| Cost per GB | Cheaper | Costlier |\n\n### Access methods\n- **Random (direct) access** — jump straight to any address: RAM, HDD, SSD, disc with a file system.\n- **Sequential access** — read through in order, like a cassette: **magnetic tape**. That is why tape is cheap and perfect for **archival backups**, not for daily use.\n\n### Backup ideas\n- **Cloud storage/backup** — your files copied to internet servers (anywhere access).\n- **Tape libraries** — banks and research labs still archive petabytes on tape.\n- The 3-2-1 habit: three copies, two media, one off-site — a good phrase for one-liners.\n\n### Everyday capacity anchors (for rejecting silly options)\n- One MP3 song ≈ 4–8 MB; a 90-minute movie ≈ 1–4 GB; a phone ≈ 64–256 GB; a laptop SSD ≈ 512 GB–1 TB; a data-centre shelf ≈ many TB.\n- So 'a CD holds 4.7 GB' should feel wrong instantly — that is DVD territory.\n\n### One-line differentiators exams quote\n- **Floppy disk** — the 1.44 MB magnetic ancestor, long obsolete but still asked for its capacity.\n- **Memory card** — flash storage for cameras and phones (SD, microSD).\n- **Blu-ray's name** comes from its blue-violet laser, not from any brand.\n- **Formatting** prepares a disk's file system; it does not add capacity.\n\n### Quick revision\n- Magnetic = HDD, tape; optical = CD/DVD/Blu-ray (laser-read pits); flash = SSD, pen drive.\n- CD 700 MB → DVD 4.7 GB → Blu-ray 25 GB (blue-violet laser); DVD dual ≈ 8.5 GB.\n- SSD: no moving parts, faster, costlier, shock-proof. HDD: magnetic platters, cheaper per GB.\n- Tape = sequential access, archival backup; disk/SSD = random access.\n- Cloud backup = copies held on internet servers.",
+   "patterns": [
+    {
+     "id": "hm-sto-p1",
+     "name": "Optical-media capacity matching",
+     "frequency": "very common",
+     "howToSpot": "'Capacity of a CD/DVD/Blu-ray?', 'arrange by capacity', 'dual-layer DVD holds', 'which disc uses a blue-violet laser'.",
+     "formula": null,
+     "logic": "1. One row: CD = 700 MB, DVD = 4.7 GB (dual ≈ 8.5 GB), Blu-ray = 25 GB (dual ≈ 50 GB).\n2. Ordering questions run CD < DVD < Blu-ray.\n3. The blue-violet (shorter-wavelength) laser is Blu-ray's identifying fact.",
+     "example": {
+      "q": "A **single-layer DVD** stores about —",
+      "solution": "**4.7 GB** (a dual-layer DVD ≈ 8.5 GB). The 700 MB figure belongs to a CD; 25 GB to a single-layer Blu-ray."
+     }
+    },
+    {
+     "id": "hm-sto-p2",
+     "name": "HDD vs SSD vs flash",
+     "frequency": "very common",
+     "howToSpot": "'Which storage has no moving parts?', 'why is an SSD faster?', 'a pen drive uses which memory?', 'HDD stores data on…'.",
+     "formula": null,
+     "logic": "1. HDD = spinning magnetic platters + heads; SSD/pen drive = flash chips, no moving parts.\n2. SSD's speed comes from zero mechanical seek time; it is also silent and shock-resistant.\n3. Flash is non-volatile — data stays without power, unlike RAM.",
+     "example": {
+      "q": "Why is an **SSD** faster than an **HDD**?",
+      "solution": "The SSD has **no mechanical parts** — no platters to spin up, no heads to seek — so access takes microseconds instead of milliseconds."
+     }
+    },
+    {
+     "id": "hm-sto-p3",
+     "name": "Backup and access methods",
+     "frequency": "common",
+     "howToSpot": "'Which medium for archival backup?', 'sequential access example', 'storing backups on internet servers is called'.",
+     "formula": null,
+     "logic": "1. Archival = magnetic tape (LTO): cheapest per TB, sequential access.\n2. Sequential = read in order (tape, cassette); random/direct = jump to any address (disk, SSD).\n3. Copies on internet servers = cloud storage/backup.",
+     "example": {
+      "q": "Which storage medium uses **sequential access**, reading data strictly in order?",
+      "solution": "**Magnetic tape** — like a cassette, the drive must wind past everything before the needed block. Disks and SSDs give random (direct) access."
+     }
+    },
+    {
+     "id": "hm-sto-p4",
+     "name": "Media odd-one-out and matching",
+     "frequency": "common",
+     "howToSpot": "'Which is NOT an optical medium?', 'match disc to capacity', 'which is a magnetic storage device?'.",
+     "formula": null,
+     "logic": "1. Optical family = CD, DVD, Blu-ray (laser-read). Anything else (HDD, pen drive, tape) breaks the family.\n2. Magnetic family = HDD, floppy, tape. Flash family = SSD, pen drive, memory card.\n3. For matching, pair by the capacity row first, then by technology.",
+     "example": {
+      "q": "Which of the following is **NOT** an optical storage medium?",
+      "solution": "**Hard disk** — it is magnetic. CD, DVD and Blu-ray are all read by lasers, which defines optical storage."
+     }
+    }
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Memory-unit ladder conversion",
+   "frequency": "very common",
+   "howToSpot": "'4 GB = how many MB?', 'bits in a byte/nibble', 'which is largest: 1024 KB / 1 MB / …', or a speed question mixing megabits with megabytes.",
+   "approach": "Convert step by step with the ×1024 ladder (bit → byte → KB → MB → GB → TB), never 1000. For speed questions, remember line speeds are in bits: divide Mbps by 8 to get megabytes per second. For 'which is largest', convert every option to one unit first.",
+   "subtopic": "hm-memory-units",
+   "example": {
+    "q": "How many MB are there in 2 GB?",
+    "solution": "2 × 1024 = 2048 MB — each step up the ladder multiplies by 1024."
+   }
+  },
+  {
+   "pattern": "Binary/decimal/hex/octal conversion",
+   "frequency": "very common",
+   "howToSpot": "'The decimal value of (1101)₂', 'the binary equivalent of 45', '(11011011)₂ in hexadecimal', 'how many values can 8 bits represent'.",
+   "approach": "Base→decimal: digit × base^position from the right. Decimal→base: divide repeatedly and read remainders bottom-to-top. Binary→octal/hex: group in 3s or 4s from the right. Always verify by converting back. Digit validity is a free elimination: no 8/9 in octal, nothing after F in hex.",
+   "subtopic": "hm-number-systems",
+   "example": {
+    "q": "The binary equivalent of decimal 45 is:",
+    "solution": "Divide by 2 and read remainders upward: 101101. Check: 32+8+4+1 = 45."
+   }
+  },
+  {
+   "pattern": "Volatile memory / ROM family",
+   "frequency": "common",
+   "howToSpot": "'Which is volatile?', 'EPROM is erased by…', 'where is the BIOS stored?', 'SRAM vs DRAM refresh', 'cache lies where?'.",
+   "approach": "Volatile = vanishes with power (registers, cache, RAM). Non-volatile = ROM family, flash, disk. ROM ladder: PROM once → EPROM (UV) → EEPROM (electrically) → flash. SRAM = cache (no refresh); DRAM = main memory (needs refresh); virtual memory = disk overflow, not RAM.",
+   "subtopic": "hm-memory-hierarchy",
+   "example": {
+    "q": "EPROM differs from PROM because it can be erased by:",
+    "solution": "Ultraviolet light — EEPROM goes one step further and erases electrically."
+   }
+  },
+  {
+   "pattern": "Port/device identification",
+   "frequency": "common",
+   "howToSpot": "'Which port carries audio + video?', 'one bit at a time', 'RJ-45 is for…', 'hot-swappable means…', 'which port for the old keyboard?'.",
+   "approach": "Port table recall: HDMI = digital video + audio, VGA = analog video only, Ethernet/RJ-45 = network, PS/2 = old keyboard/mouse, USB = universal + hot-swap + power. Serial = 1 bit at a time over long runs; parallel = 8 bits, the old printer (LPT) port.",
+   "subtopic": "hm-ports",
+   "example": {
+    "q": "Which port connects a computer to a wired LAN?",
+    "solution": "The Ethernet port (RJ-45) — the tabbed socket for the network cable."
+   }
+  },
+  {
+   "pattern": "Printer/device classification",
+   "frequency": "common",
+   "howToSpot": "'Which is an impact printer?', 'OMR/OCR/MICR reads what?', 'plotter is used for', '3D printer produces'.",
+   "approach": "Impact = physically strikes (dot matrix, daisy wheel); non-impact = laser, inkjet, thermal. Readers by one word: OMR marks, OCR characters, MICR magnetic ink on cheques. Plotter = large drawings; 3D printer = solid objects layer by layer.",
+   "subtopic": "hm-io-devices",
+   "example": {
+    "q": "Which is an impact printer?",
+    "solution": "Dot matrix — its pins strike the ribbon against the paper; laser and inkjet never hit."
+   }
+  },
+  {
+   "pattern": "Input/output device classification",
+   "frequency": "common",
+   "howToSpot": "'Which is an input device?', 'which is NOT an input device?', 'soft copy vs hard copy', 'which device is both input and output?'.",
+   "approach": "Direction test: data flowing INTO the computer = input (keyboard, mouse, scanner, mic, readers, biometrics); results OUT = output (monitor, printer, speaker, plotter, projector). Soft copy = screen; hard copy = paper. Touch screen does both — the standard both-direction answer.",
+   "subtopic": "hm-io-devices",
+   "example": {
+    "q": "A printout on paper is called a:",
+    "solution": "Hard copy — permanent output; a monitor's display is a soft copy."
+   }
+  },
+  {
+   "pattern": "Storage media identification",
+   "frequency": "common",
+   "howToSpot": "'Capacity of a CD/DVD/Blu-ray', 'which storage has no moving parts', 'sequential access example', 'match medium to technology'.",
+   "approach": "Capacity row: CD 700 MB, DVD 4.7 GB (dual 8.5), Blu-ray 25 GB with its blue-violet laser. Technology families: magnetic (HDD, tape), optical (CD/DVD/BD), flash (SSD, pen drive, card). Tape = sequential access, archival; disk/SSD = random access; SSD beats HDD on speed, loses on cost per GB.",
+   "subtopic": "hm-storage",
+   "example": {
+    "q": "A single-layer Blu-ray disc stores about:",
+    "solution": "25 GB — its short-wavelength blue-violet laser packs far more data than a DVD's red laser."
+   }
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "hm-se01",
+   "q": "What is the decimal equivalent of the binary number 1011011?",
+   "figure": null,
+   "options": [
+    "87",
+    "89",
+    "91",
+    "93"
+   ],
+   "answer": 2,
+   "solution": "Write positional powers of 2 under the digits: 1x64 + 0x32 + 1x16 + 1x8 + 0x4 + 1x2 + 1x1 = 64+16+8+2+1 = 91.",
+   "shortcut": "Powers row 64 32 16 8 4 2 1; pick the positions with 1s: 64+16+8+2+1 = 91. (Verified computationally.)",
+   "difficulty": "medium",
+   "subtopic": "hm-number-systems",
+   "pattern": "binary to decimal conversion",
+   "timeSec": 45
+  },
+  {
+   "id": "hm-se02",
+   "q": "The decimal number 58 in binary is:",
+   "figure": null,
+   "options": [
+    "111010",
+    "110110",
+    "101110",
+    "111100"
+   ],
+   "answer": 0,
+   "solution": "Repeated division by 2: 58->29 r0, 29->14 r1, 14->7 r0, 7->3 r1, 3->1 r1, 1->0 r1. Reading remainders bottom to top: 111010. Check: 32+16+8+2 = 58.",
+   "shortcut": "Subtract powers of 2 from 58: 32 leaves 26, 16 leaves 10, 8 leaves 2, 2 leaves 0 -> bits at 32,16,8,2 -> 111010.",
+   "difficulty": "medium",
+   "subtopic": "hm-number-systems",
+   "pattern": "decimal to binary conversion",
+   "timeSec": 50
+  },
+  {
+   "id": "hm-se03",
+   "q": "The octal equivalent of the binary number 11010111 is:",
+   "figure": null,
+   "options": [
+    "327",
+    "315",
+    "647",
+    "326"
+   ],
+   "answer": 0,
+   "solution": "Group the bits in threes from the right: 011 010 111. Convert each group: 011=3, 010=2, 111=7, giving 327 (octal). Cross-check: 327 in octal = 3x64+2x8+7 = 215 = value of 11010111 in decimal.",
+   "shortcut": "3-bit groups from the right; pad the left with zero. Octal digits can never include 8 or 9 - that kills two options instantly.",
+   "difficulty": "medium",
+   "subtopic": "hm-number-systems",
+   "pattern": "binary to octal grouping",
+   "timeSec": 50
+  },
+  {
+   "id": "hm-se04",
+   "q": "How many megabytes are there in 4 GB (exam convention)?",
+   "figure": null,
+   "options": [
+    "1024",
+    "2048",
+    "4096",
+    "8192"
+   ],
+   "answer": 2,
+   "solution": "1 GB = 1024 MB, so 4 GB = 4 x 1024 = 4096 MB. In powers of two: 4 GB = 2^2 x 2^30 B = 2^32 B = 2^22 KB x 1024 = 4096 MB.",
+   "shortcut": "Each ladder step is x1024, so GB->MB is just 4 x 1024 = 4096. Options 1024/2048/8192 are the x1024 answers for 1, 2 and 8 GB - read the question's number carefully.",
+   "difficulty": "easy",
+   "subtopic": "hm-memory-units",
+   "pattern": "memory-unit ladder",
+   "timeSec": 35
+  },
+  {
+   "id": "hm-se05",
+   "q": "Which of the following devices reads the characters printed at the bottom of bank cheques using magnetic ink?",
+   "figure": null,
+   "options": [
+    "OCR",
+    "OMR",
+    "MICR",
+    "Barcode reader"
+   ],
+   "answer": 2,
+   "solution": "MICR (Magnetic Ink Character Recognition) reads the 9-digit code printed in iron-oxide ink along a cheque's bottom strip. OCR reads ordinary printed text, OMR reads pencil marks/bubbles, barcode readers read retail bar patterns.",
+   "shortcut": "Cheque -> MICR (Ink). Marks -> OMR. Characters -> OCR. Bars -> barcode.",
+   "difficulty": "easy",
+   "subtopic": "hm-io-devices",
+   "pattern": "input-device identification",
+   "timeSec": 30
+  }
+ ],
+ "practice": [
+  {
+   "id": "hm-q01",
+   "q": "A nibble consists of how many bits?",
+   "figure": null,
+   "options": [
+    "2",
+    "4",
+    "8",
+    "16"
+   ],
+   "answer": 1,
+   "solution": "A nibble is half a byte: 4 bits. A byte is 8 bits; a word is CPU-dependent (16/32/64 bits).",
+   "shortcut": "Nibble = half a byte = 4 bits ('nybble nibbles off half').",
+   "difficulty": "easy",
+   "subtopic": "hm-memory-units",
+   "pattern": "memory-unit definition",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-q02",
+   "q": "Which of the following is a volatile memory?",
+   "figure": null,
+   "options": [
+    "ROM",
+    "DRAM",
+    "PROM",
+    "SSD"
+   ],
+   "answer": 1,
+   "solution": "DRAM (dynamic RAM) loses its contents the moment power is cut. The ROM family (PROM, EPROM, EEPROM) and flash-based SSDs are non-volatile.",
+   "shortcut": "Volatile = Vanishes: registers, cache, RAM. Everything with 'ROM' or flash in the name stays put.",
+   "difficulty": "easy",
+   "subtopic": "hm-memory-hierarchy",
+   "pattern": "volatile memory identification",
+   "timeSec": 30
+  },
+  {
+   "id": "hm-q03",
+   "q": "The small, very fast memory placed between the CPU and main memory is:",
+   "figure": null,
+   "options": [
+    "Virtual memory",
+    "Cache memory",
+    "Buffer register",
+    "CMOS memory"
+   ],
+   "answer": 1,
+   "solution": "Cache (usually SRAM, levels L1-L3) stores frequently used data between the CPU and RAM. Virtual memory is disk-based overflow; buffers smooth I/O transfers; CMOS holds BIOS settings.",
+   "shortcut": "'Between CPU and RAM' is the exact address of cache.",
+   "difficulty": "easy",
+   "subtopic": "hm-memory-hierarchy",
+   "pattern": "memory hierarchy position",
+   "timeSec": 30
+  },
+  {
+   "id": "hm-q04",
+   "q": "EPROM differs from PROM because it can be erased by:",
+   "figure": null,
+   "options": [
+    "Electrical signals",
+    "Ultraviolet light",
+    "Magnetic field",
+    "X-rays"
+   ],
+   "answer": 1,
+   "solution": "EPROM (Erasable Programmable ROM) is erased by exposing the quartz window to ultraviolet light. PROM cannot be erased once programmed; EEPROM is the electrically erasable version.",
+   "shortcut": "One E = light (EPROM, UV); two E's = electricity (EEPROM).",
+   "difficulty": "medium",
+   "subtopic": "hm-memory-hierarchy",
+   "pattern": "ROM family differences",
+   "timeSec": 35
+  },
+  {
+   "id": "hm-q05",
+   "q": "The decimal value of the binary number 111010 is:",
+   "figure": null,
+   "options": [
+    "54",
+    "56",
+    "58",
+    "60"
+   ],
+   "answer": 2,
+   "solution": "32+16+8+0+2+0 = 58.",
+   "shortcut": "Powers 32 16 8 4 2 1; pick 1-positions: 32+16+8+2 = 58.",
+   "difficulty": "easy",
+   "subtopic": "hm-number-systems",
+   "pattern": "binary to decimal conversion",
+   "timeSec": 40
+  },
+  {
+   "id": "hm-q06",
+   "q": "The binary equivalent of decimal 156 is:",
+   "figure": null,
+   "options": [
+    "10011100",
+    "10100110",
+    "11001100",
+    "10010110"
+   ],
+   "answer": 0,
+   "solution": "156 = 128+16+8+4, so bits at 2^7, 2^4, 2^3, 2^2: 10011100. Division check: 156->78 r0, 78->39 r0, 39->19 r1, 19->9 r1, 9->4 r1, 4->2 r0, 2->1 r0, 1->0 r1 -> bottom-up 10011100.",
+   "shortcut": "Subtract 128 first (156-128 = 28), then 16 (12), then 8 (4), then 4 (0): bits 128,16,8,4 = 10011100.",
+   "difficulty": "medium",
+   "subtopic": "hm-number-systems",
+   "pattern": "decimal to binary conversion",
+   "timeSec": 50
+  },
+  {
+   "id": "hm-q07",
+   "q": "The decimal number 200 in hexadecimal is:",
+   "figure": null,
+   "options": [
+    "B8",
+    "C8",
+    "C9",
+    "D8"
+   ],
+   "answer": 1,
+   "solution": "200 = 12x16 + 8 = C8 (C = 12).",
+   "shortcut": "Divide by 16: 200/16 = 12 r 8 -> C8. The remainder is the last hex digit, the quotient the first.",
+   "difficulty": "medium",
+   "subtopic": "hm-number-systems",
+   "pattern": "decimal to hexadecimal conversion",
+   "timeSec": 45
+  },
+  {
+   "id": "hm-q08",
+   "q": "The hexadecimal number 2F equals which decimal number?",
+   "figure": null,
+   "options": [
+    "37",
+    "45",
+    "47",
+    "57"
+   ],
+   "answer": 2,
+   "solution": "2F = 2x16^1 + 15x16^0 = 32 + 15 = 47 (F = 15).",
+   "shortcut": "F=15: so 32+15 = 47. Options built from F=5, 7 or 13 are the traps.",
+   "difficulty": "easy",
+   "subtopic": "hm-number-systems",
+   "pattern": "hexadecimal to decimal conversion",
+   "timeSec": 40
+  },
+  {
+   "id": "hm-q09",
+   "q": "The largest decimal number that can be stored in 8 binary bits is:",
+   "figure": null,
+   "options": [
+    "127",
+    "128",
+    "255",
+    "256"
+   ],
+   "answer": 2,
+   "solution": "11111111 = 2^8 - 1 = 255. (256 needs 9 bits; 127 is the largest for 7-bit or the max of a signed 8-bit byte.)",
+   "shortcut": "n bits -> largest unsigned value 2^n - 1. 8 bits -> 255.",
+   "difficulty": "easy",
+   "subtopic": "hm-number-systems",
+   "pattern": "range of n-bit numbers",
+   "timeSec": 35
+  },
+  {
+   "id": "hm-q10",
+   "q": "Which input device is used to evaluate answers marked with pencil bubbles on an OMR answer sheet?",
+   "figure": null,
+   "options": [
+    "OCR",
+    "OMR",
+    "MICR",
+    "Plotter"
+   ],
+   "answer": 1,
+   "solution": "OMR (Optical Mark Recognition) detects the presence/absence of marks in fixed positions - exactly the bubble-sheet use case.",
+   "shortcut": "Bubbles/marks -> OMR. Printed text -> OCR. Cheques -> MICR. Plotter is an output device.",
+   "difficulty": "easy",
+   "subtopic": "hm-io-devices",
+   "pattern": "input-device identification",
+   "timeSec": 30
+  },
+  {
+   "id": "hm-q11",
+   "q": "Which of the following is a non-impact printer?",
+   "figure": null,
+   "options": [
+    "Dot Matrix printer",
+    "Daisy Wheel printer",
+    "Laser printer",
+    "Ball printer"
+   ],
+   "answer": 2,
+   "solution": "Laser printers form images with electrostatic toner - no physical strike - so they are non-impact (as are inkjet and thermal). Dot matrix and daisy wheel strike an inked ribbon.",
+   "shortcut": "Impact family is short: dot matrix + daisy wheel. Almost every other printer is non-impact.",
+   "difficulty": "easy",
+   "subtopic": "hm-io-devices",
+   "pattern": "printer classification",
+   "timeSec": 30
+  },
+  {
+   "id": "hm-q12",
+   "q": "A hard copy of large engineering drawings is best produced on a:",
+   "figure": null,
+   "options": [
+    "Laser printer",
+    "Plotter",
+    "Thermal printer",
+    "Scanner"
+   ],
+   "answer": 1,
+   "solution": "Plotters draw precise, large-format line art (A0/A1 sheets) with a pen or cutting head - standard for CAD output. Printers handle page-size documents; a scanner is an input device.",
+   "shortcut": "Drawings/CAD/large sheets -> plotter.",
+   "difficulty": "easy",
+   "subtopic": "hm-io-devices",
+   "pattern": "output-device selection",
+   "timeSec": 30
+  },
+  {
+   "id": "hm-q13",
+   "q": "Which port carries digital audio and video signals over a single cable to a monitor or TV?",
+   "figure": null,
+   "options": [
+    "VGA",
+    "PS/2",
+    "HDMI",
+    "Serial COM"
+   ],
+   "answer": 2,
+   "solution": "HDMI transmits uncompressed digital video plus audio in one cable. VGA is analog video-only, PS/2 is for keyboard/mouse, and serial COM ports carry slow bit-serial data.",
+   "shortcut": "Audio AND video together -> HDMI (or DisplayPort, if listed).",
+   "difficulty": "medium",
+   "subtopic": "hm-ports",
+   "pattern": "port identification",
+   "timeSec": 35
+  },
+  {
+   "id": "hm-q14",
+   "q": "The port that transmits data one bit at a time as a single stream, traditionally used for slow data over long distances, is the:",
+   "figure": null,
+   "options": [
+    "Parallel port",
+    "Serial port",
+    "SCSI port",
+    "FireWire port"
+   ],
+   "answer": 1,
+   "solution": "A serial port (COM/RS-232) sends bits sequentially over one channel - slower but reliable over longer cable runs. Parallel ports send a byte across 8 wires simultaneously but only over short distances.",
+   "shortcut": "'One bit at a time / single stream' = serial, word for word.",
+   "difficulty": "easy",
+   "subtopic": "hm-ports",
+   "pattern": "serial vs parallel port",
+   "timeSec": 30
+  },
+  {
+   "id": "hm-q15",
+   "q": "Which statement about SSDs and HDDs is correct?",
+   "figure": null,
+   "options": [
+    "SSDs use spinning magnetic platters",
+    "HDDs have no moving parts",
+    "SSDs use flash memory with no moving parts",
+    "HDDs are always faster than SSDs"
+   ],
+   "answer": 2,
+   "solution": "An SSD stores data in NAND flash chips with no mechanical parts, making it faster and shock-resistant; an HDD stores data magnetically on spinning platters with a moving head, and is slower but cheaper per GB.",
+   "shortcut": "'No moving parts' -> SSD, always. Any option giving moving parts to SSD or calling HDD faster is upside down.",
+   "difficulty": "easy",
+   "subtopic": "hm-storage",
+   "pattern": "SSD vs HDD",
+   "timeSec": 35
+  },
+  {
+   "id": "hm-memory-hierarchy-p01",
+   "q": "Which of the following is **volatile** memory?",
+   "figure": null,
+   "options": [
+    "ROM",
+    "RAM",
+    "Flash drive",
+    "DVD"
+   ],
+   "answer": 1,
+   "solution": "**RAM** loses all its content the moment power is cut — the definition of volatile. ROM, flash and DVD are non-volatile.",
+   "shortcut": "Volatile = Vanishes with power.",
+   "difficulty": "easy",
+   "subtopic": "hm-memory-hierarchy",
+   "pattern": "hm-hie-p1",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-memory-hierarchy-p02",
+   "q": "Consider the statements:\n1. Cache memory is volatile.\n2. ROM is used to store start-up firmware.\n3. The content of RAM survives a system shutdown.\nWhich are correct?",
+   "figure": null,
+   "options": [
+    "1 and 3 only",
+    "2 and 3 only",
+    "1, 2 and 3",
+    "1 and 2 only"
+   ],
+   "answer": 3,
+   "solution": "Cache (SRAM) is volatile and ROM holds the BIOS firmware — both correct. Statement 3 is wrong: RAM is volatile, so shutdown wipes it.",
+   "shortcut": "One vanishing statement ruins the set — RAM never survives.",
+   "difficulty": "hard",
+   "subtopic": "hm-memory-hierarchy",
+   "pattern": "hm-hie-p1",
+   "timeSec": 35
+  },
+  {
+   "id": "hm-memory-hierarchy-p03",
+   "q": "Which shows memories in **decreasing order of speed**?",
+   "figure": null,
+   "options": [
+    "RAM, Cache, Registers, Hard disk",
+    "Registers, Cache, RAM, Hard disk",
+    "Cache, Registers, RAM, Hard disk",
+    "Hard disk, RAM, Cache, Registers"
+   ],
+   "answer": 1,
+   "solution": "Speed falls as you move away from the CPU: **Registers → Cache → RAM → Hard disk** (size and cheapness rise in the same direction).",
+   "shortcut": "Closest to the CPU = fastest.",
+   "difficulty": "easy",
+   "subtopic": "hm-memory-hierarchy",
+   "pattern": "hm-hie-p2",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-memory-hierarchy-p04",
+   "q": "**L1, L2 and L3** are levels of —",
+   "figure": null,
+   "options": [
+    "Virtual memory",
+    "ROM",
+    "Cache memory",
+    "Secondary storage"
+   ],
+   "answer": 2,
+   "solution": "L1/L2/L3 are the levels of **cache** — small SRAM buffers between the CPU and RAM. L1 is smallest and fastest; L3 is the largest and slowest of the three.",
+   "shortcut": "L = Level of cache.",
+   "difficulty": "medium",
+   "subtopic": "hm-memory-hierarchy",
+   "pattern": "hm-hie-p2",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-memory-hierarchy-p05",
+   "q": "Arrange in **increasing** order of access time: A. DRAM  B. SRAM cache  C. Registers  D. Hard disk",
+   "figure": null,
+   "options": [
+    "D, A, B, C",
+    "C, B, A, D",
+    "B, C, D, A",
+    "A, B, C, D"
+   ],
+   "answer": 0,
+   "solution": "Slowest first: hard disk (D), then DRAM (A), then SRAM cache (B), and registers (C) are fastest. Increasing access time = slow → fast = **D, A, B, C**.",
+   "shortcut": "Disk, DRAM, SRAM, registers — away from the CPU is slow.",
+   "difficulty": "hard",
+   "subtopic": "hm-memory-hierarchy",
+   "pattern": "hm-hie-p2",
+   "timeSec": 35
+  },
+  {
+   "id": "hm-memory-hierarchy-p06",
+   "q": "**SRAM** is preferred for cache memory mainly because it —",
+   "figure": null,
+   "options": [
+    "Is cheaper than DRAM",
+    "Holds more data than DRAM",
+    "Is faster and needs no refreshing",
+    "Is non-volatile"
+   ],
+   "answer": 2,
+   "solution": "SRAM's flip-flop cells answer instantly and **stay valid without refresh** — perfect for cache — but cost more and hold fewer bits per chip than DRAM.",
+   "shortcut": "S = Static = stands still, no refresh.",
+   "difficulty": "medium",
+   "subtopic": "hm-memory-hierarchy",
+   "pattern": "hm-hie-p3",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-memory-hierarchy-p07",
+   "q": "The full form of **DRAM** hints at its weakness. DRAM stands for —",
+   "figure": null,
+   "options": [
+    "Dynamic Random Access Memory",
+    "Direct Random Access Memory",
+    "Data Retention Access Memory",
+    "Drive Random Access Module"
+   ],
+   "answer": 0,
+   "solution": "**DRAM = Dynamic Random Access Memory** — 'dynamic' because its capacitor cells must be **dynamically refreshed** thousands of times per second.",
+   "shortcut": "D = Dynamic = always being refreshed.",
+   "difficulty": "medium",
+   "subtopic": "hm-memory-hierarchy",
+   "pattern": "hm-hie-p3",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-memory-hierarchy-p08",
+   "q": "Which ROM can be **erased electrically**, without ultraviolet light?",
+   "figure": null,
+   "options": [
+    "PROM",
+    "EEPROM",
+    "EPROM",
+    "CD-ROM"
+   ],
+   "answer": 1,
+   "solution": "**EEPROM = Electrically Erasable Programmable ROM** — erased by applying an electrical signal in the circuit. EPROM needs a UV lamp; PROM cannot be erased at all.",
+   "shortcut": "E-E = Electrically Erasable.",
+   "difficulty": "easy",
+   "subtopic": "hm-memory-hierarchy",
+   "pattern": "hm-hie-p4",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-memory-hierarchy-p09",
+   "q": "Which statement about **PROM** is correct?",
+   "figure": null,
+   "options": [
+    "It can be erased with UV light",
+    "It is volatile",
+    "It is faster than all RAM",
+    "It can be written (programmed) only once"
+   ],
+   "answer": 3,
+   "solution": "**PROM** (Programmable ROM) is programmed exactly once after manufacture; after that it is permanent. UV erasing is EPROM's feature; volatility belongs to RAM.",
+   "shortcut": "PROM = Program **Once** ROM.",
+   "difficulty": "medium",
+   "subtopic": "hm-memory-hierarchy",
+   "pattern": "hm-hie-p4",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-memory-hierarchy-p10",
+   "q": "The small, very fast memory placed **between the CPU and main memory** is —",
+   "figure": null,
+   "options": [
+    "Virtual memory",
+    "ROM",
+    "Cache memory",
+    "Tape"
+   ],
+   "answer": 2,
+   "solution": "**Cache** (SRAM) holds copies of the most-used data so the CPU rarely waits for slower RAM.",
+   "shortcut": "Cache = the CPU's personal notepad.",
+   "difficulty": "easy",
+   "subtopic": "hm-memory-hierarchy",
+   "pattern": "hm-hie-p5",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-memory-hierarchy-p11",
+   "q": "Cache memory is normally built using —",
+   "figure": null,
+   "options": [
+    "SRAM",
+    "DRAM",
+    "Magnetic cores",
+    "Optical discs"
+   ],
+   "answer": 0,
+   "solution": "Cache uses **SRAM** for its speed and zero-refresh cells. DRAM (cheaper, denser) fills main memory instead.",
+   "shortcut": "Cache = Static (SRAM); main RAM = Dynamic (DRAM).",
+   "difficulty": "medium",
+   "subtopic": "hm-memory-hierarchy",
+   "pattern": "hm-hie-p5",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-memory-hierarchy-p12",
+   "q": "Consider the statements:\n1. Virtual memory is a part of physical RAM.\n2. Cache memory lies between the CPU and main memory.\n3. L1 cache is smaller and faster than L3 cache.\nWhich are correct?",
+   "figure": null,
+   "options": [
+    "1 and 2 only",
+    "1 and 3 only",
+    "2 and 3 only",
+    "1, 2 and 3"
+   ],
+   "answer": 2,
+   "solution": "Statements 2 and 3 are standard cache facts. Statement 1 is the classic error — virtual memory is **disk space** used as a RAM overflow, not physical RAM.",
+   "shortcut": "Virtual = on disk; cache = near CPU.",
+   "difficulty": "hard",
+   "subtopic": "hm-memory-hierarchy",
+   "pattern": "hm-hie-p5",
+   "timeSec": 35
+  },
+  {
+   "id": "hm-memory-units-p01",
+   "q": "One **byte** consists of how many bits?",
+   "figure": null,
+   "options": [
+    "8",
+    "4",
+    "16",
+    "32"
+   ],
+   "answer": 0,
+   "solution": "**1 byte = 8 bits** — the definition every other conversion builds on.",
+   "shortcut": "Byte = 8, Nibble = 4.",
+   "difficulty": "easy",
+   "subtopic": "hm-memory-units",
+   "pattern": "hm-uni-p1",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-memory-units-p02",
+   "q": "How many **nibbles** make one byte?",
+   "figure": null,
+   "options": [
+    "1",
+    "4",
+    "2",
+    "8"
+   ],
+   "answer": 2,
+   "solution": "A nibble is 4 bits, a byte is 8 bits — so one byte = **2 nibbles**.",
+   "shortcut": "Two nibbles nibble one byte.",
+   "difficulty": "easy",
+   "subtopic": "hm-memory-units",
+   "pattern": "hm-uni-p1",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-memory-units-p03",
+   "q": "A short message of **3 bytes** contains how many **bits**?",
+   "figure": null,
+   "options": [
+    "24",
+    "27",
+    "20",
+    "48"
+   ],
+   "answer": 0,
+   "solution": "3 bytes × 8 bits = **24 bits**. Multiply by 8 to go from bytes to bits.",
+   "shortcut": "Bytes → bits: multiply by 8.",
+   "difficulty": "easy",
+   "subtopic": "hm-memory-units",
+   "pattern": "hm-uni-p1",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-memory-units-p04",
+   "q": "How many **megabytes** are there in **2 GB**?",
+   "figure": null,
+   "options": [
+    "2000",
+    "1024",
+    "200",
+    "2048"
+   ],
+   "answer": 3,
+   "solution": "2 × 1024 = **2048 MB** — each step up the ladder multiplies by 1024, never 1000.",
+   "shortcut": "GB → MB: ×1024.",
+   "difficulty": "easy",
+   "subtopic": "hm-memory-units",
+   "pattern": "hm-uni-p2",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-memory-units-p05",
+   "q": "A movie file of **4 GB** equals how many **MB**?",
+   "figure": null,
+   "options": [
+    "4000",
+    "4096",
+    "2048",
+    "8192"
+   ],
+   "answer": 1,
+   "solution": "4 GB = 4 × 1024 = **4096 MB**. The 4000 option is the classic 1000-based trap.",
+   "shortcut": "4 GB = 4096 MB (4 × 1024).",
+   "difficulty": "medium",
+   "subtopic": "hm-memory-units",
+   "pattern": "hm-uni-p2",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-memory-units-p06",
+   "q": "**2048 KB** equals —",
+   "figure": null,
+   "options": [
+    "2048",
+    "1024",
+    "24",
+    "2"
+   ],
+   "answer": 3,
+   "solution": "2048 ÷ 1024 = **2 MB**. Going up the ladder means dividing by 1024.",
+   "shortcut": "KB → MB: ÷1024.",
+   "difficulty": "easy",
+   "subtopic": "hm-memory-units",
+   "pattern": "hm-uni-p2",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-memory-units-p07",
+   "q": "One **gigabyte** equals how many **megabytes**?",
+   "figure": null,
+   "options": [
+    "1000",
+    "1024",
+    "512",
+    "2048"
+   ],
+   "answer": 1,
+   "solution": "**1 GB = 1024 MB** = 10,48,576 KB = 2³⁰ bytes.",
+   "shortcut": "The ladder: 1024 at every step.",
+   "difficulty": "easy",
+   "subtopic": "hm-memory-units",
+   "pattern": "hm-uni-p2",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-memory-units-p08",
+   "q": "A folder contains **3 files of 512 KB each**. The total size is —",
+   "figure": null,
+   "options": [
+    "1.5 MB",
+    "1536 MB",
+    "3 MB",
+    "0.5 MB"
+   ],
+   "answer": 0,
+   "solution": "3 × 512 = 1536 KB; 1536 ÷ 1024 = **1.5 MB**. Convert first, then divide up the ladder.",
+   "shortcut": "512 KB × 3 = 1536 KB = 1.5 MB.",
+   "difficulty": "hard",
+   "subtopic": "hm-memory-units",
+   "pattern": "hm-uni-p2",
+   "timeSec": 35
+  },
+  {
+   "id": "hm-memory-units-p09",
+   "q": "Which of the following is the **largest**?",
+   "figure": null,
+   "options": [
+    "1024 KB",
+    "1 MB",
+    "0.5 GB",
+    "10,00,000 bytes"
+   ],
+   "answer": 2,
+   "solution": "Convert to KB: 0.5 GB = 5,24,288 KB; 1 MB = 1024 KB; 10,00,000 bytes ≈ 977 KB. **0.5 GB wins**.",
+   "shortcut": "Everything into one unit, then compare.",
+   "difficulty": "medium",
+   "subtopic": "hm-memory-units",
+   "pattern": "hm-uni-p2",
+   "timeSec": 30
+  },
+  {
+   "id": "hm-memory-units-p10",
+   "q": "A text file of **2 KB** contains how many **bits**?",
+   "figure": null,
+   "options": [
+    "2048",
+    "16000",
+    "16",
+    "16384"
+   ],
+   "answer": 3,
+   "solution": "2 KB = 2048 bytes; 2048 × 8 = **16384 bits**. Two conversions: ×1024 (KB→B), then ×8 (B→bits).",
+   "shortcut": "KB → bytes (×1024) → bits (×8).",
+   "difficulty": "medium",
+   "subtopic": "hm-memory-units",
+   "pattern": "hm-uni-p3",
+   "timeSec": 30
+  },
+  {
+   "id": "hm-memory-units-p11",
+   "q": "A line speed of **8 Mbps** (megabits per second) moves how much **file data** per second?",
+   "figure": null,
+   "options": [
+    "8 MB",
+    "1 MB",
+    "100 MB",
+    "0.125 MB"
+   ],
+   "answer": 1,
+   "solution": "8 bits = 1 byte, so 8 megabits/s = **1 megabyte/s** of file data. Line speeds are always in bits; files are in bytes.",
+   "shortcut": "Mbps ÷ 8 = MB/s.",
+   "difficulty": "easy",
+   "subtopic": "hm-memory-units",
+   "pattern": "hm-uni-p3",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-memory-units-p12",
+   "q": "At a steady **16 Mbps**, downloading a **10 MB** file takes about —",
+   "figure": null,
+   "options": [
+    "40 seconds",
+    "1.25 seconds",
+    "160 seconds",
+    "5 seconds"
+   ],
+   "answer": 3,
+   "solution": "File in bits: 10 × 8 = 80 megabits. Time = 80 ÷ 16 = **5 seconds**. Same-unit division does it in one line.",
+   "shortcut": "File ×8 to bits, then ÷ speed.",
+   "difficulty": "hard",
+   "subtopic": "hm-memory-units",
+   "pattern": "hm-uni-p3",
+   "timeSec": 35
+  },
+  {
+   "id": "hm-memory-units-p13",
+   "q": "The **smallest unit** of data in a computer is —",
+   "figure": null,
+   "options": [
+    "Byte",
+    "Bit",
+    "Nibble",
+    "Word"
+   ],
+   "answer": 1,
+   "solution": "A **bit** (binary digit) — one 0 or 1 — is the smallest unit. A nibble is 4 bits and a byte is 8.",
+   "shortcut": "Bit first, always.",
+   "difficulty": "easy",
+   "subtopic": "hm-memory-units",
+   "pattern": "hm-uni-p4",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-memory-units-p14",
+   "q": "**Word length** of a computer refers to —",
+   "figure": null,
+   "options": [
+    "The dictionary size of its software",
+    "The length of its password",
+    "The number of bits the CPU processes in one operation",
+    "The number of bytes on its disk"
+   ],
+   "answer": 2,
+   "solution": "Word length = the CPU's natural chunk size — 32-bit and 64-bit processors are named by it.",
+   "shortcut": "'64-bit processor' = 64-bit words.",
+   "difficulty": "medium",
+   "subtopic": "hm-memory-units",
+   "pattern": "hm-uni-p4",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-memory-units-p15",
+   "q": "Which of the following is **NOT** a memory-size unit?",
+   "figure": null,
+   "options": [
+    "Mbps",
+    "Terabyte",
+    "Petabyte",
+    "Gigabyte"
+   ],
+   "answer": 0,
+   "solution": "**Mbps** = megabits per second — a data-transfer **speed**. TB, PB and GB are size units.",
+   "shortcut": "Speed units end in 'per second'.",
+   "difficulty": "medium",
+   "subtopic": "hm-memory-units",
+   "pattern": "hm-uni-p4",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-number-systems-p01",
+   "q": "The decimal value of the binary number **(1101)₂** is —",
+   "figure": null,
+   "options": [
+    "15",
+    "13",
+    "12",
+    "11"
+   ],
+   "answer": 1,
+   "solution": "1×8 + 1×4 + 0×2 + 1×1 = **13**. Add the powers of 2 wherever a 1 appears.",
+   "shortcut": "Powers 8-4-2-1; add where there is a 1.",
+   "difficulty": "easy",
+   "subtopic": "hm-number-systems",
+   "pattern": "hm-num-p1",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-number-systems-p02",
+   "q": "The hexadecimal number **(1A)₁₆** equals which decimal number?",
+   "figure": null,
+   "options": [
+    "32",
+    "161",
+    "10",
+    "26"
+   ],
+   "answer": 3,
+   "solution": "1×16 + 10 = **26** (A = 10). Watch the digit order — A1 would be 161.",
+   "shortcut": "Left digit ×16, right digit added; A=10.",
+   "difficulty": "medium",
+   "subtopic": "hm-number-systems",
+   "pattern": "hm-num-p1",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-number-systems-p03",
+   "q": "The octal number **(67)₈** equals which decimal number?",
+   "figure": null,
+   "options": [
+    "57",
+    "55",
+    "62",
+    "67"
+   ],
+   "answer": 1,
+   "solution": "6×8 + 7 = **55**. Position values in octal are 1, 8, 64, …",
+   "shortcut": "Left digit ×8, right digit added.",
+   "difficulty": "medium",
+   "subtopic": "hm-number-systems",
+   "pattern": "hm-num-p1",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-number-systems-p04",
+   "q": "The hexadecimal number **(3E)₁₆** equals which decimal number?",
+   "figure": null,
+   "options": [
+    "61",
+    "227",
+    "62",
+    "78"
+   ],
+   "answer": 2,
+   "solution": "3×16 + 14 = **62** (E = 14). Converting back: 62 = 48 + 14 = 3×16 + E. ✔",
+   "shortcut": "E = 14; multiply the left digit by 16.",
+   "difficulty": "hard",
+   "subtopic": "hm-number-systems",
+   "pattern": "hm-num-p1",
+   "timeSec": 30
+  },
+  {
+   "id": "hm-number-systems-p05",
+   "q": "The **binary** equivalent of decimal **45** is —",
+   "figure": null,
+   "options": [
+    "101101",
+    "101110",
+    "110101",
+    "111101"
+   ],
+   "answer": 0,
+   "solution": "45 ÷ 2 chain: remainders 1,0,1,1,0,1 read upward → **101101**. Verify: 32 + 8 + 4 + 1 = 45. ✔",
+   "shortcut": "Divide by 2, read remainders bottom-to-top.",
+   "difficulty": "medium",
+   "subtopic": "hm-number-systems",
+   "pattern": "hm-num-p2",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-number-systems-p06",
+   "q": "The decimal number **100** in **hexadecimal** is —",
+   "figure": null,
+   "options": [
+    "65",
+    "46",
+    "64",
+    "74"
+   ],
+   "answer": 2,
+   "solution": "100 ÷ 16 = 6 remainder 4 → **(64)₁₆**. Check: 6×16 + 4 = 100. ✔",
+   "shortcut": "Divide by 16; 6 and 4 give 64.",
+   "difficulty": "medium",
+   "subtopic": "hm-number-systems",
+   "pattern": "hm-num-p2",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-number-systems-p07",
+   "q": "The decimal number **58** in **octal** is —",
+   "figure": null,
+   "options": [
+    "72",
+    "73",
+    "27",
+    "102"
+   ],
+   "answer": 0,
+   "solution": "58 ÷ 8 = 7 remainder 2 → **(72)₈**. Check: 7×8 + 2 = 58. ✔",
+   "shortcut": "Divide by 8; read remainders upward.",
+   "difficulty": "medium",
+   "subtopic": "hm-number-systems",
+   "pattern": "hm-num-p2",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-number-systems-p08",
+   "q": "The decimal number **1000** in **hexadecimal** is —",
+   "figure": null,
+   "options": [
+    "3E9",
+    "3E8",
+    "1111101000",
+    "3E7"
+   ],
+   "answer": 1,
+   "solution": "1000 ÷ 16 = 62 r **8**; 62 ÷ 16 = 3 r **14(E)**; read upward → **(3E8)₁₆**. Check: 3×256 + 14×16 + 8 = 1000. ✔",
+   "shortcut": "Two rounds of division by 16; E = 14.",
+   "difficulty": "hard",
+   "subtopic": "hm-number-systems",
+   "pattern": "hm-num-p2",
+   "timeSec": 35
+  },
+  {
+   "id": "hm-number-systems-p09",
+   "q": "The binary number **(1101011)₂** in **octal** is —",
+   "figure": null,
+   "options": [
+    "163",
+    "651",
+    "6B",
+    "153"
+   ],
+   "answer": 3,
+   "solution": "Groups of 3 from the right: 001 101 011 → **(153)₈**. Check via decimal: 107 = 1×64 + 5×8 + 3. ✔",
+   "shortcut": "3-bit groups from the right: 1-5-3.",
+   "difficulty": "medium",
+   "subtopic": "hm-number-systems",
+   "pattern": "hm-num-p3",
+   "timeSec": 30
+  },
+  {
+   "id": "hm-number-systems-p10",
+   "q": "The binary number **(11011011)₂** in **hexadecimal** is —",
+   "figure": null,
+   "options": [
+    "DC",
+    "BD",
+    "DB",
+    "333"
+   ],
+   "answer": 2,
+   "solution": "Groups of 4 from the right: 1101 1011 → 13, 11 → **(DB)₁₆**. Check: 219 = 13×16 + 11. ✔",
+   "shortcut": "4-bit groups: D-B.",
+   "difficulty": "medium",
+   "subtopic": "hm-number-systems",
+   "pattern": "hm-num-p3",
+   "timeSec": 30
+  },
+  {
+   "id": "hm-number-systems-p11",
+   "q": "How many **different values** can **8 bits** represent?",
+   "figure": null,
+   "options": [
+    "256",
+    "255",
+    "128",
+    "257"
+   ],
+   "answer": 0,
+   "solution": "2⁸ = **256** values, from 0 up to 255. 'Largest value' would be 255; 'number of values' is 256.",
+   "shortcut": "2ⁿ values; largest is 2ⁿ − 1.",
+   "difficulty": "medium",
+   "subtopic": "hm-number-systems",
+   "pattern": "hm-num-p4",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-number-systems-p12",
+   "q": "Which of the following **cannot** be an **octal** number?",
+   "figure": null,
+   "options": [
+    "707",
+    "645",
+    "789",
+    "777"
+   ],
+   "answer": 2,
+   "solution": "Octal uses only the digits 0–7. **789** contains 8 and 9, so it is impossible in base 8.",
+   "shortcut": "Spot the 8 or 9 — instant elimination.",
+   "difficulty": "easy",
+   "subtopic": "hm-number-systems",
+   "pattern": "hm-num-p4",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-number-systems-p13",
+   "q": "Which of the following **cannot** be a **hexadecimal** number?",
+   "figure": null,
+   "options": [
+    "2H4",
+    "2F4",
+    "1AB",
+    "9C0"
+   ],
+   "answer": 0,
+   "solution": "Hexadecimal digits run 0–9 and A–F. **2H4** contains H, which does not exist in base 16 (letters stop at F).",
+   "shortcut": "Letters stop at F — anything beyond is fake hex.",
+   "difficulty": "medium",
+   "subtopic": "hm-number-systems",
+   "pattern": "hm-num-p4",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-io-devices-p01",
+   "q": "Which of the following is an **input** device?",
+   "figure": null,
+   "options": [
+    "Scanner",
+    "Plotter",
+    "Monitor",
+    "Speaker"
+   ],
+   "answer": 0,
+   "solution": "A **scanner** converts a paper document into digital data flowing **into** the computer. The other three all receive data from it.",
+   "shortcut": "Data in = input. Plotters, monitors, speakers push data out.",
+   "difficulty": "easy",
+   "subtopic": "hm-io-devices",
+   "pattern": "hm-io-p1",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-io-devices-p02",
+   "q": "A **joystick** is mainly used as an input device for —",
+   "figure": null,
+   "options": [
+    "Printing documents",
+    "Scanning photographs",
+    "Playing games and flight simulation",
+    "Producing sound"
+   ],
+   "answer": 2,
+   "solution": "A **joystick** feeds direction commands into the computer — the classic controller for games and flight simulators.",
+   "shortcut": "Joystick = steering stick for games.",
+   "difficulty": "easy",
+   "subtopic": "hm-io-devices",
+   "pattern": "hm-io-p1",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-io-devices-p03",
+   "q": "In supermarkets, the device that reads the **black-and-white striped code** on products is the —",
+   "figure": null,
+   "options": [
+    "Barcode reader",
+    "OMR reader",
+    "MICR reader",
+    "Plotter"
+   ],
+   "answer": 0,
+   "solution": "A **barcode reader** (or scanner) reads the striped product code and sends it to the billing system. OMR reads bubbles, MICR reads cheque ink.",
+   "shortcut": "Stripes on products = barcode.",
+   "difficulty": "medium",
+   "subtopic": "hm-io-devices",
+   "pattern": "hm-io-p1",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-io-devices-p04",
+   "q": "A **biometric device** that opens a laptop by reading your fingerprint works as a(n) —",
+   "figure": null,
+   "options": [
+    "Output device",
+    "Storage device",
+    "Processing device",
+    "Input device"
+   ],
+   "answer": 3,
+   "solution": "The fingerprint scanner feeds your biometric data **into** the system — an input device (same family as iris and face readers).",
+   "shortcut": "It reads you, then the computer checks — data flows in.",
+   "difficulty": "medium",
+   "subtopic": "hm-io-devices",
+   "pattern": "hm-io-p1",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-io-devices-p05",
+   "q": "Which of the following is an **output** device?",
+   "figure": null,
+   "options": [
+    "Keyboard",
+    "Monitor",
+    "Microphone",
+    "Scanner"
+   ],
+   "answer": 1,
+   "solution": "The **monitor** displays processed results — output. Keyboard, microphone and scanner all send data in.",
+   "shortcut": "Screens show; they don't type.",
+   "difficulty": "easy",
+   "subtopic": "hm-io-devices",
+   "pattern": "hm-io-p2",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-io-devices-p06",
+   "q": "Output on a **monitor** (seen but not printed) is called a —",
+   "figure": null,
+   "options": [
+    "Hard copy",
+    "Printout",
+    "Backup",
+    "Soft copy"
+   ],
+   "answer": 3,
+   "solution": "**Soft copy** = screen output, temporary and intangible. Paper output is a hard copy.",
+   "shortcut": "Soft = screen, hard = paper.",
+   "difficulty": "easy",
+   "subtopic": "hm-io-devices",
+   "pattern": "hm-io-p2",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-io-devices-p07",
+   "q": "**Large engineering drawings and maps** are best printed on a —",
+   "figure": null,
+   "options": [
+    "Dot matrix printer",
+    "Plotter",
+    "Thermal printer",
+    "Webcam"
+   ],
+   "answer": 1,
+   "solution": "A **plotter** draws continuous large-format lines — the standard output device for CAD drawings, maps and posters.",
+   "shortcut": "Big drawings need a plotter's pen arm.",
+   "difficulty": "medium",
+   "subtopic": "hm-io-devices",
+   "pattern": "hm-io-p2",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-io-devices-p08",
+   "q": "Which of the following is **NOT** an input device?",
+   "figure": null,
+   "options": [
+    "Printer",
+    "Keyboard",
+    "Mouse",
+    "Microphone"
+   ],
+   "answer": 0,
+   "solution": "The **printer** produces output. Keyboard, mouse and microphone are all input devices.",
+   "shortcut": "Three inputs and one output — spot the odd direction.",
+   "difficulty": "easy",
+   "subtopic": "hm-io-devices",
+   "pattern": "hm-io-p3",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-io-devices-p09",
+   "q": "Which device serves as **both** input and output?",
+   "figure": null,
+   "options": [
+    "Mouse",
+    "Speaker",
+    "Touch screen",
+    "Scanner"
+   ],
+   "answer": 2,
+   "solution": "A **touch screen** takes your taps as input and shows results as output — both roles in one panel.",
+   "shortcut": "You touch it (in) and read it (out).",
+   "difficulty": "easy",
+   "subtopic": "hm-io-devices",
+   "pattern": "hm-io-p3",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-io-devices-p10",
+   "q": "A **headset** used for a video call contains which input–output pair?",
+   "figure": null,
+   "options": [
+    "Scanner and printer",
+    "Monitor and keyboard",
+    "Plotter and webcam",
+    "Microphone (input) and speakers (output)"
+   ],
+   "answer": 3,
+   "solution": "The **mic sends your voice in** (input); the **speakers bring the other voice out** (output) — one device, both directions.",
+   "shortcut": "Mic in, speaker out.",
+   "difficulty": "medium",
+   "subtopic": "hm-io-devices",
+   "pattern": "hm-io-p3",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-io-devices-p11",
+   "q": "Which of the following is an **impact** printer?",
+   "figure": null,
+   "options": [
+    "Laser printer",
+    "Dot matrix printer",
+    "Inkjet printer",
+    "Thermal printer"
+   ],
+   "answer": 1,
+   "solution": "**Dot matrix** pins strike an inked ribbon against the paper — the definition of impact printing. Laser and inkjet never hit the paper.",
+   "shortcut": "If it hits, it's impact.",
+   "difficulty": "easy",
+   "subtopic": "hm-io-devices",
+   "pattern": "hm-io-p4",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-io-devices-p12",
+   "q": "**OCR** technology is used to —",
+   "figure": null,
+   "options": [
+    "Read pencil bubbles on answer sheets",
+    "Read magnetic ink on cheques",
+    "Print 3D objects",
+    "Convert scanned/printed characters into editable text"
+   ],
+   "answer": 3,
+   "solution": "**OCR = Optical Character Recognition** — it turns an image of printed or handwritten characters into real editable text. Bubbles = OMR; cheque ink = MICR.",
+   "shortcut": "OCR = Characters.",
+   "difficulty": "medium",
+   "subtopic": "hm-io-devices",
+   "pattern": "hm-io-p4",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-io-devices-p13",
+   "q": "A **3D printer** differs from ordinary printers because it —",
+   "figure": null,
+   "options": [
+    "Prints faster on paper",
+    "Builds a physical solid object layer by layer",
+    "Uses magnetic ink",
+    "Works without a computer"
+   ],
+   "answer": 1,
+   "solution": "A **3D printer** is an output device that adds material layer after layer to create a real solid model — no paper involved.",
+   "shortcut": "Layers, not pages.",
+   "difficulty": "medium",
+   "subtopic": "hm-io-devices",
+   "pattern": "hm-io-p4",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-io-devices-p14",
+   "q": "Consider the statements:\n1. Dot matrix is an impact printer.\n2. Laser printer is a non-impact printer.\n3. A plotter is mainly used for printing text documents.\nWhich are correct?",
+   "figure": null,
+   "options": [
+    "1 and 3 only",
+    "2 and 3 only",
+    "1 and 2 only",
+    "1, 2 and 3"
+   ],
+   "answer": 2,
+   "solution": "Statements 1 and 2 are the standard printer classification. Statement 3 is wrong — plotters are for **large drawings, maps and CAD**, not text.",
+   "shortcut": "Plotters draw; printers type.",
+   "difficulty": "hard",
+   "subtopic": "hm-io-devices",
+   "pattern": "hm-io-p4",
+   "timeSec": 35
+  },
+  {
+   "id": "hm-ports-p01",
+   "q": "A **parallel** port transfers data —",
+   "figure": null,
+   "options": [
+    "Eight bits (a byte) at a time",
+    "One bit at a time",
+    "One file at a time",
+    "Only in one direction, never back"
+   ],
+   "answer": 0,
+   "solution": "A parallel port lays **8 wires side by side** and moves a whole byte per transfer — the old printer (LPT) port.",
+   "shortcut": "Parallel = 8 lanes.",
+   "difficulty": "easy",
+   "subtopic": "hm-ports",
+   "pattern": "hm-por-p1",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-ports-p02",
+   "q": "Which port was traditionally used to connect **printers** (the LPT port)?",
+   "figure": null,
+   "options": [
+    "Serial port",
+    "PS/2 port",
+    "Parallel port",
+    "Ethernet port"
+   ],
+   "answer": 2,
+   "solution": "The 25-pin **parallel (LPT)** port was the standard printer connection before USB took over.",
+   "shortcut": "LPT = printer port = parallel.",
+   "difficulty": "easy",
+   "subtopic": "hm-ports",
+   "pattern": "hm-por-p1",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-ports-p03",
+   "q": "**Serial** ports suit slow data over long distances mainly because they —",
+   "figure": null,
+   "options": [
+    "Need fewer wires, so the signal stays stable over long cables",
+    "Send 8 bits together",
+    "Carry audio and video",
+    "Work only with printers"
+   ],
+   "answer": 0,
+   "solution": "Sending **one bit after another** needs only a few conductors — cheaper, less interference, reliable across long cables. Parallel's many wires limit it to short runs.",
+   "shortcut": "Fewer wires = longer reach.",
+   "difficulty": "medium",
+   "subtopic": "hm-ports",
+   "pattern": "hm-por-p1",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-ports-p04",
+   "q": "Which port carries **digital video and audio** to a TV through a **single cable**?",
+   "figure": null,
+   "options": [
+    "VGA",
+    "PS/2",
+    "Serial",
+    "HDMI"
+   ],
+   "answer": 3,
+   "solution": "**HDMI** (High-Definition Multimedia Interface) sends picture and sound together in one digital cable.",
+   "shortcut": "HDMI = Home theatre: both signals, one wire.",
+   "difficulty": "easy",
+   "subtopic": "hm-ports",
+   "pattern": "hm-por-p2",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-ports-p05",
+   "q": "The **RJ-45** socket on a computer is used for —",
+   "figure": null,
+   "options": [
+    "Connecting a printer",
+    "Wired network (LAN) connection",
+    "Plugging headphones",
+    "Attaching an old keyboard"
+   ],
+   "answer": 1,
+   "solution": "**RJ-45** is the Ethernet port — the tabbed socket that accepts the LAN cable.",
+   "shortcut": "RJ-45 = network plug.",
+   "difficulty": "easy",
+   "subtopic": "hm-ports",
+   "pattern": "hm-por-p2",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-ports-p06",
+   "q": "The round **6-pin PS/2** ports on older PCs were used for —",
+   "figure": null,
+   "options": [
+    "Monitor and speaker",
+    "Network and modem",
+    "Scanner and printer",
+    "Keyboard and mouse"
+   ],
+   "answer": 3,
+   "solution": "**PS/2** was the dedicated pair of round ports for the keyboard (purple) and mouse (green) before USB replaced them.",
+   "shortcut": "PS/2 = the two round holes at the back.",
+   "difficulty": "medium",
+   "subtopic": "hm-ports",
+   "pattern": "hm-por-p2",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-ports-p07",
+   "q": "The **green 3.5 mm socket** at the back of a desktop PC is for —",
+   "figure": null,
+   "options": [
+    "Microphone",
+    "Speakers/headphones (line-out)",
+    "Network cable",
+    "Monitor"
+   ],
+   "answer": 1,
+   "solution": "On the standard colour code, **green = audio out** (speakers/headphones), pink = microphone, blue = line-in.",
+   "shortcut": "Green grows sound out.",
+   "difficulty": "medium",
+   "subtopic": "hm-ports",
+   "pattern": "hm-por-p2",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-ports-p08",
+   "q": "**Hot-swappable** means a device can be —",
+   "figure": null,
+   "options": [
+    "Connected or removed while the computer is running",
+    "Used only when the PC is switched off",
+    "Heated for faster data",
+    "Swapped with another brand only"
+   ],
+   "answer": 0,
+   "solution": "**Hot-swap = plug or unplug with the system running** — no restart. USB is the everyday example.",
+   "shortcut": "Hot = PC is on.",
+   "difficulty": "easy",
+   "subtopic": "hm-ports",
+   "pattern": "hm-por-p3",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-ports-p09",
+   "q": "A **pen drive works without its own battery** because —",
+   "figure": null,
+   "options": [
+    "It stores its own electricity",
+    "It uses solar cells",
+    "The USB port supplies power (5 V) along with data",
+    "Batteries are built into cables"
+   ],
+   "answer": 2,
+   "solution": "USB carries **both data and power** — about 5 volts — so bus-powered devices like pen drives and small keyboards need no adapter.",
+   "shortcut": "One cable, two jobs: data + power.",
+   "difficulty": "easy",
+   "subtopic": "hm-ports",
+   "pattern": "hm-por-p3",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-ports-p10",
+   "q": "Consider the statements about **USB**:\n1. It is hot-swappable.\n2. It supplies electrical power to connected devices.\n3. It sends data as a serial stream.\nWhich are correct?",
+   "figure": null,
+   "options": [
+    "1 and 2 only",
+    "2 and 3 only",
+    "1 and 3 only",
+    "1, 2 and 3"
+   ],
+   "answer": 3,
+   "solution": "All three define USB: hot-swappable, bus-powered (5 V), and **serial** (the S in USB — Universal Serial Bus, one bit at a time).",
+   "shortcut": "The full form itself confirms statement 3.",
+   "difficulty": "hard",
+   "subtopic": "hm-ports",
+   "pattern": "hm-por-p3",
+   "timeSec": 35
+  },
+  {
+   "id": "hm-ports-p11",
+   "q": "Which port carries **video only** and **no audio**?",
+   "figure": null,
+   "options": [
+    "HDMI",
+    "VGA",
+    "DisplayPort",
+    "Thunderbolt"
+   ],
+   "answer": 1,
+   "solution": "**VGA** is the analog video-only standard — the 15-pin blue connector. HDMI and DisplayPort carry audio too.",
+   "shortcut": "VGA = Video Graphics Array — video's in the name.",
+   "difficulty": "easy",
+   "subtopic": "hm-ports",
+   "pattern": "hm-por-p4",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-ports-p12",
+   "q": "Which statement comparing **VGA and HDMI** is correct?",
+   "figure": null,
+   "options": [
+    "Both carry audio",
+    "VGA is digital and HDMI is analog",
+    "HDMI works only with printers",
+    "VGA is analog video-only; HDMI is digital audio + video"
+   ],
+   "answer": 3,
+   "solution": "VGA = old analog, picture only. HDMI = modern digital, picture **and** sound in one cable — that is why one HDMI wire replaces a VGA plus an audio cable.",
+   "shortcut": "The cable count proves the exam line.",
+   "difficulty": "medium",
+   "subtopic": "hm-ports",
+   "pattern": "hm-por-p4",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-ports-p13",
+   "q": "Consider the statements:\n1. A serial port sends one bit at a time.\n2. The parallel (LPT) port was traditionally used for printers.\n3. A VGA cable carries stereo audio.\nWhich are correct?",
+   "figure": null,
+   "options": [
+    "1 and 3 only",
+    "1 and 2 only",
+    "2 and 3 only",
+    "1, 2 and 3"
+   ],
+   "answer": 1,
+   "solution": "Statements 1 and 2 are the serial/parallel classics. Statement 3 is wrong — **VGA is video-only**; audio needs a separate cable.",
+   "shortcut": "VGA never carries sound — the standing trap.",
+   "difficulty": "hard",
+   "subtopic": "hm-ports",
+   "pattern": "hm-por-p1",
+   "timeSec": 35
+  },
+  {
+   "id": "hm-storage-p01",
+   "q": "The storage capacity of a standard **CD-ROM** is about —",
+   "figure": null,
+   "options": [
+    "4.7 GB",
+    "25 GB",
+    "700 MB",
+    "1.44 MB"
+   ],
+   "answer": 2,
+   "solution": "A standard CD holds about **700 MB**. 4.7 GB is a single-layer DVD, 25 GB a single-layer Blu-ray, and 1.44 MB was the old floppy.",
+   "shortcut": "CD-700, DVD-4.7, BD-25.",
+   "difficulty": "easy",
+   "subtopic": "hm-storage",
+   "pattern": "hm-sto-p1",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-storage-p02",
+   "q": "A **single-layer DVD** stores approximately —",
+   "figure": null,
+   "options": [
+    "4.7 GB",
+    "700 MB",
+    "25 GB",
+    "64 GB"
+   ],
+   "answer": 0,
+   "solution": "**4.7 GB** per layer — about seven CDs' worth. Dual-layer DVDs reach roughly 8.5 GB.",
+   "shortcut": "DVD = 4.7 GB single layer.",
+   "difficulty": "easy",
+   "subtopic": "hm-storage",
+   "pattern": "hm-sto-p1",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-storage-p03",
+   "q": "Which disc uses a **blue-violet laser**, letting it store far more data than a DVD?",
+   "figure": null,
+   "options": [
+    "CD-ROM",
+    "DVD-R",
+    "Blu-ray Disc",
+    "Floppy disk"
+   ],
+   "answer": 2,
+   "solution": "**Blu-ray**'s blue-violet laser has a shorter wavelength, so pits can be packed tighter — 25 GB on a single layer (hence the name 'Blu-ray').",
+   "shortcut": "Blue laser = Blu-ray.",
+   "difficulty": "medium",
+   "subtopic": "hm-storage",
+   "pattern": "hm-sto-p1",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-storage-p04",
+   "q": "Arrange by **increasing capacity** (single layer): A. DVD  B. CD  C. Blu-ray",
+   "figure": null,
+   "options": [
+    "A, B, C",
+    "B, A, C",
+    "C, A, B",
+    "B, C, A"
+   ],
+   "answer": 1,
+   "solution": "CD (700 MB) < DVD (4.7 GB) < Blu-ray (25 GB) — **B, A, C**.",
+   "shortcut": "0.7 → 4.7 → 25.",
+   "difficulty": "medium",
+   "subtopic": "hm-storage",
+   "pattern": "hm-sto-p1",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-storage-p05",
+   "q": "A **dual-layer DVD** stores roughly —",
+   "figure": null,
+   "options": [
+    "4.7 GB",
+    "17 GB",
+    "700 MB",
+    "8.5 GB"
+   ],
+   "answer": 3,
+   "solution": "Two layers of about 4.7 GB and 3.8 GB give a dual-layer DVD roughly **8.5 GB** — nearly double the single-layer figure.",
+   "shortcut": "Two layers ≈ 4.7 + 3.8 ≈ 8.5 GB.",
+   "difficulty": "hard",
+   "subtopic": "hm-storage",
+   "pattern": "hm-sto-p1",
+   "timeSec": 30
+  },
+  {
+   "id": "hm-storage-p06",
+   "q": "Which storage device has **no moving parts**?",
+   "figure": null,
+   "options": [
+    "Hard disk drive",
+    "SSD (flash) drive",
+    "DVD drive",
+    "Magnetic tape"
+   ],
+   "answer": 1,
+   "solution": "An **SSD** is pure flash chips — nothing spins or seeks. HDDs, DVD drives and tapes are all mechanical.",
+   "shortcut": "No moving parts = solid state.",
+   "difficulty": "easy",
+   "subtopic": "hm-storage",
+   "pattern": "hm-sto-p2",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-storage-p07",
+   "q": "A **pen drive** stores data on —",
+   "figure": null,
+   "options": [
+    "Magnetic platters",
+    "Optical pits",
+    "Paper tape",
+    "Flash memory chips"
+   ],
+   "answer": 3,
+   "solution": "Pen drives (and memory cards, SSDs) use **flash memory** — non-volatile chips that keep data without power.",
+   "shortcut": "Pen drive = flash in your pocket.",
+   "difficulty": "easy",
+   "subtopic": "hm-storage",
+   "pattern": "hm-sto-p2",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-storage-p08",
+   "q": "A traditional **hard disk (HDD)** stores data on —",
+   "figure": null,
+   "options": [
+    "Flash chips",
+    "Laser-etched discs",
+    "Magnetised spinning platters",
+    "ROM gates"
+   ],
+   "answer": 2,
+   "solution": "The HDD's arms read and write **magnetic patterns on spinning platters** — a mechanical, cheaper-per-GB design.",
+   "shortcut": "Hard disk = hard platters that spin.",
+   "difficulty": "easy",
+   "subtopic": "hm-storage",
+   "pattern": "hm-sto-p2",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-storage-p09",
+   "q": "Which is a reason an **HDD** is still preferred over an SSD in some systems?",
+   "figure": null,
+   "options": [
+    "It is cheaper per GB for large capacities",
+    "It is faster",
+    "It has no moving parts",
+    "It uses less power always"
+   ],
+   "answer": 0,
+   "solution": "HDDs lose on speed and shock-resistance but win clearly on **cost per terabyte** — the reason bulk storage still ships on spinning disks.",
+   "shortcut": "Speed buys SSD; bulk buys HDD.",
+   "difficulty": "medium",
+   "subtopic": "hm-storage",
+   "pattern": "hm-sto-p2",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-storage-p10",
+   "q": "Banks and research labs archive huge volumes on **magnetic tape** because it is —",
+   "figure": null,
+   "options": [
+    "The fastest medium",
+    "Very cheap per TB and durable for long-term storage",
+    "A random-access medium",
+    "The only optical medium"
+   ],
+   "answer": 1,
+   "solution": "Tape wins on **cost and longevity**, not speed — perfect for archives that are rarely read.",
+   "shortcut": "Archive on tape; work on disk.",
+   "difficulty": "easy",
+   "subtopic": "hm-storage",
+   "pattern": "hm-sto-p3",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-storage-p11",
+   "q": "Keeping backup copies of files on **internet servers** so they are reachable anywhere is called —",
+   "figure": null,
+   "options": [
+    "Defragmentation",
+    "Disk imaging to tape only",
+    "Formatting",
+    "Cloud storage/backup"
+   ],
+   "answer": 3,
+   "solution": "**Cloud backup** copies your data to remote servers over the internet — accessible from any device with a login.",
+   "shortcut": "Backup in the 'sky' = cloud.",
+   "difficulty": "easy",
+   "subtopic": "hm-storage",
+   "pattern": "hm-sto-p3",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-storage-p12",
+   "q": "Which storage medium gives **random (direct) access**?",
+   "figure": null,
+   "options": [
+    "Magnetic tape",
+    "Hard disk",
+    "Audio cassette",
+    "Punched paper tape"
+   ],
+   "answer": 1,
+   "solution": "A hard disk's heads jump straight to any track — **random access**. Tape must be wound through everything in between — sequential.",
+   "shortcut": "Tape winds; disks jump.",
+   "difficulty": "medium",
+   "subtopic": "hm-storage",
+   "pattern": "hm-sto-p3",
+   "timeSec": 25
+  },
+  {
+   "id": "hm-storage-p13",
+   "q": "Which of the following is **NOT** an optical storage medium?",
+   "figure": null,
+   "options": [
+    "CD",
+    "DVD",
+    "Blu-ray Disc",
+    "Pen drive"
+   ],
+   "answer": 3,
+   "solution": "A **pen drive** is flash storage — no laser, no pits. CD, DVD and Blu-ray are all read optically.",
+   "shortcut": "Laser family: CD-DVD-BD. Flash family: pen drive, card, SSD.",
+   "difficulty": "easy",
+   "subtopic": "hm-storage",
+   "pattern": "hm-sto-p4",
+   "timeSec": 20
+  },
+  {
+   "id": "hm-storage-p14",
+   "q": "Match the medium to its technology:\nA. HDD  B. Blu-ray  C. Pen drive  D. LTO tape",
+   "figure": null,
+   "options": [
+    "A-magnetic platters, B-optical laser, C-flash chips, D-magnetic tape",
+    "A-flash chips, B-magnetic platters, C-optical laser, D-magnetic tape",
+    "A-magnetic tape, B-flash chips, C-optical laser, D-magnetic platters",
+    "A-magnetic platters, B-optical laser, C-magnetic tape, D-flash chips"
+   ],
+   "answer": 0,
+   "solution": "HDD spins magnetised platters; Blu-ray is read by a blue-violet laser; the pen drive is flash chips; LTO is archival magnetic tape — one example of each family.",
+   "shortcut": "Spin, shine, chips, wind.",
+   "difficulty": "hard",
+   "subtopic": "hm-storage",
+   "pattern": "hm-sto-p4",
+   "timeSec": 40
+  },
+  {
+   "id": "hm-storage-p15",
+   "q": "Consider the statements:\n1. SSDs are more shock-resistant than HDDs.\n2. HDDs store data magnetically.\n3. Flash memory loses its data as soon as power is cut.\nWhich are correct?",
+   "figure": null,
+   "options": [
+    "1 and 3 only",
+    "2 and 3 only",
+    "1 and 2 only",
+    "1, 2 and 3"
+   ],
+   "answer": 2,
+   "solution": "Statements 1 and 2 are standard. Statement 3 is wrong — **flash is non-volatile**; it keeps data without power (that is the whole point of a pen drive).",
+   "shortcut": "Flash remembers; RAM forgets.",
+   "difficulty": "hard",
+   "subtopic": "hm-storage",
+   "pattern": "hm-sto-p2",
+   "timeSec": 35
+  }
+ ]
 }
