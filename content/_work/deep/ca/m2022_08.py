@@ -79,6 +79,6 @@ QUIZ = [
      "easy", "national"),
     ("The CHIPS and Science Act signed by Joe Biden in August 2022 targets which industry?",
      ["Oil refining", "Semiconductors", "Textiles", "Automobiles"], 1,
-     "It provides $39 billion in subsidies plus tax credits to build up US chip manufacturing.",
+     "It provides 39 billion US dollars in subsidies plus tax credits to build up US chip manufacturing.",
      "easy", "economy"),
 ]

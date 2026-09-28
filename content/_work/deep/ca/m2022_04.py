@@ -18,12 +18,12 @@ ITEMS = [
 
 QUIZ = [
     ("Elon Musk's April 2022 offer priced Twitter at what amount per share?",
-     ["$50.20", "$52.40", "$54.20", "$56.00"], 2,
-     "The April 14, 2022 unsolicited offer valued Twitter at $54.20 per share, about $43 billion.",
+     ["\\$50.20", "\\$52.40", "\\$54.20", "\\$56.00"], 2,
+     "The April 14, 2022 unsolicited offer valued Twitter at \\$54.20 per share, about \\$43 billion.",
      "hard", "economy"),
     ("Twitter's board accepted a buyout of what value on April 25, 2022?",
-     ["$38 billion", "$41 billion", "$44 billion", "$48 billion"], 2,
-     "The board unanimously accepted Elon Musk's $44 billion buyout offer; the deal closed in October 2022.",
+     ["\\$38 billion", "\\$41 billion", "\\$44 billion", "\\$48 billion"], 2,
+     "The board unanimously accepted Elon Musk's \\$44 billion buyout offer; the deal closed in October 2022.",
      "easy", "economy"),
     ("Emmanuel Macron's April 2022 re-election made him the first French president re-elected since:",
      ["Nicolas Sarkozy", "Jacques Chirac", "Francois Mitterrand", "Charles de Gaulle"], 1,
