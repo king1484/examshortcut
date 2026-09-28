@@ -6,6 +6,7 @@ import { SiteHeader } from '@/components/SiteHeader';
 import { SwRegister } from '@/components/SwRegister';
 import { NavLoader } from '@/components/NavLoader';
 import Link from 'next/link';
+import Script from 'next/script';
 import { AuthProvider } from '@/components/Auth';
 
 const sans = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-sans', display: 'swap' });
@@ -17,8 +18,16 @@ export const metadata: Metadata = {
     'Preparation for SSC, Railway, teaching and entrance exams: detailed topic notes, every question type with formulas and shortcuts, practice sets, daily quiz, full mocks, cutoffs and 5 years of current affairs.',
   manifest: '/manifest.webmanifest',
   icons: { icon: '/icon.svg', apple: '/icon-192.png' },
-  openGraph: { siteName: 'ExamShortcut', type: 'website', locale: 'en_IN' },
+  openGraph: {
+    siteName: 'ExamShortcut',
+    type: 'website',
+    locale: 'en_IN',
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'ExamShortcut — exam preparation' }],
+  },
+  twitter: { card: 'summary_large_image', images: ['/og.png'] },
 };
+
+const GA4_ID = 'G-PGZ7PW2PYF';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -71,6 +80,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </footer>
         <NavLoader />
         <SwRegister />
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`} strategy="afterInteractive" />
+        <Script id="ga4" strategy="afterInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${GA4_ID}');`}
+        </Script>
         </AuthProvider>
       </body>
     </html>
