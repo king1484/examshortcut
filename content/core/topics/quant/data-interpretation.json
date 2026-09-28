@@ -50,6 +50,69 @@
     "Mismatching units across columns (thousands vs units, lakh tonnes vs tonnes).",
     "Adding percentages or ratios from different bases as if they were plain numbers.",
     "Reading the wrong year's column after the question switches reference year."
+   ],
+   "notes": "### What a DI table is\nA table is data arranged in **rows** (going across) and **columns** (going down). Think of a school marks register: each row is a student, each column is a subject. In competitive exams a table usually shows years down the side and companies, states or products across the top. Every question is a small calculation on a few cells, so the real skill is **reading the right cells quickly and correctly**.\n\n### Step 1: read the frame before the numbers\nBefore touching any question, spend 15 seconds on the frame:\n- **Title and units.** \"Production (in thousand tonnes)\" means a cell showing 45 is really 45,000 tonnes. Options are often written in the same unit, but sometimes they convert — check.\n- **Row and column labels.** Is the year down the side or across the top? Mixing up a row and a column is the most common silly error.\n- **Totals row or column.** If the table already has a total, use it instead of adding again.\n\n### Step 2: the five things tables ask\n1. **Total and difference.** Add a row or a column; or find the gap between two cells or two totals. Add in friendly pairs: $120 + 150 + 135 + 165 + 140$ becomes $(120+150+140) + (135+165) = 410 + 300 = 710$.\n2. **Ratio.** \"Ratio of A to B\" means $\\frac{A}{B}$ reduced to lowest terms. Cancel the common factor first: $255 : 230$, both divide by 5, gives $51 : 46$. Keep the order the question uses — $A : B$ is not $B : A$.\n3. **Maximum / minimum.** \"In which year was the gap between R and S the least?\" Write the small list of gaps (70, 50, 60, 60, 55) in the margin and pick. Do not compute more than the question needs.\n4. **Counting years that satisfy a condition.** \"In how many years was P above its own average?\" Find the average once, then tick cells. Watch \"more than\" versus \"at least\": a cell equal to the average is **not** more than it.\n5. **Missing value.** If a total or an average is given, the missing cell is $\\text{total} - \\text{sum of the known cells}$; with an average, first make the total $= \\text{average} \\times \\text{count}$.\n\n### Worked example\nA table shows sales (in ₹ lakh) of four shops: A 240, B ?, C 310, D 185, with a total of 990. Missing B $= 990 - (240 + 310 + 185) = 990 - 735 = 255$.\n\n### Speed habits that save marks\n- **Round only at the end.** DI tables are built with friendly numbers, so exact answers usually come out whole.\n- **Use the options.** If the options are 540, 550, 560, 570 and your unit digits add to 0, only 550 and 570 survive. The last digit of a sum is a free check.\n- **One table, many questions.** In Tier-2 style sets, 4 or 5 questions use one table. Write column totals once in the margin and reuse them.\n- **Equal is a trap.** In \"more than\" counting questions, the setter often places one cell exactly equal to the benchmark.\n\n### Common mistakes\n- Reading 2021's row when the question says 2020.\n- Reporting the ratio upside down.\n- Forgetting the unit (thousands, lakh, crore) when options are in full numbers.\n- Adding every cell when only two were needed.\n\n### Quick revision\n| Ask | Method |\n|---|---|\n| Total | Add in friendly pairs; check the last digit |\n| Difference | Subtract the two totals, not every cell pair |\n| Ratio | $A : B$, cancel common factors, keep the order |\n| Max / min | List the small derived numbers, then pick |\n| Count years | Benchmark once; \"more than\" excludes equal |\n| Missing cell | Total − known sum; total = average × count |\n",
+   "patterns": [
+    {
+     "id": "di-tb-p1",
+     "name": "Total or difference of rows / columns",
+     "frequency": "very common",
+     "howToSpot": "'Total production of Q over the years', 'by how much does 2023 exceed 2019' — plain addition or subtraction of cells.",
+     "formula": "\\text{Difference} = \\sum \\text{row}_1 - \\sum \\text{row}_2",
+     "logic": "1. Locate the row/column (check the unit).\n2. Add in friendly pairs; keep running subtotals.\n3. For a difference of totals, subtract totals once instead of cell by cell.\n\nWhy: every total question is only addition — speed comes from grouping.",
+     "example": {
+      "q": "Production of cars (in thousands) by four companies:\n\n| Year | P | Q | R | S |\n|---|---|---|---|---|\n| 2019 | 120 | 90 | 150 | 80 |\n| 2020 | 135 | 110 | 145 | 95 |\n| 2021 | 150 | 105 | 160 | 100 |\n| 2022 | 140 | 125 | 170 | 110 |\n| 2023 | 165 | 130 | 175 | 120 |\n\nThe total production of company R over the five years is:",
+      "solution": "$150 + 145 + 160 + 170 + 175 = 800$ thousand."
+     }
+    },
+    {
+     "id": "di-tb-p2",
+     "name": "Ratio of cells or of sums",
+     "frequency": "very common",
+     "howToSpot": "'The ratio of X to Y', often of sums of two cells each.",
+     "formula": "A : B = \\frac{A}{B}\\ \\text{in lowest terms}",
+     "logic": "1. Build each side (a cell or a sum of cells).\n2. Cancel the HCF.\n3. Keep the order asked; the reversed ratio is always an option.\n\nWhy: a ratio is just a fraction written with a colon.",
+     "example": {
+      "q": "Production of cars (in thousands) by four companies:\n\n| Year | P | Q | R | S |\n|---|---|---|---|---|\n| 2019 | 120 | 90 | 150 | 80 |\n| 2020 | 135 | 110 | 145 | 95 |\n| 2021 | 150 | 105 | 160 | 100 |\n| 2022 | 140 | 125 | 170 | 110 |\n| 2023 | 165 | 130 | 175 | 120 |\n\nThe ratio of production of Q in 2021 to that of R in 2021 is:",
+      "solution": "$105 : 160$; divide by 5 → $21 : 32$."
+     }
+    },
+    {
+     "id": "di-tb-p3",
+     "name": "Which year / item is the maximum or minimum",
+     "frequency": "common",
+     "howToSpot": "'In which year was the difference / total / growth the highest (or least)?'",
+     "formula": null,
+     "logic": "1. Compute the small derived number for each year (gap, total or % rise).\n2. Write them in a row in the margin.\n3. Pick the extreme; check that the question asked least or most.\n\nWhy: the setter hides the answer behind one derived number — never guess from raw cells.",
+     "example": {
+      "q": "Production of cars (in thousands) by four companies:\n\n| Year | P | Q | R | S |\n|---|---|---|---|---|\n| 2019 | 120 | 90 | 150 | 80 |\n| 2020 | 135 | 110 | 145 | 95 |\n| 2021 | 150 | 105 | 160 | 100 |\n| 2022 | 140 | 125 | 170 | 110 |\n| 2023 | 165 | 130 | 175 | 120 |\n\nIn which year was the total production of P and Q together the highest?",
+      "solution": "Totals: 210, 245, 255, 265, 295 → **2023**."
+     }
+    },
+    {
+     "id": "di-tb-p4",
+     "name": "Count the years meeting a condition",
+     "frequency": "common",
+     "howToSpot": "'In how many years was …more than / less than…'",
+     "formula": null,
+     "logic": "1. Fix the benchmark (an average, another row, a stated number).\n2. Tick each year that strictly meets the condition.\n3. Equal values do not count for 'more than'.\n\nWhy: counting is easy; the traps are the benchmark and the tie.",
+     "example": {
+      "q": "Production of cars (in thousands) by four companies:\n\n| Year | P | Q | R | S |\n|---|---|---|---|---|\n| 2019 | 120 | 90 | 150 | 80 |\n| 2020 | 135 | 110 | 145 | 95 |\n| 2021 | 150 | 105 | 160 | 100 |\n| 2022 | 140 | 125 | 170 | 110 |\n| 2023 | 165 | 130 | 175 | 120 |\n\nIn how many years was the production of S at least 100 thousand?",
+      "solution": "100, 110, 120 → **3** years (2021, 2022, 2023). 'At least' includes the equal value."
+     }
+    },
+    {
+     "id": "di-tb-p5",
+     "name": "Missing value from a given total or average",
+     "frequency": "occasional",
+     "howToSpot": "A cell is blank or marked '?', and a total or an average is printed.",
+     "formula": "x = \\text{total} - \\sum \\text{known} = n\\bar{x} - \\sum \\text{known}",
+     "logic": "1. Make the total (multiply the average by the count if needed).\n2. Subtract the known cells.\n\nWhy: the total is the only thing that ties the cells together.",
+     "example": {
+      "q": "Sales (₹ lakh): A 240, B ?, C 310, D 185; total 990. Sales of B are:",
+      "solution": "$990 - 735 = 255$ lakh."
+     }
+    }
    ]
   },
   {
@@ -92,6 +155,69 @@
     "Dividing by the new value instead of the base.",
     "Percentage points confused with percent (20% vs 10% is '10 points more', not 'twice as much' relative growth).",
     "Ignoring 'approximately' and chasing exact decimals when the options are close but distinct."
+   ],
+   "notes": "### Why percentages rule DI\nRaw numbers are hard to compare. A shop that grows from ₹100 to ₹150 and a factory that grows from ₹1,000 to ₹1,100 both \"increased\", but by very different amounts relative to their size. Percentages put everything on a scale of 100, so that fair comparison is possible. Almost every DI set has at least one percentage question.\n\n### Percentage change — the base is the OLD value\n$$\\%\\ \\text{change} = \\frac{\\text{new} - \\text{old}}{\\text{old}} \\times 100$$\n- Sales go from 160 to 200: change $= 40$, base $= 160$, so $\\frac{40}{160} \\times 100 = 25\\%$.\n- Sales go from 260 to 250: change $= -10$, base $= 260$, so a fall of $\\frac{10}{260} \\times 100 \\approx 3.85\\%$.\nThe \"old\" value is the **earlier year** or the value the question says \"over\" or \"compared with\". Dividing by the new value is the number-one trap, and its result is always among the options.\n\n### \"X is what percent of Y\"\n$$\\frac{X}{Y} \\times 100$$\nThe value after \"of\" is the base. ₹200 as a percent of ₹320 is $\\frac{200}{320} = 62.5\\%$.\n\n### \"X is what percent more than Y\"\n$$\\frac{X - Y}{Y} \\times 100$$\n₹320 is $\\frac{120}{200} = 60\\%$ more than ₹200. But ₹200 is $\\frac{120}{320} = 37.5\\%$ **less** than ₹320. The same gap gives different percentages because the base changes.\n\n### Share of a total\nA part as a percent of the whole: $\\frac{\\text{part}}{\\text{total}} \\times 100$. If a family spends ₹12,000 of ₹36,000 on food, the food share is $33\\tfrac{1}{3}\\%$. Add parts first when two items are asked together.\n\n### Percentage points versus percent\nIf a school's pass rate rises from 60% to 72%:\n- The rise is **12 percentage points** (simple subtraction of two percentages).\n- The rise is **20 percent** in relative terms ($\\frac{12}{60} \\times 100$).\nRead which one is asked. \"By how many percentage points\" means subtract; \"by what percent\" means divide by the old rate.\n\n### Largest percentage rise — do not trust the biggest jump\nIn a series 160, 200, 260, 250, 320 the biggest **absolute** rise is 2023 (+70), but the biggest **percentage** rise is 2021 ($\\frac{60}{200} = 30\\%$ against $\\frac{70}{250} = 28\\%$). A small base makes a small jump look big in percent terms.\n\n### Useful fraction table\n| Fraction | % | Fraction | % |\n|---|---|---|---|\n| $\\frac{1}{8}$ | 12.5 | $\\frac{1}{3}$ | 33.33 |\n| $\\frac{1}{6}$ | 16.67 | $\\frac{3}{8}$ | 37.5 |\n| $\\frac{1}{5}$ | 20 | $\\frac{5}{8}$ | 62.5 |\n| $\\frac{1}{4}$ | 25 | $\\frac{2}{3}$ | 66.67 |\n\n### Quick revision\n- % change $= \\frac{\\text{new} - \\text{old}}{\\text{old}} \\times 100$ — base is the earlier value.\n- \"What percent of Y\" → base Y. \"More than Y\" → base Y.\n- Same gap, different base: 60% more ≠ 37.5% less.\n- Percentage points = subtract rates; percent change of a rate = divide by old rate.\n- Biggest absolute jump is not always the biggest % jump.\n",
+   "patterns": [
+    {
+     "id": "di-pc-p1",
+     "name": "Percentage increase / decrease between two periods",
+     "frequency": "very common",
+     "howToSpot": "'The percentage increase (or decrease) in sales from 2021 to 2022'.",
+     "formula": "\\frac{\\text{new} - \\text{old}}{\\text{old}} \\times 100",
+     "logic": "1. Old = the earlier year; new = the later year.\n2. Change ÷ old × 100.\n3. For 'approximately', match the nearest option.\n\nWhy: a change is measured against where you started.",
+     "example": {
+      "q": "Annual sales of a company (₹ crore):\n\n| Year | 2019 | 2020 | 2021 | 2022 | 2023 |\n|---|---|---|---|---|---|\n| Sales | 160 | 200 | 260 | 250 | 320 |\n\nThe percentage increase in sales from 2022 to 2023 is:",
+      "solution": "$\\frac{320 - 250}{250} \\times 100 = 28\\%$."
+     }
+    },
+    {
+     "id": "di-pc-p2",
+     "name": "X as a percent of Y / percent more or less than",
+     "frequency": "very common",
+     "howToSpot": "'2020 sales are what percent of 2023 sales?', 'By what percent is A more than B?'",
+     "formula": "\\frac{X}{Y} \\times 100,\\qquad \\frac{X - Y}{Y} \\times 100",
+     "logic": "1. The word 'of' or 'than' points to the base Y.\n2. Divide by the base, multiply by 100.\n3. More-than and less-than answers differ — check direction.\n\nWhy: every percent is a fraction of one chosen base.",
+     "example": {
+      "q": "Annual sales of a company (₹ crore):\n\n| Year | 2019 | 2020 | 2021 | 2022 | 2023 |\n|---|---|---|---|---|---|\n| Sales | 160 | 200 | 260 | 250 | 320 |\n\nBy what percent are the 2023 sales more than the 2019 sales?",
+      "solution": "$\\frac{320 - 160}{160} \\times 100 = 100\\%$."
+     }
+    },
+    {
+     "id": "di-pc-p3",
+     "name": "Share of a total",
+     "frequency": "common",
+     "howToSpot": "A breakdown of a total (expenses, votes, students) and 'what percent of the total is…'.",
+     "formula": "\\frac{\\text{part}}{\\text{total}} \\times 100",
+     "logic": "1. Find the total (add cells if not printed).\n2. Add the parts asked together.\n3. Divide and convert with the fraction table.\n\nWhy: a share is a part over the whole.",
+     "example": {
+      "q": "A family spends ₹12,000 on food out of a total of ₹36,000. Food's share is:",
+      "solution": "$\\frac{12000}{36000} = \\frac{1}{3} = 33\\tfrac{1}{3}\\%$."
+     }
+    },
+    {
+     "id": "di-pc-p4",
+     "name": "Percentage points vs percent change of a rate",
+     "frequency": "common",
+     "howToSpot": "The data itself is in percent (pass rate, literacy rate, market share) and the question asks how much it changed.",
+     "formula": "\\text{points} = r_2 - r_1,\\qquad \\%\\ \\text{change} = \\frac{r_2 - r_1}{r_1} \\times 100",
+     "logic": "1. 'Percentage points' → subtract the two rates.\n2. 'By what percent' → divide the gap by the old rate.\n3. Both answers usually appear as options.\n\nWhy: a rate is already a percent — changing it can be read two ways.",
+     "example": {
+      "q": "A pass rate rises from 60% to 72%. By what percent did it rise?",
+      "solution": "Points $= 12$; percent $= \\frac{12}{60} \\times 100 = 20\\%$."
+     }
+    },
+    {
+     "id": "di-pc-p5",
+     "name": "Year with the highest / lowest percentage change",
+     "frequency": "common",
+     "howToSpot": "'In which year was the percentage increase over the previous year maximum?'",
+     "formula": null,
+     "logic": "1. For each year compute change ÷ previous value (fractions are enough).\n2. Compare the fractions, not the raw jumps.\n3. Ignore years with a fall when a rise is asked.\n\nWhy: a small base inflates the percent — the biggest raw jump often loses.",
+     "example": {
+      "q": "Annual sales of a company (₹ crore):\n\n| Year | 2019 | 2020 | 2021 | 2022 | 2023 |\n|---|---|---|---|---|---|\n| Sales | 160 | 200 | 260 | 250 | 320 |\n\nIn which year was the lowest percentage increase over the previous year (ignore falls)?",
+      "solution": "Rises: 2020 25%, 2021 30%, 2023 28% → **2020**."
+     }
+    }
    ]
   },
   {
@@ -134,6 +260,69 @@
     "Treating the printed angle as the value (or the value as a percentage).",
     "Using 360° with a total that is itself a percentage share.",
     "Degrees arithmetic off by the 3.6 factor ($1\\%\\neq1^\\circ$)."
+   ],
+   "notes": "### What a pie chart shows\nA pie chart is a circle cut into slices (sectors). The whole circle stands for the **total** — the whole budget, all students, all sales. Each slice is one part. A bigger slice means a bigger share. Since a circle has $360^\\circ$ at its centre, the total is spread over $360^\\circ$.\n\nIn competitive exams the pie is often printed as a list of angles or percentages — read it exactly like a table.\n\n### The three conversions\n$$\\text{value} = \\frac{\\text{angle}}{360^\\circ} \\times \\text{total}$$\n$$\\text{angle} = \\frac{\\text{percent}}{100} \\times 360^\\circ = \\text{percent} \\times 3.6^\\circ$$\n$$\\text{percent} = \\frac{\\text{angle}}{360^\\circ} \\times 100 = \\frac{\\text{angle}}{3.6}$$\nRemember: **1% = 3.6°** and **1° = total ÷ 360**.\n\n### Worked example: value of one degree\nBudget ₹72,000, so $1^\\circ = \\frac{72000}{360} = ₹200$. Rent at $72^\\circ$ is $72 \\times 200 = ₹14{,}400$. Food at $108^\\circ$ is $108 \\times 200 = ₹21{,}600$. Finding \"one degree\" once turns every later question into one multiplication.\n\n### Difference and ratio of two slices\n- Difference: subtract the **angles** first, then convert once. Food − Education $= 108^\\circ - 54^\\circ = 54^\\circ = 54 \\times 200 = ₹10{,}800$.\n- Ratio: the ratio of values equals the ratio of angles — the total cancels. Savings : Transport $= 45 : 36 = 5 : 4$.\n\n### When the total is not given\nIf one slice's value is known, use proportion. Transport ($36^\\circ$) is ₹9,000, so Food ($108^\\circ$) is $\\frac{108}{36} \\times 9000 = ₹27{,}000$, and the total is $\\frac{360}{36} \\times 9000 = ₹90{,}000$.\n\n### Two pie charts\nTwo years (or two companies) each with its own total. The same slice size does **not** mean the same value if the totals differ. Export share of Asia 30% of ₹400 crore = ₹120 crore; 27% of ₹500 crore = ₹135 crore. The share fell but the amount **rose** by 12.5%. Always convert each pie to values before comparing.\n\n### Common mistakes\n- Adding the angles of two sectors and expecting the percent of the **sum** to equal the sum of the percents — that one is true, but only because both share the same total of $360^\\circ$.\n- Using 100 instead of 360 when converting an angle to a value.\n- Forgetting that two $45^\\circ$ sectors of **different** pies can be different amounts.\n- Reporting the angle when the value was asked (the question says \"amount\" or \"degrees\" — underline which).\n\n### Handy angle table\n| Percent | Angle | Percent | Angle |\n|---|---|---|---|\n| 5% | 18° | 25% | 90° |\n| 10% | 36° | 30% | 108° |\n| 12.5% | 45° | 50% | 180° |\n| 20% | 72° | 75% | 270° |\n\n### Quick revision\n- Whole circle $= 360^\\circ =$ total $= 100\\%$.\n- value $= \\frac{\\theta}{360} \\times$ total; angle $= \\% \\times 3.6$.\n- Find the value of $1^\\circ$ once and reuse it.\n- Differences and ratios: work with angles, convert at the end.\n- Two pies: convert each to values; shares alone mislead.\n",
+   "patterns": [
+    {
+     "id": "di-pi-p1",
+     "name": "Angle → value",
+     "frequency": "very common",
+     "howToSpot": "Central angles and a total are given; the amount of one or two sectors asked.",
+     "formula": "\\text{value} = \\frac{\\theta}{360^\\circ} \\times \\text{total}",
+     "logic": "1. Find the value of one degree: total ÷ 360.\n2. Multiply by the sector's angle (add angles first for two sectors).\n\nWhy: the circle's 360 degrees are the total, shared in proportion.",
+     "example": {
+      "q": "A pie chart shows a family's monthly budget of ₹72,000. The central angles are:\n\n| Head | Food | Rent | Education | Transport | Savings | Others |\n|---|---|---|---|---|---|---|\n| Angle | 108° | 72° | 54° | 36° | 45° | 45° |\n\nThe amount spent on Food is:",
+      "solution": "$1^\\circ = ₹200$; Food $= 108 \\times 200 = ₹21{,}600$."
+     }
+    },
+    {
+     "id": "di-pi-p2",
+     "name": "Percent ↔ angle conversion",
+     "frequency": "very common",
+     "howToSpot": "A sector given in % with the angle asked, or an angle with the % asked.",
+     "formula": "\\theta = p \\times 3.6^\\circ,\\qquad p = \\frac{\\theta}{3.6}",
+     "logic": "1. Percent to angle: multiply by 3.6.\n2. Angle to percent: divide by 3.6 (or by 360 then ×100).\n\nWhy: 100% is 360°, so 1% is 3.6°.",
+     "example": {
+      "q": "A sector is 15% of a pie chart. Its central angle is:",
+      "solution": "$15 \\times 3.6 = 54^\\circ$."
+     }
+    },
+    {
+     "id": "di-pi-p3",
+     "name": "Difference or ratio of two sectors",
+     "frequency": "common",
+     "howToSpot": "'How much more is spent on A than on B?' or 'ratio of A to B'.",
+     "formula": "A - B = \\frac{\\theta_A - \\theta_B}{360} \\times \\text{total},\\quad A : B = \\theta_A : \\theta_B",
+     "logic": "1. Work with the angles (or percents) directly.\n2. For a difference, convert the angle gap once.\n3. For a ratio, the total cancels — reduce the angles.\n\nWhy: all sectors share the same total, so it is a common factor.",
+     "example": {
+      "q": "A pie chart shows a family's monthly budget of ₹72,000. The central angles are:\n\n| Head | Food | Rent | Education | Transport | Savings | Others |\n|---|---|---|---|---|---|---|\n| Angle | 108° | 72° | 54° | 36° | 45° | 45° |\n\nThe ratio of the amount on Rent to that on Education is:",
+      "solution": "$72 : 54 = 4 : 3$."
+     }
+    },
+    {
+     "id": "di-pi-p4",
+     "name": "Two pie charts with different totals",
+     "frequency": "common",
+     "howToSpot": "Two pies (two years, two firms) with different totals; the change in one item is asked.",
+     "formula": "\\text{value}_i = \\frac{p_i}{100} \\times T_i",
+     "logic": "1. Convert the item to a value in each pie using its own total.\n2. Then find the change or ratio of the values.\n3. Never compare shares directly when totals differ.\n\nWhy: a smaller slice of a bigger pie can be more money.",
+     "example": {
+      "q": "Exports: 2022 total ₹400 crore, Asia 30%; 2023 total ₹500 crore, Asia 27%. The change in exports to Asia is:",
+      "solution": "$120 \\to 135$: a rise of ₹15 crore."
+     }
+    },
+    {
+     "id": "di-pi-p5",
+     "name": "One sector known → total or another sector",
+     "frequency": "common",
+     "howToSpot": "No total is printed; the value of one sector is given.",
+     "formula": "\\text{total} = \\frac{360}{\\theta_k} \\times V_k,\\qquad V_x = \\frac{\\theta_x}{\\theta_k} \\times V_k",
+     "logic": "1. Value per degree $= V_k \\div \\theta_k$.\n2. Multiply by 360 for the total, or by $\\theta_x$ for another sector.\n\nWhy: every sector gets the same value per degree.",
+     "example": {
+      "q": "A sector of 40° stands for 1,600 students. The total number of students is:",
+      "solution": "$\\frac{360}{40} \\times 1600 = 14{,}400$."
+     }
+    }
    ]
   },
   {
@@ -176,6 +365,69 @@
     "Averaging group averages without weights (65 and 75 average to 70, not 69).",
     "Dividing by the wrong count (summing 5 days but dividing by 7).",
     "Mixing up which is the count column and which is the value column."
+   ],
+   "notes": "### Averages inside a table\nAn average asks: \"if everything were shared equally, how much would each get?\" In DI the \"things\" are cells of a table — production of a factory across days, marks of students, salaries of departments. The rule never changes:\n$$\\text{average} = \\frac{\\text{sum of the cells}}{\\text{number of cells}}$$\nSo every average question is really two questions: find the total, count the items, divide.\n\n### Row or column average\nA row (or column) average sums one row and divides by the count. Production over six days is 480, 520, 460, 540, 500, 500: the sum is 3,000, so the average is $3000 \\div 6 = 500$ units. With friendly DI numbers the division is usually exact — if you get a messy decimal, recheck the cells you picked.\n\n### Deviations: average without big sums\nInstead of adding, pick any round number near the values and add the differences. For 480, 520, 460, 540, 500, 500 around 500: deviations $-20, +20, -40, +40, 0, 0$ add to $0$, so the average is exactly 500. This is fast and self-checking.\n\n### Combined (weighted) average\nTwo groups with different sizes cannot be averaged plainly. Weight each group's average by its size:\n$$\\bar{x} = \\frac{n_1\\bar{x}_1 + n_2\\bar{x}_2 + \\dots}{n_1 + n_2 + \\dots}$$\nDepartment A: 40 employees at ₹25,000; department B: 30 at ₹32,000. Combined $= \\frac{40 \\times 25000 + 30 \\times 32000}{70} = \\frac{1960000}{70} = ₹28{,}000$ — closer to A's salary because A has more people. The plain average $\\frac{25000 + 32000}{2} = 28{,}500$ is the planted trap.\n\n### Per-period values\n\"Average sale per day\" from a weekly total: divide the total by the number of periods, not by the number of rows of some other table. Total sales ₹84,000 in 6 days means ₹14,000 per day. Read the question: per day, per month, per employee — each divisor is different.\n\n### Excluding or adding an item\n- **Excluding**: new average $= \\frac{\\text{old total} - \\text{removed value}}{\\text{count} - 1}$. Dropping the lowest day (460) from our week: $\\frac{3000 - 460}{5} = 508$.\n- **Adding**: needed value $= \\text{new average} \\times (n+1) - \\text{old total}$. To lift the 6-day average of 500 to 520 with a 7th day: $7 \\times 520 - 3000 = 640$ units.\n\n### Missing cell from an average\nIf the average is given, rebuild the total: total $= \\text{average} \\times n$. Then the missing cell is one subtraction. Six months average 2,500 units, so the half-year total is 15,000; if March is missing, March $= 15000 - (\\text{other five})$.\n\n### Quick revision\n- average = total ÷ count; total = average × count.\n- Deviation trick: pick a round base, add the differences, divide by n.\n- Weighted average $\\frac{\\sum n_i \\bar{x}_i}{\\sum n_i}$ — plain average of the group means is the trap.\n- Per day / per month: divide by periods, not rows.\n- Exclude: $(T - x)/(n-1)$. Add: new avg × $(n+1) - T$.\n- \"More than the average\" does not include cells equal to the average.\n",
+   "patterns": [
+    {
+     "id": "di-av-p1",
+     "name": "Average of a row / column",
+     "frequency": "very common",
+     "howToSpot": "'Average daily/monthly/annual production' — sum one row or column and divide.",
+     "formula": "\\bar{x} = \\frac{\\sum \\text{cells}}{n}",
+     "logic": "1. Pick the cells (check the period count!).\n2. Add in friendly pairs or use deviations from a round base.\n3. Divide; a messy decimal usually means a wrong cell.\n\nWhy: an average is a total shared equally.",
+     "example": {
+      "q": "Production of a factory (in units):\n\n| Day | Mon | Tue | Wed | Thu | Fri | Sat |\n|---|---|---|---|---|---|---|\n| Units | 480 | 520 | 460 | 540 | 500 | 500 |\n\nThe average daily production (in units) is:",
+      "solution": "$3000 \\div 6 = 500$ units."
+     }
+    },
+    {
+     "id": "di-av-p2",
+     "name": "Weighted / combined average of groups",
+     "frequency": "very common",
+     "howToSpot": "The table gives group sizes (employees, students) and each group's average; the overall average asked.",
+     "formula": "\\bar{x} = \\frac{n_1\\bar{x}_1 + n_2\\bar{x}_2}{n_1 + n_2}",
+     "logic": "1. Multiply each group's size by its average; add.\n2. Divide by the total size.\n3. Answer must sit between the group averages, nearer the bigger group.\n\nWhy: a bigger group pulls the combined average toward itself.",
+     "example": {
+      "q": "A company has four departments. The table shows the number of employees and their average salary:\n\n| Department | Employees | Average salary |\n|---|---|---|\n| A | 40 | ₹25,000 |\n| B | 30 | ₹32,000 |\n| C | 20 | ₹28,000 |\n| D | 30 | ₹40,000 |\n\nThe average salary of all employees of departments A and B together is:",
+      "solution": "$\\frac{40 \\times 25000 + 30 \\times 32000}{70} = \\frac{1960000}{70} = ₹28{,}000$."
+     }
+    },
+    {
+     "id": "di-av-p3",
+     "name": "Average per period from a total",
+     "frequency": "common",
+     "howToSpot": "'Average per day / per month / per worker' with a total given or summed.",
+     "formula": "\\text{per period} = \\frac{\\text{total}}{\\text{number of periods}}",
+     "logic": "1. Build the total (add cells if needed).\n2. Divide by the period count the question names.\n3. Per worker = total ÷ workers; per day = total ÷ days — read the divisor.\n\nWhy: 'per' names the divisor.",
+     "example": {
+      "q": "A shop's sales in 6 days total ₹84,000. The average sale per day is:",
+      "solution": "$84000 \\div 6 = ₹14{,}000$ per day."
+     }
+    },
+    {
+     "id": "di-av-p4",
+     "name": "Average after excluding or adding an item",
+     "frequency": "common",
+     "howToSpot": "'Excluding the least day…', 'with one more day the average becomes…'.",
+     "formula": "\\text{exclude: } \\frac{T - x}{n-1},\\qquad \\text{add: } x = \\bar{x}_{new}(n+1) - T",
+     "logic": "1. Old total $T = $ old average × n.\n2. Excluding: subtract the item, divide by $n-1$.\n3. Adding: new average × $(n+1)$ minus old total gives the needed value.\n\nWhy: the average always follows the total.",
+     "example": {
+      "q": "Production of a factory (in units):\n\n| Day | Mon | Tue | Wed | Thu | Fri | Sat |\n|---|---|---|---|---|---|---|\n| Units | 480 | 520 | 460 | 540 | 500 | 500 |\n\nIf the least productive day is excluded, the average production of the remaining days is:",
+      "solution": "$\\frac{3000 - 460}{5} = \\frac{2540}{5} = 508$ units."
+     }
+    },
+    {
+     "id": "di-av-p5",
+     "name": "Missing cell from a given average",
+     "frequency": "common",
+     "howToSpot": "An average is printed and one cell is missing; the missing cell asked.",
+     "formula": "x = n\\bar{x} - \\sum \\text{known}",
+     "logic": "1. Total = average × count.\n2. Subtract the known cells.\n3. Check the found cell fits the table's range.\n\nWhy: the average fixes the total, and the total fixes the missing cell.",
+     "example": {
+      "q": "Monthly production: Jan 2400, Feb 2600, Mar ?, Apr 2800, May 2500, Jun 2500; the six-month average is 2,500 units. March's production is:",
+      "solution": "Total $= 6 \\times 2500 = 15000$; known $= 12800$; March $= 2200$."
+     }
+    }
    ]
   },
   {
@@ -222,6 +474,69 @@
     "Adding successive percentages instead of multiplying factors.",
     "Reversing growth by subtracting percentages (a 25% rise then 25% fall is not flat — it is $-6.25\\%$).",
     "Profit percent computed on income instead of expenditure."
+   ],
+   "notes": "### Growth = percentage change with a direction\nWhen a table shows how one quantity moves year after year, each year-on-year jump is a **growth rate**:\n$$g = \\frac{\\text{new} - \\text{old}}{\\text{old}} \\times 100$$\nRevenue going 80 → 96 crore grows $\\frac{16}{80} \\times 100 = 20\\%$. A negative $g$ is a decline. The base is always the **earlier** year.\n\n### Successive changes multiply — never add\nA rise of $a\\%$ multiplies the value by $\\left(1 + \\frac{a}{100}\\right)$; a fall of $b\\%$ multiplies by $\\left(1 - \\frac{b}{100}\\right)$. Two changes in a row multiply:\n$$\\text{net factor} = \\left(1 + \\frac{a}{100}\\right)\\left(1 + \\frac{b}{100}\\right)$$\n- $+10\\%$ then $+10\\%$: $1.1 \\times 1.1 = 1.21$ → net $+21\\%$, not $+20\\%$.\n- $+25\\%$ then $-20\\%$: $1.25 \\times 0.8 = 1.00$ → net **zero** — a fall of 20% exactly cancels a rise of 25%.\n- Revenue 80 → 96 → 120 → 144: factors $1.2 \\times 1.25 \\times 1.2 = 1.8$, so the total growth is $+80\\%$.\n\n### Running backwards\nIf the final value is known and the initial is asked, **divide** by the factor — never subtract percentages.\n$$\\text{initial} = \\frac{\\text{final}}{\\text{factor}}$$\nA salary became ₹45,000 after raises of 20% and 25%: original $= \\frac{45000}{1.2 \\times 1.25} = \\frac{45000}{1.5} = ₹30{,}000$. A population of 14,400 after falls of 20% and 10%: original $= \\frac{14400}{0.8 \\times 0.9} = \\frac{14400}{0.72} = 20{,}000$.\n\n### Profit percent from an income–expenditure table\n$$\\text{profit}\\% = \\frac{\\text{income} - \\text{expenditure}}{\\text{expenditure}} \\times 100$$\nThe base is **expenditure**, not income — dividing by income is a standard trap. Highest profit **percent** is not always the year with highest profit **amount**: a small year can be very profitable in percentage terms.\n\n### Comparing two firms\nCompare growth rates in percent, and remember a percent and a percentage point are different. Firm A grows 80% and firm B grows 100% — B is ahead **by 20 percentage points**, not \"by 20%\". Also, the bigger absolute increase can belong to the slower grower (a large base).\n\n### Worked example: a three-year chain\nRevenue goes 80 → 96 → 120 → 144 (₹ crore). Year-on-year: $\\frac{16}{80} = 20\\%$, $\\frac{24}{96} = 25\\%$, $\\frac{24}{120} = 20\\%$. Overall factor $= 1.2 \\times 1.25 \\times 1.2 = 1.8$, so revenue is up $80\\%$ over the span — although the growth rates add to $65\\%$. One multiplication settles what addition gets wrong.\n\n### Two quick self-checks\n- A rise of $a\\%$ followed by a fall of $a\\%$ always leaves a **loss** of $\\frac{a^2}{100}\\%$: 20% up then 20% down nets $-4\\%$.\n- If the factor chain multiplies to exactly 1, the net change is zero — the setter loves $+25\\%$ with $-20\\%$ and $+33\\tfrac{1}{3}\\%$ with $-25\\%$.\n\n### Quick revision\n- $g = \\frac{\\text{new} - \\text{old}}{\\text{old}} \\times 100$; base = earlier year.\n- Chain of changes: multiply factors $(1 \\pm \\frac{a}{100})$.\n- $+25\\%$ then $-20\\%$ (or $+20\\%$ then $-25\\%$) = no net change.\n- Reverse: divide the final value by the factor.\n- Profit% = profit ÷ expenditure × 100.\n- Growth comparison in percentage points = subtract the two rates.\n",
+   "patterns": [
+    {
+     "id": "di-gr-p1",
+     "name": "Year-on-year growth rate",
+     "frequency": "very common",
+     "howToSpot": "'The percentage growth from year X to year Y' or 'in which year was growth highest'.",
+     "formula": "g = \\frac{\\text{new} - \\text{old}}{\\text{old}} \\times 100",
+     "logic": "1. Base = the earlier year.\n2. Change ÷ base × 100.\n3. For 'highest growth year', compute each rate — don't compare raw jumps.\n\nWhy: growth is relative to where the year started.",
+     "example": {
+      "q": "Revenue of firm A (in ₹ crore):\n\n| Year | 2020 | 2021 | 2022 | 2023 |\n|---|---|---|---|---|\n| Revenue | 80 | 96 | 120 | 144 |\n\nThe percentage growth in revenue from 2020 to 2021 is:",
+      "solution": "$\\frac{96 - 80}{80} \\times 100 = 20\\%$."
+     }
+    },
+    {
+     "id": "di-gr-p2",
+     "name": "Net change over successive years",
+     "frequency": "very common",
+     "howToSpot": "'The overall increase from 2020 to 2023', or mixed rise/fall statements.",
+     "formula": "\\text{factor} = \\prod \\left(1 \\pm \\frac{a_i}{100}\\right)",
+     "logic": "1. Convert each year's change to a factor.\n2. Multiply the factors.\n3. Net % = (factor − 1) × 100.\n\nWhy: each change acts on the already-changed value.",
+     "example": {
+      "q": "A price rises 10% and then another 10%. The net increase is:",
+      "solution": "$1.1 \\times 1.1 = 1.21$ → net $+21\\%$ (not 20%)."
+     }
+    },
+    {
+     "id": "di-gr-p3",
+     "name": "Reverse growth: find the earlier value",
+     "frequency": "common",
+     "howToSpot": "The final value after two or three changes is given; the original is asked.",
+     "formula": "\\text{initial} = \\frac{\\text{final}}{\\prod \\left(1 \\pm \\frac{a_i}{100}\\right)}",
+     "logic": "1. Build the factor chain (fall = minus).\n2. Divide the final value by the product.\n3. Keep factors as fractions for clean division.\n\nWhy: forward multiplies, backward divides.",
+     "example": {
+      "q": "After two successive raises of 20% and 25%, a salary is ₹45,000. The original salary was:",
+      "solution": "$\\frac{45000}{1.2 \\times 1.25} = \\frac{45000}{1.5} = ₹30{,}000$."
+     }
+    },
+    {
+     "id": "di-gr-p4",
+     "name": "Profit percent from income and expenditure",
+     "frequency": "common",
+     "howToSpot": "An income–expenditure table; a profit percent asked, or the best year.",
+     "formula": "\\text{profit}\\% = \\frac{I - E}{E} \\times 100",
+     "logic": "1. Profit = income − expenditure.\n2. Divide by expenditure (not income).\n3. For the best year, compute every profit percent — amounts mislead.\n\nWhy: profit percent measures return on money spent.",
+     "example": {
+      "q": "Income and expenditure of a firm (in ₹ lakh):\n\n| Year | Income | Expenditure |\n|---|---|---|\n| 2021 | ₹60 | ₹40 |\n| 2022 | ₹80 | ₹50 |\n| 2023 | ₹130 | ₹90 |\n\nThe profit percent in 2022 is:",
+      "solution": "$\\frac{80 - 50}{50} \\times 100 = 60\\%$."
+     }
+    },
+    {
+     "id": "di-gr-p5",
+     "name": "Comparing growth of two firms / periods",
+     "frequency": "common",
+     "howToSpot": "Two firms (or two spans) with start and end values; which grew faster, or by how many points.",
+     "formula": "\\text{gap in points} = g_1 - g_2",
+     "logic": "1. Compute each overall growth percent separately.\n2. Compare; the gap is in percentage points.\n3. Bigger absolute rise ≠ bigger percent growth.\n\nWhy: percent growth normalises for the base size.",
+     "example": {
+      "q": "Firm A: 80 → 144. Firm B: 50 → 100 (same span). Which grew faster in percent, and by how much?",
+      "solution": "A: 80%. B: 100%. B, by 20 percentage points."
+     }
+    }
    ]
   }
  ],
@@ -229,38 +544,90 @@
   {
    "pattern": "Totals and differences from a table",
    "frequency": "very common",
-   "howToSpot": "Sum a row/column, or find the gap between two cells or two years.",
-   "approach": "Add friendly groups; keep subtotals; answer usually a round number — check against it."
+   "howToSpot": "Sum a row/column, or find the gap between two cells, two years or two companies. The most basic DI ask, and the first question of most table sets.",
+   "approach": "Add in friendly pairs and keep subtotals in the margin; for a difference of totals, subtract the totals once instead of cell by cell. Check the unit (thousand, lakh) before choosing the option.",
+   "subtopic": "di-table",
+   "example": {
+    "q": "Production of cars (in thousands) by four companies:\n\n| Year | P | Q | R | S |\n|---|---|---|---|---|\n| 2019 | 120 | 90 | 150 | 80 |\n| 2020 | 135 | 110 | 145 | 95 |\n| 2021 | 150 | 105 | 160 | 100 |\n| 2022 | 140 | 125 | 170 | 110 |\n| 2023 | 165 | 130 | 175 | 120 |\n\nThe total production of company R over the five years is:",
+    "solution": "$150 + 145 + 160 + 170 + 175 = 800$ thousand."
+   }
   },
   {
    "pattern": "Percentage change between periods",
    "frequency": "very common",
-   "howToSpot": "'The percent increase from year A to year B', often with 'approximately' in the question.",
-   "approach": "$\\frac{\\text{new}-\\text{old}}{\\text{old}}\\times100$; base is the earlier value; match the nearest option."
+   "howToSpot": "'The percent increase from year A to year B', often with 'approximately' in the question, or 'by what percent is X more than Y'.",
+   "approach": "$\\frac{\\text{new}-\\text{old}}{\\text{old}}\\times100$ with the base as the earlier (or 'than') value; keep the fraction until the end and match the nearest option.",
+   "subtopic": "di-percent",
+   "example": {
+    "q": "Annual sales of a company (₹ crore):\n\n| Year | 2019 | 2020 | 2021 | 2022 | 2023 |\n|---|---|---|---|---|---|\n| Sales | 160 | 200 | 260 | 250 | 320 |\n\nThe percentage increase in sales from 2022 to 2023 is:",
+    "solution": "$\\frac{320-250}{250}\\times100 = 28\\%$."
+   }
   },
   {
    "pattern": "Pie-chart sector values",
    "frequency": "very common",
-   "howToSpot": "Sectors printed as degrees or percentages with a stated total; a value, share or angle asked.",
-   "approach": "$\\frac{\\theta}{360}\\times$total, or share$\\times3.6^\\circ$ for angles; combine sectors before converting."
+   "howToSpot": "Sectors printed as degrees or percentages with a stated total; a value, a share or an angle asked.",
+   "approach": "Value $= \\frac{\\theta}{360}\\times$ total; angle $= \\% \\times 3.6^\\circ$. Find the worth of $1^\\circ$ once and reuse it; add angles before converting when two sectors are asked together.",
+   "subtopic": "di-pie",
+   "example": {
+    "q": "A pie chart shows a family's monthly budget of ₹72,000. The central angles are:\n\n| Head | Food | Rent | Education | Transport | Savings | Others |\n|---|---|---|---|---|---|---|\n| Angle | 108° | 72° | 54° | 36° | 45° | 45° |\n\nThe amount spent on Rent is:",
+    "solution": "$1^\\circ = \\frac{72000}{360} = ₹200$, so Rent $= 72 \\times 200 = ₹14{,}400$."
+   }
   },
   {
    "pattern": "Ratios and shares",
    "frequency": "common",
-   "howToSpot": "'Ratio of X to Y in year Z' or 'X is what percent of Y'.",
-   "approach": "Reduce the fraction directly; convert to percent only at the end."
+   "howToSpot": "'Ratio of X to Y in year Z', 'X is what percent of Y', or the share of two heads of a total taken together.",
+   "approach": "Reduce the ratio fraction directly (cancel the HCF) and keep the order asked; for shares, add the parts first, then divide by the total once.",
+   "subtopic": "di-percent",
+   "example": {
+    "q": "Annual sales of a company (₹ crore):\n\n| Year | 2019 | 2020 | 2021 | 2022 | 2023 |\n|---|---|---|---|---|---|\n| Sales | 160 | 200 | 260 | 250 | 320 |\n\nThe sales in 2020 are what percent of the sales in 2023?",
+    "solution": "$\\frac{200}{320} \\times 100 = 62.5\\%$."
+   }
   },
   {
    "pattern": "Averages and weighted averages",
    "frequency": "common",
-   "howToSpot": "Row/column averages, or two groups with counts and averages to combine.",
-   "approach": "Simple mean of cells, or $\\frac{n_1\\bar x_1+n_2\\bar x_2}{n_1+n_2}$ weighted by counts."
+   "howToSpot": "Row/column averages over the years, or a table of group sizes with group averages to combine.",
+   "approach": "Simple mean of the cells for one row/column; for groups, weight by size: $\\frac{n_1\\bar{x}_1 + n_2\\bar{x}_2}{n_1+n_2}$. The plain average of the group means is the planted trap.",
+   "subtopic": "di-average",
+   "example": {
+    "q": "A company has four departments. The table shows the number of employees and their average salary:\n\n| Department | Employees | Average salary |\n|---|---|---|\n| A | 40 | ₹25,000 |\n| B | 30 | ₹32,000 |\n| C | 20 | ₹28,000 |\n| D | 30 | ₹40,000 |\n\nThe average salary of departments A and B together is:",
+    "solution": "$\\frac{40 \\times 25000 + 30 \\times 32000}{70} = ₹28{,}000$, not the plain $28{,}500$."
+   }
   },
   {
    "pattern": "Successive growth / reverse growth",
    "frequency": "common",
-   "howToSpot": "Multi-year growth rates with the final (or initial) value given.",
-   "approach": "Multiply factors to move forward, divide by the factor to move back; never add percentages."
+   "howToSpot": "Multi-year growth rates with the final (or initial) value given; sometimes a rise followed by a fall.",
+   "approach": "Multiply factors $(1 \\pm \\frac{a}{100})$ to move forward; divide the final value by the factor to move back. Never add percentages across years.",
+   "subtopic": "di-growth",
+   "example": {
+    "q": "A price rises 10% and then another 10%. The net increase is:",
+    "solution": "$1.1 \\times 1.1 = 1.21$ → net $+21\\%$, not 20%."
+   }
+  },
+  {
+   "pattern": "Maximum / minimum year, and counting years",
+   "frequency": "common",
+   "howToSpot": "'In which year was the difference/growth the least?' or 'in how many years was X above its average'.",
+   "approach": "Compute the small derived number (gap, total, rate) for each year and list it in the margin, then pick. For counting, fix the benchmark once; values equal to it do not count for 'more than'.",
+   "subtopic": "di-table",
+   "example": {
+    "q": "Production of cars (in thousands) by four companies:\n\n| Year | P | Q | R | S |\n|---|---|---|---|---|\n| 2019 | 120 | 90 | 150 | 80 |\n| 2020 | 135 | 110 | 145 | 95 |\n| 2021 | 150 | 105 | 160 | 100 |\n| 2022 | 140 | 125 | 170 | 110 |\n| 2023 | 165 | 130 | 175 | 120 |\n\nIn which year was the difference between the production of R and S the least?",
+    "solution": "Gaps: 70, 50, 60, 60, 55 — least is 50 in 2020."
+   }
+  },
+  {
+   "pattern": "Two pie charts with different totals",
+   "frequency": "occasional",
+   "howToSpot": "Two pies (two years, two firms), each with its own total; a change or ratio of one item asked.",
+   "approach": "Convert the item to a value in each pie using its own total, then compare values. Shares alone mislead: a falling share on a bigger pie can still be a bigger amount.",
+   "subtopic": "di-pie",
+   "example": {
+    "q": "Exports: 2022 total ₹400 cr with Asia 30%; 2023 total ₹500 cr with Asia 27%. The change in exports to Asia is:",
+    "solution": "$120 \\to ₹135$ cr: a rise of ₹15 crore (12.5%) even though the share fell."
+   }
   }
  ],
  "solvedExamples": [
@@ -624,6 +991,942 @@
    "difficulty": "hard",
    "subtopic": "di-average",
    "pattern": "weighted average",
+   "timeSec": 50
+  },
+  {
+   "id": "di-table-p01",
+   "q": "Production of cars (in thousands) by four companies:\n\n| Year | P | Q | R | S |\n|---|---|---|---|---|\n| 2019 | 120 | 90 | 150 | 80 |\n| 2020 | 135 | 110 | 145 | 95 |\n| 2021 | 150 | 105 | 160 | 100 |\n| 2022 | 140 | 125 | 170 | 110 |\n| 2023 | 165 | 130 | 175 | 120 |\n\nThe total production of company Q over the five years (in thousands) is:",
+   "figure": null,
+   "options": [
+    "550",
+    "570",
+    "540",
+    "560"
+   ],
+   "answer": 3,
+   "solution": "$90 + 110 + 105 + 125 + 130 = 560$ thousand.",
+   "shortcut": "Pairs: $(90+110) + (105+125) + 130 = 200 + 230 + 130 = 560$.",
+   "difficulty": "easy",
+   "subtopic": "di-table",
+   "pattern": "di-tb-p1",
+   "timeSec": 35
+  },
+  {
+   "id": "di-table-p02",
+   "q": "Production of cars (in thousands) by four companies:\n\n| Year | P | Q | R | S |\n|---|---|---|---|---|\n| 2019 | 120 | 90 | 150 | 80 |\n| 2020 | 135 | 110 | 145 | 95 |\n| 2021 | 150 | 105 | 160 | 100 |\n| 2022 | 140 | 125 | 170 | 110 |\n| 2023 | 165 | 130 | 175 | 120 |\n\nBy how much (in thousands) does the total production of all four companies in 2023 exceed that in 2019?",
+   "figure": null,
+   "options": [
+    "140",
+    "150",
+    "160",
+    "130"
+   ],
+   "answer": 1,
+   "solution": "2023: $165 + 130 + 175 + 120 = 590$. 2019: $120 + 90 + 150 + 80 = 440$. Difference $= 150$ thousand.",
+   "shortcut": "Cell-wise gaps: $45 + 40 + 25 + 40 = 150$ — no need for full totals.",
+   "difficulty": "medium",
+   "subtopic": "di-table",
+   "pattern": "di-tb-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "di-table-p03",
+   "q": "Production of cars (in thousands) by four companies:\n\n| Year | P | Q | R | S |\n|---|---|---|---|---|\n| 2019 | 120 | 90 | 150 | 80 |\n| 2020 | 135 | 110 | 145 | 95 |\n| 2021 | 150 | 105 | 160 | 100 |\n| 2022 | 140 | 125 | 170 | 110 |\n| 2023 | 165 | 130 | 175 | 120 |\n\nThe ratio of the total production of P in 2019 and 2020 to the total production of S in 2022 and 2023 is:",
+   "figure": null,
+   "options": [
+    "46 : 51",
+    "17 : 15",
+    "51 : 44",
+    "51 : 46"
+   ],
+   "answer": 3,
+   "solution": "P: $120 + 135 = 255$. S: $110 + 120 = 230$. $255 : 230 = 51 : 46$ (divide by 5).",
+   "shortcut": "Divide both sums by 5 at once.",
+   "difficulty": "medium",
+   "subtopic": "di-table",
+   "pattern": "di-tb-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "di-table-p04",
+   "q": "Production of cars (in thousands) by four companies:\n\n| Year | P | Q | R | S |\n|---|---|---|---|---|\n| 2019 | 120 | 90 | 150 | 80 |\n| 2020 | 135 | 110 | 145 | 95 |\n| 2021 | 150 | 105 | 160 | 100 |\n| 2022 | 140 | 125 | 170 | 110 |\n| 2023 | 165 | 130 | 175 | 120 |\n\nIn which year was the difference between the production of R and S the least?",
+   "figure": null,
+   "options": [
+    "2020",
+    "2023",
+    "2021",
+    "2019"
+   ],
+   "answer": 0,
+   "solution": "Gaps R − S: 70, 50, 60, 60, 55. Least is 50 in **2020**.",
+   "shortcut": "List the five gaps in the margin; don't compare raw cells.",
+   "difficulty": "medium",
+   "subtopic": "di-table",
+   "pattern": "di-tb-p3",
+   "timeSec": 40
+  },
+  {
+   "id": "di-table-p05",
+   "q": "Production of cars (in thousands) by four companies:\n\n| Year | P | Q | R | S |\n|---|---|---|---|---|\n| 2019 | 120 | 90 | 150 | 80 |\n| 2020 | 135 | 110 | 145 | 95 |\n| 2021 | 150 | 105 | 160 | 100 |\n| 2022 | 140 | 125 | 170 | 110 |\n| 2023 | 165 | 130 | 175 | 120 |\n\nIn how many years was the production of P more than its own five-year average?",
+   "figure": null,
+   "options": [
+    "1",
+    "3",
+    "2",
+    "4"
+   ],
+   "answer": 2,
+   "solution": "Average of P $= \\frac{710}{5} = 142$. Years above 142: 150 (2021) and 165 (2023) → **2**. 140 is just below.",
+   "shortcut": "Deviation check from 140: $-20, -5, +10, 0, +25$ sum to $+10$, so average $= 142$.",
+   "difficulty": "medium",
+   "subtopic": "di-table",
+   "pattern": "di-tb-p4",
+   "timeSec": 45
+  },
+  {
+   "id": "di-table-p06",
+   "q": "Sales of five products in a month:\n\n| Product | A | B | C | D | E | Total |\n|---|---|---|---|---|---|---|\n| Sales (units) | 240 | ? | 310 | 185 | 260 | 1,250 |\n\nThe sales of product B are:",
+   "figure": null,
+   "options": [
+    "255",
+    "245",
+    "265",
+    "250"
+   ],
+   "answer": 0,
+   "solution": "Known sum $= 240 + 310 + 185 + 260 = 995$. B $= 1250 - 995 = 255$.",
+   "shortcut": "Last digits: known cells end in 0+0+5+0 = 5, total ends in 0 → B ends in 5: only 255 or 245 or 265 — then compute.",
+   "difficulty": "easy",
+   "subtopic": "di-table",
+   "pattern": "di-tb-p5",
+   "timeSec": 35
+  },
+  {
+   "id": "di-table-p07",
+   "q": "Production of cars (in thousands) by four companies:\n\n| Year | P | Q | R | S |\n|---|---|---|---|---|\n| 2019 | 120 | 90 | 150 | 80 |\n| 2020 | 135 | 110 | 145 | 95 |\n| 2021 | 150 | 105 | 160 | 100 |\n| 2022 | 140 | 125 | 170 | 110 |\n| 2023 | 165 | 130 | 175 | 120 |\n\nThe ratio of production of R to that of Q in 2021 is:",
+   "figure": null,
+   "options": [
+    "21 : 32",
+    "16 : 11",
+    "32 : 21",
+    "30 : 21"
+   ],
+   "answer": 2,
+   "solution": "$160 : 105$; divide by 5 → $32 : 21$.",
+   "shortcut": "Order: R first, Q second.",
+   "difficulty": "easy",
+   "subtopic": "di-table",
+   "pattern": "di-tb-p2",
+   "timeSec": 30
+  },
+  {
+   "id": "di-table-p08",
+   "q": "Production of cars (in thousands) by four companies:\n\n| Year | P | Q | R | S |\n|---|---|---|---|---|\n| 2019 | 120 | 90 | 150 | 80 |\n| 2020 | 135 | 110 | 145 | 95 |\n| 2021 | 150 | 105 | 160 | 100 |\n| 2022 | 140 | 125 | 170 | 110 |\n| 2023 | 165 | 130 | 175 | 120 |\n\nWhich company showed the highest percentage increase in production from 2019 to 2023?",
+   "figure": null,
+   "options": [
+    "P",
+    "Q",
+    "R",
+    "S"
+   ],
+   "answer": 3,
+   "solution": "Rises: P $\\frac{45}{120} = 37.5\\%$, Q $\\frac{40}{90} \\approx 44.4\\%$, R $\\frac{25}{150} \\approx 16.7\\%$, S $\\frac{40}{80} = 50\\%$ → **S**.",
+   "shortcut": "P has the biggest absolute rise (45) but the biggest base too; S doubles half-way (40 on 80).",
+   "difficulty": "hard",
+   "subtopic": "di-table",
+   "pattern": "di-tb-p3",
+   "timeSec": 60
+  },
+  {
+   "id": "di-table-p09",
+   "q": "Production of cars (in thousands) by four companies:\n\n| Year | P | Q | R | S |\n|---|---|---|---|---|\n| 2019 | 120 | 90 | 150 | 80 |\n| 2020 | 135 | 110 | 145 | 95 |\n| 2021 | 150 | 105 | 160 | 100 |\n| 2022 | 140 | 125 | 170 | 110 |\n| 2023 | 165 | 130 | 175 | 120 |\n\nIn how many years was the combined production of P and Q more than the combined production of R and S?",
+   "figure": null,
+   "options": [
+    "2",
+    "1",
+    "0",
+    "3"
+   ],
+   "answer": 1,
+   "solution": "P+Q: 210, 245, 255, 265, 295. R+S: 230, 240, 260, 280, 295. Only 2020 (245 > 240) → **1**. 2023 is a tie (295 = 295), which does not count.",
+   "shortcut": "Compare the gap $(P - R) + (Q - S)$ per year: $-20, +5, -5, -15, 0$.",
+   "difficulty": "hard",
+   "subtopic": "di-table",
+   "pattern": "di-tb-p4",
+   "timeSec": 60
+  },
+  {
+   "id": "di-table-p10",
+   "q": "Exports of a firm:\n\n| Year | 2019 | 2020 | 2021 | 2022 | 2023 |\n|---|---|---|---|---|---|\n| Exports (₹ crore) | 42 | 55 | 38 | 50 | ? |\n\nIf the average export over the five years is ₹48 crore, the export in 2023 is:",
+   "figure": null,
+   "options": [
+    "₹55 crore",
+    "₹48 crore",
+    "₹52 crore",
+    "₹60 crore"
+   ],
+   "answer": 0,
+   "solution": "Total $= 5 \\times 48 = 240$. Known $= 42 + 55 + 38 + 50 = 185$. 2023 $= 240 - 185 = 55$.",
+   "shortcut": "Deviations from 48: $-6, +7, -10, +2$ sum to $-7$, so the last must be $48 + 7 = 55$.",
+   "difficulty": "medium",
+   "subtopic": "di-table",
+   "pattern": "di-tb-p5",
+   "timeSec": 40
+  },
+  {
+   "id": "di-percent-p01",
+   "q": "Annual sales of a company (₹ crore):\n\n| Year | 2019 | 2020 | 2021 | 2022 | 2023 |\n|---|---|---|---|---|---|\n| Sales | 160 | 200 | 260 | 250 | 320 |\n\nThe percentage increase in sales from 2019 to 2020 is:",
+   "figure": null,
+   "options": [
+    "25%",
+    "20%",
+    "40%",
+    "30%"
+   ],
+   "answer": 0,
+   "solution": "$\\frac{200 - 160}{160} \\times 100 = \\frac{40}{160} \\times 100 = 25\\%$.",
+   "shortcut": "Wrong base: $\\frac{40}{200} = 20\\%$ is the trap.",
+   "difficulty": "easy",
+   "subtopic": "di-percent",
+   "pattern": "di-pc-p1",
+   "timeSec": 30
+  },
+  {
+   "id": "di-percent-p02",
+   "q": "Annual sales of a company (₹ crore):\n\n| Year | 2019 | 2020 | 2021 | 2022 | 2023 |\n|---|---|---|---|---|---|\n| Sales | 160 | 200 | 260 | 250 | 320 |\n\nIn which year was the percentage increase in sales over the previous year the highest?",
+   "figure": null,
+   "options": [
+    "2023",
+    "2020",
+    "2021",
+    "2022"
+   ],
+   "answer": 2,
+   "solution": "2020: $\\frac{40}{160} = 25\\%$; 2021: $\\frac{60}{200} = 30\\%$; 2022: fall; 2023: $\\frac{70}{250} = 28\\%$ → **2021**.",
+   "shortcut": "2023 has the largest jump (70) but on a larger base — 28% < 30%.",
+   "difficulty": "medium",
+   "subtopic": "di-percent",
+   "pattern": "di-pc-p5",
+   "timeSec": 55
+  },
+  {
+   "id": "di-percent-p03",
+   "q": "Annual sales of a company (₹ crore):\n\n| Year | 2019 | 2020 | 2021 | 2022 | 2023 |\n|---|---|---|---|---|---|\n| Sales | 160 | 200 | 260 | 250 | 320 |\n\nThe percentage decrease in sales from 2021 to 2022 is approximately:",
+   "figure": null,
+   "options": [
+    "3.85%",
+    "4.17%",
+    "3.33%",
+    "4.5%"
+   ],
+   "answer": 0,
+   "solution": "$\\frac{260 - 250}{260} \\times 100 = \\frac{1000}{260} \\approx 3.85\\%$.",
+   "shortcut": "Base is 260 (the earlier year). $\\frac{10}{250} = 4\\%$ and $\\frac{10}{240}$ are wrong-base traps.",
+   "difficulty": "medium",
+   "subtopic": "di-percent",
+   "pattern": "di-pc-p1",
+   "timeSec": 40
+  },
+  {
+   "id": "di-percent-p04",
+   "q": "Annual sales of a company (₹ crore):\n\n| Year | 2019 | 2020 | 2021 | 2022 | 2023 |\n|---|---|---|---|---|---|\n| Sales | 160 | 200 | 260 | 250 | 320 |\n\nThe sales in 2020 are what percent of the sales in 2023?",
+   "figure": null,
+   "options": [
+    "160%",
+    "37.5%",
+    "60%",
+    "62.5%"
+   ],
+   "answer": 3,
+   "solution": "$\\frac{200}{320} \\times 100 = 62.5\\%$.",
+   "shortcut": "$\\frac{200}{320} = \\frac{5}{8} = 62.5\\%$ from the fraction table.",
+   "difficulty": "medium",
+   "subtopic": "di-percent",
+   "pattern": "di-pc-p2",
+   "timeSec": 35
+  },
+  {
+   "id": "di-percent-p05",
+   "q": "Annual sales of a company (₹ crore):\n\n| Year | 2019 | 2020 | 2021 | 2022 | 2023 |\n|---|---|---|---|---|---|\n| Sales | 160 | 200 | 260 | 250 | 320 |\n\nBy what percent are the sales in 2023 more than the sales in 2020?",
+   "figure": null,
+   "options": [
+    "37.5%",
+    "60%",
+    "62.5%",
+    "120%"
+   ],
+   "answer": 1,
+   "solution": "Gap $= 120$; base $= 200$ (the 'than' year). $\\frac{120}{200} \\times 100 = 60\\%$.",
+   "shortcut": "37.5% is the gap over 320 — that answers 'less than', not 'more than'.",
+   "difficulty": "medium",
+   "subtopic": "di-percent",
+   "pattern": "di-pc-p2",
+   "timeSec": 35
+  },
+  {
+   "id": "di-percent-p06",
+   "q": "Monthly expenses of a family:\n\n| Head | Food | Rent | Education | Transport | Others |\n|---|---|---|---|---|---|\n| Amount (₹) | 12,000 | 9,000 | 6,000 | 3,000 | 6,000 |\n\nEducation and Transport together make up what percent of the total expenses?",
+   "figure": null,
+   "options": [
+    "20%",
+    "30%",
+    "16.67%",
+    "25%"
+   ],
+   "answer": 3,
+   "solution": "Total $= ₹36{,}000$. Education + Transport $= ₹9{,}000$. $\\frac{9000}{36000} = 25\\%$.",
+   "shortcut": "9,000 is a quarter of 36,000.",
+   "difficulty": "easy",
+   "subtopic": "di-percent",
+   "pattern": "di-pc-p3",
+   "timeSec": 35
+  },
+  {
+   "id": "di-percent-p07",
+   "q": "Monthly expenses of a family:\n\n| Head | Food | Rent | Education | Transport | Others |\n|---|---|---|---|---|---|\n| Amount (₹) | 12,000 | 9,000 | 6,000 | 3,000 | 6,000 |\n\nWhat percent of the total expenses is spent on heads other than Food and Rent?",
+   "figure": null,
+   "options": [
+    "58.33%",
+    "41.67%",
+    "33.33%",
+    "45%"
+   ],
+   "answer": 1,
+   "solution": "Other heads $= 6000 + 3000 + 6000 = ₹15{,}000$. $\\frac{15000}{36000} = \\frac{5}{12} \\approx 41.67\\%$.",
+   "shortcut": "Food + Rent $= 21000 = \\frac{7}{12}$ of total, so the rest is $\\frac{5}{12}$.",
+   "difficulty": "medium",
+   "subtopic": "di-percent",
+   "pattern": "di-pc-p3",
+   "timeSec": 45
+  },
+  {
+   "id": "di-percent-p08",
+   "q": "The pass percentage of a school was 60% in 2022 and 72% in 2023. By how many **percentage points** did it rise?",
+   "figure": null,
+   "options": [
+    "12",
+    "20",
+    "6",
+    "16.67"
+   ],
+   "answer": 0,
+   "solution": "Percentage points = simple difference of the two rates: $72 - 60 = 12$.",
+   "shortcut": "20 is the percent change ($\\frac{12}{60}$), not the points.",
+   "difficulty": "easy",
+   "subtopic": "di-percent",
+   "pattern": "di-pc-p4",
+   "timeSec": 25
+  },
+  {
+   "id": "di-percent-p09",
+   "q": "The pass percentage of a school was 60% in 2022 and 72% in 2023. By what **percent** did the pass percentage increase?",
+   "figure": null,
+   "options": [
+    "12%",
+    "16.67%",
+    "20%",
+    "72%"
+   ],
+   "answer": 2,
+   "solution": "Change $= 12$ points on a base of 60: $\\frac{12}{60} \\times 100 = 20\\%$.",
+   "shortcut": "12% is the points answer; 16.67% divides by 72 (wrong base).",
+   "difficulty": "medium",
+   "subtopic": "di-percent",
+   "pattern": "di-pc-p4",
+   "timeSec": 30
+  },
+  {
+   "id": "di-percent-p10",
+   "q": "Annual sales of a company (₹ crore):\n\n| Year | 2019 | 2020 | 2021 | 2022 | 2023 |\n|---|---|---|---|---|---|\n| Sales | 160 | 200 | 260 | 250 | 320 |\n\nBy how many percentage points is the growth rate of 2022–23 more than that of 2019–20?",
+   "figure": null,
+   "options": [
+    "30",
+    "12",
+    "5",
+    "3"
+   ],
+   "answer": 3,
+   "solution": "2019–20: $\\frac{40}{160} = 25\\%$. 2022–23: $\\frac{70}{250} = 28\\%$. Difference $= 3$ percentage points.",
+   "shortcut": "Compare rates, not raw jumps (40 vs 70 would suggest 30).",
+   "difficulty": "hard",
+   "subtopic": "di-percent",
+   "pattern": "di-pc-p5",
+   "timeSec": 55
+  },
+  {
+   "id": "di-pie-p01",
+   "q": "A pie chart shows a family's monthly budget of ₹72,000. The central angles are:\n\n| Head | Food | Rent | Education | Transport | Savings | Others |\n|---|---|---|---|---|---|---|\n| Angle | 108° | 72° | 54° | 36° | 45° | 45° |\n\nThe amount spent on Rent is:",
+   "figure": null,
+   "options": [
+    "₹12,000",
+    "₹14,000",
+    "₹14,400",
+    "₹18,000"
+   ],
+   "answer": 2,
+   "solution": "$\\frac{72}{360} \\times 72000 = \\frac{1}{5} \\times 72000 = ₹14{,}400$.",
+   "shortcut": "$1^\\circ = ₹200$; $72 \\times 200$.",
+   "difficulty": "easy",
+   "subtopic": "di-pie",
+   "pattern": "di-pi-p1",
+   "timeSec": 30
+  },
+  {
+   "id": "di-pie-p02",
+   "q": "A pie chart shows a family's monthly budget of ₹72,000. The central angles are:\n\n| Head | Food | Rent | Education | Transport | Savings | Others |\n|---|---|---|---|---|---|---|\n| Angle | 108° | 72° | 54° | 36° | 45° | 45° |\n\nWhat percent of the budget is spent on Food?",
+   "figure": null,
+   "options": [
+    "30%",
+    "36%",
+    "25%",
+    "108%"
+   ],
+   "answer": 0,
+   "solution": "$\\frac{108}{360} \\times 100 = 30\\%$.",
+   "shortcut": "Angle ÷ 3.6: $108 \\div 3.6 = 30$.",
+   "difficulty": "easy",
+   "subtopic": "di-pie",
+   "pattern": "di-pi-p2",
+   "timeSec": 25
+  },
+  {
+   "id": "di-pie-p03",
+   "q": "A pie chart shows a family's monthly budget of ₹72,000. The central angles are:\n\n| Head | Food | Rent | Education | Transport | Savings | Others |\n|---|---|---|---|---|---|---|\n| Angle | 108° | 72° | 54° | 36° | 45° | 45° |\n\nHow much more is spent on Food than on Education?",
+   "figure": null,
+   "options": [
+    "₹21,600",
+    "₹5,400",
+    "₹10,800",
+    "₹12,600"
+   ],
+   "answer": 2,
+   "solution": "Angle gap $= 108^\\circ - 54^\\circ = 54^\\circ$. $54 \\times 200 = ₹10{,}800$.",
+   "shortcut": "Subtract angles, convert once.",
+   "difficulty": "medium",
+   "subtopic": "di-pie",
+   "pattern": "di-pi-p3",
+   "timeSec": 35
+  },
+  {
+   "id": "di-pie-p04",
+   "q": "A pie chart shows a family's monthly budget of ₹72,000. The central angles are:\n\n| Head | Food | Rent | Education | Transport | Savings | Others |\n|---|---|---|---|---|---|---|\n| Angle | 108° | 72° | 54° | 36° | 45° | 45° |\n\nThe ratio of Savings to Transport is:",
+   "figure": null,
+   "options": [
+    "4 : 5",
+    "5 : 4",
+    "5 : 3",
+    "9 : 8"
+   ],
+   "answer": 1,
+   "solution": "Ratio of values = ratio of angles: $45 : 36 = 5 : 4$.",
+   "shortcut": "The total cancels — no need to find amounts.",
+   "difficulty": "medium",
+   "subtopic": "di-pie",
+   "pattern": "di-pi-p3",
+   "timeSec": 25
+  },
+  {
+   "id": "di-pie-p05",
+   "q": "A pie chart shows a family's monthly spending:\n\n| Head | Food | Rent | Education | Transport | Savings | Others |\n|---|---|---|---|---|---|---|\n| Angle | 108° | 72° | 54° | 36° | 45° | 45° |\n\nIf the family spends ₹9,000 on Transport, how much does it spend on Food?",
+   "figure": null,
+   "options": [
+    "₹21,600",
+    "₹24,000",
+    "₹30,000",
+    "₹27,000"
+   ],
+   "answer": 3,
+   "solution": "Food is $\\frac{108}{36} = 3$ times Transport: $3 \\times 9000 = ₹27{,}000$.",
+   "shortcut": "Angle ratio 108 : 36 = 3 : 1.",
+   "difficulty": "medium",
+   "subtopic": "di-pie",
+   "pattern": "di-pi-p5",
+   "timeSec": 40
+  },
+  {
+   "id": "di-pie-p06",
+   "q": "A pie chart shows the share of marks-weight given to five subjects:\n\n| Subject | Maths | Science | English | Hindi | Social Sc. |\n|---|---|---|---|---|---|\n| Share | 25% | 18% | 12% | 20% | 25% |\n\nThe central angle of the English sector is:",
+   "figure": null,
+   "options": [
+    "12°",
+    "43.2°",
+    "36°",
+    "48.6°"
+   ],
+   "answer": 1,
+   "solution": "$12 \\times 3.6^\\circ = 43.2^\\circ$.",
+   "shortcut": "10% = 36°, 2% = 7.2° → 43.2°.",
+   "difficulty": "medium",
+   "subtopic": "di-pie",
+   "pattern": "di-pi-p2",
+   "timeSec": 30
+  },
+  {
+   "id": "di-pie-p07",
+   "q": "In a pie chart of students by stream, the Commerce sector has a central angle of 81° and represents 2,700 students. The total number of students is:",
+   "figure": null,
+   "options": [
+    "10,800",
+    "13,500",
+    "9,000",
+    "12,000"
+   ],
+   "answer": 3,
+   "solution": "Per degree $= \\frac{2700}{81} = \\frac{100}{3}$. Total $= 360 \\times \\frac{100}{3} = 12{,}000$.",
+   "shortcut": "$\\frac{360}{81} = \\frac{40}{9}$; $2700 \\times \\frac{40}{9} = 300 \\times 40$.",
+   "difficulty": "hard",
+   "subtopic": "di-pie",
+   "pattern": "di-pi-p5",
+   "timeSec": 45
+  },
+  {
+   "id": "di-pie-p08",
+   "q": "Two pie charts show a company's exports by region:\n\n| Region | Asia | Europe | Africa | America | Others |\n|---|---|---|---|---|---|\n| 2022 (total ₹400 cr) | 30% | 20% | 10% | 25% | 15% |\n| 2023 (total ₹500 cr) | 27% | 18% | 15% | 24% | 16% |\n\nBy what percent did exports to Asia increase from 2022 to 2023?",
+   "figure": null,
+   "options": [
+    "−3%",
+    "10%",
+    "12.5%",
+    "25%"
+   ],
+   "answer": 2,
+   "solution": "2022: $30\\% \\times 400 = ₹120$ cr. 2023: $27\\% \\times 500 = ₹135$ cr. Rise $= \\frac{15}{120} \\times 100 = 12.5\\%$.",
+   "shortcut": "The share fell (30 → 27) but the pie grew 25% — convert to values first.",
+   "difficulty": "hard",
+   "subtopic": "di-pie",
+   "pattern": "di-pi-p4",
+   "timeSec": 60
+  },
+  {
+   "id": "di-pie-p09",
+   "q": "Two pie charts show a company's exports by region:\n\n| Region | Asia | Europe | Africa | America | Others |\n|---|---|---|---|---|---|\n| 2022 (total ₹400 cr) | 30% | 20% | 10% | 25% | 15% |\n| 2023 (total ₹500 cr) | 27% | 18% | 15% | 24% | 16% |\n\nThe ratio of exports to Europe in 2022 to that in 2023 is:",
+   "figure": null,
+   "options": [
+    "8 : 9",
+    "10 : 9",
+    "9 : 8",
+    "4 : 5"
+   ],
+   "answer": 0,
+   "solution": "2022: $20\\% \\times 400 = 80$. 2023: $18\\% \\times 500 = 90$. Ratio $= 8 : 9$.",
+   "shortcut": "10 : 9 compares the shares only — wrong when totals differ.",
+   "difficulty": "medium",
+   "subtopic": "di-pie",
+   "pattern": "di-pi-p4",
+   "timeSec": 45
+  },
+  {
+   "id": "di-pie-p10",
+   "q": "7,200 students of a school each chose one activity. A pie chart shows:\n\n| Activity | Sports | Music | Drama | Art | Science club |\n|---|---|---|---|---|---|\n| Angle | 70° | 56° | 90° | 64° | 80° |\n\nHow many students chose Sports or Music?",
+   "figure": null,
+   "options": [
+    "2,400",
+    "2,520",
+    "2,160",
+    "2,880"
+   ],
+   "answer": 1,
+   "solution": "Angles $70 + 56 = 126^\\circ$. $1^\\circ = \\frac{7200}{360} = 20$ students. $126 \\times 20 = 2{,}520$.",
+   "shortcut": "Add the angles first, then one multiplication.",
+   "difficulty": "medium",
+   "subtopic": "di-pie",
+   "pattern": "di-pi-p1",
+   "timeSec": 35
+  },
+  {
+   "id": "di-average-p01",
+   "q": "Production of a factory (in units):\n\n| Day | Mon | Tue | Wed | Thu | Fri | Sat |\n|---|---|---|---|---|---|---|\n| Units | 480 | 520 | 460 | 540 | 500 | 500 |\n\nThe average daily production over the six days (in units) is:",
+   "figure": null,
+   "options": [
+    "500",
+    "510",
+    "490",
+    "520"
+   ],
+   "answer": 0,
+   "solution": "Total $= 3000$; average $= \\frac{3000}{6} = 500$ units.",
+   "shortcut": "Deviations from 500: $-20, +20, -40, +40, 0, 0$ — sum 0, so the average is 500.",
+   "difficulty": "easy",
+   "subtopic": "di-average",
+   "pattern": "di-av-p1",
+   "timeSec": 30
+  },
+  {
+   "id": "di-average-p02",
+   "q": "Monthly production of a factory (in units):\n\n| Month | Jan | Feb | Mar | Apr | May | Jun |\n|---|---|---|---|---|---|---|\n| Production (units) | 2400 | 2600 | 2200 | 2800 | 2500 | 2500 |\n\nThe ratio of the average production of the first quarter (Jan–Mar) to that of the second quarter (Apr–Jun) is:",
+   "figure": null,
+   "options": [
+    "13 : 12",
+    "6 : 7",
+    "12 : 13",
+    "11 : 12"
+   ],
+   "answer": 2,
+   "solution": "Q1 $= 7200$, average $2400$. Q2 $= 7800$, average $2600$. Ratio $2400 : 2600 = 12 : 13$.",
+   "shortcut": "Equal 3-month quarters: the ratio of totals works too (7200 : 7800).",
+   "difficulty": "medium",
+   "subtopic": "di-average",
+   "pattern": "di-av-p1",
+   "timeSec": 40
+  },
+  {
+   "id": "di-average-p03",
+   "q": "A company has four departments. The table shows the number of employees and their average salary:\n\n| Department | Employees | Average salary |\n|---|---|---|\n| A | 40 | ₹25,000 |\n| B | 30 | ₹32,000 |\n| C | 20 | ₹28,000 |\n| D | 30 | ₹40,000 |\n\nThe average salary of the employees of departments A and B together is:",
+   "figure": null,
+   "options": [
+    "₹28,000",
+    "₹28,500",
+    "₹27,500",
+    "₹29,000"
+   ],
+   "answer": 0,
+   "solution": "$\\frac{40 \\times 25000 + 30 \\times 32000}{40 + 30} = \\frac{1960000}{70} = ₹28{,}000$.",
+   "shortcut": "₹28,500 is the plain average of 25,000 and 32,000 — wrong because the sizes differ.",
+   "difficulty": "easy",
+   "subtopic": "di-average",
+   "pattern": "di-av-p2",
+   "timeSec": 35
+  },
+  {
+   "id": "di-average-p04",
+   "q": "A company has four departments. The table shows the number of employees and their average salary:\n\n| Department | Employees | Average salary |\n|---|---|---|\n| A | 40 | ₹25,000 |\n| B | 30 | ₹32,000 |\n| C | 20 | ₹28,000 |\n| D | 30 | ₹40,000 |\n\nThe average salary of all 120 employees of the company is:",
+   "figure": null,
+   "options": [
+    "₹31,250",
+    "₹30,500",
+    "₹31,500",
+    "₹31,000"
+   ],
+   "answer": 3,
+   "solution": "Bill $= 40 \\times 25000 + 30 \\times 32000 + 20 \\times 28000 + 30 \\times 40000 = 37{,}20{,}000$. Average $= \\frac{3720000}{120} = ₹31{,}000$.",
+   "shortcut": "Pair A+D: $1000000 + 1200000 = 2200000$; B+C: $960000 + 560000 = 1520000$; total 37,20,000.",
+   "difficulty": "hard",
+   "subtopic": "di-average",
+   "pattern": "di-av-p2",
+   "timeSec": 60
+  },
+  {
+   "id": "di-average-p05",
+   "q": "Monthly production of a factory (in units):\n\n| Month | Jan | Feb | Mar | Apr | May | Jun |\n|---|---|---|---|---|---|---|\n| Production (units) | 2400 | 2600 | 2200 | 2800 | 2500 | 2500 |\n\nThe average monthly production (in units) is:",
+   "figure": null,
+   "options": [
+    "2,600",
+    "2,500",
+    "2,400",
+    "2,550"
+   ],
+   "answer": 1,
+   "solution": "Total $= 15000$ over 6 months: $\\frac{15000}{6} = 2{,}500$.",
+   "shortcut": "Sum: $2400+2600+2200+2800+2500+2500 = 15000$.",
+   "difficulty": "easy",
+   "subtopic": "di-average",
+   "pattern": "di-av-p3",
+   "timeSec": 35
+  },
+  {
+   "id": "di-average-p06",
+   "q": "A shop sold goods worth ₹84,000 in 6 days. The average sale per day is:",
+   "figure": null,
+   "options": [
+    "₹12,000",
+    "₹16,800",
+    "₹12,600",
+    "₹14,000"
+   ],
+   "answer": 3,
+   "solution": "$\\frac{84000}{6} = ₹14{,}000$ per day.",
+   "shortcut": "₹16,800 would be 5 days; ₹12,000 would be 7 — count the days.",
+   "difficulty": "medium",
+   "subtopic": "di-average",
+   "pattern": "di-av-p3",
+   "timeSec": 30
+  },
+  {
+   "id": "di-average-p07",
+   "q": "Production of a factory (in units):\n\n| Day | Mon | Tue | Wed | Thu | Fri | Sat |\n|---|---|---|---|---|---|---|\n| Units | 480 | 520 | 460 | 540 | 500 | 500 |\n\nIf the production of the least productive day is excluded, the average production of the remaining five days (in units) is:",
+   "figure": null,
+   "options": [
+    "500",
+    "508",
+    "510",
+    "512"
+   ],
+   "answer": 1,
+   "solution": "Least day $= 460$. New average $= \\frac{3000 - 460}{5} = 508$ units.",
+   "shortcut": "Divide by 5 (remaining days), not 6.",
+   "difficulty": "medium",
+   "subtopic": "di-average",
+   "pattern": "di-av-p4",
+   "timeSec": 40
+  },
+  {
+   "id": "di-average-p08",
+   "q": "Production of a factory (in units):\n\n| Day | Mon | Tue | Wed | Thu | Fri | Sat |\n|---|---|---|---|---|---|---|\n| Units | 480 | 520 | 460 | 540 | 500 | 500 |\n\nThe factory works one more day (Sunday). What production on Sunday raises the seven-day average to 520 units?",
+   "figure": null,
+   "options": [
+    "640",
+    "600",
+    "660",
+    "520"
+   ],
+   "answer": 0,
+   "solution": "Needed total $= 7 \\times 520 = 3640$. Current $= 3000$. Sunday $= 640$ units.",
+   "shortcut": "$520 + 6 \\times (520 - 500) = 520 + 120 = 640$.",
+   "difficulty": "hard",
+   "subtopic": "di-average",
+   "pattern": "di-av-p4",
+   "timeSec": 55
+  },
+  {
+   "id": "di-average-p09",
+   "q": "Monthly production of a factory (in units):\n\n| Month | Jan | Feb | Mar | Apr | May | Jun |\n|---|---|---|---|---|---|---|\n| Production (units) | 2400 | 2600 | ? | 2800 | 2500 | 2500 |\n\nIf the average monthly production is 2,500 units, the production in March is:",
+   "figure": null,
+   "options": [
+    "2,300",
+    "2,100",
+    "2,200",
+    "2,400"
+   ],
+   "answer": 2,
+   "solution": "Total $= 6 \\times 2500 = 15000$. Known $= 12800$. March $= 2200$ units.",
+   "shortcut": "Deviations from 2500: $-100, +100, ?, +300, 0, 0$ → ? $= -300$ → 2200.",
+   "difficulty": "easy",
+   "subtopic": "di-average",
+   "pattern": "di-av-p5",
+   "timeSec": 35
+  },
+  {
+   "id": "di-average-p10",
+   "q": "Populations of five villages:\n\n| Village | P | Q | R | S | T |\n|---|---|---|---|---|---|\n| Population | 5200 | 4800 | 5100 | 4700 | ? |\n\nIf the average population is 4,900, the population of village T is:",
+   "figure": null,
+   "options": [
+    "4,600",
+    "4,800",
+    "4,900",
+    "4,700"
+   ],
+   "answer": 3,
+   "solution": "Total $= 5 \\times 4900 = 24500$. Known $= 19800$. T $= 4700$.",
+   "shortcut": "Deviations from 4900: $+300, -100, +200, -200$ sum to $+200$, so T is $4900 - 200 = 4700$.",
+   "difficulty": "medium",
+   "subtopic": "di-average",
+   "pattern": "di-av-p5",
+   "timeSec": 40
+  },
+  {
+   "id": "di-growth-p01",
+   "q": "Revenue of firm A (in ₹ crore):\n\n| Year | 2020 | 2021 | 2022 | 2023 |\n|---|---|---|---|---|\n| Revenue | 80 | 96 | 120 | 144 |\n\nThe percentage growth in revenue from 2020 to 2021 is:",
+   "figure": null,
+   "options": [
+    "16%",
+    "25%",
+    "20%",
+    "12.5%"
+   ],
+   "answer": 2,
+   "solution": "$\\frac{96 - 80}{80} \\times 100 = \\frac{16}{80} \\times 100 = 20\\%$.",
+   "shortcut": "16% forgets to divide by the base; 25% divides by 96.",
+   "difficulty": "easy",
+   "subtopic": "di-growth",
+   "pattern": "di-gr-p1",
+   "timeSec": 30
+  },
+  {
+   "id": "di-growth-p02",
+   "q": "Revenue of firm A (in ₹ crore):\n\n| Year | 2020 | 2021 | 2022 | 2023 |\n|---|---|---|---|---|\n| Revenue | 80 | 96 | 120 | 144 |\n\nThe percentage growth in revenue from 2021 to 2022 is:",
+   "figure": null,
+   "options": [
+    "25%",
+    "20%",
+    "24%",
+    "30%"
+   ],
+   "answer": 0,
+   "solution": "$\\frac{120 - 96}{96} \\times 100 = \\frac{24}{96} \\times 100 = 25\\%$.",
+   "shortcut": "$\\frac{24}{96} = \\frac{1}{4}$.",
+   "difficulty": "medium",
+   "subtopic": "di-growth",
+   "pattern": "di-gr-p1",
+   "timeSec": 35
+  },
+  {
+   "id": "di-growth-p03",
+   "q": "Revenue of firm A (in ₹ crore):\n\n| Year | 2020 | 2021 | 2022 | 2023 |\n|---|---|---|---|---|\n| Revenue | 80 | 96 | 120 | 144 |\n\nIn which year was the percentage rise in revenue over the previous year the highest?",
+   "figure": null,
+   "options": [
+    "2021",
+    "2023",
+    "2022",
+    "Equal in all"
+   ],
+   "answer": 2,
+   "solution": "2021: $\\frac{16}{80} = 20\\%$; 2022: $\\frac{24}{96} = 25\\%$; 2023: $\\frac{24}{120} = 20\\%$ → **2022**.",
+   "shortcut": "The 24-crore jump happens twice but on different bases.",
+   "difficulty": "medium",
+   "subtopic": "di-growth",
+   "pattern": "di-gr-p1",
+   "timeSec": 45
+  },
+  {
+   "id": "di-growth-p04",
+   "q": "Revenue of firm A (in ₹ crore):\n\n| Year | 2020 | 2021 | 2022 | 2023 |\n|---|---|---|---|---|\n| Revenue | 80 | 96 | 120 | 144 |\n\nThe overall percentage increase in revenue from 2020 to 2023 is:",
+   "figure": null,
+   "options": [
+    "60%",
+    "80%",
+    "90%",
+    "75%"
+   ],
+   "answer": 1,
+   "solution": "Factor $= \\frac{144}{80} = \\frac{9}{5} = 1.8$ → $+80\\%$.",
+   "shortcut": "Adding 20 + 25 + 20 gives 65% — never add.",
+   "difficulty": "medium",
+   "subtopic": "di-growth",
+   "pattern": "di-gr-p2",
+   "timeSec": 45
+  },
+  {
+   "id": "di-growth-p05",
+   "q": "The price of a commodity rises by 10% in one month and by another 10% in the next month. The net increase in price is:",
+   "figure": null,
+   "options": [
+    "20%",
+    "121%",
+    "19%",
+    "21%"
+   ],
+   "answer": 3,
+   "solution": "$1.1 \\times 1.1 = 1.21$ → net $+21\\%$.",
+   "shortcut": "121% is the final value factor read as a percent.",
+   "difficulty": "easy",
+   "subtopic": "di-growth",
+   "pattern": "di-gr-p2",
+   "timeSec": 25
+  },
+  {
+   "id": "di-growth-p06",
+   "q": "The output of a factory increases by 25% in the first year and decreases by 20% in the next year. The net change in output is:",
+   "figure": null,
+   "options": [
+    "5% increase",
+    "No change",
+    "5% decrease",
+    "2.5% increase"
+   ],
+   "answer": 1,
+   "solution": "$1.25 \\times 0.80 = 1.00$ → the output returns to its starting value.",
+   "shortcut": "$x + 25\\%$ of it, minus 20% of the new value: $\\frac{5}{4}x \\times \\frac{4}{5} = x$.",
+   "difficulty": "hard",
+   "subtopic": "di-growth",
+   "pattern": "di-gr-p2",
+   "timeSec": 40
+  },
+  {
+   "id": "di-growth-p07",
+   "q": "After two successive salary raises of 20% and 25%, a person's salary became ₹45,000. The salary before the raises was:",
+   "figure": null,
+   "options": [
+    "₹31,500",
+    "₹28,800",
+    "₹32,500",
+    "₹30,000"
+   ],
+   "answer": 3,
+   "solution": "Factor $= 1.2 \\times 1.25 = 1.5$. Original $= \\frac{45000}{1.5} = ₹30{,}000$.",
+   "shortcut": "Check: $30000 \\to 36000 \\to 45000$.",
+   "difficulty": "medium",
+   "subtopic": "di-growth",
+   "pattern": "di-gr-p3",
+   "timeSec": 40
+  },
+  {
+   "id": "di-growth-p08",
+   "q": "After two successive decreases of 20% and 10% in two years, the population of a town is 14,400. The population two years ago was:",
+   "figure": null,
+   "options": [
+    "18,000",
+    "19,200",
+    "20,000",
+    "21,600"
+   ],
+   "answer": 2,
+   "solution": "Factor $= 0.8 \\times 0.9 = 0.72 = \\frac{18}{25}$. Original $= 14400 \\times \\frac{25}{18} = 20{,}000$.",
+   "shortcut": "Check: $20000 \\to 16000 \\to 14400$.",
+   "difficulty": "hard",
+   "subtopic": "di-growth",
+   "pattern": "di-gr-p3",
+   "timeSec": 50
+  },
+  {
+   "id": "di-growth-p09",
+   "q": "Income and expenditure of a firm (in ₹ lakh):\n\n| Year | Income | Expenditure |\n|---|---|---|\n| 2021 | ₹60 | ₹40 |\n| 2022 | ₹80 | ₹50 |\n| 2023 | ₹130 | ₹90 |\n\nThe profit percent in 2022 is:",
+   "figure": null,
+   "options": [
+    "60%",
+    "37.5%",
+    "66.67%",
+    "50%"
+   ],
+   "answer": 0,
+   "solution": "$\\frac{80 - 50}{50} \\times 100 = 60\\%$.",
+   "shortcut": "37.5% divides by income (80) — the standard trap.",
+   "difficulty": "easy",
+   "subtopic": "di-growth",
+   "pattern": "di-gr-p4",
+   "timeSec": 35
+  },
+  {
+   "id": "di-growth-p10",
+   "q": "Income and expenditure of a firm (in ₹ lakh):\n\n| Year | Income | Expenditure |\n|---|---|---|\n| 2021 | ₹60 | ₹40 |\n| 2022 | ₹80 | ₹50 |\n| 2023 | ₹130 | ₹90 |\n\nIn which year was the profit percentage the highest?",
+   "figure": null,
+   "options": [
+    "2023",
+    "2022",
+    "2021",
+    "Same in all"
+   ],
+   "answer": 1,
+   "solution": "2021: $\\frac{20}{40} = 50\\%$; 2022: $\\frac{30}{50} = 60\\%$; 2023: $\\frac{40}{90} \\approx 44.4\\%$ → **2022**.",
+   "shortcut": "2023 has the biggest profit amount (₹40 lakh) but a smaller percent — the base is bigger.",
+   "difficulty": "hard",
+   "subtopic": "di-growth",
+   "pattern": "di-gr-p4",
+   "timeSec": 60
+  },
+  {
+   "id": "di-growth-p11",
+   "q": "Revenues of two firms (in ₹ crore):\n\n| Firm | Revenue 2020 (₹ cr) | Revenue 2023 (₹ cr) |\n|---|---|---|\n| A | 80 | 144 |\n| B | 50 | 100 |\n\nWhich firm recorded the higher percentage growth over 2020–2023?",
+   "figure": null,
+   "options": [
+    "A",
+    "Both equal",
+    "Cannot be determined",
+    "B"
+   ],
+   "answer": 3,
+   "solution": "A: $\\frac{64}{80} = 80\\%$. B: $\\frac{50}{50} = 100\\%$. **B** grew faster.",
+   "shortcut": "A's absolute rise (64) is bigger, but B doubled its revenue.",
+   "difficulty": "medium",
+   "subtopic": "di-growth",
+   "pattern": "di-gr-p5",
+   "timeSec": 40
+  },
+  {
+   "id": "di-growth-p12",
+   "q": "Revenues of two firms (in ₹ crore):\n\n| Firm | Revenue 2020 (₹ cr) | Revenue 2023 (₹ cr) |\n|---|---|---|\n| A | 80 | 144 |\n| B | 50 | 100 |\n\nBy how many percentage points does the growth of B exceed that of A?",
+   "figure": null,
+   "options": [
+    "10",
+    "20",
+    "25",
+    "16"
+   ],
+   "answer": 1,
+   "solution": "B grows 100%, A grows 80%: gap $= 100 - 80 = 20$ percentage points.",
+   "shortcut": "'B grows 20% more than A' would need $\\frac{20}{80} = 25\\%$ — different question.",
+   "difficulty": "hard",
+   "subtopic": "di-growth",
+   "pattern": "di-gr-p5",
    "timeSec": 50
   }
  ]
