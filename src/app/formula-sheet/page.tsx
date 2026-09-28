@@ -12,13 +12,16 @@ export const metadata: Metadata = {
 /** 220-char trick preview as plain text + browser-rendered inline math. Full
     markdown/KaTeX for 851 snippets was ~2 MB of the page on its own. */
 function TrickSnippet({ body }: { body: string }) {
-  let text = body.length > 220 ? body.slice(0, 220) : body;
+  // \$ in data = a literal dollar (Md escape): park it so the $…$ splitter can't mispair
+  const D = '\u0001';
+  let text = body.replace(/\\\$/g, D).replace(/\\([#*+_~\-])/g, '$1');
+  text = text.length > 220 ? text.slice(0, 220) : text;
   // A cut through a $…$ span would leave an unbalanced delimiter: drop the tail
   if ((text.match(/\$/g)?.length ?? 0) % 2) text = text.slice(0, text.lastIndexOf('$'));
   const parts = text.split(/\$([^$]+)\$/);
   return (
     <span className="muted">
-      {parts.map((p, i) => (i % 2 ? <LazyTex key={i} tex={p} /> : p.replace(/\*\*|__|`/g, '')))}
+      {parts.map((p, i) => (i % 2 ? <LazyTex key={i} tex={p} /> : p.replace(/\*\*|__|`/g, '').split(D).join('$')))}
       {body.length > text.length && '…'}
     </span>
   );

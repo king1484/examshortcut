@@ -133,7 +133,7 @@ export default async function SubtopicPage({ params }: { params: Promise<{ secti
                 <Md className="mt-2 text-[15px]">{k.body}</Md>
                 {k.example && (
                   <div className="mt-3 rounded-xl p-3.5 text-sm" style={{ background: 'var(--surface-2)' }}>
-                    <p className="font-semibold">Example: {k.example.q}</p>
+                    <Md inline className="font-semibold [&_p]:font-semibold">{`Example: ${k.example.q}`}</Md>
                     <Md className="mt-1.5">{k.example.solution}</Md>
                   </div>
                 )}
@@ -147,7 +147,7 @@ export default async function SubtopicPage({ params }: { params: Promise<{ secti
         <div className="mt-5 rounded-xl p-4" style={{ background: 'var(--bad-soft)' }}>
           <h3 className="text-xs font-bold uppercase tracking-wide" style={{ color: 'var(--bad)' }}>Where students lose marks</h3>
           <ul className="list-disc pl-5 text-sm mt-1.5 space-y-1">
-            {s.mistakes.map((m, k) => <li key={k}>{m}</li>)}
+            {s.mistakes.map((m, k) => <li key={k}><Md inline>{m}</Md></li>)}
           </ul>
         </div>
       )}
