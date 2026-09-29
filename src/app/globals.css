@@ -134,7 +134,7 @@ body {
 .status-callout { margin-top: .9rem; padding: .85rem 1rem; border-radius: 12px; background: var(--brand-soft); border-left: 4px solid var(--brand); }
 .status-callout .md { color: var(--ink-2); }
 .status-kicker { display: inline-flex; align-items: center; gap: .45rem; font-size: .72rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--brand-text); }
-.status-kicker::before { content: ''; width: .5rem; height: .5rem; border-radius: 999px; background: var(--brand); box-shadow: 0 0 0 0 var(--brand); animation: cycle-pulse 1.8s ease-out infinite; }
+.status-kicker::before { content: ''; width: .5rem; height: .5rem; border-radius: 999px; background: var(--brand); animation: dot-breathe 1.8s ease-in-out infinite; }
 
 .cycle { display: grid; gap: 0; list-style: none; padding: 0; }
 .cycle-step { position: relative; display: flex; gap: .8rem; padding-bottom: 1.1rem; }
@@ -147,7 +147,8 @@ body {
   border: 2px solid var(--line); background: var(--surface); color: var(--ink-3); position: relative; z-index: 1; }
 .cycle-step.is-done .cycle-dot { background: var(--ok); border-color: var(--ok); color: #fff; }
 .cycle-step.is-current .cycle-dot { border-color: var(--brand); background: var(--brand-soft); }
-.cycle-step.is-live .cycle-dot { background: var(--brand); border-color: var(--brand); animation: cycle-pulse 1.8s ease-out infinite; }
+.cycle-step.is-live .cycle-dot { background: var(--brand); border-color: var(--brand); }
+.cycle-step.is-live .cycle-dot::before { content: ''; position: absolute; inset: -2px; border-radius: inherit; background: var(--brand); z-index: -1; animation: pulse-ring 1.8s ease-out infinite; }
 .cycle-step.is-current .cycle-dot::after { content: ''; width: .5rem; height: .5rem; border-radius: 999px; background: var(--brand); }
 .cycle-step.is-live .cycle-dot::after { background: #fff; }
 .cycle-body { min-width: 0; padding-top: .1rem; }
@@ -170,13 +171,17 @@ body {
 .cycle-fact { display: inline-flex; align-items: baseline; gap: .4rem; padding: .4rem .7rem; border-radius: 10px; background: var(--surface-2); font-size: .85rem; }
 .cycle-fact b { font-size: .7rem; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-3); font-weight: 800; }
 
-@keyframes cycle-pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--brand) 55%, transparent); } 100% { box-shadow: 0 0 0 .55rem transparent; } }
+/* Pulses animate only transform/opacity: a box-shadow pulse repaints every frame, which on the
+   homepage cost ~2 s of main-thread time per Lighthouse load (throttled mobile). */
+@keyframes pulse-ring { from { transform: scale(1); opacity: .55; } to { transform: scale(2.1); opacity: 0; } }
+@keyframes dot-breathe { 50% { opacity: .35; } }
 /* homepage one-line exam alert */
 .notice-pill { display: inline-flex; align-items: center; gap: .55rem; flex-wrap: wrap; justify-content: center; max-width: 100%;
   padding: .4rem .5rem .4rem .8rem; border-radius: 999px; border: 1px solid var(--line); background: var(--surface);
   font-size: .82rem; font-weight: 600; color: var(--ink-2); box-shadow: var(--shadow); transition: border-color .15s, transform .15s; }
 .notice-pill:hover { border-color: var(--brand); transform: translateY(-1px); }
-.notice-dot { flex: none; width: .5rem; height: .5rem; border-radius: 999px; background: var(--brand); animation: cycle-pulse 1.8s ease-out infinite; }
+.notice-dot { flex: none; position: relative; width: .5rem; height: .5rem; border-radius: 999px; background: var(--brand); }
+.notice-dot::after { content: ''; position: absolute; inset: 0; border-radius: inherit; background: var(--brand); animation: pulse-ring 1.8s ease-out infinite; }
 .notice-cta { padding: .15rem .6rem; border-radius: 999px; background: var(--brand-soft); color: var(--brand-text); font-weight: 700; }
 
-@media (prefers-reduced-motion: reduce) { .cycle-step.is-live .cycle-dot, .status-kicker::before, .notice-dot { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .cycle-step.is-live .cycle-dot::before, .status-kicker::before, .notice-dot::after { animation: none; } }

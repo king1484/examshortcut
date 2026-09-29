@@ -5,6 +5,7 @@ import { AuthGate } from '@/components/Auth';
 export const metadata: Metadata = {
   title: 'Dashboard — your preparation at a glance',
   description: 'Track syllabus coverage, topic-test accuracy, mock scores, streaks and your weakest topics — with a daily plan built from your own activity.',
+  robots: { index: false, follow: true },
 };
 
 export default function DashboardPage() {

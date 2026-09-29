@@ -5,6 +5,16 @@ import { ExamNotice } from '@/components/ExamNotice';
 
 const BUILT_AT = Date.now();
 
+const SITE_LD = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'WebSite', '@id': 'https://examshortcut.in/#website', name: 'ExamShortcut', url: 'https://examshortcut.in/', inLanguage: 'en-IN',
+      publisher: { '@id': 'https://examshortcut.in/#org' } },
+    { '@type': 'Organization', '@id': 'https://examshortcut.in/#org', name: 'ExamShortcut', url: 'https://examshortcut.in/',
+      logo: 'https://examshortcut.in/icon-512.png' },
+  ],
+};
+
 export const dynamic = 'force-static';
 
 export default function Home() {
@@ -13,6 +23,7 @@ export default function Home() {
 
   return (
     <div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SITE_LD) }} />
       <section className="text-center max-w-3xl mx-auto pt-8 pb-4 sm:pt-14">
         <ExamNotice exam="SSC CGL" stage="Tier 1" start="2026-09-30" end="2026-10-30" href="/exams/ssc-cgl/#status" builtAt={BUILT_AT} />
         <div className="flex justify-center gap-2 flex-wrap mt-4">

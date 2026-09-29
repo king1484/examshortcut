@@ -4,6 +4,7 @@ import { Search } from '@/components/Search';
 export const metadata: Metadata = {
   title: 'Search — topics, formulas, tricks, mocks',
   description: 'Instantly search every SSC CGL topic, formula, shortcut trick, common mistake and mock test on ExamShortcut.',
+  robots: { index: false, follow: true },
 };
 
 export default function SearchPage() {

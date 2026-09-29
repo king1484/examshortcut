@@ -13,9 +13,9 @@ const sans = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-sans', di
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://examshortcut.in'),
-  title: { default: 'ExamShortcut — Government & entrance exam preparation: notes, shortcuts, mocks', template: '%s · ExamShortcut' },
+  title: { default: 'ExamShortcut — SSC, Railway & Entrance Exam Preparation', template: '%s · ExamShortcut' },
   description:
-    'Preparation for SSC, Railway, teaching and entrance exams: detailed topic notes, every question type with formulas and shortcuts, practice sets, daily quiz, full mocks, cutoffs and 5 years of current affairs.',
+    'Prepare for SSC, Railway, teaching and entrance exams: topic notes, shortcut tricks, practice sets, a daily quiz, full mocks, cutoffs and current affairs.',
   manifest: '/manifest.webmanifest',
   icons: { icon: '/icon.svg', apple: '/icon-192.png' },
   openGraph: {
@@ -80,8 +80,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </footer>
         <NavLoader />
         <SwRegister />
-        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`} strategy="afterInteractive" />
-        <Script id="ga4" strategy="afterInteractive">
+        {/* lazyOnload: gtag.js is ~170 KB and ~0.8 s of main-thread work on mobile; load it after the page is idle */}
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`} strategy="lazyOnload" />
+        <Script id="ga4" strategy="lazyOnload">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${GA4_ID}');`}
         </Script>
         </AuthProvider>
