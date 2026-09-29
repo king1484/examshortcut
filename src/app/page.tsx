@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { contentStats, listMocks, listTopics, SECTION_META, availableSections } from '@/lib/content';
-import { ExamPicker, SelectedExamPanel } from '@/components/ExamPicker';
+import { ExamPicker } from '@/components/ExamPicker';
 import { ExamNotice } from '@/components/ExamNotice';
 
 const BUILT_AT = Date.now();
@@ -36,12 +36,9 @@ export default function Home() {
         </p>
       </section>
 
-      <section className="mt-8 space-y-4">
-        <SelectedExamPanel />
-        <div className="card p-4 sm:p-5">
-          <ExamPicker />
-        </div>
-      </section>
+      <div className="mt-8">
+        <ExamPicker collapse />
+      </div>
 
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-10">
         {[

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ExamBasicsList, ExamPicker, SelectedExamPanel } from '@/components/ExamPicker';
+import { ExamBasicsList, ExamPicker } from '@/components/ExamPicker';
 import { EXAMS } from '@/lib/exams';
 
 export const dynamic = 'force-static';
@@ -22,7 +22,6 @@ export default function ExamsPage() {
           awareness. Choose your exam and ExamShortcut shows the subjects it tests, and tracks your preparation for it.
         </p>
       </div>
-      <SelectedExamPanel />
       <ExamPicker />
       <section>
         <h2 className="text-xl font-extrabold">Full exam hubs</h2>
