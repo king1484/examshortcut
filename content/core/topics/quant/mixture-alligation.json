@@ -13,187 +13,312 @@
   {
    "id": "mix-basics",
    "title": "Mixture Concentration & Amounts",
-   "concept": "A mixture holds ingredients in a fixed ratio or concentration. The two working quantities are:\n\n- **Amount of each ingredient** from the ratio: in 40 L of milk : water $= 3:1$, milk $= 40 \\times \\frac{3}{4} = 30$ L.\n- **Concentration (per cent)** of an ingredient: $\\frac{\\text{amount of ingredient}}{\\text{total volume}} \\times 100$.\n\nWhen something is added or drained, only ONE of the two quantities changes — track that one and rebuild the ratio.\n\nAdding water dilutes; adding pure ingredient strengthens; removing mixture removes **both** ingredients proportionally.",
+   "concept": "A mixture holds two or more ingredients. Two quantities run every question:\n\n- **Amount of each ingredient**, from the ratio: in 40 L of milk : water = 3 : 1, milk is $40 \\times \\dfrac{3}{4} = 30$ L.\n- **Concentration** of one ingredient: amount ÷ total volume, as a per cent.\n\nWhen something is added or removed, track the amounts. Adding water grows only the water. Removing mixture takes both ingredients in proportion.",
    "formulas": [
     {
      "name": "Amount from ratio",
-     "tex": "\\text{part} = \\text{total} \\times \\frac{\\text{part's share}}{\\text{sum of shares}}"
+     "tex": "\\text{part} = \\text{total} \\times \\frac{\\text{share}}{\\text{sum of shares}}"
     },
     {
      "name": "Concentration",
      "tex": "C = \\frac{\\text{ingredient}}{\\text{mixture}} \\times 100\\%"
     },
     {
+     "name": "Mean price",
+     "tex": "\\text{mean} = \\frac{q_1 p_1 + q_2 p_2}{q_1 + q_2}"
+    },
+    {
      "name": "Adding water",
-     "tex": "C' = \\frac{A}{M + w} \\quad (A \\text{ unchanged})"
+     "tex": "C' = \\frac{A}{M + w}",
+     "note": "A = amount of the other ingredient, unchanged."
     },
     {
      "name": "Removing mixture",
-     "tex": "\\text{each ingredient} \\to \\text{same fraction removed}"
+     "tex": "\\text{each ingredient shrinks in its own share}",
+     "note": "A uniform draw keeps the ratio."
     }
    ],
    "tricks": [
     {
-     "title": "Track the constant ingredient",
-     "body": "Water added ⇒ milk unchanged. Everything hinges on the unchanged part.",
+     "title": "Freeze the unchanged ingredient",
+     "body": "Water added means milk unchanged. Hang the whole question on the ingredient that does not move.",
      "example": {
       "q": "A 40-litre mixture has milk and water in the ratio 3 : 1. How much water does it contain?",
-      "solution": "Water $= 40 \\times \\frac{1}{4} = 10$ litres."
+      "steps": [
+       "Parts = $3 + 1 = 4$; one part = $40 \\div 4 = 10$ L.",
+       "Water = $1 \\times 10 = 10$ L."
+      ],
+      "answer": "10 litres"
      }
     },
     {
      "title": "Rebuild the per cent after dilution",
-     "body": "Milk fixed, total grows — divide again.",
+     "body": "Milk is fixed, the total grows — divide again.",
      "example": {
-      "q": "20 litres of a mixture contains 60% milk. After adding 5 litres of water, the milk percentage is:",
-      "solution": "Milk $= 12$ L; new total $= 25$ L ⇒ $\\frac{12}{25} = 48\\%$."
+      "q": "20 litres of a mixture contains 60% milk. After adding 5 litres of water, find the milk percentage.",
+      "steps": [
+       "Milk = $60\\%$ of 20 = 12 L, unchanged.",
+       "New total = $25$ L.",
+       "Milk % = $12 \\div 25 = 48\\%$."
+      ],
+      "answer": "48%"
      }
     },
     {
-     "title": "Ratio change ⇒ one equation",
-     "body": "Set the unchanged quantity against the wanted ratio.",
+     "title": "One ratio change, one equation",
+     "body": "Set the frozen ingredient against the wanted ratio and solve for the addition.",
      "example": {
-      "q": "A 50-litre mixture of milk and water in the ratio 4 : 1 needs how much water to become 2 : 1?",
-      "solution": "Milk 40 L must be $\\frac{2}{3}$: water total $= 20$ ⇒ add $20 - 10 = 10$ litres."
+      "q": "A 50-litre mixture of milk and water is in the ratio 4 : 1. How much water must be added to make it 2 : 1?",
+      "steps": [
+       "Milk = $40$ L stays; water = 10 L.",
+       "Target 2 : 1 needs water = $40 \\div 2 = 20$ L.",
+       "Add $20 - 10 = 10$ L."
+      ],
+      "answer": "10 litres"
      }
     }
    ],
    "mistakes": [
-    "Changing both parts of a ratio when only the denominator changed (adding water leaves milk untouched).",
-    "Adding x litres of water and thinking the milk percentage drops by x%.",
-    "Taking the ratio share of the wrong ingredient ($\\frac{1}{4}$ vs $\\frac{3}{4}$).",
-    "Forgetting the total volume changes when anything is added (even when mixture is drained first)."
+    {
+     "wrong": "Changing both parts of a ratio when only one moved.",
+     "right": "Adding water leaves the milk amount untouched. Adjust only the water and the total."
+    },
+    {
+     "wrong": "Thinking x litres of water cuts the milk percentage by x%.",
+     "right": "Recompute: milk ÷ new total. The drop depends on the sizes."
+    },
+    {
+     "wrong": "Taking the share of the wrong ingredient (1/4 instead of 3/4).",
+     "right": "Label the ratio first: milk : water = 3 : 1 means milk takes 3 of the 4 parts."
+    },
+    {
+     "wrong": "Forgetting the total volume changes when anything is added.",
+     "right": "Every addition grows the denominator of the concentration."
+    },
+    {
+     "wrong": "Reading '25% water' as water : milk = 25 : 100.",
+     "right": "Per cent is of the mixture: water : milk = 25 : 75 = 1 : 3."
+    }
    ],
-   "notes": "### What a mixture is\nTwo or more ingredients combined by quantity or by cost. Every mixture question reduces to one bookkeeping idea: **track the component amounts** (litres of milk, kg of salt, rupees of cost) through each operation, keeping the total consistent.\n\n### The two-column ledger\nWrite each ingredient's quantity and its \"value\" (price per kg, % strength, litres of milk). Then:\n- Total quantity = sum of the quantities.\n- Total value = sum of quantity × value, ingredient by ingredient.\n- **Mean value** $= \\frac{\\text{total value}}{\\text{total quantity}}$.\n40 kg of rice at ₹6 plus 60 kg at ₹7: total ₹660 over 100 kg → mean ₹6.60/kg. This one line solves every \"find the average price of the mixture\" question.\n\n### Ratios inside the mixture\nWhen a mixture holds milk and water in a ratio like 7:5, the parts share the total: 12 parts = 72 L → 1 part = 6 L → milk 42 L, water 30 L. Adding water grows only the water column and the total; the milk column does not move. **Adding one ingredient leaves the other ingredient's absolute quantity untouched** — every ratio question turns on this.\n\n### Adding to shift a ratio\n\"A 40 L mixture has milk and water 3:1; how much milk makes it 4:1?\" Water is fixed at 10 L; milk must become 4 × 10 = 40 L, so add 10 L. Routine:\n1. Convert the ratio to absolute amounts (parts × total/parts).\n2. Freeze the unchanged component.\n3. Solve for the added quantity so the new ratio holds.\n\n### Percentage strength\nConcentration questions are the same ledger in per cent. A 150 L solution at 60% acid holds 90 L of acid; adding x litres of pure acid gives $\\frac{90 + x}{150 + x} = 0.75$ — one linear equation. Watch the base: after adding, the **denominator grows too**.\n\n### Alloys and blended units\nAlloys (copper:zinc 5:3 in a 24 g piece → 15 g and 9 g) and 'mixing sugar at two rates' are identical arithmetic: fix the component quantity, adjust the total, recompute the ratio. The value can be rupees, litres, grams — the method never changes.\n\n### Common slips\n- Applying the new ratio to the *old* total instead of the grown total.\n- Treating a percentage of the mixture as a percentage of the other ingredient (25% water in the mixture is a $\\frac{25}{75} = 33\\frac{1}{3}\\%$ water-to-milk ratio).\n- Adding quantities in litres while the ratio is in parts without converting.\n\n### Quick revision\n- Mean price = total value ÷ total quantity.\n- Parts: total ÷ (sum of ratio) = one part.\n- Adding X changes only X's column — freeze the other component.\n- New ratio → new equation in one unknown.\n- % of mixture vs % of the other ingredient are different fractions.\n",
+   "notes": "### What a mixture is\nA mixture is two or more ingredients put together — milk and water, rice at two prices, copper and zinc in an alloy.\n\nEvery question turns on two quantities:\n\n- The **amount** of each ingredient (litres, kg, grams).\n- The **concentration** of one ingredient: its share of the total, as a per cent.\n\n> **Rule:** Track ingredient amounts, not the ratio alone. Ratios move when only one column changes.\n\n### Mean price of a blend\nMix items at different prices and the blend has one average price.\n\n$$\\text{mean price} = \\frac{\\text{total value}}{\\text{total quantity}} = \\frac{q_1 p_1 + q_2 p_2}{q_1 + q_2}$$\n\n> **Example:** 40 kg of rice at ₹6 mixed with 60 kg at ₹7. Value = $240 + 420 = ₹660$ over 100 kg. Mean = ₹6.60 per kg.\n\nThis one line answers every \"find the average price of the mixture\" question.\n\n### From ratio to real amounts\nA ratio such as 7 : 5 splits the total into 12 parts.\n\n1. One part = total ÷ sum of ratio terms.\n2. Each ingredient = its share × one part.\n\n> **Example:** A 72-litre mixture has milk and water in the ratio 7 : 5. One part = $72 \\div 12 = 6$ L. Milk = $7 \\times 6 = 42$ L, water = 30 L.\n\n### Adding one ingredient\nAdding water changes only the water column — the milk stays exactly as it was. That fixed ingredient is the anchor of the question.\n\n> **Example:** A 40 L mixture has milk : water = 3 : 1. How much milk makes it 4 : 1? Water stays 10 L. Milk must reach $4 \\times 10 = 40$ L. Add $40 - 30 = 10$ L.\n\nRoutine: write the old amounts, freeze the ingredient not being added, then solve for the addition.\n\n### Percentage strength\nConcentration works the same way in per cent. A 150 L solution at 60% acid holds $90$ L of acid.\n\nAdd x litres of pure acid (strength 100%) and the total grows too:\n\n$$\\frac{90 + x}{150 + x} = \\frac{3}{4} \\Rightarrow x = 90 \\text{ L}$$\n\n> **Watch:** The denominator grows with every addition. A per cent is always a share of the current total.\n\n### Per cent of the mixture vs per cent of the other item\nRead per cent questions twice. \"Water is 25% of the mixture\" means water : milk = 25 : 75 = 1 : 3 — not 1 : 4.\n\nConvert the other way just as carefully: milk : water = 7 : 5 makes milk $\\dfrac{7}{12} = 58\\frac{1}{3}\\%$ of the 72 L mixture. The sum of ratio terms is the denominator, never the other ingredient.\n\n> **Careful:** Exam options are built to catch the wrong denominator. Write the fraction, then match the option.\n\n### Alloys: the same arithmetic\nAn alloy is a mixture in grams. Copper : zinc = 5 : 3 in a 24 g piece gives 15 g copper and 9 g zinc. To make it 3 : 1, freeze zinc at 9 g, push copper to 27 g, add 12 g.\n\n> **Tip:** Prices, litres, grams — the units change, the method never does.\n",
    "patterns": [
     {
      "id": "mix-v1",
-     "name": "Mean price / average of the mixture",
+     "name": "Mean price of a mixture",
      "frequency": "very common",
-     "howToSpot": "Quantities and unit prices are given; the mean price of the mixture is asked.",
+     "howToSpot": "Quantities and unit prices are given; the average price of the blend is asked.",
      "formula": "\\text{mean} = \\frac{\\sum q_i p_i}{\\sum q_i}",
-     "logic": "1. Multiply each quantity by its price; add to get the total value.\n2. Divide by the total quantity.\n3. Fractions of rupees are normal — ₹6.60 is a clean exam answer.\n\nWhy: the mean value is value-weighted, not count-weighted.",
+     "steps": [
+      "Multiply each quantity by its price and add: total value.",
+      "Add the quantities: total weight or volume.",
+      "Divide. A decimal like ₹6.60 is a clean exam answer."
+     ],
+     "why": "The mean value is weighted by quantity, never a plain middle of the prices.",
      "example": {
-      "q": "40 kg of rice at ₹6 per kg is mixed with 60 kg of rice at ₹7 per kg. The average price of the mixture is:",
-      "solution": "$\\frac{40 \\times 6 + 60 \\times 7}{100} = ₹6.60$ per kg."
+      "q": "40 kg of rice at ₹6 per kg is mixed with 60 kg of rice at ₹7 per kg. Find the average price of the mixture.",
+      "steps": [
+       "Value = $40 \\times 6 + 60 \\times 7 = 240 + 420 = 660$.",
+       "Quantity = $100$ kg.",
+       "Mean = $660 \\div 100 = ₹6.60$ per kg."
+      ],
+      "answer": "₹6.60 per kg"
      }
     },
     {
      "id": "mix-v2",
      "name": "Ratio to absolute amounts",
      "frequency": "very common",
-     "howToSpot": "A ratio (milk:water 7:5) with a total quantity is given — extract each part.",
+     "howToSpot": "A ratio (milk : water 7 : 5) with a total quantity is given — one part is asked.",
      "formula": "\\text{one part} = \\frac{\\text{total}}{\\text{sum of ratio terms}}",
-     "logic": "1. Divide the total by the sum of the ratio terms.\n2. Multiply out each component.\n3. For ratios inside the mixture, remember every operation keeps some column fixed.\n\nWhy: ratios are relative; the total converts them to litres or kg.",
+     "steps": [
+      "Divide the total by the sum of the ratio terms.",
+      "Multiply each term by one part.",
+      "Remember which operations keep a column fixed."
+     ],
+     "why": "A ratio is relative; the total converts it into litres or kg.",
      "example": {
-      "q": "A 72-litre mixture has milk and water in the ratio 7:5. The quantity of water is:",
-      "solution": "$\\frac{72}{12} = 6$ per part → water $= 5 \\times 6 = 30$ L, milk 42 L."
+      "q": "A 72-litre mixture has milk and water in the ratio 7 : 5. Find the quantity of water in it.",
+      "steps": [
+       "Parts = $7 + 5 = 12$; one part = $72 \\div 12 = 6$ L.",
+       "Water = $5 \\times 6 = 30$ L (milk = 42 L)."
+      ],
+      "answer": "30 litres"
      }
     },
     {
      "id": "mix-v3",
      "name": "Adding an ingredient to change the ratio",
      "frequency": "very common",
-     "howToSpot": "'How much X must be added so the ratio becomes a:b?'",
-     "formula": "\\frac{\\text{component}_1}{\\text{component}_2 + x} = \\frac{a}{b}\\ \\ \\text{or}\\ \\ \\frac{\\text{component}_1 + x}{\\text{component}_2} = \\frac{a}{b}",
-     "logic": "1. Get absolute amounts from the original ratio and total.\n2. Freeze the component not being added.\n3. Set the new ratio as an equation and solve for x.\n\nWhy: only the added column grows; the other is untouched.",
+     "howToSpot": "'How much X must be added so the ratio becomes a : b?'",
+     "formula": "\\frac{\\text{component}_1}{\\text{component}_2 + x} = \\frac{a}{b} \\ \\text{or}\\ \\frac{\\text{component}_1 + x}{\\text{component}_2} = \\frac{a}{b}",
+     "steps": [
+      "Get the old amounts from the ratio and the total.",
+      "Freeze the ingredient not being added.",
+      "Set the new ratio as an equation and solve for x."
+     ],
+     "why": "Only the added column grows; the other ingredient is untouched.",
      "example": {
-      "q": "A 40-litre mixture has milk and water in the ratio 3:1. How much milk must be added to make the ratio 4:1?",
-      "solution": "Water $= 10$ L stays; milk must reach $40$ L → add $40 - 30 = 10$ L."
+      "q": "A 40-litre mixture has milk and water in the ratio 3 : 1. How much milk must be added to make the ratio 4 : 1?",
+      "steps": [
+       "Old amounts: milk 30 L, water 10 L.",
+       "Water stays 10 L; at 4 : 1 milk must be $4 \\times 10 = 40$ L.",
+       "Add $40 - 30 = 10$ L."
+      ],
+      "answer": "10 litres"
      }
     },
     {
      "id": "mix-v4",
      "name": "Percentage strength of a solution",
      "frequency": "common",
-     "howToSpot": "A solution's concentration is given; after adding solvent or solute, find the new strength.",
-     "formula": "\\text{strength} = \\frac{\\text{amount of solute}}{\\text{total volume}} \\times 100",
-     "logic": "1. Compute the solute amount from the percentage.\n2. Add to the solute (or leave it) and grow the total as required.\n3. Write the new fraction and convert to a per cent.\n\nWhy: percentages are fractions of the *current* total, which changes.",
+     "howToSpot": "A solution's concentration is given; after adding solvent or pure solute, the new strength is asked.",
+     "formula": "\\text{strength} = \\frac{\\text{solute}}{\\text{total volume}} \\times 100",
+     "steps": [
+      "Compute the solute amount from the percentage.",
+      "Add to the solute (or leave it) and grow the total as the story says.",
+      "Write the new fraction and convert to a per cent."
+     ],
+     "why": "Percentages are fractions of the current total, and the total changes with every addition.",
      "example": {
       "q": "150 L of a solution contains 60% acid. How much pure acid must be added to make it 75% acid?",
-      "solution": "Acid $= 90$; $\\frac{90+x}{150+x} = \\frac{3}{4}$ → $x = 90$ L."
+      "steps": [
+       "Acid = $90$ L. Let the addition be $x$.",
+       "$\\frac{90 + x}{150 + x} = \\frac{3}{4} \\Rightarrow 360 + 4x = 450 + 3x$.",
+       "$x = 90$ L."
+      ],
+      "answer": "90 litres"
      }
     },
     {
      "id": "mix-v5",
-     "name": "Alloys and multi-part blending",
+     "name": "Alloys and blending by parts",
      "frequency": "common",
-     "howToSpot": "Alloys with metal ratios, or a blend whose parts are used in further mixing.",
+     "howToSpot": "Alloys with metal ratios, or blends whose parts are used again in another mix.",
      "formula": "\\text{component} = \\frac{\\text{ratio term}}{\\text{sum}} \\times \\text{total}",
-     "logic": "1. Convert each alloy's ratio to grams (or kg) of each metal.\n2. Pool the columns across all sources.\n3. Read the new ratio (or solve for the addition needed).\n\nWhy: metals from different sources simply add up column-wise.",
+     "steps": [
+      "Convert each alloy's ratio into grams (or kg) of each metal.",
+      "Pool the columns across all sources.",
+      "Read the new ratio, or solve for the addition needed."
+     ],
+     "why": "Metals from different sources simply add up, column by column.",
      "example": {
-      "q": "An alloy has copper and zinc in the ratio 5:3. In 24 g of it, how much copper must be added to make the ratio 3:1?",
-      "solution": "Copper 15 g, zinc 9 g; zinc fixed → copper $= 27$ g → add 12 g."
+      "q": "An alloy has copper and zinc in the ratio 5 : 3. In 24 g of it, how much copper must be added to make the ratio 3 : 1?",
+      "steps": [
+       "24 g split 5 : 3 → copper 15 g, zinc 9 g.",
+       "Zinc stays 9 g; at 3 : 1 copper must be $27$ g.",
+       "Add $27 - 15 = 12$ g."
+      ],
+      "answer": "12 g"
      }
     }
+   ],
+   "revision": [
+    "Mean price = total value ÷ total quantity.",
+    "One part = total ÷ sum of ratio terms.",
+    "Adding X moves only X's column and the total.",
+    "New ratio → one equation in the one added amount.",
+    "Per cent of mixture ≠ per cent of the other ingredient."
    ]
   },
   {
    "id": "mix-alligation",
    "title": "Rule of Alligation",
-   "concept": "Alligation mixes two ingredients of known 'strength' (price, %, speed, average) to hit a target mean:\n\n$$\\text{cheaper quantity} : \\text{dearer quantity} = (\\text{dearer} - \\text{mean}) : (\\text{mean} - \\text{cheaper})$$\n\nIt is the weighted average solved backwards: $\\bar{v} = \\frac{n_1 v_1 + n_2 v_2}{n_1 + n_2}$, so $\\frac{n_1}{n_2} = \\frac{v_2 - \\bar{v}}{\\bar{v} - v_1}$.\n\n**Works whenever the quantity mixes linearly** — prices, percentages (milk, acid, alcohol), average ages, average salaries, average speeds for equal times.\n\nThe mean must always lie BETWEEN the two strengths; the distances give the quantities, crossing over.",
+   "concept": "Alligation mixes two ingredients of known 'strength' — price, percentage, average — to hit a target mean.\n\nSubtract diagonally: cheaper : dearer = (dearer − mean) : (mean − cheaper).\n\nEach ingredient's quantity pairs with the OTHER ingredient's distance from the mean. The mean must sit between the two strengths. It works on prices, concentrations, marks, ages, rates and profit per cent — anywhere a weighted average applies.",
    "formulas": [
     {
      "name": "Alligation ratio",
-     "tex": "\\frac{n_1}{n_2} = \\frac{v_2 - \\bar{v}}{\\bar{v} - v_1}"
+     "tex": "\\frac{\\text{cheaper}}{\\text{dearer}} = \\frac{D - M}{M - C}"
     },
     {
      "name": "Weighted average",
      "tex": "\\bar{v} = \\frac{n_1 v_1 + n_2 v_2}{n_1 + n_2}"
     },
     {
-     "name": "Cheaper : dearer",
-     "tex": "(d - m) : (m - c)"
-    },
-    {
-     "name": "Water as free ingredient",
-     "tex": "\\text{milk} : \\text{water} = (m - 0) : (c - m), \\ c > m"
+     "name": "Water as the free ingredient",
+     "tex": "\\text{milk} : \\text{water} = (m - 0) : (c - m),\\ c > m"
     }
    ],
    "tricks": [
     {
-     "title": "Cross over the distances",
-     "body": "Dearer-minus-mean and mean-minus-cheaper swap sides — that's the whole rule.",
+     "title": "Cross the arms",
+     "body": "Dearer-minus-mean and mean-minus-cheaper swap sides. Each quantity takes the other side's arm.",
      "example": {
-      "q": "In what ratio must rice at ₹36/kg be mixed with rice at ₹24/kg so that the mixture costs ₹30/kg?",
-      "solution": "Cheaper : dearer $= (36-30) : (30-24) = 1 : 1$."
+      "q": "In what ratio must rice at ₹36 per kg be mixed with rice at ₹24 per kg so that the mixture costs ₹30 per kg?",
+      "steps": [
+       "Cheaper : dearer = $(36 - 30):(30 - 24)$.",
+       "= $6 : 6 = 1 : 1$."
+      ],
+      "answer": "1 : 1"
      }
     },
     {
-     "title": "Water costs zero",
-     "body": "Dilution questions are alligation with one strength = 0.",
+     "title": "Water has price zero",
+     "body": "Dilution is alligation with one strength at 0.",
      "example": {
-      "q": "Water must be added to 60 litres of milk at ₹24/litre so that the mixture is worth ₹20/litre. Water to add:",
-      "solution": "Milk : water $= (20 - 0) : (24 - 20) = 5 : 1$ ⇒ $60/5 = 12$ litres of water."
+      "q": "How much water must be added to 60 litres of milk worth ₹24 per litre so that the mixture is worth ₹20 per litre?",
+      "steps": [
+       "Milk : water = $(24 - 20):(20 - 0) = 4 : 20 = 1 : 5$.",
+       "Water = $60 \\div 5 = 12$ L."
+      ],
+      "answer": "12 litres"
      }
     },
     {
-     "title": "Alligation on averages",
-     "body": "Any average — salary, age, marks — alligates the same way.",
+     "title": "Averages alligate too",
+     "body": "Salary, age, marks, weight — any average splits into an alligation.",
      "example": {
-      "q": "A class of 50 has an average weight of 42 kg; boys average 45 kg, girls 40 kg. The number of girls is:",
-      "solution": "Boys : girls $= (42-40) : (45-42) = 2 : 3$ ⇒ girls $= 30$."
+      "q": "A class of 50 has an average weight of 42 kg. The boys average 45 kg and the girls 40 kg. Find the number of girls.",
+      "steps": [
+       "Boys : girls = $(42 - 40):(45 - 42) = 2 : 3$.",
+       "Girls = $50 \\times \\frac{3}{5} = 30$."
+      ],
+      "answer": "30 girls"
      }
     }
    ],
    "mistakes": [
-    "Not crossing over — writing cheaper : dearer = (mean − cheaper) : (dearer − mean), which inverts the ratio.",
-    "Alligating a mean that lies outside the two values (impossible — check bounds first).",
-    "Forgetting water/pure ingredient has strength 0% or 100%, not 'no value'.",
-    "Using alligation where averaging is not linear (e.g. average speeds for unequal distances)."
+    {
+     "wrong": "Reading the arms the same way round (cheaper with its own arm).",
+     "right": "Each quantity pairs with the far arm: cheaper : dearer = (D − M) : (M − C)."
+    },
+    {
+     "wrong": "Alligating a mean outside the two strengths.",
+     "right": "Check C < M < D first. If it fails, re-read the question."
+    },
+    {
+     "wrong": "Giving water or a pure ingredient 'no value' and skipping it.",
+     "right": "Water has strength 0; a pure ingredient has 100%. Both alligate normally."
+    },
+    {
+     "wrong": "Alligating speeds over equal distances.",
+     "right": "Equal distances average by the harmonic mean. Alligation fits equal times or linear quantities."
+    },
+    {
+     "wrong": "Stopping at the ratio when a quantity was asked.",
+     "right": "Price one part with the known quantity, then scale to the whole amount."
+    }
    ],
-   "notes": "### The rule of alligation\nWhen two ingredients at 'prices' $C$ (cheaper) and $D$ (dearer) are mixed to give a mean $M$, the mixing ratio is fixed by the balance:\n$$\\frac{\\text{quantity of dearer}}{\\text{quantity of cheaper}} = \\frac{M - C}{D - M}$$\nOr the tilted diagram: write C and D at the top, M in the middle; each lower arm subtracts diagonally — left arm $= M - C$, right arm $= D - M$ — and the arms are the **ratio of quantities of the side you came from**.\nTea at ₹320 and ₹250 to sell at ₹300: dearer $= \\frac{300-250}{320-300} = \\frac{50}{20} = \\frac{5}{2}$ of the cheaper → 2:5. The mean must always lie between C and D; if your ratio comes out negative, you have inverted an arm.\n\n### Why it works\nLet x and y be the quantities: $\\frac{Cx + Dy}{x + y} = M$. Cross-multiplying: $x(D - M) = y(M - C)$ — exactly the arms. Alligation is one linear equation wearing a picture.\n\n### The same rule everywhere\nAny weighted mean splits into an alligation:\n- **Speeds**: equal distances at speeds u and v → average $= \\frac{2uv}{u+v}$; the *time* ratio is $\\frac{v - A}{A - u}$.\n- **Class averages**: boys average 70, girls 75, class 72 → boys : girls $= (75-72):(72-70) = 3:2$.\n- **Interest rates**: two investments at 5% and 8% averaging 6.25% → amounts in 7:5.\n- **Profit per cents**: items sold at 20% and 10% profit with a 14% overall → cost split 3:2.\nIn each case the 'price' is the quantity being averaged and the arms give the *weights*.\n\n### Using quantities, not just ratios\nWhen one actual quantity is known, scale the arms. 25 kg of sugar at ₹24 must be mixed with sugar at ₹42 to average ₹30: arms give cheaper : dearer $= (42-30):(30-24) = 2:1$, so dearer $= 25$ kg — the cheaper arm is double the dearer one.\n\n### Strengths and fractions\nSolution strengths work identically: 20% and 50% acid mixed to get 30% → $\\frac{50-30}{30-20} = \\frac{20}{10} = 2:1$ (dilute : strong). For two full mixtures, first reduce each to the fraction of the key component, then alligate on those fractions.\n\n### Common slips\n- Writing the arms upside down: cheaper : dearer $= (D-M):(M-C)$.\n- Alligating on the wrong quantity (alligate times for equal distances, distances for equal times).\n- Averaging three prices pairwise by gut — pair them so each pair brackets the mean, or use the ledger formula.\n\n### Quick revision\n- Dearer : cheaper $= (M-C) : (D-M)$.\n- The mean sits between the two prices; arms subtract diagonally.\n- Known quantity × arm ratio = actual weights.\n- Works on prices, speeds, marks, rates, profit %, strengths.\n- Verify: recompute the mean from the mixed ratio.\n",
+   "notes": "### The rule of alligation\nTwo ingredients: a cheaper one at strength C and a dearer one at strength D. Mix them to get a mean M, with C < M < D.\n\n$$\\text{cheaper} : \\text{dearer} = (D - M) : (M - C)$$\n\nPicture it: write C and D on top, M in the middle. Subtract diagonally. Each quantity takes the arm that points at the OTHER ingredient.\n\n> **Example:** Tea at ₹320 and ₹250 must blend to ₹300. Cheaper : dearer = $(320-300):(300-250) = 20:50 = 2:5$.\n\n> **Rule:** Check C < M < D first. A mean outside the two strengths is impossible — the question or the setup is misread.\n\n### Why it works\nLet the quantities be x (cheaper) and y (dearer). The blend's value is $\\frac{Cx + Dy}{x+y} = M$. Cross-multiply:\n\n$$x(D - M) = y(M - C)$$\n\nThat is exactly the two arms. Alligation is one linear equation drawn as a picture.\n\n### Water is free; pure is 100%\nDilution questions are alligation with one strength at 0. Strengthening questions use 100% for the pure ingredient.\n\n> **Tip:** Water to be added to 60 L of milk at ₹24/L to sell the blend at ₹20/L: milk : water = $(24-20):(20-0) = 4:20 = 1:5$. So water = $60 \\div 5 = 12$ L.\n\n### Alligation on averages\nAny two group averages and their overall average alligate the same way.\n\n- Boys average 70 marks, girls 75, class 72 → boys : girls = $(75-72):(72-70) = 3:2$.\n- A class of 50 averages 42 kg; boys 45 kg, girls 40 kg → boys : girls = $2 : 3$, so girls = 30.\n\n> **Watch:** For speeds over EQUAL DISTANCES, the average is not the plain mean — alligate carefully or use the harmonic mean.\n\n### Scaling to a known quantity\nThe arms give a ratio. When one real quantity is known, price one part and scale.\n\n25 kg of sugar at ₹24 is mixed with sugar at ₹42 to average ₹30. Arms: cheaper : dearer = $(42-30):(30-24) = 2:1$. The cheaper side is double, so dearer sugar = $25 \\div 2 = 12.5$ kg.\n\n> **Tip:** Always verify: rebuild the mean from your quantities before choosing the option.\n\n### Three ingredients, one mean\nWith three prices, hunt a pair whose alligation hits the mean (or a price already AT the mean).\n\nRice at ₹30, ₹36 and ₹42 must average ₹36. The ₹30 and ₹42 kinds mix 1 : 1 to $\\frac{30+42}{2} = ₹36$ — and any amount of the ₹36 kind can join without moving the mean. So the answer is 1 : any : 1 in that order.\n\n> **Tip:** Equal quantities of two prices average to their midpoint. Spot the pair first, then let the mean-priced item ride along.\n\n### Equal quantities average to the midpoint\n40 kg at ₹6 and 40 kg at ₹7 average ₹6.50 exactly — the arms are equal, so the ratio is 1 : 1. When a question quotes equal amounts, the mean falls in the middle with no work at all.\n\n### Rates and profit per cents\nPercentages alligate as numbers. ₹12,000 is split at 5% and 8% simple interest to earn ₹750 a year.\n\nMean rate = $\\dfrac{750}{12000} \\times 100 = 6.25\\%$. Arms: $(8 - 6.25):(6.25 - 5) = 1.75 : 1.25 = 7 : 5$. So ₹7,000 at 5% and ₹5,000 at 8%. Check: $350 + 400 = 750$.\n",
    "patterns": [
     {
      "id": "mix-a1",
      "name": "Two-ingredient alligation for the ratio",
      "frequency": "very common",
      "howToSpot": "Two unit prices are given with the target mean price; the mixing ratio is asked.",
-     "formula": "D:C = (M - C) : (D - M)",
-     "logic": "1. Identify cheaper, dearer and mean; check C < M < D.\n2. Subtract diagonally: $(M-C)$ and $(D-M)$.\n3. State the ratio of the dearer to cheaper — and scale by any known quantity.\n\nWhy: the weighted-mean equation rearranges into exactly these arms.",
+     "formula": "D : C = (M - C) : (D - M)",
+     "steps": [
+      "Identify cheaper, dearer and mean; check C < M < D.",
+      "Subtract diagonally: (D − M) and (M − C).",
+      "State the ratio, scaling by any known quantity."
+     ],
+     "why": "The weighted-mean equation rearranges into exactly these arms.",
      "example": {
       "q": "In what ratio should tea at ₹320 per kg be mixed with tea at ₹250 per kg to get a mixture worth ₹300 per kg?",
-      "solution": "D:C $= (300-250):(320-300) = 50:20 = 5:2$."
+      "steps": [
+       "Arms: $320 - 300 = 20$ and $300 - 250 = 50$.",
+       "Cheaper : dearer = $20 : 50 = 2 : 5$."
+      ],
+      "answer": "2 : 5"
      }
     },
     {
@@ -201,35 +326,63 @@
      "name": "Mixing solutions by strength",
      "frequency": "very common",
      "howToSpot": "Two solutions of given concentration are mixed to reach a target strength.",
-     "formula": "\\frac{\\text{dilute}}{\\text{strong}} = \\frac{S - M}{M - W}\\ \\ (W\\%, S\\%\\ \\text{strengths})",
-     "logic": "1. Alligate on the strength fractions exactly as on prices.\n2. If a final volume is fixed, split it by the ratio.\n3. Watch which side is dilute — the arm $(S - M)$ belongs to it.\n\nWhy: strength is just the 'price' per litre of solution.",
+     "formula": "\\frac{\\text{dilute}}{\\text{strong}} = \\frac{S - M}{M - W}",
+     "steps": [
+      "Alligate on the strength percentages exactly as on prices.",
+      "The arm (S − M) belongs to the dilute solution.",
+      "Split any given final volume by the ratio."
+     ],
+     "why": "Strength is the 'price' per litre of solution.",
      "example": {
-      "q": "Solutions of 20% and 50% acid are mixed to make a 30% solution. The ratio of the 20% solution to the 50% solution is:",
-      "solution": "$(50-30):(30-20) = 20:10 = 2:1$."
+      "q": "Solutions of 20% and 50% acid are mixed to make a 30% solution. In what ratio are they mixed?",
+      "steps": [
+       "Arms: $50 - 30 = 20$ and $30 - 20 = 10$.",
+       "Dilute : strong = $20 : 10 = 2 : 1$."
+      ],
+      "answer": "2 : 1"
      }
     },
     {
      "id": "mix-a3",
-     "name": "Alligation on averages (speeds, marks, ages)",
+     "name": "Alligation on averages (marks, ages, weights)",
      "frequency": "common",
-     "howToSpot": "Two groups with different averages combine to a known overall average — find the group sizes' ratio.",
+     "howToSpot": "Two groups with different averages combine to a known overall average — the ratio of sizes is asked.",
      "formula": "\\frac{n_1}{n_2} = \\frac{A_2 - A}{A - A_1}",
-     "logic": "1. Treat the averages as the two prices and the overall as M.\n2. Subtract to the arms; the arms are the sizes' ratio.\n3. For speeds over equal distances, alligate the *times*, not the distances.\n\nWhy: the overall average is the size-weighted mean of the group averages.",
+     "steps": [
+      "Treat the group averages as the two prices and the overall as M.",
+      "Subtract to the arms; the arms give the sizes' ratio.",
+      "Scale to the total when a count is asked."
+     ],
+     "why": "The overall average is the size-weighted mean of the group averages.",
      "example": {
-      "q": "The average marks of boys in a class is 70 and of girls is 75. If the class average is 72, the ratio of boys to girls is:",
-      "solution": "$(75-72):(72-70) = 3:2$."
+      "q": "The average marks of boys in a class is 70 and of girls is 75. If the class average is 72, find the ratio of boys to girls.",
+      "steps": [
+       "Arms: $75 - 72 = 3$ and $72 - 70 = 2$.",
+       "Boys : girls = $3 : 2$."
+      ],
+      "answer": "3 : 2"
      }
     },
     {
      "id": "mix-a4",
-     "name": "Find the quantity to add (alligation form)",
+     "name": "How much to add (alligation form)",
      "frequency": "common",
-     "howToSpot": "'How much of X must be added to Y of the mixture to reach a given strength or price?'",
+     "howToSpot": "'How much of X must be added to a given amount of mixture to reach a strength or price?'",
      "formula": "\\frac{q_{\\text{added}}}{q_{\\text{existing}}} = \\frac{M_{\\text{old}} - M}{M - M_{\\text{added}}}",
-     "logic": "1. Give the added ingredient its own 'price' (0 for water, 100 for pure acid, its cost price).\n2. Alligate between the old mixture and the addition.\n3. Solve for the unknown quantity.\n\nWhy: adding a zero-price ingredient is a two-price mixture.",
+     "steps": [
+      "Give the added ingredient its strength: 0 for water, 100 for pure acid, its price for a priced item.",
+      "Alligate between the old mixture and the addition.",
+      "Solve for the unknown quantity."
+     ],
+     "why": "Adding a zero-strength or full-strength ingredient is still just a two-ingredient mix.",
      "example": {
       "q": "How much pure acid must be added to 100 litres of a 30% acid solution to make it 50% acid?",
-      "solution": "Acid $= 30$; $\\frac{30+x}{100+x} = \\frac{1}{2}$ → $x = 40$ L. Alligation view: free water in the mix vs pure acid at 'price' 100%."
+      "steps": [
+       "Old mixture 30, added acid 100, target 50.",
+       "Acid : solution = $(50 - 30):(100 - 50) = 20 : 50 = 2 : 5$.",
+       "Acid = $100 \\times \\frac{2}{5} = 40$ L."
+      ],
+      "answer": "40 litres"
      }
     },
     {
@@ -238,222 +391,389 @@
      "frequency": "common",
      "howToSpot": "Two investments at different interest rates, or items sold at different profit per cents, with a known combined result.",
      "formula": "\\frac{\\text{amount}_1}{\\text{amount}_2} = \\frac{R_2 - R}{R - R_1}",
-     "logic": "1. Alligate on the percentages (rate or profit) to split the total amount.\n2. Overall rate $= \\frac{\\text{total interest}}{\\text{total sum}} \\times 100$ if not given.\n3. Convert back to actual parts by scaling the total.\n\nWhy: the combined percentage is the amount-weighted mean.",
+     "steps": [
+      "Find the overall percentage if it is not given (total gain ÷ total amount).",
+      "Alligate on the percentages to split the total.",
+      "Scale the ratio to the actual amounts."
+     ],
+     "why": "The combined percentage is the amount-weighted mean of the two rates.",
      "example": {
-      "q": "₹12,000 is invested partly at 5% and the rest at 8% simple interest. The total yearly interest is ₹750. Find each part.",
-      "solution": "Mean rate $= \\frac{750}{12000} \\times 100 = 6.25\\%$ → 5% : 8% $= (8-6.25):(6.25-5) = 1.75:1.25 = 7:5$ → ₹7,000 and ₹5,000."
+      "q": "₹12,000 is invested partly at 5% and the rest at 8% simple interest. The total yearly interest is ₹750. Find the sum at 5%.",
+      "steps": [
+       "Mean rate = $\\frac{750}{12000} \\times 100 = 6.25\\%$.",
+       "Arms: $(8 - 6.25):(6.25 - 5) = 1.75 : 1.25 = 7 : 5$.",
+       "At 5%: $12000 \\times \\frac{7}{12} = ₹7000$."
+      ],
+      "answer": "₹7,000"
      }
     }
+   ],
+   "revision": [
+    "cheaper : dearer = (D − M) : (M − C).",
+    "The mean must sit between the two strengths.",
+    "Water = strength 0; pure acid = 100%.",
+    "Works on prices, concentrations, marks, ages, rates, profit %.",
+    "Known quantity → price one part of the ratio, then scale.",
+    "Verify by recomputing the mean from your mix."
    ]
   },
   {
    "id": "mix-replacement",
    "title": "Replacement & Repeated Operations",
-   "concept": "Remove some mixture and replace it with another liquid — each operation multiplies the original liquid by a shrink factor.\n\n**Equal-volume replacements** (take r litres from a vessel of C litres, any number of times):\n$$\\text{original liquid left} = C\\left(1 - \\frac{r}{C}\\right)^n$$\n\n**Different replacement strengths:** multiply the surviving fractions: $\\left(1 - \\frac{r_1}{C}\\right)\\left(1 - \\frac{r_2}{C}\\right)\\cdots$\n\n**Partial removal of one ingredient** (drawn mixture changes only the drawn part): remove the ingredient's proportional share: lost = removed $\\times \\frac{\\text{ingredient fraction}}{1}$.\n\nThe ratio of original : added liquid after n operations is $\\left(1-\\frac{r}{C}\\right)^n : \\left[1 - \\left(1-\\frac{r}{C}\\right)^n\\right]$.",
+   "concept": "Take r litres from a vessel of C litres and replace with water, n times. Each round the original liquid keeps the same fraction:\n\n$\\text{left} = C\\left(1 - \\dfrac{r}{C}\\right)^n$ and water = C − left.\n\nOne round is plain subtraction. Drawing from a mixture takes both ingredients in proportion, so the inside ratio does not move. The total volume stays C whenever you replace what you removed.",
    "formulas": [
     {
      "name": "Repeated equal replacement",
-     "tex": "C\\left(1 - \\frac{r}{C}\\right)^n"
+     "tex": "\\text{left} = C\\left(1 - \\frac{x}{C}\\right)^n"
     },
     {
-     "name": "Milk : water after n ops",
-     "tex": "\\left(1-\\frac{r}{C}\\right)^n : \\left[1-\\left(1-\\frac{r}{C}\\right)^n\\right]"
+     "name": "Milk : water after n rounds",
+     "tex": "\\left(1-\\frac{x}{C}\\right)^n : \\left[1-\\left(1-\\frac{x}{C}\\right)^n\\right]"
     },
     {
      "name": "Proportional removal",
-     "tex": "\\text{lost} = \\text{removed volume} \\times \\frac{\\text{ingredient share}}{\\text{total}}"
+     "tex": "\\text{lost} = \\text{drawn volume} \\times \\frac{\\text{ingredient share}}{\\text{total}}"
     },
     {
-     "name": "Chain of replacements",
-     "tex": "C \\prod_k \\left(1 - \\frac{r_k}{C}\\right)"
+     "name": "Unequal draws",
+     "tex": "C \\prod_k \\left(1 - \\frac{x_k}{C}\\right)",
+     "note": "Multiply one factor per round when the draws differ."
     }
    ],
    "tricks": [
     {
-     "title": "The (1 − r/C)ⁿ shrink",
-     "body": "One fraction per operation; multiply.",
+     "title": "One fraction per round",
+     "body": "Each round multiplies the original liquid by (1 − x/C). Multiply the fractions; never subtract x twice.",
      "example": {
-      "q": "From a vessel full of milk, 8 litres are drawn and replaced with water; the operation is repeated once more. The ratio of milk to water in the vessel (capacity 80 L) is:",
-      "solution": "Milk left $= 80 \\times \\frac{9}{10} = 72$ after one draw ⇒ milk : water $= 72 : 8 = 9 : 1$."
+      "q": "From a vessel full of milk, 8 litres are drawn and replaced with water. The vessel holds 80 litres. Find the ratio of milk to water after this single operation.",
+      "steps": [
+       "Milk left = $80 - 8 = 72$ L.",
+       "Water = $8$ L.",
+       "Ratio = $72 : 8 = 9 : 1$."
+      ],
+      "answer": "9 : 1"
      }
     },
     {
-     "title": "Two operations, wine : water",
-     "body": "Square the shrink factor; the complement is the water.",
+     "title": "Two rounds: square the kept fraction",
+     "body": "The complement of the milk is the water — no separate calculation.",
      "example": {
-      "q": "8 litres are drawn from a cask full of wine and replaced with water; this is done once more. The ratio of wine to water is then 16 : 9. The capacity of the cask is:",
-      "solution": "$\\left(1 - \\frac{8}{C}\\right)^2 = \\frac{16}{25}$ ⇒ $1 - \\frac{8}{C} = \\frac{4}{5}$ ⇒ $C = 40$ litres."
+      "q": "8 litres are drawn from a cask full of wine and replaced with water; this is done once more. The ratio of wine to water is then 16 : 9. Find the capacity of the cask.",
+      "steps": [
+       "Wine fraction = $\\frac{16}{16+9} = \\frac{16}{25}$.",
+       "$\\left(1 - \\frac{8}{C}\\right)^2 = \\frac{16}{25} \\Rightarrow 1 - \\frac{8}{C} = \\frac{4}{5}$.",
+       "$\\frac{8}{C} = \\frac{1}{5} \\Rightarrow C = 40$ L."
+      ],
+      "answer": "40 litres"
      }
     },
     {
-     "title": "Draw-and-refill with a ratio shift",
-     "body": "Removing uniform mixture deletes each ingredient proportionally; only the drawn fraction matters.",
+     "title": "Draws keep the inside ratio",
+     "body": "A uniform draw removes both liquids in proportion, so the ratio survives the withdrawal. Only the refill changes it.",
      "example": {
-      "q": "A vessel has milk and water in the ratio 7 : 5. Nine litres of the mixture are removed and replaced with water, making the ratio 7 : 9. The quantity of milk initially is:",
-      "solution": "Total T: milk goes from $\\frac{7}{12}T$ to $\\frac{7}{16}T$; drawn milk $= 9 \\times \\frac{7}{12}$, so $\\frac{7T}{12} - \\frac{63}{12} = \\frac{7T}{16}$ ⇒ $T = 36$ ⇒ milk $= 21$ litres."
+      "q": "A vessel has milk and water in the ratio 7 : 5. Nine litres of the mixture are removed and replaced with water, making the ratio 7 : 9. How much milk was in the vessel initially?",
+      "steps": [
+       "Draw removes $\\frac{7}{12}$ of 9 L = milk.",
+       "$\\frac{7T}{12} - \\frac{63}{12} = \\frac{7T}{16} \\Rightarrow T = 36$ L.",
+       "Milk = $\\frac{7}{12} \\times 36 = 21$ L."
+      ],
+      "answer": "21 litres"
      }
     }
    ],
    "mistakes": [
-    "Using $C\\left(1 - \\frac{r}{C}\\right)^n$ when different volumes are drawn each time — multiply the varying factors instead.",
-    "Forgetting the vessel's total stays constant when you replace (drain + refill keeps capacity).",
-    "Computing water left by shrinking water too — added water enters whole, only the original liquid shrinks.",
-    "In ratio-shift problems, subtracting the drawn amount from the total as well as from the ingredient (total is unchanged after refill)."
+    {
+     "wrong": "Subtracting x litres of milk in every round.",
+     "right": "After round one the draw is part water. Multiply by (1 − x/C) each round instead."
+    },
+    {
+     "wrong": "Shrinking the water as well.",
+     "right": "Only the original liquid shrinks. Water = C − milk; the total stays C."
+    },
+    {
+     "wrong": "Using (1 − x/C)ⁿ when the draws have different sizes.",
+     "right": "Multiply one separate factor per round: (1 − x₁/C)(1 − x₂/C)…"
+    },
+    {
+     "wrong": "Changing the total volume after a replacement.",
+     "right": "Draw r and pour back r: the vessel holds C litres throughout."
+    },
+    {
+     "wrong": "Adding the margins in reverse questions.",
+     "right": "Take the n-th root of the final fraction and match it to a perfect power."
+    }
    ],
-   "notes": "### The repeated-replacement formula\nA vessel holds C litres of pure milk (or any component). x litres are drawn out and replaced with water; this is done n times. Because the mixture is uniform, each operation removes **the same fraction** $\\frac{x}{C}$ of whatever is in the vessel. After n rounds the milk left is\n$$\\text{milk} = C\\left(1 - \\frac{x}{C}\\right)^n$$\n80 L, 8 L drawn and replaced, twice: $80 \\times \\left(\\frac{9}{10}\\right)^2 = 64.8$ L. The water is simply $C - \\text{milk}$ (the total never changes when you replace what you remove).\n\n### Why the fraction form works\nEach operation multiplies the remaining milk by $\\left(1 - \\frac{x}{C}\\right)$ — the milk is drawn proportionally, the water topping-up adds no milk. Multiplying is why powers appear; the same one-liner handles two, three or four rounds without any table.\n\n### One operation only\nA single draw-replace needs no formula: subtract x litres of the component directly, add x of the other. From 60 L of milk, remove 12 L, add water: milk 48, water 12 → 4:1. A second operation then multiplies by $\\frac{48}{60}$: milk $= 48 \\times \\frac{48}{60} = 38.4$ → ratio $16:9$. Note $\\frac{48}{60} = 1 - \\frac{12}{60}$ — consistent with the formula.\n\n### Removing from a mixed vessel\nIf the vessel is *already* a mixture in ratio m:w, a draw of x litres takes each component in proportion — the **ratio inside the vessel is unchanged**; only the volume shrinks. Adding anything afterwards is what shifts the ratio. From milk:water 7:3 in 80 L (56, 24), remove 20 L (14, 6) — still 7:3 in 60 L; add 20 L water → 42:38.\n\n### Reverse problems\nGiven the final quantity, extract x or n:\n- $C\\left(1-\\frac{x}{C}\\right)^2 = 32$ with C = 50 → $\\left(1-\\frac{x}{50}\\right)^2 = \\frac{16}{25}$ → $x = 10$ L.\n- Final ratio gives the fraction: wine : water 16:65 → wine fraction $\\frac{16}{81} = \\left(\\frac{2}{3}\\right)^4$ → four operations with $\\frac{x}{C} = \\frac{1}{3}$.\nTake roots — square for two operations, fourth root for four — and match against perfect powers.\n\n### Common slips\n- Subtracting x litres of milk every round even after the vessel is diluted (that is the $\\left(1-\\frac{x}{C}\\right)^n$ trap).\n- Forgetting the *total stays C* when you replace, so 'milk : water' pairs milk with $C - $ milk.\n- Using addition instead of multiplication across rounds.\n\n### Quick revision\n- $n$ rounds: milk $= C\\left(1-\\frac{x}{C}\\right)^n$; water $= C -$ milk.\n- One round: plain subtraction; two rounds: multiply twice.\n- Drawing from a uniform mixture preserves its internal ratio.\n- Reverse: match the final fraction to a perfect power.\n- Total is constant when you replace what you remove.\n",
+   "notes": "### One round, in plain numbers\nA vessel holds 60 L of pure milk. 12 L are drawn out and replaced with water. Now: milk 48 L, water 12 L → ratio $4 : 1$.\n\nNo formula is needed for a single round — subtract the drawn milk, add the drawn volume as water.\n\n> **Rule:** 'Drawn and replaced' keeps the TOTAL at C. Only the split between the liquids changes.\n\n### The repeated-replacement formula\nDo the same draw again and the vessel is no longer pure. The second draw takes out milk AND water in proportion, so the milk keeps the same fraction each round:\n\n$$\\text{milk left} = C\\left(1 - \\frac{x}{C}\\right)^n, \\qquad \\text{water} = C - \\text{milk}$$\n\n80 L vessel, 8 L drawn and replaced, twice: milk = $80 \\times \\left(\\frac{9}{10}\\right)^2 = 64.8$ L. The second round on the 60 L example: $48 \\times \\frac{48}{60} = 38.4$ L milk → ratio $38.4 : 21.6 = 16 : 9$.\n\n> **Tip:** One power per round. Never subtract x litres of milk twice — after the first round the draw is part water.\n\n### Drawing from an already-mixed vessel\nDraw from a uniform mixture and you take each ingredient in the vessel's own ratio. The ratio inside does not move; only the volume shrinks. The addition afterwards is what shifts the ratio.\n\n80 L of milk : water = 7 : 3 holds 56 L milk, 24 L water. Draw 20 L: it takes 14 milk and 6 water, leaving 42 : 18 — still 7 : 3 in 60 L. Now add 20 L of water: $42 : 38 = 21 : 19$.\n\n> **Watch:** Replacing with the SAME ingredient works the other way. From 50 L of 4 : 1 (40 milk, 10 water), draw 10 L (8 milk, 2 water) and replace with pure milk: $42 : 8 = 21 : 4$.\n\n### Working backwards\nGiven the final ratio, take roots.\n\n- Wine : water ends at $16 : 65$ after four equal draws. Wine fraction = $\\frac{16}{81} = \\left(\\frac{2}{3}\\right)^4$, so each round kept $\\frac{2}{3}$: $1 - \\frac{x}{C} = \\frac{2}{3}$, and with $x = 8$, $C = 24$ L.\n- Two rounds from a 50 L vessel leave 32 L of milk: $\\left(1 - \\frac{x}{50}\\right)^2 = \\frac{16}{25}$ → $x = 10$ L.\n\n### Water by the complement\nWater never needs its own formula. Water = C − milk, so with kept fraction $k = 1 - \\frac{x}{C}$, after n rounds:\n\n$$\\text{milk} : \\text{water} = k^n : (1 - k^n)$$\n\nOn the 80 L vessel ($k = \\frac{9}{10}$, two rounds): milk $\\frac{81}{100}$, water $\\frac{19}{100}$ → $81 : 19$ — 64.8 L against 15.2 L, the same numbers as before.\n\n### Shift the ratio by one replacement\nA vessel is at 7 : 5. Nine litres of mixture are replaced with water and it becomes 7 : 9. Find the starting milk.\n\nTotal T: milk goes from $\\frac{7T}{12}$ to $\\frac{7T}{16}$. The draw removes $9 \\times \\frac{7}{12}$ of milk:\n\n$$\\frac{7T}{12} - \\frac{63}{12} = \\frac{7T}{16} \\Rightarrow T = 36, \\text{ so milk} = 21 \\text{ L}$$\n\n> **Tip:** Match the final fraction to a perfect power ($\\frac{4}{9}, \\frac{16}{25}, \\frac{16}{81}$). Exam numbers are built to land on them.\n",
    "patterns": [
     {
      "id": "mix-p1",
      "name": "Repeated replacement (formula)",
      "frequency": "very common",
-     "howToSpot": "x litres drawn and replaced with water, n times, from C litres of pure milk/wine — find what remains.",
+     "howToSpot": "x litres drawn and replaced with water, n times, from C litres of pure liquid — what remains is asked.",
      "formula": "\\text{left} = C\\left(1 - \\frac{x}{C}\\right)^n",
-     "logic": "1. Compute the kept fraction $1 - \\frac{x}{C}$.\n2. Raise it to the number of operations.\n3. Multiply by C; water = C − milk if asked.\n\nWhy: each round removes the same *fraction* of whatever milk is present.",
+     "steps": [
+      "Compute the kept fraction $1 - \\frac{x}{C}$.",
+      "Raise it to the number of operations.",
+      "Multiply by C; water = C − milk if asked."
+     ],
+     "why": "Each round removes the same fraction of whatever original liquid is still present.",
      "example": {
       "q": "A vessel contains 80 litres of pure milk. 8 litres are drawn and replaced with water, and the operation is repeated once more. Find the milk left.",
-      "solution": "$80 \\times \\left(\\frac{9}{10}\\right)^2 = 64.8$ litres."
+      "steps": [
+       "Kept fraction = $1 - \\frac{8}{80} = \\frac{9}{10}$.",
+       "Two rounds: $\\left(\\frac{9}{10}\\right)^2 = \\frac{81}{100}$.",
+       "Milk = $80 \\times \\frac{81}{100} = 64.8$ L."
+      ],
+      "answer": "64.8 litres"
      }
     },
     {
      "id": "mix-p2",
      "name": "One or two draws — ratio form",
      "frequency": "very common",
-     "howToSpot": "A single draw-replace, or a second round from the diluted vessel — find the final ratio.",
-     "formula": "\\text{after round 2: } \\frac{\\text{milk}}{\\text{water}} = \\left(1-\\frac{x}{C}\\right)^2 : \\left[1-\\left(1-\\frac{x}{C}\\right)^2\\right]",
-     "logic": "1. Round 1: subtract x litres of milk, add x water — read the ratio.\n2. Round 2: multiply the milk by the kept fraction again.\n3. Pair the final milk with (C − milk).\n\nWhy: only milk keeps shrinking; water absorbs the difference.",
+     "howToSpot": "A single draw-replace, or a second round from the diluted vessel — the final ratio is asked.",
+     "formula": "\\text{after round 2: } \\text{milk}:\\text{water} = \\left(1-\\tfrac{x}{C}\\right)^2 : \\left[1-\\left(1-\\tfrac{x}{C}\\right)^2\\right]",
+     "steps": [
+      "Round 1: subtract x litres of the pure liquid, add x of water.",
+      "Round 2: multiply the survivor by the kept fraction again.",
+      "Pair the milk with (C − milk) for the ratio."
+     ],
+     "why": "Only the original liquid keeps shrinking; water absorbs the difference.",
      "example": {
       "q": "From 60 litres of pure milk, 12 litres are removed and replaced with water. Find the ratio of milk to water now.",
-      "solution": "Milk 48, water 12 → 4:1."
+      "steps": [
+       "Milk = $60 - 12 = 48$ L.",
+       "Water = $12$ L.",
+       "Ratio = $48 : 12 = 4 : 1$."
+      ],
+      "answer": "4 : 1"
      }
     },
     {
      "id": "mix-p3",
      "name": "Reverse — find x or the capacity",
      "frequency": "common",
-     "howToSpot": "The final quantity or ratio is given; find the drawn amount x, the capacity C, or the number of rounds.",
-     "formula": "\\left(1-\\frac{x}{C}\\right)^n = \\frac{\\text{final fraction}}{1}",
-     "logic": "1. Divide the final milk by C to get the kept fraction.\n2. Take the n-th root and match to a perfect power.\n3. Solve $1 - \\frac{x}{C} = $ root for the unknown.\n\nWhy: the formula is invertible once you spot the power.",
+     "howToSpot": "The final quantity or ratio is given; the drawn amount, the capacity, or the number of rounds is asked.",
+     "formula": "\\left(1 - \\frac{x}{C}\\right)^n = \\text{final fraction of the original liquid}",
+     "steps": [
+      "Divide the final amount of the original liquid by C.",
+      "Take the n-th root; match it to a perfect power.",
+      "Solve $1 - \\frac{x}{C} = \\text{root}$ for the unknown."
+     ],
+     "why": "The formula runs backwards once you spot the power.",
      "example": {
-      "q": "A cask full of wine: 8 litres drawn and replaced with water, the operation performed three more times. Wine : water is finally 16 : 65. Find the capacity.",
-      "solution": "Wine fraction $= \\frac{16}{81} = \\left(\\frac{2}{3}\\right)^4$ → $1 - \\frac{8}{C} = \\frac{2}{3}$ → C = 24 litres."
+      "q": "A cask is full of wine. 8 litres are drawn and replaced with water, and the operation is performed three more times. The final ratio of wine to water is 16 : 65. Find the capacity of the cask.",
+      "steps": [
+       "Wine fraction = $\\frac{16}{16+65} = \\frac{16}{81}$.",
+       "$\\frac{16}{81} = \\left(\\frac{2}{3}\\right)^4$, so each round kept $\\frac{2}{3}$.",
+       "$1 - \\frac{8}{C} = \\frac{2}{3} \\Rightarrow C = 24$ L."
+      ],
+      "answer": "24 litres"
      }
     },
     {
      "id": "mix-p4",
      "name": "Drawing from an already-mixed vessel",
      "frequency": "common",
-     "howToSpot": "The vessel starts as a mixture (not pure); a draw is followed by an addition.",
-     "formula": "\\text{draw splits components in the vessel's own ratio}",
-     "logic": "1. Convert the starting ratio to litres of each component.\n2. Remove x litres split in that ratio — the ratio is unchanged.\n3. Add the new ingredient to the required column and re-ratio.\n\nWhy: a uniform mixture yields its components proportionally.",
+     "howToSpot": "The vessel starts as a mixture, not a pure liquid; a draw is followed by an addition.",
+     "formula": "\\text{the draw splits in the vessel's own ratio}",
+     "steps": [
+      "Convert the starting ratio into litres of each ingredient.",
+      "Split the drawn volume in that same ratio — the ratio does not move.",
+      "Add the new ingredient to its column and rebuild the ratio."
+     ],
+     "why": "A uniform mixture leaves in its own proportions.",
      "example": {
-      "q": "80 litres of a milk-water mixture in ratio 7:3 has 20 litres drawn off, then 20 litres of water added. Find the new ratio.",
-      "solution": "Start 56, 24; draw removes 14, 6 → 42, 18; add 20 water → 42:38 = 21:19."
+      "q": "80 litres of a milk-water mixture in the ratio 7 : 3 has 20 litres drawn off, and then 20 litres of water are added. Find the new ratio.",
+      "steps": [
+       "Start: 56 milk, 24 water. Draw takes 14 and 6.",
+       "After draw: 42 milk, 18 water (still 7 : 3).",
+       "Add 20 water: $42 : 38 = 21 : 19$."
+      ],
+      "answer": "21 : 19"
      }
     },
     {
      "id": "mix-p5",
-     "name": "Replace with the same component (enriching)",
+     "name": "Replace with the same ingredient (enriching)",
      "frequency": "occasional",
-     "howToSpot": "Mixture loses some of one component and is topped up with the *other* one — ratios tighten instead of dilute.",
-     "formula": "\\text{remove in ratio, then add the pure component}",
-     "logic": "1. Split the removed volume by the current ratio.\n2. Subtract from the matching columns; the total dips by x.\n3. Add x litres of the topping component to its column.\n\nWhy: the topping-up choice decides which column swells.",
+     "howToSpot": "The vessel is topped up with the pure version of one ingredient, so the ratio tightens instead of diluting.",
+     "formula": "\\text{remove in the ratio, then add the pure component}",
+     "steps": [
+      "Split the removed volume by the current ratio.",
+      "Subtract those amounts from their columns.",
+      "Add the removed volume of the pure ingredient to its column."
+     ],
+     "why": "The topping-up choice decides which column swells.",
      "example": {
-      "q": "From 50 litres of a milk-water mixture in ratio 4:1, 10 litres are removed and replaced with pure milk. Find the new ratio.",
-      "solution": "Draw removes 8 milk, 2 water → 32, 8; add 10 milk → 42:8 = 21:4."
+      "q": "From 50 litres of a milk-water mixture in the ratio 4 : 1, 10 litres are removed and replaced with pure milk. Find the new ratio.",
+      "steps": [
+       "Start: 40 milk, 10 water. Draw takes 8 and 2.",
+       "After draw: 32 milk, 8 water.",
+       "Add 10 milk: $42 : 8 = 21 : 4$."
+      ],
+      "answer": "21 : 4"
      }
     }
+   ],
+   "revision": [
+    "n equal rounds: milk = C(1 − x/C)ⁿ; water = C − milk.",
+    "One round: plain subtraction.",
+    "A uniform draw leaves the inside ratio unchanged.",
+    "Total stays C whenever you replace what you remove.",
+    "Reverse: final fraction → perfect power → root → solve.",
+    "Replace with the same ingredient to enrich, not dilute."
    ]
   },
   {
    "id": "mix-ratio-profit",
    "title": "Milk–Water Ratio & Profit by Adulteration",
-   "concept": "The seller's game: mix in free (or cheap) water and sell at the milk price.\n\n**Profit % when water is mixed and the mixture is sold at cost:**\n$$\\text{profit\\%} = \\frac{\\text{water}}{\\text{milk}} \\times 100 = \\frac{w}{m} \\times 100$$\n\n**To reach a wanted ratio**, fix the constant ingredient and solve for the added one — one linear equation, never a system.\n\n**To alter an alloy**, compute each metal from the current ratio first, then add/subtract the named metal and rebuild.",
+   "concept": "The seller's game: mix in free water (or a cheap filler) and sell the blend at the good item's price.\n\nSold at cost price, the gain is the free part per unit of the real item:\n\n$\\text{gain \\%} = \\dfrac{\\text{water}}{\\text{milk}} \\times 100$.\n\nFor a target ratio, freeze the constant ingredient and solve for the addition. When two priced items are blended, the blend's cost price is the weighted mean, and profit acts on it.",
    "formulas": [
     {
-     "name": "Adulteration profit",
-     "tex": "\\text{profit\\%} = \\frac{\\text{water}}{\\text{milk}} \\times 100"
+     "name": "Adulteration gain",
+     "tex": "\\text{gain\\%} = \\frac{\\text{water}}{\\text{milk}} \\times 100"
     },
     {
-     "name": "Ratio target",
-     "tex": "\\frac{m}{w + x} = \\text{wanted ratio} \\Rightarrow x"
+     "name": "Target ratio",
+     "tex": "W : M = g : 100",
+     "note": "For a gain of g% when sold at cost price."
+    },
+    {
+     "name": "Blend cost price",
+     "tex": "CP = \\frac{q_1 c_1 + q_2 c_2}{q_1 + q_2}, \\quad SP = CP\\left(1 + \\frac{g}{100}\\right)"
     },
     {
      "name": "Alloy rebuild",
      "tex": "\\text{metal} = \\text{alloy weight} \\times \\frac{\\text{share}}{\\text{sum of shares}}"
-    },
-    {
-     "name": "SP of mixture",
-     "tex": "\\text{SP} = (\\text{milk}) \\times \\text{milk price} + (\\text{water}) \\times 0"
     }
    ],
    "tricks": [
     {
-     "title": "Water-over-milk is the profit",
-     "body": "Adulteration profit = free litres per honest litre.",
+     "title": "Water over milk is the gain",
+     "body": "Free litres per honest litre — that ratio, in per cent, is the profit.",
      "example": {
-      "q": "A milkman mixes 1 litre of water with every 5 litres of milk and sells the mixture at the cost price of milk. His profit per cent is:",
-      "solution": "$\\frac{1}{5} \\times 100 = 20\\%$."
+      "q": "A milkman mixes 1 litre of water with every 5 litres of milk and sells the mixture at the cost price of milk. Find his gain per cent.",
+      "steps": [
+       "Water : milk = $1 : 5$.",
+       "Gain = $\\frac{1}{5} \\times 100 = 20\\%$."
+      ],
+      "answer": "20%"
      }
     },
     {
      "title": "Hit the target ratio by addition",
-     "body": "Keep the bigger quantity constant; solve for the addition.",
+     "body": "Keep the bigger quantity constant and solve for the addition.",
      "example": {
       "q": "36 litres of a mixture has milk and water in the ratio 5 : 1. How much water must be added to make the ratio 5 : 3?",
-      "solution": "Milk 30 L stays; water must reach $30 \\times \\frac{3}{5} = 18$ ⇒ add $18 - 6 = 12$ litres."
+      "steps": [
+       "Milk = $36 \\times \\frac{5}{6} = 30$ L, fixed; water = 6 L.",
+       "At 5 : 3, water must be $30 \\times \\frac{3}{5} = 18$ L.",
+       "Add $18 - 6 = 12$ L."
+      ],
+      "answer": "12 litres"
      }
     },
     {
      "title": "Rebuild the alloy, then change one metal",
-     "body": "Convert ratio to grams, adjust, re-ratio.",
+     "body": "Ratio to grams, adjust one column, re-ratio.",
      "example": {
       "q": "An alloy of 40 g contains zinc and copper in the ratio 5 : 3. How much copper must be added to make the ratio 5 : 7?",
-      "solution": "Zinc 25 g, copper 15 g; want zinc : copper $= 5 : 7$ ⇒ copper $= 35$ ⇒ add $20$ g."
+      "steps": [
+       "Zinc = $25$ g, copper = $15$ g.",
+       "At 5 : 7, copper = $25 \\times \\frac{7}{5} = 35$ g.",
+       "Add $35 - 15 = 20$ g."
+      ],
+      "answer": "20 g"
      }
     }
    ],
    "mistakes": [
-    "Computing profit on the mixture instead of the milk cost (profit = water/milk, sold at cost).",
-    "Adding water and expecting the milk quantity to stretch — only water grows.",
-    "In alloy problems, adding to the total and to one metal without updating the other ratio leg.",
-    "Misreading 'ratio 5 : 7' as 'add 7 parts' instead of solving for the new copper amount."
+    {
+     "wrong": "Computing profit on the mixture volume.",
+     "right": "Gain = water ÷ milk. The milk's cost is what is recovered."
+    },
+    {
+     "wrong": "Reading 'water is p% of the mixture' as a p% gain.",
+     "right": "Convert first: gain = p ÷ (100 − p) × 100."
+    },
+    {
+     "wrong": "Adding water and stretching the milk quantity too.",
+     "right": "Only the water column and the total grow."
+    },
+    {
+     "wrong": "Adding to the alloy total without re-checking the other metal's leg.",
+     "right": "Freeze the unchanged metal, then solve for the new amount."
+    },
+    {
+     "wrong": "Quoting a ratio without recomputing the blend CP.",
+     "right": "Verify: weighted CP from your ratio must hit the target."
+    }
    ],
-   "notes": "### Water sells for nothing — that is the whole trick\nA milkman adds water to milk and sells the blend **at the cost price of milk**: every litre sold brings milk-price rupees, but part of the litre cost him nothing. His gain comes purely from the free water.\n$$\\text{gain\\%} = \\frac{\\text{water}}{\\text{milk}} \\times 100$$\nWater : milk 1:5 → gain 20%. Water is 25% *of the mixture* → milk is 75%, so gain $= \\frac{25}{75} = 33\\frac{1}{3}\\%$. The two readings differ; the formula uses water per unit **milk**.\n\n### Working backwards\nFor a target gain g%, set $\\frac{W}{M} = \\frac{g}{100}$: to gain 25%, water : milk = 1:4 (one litre of water per four of milk). To gain $16\\frac{2}{3}\\%$, $W : M = 1:6$. Options often include the inverted ratio and the mixture-fraction misread — compute, don't guess.\n\n### Blends that must earn a profit\nWhen two real ingredients are mixed, the blend's **cost price per kg** is the weighted mean:\n$$CP = \\frac{q_1 c_1 + q_2 c_2}{q_1 + q_2}$$\nSelling price follows: for a 25% gain, $SP = 1.25 \\times CP$. Rice ₹30 and ₹40 mixed 2:3 → CP ₹36; sell at ₹45 → 25% profit. Reverse: a required profit fixes the SP, and the alligation arms fix the mixing ratio that makes it possible.\n\n### Adulteration with a cheaper item\nGhee at ₹120 cut with oil at ₹60, sold at ₹120 for a 50% gain: the blend's CP must be $\\frac{120}{1.5} = ₹80$, so alligate: ghee : oil $= (80-60):(120-80) = 1:2$. Verify: $\\frac{120 \\times 1 + 60 \\times 2}{3} = ₹80$ ✓ — the costly item takes the *smaller* share when the target CP sits below the two-price midpoint. The lesson: **always verify the blend's CP from your ratio before quoting the answer.**\n\n### Marked price chains on a mixture\nA marked-up-then-discounted sale still ends at one SP: chips multiply ($1.25 \\times 0.9 = 1.125$ → 12.5% net gain). Compute the mixture's CP first, then run the markup chain on it.\n\n### A worked case end to end\n80 kg of rice at ₹24 is mixed with 40 kg at ₹36, and the trader wants 25%. Blend CP $= \\frac{1920 + 1440}{120} = ₹28$; SP $= 28 \\times 1.25 = ₹35$. Every adulteration question is this skeleton with one slot hidden — the ratio, the SP, or the gain. Fix any two and the third follows by the same three lines. Note the asymmetry: profit chips act on the blend's CP, while water additions act on the *cost per sold litre* — keep the two bases apart.\n\n### Quick revision\n- Water : milk = g : 100 for gain g% when sold at cost.\n- 'Water is p% of the mixture' → gain $= \\frac{p}{100-p} \\times 100$.\n- Blend CP = weighted mean; SP from the target profit.\n- Adulteration: alligate to hit the CP that yields the gain.\n- Verify every ratio by recomputing the CP.\n",
+   "notes": "### The milkman's trick\nWater is free. The milkman adds it to milk and sells the blend at the milk price. Every litre sold brings milk-price money, and part of each litre cost him nothing.\n\n$$\\text{gain\\%} = \\frac{\\text{water}}{\\text{milk}} \\times 100$$\n\nWater equal to one-fifth of the milk → gain $= \\frac{1}{5} \\times 100 = 20\\%$.\n\n> **Rule:** The gain is water per unit of MILK, not per unit of mixture.\n\n### Water as a per cent of the mixture\n'Water is 25% of the mixture' reads differently: milk is 75%, so gain $= \\frac{25}{75} = 33\\frac{1}{3}\\%$. Convert a mixture-per-cent into water-per-milk before using the formula.\n\n> **Watch:** Options usually include both readings — 25% and $33\\frac{1}{3}\\%$. Compute, do not guess.\n\n### Working to a target gain\nFor a wanted gain of g%, set water : milk = g : 100.\n\n- 25% gain → water : milk = $25 : 100 = 1 : 4$.\n- $16\\frac{2}{3}\\%$ gain → $1 : 6$.\n\nOne litre of water per four litres of milk gives exactly 25%.\n\n### Blend cost price and profit\nWith two real, priced ingredients the blend's cost price is the weighted mean:\n\n$$CP = \\frac{q_1 c_1 + q_2 c_2}{q_1 + q_2}$$\n\nRice at ₹30 and ₹40 mixed 2 : 3 → CP = $\\frac{60 + 120}{5} = ₹36$. Sold at ₹45, the gain is $\\frac{9}{36} = 25\\%$. For a wanted profit of 25%, fix $SP = 1.25 \\times CP$ and work backwards.\n\n### Adulterating with a cheaper item\nGhee at ₹120 is cut with oil at ₹60 and sold at ₹120 for a 50% gain.\n\nThe blend's CP must be $\\frac{120}{1.5} = ₹80$. Alligate: ghee : oil $= (80 - 60) : (120 - 80) = 1 : 2$. Verify: $\\frac{120 \\times 1 + 60 \\times 2}{3} = ₹80$.\n\n> **Tip:** The costly item takes the smaller share when the target CP sits below the midpoint. Always recompute the CP from your ratio.\n\n### Selling above cost price\nThe trick gets worse when the blend also sells at a markup. Chain the factors: each free litre multiplies the money, and the markup multiplies again.\n\nWater equal to 20% of the milk AND a 10% markup: $1.20 \\times 1.10 = 1.32$ → a 32% gain. Water alone would give 20%; the markup alone 10%; together they multiply, never add.\n\n> **Rule:** $\\text{gain factor} = \\left(1 + \\frac{W}{M}\\right)\\left(1 + \\frac{\\text{markup}}{100}\\right)$. Subtract 1 for the gain per cent.\n\n### A discount can eat the gain\nA discount works the same chain in reverse. Water at 25% of the milk, then a 10% discount: $1.25 \\times 0.9 = 1.125$ — the milkman still pockets 12.5%. Options quoting 25% or 15% are the two traps.\n\n### Markup and discount on a mixture\nA blended item marked up and then discounted still ends at one selling price. Chain the factors: $1.25 \\times 0.9 = 1.125$ → a 12.5% gain on a CP of ₹40, selling at ₹45.\n\nProfit chips act on the blend's CP; water additions act on the cost per sold litre. Keep the two bases apart.\n",
    "patterns": [
     {
      "id": "mix-r1",
-     "name": "Gain % from added water",
+     "name": "Gain per cent from added water",
      "frequency": "very common",
      "howToSpot": "Water is added to milk (or a cheap filler to a good item) and the blend is sold at cost price — find the gain %.",
      "formula": "\\text{gain\\%} = \\frac{\\text{water}}{\\text{milk}} \\times 100",
-     "logic": "1. Express water per unit milk (convert 'p% of mixture' → $\\frac{p}{100-p}$).\n2. Multiply by 100.\n3. Sanity: water equal to half the milk → 50% gain.\n\nWhy: the milk's cost is fully recovered; the water volume is pure margin.",
+     "steps": [
+      "Express water per unit of milk (convert 'p% of mixture' into p/(100−p)).",
+      "Multiply by 100.",
+      "Sanity check: water equal to half the milk → 50% gain."
+     ],
+     "why": "The milk's cost comes back in full; the water volume is pure margin.",
      "example": {
-      "q": "A milkman mixes water equal to one-fifth of the milk and sells the mixture at cost price. His gain per cent is:",
-      "solution": "$\\frac{1}{5} \\times 100 = 20\\%$."
+      "q": "A milkman mixes water equal to one-fifth of the milk and sells the mixture at cost price. Find his gain per cent.",
+      "steps": [
+       "Water : milk = $1 : 5$.",
+       "Gain = $\\frac{1}{5} \\times 100 = 20\\%$."
+      ],
+      "answer": "20%"
      }
     },
     {
      "id": "mix-r2",
-     "name": "Find the water ratio for a target gain",
+     "name": "Water ratio for a target gain",
      "frequency": "very common",
      "howToSpot": "'What ratio of water to milk gives a gain of x% when sold at cost?'",
      "formula": "W : M = g : 100",
-     "logic": "1. Set $\\frac{W}{M} = \\frac{g}{100}$ and reduce.\n2. State the ratio in the units the options use (water:milk vs milk:water).\n3. Cross-check with one litre: (1+M) litres sold for M litres' cost.\n\nWhy: the gain per cent *is* the water-to-milk ratio in per cent form.",
+     "steps": [
+      "Set water : milk = g : 100 and reduce.",
+      "State the ratio in the direction the options use.",
+      "Check with one litre: (1 + M) litres sold for the price of M."
+     ],
+     "why": "The gain per cent IS the water-to-milk ratio in per cent form.",
      "example": {
-      "q": "A milkman wants a 25% gain by adding water and selling at cost price. The ratio of water to milk in his mixture is:",
-      "solution": "$W:M = 25:100 = 1:4$."
+      "q": "A milkman wants a 25% gain by adding water and selling at cost price. Find the ratio of water to milk in his mixture.",
+      "steps": [
+       "$W : M = 25 : 100$.",
+       "= $1 : 4$."
+      ],
+      "answer": "1 : 4"
      }
     },
     {
      "id": "mix-r3",
-     "name": "Blend CP and profit on the mixture",
+     "name": "Blend cost price and profit",
      "frequency": "common",
-     "howToSpot": "Two priced ingredients mixed in a given ratio; the mixture's selling price or profit % is asked.",
+     "howToSpot": "Two priced ingredients mixed in a given ratio; the selling price or profit % is asked.",
      "formula": "CP = \\frac{q_1 c_1 + q_2 c_2}{q_1 + q_2}, \\quad SP = CP\\left(1+\\frac{g}{100}\\right)",
-     "logic": "1. Compute the weighted CP of the blend.\n2. Apply the profit chip (or divide the SP by it to find the gain).\n3. Keep fractions — ₹36.25 answers are legitimate.\n\nWhy: profit acts on the blend's average cost, not on either ingredient.",
+     "steps": [
+      "Compute the weighted CP of the blend.",
+      "Apply the profit factor, or divide SP by CP to find the gain.",
+      "Keep fractions — ₹36.25 answers are legitimate."
+     ],
+     "why": "Profit acts on the blend's average cost, never on one ingredient alone.",
      "example": {
-      "q": "Rice at ₹30 per kg and ₹40 per kg are mixed in the ratio 2:3 and sold at ₹45 per kg. Find the profit per cent.",
-      "solution": "CP $= \\frac{2 \\times 30 + 3 \\times 40}{5} = ₹36$ → gain $= \\frac{9}{36} \\times 100 = 25\\%$."
+      "q": "Rice at ₹30 per kg and ₹40 per kg are mixed in the ratio 2 : 3 and the mixture is sold at ₹45 per kg. Find the profit per cent.",
+      "steps": [
+       "CP = $\\frac{2 \\times 30 + 3 \\times 40}{5} = \\frac{180}{5} = ₹36$.",
+       "Gain per kg = $45 - 36 = ₹9$.",
+       "Profit = $\\frac{9}{36} \\times 100 = 25\\%$."
+      ],
+      "answer": "25%"
      }
     },
     {
@@ -461,43 +781,76 @@
      "name": "Adulteration for a target gain",
      "frequency": "common",
      "howToSpot": "A costly item is cut with a cheaper one; the selling price and target gain fix the mixing ratio.",
-     "formula": "\\text{blend CP must equal } \\frac{SP}{1 + g/100};\\quad \\text{alligate on } C_1, C_2",
-     "logic": "1. Convert the gain to the required blend CP.\n2. Alligate between the two cost prices to reach that CP.\n3. Verify by recomputing the weighted CP.\n\nWhy: the blend CP that yields the gain pins the ratio uniquely.",
+     "formula": "\\text{blend CP} = \\frac{SP}{1 + g/100}; \\quad \\text{alligate on } c_1, c_2",
+     "steps": [
+      "Convert the gain into the required blend CP.",
+      "Alligate between the two cost prices to reach that CP.",
+      "Verify by recomputing the weighted CP."
+     ],
+     "why": "The blend CP that yields the gain pins the ratio uniquely.",
      "example": {
-      "q": "Ghee costing ₹120 per kg is mixed with oil costing ₹60 per kg and sold at ₹120 per kg for a 50% gain. Find the mixing ratio.",
-      "solution": "Blend CP must be $₹80$ → ghee : oil $= (80-60):(120-80) = 1:2$. Check: $\\frac{120 \\times 1 + 60 \\times 2}{3} = ₹80$ ✓."
+      "q": "Ghee costing ₹120 per kg is mixed with oil costing ₹60 per kg and the mixture is sold at ₹120 per kg for a 50% gain. Find the mixing ratio of ghee to oil.",
+      "steps": [
+       "Blend CP = $\\frac{120}{1.5} = ₹80$.",
+       "Ghee : oil = $(80 - 60) : (120 - 80) = 20 : 40 = 1 : 2$.",
+       "Check: $\\frac{120 + 120}{3} = ₹80$."
+      ],
+      "answer": "1 : 2"
      }
     },
     {
      "id": "mix-r5",
      "name": "Mixture sold through markup and discount",
      "frequency": "occasional",
-     "howToSpot": "The blended item is marked up and then discounted — net profit over the blend's CP is asked.",
+     "howToSpot": "The blended item is marked up and then discounted — the net profit on the blend's CP is asked.",
      "formula": "\\text{net} = \\left(1+\\frac{m}{100}\\right)\\left(1-\\frac{d}{100}\\right) - 1",
-     "logic": "1. Find the blend's CP per unit.\n2. Multiply the markup and discount chips to get the net factor.\n3. Profit % = (net factor − 1) × 100.\n\nWhy: markup-discount is a chip chain on top of the mixture arithmetic.",
+     "steps": [
+      "Find the blend's CP per unit.",
+      "Multiply the markup and discount factors for the net factor.",
+      "Profit % = (net factor − 1) × 100."
+     ],
+     "why": "Markup and discount are chained factors on top of the mixture arithmetic.",
      "example": {
-      "q": "A mixture costing ₹40 per kg is marked 25% above cost and sold at a 10% discount. The profit per cent is:",
-      "solution": "$1.25 \\times 0.9 = 1.125$ → 12.5% profit (SP ₹45)."
+      "q": "A mixture costs ₹40 per kg. It is marked 25% above cost and sold at a 10% discount. Find the profit per cent.",
+      "steps": [
+       "Markup factor = $1.25$; discount factor = $0.9$.",
+       "Net = $1.25 \\times 0.9 = 1.125$.",
+       "Profit = $12.5\\%$ (SP = ₹45)."
+      ],
+      "answer": "12.5%"
      }
     }
+   ],
+   "revision": [
+    "Gain % = water ÷ milk × 100, when sold at cost price.",
+    "Water p% of mixture → gain = p ÷ (100 − p) × 100.",
+    "Target gain g% → water : milk = g : 100.",
+    "Blend CP = weighted mean; SP = CP × (1 + g/100).",
+    "Adulteration: alligate to the CP that yields the gain.",
+    "Verify every ratio by recomputing the CP."
    ]
   },
   {
    "id": "mix-mixtures",
    "title": "Mixing Two Mixtures",
-   "concept": "When two ready mixtures (each with its own ratio) are combined, work with **fractions of one chosen ingredient** — never with both ratios at once.\n\n$$\\text{mixed fraction} = \\frac{\\sum (\\text{volume}_i \\times \\text{fraction}_i)}{\\sum \\text{volume}_i}$$\n\nAlligation shortcut: to get a target milk fraction f, mix volumes in the ratio $(f_2 - f) : (f - f_1)$ where $f_1, f_2$ are the two vessels' milk fractions.\n\nConvert each ratio to the fraction of the SAME ingredient first (milk or water), then mix.",
+   "concept": "Two ready mixtures, each with its own ratio, are combined. Reduce each vessel to the **fraction of one chosen ingredient** — milk, say — never juggle both ratios at once.\n\n$\\text{blend fraction} = \\dfrac{V_1 f_1 + V_2 f_2}{V_1 + V_2}$.\n\nFor a target fraction f, mix the volumes in the ratio $(f_2 - f) : (f - f_1)$. A withdrawal from a uniform mixture takes both liquids in proportion, so the inside ratio survives it.",
    "formulas": [
     {
      "name": "Blend of two mixtures",
      "tex": "f = \\frac{V_1 f_1 + V_2 f_2}{V_1 + V_2}"
     },
     {
-     "name": "Volumes for target fraction",
+     "name": "Volumes for a target fraction",
      "tex": "\\frac{V_1}{V_2} = \\frac{f_2 - f}{f - f_1}"
     },
     {
      "name": "Fraction from ratio",
      "tex": "f_{\\text{milk}} = \\frac{m}{m + w}"
+    },
+    {
+     "name": "Equal volumes",
+     "tex": "\\bar{f} = \\frac{f_1 + f_2 + f_3}{3}",
+     "note": "Only when every vessel holds the same volume."
     }
    ],
    "tricks": [
@@ -505,45 +858,84 @@
      "title": "Fractions first, then average",
      "body": "Ratio → milk fraction per vessel → weighted average.",
      "example": {
-      "q": "Two vessels contain milk and water in the ratios 3 : 1 and 5 : 3. Equal volumes are mixed. The ratio of milk to water in the new mixture is:",
-      "solution": "Milk fraction $= \\frac{1}{2}\\left(\\frac{3}{4} + \\frac{5}{8}\\right) = \\frac{11}{16}$ ⇒ milk : water $= 11 : 5$."
+      "q": "Two vessels contain milk and water in the ratios 3 : 1 and 5 : 3. Equal volumes are mixed. Find the ratio of milk to water in the new mixture.",
+      "steps": [
+       "Fractions: $\\frac{3}{4}$ and $\\frac{5}{8}$.",
+       "Mean = $\\frac{1}{2}\\left(\\frac{3}{4} + \\frac{5}{8}\\right) = \\frac{11}{16}$.",
+       "Milk : water = $11 : 5$."
+      ],
+      "answer": "11 : 5"
      }
     },
     {
      "title": "Alligate the fractions",
-     "body": "Target fraction sits between the two vessel fractions; distances give volumes.",
+     "body": "The target sits between the two vessel fractions; the distances give the volumes.",
      "example": {
-      "q": "Vessel A has 70% milk, vessel B has 30% milk. In what ratio should they be mixed to get a 50% milk mixture?",
-      "solution": "$V_A : V_B = (50 - 30) : (70 - 50) = 1 : 1$."
+      "q": "Vessel A has 70% milk and vessel B has 30% milk. In what ratio should they be mixed to get a 50% milk mixture?",
+      "steps": [
+       "$A : B = (50 - 30) : (70 - 50)$.",
+       "= $20 : 20 = 1 : 1$."
+      ],
+      "answer": "1 : 1"
      }
     },
     {
-     "title": "Unequal volumes — weight the fractions",
-     "body": "Multiply each vessel's milk fraction by its volume before adding.",
+     "title": "Weight by volume when sizes differ",
+     "body": "Multiply each vessel's fraction by its volume before adding.",
      "example": {
-      "q": "A 60-litre vessel has milk and water in the ratio 2 : 1 and a 40-litre vessel in the ratio 1 : 1. They are poured together. The milk fraction of the blend is:",
-      "solution": "Milk $= 60 \\times \\frac{2}{3} + 40 \\times \\frac{1}{2} = 60$; total 100 L ⇒ $60\\%$ milk."
+      "q": "A 60-litre vessel has milk and water in the ratio 2 : 1 and a 40-litre vessel has them in the ratio 1 : 1. They are poured together. Find the milk fraction of the blend.",
+      "steps": [
+       "Milk = $60 \\times \\frac{2}{3} + 40 \\times \\frac{1}{2} = 60$ L.",
+       "Total = $100$ L.",
+       "Milk fraction = $60\\%$."
+      ],
+      "answer": "60% milk"
      }
     }
    ],
    "mistakes": [
-    "Averaging the two ratios directly ($3{:}1$ and $5{:}3$ do not average to $4{:}2$).",
-    "Mixing fractions of milk with fractions of water inconsistently — pick one ingredient.",
-    "Ignoring unequal volumes when blending two mixtures.",
-    "Forgetting to reduce each ratio to its fraction of the total before blending."
+    {
+     "wrong": "Averaging the two ratios directly (3:1 and 5:3 'average' to 4:2).",
+     "right": "Convert each ratio to a fraction of one ingredient, then weight by volume."
+    },
+    {
+     "wrong": "Mixing milk fractions with water fractions in one calculation.",
+     "right": "Choose one ingredient at the start and stay with it."
+    },
+    {
+     "wrong": "Ignoring unequal volumes when blending.",
+     "right": "Weight each fraction by its own vessel's volume."
+    },
+    {
+     "wrong": "Forgetting to reduce each ratio to a fraction of the total.",
+     "right": "3 : 4 is 3/7 of the mixture, not 3/4."
+    },
+    {
+     "wrong": "Losing track of vessel totals in transfer questions.",
+     "right": "After every move, check that components add back to the vessel's volume."
+    }
    ],
-   "notes": "### Mixing two finished mixtures\nTwo vessels, each already a milk-water (or acid-water) blend, are poured together. Reduce each vessel to the **fraction of the key component**, pool the columns, and read the new ratio:\n$$\\text{milk in blend} = q_1 f_1 + q_2 f_2, \\qquad f = \\frac{\\text{milk}}{\\text{total}}$$\nVessel A (milk:water 3:1, 20 L) gives 15 L milk; vessel B (5:3, 32 L) gives 20 L — together 35 : 17. Nothing deeper than bookkeeping.\n\n### Choosing the mixing ratio for a target\nTo blend A and B into a target strength $t$ (as a milk fraction), alligate on the fractions:\n$$\\frac{q_A}{q_B} = \\frac{t - f_B}{f_A - t}$$\nBoth differences must carry the same sign — the target must lie between $f_A$ and $f_B$. Vessels at $\\frac{2}{5}$ and $\\frac{4}{9}$ milk blended to $\\frac{5}{12}$: $\\frac{q_A}{q_B} = \\frac{\\frac{5}{12}-\\frac{4}{9}}{\\frac{2}{5}-\\frac{5}{12}} = \\frac{\\frac{1}{36}}{\\frac{1}{60}} = \\frac{5}{3}$. Verify: $5 \\times \\frac{2}{5} + 3 \\times \\frac{4}{9} = \\frac{10}{3}$ milk in 8 parts → $\\frac{5}{12}$ ✓.\n\n### Transfers between vessels\nDrawing from a uniform mixture takes the components in the vessel's own ratio — the ratio inside survives a withdrawal. What changes it is the topping-up. Two classics:\n- **Proportional draw, then top up**: 60 L of 2:1, remove 12 L (8 milk, 4 water — still 2:1), add 8 L water → 32:24 = 4:3.\n- **Cross-transfer**: 40 L pure milk; 5 L moved to an empty vessel, replaced with water; then 5 L of the (now 35:5) mixture moved back. The second vessel ends at $9.375 : 0.625 = 15:1$. Track each vessel separately; volumes must balance.\n\n### Equal capacities and three vessels\nFor equal volumes, the blended strength is the plain mean of the fractions: vessels at $\\frac{1}{2}$, $\\frac{2}{5}$, $\\frac{3}{8}$ milk → $\\frac{1}{3}\\left(\\frac{20+16+15}{40}\\right) = \\frac{17}{40}$ → milk : water 17:23. For unequal capacities, weight by the volumes first.\n\n### Dilution by repeated fractions\nRemoving 20% of a vessel and topping with water multiplies the strength by 0.8 each round — the replacement formula in percentage clothes. 100 L at 80% milk, two rounds: $100 \\times 0.8^2 = 64$ L of milk → 64%.\n\n### One ledger, many vessels\nWhatever the story — pouring, drawing, topping, blending — the method never changes: maintain a per-vessel, per-component table and update it operation by operation. The only decisions are (1) how a withdrawal splits (in the source's own ratio), and (2) which column an addition swells. Exam answers are built so that a wrong split or a missed total change lands on a distractor, so recompute the pooled total as a checksum — components must always add back to the vessel's volume.\n\n### Quick revision\n- Convert each vessel to its key-component fraction before pooling.\n- Target blend: alligate the fractions; the target sits between them.\n- A withdrawal preserves the internal ratio; an addition shifts it.\n- Equal capacities → plain mean of strengths.\n- Cross-transfers: keep a separate ledger per vessel.\n",
+   "notes": "### Fractions first\nTwo vessels, each already a milk-water blend, are poured together. Give each vessel ONE number: the fraction of milk it holds.\n\n$$\\text{milk in the blend} = V_1 f_1 + V_2 f_2$$\n\nVessel A at 3 : 1 holds milk fraction $\\frac{3}{4}$; vessel B at 5 : 3 holds $\\frac{5}{8}$.\n\n> **Rule:** Pick one ingredient (milk or water) and convert every vessel to ITS fraction. Stay with that ingredient to the end.\n\n### Mixing two mixtures\nVessel A (3 : 1, 20 L) gives 15 L of milk. Vessel B (5 : 3, 32 L) gives 20 L. Poured together: milk $15 + 20 = 35$ L, water $5 + 12 = 17$ L → $35 : 17$.\n\nEqual volumes make it lighter work: 4 : 1 and 3 : 2 in equal volumes give milk fraction $\\frac{1}{2}\\left(\\frac{4}{5} + \\frac{3}{5}\\right) = \\frac{7}{10}$ → $7 : 3$.\n\n> **Example:** Two vessels contain milk and water in the ratios 3 : 1 and 5 : 3. Equal volumes are mixed. Milk fraction $= \\frac{1}{2}\\left(\\frac{3}{4} + \\frac{5}{8}\\right) = \\frac{11}{16}$ → milk : water $= 11 : 5$.\n\n### Hitting a target strength\nTo blend A and B into a target milk fraction t, alligate on the fractions:\n\n$$\\frac{q_A}{q_B} = \\frac{t - f_B}{f_A - t}$$\n\nBoth differences must carry the same sign — the target must lie between the two fractions. Mixtures at $\\frac{2}{5}$ and $\\frac{4}{9}$ milk blended to $\\frac{5}{12}$: $\\frac{q_A}{q_B} = \\frac{5/12 - 4/9}{2/5 - 5/12} = \\frac{1/36}{1/60} = \\frac{5}{3}$. Check: $5 \\times \\frac{2}{5} + 3 \\times \\frac{4}{9} = \\frac{10}{3}$ milk in 8 parts → $\\frac{5}{12}$.\n\n> **Tip:** Verify every target blend by rebuilding the fraction from your volumes.\n\n### Unequal volumes: weight by volume\nA 60 L vessel at 2 : 1 and a 40 L vessel at 1 : 1 are poured together. Milk = $60 \\times \\frac{2}{3} + 40 \\times \\frac{1}{2} = 40 + 20 = 60$ L in 100 L → 60% milk. Equal volumes alone would have given 58.3% — the volumes matter.\n\n> **Watch:** Never average two fractions when the volumes differ. Weight each fraction by its volume.\n\n### Withdrawals keep the inside ratio\nDrawing from a uniform mixture removes both liquids in the vessel's ratio. 60 L of 2 : 1 (40, 20); draw 12 L → removes 8 milk, 4 water → still 2 : 1 in 48 L. Add 8 L of water → $32 : 24 = 4 : 3$.\n\nOnly the topping-up changes a ratio. Removing 20% and topping with water multiplies the strength by 0.8 each round: 100 L at 80% milk, two rounds → $100 \\times 0.8^2 = 64$ L of milk.\n\n### Transfers between vessels\nTrack each vessel separately.\n\nA 40 L can of pure milk: 5 L move to an empty vessel; the can is topped with water → can at $35 : 5$. Then 5 L of the can's mixture move to the second vessel, carrying $5 \\times \\frac{35}{40} = 4.375$ milk and $0.625$ water. Second vessel: $5 + 4.375 = 9.375$ milk, $0.625$ water → $15 : 1$.\n\n> **Watch:** Recompute each vessel's total after every move. The components must add back to that total.\n\n### Three or more vessels\nEqual capacities → the plain mean of the fractions. Vessels at $\\frac{1}{2}$, $\\frac{2}{5}$, $\\frac{3}{8}$ milk → mean $\\frac{17}{40}$ → milk : water $17 : 23$. For unequal capacities, weight by volume first.\n",
    "patterns": [
     {
      "id": "mix-c1",
      "name": "Two mixtures combined",
      "frequency": "very common",
-     "howToSpot": "Two vessels with given milk-water ratios (and volumes) are mixed — find the final ratio.",
+     "howToSpot": "Two vessels with given milk-water ratios (and volumes) are mixed — the final ratio is asked.",
      "formula": "\\text{milk} = q_1 f_1 + q_2 f_2, \\quad \\text{water} = q_1(1-f_1) + q_2(1-f_2)",
-     "logic": "1. Convert each vessel to litres of milk (fraction × volume).\n2. Pool milk and water columns.\n3. Reduce the ratio to smallest terms.\n\nWhy: components add linearly across vessels.",
+     "steps": [
+      "Convert each vessel to litres of milk (fraction × volume).",
+      "Pool the milk and the water columns.",
+      "Reduce the ratio to smallest terms."
+     ],
+     "why": "Components add linearly across vessels.",
      "example": {
-      "q": "Vessels of milk:water 4:1 and 3:2 are mixed in equal volumes. Find the milk : water ratio of the blend.",
-      "solution": "Milk fraction $= \\frac{1}{2}\\left(\\frac{4}{5} + \\frac{3}{5}\\right) = \\frac{7}{10}$ → 7:3."
+      "q": "Vessels with milk : water in the ratios 4 : 1 and 3 : 2 are mixed in equal volumes. Find the milk : water ratio of the blend.",
+      "steps": [
+       "Fractions: $\\frac{4}{5}$ and $\\frac{3}{5}$; equal volumes → mean $\\frac{7}{10}$.",
+       "Milk : water = $7 : 3$."
+      ],
+      "answer": "7 : 3"
      }
     },
     {
@@ -552,22 +944,41 @@
      "frequency": "common",
      "howToSpot": "'In what ratio must mixture A be mixed with mixture B to get milk : water = t?'",
      "formula": "\\frac{q_A}{q_B} = \\frac{t - f_B}{f_A - t}",
-     "logic": "1. Write each vessel's milk fraction and the target fraction.\n2. Alligate on the fractions — same-sign differences.\n3. Verify by recomputing the blend's strength.\n\nWhy: a target strength between the two source strengths fixes the weights.",
+     "steps": [
+      "Write each vessel's milk fraction and the target fraction.",
+      "Alligate on the fractions — the two differences must share a sign.",
+      "Verify by rebuilding the blend's strength."
+     ],
+     "why": "A target between the two source strengths fixes the weights.",
      "example": {
-      "q": "Mixtures with milk:water 2:3 and 4:5 are blended to give milk : water = 5:7. Find the mixing ratio.",
-      "solution": "Fractions $\\frac{2}{5}, \\frac{4}{9}$; target $\\frac{5}{12}$ → $\\frac{q_A}{q_B} = \\frac{\\frac{5}{12}-\\frac{4}{9}}{\\frac{2}{5}-\\frac{5}{12}} = 5:3$."
+      "q": "Mixtures with milk : water in the ratios 2 : 3 and 4 : 5 are blended to give milk : water = 5 : 7. Find the mixing ratio.",
+      "steps": [
+       "Fractions $\\frac{2}{5}$, $\\frac{4}{9}$; target $\\frac{5}{12}$.",
+       "$\\frac{q_A}{q_B} = \\frac{5/12 - 4/9}{2/5 - 5/12} = \\frac{1/36}{1/60} = \\frac{5}{3}$."
+      ],
+      "answer": "5 : 3"
      }
     },
     {
      "id": "mix-c3",
      "name": "Transfer and top-up between vessels",
      "frequency": "common",
-     "howToSpot": "A quantity is drawn from one vessel into another (or replaced) — track both ledgers.",
-     "formula": "\\text{withdrawal splits in the source's own ratio}",
-     "logic": "1. Convert to component litres per vessel.\n2. Move the drawn volume split in the source's ratio.\n3. Apply additions; confirm each vessel's total separately.\n\nWhy: a uniform mixture leaves in its own proportions.",
+     "howToSpot": "A quantity is drawn from one vessel into another (or replaced) — track both vessels.",
+     "formula": "\\text{a withdrawal splits in the source's own ratio}",
+     "steps": [
+      "Write the component litres for each vessel.",
+      "Move the drawn volume split in the source's ratio.",
+      "Apply additions; confirm each vessel's total separately."
+     ],
+     "why": "A uniform mixture leaves in its own proportions.",
      "example": {
-      "q": "A 40-litre can of pure milk: 5 litres are moved to an empty vessel and the can is topped with water; then 5 litres of the can's mixture are moved to the second vessel. Milk : water in the second vessel?",
-      "solution": "After water: can 35, 5. The 5 L drawn carries 4.375 milk, 0.625 water → second vessel $9.375 : 0.625 = 15:1$."
+      "q": "A 40-litre can holds pure milk. 5 litres are moved to an empty vessel and the can is topped up with water; then 5 litres of the can's mixture are moved to the second vessel. Find milk : water in the second vessel.",
+      "steps": [
+       "After top-up the can holds $35 : 5$.",
+       "5 L of it carries $4.375$ milk and $0.625$ water.",
+       "Second vessel: milk $5 + 4.375 = 9.375$, water $0.625$ → $15 : 1$."
+      ],
+      "answer": "15 : 1"
      }
     },
     {
@@ -576,24 +987,52 @@
      "frequency": "common",
      "howToSpot": "Two solutions of given concentration are mixed in a given ratio — the resulting strength is asked.",
      "formula": "\\text{strength} = \\frac{q_1 s_1 + q_2 s_2}{q_1 + q_2}",
-     "logic": "1. Compute solute from each solution.\n2. Divide the pooled solute by the pooled volume.\n3. Convert to a percentage.\n\nWhy: concentration is volume-weighted, never a plain average unless volumes match.",
+     "steps": [
+      "Compute the solute from each solution.",
+      "Divide the pooled solute by the pooled volume.",
+      "State the result as a percentage."
+     ],
+     "why": "Concentration is volume-weighted; a plain average only works for equal volumes.",
      "example": {
-      "q": "60% and 30% acid solutions are mixed in the ratio 2:1. The strength of the resulting solution is:",
-      "solution": "$\\frac{2 \\times 60 + 1 \\times 30}{3} = 50\\%$."
+      "q": "Solutions of 60% and 30% acid are mixed in the ratio 2 : 1. Find the strength of the resulting solution.",
+      "steps": [
+       "Solute = $2 \\times 60 + 1 \\times 30 = 150$ parts.",
+       "Volume = $3$ parts.",
+       "Strength = $150 \\div 3 = 50\\%$."
+      ],
+      "answer": "50%"
      }
     },
     {
      "id": "mix-c5",
-     "name": "Three vessels / equal capacities",
+     "name": "Three vessels or equal capacities",
      "frequency": "occasional",
-     "howToSpot": "Three (or more) blends combine, often in equal volumes.",
-     "formula": "\\bar{f} = \\frac{f_1 + f_2 + f_3}{3}\\ \\ \\text{(equal volumes)}",
-     "logic": "1. Write each vessel's milk fraction.\n2. Equal volumes → average the fractions; else weight by volume.\n3. Convert the mean fraction to the required ratio.\n\nWhy: with equal capacities the weights are all 1.",
+     "howToSpot": "Three or more blends combine, often in equal volumes.",
+     "formula": "\\bar{f} = \\frac{f_1 + f_2 + f_3}{3} \\quad \\text{(equal volumes)}",
+     "steps": [
+      "Write each vessel's milk fraction.",
+      "Equal volumes → average the fractions; otherwise weight by volume.",
+      "Convert the mean fraction into the asked ratio."
+     ],
+     "why": "With equal capacities all the weights are 1.",
      "example": {
-      "q": "Three equal vessels hold milk : water 1:1, 2:3 and 3:5. Find the milk : water ratio of their mixture.",
-      "solution": "Mean fraction $= \\frac{1}{3}\\left(\\frac{1}{2}+\\frac{2}{5}+\\frac{3}{8}\\right) = \\frac{17}{40}$ → 17:23."
+      "q": "Three equal vessels hold milk : water in the ratios 1 : 1, 2 : 3 and 3 : 5. Find the milk : water ratio of their mixture.",
+      "steps": [
+       "Fractions: $\\frac{1}{2}, \\frac{2}{5}, \\frac{3}{8}$.",
+       "Mean = $\\frac{17}{40}$.",
+       "Milk : water = $17 : 23$."
+      ],
+      "answer": "17 : 23"
      }
     }
+   ],
+   "revision": [
+    "Convert every vessel to one ingredient's fraction before pooling.",
+    "Target blend: alligate the fractions; target must sit between them.",
+    "Unequal volumes → weight by volume.",
+    "Equal volumes → plain mean of the fractions.",
+    "A withdrawal keeps the inside ratio; the refill changes it.",
+    "Transfers: keep a separate column per vessel; totals must balance."
    ]
   }
  ],

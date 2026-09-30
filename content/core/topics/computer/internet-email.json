@@ -13,345 +13,818 @@
   {
    "id": "ie-internet-basics",
    "title": "Internet, WWW, URL and DNS",
-   "concept": "The **Internet** is a global 'network of networks' that grew out of **ARPANET** (1969, US DoD project; first nodes UCLA and Stanford). The **TCP/IP** protocol suite became its standard on 1 January 1983. The **World Wide Web** is one service running on the Internet - the system of interlinked web pages invented by **Tim Berners-Lee in 1989 at CERN** (with the first browser/editor, WorldWideWeb). Other services: e-mail, FTP, VoIP, streaming.\n\nAn **ISP** (Internet Service Provider - Jio, Airtel, BSNL) sells you connectivity and assigns an **IP address**. The **DNS (Domain Name System)** is the Internet's phonebook: it converts a name like www.ssc.gov.in into its numeric IP address (this translation is its exam definition).\n\n**URL (Uniform Resource Locator)** parts: `https://www.ssc.gov.in:443/exams/index.html` = protocol + subdomain + domain + top-level domain (TLD .in) + port + path + file. Common TLDs: .com (commercial), .org (organisation), .edu (education), .gov (government), .in (India). **Bandwidth** = data-carrying capacity (bps/Kbps/Mbps); broadband = always-on high-speed access (fibre, DSL, 4G/5G).",
+   "concept": "The **Internet** is a worldwide network of networks. It grew out of **ARPANET** (1969). The **World Wide Web** is one service on the Internet: linked web pages, invented by **Tim Berners-Lee** in 1989 at CERN. A **URL** is the address of a page. **DNS** turns a name like ssc.gov.in into a numeric IP address.",
    "formulas": [],
    "tricks": [
     {
      "title": "Internet vs WWW",
-     "body": "The **Internet = hardware network** (cables, routers, servers); the **WWW = content service** (hyperlinked pages) riding on it. Invented later (1989) by ONE man - Berners-Lee; the Internet is older (1969 ARPANET).",
+     "body": "The **Internet** is the hardware network of cables, routers and servers. The **WWW** is the content service of linked pages on top of it. The Internet is older (1969). The Web is 1989.",
      "example": {
       "q": "Who invented the World Wide Web?",
-      "solution": "Tim Berners-Lee (CERN, 1989)."
+      "steps": [
+       "The Web is the service of linked pages.",
+       "It was created in 1989 at CERN."
+      ],
+      "answer": "Tim Berners-Lee"
      }
     },
     {
-     "title": "DNS = phonebook",
-     "body": "DNS translates names to numbers - never 'assigns IPs' (that is DHCP) and never 'sends mail' (that is SMTP). Any question phrased 'converts domain names into IP addresses' = DNS.",
+     "title": "DNS is the phonebook",
+     "body": "DNS turns names into numbers. It never assigns IPs (that is DHCP) and never sends mail (that is SMTP). Any line that says 'converts domain names into IP addresses' means DNS.",
      "example": {
       "q": "What does DNS do?",
-      "solution": "Resolves domain names into IP addresses."
+      "steps": [
+       "Look for the words name and IP address.",
+       "Name to number is the phonebook job."
+      ],
+      "answer": "It resolves domain names into IP addresses."
      }
     }
    ],
    "mistakes": [
-    "Treating WWW and the Internet as the same thing.",
-    "Saying DNS assigns IP addresses - DHCP assigns; DNS resolves names to IPs.",
-    "Dating the Internet to 1989 - that is the WWW; ARPANET was 1969."
+    {
+     "wrong": "Treating WWW and the Internet as the same thing.",
+     "right": "The Internet is the network. The WWW is one service that runs on it."
+    },
+    {
+     "wrong": "Saying DNS assigns IP addresses.",
+     "right": "DHCP assigns addresses. DNS resolves names to IP addresses."
+    },
+    {
+     "wrong": "Dating the Internet to 1989.",
+     "right": "1989 is the Web (Berners-Lee). ARPANET was 1969."
+    },
+    {
+     "wrong": "Calling HTML a programming language.",
+     "right": "HTML is a markup language. It describes the page."
+    },
+    {
+     "wrong": "Reading HTTP as the secure protocol.",
+     "right": "HTTPS is the secure, encrypted one."
+    }
    ],
-   "notes": "### Internet and WWW — related but not the same\nThe **Internet** is a worldwide **network of networks**: millions of computers and phones connected so they can exchange data. It grew out of **ARPANET**, a 1969 project of the US Defence Department (its first two nodes were UCLA and Stanford). The **World Wide Web (WWW)** is a **service that runs on the Internet** — the collection of hyperlinked pages read through a browser. It was invented by **Tim Berners-Lee in 1989** at CERN. E-mail and file transfer are other services on the same Internet. So: Internet = the road system, WWW = one kind of traffic on it.\n\n### URL — the address of a page\nA **URL (Uniform Resource Locator)** names every page. Read it in parts:\n\n`https://www.example.in/Results/2026.html`\n- **https://** — the protocol (rules for the conversation). HTTPS is the **secure** version (encrypted); plain HTTP is not.\n- **www.example.in** — the **domain name** of the server (www = world wide web host prefix, .in = India country code; .com, .org, .gov, .edu are others).\n- **/Results/2026.html** — the **path** to the exact page or file on that server.\n\nThe **DNS (Domain Name System)** translates the typed name into the server's **IP address** — the numeric identity (like 142.250.183.14) that machines actually use. DNS is the **phonebook of the Internet**: you ask for a name, it returns the number.\n\n### Who does what on the net\n| Player | Job |\n|---|---|\n| **ISP** (Internet Service Provider) | sells you the connection (Jio, Airtel, BSNL) |\n| **DNS server** | name to IP address translation |\n| **DHCP server** | **assigns** an IP address to your device |\n| **Web server** | stores pages and serves them to browsers |\n\nClassic trap: **DNS resolves names; DHCP assigns addresses.**\n\n### Small facts that recur\n- **IP address** — a device's numeric address; IPv4 has four blocks of 0-255.\n- **TCP/IP** is the standard protocol suite of the Internet (ARPANET adopted it in 1983).\n- **Bandwidth** is the data-carrying capacity of a link; **latency** is the delay.\n- **VoIP** (Voice over Internet Protocol) carries phone calls over the Internet.\n- A **web portal** is a site that gathers many services on one page; a **website** is a set of related web pages under one domain.\n\n### How the pieces cooperate (one page load)\n1. You type a **URL** in the browser.\n2. **DNS** turns the domain into the server's IP address.\n3. Your request travels over TCP/IP to the **web server**, which sends the page back.\n4. The browser renders the HTML and displays the page — all in about a second.\nEvery exam question on DNS, URL or ISP is one stop on this journey, so picture it as a single delivery trip: name translated (DNS), address found (IP), parcel carried (TCP/IP), delivered by the shop (web server).\n\n### Quick revision\n- Internet = network of networks (from ARPANET, 1969); WWW = hyperlinked pages (Berners-Lee, 1989).\n- URL = protocol + domain + path; https is the secure protocol.\n- **DNS: name to IP; DHCP: gives IP; ISP: sells the connection.**\n- TCP/IP = the Internet's protocol suite; VoIP = calls over the Internet.",
+   "notes": "### Internet and the Web\nThe **Internet** is a worldwide **network of networks**. Millions of computers and phones connect through it and swap data.\n\n- It grew out of **ARPANET**, a 1969 project of the US Department of Defense.\n- The first two ARPANET nodes were at **UCLA** and **Stanford**.\n- **TCP/IP** became its standard protocol suite on 1 January 1983.\n\nThe **World Wide Web (WWW)** is a **service that runs on the Internet**. It is a set of linked pages that you read in a browser. **Tim Berners-Lee** invented it in **1989** at **CERN**. E-mail, FTP, VoIP and streaming are other services on the same Internet.\n\n> **Tip:** Internet is the road system. The Web is one kind of traffic on it. The Internet is older (1969); the Web came later (1989).\n\n### Parts of a URL\nA **URL (Uniform Resource Locator)** is the address of one page or file. Read it from left to right.\n\n| Part | Example | Meaning |\n|---|---|---|\n| Protocol | HTTPS | The rules used for the talk. HTTPS is the secure, encrypted version. |\n| Subdomain | www | The host prefix. |\n| Domain | ssc.gov.in | The name of the server. |\n| Top-level domain (TLD) | .in | The ending. It shows the type or country. |\n| Port | 443 | The door number on the server. |\n| Path | /exams/ | The folder on the server. |\n| File | index.html | The exact page. |\n\n### Common domain endings\n| Ending | Meaning |\n|---|---|\n| .com | commercial |\n| .org | organisation |\n| .edu | education |\n| .gov | government |\n| .in | India |\n\n### DNS, DHCP and ISP\nThree helpers make a connection work. Each has one job.\n\n| Helper | Job |\n|---|---|\n| **ISP** (Internet Service Provider) | Sells you the connection. Examples: Jio, Airtel, BSNL. |\n| **DNS** (Domain Name System) | Turns a domain name into an IP address. It is the phonebook of the Internet. |\n| **DHCP** | Assigns an IP address to your device. |\n| **Web server** | Stores pages and sends them to browsers. |\n\nAn **IP address** is the number that machines use. IPv4 has four blocks, each from 0 to 255. One example is 142.250.183.14.\n\n> **Watch:** DNS resolves names. DHCP assigns addresses. Exams swap these two on purpose.\n\n### What happens when you open a page\n1. You type a URL in the browser.\n2. **DNS** finds the IP address of that domain.\n3. Your request travels over **TCP/IP** to the **web server**.\n4. The server sends the page back.\n5. The browser draws the page from its HTML.\n\nEvery DNS, URL or ISP question is one stop on this trip.\n\n### Small facts that repeat\n- **Bandwidth** is how much data a link can carry. It is measured in bps, Kbps or Mbps.\n- **Broadband** is always-on, high-speed access, such as fibre, DSL, 4G or 5G.\n- **VoIP** (Voice over Internet Protocol) carries phone calls over the Internet.\n- A **website** is a set of related pages under one domain.\n- A **web portal** gathers many services on one page.\n",
    "patterns": [
     {
      "id": "ie-n1",
      "name": "Internet vs WWW and ARPANET history",
      "frequency": "very common",
-     "howToSpot": "'The Internet is', 'WWW was invented by', 'the year of ARPANET' or a statement question mixing the Internet with the Web.",
+     "howToSpot": "The words 'The Internet is', 'WWW was invented by', 'the year of ARPANET', or a statement that mixes the Internet with the Web.",
      "formula": null,
-     "logic": "1. Internet = the global network of networks, born from **ARPANET (1969)**.\n2. WWW = the hyperlinked-page service, invented by **Tim Berners-Lee, 1989, CERN**.\n3. The Web is a service ON the Internet (with e-mail, FTP); the two words are not interchangeable.",
+     "steps": [
+      "Match the Internet with ARPANET, 1969.",
+      "Match the WWW with Berners-Lee, 1989, CERN.",
+      "Remember the Web is a service on the Internet.",
+      "Reject any option that treats the two words as equal."
+     ],
+     "why": "The two dates and the two names are the only facts asked.",
      "example": {
       "q": "The World Wide Web was invented in 1989 by:",
-      "solution": "**Tim Berners-Lee** at CERN — the Internet itself is older, growing from ARPANET of 1969."
+      "steps": [
+       "1989 is the Web, not the Internet.",
+       "The Web came from CERN."
+      ],
+      "answer": "Tim Berners-Lee at CERN. The Internet is older, from ARPANET (1969)."
      }
     },
     {
      "id": "ie-n2",
      "name": "URL anatomy",
      "frequency": "very common",
-     "howToSpot": "A URL is given and a part is asked: the protocol, the domain, the country code, the path — or the full form of URL.",
+     "howToSpot": "A URL is given and one part is asked: protocol, domain, country code or path. Or the full form of URL.",
      "formula": null,
-     "logic": "1. Split at the slashes: https:// + domain + path.\n2. The part before the first single slash after the address is the protocol; the name before the first single slash is the domain; what follows is the path.\n3. Ending codes: .com commercial, .org organisation, .gov government, .edu education, .in India.",
+     "steps": [
+      "Split the URL at the slashes.",
+      "The start up to :// is the protocol.",
+      "The name right after it is the domain.",
+      "Everything after the domain is the path."
+     ],
+     "why": "Each part of a URL has one fixed position.",
      "example": {
       "q": "In https://www.mysite.in/exams/ssc.html, the domain name is:",
-      "solution": "**www.mysite.in** — https is the protocol, /exams/ssc.html is the path to the page."
+      "steps": [
+       "https is the protocol.",
+       "/exams/ssc.html is the path.",
+       "What is left is www.mysite.in."
+      ],
+      "answer": "www.mysite.in"
      }
     },
     {
      "id": "ie-n3",
      "name": "DNS, DHCP and ISP roles",
      "frequency": "common",
-     "howToSpot": "'DNS converts ___ to ___', 'which server assigns IP addresses', 'who provides the Internet connection' — role-matching of the three servers.",
+     "howToSpot": "'DNS converts ___ to ___', 'which server assigns IP addresses', 'who provides the Internet connection'.",
      "formula": null,
-     "logic": "1. **DNS = Domain Name System**: domain name to IP address (the phonebook).\n2. **DHCP = Dynamic Host Configuration Protocol**: ASSIGNS IP addresses to devices.\n3. **ISP** sells the connection. The swap of DNS and DHCP jobs is the planted error.",
+     "steps": [
+      "Find the verb in the question.",
+      "Convert or resolve a name means DNS.",
+      "Assign an IP address means DHCP.",
+      "Provide the connection means ISP."
+     ],
+     "why": "Each helper has one job, and options swap the jobs.",
      "example": {
       "q": "The server that converts a website name into its IP address is the:",
-      "solution": "**DNS server** — assigning addresses is DHCP's job; resolving names is DNS's."
+      "steps": [
+       "The job is name to IP address.",
+       "That is DNS, not DHCP."
+      ],
+      "answer": "DNS server"
      }
     },
     {
      "id": "ie-n4",
      "name": "Internet full forms and firsts",
      "frequency": "common",
-     "howToSpot": "'Full form of HTTP/HTML/URL/ISP/VoIP' or wrongly matched pairs where one word of the expansion is changed.",
+     "howToSpot": "'Full form of HTTP, HTML, URL, ISP, VoIP' or a pair where one word of the expansion is changed.",
      "formula": null,
-     "logic": "1. HTTP = HyperText Transfer Protocol; HTML = HyperText Markup Language; URL = Uniform Resource Locator; ISP = Internet Service Provider; VoIP = Voice over Internet Protocol; WWW = World Wide Web.\n2. Check word by word — 'Hyper Transfer Text Protocol' style traps are common.\n3. HTML is a MARKUP language, not a programming language.",
+     "steps": [
+      "Recall the full form word by word.",
+      "Compare it with each option.",
+      "Reject options with swapped words like 'Hyper Transfer Text'.",
+      "Remember HTML is a markup language."
+     ],
+     "why": "One changed word makes the option wrong.",
      "example": {
       "q": "The full form of HTML is:",
-      "solution": "**HyperText Markup Language** — the language in which web pages are written; it is a markup language, not a programming language."
+      "steps": [
+       "H stands for HyperText.",
+       "M and L stand for Markup Language."
+      ],
+      "answer": "HyperText Markup Language. It is a markup language, not a programming language."
+     }
+    },
+    {
+     "id": "ie-n5",
+     "name": "Domain endings (TLD)",
+     "frequency": "common",
+     "howToSpot": "A domain such as .edu, .gov or .org is given and you must name its type. Or the reverse.",
+     "formula": null,
+     "steps": [
+      "Look at the last part of the domain.",
+      "Match it to its meaning.",
+      "Check the country code .in for India."
+     ],
+     "why": "Each TLD has one standard meaning.",
+     "example": {
+      "q": "A website whose address ends in .gov most likely belongs to:",
+      "steps": [
+       "The ending is .gov.",
+       ".gov means government."
+      ],
+      "answer": "A government body"
+     }
+    },
+    {
+     "id": "ie-n6",
+     "name": "Order of steps to open a page",
+     "frequency": "occasional",
+     "howToSpot": "'What happens first when you type a URL?' or 'arrange these steps'.",
+     "formula": null,
+     "steps": [
+      "Start with the URL typed in the browser.",
+      "Next comes the DNS lookup.",
+      "Then the request goes to the web server.",
+      "Last, the browser shows the page."
+     ],
+     "why": "The IP address must be known before a request can be sent.",
+     "example": {
+      "q": "After you type a URL, the browser first asks which service for the server's IP address?",
+      "steps": [
+       "Names are turned into IP addresses by DNS.",
+       "This happens before the request is sent."
+      ],
+      "answer": "DNS"
      }
     }
+   ],
+   "revision": [
+    "Internet = network of networks, from ARPANET (1969). WWW = linked pages, Berners-Lee, 1989, CERN.",
+    "TCP/IP became the Internet standard on 1 January 1983.",
+    "URL = protocol + subdomain + domain + TLD + port + path + file.",
+    "DNS: name to IP. DHCP: gives an IP. ISP: sells the connection.",
+    "TLDs: .com commercial, .org organisation, .edu education, .gov government, .in India.",
+    "HTTP = HyperText Transfer Protocol. HTML = HyperText Markup Language. VoIP = calls over the Internet."
    ]
   },
   {
    "id": "ie-browsers-search",
    "title": "Browsers, search engines, downloading and uploading",
-   "concept": "A **browser** is the client software that fetches and displays web pages: Chrome, Microsoft Edge, Firefox, Safari, Opera. A **search engine** is a website that indexes the web and finds pages: Google, Bing, Yahoo, DuckDuckGo. (Google is NOT a browser; Chrome is NOT a search engine - the most repeated trap.)\n\nA **webpage** is one document (HTML); a **website** is a collection of related pages; the **home page** is a site's opening page; a **portal** bundles services (news, mail, shopping). Pages are written in **HTML** (HyperText Markup Language) and linked by **hyperlinks**.\n\n**Downloading** = copying files FROM a server to your device; **uploading** = sending files FROM your device TO a server (e.g. attaching to e-mail, posting videos). **Cookies** are small text files a site stores in your browser (sessions, preferences, tracking); the **cache** keeps copies of pages/images for faster reloads.\n\n**Search tips:** quotes \"exact phrase\", minus -exclude, site:ssc.gov.in restricts to a site, OR widens. **Browser shortcuts:** Ctrl+T new tab, Ctrl+W close tab, Ctrl+Shift+T reopen closed tab, Ctrl+N window, Ctrl+Shift+N incognito/private, Ctrl+D bookmark, Ctrl+H history, Ctrl+J downloads, F5 refresh, Ctrl+F5 hard refresh, Ctrl+F find in page, Ctrl+L/Alt+D address bar, Ctrl+Enter adds www...com, Ctrl+plus/minus/0 zoom, F11 full screen, Ctrl+S save page, Ctrl+U view source, Ctrl+P print.",
+   "concept": "A **browser** is the program that fetches and shows web pages, such as Chrome, Edge, Firefox, Safari and Opera. A **search engine** is a website that finds pages, such as Google, Bing, Yahoo and DuckDuckGo. **Download** means server to your device. **Upload** means your device to a server.",
    "formulas": [],
    "tricks": [
     {
-     "title": "Browser vs engine",
-     "body": "**Browser = the car; search engine = the GPS you ask inside it.** Chrome/Edge/Firefox/Safari/Opera = cars. Google/Bing/Yahoo/DuckDuckGo = GPS. If it is a program you install, browser; if it is a website you visit, engine.",
+     "title": "Browser is the car, engine is the GPS",
+     "body": "Chrome, Edge, Firefox, Safari and Opera are browsers, the program you install. Google, Bing, Yahoo and DuckDuckGo are search engines, the websites you visit inside a browser.",
      "example": {
-      "q": "Which of these is a web browser - Google, Chrome, Yahoo, Bing?",
-      "solution": "Chrome (the rest are search engines)."
+      "q": "Which of these is a web browser: Google, Chrome, Yahoo, Bing?",
+      "steps": [
+       "Google, Yahoo and Bing are search engines.",
+       "Chrome is the program that opens pages."
+      ],
+      "answer": "Chrome"
      }
     },
     {
-     "title": "Ctrl-letter browser map",
-     "body": "**T**ab new, **W**ipe (close) tab, **D**rop a bookmark, **H**istory, **J**unk... no - **J**etisoned files (Downloads), **N**ormal window, **N+Shift** No-trace (incognito). F5 = freshen.",
+     "title": "Ctrl-letter map",
+     "body": "T is a new Tab. W closes the tab. D is a Bookmark (Drop a pin). H is History. J is the downloads list. N is a new window, and Shift+N makes it incognito. F5 refreshes.",
      "example": {
-      "q": "Shortcut to reopen a closed tab?",
-      "solution": "Ctrl+Shift+T."
+      "q": "Which shortcut reopens a closed tab?",
+      "steps": [
+       "Ctrl+T opens a new tab.",
+       "Adding Shift with T brings back the closed one."
+      ],
+      "answer": "Ctrl+Shift+T"
      }
     },
     {
-     "title": "Up vs Down",
-     "body": "**Upload = YOU send up** (to the server); **Download = server sends down** to you. The direction is always relative to YOUR machine.",
+     "title": "Up or down",
+     "body": "**Upload** sends a file up to the server. **Download** brings it down to you. The direction is always relative to your machine.",
      "example": {
-      "q": "Saving an e-mail attachment to your PC is?",
-      "solution": "Downloading."
+      "q": "Saving an e-mail attachment to your PC is called:",
+      "steps": [
+       "The file moves from the server to your PC."
+      ],
+      "answer": "Downloading"
      }
     }
    ],
    "mistakes": [
-    "Calling Google a browser or Chrome a search engine.",
-    "Confusing Ctrl+H (history) with Ctrl+J (downloads) - H comes before J alphabetically: History before Downloads? No: History=H, Downloads=J is pure memory; the mnemonic is 'H = havens visited (history)'.",
-    "Thinking cookies are viruses - cookies are passive text files (privacy issue, not malware)."
+    {
+     "wrong": "Calling Google a browser or Chrome a search engine.",
+     "right": "Chrome is the browser. Google is the search engine you use inside it."
+    },
+    {
+     "wrong": "Mixing up Ctrl+H and Ctrl+J.",
+     "right": "Ctrl+H is History. Ctrl+J is the downloads list."
+    },
+    {
+     "wrong": "Thinking cookies are viruses.",
+     "right": "Cookies are passive text files. They are a privacy issue, not malware."
+    },
+    {
+     "wrong": "Believing incognito hides you from the ISP.",
+     "right": "Incognito only forgets history and cookies on your device."
+    },
+    {
+     "wrong": "Reading upload and download from the server's side.",
+     "right": "Judge the direction from your own device."
+    }
    ],
-   "notes": "### Browser vs search engine — separate jobs\nA **browser** is the **program on your device** that fetches and displays web pages: **Chrome, Microsoft Edge, Firefox, Safari, Opera** (Internet Explorer is retired). A **search engine** is a **website** that indexes the web and finds pages for your words: **Google, Bing, Yahoo, DuckDuckGo**. Google is a search engine; Chrome is a browser; Chrome's address bar can USE Google. Exams love the swap: \"Google is a browser — true or false?\" False.\n\n### The browser's everyday tools\n| Tool | What it keeps |\n|---|---|\n| **History** | every page you visited |\n| **Bookmarks/Favourites** | pages you saved for quick return |\n| **Cache** | copies of pages and pictures, so revisits load faster |\n| **Cookies** | small text files a site stores on you — logins, preferences, tracking |\n\nCookies are **not viruses** — they are passive text files; the worry is privacy, not infection. **Incognito / private mode** opens a window that forgets history and cookies when closed — useful on shared computers. It does **not** make you anonymous to the websites or the ISP.\n\n### Keyboard shortcuts of the browser\n| Key | Job |\n|---|---|\n| **Ctrl+T** | new **T**ab |\n| **Ctrl+N** | new window |\n| **Ctrl+Shift+N** | new **incognito** window (Chrome) |\n| **Ctrl+H** | **H**istory panel |\n| **Ctrl+J** | **J**ust-downloaded files (downloads list) |\n| **Ctrl+D** | **D**rop a bookmark |\n| **Ctrl+F** | **F**ind text on the page |\n| **F5 / Ctrl+R** | refresh the page |\n\nH before J alphabetically: **History, then downloads** — a common one-mark trap.\n\n### Downloading and uploading\n- **Download** = a file travels from a server **to your device** (songs, PDFs, apps). The browser's downloads list (Ctrl+J) tracks them; the Downloads folder stores them.\n- **Upload** = a file travels from **your device to a server** (attaching a form, posting a video).\n- **Streaming** = watching or listening as the data arrives, without saving the whole file first.\n\n### Using a search engine well\nType specific **keywords**, not full sentences; put quotes around words that must appear together (\"solar mission\"); a minus sign removes a word. Results mix ads, links, images and videos — the engine ranks pages by relevance, it does not check truth.\n\n### Quick revision\n- Chrome/Edge/Firefox/Safari = browsers; Google/Bing/DuckDuckGo = search engines.\n- History (Ctrl+H), downloads (Ctrl+J), bookmark (Ctrl+D), new tab (Ctrl+T), incognito Ctrl+Shift+N.\n- Cache = speed copies; cookies = site-stored text files (privacy, not viruses).\n- Download = server to you; upload = you to server; streaming = play as it arrives.",
+   "notes": "### Browser or search engine\nA **browser** is a program on your device. It fetches and shows web pages.\n\n- Browsers: **Chrome, Microsoft Edge, Firefox, Safari, Opera**.\n- Internet Explorer is retired.\n\nA **search engine** is a website. It keeps an index of the web and finds pages for your words.\n\n- Search engines: **Google, Bing, Yahoo, DuckDuckGo**.\n\n> **Watch:** Google is a search engine. Chrome is a browser. Exams put Google among browsers on purpose.\n\n### Web words\n| Word | Meaning |\n|---|---|\n| Webpage | One document, written in HTML |\n| Website | A set of related pages |\n| Home page | The opening page of a site |\n| Portal | One site that bundles many services, such as news, mail and shopping |\n| Hyperlink | A link that jumps to another page |\n\n**HTML** is HyperText Markup Language. It builds the page. Hyperlinks join the pages.\n\n### What the browser keeps\n| Tool | What it keeps |\n|---|---|\n| **History** | Every page you visited |\n| **Bookmarks** | Pages you saved for a quick return |\n| **Cache** | Copies of pages and pictures, so revisits load faster |\n| **Cookies** | Small text files a site stores, for logins, preferences and tracking |\n\nCookies are **not viruses**. They are passive text files. The worry is privacy.\n\n**Incognito (private) mode** forgets history and cookies when you close the window. It is good for shared computers. It does **not** hide you from websites or the ISP.\n\n### Browser shortcuts\n| Key | Job |\n|---|---|\n| Ctrl+T | New tab |\n| Ctrl+W | Close tab |\n| Ctrl+Shift+T | Reopen the closed tab |\n| Ctrl+N | New window |\n| Ctrl+Shift+N | New incognito window |\n| Ctrl+D | Bookmark the page |\n| Ctrl+H | History |\n| Ctrl+J | Downloads |\n| F5 or Ctrl+R | Refresh |\n| Ctrl+F5 | Hard refresh |\n| Ctrl+F | Find on the page |\n| Ctrl+L or Alt+D | Go to the address bar |\n| Ctrl+Enter | Adds the www prefix and .com ending |\n| Ctrl + plus, minus, 0 | Zoom in, out, reset |\n| F11 | Full screen |\n| Ctrl+S, Ctrl+U, Ctrl+P | Save page, view source, print |\n\n> **Tip:** H is for History. J is the Just-downloaded list. The two are often swapped in options.\n\n### Download, upload and streaming\n- **Download:** a file moves from a server **to your device**. Songs, PDFs and apps are examples.\n- **Upload:** a file moves from **your device to a server**. Attaching a form or posting a video are examples.\n- **Streaming:** you play the data as it arrives, without saving the whole file first.\n\nThe direction is always seen from **your** machine.\n\n### Searching well\nType keywords, not full sentences. These tricks narrow the results.\n\n| Trick | Effect |\n|---|---|\n| \"exact phrase\" | Finds the words together |\n| minus sign, as in -word | Removes a word |\n| site:ssc.gov.in | Searches only that site |\n| OR | Widens the search |\n\nThe engine ranks pages by relevance. It does not check whether they are true.\n",
    "patterns": [
     {
      "id": "ie-s1",
      "name": "Browser vs search engine",
      "frequency": "very common",
-     "howToSpot": "'Which one is a browser/search engine?' or odd-one-out among Chrome, Firefox, Google, Safari — with Google planted among browsers.",
+     "howToSpot": "'Which is a browser or a search engine?' or an odd-one-out list of Chrome, Firefox, Google and Safari.",
      "formula": null,
-     "logic": "1. Browsers (programs): Chrome, Edge, Firefox, Safari, Opera.\n2. Search engines (websites): Google, Bing, Yahoo, DuckDuckGo.\n3. The classic trap: Google listed among browsers or Chrome listed among search engines.",
+     "steps": [
+      "List the browsers: Chrome, Edge, Firefox, Safari, Opera.",
+      "List the engines: Google, Bing, Yahoo, DuckDuckGo.",
+      "Pick the name from the group the question asks for."
+     ],
+     "why": "Google planted among browsers is the classic trap.",
      "example": {
-      "q": "Which of the following is a WEB BROWSER?",
-      "solution": "**Chrome** (like Edge, Firefox, Safari) — Google and Bing are search engines, programs that live inside browsers."
+      "q": "Which of the following is a web browser?",
+      "steps": [
+       "Bing and Google are search engines.",
+       "Chrome is an installed program that opens pages."
+      ],
+      "answer": "Chrome"
      }
     },
     {
      "id": "ie-s2",
      "name": "Browser shortcut recall",
      "frequency": "very common",
-     "howToSpot": "'Shortcut to open a new tab / history / downloads / bookmark' — with Ctrl+H and Ctrl+J swapped in the options.",
+     "howToSpot": "'Shortcut to open a new tab, history, downloads or bookmark', with Ctrl+H and Ctrl+J swapped in the options.",
      "formula": null,
-     "logic": "1. Ctrl+T new Tab, Ctrl+N new window, Ctrl+Shift+N incognito, **Ctrl+H History**, **Ctrl+J downloads**, Ctrl+D bookmark, Ctrl+F find on page, F5 refresh.\n2. H before J: History first, downloads (J) second.\n3. Ctrl+D is bookmark in browsers but fill-down in Excel — context decides.",
+     "steps": [
+      "Recall the letter: T tab, N window, D bookmark, H history, J downloads.",
+      "Add Shift for the incognito or reopen versions.",
+      "Watch for Excel, where Ctrl+D means fill down."
+     ],
+     "why": "One letter decides each shortcut.",
      "example": {
-      "q": "The keyboard shortcut that opens the downloads list in Chrome is:",
-      "solution": "**Ctrl+J** — Ctrl+H opens History instead."
+      "q": "The shortcut that opens the downloads list in Chrome is:",
+      "steps": [
+       "Downloads is the J key.",
+       "Ctrl+H opens History instead."
+      ],
+      "answer": "Ctrl+J"
      }
     },
     {
      "id": "ie-s3",
      "name": "Download, upload, cache and cookies",
      "frequency": "common",
-     "howToSpot": "'Downloading means', 'what does the browser cache store', 'cookies are ___' — direction or definition matching.",
+     "howToSpot": "'Downloading means', 'what does the cache store', 'cookies are ___'.",
      "formula": null,
-     "logic": "1. **Download** = server to your device; **upload** = your device to server; streaming = play while it arrives.\n2. Cache = copies kept for faster revisits; history = list of visits.\n3. **Cookies = small text files** a site saves (login, preferences, tracking) — passive files, not viruses.",
+     "steps": [
+      "Check the direction of the file first.",
+      "Cache means copies kept for speed.",
+      "Cookies are small text files, not viruses."
+     ],
+     "why": "Each word has one plain definition.",
      "example": {
       "q": "Receiving a file from a web server to your computer is called:",
-      "solution": "**Downloading** — sending one the other way is uploading."
+      "steps": [
+       "The file moves toward your device.",
+       "That direction is download."
+      ],
+      "answer": "Downloading. The opposite direction is uploading."
      }
     },
     {
      "id": "ie-s4",
      "name": "Incognito and privacy features",
      "frequency": "common",
-     "howToSpot": "'Incognito mode ___', 'private browsing saves ___' — what is forgotten, what is NOT hidden.",
+     "howToSpot": "'Incognito mode ___', 'private browsing saves ___'. Sort what is forgotten from what is not hidden.",
      "formula": null,
-     "logic": "1. Incognito/private windows **forget history and cookies after closing** — good for shared computers.\n2. They do NOT hide you from websites, the office network or the ISP, and bookmarks you make stay.\n3. Cookies cleared = stored logins lost in that window.",
+     "steps": [
+      "Recall that history and cookies vanish on closing.",
+      "Recall that websites, the office network and the ISP still see you.",
+      "Bookmarks you make stay."
+     ],
+     "why": "Incognito cleans your device, not the network.",
      "example": {
       "q": "Which statement about Chrome's Incognito mode is TRUE?",
-      "solution": "**Browsing history and cookies of that window are deleted when it closes** — but your ISP and the websites still see the visit."
+      "steps": [
+       "It forgets history and cookies after closing.",
+       "It does not hide the visit from the ISP or the website."
+      ],
+      "answer": "Browsing history and cookies of that window are deleted when it closes."
+     }
+    },
+    {
+     "id": "ie-s5",
+     "name": "Search operators",
+     "frequency": "occasional",
+     "howToSpot": "A search box example with quotes, a minus sign, site: or OR, and a question on its effect.",
+     "formula": null,
+     "steps": [
+      "Quotes keep words together.",
+      "A minus sign removes a word.",
+      "site: limits to one website.",
+      "OR widens the search."
+     ],
+     "why": "Each symbol changes the search in one fixed way.",
+     "example": {
+      "q": "Which search text restricts results to the website ssc.gov.in?",
+      "steps": [
+       "The site: operator limits results to one website.",
+       "It goes before the domain."
+      ],
+      "answer": "site:ssc.gov.in"
+     }
+    },
+    {
+     "id": "ie-s6",
+     "name": "Web terms: webpage, website, portal",
+     "frequency": "occasional",
+     "howToSpot": "'A collection of related pages is', 'the opening page of a site is', 'a site bundling news and mail is'.",
+     "formula": null,
+     "steps": [
+      "One document is a webpage.",
+      "A set of pages is a website.",
+      "The opening page is the home page.",
+      "A site with many services is a portal."
+     ],
+     "why": "The words differ by size and purpose.",
+     "example": {
+      "q": "A collection of related web pages under one domain is called a:",
+      "steps": [
+       "One page is a webpage.",
+       "Many related pages together are a website."
+      ],
+      "answer": "Website"
      }
     }
+   ],
+   "revision": [
+    "Chrome, Edge, Firefox, Safari, Opera are browsers. Google, Bing, Yahoo, DuckDuckGo are search engines.",
+    "Ctrl+T new tab, Ctrl+W close tab, Ctrl+Shift+T reopen tab, Ctrl+N window, Ctrl+Shift+N incognito.",
+    "Ctrl+D bookmark, Ctrl+H history, Ctrl+J downloads, Ctrl+F find, F5 refresh, Ctrl+F5 hard refresh.",
+    "Cache = copies for speed. Cookies = site text files (privacy, not viruses).",
+    "Download = server to you. Upload = you to server. Streaming = play as it arrives.",
+    "Search tricks: quotes for an exact phrase, minus to exclude, site: to limit, OR to widen."
    ]
   },
   {
    "id": "ie-email-basics",
    "title": "E-mail: structure, To/CC/BCC and protocols",
-   "concept": "**E-mail** (electronic mail) exchanges messages between accounts on mail servers. An address = `username@domain` - the **@** separates user from domain (ray.kiran@gmail.com).\n\n**Fields:** **To** - primary recipients; **CC (Carbon Copy)** - secondary recipients visible to all; **BCC (Blind Carbon Copy)** - hidden recipients: the To/CC people cannot see who was BCC'd (use BCC for mass mails to protect privacy). Others: Subject, body, **attachment** (paperclip; files sent along, size-limited), signature, priority.\n\n**Folders/actions:** Compose, Send, Reply (to sender), Reply All (sender + everyone on To/CC), Forward (pass on), Inbox (received), Outbox (pending), Sent, Drafts (unfinished), Spam/Junk (filtered mail), Trash/Bin. **MIME** (Multipurpose Internet Mail Extensions) is the standard that lets e-mail carry attachments, images and non-English text.\n\n**Protocols:** **SMTP (Simple Mail Transfer Protocol, port 25)** - SENDS mail between clients and servers. **POP3 (Post Office Protocol v3, port 110)** - downloads mail to one device, usually removing it from the server. **IMAP (Internet Message Access Protocol, port 143)** - mail stays on the server and **syncs across many devices**. Webmail (Gmail in a browser) vs mail clients (Outlook, Thunderbird). Filters/labels sort automatically; autoresponders reply when you are away.",
+   "concept": "**E-mail** sends messages between accounts on mail servers. An address is username@domain, and **@** separates the two. **CC** copies are visible to all. **BCC** copies are hidden. **SMTP** sends mail. **POP3** downloads it to one device. **IMAP** keeps it on the server and syncs all devices.",
    "formulas": [],
    "tricks": [
     {
      "title": "CC vs BCC",
-     "body": "**CC = Carbon Copy - Everyone sees. BCC = Blind - eyes covered**, so To/CC recipients cannot see the blind list. 'Who was secretly copied?' - nobody but the sender knows.",
+     "body": "**CC** is a Carbon Copy that everybody sees. **BCC** is Blind, so To and CC receivers cannot see the blind list.",
      "example": {
-      "q": "A receiver of the mail can see the addresses in which field(s)?",
-      "solution": "To and CC - never BCC."
+      "q": "The receiver of a mail can see the addresses in which fields?",
+      "steps": [
+       "To and CC are shown to all.",
+       "BCC is hidden."
+      ],
+      "answer": "To and CC, never BCC"
      }
     },
     {
-     "title": "SMTP Sends, POP Picks, IMAP In-sync",
-     "body": "**S**MTP = **S**end (outgoing). **P**OP3 = **P**ick up on one device (downloads, server emptied). **IMAP = In All devices** (server copy stays, everything syncs).",
+     "title": "SMTP sends, POP picks, IMAP in-sync",
+     "body": "**S**MTP = **S**end (outgoing). **P**OP3 = **P**ick up on one device (server copy usually removed). **IMAP** = in all devices (server copy stays, everything syncs).",
      "example": {
       "q": "Which protocol lets you read the same mail on phone and laptop?",
-      "solution": "IMAP."
+      "steps": [
+       "The mail must stay on the server.",
+       "That is IMAP."
+      ],
+      "answer": "IMAP"
      }
     },
     {
-     "title": "@ = at",
-     "body": "In ray@gmail.com the @ separates 'who' from 'where' - user at domain. Options without @, or with a space/comma, are dead giveaways.",
+     "title": "At sign",
+     "body": "In ray@gmail.com the @ separates who from where: user at domain. An option with no @, or with a space or comma, is wrong.",
      "example": {
-      "q": "Which character separates the username from the domain in e-mail?",
-      "solution": "@ (at the rate)."
+      "q": "Which character separates the username from the domain in an e-mail address?",
+      "steps": [
+       "The character reads as 'at'."
+      ],
+      "answer": "@"
      }
     }
    ],
    "mistakes": [
-    "Saying CC recipients are hidden - that is BCC; CC is fully visible.",
-    "Making SMTP the receiving protocol - SMTP only sends; POP3/IMAP receive.",
-    "Using Reply All when a mass mail was BCC'd - your reply reaches the sender, not the hidden list (and Reply-All storms are bad netiquette)."
+    {
+     "wrong": "Saying CC receivers are hidden.",
+     "right": "BCC is hidden. CC is fully visible."
+    },
+    {
+     "wrong": "Making SMTP the receiving protocol.",
+     "right": "SMTP only sends. POP3 and IMAP receive."
+    },
+    {
+     "wrong": "Thinking Reply All reaches the hidden BCC list.",
+     "right": "Reply All reaches the sender and the To and CC people. BCC stays hidden."
+    },
+    {
+     "wrong": "Thinking POP3 keeps mail synced on many devices.",
+     "right": "IMAP does that. POP3 downloads to one device."
+    },
+    {
+     "wrong": "Using Reply when the whole group must see your answer.",
+     "right": "Reply goes only to the sender. Use Reply All for everyone."
+    }
    ],
-   "notes": "### What e-mail is\n**E-mail (electronic mail)** sends messages between accounts stored on **mail servers**. An address has two parts joined by **@** (\"at\"): `rani.sharma@gmail.com` — **username @ domain**. The domain here belongs to Gmail (Google's mail service); Outlook and Yahoo Mail are others. @ is the separator — a favourite full-form/identification question.\n\n### The fields of a compose window\n| Field | Meaning |\n|---|---|\n| **To** | the main receivers |\n| **CC** (Carbon Copy) | extra receivers — **everyone can see** all To and CC addresses |\n| **BCC** (Blind Carbon Copy) | hidden receivers — **To and CC people cannot see** the BCC list; each BCC receiver also can't see the others |\n| **Subject** | one-line summary of the mail |\n| **Attachment** | files clipped to the mail (paperclip icon) |\n| **Signature** | sender's fixed sign-off block |\n\n**The CC/BCC rule:** CC is a visible copy; BCC is a blind copy. When a mail was sent with addresses in BCC, **Reply All reaches only the sender** — the hidden list stays hidden.\n\n### The three protocols\n| Protocol | Direction | How it works |\n|---|---|---|\n| **SMTP** (Simple Mail Transfer Protocol) | **sending** (and passing between servers) | pushes your mail out |\n| **POP3** (Post Office Protocol v3) | **receiving** | downloads mail to ONE device, usually deleting it from the server |\n| **IMAP** (Internet Message Access Protocol) | **receiving** | mail **stays on the server**, synced across all your devices |\n\nMemory hook: **SMTP Sends, POP Picks (down), IMAP In-sync.** If the question says \"protocol used to SEND e-mail\" — SMTP, every time.\n\n### Everyday mail actions\n- **Reply** answers only the sender; **Reply All** answers the sender and everyone in To/CC; **Forward** sends a received mail to new people.\n- **Spam** = junk or unsolicited mail; the filter parks it in the Spam folder — never click its links.\n- **Draft** = a mail written but not sent; it waits until you finish it.\n- **Cc etiquette**: use CC to keep someone informed; use BCC for bulk mails so receivers' addresses stay private.\n\n### The journey of one e-mail\n1. Rani writes a mail and presses Send. Her mail server uses **SMTP** to push it across the Internet to the server named after the **@domain**.\n2. The receiver's server holds the mail in her mailbox.\n3. When the receiver opens her app, **IMAP** (or POP3) fetches or syncs it to her device.\nSo one mail may touch three protocols: SMTP out, IMAP in, and the two servers talking to each other by SMTP. Exams compress this story into one line — \"SMTP is used to send\" — but the full journey is worth one drawing in your rough notes.\n\n### Quick revision\n- Address = username @ domain; @ separates the two.\n- **CC visible to all; BCC hidden** from To and CC receivers.\n- **SMTP sends; POP3 downloads to one device; IMAP syncs everywhere.**\n- Reply = sender; Reply All = everyone in To/CC; Forward = new receivers.\n- Spam = junk mail; Draft = unsent mail.",
+   "notes": "### What e-mail is\n**E-mail (electronic mail)** sends messages between accounts on **mail servers**.\n\nAn address has two parts joined by **@** (read \"at\"): username, then domain. Take ray.kiran@gmail.com.\n\n- **ray.kiran** is the username.\n- **gmail.com** is the domain, the mail service.\n\nGmail, Outlook and Yahoo Mail are mail services.\n\n### Fields of a new mail\n| Field | Meaning |\n|---|---|\n| **To** | The main receivers |\n| **CC** (Carbon Copy) | Extra receivers. Everyone sees all To and CC addresses. |\n| **BCC** (Blind Carbon Copy) | Hidden receivers. To and CC people cannot see them. |\n| **Subject** | A one-line summary |\n| **Attachment** | A file sent along, shown by a paperclip. Size is limited. |\n| **Signature** | A fixed sign-off block |\n\n> **Rule:** CC is visible to all. BCC is hidden from the To and CC receivers. Use BCC for mass mails to protect addresses.\n\nIf a mail was sent to a hidden BCC list, Reply All reaches only the sender.\n\n### The three protocols\n| Protocol | Job | How it works |\n|---|---|---|\n| **SMTP** (Simple Mail Transfer Protocol), port 25 | Sends mail | Pushes mail from client to server, and between servers |\n| **POP3** (Post Office Protocol v3), port 110 | Receives mail | Downloads to one device, usually removing it from the server |\n| **IMAP** (Internet Message Access Protocol), port 143 | Receives mail | Mail stays on the server and syncs on all devices |\n\n**MIME** (Multipurpose Internet Mail Extensions) lets e-mail carry attachments, images and non-English text.\n\n> **Tip:** SMTP Sends. POP Picks up on one device. IMAP is In sync everywhere.\n\n### Mail actions\n- **Compose** writes a new mail. **Send** sends it.\n- **Reply** answers only the sender.\n- **Reply All** answers the sender and everyone in To and CC.\n- **Forward** passes the mail to new people.\n\n### Mail folders\n| Folder | Holds |\n|---|---|\n| Inbox | Received mail |\n| Outbox | Mail waiting to be sent |\n| Sent | Mail already sent |\n| Drafts | Unfinished mail |\n| Spam or Junk | Mail the filter marked as junk |\n| Trash or Bin | Deleted mail |\n\nNever click links in spam.\n\n### The journey of one mail\n1. You press Send. Your mail server uses **SMTP** to push the mail to the server named after the @ domain.\n2. The receiver's server keeps it in her mailbox.\n3. Her app fetches it with **IMAP** or **POP3**.\n\n**Webmail** is a mail service used in a browser, like Gmail. A **mail client** is an installed app, like Outlook or Thunderbird. **Filters and labels** sort mail automatically. **Autoresponders** reply for you when you are away.\n",
    "patterns": [
     {
      "id": "ie-m1",
      "name": "CC/BCC visibility scenario",
      "frequency": "very common",
-     "howToSpot": "A mail-sending scenario asks who can see whom: 'addresses in BCC are visible to ___', or the field to use so receivers don't see each other.",
+     "howToSpot": "A sending scenario asks who can see whom, or which field to use so receivers do not see each other.",
      "formula": null,
-     "logic": "1. **CC receivers are visible to everyone** (To and CC).\n2. **BCC receivers are hidden** — To/CC people never see them; BCC people see To/CC but not each other.\n3. Bulk mails to strangers go in BCC to protect addresses.",
+     "steps": [
+      "CC receivers are visible to everyone.",
+      "BCC receivers are hidden from To and CC people.",
+      "BCC receivers do not see each other either.",
+      "Use BCC for bulk mails to protect addresses."
+     ],
+     "why": "The hidden list stays hidden even when someone replies.",
      "example": {
       "q": "Ravi sends a mail to 200 customers with all addresses in BCC. If a customer presses Reply All, the reply goes to:",
-      "solution": "**Only the sender** — the BCC list is hidden and other receivers are not disclosed."
+      "steps": [
+       "BCC addresses are hidden from the other receivers.",
+       "So Reply All has only the sender to answer."
+      ],
+      "answer": "Only the sender"
      }
     },
     {
      "id": "ie-m2",
      "name": "Protocol direction: SMTP vs POP3 vs IMAP",
      "frequency": "very common",
-     "howToSpot": "'Protocol used to SEND e-mail', 'which protocol downloads mail to one device', 'which protocol keeps mail synced on the server' — direction matching.",
+     "howToSpot": "'Protocol used to SEND e-mail', 'downloads mail to one device', 'keeps mail synced on the server'.",
      "formula": null,
-     "logic": "1. **SMTP = sending** (Simple Mail Transfer Protocol).\n2. **POP3 = receiving, downloads to one device** (usually removes from server).\n3. **IMAP = receiving, stays on server, syncs everywhere**.\n4. Reversed pairs (SMTP as receiver, POP as sender) are the standard traps.",
+     "steps": [
+      "Sending means SMTP.",
+      "Downloading to one device means POP3.",
+      "Staying on the server and syncing means IMAP.",
+      "Reject options with the roles reversed."
+     ],
+     "why": "Each protocol has one direction, and options swap them.",
      "example": {
       "q": "Which protocol is used to SEND an e-mail from the client to the mail server?",
-      "solution": "**SMTP** — Simple Mail Transfer Protocol. POP3 and IMAP only fetch incoming mail."
+      "steps": [
+       "Sending is done by one protocol only.",
+       "POP3 and IMAP only fetch incoming mail."
+      ],
+      "answer": "SMTP (Simple Mail Transfer Protocol)"
      }
     },
     {
      "id": "ie-m3",
      "name": "E-mail address and fields anatomy",
      "frequency": "common",
-     "howToSpot": "'In rani@gmail.com, the part before @ is', 'what separates user and domain', or identification of Subject/Attachment/Signature fields.",
+     "howToSpot": "'In rani@gmail.com, the part before @ is', 'what separates user and domain', or naming Subject, Attachment or Signature.",
      "formula": null,
-     "logic": "1. Address = **username @ domain**; @ is the separator ('at').\n2. Subject = one-line summary; attachment = clipped file (paperclip); signature = fixed sign-off.\n3. The domain after @ names the mail service (gmail.com).",
+     "steps": [
+      "Split the address at @.",
+      "Before @ is the username.",
+      "After @ is the domain.",
+      "Match the field to its plain meaning."
+     ],
+     "why": "The @ is the only separator.",
      "example": {
       "q": "In the address kiran.verma@yahoo.in, the username is:",
-      "solution": "**kiran.verma** — the @ separates the username from the domain (yahoo.in)."
+      "steps": [
+       "Split at the @ sign.",
+       "The part before it is the username."
+      ],
+      "answer": "kiran.verma"
      }
     },
     {
      "id": "ie-m4",
      "name": "Reply, Reply All, Forward, Spam, Draft",
      "frequency": "common",
-     "howToSpot": "A scenario on which action answers whom, or the meaning of spam / draft / forwarding.",
+     "howToSpot": "A scenario about who receives your answer, or the meaning of spam, draft or forward.",
      "formula": null,
-     "logic": "1. **Reply** = only to the sender; **Reply All** = sender plus everyone in To/CC; **Forward** = passes the mail to new receivers.\n2. **Spam** = junk mail, parked in the Spam folder by the filter.\n3. **Draft** = written but not sent yet.",
+     "steps": [
+      "Reply goes to the sender only.",
+      "Reply All goes to the sender and all in To and CC.",
+      "Forward passes the mail to new receivers.",
+      "A draft is written but not sent."
+     ],
+     "why": "Choose the action by who must read your answer.",
      "example": {
-      "q": "Swati received a circular sent to her whole class. She wants only the teacher to read her answer. She should use —",
-      "solution": "**Reply** (to the sender) — Reply All would reach every classmate who was on To/CC."
+      "q": "Swati received a circular sent to her whole class. She wants only the teacher to read her answer. She should use:",
+      "steps": [
+       "The teacher is the sender.",
+       "Only Reply goes to the sender alone."
+      ],
+      "answer": "Reply"
+     }
+    },
+    {
+     "id": "ie-m5",
+     "name": "Mail folders",
+     "frequency": "common",
+     "howToSpot": "'Unsent mail is kept in', 'mail waiting to be sent is in', 'junk mail goes to'.",
+     "formula": null,
+     "steps": [
+      "Received mail is in the Inbox.",
+      "Waiting to be sent is the Outbox.",
+      "Unfinished mail is in Drafts.",
+      "Filtered junk is in Spam."
+     ],
+     "why": "Each folder holds one state of a mail.",
+     "example": {
+      "q": "A mail that was written but not sent is found in the:",
+      "steps": [
+       "Not sent and not finished means it is saved as a draft.",
+       "Drafts holds such mail."
+      ],
+      "answer": "Drafts folder"
+     }
+    },
+    {
+     "id": "ie-m6",
+     "name": "MIME and port numbers",
+     "frequency": "occasional",
+     "howToSpot": "'Standard that allows attachments and images', or 'default port of SMTP, POP3 or IMAP'.",
+     "formula": null,
+     "steps": [
+      "Attachments, images and non-English text point to MIME.",
+      "Recall the ports: SMTP 25, POP3 110, IMAP 143.",
+      "Match each protocol to its own port."
+     ],
+     "why": "Three numbers and one full form cover this pattern.",
+     "example": {
+      "q": "The default port number of POP3 is:",
+      "steps": [
+       "SMTP is 25.",
+       "POP3 is 110.",
+       "IMAP is 143."
+      ],
+      "answer": "110"
      }
     }
+   ],
+   "revision": [
+    "Address = username @ domain. The @ separates the two.",
+    "CC is visible to all. BCC is hidden from To and CC receivers.",
+    "SMTP sends (port 25). POP3 downloads to one device (port 110). IMAP syncs everywhere (port 143).",
+    "Reply = sender only. Reply All = sender plus To and CC. Forward = new receivers.",
+    "Folders: Inbox, Outbox, Sent, Drafts, Spam, Trash.",
+    "MIME lets e-mail carry attachments, images and non-English text."
    ]
   },
   {
    "id": "ie-ebanking",
    "title": "e-Banking and digital payments",
-   "concept": "**e-Banking/net banking** = banking through the bank's secured website/app; **mobile banking** via apps; **ATM** (Automated Teller Machine) for cash, balance, mini-statement, PIN change.\n\n**Payment systems (NPCI - National Payments Corporation of India, 2008 - runs most retail rails):**\n\n| System | Nature | Key facts |\n|---|---|---|\n| NEFT | National Electronic Funds Transfer | Batch/half-hourly settlement; no minimum; available 24x7 since Dec 2019 |\n| RTGS | Real Time Gross Settlement | **Minimum Rs. 2 lakh**; settles individually, real time; 24x7 since Dec 2020 |\n| IMPS | Immediate Payment Service | Instant 24x7 transfers via mobile/MMID; no RTGS-style minimum |\n| UPI | Unified Payments Interface (2016) | Instant app-to-app transfer using a VPA (name@bank); 24x7; BHIM app; QR payments |\n\n**Security tokens:** **IFSC** (Indian Financial System Code) - 11 characters identifying the bank branch (e.g. SBIN0001234); **MICR** 9-digit cheque code; **OTP** (One Time Password) and **2FA** (two-factor authentication: something you know + something you receive/are). Safety rules: banks NEVER ask for PIN/OTP/password; check https + padlock before paying; avoid public Wi-Fi for transactions; unknown links = phishing (see cyber-security topic).",
+   "concept": "**e-Banking** means banking through the bank's secure website or app. **NEFT** settles in batches with no minimum. **RTGS** is real time with a minimum of Rs. 2 lakh. **IMPS** and **UPI** are instant and run 24x7. Banks never ask for your PIN, OTP or password.",
    "formulas": [],
    "tricks": [
     {
      "title": "NEFT vs RTGS",
-     "body": "**RTGS = Really To Go, in batches of one, 2 lakh+** (real-time, gross = one-by-one, big amounts). **NEFT = Nice Easy Batches** (settlement in half-hourly batches, any amount).",
+     "body": "**RTGS** is real time, one by one, for large sums: minimum Rs. 2 lakh. **NEFT** settles in half-hourly batches, for any amount.",
      "example": {
-      "q": "Minimum amount for RTGS?",
-      "solution": "Rs. 2 lakh."
+      "q": "What is the minimum amount for RTGS?",
+      "steps": [
+       "RTGS is meant for large transfers.",
+       "The floor is 2 lakh."
+      ],
+      "answer": "Rs. 2 lakh"
      }
     },
     {
-     "title": "IFSC 11",
-     "body": "IFSC = **11 characters** (4 bank code + 0 + 6 branch code), used on NEFT/RTGS/UPI branch routing. MICR is the 9-digit cheque strip.",
+     "title": "IFSC is 11",
+     "body": "IFSC has **11 characters**: 4 letters for the bank, a zero, then 6 characters for the branch. MICR is the 9-digit cheque strip.",
      "example": {
       "q": "How many characters does an IFSC code have?",
-      "solution": "11."
+      "steps": [
+       "4 for the bank, 1 zero, 6 for the branch.",
+       "4 + 1 + 6 = 11."
+      ],
+      "answer": "11"
      }
     },
     {
-     "title": "2FA two keys",
-     "body": "Two-factor = password (know) + OTP/biometric (have/are). One stolen password is not enough - that is the whole point.",
+     "title": "2FA needs two keys",
+     "body": "Two-factor means a password (you know) plus an OTP or fingerprint (you have or are). One stolen password is not enough.",
      "example": {
-      "q": "Entering a password followed by an SMS OTP is an example of?",
-      "solution": "Two-factor authentication."
+      "q": "Entering a password and then an SMS OTP is an example of:",
+      "steps": [
+       "Password is one factor.",
+       "The OTP is a second factor."
+      ],
+      "answer": "Two-factor authentication"
      }
     }
    ],
    "mistakes": [
-    "Giving NEFT the 2-lakh minimum - RTGS has it; NEFT has no minimum.",
-    "Saying IMPS is only for banks abroad - IMPS is an Indian instant retail rail.",
-    "Sharing OTPs on calls 'from the bank' - real banks never ask; that is vishing."
+    {
+     "wrong": "Giving NEFT the 2 lakh minimum.",
+     "right": "RTGS has the minimum. NEFT has none."
+    },
+    {
+     "wrong": "Saying IMPS works only for foreign banks.",
+     "right": "IMPS is an Indian instant payment service, 24x7."
+    },
+    {
+     "wrong": "Sharing an OTP with a caller who says he is from the bank.",
+     "right": "Real banks never ask. Refuse and disconnect."
+    },
+    {
+     "wrong": "Counting IFSC as 9 characters.",
+     "right": "IFSC has 11 characters. MICR has 9 digits."
+    },
+    {
+     "wrong": "Confusing CVV with PIN.",
+     "right": "CVV is the 3 digits on the card back. PIN is your secret number."
+    }
    ],
-   "notes": "### Banking from a distance\n**e-Banking (net banking)** = banking through the bank's secured **website**; **mobile banking** = the same through an **app**. The **ATM (Automated Teller Machine)** works round the clock for cash withdrawal, balance enquiry, mini statement and PIN change. All of them sit on the same idea: instructions travel over secure networks instead of paper slips at a counter.\n\n### The money-transfer rails of India\n| Rail | Full form | Style |\n|---|---|---|\n| **NEFT** | National Electronic Funds Transfer | moves in **batches** (half-hourly slots); **no minimum**; 24x7 since 2019 |\n| **RTGS** | Real Time Gross Settlement | **real-time, transaction by transaction**; **minimum 2,00,000 rupees** |\n| **IMPS** | Immediate Payment Service | **instant**, runs inside mobile/internet banking, 24x7 |\n| **UPI** | Unified Payments Interface | instant app-to-app transfer by **UPI ID or QR** (PhonePe, GPay, Paytm); built by **NPCI** (National Payments Corporation of India) |\n\nRTGS's rule is asked again and again: **minimum 2 lakh rupees** — NEFT has no minimum.\n\n### The codes on a cheque and beyond\n| Code | Size | Job |\n|---|---|---|\n| **IFSC** (Indian Financial System Code) | **11 characters** | identifies the exact bank branch for NEFT/RTGS/IMPS (e.g. SBIN0001234: 4 letters bank, 0, 6 characters branch) |\n| **MICR** (Magnetic Ink Character Recognition) | **9 digits** | the cheque number strip at the bottom; speeds cheque clearing |\n| **SWIFT** | — | the code system for **international** wire transfers |\n\n### Safety: OTP, PIN, CVV and two factors\n- **PIN** = Personal Identification Number (your secret at ATM/UPI); **CVV** = the 3-digit Card Verification Value printed on the card's back; **OTP** = One Time Password, valid for one login/transaction only.\n- **Two-factor authentication (2FA)** = password **plus** something else (OTP or fingerprint) — two locks instead of one.\n- Real banks **never ask** for PIN, OTP, CVV or passwords by phone, SMS or mail — any such caller is a fraudster. Report cyber-fraud on the national helpline **1930**; IFSC-like codes should never be typed on a link received from a stranger.\n\n### Quick revision\n- NEFT = batches, no minimum; **RTGS = real-time, minimum 2 lakh**; IMPS/UPI = instant, 24x7; UPI by NPCI.\n- **IFSC = 11 characters** (branch identity); **MICR = 9 digits** (cheque strip); SWIFT = international.\n- OTP = one-time password; CVV = 3 digits on card back; 2FA = password + OTP/biometric.\n- Banks never ask for OTP/PIN/CVV; cyber-fraud helpline = 1930.",
+   "notes": "### Banking from a distance\n**e-Banking (net banking)** is banking through the bank's secure **website**. **Mobile banking** uses the bank's **app**.\n\nAn **ATM (Automated Teller Machine)** gives cash, balance enquiry, a mini statement and PIN change.\n\nAll of them work by sending instructions over secure networks, not paper slips.\n\n### Money-transfer systems of India\n**NPCI (National Payments Corporation of India)** was set up in 2008. It runs most retail payment systems.\n\n| System | Full form | Key facts |\n|---|---|---|\n| **NEFT** | National Electronic Funds Transfer | Settles in batches (half-hourly). No minimum. 24x7 since December 2019. |\n| **RTGS** | Real Time Gross Settlement | Real time, one transfer at a time. **Minimum Rs. 2 lakh.** 24x7 since December 2020. |\n| **IMPS** | Immediate Payment Service | Instant, 24x7, through mobile or internet banking. |\n| **UPI** | Unified Payments Interface (2016) | Instant app-to-app transfer. 24x7. |\n\n> **Watch:** The 2 lakh minimum belongs to RTGS. NEFT has no minimum.\n\n### Which system to pick\nAsk two questions. Is the amount large? Must it move at once?\n\n| Need | System |\n|---|---|\n| Any amount, batch settlement is fine | NEFT |\n| Large amount (Rs. 2 lakh or more), real time | RTGS |\n| Instant, through mobile or internet banking | IMPS |\n| Instant, using a VPA or QR | UPI |\n\n> **Example:** Sending Rs. 5,00,000 in real time is an RTGS job. Sending Rs. 500 to a friend by QR is UPI.\n\n### UPI in short\n- UPI uses a **VPA** (virtual payment address) in the form name@bank.\n- You can also pay by **QR** code.\n- **BHIM** is one UPI app.\n- NPCI built UPI.\n\n### Bank codes\n| Code | Size | Job |\n|---|---|---|\n| **IFSC** (Indian Financial System Code) | **11 characters** | Identifies the bank branch |\n| **MICR** (Magnetic Ink Character Recognition) | **9 digits** | Cheque strip that speeds clearing |\n| **SWIFT** | Not asked | Code for international transfers |\n\nAn IFSC such as SBIN0001234 has three parts. SBIN is the bank (4 letters). Then comes 0. Then 001234 is the branch (6 characters).\n\n### PIN, CVV, OTP and two factors\n- **PIN** is your secret number at an ATM or UPI app.\n- **CVV** is the 3-digit Card Verification Value on the back of the card.\n- **OTP** is a One Time Password. It works for one login or one payment only.\n- **Two-factor authentication (2FA)** needs two proofs: something you know (password) and something you have or are (OTP, fingerprint).\n\nOne stolen password is not enough. That is the point of 2FA.\n\n### Safe habits\n- Banks **never ask** for PIN, OTP, CVV or password by call, SMS or mail. The caller is a fraudster.\n- Check HTTPS and the padlock before you pay.\n- Avoid public Wi-Fi for transactions.\n- Unknown links are phishing. Do not tap them.\n- Report cyber-fraud on the national helpline **1930**.\n\n> **Tip:** If anyone asks for your OTP, refuse. No real bank needs it from you.\n",
    "patterns": [
     {
      "id": "ie-b1",
      "name": "NEFT / RTGS / IMPS / UPI comparison",
      "frequency": "very common",
-     "howToSpot": "'Which rail has a minimum of 2 lakh', 'which is instant 24x7 by UPI ID', 'full form of NEFT/RTGS/UPI' — the rails' styles mixed in options.",
+     "howToSpot": "'Which system has a minimum of 2 lakh', 'which is instant 24x7 by UPI ID', 'full form of NEFT, RTGS, UPI'.",
      "formula": null,
-     "logic": "1. **NEFT** = batches, half-hourly slots, NO minimum.\n2. **RTGS** = real-time gross settlement, **minimum 2,00,000 rupees**.\n3. **IMPS** = instant inside banking apps, 24x7.\n4. **UPI** = instant app-to-app by UPI ID or QR, built by **NPCI**.\n5. The recurring trap: giving NEFT the 2-lakh minimum (it belongs to RTGS).",
+     "steps": [
+      "NEFT means batches and no minimum.",
+      "RTGS means real time and minimum Rs. 2 lakh.",
+      "IMPS means instant, inside banking apps.",
+      "UPI means instant app-to-app, built by NPCI."
+     ],
+     "why": "The systems differ by style, and options mix the styles.",
      "example": {
       "q": "A customer must transfer 25,00,000 rupees immediately, transaction by transaction. The suitable system is:",
-      "solution": "**RTGS** — real-time, transaction-wise, built for high-value transfers (minimum 2 lakh)."
+      "steps": [
+       "Immediate and one by one means real time gross settlement.",
+       "The amount is above the 2 lakh minimum."
+      ],
+      "answer": "RTGS"
      }
     },
     {
      "id": "ie-b2",
      "name": "OTP, PIN, CVV and 2FA safety",
      "frequency": "very common",
-     "howToSpot": "'Full form of OTP/CVV', 'a caller from the bank asks your OTP — what do you do', or which combination makes an e-transaction two-factor.",
+     "howToSpot": "'Full form of OTP or CVV', 'a caller from the bank asks your OTP, what do you do', or which pair makes two-factor.",
      "formula": null,
-     "logic": "1. **OTP = One Time Password** — one transaction, one use, short life.\n2. **CVV = Card Verification Value** — the 3-digit number on the card's back.\n3. **PIN = Personal Identification Number**.\n4. **2FA** = password PLUS OTP/biometric — two independent locks.\n5. Banks NEVER ask for OTP/PIN/CVV by call, SMS or mail — the asker is a fraudster.",
+     "steps": [
+      "OTP is a One Time Password.",
+      "CVV is the Card Verification Value, 3 digits.",
+      "2FA is a password plus an OTP or biometric.",
+      "Never share PIN, OTP or CVV with anyone."
+     ],
+     "why": "Banks never ask for these, so the asker is a fraudster.",
      "example": {
       "q": "A caller says he is from your bank and asks for the OTP that just arrived. You should:",
-      "solution": "**Refuse and disconnect — real banks never ask for OTPs**; this is a vishing fraud attempt."
+      "steps": [
+       "Real banks never ask for OTPs.",
+       "This is a vishing fraud attempt."
+      ],
+      "answer": "Refuse and disconnect"
      }
     },
     {
      "id": "ie-b3",
      "name": "IFSC, MICR and SWIFT codes",
      "frequency": "common",
-     "howToSpot": "'IFSC has how many characters', 'which code is used for international transfer', 'the 9-digit code on a cheque is'.",
+     "howToSpot": "'IFSC has how many characters', 'which code is used for international transfer', 'the 9-digit code on a cheque'.",
      "formula": null,
-     "logic": "1. **IFSC = Indian Financial System Code, 11 characters** — 4 letters (bank) + 0 + 6 (branch); used in NEFT/RTGS/IMPS.\n2. **MICR = 9 digits**, the magnetic-ink strip at the cheque's bottom.\n3. **SWIFT** = the code system for INTERNATIONAL transfers.",
+     "steps": [
+      "IFSC is 11 characters.",
+      "MICR is 9 digits, on the cheque.",
+      "SWIFT is for international transfers."
+     ],
+     "why": "Each code has one size and one job.",
      "example": {
       "q": "The number of characters in an IFSC code is:",
-      "solution": "**11** — e.g. SBIN0001234: SBIN (State Bank of India) + 0 + 001234 (branch)."
+      "steps": [
+       "SBIN0001234 has 4 letters, one 0 and 6 branch characters.",
+       "4 + 1 + 6 = 11."
+      ],
+      "answer": "11"
      }
     },
     {
      "id": "ie-b4",
      "name": "ATM and net-banking basics",
      "frequency": "common",
-     "howToSpot": "'ATM stands for', 'which of these can be done at an ATM', 'mobile banking vs net banking' — service identification.",
+     "howToSpot": "'ATM stands for', 'which of these can be done at an ATM', 'mobile banking vs net banking'.",
      "formula": null,
-     "logic": "1. **ATM = Automated Teller Machine** — cash, balance, mini statement, PIN change, 24x7.\n2. Net banking = bank's website; mobile banking = bank's app.\n3. ATM transactions need the card + PIN; the PIN is never written on the card.",
+     "steps": [
+      "ATM means Automated Teller Machine.",
+      "Net banking uses the bank's website.",
+      "Mobile banking uses the bank's app.",
+      "ATM needs the card and PIN."
+     ],
+     "why": "These are plain definitions.",
      "example": {
       "q": "The full form of ATM is:",
-      "solution": "**Automated Teller Machine** — the 24x7 machine for cash withdrawal, balance enquiry and mini statements."
+      "steps": [
+       "A is Automated.",
+       "T is Teller and M is Machine."
+      ],
+      "answer": "Automated Teller Machine"
+     }
+    },
+    {
+     "id": "ie-b5",
+     "name": "UPI facts",
+     "frequency": "common",
+     "howToSpot": "'UPI address format', 'who built UPI', 'year of UPI', or an odd-one-out list of payment systems.",
+     "formula": null,
+     "steps": [
+      "A UPI address is a VPA, written name@bank.",
+      "UPI works by VPA or QR, app to app.",
+      "NPCI built UPI. It launched in 2016.",
+      "BHIM is a UPI app."
+     ],
+     "why": "UPI needs no account number or IFSC for each payment.",
+     "example": {
+      "q": "Which of these is in the format of a UPI virtual payment address?",
+      "steps": [
+       "A VPA looks like name@bank.",
+       "So priya@examplebank fits."
+      ],
+      "answer": "priya@examplebank"
+     }
+    },
+    {
+     "id": "ie-b6",
+     "name": "Safe online payment habits",
+     "frequency": "common",
+     "howToSpot": "'Which is a safe practice', 'what to do on an unknown link', 'is public Wi-Fi fine for banking'.",
+     "formula": null,
+     "steps": [
+      "Check HTTPS and the padlock before paying.",
+      "Avoid public Wi-Fi for transactions.",
+      "Treat unknown links as phishing.",
+      "Never share PIN, OTP or password."
+     ],
+     "why": "Most fraud needs your cooperation, so refusing stops it.",
+     "example": {
+      "q": "Which is a safe practice while paying online?",
+      "steps": [
+       "Sharing OTPs and tapping unknown links are unsafe.",
+       "Checking HTTPS and the padlock is safe."
+      ],
+      "answer": "Check HTTPS and the padlock before paying"
      }
     }
+   ],
+   "revision": [
+    "NEFT = batches, no minimum. RTGS = real time, minimum Rs. 2 lakh. IMPS and UPI = instant, 24x7.",
+    "NPCI (2008) runs most retail payment systems and built UPI (2016).",
+    "UPI address (VPA) looks like name@bank. Payments also work by QR.",
+    "IFSC = 11 characters (branch). MICR = 9 digits (cheque). SWIFT = international.",
+    "OTP = one time password. CVV = 3 digits on the card back. 2FA = password plus OTP or biometric.",
+    "Banks never ask for OTP, PIN or CVV. Cyber-fraud helpline: 1930."
    ]
   }
  ],

@@ -13,357 +13,695 @@
   {
    "id": "me-basics",
    "title": "Workbook, cells and references",
-   "concept": "**Excel** is a spreadsheet program: data goes into **cells** at the crossing of rows and columns. A file = **workbook**; each tab = **worksheet**.\n\n**Dimensions (Excel 2007 onwards):** rows **10,48,576** (2^20, numbered 1...1048576) x columns **16,384** (2^14, named A...XFD) = 17,17,98,86,928 cells per sheet. (Excel 2003 and earlier: 65,536 x 256, last column IV.)\n\n**References:** a cell address = column letter + row number (C5). A range = top-left:bottom-right (A1:B5 covers 2 columns x 3 rows = 6 cells).\n\n| Reference type | Form | What happens when copied |\n|---|---|---|\n| Relative | A1 | Row/column shift with the formula |\n| Absolute | \\$A\\$1 | Fully locked |\n| Mixed | \\$A1 or A\\$1 | Column locked, or row locked |\n\n**F4** cycles A1 -> \\$A\\$1 -> A\\$1 -> \\$A1 while editing. Cross-sheet reference: Sheet2!B4; cross-workbook adds [Book1] before the sheet name. The **Name Box** (left of formula bar) shows/renames the active cell; the **formula bar** shows the cell's real content. The **fill handle** (small square at the active cell's corner) copies formulas or extends series (AutoFill). Formulas always begin with **=**.",
+   "concept": "**MS Excel** is a spreadsheet program. Its work area is a grid of **rows** and **columns**. Where a row and a column meet is a **cell**, named like **B3**. A file is a **workbook**, and each page inside it is a **worksheet**. A formula always begins with an equals sign.",
    "formulas": [],
    "tricks": [
     {
-     "title": "Dollar locks",
-     "body": "A **\\$** before the letter locks the column; before the number locks the row. \\$A\\$1 = both locked ('dollar = padlock'). F4 taps through the four states.",
-     "example": {
-      "q": "Which reference keeps the row fixed but lets the column change?",
-      "solution": "Mixed reference like A\\$1."
-     }
+     "title": "Dollar locks what follows",
+     "body": "A dollar sign freezes the letter or number right after it. \\$A\\$1 is frozen both ways. \\$A1 freezes the column only. A\\$1 freezes the row only."
     },
     {
-     "title": "Rows x Cols",
-     "body": "2007+: **2^20 rows (10,48,576)** x **2^14 columns (16,384)**; last column **XFD**. Old Excel: 65,536 x 256 ('256 = IV roman-ish, XFD = 16384').",
+     "title": "Count family",
+     "body": "COUNT wants numbers only. COUNTA counts anything filled in. COUNTBLANK counts the empty ones. COUNTIF needs a condition.",
      "example": {
-      "q": "Last column heading in Excel 2019?",
-      "solution": "XFD."
+      "q": "A1:A5 holds 10, 20, text, empty, 30. What does COUNT(A1:A5) give?",
+      "steps": [
+       "COUNT counts only numbers.",
+       "The numbers are 10, 20 and 30.",
+       "Text and empty cells are skipped."
+      ],
+      "answer": "3"
      }
     }
    ],
    "mistakes": [
-    "Saying Excel 2019 has 65,536 rows - that ended with Excel 2003.",
-    "Writing a range as A1-B5; the separator is a colon (A1:B5).",
-    "Forgetting that F4 toggles references only while editing a formula (outside editing it repeats the last action)."
+    {
+     "wrong": "Typing 5+3 in a cell to add.",
+     "right": "Start with an equals sign: =5+3."
+    },
+    {
+     "wrong": "Reading cell address B3 as row B, column 3.",
+     "right": "The column letter comes first. B3 is column B, row 3."
+    },
+    {
+     "wrong": "Saying Excel has 256 columns in modern versions.",
+     "right": "Excel 2007 and later has 16,384 columns. 256 is the 97-2003 limit."
+    },
+    {
+     "wrong": "Using COUNT to count text entries.",
+     "right": "COUNT counts numbers only. COUNTA counts all non-empty cells."
+    },
+    {
+     "wrong": "Thinking \\$A1 locks the row.",
+     "right": "In \\$A1 only the column is locked."
+    }
    ],
-   "notes": "### What Excel is\n**Excel** is the **spreadsheet** program of Microsoft Office. A spreadsheet is a giant grid made for numbers: marksheets, budgets, attendance, bills. The file is called a **workbook** and each tab inside it is a **worksheet** (or sheet).\n\n### The grid: rows, columns and cells\n- **Rows** are numbered 1, 2, 3... and **columns** are lettered A, B, C... Z, then AA, AB... up to **XFD**.\n- From Excel **2007 onwards** there are **1,048,576 rows** and **16,384 columns** — about **17.18 billion cells** per sheet. (Excel 2003 and older had only 65,536 rows and 256 columns — a favourite trap.)\n- A **cell** is one box at the crossing of a column and a row. Its **cell address** = column letter + row number: **A1, C5, XFD1048576**.\n- The **active cell** has a thick green border; the **Name Box** (top-left) shows its address and the **Formula Bar** shows what is really typed in it (text, number or formula).\n- A **range** is a rectangle of cells written with a **colon**: A1:B5 means A1 to B5.\n\n### References — what happens on copy\n| Type | Written as | When copied |\n|---|---|---|\n| Relative | A1 | changes with the new position |\n| Absolute | \\$A\\$1 | stays fixed (the dollar signs lock it) |\n| Mixed | \\$A1 or A\\$1 | only the unmarked part moves |\n\nWhile editing a formula, **F4** cycles a reference through A1, \\$A\\$1, A\\$1 and \\$A1.\n\n### Working with sheets and data\n- A new workbook contains **one worksheet** by default (older versions had three). Add another with the **+ button** or **Shift+F11**; rename by **double-clicking the sheet tab**.\n- **Text aligns left, numbers align right** automatically — a quick check of what Excel thinks your data is.\n- **#####** in a cell only means the **column is too narrow** — widen it; nothing is broken.\n- **Ctrl+A** selects the whole sheet; **Ctrl+Home** jumps to A1; **Freeze Panes** (View tab) keeps headings visible while scrolling.\n- **AutoFill** — drag the tiny square (fill handle) at the corner of the active cell to copy content or continue a series (Jan, Feb, Mar...). **Ctrl+D** fills the cell above down; **Ctrl+R** fills the cell to the left rightwards.\n- Rows and columns can be **hidden** and unhidden (right-click the row number or column letter) — hidden is not deleted.\n- **Wrap Text** shows long text on several lines inside one cell; **Merge and Centre** joins selected cells into one wide cell.\n\n### Why the grid is powerful\nExcel recalculates automatically: change one mark and every total, average and chart built on it updates at once. This single idea — **formulas store relationships, not fixed numbers** — is why spreadsheets replaced hand-written ledgers, and it is the idea behind most Excel questions: \"if this cell changes, what does that formula show?\"\n\n### Quick revision\n- Workbook = file; worksheet = tab; cell = column letter + row number.\n- 2007+: 1,048,576 rows, 16,384 columns (XFD), ~17.18 billion cells.\n- \\$A\\$1 absolute (locked), A1 relative (moves), F4 toggles while editing.\n- Range separator = colon (A1:B5).\n- Text left, numbers right; ##### = narrow column, not an error.",
+   "notes": "### What Excel does\nExcel is a **spreadsheet** program. It stores numbers in a grid and calculates with them. People use it for marks, budgets, bills and charts. A file is a **workbook**. Each page inside it is a **worksheet**.\n\n### Rows, columns and cells\n- **Rows** run across and have numbers: 1, 2, 3 and so on.\n- **Columns** run down and have letters: A, B, C, and after Z comes AA.\n- A **cell** is the box where a row and a column cross. Its name is the **cell address**, such as **B3**. The column letter comes first.\n- A **range** is a block of cells, written like **A1:C5**.\n- The **active cell** is the one that is selected now. Its address shows in the **Name Box**.\n- The **Formula Bar** shows what is inside the active cell.\n\n### Size of a worksheet\n| Version | Rows | Columns | Last column |\n|---|---|---|---|\n| Excel 2007 and later | **1,048,576** | **16,384** | **XFD** |\n| Excel 97-2003 | 65,536 | 256 | IV |\n\nThe new sheet has 1,048,576 rows and 16,384 columns. That gives 17,179,869,184 cells in one sheet. A new workbook opens with one sheet in current versions (Sheet1). Older versions opened with three.\n\n> **Tip:** 1,048,576 is 2 to the power 20. 16,384 is 2 to the power 14.\n\n### Formulas start with =\nEvery formula begins with an **equals sign**. Without it, Excel treats your entry as plain text. For example, `=A1+B1` adds two cells. `=SUM(A1:A5)` adds five cells.\n\nThe operators are + (add), - (subtract), * (multiply), / (divide) and ^ (power). Excel calculates in the usual order: brackets, power, multiply and divide, then add and subtract.\n\n> **Rule:** Text typed in a cell leans **left**. Numbers lean **right**.\n\n### Cell references\n| Type | Example | Behaviour when copied |\n|---|---|---|\n| **Relative** | A1 | Changes with the new position |\n| **Absolute** | \\$A\\$1 | Never changes |\n| **Mixed** | \\$A1 or A\\$1 | Only the part without \\$ changes |\n\nThis matters when you copy a formula down a column or across a row. Press **F4** while editing a formula. It cycles A1, \\$A\\$1, A\\$1 and \\$A1.\n\n> **Watch:** A dollar sign locks what comes right after it. In `\\$A1` the column is locked. In `A\\$1` the row is locked.\n\n### Counting functions\n- **COUNT** counts cells that hold numbers.\n- **COUNTA** counts all cells that are not empty.\n- **COUNTBLANK** counts empty cells.\n- **COUNTIF** counts cells that meet one condition.\n\n### Files\nData is saved under a file name in a folder, like any other file. The default extension is **.xlsx** (2007 and later). The older format is **.xls**. A macro file is **.xlsm**. A comma-separated text file is **.csv**. A template is **.xltx**.\n",
    "patterns": [
     {
      "id": "me-b1",
-     "name": "Grid arithmetic: rows, columns, cells",
-     "frequency": "common",
-     "howToSpot": "'How many rows/columns does an Excel 2007+ sheet have?', 'the last column letter', or multiplication of rows and columns into total cells.",
+     "name": "Worksheet size and last cell",
+     "frequency": "very common",
+     "howToSpot": "The question asks the number of rows or columns, or the last column name.",
      "formula": null,
-     "logic": "1. From Excel 2007: rows = 1,048,576; columns = 16,384 (last column XFD).\n2. Total cells = rows multiplied by columns (a calculator question, not memory).\n3. Excel 2003 and older: 65,536 rows, 256 columns (last column IV).",
+     "steps": [
+      "Excel 2007 and later has 1,048,576 rows.",
+      "It has 16,384 columns and the last one is XFD.",
+      "Excel 97-2003 has 65,536 rows, 256 columns and last column IV."
+     ],
+     "why": "Both limits are round powers of two, and the exam asks for the version.",
      "example": {
-      "q": "How many cells does one Excel 2016 worksheet contain?",
-      "solution": "16,384 columns x 1,048,576 rows = **17,179,869,184 cells** — about 17.18 billion."
+      "q": "The maximum number of columns in an Excel 2016 worksheet is:",
+      "steps": [
+       "Excel 2016 is newer than 2007.",
+       "So the modern limit applies.",
+       "The count is 16,384 and it ends at XFD."
+      ],
+      "answer": "16,384"
      }
     },
     {
      "id": "me-b2",
-     "name": "Reference behaviour on copy",
+     "name": "Cell address and range",
      "frequency": "very common",
-     "howToSpot": "A formula like =A1*\\$B\\$1 is copied from one cell to another and the changed formula is asked — or the type (relative/absolute/mixed) of a written reference is asked.",
+     "howToSpot": "The question gives an address or range and asks what it means or how many cells it holds.",
      "formula": null,
-     "logic": "1. Plain A1 is relative: both parts slide when copied. \\$A\\$1 is absolute: frozen. \\$A1 and A\\$1 are mixed: only the part without \\$ moves.\n2. Rewrite the row and column offsets, then rebuild the formula.\n3. F4 cycles A1 to \\$A\\$1 to A\\$1 to \\$A1 while the formula is being edited.",
+     "steps": [
+      "Read the column letter first, then the row number.",
+      "A range uses a colon: start cell to end cell.",
+      "Cells in a range = columns wide times rows tall."
+     ],
+     "why": "The address system is fixed, so the count is simple multiplication.",
      "example": {
-      "q": "Cell C1 holds =A1+B1. It is copied to C3. What does C3 contain?",
-      "solution": "**=A3+B3** — both references are relative, so each moves down 2 rows with the copy."
+      "q": "How many cells are in the range A1:C5?",
+      "steps": [
+       "Columns A to C make 3 columns.",
+       "Rows 1 to 5 make 5 rows.",
+       "3 times 5 is 15."
+      ],
+      "answer": "15"
      }
     },
     {
      "id": "me-b3",
-     "name": "Workbook, worksheet and cell-address recall",
+     "name": "Relative, absolute and mixed references",
      "frequency": "very common",
-     "howToSpot": "Direct recall: a file is a workbook, a tab is a worksheet, the address is column letter plus row number, the Name Box shows the address, the Formula Bar shows content.",
+     "howToSpot": "The question copies a formula and asks what changes, or asks what a dollar sign does.",
      "formula": null,
-     "logic": "1. Workbook = file; worksheet = tab inside it; cell = one box; range = A1:B5 with a colon.\n2. Name Box (left of formula bar) = address of the active cell; Formula Bar = its true content.\n3. Default worksheet count in new workbooks = 1 (older versions shipped 3).",
+     "steps": [
+      "Find the dollar signs in the formula.",
+      "A locked letter or number never moves when copied.",
+      "An unlocked part shifts with the destination.",
+      "F4 cycles the four styles."
+     ],
+     "why": "A copied formula follows how far it moved, unless a dollar sign locks the part.",
      "example": {
-      "q": "In MS Excel, the intersection of a row and a column is called a —",
-      "solution": "**Cell**, addressed by column letter then row number, e.g. B7."
+      "q": "A formula =A1 in cell B1 is copied to B2. What does B2 show?",
+      "steps": [
+       "The formula moved one row down.",
+       "A relative reference moves too.",
+       "A1 becomes A2."
+      ],
+      "answer": "=A2"
      }
     },
     {
      "id": "me-b4",
-     "name": "Data type and display basics",
+     "name": "Formula rules and counting functions",
      "frequency": "common",
-     "howToSpot": "Questions on left/right alignment of text and numbers, what ##### means, or what Ctrl+A / Ctrl+Home do.",
+     "howToSpot": "The question asks how a formula starts, or which COUNT function fits a situation.",
      "formula": null,
-     "logic": "1. Text left-aligns, numbers right-align automatically.\n2. ##### = column too narrow — widen it; the value is safe.\n3. Ctrl+A selects the sheet, Ctrl+Home jumps to A1, Freeze Panes pins headings.",
+     "steps": [
+      "Every formula starts with =.",
+      "Use COUNT for numbers and COUNTA for any filled cell.",
+      "Use COUNTBLANK for empty cells and COUNTIF for one condition."
+     ],
+     "why": "The four COUNT functions differ only in what they count.",
      "example": {
-      "q": "A cell shows ###### instead of a number because —",
-      "solution": "**The column is too narrow to display the number** — widen the column; it is a display notice, not an error."
+      "q": "Which function counts all non-empty cells in a range?",
+      "steps": [
+       "COUNT would skip text.",
+       "COUNTA counts anything that is filled in."
+      ],
+      "answer": "COUNTA"
+     }
+    },
+    {
+     "id": "me-b5",
+     "name": "Workbook, worksheet and file types",
+     "frequency": "common",
+     "howToSpot": "The question asks the name of the file, the page, or the default extension.",
+     "formula": null,
+     "steps": [
+      "A file is a workbook. A page inside it is a worksheet.",
+      "The default extension is .xlsx.",
+      "Old format .xls, macro .xlsm, text .csv, template .xltx."
+     ],
+     "why": "These names are used in every Excel question.",
+     "example": {
+      "q": "The default file extension of an Excel 2019 workbook is:",
+      "steps": [
+       "2019 is after 2007.",
+       "The X format applies."
+      ],
+      "answer": ".xlsx"
      }
     }
+   ],
+   "revision": [
+    "Excel is a spreadsheet program. A file is a workbook and a page is a worksheet.",
+    "Cell address = column letter + row number, such as B3. A range looks like A1:C5.",
+    "Modern sheet: 1,048,576 rows and 16,384 columns (last column XFD). Old: 65,536 rows and 256 columns (IV).",
+    "Every formula starts with =. Text leans left. Numbers lean right.",
+    "Relative A1, absolute \\$A\\$1, mixed \\$A1 or A\\$1. F4 cycles them.",
+    "COUNT numbers, COUNTA non-empty, COUNTBLANK empty, COUNTIF with a condition.",
+    "Files: .xlsx default, .xls old, .xlsm macro, .csv text, .xltx template."
    ]
   },
   {
    "id": "me-functions",
    "title": "Functions you must know",
-   "concept": "| Category | Functions |\n|---|---|\n| Maths | SUM, SUMIF, PRODUCT, ROUND, INT, MOD, ABS, POWER, SQRT |\n| Statistics | AVERAGE, COUNT, COUNTA, COUNTBLANK, COUNTIF, MAX, MIN, MEDIAN, MODE, RANK, LARGE, SMALL, STDEV |\n| Logical | IF, AND, OR, NOT, IFS, IFERROR |\n| Text | LEN, LEFT, RIGHT, MID, CONCATENATE/CONCAT, TRIM, UPPER, LOWER, PROPER |\n| Date-time | TODAY, NOW, DAY, MONTH, YEAR, DATEDIF |\n| Lookup | VLOOKUP, HLOOKUP, INDEX, MATCH, XLOOKUP (2021+) |\n| Financial | PMT (loan instalment), FV, PV, NPV |\n\n**Count-family (classic trap):** COUNT counts **numeric cells only**; COUNTA counts all **non-empty** cells; COUNTBLANK counts empty cells; COUNTIF counts cells meeting a condition (e.g. COUNTIF(A1:A10,\">80\")).\n\n**Lookup:** VLOOKUP(value, table, col_index, FALSE) searches the **first column** of the table **vertically** and returns the matching row's col_index-th column; FALSE = exact match. HLOOKUP works horizontally on the first row.\n\n**Text/date:** LEN counts characters (LEN(\"SSCCGL\") = 6); TRIM strips extra spaces; PROPER capitalises Each Word; UPPER/LOWER change case. TODAY() gives today's date (updates); NOW() gives date **and time**.",
+   "concept": "A **function** is a ready-made formula. It has a name and takes inputs in brackets. Excel groups the common ones into maths, text, logical, lookup and date functions. Learn the exact result of each function, because the exam asks for the output of a given formula.",
    "formulas": [],
    "tricks": [
     {
-     "title": "COUNT counts Numbers, COUNTA counts Anything",
-     "body": "COUNT = digits only; COUNTA = everything non-empty (text too); COUNTBLANK = the gaps. Test any MCQ by tagging each cell in the range N (number), T (text), E (empty).",
+     "title": "MOD is the leftover",
+     "body": "MOD(a, b) is what is left after a is divided by b. MOD(17,5) is 2, and MOD(10,5) is 0.",
      "example": {
-      "q": "Range has 3 numbers, 1 text cell, 1 blank. COUNT? COUNTA?",
-      "solution": "COUNT = 3; COUNTA = 4."
+      "q": "What does =MOD(17,5) return?",
+      "steps": [
+       "17 divided by 5 gives 3 whole times.",
+       "3 times 5 is 15.",
+       "17 minus 15 leaves 2."
+      ],
+      "answer": "2"
      }
     },
     {
-     "title": "V of VLOOKUP = Vertical",
-     "body": "VLOOKUP hunts down the **first column**; HLOOKUP along the **first row**. The 4th argument FALSE = exact match ('F for Full match').",
-     "example": {
-      "q": "VLOOKUP searches the table for the lookup value in which direction?",
-      "solution": "Vertically, in the first column."
-     }
+     "title": "MID has three inputs",
+     "body": "MID(text, start, count). MID(\"COMPUTER\",3,3) starts at the third letter and takes three letters. That gives MPU."
     },
     {
-     "title": "TODAY vs NOW",
-     "body": "**TODAY()** = date only; **NOW()** = date + time. Both refresh on recalculation (unlike Ctrl+; which stamps a fixed date).",
-     "example": {
-      "q": "Function returning current date and time together?",
-      "solution": "NOW()."
-     }
+     "title": "FALSE means exact",
+     "body": "The last input of VLOOKUP decides how it matches. FALSE means exact match. TRUE means nearest smaller match."
     }
    ],
    "mistakes": [
-    "Letting COUNT count text cells - it skips them silently.",
-    "Looking up VLOOKUP values in any column - the lookup value must be in the table's first column.",
-    "Believing TODAY() freezes the date - it recalculates; Ctrl+; stamps a static date."
+    {
+     "wrong": "Thinking INT(7.9) gives 8.",
+     "right": "INT rounds down. INT(7.9) is 7."
+    },
+    {
+     "wrong": "Reading MOD(17,5) as 3.",
+     "right": "MOD gives the remainder. That is 2. The 3 is the quotient."
+    },
+    {
+     "wrong": "Leaving out the quotes around text in a formula.",
+     "right": "Write text in double quotes, such as \"EXCEL\"."
+    },
+    {
+     "wrong": "Using VLOOKUP with TRUE when an exact match is needed.",
+     "right": "Use FALSE for an exact match."
+    },
+    {
+     "wrong": "Treating TODAY() as a fixed date.",
+     "right": "TODAY() changes every day. Ctrl+; enters a fixed date."
+    }
    ],
-   "notes": "### Formulas start with =\nEvery Excel calculation begins with the **= sign**: =A1+B1. Without it, Excel treats \"A1+B1\" as text. Calculations follow BODMAS order; functions are written as **=NAME(arguments)** with commas between arguments.\n\n### The counting family — the classic exam trap\nRange for all examples below: A1=50, A2=70, A3=\"exam\", A4 empty.\n| Function | Job | Result here |\n|---|---|---|\n| =SUM(A1:A4) | adds **numbers** | 120 |\n| =AVERAGE(A1:A4) | mean of the **numbers** | 60 |\n| =MAX / =MIN | largest / smallest number | 70 / 50 |\n| =COUNT | counts cells holding **numbers** | 2 |\n| =COUNTA | counts all **non-empty** cells | 3 |\n| =COUNTBLANK | counts empty cells | 1 |\n\n**COUNT counts Numbers; COUNTA counts Anything.** Text and blank cells are silently skipped by SUM, AVERAGE and COUNT — that is why COUNTA exists.\n\n### Maths and logic functions\n- **=ROUND(1234.567, 2)** gives 1234.57 (round to 2 decimals); **=INT(8.9)** gives 8 (chops the fraction); **=MOD(10, 3)** gives the remainder 1; **=ABS(-9)** gives 9; **=SQRT(144)** gives 12; **=POWER(2, 10)** gives 1024.\n- **=IF(test, yes-value, no-value)**: =IF(A1>=40, \"Pass\", \"Fail\") prints Pass when A1 holds 50.\n- **=COUNTIF(range, criteria)**: =COUNTIF(A1:A10, \">50\") counts how many cells exceed 50.\n\n### Text functions\n**=LEFT(\"EXAM\", 2)** gives EX; **=RIGHT(\"EXAM\", 3)** gives XAM; **=MID(\"computer\", 4, 3)** gives put (start at 4th letter, take 3); **=LEN(\"computer\")** gives 8; **=UPPER/=LOWER/=PROPER** change case (PROPER(\"india gate\") gives India Gate); **=CONCATENATE(\"SS\",\"C\")** or \"SS\"&\"C\" joins text.\n\n### Lookup and date\n- **=VLOOKUP(value, table, column-number, FALSE)** searches for the value in the **first (leftmost) column** of the table and returns the matching entry from the chosen column. The FALSE asks for an **exact match**. The V means the search runs **vertically** down the first column.\n- **=TODAY()** shows today's date, **=NOW()** shows date and time — both **recalculate** every time the sheet opens. For a fixed stamp, press **Ctrl+;** (date) or **Ctrl+Shift+;** (time).\n\n### Reading a function question in the exam\n1. Write down the cell values from the stem in a small table.\n2. Apply the function's rule, remembering what it IGNORES (text, blanks) or where it LOOKS (first column for VLOOKUP).\n3. Compute with the ignored cells removed — then match. Distractors are always built from the mistakes: dividing by the full range length, counting text in COUNT, or taking MID from position 0.\n\n### Quick revision\n- Every formula starts with =; arguments separated by commas.\n- COUNT = numbers only, COUNTA = anything non-empty, COUNTBLANK = empties.\n- ROUND rounds, INT chops, MOD gives remainder, SQRT, POWER.\n- IF(test, yes, no); COUNTIF counts cells meeting a condition.\n- LEFT/RIGHT/MID/LEN/PROPER for text; & joins text.\n- VLOOKUP searches the first column vertically; TODAY/NOW recalculate.",
+   "notes": "### How a function looks\nA function has a **name** and **arguments** in brackets. For example, `=SUM(A1:A5)`. The arguments are separated by commas. The formula still starts with =.\n\n### Maths functions\n| Function | Job | Example | Result |\n|---|---|---|---|\n| **SUM** | Adds | =SUM(2,3,5) | 10 |\n| **AVERAGE** | Mean | =AVERAGE(2,4,6) | 4 |\n| **MAX** / **MIN** | Largest / smallest | =MAX(2,9,4) | 9 |\n| **ROUND** | Rounds to given digits | =ROUND(3.14159,2) | 3.14 |\n| **INT** | Rounds down to whole number | =INT(7.9) | 7 |\n| **MOD** | Remainder | =MOD(17,5) | 2 |\n| **ABS** | Removes the minus sign | =ABS(-7) | 7 |\n| **SQRT** | Square root | =SQRT(9) | 3 |\n| **POWER** | Raises to a power | =POWER(2,5) | 32 |\n\n> **Tip:** MOD gives the remainder after division. 17 divided by 5 leaves 2.\n\n### Text functions\n| Function | Job | Example | Result |\n|---|---|---|---|\n| **LEFT** | First characters | =LEFT(\"EXCEL\",2) | EX |\n| **RIGHT** | Last characters | =RIGHT(\"EXCEL\",2) | EL |\n| **MID** | From the middle | =MID(\"COMPUTER\",3,3) | MPU |\n| **LEN** | Counts characters | =LEN(\"EXCEL\") | 5 |\n| **UPPER** / **LOWER** | Change case | =UPPER(\"abc\") | ABC |\n| **PROPER** | Capital first letter of each word | =PROPER(\"ram kumar\") | Ram Kumar |\n| **CONCATENATE** | Joins text | =CONCATENATE(\"A\",\"B\") | AB |\n\n**MID** takes three inputs: the text, the start position and the number of characters. Text inside a formula is written in double quotes.\n\n### Logical function IF\n`=IF(condition, value if true, value if false)`\n\nFor example, `=IF(A1>=40,\"Pass\",\"Fail\")` shows Pass when A1 is 40 or more. Otherwise it shows Fail. You can put one IF inside another. That is called a **nested IF**.\n\n> **Rule:** Use AND when all conditions must hold. Use OR when any one is enough.\n\n### Lookup function VLOOKUP\n`=VLOOKUP(lookup value, table, column number, FALSE)`\n\nVLOOKUP searches the **first column** of the table. It then returns a value from the column you name. The last input **FALSE** asks for an **exact match**. TRUE (or leaving it out) allows an approximate match. **HLOOKUP** does the same across rows.\n\n### Date functions\n- **TODAY()** gives today's date. It has no arguments.\n- **NOW()** gives the date and the time.\n\n> **Watch:** Both update every time the sheet recalculates. They are not fixed stamps. Use Ctrl+; for a fixed date.\n\n### Conditional counting and adding\n- **COUNTIF(range, condition)** counts cells that meet the test. For example, `=COUNTIF(A1:A10,\">40\")`.\n- **SUMIF(range, condition, sum range)** adds only the cells that meet the test.\n- **AVERAGEIF** averages only the matching cells.\n- **RANK** gives the position of a number in a list.\n",
    "patterns": [
     {
      "id": "me-f1",
-     "name": "SUM / AVERAGE output computation",
+     "name": "Output of a maths function",
      "frequency": "very common",
-     "howToSpot": "A small cell list is given and the output of =SUM or =AVERAGE is asked; options include realistic wrong totals.",
+     "howToSpot": "A formula with ROUND, INT, MOD, ABS, SQRT or POWER is given, and a result is asked.",
      "formula": null,
-     "logic": "1. Add the numeric cells for SUM; divide the total by the count of NUMERIC cells for AVERAGE.\n2. Text and blank cells are skipped by both — AVERAGE never counts them in the denominator.\n3. Verify by hand once, then match the option.",
+     "steps": [
+      "Name the function and read its job.",
+      "Work with the numbers inside the brackets.",
+      "INT cuts down, ROUND goes to the nearest, MOD is the remainder."
+     ],
+     "why": "Each function has one clear rule, so the result can be worked out by hand.",
      "example": {
-      "q": "A1=10, A2=20, A3=30. What does =AVERAGE(A1:A3) return?",
-      "solution": "(10+20+30)/3 = **60**."
+      "q": "What is the result of =POWER(2,5)?",
+      "steps": [
+       "POWER raises the first number to the second.",
+       "2 to the power 5 is 2 x 2 x 2 x 2 x 2.",
+       "That equals 32."
+      ],
+      "answer": "32"
      }
     },
     {
      "id": "me-f2",
-     "name": "COUNT family trap",
+     "name": "Output of a text function",
      "frequency": "very common",
-     "howToSpot": "A range mixing numbers, text and blanks is described and COUNT / COUNTA / COUNTBLANK outputs are asked — the options differ by exactly the text or blank cells.",
+     "howToSpot": "A LEFT, RIGHT, MID, LEN or PROPER formula on a word is given.",
      "formula": null,
-     "logic": "1. COUNT counts only numeric cells; COUNTA counts every non-empty cell; COUNTBLANK counts empties.\n2. Count the mixture carefully: numbers first, then everything filled, then the gaps.\n3. COUNTA + COUNTBLANK = total cells in the range.",
+     "steps": [
+      "Number each letter from 1.",
+      "Apply the start position and the count.",
+      "Count characters for LEN, spaces included."
+     ],
+     "why": "Text functions work on positions, so counting letters gives the answer.",
      "example": {
-      "q": "A1=5, A2='word', A3 blank, A4=9. =COUNT(A1:A4) and =COUNTA(A1:A4) give —",
-      "solution": "**COUNT = 2** (only 5 and 9 are numbers); **COUNTA = 3** (all filled cells, text included)."
+      "q": "What does =MID(\"COMPUTER\",3,3) return?",
+      "steps": [
+       "Letters are C(1) O(2) M(3) P(4) U(5).",
+       "Start at position 3.",
+       "Take three letters: M, P and U."
+      ],
+      "answer": "MPU"
      }
     },
     {
      "id": "me-f3",
-     "name": "Maths function output",
-     "frequency": "common",
-     "howToSpot": "Outputs of ROUND, INT, MOD, ABS, SQRT, POWER on given numbers, or the function that returns a remainder / square root / rounded value.",
+     "name": "IF and nested IF",
+     "frequency": "very common",
+     "howToSpot": "A formula with IF is given and a result is asked for some cell value.",
      "formula": null,
-     "logic": "1. ROUND(number, digits) rounds to that many decimals; INT chops the fraction for positives.\n2. MOD(a, b) = remainder of a divided by b; ABS removes the minus; SQRT is the square root; POWER(a, b) raises a to the power b.\n3. Beware INT of a negative number rounds DOWN (towards minus infinity).",
+     "steps": [
+      "Test the condition with the given cell value.",
+      "If it is true, return the second argument.",
+      "If it is false, return the third argument."
+     ],
+     "why": "IF picks one of two answers depending on a test.",
      "example": {
-      "q": "What does =MOD(23, 5) return?",
-      "solution": "**3** — 23 divided by 5 is 4 with remainder 3; MOD returns the remainder."
+      "q": "A1 holds 35. What does =IF(A1>=40,\"Pass\",\"Fail\") show?",
+      "steps": [
+       "Test 35 >= 40.",
+       "The test is false.",
+       "The third argument is returned."
+      ],
+      "answer": "Fail"
      }
     },
     {
      "id": "me-f4",
-     "name": "Text and date functions",
+     "name": "VLOOKUP inputs",
      "frequency": "common",
-     "howToSpot": "Outputs of LEFT, RIGHT, MID, LEN, PROPER, CONCATENATE, or the function that stamps today's date / joins text.",
+     "howToSpot": "The question asks what the fourth input of VLOOKUP does, or which column is searched.",
      "formula": null,
-     "logic": "1. LEFT takes letters from the start, RIGHT from the end, MID(text, start, how-many) from the middle; LEN counts characters (spaces included).\n2. UPPER/LOWER/PROPER set the case; CONCATENATE or the & sign joins text.\n3. TODAY() and NOW() recalculate on every open; Ctrl+; and Ctrl+Shift+; stamp fixed values.",
+     "steps": [
+      "The lookup value is searched in the first column of the table.",
+      "The third input is the column number to return.",
+      "FALSE gives an exact match. TRUE gives an approximate match."
+     ],
+     "why": "VLOOKUP always searches the leftmost column, which is why it cannot look left.",
      "example": {
-      "q": "What does =LEN('keyboard') return?",
-      "solution": "**8** — LEN counts the characters of the text; keyboard has 8 letters."
+      "q": "In VLOOKUP, which last argument finds an exact match?",
+      "steps": [
+       "The last argument sets match type.",
+       "Exact means no nearest guess.",
+       "That is FALSE."
+      ],
+      "answer": "FALSE"
      }
     },
     {
      "id": "me-f5",
-     "name": "IF and VLOOKUP logic",
+     "name": "TODAY vs NOW",
      "frequency": "common",
-     "howToSpot": "The output of =IF(condition, x, y) for a given cell value, or which column VLOOKUP searches / what the FALSE argument means.",
+     "howToSpot": "The question asks which function returns only the date, or the date and time.",
      "formula": null,
-     "logic": "1. IF tests the condition and returns the second argument when true, the third when false.\n2. VLOOKUP searches the FIRST (leftmost) column of the table vertically and returns from the chosen column number; FALSE asks for an exact match.\n3. Write the condition with the given value substituted, then pick the branch.",
+     "steps": [
+      "TODAY() returns the date only.",
+      "NOW() returns the date and time.",
+      "Neither takes arguments."
+     ],
+     "why": "The two names hint at the output, and both refresh on recalculation.",
      "example": {
-      "q": "=IF(B2>=40, 'Pass', 'Fail') with B2 = 38 returns —",
-      "solution": "**Fail** — 38 is not greater than or equal to 40, so the third argument is chosen."
+      "q": "Which Excel function returns the current date and time?",
+      "steps": [
+       "TODAY gives only the date.",
+       "The function with time also is NOW."
+      ],
+      "answer": "NOW()"
+     }
+    },
+    {
+     "id": "me-f6",
+     "name": "Text case and joining",
+     "frequency": "occasional",
+     "howToSpot": "The question asks which function changes case or joins two pieces of text.",
+     "formula": null,
+     "steps": [
+      "UPPER makes capitals, LOWER makes small letters.",
+      "PROPER capitalises the first letter of each word.",
+      "CONCATENATE joins the pieces."
+     ],
+     "why": "Case functions are easy to confuse by name, so match the result.",
+     "example": {
+      "q": "Which function converts \"ram kumar\" to \"Ram Kumar\"?",
+      "steps": [
+       "The result has a capital at the start of each word.",
+       "That is the job of PROPER."
+      ],
+      "answer": "PROPER"
      }
     }
+   ],
+   "revision": [
+    "A function has a name and arguments in brackets. Formulas begin with =.",
+    "ROUND(3.14159,2) is 3.14. INT(7.9) is 7. MOD(17,5) is 2. ABS(-7) is 7. SQRT(9) is 3. POWER(2,5) is 32.",
+    "LEFT and RIGHT take from the ends. MID(text,start,count) takes from the middle. LEN counts characters.",
+    "UPPER, LOWER, PROPER change case. CONCATENATE joins text.",
+    "IF(condition, true value, false value). Nested IF puts one IF inside another.",
+    "VLOOKUP searches the first column. FALSE means exact match. HLOOKUP works across rows.",
+    "TODAY() gives the date. NOW() gives date and time."
    ]
   },
   {
    "id": "me-errors-charts",
    "title": "Formula errors, charts and data tools",
-   "concept": "**Error messages:**\n\n| Error | Cause |\n|---|---|\n| #DIV/0! | Division by zero or by an empty cell |\n| #NAME? | Text Excel cannot recognise (misspelt function/name) |\n| #VALUE! | Wrong data type in the formula (text where a number is needed) |\n| #REF! | Invalid cell reference (referenced cells deleted) |\n| #N/A | Lookup value not found |\n| #NUM! | Bad numeric argument (e.g. SQRT of a negative) |\n| ###### | Column too narrow - a display issue, NOT an error |\n| Circular Reference warning | Formula refers back to its own cell |\n\n**Charts:** Column - compare categories; **Line - trends over time**; **Pie - parts of one whole**; Bar - horizontal comparison; Area - cumulative trend; Scatter - relationship between two variables. Alt+F1 inserts a default chart on the sheet; F11 puts it on a new chart sheet.\n\n**Data tools:** Sort (multi-level), Filter/AutoFilter (**Ctrl+Shift+L**), Conditional Formatting (colour scales, icon sets), Data Validation (dropdowns/limits), **Pivot Table** (drag-and-drop summary of big data), What-If Analysis - **Goal Seek** (find the input that produces a wanted output), Scenario Manager, Data Table. **Freeze Panes** locks rows/columns on screen; Wrap Text shows long text on multiple lines; Merge & Center combines cells; Sheet protection locks cells against edits; **Sparklines** are tiny in-cell charts.",
+   "concept": "Excel shows an **error value** that starts with # when a formula cannot work. Each error has one cause. **Charts** turn numbers into pictures: column, line, pie and scatter. Tools such as filter, PivotTable, Goal Seek and conditional formatting analyse data.",
    "formulas": [],
    "tricks": [
     {
-     "title": "###### is not an error",
-     "body": "Widen the column - done. Real errors start with #: DIV/0 (zero), NAME (spelling), VALUE (type), REF (deleted), N/A (not found). Match the cause table above.",
-     "example": {
-      "q": "A cell shows #####. The problem is?",
-      "solution": "Column width, not a formula error."
-     }
+     "title": "Read the error's name",
+     "body": "DIV is division. NAME is a spelling problem. VALUE is a wrong type. REF is a reference that is gone. N/A is not available. NUM is a number problem."
     },
     {
-     "title": "Chart chooser",
-     "body": "**Pie = Parts, Line = Line of time (trend), Column = Compare, Scatter = relationship.** 'Trend over months' questions always end at Line.",
+     "title": "Pie needs one series",
+     "body": "A pie chart shows parts of one whole. It uses a single data series. Use line for trends and scatter for two-number links.",
      "example": {
-      "q": "Best chart for monthly sales trend?",
-      "solution": "Line chart."
-     }
-    },
-    {
-     "title": "Goal Seek direction",
-     "body": "Goal Seek: you give the **answer**, it finds the **input**. Pivot Table: you give the **data**, it gives summaries.",
-     "example": {
-      "q": "Which tool finds the marks needed in the last test to average exactly 80?",
-      "solution": "Goal Seek."
+      "q": "Which chart best shows each state's share of total sales?",
+      "steps": [
+       "Shares of one whole are needed.",
+       "That is the pie chart's job."
+      ],
+      "answer": "Pie chart"
      }
     }
    ],
    "mistakes": [
-    "Calling ##### an error - it is only a narrow column.",
-    "Using a pie chart for a time trend - pies show one whole's shares at one point.",
-    "Saying #REF! appears for misspelt functions - that is #NAME?."
+    {
+     "wrong": "Calling ##### a formula error.",
+     "right": "It only means the column is too narrow. Widen it."
+    },
+    {
+     "wrong": "Blaming #NAME? on a bad number.",
+     "right": "It usually comes from a misspelt function name."
+    },
+    {
+     "wrong": "Using a line chart for parts of a whole.",
+     "right": "Use a pie chart for parts of a whole."
+    },
+    {
+     "wrong": "Confusing Filter with Sort.",
+     "right": "Sort re-orders rows. Filter hides rows."
+    },
+    {
+     "wrong": "Thinking #REF! comes from division by zero.",
+     "right": "Division by zero gives #DIV/0!. #REF! comes from a deleted cell."
+    }
    ],
-   "notes": "### Excel error messages — what each one means\n| Error | Why it appears |\n|---|---|\n| **#DIV/0!** | division by **zero or an empty cell** (=A1/B1 with B1 empty) |\n| **#NAME?** | Excel does not recognise the text — usually a **misspelt function** (=SUIM) |\n| **#VALUE!** | wrong **type** of data (=A1+5 where A1 holds \"exam\") |\n| **#REF!** | a formula points to cells that were **deleted** |\n| **#N/A** | a lookup **found nothing** (VLOOKUP misses) |\n| **#NUM!** | impossible number, like =SQRT(-4) |\n| **#####** | **not an error** — the column is just too narrow |\n\nMemory hooks: DIVide by zero, NAME unknown, VALUE wrong type, REFerence lost.\n\n### Charts — pick by the question the picture must answer\n| Chart | Use it for |\n|---|---|\n| **Column / Bar** | comparing values between categories (sales of 5 branches) |\n| **Line** | a **trend over time** (monthly temperature) |\n| **Pie** | **shares of one whole** (budget split) — one data series only |\n| **Scatter** | relationship between **two number variables** (height vs weight) |\n\nChart furniture: **chart title**, **legend** (which colour is which series), **axes** with titles, **data labels** (numbers printed on bars), plot area. Insert charts from the Insert tab.\n\n### Data tools\n- **Sort** reorders rows A-Z or Z-A (largest to smallest); **Filter** hides rows that do not match a condition — filtering never deletes data.\n- **Conditional formatting** paints cells automatically when a rule is true (marks below 35 turn red).\n- **PivotTable** summarises thousands of rows into a compact cross-tab in seconds.\n- **Goal Seek** (What-If Analysis) works backwards: it changes an input cell until the formula gives the result you want — e.g. what marks are needed to average 80.\n\n### Choosing a chart in three seconds\nAsk: what should the reader SEE?\n1. A **rise or fall across time** → line chart.\n2. **Who is bigger** among a few categories → column (vertical bars) or bar (horizontal bars) chart.\n3. **How the total is divided** → pie or doughnut chart (one series only).\n4. **Do two measurements move together?** → scatter chart.\nWrong-chart questions reuse this list: a pie for a time trend, a line for a share split, a 3-D explosion of a simple comparison — all wrong picks. Charts live on the **Insert tab**; a selected range plus **F11** makes an instant chart sheet.\n\n### Quick revision\n- #DIV/0! zero, #NAME? spelling, #VALUE! wrong type, #REF! deleted cells, #N/A lookup miss, ##### narrow column.\n- Column/Bar compare, Line trend, Pie share, Scatter relation.\n- Legend tells which colour is which series.\n- Sort orders, Filter hides, conditional formatting colours by rule.\n- PivotTable summarises; Goal Seek answers \"what input gives this result?\".",
+   "notes": "### Error values\nWhen Excel cannot finish a formula, it shows an error that starts with #.\n\n| Error | Cause |\n|---|---|\n| **#DIV/0!** | Division by zero, or by an empty cell |\n| **#NAME?** | Excel does not know the name. Usually a misspelt function |\n| **#VALUE!** | Wrong type of value, such as adding text to a number |\n| **#REF!** | The formula points to a cell that was deleted |\n| **#N/A** | A value is not available. Common when a lookup finds no match |\n| **#NUM!** | A number problem, such as the square root of a negative number |\n\n> **Watch:** Five hash signs (`#####`) do not mean an error. The column is too narrow to show the number. Widen the column.\n\n### Handling errors\n`=IFERROR(value, value if error)` catches any error and shows a replacement. For example, `=IFERROR(A1/B1,0)` shows 0 when B1 is empty or zero.\n\n### Chart types\n| Chart | Best for |\n|---|---|\n| **Column** | Comparing values between items |\n| **Bar** | The same, with horizontal bars |\n| **Line** | A trend over time |\n| **Pie** | Parts of one whole. Uses a single data series |\n| **Scatter (XY)** | The link between two numbers |\n| **Area** | Change in total over time |\n\nCreate a chart from the Insert tab. Select the data first. The shortcut **F11** makes a chart on a new sheet. **Alt+F1** puts a chart on the current sheet.\n\nA chart has a title, axes, a legend, data labels and gridlines. The **X axis** is the category axis. The **Y axis** is the value axis.\n\n> **Tip:** If a question mentions percentages of a total, choose a pie chart.\n\n### Data tools\n- **Sort** puts rows in order, from A to Z or from small to large.\n- **Filter** hides rows that do not match. The shortcut is **Ctrl+Shift+L**.\n- **Conditional formatting** colours cells that meet a rule, such as marks below 40.\n- **PivotTable** summarises a large table in a few clicks. It is on the Insert tab.\n- **Goal Seek** finds the input that gives a result you want. It is under What-If Analysis on the Data tab.\n- **Data Validation** limits what a cell accepts, such as a drop-down list.\n- **Freeze Panes** keeps headings in view while you scroll.\n\n> **Example:** Goal Seek answers \"What mark do I need in the last test to average 75?\"\n\n### Formatting and printing\n- **Format Cells** (Ctrl+1) sets number, date, currency and percentage looks.\n- **Merge & Center** joins selected cells into one and centres the text.\n- **Wrap Text** shows long text on several lines inside one cell.\n- **Print Area** and **Page Break Preview** control what prints.\n- **Comments** and **Notes** attach remarks to a cell.\n- **Sparklines** are tiny charts drawn inside a single cell.\n",
    "patterns": [
     {
      "id": "me-e1",
-     "name": "Error-message identification",
+     "name": "Match the error to its cause",
      "frequency": "very common",
-     "howToSpot": "A formula situation is described (divide by empty cell, misspelt function, deleted range, lookup miss) and the error shown is asked — or an error like #NAME? is given and its cause asked.",
+     "howToSpot": "A situation is described and the error name is asked.",
      "formula": null,
-     "logic": "1. #DIV/0! = divide by zero/blank; #NAME? = text Excel cannot recognise; #VALUE! = wrong data type; #REF! = deleted reference; #N/A = lookup found nothing.\n2. ##### is NOT an error — it is a narrow column.\n3. Match the story: spelling gives #NAME?, deletion gives #REF!, empty divisor gives #DIV/0!.",
+     "steps": [
+      "Spot the cause: division, spelling, type, deleted cell, no match, number.",
+      "Match it to the error name.",
+      "Remember that ##### is a width problem."
+     ],
+     "why": "Every error has one cause, and the name hints at it.",
      "example": {
-      "q": "Amit types =SUIM(A1:A5) and Excel shows #NAME?. Why?",
-      "solution": "**The function name is misspelt** — Excel cannot recognise SUIM, and unknown text produces #NAME?."
+      "q": "Which error appears when a formula divides a number by zero?",
+      "steps": [
+       "Division by zero is the cause.",
+       "The error name has DIV in it."
+      ],
+      "answer": "#DIV/0!"
      }
     },
     {
      "id": "me-e2",
-     "name": "Chart selection by purpose",
+     "name": "#NAME?, #VALUE! and #REF! compared",
      "frequency": "very common",
-     "howToSpot": "'Which chart best shows a trend over time / share of a whole / comparison between categories?' — four chart types as options.",
+     "howToSpot": "Three look-alike errors are listed and one must be chosen for a cause.",
      "formula": null,
-     "logic": "1. Trend across time = **Line**. Share of one whole = **Pie**. Compare categories = **Column/Bar**. Relation of two number variables = **Scatter**.\n2. A pie handles ONE data series only.\n3. 'Over the years / month-wise growth' words point to a line chart.",
+     "steps": [
+      "Misspelt function gives #NAME?.",
+      "Text used in arithmetic gives #VALUE!.",
+      "A deleted cell gives #REF!."
+     ],
+     "why": "The three are easy to swap, so tie each to its cause.",
      "example": {
-      "q": "To display the monthly sales trend of a year, the best chart is —",
-      "solution": "**Line chart** — trends across time are its exact purpose; a pie only shows shares of one total."
+      "q": "=SUMM(A1:A5) is typed by mistake. Which error appears?",
+      "steps": [
+       "SUMM is not a real function.",
+       "Excel cannot recognise the name."
+      ],
+      "answer": "#NAME?"
      }
     },
     {
      "id": "me-e3",
-     "name": "Data tools: sort, filter, pivot, goal seek",
-     "frequency": "common",
-     "howToSpot": "A need is described (hide non-matching rows, summarise thousands of rows, find the input that achieves a target) and the tool is asked.",
+     "name": "Choose the right chart",
+     "frequency": "very common",
+     "howToSpot": "A data story is given, and the chart type is asked.",
      "formula": null,
-     "logic": "1. Sort reorders; Filter hides non-matching rows (data is never deleted).\n2. Conditional formatting colours cells by a rule; PivotTable summarises big data into a compact table.\n3. Goal Seek works backwards from a wanted result to the needed input.",
+     "steps": [
+      "Comparing items points to a column chart.",
+      "A trend over time points to a line chart.",
+      "Parts of a whole point to a pie chart.",
+      "Two-number links point to a scatter chart."
+     ],
+     "why": "Each chart is built for one kind of story.",
      "example": {
-      "q": "Which Excel feature finds the marks needed in the last test so that the average becomes 80?",
-      "solution": "**Goal Seek** (What-If Analysis) — it adjusts the input cell until the formula reaches the target value."
+      "q": "Monthly sales of a shop for 12 months should be shown as a:",
+      "steps": [
+       "The data runs over time.",
+       "A trend is needed.",
+       "A line chart shows a trend."
+      ],
+      "answer": "Line chart"
      }
     },
     {
      "id": "me-e4",
-     "name": "Chart parts and labels",
-     "frequency": "occasional",
-     "howToSpot": "The stem asks the name of the chart key that explains colours (legend), the axis holding categories, or the numbers printed on bars (data labels).",
+     "name": "Data analysis tools",
+     "frequency": "common",
+     "howToSpot": "The question describes a task and asks for the tool.",
      "formula": null,
-     "logic": "1. **Legend** = the key that says which colour stands for which series.\n2. Category labels usually sit on the horizontal (x) axis, values on the vertical (y) axis — bar charts swap them.\n3. Data labels print the value on each bar or slice.",
+     "steps": [
+      "Summary of a big table means PivotTable.",
+      "Finding a needed input means Goal Seek.",
+      "Colour by rule means conditional formatting.",
+      "Hiding rows that do not match means Filter."
+     ],
+     "why": "Each tool answers one type of question.",
      "example": {
-      "q": "In an Excel chart, the small key that explains what each colour represents is called the —",
-      "solution": "**Legend** — without it the reader cannot tell the series apart."
+      "q": "Which tool finds the input needed to reach a target result?",
+      "steps": [
+       "The target result is fixed.",
+       "The input is unknown.",
+       "Goal Seek works backwards."
+      ],
+      "answer": "Goal Seek"
+     }
+    },
+    {
+     "id": "me-e5",
+     "name": "Chart creation keys and parts",
+     "frequency": "occasional",
+     "howToSpot": "The question asks the key for a chart or the name of a chart part.",
+     "formula": null,
+     "steps": [
+      "F11 makes a chart on a new sheet.",
+      "Alt+F1 makes a chart on the same sheet.",
+      "X axis holds categories. Y axis holds values."
+     ],
+     "why": "The shortcuts and axes are short facts asked directly.",
+     "example": {
+      "q": "Which key creates a chart on a new chart sheet?",
+      "steps": [
+       "A separate chart sheet is wanted.",
+       "The key is F11."
+      ],
+      "answer": "F11"
      }
     }
+   ],
+   "revision": [
+    "#DIV/0! divide by zero. #NAME? unknown name. #VALUE! wrong type. #REF! deleted cell. #N/A not available. #NUM! number problem.",
+    "##### means the column is too narrow. It is not an error.",
+    "IFERROR(value, replacement) replaces any error.",
+    "Column compares, line shows trend, pie shows parts of a whole, scatter shows a link between two numbers.",
+    "F11 makes a chart on a new sheet. Alt+F1 makes an embedded chart.",
+    "Filter Ctrl+Shift+L. PivotTable summarises. Goal Seek finds a needed input. Conditional formatting colours cells."
    ]
   },
   {
    "id": "me-shortcuts",
    "title": "Excel shortcuts and file facts",
-   "concept": "| Action | Shortcut |\n|---|---|\n| Insert current date / time | Ctrl+; / Ctrl+Shift+; |\n| AutoSum | Alt+= |\n| Edit active cell | F2 |\n| Toggle \\$ references | F4 (while editing) |\n| Format Cells dialog | Ctrl+1 |\n| Fill down / right | Ctrl+D / Ctrl+R |\n| Select column / row | Ctrl+Space / Shift+Space |\n| Insert new worksheet | Shift+F11 |\n| Chart on new sheet | F11 |\n| Next / previous sheet | Ctrl+PgDn / Ctrl+PgUp |\n| New line inside a cell | Alt+Enter |\n| Toggle filters | Ctrl+Shift+L |\n| Show formulas instead of results | Ctrl+` |\n| Hide rows | Ctrl+9 (restore Ctrl+Shift+9) |\n| Spell check | F7 |\n| Create Table | Ctrl+T |\n| Percent / currency / date format | Ctrl+Shift+% / \\$ / # |\n\n**File facts:** default extension .xlsx from Excel 2007 (before: .xls); macro workbook .xlsm; template .xltx; CSV .csv; OpenDocument .ods. Default chart is a Clustered Column. A quick printed grid = Page Layout view / Page Break Preview.",
+   "concept": "Excel has its own shortcut keys. **Ctrl+;** enters the date and **Alt+=** adds a sum. **F2** edits a cell and **Ctrl+1** opens Format Cells. Learn them in small groups: entering data, editing, selecting and viewing.",
    "formulas": [],
    "tricks": [
     {
-     "title": "Date stamp duo",
-     "body": "**Ctrl+; = date, Ctrl+Shift+; = time** - the Shift makes it work-o'clock (time). 'Current date in a cell' questions answer Ctrl+;.",
+     "title": "Semicolon for date and time",
+     "body": "Ctrl+; enters the date. Add Shift and it enters the time.",
      "example": {
-      "q": "Shortcut to insert today's date in a cell?",
-      "solution": "Ctrl+; (semicolon)."
+      "q": "Which shortcut enters the current time in Excel?",
+      "steps": [
+       "Ctrl+; enters the date.",
+       "Adding Shift changes it to the time."
+      ],
+      "answer": "Ctrl+Shift+;"
      }
     },
     {
-     "title": "F-key row for Excel",
-     "body": "F2 edit, F4 lock, F7 spell, F9 recalc, F11 chart sheet, F12 Save As - the F-row reads like Excel's toolbar.",
-     "example": {
-      "q": "Shortcut to create a chart on a new sheet?",
-      "solution": "F11."
-     }
+     "title": "Space picks a line",
+     "body": "Ctrl+Space picks the column. Shift+Space picks the row. Remember: Ctrl is the taller shape, a column."
     },
     {
-     "title": "Alt+= = AutoSum",
-     "body": "Alt with the plus key writes =SUM() over the adjacent numbers instantly - the fastest marks in the section.",
-     "example": {
-      "q": "Keyboard shortcut for AutoSum?",
-      "solution": "Alt+= ."
-     }
+     "title": "D goes down, R goes right",
+     "body": "Ctrl+D fills down. Ctrl+R fills right."
     }
    ],
    "mistakes": [
-    "Giving Ctrl+D for date - Ctrl+D fills down; the date stamp is Ctrl+;.",
-    "Saying F4 always toggles references - only while a reference is being edited; otherwise F4 repeats the last action.",
-    "Answering .xls for Excel 2016 files - .xls is 97-2003; the default is .xlsx."
+    {
+     "wrong": "Using F11 to insert a worksheet.",
+     "right": "Shift+F11 inserts a worksheet. F11 makes a chart."
+    },
+    {
+     "wrong": "Mixing Ctrl+Space and Shift+Space.",
+     "right": "Ctrl+Space selects a column. Shift+Space selects a row."
+    },
+    {
+     "wrong": "Using Ctrl+; for time.",
+     "right": "Ctrl+; is date. Ctrl+Shift+; is time."
+    },
+    {
+     "wrong": "Using Ctrl+D to copy a cell to the right.",
+     "right": "Ctrl+D fills down. Ctrl+R fills right."
+    },
+    {
+     "wrong": "Thinking Ctrl+9 hides columns.",
+     "right": "Ctrl+9 hides rows. Ctrl+0 hides columns."
+    }
    ],
-   "notes": "### The Excel shortcut families\n| Action | Shortcut |\n|---|---|\n| Insert today's **date** (fixed) | **Ctrl+;** |\n| Insert current **time** (fixed) | **Ctrl+Shift+;** |\n| **AutoSum** | **Alt+=** |\n| Edit the active cell | **F2** |\n| Toggle \\$A\\$1 reference types (while editing) | **F4** |\n| Format Cells dialog | **Ctrl+1** |\n| Fill down / fill right | Ctrl+D / Ctrl+R |\n| New workbook / open / save / print | Ctrl+N / Ctrl+O / Ctrl+S / Ctrl+P |\n| Save As | **F12** |\n\nThe date trap repeats every year: **Ctrl+;** stamps the date — Ctrl+D instead fills the cell above down.\n\n### Moving around a filled sheet\n- **Ctrl+Home** jumps to **A1**; **Ctrl+End** jumps to the **last used cell** of the data.\n- **Ctrl + arrow key** jumps to the edge of the data block in that direction.\n- **Ctrl+Page Down / Page Up** moves between worksheets.\n- **Shift+F11** inserts a new worksheet.\n\n### F-key row for Excel\n**F2** edit cell, **F4** toggle references (or repeat last action outside editing), **F7** spell check, **F11** instant chart of the selection, **F12** Save As, **Shift+F11** new sheet.\n\n### File formats of Excel\n| Extension | Meaning |\n|---|---|\n| **.xlsx** | default workbook, Excel 2007+ (X = XML) |\n| **.xls** | Excel 97-2003 workbook |\n| **.xlsm** | macro-enabled workbook |\n| **.csv** | comma-separated plain text — opens anywhere, no formatting, one sheet |\n| **.xltx / .xltm** | template / macro template |\n\nThe same X/m/t rule of Office applies: X = 2007+ default, m = macro, t = template. A **.csv** stores one sheet only and loses formulas' formatting — plain values separated by commas.\n\n### How shortcut questions are framed\nCompetitive exams ask shortcuts in three shapes: the **direct recall** (\"shortcut of AutoSum\"), the **reverse** (\"Ctrl+; does what?\"), and the **trap pair** (\"Ctrl+D inserts the date — true or false?\"). The trap pairs to burn in:\n1. **Ctrl+;** (date) vs **Ctrl+D** (fill down).\n2. **F2** (edit cell) vs **F12** (Save As).\n3. **Shift+F11** (new sheet) vs **F11** (new chart) vs **Ctrl+N** (new workbook).\n4. **Ctrl+1** opens the Format Cells dialog — a plain 1, no Shift, no Ctrl partner.\nA few more that appear: **Ctrl+Shift+L** switches filters on and off, **Ctrl+Tab** moves between open workbooks, **Ctrl+W** closes the workbook, and **Ctrl+P** prints — the same Print shortcut as every Office program.\n\n### Quick revision\n- Ctrl+; date, Ctrl+Shift+; time, Alt+= AutoSum, F2 edit, F4 reference toggle.\n- Ctrl+1 Format Cells, F12 Save As, Shift+F11 new sheet, F11 quick chart.\n- Ctrl+Home A1, Ctrl+End last cell, Ctrl+arrows edges of data.\n- Default file .xlsx; .xls old; .xlsm macro; .csv = comma-separated plain text.",
+   "notes": "### Why learn them\nShortcut questions repeat every year. Each key has one fixed job. Learn the groups below.\n\n### Entering data\n| Key | Action |\n|---|---|\n| **Ctrl+;** | Enters today's date as a fixed value |\n| **Ctrl+Shift+;** | Enters the current time |\n| **Alt+=** | AutoSum. Adds the numbers next to the cell |\n| **Ctrl+E** | Flash Fill. Fills a pattern from an example |\n| **Alt+Enter** | Starts a new line inside one cell |\n| **Ctrl+Enter** | Fills the selected cells with the same entry |\n\n> **Tip:** Ctrl+; gives a fixed date. TODAY() changes every day.\n\n### Editing and formatting\n| Key | Action |\n|---|---|\n| **F2** | Edits the active cell |\n| **F4** | Cycles reference type. Also repeats the last action |\n| **Ctrl+1** | Opens Format Cells |\n| **Ctrl+D** | Fill down. Copies the top cell downward |\n| **Ctrl+R** | Fill right. Copies the left cell to the right |\n| **Ctrl+T** | Makes a table |\n| **Ctrl+Shift+L** | Turns Filter on or off |\n\n### Selecting, rows and columns\n| Key | Action |\n|---|---|\n| **Ctrl+Space** | Selects the whole column |\n| **Shift+Space** | Selects the whole row |\n| **Ctrl+A** | Selects all cells |\n| **Ctrl+9** | Hides the selected rows |\n| **Ctrl+0** | Hides the selected columns |\n| **Ctrl+Home** | Goes to A1 |\n| **Ctrl+End** | Goes to the last used cell |\n\n### Sheets and views\n| Key | Action |\n|---|---|\n| **Shift+F11** | Inserts a new worksheet |\n| **F11** | Makes a chart on a new sheet |\n| **Ctrl+`** | Shows formulas instead of results |\n| **Ctrl+Page Down** | Next sheet |\n| **Ctrl+Page Up** | Previous sheet |\n| **F12** | Save As |\n\n> **Watch:** Shift+F11 inserts a sheet. F11 alone makes a chart. Exams put them side by side.\n\n### Common keys shared with other programs\nCtrl+C copy, Ctrl+X cut, Ctrl+V paste, Ctrl+Z undo, Ctrl+Y redo, Ctrl+S save, Ctrl+P print, Ctrl+F find, Ctrl+H replace, Ctrl+B bold.\n\n> **Note:** Ctrl+; uses the semicolon key, which sits beside the L key.\n\n### Moving around\n| Key | Action |\n|---|---|\n| **Arrow keys** | Move one cell |\n| **Tab** | Move one cell right |\n| **Enter** | Move one cell down |\n| **Ctrl+Arrow** | Jump to the edge of the data block |\n| **Ctrl+G** or **F5** | Go To a cell |\n\n### Clipboard and file keys\n| Key | Action |\n|---|---|\n| **Ctrl+Z** | Undo |\n| **Ctrl+Y** | Redo |\n| **Ctrl+S** | Save |\n| **Ctrl+N** | New workbook |\n| **Ctrl+O** | Open a workbook |\n| **Ctrl+P** | Print |\n| **Ctrl+W** | Close the workbook |\n\n> **Tip:** These file keys work the same in Word and PowerPoint. Learn them once and use them in all three programs.\n",
    "patterns": [
     {
      "id": "me-s1",
-     "name": "Date, time and AutoSum shortcuts",
+     "name": "Date, time and AutoSum keys",
      "frequency": "very common",
-     "howToSpot": "'Shortcut to insert the current date', 'which key runs AutoSum', 'which key edits the active cell' — with Ctrl+D planted as the date trap.",
+     "howToSpot": "The question asks the key for date, time or automatic sum.",
      "formula": null,
-     "logic": "1. Date = Ctrl+; (semicolon), time = Ctrl+Shift+;, AutoSum = Alt+= , edit cell = F2.\n2. Ctrl+D is FILL DOWN, not date — the recurring trap.\n3. F4 toggles \\$ references only while a formula is being edited.",
+     "steps": [
+      "Ctrl+; enters the date.",
+      "Ctrl+Shift+; enters the time.",
+      "Alt+= inserts AutoSum."
+     ],
+     "why": "These three are the most repeated Excel shortcuts.",
      "example": {
-      "q": "The keyboard shortcut to insert the current date into a cell is:",
-      "solution": "**Ctrl+;** — it stamps a fixed date. Ctrl+Shift+; stamps the time; Ctrl+D fills the cell above down."
+      "q": "The shortcut key for AutoSum in Excel is:",
+      "steps": [
+       "AutoSum needs the Alt key.",
+       "It uses the equals sign."
+      ],
+      "answer": "Alt+="
      }
     },
     {
      "id": "me-s2",
-     "name": "Excel file-format facts",
+     "name": "Edit, format and fill keys",
      "frequency": "very common",
-     "howToSpot": "'Default extension of an Excel 2007+ file', identification of .xls/.xlsm/.csv, or which format stores only comma-separated plain values.",
+     "howToSpot": "The question asks the key for editing a cell, opening Format Cells or filling.",
      "formula": null,
-     "logic": "1. Default = .xlsx (2007+, X = XML); .xls = 97-2003; .xlsm = macro-enabled; .csv = comma-separated plain text, one sheet, no formatting.\n2. The X/m/t rule is shared with Word and PowerPoint files.\n3. Macro questions point to the m extension.",
+     "steps": [
+      "F2 edits the cell.",
+      "Ctrl+1 opens Format Cells.",
+      "Ctrl+D fills down. Ctrl+R fills right."
+     ],
+     "why": "Each key has a memorable link: D for down, R for right.",
      "example": {
-      "q": "The default file extension of an Excel 2016 workbook is:",
-      "solution": "**.xlsx** — Office Open XML since Excel 2007; .xls is the 97-2003 format."
+      "q": "Which key puts the active cell into edit mode?",
+      "steps": [
+       "Editing a cell needs the cell to be active.",
+       "The function key F2 does this."
+      ],
+      "answer": "F2"
      }
     },
     {
      "id": "me-s3",
-     "name": "Navigation shortcuts",
+     "name": "Row and column selection and hiding",
      "frequency": "common",
-     "howToSpot": "'Which key jumps to cell A1 / to the last used cell / to the next sheet?' or identification of Ctrl+Home, Ctrl+End, Ctrl+Page Down.",
+     "howToSpot": "The question asks how to select or hide a row or a column.",
      "formula": null,
-     "logic": "1. Ctrl+Home = A1; Ctrl+End = last used cell of the data; Ctrl+arrow = edge of the data block.\n2. Ctrl+Page Down / Page Up = next / previous worksheet; Shift+F11 = new sheet.\n3. Ctrl+Tab switches between open workbooks.",
+     "steps": [
+      "Ctrl+Space selects a column.",
+      "Shift+Space selects a row.",
+      "Ctrl+9 hides rows. Ctrl+0 hides columns."
+     ],
+     "why": "Row and column keys are close, so options swap them.",
      "example": {
-      "q": "Which key combination takes the cursor to the last used cell of a worksheet?",
-      "solution": "**Ctrl+End** — Ctrl+Home goes to A1, the opposite corner of the used area."
+      "q": "Which shortcut selects an entire row in Excel?",
+      "steps": [
+       "A row has a low, flat shape.",
+       "The key is Shift+Space."
+      ],
+      "answer": "Shift+Space"
      }
     },
     {
      "id": "me-s4",
-     "name": "Sheet and workbook actions",
-     "frequency": "occasional",
-     "howToSpot": "How a new sheet is added, how a sheet is renamed, or the shortcut of Save As / Format Cells.",
+     "name": "Sheet, chart and formula-view keys",
+     "frequency": "common",
+     "howToSpot": "The question asks for a new sheet, a chart or the formula view.",
      "formula": null,
-     "logic": "1. New worksheet = Shift+F11 (or the + button); rename = double-click the sheet tab.\n2. Save As = F12; Format Cells dialog = Ctrl+1.\n3. Deleting a sheet cannot be undone — Excel warns first.",
+     "steps": [
+      "Shift+F11 inserts a sheet.",
+      "F11 makes a chart sheet.",
+      "Ctrl+` shows formulas."
+     ],
+     "why": "F11 with or without Shift does two different jobs.",
      "example": {
-      "q": "The shortcut to insert a new worksheet in the open workbook is:",
-      "solution": "**Shift+F11** — a fresh sheet appears to the left of the current one. F11 alone builds a chart sheet."
+      "q": "Which shortcut inserts a new worksheet?",
+      "steps": [
+       "A chart uses F11 alone.",
+       "A sheet adds Shift."
+      ],
+      "answer": "Shift+F11"
+     }
+    },
+    {
+     "id": "me-s5",
+     "name": "Flash Fill, filter and table keys",
+     "frequency": "occasional",
+     "howToSpot": "The question asks for the key that fills a pattern, or turns on filter or table.",
+     "formula": null,
+     "steps": [
+      "Ctrl+E starts Flash Fill.",
+      "Ctrl+Shift+L toggles filter.",
+      "Ctrl+T makes a table."
+     ],
+     "why": "These newer keys are asked in recent papers.",
+     "example": {
+      "q": "Which shortcut turns Filter on or off in Excel?",
+      "steps": [
+       "Filter uses Ctrl and Shift.",
+       "The letter is L."
+      ],
+      "answer": "Ctrl+Shift+L"
      }
     }
+   ],
+   "revision": [
+    "Ctrl+; date. Ctrl+Shift+; time. Alt+= AutoSum. Ctrl+E Flash Fill.",
+    "F2 edit cell. F4 cycle references. Ctrl+1 Format Cells.",
+    "Ctrl+D fill down. Ctrl+R fill right. Ctrl+T table. Ctrl+Shift+L filter.",
+    "Ctrl+Space selects a column. Shift+Space selects a row.",
+    "Shift+F11 new sheet. F11 chart sheet. Ctrl+` shows formulas.",
+    "Ctrl+9 hides rows. Ctrl+0 hides columns.",
+    "Ctrl+Home goes to A1. Ctrl+End goes to the last used cell."
    ]
   }
  ],

@@ -13,97 +13,157 @@
   {
    "id": "avg-basics",
    "title": "Average & the sum bridge",
-   "concept": "$\\text{Average} = \\dfrac{\\text{Sum of observations}}{\\text{Number of observations}}$. The useful direction is the reverse: **Sum = Average × n** — most CGL average questions are solved by converting to sums immediately.\n\n**Properties:**\n- If every observation is increased by k, the average increases by k (same for −, ×, ÷).\n- The average is always between the smallest and largest observation.\n- If all numbers are equal, average = each number; the sum of deviations from the average is zero.\n\n**Standard averages** (memorise): first n naturals $= \\frac{n+1}{2}$; first n odd $= n$; first n even $= n+1$; squares $= \\frac{(n+1)(2n+1)}{6}$; cubes $= \\frac{(n+1)^2}{4}$.\n**Consecutive numbers:** average = middle term = $\\frac{\\text{first} + \\text{last}}{2}$.",
+   "concept": "An average is one number that stands for a whole list: **average = sum ÷ count**. The exam-useful direction is the reverse: **sum = average × count**.\n\nAdd k to every value and the average rises by k. Multiply every value by k and the average is multiplied by k.\n\nFor lists with equal gaps (consecutive numbers, multiples of k) the average is the **middle term**. Standard lists have fixed averages: first n odd numbers average n, first n even numbers average n + 1.",
    "formulas": [
     {
      "name": "Definition",
-     "tex": "\\bar{x} = \\frac{\\sum x_i}{n} \\iff \\sum x_i = n\\bar{x}"
+     "tex": "\\bar{x} = \\frac{\\sum x_i}{n} \\iff \\sum x_i = n\\bar{x}",
+     "note": "The sum form is the one you use."
     },
     {
      "name": "Shift property",
-     "tex": "\\overline{x_i + k} = \\bar{x} + k,\\quad \\overline{k x_i} = k\\bar{x}"
+     "tex": "\\overline{x_i + k} = \\bar{x} + k,\\quad \\overline{k\\, x_i} = k\\bar{x}",
+     "note": "Adding k shifts the average by k; multiplying by k scales it."
     },
     {
      "name": "First n naturals / odd / even",
-     "tex": "\\frac{n+1}{2},\\quad n,\\quad n+1"
+     "tex": "\\frac{n+1}{2},\\quad n,\\quad n+1",
+     "note": "n = how many terms."
     },
     {
      "name": "Squares / cubes",
-     "tex": "\\frac{(n+1)(2n+1)}{6},\\quad \\frac{(n+1)^2}{4}"
+     "tex": "\\frac{(n+1)(2n+1)}{6},\\quad \\frac{n(n+1)^2}{4}"
     },
     {
-     "name": "Consecutive / AP terms",
+     "name": "Equal gaps",
      "tex": "\\text{average} = \\frac{\\text{first} + \\text{last}}{2} = \\text{middle term}"
     }
    ],
    "tricks": [
     {
-     "title": "Sum = average × n first",
-     "body": "Never manipulate averages directly — flip to sums, adjust, divide back.",
+     "title": "Flip to the sum first",
+     "body": "Never push averages around. Change them to sums, adjust, divide back at the end.",
      "example": {
       "q": "The average of 8 numbers is 32.5. Find their sum.",
-      "solution": "Sum = 8 × 32.5 = 260."
+      "steps": [
+       "Sum = average × count.",
+       "Sum = $32.5 \\times 8 = 260$."
+      ],
+      "answer": "260"
      }
     },
     {
-     "title": "Uniform shift",
-     "body": "Adding k to every number just adds k to the average.",
+     "title": "Same operation on every value",
+     "body": "Do to the average exactly what is done to each value, in the same order.",
      "example": {
-      "q": "The average of 6 numbers is 15. If each number is multiplied by 3 and increased by 5, find the new average.",
-      "solution": "New average $= 15 \\times 3 + 5 = 50$."
+      "q": "The average of 6 numbers is 15. Each number is multiplied by 3 and then increased by 5. Find the new average.",
+      "steps": [
+       "Multiply first: $15 \\times 3 = 45$.",
+       "Then add 5: $45 + 5 = 50$."
+      ],
+      "answer": "50"
      }
     },
     {
-     "title": "Middle of consecutive terms",
-     "body": "For evenly spaced numbers, the average is the central value — no addition needed.",
+     "title": "Equal gaps: jump from the middle",
+     "body": "The average of evenly spaced numbers is the middle term. Step out from it instead of adding everything.",
      "example": {
       "q": "The average of 5 consecutive numbers is 30. Find the largest.",
-      "solution": "Middle = 30 ⇒ numbers 28…32 ⇒ largest **32**."
+      "steps": [
+       "Middle (3rd) number = 30.",
+       "Largest = $30 + 2 = 32$."
+      ],
+      "answer": "32"
      }
     }
    ],
    "mistakes": [
-    "Reporting a sum where an average is asked (read the units).",
-    "Averaging two averages with different group sizes (a 40-60 'average of averages' error).",
-    "Using $\\frac{n(n+1)}{2}$-style sums without dividing by n when the average is asked.",
-    "For 'each multiplied by 3 and increased by 5', applying only one of the two operations."
+    {
+     "wrong": "Giving a sum where the question asks for the average.",
+     "right": "Read the last line: total or per-item value? Divide by the count before answering."
+    },
+    {
+     "wrong": "Averaging two group averages of different sizes.",
+     "right": "Only totals can be combined. Convert each group to size × average first."
+    },
+    {
+     "wrong": "Using the sum formula $\\frac{n(n+1)}{2}$ and forgetting to divide by n.",
+     "right": "The formula gives the sum. The average is the sum ÷ n."
+    },
+    {
+     "wrong": "Applying just one of two ordered operations (× 3 then + 5).",
+     "right": "Apply both, in the stated order: $15 \times 3 + 5 = 50$."
+    },
+    {
+     "wrong": "Stepping by 1 when the list is of consecutive even or odd numbers.",
+     "right": "Consecutive even or odd numbers step by 2. Use the gap of the series."
+    }
    ],
-   "notes": "### What is an average?\nAn average is one number that stands for a whole group. If five friends have ₹20, ₹30, ₹25, ₹35 and ₹40, the total is ₹150. Shared equally, each would get $150 \\div 5 = ₹30$. That ₹30 is the **average** (also called the arithmetic mean).\n$$\\text{Average} = \\frac{\\text{Sum of observations}}{\\text{Number of observations}}$$\nAn \"observation\" simply means one value in the list.\n\n### The sum bridge — the most useful idea\nTurn the formula around: $\\text{Sum} = \\text{Average} \\times n$. Almost every average question is solved by changing averages into sums, doing the adding or subtracting with sums, and only at the end dividing again.\nExample: the average of 4 numbers is 25 and three of them are 20, 30 and 18. Sum $= 4 \\times 25 = 100$, so the fourth $= 100 - 68 = 32$.\n\n### Properties you should know\n- The average always lies between the smallest and the largest value.\n- Add (or subtract) k to every value → the average goes up (or down) by k.\n- Multiply (or divide) every value by k → the average is multiplied (or divided) by k.\n- Do the operations in the same order: \"×3 then +5\" on an average of 15 gives $15 \\times 3 + 5 = 50$.\n- The deviations (differences) of all values from the average add up to zero.\n\n### Standard averages (learn by heart)\n| Series | Average |\n|---|---|\n| First n natural numbers | $\\frac{n+1}{2}$ |\n| First n odd numbers | $n$ |\n| First n even numbers | $n+1$ |\n| Squares of first n naturals | $\\frac{(n+1)(2n+1)}{6}$ |\n| Cubes of first n naturals | $\\frac{n(n+1)^2}{4}$ |\nExample: first 20 even numbers (2 to 40) → average 21. First 25 odd numbers → average 25.\n\n### Consecutive numbers and equal gaps\nWhen numbers go up by the same step (consecutive, consecutive even, multiples of 7 …) the average is the **middle term**, which is also $\\frac{\\text{first} + \\text{last}}{2}$.\n7 consecutive even numbers with average 48 → middle (4th) is 48 → numbers 42 to 54 → largest 54.\nMultiples of 6 from 1 to 100: 6, 12, …, 96 → average $\\frac{6 + 96}{2} = 51$.\n\n### Assumed-mean (deviation) method\nTo average numbers that are close together, pick a round \"assumed\" value, write each number as a plus or minus gap from it, average the gaps and add back.\n284, 291, 296, 302, 307 around 300: gaps $-16, -9, -4, +2, +7$ → total $-20$ → average gap $-4$ → average $296$. No big addition needed.\n\n### Common traps\n- Average of averages is NOT the overall average when groups are of different sizes (see weighted average).\n- Consecutive even/odd numbers step by 2, not 1.\n- Read \"each number is multiplied by 3 and then increased by 5\" in order.\n\n### Quick revision\n- Sum = average × count; change everything to sums.\n- Shift by k → average shifts by k; scale by k → average scales by k.\n- Equal steps → average = middle term = (first + last)/2.\n- Series table: $\\frac{n+1}{2}$, $n$, $n+1$.\n- Close numbers → assumed-mean method.\n",
+   "notes": "### What an average is\nAn average is one number that stands for a whole list. It is what each one gets when the total is shared equally.\n\nFive friends have ₹20, ₹30, ₹25, ₹35 and ₹40. Total = ₹150. Shared equally: $150 \\div 5 = ₹30$. So the average is ₹30. Another name for it is the arithmetic mean.\n\n> **Rule:** Average = sum of values ÷ number of values. Turn it around and you get the working tool: sum = average × count.\n\n### The sum bridge\nMost exam questions live on the turned-around form **sum = average × count**.\n\n1. Change every average into a sum.\n2. Add or subtract with the sums.\n3. Divide again only at the last step.\n\n> **Example:** The average of 4 numbers is 25, and three of them are 20, 30 and 18. Sum = $4 \\times 25 = 100$. The known values add to 68. Fourth number = $100 - 68 = 32$.\n\n### Properties that save time\n- The average always sits between the smallest and the largest value.\n- Add k to every value → the average rises by k. Subtract k → it falls by k.\n- Multiply every value by k → the average gets multiplied by k. Divide → it gets divided by k.\n- Apply changes in the order given: \"× 3, then + 5\" on an average of 15 gives $15 \\times 3 + 5 = 50$.\n- Each value's gap from the average (its deviation) adds up to zero across the whole list.\n\n### Standard series averages\nLearn this table by heart. Here n is the **count of terms**, not the last term.\n\n| Series | Average |\n|---|---|\n| First n natural numbers | $\\dfrac{n+1}{2}$ |\n| First n odd numbers | $n$ |\n| First n even numbers | $n+1$ |\n| Squares of the first n naturals | $\\dfrac{(n+1)(2n+1)}{6}$ |\n| Cubes of the first n naturals | $\\dfrac{n(n+1)^2}{4}$ |\n\n> **Tip:** First 30 even numbers average $30 + 1 = 31$. First 25 odd numbers average 25. No adding needed.\n\n### Numbers with equal gaps\nConsecutive numbers, consecutive even or odd numbers, and multiples of k all climb by one fixed step. Their average is the **middle term**, which is also $\\dfrac{\\text{first} + \\text{last}}{2}$.\n\n> **Example:** 7 consecutive even numbers average 48. The middle (4th) number is 48. Step up by 2, three times: largest = $48 + 6 = 54$.\n\nMultiples of 6 up to 100 run from 6 to 96. Average = $\\dfrac{6 + 96}{2} = 51$.\n\n### Close numbers: the assumed-mean method\nTo average numbers huddled close together, pick a round value nearby. Write each number's gap (+ or −) from it. Average the gaps. Add the result back.\n\n284, 291, 296, 302, 307 sit around 300. Gaps: $-16, -9, -4, +2, +7$. Gap total = $-20$. Average gap = $-20 \\div 5 = -4$. Average = $300 - 4 = 296$.\n\n> **Tip:** This method replaces one big addition with small ones. Use it for lists of marks, weights or prices.\n",
    "patterns": [
     {
      "id": "avg-b1",
-     "name": "Sum from average / missing value from the sum",
+     "name": "Sum from average / one missing value",
      "frequency": "very common",
-     "howToSpot": "An average and a count are given; the total, or one missing value among known values, is asked.",
+     "howToSpot": "An average and a count are given. The total is asked, or one value is missing from a list of known values.",
      "formula": "\\text{Sum} = \\text{Average} \\times n",
-     "logic": "1. Multiply average by the number of values to get the sum.\n2. Subtract the known values from that sum.\n3. What is left is the missing value (or the asked total).\n\nWhy: the average is only the sum shared equally, so the sum carries all the information.",
+     "steps": [
+      "Multiply the average by the count to get the sum.",
+      "Add up the values you already know.",
+      "Subtract: what is left is the missing value (or the asked total)."
+     ],
+     "why": "The average is only the sum shared equally, so the sum carries all the information.",
      "example": {
-      "q": "The average of 4 numbers is 25. Three of them are 20, 30 and 18. Find the fourth.",
-      "solution": "Sum $= 4 \\times 25 = 100$; known $= 68$ → fourth $= 32$."
+      "q": "The average of 5 numbers is 27. Four of them are 20, 31, 25 and 18. Find the fifth number.",
+      "steps": [
+       "Sum = $5 \\times 27 = 135$.",
+       "Known values add to $20 + 31 + 25 + 18 = 94$.",
+       "Fifth number = $135 - 94 = 41$."
+      ],
+      "answer": "41"
      }
     },
     {
      "id": "avg-b2",
-     "name": "Average of standard series (naturals, odd, even, squares, cubes)",
+     "name": "Average of standard series",
      "frequency": "very common",
-     "howToSpot": "'Average of the first n natural / odd / even numbers' or of their squares or cubes.",
+     "howToSpot": "'Find the average of the first n natural / odd / even numbers', or of their squares or cubes.",
      "formula": "\\frac{n+1}{2},\\quad n,\\quad n+1,\\quad \\frac{(n+1)(2n+1)}{6},\\quad \\frac{n(n+1)^2}{4}",
-     "logic": "1. Identify the series and n (count of terms, not the last term).\n2. Read the average straight from the table.\n3. For even numbers up to 2n, n is half the last term.\n\nWhy: each table value is the series-sum formula divided by n.",
+     "steps": [
+      "Spot the series and n, the count of terms.",
+      "Take the average straight from the table.",
+      "For even numbers ending at 2n, n is half the last term."
+     ],
+     "why": "Each table value is the series-sum formula already divided by n.",
      "example": {
-      "q": "Find the average of the first 25 odd numbers.",
-      "solution": "Average of first n odd numbers $= n$ → $25$. (Sum $= 25^2 = 625$, $625 \\div 25 = 25$.)"
+      "q": "Find the average of the first 30 even natural numbers.",
+      "steps": [
+       "Series: even numbers. Average = $n + 1$.",
+       "$n = 30$, so the average is $30 + 1 = 31$.",
+       "Check: sum $= 930$, and $930 \\div 30 = 31$."
+      ],
+      "answer": "31"
      }
     },
     {
      "id": "avg-b3",
-     "name": "Consecutive numbers / equal-gap series",
+     "name": "Consecutive numbers and equal gaps",
      "frequency": "very common",
-     "howToSpot": "'Average of 7 consecutive even numbers is 48 — find the largest', or average of multiples of k in a range.",
+     "howToSpot": "'The average of 7 consecutive even numbers is 48 — find the largest', or the average of the multiples of k in a range.",
      "formula": "\\text{Average} = \\text{middle term} = \\frac{\\text{first} + \\text{last}}{2}",
-     "logic": "1. The average is the middle term of the list.\n2. Step out from the middle by the common gap (1 for consecutive, 2 for even/odd, k for multiples).\n3. For a range of multiples, average = (first multiple + last multiple)/2.\n\nWhy: equal gaps are balanced on both sides of the middle, so the middle is the mean.",
+     "steps": [
+      "Place the average at the middle term of the list.",
+      "Step out from the middle by the gap (1 for consecutive, 2 for even/odd, k for multiples).",
+      "For a range of multiples, use (first + last) ÷ 2."
+     ],
+     "why": "Equal gaps balance on both sides of the middle, so the middle term is the mean.",
      "example": {
-      "q": "The average of 7 consecutive even numbers is 48. Find the largest.",
-      "solution": "Middle (4th) term $= 48$; three steps of 2 up → $48 + 6 = 54$."
+      "q": "The average of 9 consecutive odd numbers is 45. Find the smallest of them.",
+      "steps": [
+       "Middle (5th) number = 45.",
+       "Step down by 2, four times: $45 - 8 = 37$."
+      ],
+      "answer": "37"
      }
     },
     {
@@ -111,43 +171,74 @@
      "name": "Same operation on every value",
      "frequency": "common",
      "howToSpot": "'Each number is multiplied by 4 / increased by 6 / divided by 2' — the new average is asked.",
-     "formula": "\\text{new average} = k \\times A + c \\ \\ (\\text{apply in the stated order})",
-     "logic": "1. Apply the same operations to the old average, in the same order.\n2. Addition shifts the average; multiplication scales it.\n\nWhy: sum and average respond to a uniform change exactly like each single value does.",
+     "formula": "\\text{new average} = k \\times A + c \\quad (\\text{same order as stated})",
+     "steps": [
+      "Do to the old average exactly what is done to each value.",
+      "Keep the stated order of operations.",
+      "Addition shifts the average; multiplication scales it."
+     ],
+     "why": "A uniform change moves the sum and the average exactly the way it moves each single value.",
      "example": {
-      "q": "The average of 6 numbers is 15. Each is multiplied by 3 and then increased by 5. New average?",
-      "solution": "$15 \\times 3 + 5 = 50$."
+      "q": "The average of 7 numbers is 18. Each number is increased by 4 and then divided by 2. Find the new average.",
+      "steps": [
+       "Increase: $18 + 4 = 22$.",
+       "Divide: $22 \\div 2 = 11$."
+      ],
+      "answer": "11"
      }
     },
     {
      "id": "avg-b5",
      "name": "Assumed mean (deviation method)",
      "frequency": "common",
-     "howToSpot": "A list of 4-8 close numbers (weights, marks, runs) is given and their average is asked.",
+     "howToSpot": "A short list of 4-8 close numbers (weights, marks, runs) is given and their average is asked.",
      "formula": "\\text{Average} = \\text{assumed value} + \\frac{\\text{sum of deviations}}{n}",
-     "logic": "1. Pick a round number near the middle.\n2. Write each value's gap from it (+ or −) and add the gaps.\n3. Divide the gap total by n and add to the assumed value.\n\nWhy: shifting every value by the same amount shifts the average by that amount.",
+     "steps": [
+      "Pick a round number near the middle.",
+      "Write each value's gap from it, with a + or − sign.",
+      "Add the gaps and divide by n.",
+      "Add the result to the assumed value."
+     ],
+     "why": "Shifting every value by the same amount shifts the average by that amount.",
      "example": {
-      "q": "Find the average of 284, 291, 296, 302 and 307.",
-      "solution": "Gaps from 300: $-16, -9, -4, +2, +7$ → total $-20$ → $\\frac{-20}{5} = -4$ → average $296$."
+      "q": "Find the average of 396, 402, 407, 413 and 417.",
+      "steps": [
+       "Assume 400. Gaps: $-4, +2, +7, +13, +17$.",
+       "Gap total = $35$; average gap = $35 \\div 5 = 7$.",
+       "Average = $400 + 7 = 407$."
+      ],
+      "answer": "407"
      }
     }
+   ],
+   "revision": [
+    "Sum = average × count. Work in sums, divide at the end.",
+    "Every value + k → average + k; every value × k → average × k.",
+    "Equal gaps → average = middle term = (first + last)/2.",
+    "First n naturals $\\frac{n+1}{2}$; first n odd $n$; first n even $n+1$.",
+    "Squares $\\frac{(n+1)(2n+1)}{6}$; cubes $\\frac{n(n+1)^2}{4}$.",
+    "Close numbers → assumed mean + average of the gaps."
    ]
   },
   {
    "id": "avg-inclusion-exclusion",
    "title": "Members joining or leaving",
-   "concept": "When a new member joins (or one leaves) and the average changes, the key quantity is the **total sum**, not the average.\n\n- New member whose entry changes the average from $A$ to $A'$ (group of n): value $= A' + n(A' - A)$.\n- Member leaving: removed value $= A' + n(A - A')$, where A' is the new average of the remaining n.\n- Replacement of one member: new − old $= n(A' - A)$, i.e. replaced value $= \\text{old} + n(\\text{change})$.\n\nEquivalent view: the new member must carry the extra $n(A' - A)$ for all the old members **plus** his own share $A'$.",
+   "concept": "When a member joins or leaves and the average changes, work with **totals**, not averages.\n\n- Join: newcomer = new average + n × rise, with n the OLD count.\n- Leave: leaver = old total − new total of the rest.\n- Replace: new value = old value + n × (change in average). The count does not change.\n\nA wrongly copied value shifts the total by (correct − wrong), so the average shifts by that ÷ n.",
    "formulas": [
     {
      "name": "Joining member",
-     "tex": "\\text{value} = A' + n(A' - A)"
+     "tex": "\\text{value} = A' + n(A' - A)",
+     "note": "n = old count; A' = new average."
     },
     {
      "name": "Leaving member",
-     "tex": "\\text{value} = A' + n(A - A')"
+     "tex": "\\text{value} = A' + n(A - A')",
+     "note": "A' = average of the remaining n members."
     },
     {
      "name": "Replacement",
-     "tex": "\\text{new} = \\text{old} + n(A' - A)"
+     "tex": "\\text{new} = \\text{old} + n(A' - A)",
+     "note": "The count does not change."
     },
     {
      "name": "Count change both ways",
@@ -156,104 +247,192 @@
    ],
    "tricks": [
     {
-     "title": "Joining: own share + extras",
-     "body": "New value = new average + (number of old members) × (average jump).",
+     "title": "Joining: own share plus extras",
+     "body": "New value = new average + (old count) × (average jump).",
      "example": {
-      "q": "The average age of 30 students is 14 years. When their teacher joins, the average becomes 15. Find the teacher's age.",
-      "solution": "Teacher = 15 + 30 × 1 = **45 years**. (Check: 420 + 45 = 465 = 31 × 15 ✓)"
+      "q": "The average age of 30 students is 14 years. Their teacher joins them and the average becomes 15 years. Find the teacher's age.",
+      "steps": [
+       "Jump in average = $15 - 14 = 1$ year.",
+       "Teacher = $15 + 30 \\times 1 = 45$ years.",
+       "Check: $31 \\times 15 - 30 \\times 14 = 465 - 420 = 45$."
+      ],
+      "answer": "45 years"
      }
     },
     {
-     "title": "Replacement: n × jump added",
-     "body": "Only the swapped item changes the sum, by exactly n × (average change).",
+     "title": "Replacement: the jump times n",
+     "body": "Only the swapped item changes the sum, and it changes by n × (average jump).",
      "example": {
-      "q": "The average of 8 numbers is 24. If 20 is replaced by 44, the new average is:",
-      "solution": "Jump = (44 − 20)/8 = 3 ⇒ new average = 24 + 3 = **27**."
+      "q": "The average of 8 numbers is 24. If 20 is replaced by 44, find the new average.",
+      "steps": [
+       "Sum rises by $44 - 20 = 24$.",
+       "Jump = $24 \\div 8 = 3$.",
+       "New average = $24 + 3 = 27$."
+      ],
+      "answer": "27"
      }
     },
     {
-     "title": "Exclusion: subtract the sums",
-     "body": "Old total − (new count × new average) = removed value.",
+     "title": "Exclusion: subtract the totals",
+     "body": "Old total − (new count × new average) = the removed value.",
      "example": {
-      "q": "The average of 9 numbers is 27. If one number is excluded the average becomes 25. Find the excluded number.",
-      "solution": "9 × 27 − 8 × 25 = 243 − 200 = **43**."
+      "q": "The average of 9 numbers is 27. One number is excluded and the average of the rest becomes 25. Find the excluded number.",
+      "steps": [
+       "Old total = $9 \\times 27 = 243$.",
+       "New total = $8 \\times 25 = 200$.",
+       "Excluded = $243 - 200 = 43$."
+      ],
+      "answer": "43"
      }
     }
    ],
    "mistakes": [
-    "Using the OLD average where the NEW one is needed in the member formula.",
-    "Counting the new member inside n (n refers to the members BEFORE the change in the joining formula).",
-    "For replacement, computing the new number as old + change (missing the factor n).",
-    "Sign errors when the average falls instead of rising."
+    {
+     "wrong": "Using the old average where the new one belongs.",
+     "right": "Label both averages first: A old, B new. The formula reads off B for shares."
+    },
+    {
+     "wrong": "Counting the newcomer inside n.",
+     "right": "In the joining formula, n is the count BEFORE the newcomer arrives."
+    },
+    {
+     "wrong": "For a replacement, changing the new number by just the average jump.",
+     "right": "The swap changes the total by n × jump, so the new value moves by n × jump."
+    },
+    {
+     "wrong": "Subtracting when the average rises (or adding when it falls).",
+     "right": "Fix the sign from the story: rise = plus, fall = minus, for joiners and replacements alike."
+    },
+    {
+     "wrong": "Correcting a wrong entry by editing the average directly.",
+     "right": "Adjust the total by (correct − wrong), then divide by n."
+    }
    ],
-   "notes": "### The situation\nA group has an average. Then something happens: a person joins, a person leaves, one person is swapped for another, or a wrong value is found and corrected. The new average is given (or asked). The whole topic runs on one habit: **work with totals, not averages.**\n\n### Someone joins\nOld group: n members, average A. After one person joins, the average of the n + 1 members is B.\n$$\\text{Newcomer} = (n+1)B - nA = B + n(B - A)$$\nThink of it in words: the newcomer must bring his own share B **plus** the rise $(B - A)$ for each of the n old members.\nExample: 24 students average 15 years; with the teacher the average is 16. Teacher $= 16 + 24 \\times 1 = 40$ years.\n\n### Someone leaves\nn members average A; one leaves and the remaining $n - 1$ average B.\n$$\\text{Leaver} = nA - (n-1)B$$\nExample: 11 numbers average 36 (sum 396). After one is removed, 10 numbers average 34 (sum 340). Removed number $= 56$.\nIf the average **falls** when someone leaves, the leaver was above the old average; if it rises, the leaver was below it.\n\n### Someone is replaced\nThe count stays n. Only the sum changes, and it changes by $n \\times (\\text{change in average})$.\n$$\\text{New person} = \\text{Old person} + n \\times (\\text{change in average})$$\nExample: the average weight of 8 people rises by 2.5 kg when a new person replaces one weighing 65 kg → new person $= 65 + 8 \\times 2.5 = 85$ kg. If the average falls, subtract instead.\nIf two people are replaced, the pair's total changes by $n \\times$ (change), so their average changes by that ÷ 2.\n\n### Wrong value corrected\nA value was copied wrongly (84 written as 48). The sum is off by the difference, so\n$$\\text{Correct average} = \\text{Wrong average} + \\frac{\\text{correct} - \\text{wrong}}{n}$$\n30 students, average 62, with 84 read as 48: correct average $= 62 + \\frac{36}{30} = 63.2$.\nWith two errors, add both corrections (with signs) before dividing.\n\n### A group joins or leaves\nk new members join n old ones and the average becomes B:\n$$\\text{Sum of newcomers} = (n+k)B - nA, \\quad \\text{their average} = \\frac{(n+k)B - nA}{k}$$\n30 students average 12 years; 10 join and the average becomes 13 → newcomers' sum $= 520 - 360 = 160$ → average 16 years.\n\n### Checking your answer\nAlways verify with totals: new total ÷ new count must give the stated new average. Options are often built from forgetting to multiply the change by n, or multiplying by $n + 1$ in a replacement.\n\n### Quick revision\n- Join: newcomer $= B + n(B - A)$.\n- Leave: leaver $= nA - (n-1)B$.\n- Replace: new $=$ old $\\pm n \\times$ change.\n- Wrong entry: average changes by (correct − wrong)/n.\n- A group: work out the group's total from totals, then divide by its size.\n",
+   "notes": "### The habit: work with totals\nA group has an average. Then one member joins, leaves, or is swapped out, and the average changes. Averages cannot be added or removed. Totals can.\n\n1. Old total = old count × old average.\n2. New total = new count × new average.\n3. The joining or leaving value is the difference of the two totals.\n\n> **Rule:** Never move an average. Move the total (count × average), then divide at the end.\n\n### Someone joins\nn members average A. One person joins, and the n + 1 members average B.\n\n$$\\text{newcomer} = (n+1)B - nA = B + n(B - A)$$\n\nIn words: the newcomer carries his own share B, plus the rise $B - A$ for each of the n old members.\n\n> **Example:** 24 students average 15 years. With the teacher included, the average becomes 16. Teacher = $16 + 24 \\times 1 = 40$ years. Check: $25 \\times 16 - 24 \\times 15 = 40$.\n\n### Someone leaves\nn members average A. One leaves, and the remaining $n-1$ average B.\n\n$$\\text{leaver} = nA - (n-1)B$$\n\n11 numbers average 36, so the sum is 396. One number is removed; the other 10 average 34, sum 340. Removed number = $396 - 340 = 56$.\n\n> **Watch:** If the average falls after someone leaves, the leaver was above the old average. If it rises, the leaver was below it.\n\n### Someone is replaced\nThe count stays n. Only the total changes, and it changes by $n \\times$ (change in average).\n\n$$\\text{new value} = \\text{old value} + n \\times (\\text{change in average})$$\n\nThe average weight of 8 people rises by 2.5 kg when one person is replaced. The old person weighed 65 kg. New person = $65 + 8 \\times 2.5 = 85$ kg. If the average falls, subtract instead. If TWO members are replaced, their pair's total changes by $n \\times$ change — split it between them as the question directs.\n\n### A wrong entry is found\nA value was copied wrongly — say 84 was read as 48. The total is off by exactly (correct − wrong).\n\n$$\\text{correct average} = \\text{wrong average} + \\frac{\\text{correct} - \\text{wrong}}{n}$$\n\n30 students average 62 marks, with 84 read as 48. Correct average = $62 + \\dfrac{36}{30} = 63.2$. With two errors, add both corrections, with their signs, before dividing.\n\n### A whole group joins\nk new members join n old ones, and the average becomes B.\n\n$$\\text{group total} = (n+k)B - nA, \\qquad \\text{group average} = \\frac{(n+k)B - nA}{k}$$\n\n30 students average 12 years. Ten new students join and the average becomes 13. Newcomers' total = $40 \\times 13 - 30 \\times 12 = 160$. Their average = $160 \\div 10 = 16$ years. If k members LEAVE instead, their total = $nA - (n-k)B$ — the same bridge, walked the other way.\n\n> **Tip:** Check every answer: new total ÷ new count must equal the stated new average.\n",
    "patterns": [
     {
      "id": "avg-i1",
-     "name": "One member joins — find the newcomer's value",
+     "name": "One member joins — find the newcomer",
      "frequency": "very common",
-     "howToSpot": "A teacher, manager or new player joins a group; the average age/salary/weight goes up or down by a given amount.",
+     "howToSpot": "A teacher, manager or new player joins a group and the average age, salary or weight moves by a given amount.",
      "formula": "x = B + n(B - A) = (n+1)B - nA",
-     "logic": "1. Old total $= nA$; new total $= (n+1)B$.\n2. Newcomer $=$ new total $-$ old total.\n3. Shortcut: newcomer $= B + n \\times$ (rise). If the average falls, the rise is negative.\n\nWhy: the newcomer supplies his own share and lifts every old member by the change.",
+     "steps": [
+      "Write the old total nA and the new total (n+1)B.",
+      "Subtract: the newcomer is the difference.",
+      "Shortcut: newcomer = B + n × rise. If the average falls, the rise is negative."
+     ],
+     "why": "The newcomer supplies his own share and lifts every old member by the change.",
      "example": {
-      "q": "The average age of 24 students is 15 years. Including the teacher, it becomes 16 years. Teacher's age?",
-      "solution": "$16 + 24 \\times 1 = 40$ years. (Check: $25 \\times 16 - 24 \\times 15 = 400 - 360 = 40$.)"
+      "q": "The average age of 24 students is 15 years. Including their teacher, it becomes 16 years. Find the teacher's age.",
+      "steps": [
+       "Newcomer = $16 + 24 \\times 1$.",
+       "= $40$ years.",
+       "Check: $25 \\times 16 - 24 \\times 15 = 400 - 360 = 40$."
+      ],
+      "answer": "40 years"
      }
     },
     {
      "id": "avg-i2",
-     "name": "One member leaves — find the removed value or the new average",
+     "name": "One member leaves — the removed value",
      "frequency": "common",
-     "howToSpot": "'One number is excluded / a member leaves, the average of the rest becomes …'.",
+     "howToSpot": "'One number is excluded / one member leaves, and the average of the rest becomes …'.",
      "formula": "\\text{removed} = nA - (n-1)B",
-     "logic": "1. Old total $= nA$.\n2. Remaining total $= (n-1)B$ (or old total − removed value, if the value is given).\n3. Subtract to get the missing piece; divide if the new average is asked.\n\nWhy: removing a value only changes the sum and the count by known amounts.",
+     "steps": [
+      "Old total = nA.",
+      "Remaining total = (n − 1)B.",
+      "Subtract the two totals; divide later only if the new average is asked instead."
+     ],
+     "why": "Removing one value changes the sum and the count by known amounts, and nothing else.",
      "example": {
-      "q": "The average of 11 numbers is 36. After removing one number, the average of the rest is 34. Find the removed number.",
-      "solution": "$11 \\times 36 - 10 \\times 34 = 396 - 340 = 56$."
+      "q": "The average of 12 numbers is 40. One number is removed and the average of the remaining numbers is 38. Find the removed number.",
+      "steps": [
+       "Old total = $12 \\times 40 = 480$.",
+       "New total = $11 \\times 38 = 418$.",
+       "Removed = $480 - 418 = 62$."
+      ],
+      "answer": "62"
      }
     },
     {
      "id": "avg-i3",
-     "name": "Replacement — one (or two) members swapped",
+     "name": "One member is replaced",
      "frequency": "very common",
-     "howToSpot": "'A new man replaces one weighing 65 kg and the average increases by 2.5 kg' — the count does not change.",
+     "howToSpot": "'A new man replaces one weighing 65 kg and the average increases by 2.5 kg.' The count does not change.",
      "formula": "\\text{new} = \\text{old} \\pm n \\times d",
-     "logic": "1. The count n stays the same.\n2. Change in total $= n \\times$ change in average.\n3. New member $=$ old member $+$ that change (subtract if the average fell).\n\nWhy: only one value changed, so the whole change in the total belongs to it.",
+     "steps": [
+      "Keep the count n the same.",
+      "Change in total = n × change in average.",
+      "New member = old member + that change (subtract if the average fell)."
+     ],
+     "why": "Only one value changed, so the whole change in the total belongs to it.",
      "example": {
-      "q": "The average weight of 8 persons rises by 2.5 kg when a new person replaces one weighing 65 kg. Weight of the new person?",
-      "solution": "$65 + 8 \\times 2.5 = 85$ kg."
+      "q": "The average weight of 9 persons falls by 2 kg when a person weighing 78 kg is replaced by a newcomer. Find the newcomer's weight.",
+      "steps": [
+       "Total falls by $9 \\times 2 = 18$ kg.",
+       "Newcomer = $78 - 18 = 60$ kg."
+      ],
+      "answer": "60 kg"
      }
     },
     {
      "id": "avg-i4",
-     "name": "Wrongly recorded value corrected",
+     "name": "A wrongly recorded value is corrected",
      "frequency": "common",
-     "howToSpot": "'Later it was found that 84 was misread as 48' — the correct average is asked.",
+     "howToSpot": "'Later it was found that 84 had been misread as 48.' The correct average is asked.",
      "formula": "\\text{correct avg} = \\text{wrong avg} + \\frac{\\text{correct} - \\text{wrong}}{n}",
-     "logic": "1. For each error, find (correct value − wrong value), keeping the sign.\n2. Add these corrections.\n3. Divide by n and add to the wrong average.\n\nWhy: an error changes the total by exactly (correct − wrong) and nothing else.",
+     "steps": [
+      "For each error, work out (correct value − wrong value), keeping the sign.",
+      "Add the corrections.",
+      "Divide by n and add to the wrong average."
+     ],
+     "why": "An error changes the total by exactly (correct − wrong) and nothing else.",
      "example": {
-      "q": "The average of 30 marks was 62, but 84 was read as 48. The correct average is?",
-      "solution": "$62 + \\frac{84 - 48}{30} = 62 + 1.2 = 63.2$."
+      "q": "The average of 25 marks was calculated as 48. Later, 72 was found to have been misread as 27. Find the correct average.",
+      "steps": [
+       "Correction = $72 - 27 = 45$.",
+       "Shift = $45 \\div 25 = 1.8$.",
+       "Correct average = $48 + 1.8 = 49.8$."
+      ],
+      "answer": "49.8"
      }
     },
     {
      "id": "avg-i5",
-     "name": "A group joins or leaves together",
+     "name": "A whole group joins or leaves",
      "frequency": "common",
-     "howToSpot": "k new students join (or k leave / k are swapped) and the new average is given; the group's average is asked.",
+     "howToSpot": "k new students join (or k leave), the new overall average is given, and the group's own average is asked.",
      "formula": "\\text{group average} = \\frac{(n+k)B - nA}{k}",
-     "logic": "1. Old total $= nA$; new total $= (n+k)B$.\n2. The difference is the joining group's total.\n3. Divide by k for their average. For a swap of k members, total change $= n \\times$ change.\n\nWhy: same total-bridge as a single member, just for k people at once.",
+     "steps": [
+      "Old total = nA; new total = (n + k)B.",
+      "The difference is the joining group's total.",
+      "Divide by k for their average. For a swap of k members, the total changes by n × change."
+     ],
+     "why": "The same total bridge as for a single member, taken k people at once.",
      "example": {
-      "q": "30 students average 12 years. 10 new students join and the average becomes 13 years. Average age of the new students?",
-      "solution": "$40 \\times 13 - 30 \\times 12 = 160$ → $\\frac{160}{10} = 16$ years."
+      "q": "30 students have an average age of 12 years. 10 new students join and the average becomes 13 years. Find the average age of the new students.",
+      "steps": [
+       "New total = $40 \\times 13 = 520$; old total = $30 \\times 12 = 360$.",
+       "Newcomers' total = $520 - 360 = 160$.",
+       "Their average = $160 \\div 10 = 16$ years."
+      ],
+      "answer": "16 years"
      }
     }
+   ],
+   "revision": [
+    "Join: newcomer $= B + n(B - A)$, n = old count.",
+    "Leave: leaver $= nA - (n-1)B$.",
+    "Replace: new = old ± n × (change in average).",
+    "Wrong entry: average shifts by (correct − wrong) ÷ n.",
+    "Group joins: group total = (n+k)B − nA, then ÷ k for their average.",
+    "Check: new total ÷ new count = stated new average."
    ]
   },
   {
    "id": "avg-weighted",
    "title": "Weighted average & two-group problems",
-   "concept": "When groups of different sizes are combined, the combined average is the **weighted** mean:\n\n$$\\bar{x} = \\frac{n_1 \\bar{x}_1 + n_2 \\bar{x}_2 + n_3 \\bar{x}_3}{n_1 + n_2 + n_3}$$\n\nIt always lies closer to the bigger group's average. Alligation (cross method) works too — see the Mixture topic.\n\n**Two unknown averages:** if a group's average is missing, compute total sums group-wise and divide. Keep every product written down; these questions are pure bookkeeping.",
+   "concept": "When groups of different sizes are combined, the combined average is the **weighted** mean:\n\ntotal of all values ÷ total count. Turn each group's average into a total (size × average) first.\n\nThe combined average always sits closer to the bigger group's average. With equal group sizes it is the plain middle of the two averages.\n\nWith two group averages and the combined average known, the group sizes sit in the reverse ratio of their distances from the combined average.",
    "formulas": [
     {
      "name": "Weighted mean",
@@ -261,57 +440,100 @@
     },
     {
      "name": "Missing group average",
-     "tex": "\\bar{x}_2 = \\frac{N\\bar{x} - n_1\\bar{x}_1}{n_2}"
+     "tex": "\\bar{x}_2 = \\frac{N\\bar{x} - n_1\\bar{x}_1}{n_2}",
+     "note": "N = total count, overall average known."
     },
     {
-     "name": "Alligation cross",
-     "tex": "\\frac{n_1}{n_2} = \\frac{\\bar{x}_2 - \\bar{x}}{\\bar{x} - \\bar{x}_1}"
+     "name": "Sizes from distances",
+     "tex": "\\frac{n_1}{n_2} = \\frac{\\bar{x}_2 - \\bar{x}}{\\bar{x} - \\bar{x}_1}",
+     "note": "Reverse ratio of the distances."
     }
    ],
    "tricks": [
     {
      "title": "Totals, not averages",
-     "body": "Convert each group to a total, add, divide by the combined count.",
+     "body": "Turn each group into a total, add, divide by the combined count.",
      "example": {
-      "q": "In a class of 60 students, 20 girls have an average of 40 marks. If the class average is 50, find the boys' average.",
-      "solution": "Boys' total = 3000 − 800 = 2200 ⇒ average $= \\frac{2200}{40} = 55$."
+      "q": "In a class of 60 students, the 20 girls average 40 marks. The class average is 50. Find the boys' average.",
+      "steps": [
+       "Class total = $60 \\times 50 = 3000$; girls = $20 \\times 40 = 800$.",
+       "Boys' total = $3000 - 800 = 2200$ over 40 boys.",
+       "Boys' average = $2200 \\div 40 = 55$."
+      ],
+      "answer": "55"
      }
     },
     {
-     "title": "Balance point intuition",
-     "body": "The combined average divides the gap between the two group averages in the ratio n₂ : n₁ (inverse of sizes).",
+     "title": "Feel the balance point",
+     "body": "The combined average splits the gap between the group averages in the ratio n₂ : n₁, the reverse of the sizes.",
      "example": {
-      "q": "20 boys average 12 years, 30 girls average 11 years. Combined average?",
-      "solution": "$\\frac{240 + 330}{50} = 11.4$ years — four parts from 11, one from 12, as 30 : 20 predicts."
+      "q": "20 boys average 12 years and 30 girls average 11 years. Find the combined average age.",
+      "steps": [
+       "Totals: $240 + 330 = 570$.",
+       "Combined = $570 \\div 50 = 11.4$ years.",
+       "The answer sits 0.4 above 11 and 0.6 below 12 — closer to the girls, the bigger group."
+      ],
+      "answer": "11.4 years"
      }
     },
     {
-     "title": "Newcomer pushing a known average",
-     "body": "Combined-average questions with a single newcomer reduce to value = A' + n(A' − A).",
+     "title": "One newcomer is a tiny second group",
+     "body": "A single new member changing a group average is just a weighted average with k = 1. Use value = B + n(B − A).",
      "example": {
-      "q": "15 workers average ₹250 in wages. A manager joins and the average becomes ₹300. Find the manager's wage.",
-      "solution": "Manager = 300 + 15 × 50 = **₹1,050**."
+      "q": "15 workers average ₹250 in daily wages. A manager joins and the average becomes ₹300. Find the manager's wage.",
+      "steps": [
+       "Jump = $300 - 250 = 50$.",
+       "Manager = $300 + 15 \\times 50$.",
+       "= ₹1050."
+      ],
+      "answer": "₹1,050"
      }
     }
    ],
    "mistakes": [
-    "Combining averages directly (30 and 40 do not average to 35 unless the groups are equal).",
-    "Dividing by the wrong combined count (students + teacher, workers + manager).",
-    "Weighing with the wrong side of the alligation cross.",
-    "Rounding intermediate sums — these questions usually come out exact; a decimal mid-way means a slip."
+    {
+     "wrong": "Averaging the two averages when the groups differ in size.",
+     "right": "Weight each average by its group size: (n₁x̄₁ + n₂x̄₂) ÷ (n₁ + n₂)."
+    },
+    {
+     "wrong": "Dividing by the wrong count (students + teacher, workers + manager).",
+     "right": "List every member of the combined group before dividing."
+    },
+    {
+     "wrong": "Reading the balance ratio forwards (closer group = smaller).",
+     "right": "The group closer to the combined average is the bigger one."
+    },
+    {
+     "wrong": "Rounding a total halfway through.",
+     "right": "These questions come out exact. A messy decimal mid-way means a slip, so recheck the totals."
+    },
+    {
+     "wrong": "Group averages that do not bracket the combined average.",
+     "right": "The combined average must sit between the group averages. If not, re-read the question."
+    }
    ],
-   "notes": "### Why a simple average of averages goes wrong\nSection A has 20 students with average 60 and section B has 80 students with average 40. The average of the two averages is 50, but the real class average is $\\frac{20 \\times 60 + 80 \\times 40}{100} = 44$. The bigger section pulls the answer towards its own average. When groups have different sizes, each average must be **weighted** by its group size.\n\n### The weighted-average formula\n$$\\bar{x} = \\frac{n_1 \\bar{x}_1 + n_2 \\bar{x}_2 + \\cdots}{n_1 + n_2 + \\cdots}$$\nIn words: turn every group's average into a total ($n \\times$ average), add the totals, divide by the total count.\nExample: 30 boys average 42 kg and 20 girls average 37 kg → $\\frac{1260 + 740}{50} = 40$ kg.\n\n### Where the combined average sits\n- It always lies between the smallest and the largest group average.\n- It is closer to the average of the bigger group.\n- If the groups are equal in size, it is exactly the simple average of the group averages.\nThese three facts let you reject options without any calculation.\n\n### Finding a missing group average\nClass of 40 averages 65; the 25 boys average 62. Class total $= 2600$, boys' total $= 1550$, so the 15 girls total $1050$ → girls' average $70$.\nAlways: missing total = overall total − known totals.\n\n### Finding group sizes: the balance (alligation) method\nWhen both group averages and the combined average are known, the sizes are in the **opposite** ratio of the distances from the combined average:\n$$\\frac{n_1}{n_2} = \\frac{\\bar{x}_2 - \\bar{x}}{\\bar{x} - \\bar{x}_1}$$\nClass average 58, boys 62, girls 52 → boys : girls $= (58 - 52) : (62 - 58) = 6 : 4 = 3 : 2$.\nThink of a see-saw: the heavier group sits closer to the balance point.\nWorkers example: overall ₹8,000, 7 technicians at ₹12,000 (4000 above), the rest at ₹6,000 (2000 below) → technicians : rest $= 2000 : 4000 = 1 : 2$ → rest $= 14$, total $21$.\n\n### When sizes are given as a ratio or a fraction\nBoys : girls $= 3 : 2$ with averages 150 cm and 140 cm → treat the ratio as the counts: $\\frac{3 \\times 150 + 2 \\times 140}{5} = 146$ cm.\n\"One-fourth of the class averages 72 and the class average is 60\" → take the class as 4 parts: $4 \\times 60 = 72 + 3x$ → $x = 56$ for the rest.\n\n### Common traps\n- Reversing the ratio in the balance method (the group CLOSER to the mean is the BIGGER one).\n- Taking the simple average of averages when sizes differ.\n- Forgetting that the group averages must bracket the combined average — if they do not, re-read the question.\n\n### Quick revision\n- Combined average $= \\frac{\\sum n_i \\bar{x}_i}{\\sum n_i}$.\n- Missing group: overall total − known totals, then divide.\n- Sizes: $n_1 : n_2 = (\\bar{x}_2 - \\bar{x}) : (\\bar{x} - \\bar{x}_1)$.\n- Ratio or fraction of sizes → use them directly as counts.\n",
+   "notes": "### Why averaging averages fails\nSection A has 20 students with average 60. Section B has 80 students with average 40. The middle of 60 and 40 is 50, but the real class average is $\\dfrac{20 \\times 60 + 80 \\times 40}{100} = 44$.\n\nThe bigger section pulls the answer towards its own average. So each group must be weighted by its size.\n\n> **Rule:** Combined average = (sum of all group totals) ÷ (sum of all sizes). A group total = size × its average.\n\n### The weighted-average method\nWork in three moves, every time.\n\n1. Total of each group = size × average.\n2. Add all the totals. Add all the sizes.\n3. Divide.\n\n> **Example:** 30 boys average 42 kg and 20 girls average 37 kg. Combined = $\\dfrac{1260 + 740}{50} = 40$ kg.\n\n### Where the combined average sits\nThree facts that kill wrong options without calculation:\n\n- It always lies between the smallest and the largest group average.\n- It lies closer to the average of the **bigger** group.\n- Equal group sizes → it is the plain middle of the group averages.\n\n> **Tip:** If an option sits outside the two group averages, cross it out at once.\n\n### One group's average missing\nClass of 40 averages 65 marks. The 25 boys average 62. Find the girls' average.\n\nClass total = $40 \\times 65 = 2600$. Boys' total = $25 \\times 62 = 1550$. Girls' total = $2600 - 1550 = 1050$ over 15 girls → 70.\n\n> **Rule:** Missing total = overall total − known totals. Then divide by that group's own size.\n\n### Finding the sizes: the balance method\nBoth group averages and the combined average are known; a size is asked. The sizes sit in the **reverse** ratio of the distances from the combined average:\n\n$$\\frac{n_1}{n_2} = \\frac{\\bar{x}_2 - \\bar{x}}{\\bar{x} - \\bar{x}_1}$$\n\nClass average 58, boys 62, girls 52. Distances: boys 4, girls 6. So boys : girls = $6 : 4 = 3 : 2$.\n\nPicture a see-saw: the heavier group sits closer to the balance point. Scale the ratio up to the given total when a count is asked.\n\n> **Watch:** The group closer to the combined average is the bigger one. Reversing this ratio is the classic wrong option.\n\n### Sizes given as a ratio or a fraction\nNo real counts? Use the ratio parts as the counts.\n\nBoys : girls = 3 : 2, averages 150 cm and 140 cm → $\\dfrac{3 \\times 150 + 2 \\times 140}{5} = 146$ cm.\n\n\"One-fourth of a class averages 72 and the whole class averages 60.\" Take the class as 4 parts: $4 \\times 60 = 240 = 72 + 3x$, so the other three parts average $x = 56$.\n\n> **Tip:** The weighted average depends only on the proportions, never on the actual headcount.\n",
    "patterns": [
     {
      "id": "avg-w1",
      "name": "Combined average of two or more groups",
      "frequency": "very common",
-     "howToSpot": "Two or three groups (boys/girls, sections, batches) with their sizes and averages; the overall average is asked.",
+     "howToSpot": "Two or three groups (boys/girls, sections, batches) with sizes and averages; the overall average is asked.",
      "formula": "\\bar{x} = \\frac{n_1 \\bar{x}_1 + n_2 \\bar{x}_2 + n_3 \\bar{x}_3}{n_1 + n_2 + n_3}",
-     "logic": "1. Multiply each group's size by its average to get its total.\n2. Add all totals; add all sizes.\n3. Divide. The answer must lie closer to the bigger group's average.\n\nWhy: an average is a total shared by a count, so only totals can be added.",
+     "steps": [
+      "Multiply each group's size by its average to get its total.",
+      "Add all the totals; add all the sizes.",
+      "Divide. The answer must lie closer to the bigger group's average."
+     ],
+     "why": "An average is a total shared by a count, so only totals can be added.",
      "example": {
-      "q": "30 boys average 42 kg and 20 girls average 37 kg. Find the average weight of all 50.",
-      "solution": "$\\frac{30 \\times 42 + 20 \\times 37}{50} = \\frac{1260 + 740}{50} = 40$ kg."
+      "q": "In a school, 30 boys average 42 kg and 20 girls average 37 kg. Find the average weight of all 50 students.",
+      "steps": [
+       "Boys: $30 \\times 42 = 1260$; girls: $20 \\times 37 = 740$.",
+       "Total = $2000$ kg over 50 students.",
+       "Average = $2000 \\div 50 = 40$ kg."
+      ],
+      "answer": "40 kg"
      }
     },
     {
@@ -320,154 +542,307 @@
      "frequency": "very common",
      "howToSpot": "The overall average and one group's average are given; the other group's average is asked.",
      "formula": "\\bar{x}_2 = \\frac{(n_1 + n_2)\\bar{x} - n_1 \\bar{x}_1}{n_2}",
-     "logic": "1. Overall total $=$ total count $\\times$ overall average.\n2. Subtract the known group's total.\n3. Divide the rest by the other group's size.\n\nWhy: the two totals must add up to the overall total.",
+     "steps": [
+      "Overall total = total count × overall average.",
+      "Subtract the known group's total.",
+      "Divide the rest by the other group's size."
+     ],
+     "why": "The two group totals must add up to the overall total.",
      "example": {
-      "q": "The average marks of 40 students is 65. The 25 boys average 62. Find the girls' average.",
-      "solution": "$\\frac{2600 - 1550}{15} = \\frac{1050}{15} = 70$."
+      "q": "The average marks of 40 students is 65. The 25 boys average 62 marks. Find the girls' average.",
+      "steps": [
+       "Class total = $40 \\times 65 = 2600$.",
+       "Boys = $25 \\times 62 = 1550$, so girls have $1050$ marks.",
+       "Girls: $1050 \\div 15 = 70$."
+      ],
+      "answer": "70"
      }
     },
     {
      "id": "avg-w3",
-     "name": "Group sizes (or ratio) from the averages",
+     "name": "Group ratio from the averages",
      "frequency": "common",
-     "howToSpot": "All three averages are known (two groups + combined) and the ratio or number in a group is asked.",
+     "howToSpot": "All three averages are known (two groups plus combined) and the ratio of sizes is asked.",
      "formula": "n_1 : n_2 = (\\bar{x}_2 - \\bar{x}) : (\\bar{x} - \\bar{x}_1)",
-     "logic": "1. Find how far each group average is from the combined average.\n2. Sizes are in the REVERSE ratio of these distances.\n3. Scale the ratio to the given total if a number is asked.\n\nWhy: the extra above the mean from one group must balance the shortfall below the mean from the other.",
+     "steps": [
+      "Find how far each group average is from the combined average.",
+      "The sizes are in the reverse ratio of these distances.",
+      "Scale the ratio to the given total if a count is asked."
+     ],
+     "why": "The surplus above the mean from one group must balance the shortfall from the other.",
      "example": {
-      "q": "Class average 58; boys average 62; girls average 52. Find boys : girls.",
-      "solution": "Distances: boys $4$, girls $6$ → boys : girls $= 6 : 4 = 3 : 2$."
+      "q": "A class averages 58 marks. The boys average 62 and the girls 52. Find boys : girls.",
+      "steps": [
+       "Distances: boys $62 - 58 = 4$; girls $58 - 52 = 6$.",
+       "Sizes are the reverse: boys : girls = $6 : 4 = 3 : 2$."
+      ],
+      "answer": "3 : 2"
      }
     },
     {
      "id": "avg-w4",
-     "name": "Group sizes given as a ratio or a fraction",
+     "name": "Sizes given as a ratio or fraction",
      "frequency": "common",
-     "howToSpot": "'Boys and girls are in the ratio 3 : 2' or 'one-fourth of the students average …' instead of actual counts.",
+     "howToSpot": "'Boys and girls are in the ratio 3 : 2' or 'one-fourth of the students average …' instead of real counts.",
      "formula": "\\bar{x} = \\frac{a\\bar{x}_1 + b\\bar{x}_2}{a + b}",
-     "logic": "1. Use the ratio parts (or fraction parts) as if they were the counts.\n2. Apply the weighted-average formula or solve for the missing average.\n\nWhy: the weighted average depends only on the proportions of the groups, not the actual counts.",
+     "steps": [
+      "Use the ratio parts (or fraction parts) as if they were the counts.",
+      "Apply the weighted-average formula.",
+      "For a missing average, solve the one equation that is left."
+     ],
+     "why": "The weighted average depends only on the proportions of the groups.",
      "example": {
-      "q": "Boys and girls are in the ratio 3 : 2. Boys average 150 cm and girls 140 cm. Class average?",
-      "solution": "$\\frac{3 \\times 150 + 2 \\times 140}{5} = \\frac{730}{5} = 146$ cm."
+      "q": "Boys and girls in a class are in the ratio 3 : 2. Boys average 150 cm in height and girls 140 cm. Find the average height of the class.",
+      "steps": [
+       "Take 3 parts of boys and 2 of girls.",
+       "Total height = $3 \\times 150 + 2 \\times 140 = 730$ per 5 parts.",
+       "Average = $730 \\div 5 = 146$ cm."
+      ],
+      "answer": "146 cm"
+     }
+    },
+    {
+     "id": "avg-w5",
+     "name": "A group count from the averages",
+     "frequency": "common",
+     "howToSpot": "The overall average and both group averages are known, one group's count is known, and the other count (or total) is asked.",
+     "formula": "n_1 : n_2 = (\\bar{x} - \\bar{x}_2) : (\\bar{x}_1 - \\bar{x})",
+     "steps": [
+      "Find the two distances from the overall average.",
+      "The sizes follow the reverse ratio; pair each size with the group on the far side.",
+      "Scale the ratio by the known group's count, then add for the total."
+     ],
+     "why": "Once the size ratio is fixed, the known count prices one part of it.",
+     "example": {
+      "q": "A firm pays an average salary of ₹8,000. Its 7 technicians earn ₹12,000 each and the rest earn ₹6,000 each. How many employees does the firm have in total?",
+      "steps": [
+       "Distances from 8000: technicians $+4000$, others $-2000$.",
+       "Size ratio technicians : others = $2000 : 4000 = 1 : 2$.",
+       "Others = $7 \\times 2 = 14$; total = $7 + 14 = 21$."
+      ],
+      "answer": "21 employees"
      }
     }
+   ],
+   "revision": [
+    "Combined average = sum of (size × average) ÷ sum of sizes.",
+    "Missing group: overall total − known totals, then ÷ its own size.",
+    "Sizes = reverse ratio of distances from the combined average.",
+    "Ratio or fraction given → use the parts as counts.",
+    "Combined average sits closer to the bigger group."
    ]
   },
   {
    "id": "avg-misc",
    "title": "Batsman problems, overlapping sums & multi-step sets",
-   "concept": "**Batsman/cricketer template:** a score in the next innings raises the average by d. If the new average is A' after n innings, the score was $A' + (n-1)d$. Rearranged: new average $= \\frac{\\text{old total} + \\text{score}}{n}$.\n\n**Overlapping sums** (temperatures, marks): if the average of Mon–Wed is a and of Tue–Thu is b, subtracting gives Thu − Mon = 3(b − a). Give one endpoint to find the other.\n\n**Split sets:** an average over n numbers with partial averages over overlapping or consecutive chunks is solved by converting every average to a sum and using one variable for the unknown chunk.",
+   "concept": "**Batsman template:** a score of x in the nth innings lifts the average by d. The new average is $x - (n-1)d$; the score itself was (new total) − (old total).\n\n**Overlapping windows:** averages over two overlapping stretches differ only at their ends. Thu − Mon = 3 × (difference of the averages) for three-day windows.\n\n**Split sets and ages:** turn every average into a sum, use one variable for the unknown part, and remember a fixed group's average age rises by 1 each year.",
    "formulas": [
     {
      "name": "Batsman score",
-     "tex": "\\text{score} = A' + (n-1)d"
+     "tex": "\\text{score} = A' + (n-1)d",
+     "note": "A' = new average, d = rise."
     },
     {
      "name": "Batsman new average",
-     "tex": "A' = \\frac{(n-1)A + \\text{score}}{n}"
+     "tex": "A' = \\frac{(n-1)A + \\text{score}}{n} = x - (n-1)d"
     },
     {
      "name": "Overlap subtraction",
-     "tex": "\\text{(Thu)} - \\text{(Mon)} = 3(b - a)"
+     "tex": "\\text{Thu} - \\text{Mon} = 3(b - a)",
+     "note": "Three-day windows; multiply by the overlap length."
+    },
+    {
+     "name": "Shared middle item",
+     "tex": "\\text{shared} = S_1 + S_2 - S_{\\text{total}}"
     },
     {
      "name": "Split sums",
-     "tex": "n\\bar{x} = \\sum_{\\text{chunks}} (\\text{chunk total})"
+     "tex": "n\\bar{x} = \\sum_{\\text{chunks}} (\\text{chunk total})",
+     "note": "One equation per chunk."
     }
    ],
    "tricks": [
     {
-     "title": "Batsman: work in totals",
+     "title": "Batsman: stay in totals",
      "body": "Old total + new score = new count × new average.",
      "example": {
-      "q": "A batsman scores 87 in his 17th innings and thereby increases his average by 3. Find his average after the 17th innings.",
-      "solution": "$16(A - 3) + 87 = 17A$... solve: let new average be A: $17A = 16(A-3) + 87$ ⇒ $A = 39$."
+      "q": "A batsman scores 87 in his 17th innings and raises his average by 3. Find his average after the 17th innings.",
+      "steps": [
+       "Let the new average be $A$: $17A = 16(A - 3) + 87$.",
+       "$17A = 16A + 39$, so $A = 39$."
+      ],
+      "answer": "39"
      }
     },
     {
-     "title": "Overlap: subtract the sums",
-     "body": "The shared days cancel, leaving the difference of the end days.",
+     "title": "Overlaps: subtract the sums",
+     "body": "Shared days cancel, leaving only the difference of the end days.",
      "example": {
-      "q": "The average temperature of Mon, Tue, Wed is 37°C and of Tue, Wed, Thu is 34°C. If Monday was 40°C, find Thursday.",
-      "solution": "Thu = 102 − (111 − 40) = **31°C**."
+      "q": "The average temperature of Mon, Tue and Wed is 37°C; of Tue, Wed and Thu it is 34°C. If Monday was 40°C, find Thursday.",
+      "steps": [
+       "Sums: $3 \\times 37 = 111$ and $3 \\times 34 = 102$.",
+       "Thu − Mon = $102 - 111 = -9$.",
+       "Thu = $40 - 9 = 31$°C."
+      ],
+      "answer": "31°C"
      }
     },
     {
      "title": "One variable for the unknown chunk",
-     "body": "Name the smallest unknown x, express the rest from the given relations, and let the leftover sum close the equation.",
+     "body": "Name the smallest unknown x, express the rest through it, and close the equation with the leftover sum.",
      "example": {
-      "q": "8 numbers average 20. First two average 15.5, next three average 21⅓. The 6th is 5 less than the 7th, and the 8th is 7 more than the 7th. Find the 8th.",
-      "solution": "Leftover total = 160 − 95 = 65. Let 6th = x: x + (x+5) + (x+12) = 65 ⇒ x = 16 ⇒ 8th = **28**."
+      "q": "8 numbers average 20. The first two average 15.5 and the next three average $\\dfrac{64}{3}$. The 6th number is 5 less than the 7th, and the 8th is 7 more than the 7th. Find the 8th number.",
+      "steps": [
+       "Total = $160$; known chunks = $31 + 64 = 95$; leftover = $65$.",
+       "Let the 6th be $x$: $x + (x+5) + (x+12) = 65$.",
+       "$x = 16$, so the 8th = $16 + 12 = 28$."
+      ],
+      "answer": "28"
      }
     }
    ],
    "mistakes": [
-    "In batsman problems, multiplying by n instead of (n − 1) for the old total.",
-    "Subtracting the averages (37 − 34) and reporting 3 as Thu − Mon without multiplying by the overlap length rule.",
-    "Forgetting that the 'next' chunk overlaps the previous one (11 numbers: first 6 and last 6 share the 6th).",
-    "Setting the relations backwards (6th is 5 LESS than 7th ⇒ 7th = 6th + 5)."
+    {
+     "wrong": "In batsman questions, multiplying by n for the old total.",
+     "right": "Before the nth innings there are only n − 1 innings. Old total = (n − 1) × old average."
+    },
+    {
+     "wrong": "Reporting the difference of two overlapping averages as the end-day difference.",
+     "right": "Multiply the difference of averages by the overlap length (3 days → × 3)."
+    },
+    {
+     "wrong": "Forgetting the two halves of 11 numbers share the 6th number.",
+     "right": "First 6 + last 6 = 12 counts for 11 numbers: the middle one is counted twice."
+    },
+    {
+     "wrong": "Setting a relation backwards ('the 6th is 5 less than the 7th').",
+     "right": "Translate carefully: 6th = 7th − 5, so 7th = 6th + 5."
+    },
+    {
+     "wrong": "Treating a bowling average like a batsman average (higher = better).",
+     "right": "A bowler improves when the average falls. Use $aW + r = (a-d)(W+w)$."
+    }
    ],
-   "notes": "### Batsman and bowler questions\nA batsman's **average** = total runs ÷ number of innings (here every innings counts as \"out\").\nThe standard question: \"He scores x runs in his nth innings and his average rises by d.\" Let the new average be A. Then the old average was $A - d$ for $n - 1$ innings:\n$$(n-1)(A - d) + x = nA \\ \\Rightarrow\\ A = x - (n-1)d$$\nExample: 98 runs in the 20th innings raise the average by 2 → new average $= 98 - 19 \\times 2 = 60$.\nThe same bridge answers \"how many must he score in the next innings to raise his average from 42 to 45 after 10 innings?\" → $11 \\times 45 - 10 \\times 42 = 75$.\n\nA **bowler's average** is runs given ÷ wickets taken, and a LOWER value is better. If his average is a, and in a match he takes w wickets for r runs so that the average falls by d, with W wickets before the match:\n$$aW + r = (a - d)(W + w)$$\nAverage 12.4, 5 wickets for 26 runs, improves by 0.4 → $12.4W + 26 = 12(W + 5)$ → $W = 85$.\n\n### Overlapping windows\nThe average of Monday to Thursday and the average of Tuesday to Friday share Tuesday, Wednesday and Thursday. Subtract the sums and the shared days cancel:\n$$\\text{Fri} - \\text{Mon} = 4 \\times (\\text{second average} - \\text{first average})$$\nIf one of the two end days is known (or their ratio), the other follows at once.\nThe \"first 7 and last 7 of 13 numbers\" question works the same way: the 7th number is counted twice, so\n$$\\text{middle} = \\text{first-part sum} + \\text{last-part sum} - \\text{total sum}$$\n13 numbers average 30; first 7 average 27; last 7 average 35 → 7th $= 189 + 245 - 390 = 44$.\n\n### Split sets with relations\n\"The average of 6 numbers is 30; the first two average 24, the next two 33; of the remaining two, one is 4 more than the other.\" Go to sums: $180 - 48 - 66 = 66$ for the last two → $x + x + 4 = 66$ → 31 and 35.\nName the smallest unknown x and write every other unknown in terms of x.\n\n### Ages over time\nEvery member of a group ages 1 year each year, so the **average age also rises by 1 per year** (for the same members).\n- n years ago, a family's average was A; now it is $A + n$ for the same members.\n- A child born later adds its age to the total and 1 to the count.\n- \"Average age of the family at the birth of the youngest\": take the present total, subtract the youngest's age from **every other** member and the youngest itself: $\\frac{\\text{total} - (\\text{members}) \\times \\text{youngest's age}}{\\text{members} - 1}$.\nExample: 5 members average 24, youngest 8 → at the youngest's birth: $\\frac{120 - 5 \\times 8}{4} = 20$.\n\n### Checking your answer\nRebuild the story with totals: old total, change, new total, new count. If the new total ÷ new count matches the stated average, you are right.\n\n### Quick revision\n- Batsman: new average $= x - (n-1)d$; needed score $=$ new total $-$ old total.\n- Bowler: runs-per-wicket totals on both sides of the match.\n- Overlap: difference of ends $=$ window size × difference of averages; shared middle $=$ part sums − total.\n- Split set: sums first, one variable.\n- Ages: average age rises 1 per year for a fixed group.\n",
+   "notes": "### Batsman: the innings question\nA batsman's average = total runs ÷ innings played. The standard question: he scores x runs in his nth innings and the average rises by d. Let the new average be A. Then:\n\n$$(n-1)(A - d) + x = nA \\quad\\Rightarrow\\quad A = x - (n-1)d$$\n\n98 runs in the 20th innings lift the average by 2 → new average = $98 - 19 \\times 2 = 60$.\n\n> **Rule:** Score in the nth innings = new average + (n − 1) × rise. It must feed every past innings plus its own share.\n\nThe reverse question asks how many runs are needed. To lift an average from 42 to 45 in the 11th innings: needed = $11 \\times 45 - 10 \\times 42 = 75$.\n\n### Bowler's average\nA bowler's average = runs given ÷ wickets taken, and a LOWER value is better. Average a, then a match of w wickets for r runs makes it fall by d. With W wickets before the match:\n\n$$aW + r = (a - d)(W + w)$$\n\nAverage 12.4; a match of 5 wickets for 26 runs improves it by 0.4 → $12.4W + 26 = 12(W + 5)$, so $W = 85$.\n\n> **Watch:** \"Improves\" means the bowling average falls. Subtract, never add.\n\n### Overlapping windows\nThe average of Mon–Wed is 37 and of Tue–Thu is 34. The two sums share Tue and Wed, so subtracting kills them:\n\n$$\\text{Thu} - \\text{Mon} = 3 \\times (34 - 37) = -9$$\n\nMon was 40°, so Thu = $40 - 9 = 31$°. Multiply the difference of averages by the length of the overlap.\n\n### First-k and last-k share a middle\n13 numbers average 30. The first 7 average 27 and the last 7 average 35. The 7th number sits in both halves, so it is counted twice:\n\n$$\\text{middle} = 7 \\times 27 + 7 \\times 35 - 13 \\times 30 = 189 + 245 - 390 = 44$$\n\n> **Tip:** Add the two part-sums and subtract the whole. What survives is the shared item.\n\n### Split sets with relations\n\"The average of 6 numbers is 30. The first two average 24, the next two 33. Of the last two, one is 4 more than the other.\"\n\nSums first: total 180, first pair 48, second pair 66, so the last pair totals 66. Name the smaller x: $x + (x + 4) = 66$, so 31 and 35.\n\n> **Rule:** Every average becomes a sum. Name ONE unknown x and write the rest in terms of it.\n\n### Ages move together\nEvery member of a fixed group gets one year older each year, so the average age also rises by 1 per year.\n\n- n years ago the group's average was A → today it is $A + n$ (same members).\n- At the birth of the youngest: subtract the youngest's age from every member, and drop the youngest from the count. Five members average 24, youngest 8 → $\\dfrac{120 - 5 \\times 8}{4} = 20$.\n\n> **Tip:** Rebuild the story with totals — old total, change, new total, new count. If new total ÷ new count misses the stated average, a step is wrong.\n",
    "patterns": [
     {
      "id": "avg-m1",
-     "name": "Batsman: score that changes the average",
+     "name": "Batsman: the innings that moves the average",
      "frequency": "very common",
-     "howToSpot": "'Scores x in the nth innings and raises his average by d' or 'how many runs needed next innings to reach an average'.",
+     "howToSpot": "'Scores x in his nth innings and raises his average by d', or 'how many runs in the next innings to reach a target average'.",
      "formula": "A_{\\text{new}} = x - (n-1)d, \\qquad \\text{needed} = (n+1)A' - nA",
-     "logic": "1. Write old total $= (n-1)(A - d)$ and new total $= nA$.\n2. Their difference is the score in the nth innings; solve for A.\n3. For 'runs needed', subtract old total from the target total.\n\nWhy: the new score must lift every earlier innings by d and still leave its own share A.",
+     "steps": [
+      "Write old total = (n − 1)(A − d) and new total = nA for the new average A.",
+      "Solve for A, or subtract old total from target total when runs needed are asked.",
+      "Check with the totals."
+     ],
+     "why": "The new score must lift every earlier innings by d and still leave its own share A.",
      "example": {
-      "q": "A batsman scores 98 in his 20th innings and his average rises by 2. His new average?",
-      "solution": "$98 - 19 \\times 2 = 60$. Check: $19 \\times 58 + 98 = 1200 = 20 \\times 60$."
+      "q": "A batsman scores 98 runs in his 20th innings and raises his average by 2. Find his new average.",
+      "steps": [
+       "New average = $98 - 19 \\times 2$.",
+       "= $98 - 38 = 60$.",
+       "Check: $19 \\times 58 + 98 = 1200 = 20 \\times 60$."
+      ],
+      "answer": "60"
      }
     },
     {
      "id": "avg-m2",
-     "name": "Overlapping windows (days, first-k and last-k)",
+     "name": "Overlapping windows",
      "frequency": "common",
-     "howToSpot": "Averages over two overlapping sets — Mon–Thu and Tue–Fri, or first 7 and last 7 of 13 numbers.",
+     "howToSpot": "Averages over two overlapping stretches — Mon–Wed and Tue–Thu, or the first 7 and last 7 of 13 numbers.",
      "formula": "\\text{end}_2 - \\text{end}_1 = k(\\bar{b} - \\bar{a}), \\qquad \\text{shared} = S_1 + S_2 - S",
-     "logic": "1. Convert both averages to sums.\n2. Subtract (days) — shared items cancel — or add and remove the total (first/last parts) — the shared item is left.\n3. Use the extra fact (one end, or a ratio) to finish.\n\nWhy: shared values appear in both sums and vanish on subtraction.",
+     "steps": [
+      "Turn both averages into sums.",
+      "Subtract the sums: the shared items cancel, leaving the end difference. For first-k/last-k, ADD and subtract the whole: the shared middle survives.",
+      "Use the extra fact (one end value, or a ratio) to finish."
+     ],
+     "why": "Shared values appear in both sums, so they vanish on subtraction and double up on addition.",
      "example": {
-      "q": "The average of 13 numbers is 30. The first 7 average 27 and the last 7 average 35. Find the 7th number.",
-      "solution": "$7 \\times 27 + 7 \\times 35 - 13 \\times 30 = 189 + 245 - 390 = 44$."
+      "q": "The average of 13 numbers is 30. The average of the first 7 is 27 and of the last 7 is 35. Find the 7th number.",
+      "steps": [
+       "Part sums: $7 \\times 27 = 189$, $7 \\times 35 = 245$; whole = $13 \\times 30 = 390$.",
+       "7th number = $189 + 245 - 390$.",
+       "= $44$."
+      ],
+      "answer": "44"
      }
     },
     {
      "id": "avg-m3",
-     "name": "Split set with relations between the unknowns",
+     "name": "Split set with relations between unknowns",
      "frequency": "common",
-     "howToSpot": "Averages of parts of a set plus 'one is 4 more than the other' or 'first is twice the second'.",
-     "formula": "\\text{unknown part} = nA - \\sum(\\text{known parts})",
-     "logic": "1. Change every average into a sum.\n2. Get the leftover sum for the unknown values.\n3. Write the unknowns with one variable x from the relation and solve.\n\nWhy: once everything is a sum, the question is a one-variable equation.",
+     "howToSpot": "Averages of parts of a list, plus a tie such as 'one number is 4 more than the other'.",
+     "formula": "\\text{unknown part} = nA - \\sum (\\text{known parts})",
+     "steps": [
+      "Change every average into a sum.",
+      "Find the leftover sum for the unknown values.",
+      "Write the unknowns with one variable x from the relation, then solve."
+     ],
+     "why": "Once everything is a sum, the question is one equation in one variable.",
      "example": {
-      "q": "Six numbers average 30; the first two average 24 and the next two 33. Of the last two, one is 4 more than the other. The larger is?",
-      "solution": "Leftover $= 180 - 48 - 66 = 66$ → $2x + 4 = 66$ → $x = 31$ → larger $= 35$."
+      "q": "Six numbers average 30. The first two average 24 and the next two 33. Of the last two, one is 4 more than the other. Find the larger of the last two.",
+      "steps": [
+       "Total = $180$; first pair = $48$; second pair = $66$.",
+       "Last pair total = $180 - 48 - 66 = 66$.",
+       "$x + (x + 4) = 66 \\Rightarrow x = 31$; larger = $35$."
+      ],
+      "answer": "35"
      }
     },
     {
      "id": "avg-m4",
-     "name": "Ages over time (family and groups)",
+     "name": "Ages over time",
      "frequency": "common",
-     "howToSpot": "Average ages 'n years ago' or 'at the time of marriage / birth of the youngest', with members added later.",
-     "formula": "\\text{average after } t \\text{ years} = A + t \\ \\ (\\text{same members})",
-     "logic": "1. Move every average to the SAME year (add t for each year passed).\n2. Convert to totals and include or remove the new/old members.\n3. At the birth of a member: subtract his age from every member, and drop him from the count.\n\nWhy: each person ages one year per year, so a fixed group's total rises by n per year.",
+     "howToSpot": "Average ages 'n years ago' or 'at the birth of the youngest', with members added later.",
+     "formula": "\\text{average after } t \\text{ years} = A + t \\quad (\\text{same members})",
+     "steps": [
+      "Bring every average to the SAME year: add t for each year passed.",
+      "Work in totals; include or remove members as the story demands.",
+      "At a member's birth: subtract that age from every member, and drop one from the count."
+     ],
+     "why": "Each person ages one year per year, so a fixed group's total rises by n per year.",
      "example": {
-      "q": "A family of 5 averages 24 years. The youngest is 8. What was the average age of the family at the birth of the youngest?",
-      "solution": "Then: $120 - 5 \\times 8 = 80$ shared by 4 people → $20$ years."
+      "q": "A family of 5 members has an average age of 24 years. The youngest is 8. What was the average age of the family at the birth of the youngest?",
+      "steps": [
+       "Present total = $5 \\times 24 = 120$ years.",
+       "8 years ago everyone was 8 younger: $120 - 5 \\times 8 = 80$ years over 4 members.",
+       "Average = $80 \\div 4 = 20$ years."
+      ],
+      "answer": "20 years"
      }
     },
     {
      "id": "avg-m5",
-     "name": "Bowling average (runs per wicket)",
+     "name": "Bowling average",
      "frequency": "occasional",
-     "howToSpot": "'A bowler's average is 12.4 runs per wicket; he takes 5 wickets for 26 runs and his average improves by 0.4.'",
+     "howToSpot": "'A bowler's average is 12.4 runs per wicket; he takes 5 wickets for 26 runs and the average improves by 0.4.'",
      "formula": "aW + r = (a - d)(W + w)",
-     "logic": "1. Let W be the wickets before the match; runs given so far $= aW$.\n2. After the match: runs $aW + r$, wickets $W + w$, average $a - d$ (improvement means it falls).\n3. Solve the linear equation for W.\n\nWhy: bowling average is a runs-per-wicket average, so the same total bridge applies.",
+     "steps": [
+      "Let W be the wickets before the match; runs given so far = aW.",
+      "After the match: runs aW + r, wickets W + w, average a − d.",
+      "Solve the linear equation for W."
+     ],
+     "why": "A bowling average is a runs-per-wicket average, so the same total bridge applies.",
      "example": {
-      "q": "A bowler's average is 12.4 runs per wicket. He takes 5 wickets for 26 runs and his average improves by 0.4. Wickets taken before this match?",
-      "solution": "$12.4W + 26 = 12(W + 5)$ → $0.4W = 34$ → $W = 85$."
+      "q": "A bowler's average is 12.4 runs per wicket. In a match he takes 5 wickets for 26 runs, and his average improves by 0.4. How many wickets did he have before this match?",
+      "steps": [
+       "$12.4W + 26 = 12(W + 5)$.",
+       "$12.4W + 26 = 12W + 60 \\Rightarrow 0.4W = 34$.",
+       "$W = 85$."
+      ],
+      "answer": "85"
      }
     }
+   ],
+   "revision": [
+    "Batsman: new average = x − (n − 1)d; needed runs = new total − old total.",
+    "Bowler: aW + r = (a − d)(W + w); 'improves' means falls.",
+    "Overlap: end difference = overlap length × difference of averages.",
+    "First-k and last-k: shared middle = part sums − whole sum.",
+    "Split set: sums first, then one variable x.",
+    "Fixed group: average age +1 per year; at a birth, subtract that age from everyone."
    ]
   }
  ],

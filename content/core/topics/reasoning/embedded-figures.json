@@ -13,168 +13,432 @@
   {
    "id": "find-hidden",
    "title": "Finding the hidden part in a figure",
-   "concept": "A complex figure is given and you must find which option figure is **hidden inside it exactly as drawn** — same size, same angles, same orientation. The standard SSC instruction is *rotation is not allowed*.\n\nMethod:\n1. In each option, pick its most unusual stroke — a lone slanting line, an odd-length side, a T-junction.\n2. Search the main figure for that stroke in the **same direction**.\n3. Trace the rest of the option from there; every line must be present in the main figure (it may be part of a longer line).\n\nDistractors are usually the correct part flipped, rotated or with one line changed. That is why orientation matters more than the general shape.",
+   "concept": "A big figure hides one of the small option figures. The hidden figure has the same strokes, the same lengths and the same directions. Your job is to find which option it is.\n\nYou may slide the small figure around. You may **not** turn it or flip it.",
    "formulas": [],
    "tricks": [
     {
-     "title": "Anchor on the slant",
-     "body": "A slanting line has only two possible directions (/ or \\). Check whether the main figure even has the option's slant in the right place; this rejects mirror-image distractors in seconds.",
+     "title": "Reject by a missing direction",
+     "body": "Look at which slants the big figure has. An option with a slant the figure lacks cannot be hidden in it.",
      "example": {
-      "q": "**Q.** The main figure has only \\ diagonals. An option contains a / slant. Can it be embedded?",
-      "solution": "No — without a / line anywhere in the main figure that option is impossible."
+      "q": "The big figure has only rising slants (`/`). An option has one falling slant (`\\`). Can that option be hidden in it?",
+      "steps": [
+       "The figure has no `\\` stroke anywhere.",
+       "Sliding cannot change a `\\` into a `/`.",
+       "So the option cannot fit."
+      ],
+      "answer": "No. Reject it at once."
      }
+    },
+    {
+     "title": "Count strokes by type",
+     "body": "Count the flat, upright and slanting strokes in the part. The big figure must have at least as many of each type.",
+     "example": {
+      "q": "An option has 3 flat strokes in a row. The big figure has only 2 flat strokes in each row. Can it be hidden?",
+      "steps": [
+       "A row of 3 flat strokes needs 3 flat strokes in one line.",
+       "No line in the figure has 3.",
+       "So the option cannot fit."
+      ],
+      "answer": "No."
+     }
+    },
+    {
+     "title": "Two finalists: compare at the anchor",
+     "body": "If two options look alike, compare only the strokes that touch the anchor. The wrong one usually breaks there."
     }
    ],
    "mistakes": [
-    "Accepting a part that fits only after rotating or flipping it.",
-    "Ignoring length: a line in the option that is longer than any matching line in the figure cannot fit.",
-    "Forgetting that a short option line may be a piece of a longer line in the figure."
+    {
+     "wrong": "Choosing an option because the overall shape looks right.",
+     "right": "Check every stroke and its direction. Shape alone hides flips and turns."
+    },
+    {
+     "wrong": "Accepting a turned or mirrored copy.",
+     "right": "Rotation is not allowed. A `/` slant in the figure never matches a `\\` slant in the option."
+    },
+    {
+     "wrong": "Accepting an option that misses one stroke, or has one stroke in another direction.",
+     "right": "Every stroke of the option must be present. One missing or re-angled stroke means reject."
+    },
+    {
+     "wrong": "Checking only the first place where the anchor stroke appears.",
+     "right": "Try every place where the anchor appears before you reject an option."
+    },
+    {
+     "wrong": "Comparing stroke sizes.",
+     "right": "All strokes are one square long here. Size never decides. Direction does."
+    }
    ],
-   "notes": "### What \"embedded\" means\nOne of the four option figures is hiding inside the given figure. It is drawn there with the **same strokes, same lengths and same directions**, just sitting among extra lines. Your job is to spot it. Two rules make this checkable: every stroke is one grid step long, and **rotation is not allowed**.\n\n### Rotation is not allowed\nThe hidden copy must keep every stroke in its own direction: a horizontal stroke stays horizontal, a slant keeps its lean. So a figure flipped left-right (its **mirror image**), flipped top-bottom (its **water image**) or turned through 90 degrees or 180 degrees is a **different figure** and a wrong answer. Most wrong options are exactly these copies of the right answer, so direction checking settles most of the question.\n\n### Anchor on a distinctive stroke\nDo not compare whole figures. Pick the part's rarest stroke - usually a **slant**, or a stroke that forms a **T-joint** with two others. Find every place in the given figure where that anchor appears in the same direction; there are only a few. Each anchor spot is a candidate position. Around each candidate, check the remaining strokes of the part one by one, in order, sharing endpoints. If every stroke is found with matching direction, that is the answer; if even one stroke fails, drop that spot and move on.\n\n### Compare strokes, not areas\nCount first: if the part has 2 horizontal strokes, 1 vertical and 2 slants, the hidden copy must show exactly those five strokes in the same connected arrangement. A region of the figure can look \"full\" and still not contain the part, and a sparse-looking corner may hold it.\n\n### Method in the exam\n1. Count the part's strokes; note each direction.\n2. Choose the rarest stroke as the anchor; locate it in the given figure.\n3. At each anchor spot, trace the remaining strokes around it.\n4. Reject options that are mirror images (a slant leaning the other way), water images (upside down) or turned copies - these need no tracing.\n5. Between two surviving options, compare the strokes touching the anchor first.\n\n### Worked example\nPart: an L with a foot - one horizontal stroke, and two vertical strokes rising from its left end. In a 4 x 4 grid figure it sits one step right and one step down from the top-left, every stroke matching. Its left-right flipped version, whose foot points the other way, appears **nowhere** in the figure - the flipped L needs a horizontal on the other side of the corner, and no such pair of strokes exists there. So only the true L is embedded.\n\n### Common mistakes\n- Choosing a turned or mirrored copy because the silhouette looks right.\n- Accepting an option where one stroke of the part is missing or re-angled.\n- Checking only the first anchor spot when a second one also looks promising.\n- Comparing sizes - all strokes in these figures are one grid step long, so size never decides.\n\n### Quick revision\n- Embedded = same strokes, same lengths, same directions, anywhere in the figure.\n- Rotation is NOT allowed; mirror and water images are wrong answers.\n- Anchor on the rarest stroke (a slant or a T-joint), then trace around it.\n- Reject flips and turns first by direction; trace only what survives.\n- One missing or re-angled stroke means the part is not there.\n",
+   "notes": "### What hidden means\nOne small figure sits inside the big figure. Extra lines are drawn around it to hide it.\n\nThe four options are small figures. Pick the option that appears **exactly** inside the big one.\n\n> **Rule:** Sliding is allowed. Turning and flipping are not allowed.\n\n### How the pictures look here\nThe exam shows drawings. We draw them with text.\n\n- `+` is a corner point. `.` is an empty point.\n- `-` is a flat stroke. `|` is an upright stroke.\n- `/` is a rising slant. `\\` is a falling slant. `X` means both slants cross in that square.\n\nEvery stroke is one square long. So the size of a stroke never decides the answer.\n\n### Flips and turns are wrong answers\nMost wrong options are copies of the right answer with one simple change.\n\n| Copy | What changes | Allowed? |\n|---|---|---|\n| Mirror image | Left and right swap | No |\n| Water image | Top and bottom swap | No |\n| Turned copy | Turned by 90 or 180 degrees | No |\n\nA `/` slant becomes a `\\` slant in a mirror image. So check the slants first.\n\n### Pick a rare stroke first\nDo not compare whole figures. Pick **one stroke** that is rare in the small figure. A slant is the best choice.\n\n1. Find that stroke in the big figure. Match its direction.\n2. Check the strokes that touch it. Are they there too?\n3. Trace the other strokes one by one.\n4. If one stroke is missing, drop that place and try the next one.\n\n> **Tip:** A flat or upright stroke appears many times. A slant appears only a few times. Fewer places means less work.\n\n### Count strokes by type\nCount the part's strokes: flat, upright, rising slant and falling slant. The big figure must have **at least** that many of each type.\n\nIf the part has a `\\` slant and the big figure has none, that option is out. You do not need to trace anything.\n\n> **Watch:** Two options can have the same number of strokes and still differ in direction.\n\n### A worked example\nWhich option is hidden in the given figure? Rotation is not allowed.\n\n**Figure**\n```\n+   +   +---+\n| /\n+   +   .   +\n      \\   /\n+---+---+   .\n```\n\n**(A)**\n```\n+   .   .   .\n  \\\n.   +---+---+\n```\n\n**(B)**\n```\n.   .   .   +\n          /\n+---+---+   .\n```\n\n**(C)**\n```\n+   .   .   +\n  \\       /\n.   +---+   .\n```\n\n**Solution**\n- Part strokes: 2 flat and 1 rising slant (`/`).\n- Anchor on the rising slant (`/`). The figure has 2 of them.\n- (A) is the mirror image (left and right swapped), so it does not fit anywhere.\n- (C) has one stroke changed, so it does not fit anywhere.\n- Only (B) fits, in the bottom part of the figure.\n\nAnswer: **(B)**.\n",
    "patterns": [
     {
      "id": "fh-p1",
-     "name": "Hidden part in a square grid figure",
+     "name": "Hidden part in a full grid figure",
      "frequency": "very common",
-     "howToSpot": "A 4 x 4 grid figure full of horizontal, vertical and slanting strokes; the options are small open figures.",
+     "howToSpot": "A busy grid of short strokes is given. The four options are small open figures. Most options are flipped copies of one figure.",
      "formula": null,
-     "logic": "Anchor on the part's rarest stroke, locate it in the grid, and trace the remaining strokes around each anchor spot.",
+     "steps": [
+      "Count the part's strokes by type.",
+      "Pick the rarest stroke as the anchor. Find it in the figure.",
+      "Trace the other strokes around each anchor place.",
+      "Reject mirror, water and turned copies by direction."
+     ],
+     "why": "A slant has only two directions, so a flipped copy fails at the first stroke.",
      "example": {
-      "q": "**Q.** An open figure with 2 horizontals, 2 verticals and a slant is hidden in a 4 x 4 grid figure. Find it.",
-      "solution": "Locate the slant, trace the box strokes around it; the flipped copy leans the other way and fails."
+      "q": "Which option is hidden in the given figure? Rotation is not allowed.\n\n**Figure**\n```\n.   +---+\n    | X |\n.   +   +\n  / | \\\n+   +   +\n```\n\n**(A)**\n```\n.   +\n  / |\n+   +\n    |\n.   +\n```\n\n**(B)**\n```\n+   .\n|\n+   +\n| /\n+   .\n```\n\n**(C)**\n```\n+   .\n| \\\n+   +\n|\n+   .\n```\n\n**(D)**\n```\n.   +   .\n  /\n+---+---+\n```",
+      "steps": [
+       "Part strokes: 2 upright and 1 falling slant (`\\`).",
+       "Anchor on the falling slant (`\\`). The figure has 2 of them.",
+       "(A) is the mirror image (left and right swapped), so it does not fit anywhere.",
+       "(B) is the water image (upside down), so it does not fit anywhere.",
+       "Only (C) fits, in the right side of the figure."
+      ],
+      "answer": "(C)"
      }
     },
     {
      "id": "fh-p2",
      "name": "Hidden part in an irregular figure",
      "frequency": "common",
-     "howToSpot": "The given figure is not square (4 x 3) or its strokes stop early, so whole-figure matching misleads.",
+     "howToSpot": "The big figure is not a full grid. Some strokes are missing or stop early, so matching the whole shape does not help.",
      "formula": null,
-     "logic": "Work stroke by stroke from the anchor; do not require the host figure to be a full grid.",
+     "steps": [
+      "Ignore the outline of the figure.",
+      "Start at the anchor stroke of each option.",
+      "Trace stroke by stroke. Do not expect a full grid.",
+      "Keep the option that completes."
+     ],
+     "why": "A hidden part only needs its own strokes to be present. The figure's outline does not matter.",
      "example": {
-      "q": "**Q.** A 4 x 3 figure hides a small open part; two options are flipped copies of it.",
-      "solution": "Only the unflipped copy completes at its anchor spot; flips fail on the first re-angled stroke."
+      "q": "Which option is hidden in the given figure? Rotation is not allowed.\n\n**Figure**\n```\n.   +---+   .\n    | /   \\\n+---+   .   +\n```\n\n**(A)**\n```\n+---+   .\n    | \\\n.   +   +\n```\n\n**(B)**\n```\n.   +   +\n    | /\n+---+   .\n```\n\n**(C)**\n```\n.   +   +\n  / | /\n+   +   .\n```",
+      "steps": [
+       "Part strokes: 1 flat, 1 upright and 1 rising slant (`/`).",
+       "Anchor on the rising slant (`/`). The figure has 1 of them.",
+       "(A) is the water image (upside down), so it does not fit anywhere.",
+       "(C) has one stroke changed, so it does not fit anywhere.",
+       "Only (B) fits, in the left side of the figure."
+      ],
+      "answer": "(B)"
      }
     },
     {
      "id": "fh-p3",
-     "name": "Near-miss option figures",
+     "name": "Options that differ by one stroke",
      "frequency": "common",
-     "howToSpot": "The options are not flips of each other - each differs from the part by a single stroke (missing, replaced or re-angled).",
+     "howToSpot": "The options are not flips of each other. Each one differs from the part by one stroke that is changed.",
      "formula": null,
-     "logic": "Check each option's strokes against the part one at a time; then confirm the surviving option really appears in the figure.",
+     "steps": [
+      "Compare each option with the part, stroke by stroke.",
+      "Mark the changed stroke in each wrong option.",
+      "Confirm that the option left really appears in the figure."
+     ],
+     "why": "A wrong option that has one stroke changed cannot be found in the figure, however close it looks.",
      "example": {
-      "q": "**Q.** Three options each differ from the part by one stroke; one matches exactly.",
-      "solution": "Trace the exact-match option in the figure; the one-stroke-off options never complete."
+      "q": "Which option is hidden in the given figure? Rotation is not allowed.\n\n**Figure**\n```\n+---+   +   .\n|     / |\n+---+---+   +\n            |\n.   .   .   +\n```\n\n**(A)**\n```\n+---+   +\n  \\   / |\n.   +   +\n```\n\n**(B)**\n```\n.   +   +\n  /   / |\n+---+   +\n```\n\n**(C)**\n```\n+---+   +\n      / |\n+---+   +\n```",
+      "steps": [
+       "Part strokes: 2 flat, 1 upright and 1 rising slant (`/`).",
+       "Anchor on the rising slant (`/`). The figure has 1 of them.",
+       "(A) has one stroke changed, so it does not fit anywhere.",
+       "(B) has one stroke changed, so it does not fit anywhere.",
+       "Only (C) fits, in the top-left of the figure."
+      ],
+      "answer": "(C)"
      }
     },
     {
      "id": "fh-p4",
-     "name": "Slant-heavy parts",
+     "name": "Parts with two or more slants",
      "frequency": "occasional",
-     "howToSpot": "The part carries two or more slanting strokes, so direction errors are easy to make.",
+     "howToSpot": "The part has two or more slanting strokes. Direction mistakes are easy to make.",
      "formula": null,
-     "logic": "Fix each slant's lean first (/ rises left-to-right, \\ falls left-to-right); only then check the straight strokes.",
+     "steps": [
+      "Write the lean of each slant: `/` rises to the right, `\\` falls to the right.",
+      "Match both slants in the figure.",
+      "Then check the flat and upright strokes that touch them."
+     ],
+     "why": "Flipped copies reverse at least one slant, so they fail as soon as you match the leans.",
      "example": {
-      "q": "**Q.** A part with two slants and one vertical is hidden in a busy grid figure.",
-      "solution": "Match both slant leans at the anchor; flipped copies reverse at least one lean and fail."
+      "q": "Which option is hidden in the given figure? Rotation is not allowed.\n\n**Figure**\n```\n+   +   +---+\n| /   \\\n+   +---+   .\n  \\\n.   +   .   .\n```\n\n**(A)**\n```\n+   +   .\n| /   \\\n+   .   +\n```\n\n**(B)**\n```\n+   .   +\n| \\   /\n+   +   .\n```\n\n**(C)**\n```\n.   +   .\n  /   \\\n+---+   +\n```",
+      "steps": [
+       "Part strokes: 1 upright, 1 rising slant (`/`) and 1 falling slant (`\\`).",
+       "Anchor on the rising slant (`/`). The figure has 1 of them.",
+       "(B) is the water image (upside down), so it does not fit anywhere.",
+       "(C) has one stroke changed, so it does not fit anywhere.",
+       "Only (A) fits, in the top-left of the figure."
+      ],
+      "answer": "(A)"
+     }
+    },
+    {
+     "id": "fh-p5",
+     "name": "A direction the figure does not have",
+     "frequency": "common",
+     "howToSpot": "Look at the big figure. It has no falling slant (or no rising slant). At least one option needs that slant.",
+     "formula": null,
+     "steps": [
+      "List the stroke types in the big figure.",
+      "Cross out every option that needs a type the figure lacks.",
+      "Trace only the options that are left."
+     ],
+     "why": "Sliding cannot change the direction of a stroke, so a missing direction ends the check at once.",
+     "example": {
+      "q": "Which option is hidden in the given figure? Rotation is not allowed.\n\n**Figure**\n```\n.   +   +   .\n  / | /\n+---+   +---+\n|     /\n+---+   .   .\n```\n\n**(A)**\n```\n+   +   .\n  \\ |\n.   +---+\n```\n\n**(B)**\n```\n.   +   +\n    | /\n+---+   .\n```\n\n**(C)**\n```\n+   .\n  \\\n+---+\n    |\n.   +\n```",
+      "steps": [
+       "Part strokes: 1 flat, 1 upright and 1 rising slant (`/`).",
+       "The figure has no falling slant (`\\`).",
+       "Options with a `\\` slant are out: (A), (C).",
+       "Only (B) is left, and it fits in the top-left of the figure."
+      ],
+      "answer": "(B)"
      }
     }
+   ],
+   "revision": [
+    "Hidden = same strokes, same lengths, same directions, anywhere in the figure.",
+    "Rotation is not allowed. Mirror and water images are wrong answers.",
+    "Anchor on the rarest stroke, usually a slant. Then trace the other strokes around it.",
+    "Count strokes by type first. A type missing from the figure kills the option at once.",
+    "Reject flipped and turned options by direction. Trace only the ones that are left.",
+    "One missing or re-angled stroke means the option is not hidden there."
    ]
   },
   {
    "id": "contains-part",
    "title": "Which figure contains the given part",
-   "concept": "The reverse form: one small figure is given and each option is a bigger figure. Choose the option in which the small figure appears **as it is**.\n\nScan each option for the part's key stroke, then confirm the rest. Options that nearly contain it usually lack one line or have it running the other way.",
+   "concept": "This is the reverse question. One small part is given, and each option is a bigger figure. Choose the option that contains the part **exactly as drawn**.\n\nExtra lines never matter. You may slide the part but not turn it or flip it.",
    "formulas": [],
    "tricks": [
     {
-     "title": "Eliminate by the missing line",
-     "body": "Count the part's line directions (horizontal, vertical, /, \\). Any option missing one of these directions is out immediately.",
+     "title": "Reject by a missing direction",
+     "body": "List the directions in the part: flat, upright, `/` and `\\`. An option that lacks one of them is out at once.",
      "example": {
-      "q": "**Q.** The part has a horizontal, a vertical and a \\ line. Option B has no \\ line at all. Keep B?",
-      "solution": "No — reject it without tracing."
+      "q": "The part has a flat stroke, an upright stroke and a falling slant (`\\`). Option B has no falling slant at all. Keep B?",
+      "steps": [
+       "The part needs a `\\` stroke.",
+       "Option B has none.",
+       "Sliding cannot create one."
+      ],
+      "answer": "No. Reject B without tracing."
      }
+    },
+    {
+     "title": "Count the strokes first",
+     "body": "The option must have at least as many strokes as the part. Fewer strokes means it cannot contain the part.",
+     "example": {
+      "q": "The part has 5 strokes. Option C has 4 strokes in total. Can C contain the part?",
+      "steps": [
+       "A figure with 4 strokes cannot hold 5 strokes.",
+       "So C cannot contain the part."
+      ],
+      "answer": "No."
+     }
+    },
+    {
+     "title": "Two finalists: compare at the anchor",
+     "body": "If two options survive, compare only the strokes that touch the anchor. The wrong one usually breaks a stroke there."
     }
    ],
    "mistakes": [
-    "Choosing an option where the part fits only after rotation.",
-    "Stopping at the first partial match without checking every line."
+    {
+     "wrong": "Rejecting the right option because it has extra lines.",
+     "right": "Extra strokes are allowed. Only the part's own strokes must be present."
+    },
+    {
+     "wrong": "Accepting an option where the part fits only after turning it.",
+     "right": "Rotation is not allowed. A turned copy is a wrong option."
+    },
+    {
+     "wrong": "Comparing only the number of strokes.",
+     "right": "A one-stroke change keeps the count but breaks the shape. Check each direction."
+    },
+    {
+     "wrong": "Checking a slant's length but not its lean.",
+     "right": "A `/` and a `\\` are different strokes. The lean decides."
+    },
+    {
+     "wrong": "Stopping at the first partial match.",
+     "right": "Trace every stroke of the part. One missing stroke means the option is out."
+    }
    ],
-   "notes": "### The task\nThe question gives a **small part**; each option is a bigger figure. Exactly one option contains the part inside it, with the same strokes, lengths and directions, anywhere among extra filling lines. **Rotation is not allowed** - a turned copy of the part does not count.\n\n### Check stroke by stroke\nWrite down the part's strokes with their directions, say 2 horizontal, 1 vertical and 1 slant. The correct option must show all of them, connected in the same way, just shifted. Sliding is allowed; turning is not. Extra strokes in the option are fine - the part only needs to be **present**, and filling lines never disqualify an option.\n\n### Use anchors\nA slant is rarer than a horizontal or vertical, so start there: check its lean (/ has its lower end on the left, \\ has its lower end on the right), then find where it sits in the option. A **T-joint** - one stroke ending on the middle of another - is the second-best anchor. Parts often sit along an **edge or in a corner** of the correct option, so scan the border first when the part has a flat side.\n\n### Near-miss figures\nMost wrong options are built one stroke away from the part: one stroke **missing**, one slant **re-angled** (a / swapped for a \\), or one stroke **replaced** (a horizontal where the part has a vertical). This is why a quick count is not enough - the wrong option has the same number of strokes as the part. Check the endpoints: each stroke must begin and end where the part's strokes begin and end, relative to each other.\n\n### Method in the exam\n1. Count and list the part's strokes with directions.\n2. In each option, find the anchor stroke with the right lean.\n3. Around it, check the remaining strokes in order, endpoint to endpoint.\n4. Left with two finalists? Compare the strokes touching the anchor first; the difference is usually one re-angled slant.\n5. Never reject an option for having extra lines.\n\n### Worked example\nPart: a horizontal stroke, a vertical stroke down from its left end, and a / slant from the horizontal's right end to the vertical's bottom. One option holds all three in its lower-left; another has the same box but the slant leans the other way (\\ instead of /); a third has no vertical at all. Only the first option contains the part.\n\n### Common mistakes\n- Rejecting the correct option because of extra filling strokes.\n- Accepting an option whose copy of the part is turned through 90 degrees.\n- Counting strokes only - a one-stroke swap keeps the count but breaks the shape.\n- Checking the slant's length but not its lean.\n\n### Quick revision\n- The part must appear complete: same strokes, same directions, only shifted.\n- Extra filling strokes never disqualify an option.\n- Anchor on slants and T-joints; scan edges and corners first.\n- Wrong options are usually one stroke away: missing, re-angled or replaced.\n- A / and a \\ are different strokes; direction decides.\n",
+   "notes": "### The task\nA small **part** is given. Each option is a bigger figure. Exactly one option contains the part. It has the same strokes, lengths and directions.\n\nThe option may have extra strokes around the part. That is fine.\n\n> **Rule:** The part must be present in full. Extra lines never disqualify an option.\n\n### Read the pictures\n- `+` is a corner point. `.` is an empty point.\n- `-` is a flat stroke. `|` is an upright stroke.\n- `/` is a rising slant. `\\` is a falling slant. `X` means both slants cross in that square.\n\nEvery stroke is one square long.\n\n### List the part's strokes\nWrite down the strokes with their directions. For example: 2 flat, 1 upright, 1 rising slant.\n\nThe right option shows all of them, joined in the same way. Sliding is allowed. Turning is not.\n\n### Use a rare stroke as anchor\nA slant is rarer than a flat or upright stroke. Start with it.\n\n1. Check its lean: `/` rises to the right, `\\` falls to the right.\n2. Find it in the option.\n3. Check the strokes that touch it, one by one.\n4. Also try a **T-joint**: one stroke that ends on the middle of another. It is the next best anchor.\n\n> **Tip:** Parts often sit against an edge or in a corner of the correct option. Scan the border first.\n\n### Near-miss options\nWrong options are usually one step away from the part. One stroke is **missing**, **changed** or **turned**.\n\nCounting strokes is not enough. A wrong option can have the same number of strokes as the part.\n\n> **Watch:** Check each stroke's direction and its end points. They must match the part.\n\n### A good scan order\nDo the same steps for every option. This keeps you fast and calm.\n\n1. Count the strokes. Drop any option with fewer strokes than the part.\n2. Check the directions. Drop any option that lacks a direction the part needs.\n3. Trace the anchor stroke and its neighbours in each option that is left.\n4. Choose the option where every stroke lines up.\n\nMost questions end after step 2 or 3. You rarely need to trace all four options in full.\n\n### A worked example\nWhich option contains the given part exactly as drawn? Rotation is not allowed.\n\n**Part**\n```\n+   .   +\n|     /\n+---+---+\n```\n\n**(A)**\n```\n+---+   +   .\n  \\     |\n+---+---+---+\n\n.   +---+   .\n```\n\n**(B)**\n```\n+   .   +\n|     /\n+   +   +\n| \\   /\n+---+---+\n```\n\n**(C)**\n```\n.   +---+   +\n      \\   /\n.   +   +   .\n  /   /\n+---+---+   .\n```\n\n**Solution**\n- Part strokes: 2 flat, 1 upright and 1 rising slant (`/`).\n- Anchor on the rising slant (`/`) and trace the other strokes around it.\n- (A) only has a mirror-image copy, so the part is not there.\n- (C) only has a copy with one stroke changed, so the part is not there.\n- (B) holds the part in the bottom part of the option.\n\nAnswer: **(B)**.\n",
    "patterns": [
     {
      "id": "cp-p1",
      "name": "Part among busy figures",
      "frequency": "very common",
-     "howToSpot": "Four options of similar density, each full of short strokes.",
+     "howToSpot": "Four options of similar size, each full of short strokes. The part is small.",
      "formula": null,
-     "logic": "Anchor on the part's rarest stroke and trace; only one option completes all strokes.",
+     "steps": [
+      "List the part's strokes by type.",
+      "Find the anchor stroke in each option.",
+      "Trace the other strokes around it.",
+      "Keep the option that completes."
+     ],
+     "why": "Only one option has every stroke of the part in the right place.",
      "example": {
-      "q": "**Q.** A 4-stroke part must be found inside one of four busy 3 x 3 figures.",
-      "solution": "Trace from the slant anchor; three options miss at least one stroke."
+      "q": "Which option contains the given part exactly as drawn? Rotation is not allowed.\n\n**Part**\n```\n+   +\n| / |\n+---+\n```\n\n**(A)**\n```\n.   +   +   +\n  / | \\ | /\n+   +---+   .\n      \\\n.   .   +   .\n```\n\n**(B)**\n```\n+---+---+\n| \\ | \\\n+   +   +\n|\n+   .   .\n```\n\n**(C)**\n```\n.   +   .   .\n  / |\n+   +   .   .\n| / |\n+---+   +---+\n```\n\n**(D)**\n```\n+---+   +   .\n          \\\n.   +---+   +\n          X |\n.   .   +---+\n```",
+      "steps": [
+       "Part strokes: 1 flat, 2 upright and 1 rising slant (`/`).",
+       "Anchor on the rising slant (`/`) and trace the other strokes around it.",
+       "(A) only has a mirror-image copy, so the part is not there.",
+       "(B) only has an upside-down copy, so the part is not there.",
+       "(C) holds the part in the bottom-left of the option."
+      ],
+      "answer": "(C)"
      }
     },
     {
      "id": "cp-p2",
-     "name": "One-stroke-difference options",
+     "name": "Options one stroke away from the part",
      "frequency": "very common",
-     "howToSpot": "Every option has the same stroke count as the part but one stroke differs (missing, re-angled or replaced).",
+     "howToSpot": "Every option has about as many strokes as the part, but one stroke differs: missing, changed or turned.",
      "formula": null,
-     "logic": "Counting is not enough; check each stroke's direction and endpoints against the part.",
+     "steps": [
+      "Do not stop at the stroke count.",
+      "Check the direction of each stroke.",
+      "Check that the end points meet as in the part.",
+      "Reject any option with one wrong stroke."
+     ],
+     "why": "A near-miss figure looks right at a glance but always breaks on one stroke.",
      "example": {
-      "q": "**Q.** Four options each have 5 strokes like the part; only one arranges them as the part does.",
-      "solution": "The / vs \\ lean and one horizontal-vs-vertical swap separate the wrong three."
+      "q": "Which option contains the given part exactly as drawn? Rotation is not allowed.\n\n**Part**\n```\n+   +   +\n|   | /\n+---+   .\n```\n\n**(A)**\n```\n.   +   +   +\n  / | /     |\n+---+   .   +\n    |\n.   +   .   .\n```\n\n**(B)**\n```\n+   +---+\n|   | /\n+---+   +\n        |\n.   .   +\n```\n\n**(C)**\n```\n.   +   .\n      \\\n+   +---+\n  \\ | /\n+---+   .\n```\n\n**(D)**\n```\n.   .   +---+\n\n+   +   .   .\n| / |\n+---+   .   .\n```",
+      "steps": [
+       "Part strokes: 1 flat, 2 upright and 1 rising slant (`/`).",
+       "Anchor on the rising slant (`/`) and trace the other strokes around it.",
+       "(A) only has a copy with one stroke changed, so the part is not there.",
+       "(C) only has a copy with one stroke changed, so the part is not there.",
+       "(B) holds the part in the top part of the option."
+      ],
+      "answer": "(B)"
      }
     },
     {
      "id": "cp-p3",
      "name": "Part along an edge or corner",
      "frequency": "common",
-     "howToSpot": "The part has a flat side (two or more horizontal strokes), and options place it along a border.",
+     "howToSpot": "The part has a flat side, like two flat strokes in a row. The options place it against a border.",
      "formula": null,
-     "logic": "Scan the option's border first; the part usually sits against an edge, not in the middle.",
+     "steps": [
+      "Scan the border of each option first.",
+      "Look in the corners for the flat side.",
+      "Then check the slant and upright strokes."
+     ],
+     "why": "A part with a flat base usually sits on an edge, not in the middle.",
      "example": {
-      "q": "**Q.** The part's flat base sits on the lower-left corner of the correct option.",
-      "solution": "Border scan finds the full part; the middle of the other options only shows part of it."
+      "q": "Which option contains the given part exactly as drawn? Rotation is not allowed.\n\n**Part**\n```\n+   .   +\n|     /\n+---+---+\n```\n\n**(A)**\n```\n+---+   +   .\n  \\     |\n+---+---+---+\n\n.   +---+   .\n```\n\n**(B)**\n```\n+   .   +\n|     /\n+   +   +\n| \\   /\n+---+---+\n```\n\n**(C)**\n```\n.   +---+   +\n      \\   /\n.   +   +   .\n  /   /\n+---+---+   .\n```",
+      "steps": [
+       "Part strokes: 2 flat, 1 upright and 1 rising slant (`/`).",
+       "Anchor on the rising slant (`/`) and trace the other strokes around it.",
+       "(A) only has a mirror-image copy, so the part is not there.",
+       "(C) only has a copy with one stroke changed, so the part is not there.",
+       "(B) holds the part in the bottom part of the option."
+      ],
+      "answer": "(B)"
      }
     },
     {
      "id": "cp-p4",
-     "name": "Slant strokes as anchors",
+     "name": "Slants as anchors",
      "frequency": "common",
-     "howToSpot": "The part carries two or more slants; options differ in slant leans.",
+     "howToSpot": "The part has two or more slants. The options differ in how their slants lean.",
      "formula": null,
-     "logic": "Fix each slant's lean first, then check which straight strokes touch its ends.",
+     "steps": [
+      "Write the lean of every slant in the part.",
+      "Find slants with the same leans in each option.",
+      "Check the flat and upright strokes that join them."
+     ],
+     "why": "Mirror and water copies reverse a slant, so matching the leans removes them.",
      "example": {
-      "q": "**Q.** A part with two slants of opposite lean hides in one of four options.",
-      "solution": "Only one option shows both leans with the connecting strokes; the rest flip at least one slant."
+      "q": "Which option contains the given part exactly as drawn? Rotation is not allowed.\n\n**Part**\n```\n+---+   .\n  /   \\\n+   .   +\n```\n\n**(A)**\n```\n+---+---+   .\n  /   \\ | \\\n+   .   +   +\n```\n\n**(B)**\n```\n.   +---+   +\n  / | \\ | /\n+   +   +   .\n```\n\n**(C)**\n```\n.   .   +   .\n          \\\n+---+   +   +\n|     \\ | /\n+   .   +   .\n```",
+      "steps": [
+       "Part strokes: 1 flat, 1 rising slant (`/`) and 1 falling slant (`\\`).",
+       "Anchor on the rising slant (`/`) and trace the other strokes around it.",
+       "(B) only has a mirror-image copy, so the part is not there.",
+       "(C) only has a copy with one stroke changed, so the part is not there.",
+       "(A) holds the part in the left side of the option."
+      ],
+      "answer": "(A)"
      }
     },
     {
      "id": "cp-p5",
      "name": "Two finalists",
      "frequency": "common",
-     "howToSpot": "After the first pass two options survive; the filler strokes make them look equal.",
+     "howToSpot": "After the first pass, two options are left. Their filler lines make them look equal.",
      "formula": null,
-     "logic": "Compare the strokes touching the anchor first - the loser breaks one endpoint or re-angles one slant.",
+     "steps": [
+      "Go back to the anchor stroke in both options.",
+      "Compare only the strokes that touch it.",
+      "Drop the option with a wrong or missing stroke there."
+     ],
+     "why": "The wrong finalist breaks one stroke next to the anchor.",
      "example": {
-      "q": "**Q.** Two options both show a / slant with a horizontal at its foot; only one adds the part's vertical.",
-      "solution": "The extra stroke at the slant's top decides; the loser is one stroke short."
+      "q": "Which option contains the given part exactly as drawn? Rotation is not allowed.\n\n**Part**\n```\n+   .\n  \\\n+   +\n| /\n+---+\n```\n\n**(A)**\n```\n.   +   +\n      X\n+   +   +\n| /   X\n+   +---+\n```\n\n**(B)**\n```\n+   +   .   .\n  X   \\\n+   +   +   +\n| /         |\n+---+   .   +\n```",
+      "steps": [
+       "Part strokes: 1 flat, 1 upright, 1 rising slant (`/`) and 1 falling slant (`\\`).",
+       "Anchor on the rising slant (`/`) and trace the other strokes around it.",
+       "(A) only has a copy with one stroke changed, so the part is not there.",
+       "(B) holds the part in the left side of the option."
+      ],
+      "answer": "(B)"
      }
     },
     {
      "id": "cp-p6",
      "name": "Sparse options",
      "frequency": "occasional",
-     "howToSpot": "Options are lightly drawn (few filling strokes), so the part stands out.",
+     "howToSpot": "The options have very few extra lines, so the part stands out.",
      "formula": null,
-     "logic": "Still trace stroke by stroke - sparse options often drop exactly the stroke you assume is there.",
+     "steps": [
+      "Still trace stroke by stroke.",
+      "Look for the one stroke each wrong option is missing.",
+      "Pick the option with no gaps."
+     ],
+     "why": "Sparse options often lack exactly the stroke you assume is there.",
      "example": {
-      "q": "**Q.** Three sparse options each miss one stroke of the part; one is complete.",
-      "solution": "Endpoint check finds the missing stroke in each wrong option."
+      "q": "Which option contains the given part exactly as drawn? Rotation is not allowed.\n\n**Part**\n```\n.   +   +\n    | /\n+---+   .\n```\n\n**(A)**\n```\n.   +\n    |\n+---+\n  /\n+   .\n```\n\n**(B)**\n```\n.   +   +\n  / | / |\n+   +   +\n```\n\n**(C)**\n```\n.   +---+\n    | /\n+---+   .\n```",
+      "steps": [
+       "Part strokes: 1 flat, 1 upright and 1 rising slant (`/`).",
+       "Anchor on the rising slant (`/`) and trace the other strokes around it.",
+       "(A) only has a copy with one stroke missing, so the part is not there.",
+       "(B) only has a copy with one stroke changed, so the part is not there.",
+       "(C) holds the part in the place where every stroke lines up."
+      ],
+      "answer": "(C)"
+     }
+    },
+    {
+     "id": "cp-p7",
+     "name": "Part with a closed shape",
+     "frequency": "occasional",
+     "howToSpot": "The part contains a closed shape, like a box or a triangle. Some options leave it open.",
+     "formula": null,
+     "steps": [
+      "Note that the shape is closed.",
+      "In each option, find all its sides.",
+      "Reject options where one side is missing or points another way."
+     ],
+     "why": "One missing side turns a closed shape into an open one, which is a different figure.",
+     "example": {
+      "q": "Which option contains the given part exactly as drawn? Rotation is not allowed.\n\n**Part**\n```\n+---+\n|   |\n+---+\n```\n\n**(A)**\n```\n+   .   .   .\n  \\\n+---+   +   .\n|   |     \\\n+---+   .   +\n```\n\n**(B)**\n```\n+---+   .\n|\n+---+   +\n  \\     |\n.   +   +\n```\n\n**(C)**\n```\n+---+   +\n  / |   |\n+---+---+\n```",
+      "steps": [
+       "Part strokes: 2 flat and 2 upright.",
+       "Anchor on the upright stroke and trace the other strokes around it.",
+       "(B) only has a copy with one stroke missing, so the part is not there.",
+       "(C) only has a copy with one stroke changed, so the part is not there.",
+       "(A) holds the part in the bottom-left of the option."
+      ],
+      "answer": "(A)"
      }
     }
+   ],
+   "revision": [
+    "The part must appear in full: same strokes, same directions, only slid.",
+    "Extra filling lines never disqualify an option.",
+    "Anchor on a slant or a T-joint. Scan edges and corners first.",
+    "Wrong options are one stroke away: missing, changed or turned.",
+    "A `/` and a `\\` are different strokes. Direction decides.",
+    "An option with fewer strokes than the part cannot contain it."
    ]
   }
  ],

@@ -13,145 +13,324 @@
   {
    "id": "dice-positions",
    "title": "Dice: finding opposite faces from positions",
-   "concept": "A die (cube) has 6 faces: each face touches 4 others and is **opposite** exactly 1. When several views of the same die are shown, use these rules:\n\n1. **Adjacent-four rule** — a face seen next to four different faces is opposite the sixth one.\n2. **Two common faces** — if two views share two faces, the remaining face in each view is opposite the other one.\n3. **Same position** — if one face is common and it sits in the **same position** in both views, the faces in matching positions are opposite (front ↔ front, right ↔ right).\n4. **Never together** — two faces seen together in any view can never be opposite.\n\nA **standard die** has opposite faces summing to 7: (1, 6), (2, 5), (3, 4).",
+   "concept": "A die is a cube with six faces. Each face touches four faces and is opposite exactly one face. When several pictures of the same die are shown, use them to find which faces are opposite. Three quick rules do most of the work: strike out the neighbours, look for two common faces, and compare faces that sit in the same place.",
    "formulas": [
     {
      "name": "Standard die",
      "tex": "1+6 = 2+5 = 3+4 = 7",
-     "note": "Opposite faces of a standard die."
+     "note": "Opposite faces of a standard die add to 7."
+    },
+    {
+     "name": "Hidden faces of a standard die",
+     "tex": "\\text{hidden} = 21 - \\text{shown}",
+     "note": "All six faces add to 21."
     }
    ],
    "tricks": [
     {
-     "title": "Eliminate the neighbours",
-     "body": "List every face seen with the asked face; strike them out. If only one face is left, it is the answer — no rotation needed.",
+     "title": "Strike out the neighbours",
+     "body": "List every face seen with the asked face and cross them out. If one face is left, it is the answer.",
      "example": {
-      "q": "**Q.** 4 is seen with 1, 2, 3 and 5. What is opposite 4?",
-      "solution": "Only 6 is never seen with 4, so **6**."
+      "q": "A face P is seen with Q and R, then with S and Q, then with R and T. Which face is opposite P?",
+      "steps": [
+       "P was seen with Q, R, S and T.",
+       "These four all touch P.",
+       "Only U is left."
+      ],
+      "answer": "U"
      }
     },
     {
      "title": "Two common faces",
-     "body": "Two views sharing two faces: the leftover faces are opposite.",
+     "body": "Two pictures with two faces in common: the two other faces are opposite.",
      "example": {
-      "q": "**Q.** Views show (A, B, C) and (A, B, D). Opposite of C?",
-      "solution": "A and B are common, so **D**."
+      "q": "One picture shows K, L, M. Another shows K, L, N. Which face is opposite M?",
+      "steps": [
+       "K and L appear in both pictures.",
+       "The other faces, M and N, are opposite each other."
+      ],
+      "answer": "N"
+     }
+    },
+    {
+     "title": "Hidden faces of a standard die",
+     "body": "All six faces add to 21. Subtract the three faces you can see.",
+     "example": {
+      "q": "A standard die shows 2, 4 and 6. What do the three hidden faces add up to?",
+      "steps": [
+       "Shown: $2+4+6=12$.",
+       "Hidden: $21-12=9$.",
+       "Check: the hidden faces are 5, 3 and 1, and $5+3+1=9$."
+      ],
+      "answer": "9"
      }
     }
    ],
    "mistakes": [
-    "Declaring two faces opposite just because they never appear together — check that the other four are all ruled out.",
-    "Applying the same-position rule when the common face is in different positions.",
-    "Forgetting that a standard-die fact (sum 7) only holds when the question says the die is standard."
+    {
+     "wrong": "Saying two faces are opposite only because they never appear together.",
+     "right": "First strike out four neighbours, or use two common faces. Then the last face is opposite."
+    },
+    {
+     "wrong": "Using the same-place rule when the common face is in a different place, or when a second face also repeats.",
+     "right": "Use it only for one common face in the same place. Otherwise use strike-out or two common faces."
+    },
+    {
+     "wrong": "Using the sum 7 rule on a die that is not called standard.",
+     "right": "Check the question. Letters or unusual numbers have no sum rule."
+    },
+    {
+     "wrong": "Choosing an option that shows two opposite faces together.",
+     "right": "Reject any picture that shows two faces from the same opposite pair."
+    },
+    {
+     "wrong": "Mixing up left and right when rolling a die.",
+     "right": "Rolling right sends the top to the right side and brings the left face up. Say it aloud."
+    }
    ],
-   "notes": "### What a view of a die tells you\nA die has six faces, and each face has exactly **one** face opposite it; the other four touch it. A view of a die shows three faces that meet at one corner, so the three faces in any one view are **pairwise adjacent** — no two of them can ever be opposite.\n\n### Rule 1: strike out the faces seen together\nTo find the face opposite X, list every face that appears in some view **together with X**. All of them touch X. If four different faces are struck out, exactly one face is left, and that face must be opposite X. This single rule settles most questions.\nExample: X appears with A and B in one view, with C in a second and with D in a third. Faces A, B, C, D all touch X, so the sixth face is opposite X.\n\n### Rule 2: two common faces\nIf two views share the **same two** faces, then the face left over in the first view is opposite the face left over in the second. Views (A, B, C) and (A, B, D): A and B are common, so C and D are opposite.\n\n### Rule 3: common face in the same position\nIf one face is common to two views and sits in the **same position** in both (top in both, front in both, or right in both), then the faces in the other matching positions are opposite: front of view 1 with front of view 2, right with right. If the common face has **moved** to a different position, this rule does not apply — fall back on Rules 1 and 2.\n\n### Rule 4: never together\nTwo faces that appear together in any single view can never be opposite. This is the quickest way to reject an option or a suggested pair.\n\n### Standard die\nA **standard** (ordinary) die has opposite faces adding to 7: 1 is opposite 6, 2 opposite 5, 3 opposite 4. Use this only when the question says the die is standard; a die showing letters has no sum rule.\n\n### The working method\nKeep a small table of opposite pairs and fill it in as you read the views. A die has exactly three opposite pairs, and each face is used once. A good order: apply Rule 2 first (it gives a whole pair at once), then Rule 3, then finish with Rule 1.\n\n### Worked example\nThree views show (P, Q, R), (R, S, P) and (Q, T, R), where the first letter is the front, second the top, third the right face. Views 1 and 2 share P and R, so the leftovers Q and S are opposite. Views 1 and 3 share Q and R in the **same positions** (front and right), so the matching positions give P opposite T. That leaves R opposite the sixth face U. All three pairs found.\n\n### Common mistakes\n- Calling two faces opposite just because they never appear together — you must strike out **four** faces first, or use Rule 2 or 3.\n- Using Rule 3 when the common face sits in different positions in the two views.\n- Applying the sum-7 rule to a die that is not stated to be standard.\n- Forgetting that the answer must be a face of the same die: it must never appear together with the asked face.\n\n### Quick revision\n- A view shows three faces meeting at a corner; they are all adjacent.\n- Rule 1: strike out every face seen with X; if four are gone, the last one is opposite.\n- Rule 2: two common faces in two views → the two leftovers are opposite.\n- Rule 3: common face in the same position → matching positions are opposite.\n- Faces seen together are never opposite.\n- Standard die: 1–6, 2–5, 3–4 (each pair sums to 7).\n",
+   "notes": "### What one picture shows\nA die has six faces. Each face touches four faces and is opposite one face.\n\nA picture shows three faces that meet at one corner. These three faces all touch each other.\n\n> **Rule:** Two faces seen together in one picture are never opposite.\n\n### Strike out the neighbours\nTo find the face opposite X, list every face seen together with X. All of them touch X.\n\nIf four different faces are struck out, the one face left is opposite X.\n\nExample: X is seen with A and B in one picture, with C in a second picture, and with D in a third. A, B, C and D all touch X. So the sixth face is opposite X.\n\n> **Tip:** This rule needs no turning of the die. Try it first.\n\n### Two common faces\nSometimes two pictures show the same two faces. Then the third face in each picture are opposite each other.\n\nPictures $(K, L, M)$ and $(K, L, N)$ share K and L. So M and N are opposite.\n\nWhy? The two faces that touch both K and L are exactly the two faces at the ends of the shared edge. They are opposite each other.\n\n### One common face in the same place\nNow two pictures share only one face X. X sits in the same place in both, for example on top. All other faces are different.\n\nThen the faces in the same place are opposite: front with front, right with right.\n\nExample: picture 1 has top A, front B, right C. Picture 2 has top A, front D, right E. So B is opposite D, C is opposite E, and F is opposite A.\n\n> **Watch:** Use this rule only when the common face is in the same place and no other face repeats. If not, use the first two rules.\n\n### Standard die\nA standard (ordinary) die has opposite faces adding to 7: 1 and 6, 2 and 5, 3 and 4.\n\nAll six faces add to 21. So the hidden faces add to $21$ minus the three faces you can see.\n\n> **Note:** Use the sum 7 rule only when the question says the die is standard. A die marked with letters has no sum rule.\n\n### Rolling a die\nRolling a die moves its faces in a circle. The other two faces stay in place.\n\n- Roll to the right: top goes to the right, right goes to the bottom, bottom goes to the left, left comes to the top.\n- Roll forward: top goes to the front, front goes to the bottom, bottom goes to the back, back comes to the top.\n\nExample: a standard die has 1 on top, 2 in front and 3 on the right. So 6 is at the bottom, 5 at the back and 4 on the left. Roll it once to the right: 4 comes to the top.\n\n### Order of work\nWrite the three opposite pairs as you find them.\n\n1. Look for two common faces. This gives a whole pair at once.\n2. Look for a common face in the same place.\n3. Strike out neighbours to finish the last pair.\n",
    "patterns": [
     {
      "id": "dp-p1",
-     "name": "Adjacent-four (strike out)",
+     "name": "Strike out the neighbours",
      "frequency": "very common",
-     "howToSpot": "Three views of the same die; the asked face appears with four different faces across the views.",
+     "howToSpot": "Three pictures of one die. The asked face appears with four different faces across the pictures.",
      "formula": null,
-     "logic": "Every face seen with X touches X. Strike out all of them; the only face never seen with X is opposite it.",
+     "steps": [
+      "List every face seen together with the asked face.",
+      "Strike them out. They all touch it.",
+      "The one face left is the answer."
+     ],
+     "why": "Every face seen with X touches X, so the only face never seen with X must be opposite.",
      "example": {
-      "q": "**Q.** 4 is seen with 1 and 2, then with 3 and 1, then with 5 and 3. What is opposite 4?",
-      "solution": "4 has been seen with 1, 2, 3 and 5 — four faces. The only one left is **6**."
+      "q": "Three pictures of one cube show the faces (P, Q, R), (P, S, Q) and (P, R, T). Which face is opposite P?",
+      "steps": [
+       "P is seen with Q, R, S and T.",
+       "These four faces all touch P.",
+       "Only U is left."
+      ],
+      "answer": "U"
      }
     },
     {
      "id": "dp-p2",
      "name": "Two common faces",
      "frequency": "very common",
-     "howToSpot": "Two views repeat the same two faces; each view has one extra face.",
+     "howToSpot": "Two pictures repeat the same two faces. Each picture has one extra face.",
      "formula": null,
-     "logic": "The two common faces touch both extras, so the two leftover faces are opposite each other.",
+     "steps": [
+      "Find the two faces that appear in both pictures.",
+      "Note the extra face in each picture.",
+      "The two extra faces are opposite."
+     ],
+     "why": "Only two faces touch both shared faces. They sit at the two ends of the shared edge.",
      "example": {
-      "q": "**Q.** Views show (A, B, C) and (A, B, D). What is opposite C?",
-      "solution": "A and B are common to both views, so **D** is opposite C."
+      "q": "One picture of a cube shows the faces K, L and M. Another picture shows K, L and N. Which face is opposite M?",
+      "steps": [
+       "K and L are in both pictures.",
+       "The extra faces are M and N.",
+       "So M and N are opposite."
+      ],
+      "answer": "N"
      }
     },
     {
      "id": "dp-p3",
-     "name": "Common face in the same position",
+     "name": "One common face in the same place",
      "frequency": "common",
-     "howToSpot": "Two views share exactly one face, and it sits in the same slot (both top, both front or both right).",
+     "howToSpot": "Two pictures share exactly one face. It sits in the same place in both, such as top in both.",
      "formula": null,
-     "logic": "Matching positions hold opposite faces: front with front, top with top, right with right.",
+     "steps": [
+      "Check that the common face is in the same place.",
+      "Check that no other face repeats.",
+      "Pair the faces in matching places: front with front, right with right."
+     ],
+     "why": "The four faces round the common face go in a circle, so faces in matching places end up across from each other.",
      "example": {
-      "q": "**Q.** In both views A is on top; the front faces are B and C. What is opposite B?",
-      "solution": "A is common and in the same position, so the front faces are opposite: **C**."
+      "q": "In picture 1 a cube shows A on top, B in front and C on the right. In picture 2 it shows A on top, D in front and E on the right. Which face is opposite B?",
+      "steps": [
+       "A is on top in both pictures.",
+       "No other face repeats.",
+       "Front faces are opposite: B and D.",
+       "(Right faces C and E are opposite. F is opposite A.)"
+      ],
+      "answer": "D"
      }
     },
     {
      "id": "dp-p4",
      "name": "Standard die (sum 7)",
      "frequency": "common",
-     "howToSpot": "The question says 'ordinary' or 'standard' die and gives one or more face values.",
-     "formula": "x + x^{*} = 7",
-     "logic": "Opposite faces add to 7: 1–6, 2–5, 3–4. The three hidden faces sum to 21 minus the three shown.",
+     "howToSpot": "The question says ordinary or standard die and gives some face numbers.",
+     "formula": "x + x' = 7",
+     "steps": [
+      "Pair the numbers: 1-6, 2-5, 3-4.",
+      "For a hidden face, take 7 minus its opposite.",
+      "For the hidden total, take 21 minus the shown faces."
+     ],
+     "why": "Opposite faces add to 7, and all six faces add to 21.",
      "example": {
-      "q": "**Q.** A standard die shows 3 on top, 5 in front, 6 on the right. Sum of the hidden faces?",
-      "solution": "Hidden faces are 4, 2 and 1: 21 − (3 + 5 + 6) = **7**."
+      "q": "A standard die shows 3 on top, 5 in front and 6 on the right. What is the sum of the three hidden faces?",
+      "steps": [
+       "Shown: $3+5+6=14$.",
+       "Hidden: $21-14=7$.",
+       "Check: the hidden faces are 4, 2 and 1."
+      ],
+      "answer": "7"
      }
     },
     {
      "id": "dp-p5",
      "name": "Build the full opposite map",
      "frequency": "occasional",
-     "howToSpot": "Three or more views; the question asks for a pair of opposite faces, or for the partner of the last face.",
+     "howToSpot": "Three or more pictures. The question asks for one pair or for the partner of the last face.",
      "formula": null,
-     "logic": "Collect pairs with Rules 2 and 3 until two pairs are known; the two faces never yet paired form the third pair.",
+     "steps": [
+      "Use two common faces to find a pair.",
+      "Repeat with another two pictures.",
+      "The last two unpaired faces are opposite."
+     ],
+     "why": "There are only three opposite pairs. Two known pairs leave the third.",
      "example": {
-      "q": "**Q.** From the views you get A opposite D and B opposite E. What is opposite C?",
-      "solution": "Only C and F are unpaired, so **F**."
+      "q": "Three pictures of a cube show (A, B, C), (A, B, D) and (B, C, E). Which face is opposite B?",
+      "steps": [
+       "First and second pictures share A and B, so C is opposite D.",
+       "First and third pictures share B and C, so A is opposite E.",
+       "Only B and F are left, so B is opposite F."
+      ],
+      "answer": "F"
      }
     },
     {
      "id": "dp-p6",
-     "name": "Which view is possible?",
+     "name": "Which picture is possible?",
      "frequency": "occasional",
-     "howToSpot": "The opposite pairs of a labelled die are given in words; options are drawings of views.",
+     "howToSpot": "The opposite pairs are given in words. The options are pictures of three faces.",
      "formula": null,
-     "logic": "A real view never shows two opposite faces. Reject every option that shows a pair; a view with one face from each pair can always be turned up.",
+     "steps": [
+      "Write the three opposite pairs.",
+      "Cross out any option that shows both faces of a pair.",
+      "The option with one face from each pair is possible."
+     ],
+     "why": "A picture never shows two opposite faces. Three faces from three different pairs always meet at a corner.",
      "example": {
-      "q": "**Q.** A is opposite D, B opposite E, C opposite F. Which view can be formed?",
-      "solution": "The view showing A, B and C — one face from each opposite pair."
+      "q": "On a cube, A is opposite D, B is opposite E and C is opposite F. Which set of three faces can be seen together? (1) A, D, C (2) B, E, F (3) A, B, F (4) C, F, B",
+      "steps": [
+       "Option 1 has A and D. Option 2 has B and E.",
+       "Option 4 has C and F.",
+       "Option 3 has A, B and F, one from each pair."
+      ],
+      "answer": "Option 3"
+     }
+    },
+    {
+     "id": "dp-p7",
+     "name": "Rolling the die",
+     "frequency": "common",
+     "howToSpot": "The die is rolled to the right, left, forward or back. The top, bottom or front face is asked.",
+     "formula": null,
+     "steps": [
+      "Write the six faces: top, bottom, front, back, left, right.",
+      "Roll right: left face comes to the top.",
+      "Roll forward: back face comes to the top.",
+      "Write the new positions after every roll."
+     ],
+     "why": "A roll turns the die by a quarter turn, so four faces move in a circle and two stay.",
+     "example": {
+      "q": "A standard die shows 1 on top, 2 in front and 3 on the right. It is rolled once to the right and then once forward. Which number is now on top?",
+      "steps": [
+       "Bottom 6, back 5, left 4 (each pair adds to 7).",
+       "Roll right: left face 4 comes to the top.",
+       "Now the back face is still 5.",
+       "Roll forward: the back face 5 comes to the top."
+      ],
+      "answer": "5"
      }
     }
+   ],
+   "revision": [
+    "A picture shows three faces at one corner. They all touch.",
+    "Strike out every face seen with X. Four struck out means the sixth is opposite.",
+    "Two common faces: the other two faces are opposite.",
+    "One common face in the same place: front with front, right with right.",
+    "Standard die: 1-6, 2-5, 3-4. Hidden faces add to 21 minus the shown faces.",
+    "Roll right: left face comes to the top. Roll forward: back face comes to the top."
    ]
   },
   {
    "id": "cube-nets",
    "title": "Cube nets: folding a sheet into a cube",
-   "concept": "An open (unfolded) cube is a **net** of 6 squares. To find opposite faces without folding mentally:\n\n- In any straight row or column, faces with **exactly one square between them** are opposite.\n- In a **Z (or S) shape** of four squares, the two end squares are opposite.\n- Two squares that touch along an edge in the net are always adjacent on the cube.\n\nTo test whether a drawn cube can be made: first reject any cube that shows two opposite faces together; then check the order of the three visible faces around their shared corner.",
+   "concept": "A net is a flat sheet of six squares that folds into a cube. Squares that share an edge in the net touch on the cube. To find opposite faces, skip one square in a straight line, or take the two ends of a Z shape. To test a drawn cube, first reject any cube that shows two opposite faces.",
    "formulas": [],
    "tricks": [
     {
      "title": "Skip one",
-     "body": "Along a line of squares, skip one: 1st ↔ 3rd, 2nd ↔ 4th.",
+     "body": "Along a row or column, skip one square. The squares on both sides of the skipped one are opposite.",
      "example": {
-      "q": "**Q.** Row A B C D in a net. Opposite of B?",
-      "solution": "Skip C → **D**."
+      "q": "A net has a row of four squares A, B, C, D. Which face is opposite B?",
+      "steps": [
+       "Skip C.",
+       "B and D are opposite."
+      ],
+      "answer": "D"
+     }
+    },
+    {
+     "title": "Reject first",
+     "body": "In a which-cube question, throw out every option that shows an opposite pair. Often only one option is left.",
+     "example": {
+      "q": "In a net, A and C are opposite. Can a cube show A on top and C in front?",
+      "steps": [
+       "A and C are opposite faces.",
+       "Opposite faces are never seen together."
+      ],
+      "answer": "No, it cannot be formed"
      }
     }
    ],
    "mistakes": [
-    "Treating squares that only meet at a corner in the net as opposite.",
-    "Accepting a cube that shows two faces which are opposite in the net.",
-    "Ignoring the order (clockwise/anticlockwise) of the three visible faces."
+    {
+     "wrong": "Calling two squares opposite because they are far apart in the net.",
+     "right": "Use the rules: skip one in a line, or the ends of a Z. Then use the three-pair check."
+    },
+    {
+     "wrong": "Accepting a cube that shows two opposite faces.",
+     "right": "Find the opposite pairs first. Reject any option that shows both faces of a pair."
+    },
+    {
+     "wrong": "Ignoring the order of the three faces round the corner.",
+     "right": "Check the counter-clockwise order. The mirror order can never be formed."
+    },
+    {
+     "wrong": "Thinking the first and fourth squares of a row of four are opposite.",
+     "right": "Only the first and third, and the second and fourth, are opposite."
+    },
+    {
+     "wrong": "Calling a shape with a 2 by 2 block or a row of five a net.",
+     "right": "Such shapes overlap when folded. They are not nets."
+    }
    ],
-   "notes": "### What a net is\nAn unfolded cube is a **net** of six squares. When it is folded, the printed side lands on the **outside**. Two squares that share an edge in the net are always **adjacent** on the cube — they can never be opposite.\n\n### Rule 1: skip one in a straight line\nIn any straight row or column of the net, faces with **exactly one square between them** are opposite: 1st with 3rd, 2nd with 4th. A row of four gives two opposite pairs at once.\n\n### Rule 2: ends of a Z (or S)\nFour squares forming a **Z** shape (two and two, offset by one) have their two **end** squares opposite. This covers the pairs that no straight line gives you.\n\n### Rule 3: pair them all\nA cube has exactly three opposite pairs. Find pairs with the two rules above; the two squares left unpaired must form the last pair. As a check, every face appears in exactly one pair.\n\n### Testing 'which cube can be formed?'\nOptions show a cube with three visible faces (front, top, right).\n1. **Reject opposite pairs first.** If two faces shown on an option cube are opposite in the net, that cube is impossible.\n2. **Check the corner order.** The three remaining options show the same three faces; only the order around their shared corner differs. Fold the net mentally: fix one face as the front, see which neighbour rises to the top and which swings to the right. Only one of the two possible orders matches — the other is the mirror image and cannot be formed.\n\n### How to fold in your head\nChoose the square that you want as the **front**. Every square attached to it folds up along the shared edge: the one above the front becomes the **top**, the one to the right becomes the **right** face, and a square two steps away in a line lands **opposite**. Track one neighbour at a time instead of the whole net.\n\n### Worked example\nA net has the row L, M, N and the column K, M, O with J below O. Skip one in the row: L opposite N. Skip one in the column: K opposite O. Left over: M and J, so M is opposite J. To test a cube showing K on top, M in front, N on the right: fold with M facing you — K (above M in the net) comes over the top, and N (right of M) swings to the right, so this cube **can** be formed. Its mirror, with L on the right, cannot.\n\n### Common mistakes\n- Treating squares that only touch at a **corner** in the net as opposite — corner-touching says nothing direct.\n- Accepting a cube that shows an opposite pair (the commonest error; always do the rejection pass first).\n- Reversing the order of the three faces around the corner — the mirror order of a real cube can never be formed.\n- Forgetting that when a row bends around the net, the skip-one rule still applies only within one straight line.\n\n### Quick revision\n- Edge-touching squares are adjacent; opposite faces never touch.\n- In a row or column, skip one square: 1st ↔ 3rd, 2nd ↔ 4th.\n- Ends of a Z of four squares are opposite.\n- Three pairs in total; the leftovers pair up.\n- Which-cube questions: reject opposite pairs, then compare the corner order.\n",
+   "notes": "### What a net is\nA net is a flat sheet of six squares. Fold it and it becomes a cube. The printed side is on the outside.\n\nTwo squares that share an edge in the net touch on the cube. They are never opposite.\n\n### Skip one in a straight line\nIn a straight row or column, two squares with exactly one square between them are opposite.\n\nRow P, Q, R, S: P and R are opposite, and Q and S are opposite.\n\n> **Rule:** Skip one square. First and third are opposite. Second and fourth are opposite.\n\nThe first and fourth squares of a row of four are not opposite. They touch when the row wraps round the cube.\n\n### The Z shape\nFind four squares in a Z or S shape: two squares, a step sideways, then two more. The two end squares are opposite.\n\nStaircase net A, B, C, D, E, F: A, B, C, D form a Z, so A and D are opposite. B, C, D, E form a Z, so B and E are opposite. Then C and F are the last pair.\n\n### Find all three pairs\nA cube has three pairs of opposite faces. Find two pairs with the rules above. The two squares left over are the third pair.\n\nRow A, B, C, D, with E above B and F below C: A-C and B-D come from the row. E and F are left, so they are opposite.\n\n### Which shapes are nets\nOnly 11 shapes fold into a cube. Use two checks.\n\n- No 2 by 2 block of squares.\n- No row of five squares.\n\nSix nets have a row of four, four nets have a row of three, and one is the staircase. Any shape with a 2 by 2 block or a row of five is not a net.\n\n### Which cube can be formed\nEach option shows three faces of a cube. Read them as top, front and right.\n\n1. Find the opposite pairs in the net.\n2. Reject any option that shows both faces of a pair.\n3. For the rest, find the three squares in the net. Look for an L shape: one square touching the other two.\n4. Read the three squares counter-clockwise round the point where they meet. The cube must show them counter-clockwise too: top, then front, then right.\n\n> **Watch:** Two options can show the same three faces in different orders. Only one order is right. The other is the mirror image.\n\n### Quick way to check a net\nFold the net in your head, one square at a time. Keep one square as the base.\n\n- Fold the squares next to the base up as walls.\n- Fold the last square over as the lid.\n- If two squares land on the same face, the shape is not a net.\n\nWith practice, the row rule and the Z rule are faster than folding. Use folding only to double-check.\n\n### Worked example\nNet: row A, B, C, D with E above B and F below C. Opposite pairs: A-C, B-D, E-F.\n\nTest a cube with top E, front A, right B. A, B, E form an L shape with B in the middle. Round their meeting point, counter-clockwise, the order is E, A, B. The cube shows top E, front A, right B, the same order. So it can be formed. Top E, front B, right A is its mirror image and cannot.\n",
    "patterns": [
     {
      "id": "cn-p1",
      "name": "Opposite faces in a row",
      "frequency": "very common",
-     "howToSpot": "A net with a straight row or column of three or four labelled squares.",
-     "formula": "\\text{1st} \\leftrightarrow \\text{3rd}",
-     "logic": "Faces with exactly one square between them in the same line are opposite.",
+     "howToSpot": "A net with a straight row or column of three or four squares. The face opposite a given face is asked.",
+     "formula": null,
+     "steps": [
+      "Find the straight line that holds the given square.",
+      "Skip one square along the line.",
+      "The square on the far side of the skipped one is opposite."
+     ],
+     "why": "Folding the row round the cube brings the first and third squares to opposite sides.",
      "example": {
-      "q": "**Q.** A net has the row A, B, C. What is opposite A?",
-      "solution": "Skip one square: **C** is opposite A."
+      "q": "A net is a row of four squares P, Q, R, S with T above Q and U below R. Which face is opposite Q?",
+      "steps": [
+       "The row is P, Q, R, S.",
+       "Skip R. Q and S are opposite."
+      ],
+      "answer": "S"
      }
     },
     {
@@ -160,59 +339,132 @@
      "frequency": "very common",
      "howToSpot": "The net bends: two squares, a step sideways, two more squares.",
      "formula": null,
-     "logic": "In a Z (or S) of four squares the two end squares are opposite.",
+     "steps": [
+      "Find four squares that form a Z or S.",
+      "Mark the two end squares.",
+      "The end squares are opposite."
+     ],
+     "why": "In a Z, the two end squares fold to opposite sides of the cube.",
      "example": {
-      "q": "**Q.** A net has the Z path P, Q, R, S. What is opposite P?",
-      "solution": "The ends of the Z are opposite: **S**."
+      "q": "A net has six squares A, B, C, D, E, F in a staircase: A next to B, C above B, D right of C, E above D, F right of E. Which face is opposite A?",
+      "steps": [
+       "A, B, C, D form a Z shape.",
+       "The ends of the Z are A and D."
+      ],
+      "answer": "D"
      }
     },
     {
      "id": "cn-p3",
      "name": "Find all three pairs",
      "frequency": "common",
-     "howToSpot": "The question asks which pair of faces is opposite, or for the partner of the last face.",
+     "howToSpot": "The question asks for a pair of opposite faces, or the partner of the last face.",
      "formula": null,
-     "logic": "Pair up rows and Zs first; the two squares left over are the third pair.",
+     "steps": [
+      "Use the row rule to find two pairs.",
+      "Use the Z rule if a row rule does not give a pair.",
+      "The two squares left over are the last pair."
+     ],
+     "why": "There are only three pairs, so two pairs fix the third.",
      "example": {
-      "q": "**Q.** Row A, B, C, D with E above B and F below C. Which faces are opposite?",
-      "solution": "A–C and B–D from the row; the leftovers **E and F** are opposite."
+      "q": "A net has a row of four squares A, B, C, D. E is above B and F is below C. Which two faces are opposite?",
+      "steps": [
+       "Row rule: A is opposite C, and B is opposite D.",
+       "E and F are left over.",
+       "So E and F are opposite."
+      ],
+      "answer": "E and F"
      }
     },
     {
      "id": "cn-p4",
      "name": "Which cube can be formed?",
      "frequency": "very common",
-     "howToSpot": "A net is drawn; the options are four cubes showing three faces each.",
+     "howToSpot": "A net is drawn. The options are cubes with three faces shown.",
      "formula": null,
-     "logic": "Reject cubes showing an opposite pair; then fold the net around the front face and match the order of the remaining two faces.",
+     "steps": [
+      "Find the three pairs of opposite faces.",
+      "Reject any option that shows both faces of a pair.",
+      "For the rest, find the three squares in the net and read them counter-clockwise.",
+      "Pick the option that shows top, front, right in the same order."
+     ],
+     "why": "A real cube never shows opposite faces together, and its corner keeps the order of the net.",
      "example": {
-      "q": "**Q.** Net: column K, M, O, J with L left of M and N right of M. Which cube can be formed?",
-      "solution": "Reject any cube with K–O, M–J or L–N together. The cube with K on top, M in front and N on the right folds correctly; its mirror, with L on the right, does not."
+      "q": "A net is a row of four squares A, B, C, D with E above B and F below C. Which cube can be formed? Faces are given as (top, front, right). (1) E, A, B (2) E, B, A (3) A, C, B (4) E, F, B",
+      "steps": [
+       "Opposite pairs: A-C, B-D, E-F.",
+       "Option 3 has A and C. Option 4 has E and F. Reject both.",
+       "Options 1 and 2 show A, B and E in opposite orders.",
+       "Round their meeting point in the net, counter-clockwise, the order is E, A, B. That is option 1."
+      ],
+      "answer": "Option 1"
      }
     },
     {
      "id": "cn-p5",
      "name": "Which cube cannot be formed?",
      "frequency": "occasional",
-     "howToSpot": "Same setup, but the question asks for the impossible cube.",
+     "howToSpot": "The same setup, but the impossible cube is asked.",
      "formula": null,
-     "logic": "Three options fold correctly; the impossible one either shows an opposite pair or has the mirror-image corner order.",
+     "steps": [
+      "Find the three pairs of opposite faces.",
+      "Check each option for an opposite pair.",
+      "If none shows a pair, check the counter-clockwise order.",
+      "The option with the wrong order is the answer."
+     ],
+     "why": "Three options fold correctly. The odd one out has an opposite pair or a mirror-image order.",
      "example": {
-      "q": "**Q.** Net with A, B, C in a row and D below B. Which cube cannot be formed?",
-      "solution": "The one showing A and C together — they are opposite in the net."
+      "q": "A net has a column of four squares K, M, O, J (K at the top). L is left of M and N is right of M. Faces are given as (top, front, right). Which cube cannot be formed? (1) K, L, M (2) K, M, N (3) M, L, O (4) M, O, L",
+      "steps": [
+       "Opposite pairs: K-O, M-J, L-N. No option shows a pair.",
+       "Options 3 and 4 show the same faces M, L, O.",
+       "In the net, round their meeting point, counter-clockwise, the order is M, L, O.",
+       "Option 3 has that order. Option 4 is the mirror image."
+      ],
+      "answer": "Option 4"
+     }
+    },
+    {
+     "id": "cn-p6",
+     "name": "Which shape is a net?",
+     "frequency": "common",
+     "howToSpot": "Several flat shapes of six squares are drawn. The one that folds into a cube is asked.",
+     "formula": null,
+     "steps": [
+      "Reject any shape with a 2 by 2 block.",
+      "Reject any shape with a row of five squares.",
+      "Fold the rest in your head or check the pairs."
+     ],
+     "why": "Blocks and long rows put two squares on the same face, so the cube cannot close.",
+     "example": {
+      "q": "Which shape is a net of a cube? (a) five squares in a row, one below the middle square (b) a row of four squares, one above the second and one below the third (c) a 2 by 2 block with two more squares in a row on the right of the top one (d) two rows of three squares, the second row shifted one square to the right",
+      "steps": [
+       "Shape (a) has a row of five.",
+       "Shapes (c) and (d) contain a 2 by 2 block.",
+       "Shape (b) has no block and no long row, and it folds into a cube."
+      ],
+      "answer": "Shape (b)"
      }
     }
+   ],
+   "revision": [
+    "Squares that share an edge touch on the cube.",
+    "Row or column: skip one. First and third are opposite.",
+    "Z or S of four squares: the two ends are opposite.",
+    "Three pairs in all. The two leftover squares form the last pair.",
+    "Which cube: reject opposite pairs, then check the counter-clockwise order.",
+    "Not a net: a 2 by 2 block or a row of five squares."
    ]
   },
   {
    "id": "painted-cubes",
    "title": "Painted cube cut into small cubes",
-   "concept": "A cube of side n painted on all faces and cut into n³ unit cubes gives:\n\n- 3 faces painted: the 8 corner cubes\n- 2 faces painted: edge cubes, 12(n − 2)\n- 1 face painted: face centres, 6(n − 2)²\n- no face painted: the inner core, (n − 2)³\n\nFor a cuboid a × b × c, think the same way: corners 8, edges 4[(a−2)+(b−2)+(c−2)], faces 2[(a−2)(b−2)+(b−2)(c−2)+(c−2)(a−2)], core (a−2)(b−2)(c−2) (when every side is at least 2).",
+   "concept": "A big cube of side n is painted on the outside and cut into n cubed small cubes. A small cube keeps paint only on the faces that were on the surface. Corners have 3 painted faces, edges have 2, face centres have 1, and the hidden core has none. Always use n minus 2 for edges, faces and the core.",
    "formulas": [
     {
      "name": "Two faces painted",
      "tex": "12(n-2)",
-     "note": "Cubes on the edges, excluding corners."
+     "note": "Cubes on the edges, not the corners."
     },
     {
      "name": "One face painted",
@@ -222,109 +474,245 @@
     {
      "name": "No face painted",
      "tex": "(n-2)^3",
-     "note": "Hidden inner cube."
+     "note": "The hidden inner block."
+    },
+    {
+     "name": "Total check",
+     "tex": "8 + 12(n-2) + 6(n-2)^2 + (n-2)^3 = n^3",
+     "note": "The four counts add up to all the small cubes."
     }
    ],
    "tricks": [
     {
      "title": "Check the total",
-     "body": "8 + 12(n−2) + 6(n−2)² + (n−2)³ = n³. Use it to verify your counts.",
+     "body": "The four counts must add up to n cubed. Use it to catch mistakes.",
      "example": {
-      "q": "**Q.** n = 3: check the four counts.",
-      "solution": "8 + 12 + 6 + 1 = 27 = 3³."
+      "q": "For a cube of side 5, check the four counts.",
+      "steps": [
+       "Corners $8$; edges $12 \\times 3 = 36$; faces $6 \\times 9 = 54$; core $27$.",
+       "$8 + 36 + 54 + 27 = 125 = 5^3$."
+      ],
+      "answer": "125, so the counts are right"
+     }
+    },
+    {
+     "title": "At least one painted",
+     "body": "Take all the small cubes and remove the core.",
+     "example": {
+      "q": "A cube of side 6 is painted and cut. How many small cubes have at least one painted face?",
+      "steps": [
+       "Total: $6^3 = 216$.",
+       "Core: $4^3 = 64$.",
+       "$216 - 64 = 152$."
+      ],
+      "answer": "152"
      }
     }
    ],
    "mistakes": [
-    "Using n instead of (n − 2) in the formulas.",
-    "Forgetting that corner cubes always have 3 painted faces, whatever n is."
+    {
+     "wrong": "Using n instead of (n - 2) in the formulas.",
+     "right": "Edges, faces and the core all use (n - 2). Subtract 2 before you square or cube."
+    },
+    {
+     "wrong": "Thinking the number of corner cubes changes with n.",
+     "right": "A cube always has 8 corners, so 3 painted faces always means 8 cubes."
+    },
+    {
+     "wrong": "Counting corners again inside the edge cubes.",
+     "right": "Edge cubes are only the n - 2 cubes between the corners."
+    },
+    {
+     "wrong": "Using the cube formulas for a cuboid.",
+     "right": "Use each side's own (side - 2): a - 2, b - 2 and c - 2."
+    },
+    {
+     "wrong": "Forgetting to subtract the shared edge when only some faces are painted.",
+     "right": "Two painted faces that touch share one edge. Remove those cubes from the exactly-one count."
+    }
    ],
-   "notes": "### The picture to keep in mind\nA big cube of side **n** (made of n × n × n unit cubes) is painted on the outside and then cut into n³ unit cubes. A small cube keeps paint only on the faces that were on the **surface** of the big cube. Its position decides how many of its faces are painted.\n\n### The four counts\n- **3 faces painted — corners.** A corner cube touches three faces of the big cube. There are always **8**, whatever n is.\n- **2 faces painted — edges.** Each of the 12 edges holds n cubes, but the 2 ends are corners, leaving **n − 2** per edge: 12(n − 2).\n- **1 face painted — face centres.** On each face, the cubes not on any edge form an (n − 2) × (n − 2) block: 6(n − 2)².\n- **0 faces painted — the core.** Peeling one layer from every side leaves an (n − 2) × (n − 2) × (n − 2) block: (n − 2)³.\n\n### Why (n − 2) everywhere\nA cube on an edge but not at a corner has lost 2 of its edge-mates to the corners; a face block has lost its border ring. Always subtract 2 before squaring or cubing — using n instead of (n − 2) is the classic error.\n\n### The total check\n8 + 12(n − 2) + 6(n − 2)² + (n − 2)³ = n³. Test with n = 3: 8 + 12 + 6 + 1 = 27. Test with n = 4: 8 + 24 + 24 + 8 = 64. If your four counts do not add to n³, something is wrong.\n\n### Combined questions\n- **At least one face painted:** everything except the core, n³ − (n − 2)³.\n- **At least two faces painted:** corners plus edges, 8 + 12(n − 2).\n- Adding the counts of two classes is enough — no new formulas are needed.\n\n### Working backwards\nSometimes a count is given and n is asked. Divide: if exactly-two cubes number 12(n − 2) = 24, then n − 2 = 2 and n = 4. If exactly-one cubes number 6(n − 2)² = 54, then (n − 2)² = 9 and n = 5. Then answer the real question with n.\n\n### Cuboid a × b × c\nThe same positions, with each edge keeping its own leftover:\n- corners: **8**;\n- edges: 4[(a − 2) + (b − 2) + (c − 2)];\n- face centres: 2[(a − 2)(b − 2) + (b − 2)(c − 2) + (c − 2)(a − 2)];\n- core: (a − 2)(b − 2)(c − 2).\nThese hold when every side is at least 2. Check: 5 × 4 × 3 gives edges 4(3 + 2 + 1) = 24 and core 3 × 2 × 1 = 6.\n\n### Common mistakes\n- Writing n instead of (n − 2) inside the formulas.\n- Counting 8 corners as 12(n − 2) + 8 twice, or forgetting that corners are never counted among edge cubes.\n- Adding the four counts and expecting n³ − something: they must total exactly n³.\n- For a cuboid, using n − 2 with a single n instead of each side's own (side − 2).\n\n### Quick revision\n- 3 painted: 8 (corners, any size).\n- 2 painted: 12(n − 2) (edges).\n- 1 painted: 6(n − 2)² (face centres).\n- 0 painted: (n − 2)³ (core).\n- Check: the four counts add to n³.\n- At least one: n³ − (n − 2)³; at least two: 8 + 12(n − 2).\n",
+   "notes": "### The idea\nTake a big cube of side $n$. Paint all six faces. Cut it into $n \\times n \\times n$ small cubes.\n\nA small cube keeps paint only on faces that were on the outside. Its position decides how many faces are painted.\n\n### The four counts\n| Painted faces | Where the cube is | How many |\n|---|---|---|\n| 3 | corner | $8$ |\n| 2 | on an edge, not a corner | $12(n-2)$ |\n| 1 | middle of a face | $6(n-2)^2$ |\n| 0 | inside | $(n-2)^3$ |\n\nFor $n = 4$: $8$, $24$, $24$ and $8$. They add to $64$.\n\n> **Rule:** Corners are always 8, whatever the size. Every other count uses $(n-2)$.\n\n### Why n minus 2\nEach edge has $n$ small cubes. Two of them are corners. That leaves $n-2$.\n\nEach face has $n \\times n$ small cubes. Remove the border ring and $(n-2) \\times (n-2)$ are left.\n\nPeel one layer off every side of the big cube. A core of $(n-2)^3$ cubes is left.\n\nThe four counts must add up to $n^3$. Try $n = 3$: $8 + 12 + 6 + 1 = 27$.\n\n> **Tip:** If your counts do not add to $n^3$, one of them is wrong.\n\n### At least questions\n- At least one face painted: all cubes except the core, $n^3 - (n-2)^3$.\n- At least two faces painted: corners plus edges, $8 + 12(n-2)$.\n\nA cube of side 6 has $216 - 64 = 152$ cubes with at least one painted face.\n\n### Finding n\nSometimes a count is given and $n$ is asked. Divide, then add 2.\n\nIf 24 cubes have exactly two painted faces, then $12(n-2) = 24$. So $n - 2 = 2$ and $n = 4$.\n\nA big cube of side 12 cm is cut into small cubes of side 3 cm. Then $n = 12 \\div 3 = 4$.\n\n### Cuboids\nFor an $a \\times b \\times c$ block, each side keeps its own $(\\text{side} - 2)$.\n\n- Corners: $8$.\n- Edges: $4[(a-2)+(b-2)+(c-2)]$.\n- Faces: $2[(a-2)(b-2)+(b-2)(c-2)+(c-2)(a-2)]$.\n- Core: $(a-2)(b-2)(c-2)$.\n\nFor $5 \\times 4 \\times 3$: edges $4(3+2+1) = 24$ and core $3 \\times 2 \\times 1 = 6$.\n\n### Worked example\nA cube of side 5 is painted and cut into 125 small cubes.\n\n1. Corners: $8$.\n2. Edges: $12 \\times 3 = 36$.\n3. Face centres: $6 \\times 3^2 = 54$.\n4. Core: $3^3 = 27$.\n\nCheck: $8 + 36 + 54 + 27 = 125$. All counts are right.\n\n### Only some faces painted\nIf only some faces are painted, count face by face. Each painted face has $n \\times n$ small cubes. A cube on the edge shared by two painted faces is counted twice, so remove it.\n\nTop and front painted, $n = 4$: $16 + 16 = 32$. The shared edge has 4 cubes with two painted faces. So exactly one painted face is $32 - 2 \\times 4 = 24$.\n\n> **Watch:** Two opposite painted faces share no cubes, so nothing is counted twice.\n",
    "patterns": [
     {
      "id": "pc-p1",
      "name": "Three faces painted (corners)",
      "frequency": "very common",
-     "howToSpot": "Cube painted and cut; the question asks for cubes with all three / three or more painted faces.",
+     "howToSpot": "A painted cube is cut up. The question asks for cubes with three painted faces.",
      "formula": null,
-     "logic": "Only the 8 corner cubes have three painted faces, for every side length.",
+     "steps": [
+      "Recall that only corner cubes have three painted faces.",
+      "A cube has 8 corners."
+     ],
+     "why": "A small cube touches three big faces only at a corner of the big cube.",
      "example": {
-      "q": "**Q.** A cube of side 7 is painted and cut into unit cubes. How many have three painted faces?",
-      "solution": "Always **8**."
+      "q": "A cube of side 7 is painted on all faces and cut into small cubes of side 1. How many small cubes have three painted faces?",
+      "steps": [
+       "Only the corner cubes have three painted faces.",
+       "A cube has 8 corners."
+      ],
+      "answer": "8"
      }
     },
     {
      "id": "pc-p2",
      "name": "Two faces painted (edges)",
      "frequency": "very common",
-     "howToSpot": "Asks for exactly-two cubes after cutting a painted cube of side n.",
+     "howToSpot": "The question asks for cubes with exactly two painted faces.",
      "formula": "12(n-2)",
-     "logic": "Each of the 12 edges keeps n − 2 non-corner cubes: 12(n − 2).",
+     "steps": [
+      "Find n, the number of small cubes along one edge.",
+      "Each edge has n - 2 cubes that are not corners.",
+      "Multiply by 12 edges."
+     ],
+     "why": "Each of the 12 edges has n cubes, and 2 of them are corners.",
      "example": {
-      "q": "**Q.** Side 5, painted, cut. How many cubes have exactly two painted faces?",
-      "solution": "12 × (5 − 2) = **36**."
+      "q": "A cube of side 5 is painted and cut into 125 small cubes. How many have exactly two painted faces?",
+      "steps": [
+       "$n = 5$, so each edge has $5 - 2 = 3$ such cubes.",
+       "$12 \\times 3 = 36$."
+      ],
+      "answer": "36"
      }
     },
     {
      "id": "pc-p3",
      "name": "One face painted (face centres)",
      "frequency": "very common",
-     "howToSpot": "Asks for exactly-one cubes.",
+     "howToSpot": "The question asks for cubes with exactly one painted face.",
      "formula": "6(n-2)^{2}",
-     "logic": "Each face keeps an (n − 2) × (n − 2) block away from the edges: 6(n − 2)².",
+     "steps": [
+      "Find n.",
+      "On each face, remove the border ring. A block of (n - 2) by (n - 2) is left.",
+      "Multiply by 6 faces."
+     ],
+     "why": "Cubes in the middle of a face touch no edge, so they have only that one face painted.",
      "example": {
-      "q": "**Q.** Side 6, painted, cut. How many cubes have exactly one painted face?",
-      "solution": "6 × 4² = **96**."
+      "q": "A cube of side 6 is painted and cut into small cubes of side 1. How many have exactly one painted face?",
+      "steps": [
+       "$n - 2 = 4$.",
+       "One face: $4 \\times 4 = 16$.",
+       "$6 \\times 16 = 96$."
+      ],
+      "answer": "96"
      }
     },
     {
      "id": "pc-p4",
      "name": "No face painted (core)",
      "frequency": "common",
-     "howToSpot": "Asks for completely unpainted cubes.",
+     "howToSpot": "The question asks for cubes with no paint at all.",
      "formula": "(n-2)^{3}",
-     "logic": "Strip one layer from each side; the hidden core is (n − 2)³.",
+     "steps": [
+      "Find n.",
+      "Peel one layer off every side.",
+      "Cube the side that is left: (n - 2) cubed."
+     ],
+     "why": "The cubes inside never touched the outside, so they stay unpainted.",
      "example": {
-      "q": "**Q.** Side 5, painted, cut. How many cubes have no painted face?",
-      "solution": "(5 − 2)³ = **27**."
+      "q": "A cube of side 5 is painted and cut into small cubes of side 1. How many small cubes have no painted face?",
+      "steps": [
+       "$n - 2 = 3$.",
+       "$3^3 = 27$."
+      ],
+      "answer": "27"
      }
     },
     {
      "id": "pc-p5",
-     "name": "Combined counts",
+     "name": "At least or combined counts",
      "frequency": "common",
-     "howToSpot": "Asks for 'at least one', 'at least two', or the sum of two classes.",
+     "howToSpot": "The question says at least one, at least two, or asks for two classes added together.",
      "formula": "n^{3} - (n-2)^{3}",
-     "logic": "At least one = n³ − (n − 2)³. At least two = 8 + 12(n − 2). Otherwise add the wanted classes.",
+     "steps": [
+      "At least one painted: all cubes minus the core.",
+      "At least two painted: corners plus edges.",
+      "For any other mix, add the classes you need."
+     ],
+     "why": "Every class is already counted, so a combined count is a sum of classes.",
      "example": {
-      "q": "**Q.** Side 4, painted, cut. How many cubes have at least two painted faces?",
-      "solution": "8 + 12 × 2 = **32**."
+      "q": "A cube of side 4 is painted and cut into small cubes of side 1. How many have at least two painted faces?",
+      "steps": [
+       "Corners: $8$.",
+       "Edges: $12 \\times 2 = 24$.",
+       "$8 + 24 = 32$."
+      ],
+      "answer": "32"
      }
     },
     {
      "id": "pc-p6",
      "name": "Painted cuboid",
      "frequency": "occasional",
-     "howToSpot": "The block is a × b × c, not a cube.",
+     "howToSpot": "The block is a by b by c, not a cube.",
      "formula": null,
-     "logic": "Corners 8; edges 4[(a−2)+(b−2)+(c−2)]; face centres 2[(a−2)(b−2)+(b−2)(c−2)+(c−2)(a−2)]; core (a−2)(b−2)(c−2).",
+     "steps": [
+      "Write a - 2, b - 2 and c - 2.",
+      "Corners: 8.",
+      "Edges: 4 times the sum of the three (side - 2) values.",
+      "Faces and core use products of the (side - 2) values."
+     ],
+     "why": "Each side of a cuboid has its own length, so each keeps its own (side - 2).",
      "example": {
-      "q": "**Q.** A 5 × 4 × 3 cuboid, painted and cut. How many cubes have exactly two painted faces?",
-      "solution": "4 × (3 + 2 + 1) = **24**."
+      "q": "A cuboid measuring 5 by 4 by 3 is painted and cut into small cubes of side 1. How many have exactly two painted faces?",
+      "steps": [
+       "$(5-2)+(4-2)+(3-2) = 3+2+1 = 6$.",
+       "$4 \\times 6 = 24$."
+      ],
+      "answer": "24"
      }
     },
     {
      "id": "pc-p7",
-     "name": "Find n from a count",
+     "name": "Find n from a count or a size",
      "frequency": "occasional",
-     "howToSpot": "A count of painted cubes is given; the side n (or another count) is asked.",
+     "howToSpot": "A count of painted cubes, or the edge lengths of the big and small cubes, is given. Another count is asked.",
      "formula": null,
-     "logic": "Invert the formula: divide by 12 (edges) or by 6 and square-root (faces), add 2 to get n, then compute what is asked.",
+     "steps": [
+      "Turn the given count into n: divide by 12 (edges) or by 6 and take the square root (faces).",
+      "Add 2 to get n. If edges are in cm, n = big edge divided by small edge.",
+      "Now find the count that is asked."
+     ],
+     "why": "The formulas run both ways, so a count fixes n.",
      "example": {
-      "q": "**Q.** 36 cubes have exactly two painted faces. How many have exactly one?",
-      "solution": "12(n − 2) = 36 gives n = 5, so 6 × 3² = **54**."
+      "q": "36 small cubes have exactly two painted faces. How many small cubes have exactly one painted face?",
+      "steps": [
+       "$12(n-2) = 36$, so $n - 2 = 3$ and $n = 5$.",
+       "One face: $6 \\times 3^2 = 54$."
+      ],
+      "answer": "54"
+     }
+    },
+    {
+     "id": "pc-p8",
+     "name": "Only some faces painted",
+     "frequency": "occasional",
+     "howToSpot": "The question says which faces are painted, such as the top and one side, or two opposite faces.",
+     "formula": null,
+     "steps": [
+      "Count the small cubes on each painted face: n times n.",
+      "If two painted faces touch, they share an edge of n cubes.",
+      "Exactly one painted face = sum of faces minus twice the shared cubes."
+     ],
+     "why": "The cubes on a shared edge have two painted faces, so they must leave the exactly-one count.",
+     "example": {
+      "q": "A cube of side 4 is painted on its top face and on its front face only. It is cut into 64 small cubes. How many have exactly one painted face?",
+      "steps": [
+       "Top face: $4 \\times 4 = 16$. Front face: $16$.",
+       "The shared edge has 4 cubes with two painted faces.",
+       "$16 + 16 - 2 \\times 4 = 24$."
+      ],
+      "answer": "24"
      }
     }
+   ],
+   "revision": [
+    "3 painted faces: 8 corners, for any n.",
+    "2 painted faces: $12(n-2)$.",
+    "1 painted face: $6(n-2)^2$.",
+    "0 painted faces: $(n-2)^3$.",
+    "The four counts add to $n^3$.",
+    "At least one: $n^3 - (n-2)^3$. At least two: $8 + 12(n-2)$.",
+    "Given a count? Divide, then add 2 to get n."
    ]
   }
  ],

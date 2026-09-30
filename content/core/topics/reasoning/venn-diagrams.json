@@ -13,332 +13,765 @@
   {
    "id": "venn-idea",
    "title": "What a Venn diagram encodes",
-   "concept": "A Venn diagram is a picture of set membership: every point inside a circle belongs to that category; overlap regions belong to both. Two habits solve most CGL venn questions:\n\n1. **Region bookkeeping.** Name the 4 regions of a two-circle diagram (only A, only B, both, neither) and the 8 regions of a three-circle one. Every question is a sum or difference of named regions.\n2. **Relation reading.** 'Choose the right diagram for X, Y, Z' asks about *definitional* relations: is one category ALWAYS inside another (nested circles)? Can they NEVER meet (separate circles)? Otherwise (overlap possible but not forced) draw intersecting circles.\n\nDraw the regions and label them with the given numbers before computing — unlabelled diagrams cause double-counting errors.",
+   "concept": "A Venn diagram is a picture of groups. Each circle is one group. Where two circles overlap, the members belong to both groups. First learn to read regions, then learn to add them.",
    "formulas": [
     {
-     "name": "Two-set inclusion-exclusion",
+     "name": "Two-set union",
      "tex": "|A \\cup B| = |A| + |B| - |A \\cap B|",
-     "note": "The intersection is counted twice on the right, so subtract once."
+     "note": "The overlap is counted twice on the right, so subtract it once."
     },
     {
-     "name": "Only-regions",
+     "name": "Only A",
      "tex": "|A \\setminus B| = |A| - |A \\cap B|",
-     "note": "'Only A' is A minus the overlap."
+     "note": "Only A is A minus the overlap."
+    },
+    {
+     "name": "Number of parts",
+     "tex": "2^n",
+     "note": "n circles make 2 to the power n parts, including the outside."
     }
    ],
    "tricks": [
     {
-     "title": "Label regions, don’t imagine them",
-     "body": "Write the numbers INTO the regions: |A∩B| in the lens, only-A and only-B in the moons, neither outside. Sums become single looks instead of formula recalls.",
+     "title": "Write numbers into the regions",
+     "body": "Do not keep numbers in your head. Write each one in its region. The answer is then a single sum.",
      "example": {
-      "q": "**Q.** 60 students; 35 like tea, 30 coffee, 10 both. How many like neither?\n\n**Sol.** Tea-only 25 + both 10 + coffee-only 20 = 55 inside; 60 − 55 = **5**.",
-      "solution": "Fill the diagram first; the answer is whatever region is left empty times its count."
+      "q": "60 students. 35 like tea, 30 like coffee, 10 like both. How many like neither?",
+      "steps": [
+       "Tea only = 35 − 10 = 25.",
+       "Coffee only = 30 − 10 = 20.",
+       "Inside = 25 + 10 + 20 = 55.",
+       "Neither = 60 − 55 = 5."
+      ],
+      "answer": "5"
      }
+    },
+    {
+     "title": "Shade and compare",
+     "body": "For a 'which expression' question, shade the phrase first. Then shade each option. Pick the match."
     }
    ],
    "mistakes": [
-    "Counting the intersection twice when totalling.",
-    "Treating 'like tea' (including both) as 'like only tea'.",
-    "Forgetting the 'neither' region sits outside both circles."
+    {
+     "wrong": "Adding 35 (tea) and 30 (coffee) and calling it the number who like a drink.",
+     "right": "The overlap is counted twice. Subtract it once: 35 + 30 − 10 = 55."
+    },
+    {
+     "wrong": "Reading 'like tea' as 'like only tea'.",
+     "right": "'Like tea' includes the overlap. 'Only tea' removes it."
+    },
+    {
+     "wrong": "Forgetting the outside region.",
+     "right": "People who like neither drink sit outside both circles. Total minus union gives them."
+    },
+    {
+     "wrong": "Counting three circles as 7 parts in all.",
+     "right": "There are 7 parts inside the circles and 1 outside, so 8 in all."
+    },
+    {
+     "wrong": "Shading A ∪ B when the phrase says 'A and B'.",
+     "right": "'And' means the overlap only. 'Or' means both circles together."
+    }
    ],
-   "notes": "### What a Venn diagram shows\nA Venn diagram is a picture of **membership**. Each circle is a group (people who drink tea, even numbers, doctors). A point inside a circle belongs to that group. A point where two circles overlap belongs to both. The rectangle around the circles is the **universal set** — everyone being talked about — and the space outside all circles holds those who belong to none.\n\nThe diagram is only useful if you read it by **regions**, not by circles. A region is a piece of the picture that cannot be split further by any circle line.\n\n### Counting regions\n- **Two** intersecting circles make **4** regions: only A, only B, both, neither.\n- **Three** mutually intersecting circles make **8** regions: 3 \"only\" regions, 3 \"exactly two\" regions, 1 \"all three\" region and 1 \"none\" region.\n- In general each region is a yes/no answer for every circle, so n circles drawn with every overlap give 2ⁿ regions (including the outside).\n- Circle A alone is made of **4** of the 8 regions in a three-circle diagram: only A, A-and-B only, A-and-C only, and all three.\n\n### Words → set symbols\n| Phrase | Symbol | Regions (three circles) |\n|---|---|---|\n| in A or B (at least one) | A ∪ B | everything inside A or B |\n| in both A and B | A ∩ B | A-B only **plus** all three |\n| in A but not B | A − B | only A **plus** A-C only |\n| in A and B but not C | (A ∩ B) − C | A-B only |\n| in exactly one of A, B | (A ∪ B) − (A ∩ B) | only A, only B |\n| in none | outside all circles | the \"none\" region |\n\nThe commonest slip is to read \"in both A and B\" as the single A-and-B-only region. \"Both A and B\" says nothing about C, so the all-three region is included.\n\n### Reading numbers off a diagram\nWhen the numbers are written region by region, every question is just **adding the right regions**. Suppose a survey of news habits — Newspaper (N), TV (T), Radio (R) — gives: only N 20, only T 25, only R 5, N-T only 15, T-R only 6, N-R only 4, all three 10, none 15 (total 100).\n- Total newspaper readers = 20 + 15 + 4 + 10 = **49** (all four N-regions).\n- At least two sources = 15 + 6 + 4 + 10 = **35**.\n- Exactly one source = 20 + 25 + 5 = **50**.\n- Not TV = total − all T-regions = 100 − 56 = **44**.\n- At most one source = exactly one + none = 50 + 15 = **65**.\n\n### Negative phrases\n- **Neither / none** is the outside region.\n- **Not A** is everything outside circle A, including the none region.\n- **At most one** includes those in no circle at all.\n- **Either A or B but not both** is the two \"only\" regions.\n\n### Method that never fails\n1. Write the region numbers (or letters) in the picture.\n2. Turn the phrase into a list of regions.\n3. Add those regions only once each.\n\n### Quick revision\n- Read by regions; two circles = 4 regions, three circles = 8 (including outside).\n- \"Both A and B\" includes the all-three region; \"A and B only\" does not.\n- A − B keeps the parts of A outside B, whatever C does.\n- Not A includes the none region; at most one = exactly one + none.\n- List the regions first, then add each one once.\n",
+   "notes": "### What a Venn diagram shows\nA circle is a group of things. Everything inside the circle belongs to that group. Where two circles overlap, the things there belong to both groups.\n\nTake two groups: people who like tea and people who like coffee. The picture has four parts.\n\n| Part | Meaning |\n|---|---|\n| Only tea | Likes tea, does not like coffee |\n| Both | Likes tea and coffee |\n| Only coffee | Likes coffee, does not like tea |\n| Outside | Likes neither |\n\n> **Rule:** Every person sits in exactly one part. No person is counted in two parts.\n\n### Reading the region numbers\nNumbers are written inside the parts. Add the parts you need and nothing more.\n\nSuppose only-tea is 20, both is 15, only-coffee is 4 and outside is 10. The total is 20 + 15 + 4 + 10 = 49.\n\n- People who like tea: 20 + 15 = 35. Tea includes the \"both\" part.\n- People who like at least one drink: 20 + 15 + 4 = 39.\n- People who like tea only: 20.\n\n> **Watch:** \"Likes tea\" and \"likes only tea\" are not the same. The first one includes the overlap.\n\n### Turning words into regions\nExam questions describe a region in words. You must find the matching part of the picture.\n\n| Words | Region |\n|---|---|\n| A and B | The overlap of A and B |\n| A or B | Both circles together |\n| Only A | A, without the overlap |\n| Not A | Everything outside circle A |\n| Neither A nor B | Outside both circles |\n\nFor three sets, the words \"A and B but not C\" point to one small region. That is the overlap of A and B, with the part inside C removed.\n\n> **Tip:** Draw the circles and shade the region for each option. The option with the same shading is the answer.\n\n### How many regions are there\nWith one circle there are 2 parts: inside and outside. With two circles there are 4 parts. With three circles there are 8 parts.\n\nThe pattern is 2 multiplied by itself once for each circle. Three circles give 2 × 2 × 2 = 8 parts. One part is outside all circles, so 7 parts are inside.\n\n> **Note:** A drawing with three overlapping circles has 7 inside parts. Do not count the outside as a circle part.\n\n### Words that need care\nSome small words change the region. Read them slowly.\n\n- \"Neither A nor B\" means outside both circles.\n- \"Exactly one\" means only A plus only B. The overlap is left out.\n- \"At least one\" means all the parts inside the circles.\n- \"Do not like A\" means the total minus everyone in A.\n\nExample: 100 people, and 56 like A. Then 100 − 56 = 44 do not like A.\n\n> **Example:** In a group of 80, 30 like A, 25 like B and 10 like both. At least one: 30 + 25 − 10 = 45. Neither: 80 − 45 = 35.\n",
    "patterns": [
     {
      "id": "vn-p1",
      "name": "Phrase to set expression",
      "frequency": "common",
-     "howToSpot": "A phrase like 'doctors and singers but not players' with options written in ∩, ∪ and − symbols.",
+     "howToSpot": "A phrase such as 'A and B but not C'. The options are written with ∩, ∪ and −.",
      "formula": null,
-     "logic": "1. List which regions the phrase covers.\n2. For each option, list the regions it covers.\n3. Pick the option whose regions match exactly.\n\n*Why it works:* two expressions mean the same only if they cover the same regions.",
+     "steps": [
+      "List the parts of the picture the phrase covers.",
+      "For each option, list the parts it covers.",
+      "Pick the option with exactly the same parts."
+     ],
+     "why": "Two expressions mean the same only when they cover the same parts.",
      "example": {
-      "q": "Which expression shows 'in A and B but not C'?",
-      "solution": "The phrase is the A-B-only region = **(A ∩ B) − C**. A ∩ B alone would also include the all-three region."
+      "q": "Which expression shows 'in A and B but not in C'?  (a) A ∩ B ∩ C  (b) (A ∩ B) − C  (c) (A ∪ B) − C  (d) A − (B ∪ C)",
+      "steps": [
+       "The phrase is one part: inside A and B, outside C.",
+       "(a) is the centre part, inside C. Reject.",
+       "(c) covers 3 parts, including only-A. Reject.",
+       "(d) is only A. Reject.",
+       "(b) is A and B with C removed. Match."
+      ],
+      "answer": "(b) (A ∩ B) − C"
      }
     },
     {
      "id": "vn-p2",
      "name": "Reading region numbers",
      "frequency": "very common",
-     "howToSpot": "Numbers are given for each region (only A, A-B only, all three, none) and a question asks for a total.",
+     "howToSpot": "A picture with numbers in the parts. It asks for a group total or an 'only' count.",
      "formula": null,
-     "logic": "1. Turn the question into a list of regions.\n2. Add those region numbers, each once.\n3. Use total − region sum for 'not' questions.\n\n*Why it works:* regions never overlap, so adding them never double-counts.",
+     "steps": [
+      "Read which parts the question wants.",
+      "Add only those numbers.",
+      "Check that the parts you added are not overlapping."
+     ],
+     "why": "The parts never overlap, so their numbers add cleanly.",
      "example": {
-      "q": "Only N 20, N-T only 15, N-R only 4, all three 10. How many read the newspaper?",
-      "solution": "All N-regions: 20 + 15 + 4 + 10 = **49**."
+      "q": "In a diagram of tea and coffee drinkers: only tea 20, both 15, only coffee 4, neither 10. How many like at least one drink?",
+      "steps": [
+       "At least one = only tea + both + only coffee.",
+       "20 + 15 + 4 = 39.",
+       "The outside 10 is not added."
+      ],
+      "answer": "39"
      }
     },
     {
      "id": "vn-p3",
      "name": "Counting regions",
      "frequency": "occasional",
-     "howToSpot": "Asks how many regions a diagram has, or how many regions make up one circle.",
-     "formula": null,
-     "logic": "1. Each region is a yes/no choice for every circle.\n2. n circles with all overlaps → 2ⁿ regions including the outside.\n3. Regions inside one circle of three = 2² = 4.\n\n*Why it works:* every combination of in/out appears exactly once.",
+     "howToSpot": "It asks how many parts or regions a diagram with 2 or 3 circles has.",
+     "formula": "Parts = 2^n",
+     "steps": [
+      "Count the circles n.",
+      "Multiply 2 by itself n times.",
+      "Subtract 1 if the outside is not counted."
+     ],
+     "why": "Each member is inside or outside every circle, which gives 2 choices per circle.",
      "example": {
-      "q": "How many regions does a diagram of three mutually intersecting circles have (including the outside)?",
-      "solution": "2³ = **8**."
+      "q": "How many separate parts (outside included) does a Venn diagram of 3 overlapping circles have?",
+      "steps": [
+       "n = 3.",
+       "2 × 2 × 2 = 8.",
+       "Inside parts = 7, outside = 1."
+      ],
+      "answer": "8"
      }
     },
     {
      "id": "vn-p4",
-     "name": "Negative and 'at most' phrases",
+     "name": "Not and at most",
      "frequency": "common",
-     "howToSpot": "Phrases like not A, neither, at most one, either but not both.",
+     "howToSpot": "The question says 'do not', 'not in', or 'other than' a group.",
      "formula": null,
-     "logic": "1. 'Not A' = total − all regions of A (includes the none region).\n2. 'At most one' = exactly one + none.\n3. 'Either but not both' = the two only-regions.\n\n*Why it works:* negative phrases are easiest as complements of positive ones.",
+     "steps": [
+      "Find the total.",
+      "Find the members of the group.",
+      "Subtract the group from the total."
+     ],
+     "why": "'Not in A' is everything except A.",
      "example": {
-      "q": "Total 100; the four T-regions add to 56. How many do not watch TV?",
-      "solution": "100 − 56 = **44**."
+      "q": "100 people were asked. 56 like A. How many do not like A?",
+      "steps": [
+       "Total = 100.",
+       "Like A = 56.",
+       "Not A = 100 − 56 = 44."
+      ],
+      "answer": "44"
+     }
+    },
+    {
+     "id": "vn-p17",
+     "name": "Neither, nor and exactly one",
+     "frequency": "common",
+     "howToSpot": "The words 'neither ... nor', 'exactly one' or 'only one' appear with two groups.",
+     "formula": "Neither = total − (A + B − both)",
+     "steps": [
+      "Find the union: A + B − both.",
+      "For neither, subtract the union from the total.",
+      "For exactly one, subtract the overlap from the union."
+     ],
+     "why": "Neither is outside the circles. Exactly one leaves out the overlap.",
+     "example": {
+      "q": "In a group of 80, 30 like A, 25 like B and 10 like both. How many like neither? How many like exactly one?",
+      "steps": [
+       "Union = 30 + 25 − 10 = 45.",
+       "Neither = 80 − 45 = 35.",
+       "Exactly one = 45 − 10 = 35."
+      ],
+      "answer": "Neither 35, exactly one 35"
      }
     }
+   ],
+   "revision": [
+    "Each circle is a group. The overlap is 'both'. The outside is 'neither'.",
+    "Two circles give 4 parts. Three circles give 8 parts, 7 of them inside.",
+    "'Likes A' includes the overlap. 'Only A' does not.",
+    "'Neither A nor B' means outside both circles.",
+    "At least one = total minus neither.",
+    "Fill numbers into the regions before you add."
    ]
   },
   {
    "id": "two-set-operations",
    "title": "Two-circle counting",
-   "concept": "With two sets there are exactly four regions: only A, only B, both, neither. Every two-circle question is a sum or difference of these:\n\n- **Union** (at least one) = only A + only B + both.\n- **Only A** = |A| − both; **Only B** = |B| − both.\n- **Neither** = grand total − union.\n\nExam data typically gives |A|, |B| and the overlap (or hides one of them behind the union). Rearranging the inclusion-exclusion identity recovers any missing region in one step.",
+   "concept": "Two circles make four parts: only A, only B, both, and neither. Every two-circle question is a sum or a difference of these four parts. Fill them in, then read off the answer.",
    "formulas": [
     {
-     "name": "Two-set inclusion-exclusion",
+     "name": "Two-set union",
      "tex": "|A \\cup B| = |A| + |B| - |A \\cap B|",
-     "note": "The intersection is counted twice on the right, so subtract once."
+     "note": "The overlap is counted twice on the right, so subtract it once."
     },
     {
-     "name": "Only-regions",
+     "name": "Only A",
      "tex": "|A \\setminus B| = |A| - |A \\cap B|",
-     "note": "'Only A' is A minus the overlap."
+     "note": "Only A is A minus the overlap."
     },
     {
      "name": "Neither",
      "tex": "\\text{neither} = \\text{total} - |A \\cup B|",
      "note": "Everyone outside both circles."
+    },
+    {
+     "name": "Exactly one",
+     "tex": "|A| + |B| - 2|A \\cap B|",
+     "note": "Only A plus only B."
     }
    ],
    "tricks": [
     {
-     "title": "Label regions, don’t imagine them",
-     "body": "Write the numbers INTO the regions: the lens, the two moons, and outside. Sums become single looks instead of formula recalls.",
+     "title": "Add the four parts to check",
+     "body": "After you fill only A, both, only B and neither, add them. If the sum is not the total, one part is wrong.",
      "example": {
-      "q": "**Q.** 60 students; 35 like tea, 30 coffee, 10 both. How many like neither?\n\n**Sol.** Tea-only 25 + both 10 + coffee-only 20 = 55 inside; 60 − 55 = **5**.",
-      "solution": "Fill the diagram first; the answer is whatever region is left, counted."
+      "q": "150 families: 90 have a car, 70 have a two-wheeler, 40 have both. Check the parts.",
+      "steps": [
+       "Only car 50, both 40, only two-wheeler 30, neither 30.",
+       "50 + 40 + 30 + 30 = 150."
+      ],
+      "answer": "The parts add to 150, so all are right."
+     }
+    },
+    {
+     "title": "Overlap limits",
+     "body": "The overlap can never be more than the smaller group. It can never be less than A + B − total.",
+     "example": {
+      "q": "100 people: 70 speak Hindi, 60 speak English. Find the smallest and largest overlap.",
+      "steps": [
+       "Smallest = 70 + 60 − 100 = 30.",
+       "Largest = the smaller group = 60."
+      ],
+      "answer": "30 and 60"
      }
     }
    ],
    "mistakes": [
-    "Counting the intersection twice when totalling.",
-    "Treating 'like tea' (including both) as 'like only tea'.",
-    "Forgetting the 'neither' region sits outside both circles."
+    {
+     "wrong": "Adding 90 + 70 and calling 160 the union.",
+     "right": "The overlap is counted twice. Union = 90 + 70 − 40 = 120."
+    },
+    {
+     "wrong": "Treating 'both' as 'only both'.",
+     "right": "'Both' is the overlap. 'Only A' removes it from A."
+    },
+    {
+     "wrong": "Forgetting to subtract the union from the total to get neither.",
+     "right": "Neither = total − union."
+    },
+    {
+     "wrong": "Giving a negative number as the smallest overlap.",
+     "right": "If A + B − total is negative, the smallest overlap is 0."
+    },
+    {
+     "wrong": "Mixing percent and headcount in one sum.",
+     "right": "Change all numbers to percent, or all to counts, first."
+    }
    ],
-   "notes": "### The four regions\nTwo overlapping circles A and B split the universe into four parts: **only A**, **only B**, **both**, **neither**. Every two-set question is a sum or a difference of these four numbers. Write them in the picture before doing anything else.\n\n### Core formulas\n- n(A ∪ B) = n(A) + n(B) − n(A ∩ B). The overlap is subtracted once because it was counted in both circles.\n- Only A = n(A) − both; only B = n(B) − both.\n- Exactly one = only A + only B = n(A) + n(B) − 2 × both.\n- Neither = total − n(A ∪ B).\n- Total = only A + only B + both + neither.\n\n### Worked example\nIn a society of 150 families, 90 have a car, 70 have a two-wheeler and 40 have both.\n- At least one = 90 + 70 − 40 = 120.\n- Neither = 150 − 120 = **30**.\n- Only car = 90 − 40 = 50; only two-wheeler = 70 − 40 = 30.\nA common wrong answer is 70: taking only car + only two-wheeler = 80 and then 150 − 80, which forgets the 40 who have both.\n\n### Reverse puzzles\nSometimes the question gives the answer regions and asks for a circle total or for the overlap. Use the same four boxes and fill in what you know.\n- Given union and the two totals: both = n(A) + n(B) − union.\n- If everybody is in at least one set: union = total, so both = n(A) + n(B) − total.\n- Ratio clues: \"only cricket is twice only football\", with only C + only F = 30, gives only F = 10, only C = 20.\n\n### Percentages\nTreat the whole group as 100 and work in percent. Convert to people only at the end.\n- 35% failed maths, 25% failed English, 10% failed both → failed at least one = 50%, so passed both = 50%. If 250 passed both, total = 250 ÷ 0.5 = 500.\n- The trap: 100 − 35 − 25 = 40% \"passed both\" forgets that the 10% who failed both were subtracted twice.\n\n### Maximum and minimum overlap\nWhen the overlap is not given, it can move within limits (total N, sets of size a and b):\n- **Maximum both** = the smaller set, min(a, b) — the small circle sits fully inside the big one.\n- **Minimum both** = a + b − N, or 0 if that is negative — the circles overlap only as much as they are forced to.\n- **Maximum neither** = N − max(a, b) — again when the smaller circle sits inside the larger.\n- **Minimum neither** = N − (a + b), or 0 if negative.\nExample: 60 students, 45 like tea, 35 like coffee → both is at least 45 + 35 − 60 = 20 and at most 35.\n\n### Quick revision\n- Four boxes: only A, only B, both, neither — fill them first.\n- Union = A + B − both; neither = total − union; exactly one = A + B − 2 × both.\n- Everyone in at least one set → both = A + B − total.\n- Percent questions: work in %, convert at the end; passed both ≠ 100 − fail₁ − fail₂.\n- Max both = smaller set; min both = A + B − N (not below 0); max neither = N − larger set.\n",
+   "notes": "### The four parts\nTwo groups A and B split everyone into four parts.\n\n| Part | Meaning |\n|---|---|\n| Only A | In A, not in B |\n| Both | In A and in B |\n| Only B | In B, not in A |\n| Neither | In neither group |\n\nOnly A, both and only B together make the union. The union is \"at least one\". Neither is what is left of the total.\n\n### The main formula\nWhen you add A and B, the \"both\" part is counted twice. Subtract it once to fix that.\n\n$$n(A \\cup B) = n(A) + n(B) - n(A \\cap B)$$\n\n> **Rule:** Union = A + B − both. Neither = total − union.\n\nExample: 150 families. 90 have a car, 70 have a two-wheeler, 40 have both. Union = 90 + 70 − 40 = 120. Neither = 150 − 120 = 30.\n\n### Finding the only parts\n\"Only A\" means A without the overlap. So only A = A − both.\n\nIn the same example, only car = 90 − 40 = 50. Only two-wheeler = 70 − 40 = 30. Check: 50 + 40 + 30 + 30 = 150.\n\n> **Tip:** After you fill the four parts, add them. The sum must equal the total. This catches every slip.\n\n### Working backwards\nSometimes the overlap is the unknown. Rearrange the main formula.\n\n$$\\text{both} = A + B - \\text{union}$$\n\nExample: 45 students. 28 play cricket, 22 play football, and each plays at least one. Union = 45. Both = 28 + 22 − 45 = 5.\n\n### Percentages\nPercent questions work the same way, with a total of 100.\n\nExample: 60% like tea, 45% like coffee, and 15% like neither. Union = 100 − 15 = 85. Both = 60 + 45 − 85 = 20%.\n\n> **Watch:** If the question gives a percent and a headcount, change everything to one form first.\n\n### Biggest and smallest overlap\nSometimes the overlap is not given. You then find the smallest and the largest possible value.\n\n- Largest overlap = the smaller of A and B. One group sits fully inside the other.\n- Smallest overlap = A + B − total, or 0 if that is negative. The groups spread out as much as possible.\n\nExample: 100 people. 70 speak Hindi and 60 speak English. Smallest both = 70 + 60 − 100 = 30. Largest both = 60.\n\n> **Note:** A negative answer for the smallest overlap means the groups can be apart. Then the smallest overlap is 0.\n\n### Reading the wording\nExam words hide the four parts. Turn each phrase into a part before you calculate.\n\n| Phrase | Part |\n|---|---|\n| \"at least one\", \"either or both\" | Union |\n| \"both\", \"and\" | Overlap |\n| \"only A\", \"A but not B\" | A − both |\n| \"exactly one\", \"only one of the two\" | Only A + only B |\n| \"neither\", \"none\" | Total − union |\n\nExample: 80 people. 50 read English news, 40 read Hindi news, 20 read both. Exactly one language = 50 + 40 − 2 × 20 = 50. Neither = 80 − (50 + 40 − 20) = 10.\n",
    "patterns": [
     {
      "id": "vn-p5",
      "name": "Union and neither",
      "frequency": "very common",
-     "howToSpot": "Two totals, their overlap and the group size; asks at least one, neither or only one set.",
+     "howToSpot": "Two group totals, their overlap and the size of the whole group. It asks for at least one, neither or only one.",
      "formula": "n(A ∪ B) = n(A) + n(B) − n(A ∩ B)",
-     "logic": "1. Union = A + B − both.\n2. Neither = total − union.\n3. Only A = A − both.\n\n*Why it works:* the overlap is counted twice in A + B, so it is removed once.",
+     "steps": [
+      "Union = A + B − both.",
+      "Neither = total − union.",
+      "Only A = A − both."
+     ],
+     "why": "The overlap is counted twice in A + B, so it is removed once.",
      "example": {
-      "q": "150 families: 90 car, 70 two-wheeler, 40 both. How many have neither?",
-      "solution": "Union = 90 + 70 − 40 = 120; neither = 150 − 120 = **30**."
+      "q": "Of 150 families, 90 have a car, 70 have a two-wheeler and 40 have both. How many have neither?",
+      "steps": [
+       "Union = 90 + 70 − 40 = 120.",
+       "Neither = 150 − 120 = 30."
+      ],
+      "answer": "30"
      }
     },
     {
      "id": "vn-p6",
-     "name": "Reverse two-set puzzle",
+     "name": "Find the overlap",
      "frequency": "common",
-     "howToSpot": "Some region values are given and a circle total, the overlap or the group size is asked; may include a ratio clue.",
-     "formula": null,
-     "logic": "1. Draw the four boxes: only A, only B, both, neither.\n2. Fill the known boxes.\n3. Solve for the missing box from the total or the ratio.\n\n*Why it works:* the four boxes always add to the total.",
+     "howToSpot": "The total and both group sizes are given. Everyone is in at least one group. It asks for the overlap.",
+     "formula": "both = A + B − union",
+     "steps": [
+      "Write the union. If everyone is in a group, union = total.",
+      "Add the two group sizes.",
+      "Subtract the union."
+     ],
+     "why": "The extra people in A + B over the union are exactly the overlap.",
      "example": {
-      "q": "30 like mango, 15 like only guava, 8 like neither. Group size?",
-      "solution": "Mango (30, includes both) + only guava 15 + neither 8 = **53**."
+      "q": "In a class of 45, 28 play cricket and 22 play football. Every student plays at least one. How many play both?",
+      "steps": [
+       "Union = 45.",
+       "A + B = 28 + 22 = 50.",
+       "Both = 50 − 45 = 5."
+      ],
+      "answer": "5"
      }
     },
     {
      "id": "vn-p7",
-     "name": "Percentage sets",
+     "name": "Percentages in two sets",
      "frequency": "common",
-     "howToSpot": "Data given in percent; the answer may be in percent or in people.",
+     "howToSpot": "The data are in percent. It asks for the percent in both or in neither.",
      "formula": null,
-     "logic": "1. Work the whole problem in percent with total 100.\n2. Find the percent of the asked region.\n3. Convert: people = percent × total ÷ 100 (or total = people ÷ percent × 100).\n\n*Why it works:* percentages obey the same region algebra as counts.",
+     "steps": [
+      "Take the whole group as 100%.",
+      "Union = 100 − neither.",
+      "Both = A + B − union."
+     ],
+     "why": "Percent is a count out of 100, so the same formula works.",
      "example": {
-      "q": "35% failed maths, 25% failed English, 10% failed both; 250 passed both. Total?",
-      "solution": "Failed at least one = 50%, passed both = 50% → total = **500**."
+      "q": "In a town, 60% like tea, 45% like coffee and 15% like neither. What percent like both?",
+      "steps": [
+       "Union = 100 − 15 = 85%.",
+       "Both = 60 + 45 − 85 = 20%."
+      ],
+      "answer": "20%"
      }
     },
     {
      "id": "vn-p8",
-     "name": "Maximum and minimum overlap",
+     "name": "Biggest and smallest overlap",
      "frequency": "occasional",
-     "howToSpot": "The overlap is not given; asks the largest or smallest possible both / neither.",
-     "formula": "min both = max(0, A + B − N); max both = min(A, B)",
-     "logic": "1. Max both = smaller set.\n2. Min both = A + B − N (0 if negative).\n3. Max neither = N − larger set; min neither = N − (A + B) (0 if negative).\n\n*Why it works:* the smaller circle can sit fully inside the larger, or the circles can be pushed apart until the total forces overlap.",
+     "howToSpot": "The overlap is not given. It asks for the 'least' or 'greatest' possible number in both.",
+     "formula": "Smallest = A + B − total; largest = smaller set",
+     "steps": [
+      "Smallest overlap: A + B − total. Use 0 if negative.",
+      "Largest overlap: the smaller of A and B.",
+      "Any overlap between these two is possible."
+     ],
+     "why": "The groups overlap least when spread apart, and most when one sits inside the other.",
      "example": {
-      "q": "60 students; 45 tea, 35 coffee. Minimum who like both?",
-      "solution": "45 + 35 − 60 = **20**."
+      "q": "100 people: 70 speak Hindi and 60 speak English. Find the least and the greatest number who speak both.",
+      "steps": [
+       "Least = 70 + 60 − 100 = 30.",
+       "Greatest = smaller group = 60."
+      ],
+      "answer": "Least 30, greatest 60"
+     }
+    },
+    {
+     "id": "vn-p18",
+     "name": "Exactly one group",
+     "frequency": "occasional",
+     "howToSpot": "The words 'only one of the two' or 'exactly one'. Only-A and only-B are added.",
+     "formula": "Exactly one = A + B − 2 × both",
+     "steps": [
+      "Subtract the overlap from A to get only A.",
+      "Subtract the overlap from B to get only B.",
+      "Add the two."
+     ],
+     "why": "The overlap is taken out of both groups, so it is subtracted twice.",
+     "example": {
+      "q": "40 people like A, 30 like B and 12 like both. How many like exactly one of the two?",
+      "steps": [
+       "Only A = 40 − 12 = 28.",
+       "Only B = 30 − 12 = 18.",
+       "Total = 28 + 18 = 46."
+      ],
+      "answer": "46"
      }
     }
+   ],
+   "revision": [
+    "Union = A + B − both.",
+    "Neither = total − union.",
+    "Only A = A − both.",
+    "Both = A + B − union.",
+    "Exactly one = A + B − 2 × both.",
+    "Largest overlap = the smaller set. Smallest overlap = A + B − total (not below 0).",
+    "Add the four parts at the end. They must equal the total."
    ]
   },
   {
    "id": "three-set-operations",
    "title": "Three-circle counting",
-   "concept": "With three sets A, B, C the master formula is\n\n|A∪B∪C| = |A| + |B| + |C| − |A∩B| − |B∩C| − |A∩C| + |A∩B∩C|.\n\nTwo derived region-counts appear constantly:\n\n- **Exactly two** = (|A∩B| − all3) + (|B∩C| − all3) + (|A∩C| − all3): each pairwise figure includes the triple region, which must be stripped from both pairs it contaminates.\n- **Exactly one** = union − exactly-two − all-three.\n\nExam data usually gives the seven numbers directly (three singles, three pairs, one triple); plug them into the 8 regions and add or subtract as asked.",
+   "concept": "Three circles make eight parts: seven inside and one outside. The union formula adds the singles, subtracts the pairs and adds the triple back. Then 'exactly one', 'exactly two' and 'none' are simple sums.",
    "formulas": [
     {
      "name": "Three-set union",
-     "tex": "|A \\cup B \\cup C| = \\sum|A| - \\sum|A \\cap B| + |A \\cap B \\cap C|",
-     "note": "Add singles, subtract pairs, re-add the triple."
+     "tex": "|A \\cup B \\cup C| = \\Sigma|A| - \\Sigma|A \\cap B| + |A \\cap B \\cap C|",
+     "note": "Add singles, subtract pairs, add the triple back."
     },
     {
-     "name": "Exactly two sets",
-     "tex": "\\sum (|A \\cap B|) - 3|A \\cap B \\cap C|",
-     "note": "Sum of the three pairwise figures minus three times the triple."
+     "name": "Exactly two",
+     "tex": "\\Sigma|A \\cap B| - 3|A \\cap B \\cap C|",
+     "note": "Sum of the pair figures minus three times the triple."
     },
     {
-     "name": "Exactly one set",
+     "name": "At least two",
+     "tex": "\\Sigma|A \\cap B| - 2|A \\cap B \\cap C|",
+     "note": "Exactly two plus the triple."
+    },
+    {
+     "name": "Exactly one",
      "tex": "|A \\cup B \\cup C| - \\text{exactly two} - \\text{all three}",
-     "note": "Strip the multi-set members from the union."
+     "note": "Remove the multi-group members from the union."
     }
    ],
    "tricks": [
     {
-     "title": "Triple-strip subtraction",
-     "body": "Whenever a question says 'exactly two', your reflex is: pairwise sums overcount the core by 3. Compute pairwise sums, subtract 3×(all three), done.",
+     "title": "Strip the triple",
+     "body": "For 'exactly two', take the pair numbers and remove the triple three times. It works because each pair holds the triple once.",
      "example": {
-      "q": "**Q.** |A∩B| = 8, |B∩C| = 7, |A∩C| = 6, all three = 3.\n\n**Sol.** Exactly two = (8+7+6) − 3×3 = **12**.",
-      "solution": "'Exactly' always means: subtract every richer region, as many times as it was counted."
+      "q": "AB = 8, BC = 7, AC = 6 and all three = 3. How many are in exactly two groups?",
+      "steps": [
+       "Sum of pairs = 8 + 7 + 6 = 21.",
+       "Remove 3 × 3 = 9.",
+       "21 − 9 = 12."
+      ],
+      "answer": "12"
      }
+    },
+    {
+     "title": "Fill the centre first",
+     "body": "Start with the all-three part. Then fill the pairs, then the singles. Each step needs only the numbers you already have."
     }
    ],
    "mistakes": [
-    "Using pairwise figures as 'exactly two' without stripping the triple region.",
-    "Sign slips on the +all-three term in the union formula.",
-    "Adding 'neither/none' into the union before subtracting from the grand total."
+    {
+     "wrong": "Using the pair numbers as 'exactly two'.",
+     "right": "Each pair includes the triple. Exactly two = sum of pairs − 3 × triple."
+    },
+    {
+     "wrong": "Forgetting to add the triple back in the union formula.",
+     "right": "Union = singles − pairs + triple. The triple must be added once."
+    },
+    {
+     "wrong": "Finding 'only A' as A − AB − AC without the triple.",
+     "right": "The triple is subtracted twice there. Add it back: A − AB − AC + ABC."
+    },
+    {
+     "wrong": "Taking the union as the final answer for 'none'.",
+     "right": "None = total − union."
+    },
+    {
+     "wrong": "Not checking for a negative part.",
+     "right": "Every part must be 0 or more. A negative part means a slip."
+    }
    ],
-   "notes": "### The eight regions\nThree circles A, B, C give seven regions inside and one outside:\n- **Only A, only B, only C** — exactly one set.\n- **A-B only, B-C only, A-C only** — exactly two sets.\n- **A-B-C** — all three.\n- **None** — outside all circles.\n\nAlways fill the diagram **from the centre outwards**: all three first, then the exactly-two regions, then the only regions, then none.\n\n### The master formula\nn(A ∪ B ∪ C) = n(A) + n(B) + n(C) − n(A∩B) − n(B∩C) − n(A∩C) + n(A∩B∩C)\n\nWhy the triple is added back: it is counted 3 times in the singles, removed 3 times in the pairs, so it would be lost without the last term.\n\n### Region formulas\n- A-B only = n(A∩B) − all three (and the same for the other two pairs).\n- Only A = n(A) − n(A∩B) − n(A∩C) + all three.\n- Exactly two = (sum of pairwise) − 3 × all three.\n- At least two = (sum of pairwise) − 2 × all three.\n- Exactly one = union − exactly two − all three.\n\n### Worked example\nIn a club of 60 members, 30 play cricket (C), 25 football (F), 20 hockey (H); 10 play C and F, 8 play F and H, 7 play C and H, and 4 play all three.\n- Centre: 4.\n- Exactly two: C-F only 10 − 4 = 6; F-H only 8 − 4 = 4; C-H only 7 − 4 = 3.\n- Only C = 30 − 6 − 3 − 4 = 17; only F = 25 − 6 − 4 − 4 = 11; only H = 20 − 4 − 3 − 4 = 9.\n- Union = 17 + 11 + 9 + 6 + 4 + 3 + 4 = 54 (the formula gives 30 + 25 + 20 − 10 − 8 − 7 + 4 = 54 as well).\n- None = 60 − 54 = **6**.\nForgetting the \"+ 4\" gives a union of 50 and a wrong answer of 10.\n\n### Reverse questions\n- **Find the triple** from the union: rearrange the master formula. With singles 25, 30, 20, pairs 10, 8, 7 and union 55: 75 − 25 + x = 55, so x = 5.\n- **Exactly-counts to sum of circles**: if 60 people are in exactly one set, 30 in exactly two and 10 in all three, then n(A) + n(B) + n(C) = 60 + 2 × 30 + 3 × 10 = 150, because a person in two circles is counted twice.\n\n### Percent data\nWhen the three sets are given in percent, take the total as 100 and use the same formulas. If 50%, 40% and 30% like three kinds of songs, with pairs 20%, 15%, 10% and all three 5%, the union is 80% and **20%** like none. Convert to people only at the end.\n\n### Checks that catch mistakes\n- No region can be negative. If \"only A\" comes out negative, a number was misread.\n- The seven inside regions must add up to the union.\n- \"At least two\" is always greater than or equal to \"exactly two\".\n\n### Quick revision\n- Fill from the centre: triple → exactly-two → only → none.\n- Union = ΣA − Σpairs + triple.\n- Exactly two = Σpairs − 3 × triple; at least two = Σpairs − 2 × triple.\n- Only A = A − AB − AC + triple.\n- ΣA = exactly one + 2 × exactly two + 3 × all three.\n- Check: no negative region; seven regions sum to the union.\n",
+   "notes": "### The seven parts\nThree groups A, B and C make seven parts inside the circles.\n\n| Part | Meaning |\n|---|---|\n| Only A, only B, only C | In one group only |\n| A and B only, B and C only, A and C only | In exactly two groups |\n| All three | In A, B and C |\n\nThe outside is the eighth part. It holds people in none of the groups.\n\n### Why the union formula works\nAdd the three groups first. People in two groups are counted twice. People in all three are counted three times.\n\nSubtract the three pairs. Now the all-three people are counted 3 − 3 = 0 times. Add the all-three part back once.\n\n$$n(A \\cup B \\cup C) = \\Sigma A - \\Sigma \\text{pairs} + \\text{triple}$$\n\n> **Rule:** Union = (A + B + C) − (AB + BC + AC) + ABC. None = total − union.\n\n### Worked example\nThere are 60 members. A has 30, B has 25 and C has 20. The pairs are 10, 8 and 7. All three is 4.\n\nUnion = 75 − 25 + 4 = 54. None = 60 − 54 = 6.\n\n> **Tip:** Write the seven numbers in a list before you start. This stops missed terms.\n\n### Filling the parts from the outside in\nThe pair numbers include the centre part. So remove the triple from each pair before you use it.\n\n- Only A and B = AB − ABC.\n- Only A = A − (AB − ABC) − (AC − ABC) − ABC, which equals A − AB − AC + ABC.\n\nExample: A = 45, AB = 15, AC = 12, ABC = 6. Only A = 45 − 15 − 12 + 6 = 24.\n\n### Exactly one, two or three\nEach pair figure contains the triple once. So the three pair figures together contain it three times.\n\n- Exactly two = AB + BC + AC − 3 × ABC.\n- At least two = AB + BC + AC − 2 × ABC.\n- Exactly one = union − exactly two − ABC.\n\n> **Watch:** \"Exactly two\" is not the sum of the pairs. That sum has the triple counted three times.\n\nExample: pairs 14, 12 and 11, and triple 5. Exactly two = 37 − 15 = 22.\n\n### Working backwards\nSometimes the union is given and a group total is missing. Rearrange the formula.\n\n$$\\Sigma A = \\text{union} + \\Sigma \\text{pairs} - \\text{triple}$$\n\nExample: union 120, pairs add to 50, triple 20. Then A + B + C = 120 + 50 − 20 = 150.\n\n> **Note:** After you find every part, check that no part is negative. A negative part means a number was misread.\n\n### Full check on the club example\nUse the 60-member club again: A = 30, B = 25, C = 20, pairs 10, 8, 7, triple 4.\n\n- Only A = 30 − 10 − 7 + 4 = 17. Only B = 25 − 10 − 8 + 4 = 11. Only C = 20 − 8 − 7 + 4 = 9.\n- Exactly one = 17 + 11 + 9 = 37.\n- Exactly two = 25 − 3 × 4 = 13.\n- All three = 4, and none = 6.\n\nAdd them: 37 + 13 + 4 + 6 = 60. The parts match the total, so every step was right.\n",
    "patterns": [
     {
      "id": "vn-p9",
-     "name": "Three-set union and none",
+     "name": "Union and none",
      "frequency": "very common",
-     "howToSpot": "Three totals, three pairwise overlaps and the triple; asks at least one or none.",
-     "formula": "n(A∪B∪C) = ΣA − Σ(pairs) + n(A∩B∩C)",
-     "logic": "1. Union = ΣA − Σpairs + triple.\n2. None = total − union.\n3. Check that no region is negative.\n\n*Why it works:* the triple is added in 3 times and removed 3 times, so it is added back once.",
+     "howToSpot": "Three group totals, three pair overlaps and the triple. It asks for at least one or for none.",
+     "formula": "n(A ∪ B ∪ C) = ΣA − Σpairs + triple",
+     "steps": [
+      "Add the three groups.",
+      "Subtract the three pairs.",
+      "Add the triple.",
+      "For none, subtract the union from the total."
+     ],
+     "why": "The triple is added 3 times and taken out 3 times, so add it back once.",
      "example": {
-      "q": "60 members: 30, 25, 20; pairs 10, 8, 7; all three 4. None?",
-      "solution": "Union = 75 − 25 + 4 = 54; none = **6**."
+      "q": "There are 60 members. A has 30, B has 25, C has 20. The pairs are 10, 8 and 7, and all three is 4. How many are in none?",
+      "steps": [
+       "Union = 75 − 25 + 4 = 54.",
+       "None = 60 − 54 = 6."
+      ],
+      "answer": "6"
      }
     },
     {
      "id": "vn-p10",
-     "name": "Exactly one / exactly two / at least two",
+     "name": "Exactly two groups",
      "frequency": "common",
-     "howToSpot": "Asks how many belong to exactly one, exactly two or at least two sets.",
-     "formula": null,
-     "logic": "1. Exactly two = Σpairs − 3 × triple.\n2. At least two = Σpairs − 2 × triple.\n3. Exactly one = union − exactly two − triple.\n\n*Why it works:* each pairwise figure contains the triple once.",
+     "howToSpot": "The words 'exactly two' or 'only two' with three pair figures and the triple.",
+     "formula": "Exactly two = Σpairs − 3 × triple",
+     "steps": [
+      "Add the three pair figures.",
+      "Subtract 3 times the triple.",
+      "Check with the parts if you have time."
+     ],
+     "why": "Each pair figure includes the triple once, so the sum has it three times.",
      "example": {
-      "q": "Pairs 15, 12, 10; triple 5. Exactly two?",
-      "solution": "37 − 15 = **22**."
+      "q": "In a survey of three groups, the pair overlaps are 14, 12 and 11, and 5 are in all three. How many are in exactly two groups?",
+      "steps": [
+       "Sum of pairs = 14 + 12 + 11 = 37.",
+       "Remove 3 × 5 = 15.",
+       "37 − 15 = 22."
+      ],
+      "answer": "22"
      }
     },
     {
      "id": "vn-p11",
-     "name": "Fill one region",
+     "name": "Find one region",
      "frequency": "common",
-     "howToSpot": "Asks for one specific region: only A, or A-and-B-but-not-C.",
-     "formula": null,
-     "logic": "1. A-B only = n(A∩B) − triple.\n2. Only A = n(A) − n(A∩B) − n(A∩C) + triple.\n3. Fill from the centre outwards if more regions are needed.\n\n*Why it works:* subtracting both pairs removes the triple twice, so it is added back once.",
+     "howToSpot": "It asks for 'only A' with A, the two pairs that include A, and the triple.",
+     "formula": "Only A = A − AB − AC + ABC",
+     "steps": [
+      "Subtract AB from A.",
+      "Subtract AC from A.",
+      "Add ABC back."
+     ],
+     "why": "AB and AC both include the triple, so it was subtracted twice.",
      "example": {
-      "q": "n(A) = 45, n(A∩B) = 15, n(A∩C) = 12, triple 6. Only A?",
-      "solution": "45 − 15 − 12 + 6 = **24**."
+      "q": "A has 45 members. A and B share 15, A and C share 12, and 6 are in all three. How many are only in A?",
+      "steps": [
+       "45 − 15 = 30.",
+       "30 − 12 = 18.",
+       "Add back 6: 18 + 6 = 24."
+      ],
+      "answer": "24"
      }
     },
     {
      "id": "vn-p12",
-     "name": "Reverse three-set puzzle",
+     "name": "Find the total of the groups",
      "frequency": "occasional",
-     "howToSpot": "The union or the exactly-counts are given and the triple or the circle sum is asked.",
-     "formula": null,
-     "logic": "1. Rearrange the master formula for the unknown term.\n2. Or use ΣA = exactly one + 2 × exactly two + 3 × all three.\n3. Verify by filling the eight regions.\n\n*Why it works:* each person is counted once for every circle they are in.",
+     "howToSpot": "The union, the pair figures and the triple are given. It asks for the sum of the three groups.",
+     "formula": "ΣA = union + Σpairs − triple",
+     "steps": [
+      "Write the union formula.",
+      "Move ΣA to one side.",
+      "Put in the numbers."
+     ],
+     "why": "The union formula is just rearranged.",
      "example": {
-      "q": "Everyone in at least one of three sets; 60 in exactly one, 30 in exactly two, 100 people. Sum of the three circle totals?",
-      "solution": "All three = 10; ΣA = 60 + 60 + 30 = **150**."
+      "q": "The union of three groups is 120. The pairs add up to 50 and the triple is 20. What is A + B + C?",
+      "steps": [
+       "ΣA = union + pairs − triple.",
+       "= 120 + 50 − 20.",
+       "= 150."
+      ],
+      "answer": "150"
+     }
+    },
+    {
+     "id": "vn-p19",
+     "name": "Exactly one group",
+     "frequency": "common",
+     "howToSpot": "It asks for members in only one of the three groups.",
+     "formula": "Exactly one = union − exactly two − triple",
+     "steps": [
+      "Find the union.",
+      "Find exactly two.",
+      "Subtract exactly two and the triple from the union."
+     ],
+     "why": "The union is split into exactly one, exactly two and all three.",
+     "example": {
+      "q": "For groups with A = 30, B = 25, C = 20, pairs 10, 8, 7 and triple 4, how many are in exactly one group?",
+      "steps": [
+       "Union = 75 − 25 + 4 = 54.",
+       "Exactly two = 25 − 12 = 13.",
+       "Exactly one = 54 − 13 − 4 = 37."
+      ],
+      "answer": "37"
+     }
+    },
+    {
+     "id": "vn-p20",
+     "name": "At least two groups",
+     "frequency": "occasional",
+     "howToSpot": "The words 'two or more groups' or 'at least two'.",
+     "formula": "At least two = Σpairs − 2 × triple",
+     "steps": [
+      "Add the three pair figures.",
+      "Subtract 2 times the triple.",
+      "This equals exactly two plus the triple."
+     ],
+     "why": "Exactly two is the pairs minus 3 triples. At least two adds the triple back once.",
+     "example": {
+      "q": "The pair overlaps are 14, 12 and 11, and 5 are in all three. How many are in at least two groups?",
+      "steps": [
+       "Sum of pairs = 37.",
+       "Remove 2 × 5 = 10.",
+       "37 − 10 = 27."
+      ],
+      "answer": "27"
      }
     }
+   ],
+   "revision": [
+    "Union = A + B + C − AB − BC − AC + ABC.",
+    "None = total − union.",
+    "Only A = A − AB − AC + ABC.",
+    "Exactly two = AB + BC + AC − 3 × ABC.",
+    "At least two = AB + BC + AC − 2 × ABC.",
+    "Exactly one = union − exactly two − ABC.",
+    "A + B + C = union + pairs − triple.",
+    "Every part must be 0 or more."
    ]
   },
   {
    "id": "relation-diagrams",
    "title": "Choosing the correct diagram",
-   "concept": "For 'Which diagram represents Doctors, Men, Writers?' style questions, decide each pair with two tests:\n\n1. **Necessity test** — is every X definitionally a Y? (Every mother is a female.) → circle of X drawn **inside** Y.\n2. **Impossibility test** — can X and Y never share a member? (A square and a triangle.) → **separate** circles.\n3. Otherwise — overlap possible but neither forced (doctors and writers) → **intersecting** circles.\n\nSame-type categories usually intersect; category-of-category pairs (squares/rectangles/polygons) nest; mutually exclusive definitions separate.",
+   "concept": "Some questions give three words and ask which picture shows them. Judge each pair of words on its own. The pair is nested, overlapping or separate. The correct picture agrees on every pair.",
    "formulas": [],
    "tricks": [
     {
-     "title": "Test one pair at a time",
-     "body": "Never judge the whole picture at once. Run necessity/impossibility on each pair; the correct option is the only one agreeing on every pair.",
+     "title": "One pair at a time",
+     "body": "Never judge the whole picture at once. Decide each pair, then pick the option that agrees with all three pairs.",
      "example": {
-      "q": "**Q.** Mothers, Females, Engineers.\n\n**Sol.** Mothers ⊂ Females (necessity). Engineers ∩ Females possible (female engineers) and Engineers ⊄ Females (male engineers) → intersecting. Match the option reflecting both facts.",
-      "solution": "One wrong pair eliminates an option — work pair by pair until one option survives."
+      "q": "Mothers, Females, Engineers. Which picture fits?",
+      "steps": [
+       "Mothers and Females: every mother is a female, so nested.",
+       "Engineers and Females: male engineers exist, women engineers exist, so crossing.",
+       "Pick the picture with a small circle inside Females and a crossing Engineers circle."
+      ],
+      "answer": "Mothers inside Females, Engineers crossing both"
      }
+    },
+    {
+     "title": "Big class first",
+     "body": "Find the widest word first. Draw it as the big circle. Then place the other words inside, across, or outside it."
     }
    ],
    "mistakes": [
-    "Drawing engineers inside females because most examples in mind are female.",
-    "Making mutually-overlappable categories fully separate.",
-    "Missing a third category's relation to the nested pair."
+    {
+     "wrong": "Drawing engineers inside females because you thought of women engineers.",
+     "right": "Male engineers exist too. So engineers cross females, and are not inside."
+    },
+    {
+     "wrong": "Making two types, like cats and dogs, overlap.",
+     "right": "No cat is a dog. Draw two separate circles inside the class."
+    },
+    {
+     "wrong": "Judging the whole picture at once.",
+     "right": "Check one pair at a time. Drop an option as soon as one pair is wrong."
+    },
+    {
+     "wrong": "Nesting words that only sometimes belong together.",
+     "right": "Nest only when every X is a Y. Otherwise draw crossing circles."
+    },
+    {
+     "wrong": "Forgetting the class circle for two types.",
+     "right": "Cats and dogs both sit inside animals. Draw the big circle."
+    }
    ],
-   "notes": "### What the question asks\nYou get three words (Doctors, Men, Writers; Even numbers, Odd numbers, Prime numbers) and must choose the circle picture that shows how the groups are related. There are no numbers — only **relationships**.\n\n### Two tests for every pair\nLook at the three pairs one at a time: (1, 2), (2, 3), (1, 3).\n1. **Inside test.** Is every member of X *always* a member of Y? Every sparrow is a bird → the Sparrows circle is drawn **inside** Birds.\n2. **Apart test.** Can X and Y *never* share a member? No number is both even and odd → the two circles are drawn **separate**.\n3. If neither test holds, some members can be in both and some cannot → the circles **intersect**.\n\nJudge by definition, not by what is usual. A doctor *can* be a woman and a woman *can* be a doctor, so Doctors and Women intersect.\n\n### The shapes that appear\n| Relationship | Picture | Example |\n|---|---|---|\n| X ⊂ Y ⊂ Z | three nested circles | Sparrows, Birds, Animals |\n| X, Y separate, both inside Z | two separate circles inside a third | Pens, Pencils, Stationery |\n| X, Y intersect, both inside Z | two intersecting circles inside a third | Even numbers, Multiples of 3, Integers |\n| X ⊂ Y, Z apart from both | one inside another, third separate | Whales, Mammals, Fish |\n| X ⊂ Y, Z crosses both | one inside another, third intersecting both | Fathers, Men, Doctors |\n| X ⊂ Y, Z crosses only Y | third cuts the outer circle only | Natural numbers, Integers, Negative numbers |\n| X, Y intersect, Z inside their overlap | third inside the common part | Multiples of 5, Multiples of 7, Multiples of 35 |\n| X, Y separate, Z crosses both | two separate circles joined by a third | Even numbers, Odd numbers, Prime numbers |\n| all pairs intersect | three intersecting circles | Teachers, Women, Singers |\n| two intersect, third apart | two intersecting circles and a separate one | Women, Engineers, Rivers |\n| no links | three separate circles | Pens, Rivers, Tigers |\n\n### Tricky cases\n- **Number sets** are exact: check a sample. 2 is even and prime, 3 is odd and prime, 9 is odd and not prime — so Primes cross both Even and Odd while Even and Odd never meet.\n- **\"Crosses only the outer circle.\"** Negative numbers include −1 (an integer) and −½ (not an integer), and no negative number is a natural number. So the Negative circle cuts Integers but stays away from the Naturals circle inside it.\n- **Inside their overlap.** Every multiple of 35 is a multiple of both 5 and 7, so it sits inside the common part of those two circles.\n- **Gender words.** Fathers ⊂ Men; Mothers ⊂ Women; Men and Women are separate.\n\n### Method\n1. Write the three pairs.\n2. Mark each pair **inside**, **apart** or **cross**.\n3. Match the three marks to the picture — do not jump to a picture from the first pair alone.\n\n### Quick revision\n- For each pair: always both → inside; never both → apart; else → cross.\n- Judge by definition, not by what is common.\n- Test number sets with small examples (2, 3, 9, −1, −½).\n- A third circle can cross both, only the outer, or sit inside an overlap — check each pair separately.\n- Decide all three pairs before picking the picture.\n",
+   "notes": "### The three ways two words can relate\nTake two words X and Y. Ask if every X is a Y, and if any X can be a Y.\n\n| Relation | Test | Picture |\n|---|---|---|\n| Nested | Every X is a Y | X circle inside Y circle |\n| Overlapping | Some X can be Y, not all | Two circles that cross |\n| Separate | No X can be Y | Two circles apart |\n\n> **Rule:** Ask two questions. Is every X a Y? Can any X be a Y? The answers give the picture.\n\n### Nested words\nA type sits inside its class. Every sparrow is a bird, and every bird is an animal.\n\nSo Sparrows, Birds and Animals make three circles, one inside the next. A part of a part is a part of the whole.\n\n> **Tip:** Go from the smallest word to the largest. Each word must fit inside the next.\n\n### Two types inside one class\nCats and dogs are both animals. But no cat is a dog.\n\nSo there is one big circle for Animals. Inside it are two separate small circles, Cats and Dogs. The small circles do not touch.\n\n### Words that cross\nSome words share members but neither fits inside the other. Doctors, Women and Teachers are like this.\n\nA woman can be a doctor. A doctor can be a teacher. But not every doctor is a woman. So each pair crosses, and you draw three crossing circles.\n\n> **Watch:** Do not put engineers inside females because you can think of women engineers. Male engineers also exist.\n\n### Mixed pictures\nSome sets are a mix. Take Mothers, Females and Engineers.\n\nEvery mother is a female, so Mothers sit inside Females. Engineers can be female or male, and can be mothers or not. So Engineers cross both circles.\n\n### Unrelated words\nPens, Books and Tables have nothing in common. No pen is a book, and no book is a table.\n\nSo the picture is three circles that do not touch. Boys and Girls are also separate, with both inside Students.\n\n> **Note:** When one pair is wrong in an option, the whole option is wrong. Test the options pair by pair and drop the first one that fails.\n\n### Common word sets\nExams repeat a few word sets. Learn the picture for each.\n\n| Words | Picture |\n|---|---|\n| Surgeons, Doctors, Humans | Nested, one inside the next |\n| Delhi, India, Asia | Nested, one inside the next |\n| Pens, Pencils, Stationery | Two separate circles inside one big circle |\n| Lawyers, Teachers, Women | Three crossing circles |\n| Mothers, Females, Engineers | Mothers inside Females, Engineers crossing both |\n| Pens, Books, Tables | Three separate circles |\n\n> **Tip:** Decide the picture for each set before you look at the options. Then match the option.\n",
    "patterns": [
     {
      "id": "vn-p13",
      "name": "Nested chain",
      "frequency": "common",
-     "howToSpot": "Each word is a type of the next: sparrow → bird → animal.",
+     "howToSpot": "Each word is a type of the next word: sparrow, bird, animal.",
      "formula": null,
-     "logic": "1. Check that every X is a Y and every Y is a Z.\n2. Draw the circles one inside the next.\n\n*Why it works:* subset of a subset is a subset.",
+     "steps": [
+      "Check that every X is a Y.",
+      "Check that every Y is a Z.",
+      "Draw the circles one inside the next."
+     ],
+     "why": "A part of a part is a part of the whole.",
      "example": {
-      "q": "Sparrows, Birds, Animals.",
-      "solution": "Every sparrow is a bird, every bird an animal → **three nested circles**."
+      "q": "Which picture shows Sparrows, Birds, Animals?",
+      "steps": [
+       "Every sparrow is a bird.",
+       "Every bird is an animal.",
+       "Draw three circles, one inside the next."
+      ],
+      "answer": "Three circles, one inside the next"
      }
     },
     {
      "id": "vn-p14",
-     "name": "Subsets inside a bigger set",
-     "frequency": "very common",
-     "howToSpot": "Two words are kinds of the third word.",
+     "name": "Two subsets in a bigger set",
+     "frequency": "common",
+     "howToSpot": "Two words are types of a third word, and the two are different from each other.",
      "formula": null,
-     "logic": "1. Put both smaller groups inside the big circle.\n2. Decide whether the two smaller groups can share members: never → separate; sometimes → intersecting.\n3. If one group is inside another and the third is unrelated, draw the third apart.\n\n*Why it works:* the relation between the two small groups is separate from their relation to the big one.",
+     "steps": [
+      "Find the widest word. Draw it as the big circle.",
+      "Check that the two other words cannot overlap.",
+      "Draw two separate circles inside the big one."
+     ],
+     "why": "Both are inside the class, and no member is in both.",
      "example": {
-      "q": "Pens, Pencils, Stationery.",
-      "solution": "Both are stationery; nothing is both a pen and a pencil → **two separate circles inside a third**."
+      "q": "Which picture shows Cats, Dogs, Animals?",
+      "steps": [
+       "Animals is the widest word.",
+       "No cat is a dog.",
+       "Draw two separate circles inside one big circle."
+      ],
+      "answer": "Two separate circles inside a big circle"
      }
     },
     {
      "id": "vn-p15",
      "name": "Partial overlaps",
      "frequency": "common",
-     "howToSpot": "No word is a kind of another; some pairs can share members, some cannot.",
+     "howToSpot": "The words are jobs or traits that a person can have together, with none forced.",
      "formula": null,
-     "logic": "1. Test each pair: can share → intersect; never → apart.\n2. All three share → three intersecting circles.\n3. Two share and the third is unrelated → two intersecting circles plus a separate one.\n\n*Why it works:* with no subsets, only the cross/apart choice matters for each pair.",
+     "steps": [
+      "Ask if every X is a Y. If not, they are not nested.",
+      "Ask if some X can be a Y. If yes, they cross.",
+      "Do this for each pair."
+     ],
+     "why": "If members can be shared but are not forced, the circles cross.",
      "example": {
-      "q": "Teachers, Women, Singers.",
-      "solution": "Every pair can share members → **three circles, each pair intersecting**."
+      "q": "Which picture shows Doctors, Women, Teachers?",
+      "steps": [
+       "A doctor can be a woman, but not every doctor is.",
+       "A woman can be a teacher, but not every woman is.",
+       "A doctor can be a teacher, but not every doctor is.",
+       "Draw three crossing circles."
+      ],
+      "answer": "Three crossing circles"
      }
     },
     {
      "id": "vn-p16",
-     "name": "Mixed: inside plus crossing",
-     "frequency": "occasional",
-     "howToSpot": "One word is a kind of another and the third cuts across, or one sits inside the overlap of two.",
+     "name": "Mixed: inside and crossing",
+     "frequency": "common",
+     "howToSpot": "One pair is nested and a third word crosses the nested pair.",
      "formula": null,
-     "logic": "1. Draw the subset pair first.\n2. Test the third word against the inner and the outer circle separately.\n3. If the third word is a subset of two overlapping sets, place it inside their common part.\n\n*Why it works:* the third circle's relation to the inner circle can differ from its relation to the outer one.",
+     "steps": [
+      "Find the pair with 'every X is a Y'. Nest it.",
+      "Test the third word against each of the two.",
+      "Draw it crossing the circles it overlaps."
+     ],
+     "why": "Different pairs can have different relations in one picture.",
      "example": {
-      "q": "Fathers, Men, Doctors.",
-      "solution": "Fathers ⊂ Men; a doctor can be a father or a man → **one inside another, third intersecting both**."
+      "q": "Which picture shows Mothers, Females, Engineers?",
+      "steps": [
+       "Every mother is a female: Mothers inside Females.",
+       "Engineers can be female or male: they cross Females.",
+       "Engineers can be mothers or not: they cross Mothers."
+      ],
+      "answer": "Mothers inside Females, Engineers crossing both"
+     }
+    },
+    {
+     "id": "vn-p21",
+     "name": "Unrelated words",
+     "frequency": "occasional",
+     "howToSpot": "Three words have no link, such as objects of different kinds.",
+     "formula": null,
+     "steps": [
+      "Ask if any member of one word can be in another.",
+      "If no, the circles are separate.",
+      "Draw three separate circles."
+     ],
+     "why": "No shared member means no overlap.",
+     "example": {
+      "q": "Which picture shows Pens, Books, Tables?",
+      "steps": [
+       "No pen is a book.",
+       "No book is a table.",
+       "No pen is a table.",
+       "Draw three separate circles."
+      ],
+      "answer": "Three separate circles"
      }
     }
+   ],
+   "revision": [
+    "Ask: is every X a Y? Can some X be a Y?",
+    "Every X is a Y: X circle inside Y circle.",
+    "Some X can be Y, not all: crossing circles.",
+    "No X can be Y: separate circles.",
+    "Two types of one class: two separate circles inside the big circle.",
+    "Test pair by pair. One wrong pair removes the option."
    ]
   }
  ],

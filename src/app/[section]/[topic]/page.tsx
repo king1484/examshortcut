@@ -47,6 +47,13 @@ export default async function TopicOverviewPage({ params }: { params: Promise<{ 
     <div>
       <Md className="mt-4 text-[15px]">{t.summary}</Md>
 
+      {t.subtopics[0] && (
+        <div className="flex gap-2 mt-4 flex-wrap">
+          <Link href={`${base}/learn/${t.subtopics[0].id}/`} className="btn btn-brand">Start learning →</Link>
+          <Link href={`${base}/practice/`} className="btn">Take the test</Link>
+        </div>
+      )}
+
       <div className="grid sm:grid-cols-2 gap-3 mt-5">
         {inside.map((c) => (
           <Link key={c.href} href={c.href} className="card p-4 hover:-translate-y-0.5 transition-transform">

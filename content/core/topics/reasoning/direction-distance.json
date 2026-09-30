@@ -13,329 +13,746 @@
   {
    "id": "direction-idea",
    "title": "Direction conventions and displacement",
-   "concept": "Direction questions track a walker on an invisible grid. Fix the conventions first:\n\n- **North is up, East is right**, South down, West left; North-East sits between North and East, and so on for the four diagonal directions.\n- **Facing North:** left = West, right = East. **Facing South:** left = East, right = West. (A 'left turn' depends on where you face — this is the number-one trap.)\n- 'Towards the sunrise' = **East**; 'towards the sunset' = **West**.\n- The **shortest distance** from start is the straight line joining start to finish — never the sum of the legs walked.\n\nComputationally: assign each leg a horizontal and vertical component (North: +y, South: −y, East: +x, West: −x), add them up, and apply Pythagoras:\n\n$$\\text{shortest distance} = \\sqrt{x^2 + y^2}$$\n\nMost CGL answers are Pythagorean triples — 3-4-5, 6-8-10, 5-12-13, 9-12-15 — so a clean square root usually means you are on track.",
+   "concept": "A direction question is a walk on a plain map. Put North at the top and East on the right. Turn every sentence into one small move, then find the straight line from start to finish. That line is the shortest distance, and it is not the same as the distance the person walked.",
    "formulas": [
     {
      "name": "Shortest distance",
      "tex": "d = \\sqrt{x^2 + y^2}",
-     "note": "x = net east-west movement, y = net north-south movement."
+     "note": "x = net East-West move, y = net North-South move, after cancelling."
     },
     {
-     "name": "Triple shortcut",
-     "tex": "3\\text{-}4\\text{-}5 \\times k",
-     "note": "Legs (3k, 4k) give distance 5k: check 6-8-10, 9-12-15, 12-16-20."
+     "name": "Number triples",
+     "tex": "3\\text{-}4\\text{-}5,\\ 5\\text{-}12\\text{-}13,\\ 8\\text{-}15\\text{-}17,\\ 7\\text{-}24\\text{-}25",
+     "note": "Doubles and triples of these also work: 6-8-10, 9-12-15."
     },
     {
-     "name": "Turn directions",
-     "tex": "\\text{left/right} = \\text{facing}\\pm90^\\circ",
-     "note": "Left/right are relative to current facing; about-turn is 180°."
+     "name": "Diagonal leg",
+     "tex": "k\\sqrt{2}\\ \\text{along NE} = k\\ \\text{North} + k\\ \\text{East}",
+     "note": "The same rule holds for NW, SE and SW."
     }
    ],
    "tricks": [
     {
-     "title": "Two-axis bookkeeping",
-     "body": "Keep two running totals: EAST-WEST and NORTH-SOUTH. East and West cancel each other; North and South cancel each other. The endpoint is (EW, NS) and distance is the square root of the sum of squares.",
+     "title": "Two-line tally",
+     "body": "Keep one running total for East-West and one for North-South. Write West and South as minus. The two totals are the whole answer, with no drawing needed.",
      "example": {
-      "q": "**Q.** 8 km east, 6 km west, 3 km east — how far from start?\n\n**Sol.** EW: +8 − 6 + 3 = +5; NS: 0. Distance = **5 km, East**. (17 km is the total walked, not the displacement.)",
-      "solution": "Signed totals per axis; everything else is one square root."
+      "q": "A man walks 8 km East, 6 km West and then 3 km East. How far is he from the start, and in which direction?",
+      "steps": [
+       "East-West: $8 - 6 + 3 = 5$.",
+       "North-South: 0."
+      ],
+      "answer": "5 km, East"
      }
     },
     {
-     "title": "Triple recognition",
-     "body": "When the two net components come out as 3k and 4k (any order), the answer is 5k with no calculation: (6, 8) → 10, (9, 12) → 15, (12, 5) → 13.",
+     "title": "Spot the triple",
+     "body": "If the two net moves are 3 and 4, or 5 and 12, or 8 and 15, or 7 and 24 (or their multiples), the answer is the third number. No square root is needed.",
      "example": {
-      "q": "**Q.** 6 m east, then right and 8 m south. Distance from start?\n\n**Sol.** (6, 8) = 2×(3, 4) → **10 m**.",
-      "solution": "Scan for a multiple of 3-4-5 or 5-12-13 before touching a square root."
+      "q": "A woman walks 24 km North and then 7 km East. How far is she from the start?",
+      "steps": [
+       "24 and 7 are the short sides of the 7-24-25 triple."
+      ],
+      "answer": "25 km"
      }
     }
    ],
    "mistakes": [
-    "Adding the legs (total path) instead of the straight-line displacement.",
-    "Turning left/right as if absolute (facing South, 'left' is East, not West).",
-    "Mixing the order of components — direction of the displacement needs its correct sign on each axis."
+    {
+     "wrong": "Adding all the legs when the question asks how far he is from the start.",
+     "right": "Cancel the legs, then use the straight-line formula. Add all the legs only for 'distance walked'."
+    },
+    {
+     "wrong": "Treating 'left' as West every time.",
+     "right": "Find which way he faces first. Facing South, left is East."
+    },
+    {
+     "wrong": "Turning the page when the walker turns.",
+     "right": "Keep North at the top all the time. Only the walker turns."
+    },
+    {
+     "wrong": "Splitting a $k\\sqrt{2}$ diagonal leg into $k\\sqrt{2}$ on each side.",
+     "right": "A $k\\sqrt{2}$ diagonal leg is $k$ on each side."
+    },
+    {
+     "wrong": "Forgetting to cancel opposite legs.",
+     "right": "Pair North with South and East with West before any square root."
+    }
    ],
-   "notes": "### The one idea behind every distance question\n\nEvery direction question is a walk on a plain grid. North is up, East is right, and every sentence moves you by some amount. If you convert each sentence into a move on the grid, the answer stops being a puzzle and becomes arithmetic.\n\n**Set up the grid.** Put the start at the origin and draw two axes: North up, East right. Give the walker a name and a pencil point. Each sentence of the question moves the point:\n- \"walks 5 km North\" → 5 up.\n- \"turns left and walks 3 km\" → depends on the way he was facing. If he was walking North, left is West → 3 to the left.\n- \"walks 5√2 km North-East\" → 5 up **and** 5 right at the same time (a NE step of length k moves k/√2 in N and k/√2 in E; exams usually give it as k√2 so the split is exact).\n\n**Displacement vs distance.** Two different numbers get swapped as options:\n- *Distance travelled* = add every leg, ignoring direction.\n- *Displacement (shortest distance)* = the straight line from start to finish.\n\n**Shortest distance in one step.** Collect the net moves: net East = sum of rightward legs minus leftward legs; net North = sum of upward legs minus downward legs. Then\n\n$$d = \\sqrt{(\\text{net E})^2 + (\\text{net N})^2}$$\n\n**Cancellation comes first.** Before any square root, cancel opposite legs: 5 km N then 5 km S is zero movement. Most exam questions hide 2-3 such cancellations. Cancel, then apply the formula on what remains — often you land on a clean triple: 3-4-5, 5-12-13, 8-15-17, 7-24-25.\n\n**Diagonal legs.** A leg of k√2 along NE splits into k N and k E; along NW it is k N and k W; SE is k S + k E; SW is k S + k W. So \"5√2 NE then 5√2 NW\" = 10 N exactly, because the East and West parts cancel.\n\n**Do not rotate the map.** Keep North up on paper always, even when the walker turns. The walker turns; your page never does. Mixing these two is the top cause of wrong answers.\n\n**Reading the question twice.** Four phrasings hide in this subtopic, and each wants a different number:\n- \"How far is he from the start?\" → displacement (Pythagoras on the net legs).\n- \"How much distance did he cover/walk?\" → sum of all legs.\n- \"How much shorter would a straight road be?\" → total minus displacement.\n- \"In which direction is he from the start?\" → the compass word of the net legs.\n\n**Speed habits for the exam.** Write the legs as a running tally (+3 E, +4 N, −12 N) instead of drawing every metre; the tally is the net displacement with no diagram at all. Check the final root against the triples — if the legs net to 9 and 12, the triple 9-12-15 saves the square root. And keep answers in the option's own form: if options say 2√5, do not convert to 4.47.\n\n### Quick revision\n- Draw axes: N up, E right; start at the origin; one arrow per sentence.\n- Cancel opposite legs first; then $d=\\sqrt{E^2+N^2}$ on the leftovers.\n- Distance travelled = sum of legs; shortest distance = displacement — different options.\n- k√2 along a diagonal = k on each of its two component directions.\n- Know triples 3-4-5, 5-12-13, 8-15-17, 7-24-25 (and multiples) on sight.",
+   "notes": "### The four directions\nDraw a map with **North at the top** and **East on the right**. South is at the bottom. West is on the left.\n\nBetween them sit four mixed directions: North-East, North-West, South-East and South-West. \"Towards the sunrise\" means East. \"Towards the sunset\" means West.\n\n> **Rule:** Draw the map once, with North up. Never turn the page when the walker turns.\n\n### Left and right belong to the walker\nA left turn does not mean \"West\". It means \"to the left of the way he faces now\".\n\n| The walker faces | Left is | Right is |\n|---|---|---|\n| North | West | East |\n| South | East | West |\n| East | North | South |\n| West | South | North |\n\nA man walks North and turns left. He now walks West. The same left turn from South would send him East.\n\n> **Watch:** \"Left = West\" is true only when the walker faces North. Check the table for every turn.\n\n### Turn each sentence into a move\nStart at the middle of the map. Each sentence moves you. Keep a running tally on two lines: East-West and North-South.\n\n- East and North count as plus.\n- West and South count as minus.\n\nExample: \"8 km East, 6 km West, then 3 km East.\" The East-West line is $8 - 6 + 3 = 5$. He is 5 km East of the start.\n\n### Cancel opposite legs first\nA leg is one straight part of the walk. Two legs that go opposite ways on the same line cancel each other.\n\nA man walks 15 km North, 9 km East, then 15 km South. The 15 North and 15 South cancel. Only 9 km East is left.\n\n> **Tip:** Cancel first, then calculate. Most questions hide two or three cancellations.\n\n### Shortest distance\nThe shortest distance is the straight line from start to finish. After cancelling, you have a net East move and a net North move. They are the two short sides of a right triangle.\n\n$$d = \\sqrt{(\\text{net East})^2 + (\\text{net North})^2}$$\n\nExample: 3 km East and 4 km North gives $\\sqrt{9 + 16} = 5$ km.\n\nMost exam answers come from these number triples:\n\n| Short sides | Straight line |\n|---|---|\n| 3 and 4 | 5 |\n| 5 and 12 | 13 |\n| 8 and 15 | 17 |\n| 7 and 24 | 25 |\n\nDoubles and triples also work: 6 and 8 give 10, and 9 and 12 give 15.\n\n### Diagonal legs\nA leg such as \"5$\\sqrt{2}$ km North-East\" is a slanting step. It moves 5 km North and 5 km East at the same time.\n\n- North-East: $k$ North and $k$ East.\n- North-West: $k$ North and $k$ West.\n- South-East: $k$ South and $k$ East.\n- South-West: $k$ South and $k$ West.\n\nExample: 5$\\sqrt{2}$ km North-East, then 5$\\sqrt{2}$ km North-West. The East and West parts cancel. The North parts add up to 10 km.\n\n### Distance walked or shortest distance\nRead the last line twice. Each phrase asks for a different number.\n\n| The question asks | Find |\n|---|---|\n| How far is he from the start? | Straight line (Pythagoras) |\n| How much distance did he walk? | Add all the legs |\n| How much shorter is the direct path? | Total walked minus straight line |\n| In which direction is he from the start? | Compass word of the net moves |\n\n> **Watch:** The walked distance and the straight line are always two different options. Do not pick the wrong one.\n",
    "patterns": [
     {
      "id": "di-p1",
-     "name": "Pythagoras on net displacement",
+     "name": "Straight line after two perpendicular legs",
      "frequency": "very common",
-     "howToSpot": "Legs on two perpendicular axes (N/S and E/W) and a question about the straight-line (shortest) distance from start to finish.",
-     "formula": "\\sqrt{(\\text{net E})^2+(\\text{net N})^2}",
-     "logic": "1. Cancel opposite legs (N vs S, E vs W).\n2. Net the leftovers: E = right − left, N = up − down.\n3. Apply $d=\\sqrt{E^2+N^2}$.\n4. Match against standard triples (3-4-5, 5-12-13) before computing.\n\n*Why it works:* the net legs are the sides of a right triangle whose hypotenuse is the straight line home.",
+     "howToSpot": "The legs run North-South and East-West. The question asks how far he is from the starting point.",
+     "formula": "d = \\sqrt{(\\text{net East})^2 + (\\text{net North})^2}",
+     "steps": [
+      "Write each leg as an East-West move or a North-South move.",
+      "Cancel opposite legs and find the net East and net North.",
+      "Look for a number triple (3-4-5, 5-12-13, 8-15-17).",
+      "Otherwise apply the square root formula."
+     ],
+     "why": "The two net moves are the short sides of a right triangle. The straight line home is its longest side.",
      "example": {
-      "q": "**A man walks 3 km East, then 4 km North. How far is he from the start?**",
-      "solution": "Net (3 E, 4 N) → $\\sqrt{9+16}=5$ km — the 3-4-5 triple."
+      "q": "A man walks 9 km East and then 12 km North. How far is he from the starting point?",
+      "steps": [
+       "Net moves: 9 km East and 12 km North.",
+       "9 and 12 are 3 times 3 and 3 times 4.",
+       "Distance = $3 \\times 5 = 15$ km."
+      ],
+      "answer": "15 km"
      }
     },
     {
      "id": "di-p2",
-     "name": "Cancellation of retraced legs",
+     "name": "Legs that cancel out",
      "frequency": "common",
-     "howToSpot": "The path visibly doubles back (N then S, E then W) before asking the shortest distance.",
+     "howToSpot": "The path doubles back. A leg North is followed by a leg South, or East by West.",
      "formula": null,
-     "logic": "1. Pair every leg with its opposite and delete both.\n2. What survives is the whole answer — often a single leg.\n3. Only then compute distance.\n\n*Why it works:* displacement only cares where you start and end; retraced legs are a net zero.",
+     "steps": [
+      "Pair each leg with the leg that goes the opposite way.",
+      "Cancel the pairs. Subtract the smaller from the larger.",
+      "Use only what is left to find the distance."
+     ],
+     "why": "Only the start and the end matter. Retraced legs add nothing to the gap.",
      "example": {
-      "q": "**A man walks 10 km East, 4 km North, then 10 km West. How far is he from the start?**",
-      "solution": "10 E cancels 10 W → net 4 N → **4 km**."
+      "q": "A cyclist rides 15 km West, 6 km North, 15 km East and then 2 km North. How far is he from the starting point?",
+      "steps": [
+       "15 km West and 15 km East cancel.",
+       "North legs add up: $6 + 2 = 8$ km.",
+       "Only 8 km North is left."
+      ],
+      "answer": "8 km"
      }
     },
     {
      "id": "di-p3",
-     "name": "Diagonal legs with √2 splits",
+     "name": "Diagonal legs written with root 2",
      "frequency": "common",
-     "howToSpot": "Legs stated as k√2 along North-East / North-West / South-East / South-West.",
-     "formula": null,
-     "logic": "1. Replace each k√2 diagonal with k on each of its two component directions.\n2. Net the components as usual.\n3. Simplify the final root; keep it in √ form if the options do.\n\n*Why it works:* a NE step of length k√2 has equal N and E components of exactly k.",
+     "howToSpot": "A leg is written as $k\\sqrt{2}$ km towards North-East, North-West, South-East or South-West.",
+     "formula": "k\\sqrt{2}\\ \\text{diagonal} = k\\ \\text{on each of two sides}",
+     "steps": [
+      "Split each diagonal leg into two equal parts of $k$.",
+      "Add up the East-West parts and the North-South parts.",
+      "Find the straight line from the net moves."
+     ],
+     "why": "A diagonal step of $k\\sqrt{2}$ is the slanting side of a right triangle with two sides of $k$.",
      "example": {
-      "q": "**A man walks 5√2 km NE, then 5√2 km NW. How far is he from the start?**",
-      "solution": "NE: 5 N + 5 E. NW: 5 N + 5 W. E and W cancel → 10 N → **10 km**."
+      "q": "A man walks $8\\sqrt{2}$ km North-East and then 2 km West. How far is he from the starting point?",
+      "steps": [
+       "North-East leg: 8 km East and 8 km North.",
+       "Then 2 km West: East part is $8 - 2 = 6$ km.",
+       "Net moves 6 and 8, so the distance is 10 km."
+      ],
+      "answer": "10 km"
      }
     },
     {
      "id": "di-p4",
-     "name": "Distance travelled vs displacement",
+     "name": "Total distance walked",
      "frequency": "common",
-     "howToSpot": "'How much distance did he cover / travel?' asked for a path that ends away from the start.",
+     "howToSpot": "The question says \"how much distance did he cover or walk\" for a path that ends away from the start.",
      "formula": null,
-     "logic": "1. Distance travelled = add every leg, directions ignored.\n2. Displacement = straight-line gap (Pythagoras).\n3. Read the question word twice: 'cover' ≠ 'away from'.\n\n*Why it works:* the two numbers differ by exactly the shortcut the walker failed to take.",
+     "steps": [
+      "Ignore all directions.",
+      "Add the length of every leg.",
+      "Do not use Pythagoras."
+     ],
+     "why": "Distance walked counts every step. The straight line counts only the gap between start and end.",
      "example": {
-      "q": "**A man walks 3 km East and 4 km North. What is the total distance he covered?**",
-      "solution": "3 + 4 = **7 km** (the shortest gap would be 5 km — a different option)."
+      "q": "A man walks 9 km East and then 12 km North. What total distance does he cover?",
+      "steps": [
+       "Add the two legs.",
+       "$9 + 12 = 21$ km."
+      ],
+      "answer": "21 km"
+     }
+    },
+    {
+     "id": "di-p5",
+     "name": "Left and right turns, then the gap",
+     "frequency": "very common",
+     "howToSpot": "The walker turns left or right in the middle of the walk. The straight-line distance is asked.",
+     "formula": null,
+     "steps": [
+      "Note the way he faces at the start.",
+      "After each turn, use the left-right table to find the new direction.",
+      "Turn each leg into a North, South, East or West move.",
+      "Find the net moves and the straight line."
+     ],
+     "why": "The map never turns, so each new direction must be found one turn at a time.",
+     "example": {
+      "q": "Sanjay walks 8 km North. He turns right and walks 6 km. How far is he from the start?",
+      "steps": [
+       "Facing North, right is East.",
+       "Moves: 8 km North and 6 km East.",
+       "6 and 8 give the triple 6-8-10."
+      ],
+      "answer": "10 km"
+     }
+    },
+    {
+     "id": "di-p6",
+     "name": "How much shorter is the straight path",
+     "frequency": "occasional",
+     "howToSpot": "The question asks how much distance would be saved by walking straight instead.",
+     "formula": "\\text{saved} = \\text{total walked} - \\text{straight line}",
+     "steps": [
+      "Add all the legs to get the total walked.",
+      "Find the straight line by Pythagoras.",
+      "Subtract the straight line from the total."
+     ],
+     "why": "The saving is the gap between the two numbers you already know how to find.",
+     "example": {
+      "q": "A man walks 9 km East and then 12 km North. How much shorter is the direct path from start to finish?",
+      "steps": [
+       "Total walked: 9 + 12 = 21 km.",
+       "Straight line: 15 km.",
+       "Saved: $21 - 15 = 6$ km."
+      ],
+      "answer": "6 km"
      }
     }
+   ],
+   "revision": [
+    "North is up and East is right. The page never turns.",
+    "Left and right depend on the way the walker faces.",
+    "Tally East-West and North-South. West and South are minus.",
+    "Cancel opposite legs before any calculation.",
+    "Straight line: $\\sqrt{(\\text{East})^2 + (\\text{North})^2}$.",
+    "Learn the triples: 3-4-5, 5-12-13, 8-15-17, 7-24-25.",
+    "A diagonal leg of $k\\sqrt{2}$ is $k$ on each of its two sides."
    ]
   },
   {
    "id": "final-direction",
    "title": "Direction faced and net direction",
-   "concept": "Two sub-formats:\n\n1. **Which direction is X facing now?** — pure turn-tracking. A clock-wise turn of 90° maps N→E→S→W→N; anticlockwise runs N→W→S→E→N. An about-turn adds 180°. Turn, update the heading, repeat.\n2. **In which direction is the endpoint from the start?** — finish the walk, note the final (x, y), and read the direction from signs: (+x, +y) = North-East, (−x, +y) = North-West, (+x, −y) = South-East, (−x, −y) = South-West; a zero component drops that word.\n\nBoth take seconds *if* you write the heading after every turn instead of trusting memory across three turns.",
+   "concept": "Two kinds of question live here. One asks which way a person faces after some turns. The other asks in which direction the end point lies from the start. Write the direction after every turn, and never trust your memory over three turns.",
    "formulas": [
     {
      "name": "Clockwise cycle",
      "tex": "N \\to E \\to S \\to W \\to N",
-     "note": "Every right turn moves one step along this cycle."
+     "note": "Every right turn moves one step along this circle."
     },
     {
      "name": "Anticlockwise cycle",
      "tex": "N \\to W \\to S \\to E \\to N",
-     "note": "Every left turn moves one step along this cycle."
+     "note": "Every left turn moves one step along this circle."
     },
     {
-     "name": "Sign reading",
-     "tex": "(x>0,y>0) \\Rightarrow NE",
-     "note": "Signs of the net components give the quadrant."
+     "name": "Reading the end point",
+     "tex": "(x>0,\\ y>0) \\Rightarrow \\text{North-East}",
+     "note": "x is the net East move and y is the net North move. Their signs give the compass word."
     }
    ],
    "tricks": [
     {
-     "title": "Write the heading down each time",
-     "body": "After every turn, overwrite a single letter (N/E/S/W). Three written letters beat one mental chain — and if a wrong option appears, each written heading is checkable.",
+     "title": "Write the direction after every turn",
+     "body": "After each turn, write one letter: N, E, S or W. Overwrite the old letter. Three written letters are safer than one long chain in your head.",
      "example": {
-      "q": "**Q.** Facing West, a man turns 90° clockwise, then 180° anticlockwise. Final facing?\n\n**Sol.** W --90° CW--> N --180° ACW--> **South**.",
-      "solution": "One letter, overwritten per turn."
+      "q": "Facing West, a man turns 90 degrees clockwise and then 180 degrees anticlockwise. Which way does he face?",
+      "steps": [
+       "West, then 90 clockwise: North.",
+       "180 either way: South."
+      ],
+      "answer": "South"
+     }
+    },
+    {
+     "title": "Reverse the pair, flip the word",
+     "body": "If B is North-East of A, then A is South-West of B. The mixed words flip together.",
+     "example": {
+      "q": "B is 3 km East and 4 km North of A. In which direction is A from B?",
+      "steps": [
+       "B from A is North-East.",
+       "Reverse the pair: A from B is South-West."
+      ],
+      "answer": "South-West"
      }
     }
    ],
    "mistakes": [
-    "Applying 'left = West' regardless of current facing.",
-    "Counting a 180° turn as two separate questions' worth of turns.",
-    "Reading the *final facing* when the question asks direction-from-start (or vice versa)."
+    {
+     "wrong": "Using 'left = West' without checking which way he faces.",
+     "right": "Check the table of turns. Left of South is East."
+    },
+    {
+     "wrong": "Counting an about-turn as one quarter-turn.",
+     "right": "An about-turn is two quarter-turns, 180 degrees."
+    },
+    {
+     "wrong": "Giving the facing when the question asks the direction from the start.",
+     "right": "Underline the last line. 'Facing' and 'direction from the start' are different answers."
+    },
+    {
+     "wrong": "Reading the end direction from the distances instead of the net moves.",
+     "right": "Use the signs of the net East and North moves."
+    },
+    {
+     "wrong": "Forgetting to flip the answer when the pair is reversed.",
+     "right": "North-East becomes South-West when the two people swap places."
+    }
    ],
-   "notes": "### Where is he facing, and in what direction is the endpoint\n\nTwo different questions live in this subtopic, and they need different tools.\n\n**Question type 1: final facing.** The walker starts facing some direction and turns. Only the turns matter — distances are decoration. Use the quarter-turn count:\n- One right turn = +90° clockwise; one left turn = −90° (anticlockwise); \"about turn\"/180° = two quarter turns.\n- Net turn = (rights − lefts) mod 4. Then read the result off the cycle **N → E → S → W → N** (clockwise).\n\nExample: facing West, turns 90° anticlockwise then 270° clockwise. Net = −1 + 3 = +2 quarter turns → W + 2 = E. He faces East.\n\n**Question type 2: direction of the endpoint from the start.** Here the walking path matters, the facing does not. Net the moves exactly as in distance questions (net E, net N) and read the compass of the point (net E, net N):\n- E > 0, N = 0 → East; E < 0, N = 0 → West; N > 0, E = 0 → North; N < 0, E = 0 → South.\n- Both nonzero → combined word: (E>0, N>0) North-East, (E>0, N<0) South-East, (E<0, N>0) North-West, (E<0, N<0) South-West.\n\n\"Direction of B from A\" always means: stand at A, look at B, name the compass word. Reverse the pair and the word flips to its opposite (NE ↔ SW).\n\n**Turns while walking.** Sentences like \"walks 5 km, turns left, walks 3 km\" need you to track facing leg by leg, because 'left' depends on the current facing. Walk it on paper: arrow out, turn the arrow, next arrow. After the final leg, the direction the last arrow points is the final facing; the straight line from the very start to the final point is the displacement direction.\n\n**Backtracking.** \"Turns back / retraces / returns\" = 180°: the walker now faces the opposite direction and any new leg cancels the old one metre for metre.\n\n**The two-second sanity check.** After computing, look at the sketch: a person who ended North and East of the start cannot be 'South-West' from it; a walker who never left the North-South line cannot be 'North-East'. Ten seconds of picture-checking catches most sign slips before they cost a mark.\n\n**Mixed questions.** The hardest questions in this subtopic combine both tools: a walk with mid-path turns (facing tracked leg by leg) and then \"in which direction is the endpoint from the start\" (net the legs, ignore the facings). Do the two parts with two separate lists — an arrow chain for the facings and a leg tally for the displacement — and never try to read one off the other.\n\n### Quick revision\n- Final facing: net quarter turns = rights − lefts (mod 4), read on the N→E→S→W cycle.\n- Endpoint direction: net (E, N) → one of the 8 compass words; ignore distances.\n- \"X from Y\" = stand at Y, look at X; swapping the pair flips the word.\n- Track facing leg by leg when turns come mid-walk; the page never rotates.\n- 180° turn reverses both facing and direction of travel.",
+   "notes": "### Which way is he facing now\nOnly the turns matter here. The distances are decoration.\n\nA right turn of 90 degrees moves you one step **clockwise** on this circle: North, East, South, West, and back to North. A left turn moves one step the other way.\n\n| Start facing | After a right turn | After a left turn |\n|---|---|---|\n| North | East | West |\n| East | South | North |\n| South | West | East |\n| West | North | South |\n\n> **Rule:** Right is one step clockwise. Left is one step back. An about-turn (180 degrees) is two steps.\n\n### Count the quarter-turns\nOne quarter-turn is 90 degrees. Count rights as plus and lefts as minus. Add them.\n\nExample: facing West, a man turns 90 degrees anticlockwise, then 270 degrees clockwise. That is $-1 + 3 = +2$ quarter-turns. Two steps clockwise from West is **East**.\n\nFour quarter-turns bring you back to where you started. So cross out 4 whenever it appears.\n\n> **Tip:** 270 degrees clockwise is the same as 90 degrees anticlockwise. Both end in the same place.\n\n### Which direction is the end point\nNow the path matters and the facing does not. Find the net East move and the net North move. Then read the compass from their signs.\n\n| East move | North move | Direction |\n|---|---|---|\n| plus | plus | North-East |\n| minus | plus | North-West |\n| plus | minus | South-East |\n| minus | minus | South-West |\n\nIf one move is zero, use one word only. A net move of 4 km North and 0 East is simply **North**.\n\n\"Direction of B from A\" means: stand at A, look at B. Swap the two people and the answer flips. North-East becomes South-West.\n\n### Turns in the middle of a walk\n\"Walks 5 km, turns left, walks 3 km.\" The word \"left\" depends on the way he walks now. So track the direction leg by leg.\n\nExample: a man walks North, turns right and walks 4 km, then turns left and walks 3 km. Right of North is East. Left of East is North. He moves 4 km East and 3 km North. He ends **North-East** of the start.\n\n### Turning back\n\"Turns back\", \"returns\" and \"about-turn\" all mean 180 degrees. He now faces the opposite way.\n\nA man walks 6 km East, then turns back and walks 2 km. He faces West. He is $6 - 2 = 4$ km East of the start.\n\n> **Watch:** The end direction and the facing direction are two different answers. Read which one the question wants.\n\n### Questions that ask both\nA hard question gives turns and then asks the direction of the end point. Keep two lists.\n\n1. List one: the direction he faces after each turn.\n2. List two: the net East and North moves.\n\nDo not read one list from the other. A quick picture check helps. If he ended North and East of the start, he cannot be South-West.\n",
    "patterns": [
     {
      "id": "fd-p1",
-     "name": "Net quarter-turns for final facing",
+     "name": "Net quarter-turns for the final facing",
      "frequency": "very common",
-     "howToSpot": "A start facing plus a list of turns (left/right/180°); question: which direction is he facing now?",
+     "howToSpot": "A starting direction and a list of turns are given. The question asks which way he faces now.",
      "formula": null,
-     "logic": "1. Right = +1 quarter turn, left = −1, 180° = +2 (or −2, same thing mod 4).\n2. Sum the turns mod 4.\n3. Move that many steps on the clockwise cycle N → E → S → W.\n\n*Why it works:* each quarter turn is 90° and the four compass points close a cycle.",
+     "steps": [
+      "Count a right turn as +1, a left turn as -1 and an about-turn as 2.",
+      "Add them up and drop any 4.",
+      "Move that many steps clockwise from the start."
+     ],
+     "why": "Each turn is a quarter of a full circle, and four quarters bring you home.",
      "example": {
-      "q": "**Facing West, a man turns 90° anticlockwise, then 270° clockwise. Which direction is he facing?**",
-      "solution": "Net = −1 + 3 = +2 quarter turns → W + 2 = **East**."
+      "q": "A man faces South. He turns 90 degrees clockwise, then 180 degrees, then 90 degrees anticlockwise. Which way does he face now?",
+      "steps": [
+       "Turns: +1, +2, -1.",
+       "Total: +2.",
+       "Two steps clockwise from South: West, then North."
+      ],
+      "answer": "North"
      }
     },
     {
      "id": "fd-p2",
-     "name": "Endpoint direction from the start",
+     "name": "Direction of the end point from the start",
      "frequency": "very common",
-     "howToSpot": "A walking path; question asks the direction of the final point from the starting point (not the facing).",
+     "howToSpot": "A path is given. The question asks in which direction the finish is from the starting point.",
      "formula": null,
-     "logic": "1. Net the legs into (E, N) — facing never matters here.\n2. Zero in one component → pure N/S/E/W; both nonzero → combined NE/NW/SE/SW word.\n3. Sign check: E>0 = East, N>0 = North.\n\n*Why it works:* 'direction of the endpoint from start' is the compass word of the displacement vector.",
+     "steps": [
+      "Find the net East-West move and the net North-South move.",
+      "Look at the sign of each.",
+      "Join the two words. Use one word if a move is zero."
+     ],
+     "why": "The direction of the end point is the compass word of the net move.",
      "example": {
-      "q": "**A woman walks 4 km North and 3 km East. In which direction is she from her start?**",
-      "solution": "Net (3 E, 4 N) → **North-East**."
+      "q": "Priya walks 6 km North, 2 km East, 9 km South and then 2 km East. In which direction is she from the starting point?",
+      "steps": [
+       "East-West: 2 + 2 = 4 km East.",
+       "North-South: 6 - 9 = 3 km South.",
+       "East and South make South-East."
+      ],
+      "answer": "South-East"
      }
     },
     {
      "id": "fd-p3",
-     "name": "Left/right turns mid-walk",
+     "name": "Left and right turns in the middle",
      "frequency": "common",
-     "howToSpot": "'Walks 5 km, turns left, walks 3 km...' — the turn word is relative to the current walking direction.",
+     "howToSpot": "The path has turns such as \"turns left\" or \"turns right\", and the final direction is asked.",
      "formula": null,
-     "logic": "1. Track the current heading arrow leg by leg.\n2. 'Left' = 90° anticlockwise of the current arrow; 'right' = 90° clockwise.\n3. Draw each leg as a new arrow, then answer from the drawing.\n\n*Why it works:* the walker rotates; only the arrow chain on paper keeps the geometry honest.",
+     "steps": [
+      "Write the direction he faces at the start.",
+      "After each turn, write the new direction. Overwrite the old letter.",
+      "The last letter is the final direction."
+     ],
+     "why": "The words left and right change meaning with every turn, so only a written chain is safe.",
      "example": {
-      "q": "**Walking North, Ravi turns left and walks 3 km, then turns left again and walks 5 km. Which direction is the last leg?**",
-      "solution": "N → left → W → left → **South**."
+      "q": "Walking East, Arun turns right, walks 4 km, and then turns right again. Which way does he face now?",
+      "steps": [
+       "Start: East.",
+       "Right turn: South.",
+       "Right turn again: West."
+      ],
+      "answer": "West"
      }
     },
     {
      "id": "fd-p4",
-     "name": "About-turn and return legs",
+     "name": "Turning back and returning",
      "frequency": "common",
-     "howToSpot": "'Turns back / retraces his path / returns' appears in the middle of a walk.",
+     "howToSpot": "The path says \"turns back\", \"returns\" or \"retraces\" in the middle.",
      "formula": null,
-     "logic": "1. A 180° turn flips the facing to its opposite.\n2. New legs after the flip cancel old legs along the same line.\n3. Final facing = opposite of the direction before the flip.\n\n*Why it works:* retracing walks the same line in the opposite sense.",
+     "steps": [
+      "An about-turn makes him face the opposite direction.",
+      "A new leg after it cancels part of the old one.",
+      "Finish the rest of the path and find the net moves."
+     ],
+     "why": "Turning back sends him along the same line the other way, so the new leg reduces the gap.",
      "example": {
-      "q": "**A man walks 6 km East, then turns back and walks 2 km. Which direction is he facing, and how far is he from the start?**",
-      "solution": "Facing flips E → **West**; position 6 − 2 = **4 km East** of the start."
+      "q": "A man walks 8 km North, turns back and walks 4 km, and then turns left and walks 3 km. How far and in which direction is he from the start?",
+      "steps": [
+       "Turning back: he faces South and walks 4 km. North-South: 8 - 4 = 4 km North.",
+       "Left of South is East. He walks 3 km East.",
+       "Net moves 3 East and 4 North give 5 km, towards North-East."
+      ],
+      "answer": "5 km, North-East"
+     }
+    },
+    {
+     "id": "fd-p5",
+     "name": "Facing and end point together",
+     "frequency": "occasional",
+     "howToSpot": "A path with several turns is given. It asks for the distance and direction from the start.",
+     "formula": null,
+     "steps": [
+      "Track the facing after each turn in list one.",
+      "Turn each leg into a North, South, East or West move.",
+      "Find the net moves, then the distance and the compass word."
+     ],
+     "why": "The turns give the direction of each leg. The legs then give the net move.",
+     "example": {
+      "q": "Deepa faces West and walks 4 km. She turns right and walks 3 km, and then turns right again and walks 4 km. How far and in which direction is she from the start?",
+      "steps": [
+       "West 4 km, then right turn: North 3 km, then right turn: East 4 km.",
+       "East-West: 4 West and 4 East cancel.",
+       "Only 3 km North is left."
+      ],
+      "answer": "3 km, North"
      }
     }
+   ],
+   "revision": [
+    "Right turn: one step clockwise on N, E, S, W. Left turn: one step back.",
+    "An about-turn is two steps. Four quarter-turns are a full circle.",
+    "Net quarter-turns = rights minus lefts.",
+    "Direction of the end point: signs of the net East and North moves.",
+    "'B from A' means stand at A and look at B. Reversing the pair flips the word.",
+    "Track the facing leg by leg when turns come in the middle.",
+    "Facing and end direction are two different answers."
    ]
   },
   {
    "id": "shadow-direction",
    "title": "Shadow questions",
-   "concept": "The sun's position fixes the shadow:\n\n- **Morning:** sun in the **East** → every shadow points **West**.\n- **Evening:** sun in the **West** → every shadow points **East**.\n- At local noon (in India) the shadow points roughly **North**.\n\nThe standard phrasings, decoded:\n\n- 'Shadow falls **behind** him' → he faces **opposite** the shadow.\n- 'Shadow falls **in front / towards him**' → he faces **along** the shadow.\n- 'Shadow to his **left/right**' → he faces perpendicular, on the stated side.\n\nConvert to a sentence about facing first, then run the walk. Do not skip the conversion — answering 'which way is the shadow' instead of 'which way is he facing' is the classic half-error.",
+   "concept": "The sun fixes the direction of every shadow. In the morning the sun is in the East, so shadows point West. In the evening the sun is in the West, so shadows point East. Turn the shadow words into a sentence about which way the person faces, then finish the question.",
    "formulas": [],
    "tricks": [
     {
-     "title": "One-line conversion",
-     "body": "Rewrite the shadow sentence as a facing sentence before doing anything else: morning + behind = facing East; evening + in front = facing East; morning + shadow on the left = facing South (shadow West is on the left of a South-facing person).",
+     "title": "Change the shadow into a facing first",
+     "body": "Before any other step, rewrite the sentence as a facing sentence. Morning and shadow behind him means he faces East. Evening and shadow in front means he faces East.",
      "example": {
-      "q": "**Q.** One evening, Ramesh's shadow falls exactly in front of him. Which direction is he facing?\n\n**Sol.** Evening shadow points East; shadow in front means he faces along it → **East**.",
-      "solution": "Shadow sentence → facing sentence → answer. Three words per step."
+      "q": "In the morning, a boy's shadow falls on his left. Which way does he face?",
+      "steps": [
+       "Morning shadow points West.",
+       "West is on his left when he faces North."
+      ],
+      "answer": "North"
      }
     }
    ],
    "mistakes": [
-    "Using the evening shadow direction (East) in a morning question.",
-    "Answering the shadow's direction instead of the person's facing.",
-    "Forgetting shadow-left/right flips when the facing flips."
+    {
+     "wrong": "Using the evening shadow direction in a morning question.",
+     "right": "Write 'morning: shadow West' or 'evening: shadow East' first."
+    },
+    {
+     "wrong": "Giving the shadow's direction when the question asks the person's facing.",
+     "right": "The shadow and the facing are two different arrows. Answer the one asked."
+    },
+    {
+     "wrong": "Forgetting that left and right change when the facing changes.",
+     "right": "Use the body map for each facing."
+    },
+    {
+     "wrong": "Treating back to back as facing the same way.",
+     "right": "Back to back means the two people face opposite ways."
+    },
+    {
+     "wrong": "Treating 'away from the shadow' as the shadow's direction.",
+     "right": "Away from it means the opposite direction."
+    }
    ],
-   "notes": "### Shadows: the sun does the pointing\n\nA shadow question is a direction question where one arrow is drawn for you — by the sun. Learn the sun's positions and every question becomes a two-line solution.\n\n**The two facts to memorise.**\n- **Morning:** the sun is in the **East**, so every shadow points **West**.\n- **Evening/sunset:** the sun is in the **West**, so every shadow points **East**.\n\nAt exactly noon the sun is overhead and shadows are shortest and ambiguous — good questions either avoid noon or make the ambiguity the answer.\n\n**The four standard templates.**\n\n*Template 1 — facing from the shadow.* \"In the morning, a man's shadow falls in front of him.\" Shadow = West, and it is in front → he **faces West**. \"Falls behind him\" → he faces East. \"Falls to his right\" → his right side is West → he faces South. \"To his left\" → he faces North. (Check: face North — your left hand points West ✓.)\n\n*Template 2 — shadow from the facing.* The reverse reading: the facing is given and the shadow's side is asked. Use the body map — facing North: left West, right East; facing South: left East, right West; facing East: left North, right South; facing West: left South, right North. Example: morning (shadow West) and the person faces South → per the body map, West is the right side → the shadow falls to their right.\n\n*Template 3 — two people and one shadow.* \"Back to back\" questions: the shadow (a fixed compass direction at that hour) falls from one person onto the other. Place them on the compass, then use 'back to back' to fix both facings as opposite.\n\n*Template 4 — shadow, then movement.* The person sees the shadow, walks toward/away from it or turns a stated number of degrees, and you must give the final facing. Decode the shadow into a compass direction first, convert the walk into normal direction language, then finish it as a plain final-facing question (net quarter turns on the N→E→S→W cycle).\n\n**Common traps.** Mixing the morning and evening shadow directions is the #1 error — write \"sun E → shadow W\" before starting. Second trap: using the shadow as the person's facing — the shadow's direction and the person's facing are two different arrows, opposite when the shadow is in front/behind, perpendicular when left/right.\n\n### Quick revision\n- Morning: sun East → **shadow West**. Evening: sun West → **shadow East**.\n- Shadow in front → facing opposite the shadow; behind → facing the shadow's side of the sky.\n- Shadow left → face N (morning) / S (evening); shadow right → face S (morning) / N (evening).\n- Back to back = facings are exact opposites.\n- Convert the shadow to a compass word first; then solve the rest as a normal direction question.",
+   "notes": "### The sun points the shadow\nA shadow always falls away from the sun. So the sun does the pointing for you.\n\n| Time | Sun is in the | Shadow points |\n|---|---|---|\n| Morning (sunrise) | East | West |\n| Evening (sunset) | West | East |\n\nAt noon in India, the shadow points roughly North. Most questions avoid noon.\n\n> **Rule:** Write \"morning: shadow West\" or \"evening: shadow East\" before you read anything else.\n\n### Where the shadow falls on the body\nA person faces some direction. The shadow can fall in front, behind, on the left or on the right.\n\n- Shadow in front: he faces the same way as the shadow.\n- Shadow behind: he faces the opposite way.\n- Shadow on the left or right: he faces a direction at right angles to the shadow.\n\nExample: morning, shadow falls in front of him. The shadow points West, so he faces **West**. If it falls behind him, he faces East.\n\n### Left and right shadows\nUse the body map. It tells you what lies on the left and right for each facing.\n\n| He faces | Left is | Right is |\n|---|---|---|\n| North | West | East |\n| South | East | West |\n| East | North | South |\n| West | South | North |\n\nExample: morning, shadow falls on his right. The shadow points West. West is on his right when he faces South. So he faces **South**.\n\n> **Tip:** For a morning shadow, left means facing North and right means facing South. For an evening shadow, left means South and right means North.\n\n### Two people, back to back\nBack to back means the two people face opposite ways. Find one person's facing from the shadow. The other faces the opposite way.\n\nExample: evening, Rohit's shadow falls on his left. The shadow points East. So Rohit faces South. His partner stands back to back with him, so he faces **North**.\n\n### Four pictures to learn\nMost questions use only these four. Learn them by heart.\n\n| Time | Shadow falls | He faces |\n|---|---|---|\n| Morning | in front | West |\n| Morning | behind | East |\n| Evening | in front | East |\n| Evening | behind | West |\n\nThe left and right cases follow from the body map above.\n\n### Shadow and then a movement\nSome questions add a walk or a turn. Do it in three steps.\n\n1. Turn the shadow into a compass direction for that time.\n2. Turn \"towards\" or \"away from the shadow\" into a plain direction.\n3. Finish with quarter-turns on the circle North, East, South, West.\n\nExample: evening, a man walks away from his shadow. The shadow points East, so he walks West. He then turns 90 degrees anticlockwise and faces **South**.\n\n> **Watch:** The shadow is not the direction he faces. Read which of the two the question asks for.\n",
    "patterns": [
     {
      "id": "sd-p1",
-     "name": "Morning shadow (sun East → shadow West)",
+     "name": "Morning shadow",
      "frequency": "very common",
-     "howToSpot": "'Early morning / at sunrise' plus a shadow position: front, back, left or right of a person.",
+     "howToSpot": "The time is early morning or sunrise. The shadow is in front, behind, left or right of a person.",
      "formula": null,
-     "logic": "1. Write the anchor: morning → **shadow points West**.\n2. Place the shadow: front = facing West, back = facing East.\n3. Left/right: shadow West on the left → facing North; on the right → facing South.\n\n*Why it works:* the shadow is a fixed compass arrow; the body's sides rotate around it.",
+     "steps": [
+      "Write: morning, shadow West.",
+      "Front means he faces West. Behind means he faces East.",
+      "Left means he faces North. Right means he faces South."
+     ],
+     "why": "The shadow is a fixed compass arrow. The person turns to put it on the stated side.",
      "example": {
-      "q": "**Early morning, a man's shadow falls exactly in front of him. Which direction is he facing?**",
-      "solution": "Morning shadow = West; in front → he faces **West**."
+      "q": "At sunrise, a man's shadow falls exactly behind him. Which way is he facing?",
+      "steps": [
+       "Morning: the shadow points West.",
+       "The shadow is behind him, so he faces the opposite way.",
+       "Opposite of West is East."
+      ],
+      "answer": "East"
      }
     },
     {
      "id": "sd-p2",
-     "name": "Evening shadow (sun West → shadow East)",
+     "name": "Evening shadow",
      "frequency": "very common",
-     "howToSpot": "'Evening / at sunset' with the same front/back/left/right shadow placement.",
+     "howToSpot": "The time is evening or sunset. The shadow is in front, behind, left or right of a person.",
      "formula": null,
-     "logic": "1. Write the anchor: evening → **shadow points East**.\n2. Front → facing West; back → facing East.\n3. Left → facing South; right → facing North (check with the body: face South, your right is West, so East is left).\n\n*Why it works:* same mechanics as morning with the shadow arrow flipped 180°.",
+     "steps": [
+      "Write: evening, shadow East.",
+      "Front means he faces East. Behind means he faces West.",
+      "Left means he faces South. Right means he faces North."
+     ],
+     "why": "It is the same rule as morning, with the shadow arrow turned around.",
      "example": {
-      "q": "**At sunset, a woman's shadow falls behind her. Which direction is she facing?**",
-      "solution": "Evening shadow = East; it falls on her back, so she faces the opposite → **West**."
+      "q": "One evening, Ramesh's shadow falls exactly in front of him. Which way is he facing?",
+      "steps": [
+       "Evening: the shadow points East.",
+       "The shadow is in front, so he faces the same way."
+      ],
+      "answer": "East"
      }
     },
     {
      "id": "sd-p3",
-     "name": "Shadow to facing inference",
+     "name": "Left or right shadow to facing",
      "frequency": "common",
-     "howToSpot": "The shadow's side (front/back/left/right) is given and the person's facing is asked — or the reverse.",
+     "howToSpot": "The shadow falls to the left or right of the person, and his facing is asked.",
      "formula": null,
-     "logic": "1. Convert the shadow to a compass arrow for that hour.\n2. Use the body map: N→left W/right E; S→left E/right W; E→left N/right S; W→left S/right N.\n3. Pick the facing that puts the shadow on the stated side.\n\n*Why it works:* exactly four facings exist; only one puts the shadow arrow on the required side.",
+     "steps": [
+      "Write the shadow direction for that time.",
+      "Look at the body map. Find the facing that puts that direction on the stated side.",
+      "Check by holding out your hand."
+     ],
+     "why": "Only one of the four facings puts the shadow on the stated side.",
      "example": {
-      "q": "**In the morning, Manish's shadow falls to his right. Which direction is he facing?**",
-      "solution": "Morning shadow = West; facing South, the right hand points West → he faces **South**."
+      "q": "In the evening, Neha's shadow falls on her left. Which way is she facing?",
+      "steps": [
+       "Evening: the shadow points East.",
+       "When she faces South, her left is East.",
+       "So she faces South."
+      ],
+      "answer": "South"
      }
     },
     {
      "id": "sd-p4",
-     "name": "Shadow, then movement or turn",
-     "frequency": "occasional",
-     "howToSpot": "The person walks toward/away from the shadow or turns by 90°/180° after reading it; final facing is asked.",
+     "name": "Shadow, then a walk or a turn",
+     "frequency": "common",
+     "howToSpot": "The person walks towards or away from the shadow, or turns by 90 or 180 degrees, and the final direction is asked.",
      "formula": null,
-     "logic": "1. Decode the shadow into a compass direction for that hour.\n2. Translate 'walks toward/away from the shadow' into normal direction language.\n3. Finish with net quarter turns on N → E → S → W.\n\n*Why it works:* after the conversion the question is an ordinary final-facing problem.",
+     "steps": [
+      "Turn the shadow into a compass direction.",
+      "Turn 'towards' or 'away' into a direction. Away means the opposite.",
+      "Finish the turns with quarter-turns."
+     ],
+     "why": "After the first step, it is an ordinary final-facing question.",
      "example": {
-      "q": "**Morning: a man walks towards his shadow for 5 km, then turns 90° clockwise. Which direction is he facing now?**",
-      "solution": "Morning shadow = West → he walked West facing West; +1 quarter turn → W + 1 = **North**."
+      "q": "In the evening, Kiran walks away from his shadow. He then turns 90 degrees anticlockwise. Which way does he face now?",
+      "steps": [
+       "Evening: the shadow points East.",
+       "Away from it means he walks West.",
+       "Anticlockwise from West is South."
+      ],
+      "answer": "South"
+     }
+    },
+    {
+     "id": "sd-p5",
+     "name": "Two people back to back",
+     "frequency": "occasional",
+     "howToSpot": "Two people stand back to back, and one shadow position is given. The other person's facing or shadow side is asked.",
+     "formula": null,
+     "steps": [
+      "Find the first person's facing from his shadow.",
+      "Back to back means the other person faces the opposite way.",
+      "Use the body map to place the shadow for the second person."
+     ],
+     "why": "Back to back fixes the second person's facing at once.",
+     "example": {
+      "q": "In the evening, Rohit and Mohit stand back to back. Rohit's shadow falls on his left. Which way does Mohit face?",
+      "steps": [
+       "Evening: the shadow points East. East is on Rohit's left when he faces South.",
+       "Mohit faces the opposite way to Rohit.",
+       "Opposite of South is North."
+      ],
+      "answer": "North"
      }
     }
+   ],
+   "revision": [
+    "Morning: sun East, shadow West. Evening: sun West, shadow East.",
+    "Shadow in front: same direction. Shadow behind: opposite direction.",
+    "Morning: shadow left means facing North. Shadow right means facing South.",
+    "Evening: shadow left means facing South. Shadow right means facing North.",
+    "Back to back: the two facings are opposite.",
+    "Turn the shadow into a facing, then solve the rest as a normal direction question."
    ]
   },
   {
    "id": "relative-position",
    "title": "Position of one point from another",
-   "concept": "'C is 5 km East of A; A is 2 km North of B — in which direction is C from B?' Two anchored statements chain into one picture: place the *reference* person first (B), attach A relative to B, then C relative to A. The answer is read straight from the sketch.\n\nCare points:\n\n- **Direction reverses with reference**: 'C from B' (C relative to B) is the opposite corner of 'B from C'.\n- Distances may be enough for a diagonal ('how far is C from B?' → Pythagoras on the two components).\n- With three or more people, name the sketch's axes once (up = North) and place everyone before answering anything.",
-   "formulas": [],
+   "concept": "Some questions place two people, or a person and a fixed object, on the same map. Put the reference person at the middle of the map first. Then place everyone else, one sentence at a time. The distance and direction between any two people are then read straight off the picture.",
+   "formulas": [
+    {
+     "name": "Distance between two points",
+     "tex": "d = \\sqrt{(\\Delta E)^2 + (\\Delta N)^2}",
+     "note": "Delta E is the East gap and Delta N is the North gap between the two people."
+    },
+    {
+     "name": "Distance from speed and time",
+     "tex": "\\text{distance} = \\text{speed} \\times \\text{time}",
+     "note": "Use it first when two people walk at different speeds."
+    }
+   ],
    "tricks": [
     {
-     "title": "Place the final reference first",
-     "body": "Start the sketch with the person the question asks FROM ('direction of C from B' → draw B at origin), then attach the chain. The answer is simply where C lands on the page.",
+     "title": "Start from the person named after 'from'",
+     "body": "For \"direction of C from B\", draw B first at the middle. The chain then hangs off B. The answer is simply where C lands.",
      "example": {
-      "q": "**Q.** A is 5 km North of B; C is 5 km East of A. Direction of C from B?\n\n**Sol.** B at origin → A above it → C to A's right: C sits 5 East, 5 North of B → **North-East**.",
-      "solution": "Anchor at the asked-from person; the chain then hangs downward."
+      "q": "A is 5 km North of B. C is 5 km East of A. In which direction is C from B?",
+      "steps": [
+       "B at the middle. A is 5 km above B.",
+       "C is 5 km to the right of A. So C is 5 East and 5 North of B."
+      ],
+      "answer": "North-East"
      }
     }
    ],
    "mistakes": [
-    "Drawing A first when B is the asked-from reference.",
-    "Reporting 'C from B' when the question asked 'B from C'.",
-    "Adding distances that need Pythagoras instead."
+    {
+     "wrong": "Drawing A first when B is the reference person.",
+     "right": "Put the person named after 'from' at the middle first."
+    },
+    {
+     "wrong": "Giving 'C from B' when the question asked 'B from C'.",
+     "right": "Underline the reference person in every sentence."
+    },
+    {
+     "wrong": "Adding two distances that need Pythagoras.",
+     "right": "Use the straight-line formula when the two moves are at right angles."
+    },
+    {
+     "wrong": "Counting a leg both people walk as part of the gap.",
+     "right": "A shared leg does not change the gap."
+    },
+    {
+     "wrong": "Mixing up speed and distance.",
+     "right": "Find distance = speed times time first, then place the person."
+    }
    ],
-   "notes": "### Two people, one grid\n\nRelative-position questions put two walkers (or a walker and a fixed object) on the same grid and ask how far apart they are, or in which direction one sits from the other. The method: give **each** person their own copy of the net-move bookkeeping, then compare.\n\n**Positions first.** Fix the common start (or the named reference point) at the origin. Walk each person separately, netting their moves: person P ends at $(E_P, N_P)$, person Q at $(E_Q, N_Q)$.\n\n**Distance between them.** The gap is just the distance between two grid points:\n\n$$d = \\sqrt{(E_Q - E_P)^2 + (N_Q - N_P)^2}$$\n\nMost exam numbers land on clean triples (3-4-5, 5-12-13) or on a single axis after cancellation. If both walkers move along one shared leg (\"both then walk 12 km East\"), that shared leg contributes **nothing** to the gap — it shifts both equally.\n\n**Direction of one from the other.** Stand at the person the question names second: the arrow to the other person has components $\\Delta E = E_Q - E_P$, $\\Delta N = N_Q - N_P$. Read the compass word of $(\\Delta E, \\Delta N)$ exactly as in final-direction questions. Sanity-check with a rough sketch — the answer word must match what the picture shows.\n\n**Fixed reference points.** Many questions measure everything from an object (a pole, a well, a house) that itself never moves. That is easier, not harder: the reference is the origin, and each object's position is its own net walk from it.\n\n**Meeting points.** If two people start together and walk for the same time, they meet where their positions coincide; questions often ask the distance of the meeting point from the start — walk each to the meeting coordinates and apply the distance formula on either one.\n\n**Two-person direction chains.** \"A is 5 km East of B; B is 12 km North of C\" — chain them from the asked pair: place C at the origin, put B at (0, 12), put A at (5, 12). Then any question about A and C is one distance formula: 13 km. Chained questions are just single-walker questions with an extra setup step.\n\n**Word order matters.** \"Direction of A from B\" and \"direction of B from A\" are opposite answers. Same for \"A is East of B\" (A sits on B's East) versus \"B is East of A\". Underline the reference person in every sentence before placing anyone — in chains, the person named *after* 'of' is the reference for that sentence.\n\n**When the answer is a word plus a number.** Many questions ask \"how far and in which direction\" together. Compute the number first (gap formula), then the word (compass of the difference), and match the pair against the options as a unit — options often pair the correct distance with a wrong direction to catch half-solvers.\n\n### Quick revision\n- Walk each person separately from the same origin; end with $(E, N)$ per person.\n- Gap: $\\sqrt{(\\Delta E)^2 + (\\Delta N)^2}$; shared legs cancel.\n- \"Direction of X from Y\": compute $(E_X - E_Y, N_X - N_Y)$, read the compass word.\n- Chains (\"A of B, B of C\"): place the last person at the origin and stack the offsets.\n- Verify every answer against a rough sketch — the picture catches sign slips.",
+   "notes": "### Place the reference first\nTwo statements can link three people. \"C is 5 km East of A. A is 2 km North of B. In which direction is C from B?\"\n\nThe question asks about **B**. So put B at the middle of the map. Then hang the others on B.\n\n1. B is at the middle.\n2. A is 2 km North of B.\n3. C is 5 km East of A, so C is 5 km East and 2 km North of B.\n\nC is **North-East** of B.\n\n> **Rule:** Put the person named after \"from\" at the middle of the map. Everyone else hangs off that person.\n\n### Give every person a position\nPut the common start at the middle of the map. Walk each person alone. Write each end point as (East, North).\n\nExample: Amit ends at (3, 4). Sumit ends at (-4, -3). West and South are minus.\n\n### Distance between two people\nThe gap between two people is the straight line between their two end points.\n\n$$d = \\sqrt{(\\text{East gap})^2 + (\\text{North gap})^2}$$\n\nThe East gap is the difference of their East numbers. The North gap is the difference of their North numbers.\n\nExample: Ravi walks 8 km North. Sam walks 15 km East. Ravi is at (0, 8) and Sam is at (15, 0). The gaps are 15 and 8, so the distance is 17 km.\n\n### Direction of one person from another\n\"Direction of B from A\" means: stand at A, look at B. Find the East gap and the North gap from A to B. Read the compass word from their signs.\n\n> **Watch:** \"A is East of B\" and \"B is East of A\" give opposite pictures. Underline the person named after \"of\". That person is the reference.\n\nReverse the pair and the word flips. If C is North-East of B, then B is South-West of C.\n\n### Shared legs cancel\nSuppose both people walk the same leg, such as \"then both walk 20 km North\". That leg moves both of them by the same amount. It does not change the gap between them.\n\nExample: one walks 9 km East and the other walks 9 km West. Then both walk 20 km North. The gap stays 18 km.\n\n### Chains of positions\n\"P is 9 km West of Q. Q is 12 km South of R.\" Start at the last person, R, at the middle of the map. Q is 12 km South of R. P is 9 km West of Q. So P is 9 West and 12 South of R.\n\nDistance from R to P: 9 and 12 give the triple, so 15 km. Direction of P from R: South-West.\n\n### Speed and time\nTwo people who walk at different speeds move different distances. Distance = speed times time. Then place both on the map.\n\nExample: one walks North at 6 km per hour and the other walks East at 8 km per hour for 2 hours. They are 12 km North and 16 km East. The gap is 20 km.\n\n> **Tip:** Questions often ask \"how far and in which direction\". Find both. Options often pair the right distance with the wrong direction.\n",
    "patterns": [
     {
      "id": "rp-p1",
      "name": "Distance between two walkers",
      "frequency": "very common",
-     "howToSpot": "Two people walk from the same (or related) start points; the gap between them is asked.",
-     "formula": "\\sqrt{(\\Delta E)^2+(\\Delta N)^2}",
-     "logic": "1. Walk each person to their own (E, N) from the shared origin.\n2. Gap $=\\sqrt{(E_2-E_1)^2+(N_2-N_1)^2}$.\n3. Shared equal legs cancel; look for a clean triple.\n\n*Why it works:* the gap is ordinary point-to-point distance between two grid coordinates.",
+     "howToSpot": "Two people start from the same place and walk in different directions. The gap between them is asked.",
+     "formula": "d = \\sqrt{(\\Delta E)^2 + (\\Delta N)^2}",
+     "steps": [
+      "Put the start at the middle of the map.",
+      "Find each person's end point as (East, North).",
+      "Find the East gap and the North gap.",
+      "Use the triples or the square root."
+     ],
+     "why": "The gap is just the distance between two points on the map.",
      "example": {
-      "q": "**Amit walks 3 km E and 4 km N; Sumit walks 4 km W and 3 km S from the same point. How far apart are they?**",
-      "solution": "A (3, 4), B (−4, −3): gap $=\\sqrt{49+49}=7\\sqrt2 \\approx 9.9$ km."
+      "q": "Two boys start from the same point. Ravi walks 8 km North and Sam walks 15 km East. How far apart are they?",
+      "steps": [
+       "Ravi is at (0, 8) and Sam is at (15, 0).",
+       "The gaps are 15 East and 8 North.",
+       "15 and 8 give the triple 8-15-17."
+      ],
+      "answer": "17 km"
      }
     },
     {
      "id": "rp-p2",
      "name": "Direction of one person from another",
      "frequency": "very common",
-     "howToSpot": "'In which direction is B from A?' after one or both walked.",
+     "howToSpot": "The question asks in which direction one person is from another after both have walked.",
      "formula": null,
-     "logic": "1. Compute $\\Delta E = E_B - E_A$, $\\Delta N = N_B - N_A$.\n2. Read the compass word of $(\\Delta E, \\Delta N)$.\n3. Sketch check: the answer must match the rough picture.\n\n*Why it works:* 'B from A' = the vector from A's position to B's, named by compass.",
+     "steps": [
+      "Find both end points from the same start.",
+      "Take the reference person as the middle.",
+      "Find the East gap and the North gap from the reference to the other person.",
+      "Read the compass word from the two signs."
+     ],
+     "why": "\"B from A\" is the arrow from A to B, and the signs of the gaps name it.",
      "example": {
-      "q": "**P walks 6 km E and 8 km S; Q walks 6 km W and 8 km N from the same start. In which direction is Q from P?**",
-      "solution": "P (6, −8), Q (−6, 8): $\\Delta$ = (−12, +16) → West and North → **North-West**."
+      "q": "From the same point, Meera walks 6 km East and 10 km South. Nisha walks 2 km West and 7 km South. In which direction is Nisha from Meera?",
+      "steps": [
+       "Meera is at (6, -10). Nisha is at (-2, -7).",
+       "From Meera to Nisha: 8 km West and 3 km North.",
+       "West and North make North-West."
+      ],
+      "answer": "North-West"
      }
     },
     {
      "id": "rp-p3",
-     "name": "Shared legs and meeting geometry",
+     "name": "Shared legs",
      "frequency": "common",
-     "howToSpot": "Both walkers cover a common leg, or one walks parallel to the other at a fixed offset.",
+     "howToSpot": "Both people walk the same leg, or one walks parallel to the other.",
      "formula": null,
-     "logic": "1. Note that a shared identical leg shifts both equally — it changes neither the gap nor the relative direction.\n2. Compute positions after the shared leg and apply the gap formula.\n\n*Why it works:* subtracting the two position vectors cancels the common part.",
+     "steps": [
+      "Put the two people on the map after their own first legs.",
+      "A leg both walk in the same way does not change the gap.",
+      "Find the gap after the first legs."
+     ],
+     "why": "The same leg moves both people equally, so it drops out when you subtract.",
      "example": {
-      "q": "**Two friends start together; one walks 5 km N, the other 5 km S; then both walk 12 km E. How far apart are they?**",
-      "solution": "The 12 E is shared → gap stays vertical: 5 + 5 = **10 km**."
+      "q": "Two friends start together. One walks 9 km East and the other 9 km West. Then both walk 20 km North. How far apart are they?",
+      "steps": [
+       "After the first legs the East gap is 9 + 9 = 18 km.",
+       "The 20 km North leg is shared, so the North gap stays 0.",
+       "The gap is 18 km."
+      ],
+      "answer": "18 km"
      }
     },
     {
      "id": "rp-p4",
-     "name": "Chained offsets from a reference",
+     "name": "Chain of positions",
      "frequency": "occasional",
-     "howToSpot": "'A is 5 km East of B; B is 12 km North of C' — questions about the unconnected pair.",
+     "howToSpot": "Sentences such as 'A is East of B, B is North of C' link people. The pair not named together is asked.",
      "formula": null,
-     "logic": "1. Place the last-named person at the origin.\n2. Stack each offset in order to get every position.\n3. Answer distance/direction between the asked pair with the standard tools.\n\n*Why it works:* chained offsets are vector addition; the chain ends when every person has coordinates.",
+     "steps": [
+      "Put the last person of the chain at the middle.",
+      "Add each sentence's move one at a time.",
+      "Find the distance and direction of the asked pair."
+     ],
+     "why": "Chained moves add up like the legs of a walk.",
      "example": {
-      "q": "**A is 5 km East of B; B is 12 km North of C. How far is A from C?**",
-      "solution": "C (0, 0), B (0, 12), A (5, 12) → $\\sqrt{25+144}=13$ km."
+      "q": "P is 9 km West of Q. Q is 12 km South of R. How far and in which direction is P from R?",
+      "steps": [
+       "R is at the middle. Q is 12 km South of R.",
+       "P is 9 km West of Q, so P is 9 West and 12 South of R.",
+       "9 and 12 give 15. West and South make South-West."
+      ],
+      "answer": "15 km, South-West"
+     }
+    },
+    {
+     "id": "rp-p5",
+     "name": "Different speeds for the same time",
+     "frequency": "common",
+     "howToSpot": "Two people move at given speeds for some hours. The gap between them is asked.",
+     "formula": "\\text{distance} = \\text{speed} \\times \\text{time}",
+     "steps": [
+      "Find each person's distance = speed times time.",
+      "Put both on the map from the common start.",
+      "Find the gap from the two positions."
+     ],
+     "why": "Distance from speed and time turns the question into a plain map problem.",
+     "example": {
+      "q": "From a crossing, Ajay cycles North at 6 km per hour and Bala cycles East at 8 km per hour. How far apart are they after 2 hours?",
+      "steps": [
+       "Ajay: $6 \\times 2 = 12$ km North.",
+       "Bala: $8 \\times 2 = 16$ km East.",
+       "12 and 16 are 4 times 3 and 4 times 4, so the gap is 4 times 5."
+      ],
+      "answer": "20 km"
      }
     }
+   ],
+   "revision": [
+    "Put the reference person at the middle of the map.",
+    "Write each person's end point as (East, North).",
+    "Gap: $\\sqrt{(\\Delta E)^2 + (\\Delta N)^2}$.",
+    "'B from A': stand at A, look at B. Reversing the pair flips the word.",
+    "A leg that both people walk does not change the gap.",
+    "Chains: start at the last person and add each move.",
+    "Speed times time gives distance."
    ]
   }
  ],

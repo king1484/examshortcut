@@ -17,7 +17,7 @@ export interface Question {
 }
 
 export interface Formula { name: string; tex: string; note?: string }
-export interface Trick { title: string; body: string; example?: { q: string; solution: string } | null }
+export interface Trick { title: string; body: string; example?: WorkedExample | null }
 
 export interface Subtopic {
   id: string;
@@ -25,9 +25,13 @@ export interface Subtopic {
   concept: string;
   formulas?: Formula[];
   tricks?: Trick[];
-  mistakes?: string[];
-  /** Long-form lesson in markdown (### headings, KaTeX). */
+  /** Plain string, or a wrong-way / right-way pair. */
+  mistakes?: (string | Mistake)[];
+  /** Long-form lesson in markdown (### headings, KaTeX). Each ### becomes a numbered section;
+      `> **Rule:** …` / `> **Tip:** …` / `> **Note:** …` / `> **Example:** …` blockquotes render as callouts. */
   notes?: string;
+  /** 3–6 one-line takeaways shown as the end-of-page revision checklist. */
+  revision?: string[];
   /** Every question type asked from this subtopic; practice questions point here via `pattern`. */
   patterns?: QuestionPattern[];
 }
@@ -39,7 +43,21 @@ export interface QuestionPattern {
   howToSpot?: string;
   formula?: string | null;
   logic?: string;
-  example?: { q: string; solution: string } | null;
+  /** Solution method as short ordered steps (preferred over numbered lines inside `logic`). */
+  steps?: string[];
+  /** One or two sentences on why the method works. */
+  why?: string;
+  example?: WorkedExample | null;
+}
+
+export interface Mistake { wrong: string; right: string }
+
+export interface WorkedExample {
+  q: string;
+  /** Legacy single-paragraph solution; `steps` + `answer` are preferred. */
+  solution?: string;
+  steps?: string[];
+  answer?: string;
 }
 
 export interface PyqPattern {

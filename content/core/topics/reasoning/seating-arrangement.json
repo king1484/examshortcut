@@ -13,207 +13,477 @@
   {
    "id": "seating-idea",
    "title": "How seating puzzles are set",
-   "concept": "A seating puzzle gives a set of people and a set of positional clues; you must rebuild the exact seating and then answer ('who is opposite D?', 'who sits third from the left?'). Two families cover the whole topic:\n\n1. **Linear** — everyone in one row, usually 'facing north'. The row's left/right ends belong to the **viewer**: the left end is on your left in the sketch. When a row **faces south**, each person's own left and right flip — a person facing south has their left toward your right. The ends never flip.\n2. **Circular** — around a table, 'facing centre' by default. For a person facing the centre, the **left-hand neighbour is the next person clockwise**; the right-hand neighbour is the next anticlockwise. If they face **outward**, both flip.\n\nMethod that never fails: draw n blanks, fill every 'extreme end / middle / opposite' clue first (they pin seats absolutely), then chain the relative clues ('second to the left of…'), and use every negative clue ('not adjacent', 'not at an end') only at the end to kill remaining options.",
+   "concept": "A seating puzzle gives a group of people and clues about where they sit. You rebuild the one seating that fits every clue, then answer a question such as who sits opposite D. Rows and circles are the two families. In both, the direction each person faces decides which side is left.",
    "formulas": [
     {
      "name": "Circular neighbour rule",
-     "tex": "L(i) = (i+1) \\bmod n,\\ R(i) = (i-1) \\bmod n",
-     "note": "Seats numbered clockwise, everyone facing centre. Both swap if facing outward."
+     "tex": "L(i) = (i+1) \\bmod n,\\quad R(i) = (i-1) \\bmod n",
+     "note": "Seats numbered clockwise, everyone facing the centre. Both swap if facing outward."
     },
     {
-     "name": "Opposite seats",
+     "name": "Opposite seat",
      "tex": "i \\leftrightarrow (i + n/2) \\bmod n",
-     "note": "Only when n is even; odd tables have no opposite seat."
+     "note": "Only when n is even. An odd table has no opposite seat."
     },
     {
-     "name": "Viewer vs person",
+     "name": "People between two seats",
+     "tex": "\\text{between} = |a - b| - 1",
+     "note": "a and b are seat numbers in the same row."
+    },
+    {
+     "name": "Viewer versus person",
      "tex": "\\text{person faces south} \\Rightarrow \\text{their left} = \\text{your right}",
-     "note": "Applies only to the person's own left/right, never to the row ends."
+     "note": "Applies to the person's own left and right, never to the row ends."
     }
    ],
    "tricks": [
     {
      "title": "Pin the absolutes first",
-     "body": "Extreme ends, exact middles, 'opposite', 'fourth from left' fix specific seats before any chaining. Fill those, and the remaining people usually fall into one or two slots.",
+     "body": "Ends, the middle and opposite seats fix a person outright. Fill them before you touch any chain. The remaining people usually fall into one or two slots.",
      "example": {
-      "q": "**Q.** Six seats, B at the extreme left, F at the extreme right, D immediately right of B, C immediately left of F.\n\n**Sol.** B _ D _ C F with two blanks; the two leftover names (A, E) go in seats 2 and 4 — one more clue finishes it. Absolutes did the scaffolding.",
-      "solution": "Ends/middle/opposite clues are free information — place them before touching chains."
+      "q": "Six people sit in a row facing north. B is at the left end and F is at the right end. D is immediate right of B. C is immediate left of F. A is not next to D. Find the row.",
+      "steps": [
+       "B = seat 1, D = seat 2, F = seat 6, C = seat 5.",
+       "A and E take seats 3 and 4.",
+       "Seat 3 is next to D, so A = seat 4 and E = seat 3."
+      ],
+      "answer": "B D E A C F"
+     }
+    },
+    {
+     "title": "Test one clue both ways",
+     "body": "If you are unsure of the facing, place one clue for north and for south. The two seats differ, and this shows you which one you must use.",
+     "example": {
+      "q": "T sits in seat 3 of a row of five. U is second to the right of T. Where is U if the row faces north? Where is U if it faces south?",
+      "steps": [
+       "North: right is east, so $3 + 2 = 5$.",
+       "South: right is west, so $3 - 2 = 1$."
+      ],
+      "answer": "Seat 5 facing north, seat 1 facing south"
      }
     }
    ],
    "mistakes": [
-    "Applying left/right flips to the row's ends — ends belong to the viewer, only individuals flip.",
-    "Forgetting the facing-outward flip in circular puzzles.",
-    "Ignoring 'not adjacent / not at an end' until the answer, not the solving."
+    {
+     "wrong": "Reading a south-facing person's left as your own left.",
+     "right": "Their left is your right. Draw an arrow on each seat."
+    },
+    {
+     "wrong": "Flipping the row ends when the row faces south.",
+     "right": "The ends stay with the viewer. Only the person's own left and right flip."
+    },
+    {
+     "wrong": "Taking 'second to the right' as two people in between.",
+     "right": "It means one person in between. $k$-th means $k - 1$ between."
+    },
+    {
+     "wrong": "Looking for an opposite seat at an odd table.",
+     "right": "Opposite exists only for an even number of seats."
+    },
+    {
+     "wrong": "Assuming 'between' means 'immediately between'.",
+     "right": "Only the word 'immediately' forces neighbours."
+    }
    ],
-   "notes": "### What a seating puzzle is\nYou get a group of people and a list of clues about where they sit. Your job is to rebuild the one seating that fits every clue, then answer questions such as \"who sits second to the right of D?\" or \"how many people sit between P and T?\". There is no trick of calculation here. The whole skill is reading each clue correctly and drawing it the same way every time.\n\n### Left and right depend on the direction you face\nThis is the source of most wrong answers.\n- **Facing north (the default in a row):** your left is the west end of the row, your right is the east end. Draw the row left to right on paper and the person's left is simply your left.\n- **Facing south:** everything flips. The person's left is the east end, their right is the west end. If you draw the row as usual, a south-facing person's \"right\" is to your left on paper.\n- **Rule of thumb:** if the question says \"facing south\" or \"facing away from the viewer\", draw a small down-arrow on every seat and read left and right from that arrow, not from your own hands.\n\n### Circles\n- **Facing the centre:** left = clockwise, right = anticlockwise.\n- **Facing outward:** left = anticlockwise, right = clockwise.\n- A circle has no ends and no fixed first seat. Place the first named person anywhere; every other seat is fixed relative to that one.\n- \"Opposite\" exists only when the number of seats is even. With n seats, the person opposite is n ÷ 2 places away in either direction.\n\n### Counting words\n- **\"Second to the right of X\"** means one person sits between X and that seat.\n- **\"k-th to the left\"** means k steps, so there are k − 1 people in between.\n- **\"Immediately between X and Y\"** means X and Y are the two neighbours of the middle person.\n- **\"Between X and Y\"** without \"immediately\" means somewhere strictly inside the stretch from X to Y.\n- **Position from the ends:** in a row of n people, the person p-th from the left is (n − p + 1)-th from the right.\n- **People between two seats** at positions a and b = |a − b| − 1.\n\n### Worked example\nFive people sit in a row facing north. T sits in the middle. U sits second to the right of T. V sits to the immediate left of T.\n- Seats 1 to 5 from left: T = 3.\n- U = 3 + 2 = 5 (right end). V = 2.\n- Two seats remain: 1 and 4. If the question adds \"W is not at an end\", then W = 4 and X = 1.\n\nNow turn the same row to face south. T is still in seat 3. U, \"second to the right\" of a south-facing T, is two seats to the west, so U = 1. V, \"immediately left\" of T, is at seat 4. One word changed and the whole answer changed.\n\n### The three-step method\n1. **Fix the frame.** Draw the seats first: a line of n boxes, or a circle with n marks. Write the facing direction on the frame.\n2. **Place the sure clues first.** Ends, the middle seat, \"k-th from the left end\". These need no guessing.\n3. **Attach the chains.** \"A is left of B, B is second right of C\" — hang each new person on someone already placed. Use negative clues (\"not at an end\", \"not a neighbour of D\") to kill the extra cases at the end.\n\n### Quick revision\n- North-facing row: person's left = your left. South-facing row: person's left = your right.\n- Circle facing centre: left = clockwise. Facing outward: left = anticlockwise.\n- k-th to the right means k − 1 people in between.\n- p-th from left in a row of n = (n − p + 1)-th from right; people between seats a and b = |a − b| − 1.\n- Draw the frame, place fixed clues, hang chains, then use the \"not\" clues.\n",
+   "notes": "### What a seating puzzle is\nYou get a group of people and a list of clues. You draw the seats first. Then you place each person the clues fix. At the end, one seating is left, and every question is a lookup on it.\n\nThere is no calculation here. The skill is to read each clue the same way every time.\n\n### Left and right in a row\nThe row ends belong to you, the viewer. The left end is on your left when you draw the row.\n\n- **Facing north:** a person's left is your left. Their right is your right.\n- **Facing south:** it flips. A person's left is your right.\n\nThe ends never flip. Only the person's own left and right flip.\n\n> **Watch:** If the puzzle says \"facing south\", draw a small down arrow on every seat. Read left and right from that arrow, not from your own hands.\n\n### Left and right in a circle\nPeople around a table face the centre unless the puzzle says otherwise.\n\n- **Facing the centre:** left neighbour = clockwise. Right neighbour = anticlockwise.\n- **Facing outward:** it flips. Left = anticlockwise. Right = clockwise.\n\nA circle has no first seat. Put the first named person at the top. Every other seat is fixed by that person.\n\n\"Opposite\" exists only when the number of seats is even. The person opposite you is $\\dfrac{n}{2}$ places away.\n\n### Counting words\nSmall words change the count by one, so read them slowly.\n\n- \"Second to the right of X\" means one person sits between X and that seat.\n- \"$k$-th to the left\" means $k$ steps. So $k - 1$ people are in between.\n- \"Immediately between X and Y\" means X and Y are the two neighbours.\n- \"Between X and Y\" alone means somewhere inside, not always next to them.\n- People between seats $a$ and $b$ = $|a - b| - 1$.\n- The $p$-th person from the left in a row of $n$ is $n - p + 1$ from the right.\n\n> **Rule:** \"Neighbour\" allows two sides. \"Immediate right\" allows one side only.\n\n### The three-step method\n1. **Fix the frame.** Draw $n$ boxes for a row or $n$ marks for a circle. Write the facing direction on it.\n2. **Place the sure clues.** Ends, the middle, and opposite pairs need no guessing.\n3. **Hang the chains.** Attach each new person to someone already placed. Use \"not\" clues last.\n\n### A short worked row\nFive people sit in a row facing north. T is in the middle. U is second to the right of T. V is immediate left of T.\n\n- T is seat 3. U is seat 5. V is seat 2.\n- Seats 1 and 4 are left for W and X.\n- If W is not at an end, W is seat 4 and X is seat 1.\n\nNow face the same row south. U is second to the right of T, so U is seat 1. V is immediate left of T, so V is seat 4. One word changed the whole answer.\n\n> **Example:** Same clues, different facing, different row. Always find the facing word first.\n",
    "patterns": [
     {
      "id": "st-p1",
-     "name": "Facing direction and left/right",
+     "name": "Facing direction and left or right",
      "frequency": "very common",
-     "howToSpot": "The question says 'facing north' or 'facing south' and asks for a left or right neighbour or an end.",
-     "formula": "south-facing: right = west, left = east",
-     "logic": "Facing north: person's left = the west end. Facing south: person's left = the east end. Draw a direction arrow on the row before placing anyone.",
+     "howToSpot": "The row says 'facing north' or 'facing south'. A left or right neighbour or an end is asked.",
+     "formula": "\\text{south-facing: right = west, left = east}",
+     "steps": [
+      "Underline the facing word first.",
+      "Draw a small arrow on each seat.",
+      "Read left and right from the arrow.",
+      "Number the seats west to east and place each clue."
+     ],
+     "why": "The ends stay with the viewer, but each person's hands turn with the facing.",
      "example": {
-      "q": "Four people face south. Q is immediately right of P, R immediately left of P, S immediately right of Q. Who is at the western end?",
-      "solution": "Facing south, right = west. From east to west: R, P, Q, S. So **S** is at the western end."
+      "q": "Five people P, Q, R, S, T sit in a row facing south. R sits in the middle. S sits immediate right of R. P sits at the west end of the row. T does not sit at an end. Who sits immediate left of R?",
+      "steps": [
+       "Seats 1 to 5 from the west. R = seat 3.",
+       "South-facing right is west. So S = seat 2. P = seat 1.",
+       "T is not at an end, so T = seat 4 and Q = seat 5.",
+       "South-facing left is east. The immediate left of R is seat 4."
+      ],
+      "answer": "T"
      }
     },
     {
      "id": "st-p2",
      "name": "Counting people between two seats",
      "frequency": "very common",
-     "howToSpot": "Asks 'how many people sit between X and Y' or 'how many sit to the right of X'.",
-     "formula": "between = |a − b| − 1",
-     "logic": "Give every person a seat number. People between seats a and b = |a − b| − 1. People to the right of seat a in a row of n (facing north) = n − a.",
+     "howToSpot": "The question asks how many people sit between two people, or how many sit to the right of someone.",
+     "formula": "|a - b| - 1",
+     "steps": [
+      "Write each person's seat number.",
+      "Subtract the smaller from the larger.",
+      "Subtract 1."
+     ],
+     "why": "The two people themselves are not between, so one seat is dropped.",
      "example": {
-      "q": "Five people in a row facing north: A at the left end, C fourth to the right of A. How many sit between A and C?",
-      "solution": "A = 1, C = 5. Between = 5 − 1 − 1 = **3**."
+      "q": "Eight people sit in a row facing north. A is third from the left and H is second from the right end. How many people sit between A and H?",
+      "steps": [
+       "H is $8 - 2 + 1 = 7$th from the left.",
+       "Between: $7 - 3 - 1 = 3$."
+      ],
+      "answer": "3"
      }
     },
     {
      "id": "st-p3",
      "name": "Position from either end",
-     "frequency": "common",
-     "howToSpot": "A person is described as 'third from the left' or 'second from the right end'.",
-     "formula": "from right = n − p + 1",
-     "logic": "In a row of n, p-th from the left = (n − p + 1)-th from the right. Turn every such clue into a seat number first.",
+     "frequency": "very common",
+     "howToSpot": "A person is 'third from the left' or 'second from the right end'. The other end is asked.",
+     "formula": "n - p + 1",
+     "steps": [
+      "Write the number of seats.",
+      "Subtract the rank from the number of seats.",
+      "Add 1."
+     ],
+     "why": "The person is counted once from each end, so add the shared seat back.",
      "example": {
-      "q": "Six people in a row: P is third from the left. What is P's position from the right?",
-      "solution": "6 − 3 + 1 = **4th** from the right."
+      "q": "Twelve people sit in a row. Kabir is fifth from the left end. What is his position from the right end?",
+      "steps": [
+       "$12 - 5 + 1$.",
+       "$= 8$."
+      ],
+      "answer": "8th from the right"
      }
     },
     {
      "id": "st-p4",
      "name": "Circle facing rules",
      "frequency": "very common",
-     "howToSpot": "People sit around a circle facing the centre or facing outward.",
-     "formula": "centre: left = clockwise",
-     "logic": "Facing centre: left = clockwise, right = anticlockwise. Facing outward: the reverse. Fix the first person at the top to remove rotation.",
+     "howToSpot": "People sit around a table and face the centre or face outward. A left or right neighbour is asked.",
+     "formula": "\\text{centre: left = clockwise}",
+     "steps": [
+      "Put the first person at the top and number seats clockwise.",
+      "Facing the centre: left is +1, right is -1.",
+      "Facing outward: swap the two."
+     ],
+     "why": "One fixed rule turns every clue into a seat number.",
      "example": {
-      "q": "Four people sit around a table facing the centre. B is immediately left of A and C is opposite A. Who is immediately right of A?",
-      "solution": "A at the top. B clockwise from A, C opposite A, the last seat (anticlockwise from A) is **D**."
+      "q": "Six people A to F sit around a table facing the centre. B is immediate left of A. C is second to the right of A. D sits opposite A. E is immediate right of D. Who is immediate right of A?",
+      "steps": [
+       "A = seat 0, numbered clockwise.",
+       "B = seat 1. C = seat $0 - 2 = 4$. D = seat 3.",
+       "E = $3 - 1 = 2$. F takes seat 5.",
+       "Immediate right of A is seat $0 - 1 = 5$."
+      ],
+      "answer": "F"
+     }
+    },
+    {
+     "id": "st-p17",
+     "name": "Counting words: between, second to the right",
+     "frequency": "common",
+     "howToSpot": "Clues use 'second to the right', 'third to the left' or 'between'. You must place someone exactly.",
+     "formula": "k\\text{-th to the right} \\Rightarrow k - 1 \\text{ between}",
+     "steps": [
+      "Turn 'k-th to the right' into seat + k for a north-facing row.",
+      "Count the people between as $k - 1$.",
+      "Use 'immediately' only when the clue says it."
+     ],
+     "why": "Each small word shifts the count by exactly one seat.",
+     "example": {
+      "q": "Seven people sit in a row facing north. M is second from the left. N is third to the right of M. How many people sit between M and N?",
+      "steps": [
+       "M = seat 2. N = seat $2 + 3 = 5$.",
+       "Between: $5 - 2 - 1 = 2$, which is $3 - 1$."
+      ],
+      "answer": "2"
      }
     }
+   ],
+   "revision": [
+    "North-facing left = your left. South-facing left = your right.",
+    "Circle facing the centre: left = clockwise. Facing outward: left = anticlockwise.",
+    "$k$-th to the right means $k - 1$ people in between.",
+    "People between = $|a - b| - 1$. Other end = $n - p + 1$.",
+    "Opposite is $\\dfrac{n}{2}$ places away, and only for even $n$.",
+    "Draw the frame, place the sure clues, hang the chains, use 'not' clues last."
    ]
   },
   {
    "id": "linear-arrangement",
    "title": "Single-row arrangements",
-   "concept": "Everyone in one line, normally facing north. Vocabulary decoded:\n\n- **'k-th to the left/right of X'** — count k seats from X in that direction (k = 2 means one person in between).\n- **'immediate left/right / neighbour'** — adjacent seat, no gap.\n- **'between'** — anywhere strictly inside; **'immediately between'** — the very next seat on both sides is the named pair.\n- **'extreme end'** — first or last seat.\n\nBuild order: ends and middle seats → fixed-distance clues ('third to the right of…') → adjacency pairs → negative clues. If the same face direction confuses you, physically rotate your rough sketch so everyone 'faces' up; your left is then their left.",
+   "concept": "Everyone sits in one line, usually facing north. Number the seats from the west end and turn each clue into a small sum on seat numbers. Place the ends first, then the fixed distances, then the pairs. Use the 'not' clues last.",
    "formulas": [],
    "tricks": [
     {
-     "title": "Chain links, don't guess gaps",
-     "body": "'Second to the right of A' pins B exactly two seats from A — mark it with an arrow as soon as you read it. A puzzle of six clues usually has four such arrows; the picture completes itself.",
+     "title": "Chain links, do not guess gaps",
+     "body": "'Second to the right of A' pins B exactly two seats from A. Mark it with an arrow as soon as you read it. Most puzzles have four such arrows, and the picture then completes itself.",
      "example": {
-      "q": "**Q.** C sits third from the left; A sits second to the right of C; B is adjacent to both C and A.\n\n**Sol.** C at seat 3 → A at seat 5 → B must touch both → seat 4. One arrow each, done.",
-      "solution": "Every relative clue is an arrow of fixed length — draw all arrows before placing anyone optional."
+      "q": "In a row facing north, C sits third from the left. A sits second to the right of C. B sits next to both C and A. Where does B sit?",
+      "steps": [
+       "C = seat 3. A = seat 5.",
+       "B touches both, so B = seat 4."
+      ],
+      "answer": "Seat 4"
+     }
+    },
+    {
+     "title": "Turn the row to face up",
+     "body": "If the row faces south, redraw it from east to west. Now every person 'faces up' and left is your left. Use this drawing for the whole puzzle.",
+     "example": {
+      "q": "Three people sit in a row facing south. X is at the west end. Y is immediate left of X. Where is Y in the west-to-east numbering?",
+      "steps": [
+       "South-facing left is east.",
+       "Y = seat $1 + 1 = 2$."
+      ],
+      "answer": "Seat 2"
      }
     }
    ],
    "mistakes": [
-    "Counting 'second to the right' as one seat away.",
-    "Treating 'sits between' as 'immediately between'.",
-    "Missing that south-facing rows flip each person's left/right."
+    {
+     "wrong": "Mixing the flipped signs with a redrawn row.",
+     "right": "Pick one method for south-facing rows and use it to the end."
+    },
+    {
+     "wrong": "Guessing one case when a clue allows two.",
+     "right": "Draw both cases and carry them until a clue kills one."
+    },
+    {
+     "wrong": "Using $|a - b|$ as the number of people between.",
+     "right": "People between = $|a - b| - 1$."
+    },
+    {
+     "wrong": "Fixing Y and Z in order for 'immediately between'.",
+     "right": "Y and Z can be on either side until another clue decides."
+    },
+    {
+     "wrong": "Ignoring the negative clues at the end.",
+     "right": "In a nearly full row, one 'not' clue decides the last seats."
+    }
    ],
-   "notes": "### The frame\nNumber the seats 1 to n from the west (left) end for a north-facing row. Write the numbers under the boxes. Every clue then becomes a small equation on seat numbers, which is far safer than moving letters around in your head.\n\nFor north-facing people:\n- \"B is k-th to the right of A\" → B = A + k.\n- \"B is k-th to the left of A\" → B = A − k.\n- \"A is at an end\" → A = 1 or A = n.\n- \"p-th from the right end\" → seat n − p + 1.\n\nFor south-facing people the signs flip: \"k-th to the right\" → B = A − k.\n\n### Order of attack\n1. **Absolute clues** (ends, middle, \"third from the left\") go in first.\n2. **Distance clues attached to a placed person** come next. \"D is fourth to the right of C\" with C at seat 1 gives D = 5 straight away.\n3. **Floating chains.** If a clue links two people who are not yet placed, write the block (for example \"P _ Q\") on the side. Then slide it along the free seats to see where it fits.\n4. **Negative clues last.** \"Not at an end\", \"not a neighbour of\", \"not adjacent to\" usually leave exactly one case standing.\n\n### Worked example\nSeven people C, A, B, D, E, F, G sit in a row facing north. C sits at the left end. F is fourth to the right of C. A is second to the left of F. D sits immediately right of F. G is not at an end. B is a neighbour of C.\n- C = 1, F = 1 + 4 = 5, A = 5 − 2 = 3, D = 6.\n- B neighbours C, so B = 2.\n- Seats 4 and 7 remain for E and G. G is not at an end, so G = 4 and E = 7.\n- Row: C B A G F D E. Third to the right of A is seat 6 = D.\n\n### Case splitting\nWhen a clue allows two places (\"A sits at one of the ends\"), draw **two rows** side by side, one per case, and carry both until a clue breaks one. Never guess one case and hope. The typical exam puzzle leaves 2 cases after the first few clues and one negative clue settles it.\n\n### Blocks and gaps\n- \"X sits immediately between Y and Z\" makes a three-seat block, but Y and Z can be on either side. Keep both orders open unless another clue fixes them.\n- \"Exactly two people sit between A and B\" means |A − B| = 3. It does not tell you who is on the left.\n- A block of size k in a row of n has n − k + 1 possible starting seats. List them quickly and strike out the ones that clash.\n\n### Facing south\nIf everyone faces south, you can either use the flipped equations or draw the row from east to west so that the person's left becomes your left again. Choose one method and stick to it. Mixing them in the middle of a puzzle is the commonest source of a mirror-image answer.\n\n### Negative clues work hard\n\"D is not a neighbour of A\" looks weak, but in a nearly-full row it often removes a whole case. When two seats and two people are left, a single \"not at an end\" decides both.\n\n### Answering the question\nRead the question twice. \"Second to the right of W\" in a north-facing row is seat W + 2. \"How many people sit between F and E\" is |F − E| − 1, not |F − E|. The number of seats between two people and the number of people between them are the same only when the row is full.\n\n### Quick revision\n- North-facing: right = +k, left = −k on seat numbers. South-facing: signs flip.\n- Absolute clues → attached distances → floating blocks → negative clues.\n- Two possible places = two drawn rows; strike one out with a later clue.\n- \"Immediately between\" = a 3-block with the ends swappable.\n- People between = |a − b| − 1.\n",
+   "notes": "### The frame\nNumber the seats 1 to $n$ from the west end. Write the numbers under the boxes. Now every clue is a small sum, which is safer than moving letters in your head.\n\nFor a north-facing row:\n- \"B is $k$-th to the right of A\" gives B = A + $k$.\n- \"B is $k$-th to the left of A\" gives B = A $-$ $k$.\n- \"A is at an end\" gives A = 1 or A = $n$.\n- \"$p$-th from the right end\" gives seat $n - p + 1$.\n\nFor a south-facing row the signs flip. \"$k$-th to the right\" gives B = A $-$ $k$.\n\n### Order of attack\n1. **Absolute clues** go in first. Ends, the middle and \"third from the left\" need no guessing.\n2. **Distance clues** on a placed person come next. If C is seat 1, \"D is fourth to the right of C\" gives D = 5.\n3. **Floating chains** link two people not yet placed. Write the block, such as \"P _ Q\", on the side. Slide it along the free seats.\n4. **Negative clues** come last. \"Not at an end\" or \"not next to\" often leaves one case.\n\n> **Tip:** If a clue names a placed person, use it now. If it names two unplaced people, park it.\n\n### A full worked example\nSeven people C, A, B, D, E, F, G sit in a row facing north. C is at the left end. F is fourth to the right of C. A is second to the left of F. D is immediate right of F. G is not at an end. B is next to C.\n\n- C = 1. F = $1 + 4 = 5$. A = $5 - 2 = 3$. D = 6.\n- B is next to C, so B = 2.\n- Seats 4 and 7 remain for E and G. G is not at an end, so G = 4 and E = 7.\n- Row: C B A G F D E. Third to the right of A is seat 6, which is D.\n\n### Case splitting\nSometimes a clue allows two places, such as \"A sits at one end\". Draw two rows, one for each case. Carry both until a clue kills one.\n\n> **Watch:** Never guess one case and hope. A wrong guess costs a full redraw.\n\nA typical exam puzzle leaves two cases after the first clues. One negative clue then settles it.\n\n### Blocks and gaps\n- \"X sits immediately between Y and Z\" makes a three-seat block. Y and Z can be on either side. Keep both open.\n- \"Exactly two people sit between A and B\" means $|A - B| = 3$. It does not say who is on the left.\n- A block of size $k$ in a row of $n$ can start in $n - k + 1$ places. List them and strike out the clashes.\n\n### Facing south\nYou can use the flipped signs, or you can draw the row from east to west. Then a south-facing person's left is your left again. Pick one method and keep it to the end. Mixing the two gives a mirror answer.\n\n> **Note:** A negative clue is weak alone but strong late. With two seats and two people left, one \"not at an end\" decides both.\n",
    "patterns": [
     {
      "id": "st-p5",
      "name": "Ends and adjacency",
      "frequency": "very common",
-     "howToSpot": "Clues put people at the ends and name immediate neighbours.",
+     "howToSpot": "Clues put people at the ends and name their immediate neighbours.",
      "formula": null,
-     "logic": "Place the end people first, then hang immediate neighbours on them. The last one or two seats are settled by elimination.",
+     "steps": [
+      "Place the people at the ends first.",
+      "Place each named neighbour next to them.",
+      "List the free seats and the free people.",
+      "Use the 'not' clue to settle the last two."
+     ],
+     "why": "Ends and neighbours fix most of the row, so only a small choice is left.",
      "example": {
-      "q": "Five people face north. A and E sit at the ends, A not at the right end. B is immediately right of A and C immediately left of E. Who is second to the left of E?",
-      "solution": "A B _ C E; D takes seat 3. Second left of E (seat 5) is seat 3 = **D**."
+      "q": "Six people A to F sit in a row facing north. A is at the left end and B is immediate right of A. F is at the right end and E is immediate left of F. C is not next to B. Who sits third from the left?",
+      "steps": [
+       "A = seat 1, B = seat 2, F = seat 6, E = seat 5.",
+       "C and D take seats 3 and 4.",
+       "Seat 3 is next to B, so C = seat 4 and D = seat 3."
+      ],
+      "answer": "D"
      }
     },
     {
      "id": "st-p6",
      "name": "Fixed distance chains",
      "frequency": "very common",
-     "howToSpot": "Clues like 'F is fourth to the right of C', 'A is second to the left of F'.",
-     "formula": "right = +k, left = −k (north)",
-     "logic": "Turn each clue into seat arithmetic (+k right, −k left for north-facing) and follow the chain from the first fixed person.",
+     "howToSpot": "Clues like 'F is fourth to the right of C' and 'A is second to the left of F'.",
+     "formula": "\\text{right} = +k,\\ \\text{left} = -k \\ (\\text{north})",
+     "steps": [
+      "Start from the person who is already placed.",
+      "Add $k$ for right and subtract $k$ for left.",
+      "Place each new person and repeat."
+     ],
+     "why": "Every relative clue is an arrow of fixed length from a placed person.",
      "example": {
-      "q": "C at the left end of a 7-seat row; F fourth right of C; A second left of F. Where is A?",
-      "solution": "C = 1, F = 5, A = **3**."
+      "q": "Seven people C, A, B, D, E, F, G sit in a row facing north. C is at the left end. F is fourth to the right of C. A is second to the left of F. D is immediate right of F. G is not at an end. B is next to C. Who is third to the right of A?",
+      "steps": [
+       "C = 1, F = 5, A = 3, D = 6, B = 2.",
+       "E and G take seats 4 and 7. G is not at an end, so G = 4 and E = 7.",
+       "Third to the right of A is seat $3 + 3 = 6$."
+      ],
+      "answer": "D"
      }
     },
     {
      "id": "st-p7",
      "name": "South-facing rows",
      "frequency": "common",
-     "howToSpot": "All people in the row face south.",
-     "formula": "south: right = −k on west-to-east numbering",
-     "logic": "Flip the signs: k-th to the right = k seats towards the west. Or draw the row east-to-west so the person's left is your left.",
+     "howToSpot": "Everyone in the row faces south.",
+     "formula": "\\text{south: right} = -k \\text{ on west-to-east numbers}",
+     "steps": [
+      "Number the seats west to east.",
+      "For south-facing people, right is minus and left is plus.",
+      "Place the clues and read the question with the same rule."
+     ],
+     "why": "A south-facing person's hands are turned round, but the seat numbers are not.",
      "example": {
-      "q": "Five people face south. C is in the middle and A is second to the right of C. At which seat from the west is A?",
-      "solution": "Right of a south-facing person = west. A = 3 − 2 = seat **1** (the western end)."
+      "q": "Five people P, Q, R, S, T sit in a row facing south. P is at the east end. Q is second to the right of P. R is immediate left of Q. S is at the west end. Who is immediate left of S?",
+      "steps": [
+       "Seats 1 to 5 from the west. P = seat 5.",
+       "South-facing right is west, so Q = $5 - 2 = 3$.",
+       "South-facing left is east, so R = 4. S = 1, T = 2.",
+       "Immediate left of S is seat $1 + 1 = 2$."
+      ],
+      "answer": "T"
      }
     },
     {
      "id": "st-p8",
      "name": "Negative clues settle the case",
-     "frequency": "common",
-     "howToSpot": "Clues say 'not at an end', 'not adjacent to', 'not a neighbour of'.",
+     "frequency": "very common",
+     "howToSpot": "Clues say 'not at an end', 'not adjacent to' or 'not a neighbour of'.",
      "formula": null,
-     "logic": "Place positive clues first, keep all cases open, then apply each 'not' clue to strike cases out. The last two seats are almost always decided by one such clue.",
+     "steps": [
+      "Place every positive clue first.",
+      "List the free seats for each person.",
+      "Cross out the seats that a negative clue forbids.",
+      "Fill the person with one seat left, and repeat."
+     ],
+     "why": "Each 'not' clue removes seats, so the last person has only one place.",
      "example": {
-      "q": "Five people face north. B at the right end, C second left of B, A not at an end, D not adjacent to C, E not adjacent to B. Who is immediately right of C?",
-      "solution": "B = 5, C = 3. Left: 1, 2, 4. D not next to C → D = 1. E not next to B → E = 2. A = 4. Right of C = **A**."
+      "q": "Five people A to E sit in a row facing north. A is in the middle. B is second to the right of A. C is not at an end. D is not next to A. E is not next to B. Who is immediate right of A?",
+      "steps": [
+       "A = seat 3, B = seat 5. Free seats: 1, 2, 4.",
+       "D is not next to A, so D = seat 1.",
+       "E is not next to B, so E is not seat 4. E = seat 2.",
+       "C is left with seat 4, which is not an end."
+      ],
+      "answer": "C"
+     }
+    },
+    {
+     "id": "st-p18",
+     "name": "Blocks and exact gaps",
+     "frequency": "common",
+     "howToSpot": "Clues say 'exactly two people between A and B' or name a pair that sits together.",
+     "formula": "|a - b| = k + 1",
+     "steps": [
+      "Turn 'k people between' into a seat difference of $k + 1$.",
+      "Try both sides if the clue does not name one.",
+      "Place the block and strike out the clashes."
+     ],
+     "why": "A gap clue fixes the distance but not the side, so test both.",
+     "example": {
+      "q": "Six people A to F sit in a row facing north. A is at the left end. Exactly two people sit between A and B. C is immediate right of B. E is immediate left of B. D is immediate right of A. Who sits at the right end?",
+      "steps": [
+       "A = seat 1. Two between A and B gives B = seat 4.",
+       "C = seat 5. E = seat 3. D = seat 2.",
+       "The last person, F, takes seat 6."
+      ],
+      "answer": "F"
      }
     }
+   ],
+   "revision": [
+    "North-facing: right is $+k$, left is $-k$. South-facing: the signs flip.",
+    "Order: absolute clues, distances, floating blocks, negative clues.",
+    "Two possible places means two drawn rows.",
+    "'Immediately between' is a 3-block with the ends swappable.",
+    "$k$ people between means a seat gap of $k + 1$."
    ]
   },
   {
    "id": "circular-arrangement",
    "title": "Round-table arrangements",
-   "concept": "For people facing the centre (the default), fix the geometry once: **left neighbour = clockwise, right neighbour = anticlockwise.** 'Opposite' exists only for an even number of people: seat i is opposite seat i + n/2.\n\nRotation is the puzzle-setter's freedom: clues never tell you 'seat 1', so start by placing any one person anywhere and build the circle around them — every other clue is relative to people, not seats. Facing-outward variants flip left/right; mixed facing ('A faces centre, B faces outward') is rare in CGL and usually restricted to 4–5 people.",
+   "concept": "Around a table a circle has no first seat, so fix one person first. Facing the centre, your left neighbour is the next person clockwise. Opposite seats exist only for an even number of people, and they fix a seat at once.",
    "formulas": [],
    "tricks": [
     {
      "title": "Walk the circle in one direction",
-     "body": "Take the longest adjacency chain and lay it out clockwise without thinking: 'D is to the immediate left of B, C to the immediate left of D, E to the immediate left of C' is just the clockwise string B → D → C → E. Close the loop with the last clue.",
+     "body": "Take the longest chain of 'immediate left' clues and lay it out clockwise. Close the loop with the last clue.",
      "example": {
-      "q": "**Q.** Facing centre: A is to the immediate right of B; D to the immediate left of B; C to the immediate left of D; E to the immediate left of C.\n\n**Sol.** Left-walk from B: B, D, C, E, and A sits at B's right — the string closes as B D C E (A) — fully forced.",
-      "solution": "'Immediate left' chains concatenate into one clockwise string — walk it instead of solving seat by seat."
+      "q": "Facing the centre, D is immediate left of B. C is immediate left of D. E is immediate left of C. Write the clockwise string.",
+      "steps": [
+       "Immediate left means the next seat clockwise.",
+       "Start at B: B, D, C, E."
+      ],
+      "answer": "B, D, C, E clockwise"
+     }
+    },
+    {
+     "title": "Convert left to right around a circle",
+     "body": "In a circle of $n$, the $k$-th to the left is the same person as the $(n - k)$-th to the right. Use the smaller number to save steps.",
+     "example": {
+      "q": "In a circle of 8, who is seventh to the left of A in terms of a shorter walk to the right?",
+      "steps": [
+       "$8 - 7 = 1$.",
+       "Seventh to the left equals first to the right."
+      ],
+      "answer": "The immediate right neighbour of A"
      }
     }
    ],
    "mistakes": [
-    "Using clockwise as the right-hand side for centre-facing people — it is the left.",
-    "Hunting for an 'opposite' person at an odd-sized table.",
-    "Placing people by seat numbers instead of relative to a fixed anchor."
+    {
+     "wrong": "Fixing every seat number before placing anyone.",
+     "right": "Fix only the first person. Number the rest from there."
+    },
+    {
+     "wrong": "Reading left as anticlockwise while facing the centre.",
+     "right": "Facing the centre, left is clockwise."
+    },
+    {
+     "wrong": "Looking for an opposite person at an odd table.",
+     "right": "Opposite exists only for an even number of seats."
+    },
+    {
+     "wrong": "Reading a clue from the wrong person's facing in mixed rows.",
+     "right": "Read each clue from the named person's own facing."
+    },
+    {
+     "wrong": "Fixing which side a neighbour sits on too early.",
+     "right": "'Next to' allows two sides. Keep both until a clue decides."
+    }
    ],
-   "notes": "### Fixing a circle\nA circle has no first seat, so every arrangement can be rotated. Remove that freedom at once: put the first person named in a clue at the top of the circle. Now every other seat is fixed relative to that person.\n\nMark the direction on your drawing:\n- **Facing the centre:** left neighbour = clockwise, right neighbour = anticlockwise.\n- **Facing outward:** left neighbour = anticlockwise, right neighbour = clockwise.\n\nA quick check: stand at the bottom of the circle facing the centre (north). Your left hand points west. Moving from the bottom towards the west side is the clockwise direction when the circle is seen from above.\n\n### Opposite seats\nWith n seats (n even), the person opposite X is n ÷ 2 places away. In a circle of 6 it is 3 places, in a circle of 8 it is 4 places. \"Opposite\" clues are the strongest clues in a circle because they fix a seat exactly. Place them before \"left\" and \"right\" clues whenever you can.\n\nWith an odd number of seats there is no opposite. If a question with 5 or 7 people asks who is opposite someone, re-read it: it is probably a mistake of reading, not a trick.\n\n### Counting both ways\nIn a circle there are two paths between any two people. \"How many people sit between A and D?\" usually means **along the shorter side**, or the question says \"counting clockwise from A\". In a circle of n, if D is k-th to the left of A, D is also (n − k)-th to the right of A.\n\n### Worked example\nEight people A to H sit around a circle facing the centre. A sits opposite E. B is second to the right of A. F sits opposite B. C sits immediately left of E. D sits opposite C. G is not a neighbour of A.\n- Put A at seat 0 and number seats 0 to 7 clockwise. E = 4 (opposite).\n- Facing centre, right = anticlockwise. B = second right of A = seat 6. F = seat 2.\n- C = immediate left of E = seat 5 (clockwise from 4). D = opposite C = seat 1.\n- Seats 3 and 7 remain for G and H. Seat 7 neighbours A, so G = 3 and H = 7.\n- Third to the left of H: 7 → 0 → 1 → 2, so it is F.\n\n### Outward and mixed facing\nIf everyone faces outward, just swap the rule: left = anticlockwise. If some face the centre and some face outward, write a small arrow at each person as soon as you place them, and read each clue from **that person's** own direction. \"Q is immediately right of P\" depends on how P faces, not how Q faces.\n\n### Neighbour clues\n- \"X is a neighbour of Y\" or \"X sits next to Y\" does not tell you which side. Keep both until another clue decides.\n- \"X sits between Y and Z\" in a circle normally means immediately between.\n- \"Y and Z are not neighbours\" is the most useful clue for the last two seats.\n\n### Couples and attributes\nSome circle puzzles add a second layer: couples, colours, cities or professions. Solve the seats first with the position clues. Then fill the attribute grid, one row per person. The attribute clues that name a seat relation (\"the person who likes red sits opposite B\") should be applied only after the seats are fixed.\n\n### Quick revision\n- Fix the first person at the top; the circle cannot rotate after that.\n- Facing centre: left = clockwise. Facing outward: left = anticlockwise.\n- Opposite = n ÷ 2 places away; place opposite clues first.\n- k-th left = (n − k)-th right in a circle of n.\n- Mixed facing: read each clue from the named person's own direction.\n",
+   "notes": "### Fixing a circle\nA circle can be rotated, so it has no first seat. Remove that freedom at once. Put the first named person at the top. Now every other seat is fixed by that person.\n\nMark the direction on your drawing.\n- **Facing the centre:** left neighbour = clockwise. Right neighbour = anticlockwise.\n- **Facing outward:** left neighbour = anticlockwise. Right neighbour = clockwise.\n\n> **Tip:** Stand at the bottom of the circle, facing the centre. Your left hand points west. Going from the bottom to the west is clockwise from above.\n\n### Opposite seats\nWith $n$ seats and $n$ even, the person opposite X is $\\dfrac{n}{2}$ places away. That is 3 places in a circle of 6, and 4 places in a circle of 8.\n\nOpposite clues are the strongest clues in a circle, because they fix a seat exactly. Place them before any left or right clue.\n\nAn odd table has no opposite. If a question asks about one, read the puzzle again.\n\n### Counting both ways\nTwo paths join any two people around a circle. So \"how many sit between A and D\" needs care. It usually means the shorter side, or the puzzle names the direction.\n\nIf D is $k$-th to the left of A, D is also $(n - k)$-th to the right of A.\n\n### A worked example\nEight people A to H sit around a table facing the centre. A sits opposite E. B is second to the right of A. F sits opposite B. C is immediate left of E. D sits opposite C. G is not a neighbour of A.\n\n- A = seat 0. Number clockwise from 0 to 7. E = seat 4.\n- Right is anticlockwise. B = seat 6. F = seat 2.\n- C = immediate left of E = seat 5. D = seat 1.\n- Seats 3 and 7 remain for G and H. Seat 7 is next to A, so G = 3 and H = 7.\n- Third to the left of H: $7 \\to 0 \\to 1 \\to 2$. That is F.\n\n### Outward and mixed facing\nIf everyone faces outward, swap the rule. Left is anticlockwise. If some face the centre and some face outward, draw a small arrow at each person when you place them.\n\n> **Watch:** \"Q is immediate right of P\" depends on how P faces, not on how Q faces.\n\n### Neighbour clues\n- \"X is next to Y\" does not say which side. Keep both until another clue decides.\n- \"X sits between Y and Z\" in a circle usually means immediately between.\n- \"Y and Z are not neighbours\" is the best clue for the last two seats.\n\n### Couples and attributes\nSome puzzles add couples, colours or jobs. Fix the seats first, using the position clues. Then fill an attribute grid, one row per person.\n\n### Check with a loop\nWhen the circle is full, walk the left neighbours from any person. You should return to the start after exactly $n$ steps. If you do not, one arrow was drawn backwards. Fix it before you read the questions.\n",
    "patterns": [
     {
      "id": "st-p9",
      "name": "Chains around a circle facing the centre",
      "frequency": "very common",
-     "howToSpot": "Clues link neighbours ('A is immediately left of B', 'D is second right of B').",
-     "formula": "left = clockwise (facing centre)",
-     "logic": "Fix one person, then walk clockwise for 'left' and anticlockwise for 'right'. Fill the remaining seat last.",
+     "howToSpot": "Clues link neighbours, such as 'A is immediate left of B' and 'D is second right of B'.",
+     "formula": "\\text{left} = \\text{clockwise (facing centre)}",
+     "steps": [
+      "Put the first named person at the top.",
+      "Follow each 'immediate left' clue clockwise.",
+      "Follow each 'right' clue anticlockwise.",
+      "Check that the string closes into a loop."
+     ],
+     "why": "Left chains join into one clockwise string, so the circle builds itself.",
      "example": {
-      "q": "Five people face the centre. A is immediately left of B, C is immediately left of A, D is immediately right of B. Who is immediately right of D?",
-      "solution": "Clockwise from B: A, C. Anticlockwise from B: D. Five seats → clockwise B A C E D. Right of D (anticlockwise) is **E**."
+      "q": "Five people sit around a table facing the centre. A is immediate right of B. D is immediate left of B. C is immediate left of D. E is immediate left of C. Who is second to the right of D?",
+      "steps": [
+       "B = seat 0. D = seat 1 (left of B). C = seat 2. E = seat 3.",
+       "A is immediate right of B, so A = seat 4. The loop closes at E.",
+       "Second to the right of D is seat $1 - 2 = 4$."
+      ],
+      "answer": "A"
      }
     },
     {
      "id": "st-p10",
      "name": "Opposite pairs",
      "frequency": "very common",
-     "howToSpot": "Even number of seats with 'sits opposite' clues.",
-     "formula": "opposite = n/2 places",
-     "logic": "Opposite = n ÷ 2 places away. Place all opposite pairs first; they pin seats exactly.",
+     "howToSpot": "An even number of seats with 'sits opposite' clues.",
+     "formula": "\\text{opposite} = \\dfrac{n}{2}\\text{ places}",
+     "steps": [
+      "Place every opposite pair as two seats across the table.",
+      "Add the left and right clues from a placed person.",
+      "Fill the last seats with the 'not' clue."
+     ],
+     "why": "An opposite clue fixes a seat exactly, so it needs no guessing.",
      "example": {
-      "q": "Six people face the centre. A opposite B, C opposite D, E immediately left of A, C immediately left of E. Who is second to the left of F?",
-      "solution": "Clockwise from A: A E C B F D. Second left of F: F → D → **A**."
+      "q": "Eight people A to H sit around a table facing the centre. A sits opposite E. B is second to the right of A. F sits opposite B. C is immediate left of E. D sits opposite C. G is not a neighbour of A. Who is third to the left of H?",
+      "steps": [
+       "A = seat 0, E = seat 4. B = seat 6, F = seat 2.",
+       "C = seat 5, D = seat 1.",
+       "G and H take seats 3 and 7. Seat 7 is next to A, so H = 7.",
+       "Third to the left of H: $7 + 3 = 10$, which is seat 2."
+      ],
+      "answer": "F"
      }
     },
     {
@@ -221,11 +491,21 @@
      "name": "Facing outward",
      "frequency": "common",
      "howToSpot": "Everyone faces away from the centre.",
-     "formula": null,
-     "logic": "Left = anticlockwise, right = clockwise. Write this on the frame before starting.",
+     "formula": "\\text{outward: left} = \\text{anticlockwise}",
+     "steps": [
+      "Swap the rule: left is anticlockwise and right is clockwise.",
+      "Place the first person at the top.",
+      "Follow each clue with the swapped rule."
+     ],
+     "why": "Turning around turns the hands around, so clockwise and anticlockwise swap.",
      "example": {
-      "q": "Five people face outward. C is second to the right of A. Moving clockwise from A, where is C?",
-      "solution": "Outward: right = clockwise. C is **two seats clockwise** from A."
+      "q": "Six people A to F sit around a table facing outward. B is immediate left of A. C is second to the right of A. D sits opposite A. E is immediate right of D. Who is immediate right of A?",
+      "steps": [
+       "A = seat 0, numbered clockwise. Facing outward, left is $-1$ and right is $+1$.",
+       "B = seat 5. C = seat 2. D = seat 3. E = seat 4.",
+       "F takes seat 1. Immediate right of A is seat 1."
+      ],
+      "answer": "F"
      }
     },
     {
@@ -234,70 +514,172 @@
      "frequency": "occasional",
      "howToSpot": "Some people face the centre and some face outward.",
      "formula": null,
-     "logic": "Mark an arrow at each person. Read every clue from the named person's own direction.",
+     "steps": [
+      "Write each person's facing when you place them.",
+      "Read each clue from the named person's own facing.",
+      "Place the next person only after that."
+     ],
+     "why": "A clue is read from the person it names, so the facing of that person decides the side.",
      "example": {
-      "q": "In a circle of 4, A faces the centre and B faces outward. B is immediately left of A. Where is B?",
-      "solution": "A faces the centre, so A's left is clockwise: B is one seat **clockwise** from A."
+      "q": "Four people sit around a table. A faces the centre. B faces outward. B sits immediate left of A. C sits immediate right of B. Who is immediate right of A?",
+      "steps": [
+       "A = seat 0. A faces the centre, so left is clockwise. B = seat 1.",
+       "B faces outward, so right is clockwise. C = seat 2.",
+       "D takes seat 3. A's right (facing the centre) is seat 3."
+      ],
+      "answer": "D"
+     }
+    },
+    {
+     "id": "st-p19",
+     "name": "Neighbour clues with two sides",
+     "frequency": "common",
+     "howToSpot": "Clues say 'X and Y are neighbours of A' without a side.",
+     "formula": null,
+     "steps": [
+      "Put the two neighbours on both sides of A.",
+      "Try both orders.",
+      "Use the next clue to kill the order that breaks a seat."
+     ],
+     "why": "'Next to' allows two sides, and the later clue picks the right one.",
+     "example": {
+      "q": "Six people A to F sit around a table facing the centre. B and C are the two neighbours of A. D sits opposite A. E is immediate left of B. Who sits opposite C?",
+      "steps": [
+       "A = seat 0. B and C take seats 1 and 5.",
+       "If B = 5, E would be seat 0. That is A's seat, so B = 1, E = 2, C = 5.",
+       "D = seat 3. Opposite C is seat $5 + 3 = 8$, which is seat 2."
+      ],
+      "answer": "E"
      }
     }
+   ],
+   "revision": [
+    "Fix the first person at the top of the circle.",
+    "Facing the centre: left is clockwise. Facing outward: left is anticlockwise.",
+    "Opposite is $\\dfrac{n}{2}$ places away, and only for even $n$.",
+    "$k$-th left is the same as the $(n - k)$-th right.",
+    "Mixed facing: read each clue from the named person."
    ]
   },
   {
    "id": "puzzle-strategy",
    "title": "Exam strategy for puzzles",
-   "concept": "Seating questions come in sets of 3–5 sharing one puzzle. Budget rules:\n\n- **Read all clues before drawing anything.** Negative clues ('Q does not face the centre') often decide the last seat instantly.\n- **Solve once, answer many.** The first question costs 90–120 seconds; questions 2–4 of the same puzzle cost 15–20 seconds each because the seating is already on paper.\n- **Skip cleanly.** If after one full pass the seating still has two live configurations, park the set and return — CGL reasoning has cheaper marks elsewhere.\n- **Verify with one closed loop:** walk left-neighbour links around your final circle; if the string doesn't close, an arrow was drawn backwards.",
+   "concept": "Seating questions come in sets that share one puzzle. Solve the whole seating once, write it neatly, and then each question is a quick lookup. Two rows, counting arrangements and attribute grids are the other forms you will meet.",
    "formulas": [],
    "tricks": [
     {
-     "title": "Two-configuration bail-out",
-     "body": "When exactly two seatings survive all clues, check what the QUESTION asks: if both configurations give the same answer, mark it and move on — you never needed the extra clue you thought was missing.",
+     "title": "Two-seating bail-out",
+     "body": "When exactly two seatings survive, check what the question asks. If both give the same answer, mark it and move on.",
      "example": {
-      "q": "**Q.** After all clues, A and B could swap (seats 2/3). Question: who is opposite E?\n\n**Sol.** If A/B's two seats are both on the same side, the seat opposite E is unchanged — answer stands either way.",
-      "solution": "The question only needs the asked seat, not the full unique seating."
+      "q": "After all clues, A and B could swap seats 1 and 2. Who sits at the east end?",
+      "steps": [
+       "The swap touches only seats 1 and 2.",
+       "The east end is not in the swap."
+      ],
+      "answer": "The east-end person is the same either way"
+     }
+    },
+    {
+     "title": "Verify with one closed loop",
+     "body": "In a circle, walk the left-neighbour links around your final drawing. If the string does not close, one arrow was drawn backwards.",
+     "example": {
+      "q": "Facing the centre, the left chain is B, D, C, E and A is the immediate right of B. Does the loop close?",
+      "steps": [
+       "A is right of B, so A is just before B clockwise.",
+       "The chain goes B, D, C, E, A and back to B."
+      ],
+      "answer": "Yes, it closes"
      }
     }
    ],
    "mistakes": [
-    "Restarting the sketch for every question in the set instead of reusing it.",
-    "Spending 3+ minutes hoping a fifth re-read reveals a clue that isn't there.",
-    "Answering from a partial sketch without checking the remaining clues still hold."
+    {
+     "wrong": "Answering from a rough half-drawn seating.",
+     "right": "Write the final seating neatly before you read the questions."
+    },
+    {
+     "wrong": "Swapping more people than the question names.",
+     "right": "Swap only the two named people."
+    },
+    {
+     "wrong": "Using $n!$ for a circle.",
+     "right": "A circle with rotations equal gives $(n - 1)!$."
+    },
+    {
+     "wrong": "Tying an attribute to a name before a clue joins them.",
+     "right": "Fix seats first. Join an attribute to a name only with a clue."
+    },
+    {
+     "wrong": "Spending long on a set with two live seatings.",
+     "right": "Check if the question needs the full seating. If not, move on."
+    }
    ],
-   "notes": "### How seating sets appear in exams\nSeating questions come in sets of 3 to 5 questions on one puzzle. The first question takes the time; the others should take 10 to 20 seconds each if the puzzle is solved fully. So the real skill is solving the whole arrangement once and cleanly.\n\n### Budget and order\n1. **Read every clue once before drawing.** Count the people and seats. Note the facing direction. Look for clues that fix a seat outright.\n2. **Build the frame** (row, circle or two rows) and write the direction on it.\n3. **Place fixed clues, then chains, then negative clues.**\n4. **Write the final arrangement neatly** before reading the questions. Most wrong answers in a set come from answering off a half-finished rough drawing.\n\n### Two parallel rows\nTwo rows of m people face each other: row 1 faces south, row 2 faces north. The person at seat i of row 1 faces the person at seat i of row 2.\n- A south-facing person's left is the east end. So \"A is to the immediate right of B\" in the south-facing row means A is one seat west of B.\n- \"P faces A\" links the two rows directly: P and A share the same seat number.\n- The two ends of both rows line up. \"Sits at an end\" in either row means seat 1 or seat m.\n\n### Solve once, answer many\nTypical follow-up questions:\n- **Who sits k-th left/right of X** — read off the final drawing.\n- **Which statement is true** — check each option against the drawing; exactly one should match.\n- **If X and Y interchange seats** — swap only those two, keep everyone else, then read the new neighbour.\n- **Odd one out** — four pairs of people; three share a relation (say, both at ends or both second to the right), one does not.\n\n### Counting arrangements\nA few questions ask \"in how many ways\" instead of \"who\".\n- n people in a row: n! ways. With A and B together: treat AB as one block, (n − 1)! × 2.\n- n people in a circle (rotations counted as the same): (n − 1)! ways.\n- Fixed clues cut the count: each fixed seat removes a person and a seat from the free pool.\n- Always list small cases if the numbers are small; it is quick and it catches double counting.\n\n### Attribute grids\nWhen each person also has a drink, city, colour or job, draw a grid: people down the side, seat and attribute across the top. Each clue either fixes a cell or rules one out. Seat clues and attribute clues work together: \"the tea drinker sits at the left end\" tells you the seat of the tea drinker, not the name. Tie the attribute to a name only when another clue joins them.\n\n### Where time is lost\n- Mirror images: reading a south-facing left as your own left.\n- Assuming \"between\" means \"immediately between\".\n- Forgetting that \"neighbour\" allows two sides.\n- Treating \"k-th to the left\" as k people in between (it is k − 1).\n- Answering from a case that a later clue had already struck out.\n\n### Quick revision\n- Read all clues, build the frame with the facing direction, then fill.\n- Two rows: seat i of the south row faces seat i of the north row; south-facing left is east.\n- Solve fully once; then each follow-up is a 15-second lookup.\n- Circle of n: (n − 1)! arrangements; row: n!; a block of 2: (n − 1)! × 2 in a row.\n- Attribute grid: people × (seat, attribute); fix names only when a clue joins them.\n",
+   "notes": "### How seating sets appear\nA set has three to five questions on one puzzle. The first question takes the time. The others should take 10 to 20 seconds if the seating is fully solved.\n\nSo the real skill is to solve the whole arrangement once, cleanly.\n\n### Budget and order\n1. **Read every clue once before you draw.** Count the people and the seats. Note the facing direction. Look for clues that fix a seat outright.\n2. **Build the frame** and write the direction on it.\n3. **Place fixed clues, then chains, then negative clues.**\n4. **Write the final seating neatly** before you read the questions.\n\n> **Tip:** Most wrong answers in a set come from reading a half-finished rough drawing.\n\n### Two parallel rows\nTwo rows face each other. Row 1 faces south. Row 2 faces north. Seat $i$ of row 1 faces seat $i$ of row 2.\n\n- A south-facing person's left is the east end. \"A is immediate right of B\" in the south row means A is one seat west of B.\n- \"P faces A\" joins the two rows. P and A have the same seat number.\n- Both rows share the same ends.\n\n### Solve once, answer many\nThe follow-up questions are of a few kinds.\n- **Who sits $k$-th left or right of X:** read the drawing.\n- **Which statement is true:** test each option on the drawing.\n- **X and Y interchange seats:** swap only those two, then read again.\n- **Odd one out:** three pairs share a relation and one does not.\n\n### Counting arrangements\nSome questions ask \"in how many ways\".\n- $n$ people in a row: $n!$ ways.\n- Two people who must sit together: treat them as one block, $(n - 1)! \\times 2$.\n- $n$ people around a circle, with rotations counted as the same: $(n - 1)!$.\n- Each fixed seat removes one person and one seat from the free pool.\n\n> **Rule:** For small numbers, list the cases. It is fast and it catches double counting.\n\n### Attribute grids\nEach person may also have a drink, city or job. Draw a grid with people down the side and seat plus attribute across the top. Each clue either fixes a cell or rules one out.\n\n\"The tea drinker sits at the left end\" fixes the seat of the tea drinker, not the name. Tie a name to an attribute only when another clue joins them.\n\n### When to skip\nGive one full pass to each set. If two seatings are still alive after every clue, look at the questions. If they need the exact seating, park the set. Come back if time is left, because other questions give marks more cheaply.\n\n### Where time is lost\n- Reading a south-facing left as your own left.\n- Taking 'between' to mean 'immediately between'.\n- Forgetting that 'neighbour' allows two sides.\n- Answering from a case that a later clue already struck out.\n",
    "patterns": [
     {
      "id": "st-p13",
      "name": "Two parallel rows facing each other",
-     "frequency": "very common",
-     "howToSpot": "Two rows; one faces north, the other south; 'X faces Y' clues.",
+     "frequency": "common",
+     "howToSpot": "Two rows sit facing each other. One faces north, the other south, and clues say 'X faces Y'.",
      "formula": null,
-     "logic": "Seat i of the south-facing row faces seat i of the north-facing row. South-facing left = east. Use 'faces' clues to jump between rows.",
+     "steps": [
+      "Draw two rows and write the facing on each.",
+      "Solve each row with its own left and right rule.",
+      "Join the rows with 'faces' clues at equal seat numbers."
+     ],
+     "why": "Seat $i$ faces seat $i$, so one solved row fixes the other.",
      "example": {
-      "q": "Row 1 (A, B, C) faces south, row 2 (P, Q, R) faces north. B is in the middle of row 1, A immediately right of B, R faces A. Q is not at an end. Who faces P?",
-      "solution": "B = 2, A = 1 (right of south-facing = west). R = 1, Q = 2, P = 3. Seat 3 of row 1 is **C**."
+      "q": "Row 1 has A, B, C, D facing south. Row 2 has P, Q, R, S facing north. In row 1, C is immediate right of B, D is at the east end, and A is not at an end. In row 2, P faces C, R is immediate right of P, and S faces A. Who faces D?",
+      "steps": [
+       "Row 1: D = seat 4. C is immediate right of B, so C is one seat west of B.",
+       "A is not at an end, so A = 3, B = 2, C = 1. Row 1 is C B A D.",
+       "Row 2: P = seat 1. R = seat 2. S faces A, so S = seat 3. Q = seat 4.",
+       "D is seat 4, so the person facing D is Q."
+      ],
+      "answer": "Q"
      }
     },
     {
      "id": "st-p14",
      "name": "Solve once, answer many",
      "frequency": "very common",
-     "howToSpot": "A set of questions: true statement, interchange, odd one out.",
+     "howToSpot": "A set of questions asks for a true statement, an interchange or an odd one out.",
      "formula": null,
-     "logic": "Finish the whole arrangement neatly first. Then check each option against the final drawing; for 'interchange' swap only the two named people.",
+     "steps": [
+      "Write the final seating neatly.",
+      "For an interchange, swap only the two named people.",
+      "Read each question off the new drawing."
+     ],
+     "why": "One clean seating answers every question in the set.",
      "example": {
-      "q": "Five people face north: P Q R T S. If P and T swap seats, who is immediately left of P?",
-      "solution": "After the swap: T Q R P S. Left of P = **R**."
+      "q": "The final row is D E A C B from the west. If C and E interchange seats, who sits immediate right of A?",
+      "steps": [
+       "Swap C and E: the row becomes D C A E B.",
+       "The immediate right of A (facing north) is the next seat east."
+      ],
+      "answer": "E"
      }
     },
     {
      "id": "st-p15",
      "name": "Counting arrangements",
      "frequency": "occasional",
-     "howToSpot": "Asks 'in how many ways' instead of 'who'.",
-     "formula": "row n!, circle (n − 1)!",
-     "logic": "Row: n!. Circle: (n − 1)!. A block of two in a row: (n − 1)! × 2. Remove every fixed person and seat before counting.",
+     "howToSpot": "The question asks 'in how many ways' instead of 'who'.",
+     "formula": "n!,\\quad (n-1)!",
+     "steps": [
+      "Decide if it is a row or a circle.",
+      "Glue any pair who must sit together into one block.",
+      "Count blocks, multiply, and then multiply by the order inside the block."
+     ],
+     "why": "Choices are counted seat by seat, so each fixed group behaves as one unit.",
      "example": {
-      "q": "In how many ways can 4 people sit in a row if A and B must sit together?",
-      "solution": "Block AB: 3! × 2 = **12**."
+      "q": "In how many ways can 5 people sit in a row if A and B must always sit together?",
+      "steps": [
+       "Treat AB as one block. With 3 other people there are 4 units.",
+       "Units can be arranged in $4! = 24$ ways.",
+       "A and B can swap inside the block: $24 \\times 2 = 48$."
+      ],
+      "answer": "48"
      }
     },
     {
@@ -306,12 +688,51 @@
      "frequency": "common",
      "howToSpot": "Each person also has a drink, colour, city or job.",
      "formula": null,
-     "logic": "Grid: people down, seat and attribute across. Fix seats first; join attribute to name only when a clue links them.",
+     "steps": [
+      "Draw a grid with people, seat and attribute.",
+      "Fix the seats first from the seat clues.",
+      "Tie each attribute to a name only when a clue joins them."
+     ],
+     "why": "Seat clues and attribute clues work on different rows of the grid, and one name joins them.",
      "example": {
-      "q": "Four people in a row: A at the left end drinks something; the milk drinker sits immediately right of A; C drinks juice at the right end; B drinks coffee. What does A drink?",
-      "solution": "Milk is seat 2 (not A); juice is C, coffee is B. A drinks **tea**."
+      "q": "Four people A, B, C, D sit in a row facing north. A is at the east end and B is immediate left of A. The tea drinker is at the west end. The milk drinker is immediate right of the tea drinker. C drinks milk. A drinks water. Who drinks juice?",
+      "steps": [
+       "A = seat 4, B = seat 3. C and D take seats 1 and 2.",
+       "Tea is at seat 1 and milk is at seat 2. C drinks milk, so C = seat 2 and D = seat 1 (tea).",
+       "A drinks water, so B drinks juice."
+      ],
+      "answer": "B"
+     }
+    },
+    {
+     "id": "st-p20",
+     "name": "Two seatings survive",
+     "frequency": "occasional",
+     "howToSpot": "After all the clues, two seatings remain. Check what the question asks.",
+     "formula": null,
+     "steps": [
+      "List the two seatings that survive.",
+      "Read the asked seat in both.",
+      "If both give the same person, mark it and move on."
+     ],
+     "why": "The question needs one seat, not the full unique seating.",
+     "example": {
+      "q": "Five people A to E sit in a row facing north. A is in the middle. E is at the east end. D is immediate left of E. B and C fill the other seats in any order. Who sits immediate right of A?",
+      "steps": [
+       "A = seat 3, E = seat 5, D = seat 4.",
+       "B and C take seats 1 and 2 in either order.",
+       "Immediate right of A is seat 4 in both cases."
+      ],
+      "answer": "D"
      }
     }
+   ],
+   "revision": [
+    "Read all clues, build the frame with its facing, then fill.",
+    "Two rows: seat $i$ of the south row faces seat $i$ of the north row.",
+    "Solve fully once. Each follow-up is a 15-second lookup.",
+    "Row: $n!$. Circle: $(n - 1)!$. Row with a pair together: $(n - 1)! \\times 2$.",
+    "Attribute grid: fix seats, then tie names to attributes."
    ]
   }
  ],

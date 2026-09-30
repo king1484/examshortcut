@@ -13,7 +13,7 @@
   {
    "id": "rp-basics",
    "title": "Ratio basics & dividing amounts",
-   "concept": "A ratio $a : b$ compares two quantities of the same kind. Multiplying/dividing both terms by the same number does not change it — $2:3 = 8:12$. Write every ratio as a fraction to compare or compute.\n\n**Dividing an amount N in the ratio $a : b : c$:** the shares are $\\frac{a}{a+b+c}N$, $\\frac{b}{a+b+c}N$, $\\frac{c}{a+b+c}N$.\n\n**Combining ratios:** given A : B and B : C, scale both so the B-parts match (use the LCM of the two B values).\n\n**Comparing two ratios** $a : b$ and $c : d$: compare the products $ad$ and $bc$ (cross-multiplication).\n\n**Proportional parts language:** if a number is divided so that one share exceeds another by k, work with the multiplier: shares $= ax, bx$ with $(b-a)x = k$.",
+   "concept": "A ratio $a : b$ compares two quantities of the same kind. Scaling both terms by the same number leaves it unchanged: $2:3 = 8:12$.\n\nWrite the quantities as $ax$ and $bx$. The multiplier $x$ turns every extra fact — sum, difference, product — into a small equation.",
    "formulas": [
     {
      "name": "Share of the total",
@@ -38,48 +38,86 @@
    ],
    "tricks": [
     {
-     "title": "Multiplier x solves everything",
-     "body": "Translate 'numbers are in ratio a : b' into ax and bx. Every extra fact (sum, difference, product) becomes a small linear equation in x.",
+     "title": "x solves everything",
+     "body": "Translate 'ratio a : b' into ax and bx. Every extra fact becomes one small equation in x.",
      "example": {
       "q": "Two numbers are in the ratio 5 : 7 and their difference is 12. Find their sum.",
-      "solution": "Numbers are 5x and 7x; 2x = 12 ⇒ x = 6. Sum = 12x = **72**."
+      "steps": [
+       "Numbers are $5x$ and $7x$; $2x = 12$.",
+       "$x = 6$; sum $= 12x = 72$."
+      ],
+      "answer": "72"
      }
     },
     {
-     "title": "LCM bridging for three-term ratios",
-     "body": "Scale A:B so its B-term equals the B-term of B:C, then read off A:B:C.",
+     "title": "LCM bridging for three terms",
+     "body": "Scale A : B so its B-term matches the B-term of B : C, then read off A : B : C.",
      "example": {
       "q": "If A : B = 2 : 3 and B : C = 4 : 5, find A : B : C.",
-      "solution": "Make B = 12 (LCM of 3, 4): A : B = 8 : 12 and B : C = 12 : 15 ⇒ **8 : 12 : 15**."
+      "steps": [
+       "Make B = 12 (LCM of 3 and 4).",
+       "$A : B = 8 : 12$ and $B : C = 12 : 15$.",
+       "$A : B : C = 8 : 12 : 15$."
+      ],
+      "answer": "8 : 12 : 15"
      }
     },
     {
-     "title": "One share or difference known",
-     "body": "Share = fraction × total. If one share is given, first recover the total, then any other share.",
+     "title": "One share known, get the rest",
+     "body": "Share = fraction × total. Recover the total from one share, then build any other share.",
      "example": {
-      "q": "₹1,200 is divided between A and B in the ratio 2 : 3. Find B's share.",
-      "solution": "B's share $= \\frac{3}{5} \\times 1200$ = ₹720."
+      "q": "Rs 1,200 is divided between A and B in the ratio 2 : 3. Find B's share.",
+      "steps": [
+       "B's fraction $= \\dfrac{3}{5}$.",
+       "$\\dfrac{3}{5} \\times 1200 = 720$."
+      ],
+      "answer": "Rs 720"
      }
     }
    ],
    "mistakes": [
-    "Adding ratios term-wise (A:B = 2:3, B:C = 4:5 is NOT 2:3:5).",
-    "Using the changed value as the base when a ratio changes ('ratio becomes a:b' — the total is usually redistributed).",
-    "Forgetting that ratio terms must be of the same unit (₹ with ₹, kg with kg).",
-    "Reducing 8 : 12 to 4 : 6 but then answering 4 : 6 where the reduced 2 : 3 is asked (read what the option set wants)."
+    {
+     "wrong": "Adding ratios term-wise: A:B = 2:3 and B:C = 4:5 read as 2:3:5.",
+     "right": "Bridge the shared B: A:B:C = 8:12:15."
+    },
+    {
+     "wrong": "Shifting a ratio by n years or n rupees.",
+     "right": "Shift the actual quantities (ax ± n), never the ratio terms."
+    },
+    {
+     "wrong": "Comparing ratios by their differences (b − a).",
+     "right": "Cross-multiply: a:b beats c:d exactly when ad > bc."
+    },
+    {
+     "wrong": "Mixing units inside one ratio.",
+     "right": "Convert first: 3 kg to 500 g is 3000 : 500 = 6 : 1."
+    },
+    {
+     "wrong": "Reading 'the ratio becomes p : q' as more information about the same x pair.",
+     "right": "It is the same x pair — write both statements with one x and equate."
+    }
    ],
-   "notes": "### The multiplier x solves everything\n\"Numbers are in the ratio $a : b$\" means the numbers are $ax$ and $bx$. Every extra fact is a one-line equation in x:\n- Sum given: $(a + b)x = S$.\n- Difference given: $(b - a)x = D$.\n- Product given: $abx^2 = P$ → take a square root.\nOnce x is known, both numbers, their sum, difference and product are immediate. Sum of parts $= (a+b)x$, so 1 part $= \\frac{S}{a + b}$.\n\n### Dividing an amount in a ratio\nFor $N$ split in $a : b : c$, the shares are $\\frac{a}{a+b+c}N$, $\\frac{b}{a+b+c}N$, $\\frac{c}{a+b+c}N$. Fastest form: value of one part $= \\frac{N}{a+b+c}$, then multiply.\nQuestions hide the total: \"A gets ₹300 more than B\" → $(b - a)x = 300$ → recover x → total $= (a + b + c)x$.\n\n### Combining two ratios (the LCM bridge)\nGiven $A : B = m : n$ and $B : C = p : q$, make the B-terms equal: scale the first by p, the second by n (or both to the LCM of the two B values). Then $A : B : C = mp : np : nq$.\nRead the answer from the middle out: the A-term comes from the first ratio, the C-term from the second, and B is the common bridge value.\nThe one-equality version: $2A = 3B = 4C$ → take the LCM of 2, 3, 4 (here 12): $A : B : C = 6 : 4 : 3$. Each term = LCM ÷ its multiplier.\n\n### Long chains\nFor $A : B$, $B : C$, $C : D$ given and $A : D$ asked, multiply the fractions: $\\frac{A}{D} = \\frac{A}{B} \\times \\frac{B}{C} \\times \\frac{C}{D}$, then reduce.\n\n### When a ratio changes\n\"Add k to each term and the ratio becomes p : q\": $\\frac{ax + k}{bx + k} = \\frac{p}{q}$ — one cross-multiplication gives x. Subtractions work the same with −k. The two ratio statements share the SAME x; that is the whole trick.\n\n### Comparing two ratios\nTo compare $a : b$ with $c : d$, cross-multiply: $a : b$ is greater exactly when $ad > bc$. Example: which is larger, $3 : 4$ or $5 : 7$? Compare $3 \\times 7 = 21$ with $4 \\times 5 = 20$ → $3 : 4$ wins.\nDuplicate and sub-duplicate ratios come up in harder questions: $a : b$ squared is $a^2 : b^2$ (duplicate), $\\sqrt{a} : \\sqrt{b}$ is the sub-duplicate. \"The ratio of the areas of two squares whose sides are in ratio 2 : 3\" is simply $4 : 9$.\n\n### Same kind, same unit\nRatio terms must measure the same kind of quantity in the same unit — ₹ with ₹, kg with kg. A question giving \"3 kg to 500 g\" expects $3000 : 500 = 6 : 1$, not $3 : 500$. Converting units FIRST is half the answer in mixed-unit questions (speeds km/h vs m/s, hours vs minutes, ₹ vs paise).\n\n### Quick revision\n- Ratio terms are ax, bx — x is the universal unknown.\n- 1 part = total ÷ (sum of ratio terms).\n- Bridge: equalise the shared letter; kA = kB = kC → LCM route.\n- Changed ratio → equate the two expressions of the same quantity.\n",
+   "notes": "### One idea: the multiplier x\n\"Numbers are in ratio $a : b$\" means the numbers are $ax$ and $bx$. The $x$ is one shared unit.\n\n- Sum given: $(a+b)x = S$.\n- Difference given: $(b-a)x = D$.\n- Product given: $abx^2 = P$.\n\nTwo numbers in $5 : 7$ differ by 12: $2x = 12$, so $x = 6$ and the sum is $12x = 72$.\n\n> **Rule:** Never argue with the ratio itself. Convert to $ax$, $bx$, and solve for x.\n\n### Dividing an amount\nSplit N in $a : b : c$: one part $= \\dfrac{N}{a+b+c}$, then multiply by each term.\n\nRs 780 in $3 : 4 : 6$: one part $= \\dfrac{780}{13} = 60$, so the shares are 180, 240 and 360.\n\nQuestions often hide the total. \"A gets Rs 300 more than B\" gives $(b-a)x = 300$ — recover x, then the total is $(a+b+c)x$.\n\nA difference works the same way. Rs 1,870 in $4 : 7$: eleven parts of 170, so the shares are 680 and 1,190 and Y gets $\\dfrac{1870}{11} \\times 3 = 510$ more than X. One division answers every share, every difference and the total.\n\n> **Tip:** Compute the value of one part first; every share follows by multiplication.\n\n### The LCM bridge\nGiven $A : B = 2 : 3$ and $B : C = 4 : 5$, make the two B-terms equal. The LCM of 3 and 4 is 12, so scale the first ratio by 4 and the second by 3: $A : B = 8 : 12$ and $B : C = 12 : 15$.\n\nRead them together: $A : B : C = 8 : 12 : 15$.\n\nIn symbols, $A:B = m:n$ and $B:C = p:q$ give $A:B:C = mp : np : nq$.\n\n### The equality form\n\"$2A = 3B = 4C$\" — take the LCM of 2, 3, 4, which is 12. Each letter equals $\\dfrac{12}{\\text{its multiplier}}$, so $A : B : C = 6 : 4 : 3$.\n\n> **Watch:** Each term is LCM ÷ its own multiplier. A bigger multiplier means a smaller term.\n\n### When the ratio changes\n\"Add k and the ratio becomes $p : q$\": write $\\dfrac{ax + k}{bx + k} = \\dfrac{p}{q}$ and cross-multiply once.\n\nBoys : girls $= 4 : 5$. After 100 boys join it is $6 : 5$. Now $\\dfrac{4x + 100}{5x} = \\dfrac{6}{5}$ gives $20x + 500 = 30x$, so $x = 50$ and the school had $9 \\times 50 = 450$ students.\n\nBoth ratio statements describe the same x. That is the whole trick.\n\n### Which ratio is larger\nTo compare $a : b$ with $c : d$, cross-multiply: $a : b$ is larger exactly when $ad > bc$.\n\n$3 : 4$ or $5 : 7$? Compare $3 \\times 7 = 21$ with $4 \\times 5 = 20$. So $3 : 4$ is the larger ratio.\n\n### Squares and roots of ratios\nThe **duplicate** ratio of $a : b$ is $a^2 : b^2$; the **sub-duplicate** is $\\sqrt{a} : \\sqrt{b}$. Squares with sides in $2 : 3$ have areas in $4 : 9$ — one squaring step.\n\n> **Note:** Ratio terms must share one unit. 3 kg to 500 g is $3000 : 500 = 6 : 1$, never $3 : 500$.\n",
    "patterns": [
     {
      "id": "rp-b1",
      "name": "Divide an amount in a given ratio",
      "frequency": "very common",
-     "howToSpot": "A sum of money (or prize, rent, sweets) is split in m : n : p; a share, a difference of shares, or the total is asked.",
+     "howToSpot": "A sum of money, a prize or sweets is split in m : n : p; a share, a difference or the total is asked.",
      "formula": "\\text{share} = \\frac{\\text{term}}{\\text{sum of terms}} \\times N, \\quad \\text{1 part} = \\frac{N}{m + n + p}",
-     "logic": "1. Add the ratio terms to get total parts.\n2. One part = amount ÷ total parts.\n3. Multiply the part by the asked term; for a difference, multiply by the gap between terms.\n\nWhy: the ratio fixes each share as a fixed fraction of the whole.",
+     "steps": [
+      "Add the ratio terms for the total parts.",
+      "One part = amount ÷ total parts.",
+      "Multiply by the asked term; for a difference use the gap between terms."
+     ],
+     "why": "The ratio fixes each share as a set fraction of the whole.",
      "example": {
-      "q": "₹780 is divided among A, B and C in the ratio 3 : 4 : 6. What is A's share?",
-      "solution": "Total parts 13 → 1 part $= \\frac{780}{13} = 60$ → A $= 3 \\times 60 = ₹180$."
+      "q": "Rs 780 is divided among A, B and C in the ratio 3 : 4 : 6. What is A's share?",
+      "steps": [
+       "Total parts $= 13$; one part $= \\dfrac{780}{13} = 60$.",
+       "A $= 3 \\times 60 = 180$."
+      ],
+      "answer": "Rs 180"
      }
     },
     {
@@ -87,43 +125,103 @@
      "name": "Combine ratios into A : B : C",
      "frequency": "very common",
      "howToSpot": "'A : B = 2 : 3 and B : C = 4 : 5, find A : B : C' — or the compact form '2A = 3B = 4C'.",
-     "formula": "A:B = m:n,\\ B:C = p:q \\Rightarrow A:B:C = mp : np : nq; \\quad kA = lB = mC \\Rightarrow \\text{LCM of } k, l, m",
-     "logic": "1. Two-ratio form: scale both ratios so the common letter has the same value (LCM bridge).\n2. One-equality form: divide the LCM of the multipliers by each multiplier.\n3. Long chains: multiply fractions (A/B × B/C × …) and reduce.\n\nWhy: the shared term must mean the same number in both ratios before they can be merged.",
+     "formula": "A:B = m:n,\\ B:C = p:q \\Rightarrow A:B:C = mp : np : nq",
+     "steps": [
+      "Two-ratio form: scale so the shared letter matches (LCM bridge).",
+      "One-equality form: each term is LCM ÷ its multiplier.",
+      "Long chains: multiply the fractions A/B × B/C and reduce."
+     ],
+     "why": "The shared term must stand for the same number in both ratios before merging.",
      "example": {
-      "q": "If $2A = 3B = 4C$, then $A : B : C$ is:",
-      "solution": "LCM(2, 3, 4) = 12 → $A : B : C = \\frac{12}{2} : \\frac{12}{3} : \\frac{12}{4} = 6 : 4 : 3$."
+      "q": "If 2A = 3B = 4C, then A : B : C is:",
+      "steps": [
+       "LCM(2, 3, 4) $= 12$.",
+       "$A = \\dfrac{12}{2},\\ B = \\dfrac{12}{3},\\ C = \\dfrac{12}{4}$.",
+       "$A : B : C = 6 : 4 : 3$."
+      ],
+      "answer": "6 : 4 : 3"
      }
     },
     {
      "id": "rp-b3",
-     "name": "Multiplier with sum / difference / product",
+     "name": "Multiplier with sum, difference or product",
      "frequency": "very common",
-     "howToSpot": "'Two numbers are in ratio a : b and their sum/difference/product is …' — one extra fact, one equation.",
+     "howToSpot": "'Two numbers are in ratio a : b and their sum, difference or product is ...' — one extra fact, one equation.",
      "formula": "ax \\pm bx = (a \\pm b)x, \\qquad abx^2 = P \\Rightarrow x = \\sqrt{P/(ab)}",
-     "logic": "1. Write the numbers as ax and bx.\n2. Translate the given fact: sum → (a + b)x, difference → (b − a)x, product → abx².\n3. Solve for x, then build whatever is asked (often sum, difference, or the numbers themselves).\n\nWhy: every statistic of the pair is a multiple of x (or x²), so one fact fixes x.",
+     "steps": [
+      "Write the numbers as ax and bx.",
+      "Sum → (a+b)x; difference → (b−a)x; product → abx².",
+      "Solve for x, then build whatever is asked."
+     ],
+     "why": "Every statistic of the pair is a multiple of x, so one fact fixes x.",
      "example": {
       "q": "The ratio of two numbers is 7 : 11 and their product is 693. Find the sum of the numbers.",
-      "solution": "$77x^2 = 693$ → $x^2 = 9$ → x = 3 → numbers 21 and 33 → sum = 54."
+      "steps": [
+       "$77x^2 = 693$, so $x^2 = 9$ and $x = 3$.",
+       "Numbers are 21 and 33.",
+       "Sum $= 54$."
+      ],
+      "answer": "54"
      }
     },
     {
      "id": "rp-b4",
-     "name": "Ratio changes when a quantity is added / subtracted",
+     "name": "Ratio changes when a number joins or leaves",
      "frequency": "common",
-     "howToSpot": "'The ratio of boys to girls is 4 : 5; after 100 boys join, it becomes 6 : 5' — a fixed number moves in and out.",
+     "howToSpot": "'Boys to girls is 4 : 5; after 100 boys join it becomes 6 : 5' — a fixed number moves.",
      "formula": "\\frac{ax \\pm k}{bx \\pm k} = \\frac{p}{q}",
-     "logic": "1. Write the original counts as ax, bx.\n2. Add or subtract k ONLY on the side mentioned (or on both, as the question says).\n3. Equate to the new ratio and cross-multiply → x.\n\nWhy: adding a fixed number breaks the proportionality, so the ratio genuinely changes and pins down x.",
+     "steps": [
+      "Write the original counts as ax, bx.",
+      "Add or subtract k only where the question says.",
+      "Equate to the new ratio and cross-multiply."
+     ],
+     "why": "A fixed number breaks the proportionality, so the new ratio pins x exactly.",
      "example": {
-      "q": "The ratio of boys to girls in a school is 4 : 5. If 100 more boys join the school, the ratio becomes 6 : 5. How many students were there in the school originally?",
-      "solution": "$\\frac{4x + 100}{5x} = \\frac{6}{5}$ → $20x + 500 = 30x$ → x = 50 → originally $9 \\times 50 = 450$."
+      "q": "The ratio of boys to girls in a school is 4 : 5. If 100 more boys join, the ratio becomes 6 : 5. How many students were there originally?",
+      "steps": [
+       "$\\dfrac{4x + 100}{5x} = \\dfrac{6}{5}$.",
+       "$20x + 500 = 30x$, so $x = 50$.",
+       "Students $= 9 \\times 50 = 450$."
+      ],
+      "answer": "450"
+     }
+    },
+    {
+     "id": "rp-b5",
+     "name": "Comparing two ratios",
+     "frequency": "common",
+     "howToSpot": "Two ratios are given; which is larger, or are they equal, is asked.",
+     "formula": "a:b > c:d \\iff ad > bc",
+     "steps": [
+      "Cross-multiply: first term × other denominator.",
+      "Compare the two products.",
+      "Equal products mean equal ratios."
+     ],
+     "why": "Cross-multiplication puts both ratios over a common base in one step.",
+     "example": {
+      "q": "Which of the ratios 3 : 4 and 5 : 7 is greater?",
+      "steps": [
+       "$3 \\times 7 = 21$.",
+       "$4 \\times 5 = 20$.",
+       "$21 > 20$, so $3 : 4$ is greater."
+      ],
+      "answer": "3 : 4"
      }
     }
+   ],
+   "revision": [
+    "Quantities in a ratio are $ax$, $bx$ — one multiplier for all.",
+    "One part $=$ total $\\div$ sum of terms.",
+    "Bridge two ratios through the shared term (LCM).",
+    "$kA = lB = mC$: each term is LCM $\\div$ multiplier.",
+    "Changed ratio: same x, one cross-multiplication.",
+    "Compare ratios by cross-multiplying, never by gaps."
    ]
   },
   {
    "id": "rp-proportion",
    "title": "Proportion & proportional division of terms",
-   "concept": "Four numbers $a, b, c, d$ are in proportion when $\\frac{a}{b} = \\frac{c}{d}$, written $a : b :: c : d$; then $ad = bc$ (product of extremes = product of means).\n\n- **Fourth proportional** to $a, b, c$: $d = \\frac{bc}{a}$.\n- **Third proportional** to $a, b$ (a : b :: b : ?): $c = \\frac{b^2}{a}$.\n- **Mean proportional** between $a$ and $b$: $\\sqrt{ab}$.\n- **Continued proportion:** $a, b, c$ with $\\frac{a}{b} = \\frac{b}{c}$.\n\n**Componendo and dividendo:** if $\\frac{a}{b} = \\frac{c}{d}$ then $\\frac{a+b}{a-b} = \\frac{c+d}{c-d}$ — the fastest route when x and y appear as a sum and difference.",
+   "concept": "Four numbers $a, b, c, d$ are in proportion when $\\dfrac{a}{b} = \\dfrac{c}{d}$. Cross-multiplying gives $ad = bc$: the outer pair multiplies to the same as the inner pair.\n\nThree named proportionals: **fourth** $= \\dfrac{bc}{a}$, **third** $= \\dfrac{b^2}{a}$, **mean** $= \\sqrt{ab}$.\n\nComponendo and dividendo turns a sum-over-difference into a plain ratio: $\\dfrac{x+y}{x-y} = \\dfrac{p}{q}$ gives $\\dfrac{x}{y} = \\dfrac{p+q}{p-q}$.",
    "formulas": [
     {
      "name": "Basic proportion",
@@ -152,37 +250,65 @@
    ],
    "tricks": [
     {
-     "title": "Extremes × means",
-     "body": "Set up the proportion, cross-multiply, done. For 'fourth proportional' keep the order exactly as written.",
+     "title": "Extremes times means",
+     "body": "Set up the proportion in the exact order given, cross-multiply, done.",
      "example": {
       "q": "Find the fourth proportional to 4, 9 and 12.",
-      "solution": "$\\frac{4}{9} = \\frac{12}{d}$ ⇒ $4d = 108$ ⇒ $d = 27$."
+      "steps": [
+       "$\\dfrac{4}{9} = \\dfrac{12}{d}$.",
+       "$4d = 108$, so $d = 27$."
+      ],
+      "answer": "27"
      }
     },
     {
      "title": "Mean proportional = geometric mean",
-     "body": "Multiply the two numbers and take the square root. Perfect squares make it instant.",
+     "body": "Multiply the two numbers and take the square root. Exam numbers make it a perfect square.",
      "example": {
       "q": "Find the mean proportional between 25 and 81.",
-      "solution": "$\\sqrt{25 \\times 81} = 5 \\times 9 = 45$."
+      "steps": [
+       "$\\sqrt{25 \\times 81} = \\sqrt{2025}$.",
+       "$= 45$."
+      ],
+      "answer": "45"
      }
     },
     {
-     "title": "Componendo-dividendo for x : y",
-     "body": "When (x + y) and (x − y) both appear, write the ratio and jump straight to x/y.",
+     "title": "Componendo-dividendo jump",
+     "body": "When $(x + y)$ and $(x - y)$ both appear, jump straight to $x/y$ by adding and subtracting the given ratio's terms.",
      "example": {
-      "q": "If $\\frac{x+y}{x-y} = \\frac{5}{3}$, find $\\frac{x}{y}$.",
-      "solution": "$\\frac{x}{y} = \\frac{5+3}{5-3} = 4$."
+      "q": "If $\\dfrac{x+y}{x-y} = \\dfrac{5}{3}$, find $\\dfrac{x}{y}$.",
+      "steps": [
+       "$\\dfrac{x}{y} = \\dfrac{5+3}{5-3}$.",
+       "$= \\dfrac{8}{2} = 4$."
+      ],
+      "answer": "4"
      }
     }
    ],
    "mistakes": [
-    "Mixing up third and fourth proportional (third has a repeated middle term).",
-    "Forgetting the middle term repeats when checking a continued proportion.",
-    "Applying componendo-dividendo without the base proportion being true.",
-    "Taking the arithmetic mean (a+b)/2 instead of √(ab) for the mean proportional."
+    {
+     "wrong": "Swapping third and fourth proportional.",
+     "right": "Third repeats the middle term (b²/a); fourth uses three different terms (bc/a)."
+    },
+    {
+     "wrong": "Taking the arithmetic mean (a+b)/2 as the mean proportional.",
+     "right": "Mean proportional is the geometric mean √(ab)."
+    },
+    {
+     "wrong": "Reordering the terms before writing the proportion.",
+     "right": "Keep the question's order: 4, 9, 12 gives 27 but 12, 9, 4 gives 3."
+    },
+    {
+     "wrong": "Using componendo-dividendo as (p+q)/(p−q) on the wrong side.",
+     "right": "Sum-over-difference equals p/q means x/y = (p+q)/(p−q); check which side is the sum."
+    },
+    {
+     "wrong": "Forgetting the middle term repeats in a continued proportion.",
+     "right": "b appears in both fractions: a/b = b/c, so b² = ac."
+    }
    ],
-   "notes": "### The core identity\n$a : b :: c : d$ means $\\frac{a}{b} = \\frac{c}{d}$, and equivalently $ad = bc$ — **extremes × extremes = means × means** (a and d are the extremes, b and c the means). Every 'find the missing term' question is one cross-multiplication away.\n\n### The three named proportionals\n- **Fourth proportional** to $a, b, c$: solve $\\frac{a}{b} = \\frac{c}{d}$ → $d = \\frac{bc}{a}$ (four distinct numbers).\n- **Third proportional** to $a, b$: solve $\\frac{a}{b} = \\frac{b}{x}$ → $x = \\frac{b^2}{a}$ (the middle term repeats — that is what 'third' means).\n- **Mean proportional** between $a$ and $b$: $x = \\sqrt{ab}$, from $\\frac{a}{x} = \\frac{x}{b}$. It is the geometric mean; the arithmetic mean $\\frac{a+b}{2}$ is the planted trap.\n\n### Continued proportion\n$a, b, c$ are in continued proportion when $\\frac{a}{b} = \\frac{b}{c}$, i.e. $b^2 = ac$. So b is automatically the mean proportional of a and c. Any one member from the other two: $a = \\frac{b^2}{c}$, $c = \\frac{b^2}{a}$, $b = \\sqrt{ac}$. Four numbers $a, b, c, d$ with $\\frac{b}{a} = \\frac{c}{b} = \\frac{d}{c}$ form a geometric progression — the same equations apply term by term.\n\n### Componendo and dividendo\nIf $\\frac{a}{b} = \\frac{c}{d} = k$, then adding and subtracting numerator and denominator: $\\frac{a+b}{a-b} = \\frac{c+d}{c-d}$.\nThe exam use runs it backwards: given $\\frac{x+y}{x-y} = \\frac{p}{q}$, jump straight to $\\frac{x}{y} = \\frac{p + q}{p - q}$. Example: $\\frac{x+y}{x-y} = \\frac{5}{3}$ → $\\frac{x}{y} = \\frac{8}{2} = 4$.\nWith coefficient twists like $\\frac{5x - 3y}{5x + 3y} = \\frac{2}{7}$, apply C&D first to get $\\frac{5x}{3y} = \\frac{9}{5}$, then rearrange.\n\n### Order matters\n\"Fourth proportional to 4, 9, 12\" and \"fourth proportional to 12, 9, 4\" are different numbers — the terms stay in the order written. Write the proportion exactly as the question lists the terms before cross-multiplying.\n\n### A worked chain putting it together\n\"Three numbers a, b, c are in continued proportion with b = 12 and a + c = 26.\" Then $ac = b^2 = 144$, so a and c are the factor pair of 144 summing to 26 — that is 8 and 18. The numbers are 8, 12, 18 (check: $8 : 12 = 12 : 18 = 2 : 3$ ✓). Exam numbers are always built so the factor pair comes out clean; if yours doesn't, re-read the question, not the method.\n\n### The three means\nArithmetic mean $\\frac{a+b}{2}$, geometric (mean proportional) $\\sqrt{ab}$, harmonic mean $\\frac{2ab}{a+b}$ — the exam asks for the **mean proportional**, i.e. the geometric mean. \"The mean proportional between 3 and 12 is 6, not 7.5.\"\n\n### Quick revision\n- $ad = bc$ for $a : b :: c : d$.\n- Fourth: $\\frac{bc}{a}$. Third: $\\frac{b^2}{a}$. Mean: $\\sqrt{ab}$.\n- Continued proportion: $b^2 = ac$.\n- C&D: $\\frac{x}{y} = \\frac{p+q}{p-q}$ from $\\frac{x+y}{x-y} = \\frac{p}{q}$.\n",
+   "notes": "### What proportion means\n$a : b :: c : d$ means $\\dfrac{a}{b} = \\dfrac{c}{d}$, and cross-multiplication gives $ad = bc$.\n\n$a$ and $d$ are the **extremes** (outer terms); $b$ and $c$ are the **means** (middle terms). Product of extremes = product of means. Every \"find the missing term\" question is one cross-multiplication away.\n\n> **Rule:** $ad = bc$ for $a : b :: c : d$ — outer times outer equals middle times middle.\n\n### The three named proportionals\n- **Fourth proportional** to $a, b, c$: solve $\\dfrac{a}{b} = \\dfrac{c}{d}$, so $d = \\dfrac{bc}{a}$. Four different numbers.\n- **Third proportional** to $a, b$: solve $\\dfrac{a}{b} = \\dfrac{b}{x}$, so $x = \\dfrac{b^2}{a}$. The middle term repeats.\n- **Mean proportional** between $a$ and $b$: $x = \\sqrt{ab}$, from $\\dfrac{a}{x} = \\dfrac{x}{b}$.\n\nWorked: fourth to 8, 12, 18 is $\\dfrac{12 \\times 18}{8} = 27$. Third to 9, 12 is $\\dfrac{144}{9} = 16$. Mean between 12 and 48 is $\\sqrt{576} = 24$.\n\n> **Watch:** The mean proportional is the geometric mean $\\sqrt{ab}$, never the average $\\dfrac{a+b}{2}$. The average of 3 and 12 is 7.5, but the answer is 6.\n\n### Continued proportion\n$a, b, c$ are in continued proportion when $\\dfrac{a}{b} = \\dfrac{b}{c}$, that is $b^2 = ac$.\n\nSo the middle term is automatically the mean proportional of the outer two, and each member recovers from the others: $a = \\dfrac{b^2}{c}$, $c = \\dfrac{b^2}{a}$, $b = \\sqrt{ac}$.\n\nThree numbers $x, 12, 18$ in continued proportion: $144 = 18x$, so $x = 8$. Check $\\dfrac{8}{12} = \\dfrac{12}{18} = \\dfrac{2}{3}$.\n\n### A worked chain\n\"Three numbers $a, b, c$ are in continued proportion, $b = 12$ and $a + c = 26$.\"\n\nThen $ac = 144$, and $a, c$ are the factor pair of 144 that sums to 26: 8 and 18. The numbers are 8, 12, 18.\n\nExam numbers are built so the factor pair is clean. If yours is not, re-read the question, not the method.\n\n### Componendo and dividendo\nIf $\\dfrac{a}{b} = \\dfrac{c}{d}$, then $\\dfrac{a+b}{a-b} = \\dfrac{c+d}{c-d}$.\n\nThe exam use runs it backwards: given $\\dfrac{x+y}{x-y} = \\dfrac{p}{q}$, jump to $\\dfrac{x}{y} = \\dfrac{p+q}{p-q}$.\n\n$\\dfrac{x+y}{x-y} = \\dfrac{5}{3}$ gives $\\dfrac{x}{y} = \\dfrac{8}{2} = 4$. No solving — one addition and one subtraction.\n\n> **Tip:** A sum-over-difference equal to a ratio is the fingerprint. Componendo-dividendo is the intended route.\n\n### Coefficient twists\n$\\dfrac{5x - 3y}{5x + 3y} = \\dfrac{2}{7}$. Apply the rule to get $\\dfrac{5x}{3y} = \\dfrac{7+2}{7-2} = \\dfrac{9}{5}$, then rearrange: $25x = 27y$.\n\nWrite the two fractions with plus on top and minus below before adding and subtracting. Sign slips are the only failure here.\n\n### Order matters\nFourth proportional to 4, 9, 12 is 27, but fourth proportional to 12, 9, 4 is 3. The terms stay in the order written — copy the proportion exactly as the question lists it.\n",
    "patterns": [
     {
      "id": "rp-p1",
@@ -190,22 +316,40 @@
      "frequency": "very common",
      "howToSpot": "'Find the fourth proportional to a, b, c' — three numbers, the fourth that completes a : b :: c : ?",
      "formula": "\\frac{a}{b} = \\frac{c}{d} \\Rightarrow d = \\frac{bc}{a}",
-     "logic": "1. Write the proportion in the exact order given: a : b :: c : d.\n2. Cross-multiply: ad = bc.\n3. $d = \\frac{bc}{a}$ — one division.\n\nWhy: the fourth term must preserve the same ratio pair-wise as the first three.",
+     "steps": [
+      "Write the proportion in the exact order given: a : b :: c : d.",
+      "Cross-multiply: ad = bc.",
+      "Divide: d = bc/a."
+     ],
+     "why": "The fourth term must keep the same pairwise ratio as the first three.",
      "example": {
       "q": "The fourth proportional to 8, 12 and 18 is:",
-      "solution": "$d = \\frac{12 \\times 18}{8} = 27$. (Check: $\\frac{8}{12} = \\frac{18}{27} = \\frac{2}{3}$ ✓.)"
+      "steps": [
+       "$d = \\dfrac{12 \\times 18}{8} = 27$.",
+       "Check: $\\dfrac{8}{12} = \\dfrac{18}{27} = \\dfrac{2}{3}$."
+      ],
+      "answer": "27"
      }
     },
     {
      "id": "rp-p2",
      "name": "Third proportional",
      "frequency": "common",
-     "howToSpot": "'Find the third proportional to a and b' — only two numbers; the middle repeats (a : b :: b : ?).",
+     "howToSpot": "'Find the third proportional to a and b' — two numbers only; the middle term repeats (a : b :: b : ?).",
      "formula": "\\frac{a}{b} = \\frac{b}{x} \\Rightarrow x = \\frac{b^2}{a}",
-     "logic": "1. Repeat the second term: a : b :: b : x.\n2. Cross-multiply: ax = b².\n3. $x = \\frac{b^2}{a}$.\n\nWhy: 'third proportional to a and b' is the third member of a continued proportion starting a, b.",
+     "steps": [
+      "Repeat the second term: a : b :: b : x.",
+      "Cross-multiply: ax = b².",
+      "Divide: x = b²/a."
+     ],
+     "why": "'Third proportional to a and b' is the next member of a continued proportion starting a, b.",
      "example": {
       "q": "The third proportional to 9 and 12 is:",
-      "solution": "$x = \\frac{12^2}{9} = 16$. (Check: $\\frac{9}{12} = \\frac{12}{16} = \\frac{3}{4}$ ✓.)"
+      "steps": [
+       "$x = \\dfrac{12^2}{9} = \\dfrac{144}{9} = 16$.",
+       "Check: $\\dfrac{9}{12} = \\dfrac{12}{16} = \\dfrac{3}{4}$."
+      ],
+      "answer": "16"
      }
     },
     {
@@ -214,42 +358,76 @@
      "frequency": "very common",
      "howToSpot": "'Find the mean proportional between a and b' — the number x with a : x :: x : b.",
      "formula": "x = \\sqrt{ab}",
-     "logic": "1. Multiply the two numbers.\n2. Take the square root (it must come out exact in exam numbers).\n3. Sanity check: x² = ab. The arithmetic mean (a+b)/2 is NOT the answer.\n\nWhy: the mean proportional is the self-repeating middle term, i.e. the geometric mean.",
+     "steps": [
+      "Multiply the two numbers.",
+      "Take the square root (exact in exam numbers).",
+      "Sanity check: x² = ab; the average (a+b)/2 is the planted trap."
+     ],
+     "why": "The mean proportional is the self-repeating middle term, the geometric mean.",
      "example": {
       "q": "The mean proportional between 12 and 48 is:",
-      "solution": "$\\sqrt{12 \\times 48} = \\sqrt{576} = 24$. (Check: $\\frac{12}{24} = \\frac{24}{48} = \\frac{1}{2}$ ✓.)"
+      "steps": [
+       "$\\sqrt{12 \\times 48} = \\sqrt{576} = 24$.",
+       "Check: $\\dfrac{12}{24} = \\dfrac{24}{48} = \\dfrac{1}{2}$."
+      ],
+      "answer": "24"
      }
     },
     {
      "id": "rp-p4",
      "name": "Continued proportion (find a member)",
      "frequency": "common",
-     "howToSpot": "'a, b, c are in continued proportion; given two of them, find the third' — sometimes disguised as a geometric progression.",
+     "howToSpot": "'a, b, c are in continued proportion; given two, find the third' — sometimes dressed as a geometric progression.",
      "formula": "b^2 = ac \\ \\Rightarrow\\ b = \\sqrt{ac},\\ a = \\frac{b^2}{c},\\ c = \\frac{b^2}{a}",
-     "logic": "1. Write the defining equation $\\frac{a}{b} = \\frac{b}{c}$, i.e. $b^2 = ac$.\n2. Substitute the two known members and solve.\n3. The middle term is the mean proportional of the outer two.\n\nWhy: 'continued proportion' fixes one exact relationship among the three members.",
+     "steps": [
+      "Write the defining equation a/b = b/c, that is b² = ac.",
+      "Substitute the two known members.",
+      "Solve; check both fractions reduce to the same value."
+     ],
+     "why": "Continued proportion fixes one exact relationship among the three members.",
      "example": {
       "q": "The numbers x, 12 and 18 are in continued proportion. Find x.",
-      "solution": "$12^2 = 18x$ → $x = \\frac{144}{18} = 8$. (Check: $\\frac{8}{12} = \\frac{12}{18} = \\frac{2}{3}$ ✓.)"
+      "steps": [
+       "$12^2 = 18x$.",
+       "$x = \\dfrac{144}{18} = 8$."
+      ],
+      "answer": "8"
      }
     },
     {
      "id": "rp-p5",
      "name": "Componendo and dividendo",
      "frequency": "common",
-     "howToSpot": "$(x + y)/(x - y)$ given as a ratio; find x : y — sometimes with coefficients attached to x and y.",
+     "howToSpot": "(x + y)/(x − y) given as a ratio; find x : y — sometimes with coefficients on x and y.",
      "formula": "\\frac{x + y}{x - y} = \\frac{p}{q} \\Rightarrow \\frac{x}{y} = \\frac{p + q}{p - q}",
-     "logic": "1. Apply C&D: the sum-over-difference of each side is equal.\n2. $\\frac{x}{y} = \\frac{p+q}{p-q}$ — read it directly.\n3. With coefficients ($\\frac{mx \\pm ny}{mx \\pm ny}$), C&D gives $\\frac{mx}{ny}$; divide off m : n.\n\nWhy: one application converts the sum/difference form into the pure ratio, saving a full solve.",
+     "steps": [
+      "Apply C&D: add and subtract the given ratio's terms.",
+      "Read x/y = (p+q)/(p−q) directly.",
+      "With coefficients, C&D gives mx : ny first; divide off m : n."
+     ],
+     "why": "One application converts the sum/difference form into the pure ratio, no solving.",
      "example": {
-      "q": "If $\\frac{a+b}{a-b} = \\frac{7}{5}$, then $a : b$ equals:",
-      "solution": "C&D: $\\frac{a}{b} = \\frac{7 + 5}{7 - 5} = 6$ → $a : b = 6 : 1$."
+      "q": "If $\\dfrac{a+b}{a-b} = \\dfrac{7}{5}$, then $a : b$ equals:",
+      "steps": [
+       "$\\dfrac{a}{b} = \\dfrac{7+5}{7-5} = \\dfrac{12}{2}$.",
+       "$a : b = 6 : 1$."
+      ],
+      "answer": "6 : 1"
      }
     }
+   ],
+   "revision": [
+    "$ad = bc$: extremes times extremes equals means times means.",
+    "Fourth $\\dfrac{bc}{a}$, third $\\dfrac{b^2}{a}$, mean $\\sqrt{ab}$.",
+    "Continued proportion: $b^2 = ac$.",
+    "Sum-over-difference $\\dfrac{p}{q}$ gives $\\dfrac{x}{y} = \\dfrac{p+q}{p-q}$.",
+    "Order of terms is part of the question."
    ]
   },
   {
    "id": "rp-partnership",
    "title": "Partnership",
-   "concept": "Profit is divided in the ratio of **capital × time** invested.\n\n- Same period: share ratio = capital ratio $C_1 : C_2 : C_3$.\n- Different periods (or a partner joins later / withdraws early): share ratio $= C_1 T_1 : C_2 T_2 : C_3 T_3$ (capital-months).\n- A working partner's fee/salary/commission is taken OUT of the profit first; the rest is divided by capital-time ratios.\n\nFor a mid-year capital change, split the year into stretches and add capital × months over the stretches.",
+   "concept": "Profit is divided in the ratio of **capital × time** — the capital-months.\n\nSame period for all partners: time cancels, so the share ratio is just the capital ratio. Different joining dates or mid-year top-ups: build one capital-months row per partner.\n\nA working partner's fee or per cent comes off the profit **first**; only the residue is divided.",
    "formulas": [
     {
      "name": "Simple partnership",
@@ -270,143 +448,270 @@
    ],
    "tricks": [
     {
-     "title": "Capital-months table",
-     "body": "One row per partner: capital × months. The profit ratio is the row ratio — no other step.",
+     "title": "One row per partner",
+     "body": "Write capital × months for each partner; the profit ratio is the row ratio.",
      "example": {
-      "q": "A invests ₹12,000 for the full year; B joins after 4 months with ₹18,000. Divide a ₹9,600 profit.",
-      "solution": "A: 12,000 × 12 = 144,000; B: 18,000 × 8 = 144,000 ⇒ 1 : 1 ⇒ ₹4,800 each."
+      "q": "A invests Rs 12,000 for the full year; B joins after 4 months with Rs 18,000. Divide a Rs 9,600 profit.",
+      "steps": [
+       "A: $12000 \\times 12 = 144000$; B: $18000 \\times 8 = 144000$.",
+       "Ratio $1 : 1$, so Rs 4,800 each."
+      ],
+      "answer": "Rs 4,800 each"
      }
     },
     {
-     "title": "Deduct the working partner's cut first",
-     "body": "Salary/commission % applies to the whole profit; only the residue is shared by capital-time.",
+     "title": "Cut comes off the top",
+     "body": "Salary or a per cent for the manager is removed from the whole profit before the capital-months split.",
      "example": {
-      "q": "A and B invest ₹6,000 and ₹4,000. B manages the business and gets 10% of the profit. On a ₹9,000 profit, find A's share.",
-      "solution": "Cut = ₹900; residue ₹8,100 split 3 : 2 ⇒ A = $\\frac{3}{5} \\times 8100$ = ₹4,860."
+      "q": "A and B invest Rs 6,000 and Rs 4,000. B manages and takes 10% of a Rs 9,000 profit. Find A's share.",
+      "steps": [
+       "Cut $= 900$; residue $= 8100$.",
+       "Capitals $3 : 2$; A $= \\dfrac{3}{5} \\times 8100 = 4860$."
+      ],
+      "answer": "Rs 4,860"
      }
     },
     {
-     "title": "Split the year for capital changes",
-     "body": "Add capital × months across the stretches of the year.",
+     "title": "Equal shares, find the capital",
+     "body": "Equal shares mean equal capital-months. Equate the products and solve.",
      "example": {
-      "q": "A starts with ₹20,000 and adds ₹5,000 after 6 months. B invests ₹22,500 throughout. Profit ratio?",
-      "solution": "A: $20000 \\times 6 + 25000 \\times 6 = 270000$; B: $22500 \\times 12 = 270000$ ⇒ **1 : 1**."
+      "q": "A invests Rs 12,000 for 12 months. B joins after 6 months and they share the profit equally. Find B's capital.",
+      "steps": [
+       "$12000 \\times 12 = C \\times 6$.",
+       "$C = 24000$."
+      ],
+      "answer": "Rs 24,000"
      }
     }
    ],
    "mistakes": [
-    "Ignoring time when partners join at different dates.",
-    "Applying the working partner's % after sharing instead of before.",
-    "For months: counting the joiner's period from the start of the year instead of from the joining month.",
-    "For mid-year capital changes, using only the final capital."
+    {
+     "wrong": "Ignoring time when partners join on different dates.",
+     "right": "Share ∝ capital × months; compute capital-months for everyone."
+    },
+    {
+     "wrong": "Counting a late joiner's months from the year's start.",
+     "right": "Months run from the joining month to the year end."
+    },
+    {
+     "wrong": "Sharing the profit first and taking the manager's cut after.",
+     "right": "The cut comes off the top; only the residue is split."
+    },
+    {
+     "wrong": "Using only the final capital after a mid-year change.",
+     "right": "Add capital × months across each stretch of the year."
+    },
+    {
+     "wrong": "Answering the working partner's split share when the total receipt is asked.",
+     "right": "Add the cut back to that partner's share when 'in all' is asked."
+    }
    ],
-   "notes": "### One rule runs the whole subtopic\nProfit is divided in the ratio of **capital × time** (capital-months). Same period → the time cancels and only the capital ratio matters. Different joining dates, withdrawals or top-ups → build one row per partner:\n$$\\text{share}_i \\propto C_1t_1 + C_2t_2 + \\cdots$$\nThen each partner's money = fraction × profit. Nothing else exists in this topic.\n\n### The capital-months table\n| Partner | Working |\n|---|---|\n| A: ₹12,000 for 12 months | $12000 \\times 12 = 144000$ |\n| B: ₹18,000 for 8 months (joined after 4) | $18000 \\times 8 = 144000$ |\nRatio 144 : 144 = 1 : 1. Months for a late joiner run from the JOINING month to the end of the year, never from the start.\n\n### Mid-year capital changes\nSplit the year into stretches and add capital × months across them: A holds ₹30,000 for 8 months, then ₹20,000 for 4 → $30000 \\times 8 + 20000 \\times 4 = 320000$ capital-months. Using only the final capital (or only the first) is the classic error.\nThe inverse question appears too: \"they share profits equally, B joined after 6 months — find B's capital\": equate the capital-month products.\n\n### Working partners\nA partner who works takes a **salary/fee/commission out of the profit first**; only the residue is divided by capital-months (which still include the working partner's own capital-months).\nExample: profit ₹9,000; B manages and draws 10% → cut ₹900 → residue ₹8,100 split by capitals. The cut percentage applies to the whole profit, not to the residue.\n\n### Comparing two claims\n\"Who got more?\" and \"difference between shares\" need only the capital-month ratio: difference = gap parts × value of one part. Reduce the capital-month numbers by their GCD early — the arithmetic stays tiny (₹'000 units help).\n\n### How the questions vary the story\nSame capital-months engine, four costumes:\n- **Rent of a pasture:** grazers pay in ratio of (animals × months) — cows are the \"capital\".\n- **Wages of a contractor:** workers' wages split by (men × days) — identical arithmetic.\n- **Consumption of a granary:** provisions last longer or shorter as (men × days) changes — the inverse uses the same product.\n- **Sleeping vs working partner:** the sleeping partner invests only; the working one takes the fee — combine patterns rp-n4 with any of the above.\n\n### Unit discipline\nDrop the zeroes early: 12,000 × 12 = 144 'thousand-months' — write 144, not 144000. Ratios are what survive, and every zero you cancel is one less chance of an arithmetic slip. If the products look unwieldy, divide all of them by 1000 (or 10000) before forming the ratio; the ratio is unchanged.\n\n### Quick revision\n- Share ∝ capital × months. Same period → capital ratio.\n- Late joiner: months from joining to year-end.\n- Capital change: add capital × months per stretch.\n- Working partner: cut from the top, share the residue.\n",
+   "notes": "### One rule for everything\nProfit share $\\propto$ capital $\\times$ time. Call the product **capital-months**.\n\nSame period for everyone: the time cancels, and the share ratio is just the capital ratio. Different joining dates, withdrawals or top-ups: build one row per partner and add up.\n\n> **Rule:** Share $\\propto$ capital $\\times$ months. Nothing else matters in this topic.\n\n### The capital-months table\nA invests Rs 12,000 for 12 months. B joins after 4 months with Rs 18,000, so B's money works only 8 months.\n\n| Partner | Capital-months |\n|---|---|\n| A | $12000 \\times 12 = 144000$ |\n| B | $18000 \\times 8 = 144000$ |\n\nRatio 1 : 1 — a Rs 9,600 profit splits 4,800 each. A late joiner can catch up only by investing more.\n\n> **Tip:** A late joiner's months run from the joining month to the year end, never from the start.\n\n### Mid-year capital changes\nSplit the year at each change and add capital × months.\n\nA invests 15,000 for 4 months and 20,000 for 8: $60000 + 160000 = 220000$. Against B's $18000 \\times 12 = 216000$, the ratio is $55 : 54$.\n\nSame engine for withdrawals: A holds 30,000 for 8 months then 20,000 for 4, giving $240000 + 80000 = 320000$ capital-months.\n\n> **Watch:** Using only the first capital or only the final capital is the classic error on these.\n\n### The working partner's cut\nA partner who manages the business takes a fee or a per cent of the profit **off the top**. Only the residue is divided by capital-months, and the working partner's own capital still counts in that split.\n\nProfit 9,000; B manages and draws 10%: cut 900, residue 8,100 split by capitals $3 : 2$. B's split share is 3,240, and B's total receipt is 4,140 if the question asks for it.\n\n> **Careful:** The cut applies to the whole profit, not to the residue. And take it off before sharing, not after.\n\n### Rent of a pasture\nThe same engine in rural costume: animals are the capital, months are the months.\n\nA grazes 15 cows for 8 months (120 cow-months); B grazes 25 cows for 4 months (100). Rent 2,200 splits $6 : 5$, so A pays 1,200 and B pays 1,000.\n\n### Wages and workmen\nWages for a job split the same way: men × days. Three men working 5, 8 and 10 days share wages in $5 : 8 : 10$. Nothing new to learn — capital-months again.\n\nRs 1,200 split for 2, 3 and 5 days worked: ten parts of 120, so the shares are 240, 360 and 600.\n\n### Keep the numbers small\nDrop zeroes early: 12,000 × 12 is 144 thousand-months. Ratios survive any common division, and every zero you drop is one less slip. When the products look unwieldy, divide all of them by 1,000 before forming the ratio.\n",
    "patterns": [
     {
      "id": "rp-n1",
      "name": "Simple partnership (same time, different capitals)",
      "frequency": "very common",
-     "howToSpot": "Partners invest different amounts for the same period; profit share or total profit asked.",
+     "howToSpot": "Partners invest different amounts for the same period; a share or the total profit is asked.",
      "formula": "P_1 : P_2 = C_1 : C_2 \\quad (\\text{same time})",
-     "logic": "1. Reduce the capital ratio to small terms (divide by the GCD).\n2. Add the parts; one part = profit ÷ total parts.\n3. Multiply by the asked partner's parts.\n\nWhy: with time equal for everyone, it cancels out of the ratio.",
+     "steps": [
+      "Reduce the capital ratio to small terms (divide by the GCD).",
+      "Add the parts; one part = profit ÷ total parts.",
+      "Multiply by the asked partner's parts."
+     ],
+     "why": "With time equal for everyone, it cancels out of the ratio.",
      "example": {
-      "q": "A and B invest ₹45,000 and ₹35,000 for one year. From a profit of ₹8,000, what does A receive?",
-      "solution": "Ratio $45000 : 35000 = 9 : 7$ (16 parts) → A $= \\frac{9}{16} \\times 8000 = ₹4{,}500$."
+      "q": "A and B invest Rs 45,000 and Rs 35,000 for one year. From a profit of Rs 8,000, what does A receive?",
+      "steps": [
+       "Ratio $45000 : 35000 = 9 : 7$ (16 parts).",
+       "A $= \\dfrac{9}{16} \\times 8000 = 4500$."
+      ],
+      "answer": "Rs 4,500"
      }
     },
     {
      "id": "rp-n2",
-     "name": "Partner joins late / leaves early (capital × time)",
+     "name": "Partner joins late or leaves early",
      "frequency": "very common",
      "howToSpot": "'A starts the business; B joins after k months' — time differs, so capitals alone mislead.",
      "formula": "P_1 : P_2 = C_1T_1 : C_2T_2",
-     "logic": "1. Compute capital-months: investment × months in business (joiner: from joining month to year-end).\n2. The profit ratio is the ratio of these products.\n3. Reverse version: ratio known, one capital unknown → equate the products.\n\nWhy: money working for longer deserves a proportionally larger share — only the product counts.",
+     "steps": [
+      "Compute capital-months for each (joiner: from joining month to year end).",
+      "The profit ratio is the ratio of these products.",
+      "Reverse version: ratio known, one capital unknown — equate the products."
+     ],
+     "why": "Money working longer earns a proportionally larger share; only the product counts.",
      "example": {
-      "q": "A starts a business with ₹16,000. After 6 months, B joins with ₹24,000. From a year-end profit of ₹14,000, B's share is:",
-      "solution": "A: $16000 \\times 12 = 192000$; B: $24000 \\times 6 = 144000$ → ratio 4 : 3 → B $= \\frac{3}{7} \\times 14000 = ₹6{,}000$."
+      "q": "A starts a business with Rs 16,000. After 6 months, B joins with Rs 24,000. From a year-end profit of Rs 14,000, B's share is:",
+      "steps": [
+       "A: $16000 \\times 12 = 192000$; B: $24000 \\times 6 = 144000$.",
+       "Ratio $4 : 3$.",
+       "B $= \\dfrac{3}{7} \\times 14000 = 6000$."
+      ],
+      "answer": "Rs 6,000"
      }
     },
     {
      "id": "rp-n3",
      "name": "Mid-year capital change",
      "frequency": "common",
-     "howToSpot": "'A invests X and adds/withdraws Y after k months' — or 'invested a for 4 months and b for the rest'.",
+     "howToSpot": "'A invests X and adds or withdraws Y after k months' — one partner's capital moves mid-year.",
      "formula": "\\text{effective} = C_a t_1 + C_b t_2 + \\cdots",
-     "logic": "1. Split the year at every change.\n2. Add capital × months over the stretches.\n3. Take the ratio across partners; a single partner with changes just sums their own stretches.\n\nWhy: each stretch of capital earns its own capital-months, and they add up.",
+     "steps": [
+      "Split the year at every change.",
+      "Add capital × months over the stretches.",
+      "Take the ratio across partners."
+     ],
+     "why": "Each stretch of capital earns its own capital-months, and they add up.",
      "example": {
-      "q": "A invests ₹15,000 for the first 4 months of a year and ₹20,000 for the remaining 8 months. B invests ₹18,000 for the whole year. The profit-sharing ratio is:",
-      "solution": "A: $15000 \\times 4 + 20000 \\times 8 = 220000$; B: $18000 \\times 12 = 216000$ → $55 : 54$."
+      "q": "A invests Rs 15,000 for the first 4 months of a year and Rs 20,000 for the remaining 8 months. B invests Rs 18,000 for the whole year. The profit-sharing ratio is:",
+      "steps": [
+       "A: $15000 \\times 4 + 20000 \\times 8 = 220000$.",
+       "B: $18000 \\times 12 = 216000$.",
+       "Ratio $= 55 : 54$."
+      ],
+      "answer": "55 : 54"
      }
     },
     {
      "id": "rp-n4",
-     "name": "Working partner (salary / commission off the top)",
+     "name": "Working partner (cut off the top)",
      "frequency": "common",
-     "howToSpot": "'B manages the business and gets x% of the profit' — or a fixed salary — before the rest is shared.",
+     "howToSpot": "'A manages the business and gets x% of the profit' — or a fixed salary — before the rest is shared.",
      "formula": "\\text{residue} = \\text{profit} - \\text{cut}, \\quad \\text{residue split by } C_iT_i",
-     "logic": "1. Take the working partner's cut out of the profit FIRST.\n2. Divide the residue by the capital-month ratio (the working partner's capital still counts).\n3. Add the cut back to that partner's receipt if the total payment is asked.\n\nWhy: the fee is for work done, so it must not be distorted by the profit ratio.",
+     "steps": [
+      "Take the working partner's cut out of the profit first.",
+      "Divide the residue by the capital ratio (the working partner's capital still counts).",
+      "Add the cut back if that partner's total receipt is asked."
+     ],
+     "why": "The fee pays for work done, so it must not pass through the profit ratio.",
      "example": {
-      "q": "A and B invest ₹50,000 and ₹30,000. A manages the business and receives 10% of the profit for it. From a profit of ₹14,400, B's share is:",
-      "solution": "Cut $= ₹1{,}440$ → residue $= ₹12{,}960$; ratio $5 : 3$ → B $= \\frac{3}{8} \\times 12960 = ₹4{,}860$."
+      "q": "A and B invest Rs 50,000 and Rs 30,000. A manages the business and receives 10% of the profit for it. From a profit of Rs 14,400, B's share is:",
+      "steps": [
+       "Cut $= 1440$; residue $= 12960$.",
+       "Ratio $5 : 3$.",
+       "B $= \\dfrac{3}{8} \\times 12960 = 4860$."
+      ],
+      "answer": "Rs 4,860"
+     }
+    },
+    {
+     "id": "rp-n5",
+     "name": "Rent of a pasture (animals × months)",
+     "frequency": "common",
+     "howToSpot": "Grazing rent divided among farmers whose herds graze for different periods.",
+     "formula": "\\text{rent share} \\propto \\text{animals} \\times \\text{months}",
+     "steps": [
+      "Count cow-months for each farmer: animals × months.",
+      "The rent ratio is the ratio of these products.",
+      "Multiply each share of the ratio by the total rent."
+     ],
+     "why": "The pasture is the partnership: animals are the capital, months are the months.",
+     "example": {
+      "q": "The rent of a pasture is Rs 2,200. A grazes 15 cows for 8 months and B grazes 25 cows for 4 months. A's share of the rent is:",
+      "steps": [
+       "A: $15 \\times 8 = 120$ cow-months; B: $25 \\times 4 = 100$.",
+       "Ratio $6 : 5$.",
+       "A $= \\dfrac{6}{11} \\times 2200 = 1200$."
+      ],
+      "answer": "Rs 1,200"
      }
     }
+   ],
+   "revision": [
+    "Share $\\propto$ capital $\\times$ months.",
+    "Same time for all: pure capital ratio.",
+    "Late joiner: months from joining to year end.",
+    "Mid-year change: add capital-months per stretch.",
+    "Working partner: cut off the top, split the residue.",
+    "Pasture rent and wages: the same capital-months engine."
    ]
   },
   {
    "id": "rp-ages",
    "title": "Problems on ages",
-   "concept": "**Golden rule:** the *difference* of ages is constant over time; the *sum* grows by 2 per year; each person's age grows by 1 per year.\n\nStandard template: present ratio given (say a : b), and a ratio after (or before) n years given. Write present ages ax, bx and form the equation from the second ratio.\n\nIf one age is a multiple of the other ('father is 3 times the son'), write the larger as k × smaller and use the time-shifted condition. Two unknowns are never needed — one multiplier x or k suffices.\n\nDouble-ratio questions (a ratio n years ago AND a ratio n years hence) give two equations in x; eliminate x.",
+   "concept": "Three facts never change: each age grows by 1 every year, the sum of two ages grows by 2 per year, and the **difference** between two ages is constant forever.\n\nStandard template: present ages in ratio $a : b$, a second ratio $n$ years later (or earlier). Write $ax$, $bx$ and solve $\\dfrac{ax \\pm n}{bx \\pm n} = \\dfrac{p}{q}$.\n\nOne multiplier is always enough.",
    "formulas": [
     {
-     "name": "Present = a x, b x",
-     "tex": "\\frac{ax + n}{bx + n} = \\frac{p}{q} \\quad (\\text{ratio after } n \\text{ years})"
-    },
-    {
-     "name": "Ratio n years ago",
-     "tex": "\\frac{ax - n}{bx - n} = \\frac{p}{q}"
+     "name": "Present = ax, bx",
+     "tex": "\\frac{ax \\pm n}{bx \\pm n} = \\frac{p}{q}",
+     "note": "Ratio after (or before) n years."
     },
     {
      "name": "Constant difference",
      "tex": "A - B \\text{ is the same at every time}"
     },
     {
+     "name": "Sum grows by 2 per year",
+     "tex": "(A + B)_{t+n} = (A + B)_t + 2n"
+    },
+    {
      "name": "Multiple of age",
-     "tex": "F = kS \\Rightarrow \\frac{F - n}{S - n} = \\frac{p}{q}"
+     "tex": "F = kS \\Rightarrow F \\pm n = k'(S \\pm n)",
+     "note": "k falls over time for elder-younger pairs."
     }
    ],
    "tricks": [
     {
-     "title": "Multiplier + shift equation",
-     "body": "Ages = ax and bx now; add/subtract the shift; equate the new ratio; solve for x.",
+     "title": "Multiplier plus shift",
+     "body": "Ages $ax$, $bx$ now; shift both by n; equate the new ratio; solve for x.",
      "example": {
-      "q": "The present ages of A and B are in ratio 5 : 7. After 8 years the ratio becomes 3 : 4. Find the sum of their present ages.",
-      "solution": "$\\frac{5x+8}{7x+8} = \\frac{3}{4}$ ⇒ $20x + 32 = 21x + 24$ ⇒ x = 8. Ages 40 and 56 ⇒ sum **96**."
+      "q": "The present ages of A and B are in the ratio 5 : 7. After 8 years the ratio becomes 3 : 4. Find the sum of their present ages.",
+      "steps": [
+       "$\\dfrac{5x+8}{7x+8} = \\dfrac{3}{4}$ gives $x = 8$.",
+       "Ages 40 and 56; sum 96."
+      ],
+      "answer": "96 years"
      }
     },
     {
      "title": "Use the constant difference",
      "body": "The gap between two ages never changes — compute it once and reuse it at any time point.",
      "example": {
-      "q": "Father is 3 times as old as his son. Eight years ago he was 5 times as old. Find their present ages.",
-      "solution": "Gap = 3s − s = 2s. Eight years ago gap = 2s still: $\\frac{3s-8}{s-8} = 5$ ⇒ s = 16, father 48 (gap 32, checks out)."
+      "q": "A father is 3 times as old as his son. Eight years ago he was 5 times as old. Find their present ages.",
+      "steps": [
+       "Gap $= 2s$. Eight years ago: $\\dfrac{3s-8}{s-8} = 5$.",
+       "$3s - 8 = 5s - 40$, so $s = 16$; father 48 (gap 32)."
+      ],
+      "answer": "Father 48, son 16"
      }
     },
     {
-     "title": "Two ratios bracket the answer",
-     "body": "With 'n years ago' and 'n years hence' ratios, form both equations and eliminate x by subtraction.",
+     "title": "Bracket the present with two ratios",
+     "body": "With 'n years ago' and 'n years hence' ratios, both snapshots share one x — the 2n shift separates them.",
      "example": {
       "q": "Six years ago A : B was 5 : 6, and six years hence it will be 6 : 7. Find B's present age.",
-      "solution": "$7(5x+12) = 6(6x+12)$ ⇒ x = 12 ⇒ B $= 6 \\times 12 + 6 = 78$."
+      "steps": [
+       "$7(5x + 12) = 6(6x + 12)$.",
+       "$x = 12$; B $= 6 \\times 12 + 6 = 78$."
+      ],
+      "answer": "78 years"
      }
     }
    ],
    "mistakes": [
-    "Shifting the ratio by n (ratio 5:7 now does NOT become 5:7 + n).",
-    "Adding n to the sum of ages once instead of twice.",
-    "For 'n years ago', subtracting from the ratio terms but forgetting both persons.",
-    "Assuming the ratio difference (b − a)x equals the age difference at a shifted time."
+    {
+     "wrong": "Shifting the ratio terms: 5 : 7 after 8 years read as 13 : 15.",
+     "right": "Shift the ages: (5x + 8) and (7x + 8)."
+    },
+    {
+     "wrong": "Adding n to only one person's age.",
+     "right": "Every living person's age moves by n; the sum of two ages moves by 2n."
+    },
+    {
+     "wrong": "Treating the ratio gap (b − a)x as the age gap at a shifted time.",
+     "right": "The age gap (b − a)x is fixed for all time — that is exactly why it is useful."
+    },
+    {
+     "wrong": "Letting the multiple rise over time for elder-younger pairs.",
+     "right": "The multiple falls: 4 times now, 3 times later, closer to 1 eventually."
+    },
+    {
+     "wrong": "Solving the two-snapshot system with n instead of 2n.",
+     "right": "From 'n years ago' to 'n years hence' each age moves 2n years."
+    }
    ],
-   "notes": "### The three invariants\n- Each person's age grows by **1 every year** — add n to BOTH ages for a shift of n years, and 2n to a sum of two ages.\n- The **difference** of two ages never changes (32-year gap now is 32 forever).\n- The **ratio** keeps changing — that is what the questions exploit.\n\n### The multiplier template\nPresent ages in ratio $a : b$ → write them as $ax$ and $bx$. The shifted condition becomes one equation:\n$$\\frac{ax + n}{bx + n} = \\frac{p}{q} \\quad \\text{(n years hence)}, \\qquad \\frac{ax - n}{bx - n} = \\frac{p}{q} \\quad \\text{(n years ago)}.$$\nOne cross-multiplication gives x. If the question gives a sum or difference instead of a ratio, $(a+b)x$ or $(b-a)x$ is that value — no shift needed.\n\n### The constant-difference checker\nAfter solving, verify: the age difference now must equal the difference at any other time. For a father 3 times the son with son 16: gap = 32; eight years ago it was still 32 (24 vs 8 — father 5 times ✓, matching the given 5 : 1). This check kills half the wrong options without solving anything.\n\n### 'k times' questions\n\"Father is k times the son\" → father = k·son. Use the son as the variable; the second condition (after/before n years) gives one linear equation. Remember the ratio number DROPS as time moves forward (k decreases: 5 times → 3 times), never grows, for an older–younger pair.\n\n### Double-ratio questions\nA ratio 'n years ago' AND a ratio 'n years hence' → ages $(ax - n, bx - n)$ and $(ax + n, bx + n)$: two equations, one unknown x — eliminate by subtracting or cross-multiplying both. The 2n gap between the two time points is the easiest slip.\n\n### The sum trick for two people\nSum of ages grows by exactly 2 per year (two people) or 2n per n years. So \"the sum of present ages is 40; what was it 5 years ago?\" — answer 30, no ratios needed. Combined with a ratio, the sum pins the pair instantly: ratio 3 : 5 with sum 40 → parts of 5 → 15 and 25.\n\n### Three-person ages\nRatios among three people (A : B : C = 4 : 5 : 6) work exactly like two — write 4x, 5x, 6x. Only pairwise conditions appear in exams (\"A is 6 years older than C\" → 2x = 6), because three independent shifts would over-determine the problem.\n\n### Typical wrong options, decoded\n- Shifting the ratio instead of the ages: \"ratio 4 : 5 now, 5 : 6 after n years\" answered with ages $4 + n, 5 + n$ — the 4 : 5 ratio never applies again.\n- Adding n to only one person's age.\n- For 'k times', setting the ELDER as the unknown k times over — the younger must carry the single x.\n\n### Quick revision\n- Ages = ax, bx; shift adds/subtracts n on both.\n- Difference constant; sum changes by 2 per year.\n- k times → write the larger as k × smaller.\n- Two shifted ratios → two equations in the same x.\n",
+   "notes": "### The three facts that never change\n- Each person's age grows by 1 every year. Shift n years: add n to both ages.\n- A sum of two ages grows by 2n over n years.\n- The difference between two ages never changes. A 32-year gap now is a 32-year gap forever.\n\n> **Rule:** Shift the ages, never the ratio. $5 : 7$ today is not $5+n : 7+n$ tomorrow.\n\n### The multiplier template\nPresent ages in ratio $a : b$ — write $ax$ and $bx$. A shifted ratio becomes one equation:\n\n$$\\frac{ax + n}{bx + n} = \\frac{p}{q} \\quad (\\text{after } n \\text{ years}), \\qquad \\frac{ax - n}{bx - n} = \\frac{p}{q} \\quad (n \\text{ years ago})$$\n\nOne cross-multiplication gives x. $5 : 7$ now and $3 : 4$ after 8 years: $\\dfrac{5x+8}{7x+8} = \\dfrac{3}{4}$ gives $20x + 32 = 21x + 24$, so $x = 8$. Ages 40 and 56, sum 96.\n\nIf the question gives a sum or difference of present ages instead, $(a+b)x$ or $(b-a)x$ is that value — no shift needed.\n\n### Sum and difference shortcuts\nRatio $3 : 4$ with sum 35: seven parts of 5, so 15 and 20. The younger is 15.\n\nThe sum grows by 2 a year: \"the sum is 40 now; what was it 5 years ago?\" — 30, no ratio needed. Read which year the question means before dividing by parts.\n\n### k-times questions\n\"Father is k times the son\" — write father $= k \\times$ son, with the son as the single unknown.\n\nMother 4 times the daughter; after 5 years, 3 times: $4d + 5 = 3(d + 5)$, so $d = 10$ and the mother is 40. The gap of 30 never moved: 45 and 15 give exactly 3 times.\n\n> **Watch:** For an older-younger pair the multiple falls over time — 4 times becomes 3 times. If your answer grows the multiple, flip the equation.\n\n### Two shifted ratios\nA ratio n years ago AND n years hence give two equations in the same x.\n\nTen years ago $2 : 3$; ten years hence $4 : 5$. Present ages are $2x + 10$ and $3x + 10$. The second snapshot: $\\dfrac{2x + 20}{3x + 20} = \\dfrac{4}{5}$ gives $10x + 100 = 12x + 80$, so $x = 10$ and A is 30.\n\nThe 2n years between the two snapshots is the easiest slip: each age changes by 2n, not n.\n\n### The constant-difference check\nAfter solving, verify the gap is the same at both times. Father 48, son 16: gap 32. Eight years ago, 40 and 8 — gap 32, ratio 5, matching \"5 times as old\".\n\nThe check also runs forwards. A man is 25 years older than his son and will be exactly twice his age in ten years. Then $s + 35 = 2(s + 10)$, so the son is 15 now. In ten years the pair is 25 and 50 — gap still 25.\n\n> **Tip:** Compute the age gap once and reuse it at every time point. It kills wrong options without solving.\n\n### Three people\nRatios among three people work the same: $4x, 5x, 6x$. Exams add one pairwise fact (\"A is 6 years older than C\" gives $2x = 6$) because more would over-determine the problem.\n",
    "patterns": [
     {
      "id": "rp-a1",
@@ -414,34 +719,63 @@
      "frequency": "very common",
      "howToSpot": "'Ages are in ratio a : b and their sum (or difference) is S' — no time shift at all.",
      "formula": "(a + b)x = S \\ \\text{or} \\ (b - a)x = D",
-     "logic": "1. Total parts = a + b (or the gap = b − a for a difference).\n2. One part = S ÷ total parts.\n3. Multiply by the asked person's parts.\n\nWhy: with no shift, this is a plain ratio division of the given total.",
+     "steps": [
+      "Total parts = a + b (or the gap b − a for a difference).",
+      "One part = S ÷ total parts.",
+      "Multiply by the asked person's parts."
+     ],
+     "why": "With no shift, this is a plain ratio division of the given total.",
      "example": {
       "q": "The ages of two brothers are in the ratio 3 : 4 and the sum of their ages is 35 years. The younger brother's age is:",
-      "solution": "7 parts = 35 → 1 part = 5 → younger $= 3 \\times 5 = 15$ years."
+      "steps": [
+       "7 parts $= 35$, so 1 part $= 5$.",
+       "Younger $= 3 \\times 5 = 15$ years."
+      ],
+      "answer": "15 years"
      }
     },
     {
      "id": "rp-a2",
-     "name": "Ratio now and ratio after/before n years",
+     "name": "Ratio now and ratio after or before n years",
      "frequency": "very common",
      "howToSpot": "'The present ages are in ratio a : b; after (or before) n years the ratio will be p : q.'",
      "formula": "\\frac{ax \\pm n}{bx \\pm n} = \\frac{p}{q}",
-     "logic": "1. Write present ages as ax, bx.\n2. Add or subtract n on BOTH, equate to p : q.\n3. Cross-multiply once and solve for x.\n\nWhy: both ages move by the same n, so the ratio shifts in a way that pins x exactly.",
+     "steps": [
+      "Write present ages as ax, bx.",
+      "Add or subtract n on BOTH, equate to p : q.",
+      "Cross-multiply once and solve for x."
+     ],
+     "why": "Both ages move by the same n, so the ratio shift pins x exactly.",
      "example": {
       "q": "The present ages of P and Q are in the ratio 5 : 6. Four years from now, the ratio will become 6 : 7. P's present age is:",
-      "solution": "$\\frac{5x + 4}{6x + 4} = \\frac{6}{7}$ → $35x + 28 = 36x + 24$ → x = 4 → P = 20 years."
+      "steps": [
+       "$\\dfrac{5x + 4}{6x + 4} = \\dfrac{6}{7}$.",
+       "$35x + 28 = 36x + 24$, so $x = 4$.",
+       "P $= 20$ years."
+      ],
+      "answer": "20 years"
      }
     },
     {
      "id": "rp-a3",
      "name": "'k times as old' questions",
      "frequency": "very common",
-     "howToSpot": "'A father is 4 times as old as his daughter; after 5 years he will be 3 times as old' — one multiple now, another later.",
+     "howToSpot": "'A mother is 4 times as old as her daughter; after 5 years she will be 3 times as old' — one multiple now, another later.",
      "formula": "F = kS, \\quad F \\pm n = k'(S \\pm n)",
-     "logic": "1. Take the younger age as S; the elder is kS.\n2. Apply the second condition at the shifted time.\n3. Solve the small linear equation; check the constant difference.\n\nWhy: both conditions are statements about the same two numbers at two dates.",
+     "steps": [
+      "Take the younger age as the single unknown; the elder is k times it.",
+      "Apply the second condition at the shifted time.",
+      "Solve; check the constant difference."
+     ],
+     "why": "Both conditions describe the same two people at two dates.",
      "example": {
       "q": "A mother is 4 times as old as her daughter. After 5 years, the mother will be 3 times as old as the daughter. The mother's present age is:",
-      "solution": "$4d + 5 = 3(d + 5)$ → $d = 10$ → mother $= 40$ years. (Gap 30 is constant: 40/10 now, 45/15 later ✓.)"
+      "steps": [
+       "$4d + 5 = 3(d + 5)$.",
+       "$d = 10$; mother $= 40$ years.",
+       "Check: gap 30; 45 and 15 give 3 times."
+      ],
+      "answer": "40 years"
      }
     },
     {
@@ -450,26 +784,49 @@
      "frequency": "common",
      "howToSpot": "'n years ago the ratio was a : b, and n years hence it will be p : q' — two snapshots bracket the present.",
      "formula": "\\frac{ax - n}{bx - n} = \\frac{a'}{b'}, \\qquad \\frac{ax + n}{bx + n} = \\frac{p}{q}",
-     "logic": "1. Write both equations in the same x.\n2. Cross-multiply each (or subtract the two statements — the 2n shift cancels x cleanly).\n3. Solve for x, then build the present ages.\n\nWhy: both snapshots describe the same present ages, x links them.",
+     "steps": [
+      "Write present ages as ax and bx.",
+      "Build both snapshots: subtract n for 'ago', add n for 'hence'.",
+      "Equate the second snapshot's ratio and solve for x."
+     ],
+     "why": "Both snapshots describe the same present ages, so one x serves both.",
      "example": {
       "q": "Ten years ago the ages of A and B were in the ratio 2 : 3. Ten years from now the ratio will be 4 : 5. A's present age is:",
-      "solution": "$\\frac{2x + 20}{3x + 20} = \\frac{4}{5}$ → $10x + 100 = 12x + 80$ → x = 10 → A $= 2(10) + 10 = 30$ years."
+      "steps": [
+       "Present ages $2x + 10$, $3x + 10$; hence $2x + 20$, $3x + 20$.",
+       "$\\dfrac{2x + 20}{3x + 20} = \\dfrac{4}{5}$ gives $x = 10$.",
+       "A $= 30$ years."
+      ],
+      "answer": "30 years"
      }
     }
+   ],
+   "revision": [
+    "Ages $ax$, $bx$; shift both by $\\pm n$.",
+    "Age difference constant; sum grows by 2 per year.",
+    "k times: write the larger as k $\\times$ the smaller.",
+    "Two shifted ratios: same x, 2n apart.",
+    "Check every answer against the constant gap."
    ]
   },
   {
    "id": "rp-money-applications",
    "title": "Money ratios: income–expenditure, coins & mixed amounts",
-   "concept": "Two classic containers for ratios:\n\n- **Income–expenditure:** incomes and expenditures are given as two ratios, and each person's savings (income − expenditure) is known. Set incomes $= ax, bx$ and expenditures $= py, qy$ and solve the two saving equations.\n- **Coin bags:** numbers of coins of denominations are in a given ratio. Value per 'set' = Σ(count × denomination); total value = (value per set) × k.\n\nThe two-variable (x, y) income-expenditure setup is the standard CGL hard question — keep the arithmetic in fractions and it stays small.",
+   "concept": "Two classic money containers for ratios.\n\n**Income and expenditure:** incomes in $a : b$, expenditures in $p : q$. Write incomes $ax, bx$ and expenditures $py, qy$ — two multipliers — then use each person's savings.\n\n**Coin bags:** price one full set of coins in the ratio; divide the total value by the set value; multiply back for any count.",
    "formulas": [
     {
      "name": "Savings equations",
-     "tex": "ax - py = s_1,\\quad bx - qy = s_2"
+     "tex": "ax - py = s_1,\\quad bx - qy = s_2",
+     "note": "Two multipliers: x for incomes, y for expenditures."
     },
     {
      "name": "Coin value",
-     "tex": "\\text{total value} = k \\sum_i (n_i \\times d_i)"
+     "tex": "\\text{total value} = k \\sum_i (n_i \\times d_i)",
+     "note": "Price one set, then scale."
+    },
+    {
+     "name": "Wages together",
+     "tex": "\\text{shares} \\propto \\frac{1}{\\text{days alone}}"
     },
     {
      "name": "Difference of shares",
@@ -478,86 +835,164 @@
    ],
    "tricks": [
     {
-     "title": "Solve for x, y in two lines",
-     "body": "Write both saving equations, subtract them to kill one variable.",
+     "title": "Subtract the savings equations",
+     "body": "Write both savings equations and subtract — equal savings kill the constant and one variable.",
      "example": {
-      "q": "Incomes of A and B are in ratio 8 : 5 and expenditures in 5 : 3. If each saves ₹1,200, find A's income.",
-      "solution": "8x − 5y = 1200 and 5x − 3y = 1200 ⇒ subtract: 3x − 2y = 0 ⇒ y = 1.5x ⇒ 0.5x = 1200 ⇒ x = 2400 ⇒ A's income = 8 × 2400 = ₹19,200."
+      "q": "Incomes of A and B are in the ratio 8 : 5 and expenditures in 5 : 3. If each saves Rs 1,200, find A's income.",
+      "steps": [
+       "$8x - 5y = 1200$, $5x - 3y = 1200$; subtract: $3x = 2y$.",
+       "$y = 1.5x$; $0.5x = 1200$, so $x = 2400$.",
+       "A's income $= 8 \\times 2400 = 19200$."
+      ],
+      "answer": "Rs 19,200"
      }
     },
     {
      "title": "Value per set for coins",
-     "body": "Take one full set of coins in the given ratio, price it, and scale.",
+     "body": "Take one full set of coins in the given ratio, price it in paise, and scale.",
      "example": {
-      "q": "A bag has 50-paise, 25-paise and 10-paise coins in the ratio 7 : 6 : 5 amounting to ₹550 in total. Find the number of 25-paise coins.",
-      "solution": "Set value = 350 + 150 + 50 = 550 paise ⇒ 550 ÷ 5.50 = 100 sets ⇒ 25p coins = 6 × 100 = 600."
+      "q": "A bag has 50-paise, 25-paise and 10-paise coins in the ratio 7 : 6 : 5 amounting to Rs 550. Find the number of 25-paise coins.",
+      "steps": [
+       "Set $= 350 + 150 + 50 = 550$ paise $=$ Rs 5.50.",
+       "$550 \\div 5.50 = 100$ sets.",
+       "25-paise coins $= 6 \\times 100 = 600$."
+      ],
+      "answer": "600"
      }
     },
     {
-     "title": "Sum-difference shortcuts",
-     "body": "Sum of shares = (a + b)x, difference = (b − a)x — jump straight to x from whichever is given.",
+     "title": "Base the chain on the last person",
+     "body": "For 'A gets half of B, B gets two-thirds of C', give the last-named person the unit and read the ratio off.",
      "example": {
-      "q": "Two numbers in ratio 5 : 7 have difference 12. Find the smaller.",
-      "solution": "2x = 12 ⇒ x = 6 ⇒ smaller = 30."
+      "q": "Rs 918 is divided so that the first gets half of the second and the second gets two-thirds of the third. Find the first share.",
+      "steps": [
+       "Third $= 3$, second $= 2$, first $= 1$.",
+       "Ratio $1 : 2 : 3$; first $= \\dfrac{918}{6} = 153$."
+      ],
+      "answer": "Rs 153"
      }
     }
    ],
    "mistakes": [
-    "Using the expenditure ratio with the income multiplier x (they are different variables x and y).",
-    "Mixing paise and rupees in coin problems (1 rupee = 100 paise).",
-    "In coin questions, giving the value of the coins instead of their count (or vice versa).",
-    "Forgetting to check that savings come out positive for both persons."
+    {
+     "wrong": "Using one multiplier for both income and expenditure ratios.",
+     "right": "Incomes take x, expenditures take y — two letters, two equations."
+    },
+    {
+     "wrong": "Mixing paise and rupees in coin problems.",
+     "right": "Convert everything to one unit first; Rs 1 = 100 paise."
+    },
+    {
+     "wrong": "Answering the value of the coins when the count is asked (or the reverse).",
+     "right": "Read whether the question wants a count or a value; both sit in the options."
+    },
+    {
+     "wrong": "Comparing days instead of rates when workers work together.",
+     "right": "Together, shares follow 1/days."
+    },
+    {
+     "wrong": "Accepting a negative expenditure multiplier.",
+     "right": "A negative y means the equations were set up with swapped multipliers."
+    }
    ],
-   "notes": "### Income–expenditure–savings (two ratios)\nIncomes in ratio $a : b$ and expenditures in ratio $p : q$ → write incomes $= ax, bx$ and expenditures $= py, qy$. **Two different multipliers** — that is the trap. Savings give one linear equation per person:\n$$ax - py = s_1, \\qquad bx - qy = s_2.$$\nSubtract the equations (equal savings make the right sides cancel) or solve by elimination; then build any income, expenditure or saving.\nKeep the arithmetic in fractions and it stays two lines. Always sanity-check both savings come out positive.\n\n### Coin and denomination bags\nCoins of denominations $d_1, d_2, d_3$ in ratio $n_1 : n_2 : n_3$: price ONE full set,\n$$\\text{set value} = n_1d_1 + n_2d_2 + n_3d_3,$$\nthen number of sets = total value ÷ set value. Count of a coin = its ratio term × sets. Convert everything to paise (or everything to rupees) first — ₹1 = 100 paise.\n\n### Wages in proportion to work\nFair division follows work done. Days worked → shares ∝ days. Working together → shares ∝ **work rates** ($\\frac{1}{\\text{days}}$), not the days themselves: workers finishing alone in 6 and 9 days earn in ratio $\\frac{1}{6} : \\frac{1}{9} = 3 : 2$.\n\n### Chained ratios on money\n\"A = 3/4 of B, B = 4/5 of C\" → convert to a common base: $A : B : C = 3 : 4 : 5$. Then any total or share is plain part-division. Whenever two linked fractions appear, build the three-term ratio before touching the money.\n\n### A complete income–expenditure walkthrough\n\"Incomes 5 : 4, expenditures 3 : 2, each saves ₹1,600.\"\n1. Incomes $5x, 4x$; expenditures $3y, 2y$ — note the two different letters.\n2. $5x - 3y = 1600$ and $4x - 2y = 1600$.\n3. Equal savings → subtract the equations: $(5x - 4x) - (3y - 2y) = 0$, i.e. $x - y = 0$, so $x = y$.\n4. Substitute: $5x - 3x = 1600$ → $x = 800$. Incomes ₹4,000 and ₹3,200; expenditures ₹2,400 and ₹1,600 — both savings check out at ₹1,600 ✓.\nWith equal savings, the subtraction step is what makes the question short; with unequal savings, eliminate y by cross-multiplying the two equations.\n\n### Money-ratio hygiene\n- Convert paise/rupees and hours/minutes before forming any ratio.\n- Answer what is asked: coin COUNT vs coin VALUE, income vs expenditure — the options always carry both.\n- Check plausibility: savings must come out positive for everyone; a negative y means the equations were set up with swapped multipliers.\n\n### Quick revision\n- Incomes and expenditures take different multipliers x and y.\n- Subtract savings equations to eliminate.\n- Coin bags: price one set, divide, multiply.\n- Wages together ∝ 1/days each.\n",
+   "notes": "### Two ratios, two multipliers\nIncomes in $a : b$ and expenditures in $p : q$. Write incomes $= ax$, $bx$ and expenditures $= py$, $qy$.\n\nTwo different multipliers — mixing them is the standard error. Savings give one equation per person: $ax - py = s_1$ and $bx - qy = s_2$.\n\n> **Rule:** Incomes take x, expenditures take y. Never one letter for both.\n\n### Equal savings — subtract\nEach saves Rs 2,000 with incomes $9 : 7$ and expenditures $4 : 3$:\n\n$$9x - 4y = 2000, \\qquad 7x - 3y = 2000$$\n\nSubtract: $2x = y$. Then $9x - 8x = 2000$, so $x = 2000$ and A's income is 18,000.\n\nAnother: incomes $8 : 5$, expenditures $5 : 3$, each saves 1,200. Subtracting gives $3x = 2y$, so $y = 1.5x$. Then $8x - 7.5x = 0.5x = 1200$, so $x = 2400$ and A's income is 19,200.\n\nEqual savings cancel on subtraction — that is what makes these questions short.\n\n### Unequal savings — eliminate\nWhen the savings differ, scale one equation so y matches, then subtract. Same two-line shape, one extra multiplication.\n\n### A complete walkthrough\nIncomes $5 : 4$, expenditures $3 : 2$, each saves Rs 1,600. So $5x - 3y = 1600$ and $4x - 2y = 1600$.\n\nEqual savings, so subtract: $x - y = 0$, meaning $x = y$. Then $5x - 3x = 2x = 1600$, so $x = 800$.\n\nIncomes 4,000 and 3,200; expenditures 2,400 and 1,600. Both savings check out at 1,600.\n\n### Coin bags\nCoins in ratio $n_1 : n_2 : n_3$ of denominations $d_1, d_2, d_3$. Price ONE set: $n_1d_1 + n_2d_2 + n_3d_3$. Then sets = total value ÷ set value, and a coin's count = its term × sets.\n\nRs 1, 50-paise and 25-paise coins in $5 : 8 : 4$ worth Rs 210: a set is $500 + 400 + 100 = 1000$ paise $=$ Rs 10. So 21 sets, and the 50-paise coins number $8 \\times 21 = 168$.\n\n> **Careful:** Convert everything to paise (or everything to rupees) before pricing the set. Rs 1 = 100 paise.\n\nThe same engine counts total coins: Rs 5, Rs 2 and Rs 1 coins in $3 : 5 : 7$ worth Rs 512. A set is Rs 32, so 16 sets, and the total coins are $15 \\times 16 = 240$.\n\n### Wages in proportion to work\nWages follow work done. Days worked: shares $\\propto$ days. Working together: shares $\\propto$ work rates, $\\dfrac{1}{\\text{days}}$.\n\nWorkers finishing alone in 6 and 9 days earn in ratio $\\dfrac{1}{6} : \\dfrac{1}{9} = 3 : 2$. Of Rs 1,500, the faster worker gets 900.\n\n> **Watch:** Together, compare $\\dfrac{1}{\\text{days}}$, never the days themselves.\n\n### Chained fractions\n\"A $= \\dfrac{3}{4}$ of B and B $= \\dfrac{4}{5}$ of C\" gives $A : B : C = 3 : 4 : 5$. Build the three-term ratio on a common base before touching any money.\n\n### Statement-defined shares\n\"A gets half of B; B gets two-thirds of C.\" Let the third hold 3: then B $=$ 2 and A $=$ 1. Ratio $1 : 2 : 3$; Rs 918 gives A $= \\dfrac{918}{6} = 153$.\n\n> **Tip:** Take the last-named person as the base unit; every statement becomes a whole-number multiple.\n",
    "patterns": [
     {
      "id": "rp-c1",
-     "name": "Income–expenditure–savings ratios",
+     "name": "Income-expenditure-savings ratios",
      "frequency": "very common",
-     "howToSpot": "Two income ratios, two expenditure ratios, savings given — find an income or expenditure.",
+     "howToSpot": "Two ratios (income and expenditure) plus savings; find an income or an expenditure.",
      "formula": "ax - py = s_1, \\quad bx - qy = s_2",
-     "logic": "1. Incomes = ax, bx; expenditures = py, qy (different letters!).\n2. Write both savings equations.\n3. Equal savings → subtract the equations to kill the constant; else eliminate y by cross-multiplying.\n\nWhy: two ratios plus two savings give exactly two linear equations in x and y.",
+     "steps": [
+      "Incomes = ax, bx; expenditures = py, qy (different letters).",
+      "Write both savings equations.",
+      "Equal savings: subtract. Unequal: eliminate y.",
+      "Build the asked quantity from x or y."
+     ],
+     "why": "Two ratios plus two savings give exactly two linear equations in x and y.",
      "example": {
-      "q": "The incomes of A and B are in the ratio 9 : 7 and their expenditures in the ratio 4 : 3. If each saves ₹2,000, A's income is:",
-      "solution": "$9x - 4y = 2000$, $7x - 3y = 2000$ → subtract: $2x = y$. Then $9x - 8x = 2000$ → x = 2000 → A $= ₹18{,}000$."
+      "q": "The incomes of A and B are in the ratio 9 : 7 and their expenditures in the ratio 4 : 3. If each saves Rs 2,000, A's income is:",
+      "steps": [
+       "$9x - 4y = 2000$ and $7x - 3y = 2000$.",
+       "Subtract: $2x = y$. Then $9x - 8x = 2000$.",
+       "$x = 2000$; A $= 9 \\times 2000 = 18000$."
+      ],
+      "answer": "Rs 18,000"
      }
     },
     {
      "id": "rp-c2",
      "name": "Coin denominations in a ratio",
      "frequency": "common",
-     "howToSpot": "Bags of ₹1/50p/25p (or ₹5/₹2/₹1) coins in a ratio with the total value given; find a coin count or the total.",
+     "howToSpot": "Bags of Rs 1 / 50p / 25p (or Rs 5 / Rs 2 / Rs 1) coins in a ratio with the total value given.",
      "formula": "\\text{set value} = \\sum n_i d_i, \\quad \\text{sets} = \\frac{\\text{total value}}{\\text{set value}}",
-     "logic": "1. Convert all values to ONE unit (paise or rupees).\n2. Price one full set of coins in the given ratio.\n3. Divide the total value by the set value → sets; multiply back for counts.\n\nWhy: the ratio fixes how many full sets the bag contains — the set is the repeating block.",
+     "steps": [
+      "Convert all values to ONE unit (paise or rupees).",
+      "Price one full set of coins in the given ratio.",
+      "Sets = total value ÷ set value; a coin's count = its term × sets."
+     ],
+     "why": "The ratio fixes how many identical sets the bag holds — the set is the repeating block.",
      "example": {
-      "q": "A bag contains ₹1, 50-paise and 25-paise coins in the ratio 5 : 8 : 4, amounting to ₹210. The number of 50-paise coins is:",
-      "solution": "Set $= 500 + 400 + 100 = 1000$ paise = ₹10 → 21 sets → 50p coins $= 8 \\times 21 = 168$."
+      "q": "A bag contains Rs 1, 50-paise and 25-paise coins in the ratio 5 : 8 : 4, amounting to Rs 210. The number of 50-paise coins is:",
+      "steps": [
+       "Set $= 500 + 400 + 100 = 1000$ paise $=$ Rs 10.",
+       "$210 \\div 10 = 21$ sets.",
+       "50-paise coins $= 8 \\times 21 = 168$."
+      ],
+      "answer": "168"
      }
     },
     {
      "id": "rp-c3",
-     "name": "Money shared in proportion to work or linked ratios",
+     "name": "Money shared in proportion to work",
      "frequency": "common",
-     "howToSpot": "Wages divided in proportion to work/days; or shares linked by 'A = 3/4 of B, B = 4/5 of C'.",
-     "formula": "\\text{wage} \\propto \\text{work done}, \\quad \\text{together} \\propto \\frac{1}{\\text{days alone}}",
-     "logic": "1. Convert the story into one common ratio (days, or 1/days when working together).\n2. Add the parts; one part = money ÷ parts.\n3. For chains like A = (3/4)B = (3/4)(4/5)C, build A : B : C first.\n\nWhy: fair division always reduces to a three-term ratio on a common base.",
+     "howToSpot": "Wages divided by days worked, or by work rates when the workers finish alone in different times.",
+     "formula": "\\text{wage} \\propto \\text{work done}; \\quad \\text{together} \\propto \\frac{1}{\\text{days alone}}",
+     "steps": [
+      "Convert the story into one common ratio (days, or 1/days together).",
+      "Add the parts; one part = money ÷ parts.",
+      "Multiply by the asked worker's parts."
+     ],
+     "why": "Fair division always reduces to one three-term ratio on a common base.",
      "example": {
-      "q": "Two workers, working alone, can finish a job in 6 days and 9 days. They work together and earn ₹1,500. The first worker's share is:",
-      "solution": "Rates: $\\frac{1}{6} : \\frac{1}{9} = 3 : 2$ → share $= \\frac{3}{5} \\times 1500 = ₹900$."
+      "q": "Two workers, working alone, can finish a job in 6 days and 9 days. They work together and earn Rs 1,500. The first worker's share is:",
+      "steps": [
+       "Rates $\\dfrac{1}{6} : \\dfrac{1}{9} = 3 : 2$.",
+       "Share $= \\dfrac{3}{5} \\times 1500 = 900$."
+      ],
+      "answer": "Rs 900"
      }
     },
     {
      "id": "rp-c4",
-     "name": "Condition-driven division ('half of', 'twice of')",
+     "name": "Condition-driven division",
      "frequency": "common",
-     "howToSpot": "'A gets twice as much as B', 'the first gets half of the second' — shares defined by statements, not by a stated ratio.",
-     "formula": "\\text{translate each statement into a multiple}, \\ \\text{then read off } A : B : C",
-     "logic": "1. Let the LAST person hold x (or 1 part).\n2. Translate each statement into multiples of that part.\n3. Read the ratio, add parts, divide the total.\n\nWhy: chain statements fix the mutual multiples; taking the last person as the base untangles them in one pass.",
+     "howToSpot": "'A gets twice as much as B', 'the first gets half of the second' — shares defined by statements, not a stated ratio.",
+     "formula": "\\text{translate each statement into a multiple},\\ \\text{then read off } A : B : C",
+     "steps": [
+      "Let the LAST-named person hold the base unit.",
+      "Translate each statement into a multiple of that unit.",
+      "Read the ratio, add parts, divide the total."
+     ],
+     "why": "Chain statements fix the mutual multiples; the last-named base untangles them in one pass.",
      "example": {
-      "q": "₹918 is divided among three friends such that the first gets half of the second and the second gets two-thirds of the third. The first friend's share is:",
-      "solution": "Let the third = 3 → second = 2 → first = 1 → ratio $1 : 2 : 3$ → first $= \\frac{918}{6} = ₹153$."
+      "q": "Rs 918 is divided among three friends such that the first gets half of the second and the second gets two-thirds of the third. The first friend's share is:",
+      "steps": [
+       "Third $= 3$, second $= 2$, first $= 1$.",
+       "Ratio $1 : 2 : 3$.",
+       "First $= \\dfrac{918}{6} = 153$."
+      ],
+      "answer": "Rs 153"
      }
     }
+   ],
+   "revision": [
+    "Incomes $ax$, $bx$; expenditures $py$, $qy$ — two multipliers.",
+    "Equal savings: subtract the two equations.",
+    "Unequal savings: eliminate y by scaling.",
+    "Coin bags: price one set, divide, multiply back.",
+    "Wages together $\\propto$ 1/days.",
+    "Statement shares: base on the last-named person."
    ]
   }
  ],

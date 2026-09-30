@@ -13,7 +13,7 @@
   {
    "id": "movement-rotation",
    "title": "Movement and rotation",
-   "concept": "Most figure series move an element step by step:\n\n- **Around the border**: a dot/shape jumps a fixed number of positions (1, 2, 3 …) clockwise or anticlockwise. Border positions: 4 corners + 4 edge mid-points = 8 places.\n- **Rotation**: an arrow or line turns by a fixed angle (45°, 90°, 135°) each step.\n- **Shading**: a shaded quarter moves round the square.\n\nTrack **one element at a time** across all frames, write its step (e.g. +1 clockwise), then predict its next place. Do the same for each element and pick the option that agrees on all of them.",
+   "concept": "In a movement series, nothing is added or removed. A mark slides round a square, an arrow turns, or shading hops from quarter to quarter.\n\nFollow one element at a time. Write its step, then apply that step once more.",
    "formulas": [
     {
      "name": "Position after k steps",
@@ -24,27 +24,61 @@
    "tricks": [
     {
      "title": "One element, one line",
-     "body": "Write a tiny table: element → positions in frames 1-4 → step → next. Options that fail any row are out.",
+     "body": "Write one short row for each element: the places in every frame, then the step, then the next place. Any option that fails a row is out.",
      "example": {
-      "q": "**Q.** A dot sits at places 1, 3, 5, 7 (clockwise count). Next?",
-      "solution": "Step +2: 7 + 2 = 9 ≡ **1** (back to the first place)."
+      "q": "A dot sits at places 2, 5, 0, 3. Where next?",
+      "steps": [
+       "Jumps: 2 to 5 is +3. 5 to 0 is +3 (5 + 3 = 8). 0 to 3 is +3.",
+       "Next: 3 + 3 = 6."
+      ],
+      "answer": "Place 6, the bottom-left corner."
      }
     },
     {
-     "title": "Angles as clock hours",
-     "body": "Treat 45° as 1.5 clock-hours; an arrow turning 90° clockwise each step goes 12 → 3 → 6 → 9 → 12.",
+     "title": "Arrows as clock hours",
+     "body": "Think of the arrow as the hand of a clock. A 90-degree clockwise turn goes 12, 3, 6, 9.",
      "example": {
-      "q": "**Q.** Arrow: up, right, down, … next?",
-      "solution": "Left (90° clockwise each step)."
+      "q": "An arrow points up, right, down. What comes next?",
+      "steps": [
+       "Up to right is 90 degrees clockwise.",
+       "Right to down is again 90 degrees clockwise.",
+       "Down turned 90 degrees clockwise points left."
+      ],
+      "answer": "Left."
      }
+    },
+    {
+     "title": "Cross out by one element",
+     "body": "Test the easiest element first, such as the arrow. Cross out the options that fail it before you look at anything else."
     }
    ],
    "mistakes": [
-    "Mixing up clockwise and anticlockwise because the first step looked like both.",
-    "Tracking only one element and choosing an option that is right for it but wrong for another.",
-    "Forgetting to wrap round after the 8th border position."
+    {
+     "wrong": "Counting the places from a different starting point in each frame.",
+     "right": "Number the places once, clockwise from the top-left corner, and never change the numbering."
+    },
+    {
+     "wrong": "Mixing up clockwise and anticlockwise.",
+     "right": "Clockwise is +. Anticlockwise is -. Check the direction with the first two frames."
+    },
+    {
+     "wrong": "Reading the step from one pair of frames only.",
+     "right": "Check the step on every pair. A growing or alternating step shows up only when you compare all of them."
+    },
+    {
+     "wrong": "Forgetting to take away 8 when the count passes 7.",
+     "right": "After place 7 comes place 0. Take away 8 from any number of 8 or more."
+    },
+    {
+     "wrong": "Choosing an option that fits one element but not the others.",
+     "right": "Every element has its own rule. The answer must satisfy all of them."
+    },
+    {
+     "wrong": "Treating a turn of 90 degrees as one step.",
+     "right": "One step is 45 degrees. A 90-degree turn is 2 steps."
+    }
    ],
-   "notes": "### What the series asks\nFour figures follow one after another by a fixed rule of **movement** or **rotation**. You must pick the fifth figure from the options. Nothing is counted or added here - something only **turns** or **slides** from frame to frame.\n\n### Number the positions\nMany frames place a small mark (a dot, a ring, a square) on the **border** of a square. Number the 8 border places **clockwise** starting from the top-left corner: 0 top-left corner, 1 top-middle, 2 top-right corner, 3 right-middle, 4 bottom-right corner, 5 bottom-middle, 6 bottom-left corner, 7 left-middle. A movement \"one place clockwise\" then means 0 → 1 → 2; \"two places anticlockwise\" means 0 → 6 → 4. With numbers, the answer is a small sum: next place = last place + step (mod 8).\n\n### Arrows and directions\nAn arrow that turns is read by its **angle**. The 8 likely directions are up, up-right, right, down-right, down, down-left, left, up-left - 45 degrees apart. \"90° clockwise\" sends up → right → down; \"45° anticlockwise\" sends right → up-right → up. Write the direction under each frame, find the step, and turn once more for the answer.\n\n### Shaded parts\nA shaded quarter of the square moves around the four quarters: top-left → top-right → bottom-right → bottom-left is one step **clockwise** each time. The same numbering trick works with 4 places instead of 8.\n\n### Two or three rules together\nHarder series move two or three elements at once - say a shaded quarter, an arrow and a dot. **Read one element at a time** across all four frames, write its rule, then combine the rules for the answer. Never try to compare whole frames; each element obeys its own small rule.\n\n### Method in the exam\n1. Pick one element and follow it through all frames; note its rule (step size and direction).\n2. Repeat for any other element.\n3. Apply each rule once more to get the answer's element positions.\n4. Match the options; reject any option that breaks even one rule.\n\n### Worked example\nAn arrow points up, then up-right, then right, then down-right - it turns **45° clockwise** each step. One more turn of 45° clockwise points it **down**. In place-numbered form: a dot at place 0, 2, 4, 6 moves two places clockwise each step, so next is 6 + 2 = 8 → place 0, the **top-left corner**.\n\n### Common mistakes\n- Mixing up clockwise and anticlockwise after the second frame.\n- Reading a 45° turn as 90° (the arrowheads are small - trace one frame at a time).\n- In combined series, applying one rule to the wrong element.\n- Forgetting that the movement repeats around the frame: place 7 + 1 = place 0, not place 8.\n\n### Quick revision\n- Border: 8 places numbered clockwise from the top-left corner; step is added mod 8.\n- Arrows: 8 directions, 45° apart; note the turn per frame.\n- Shaded quarter: 4 places; one quarter clockwise at a time.\n- Combined series: solve one element at a time, then combine.\n- The answer must satisfy **every** rule, not just one.\n",
+   "notes": "### What the series asks\nFour figures follow one another by a fixed rule. You pick the fifth figure from the options.\n\nHere the elements only **slide** or **turn**. Their number never changes. The trick is to track one element at a time.\n\n### Number the border places\nMany frames put a dot on the border of a square. There are 8 places. We number them **clockwise** from the top-left corner.\n\n```\n0 1 2\n7   3\n6 5 4\n```\n\nNow movement is just arithmetic. The next place is the last place plus the step, taken mod 8.\n\n> **Rule:** One place clockwise is +1. One place anticlockwise is -1. If the answer passes 7, take away 8.\n\n### Turning arrows\nAn arrow has 8 usual directions, 45 degrees apart. We count them clockwise from up.\n\n| Number | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |\n|---|---|---|---|---|---|---|---|---|\n| Arrow | ↑ | ↗ | → | ↘ | ↓ | ↙ | ← | ↖ |\n\nA 90-degree turn is 2 steps. A 135-degree turn is 3 steps. Anticlockwise turns are negative.\n\n### Shaded quarters\nA square has 4 quarters: top-left, top-right, bottom-right, bottom-left. This is the clockwise order.\n\nShading moves the same way as a dot, but with 4 places instead of 8. Two shaded quarters move together as a pair.\n\n> **Tip:** Write the shaded quarters as numbers 0 to 3. Then you can spot the step at once.\n\n### Steps that are not constant\nSome steps grow: 1, 2, 3, then 4. Some steps alternate: 45 degrees, then 90 degrees, then 45 degrees again.\n\nIf the plain step fails, write the jumps as a list. The pattern is usually in that list.\n\n### Several elements together\nA frame may carry shading, an arrow and a dot. Each element has its own rule. The rules never mix.\n\nWork through each element alone. Then pick the only option that agrees with every rule.\n\n> **Watch:** Two options often satisfy one rule each. Check every element before you choose.\n\n### Reading the options quickly\nWrong options are built from common slips. One goes the wrong way round. One moves by the wrong step. One forgets to take away 8.\n\nWork out the answer first. Then find it among the options. Do not let the options steer you.\n\n### A worked example\nFind the figure that comes next in the series.\n\n**Series**\n```\n. o .  >  . . .  >  . . .  >  . . o\n.   .  >  .   .  >  o   .  >  .   .\n. . .  >  . . o  >  . . .  >  . . .\n```\n\n**Options**\n```\n(A)       (B)       (C)       (D)\n. . .     . . .     . . .     o . .\n.   .     .   .     .   o     .   .\n. o .     o . .     . . .     . . .\n```\n\n**Solution**\n- Places: 1, 4, 7, 2. Jumps: +3, +3, +3 (7 + 3 = 10, which is 2).\n- Next: 2 + 3 = 5, the bottom-middle place.\n\nAnswer: **(A)**.\n",
    "patterns": [
     {
      "id": "mr-p1",
@@ -52,10 +86,21 @@
      "frequency": "very common",
      "howToSpot": "Each frame shows an arrow or a line at a different angle.",
      "formula": "\\theta_{next} = \\theta_{last} + s",
-     "logic": "Write the direction in each frame; find the constant turn (45, 90 or 135 degrees, clockwise or anticlockwise); turn once more.",
+     "steps": [
+      "Write each direction as a number of 45-degree steps from up.",
+      "Find the constant turn between frames.",
+      "Add the same turn once more.",
+      "Check the direction: clockwise is +, anticlockwise is -."
+     ],
+     "why": "The turn is constant, so one more turn gives the next direction.",
      "example": {
-      "q": "**Q.** An arrow points up, up-right, right, down-right. What comes next?",
-      "solution": "45° clockwise each step; one more turn points it **down**."
+      "q": "Find the figure that comes next in the series.\n\n**Series**\n```\n↑  >  ↘  >  ←  >  ↗\n```\n\n**Options**\n```\n(A)     (B)     (C)     (D)\n←       ↓       ↘       →\n```",
+      "steps": [
+       "Count each direction in steps of 45 degrees clockwise from up: 0, 3, 6, 9 (which is 1 after taking away 8).",
+       "The step is +3, which is 135 degrees clockwise.",
+       "Next: 1 + 3 = 4, which is the arrow pointing down (↓)."
+      ],
+      "answer": "(B)"
      }
     },
     {
@@ -64,107 +109,355 @@
      "frequency": "very common",
      "howToSpot": "A dot, ring or square sits on a different border place in every frame.",
      "formula": "p_{next} = (p_{last} + s) \\bmod 8",
-     "logic": "Number the 8 border places clockwise from the top-left corner; find the step; add it to the last place (mod 8).",
+     "steps": [
+      "Number the 8 border places clockwise from the top-left corner.",
+      "Write the place in each frame.",
+      "Find the step, and take away 8 when the count passes 7.",
+      "Add the step to the last place."
+     ],
+     "why": "A constant jump on 8 places is plain addition mod 8.",
      "example": {
-      "q": "**Q.** A dot at 0, 2, 4, 6 - where next?",
-      "solution": "Two places clockwise each step: 6 + 2 = 8 → place 0, the top-left corner."
+      "q": "Find the figure that comes next in the series.\n\n**Series**\n```\no . .  >  . . .  >  . . o  >  . . .\n.   .  >  .   .  >  .   .  >  o   .\n. . .  >  . o .  >  . . .  >  . . .\n```\n\n**Options**\n```\n(A)       (B)       (C)       (D)\n. . o     . . .     . . .     o . .\n.   .     .   .     .   .     .   .\n. . .     o . .     . . o     . . .\n```",
+      "steps": [
+       "Number the places 0 to 7 clockwise from the top-left corner. The dot sits at 0, 5, 2, 7.",
+       "From 0 to 5 is 3 places anticlockwise (0 - 3 = -3, which is 5). The step is -3 each time.",
+       "Next: 7 - 3 = 4, the bottom-right corner."
+      ],
+      "answer": "(C)"
      }
     },
     {
      "id": "mr-p3",
      "name": "Shaded part moving",
      "frequency": "common",
-     "howToSpot": "A shaded quarter (or half) of the square jumps from frame to frame.",
+     "howToSpot": "A shaded quarter, or a pair of quarters, jumps from frame to frame.",
      "formula": null,
-     "logic": "The quarter moves around 4 places; read the direction from the first two frames and continue.",
+     "steps": [
+      "Number the quarters 0 to 3 clockwise from top-left.",
+      "Write the shaded numbers for each frame.",
+      "Find the step and its direction.",
+      "Apply it once more, keeping a pair together."
+     ],
+     "why": "Shading obeys the same step rule as a dot, but with 4 places.",
      "example": {
-      "q": "**Q.** Shaded quarter: TL → TR → BR → BL. Next?",
-      "solution": "One quarter clockwise each step; it returns to the **top-left**."
+      "q": "Find the figure that comes next in the series.\n\n**Series**\n```\n##  >  #.  >  ..  >  .#\n..  >  #.  >  ##  >  .#\n```\n\n**Options**\n```\n(A)     (B)     (C)     (D)\n.#      ..      #.      ##\n.#      ##      #.      ..\n```",
+      "steps": [
+       "The shaded pair is TL+TR, then BL+TL, then BR+BL, then TR+BR.",
+       "Each frame the pair slides one quarter anticlockwise.",
+       "One more slide takes TR+BR to TL+TR, which is the first frame again."
+      ],
+      "answer": "(D)"
      }
     },
     {
      "id": "mr-p4",
      "name": "Two or three rules together",
      "frequency": "common",
-     "howToSpot": "Each frame carries two or three elements (shading, arrow, dot), each changing.",
+     "howToSpot": "Each frame carries two or three elements, such as shading and an arrow, and each one changes.",
      "formula": null,
-     "logic": "Follow one element through all frames at a time; write each rule; apply every rule once more for the answer.",
+     "steps": [
+      "Take one element and follow it through all the frames.",
+      "Write its rule.",
+      "Repeat for the other elements.",
+      "Choose the option that satisfies every rule."
+     ],
+     "why": "The rules are independent, so the answer must match each of them.",
      "example": {
-      "q": "**Q.** Shading moves anticlockwise and the arrow turns 90° clockwise. What is the fifth frame?",
-      "solution": "Combine: shaded quarter from the shading rule, arrow direction from the turn rule - the answer satisfies both."
+      "q": "Find the figure that comes next in the series.\n\n**Series**\n```\n↗ ..  >  ↖ #.  >  ↙ .#  >  ↘ ..\n  #.  >    ..  >    ..  >    .#\n```\n\n**Options**\n```\n(A)      (B)      (C)      (D)\n↗ ..     ↙ ..     ↗ #.     ↗ ..\n  #.       #.       ..       .#\n```",
+      "steps": [
+       "Shading: BL, TL, TR, BR. It moves one quarter clockwise, so the next is BL.",
+       "Arrow: up-right, up-left, down-left, down-right. It turns 90 degrees anticlockwise each time.",
+       "Next arrow: down-right turned 90 degrees anticlockwise is up-right.",
+       "Only the option with BL shaded and an up-right arrow satisfies both rules."
+      ],
+      "answer": "(A)"
+     }
+    },
+    {
+     "id": "mr-p5",
+     "name": "Step that grows",
+     "frequency": "occasional",
+     "howToSpot": "The jumps between frames are not equal. They look like 1, 2, 3.",
+     "formula": null,
+     "steps": [
+      "Write the place in each frame.",
+      "Write the jumps in a list.",
+      "Find how the jumps change, often +1 each time.",
+      "Take the next jump and add it, mod 8."
+     ],
+     "why": "A jump that grows by a fixed amount is itself a simple series.",
+     "example": {
+      "q": "Find the figure that comes next in the series.\n\n**Series**\n```\no . .  >  . o .  >  . . .  >  . . .\n.   .  >  .   .  >  .   o  >  .   .\n. . .  >  . . .  >  . . .  >  o . .\n```\n\n**Options**\n```\n(A)       (B)       (C)       (D)\n. . .     . . o     . o .     o . .\no   .     .   .     .   .     .   .\n. . .     . . .     . . .     . . .\n```",
+      "steps": [
+       "The dot sits at 0, 1, 3, 6.",
+       "The jumps are 1, 2, 3, so the jump grows by 1 each time.",
+       "Next jump is 4: 6 + 4 = 10, which is 2 after taking away 8. The dot lands on the top-right corner."
+      ],
+      "answer": "(B)"
+     }
+    },
+    {
+     "id": "mr-p6",
+     "name": "Two marks moving in opposite ways",
+     "frequency": "occasional",
+     "howToSpot": "Two dots move in the same figure, one clockwise and the other anticlockwise.",
+     "formula": null,
+     "steps": [
+      "Label the dots and track each one on its own.",
+      "Write each step, with its sign.",
+      "Move each dot once more.",
+      "Watch for frames where the dots overlap."
+     ],
+     "why": "Overlap frames hide a dot, but each dot still follows its own step.",
+     "example": {
+      "q": "Find the figure that comes next. A and B are two dots. A star means both are on the same place.\n\n**Series**\n```\nA . .  >  . A .  >  . . *  >  . B .\n.   .  >  .   B  >  .   .  >  .   A\n. . B  >  . . .  >  . . .  >  . . .\n```\n\n**Options**\n```\n(A)       (B)       (C)       (D)\n. B .     A . .     B . .     . B .\n.   .     .   .     .   .     .   .\n. . A     . . B     . . A     . A .\n```",
+      "steps": [
+       "A moves 0, 1, 2, 3: one place clockwise each time. Next is 4.",
+       "B moves 4, 3, 2, 1: one place anticlockwise each time. Next is 0.",
+       "In frame 3 both were on place 2. That is why the star appeared. It does not change either rule."
+      ],
+      "answer": "(C)"
+     }
+    },
+    {
+     "id": "mr-p7",
+     "name": "Turn that alternates",
+     "frequency": "occasional",
+     "howToSpot": "An arrow turns by different amounts, such as 45 degrees then 90 degrees.",
+     "formula": null,
+     "steps": [
+      "Write the directions as numbers.",
+      "Write the turns in a list.",
+      "The list repeats in a short cycle, for example 1, 2, 1, 2.",
+      "Take the next turn from the cycle."
+     ],
+     "why": "A repeating cycle of turns is the next simplest rule after a constant turn.",
+     "example": {
+      "q": "Find the figure that comes next in the series.\n\n**Series**\n```\n↑  >  ↗  >  ↘  >  ↓\n```\n\n**Options**\n```\n(A)     (B)     (C)     (D)\n↙       ↖       →       ←\n```",
+      "steps": [
+       "Directions in 45-degree steps: 0, 1, 3, 4.",
+       "The jumps are 1, 2, 1. They repeat as 1, 2, 1, 2.",
+       "Next jump is 2: 4 + 2 = 6, which is the arrow pointing left."
+      ],
+      "answer": "(D)"
      }
     }
+   ],
+   "revision": [
+    "Follow one element at a time. Write its step, then apply the step once more.",
+    "Border places: 0 to 7 clockwise from the top-left corner. Next = last + step, mod 8.",
+    "Arrows: 8 directions, 45 degrees apart. A 90-degree turn is 2 steps.",
+    "Shaded quarters: 4 places, moving in the clockwise order TL, TR, BR, BL.",
+    "If the step is not constant, write the jumps as a list. They may grow or alternate.",
+    "With several elements, the answer must satisfy every rule."
    ]
   },
   {
    "id": "addition-change",
    "title": "Adding, removing and changing elements",
-   "concept": "Some series change the **number** of elements: strokes grow 1, 2, 3, …; a new shape appears in the next corner each step; or shapes disappear one by one.\n\nOthers **alternate**: an arrow flips up/down, a shape switches between two kinds. Count carefully, and check whether each new element is added at a fixed rotation (clockwise) from the previous one.",
+   "concept": "In an addition series, the number of elements changes from frame to frame. Strokes grow, dots are added, or shapes disappear.\n\nCount the elements in every frame and write the row of numbers. Then find the step.",
    "formulas": [],
    "tricks": [
     {
      "title": "Count first",
-     "body": "Count the elements in each frame. If the counts go 1, 2, 3, 4, only options with 5 survive; then check positions.",
+     "body": "Count the elements in each frame. Only options with the right count survive. Then check positions or details.",
      "example": {
-      "q": "**Q.** Strokes: 1, 2, 3, 4. Next?",
-      "solution": "**5** strokes."
+      "q": "Strokes are 2, 4, 6, 8. Next?",
+      "steps": [
+       "The step is +2.",
+       "8 + 2 = 10."
+      ],
+      "answer": "10 strokes."
      }
+    },
+    {
+     "title": "Differences of differences",
+     "body": "If the differences are not equal, write them as a list. A list like 1, 2, 3 grows by 1 each time.",
+     "example": {
+      "q": "Counts are 3, 4, 6, 9. Next?",
+      "steps": [
+       "The differences are 1, 2, 3.",
+       "The next difference is 4.",
+       "9 + 4 = 13."
+      ],
+      "answer": "13."
+     }
+    },
+    {
+     "title": "Cross out by the detail",
+     "body": "Test the small detail first, such as a shape or an arrow. It removes options quickly."
     }
    ],
    "mistakes": [
-    "Ignoring an alternating element because it returns to an earlier state.",
-    "Counting a shape twice when it sits on a boundary."
+    {
+     "wrong": "Guessing from the look of the figure without counting.",
+     "right": "Count the elements in every frame and write the row of numbers first."
+    },
+    {
+     "wrong": "Assuming the step is always plus.",
+     "right": "The count can fall. Check the sign on the first two frames."
+    },
+    {
+     "wrong": "Finding the step from the first two frames only.",
+     "right": "Check every pair. An alternating or growing step shows up only later."
+    },
+    {
+     "wrong": "Ignoring the second detail, such as a shape or an arrow.",
+     "right": "Write a row for the detail too. It usually alternates."
+    },
+    {
+     "wrong": "Forgetting that old dots stay when a new one is added.",
+     "right": "In an adding series, each frame keeps the earlier elements and adds the new one."
+    }
    ],
-   "notes": "### What changes here\nInstead of moving, the figures **add or remove** something: more strokes each frame, one new dot per frame, or a growing count together with a small extra detail that alternates. The rule is about **how many**, not about where a mark slides.\n\n### Counting strokes\nMany series draw 1, 3, 5... simple strokes inside the square. Count them in every frame and write the row of numbers: 1, 3, 5 → the step is **+2**, so the next frame has 7. The step can be negative (4, 3, 2 → 1) - subtraction is as common as addition.\n\n### Dots added round the frame\nA very frequent series adds **one dot per frame at the next corner**, going clockwise: top-left; then top-right; then bottom-right; then the last corner. After the fourth frame the answer holds **one dot in every corner**. Watch the starting corner and the direction - both can change between questions.\n\n### A second rule\nOften the count grows while a small detail **alternates**: an arrow flips up, down, up, down, or a mark swaps between two shapes. Two rules never interact - find the count rule, find the alternating rule, and the answer must satisfy **both**. Options usually break exactly one of the two: right count with wrong detail, or right detail with wrong count.\n\n### Method in the exam\n1. Count the main element in every frame; write the number row.\n2. Find the step (+1, +2, −1...). Apply it once more.\n3. If any detail differs between frames (arrow, shading, shape), write its row too - it usually alternates.\n4. Choose the option that fits every row.\n\n### Worked example\nStrokes: 1, 3, 5 - **two more** each step, so the next frame has **7**. With a second rule, say the arrow alternates up, down, up: the answer would need 7 strokes **and** a downward arrow. An option with 7 strokes and an upward arrow breaks the second rule; an option with 5 strokes and a downward arrow breaks the first.\n\n### Common mistakes\n- Reading +1 when the real step is +2 (count every frame, don't guess).\n- Missing a stroke hidden behind the frame border.\n- Taking an option that fits the count but ignores the alternating detail.\n- In dot series, forgetting which corner comes next and adding the dot at the wrong one.\n\n### Quick revision\n- Write the count row: 1, 3, 5 → step +2 → next 7.\n- Steps can be negative: 4, 3, 2 → 1.\n- Dot series: one new dot at the next corner clockwise; four corners then full.\n- Second rule (alternating arrow or shape) must hold along with the count.\n- Options break exactly one rule each - check both before answering.\n",
+   "notes": "### What changes here\nThe figures do not slide or turn. They gain or lose something. The question is about **how many**, not about where.\n\nWrite the count of each element for every frame. The rule is usually plain arithmetic.\n\n### Counting the main element\nSuppose the frames show 1, 3, 5 and 7 dots. The step is +2, so the next frame has 9.\n\nThe step can also be negative. 7, 6, 5, 4 falls by 1 each time. Taking away is as common as adding.\n\n> **Rule:** Count first. Only options with the right count are worth looking at.\n\n### Dots added round the frame\nSome series keep the old dots and add one new dot each frame. The new dot goes to the next place on the border.\n\nNote the starting place and the direction. Note the gap too: the new dot may land one, two or three places on.\n\n```\nframe 1     frame 2     frame 3\no . .       o . o       o . o\n.   .       .   .       .   .\n. . .       . . .       . . o\n```\n\nHere the new dot moves clockwise by two places each time.\n\n### When elements disappear\nSome series remove one element each frame. A row of 6, 5, 4 strokes loses one stroke at a time.\n\nAsk which element goes first. It is often the one drawn last, or the one at the top-left.\n\n### Steps that change\nThe step may alternate: +3, -1, +3, -1. It may also grow: +1, +2, +3, +4.\n\nWrite the differences as a list. Then look at the list as a small series of its own.\n\n> **Tip:** If the differences are not equal, take differences of the differences.\n\n### A second rule beside the count\nOften the count grows while a small detail alternates. A shape may switch between a circle and a square. An arrow may flip up and down.\n\nThe two rules are independent. Find each one alone. The answer must satisfy both.\n\n> **Watch:** Wrong options often get one rule right. Check both before you choose.\n\n### Reading the options quickly\nWrong options are built from common slips. One has the wrong count. One has the right count but the wrong detail. One adds the new dot in the wrong place.\n\nWork out the answer first. Then find it among the options. Do not let the options steer you.\n\n### A worked example\nFind the figure that comes next in the series.\n\n**Series**\n```\n| ○  >  || □  >  ||| ○  >  |||| □\n```\n\n**Options**\n```\n(A)         (B)         (C)        (D)\n||||| □     ||||| ○     |||| ○     |||||| ○\n```\n\n**Solution**\n- Strokes: 1, 2, 3, 4. Add 1 each time, so the next frame has 5 strokes.\n- Shape: circle, square, circle, square. It alternates, so the next is a circle.\n- Only the option with 5 strokes and a circle satisfies both rules.\n\nAnswer: **(B)**.\n",
    "patterns": [
     {
      "id": "ac-p1",
      "name": "Growing count",
      "frequency": "very common",
-     "howToSpot": "Frames show 1, 2, 3... simple strokes or marks; the options differ only in how many.",
+     "howToSpot": "Frames show 1, 3, 5 and so on of the same mark. The options differ mainly in how many.",
      "formula": "a_{n} = a_{n-1} + s",
-     "logic": "Count in every frame, find the constant step (+1, +2 or −1), apply it once more.",
+     "steps": [
+      "Count the marks in every frame.",
+      "Find the constant step.",
+      "Add it once more.",
+      "Pick the option with that count."
+     ],
+     "why": "A constant step turns the row of counts into a simple sum.",
      "example": {
-      "q": "**Q.** Strokes: 1, 3, 5. What comes next?",
-      "solution": "Step +2: next frame has **7** strokes."
+      "q": "Find the figure that comes next in the series.\n\n**Series**\n```\no  >  ooo  >  ooo oo  >  ooo ooo o\n```\n\n**Options**\n```\n(A)            (B)               (C)             (D)\nooo ooo oo     ooo ooo ooo o     ooo ooo ooo     ooo ooo ooo oo\n```",
+      "steps": [
+       "Count the dots: 1, 3, 5, 7.",
+       "The step is +2 each time.",
+       "Next: 7 + 2 = 9 dots."
+      ],
+      "answer": "(C)"
      }
     },
     {
      "id": "ac-p2",
      "name": "Dots added round the frame",
      "frequency": "common",
-     "howToSpot": "Each frame adds one dot at the next corner of the square.",
+     "howToSpot": "Each frame keeps the old dots and adds one new dot at the next border place.",
      "formula": null,
-     "logic": "Note the starting corner and the direction; each frame the new dot appears at the next corner; the fourth frame has all four corners.",
+     "steps": [
+      "Number the border places 0 to 7.",
+      "Find the place of each new dot.",
+      "Find the gap between new dots.",
+      "Add the next dot and keep all the old ones."
+     ],
+     "why": "The new dot follows its own step, and the old dots never move.",
      "example": {
-      "q": "**Q.** Dots at TL; TL and TR; TL, TR and BR. Next?",
-      "solution": "**4 dots, one in every corner** (the new one at the bottom-left)."
+      "q": "Find the figure that comes next in the series.\n\n**Series**\n```\no . .  >  o . o  >  o . o\n.   .  >  .   .  >  .   .\n. . .  >  . . .  >  . . o\n```\n\n**Options**\n```\n(A)       (B)       (C)       (D)\no . o     o . o     o . o     o . o\n.   o     .   .     o   .     .   .\n. . o     . o o     . . o     o . o\n```",
+      "steps": [
+       "Frame 1 has a dot at 0. Frame 2 adds a dot at 2. Frame 3 adds a dot at 4.",
+       "Each frame keeps the old dots and adds one new dot two places further clockwise.",
+       "Frame 4 adds a dot at 6. The dots stay at 0, 2, 4, 6."
+      ],
+      "answer": "(D)"
      }
     },
     {
      "id": "ac-p3",
      "name": "Count plus alternating detail",
      "frequency": "common",
-     "howToSpot": "The count grows while an arrow or mark alternates (up/down, or two shapes).",
+     "howToSpot": "The count grows while a shape or arrow switches between two forms.",
      "formula": null,
-     "logic": "Two independent rules: continue the count row, continue the alternation; the answer satisfies both.",
+     "steps": [
+      "Write the count row and find its step.",
+      "Write the detail row.",
+      "Find the cycle, often 2 frames long.",
+      "Combine the next count with the next detail."
+     ],
+     "why": "The two rules are independent, so the answer must agree with both.",
      "example": {
-      "q": "**Q.** Strokes 1, 2, 3, 4 with an arrow alternating up, down, up, down. Next?",
-      "solution": "**5 strokes** with the arrow **up**."
+      "q": "Find the figure that comes next in the series.\n\n**Series**\n```\n| ○  >  || □  >  ||| ○  >  |||| □\n```\n\n**Options**\n```\n(A)         (B)         (C)        (D)\n||||| □     ||||| ○     |||| ○     |||||| ○\n```",
+      "steps": [
+       "Strokes: 1, 2, 3, 4. Add 1 each time, so the next frame has 5 strokes.",
+       "Shape: circle, square, circle, square. It alternates, so the next is a circle.",
+       "Only the option with 5 strokes and a circle satisfies both rules."
+      ],
+      "answer": "(B)"
      }
     },
     {
      "id": "ac-p4",
      "name": "Shrinking count with a moving marker",
      "frequency": "occasional",
-     "howToSpot": "The stroke count falls each frame while a dot or ring slides round the border.",
+     "howToSpot": "The count falls each frame while a dot slides round the border.",
      "formula": "a_{n} = a_{n-1} - s",
-     "logic": "Continue the count row downwards; read the marker's border step separately; combine both.",
+     "steps": [
+      "Write the count row and continue it downwards.",
+      "Write the dot's place in each frame.",
+      "Find its step, mod 8.",
+      "Combine both results."
+     ],
+     "why": "Count and movement are separate rules. Each one is easy alone.",
      "example": {
-      "q": "**Q.** Strokes 5, 4, 3, 2 and a dot moving one place clockwise. Next?",
-      "solution": "**1 stroke**, with the dot at the next border place."
+      "q": "Find the figure that comes next in the series.\n\n**Series**\n```\n. o .    >  . . .   >  . . .  >  . . .\n.   .    >  .   o   >  .   .  >  o   .\n. . .    >  . . .   >  . o .  >  . . .\n|||||||  >  ||||||  >  |||||  >  ||||\n```\n\n**Options**\n```\n(A)       (B)       (C)       (D)\n. o .     . . .     . o .     . . .\n.   .     o   .     .   .     .   o\n. . .     . . .     . . .     . . .\n|||       |||       ||||      |||\n```",
+      "steps": [
+       "Strokes: 7, 6, 5, 4. Take away 1 each time, so the next frame has 3 strokes.",
+       "Dot: 1, 3, 5, 7. It moves two places clockwise. 7 + 2 = 9, which is 1.",
+       "Only the option with 3 strokes and the dot at place 1 satisfies both rules."
+      ],
+      "answer": "(A)"
+     }
+    },
+    {
+     "id": "ac-p5",
+     "name": "Add then take away",
+     "frequency": "occasional",
+     "howToSpot": "The count goes up, then down, then up again.",
+     "formula": null,
+     "steps": [
+      "Write the count in each frame.",
+      "Write the changes: for example +3, -1, +3.",
+      "See that they repeat as a pair.",
+      "Use the next change in the cycle."
+     ],
+     "why": "Two changes that take turns form a repeating cycle.",
+     "example": {
+      "q": "Find the figure that comes next in the series.\n\n**Series**\n```\noo  >  ooo oo  >  ooo o  >  ooo ooo o\n```\n\n**Options**\n```\n(A)         (B)            (C)             (D)\nooo ooo     ooo ooo oo     ooo ooo ooo     ooo oo\n```",
+      "steps": [
+       "Count the dots: 2, 5, 4, 7.",
+       "The changes are +3, -1, +3. They alternate between +3 and -1.",
+       "Next change is -1: 7 - 1 = 6 dots."
+      ],
+      "answer": "(A)"
+     }
+    },
+    {
+     "id": "ac-p6",
+     "name": "Step that grows",
+     "frequency": "occasional",
+     "howToSpot": "The count increases, but the amount it increases by keeps getting bigger.",
+     "formula": null,
+     "steps": [
+      "Write the counts.",
+      "Write the differences: for example 1, 2, 3.",
+      "Find how the differences change, often +1.",
+      "Add the next difference to the last count."
+     ],
+     "why": "The differences form their own simple series.",
+     "example": {
+      "q": "Find the figure that comes next in the series.\n\n**Series**\n```\no  >  oo  >  ooo o  >  ooo ooo o\n```\n\n**Options**\n```\n(A)               (B)             (C)                 (D)\nooo ooo ooo o     ooo ooo ooo     ooo ooo ooo ooo     ooo ooo ooo oo\n```",
+      "steps": [
+       "Count the dots: 1, 2, 4, 7.",
+       "The changes are +1, +2, +3. The change itself grows by 1.",
+       "Next change is +4: 7 + 4 = 11 dots."
+      ],
+      "answer": "(D)"
      }
     }
+   ],
+   "revision": [
+    "Count the main element in every frame and write the row of numbers.",
+    "Find the step. It may be plus or minus.",
+    "If the steps differ, look at them as a list. They may alternate or grow.",
+    "Added dots keep their old places. Note the start, direction and gap.",
+    "A second detail usually alternates. Find its rule separately.",
+    "The answer must satisfy the count rule and the detail rule together."
    ]
   }
  ],

@@ -13,453 +13,874 @@
   {
    "id": "hl-basics",
    "title": "HCF & LCM: definitions and core relations",
-   "concept": "**HCF (GCD)** of some numbers is the largest number that divides all of them. **LCM** is the smallest number divisible by all of them.\n\n- HCF ≤ every number ≤ LCM (for numbers ≥ 1).\n- LCM is always a **multiple** of the HCF.\n- For co-prime numbers: HCF = 1 and LCM = product.\n- For two numbers: $\\text{HCF} \\times \\text{LCM} =$ product of the numbers. (Does **not** hold for three numbers.)\n- If one number and the HCF are given, the other number $= \\frac{\\text{HCF} \\times \\text{LCM}}{\\text{given number}}$.\n\nHCF of numbers close together is small (it must divide their difference); HCF of numbers in a fixed ratio is the scale factor.",
+   "concept": "The HCF is the largest number that divides every given number; the LCM is the smallest number that every given number divides. For two numbers, HCF times LCM equals their product. Numbers in a ratio are the ratio parts times the HCF.",
    "formulas": [
     {
      "name": "Product relation (two numbers)",
-     "tex": "\\text{HCF} \\times \\text{LCM} = a \\times b"
+     "tex": "\\text{HCF} \\times \\text{LCM} = a \\times b",
+     "note": ""
     },
     {
      "name": "Other number",
-     "tex": "b = \\frac{\\text{HCF} \\times \\text{LCM}}{a}"
+     "tex": "b = \\dfrac{\\text{HCF} \\times \\text{LCM}}{a}",
+     "note": ""
     },
     {
      "name": "Co-prime case",
-     "tex": "\\gcd(a,b) = 1 \\Rightarrow \\text{LCM}(a,b) = ab"
+     "tex": "\\gcd(a, b) = 1 \\Rightarrow \\text{LCM}(a, b) = ab",
+     "note": ""
     },
     {
      "name": "HCF divides every difference",
-     "tex": "\\gcd(a,b) \\mid (a-b)"
+     "tex": "\\gcd(a, b) \\mid (a - b)",
+     "note": ""
     },
     {
-     "name": "LCM multiple of HCF",
-     "tex": "\\gcd(a,b) \\mid \\text{LCM}(a,b)"
+     "name": "LCM is a multiple of the HCF",
+     "tex": "\\gcd(a, b) \\mid \\text{LCM}(a, b)",
+     "note": ""
+    },
+    {
+     "name": "Ratio pair",
+     "tex": "\\text{numbers} = hm,\\ hn; \\quad \\text{LCM} = hmn",
+     "note": ""
     }
    ],
    "tricks": [
     {
      "title": "Ratio split",
-     "body": "Numbers in ratio $a : b$ (a, b co-prime) with HCF $h$ are $ha$ and $hb$; LCM $= hab$; sum $= h(a+b)$; difference $= h(b-a)$.",
+     "body": "Numbers in ratio a : b (co-prime parts) with HCF h are ha and hb. LCM = h times a times b; sum = h times (a plus b).",
      "example": {
-      "q": "Two numbers are in ratio 5 : 6 and their HCF is 12. Find the LCM.",
-      "solution": "Numbers are 60 and 72. LCM $= 12 \\times 5 \\times 6 = 360$."
+      "q": "Two numbers are in the ratio 3 : 8 and their HCF is 9. Find their LCM.",
+      "steps": [
+       "Numbers: $9 \\times 3 = 27$ and $9 \\times 8 = 72$.",
+       "LCM $= 9 \\times 3 \\times 8$.",
+       "$= 216$."
+      ],
+      "answer": "216"
      }
     },
     {
-     "title": "Product ÷ HCF = LCM in one step",
-     "body": "Any question giving two of {product, HCF, LCM, one number} resolves by the product relation.",
+     "title": "Product divided by HCF",
+     "body": "Given any two of product, HCF, LCM, the product relation settles the third in one division.",
      "example": {
-      "q": "The product of two numbers is 1600 and their HCF is 5. Find the LCM.",
-      "solution": "$\\text{LCM} = \\frac{1600}{5} = 320$."
+      "q": "The product of two numbers is 2940 and their HCF is 14. Find the LCM.",
+      "steps": [
+       "$\\text{HCF} \\times \\text{LCM} = \\text{product}$.",
+       "$\\text{LCM} = \\dfrac{2940}{14}$.",
+       "$= 210$."
+      ],
+      "answer": "210"
      }
     },
     {
-     "title": "Divisor pairs of (product ÷ HCF)",
-     "body": "For 'how many pairs of numbers' questions, split product/HCF into co-prime factor pairs.",
+     "title": "Co-prime pairs from the quotient",
+     "body": "For pair-count questions, divide the product by the square of the HCF, then count co-prime factor pairs of the result.",
      "example": {
-      "q": "The product of two numbers is 2028 and HCF is 13. How many such pairs exist?",
-      "solution": "$\\frac{2028}{13} = 156 = 13a \\times 13b / 13^2$... i.e. $a \\times b = 156$ with $\\gcd(a,b)=1$: pairs (1,156), (3,52), (4,39), (12,13) ⇒ **4 pairs**."
+      "q": "The product of two numbers is 216 and their HCF is 6. How many such pairs exist?",
+      "steps": [
+       "$ab = \\dfrac{216}{6^2} = 6$.",
+       "Co-prime pairs of 6: $(1, 6)$ and $(2, 3)$.",
+       "So 2 pairs: 6 with 36, and 12 with 18."
+      ],
+      "answer": "2"
      }
     }
    ],
    "mistakes": [
-    "Using $\\text{HCF} \\times \\text{LCM} = abc$ for three numbers — false for three.",
-    "Forgetting that the co-prime pair (1, product) counts as a valid pair.",
-    "Confusing 'greatest number that divides' (HCF) with 'least number that is divisible by' (LCM).",
-    "Assuming the HCF of a ratio pair is the ratio itself."
+    {
+     "wrong": "Using HCF x LCM = product for three numbers.",
+     "right": "The relation holds for exactly two numbers only."
+    },
+    {
+     "wrong": "Forgetting the co-prime pair (1, quotient) when counting pairs.",
+     "right": "That pair is always valid; include it in the count."
+    },
+    {
+     "wrong": "Reading 'greatest number that divides' as an LCM question.",
+     "right": "'Greatest that divides' is HCF; 'least that is divisible by' is LCM."
+    },
+    {
+     "wrong": "Taking the HCF of a ratio pair to be the ratio itself.",
+     "right": "The HCF is the scale factor h; the ratio only gives the co-prime parts."
+    },
+    {
+     "wrong": "Reporting an LCM that is not a multiple of the HCF.",
+     "right": "The LCM is always a multiple of the HCF; recheck the arithmetic."
+    }
    ],
-   "notes": "### What are HCF and LCM?\n**HCF (Highest Common Factor, also called GCD)** of some numbers is the **largest** number that divides each of them exactly. **LCM (Lowest Common Multiple)** is the **smallest** number that is exactly divisible by each of them.\nExample: for 12 and 18 the common factors are 1, 2, 3, 6, so HCF $= 6$; the multiples of 12 and 18 first meet at 36, so LCM $= 36$.\n\n### Five rules that solve most questions\n1. **Size order:** HCF $\\le$ every number $\\le$ LCM (for numbers $\\ge 1$). An option that breaks this is wrong at sight.\n2. **Product relation (two numbers only):** $\\text{HCF} \\times \\text{LCM} = a \\times b$. Check: $6 \\times 36 = 216 = 12 \\times 18$. It does **not** hold for three numbers — never use it there.\n3. **Missing number:** if one number, the HCF and the LCM are known, the other number $= \\frac{\\text{HCF} \\times \\text{LCM}}{\\text{given number}}$. Example: HCF 18, LCM 378, one number 54 → other $= \\frac{18 \\times 378}{54} = 126$.\n4. **Co-prime numbers** (numbers whose HCF is 1): LCM = product. Consecutive integers are always co-prime, so their LCM is just their product.\n5. **LCM is always a multiple of the HCF.** An option that is not a multiple of the given HCF is wrong at sight.\n\n### Numbers given in a ratio\nNumbers in ratio $a : b$ (with a, b co-prime) and HCF $h$ are $ha$ and $hb$:\n- LCM $= h \\cdot a \\cdot b$, sum $= h(a + b)$, difference $= h(b - a)$, product $= h^2 ab$.\nExample: ratio 3 : 4, HCF 6 → numbers 18 and 24 → LCM $= 6 \\times 3 \\times 4 = 72$, sum $= 42$.\nWorking backwards: if a 5 : 7 pair has LCM 140, then $h \\times 5 \\times 7 = 140$ → $h = 4$ → numbers 20 and 28.\n\n### HCF of numbers that are close or related\n- The HCF divides every **difference**: $\\gcd(a, b)$ divides $a - b$. So two numbers 20 apart can never have HCF 12 — a fast option-killer.\n- Consecutive integers: HCF = 1, LCM = their product.\n- **\"Other factors of the LCM\":** if the HCF is $h$ and the remaining factors of the LCM are $m$ and $n$ (co-prime), the numbers are $hm$ and $hn$, and LCM $= hmn$.\nExample: HCF 23 with other factors 13 and 14 → numbers 299 and 322, LCM $= 23 \\times 13 \\times 14 = 4186$.\n\n### Counting pairs (a preview)\n\"How many pairs of numbers have product P and HCF h?\" — write them as $ha, hb$ with $\\gcd(a, b) = 1$, so $ab = \\frac{P}{h^2}$. The answer is the number of **co-prime** factor pairs of $\\frac{P}{h^2}$ (worked fully in the two-step-cases subtopic).\n\n### Quick revision\n- Two numbers: HCF × LCM = product. Three numbers: no such rule.\n- Co-prime → HCF 1, LCM = product. Consecutive integers are co-prime.\n- Ratio a : b with HCF h → numbers ha, hb; LCM = hab; sum = h(a + b).\n- LCM is a multiple of the HCF; HCF divides every difference.\n",
+   "notes": "The HCF (highest common factor) is the largest number that divides each given number exactly. The LCM (lowest common multiple) is the smallest number that each given number divides exactly. For 12 and 18 the common factors are 1, 2, 3 and 6, so the HCF is 6; their multiples first meet at 36, so the LCM is 36.\n\n### The size order\nThe HCF is never bigger than the smallest number. The LCM is never smaller than the largest number. So HCF $\\le$ every number $\\le$ LCM, for numbers of 1 or more. This order kills wrong options at sight.\n\n> **Rule:** HCF $\\le$ smallest number, and LCM $\\ge$ largest number. An option breaking this order is wrong.\n\n### The product relation\nFor exactly two numbers, HCF times LCM equals the product of the two numbers. Check on 12 and 18: $6 \\times 36 = 216 = 12 \\times 18$. The rule fails for three numbers, so never use it there. One common use is finding a missing number: other number $= \\dfrac{\\text{HCF} \\times \\text{LCM}}{\\text{given number}}$.\n\n> **Example:** HCF 15, LCM 225, one number 45. The other is $\\dfrac{15 \\times 225}{45} = 75$. Check: $\\gcd(45, 75) = 15$ and $\\text{LCM} = 225$.\n\n### Numbers in a ratio\nNumbers in ratio $a : b$ (parts co-prime) with HCF $h$ are $ha$ and $hb$. Then:\n- LCM $= h \\times a \\times b$\n- sum $= h(a + b)$\n- difference $= h(b - a)$\n\nRatio 3 : 4 with HCF 6 gives 18 and 24, LCM $6 \\times 12 = 72$, sum $6 \\times 7 = 42$. Working backwards from an LCM: ratio 4 : 9 and LCM 252 give $h = \\dfrac{252}{4 \\times 9} = 7$, so the numbers are 28 and 63.\n\n> **Tip:** Ratio and LCM given: divide the LCM by the product of the ratio parts. That quotient is the HCF.\n\n### Co-prime and close numbers\nCo-prime numbers have HCF 1, so their LCM is simply their product. Consecutive integers are always co-prime. The HCF also divides every difference of the numbers: two numbers 20 apart can never have HCF 12, because 12 does not divide 20.\n\nOne more standard shape: the HCF is $h$, and the other two factors of the LCM are $m$ and $n$ (co-prime). The numbers are $hm$ and $hn$, and the LCM is $hmn$. HCF 12 with other factors 5 and 7 gives numbers 60 and 84, and LCM $12 \\times 35 = 420$.\n\n> **Watch:** The LCM is always a multiple of the HCF. An LCM option that is not a multiple of the given HCF is wrong at sight.\n\n### Counting pairs\nA question may ask how many pairs of numbers have a given product $P$ and HCF $h$. Write the numbers as $ha$ and $hb$ with co-prime $a$ and $b$, so $ab = \\dfrac{P}{h^2}$. The answer is the number of co-prime factor pairs of that quotient. The pair $(1, \\text{quotient})$ counts as one pair. For product 216 with HCF 6: $\\dfrac{216}{36} = 6$, and 6 has co-prime pairs $(1, 6)$ and $(2, 3)$, so 2 pairs exist: 6 with 36, and 12 with 18.\n",
    "patterns": [
     {
      "id": "hl-b1",
      "name": "Find the HCF or LCM of small numbers directly",
      "frequency": "very common",
-     "howToSpot": "'Find the HCF of 96 and 404' or 'the LCM of 12, 15 and 20 is' — plain computation, no story.",
+     "howToSpot": "The question asks plainly for the HCF or LCM of two or three small numbers, with no story around it.",
      "formula": "\\text{HCF} = \\text{common primes, lowest powers}; \\quad \\text{LCM} = \\text{all primes, highest powers}",
-     "logic": "1. Factorise each number into primes.\n2. HCF: multiply the primes common to ALL numbers, taking the lowest power of each.\n3. LCM: multiply every prime that appears, taking the highest power of each.\n\nWhy: a common divisor cannot use more of any prime than the number with the fewest; a common multiple needs at least the richest stock of every prime.",
+     "steps": [
+      "Factorise each number into primes.",
+      "HCF: multiply the primes common to all numbers, at the lowest power of each.",
+      "LCM: multiply every prime that appears, at the highest power of each.",
+      "Sanity check: HCF at most the smallest number, LCM at least the largest."
+     ],
+     "why": "A common divisor cannot use more of any prime than the poorest number holds; a common multiple needs the richest stock of every prime.",
      "example": {
-      "q": "Find the LCM of 16, 24 and 36.",
-      "solution": "$16 = 2^4$, $24 = 2^3 \\cdot 3$, $36 = 2^2 \\cdot 3^2$. LCM $= 2^4 \\times 3^2 = 144$."
+      "q": "Find the LCM of 12, 15 and 20.",
+      "steps": [
+       "$12 = 2^2 \\times 3$, $15 = 3 \\times 5$, $20 = 2^2 \\times 5$.",
+       "Take the highest power of every prime: $2^2$, $3$, $5$.",
+       "LCM $= 4 \\times 3 \\times 5 = 60$."
+      ],
+      "answer": "60"
      }
     },
     {
      "id": "hl-b2",
-     "name": "HCF × LCM = product (two numbers)",
+     "name": "HCF x LCM = product (two numbers)",
      "frequency": "very common",
-     "howToSpot": "Any two of {product, HCF, LCM, one number} are given and a third is asked.",
-     "formula": "\\text{HCF} \\times \\text{LCM} = a \\times b \\ \\Rightarrow\\ b = \\frac{\\text{HCF} \\times \\text{LCM}}{a}",
-     "logic": "1. Write the product relation (valid for exactly two numbers).\n2. Fill in the three known values and divide to get the fourth.\n3. Sanity check: the HCF must divide the LCM.\n\nWhy: writing $a = ha'$, $b = hb'$ with co-prime $a', b'$, the LCM is $ha'b'$, so HCF × LCM $= h^2 a'b' = ab$.",
+     "howToSpot": "Any two of product, HCF, LCM and one number are given, and a third value is asked.",
+     "formula": "\\text{HCF} \\times \\text{LCM} = a \\times b \\ \\Rightarrow\\ b = \\dfrac{\\text{HCF} \\times \\text{LCM}}{a}",
+     "steps": [
+      "Confirm exactly two numbers are involved.",
+      "Write the product relation and fill in the three known values.",
+      "Divide to get the fourth value.",
+      "Check: the HCF must divide the LCM, and the HCF must divide both numbers."
+     ],
+     "why": "Writing $a = ha'$ and $b = hb'$ with co-prime parts, the LCM is $ha'b'$, so HCF times LCM equals $ab$.",
      "example": {
-      "q": "The HCF of two numbers is 18 and their LCM is 378. If one number is 54, find the other.",
-      "solution": "Other $= \\frac{18 \\times 378}{54} = \\frac{6804}{54} = 126$. Check: $\\gcd(54, 126) = 18$ and LCM $= 378$."
+      "q": "The HCF of two numbers is 12, their LCM is 240, and one number is 48. Find the other number.",
+      "steps": [
+       "Other $= \\dfrac{12 \\times 240}{48}$.",
+       "$= \\dfrac{2880}{48} = 60$.",
+       "Check: $\\gcd(48, 60) = 12$ and $\\text{LCM} = 240$."
+      ],
+      "answer": "60"
      }
     },
     {
      "id": "hl-b3",
      "name": "Numbers in a given ratio, HCF or LCM known",
      "frequency": "very common",
-     "howToSpot": "'Two numbers are in ratio m : n and their HCF (or LCM) is …' — then a sum, difference or the LCM is asked.",
-     "formula": "\\text{numbers} = hm, hn; \\quad \\text{LCM} = hmn, \\quad \\text{sum} = h(m+n)",
-     "logic": "1. Treat the ratio parts m, n as co-prime (cancel the ratio first if needed).\n2. HCF given: numbers are hm and hn. LCM given: $h = \\frac{\\text{LCM}}{mn}$.\n3. Answer whatever is asked (sum, difference, product, LCM).\n\nWhy: the ratio fixes only the shape; the HCF is the scale factor h.",
+     "howToSpot": "Two numbers are in a ratio and the HCF or LCM is given; a sum, difference or the numbers themselves are asked.",
+     "formula": "\\text{numbers} = hm,\\ hn; \\quad \\text{LCM} = hmn, \\quad \\text{sum} = h(m + n)",
+     "steps": [
+      "Cancel the ratio to co-prime parts $m : n$ first.",
+      "HCF given: the numbers are $hm$ and $hn$.",
+      "LCM given: $h = \\dfrac{\\text{LCM}}{mn}$, then the numbers are $hm$ and $hn$.",
+      "Answer what is asked: sum, difference, product or the numbers."
+     ],
+     "why": "The ratio fixes only the shape of the pair; the HCF is the scale factor that stretches it.",
      "example": {
-      "q": "Two numbers are in the ratio 5 : 7 and their LCM is 140. Find the difference of the numbers.",
-      "solution": "$h = \\frac{140}{5 \\times 7} = 4$ → numbers 20 and 28 → difference $8$."
+      "q": "Two numbers are in the ratio 5 : 7 and their LCM is 700. Find their sum.",
+      "steps": [
+       "$h = \\dfrac{700}{5 \\times 7} = \\dfrac{700}{35} = 20$.",
+       "Numbers: $20 \\times 5 = 100$ and $20 \\times 7 = 140$.",
+       "Sum $= 100 + 140 = 240$."
+      ],
+      "answer": "240"
      }
     },
     {
      "id": "hl-b4",
-     "name": "HCF given with the 'other factors' of the LCM",
+     "name": "HCF given with the other factors of the LCM",
      "frequency": "common",
-     "howToSpot": "'The HCF of two numbers is 29 and the other two factors of their LCM are 15 and 13. Find the numbers.'",
-     "formula": "\\text{numbers} = hm, hn \\ \\ (m, n \\text{ co-prime}); \\quad \\text{LCM} = hmn",
-     "logic": "1. The numbers are h × (first other factor) and h × (second other factor).\n2. The two 'other factors' must be co-prime — if not, the data is impossible.\n3. LCM = h × m × n if it is asked too.\n\nWhy: LCM = HCF × (leftover co-prime parts), by the structure of HCF and LCM.",
+     "howToSpot": "The HCF is given together with the two leftover factors of the LCM, and the numbers are asked.",
+     "formula": "\\text{numbers} = hm,\\ hn \\ \\ (m, n \\text{ co-prime}); \\quad \\text{LCM} = hmn",
+     "steps": [
+      "The numbers are HCF times the first other factor, and HCF times the second.",
+      "The two other factors must be co-prime; otherwise the data is impossible.",
+      "If asked, the LCM is HCF times the product of the two factors."
+     ],
+     "why": "The LCM equals the HCF times the leftover co-prime parts, by the structure of the two ideas.",
      "example": {
-      "q": "The HCF of two numbers is 23 and the other two factors of their LCM are 13 and 14. Find the greater number.",
-      "solution": "Numbers: $23 \\times 13 = 299$ and $23 \\times 14 = 322$. Greater $= 322$. (LCM would be $23 \\times 13 \\times 14 = 4186$.)"
+      "q": "The HCF of two numbers is 17 and the other two factors of their LCM are 11 and 16. Find the greater number.",
+      "steps": [
+       "Numbers: $17 \\times 11 = 187$ and $17 \\times 16 = 272$.",
+       "$\\gcd(11, 16) = 1$, so the data is valid.",
+       "Greater number $= 272$."
+      ],
+      "answer": "272"
      }
     },
     {
      "id": "hl-b5",
-     "name": "Co-prime, consecutive and other property questions",
+     "name": "Co-prime, consecutive and property questions",
      "frequency": "common",
-     "howToSpot": "'The LCM of two co-prime numbers is …, one is …' or 'which pair is co-prime?' — the word co-prime or consecutive appears.",
-     "formula": "\\gcd(a, b) = 1 \\Rightarrow \\text{LCM} = ab; \\qquad \\gcd(a, b) \\mid (a - b)",
-     "logic": "1. Co-prime + LCM given: divide the LCM by the given number to get the other.\n2. 'Which pair is co-prime?': test each pair for a common factor > 1.\n3. Difference-based checks: the HCF must divide the difference of the numbers.\n\nWhy: with no common prime, nothing cancels — so the LCM is the plain product.",
+     "howToSpot": "The word co-prime or consecutive appears, or a pair must be tested for being co-prime.",
+     "formula": "\\gcd(a, b) = 1 \\Rightarrow \\text{LCM}(a, b) = ab",
+     "steps": [
+      "Co-prime with LCM given: divide the LCM by the given number to get the other.",
+      "Testing a pair for co-prime: check for any common factor above 1.",
+      "Difference checks: a common factor must divide the difference of the pair."
+     ],
+     "why": "With no common prime between them, nothing cancels, so the LCM is the plain product.",
      "example": {
-      "q": "The LCM of two co-prime numbers is 221 and one of them is 13. Find the other.",
-      "solution": "Co-prime → LCM = product → other $= \\frac{221}{13} = 17$. (Indeed $221 = 13 \\times 17$.)"
+      "q": "The LCM of two co-prime numbers is 312 and one of them is 13. Find the other number.",
+      "steps": [
+       "Co-prime, so LCM $=$ product.",
+       "Other $= \\dfrac{312}{13} = 24$.",
+       "Check: $\\gcd(13, 24) = 1$."
+      ],
+      "answer": "24"
      }
     }
+   ],
+   "revision": [
+    "Two numbers: $\\text{HCF} \\times \\text{LCM} = ab$. Three numbers: no such rule.",
+    "Co-prime numbers: HCF 1, LCM product. Consecutive integers are co-prime.",
+    "Ratio $a : b$ with HCF $h$: numbers $ha$, $hb$; LCM $hab$; sum $h(a + b)$.",
+    "HCF divides every difference; LCM is a multiple of the HCF.",
+    "Other factors $m$, $n$ of the LCM: numbers $hm$, $hn$; LCM $hmn$.",
+    "Pair count: co-prime factor pairs of product $\\div h^2$."
    ]
   },
   {
    "id": "hl-methods",
    "title": "Finding HCF & LCM (incl. fractions and decimals)",
-   "concept": "**Prime factorisation:** HCF = product of common primes with the **lowest** powers; LCM = product of all primes with the **highest** powers.\n\n**Long division method** is faster for two numbers: divide, then divide the divisor by the remainder, repeat; the last non-zero remainder is the HCF. LCM $= \\frac{ab}{\\text{HCF}}$.\n\n**Fractions:** $\\text{HCF} = \\frac{\\text{HCF of numerators}}{\\text{LCM of denominators}}$, $\\quad\\text{LCM} = \\frac{\\text{LCM of numerators}}{\\text{HCF of denominators}}$.\n\n**Decimals:** equalise decimal places first (write 0.5 as 0.500), find HCF/LCM of the integers, put the decimal point back with the same number of places.",
+   "concept": "Prime factorisation reads HCF from the lowest powers and LCM from the highest powers. Long division finds the HCF of two big numbers fast, and one division gives the LCM. Fractions swap the rules: HCF of tops over LCM of bottoms.",
    "formulas": [
     {
      "name": "HCF by factors",
-     "tex": "\\text{HCF} = p_1^{\\min} \\cdot p_2^{\\min} \\cdots \\text{(common primes, lowest powers)}"
+     "tex": "\\text{HCF} = p_1^{\\min} \\times p_2^{\\min} \\times \\cdots",
+     "note": "common primes, lowest powers"
     },
     {
      "name": "LCM by factors",
-     "tex": "\\text{LCM} = p_1^{\\max} \\cdot p_2^{\\max} \\cdots \\text{(all primes, highest powers)}"
+     "tex": "\\text{LCM} = p_1^{\\max} \\times p_2^{\\max} \\times \\cdots",
+     "note": "all primes, highest powers"
     },
     {
      "name": "HCF of fractions",
-     "tex": "\\text{HCF}\\!\\left(\\frac{a}{b}, \\frac{c}{d}\\right) = \\frac{\\gcd(a, c)}{\\text{LCM}(b, d)}"
+     "tex": "\\text{HCF}\\!\\left(\\dfrac{a}{b}, \\dfrac{c}{d}\\right) = \\dfrac{\\gcd(a, c)}{\\text{LCM}(b, d)}",
+     "note": ""
     },
     {
      "name": "LCM of fractions",
-     "tex": "\\text{LCM}\\!\\left(\\frac{a}{b}, \\frac{c}{d}\\right) = \\frac{\\text{LCM}(a, c)}{\\gcd(b, d)}"
+     "tex": "\\text{LCM}\\!\\left(\\dfrac{a}{b}, \\dfrac{c}{d}\\right) = \\dfrac{\\text{LCM}(a, c)}{\\gcd(b, d)}",
+     "note": ""
     },
     {
-     "name": "Two-number division method",
-     "tex": "\\text{LCM} = \\frac{a \\times b}{\\gcd(a,b)}"
+     "name": "LCM from the HCF",
+     "tex": "\\text{LCM}(a, b) = \\dfrac{a \\times b}{\\gcd(a, b)}",
+     "note": ""
     }
    ],
    "tricks": [
     {
-     "title": "LCM row of prime powers",
-     "body": "Write each number as a row of prime powers; LCM = read column maxima, HCF = read common minima. Three numbers take under 30 seconds.",
+     "title": "Row of prime powers",
+     "body": "Write each number as a row of prime powers in a small grid. LCM reads the column maxima, HCF the common minima. Three numbers take under thirty seconds.",
      "example": {
-      "q": "Find the LCM of 32, 36, 45.",
-      "solution": "$32 = 2^5$, $36 = 2^2 \\cdot 3^2$, $45 = 3^2 \\cdot 5$. LCM $= 2^5 \\times 3^2 \\times 5 = 1440$."
+      "q": "Find the LCM of 18, 24 and 30.",
+      "steps": [
+       "$18 = 2 \\times 3^2$, $24 = 2^3 \\times 3$, $30 = 2 \\times 3 \\times 5$.",
+       "Column maxima: $2^3$, $3^2$, $5$.",
+       "LCM $= 8 \\times 9 \\times 5 = 360$."
+      ],
+      "answer": "360"
      }
     },
     {
-     "title": "Fractions: numerators ↔ denominators cross rule",
-     "body": "HCF of fractions = HCF of tops over LCM of bottoms; LCM is the mirror image.",
+     "title": "Cross rule for fractions",
+     "body": "HCF of fractions: HCF of tops over LCM of bottoms. LCM of fractions: LCM of tops over HCF of bottoms.",
      "example": {
-      "q": "Find the HCF of $\\frac{2}{3}$, $\\frac{8}{9}$ and $\\frac{10}{27}$.",
-      "solution": "$\\frac{\\gcd(2, 8, 10)}{\\text{LCM}(3, 9, 27)} = \\frac{2}{27}$."
+      "q": "Find the HCF of 3/4, 5/6 and 7/8.",
+      "steps": [
+       "HCF of tops: $\\gcd(3, 5, 7) = 1$.",
+       "LCM of bottoms: $\\text{LCM}(4, 6, 8) = 24$.",
+       "HCF $= \\dfrac{1}{24}$."
+      ],
+      "answer": "1/24"
      }
     },
     {
-     "title": "Decimals: shift the point",
-     "body": "Multiply everything by the power of 10 needed to clear decimals, solve as integers, shift the point back.",
+     "title": "Shift the decimal point",
+     "body": "Multiply by the power of 10 that clears every decimal, solve as integers, then shift the point back by the same number of places.",
      "example": {
-      "q": "Find the HCF of 0.54, 1.8 and 7.2.",
-      "solution": "As 54, 180, 720 the HCF is 18 ⇒ answer 0.18."
+      "q": "Find the LCM of 0.2, 0.25 and 0.4.",
+      "steps": [
+       "Two decimal places: work with $20, 25, 40$.",
+       "$\\text{LCM}(20, 25, 40) = 200$.",
+       "Shift back two places: $2.00$."
+      ],
+      "answer": "2"
      }
     }
    ],
    "mistakes": [
-    "Taking the HCF of fractions as $\\frac{\\text{HCF of tops}}{\\text{HCF of bottoms}}$.",
-    "Forgetting to reduce to lowest terms before checking common primes.",
-    "Mixing up min/max powers: highest power goes with LCM.",
-    "Returning an integer answer for a decimals question (lost scale factor)."
+    {
+     "wrong": "Taking the HCF of fractions as HCF of tops over HCF of bottoms.",
+     "right": "The denominator of the HCF is the LCM of the bottoms."
+    },
+    {
+     "wrong": "Skipping the reduction of fractions before the cross rule.",
+     "right": "Reduce every fraction to lowest terms first."
+    },
+    {
+     "wrong": "Giving the LCM the lowest powers and the HCF the highest.",
+     "right": "HCF reads minima, LCM reads maxima."
+    },
+    {
+     "wrong": "Returning a whole-number answer for a decimals question.",
+     "right": "The scale factor of 10 must be divided back out at the end."
+    },
+    {
+     "wrong": "Stopping long division at the first zero remainder divisor shown.",
+     "right": "The HCF is the last non-zero divisor, not any earlier divisor."
+    }
    ],
-   "notes": "### The two standard methods\n**1. Prime factorisation (best for two to four numbers).** Write every number as a product of primes.\n- HCF = product of the primes **common to all**, each with its **lowest** power.\n- LCM = product of **all** primes that appear, each with its **highest** power.\nExample: $32 = 2^5$, $36 = 2^2 \\cdot 3^2$, $45 = 3^2 \\cdot 5$ → nothing is common to all three, so HCF $= 1$; LCM $= 2^5 \\cdot 3^2 \\cdot 5 = 1440$.\nA small table helps: one row per number, one column per prime. HCF = read column **minima**; LCM = read column **maxima**.\n\n**2. Long (successive) division (fastest for two big numbers).** Divide the bigger number by the smaller; then keep dividing the last divisor by the last remainder. The last non-zero divisor is the HCF. Then LCM $= \\frac{a \\times b}{\\text{HCF}}$.\nExample: HCF of 4052 and 12576:\n$12576 = 3 \\times 4052 + 420$ → $4052 = 9 \\times 420 + 272$ → $420 = 272 + 148$ → $272 = 148 + 124$ → $148 = 124 + 24$ → $124 = 5 \\times 24 + 4$ → $24 = 6 \\times 4 + 0$. HCF $= 4$.\nFor three numbers: take the HCF of the first two, then the HCF of that value with the third.\n\n### Fractions: the cross rule\n$$\\text{HCF} = \\frac{\\text{HCF of numerators}}{\\text{LCM of denominators}}, \\qquad \\text{LCM} = \\frac{\\text{LCM of numerators}}{\\text{HCF of denominators}}$$\nExample: HCF of $\\frac{2}{3}, \\frac{8}{9}, \\frac{10}{27}$ is $\\frac{\\gcd(2, 8, 10)}{\\text{LCM}(3, 9, 27)} = \\frac{2}{27}$.\nWhy it works: writing all fractions over the LCM of the denominators turns them into whole numbers; the HCF (or LCM) of those whole numbers, divided back by that LCM of denominators, gives exactly this rule.\n\n### Decimals: shift the point, then shift it back\n1. Multiply every number by the same power of 10 so all become integers (use as many zeros as the largest number of decimal places).\n2. Find the HCF or LCM of the integers.\n3. Put the decimal point back with that many places.\nExample: HCF of $0.54, 1.8, 7.2$ → work with $54, 180, 720$ → HCF $= 18$ → answer $0.18$.\n\n### Numbers already given as prime products\nIf the numbers come as $2^3 \\cdot 3 \\cdot 5$-style products, skip factorising: HCF takes the **minimum** power of each prime across the numbers, LCM the **maximum**. Example: HCF of $2^3 \\cdot 3^2 \\cdot 5^4$ and $2^2 \\cdot 3^3 \\cdot 5^2$ is $2^2 \\cdot 3^2 \\cdot 5^2 = 180$.\n\n### Choosing a method fast\n- Small numbers (say up to 100): factorise mentally.\n- Two big numbers: long division.\n- Prime-product form: read min/max powers directly.\n- Fractions: cross rule. Decimals: clear the point, restore it at the end.\n\n### Quick revision\n- HCF: common primes, lowest powers. LCM: every prime, highest powers.\n- Division method: last non-zero divisor is the HCF; LCM = product ÷ HCF.\n- Fractions: HCF of tops over LCM of bottoms (and the mirror image for LCM).\n- Decimals: clear the decimal point first, restore the same number of places at the end.\n",
+   "notes": "Every HCF or LCM question starts by picking a method. Small numbers yield to prime factorisation, two big numbers to long division, fractions to the cross rule, and decimals to shifting the point. For 24, 36 and 50: $24 = 2^3 \\times 3$, $36 = 2^2 \\times 3^2$, $50 = 2 \\times 5^2$, so the HCF is $2$ and the LCM is $2^3 \\times 3^2 \\times 5^2 = 1800$.\n\n### Prime factorisation\nWrite each number as a product of primes, one row per number in a small table.\n- HCF: multiply the primes common to every number, each at its lowest power.\n- LCM: multiply every prime that appears, each at its highest power.\n\nReading the table column by column does the work: column minima give the HCF, column maxima give the LCM. If no prime is common to all numbers, the HCF is 1.\n\n> **Rule:** HCF takes the lowest powers of common primes; LCM takes the highest powers of all primes.\n\n### Long division for two big numbers\nDivide the bigger number by the smaller. Then divide the old divisor by the remainder. Repeat until the remainder is 0; the last non-zero divisor is the HCF. For 432 and 180: $432 = 2 \\times 180 + 72$, then $180 = 2 \\times 72 + 36$, then $72 = 2 \\times 36 + 0$. The HCF is 36. The LCM then falls out as $\\dfrac{432 \\times 180}{36} = 2160$.\n\nFor three numbers, chain the process: HCF of the first two, then HCF of that result with the third.\n\n> **Tip:** After the HCF, get the LCM as product divided by HCF. Never multiply the numbers out fully first; cancel the HCF first.\n\n### Numbers already in prime-power form\nWhen the question hands you numbers like $2^4 \\times 3 \\times 5$ and $2^2 \\times 3^3 \\times 5^2$, skip factorising. HCF: lowest power of each prime, here $2^2 \\times 3 \\times 5 = 60$. LCM: highest power of each prime, here $2^4 \\times 3^3 \\times 5^2 = 10800$. Multiply out only at the end.\n\n### Fractions: the cross rule\n$$\\text{HCF} = \\dfrac{\\text{HCF of numerators}}{\\text{LCM of denominators}}, \\qquad \\text{LCM} = \\dfrac{\\text{LCM of numerators}}{\\text{HCF of denominators}}$$\nThe two rules mirror each other, so swap them deliberately. HCF of $\\dfrac{2}{3}, \\dfrac{8}{9}, \\dfrac{10}{27}$ is $\\dfrac{\\gcd(2, 8, 10)}{\\text{LCM}(3, 9, 27)} = \\dfrac{2}{27}$.\n\n> **Watch:** Reduce every fraction to lowest terms before applying the cross rule; a reducible fraction corrupts both lists.\n\n### Decimals: shift the point\nCount the largest number of decimal places, multiply everything by that power of 10, solve as whole numbers, then shift the point back. LCM of $0.15, 0.20, 0.45$: work with $15, 20, 45$, whose LCM is 180, so the answer is 1.80.\n\n> **Example:** Check by dividing: $1.80 \\div 0.15 = 12$, $1.80 \\div 0.20 = 9$, $1.80 \\div 0.45 = 4$. All whole, so 1.80 is right.\n\n### Choosing a method fast\nSmall numbers: factorise mentally. Two big numbers: long division. Prime-power form: read minima and maxima. Fractions: cross rule. Decimals: clear the point, restore it at the end.\n",
    "patterns": [
     {
      "id": "hl-m1",
      "name": "HCF by successive (long) division",
      "frequency": "common",
-     "howToSpot": "Two or three larger numbers and the HCF is asked — the numbers are too big to factorise comfortably.",
-     "formula": "\\gcd(a, b): \\text{ divide } a \\text{ by } b, \\text{ then } b \\text{ by the remainder, } \\dots \\text{ last non-zero divisor is the HCF}; \\quad \\text{LCM} = \\frac{ab}{\\gcd(a,b)}",
-     "logic": "1. Divide the bigger number by the smaller; note the remainder.\n2. Divide the old divisor by the remainder; repeat until the remainder is 0.\n3. The last non-zero divisor is the HCF. For a third number, repeat with (HCF, third number).\n4. LCM of two numbers = product ÷ HCF.\n\nWhy: any common divisor of a and b also divides every remainder, so the process preserves the common divisors while shrinking the numbers.",
+     "howToSpot": "Two or three larger numbers appear and the HCF is asked; the numbers are too big to factorise comfortably.",
+     "formula": "\\gcd(a, b): \\text{ divide, then divide the divisor by the remainder; the last non-zero divisor is the HCF}",
+     "steps": [
+      "Divide the bigger number by the smaller and note the remainder.",
+      "Divide the previous divisor by that remainder.",
+      "Repeat until the remainder is 0.",
+      "The last non-zero divisor is the HCF; for a third number, chain once more."
+     ],
+     "why": "Every common divisor of the two numbers also divides each remainder, so the process keeps the common divisors while the numbers shrink.",
      "example": {
-      "q": "Find the HCF of 4052 and 12576.",
-      "solution": "$12576 = 3 \\times 4052 + 420$ → $4052 = 9 \\times 420 + 272$ → … → $24 = 6 \\times 4 + 0$. HCF $= 4$."
+      "q": "Find the HCF of 1617 and 903 by successive division.",
+      "steps": [
+       "$1617 = 1 \\times 903 + 714$.",
+       "$903 = 1 \\times 714 + 189$, then $714 = 3 \\times 189 + 147$.",
+       "$189 = 1 \\times 147 + 42$, then $147 = 3 \\times 42 + 21$, then $42 = 2 \\times 21 + 0$.",
+       "HCF $= 21$."
+      ],
+      "answer": "21"
      }
     },
     {
      "id": "hl-m2",
-     "name": "HCF / LCM from prime-power form (min vs max powers)",
+     "name": "HCF and LCM from prime-power form",
      "frequency": "common",
-     "howToSpot": "The numbers are given as prime products, like $2^3 \\times 3^2 \\times 5^4$, or the HCF and LCM of power-form numbers are asked.",
+     "howToSpot": "The numbers arrive as prime products like 2 cubed times 3 squared times 5, and HCF or LCM is asked.",
      "formula": "\\text{HCF} = \\prod p_i^{\\min}, \\qquad \\text{LCM} = \\prod p_i^{\\max}",
-     "logic": "1. List each prime that appears anywhere.\n2. HCF: for each prime take the SMALLEST exponent across all the numbers (skip primes missing from any number).\n3. LCM: for each prime take the LARGEST exponent anywhere.\n4. Multiply out only at the end.\n\nWhy: the HCF must fit inside every number; the LCM must contain every number.",
+     "steps": [
+      "List every prime that appears in any number.",
+      "HCF: take the smallest exponent of each prime across all numbers; skip a prime missing from any number.",
+      "LCM: take the largest exponent of each prime anywhere.",
+      "Multiply out only at the end."
+     ],
+     "why": "The HCF must fit inside every number; the LCM must contain every number.",
      "example": {
-      "q": "Find the HCF of $2^3 \\times 3^2 \\times 5^4$, $2^2 \\times 3^3 \\times 5^2$ and $2^4 \\times 3 \\times 5^3$.",
-      "solution": "Lowest powers: $2^2$, $3^1$, $5^2$ → HCF $= 4 \\times 3 \\times 25 = 300$. (The LCM would be $2^4 \\times 3^3 \\times 5^4$. )"
+      "q": "Find the LCM of the numbers $2^3 \\times 3^2 \\times 5$, $2^2 \\times 3^3 \\times 7$ and $2 \\times 3^2 \\times 5^2$.",
+      "steps": [
+       "Highest power of each prime: $2^3$, $3^3$, $5^2$, $7$.",
+       "LCM $= 8 \\times 27 \\times 25 \\times 7$.",
+       "$= 37800$."
+      ],
+      "answer": "37800"
      }
     },
     {
      "id": "hl-m3",
      "name": "HCF and LCM of fractions (cross rule)",
      "frequency": "very common",
-     "howToSpot": "A list of fractions like 2/3, 8/9, 10/27 with HCF or LCM asked.",
-     "formula": "\\text{HCF} = \\frac{\\gcd(\\text{numerators})}{\\text{LCM}(\\text{denominators})}, \\qquad \\text{LCM} = \\frac{\\text{LCM}(\\text{numerators})}{\\gcd(\\text{denominators})}",
-     "logic": "1. Reduce each fraction to lowest terms first.\n2. For the HCF: HCF of the tops, LCM of the bottoms.\n3. For the LCM: LCM of the tops, HCF of the bottoms.\n4. Sanity check: every given fraction ÷ HCF should be a whole number; LCM ÷ every fraction should be a whole number.\n\nWhy: putting all fractions over the LCM of denominators turns them into integers, and the ordinary HCF/LCM of those integers gives the rule.",
+     "howToSpot": "A list of fractions like 2/3, 8/9, 10/27 is given and the HCF or LCM of the fractions is asked.",
+     "formula": "\\text{HCF} = \\dfrac{\\gcd(\\text{numerators})}{\\text{LCM}(\\text{denominators})}, \\qquad \\text{LCM} = \\dfrac{\\text{LCM}(\\text{numerators})}{\\gcd(\\text{denominators})}",
+     "steps": [
+      "Reduce each fraction to lowest terms.",
+      "For the HCF: HCF of the tops over LCM of the bottoms.",
+      "For the LCM: LCM of the tops over HCF of the bottoms.",
+      "Check: every fraction divided by the HCF is whole; the LCM divided by every fraction is whole."
+     ],
+     "why": "Putting all fractions over the LCM of the denominators turns them into whole numbers, and the ordinary rules on those integers give the cross rule.",
      "example": {
-      "q": "Find the HCF of $\\frac{2}{3}$, $\\frac{8}{9}$ and $\\frac{10}{27}$.",
-      "solution": "$\\frac{\\gcd(2, 8, 10)}{\\text{LCM}(3, 9, 27)} = \\frac{2}{27}$. Check: each fraction ÷ $\\frac{2}{27}$ is whole (9, 12, 5)."
+      "q": "Find the LCM of 2/3, 8/9 and 10/27.",
+      "steps": [
+       "LCM of tops: $\\text{LCM}(2, 8, 10) = 40$.",
+       "HCF of bottoms: $\\gcd(3, 9, 27) = 3$.",
+       "LCM $= \\dfrac{40}{3}$. Check: $\\dfrac{40}{3} \\div \\dfrac{8}{9} = 15$, whole."
+      ],
+      "answer": "40/3"
      }
     },
     {
      "id": "hl-m4",
      "name": "HCF and LCM of decimals",
      "frequency": "common",
-     "howToSpot": "Decimals like 0.54, 1.8, 7.2 with HCF or LCM asked — answers have a decimal point.",
-     "formula": "\\text{scale by } 10^k \\to \\gcd/\\text{lcm of integers} \\to \\text{scale back by } 10^k",
-     "logic": "1. Count the largest number of decimal places among the values.\n2. Multiply every value by that power of 10 so all become integers.\n3. Find the HCF or LCM of the integers.\n4. Divide the result by the same power of 10.\n\nWhy: multiplying everything by a common scale factor multiplies HCF and LCM by the same factor — so undo it at the end.",
+     "howToSpot": "Decimal values like 0.63, 1.05 and 2.1 are given, and the answer carries a decimal point.",
+     "formula": "\\text{scale by } 10^k \\to \\text{integer HCF or LCM} \\to \\text{scale back by } 10^k",
+     "steps": [
+      "Count the largest number of decimal places among the values.",
+      "Multiply every value by that power of 10 so all become integers.",
+      "Find the HCF or LCM of the integers.",
+      "Divide the result by the same power of 10."
+     ],
+     "why": "A common scale factor multiplies both HCF and LCM by itself, so undo it at the end.",
      "example": {
-      "q": "Find the LCM of 0.12, 0.18 and 0.30.",
-      "solution": "× 100 → 12, 18, 30 → LCM 180 → restore two places → 1.80. Check: $1.8 \\div 0.12 = 15$ ✓."
+      "q": "Find the HCF of 0.63, 1.05 and 2.1.",
+      "steps": [
+       "Two decimal places: work with $63, 105, 210$.",
+       "$\\gcd(63, 105, 210) = 21$.",
+       "Shift back two places: HCF $= 0.21$."
+      ],
+      "answer": "0.21"
+     }
+    },
+    {
+     "id": "hl-m5",
+     "name": "LCM of two large numbers via the HCF",
+     "frequency": "common",
+     "howToSpot": "The LCM of two numbers too large to factorise is asked directly, or the HCF was already found.",
+     "formula": "\\text{LCM}(a, b) = \\dfrac{a \\times b}{\\gcd(a, b)}",
+     "steps": [
+      "Find the HCF first, by long division.",
+      "Divide one number by the HCF.",
+      "Multiply the quotient by the other number.",
+      "Never multiply the two big numbers first; cancel the HCF before multiplying."
+     ],
+     "why": "The product of two numbers equals HCF times LCM, so dividing by the HCF leaves the LCM without a huge multiplication.",
+     "example": {
+      "q": "Find the LCM of 1617 and 903.",
+      "steps": [
+       "HCF by division: $\\gcd(1617, 903) = 21$.",
+       "Cancel first: $1617 \\div 21 = 77$.",
+       "LCM $= 77 \\times 903 = 69531$."
+      ],
+      "answer": "69531"
      }
     }
+   ],
+   "revision": [
+    "HCF: common primes, lowest powers. LCM: every prime, highest powers.",
+    "Long division: last non-zero divisor is the HCF; LCM $= \\dfrac{ab}{\\text{HCF}}$.",
+    "Three or more numbers: chain the HCF pairwise.",
+    "Prime-power form: read minima and maxima straight off.",
+    "Fractions: HCF of tops over LCM of bottoms, and the mirror for LCM.",
+    "Decimals: clear the point, solve, restore the same number of places."
    ]
   },
   {
    "id": "hl-word-problems",
    "title": "Standard word problems (tiles, bells, groups, divisible numbers)",
-   "concept": "Almost every CGL HCF/LCM question is a dressed-up version of one template:\n\n- **Largest tile / rod / measure / greatest number that divides** → HCF.\n- **Bells/traffic lights together, same starting time again** → LCM of intervals.\n- **Least number divisible by each of a set** → LCM; greatest such N-digit number = largest multiple of the LCM within range.\n- **Least number leaving the SAME remainder r** with each divisor → LCM + r.\n- **Largest number leaving the SAME remainder r** → HCF of (number − r); if remainders are not given, HCF of pairwise differences.\n- **Least number leaving DIFFERENT remainders**: try LCM − (divisor − remainder) when each remainder = divisor − constant.\n\nGroups/military columns/planting trees in rows → HCF of the counts/dimensions.",
+   "concept": "Word problems here sort into two families. Anything 'greatest that divides' is an HCF; anything 'least that is divisible by' is an LCM. Remainders shift the number first: subtract them for the HCF, add them back for the LCM.",
    "formulas": [
     {
      "name": "Same remainder r",
-     "tex": "N = \\text{LCM}(d_1, d_2, \\dots) \\times k + r"
+     "tex": "N = \\text{LCM}(d_1, d_2, \\ldots) \\times k + r",
+     "note": ""
     },
     {
-     "name": "Different remainders, N ≡ −c",
-     "tex": "N = \\text{LCM} \\times k - c \\text{ when } r_i = d_i - c"
+     "name": "Remainder is divisor minus c",
+     "tex": "r_i = d_i - c \\Rightarrow N = \\text{LCM} \\times k - c",
+     "note": ""
+    },
+    {
+     "name": "Divides with remainders",
+     "tex": "\\text{answer} = \\gcd(a - r_1,\\ b - r_2,\\ c - r_3)",
+     "note": ""
     },
     {
      "name": "Largest tile count",
-     "tex": "\\text{tiles} = \\frac{L \\times W}{h^2},\\ h = \\gcd(L, W)"
-    },
-    {
-     "name": "Greatest n-digit multiple",
-     "tex": "\\text{answer} = \\underbrace{99\\ldots9}_{n} - \\left(\\underbrace{99\\ldots9}_{n} \\bmod \\text{LCM}\\right)"
+     "tex": "\\text{tiles} = \\dfrac{L \\times W}{h^2}, \\quad h = \\gcd(L, W)",
+     "note": ""
     }
    ],
    "tricks": [
     {
      "title": "Subtract remainders, then HCF",
-     "body": "'Same remainder' questions: HCF of (each given number minus its remainder). Remainder unknown: HCF of the pairwise differences.",
+     "body": "For 'greatest number dividing a and b leaving remainders r1 and r2', the answer is the HCF of (a - r1) and (b - r2).",
      "example": {
-      "q": "Find the greatest number which divides 85 and 72 leaving remainders 1 and 2 respectively.",
-      "solution": "$85 - 1 = 84$, $72 - 2 = 70$. $\\gcd(84, 70) = 14$."
+      "q": "Find the greatest number which divides 1000 and 750 leaving remainders 4 and 6.",
+      "steps": [
+       "$1000 - 4 = 996$ and $750 - 6 = 744$.",
+       "$\\gcd(996, 744) = 12$.",
+       "Check: $1000 \\bmod 12 = 4$ and $750 \\bmod 12 = 6$."
+      ],
+      "answer": "12"
      }
     },
     {
-     "title": "LCM + r",
-     "body": "'Least number leaving remainder r with each divisor': add r to the LCM.",
+     "title": "LCM plus r",
+     "body": "For 'least number leaving remainder r with each divisor', add r to the LCM of the divisors.",
      "example": {
-      "q": "Find the least number which when divided by 12, 15, 20 and 27 leaves remainder 5 in each case.",
-      "solution": "LCM $= 540$, answer $= 540 + 5 = 545$."
+      "q": "Find the least number which when divided by 12, 16 and 24 leaves remainder 8 in each case.",
+      "steps": [
+       "$\\text{LCM}(12, 16, 24) = 48$.",
+       "Least number $= 48 + 8 = 56$.",
+       "Check: $56 \\bmod 12 = 56 \\bmod 16 = 56 \\bmod 24 = 8$."
+      ],
+      "answer": "56"
      }
     },
     {
-     "title": "Bells: add the LCM to the start time",
-     "body": "Convert all intervals to the same unit, take the LCM, add to the given time.",
+     "title": "Bells: add the LCM to the clock",
+     "body": "Convert all intervals to one unit, take the LCM, and add it to the given start time.",
      "example": {
-      "q": "Three bells toll at intervals of 9, 12 and 15 minutes. They toll together at 8 a.m. When do they next toll together?",
-      "solution": "LCM$(9, 12, 15) = 180$ min $= 3$ h ⇒ **11 a.m.**"
+      "q": "Four lights blink every 12, 15, 18 and 30 seconds and blink together at noon. When do they next blink together?",
+      "steps": [
+       "$\\text{LCM}(12, 15, 18, 30) = 180$ seconds.",
+       "$180$ seconds $= 3$ minutes.",
+       "Noon $+ 3$ minutes $=$ 12:03."
+      ],
+      "answer": "12:03"
      }
     }
    ],
    "mistakes": [
-    "Adding the remainder when the question asks for the **greatest** divisor (that needs HCF of differences, not LCM + r).",
-    "Forgetting to convert metres to centimetres (or minutes to seconds) before taking HCF/LCM.",
-    "For 'leaves remainder 2, 3, 4 with 3, 4, 5' type questions, seeing $r_i = d_i - 1$ and answering LCM $-1$ only if asked for the least; other values are LCM·k − 1.",
-    "Using HCF where 'divisible by all' demands LCM."
+    {
+     "wrong": "Adding the remainder in a 'greatest number that divides' question.",
+     "right": "That family needs the HCF of the numbers minus their remainders."
+    },
+    {
+     "wrong": "Mixing metres with centimetres, or minutes with seconds.",
+     "right": "Convert all measurements to one unit before the HCF or LCM."
+    },
+    {
+     "wrong": "Reporting LCM + r when a larger value was demanded by a bound.",
+     "right": "Fit LCM times k plus r into the stated range; the least uses k = 1."
+    },
+    {
+     "wrong": "Using the HCF where the question says 'divisible by all'.",
+     "right": "'Divisible by all' is an LCM question; 'divides all' is HCF."
+    },
+    {
+     "wrong": "Counting the starting moment in a bells question without checking the wording.",
+     "right": "Divide the window by the LCM; add 1 only if the start counts."
+    }
    ],
-   "notes": "### The template table — decide HCF or LCM in five seconds\n| Question wording | Tool |\n|---|---|\n| Greatest number that **divides** a, b, c (exactly, or with remainders) | HCF |\n| Least number **divisible by** a, b, c | LCM |\n| Largest tile / rod / measure / biggest equal group | HCF |\n| Bells or lights ringing **together**, laps meeting again | LCM |\n| Least number leaving **remainder r with every divisor** | LCM + r |\n| Greatest number leaving **remainder r with every divisor** | HCF of (number − r) |\n| Remainder = divisor − c in every case | LCM − c (least value) |\n\n### Why the two remainder rules work\nIf N leaves remainder r with every divisor, then N − r is exactly divisible by all of them.\n- The smallest positive value of N − r is the **LCM**, so the least such N is LCM + r.\n- The **greatest** number dividing all the (number − r) values is their **HCF**.\nExample: least number leaving remainder 5 with 12, 15, 20 → LCM $= 540$ → answer 545.\n\n### When the remainders differ\nIf each remainder is exactly c less than its divisor, then N + c is divisible by every divisor, so the least N is **LCM − c**.\nExample: remainders 5, 8, 11 with divisors 6, 9, 12 — each is divisor − 1 → N $= 36 - 1 = 35$. Check: $35 = 5 \\times 6 + 5 = 3 \\times 9 + 8 = 2 \\times 12 + 11$ ✓.\n\n### Bells, lights and laps\nConvert all intervals to the **same unit**, take the LCM, then:\n- next time together = start time + LCM;\n- how many times together within T: divide T by the LCM (add 1 if the moment of starting counts).\nExample: bells every 9, 12, 15 minutes, together at 8 a.m. → LCM $= 180$ min $= 3$ h → next together 11 a.m.\n\n### Tiles, rods, measures and groups\n- Largest square tile: side = HCF of the length and breadth (**same units first**); number of tiles = $\\frac{L \\times B}{\\text{side}^2}$.\n- Longest rod / biggest vessel: HCF of the dimensions or capacities; the count is total ÷ HCF.\n- Biggest equal groups (men and women split into identical teams): HCF of the counts.\nExample: containers of 144 L, 180 L, 240 L — largest vessel $= \\gcd = 12$ L.\n\n### Units and classic traps\n- Convert everything first: 15 m 17 cm $= 1517$ cm; 2 hours $= 120$ minutes.\n- \"Divides … leaving remainder\" → subtract the remainders, then HCF. \"Divisible by\" → LCM. Mixing these up is the number-one error in this topic.\n- For LCM + r questions, other valid values are LCM·k + r — but the question asks for the **least**, so take k = 1.\n- A remainder must be **smaller than its divisor**; if your answer is not, you stopped one step early.\n\n### Quick revision\n- Divides with remainders → subtract remainders, take HCF.\n- Same remainder, least value → LCM + r; remainder = divisor − c → LCM − c.\n- Bells and laps: LCM, then add to the clock or count windows.\n- Tiles and rods: HCF first, then divide the area or the total.\n",
+   "notes": "Every word problem in this topic is a dressed-up HCF or LCM question. The fastest first step is to name the family: 'greatest number that divides' means HCF, 'least number divisible by' means LCM. For bells that toll together every 6, 8 and 12 minutes, the gap is $\\text{LCM} = 24$ minutes.\n\n### The template table\n| Question wording | Tool |\n|---|---|\n| Greatest number that divides a, b, c | HCF |\n| Least number divisible by a, b, c | LCM |\n| Largest tile, rod or biggest equal group | HCF |\n| Bells or lights together again | LCM |\n| Least number, remainder r with every divisor | LCM + r |\n| Greatest number, remainder r with every divisor | HCF of (number - r) |\n\n> **Tip:** 'Greatest' pairs with HCF; 'least' pairs with LCM. Fix the family first, then the arithmetic is short.\n\n### Divides with remainders\n'Find the greatest number which divides 70 and 125 leaving remainders 5 and 8.' The divisor must divide $70 - 5 = 65$ and $125 - 8 = 117$, so it divides their HCF. $\\gcd(65, 117) = 13$. Check: $70 = 5 \\times 13 + 5$ and $125 = 9 \\times 13 + 8$.\n\n> **Rule:** Subtract each remainder from its number, then take the HCF. The answer must exceed every remainder.\n\n### Same remainder with every divisor\nIf N leaves remainder r with every divisor, then $N - r$ is divisible by all of them. The least such N is LCM + r. For divisors 9, 12, 15 with remainder 5: $\\text{LCM} = 180$, so $N = 185$.\n\n### Remainders that differ by a constant\nWhen each remainder is the same amount c below its divisor, add c instead. For divisors 6, 9, 12 with remainders 5, 8, 11: each remainder is divisor $- 1$, so $N + 1$ is a common multiple. $N = \\text{LCM}(6, 9, 12) - 1 = 36 - 1 = 35$. Check: $35 \\bmod 6 = 5$, $35 \\bmod 9 = 8$, $35 \\bmod 12 = 11$.\n\n> **Watch:** Each remainder must be smaller than its divisor. A remainder bigger than its divisor means the working stopped one step early.\n\n### Bells, lights and laps\nConvert every interval to one unit, then take the LCM. Buses leaving every 10, 15 and 20 minutes together at 6 a.m. meet again after $\\text{LCM} = 60$ minutes, at 7 a.m. To count meetings inside a window, divide the window by the LCM; add 1 only if the starting moment itself counts.\n\n### Tiles, rods, vessels and groups\nThe largest square tile has side $\\gcd(L, W)$ in the same units; the tile count is $\\dfrac{L \\times W}{h^2}$. The longest rod cut from planks of 42 cm and 49 cm has length $\\gcd = 7$ cm, giving $6 + 7 = 13$ pieces. Equal groups of people: the group size is the HCF of the counts.\n\n> **Example:** A hall is 8.4 m by 5.6 m, so 840 cm by 560 cm. The largest square tile has side $\\gcd(840, 560) = 280$ cm, and $\\dfrac{840 \\times 560}{280^2} = 6$ tiles.\n\n### Units first\nConvert everything before computing: 2 m 40 cm is 240 cm, and 3 hours is 180 minutes. Mixed units are the number-one error here, because the HCF or LCM changes with the unit.\n",
    "patterns": [
     {
      "id": "hl-w1",
-     "name": "Greatest number dividing with given remainders (HCF of differences)",
+     "name": "Greatest number dividing with given remainders",
      "frequency": "very common",
-     "howToSpot": "'Find the greatest number which divides a, b, c leaving remainders r1, r2, r3.'",
+     "howToSpot": "The question asks for the greatest number which divides two or three numbers leaving stated remainders.",
      "formula": "\\text{answer} = \\gcd(a - r_1,\\ b - r_2,\\ c - r_3)",
-     "logic": "1. Subtract each remainder from its number: N − r is exactly divisible by the answer.\n2. Take the HCF of the results.\n3. Check the answer is bigger than every remainder.\n\nWhy: the unknown divisor divides N − r for every N, so it is a common factor — and the greatest one is the HCF.",
+     "steps": [
+      "Subtract each remainder from its number; the divisor divides each difference.",
+      "Take the HCF of the differences.",
+      "Check the answer exceeds every remainder."
+     ],
+     "why": "The unknown divisor divides each N minus r, so it is a common factor, and the greatest one is the HCF.",
      "example": {
-      "q": "Find the greatest number which divides 85 and 72 leaving remainders 1 and 2 respectively.",
-      "solution": "$85 - 1 = 84$, $72 - 2 = 70$; $\\gcd(84, 70) = 14$. Check: $85 = 6 \\times 14 + 1$, $72 = 5 \\times 14 + 2$."
+      "q": "Find the greatest number which divides 70 and 125 leaving remainders 5 and 8.",
+      "steps": [
+       "$70 - 5 = 65$ and $125 - 8 = 117$.",
+       "$\\gcd(65, 117) = 13$.",
+       "Check: $70 = 5 \\times 13 + 5$, $125 = 9 \\times 13 + 8$."
+      ],
+      "answer": "13"
      }
     },
     {
      "id": "hl-w2",
-     "name": "Least number leaving the same remainder r (LCM + r)",
+     "name": "Least number leaving the same remainder (LCM + r)",
      "frequency": "very common",
-     "howToSpot": "'Find the least number which when divided by a, b, c leaves remainder r in each case.'",
-     "formula": "N = \\text{LCM}(a, b, c) \\times k + r \\ \\ (k = 1 \\text{ for the least positive value})",
-     "logic": "1. Take the LCM of the divisors.\n2. Add the remainder r.\n3. If a bound appears (greater than 10 000, four-digit, …), fit N = LCM·k + r into the range.\n\nWhy: N − r must be a common multiple of all divisors; the least positive common multiple is the LCM.",
+     "howToSpot": "The question asks for the least number which when divided by several divisors leaves the same remainder each time.",
+     "formula": "N = \\text{LCM}(a, b, c) \\times k + r",
+     "steps": [
+      "Take the LCM of the divisors.",
+      "Add the remainder r for the least value.",
+      "With a bound (four-digit, above 1000), pick k so that LCM x k + r fits."
+     ],
+     "why": "N minus r must be a common multiple of all divisors, and the least positive one is the LCM.",
      "example": {
-      "q": "Find the least number which when divided by 8, 12, 15 and 20 leaves remainder 4 in each case.",
-      "solution": "LCM$(8, 12, 15, 20) = 120$ → least number $= 120 + 4 = 124$. (244 also works but is not the least.)"
+      "q": "Find the least number which when divided by 9, 12 and 15 leaves remainder 5 in each case.",
+      "steps": [
+       "$\\text{LCM}(9, 12, 15) = 180$.",
+       "Least number $= 180 + 5 = 185$.",
+       "Check: $185 \\bmod 9 = 185 \\bmod 12 = 185 \\bmod 15 = 5$."
+      ],
+      "answer": "185"
      }
     },
     {
      "id": "hl-w3",
-     "name": "Remainder is (divisor − c) each time (LCM − c)",
+     "name": "Remainder is divisor minus c each time",
      "frequency": "common",
-     "howToSpot": "Remainders differ, but each one is a fixed amount less than its divisor: like 2, 3, 4 with divisors 3, 4, 5.",
-     "formula": "r_i = d_i - c \\Rightarrow N = \\text{LCM}(d_1, d_2, \\dots) \\times k - c",
-     "logic": "1. Confirm each divisor minus its remainder is the same number c.\n2. N + c is divisible by every divisor → N = LCM − c for the least value.\n3. Bigger values are LCM·k − c if a bound is given.\n\nWhy: adding c to N repairs every division to an exact one, so N + c is a common multiple.",
+     "howToSpot": "The remainders differ, but each one sits a fixed amount below its own divisor.",
+     "formula": "r_i = d_i - c \\Rightarrow N = \\text{LCM}(d_1, d_2, \\ldots) \\times k - c",
+     "steps": [
+      "Subtract each remainder from its divisor; confirm the same value c every time.",
+      "Then N + c is divisible by every divisor.",
+      "The least N is LCM minus c."
+     ],
+     "why": "Adding c repairs every division to an exact one, so N + c is a common multiple.",
      "example": {
-      "q": "Find the least number which when divided by 6, 9 and 12 leaves remainders 5, 8 and 11 respectively.",
-      "solution": "Each remainder is divisor − 1 → N $= \\text{LCM}(6, 9, 12) - 1 = 36 - 1 = 35$. Check: $35 \\bmod 6 = 5$, $35 \\bmod 9 = 8$, $35 \\bmod 12 = 11$."
+      "q": "Find the least number which when divided by 5, 6 and 8 leaves remainders 4, 5 and 7.",
+      "steps": [
+       "$5 - 4 = 1$, $6 - 5 = 1$, $8 - 7 = 1$, so $c = 1$.",
+       "$\\text{LCM}(5, 6, 8) = 120$.",
+       "$N = 120 - 1 = 119$."
+      ],
+      "answer": "119"
      }
     },
     {
      "id": "hl-w4",
-     "name": "Bells, lights and laps meeting again (LCM + clock)",
+     "name": "Bells, lights and laps meeting again",
      "frequency": "common",
-     "howToSpot": "Bells toll or lights change at different intervals, start together, and the question asks when they next coincide or how often in a window.",
-     "formula": "\\text{gap} = \\text{LCM}(\\text{intervals}); \\quad \\#\\text{times in } T = \\left\\lfloor \\frac{T}{\\text{LCM}} \\right\\rfloor \\ (+1 \\text{ if the start counts})",
-     "logic": "1. Convert every interval to the same unit.\n2. LCM of the intervals = the gap between coincidences.\n3. Add to the start time, or divide the window by the gap to count.\n4. Decide whether the start counts — the wording tells you.\n\nWhy: two events with periods a and b coincide exactly at common multiples of a and b; the least one is the LCM.",
+     "howToSpot": "Events repeat at different intervals, start together, and the question asks when they next coincide or how often.",
+     "formula": "\\text{gap} = \\text{LCM}(\\text{intervals})",
+     "steps": [
+      "Convert every interval to the same unit.",
+      "The LCM of the intervals is the gap between coincidences.",
+      "Add the gap to the start time, or divide the window by it to count meetings.",
+      "Check the wording for whether the starting moment counts."
+     ],
+     "why": "Two repeating events coincide exactly at common multiples of their periods, and the first one is the LCM.",
      "example": {
-      "q": "Three bells toll at intervals of 9, 12 and 15 minutes and toll together at 8 a.m. When do they next toll together?",
-      "solution": "LCM$(9, 12, 15) = 180$ minutes $= 3$ hours → 8 a.m. + 3 h $=$ **11 a.m.**"
+      "q": "Three bells toll every 6, 8 and 12 minutes and toll together at 7 a.m. When do they next toll together?",
+      "steps": [
+       "$\\text{LCM}(6, 8, 12) = 24$ minutes.",
+       "$7$ a.m. $+ 24$ minutes.",
+       "$= 7$:$24$ a.m."
+      ],
+      "answer": "7:24 a.m."
      }
     },
     {
      "id": "hl-w5",
-     "name": "Largest tile, rod, measure or equal group (HCF)",
+     "name": "Largest tile, rod, vessel or equal group",
      "frequency": "common",
-     "howToSpot": "Pave with the largest square tiles, cut planks of greatest equal length, fill containers with the biggest vessel, form biggest equal groups.",
-     "formula": "\\text{side/length} = \\gcd(\\text{dimensions}); \\quad \\#\\text{tiles} = \\frac{L \\times B}{h^2}, \\quad \\#\\text{pieces} = \\frac{\\text{total length}}{h}",
-     "logic": "1. Convert all measurements to one unit.\n2. HCF of the dimensions (or capacities / counts) is the answer's size.\n3. Divide the total by the HCF to get how many tiles, pieces or groups.\n\nWhy: the tile or rod must fit each dimension a whole number of times — it is a common divisor, so the largest one is the HCF.",
+     "howToSpot": "The question asks for the largest square tile, longest equal rod, biggest vessel, or biggest identical groups.",
+     "formula": "\\text{size} = \\gcd(\\text{dimensions}); \\quad \\#\\text{tiles} = \\dfrac{L \\times W}{h^2}",
+     "steps": [
+      "Convert all measurements to one unit.",
+      "The HCF of the dimensions or counts gives the size.",
+      "Divide the total by the HCF for the count of tiles, pieces or groups."
+     ],
+     "why": "The tile or rod must fit each dimension a whole number of times, so it is a common divisor; the largest is the HCF.",
      "example": {
-      "q": "What is the largest vessel which can fill containers of 144 L, 180 L and 240 L exactly, and how many times does it fill the 240 L one?",
-      "solution": "$\\gcd(144, 180, 240) = 12$ L; $240 \\div 12 = 20$ fills."
+      "q": "A hall is 8.4 m long and 5.6 m wide. Find the largest square tile that paves it exactly, and the number of tiles.",
+      "steps": [
+       "Metres to centimetres: $840$ and $560$.",
+       "Side $= \\gcd(840, 560) = 280$ cm $= 2.8$ m.",
+       "Tiles $= \\dfrac{840 \\times 560}{280^2} = 6$."
+      ],
+      "answer": "2.8 m side, 6 tiles"
      }
     }
+   ],
+   "revision": [
+    "'Greatest that divides' $\\to$ HCF; 'least divisible by' $\\to$ LCM.",
+    "Divides with remainders: subtract remainders, take HCF.",
+    "Same remainder r, least value: LCM $+ r$.",
+    "Each remainder $= $ divisor $- c$: least value LCM $- c$.",
+    "Bells and laps: LCM of intervals, then add to the clock.",
+    "Tiles and rods: HCF of dimensions; count $=$ area $\\div h^2$ or total $\\div h$.",
+    "Convert units before anything else."
    ]
   },
   {
    "id": "hl-remainder-cases",
    "title": "Two-step LCM/HCF cases (extra condition, N-digit bounds)",
-   "concept": "The hardest CGL variants combine LCM/HCF with one extra condition:\n\n- **LCM + remainder, further divisible by p:** write $N = \\text{LCM}\\cdot k + r$ and solve $N \\equiv 0 \\pmod p$ for the smallest k.\n- **Greatest/least n-digit number with properties:** bound the LCM multiples inside the digit range first, then apply the extra condition.\n- **Given HCF and LCM, reconstruct numbers:** numbers $= h\\,a$ and $h\\,b$ with $\\gcd(a,b) = 1$ and $ab = \\frac{\\text{LCM}}{h}$; use the sum/difference to pick the pair.\n- **Count of possible pairs:** count co-prime factor pairs of LCM/HCF.",
+   "concept": "Harder questions chain one extra condition onto an LCM or HCF. Write N = LCM x k + r and let the condition pin down k, or rebuild numbers as h times co-prime parts from the HCF and LCM.",
    "formulas": [
     {
      "name": "Extra divisibility condition",
-     "tex": "N = Lk + r,\\ N \\equiv 0 \\pmod p \\ \\Rightarrow\\ Lk \\equiv -r \\pmod p"
+     "tex": "N = Lk + r, \\quad N \\equiv 0 \\pmod{p} \\ \\Rightarrow\\ Lk \\equiv -r \\pmod{p}",
+     "note": ""
     },
     {
-     "name": "Reconstruction",
-     "tex": "ab = \\frac{\\text{LCM}}{h},\\quad \\gcd(a, b) = 1"
+     "name": "Reconstruction from HCF and LCM",
+     "tex": "ab = \\dfrac{\\text{LCM}}{h}, \\quad \\gcd(a, b) = 1, \\quad \\text{numbers} = ha,\\ hb",
+     "note": ""
     },
     {
      "name": "Pair count",
-     "tex": "\\#\\{(a,b): ab = M,\\ \\gcd(a,b)=1,\\ a \\le b\\}"
+     "tex": "\\#\\{(a, b): ab = M,\\ \\gcd(a, b) = 1,\\ a \\le b\\}",
+     "note": ""
+    },
+    {
+     "name": "Same unknown remainder",
+     "tex": "\\text{answer} = \\gcd(a - b,\\ b - c,\\ a - c)",
+     "note": ""
     }
    ],
    "tricks": [
     {
-     "title": "Solve the little congruence for k",
-     "body": "Once N = LCM·k + r, only k's remainder mod p matters — test k = 1, 2, 3, … until it clicks.",
+     "title": "Test k until it clicks",
+     "body": "Once N = LCM x k + r is written, only k remains. Test k = 1, 2, 3 against the extra condition; small values click fast.",
      "example": {
-      "q": "Find the least number which when divided by 6, 7, 8, 9 and 12 leaves remainder 1 in each case, and is also divisible by 13.",
-      "solution": "LCM = 504, so $N = 504k + 1$. $504 \\equiv -3 \\pmod{13}$ ⇒ $-3k + 1 \\equiv 0$ ⇒ $3k \\equiv 1$ ⇒ $k = 9$. $N = 4537$."
+      "q": "Find the least number which leaves remainder 1 with 3, 5 and 7, and is divisible by 8.",
+      "steps": [
+       "$L = \\text{LCM}(3, 5, 7) = 105$, so $N = 105k + 1$.",
+       "Test: $106, 211, 316, 421, 526, 631, 736$; $736 = 8 \\times 92$.",
+       "$N = 736$."
+      ],
+      "answer": "736"
      }
     },
     {
-     "title": "N-digit multiple scan",
-     "body": "For least n-digit: divide the smallest n-digit number by the LCM, go to the next multiple. For greatest: reduce the largest n-digit number by its remainder.",
+     "title": "n-digit multiple scan",
+     "body": "For the least n-digit multiple, divide the smallest n-digit number by the LCM and step up to the next multiple. For the greatest, subtract the remainder from the largest n-digit number.",
      "example": {
-      "q": "Find the least five-digit number exactly divisible by 32, 36, 40, 45 and 48.",
-      "solution": "LCM $= 1440$. $10000 \\div 1440 = 6$ remainder $1360$ ⇒ answer $= 7 \\times 1440 = 10080$."
+      "q": "Find the least three-digit number exactly divisible by 9 and 12.",
+      "steps": [
+       "$\\text{LCM}(9, 12) = 36$.",
+       "$100 = 2 \\times 36 + 28$, so step up by $8$.",
+       "$108 = 3 \\times 36$."
+      ],
+      "answer": "108"
      }
     },
     {
      "title": "Sum or difference picks the pair",
-     "body": "With LCM/HCF and a sum (or difference) given, list co-prime pairs of LCM/HCF and match the sum.",
+     "body": "With HCF, LCM and a sum or difference given, list co-prime pairs of LCM / HCF and match h times the parts to the sum.",
      "example": {
-      "q": "Two numbers have HCF 5, LCM 495 and sum 100. Find their difference.",
-      "solution": "$a b = \\frac{495}{5} = 99$, co-prime pairs (1, 99) and (9, 11). Sum $5(a+b) = 100$ ⇒ (9, 11) ⇒ numbers 45, 55 ⇒ difference **10**."
+      "q": "Two numbers have HCF 6, LCM 180 and sum 66. Find the numbers.",
+      "steps": [
+       "$ab = \\dfrac{180}{6} = 30$; co-prime pairs $(1, 30)$, $(2, 15)$, $(3, 10)$, $(5, 6)$.",
+       "Parts sum: $6(a + b) = 66$ gives $a + b = 11$.",
+       "Pair $(5, 6)$: numbers 30 and 36."
+      ],
+      "answer": "30 and 36"
      }
     }
    ],
    "mistakes": [
-    "Answering LCM $+ r$ when the extra condition demands a larger multiple of the LCM.",
-    "Listing factor pairs of LCM/HCF without checking co-primality.",
-    "Forgetting the (1, M) pair when counting possibilities, or counting (a, b) and (b, a) twice.",
-    "Missing that HCF must divide the sum/difference — a quick sanity filter for options."
+    {
+     "wrong": "Answering LCM + r when an extra condition forces a larger multiple.",
+     "right": "Fit N = LCM x k + r through the extra condition and take the smallest k that works."
+    },
+    {
+     "wrong": "Listing factor pairs of LCM / HCF without checking co-primality.",
+     "right": "Only co-prime pairs are possible; drop the rest before matching the sum."
+    },
+    {
+     "wrong": "Forgetting the pair (1, M) when counting possibilities.",
+     "right": "That pair is always co-prime and always counts."
+    },
+    {
+     "wrong": "Counting (a, b) and (b, a) as two pairs.",
+     "right": "Order does not matter; count each pair once with a at most b."
+    },
+    {
+     "wrong": "Skipping the check that the HCF divides the sum or difference.",
+     "right": "The HCF must divide both numbers, so it divides their sum and difference too."
+    }
    ],
-   "notes": "### The master frame: N = LCM·k + r\nEvery remainder question reduces to $N = L \\cdot k + r$, where $L$ is the LCM of the divisors. $k = 1$ gives the least positive value; larger k gives later values in the same pattern. Any extra condition simply pins down k.\n\n### Extra condition: the number must also be divisible by p\n1. Write $N = Lk + r$.\n2. Try $k = 1, 2, 3, \\dots$ until $Lk + r$ is divisible by p (or solve $Lk \\equiv -r \\pmod p$).\nExample: N divided by 4, 6, 9 leaves remainder 1 in each case, and N is divisible by 11.\n$L = 36$ → $N = 36k + 1$: k = 7 gives $253 = 11 \\times 23$ ✓ → N $= 253$.\n\n### Least / greatest n-digit numbers\n1. Take $L = $ LCM of the divisors.\n2. Least n-digit: divide 10…0 by L and step up to the next multiple.\n3. Greatest n-digit: divide 99…9 by L and subtract the remainder.\n4. With a remainder r, fit $N = Lk + r$ inside the digit range.\nExample: least 5-digit number divisible by 32, 36, 40, 45, 48 → $L = 1440$; $10000 = 6 \\times 1440 + 1360$ → add $1440 - 1360 = 80$ → **10080**.\n\n### Rebuilding numbers from HCF and LCM\nNumbers with HCF h can be written $ha$ and $hb$ with $\\gcd(a, b) = 1$, and $ab = \\frac{\\text{LCM}}{h}$.\n1. Compute $ab$.\n2. List the factor pairs of $ab$; keep only the **co-prime** pairs.\n3. Use the given sum or difference to pick the pair; the numbers are $ha$ and $hb$.\nExample: HCF 5, LCM 495, sum 100 → $ab = 99$ → pairs (1, 99) and (9, 11); the sum needs $a + b = 20$ → (9, 11) → numbers 45 and 55.\n\n### How many pairs are possible?\nCount the co-prime factor pairs of $ab = \\frac{\\text{LCM}}{h}$ (or $\\frac{\\text{product}}{h^2}$ when the product is given). Do not forget the pair (1, ab) itself, and never count (a, b) and (b, a) as different pairs.\nExample: product 2160, HCF 12 → $ab = \\frac{2160}{144} = 15$ → (1, 15), (3, 5) → **2 pairs**.\n\n### Same unknown remainder → HCF of the pairwise differences\nIf a, b, c leave the **same** (unknown) remainder, the answer divides $a - b$, $b - c$, $a - c$ — so it is the HCF of the pairwise differences. The common remainder is then a mod (answer).\nExample: greatest number dividing 84, 156, 204 leaving the same remainder: differences 72, 120, 48 → HCF $= 24$, and the remainder is $84 \\bmod 24 = 12$ in each case.\n\n### Quick revision\n- $N = Lk + r$: extra condition → test k = 1, 2, 3, …\n- n-digit: step up from 10…0 or step down from 99…9.\n- Rebuild: numbers $= ha, hb$ with $ab = \\text{LCM} \\div h$, co-prime parts.\n- Pair count: co-prime factor pairs of LCM/H (or product/H²).\n- Unknown same remainder → HCF of the pairwise differences.\n",
+   "notes": "The harder questions in this topic add one extra condition to a plain LCM or HCF setup. The master frame is $N = L \\times k + r$, where $L$ is the LCM of the divisors. For divisors 5 and 6 with remainder 2: $L = 30$, so $N = 30k + 2$, giving 32, 62, 92, and so on.\n\n### The master frame\n$k = 1$ gives the least positive value; larger k walks up the same family. Any extra condition, such as divisibility by one more number or a digit bound, simply selects k.\n\n> **Rule:** Write $N = L \\times k + r$ first. Then fit the extra condition onto k.\n\n### An extra divisibility condition\nTest $k = 1, 2, 3, \\ldots$ until $Lk + r$ satisfies the condition. For 'N leaves remainder 2 with 5 and 6, and N is divisible by 7': $N = 30k + 2$. Trying k gives 32, 62, 122, 152, 182, and $182 = 7 \\times 26$ works. So $N = 182$.\n\n### Least and greatest n-digit numbers\nMultiples of $L$ are the candidates. Least four-digit multiple of 60: $1000 = 16 \\times 60 + 40$, so add $60 - 40 = 20$ to reach 1020. Greatest works from the top: divide 99,999 by 60, subtract the remainder, and land on the greatest multiple under the bound.\n\n> **Tip:** Step up from 10, 100, 1000 for the least; step down from 9, 99, 999 for the greatest. With a remainder r, fit $Lk + r$ inside the range instead of plain multiples.\n\n### Rebuilding numbers from HCF and LCM\nNumbers with HCF $h$ are $ha$ and $hb$ with co-prime parts, and $ab = \\dfrac{\\text{LCM}}{h}$. With HCF 4 and LCM 48: $ab = 12$, whose co-prime pairs are $(1, 12)$ and $(3, 4)$. A given sum picks the pair: sum 28 needs $a + b = 7$, so the parts are 3 and 4 and the numbers are 12 and 16.\n\n> **Watch:** List only co-prime factor pairs. The pair $(2, 6)$ for $ab = 12$ is impossible, because the numbers would share an extra factor 2.\n\n### Counting possible pairs\nCount the co-prime factor pairs of $ab$, and remember the pair $(1, ab)$. Product 1764 with HCF 14 gives $ab = \\dfrac{1764}{14^2} = 9$, and 9 has the single co-prime pair $(1, 9)$: the numbers must be 14 and 126. Count each unordered pair once, with the smaller part first, so $(1, 9)$ and $(9, 1)$ are the same pair.\n\n### Sanity checks that catch slips\nTwo quick filters catch most slips in this subtopic. First, the HCF must divide the LCM, both numbers, and their sum and difference. Second, every rebuilt pair must multiply back to the product and carry the stated HCF. Run both checks before marking the answer.\n\n### The same unknown remainder\nWhen no remainder is given but it is the same for all numbers, the divisor divides every pairwise difference. For 51, 123 and 171: the differences are 72, 48 and 120, and $\\gcd(72, 48, 120) = 24$. The common remainder is $51 \\bmod 24 = 3$, the same for all three.\n\n> **Example:** Check: $123 = 5 \\times 24 + 3$ and $171 = 7 \\times 24 + 3$. Both leave remainder 3, so 24 is right.\n",
    "patterns": [
     {
      "id": "hl-r1",
-     "name": "Least / greatest n-digit number divisible by a set",
+     "name": "Least or greatest n-digit number divisible by a set",
      "frequency": "very common",
-     "howToSpot": "'Find the least four-digit number exactly divisible by 12, 15, 20' or the greatest such five-digit number.",
-     "formula": "\\text{least: next multiple of } L \\ge 10^{n-1}; \\qquad \\text{greatest: } 10^n - 1 - ((10^n - 1) \\bmod L), \\quad L = \\text{LCM}",
-     "logic": "1. Take L = LCM of the divisors.\n2. Least: divide the smallest n-digit number by L, subtract the remainder from L, add to the base.\n3. Greatest: divide 99…9 by L and subtract the remainder.\n4. Add the remainder r first if the question says 'leaves remainder r': work with Lk + r inside the range.\n\nWhy: multiples of the LCM are exactly the numbers divisible by every divisor; the digit bounds just pick where to stop.",
+     "howToSpot": "The question asks for the least or greatest number of a given digit count divisible by several divisors.",
+     "formula": "\\text{least: next multiple of } L \\text{ at or above } 10^{n-1}; \\quad \\text{greatest: } 10^n - 1 - \\left((10^n - 1) \\bmod L\\right)",
+     "steps": [
+      "Take $L$ as the LCM of the divisors.",
+      "Least: divide the smallest n-digit number by $L$ and step up to the next multiple.",
+      "Greatest: divide the largest n-digit number by $L$ and subtract the remainder.",
+      "With a remainder r in the question, fit $Lk + r$ inside the range instead."
+     ],
+     "why": "Multiples of the LCM are exactly the numbers divisible by every divisor; the digit bounds only pick where to stop.",
      "example": {
-      "q": "Find the least five-digit number exactly divisible by 32, 36, 40, 45 and 48.",
-      "solution": "$L = 1440$; $10000 = 6 \\times 1440 + 1360$ → add $1440 - 1360 = 80$ → **10080**."
+      "q": "Find the greatest five-digit number exactly divisible by 12, 15 and 20.",
+      "steps": [
+       "$L = \\text{LCM}(12, 15, 20) = 60$.",
+       "$99999 = 1666 \\times 60 + 39$.",
+       "Greatest $= 99999 - 39 = 99960$."
+      ],
+      "answer": "99960"
      }
     },
     {
      "id": "hl-r2",
-     "name": "LCM + r with an extra condition (divisible by p, or a digit bound)",
+     "name": "LCM + r with an extra condition",
      "frequency": "common",
-     "howToSpot": "'…leaves remainder r in each case, and is exactly divisible by 11' — an LCM + r question with one more filter.",
-     "formula": "N = Lk + r, \\qquad Lk + r \\equiv 0 \\pmod p \\ \\Rightarrow\\ \\text{smallest } k \\text{ wins}",
-     "logic": "1. Write N = L·k + r with L = LCM of the divisors.\n2. Test k = 1, 2, 3, … until L·k + r is divisible by p (small k values click fast).\n3. If an n-digit bound is given, start k just above (bound − r) ÷ L.\n\nWhy: N − r is a multiple of L by construction; the extra condition only chooses which multiple.",
+     "howToSpot": "An LCM plus remainder question carries one more filter, such as divisibility by another number or a digit bound.",
+     "formula": "N = Lk + r, \\qquad \\text{smallest } k \\text{ meeting the condition wins}",
+     "steps": [
+      "Write $N = L \\times k + r$ with $L$ the LCM of the divisors.",
+      "Test $k = 1, 2, 3, \\ldots$ against the extra condition.",
+      "With an n-digit bound, start k just above the bound minus r, divided by L."
+     ],
+     "why": "N minus r is a multiple of L by construction; the extra condition only chooses which multiple.",
      "example": {
-      "q": "Find the least number which divided by 4, 6 and 9 leaves remainder 1 in each case, and is exactly divisible by 11.",
-      "solution": "$L = 36$ → N = 37, 73, 109, …, and $253 = 11 \\times 23$ (k = 7) → **253**."
+      "q": "Find the least number which leaves remainder 3 with 6, 7 and 8, and is divisible by 5.",
+      "steps": [
+       "$L = \\text{LCM}(6, 7, 8) = 168$, so $N = 168k + 3$.",
+       "Test k: $171, 339, 507, 675$; and $675 = 5 \\times 135$.",
+       "$N = 675$."
+      ],
+      "answer": "675"
      }
     },
     {
      "id": "hl-r3",
-     "name": "Rebuild numbers from HCF & LCM; count possible pairs",
+     "name": "Rebuild numbers from HCF and LCM; count pairs",
      "frequency": "common",
-     "howToSpot": "HCF and LCM are given, plus a sum/difference/bound — find the numbers or count how many pairs fit.",
-     "formula": "\\text{numbers} = ha, hb;\\ \\ \\gcd(a, b) = 1,\\quad ab = \\frac{\\text{LCM}}{h} \\ \\left(= \\frac{\\text{product}}{h^2}\\right)",
-     "logic": "1. Compute $ab = \\text{LCM} \\div h$ (or product ÷ h²).\n2. List factor pairs of ab; KEEP only co-prime pairs — the rest are impossible.\n3. Use the given sum/difference/bound to pick the pair; numbers are h·a and h·b.\n4. To count pairs: count the surviving co-prime pairs.\n\nWhy: two numbers with HCF h are h times two co-prime parts, and those parts must multiply to LCM ÷ h.",
+     "howToSpot": "HCF and LCM are given with a sum, difference or bound; find the numbers, or count the possible pairs.",
+     "formula": "\\text{numbers} = ha,\\ hb; \\quad \\gcd(a, b) = 1, \\quad ab = \\dfrac{\\text{LCM}}{h}",
+     "steps": [
+      "Compute $ab = \\text{LCM} \\div h$ (or product $\\div h^2$).",
+      "List factor pairs of $ab$ and keep only co-prime pairs.",
+      "Use the given sum or difference to pick the pair; the numbers are $ha$ and $hb$.",
+      "To count pairs, count the surviving co-prime pairs."
+     ],
+     "why": "Two numbers with HCF h are h times two co-prime parts, and those parts must multiply to LCM divided by h.",
      "example": {
-      "q": "The HCF and LCM of two numbers are 5 and 495 and their sum is 100. Find the numbers.",
-      "solution": "$ab = 99$ → co-prime pairs (1, 99), (9, 11); sum needs $a + b = 20$ → (9, 11) → numbers **45 and 55**."
+      "q": "The HCF and LCM of two numbers are 6 and 36. How many pairs of numbers fit?",
+      "steps": [
+       "$ab = \\dfrac{36}{6} = 6$.",
+       "Co-prime pairs of 6: $(1, 6)$ and $(2, 3)$.",
+       "Pairs: 6 with 36, and 12 with 18. That is 2 pairs."
+      ],
+      "answer": "2"
      }
     },
     {
      "id": "hl-r4",
      "name": "Greatest number dividing with the same unknown remainder",
      "frequency": "common",
-     "howToSpot": "'Find the greatest number which divides a, b, c leaving the same remainder in each case' — no remainder is given.",
-     "formula": "\\text{answer} = \\gcd(a - b,\\ b - c,\\ a - c), \\qquad \\text{remainder} = a \\bmod \\text{answer}",
-     "logic": "1. Take the pairwise differences of the numbers.\n2. Their HCF is the greatest such divisor.\n3. The common remainder is any number mod that HCF — check it is the same for all.\n\nWhy: if a and b leave the same remainder r, their difference is exactly divisible by the divisor; so the divisor is a common factor of all differences.",
+     "howToSpot": "The question asks for the greatest number dividing a, b, c and leaving the same remainder in each case, with no remainder given.",
+     "formula": "\\text{answer} = \\gcd(a - b,\\ b - c,\\ a - c)",
+     "steps": [
+      "Take the pairwise differences of the numbers.",
+      "The HCF of the differences is the greatest such divisor.",
+      "The common remainder is any number mod that HCF; confirm it is the same for all."
+     ],
+     "why": "If two numbers leave the same remainder, their difference is exactly divisible by the divisor, so it divides every difference.",
      "example": {
-      "q": "Find the greatest number which divides 84, 156 and 204 leaving the same remainder in each case.",
-      "solution": "Differences: 72, 48, 120 → HCF $= 24$; remainder $84 \\bmod 24 = 12$ (same for all three)."
+      "q": "Find the greatest number which divides 61, 109 and 133 leaving the same remainder in each case.",
+      "steps": [
+       "Differences: $109 - 61 = 48$, $133 - 109 = 24$, $133 - 61 = 72$.",
+       "$\\gcd(48, 24, 72) = 24$.",
+       "Remainder: $61 \\bmod 24 = 13$, and $109 \\bmod 24 = 133 \\bmod 24 = 13$."
+      ],
+      "answer": "24"
+     }
+    },
+    {
+     "id": "hl-r5",
+     "name": "LCM + r inside a digit bound",
+     "frequency": "common",
+     "howToSpot": "The question asks for the least (or greatest) number of a given digit count leaving remainder r with several divisors.",
+     "formula": "N = L \\times k + r, \\quad 10^{n-1} \\le N < 10^n",
+     "steps": [
+      "Write $N = L \\times k + r$ with $L$ the LCM of the divisors.",
+      "Least n-digit: take the smallest k with $Lk + r$ at or above the smallest n-digit number.",
+      "Greatest n-digit: take the largest k with $Lk + r$ at or below the largest n-digit number.",
+      "Check the remainder with every divisor."
+     ],
+     "why": "The family of valid numbers is exactly LCM multiples plus r; the digit bound selects the first or last member.",
+     "example": {
+      "q": "Find the least four-digit number which leaves remainder 3 when divided by 6, 7 and 8.",
+      "steps": [
+       "$L = \\text{LCM}(6, 7, 8) = 168$, so $N = 168k + 3$.",
+       "Need $168k + 3 \\ge 1000$, so $k \\ge 5.97$, giving $k = 6$.",
+       "$N = 6 \\times 168 + 3 = 1011$. Check: $1011 \\bmod 6 = 1011 \\bmod 7 = 1011 \\bmod 8 = 3$."
+      ],
+      "answer": "1011"
      }
     }
+   ],
+   "revision": [
+    "Master frame: $N = L \\times k + r$; extra conditions only choose $k$.",
+    "Least n-digit multiple: step up from $10 \\ldots 0$; greatest: step down from $99 \\ldots 9$.",
+    "Numbers from HCF and LCM: $ab = \\text{LCM} \\div h$, co-prime parts only.",
+    "Pair count: co-prime factor pairs of LCM $\\div h$ (or product $\\div h^2$).",
+    "Same unknown remainder: HCF of pairwise differences.",
+    "Common remainder check: any number mod the answer, same value for all."
    ]
   }
  ],

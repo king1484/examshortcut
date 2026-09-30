@@ -13,132 +13,259 @@
   {
    "id": "nw-types-topologies",
    "title": "Network types and topologies",
-   "concept": "**By reach:**\n\n| Type | Span | Example |\n|---|---|---|\n| PAN (Personal) | ~10 m around one person | Bluetooth headset link |\n| LAN (Local) | Building/campus; Ethernet/Wi-Fi; privately owned | Office/lab network |\n| MAN (Metropolitan) | City | Cable TV/city ISP network |\n| WAN (Wide) | Countries/continents; leased lines | The Internet is the largest WAN |\n\nA **VPN** builds an encrypted private tunnel over a public network. Networks run as **client-server** (dedicated servers) or **peer-to-peer** (equal machines).\n\n**Topologies** (physical layout):\n\n| Topology | Structure | Notes |\n|---|---|---|\n| Bus | One backbone cable with terminators | Cheap; backbone failure kills all; collisions |\n| Star | All nodes wired to a central hub/switch | **Most common** (modern Ethernet); one cable failure is local, but the hub/switch is a single point of failure |\n| Ring | Each node joined to exactly two neighbours | Token passing; one break can halt the loop |\n| Mesh | Every pair of nodes directly linked | Most reliable, costliest; full-mesh links = n(n-1)/2 |\n| Tree | Hierarchy of stars | Used in large LANs |\n| Hybrid | Mix of the above | Real-world networks |\n\nWireless: **Wi-Fi** = IEEE **802.11** family (n/ac/ax = Wi-Fi 4/5/6); **Bluetooth** = 802.15, ~10 m PAN; infrared needs line of sight.",
+   "concept": "Networks are named by how far they reach: PAN, LAN, MAN and WAN, from small to large. A topology is the shape of the wiring: bus, ring, star, mesh, tree or hybrid. Star is the shape used in modern offices. A full mesh of n computers needs n(n-1)/2 links.",
    "formulas": [],
    "tricks": [
     {
      "title": "Mesh half-row sum",
-     "body": "Full-mesh links for n nodes = **n(n-1)/2**: 6 nodes -> 6x5/2 = 15. Half of n rows of (n-1) - compute, don't memorise per-n.",
+     "body": "Full-mesh links for n nodes are n(n-1)/2. Compute it each time. Do not memorise per-n values.",
      "example": {
-      "q": "How many links in a full mesh of 8 computers?",
-      "solution": "8x7/2 = 28."
+      "q": "How many links does a full mesh of 8 computers need?",
+      "steps": [
+       "Each computer has 7 links.",
+       "8 x 7 = 56, and each link is counted twice.",
+       "56 / 2 = 28."
+      ],
+      "answer": "28 links"
      }
     },
     {
      "title": "PLMW span ladder",
-     "body": "**P**AN < **L**AN < **M**AN < **W**AN - Personal, Local, Metropolitan, Wide. The Internet is the WAN of WANs.",
+     "body": "PAN < LAN < MAN < WAN: Personal, Local, Metropolitan, Wide. The Internet is the largest WAN.",
      "example": {
       "q": "A network limited to one office building is a?",
-      "solution": "LAN."
+      "steps": [
+       "One building is a local span.",
+       "Local Area Network."
+      ],
+      "answer": "LAN"
      }
     },
     {
-     "title": "Star = spine",
-     "body": "Modern offices run **star** topology around a switch. If a question says 'central device fails, whole network down', it is describing star's weakness.",
+     "title": "Star means central device",
+     "body": "If the question says the central device fails and the whole network stops, it describes star topology.",
      "example": {
       "q": "In which topology is the central hub a single point of failure?",
-      "solution": "Star."
+      "steps": [
+       "Every node hangs off the hub.",
+       "If the hub fails, none can talk."
+      ],
+      "answer": "Star topology"
      }
     }
    ],
    "mistakes": [
-    "Using the bus topology's weaknesses for star questions.",
-    "Counting mesh links as n^2 - duplicates don't count; it's n(n-1)/2.",
-    "Calling Wi-Fi 'IEEE 802.3' - 802.3 is wired Ethernet; Wi-Fi is 802.11."
+    {
+     "wrong": "Using the bus topology's weakness (backbone break) for star questions.",
+     "right": "Star fails at the central hub or switch. Bus fails at the backbone."
+    },
+    {
+     "wrong": "Counting mesh links as $n^2$.",
+     "right": "Use n(n-1)/2. Each link is counted once, not twice."
+    },
+    {
+     "wrong": "Calling Wi-Fi IEEE 802.3.",
+     "right": "802.3 is wired Ethernet. Wi-Fi is 802.11."
+    },
+    {
+     "wrong": "Calling the Internet a MAN or a LAN.",
+     "right": "The Internet is the largest WAN."
+    }
    ],
-   "notes": "### Networks by their reach\n| Type | Span | Everyday example |\n|---|---|---|\n| **PAN** (Personal Area Network) | ~10 metres around one person | Bluetooth headset with a phone |\n| **LAN** (Local Area Network) | one building or campus | school computer lab, office floor |\n| **MAN** (Metropolitan Area Network) | one city | city cable network |\n| **WAN** (Wide Area Network) | country or the world | the **Internet is the largest WAN** |\n\nLANs are privately owned and fast; WANs use leased/telecom links over long distances. The span ladder **PAN < LAN < MAN < WAN** answers most identification questions.\n\n### Topologies — the shape of the wiring\nA **topology** is how computers are arranged and connected.\n| Topology | Layout | Strength | Weakness |\n|---|---|---|---|\n| **Bus** | all nodes tap into ONE backbone cable with terminators at both ends | cheapest, least cable | backbone break kills the whole network; collisions |\n| **Ring** | each node joins exactly two neighbours, forming a circle | orderly token passing | one broken node/link can break the ring |\n| **Star** | every node connects to a **central device** (hub/switch) | one cable failure hurts only one node; easy to extend | the central device is the single point of failure |\n| **Mesh** | every node connects to **every other** node | most reliable, no traffic jams | most cables, costliest |\n| **Tree** (hierarchical) | star networks joined on a bus | scalable for big campuses | root failure splits the tree |\n\n**Star is the shape used in modern offices** — switches sit at the centre. **Mesh is the most fault-tolerant**.\n\n### Mesh arithmetic — the one formula\nIn a full mesh of **n** computers, every computer connects to the other n-1 computers, so each of the n nodes has n-1 lines; counting every line twice (A-B and B-A) gives:\n\nlinks = **n x (n-1) / 2**\n\nFor n = 4: 4x3/2 = 6 links. For n = 5: 10. For n = 6: 15. This is the classic numeric question of the topic — halve the product, never use n squared.\n\n### Standards that name the wires\n- **Ethernet (wired LAN) = IEEE 802.3**; **Wi-Fi (wireless LAN) = IEEE 802.11**; **Bluetooth = IEEE 802.15**.\n- Trap: calling Wi-Fi \"802.3\" — 802.3 is the wired Ethernet standard.\n\n### Quick revision\n- PAN (10 m) < LAN (building) < MAN (city) < WAN (country/world); Internet = biggest WAN.\n- Bus = one backbone; Ring = circle of neighbours; **Star = central hub/switch**; Mesh = all-to-all.\n- **Mesh links = n(n-1)/2** (6 computers = 15 links).\n- Star's weakness = central device; Bus's weakness = backbone break.\n- Ethernet 802.3, Wi-Fi 802.11, Bluetooth 802.15.",
+   "notes": "### Networks by their reach\nName a network by how far it stretches. The order is PAN, then LAN, then MAN, then WAN.\n\n| Type | Span | Everyday example |\n|---|---|---|\n| **PAN** (Personal Area Network) | about 10 metres around one person | Bluetooth headset with a phone |\n| **LAN** (Local Area Network) | one building or campus | school computer lab, office floor |\n| **MAN** (Metropolitan Area Network) | one city | city cable network |\n| **WAN** (Wide Area Network) | countries or continents | the **Internet is the largest WAN** |\n\nA LAN is privately owned and fast. A WAN uses leased lines over long distances.\n\n> **Tip:** Match the span in the question, not the technology. \"One office building\" is always a LAN.\n\n### Topologies, the shape of the wiring\nA **topology** is the way computers are laid out and joined. Learn the table row by row.\n\n| Topology | Layout | Strength | Weakness |\n|---|---|---|---|\n| **Bus** | all nodes tap one backbone cable with terminators | cheapest | backbone break kills all; collisions |\n| **Ring** | each node joins exactly two neighbours | orderly token passing | one break can halt the loop |\n| **Star** | every node joins a central hub or switch | one cable failure hurts one node only | the central device is a single point of failure |\n| **Mesh** | every node joins every other node | most reliable | most cables, costliest |\n| **Tree** | hierarchy of stars joined on a bus | scales to large LANs | root failure splits the tree |\n| **Hybrid** | a mix of the above | fits real networks | more complex |\n\n> **Rule:** Star is the most common shape today. Mesh is the most reliable.\n\n### Counting mesh links\nIn a full mesh of n computers, each one has n - 1 links. Every link is counted twice that way, so halve the total.\n\n$$\\text{links}=\\dfrac{n(n-1)}{2}$$\n\n> **Example:** For 6 computers, $6\\times5\\div2=15$ links. For 8 computers, $8\\times7\\div2=28$ links.\n\nNever use $n^2$. Check small cases: 4 computers give 6 links, 5 give 10.\n\n### Client-server, peer-to-peer and VPN\n- **Client-server:** dedicated servers serve many client machines.\n- **Peer-to-peer:** all machines are equals. Each can share and use resources.\n- **VPN:** builds an encrypted private tunnel over a public network.\n\n### Wireless and IEEE standards\n- **Ethernet** (wired LAN) is IEEE **802.3**.\n- **Wi-Fi** (wireless LAN) is IEEE **802.11**. The versions n, ac and ax are called Wi-Fi 4, 5 and 6.\n- **Bluetooth** is IEEE **802.15**. It is a PAN of about 10 metres.\n- **Infrared** needs a clear line of sight.\n\n> **Watch:** Wi-Fi is not 802.3. The number 802.3 belongs to wired Ethernet.\n",
    "patterns": [
     {
      "id": "nw-t1",
      "name": "Network type by span",
      "frequency": "very common",
-     "howToSpot": "A situation is described (school lab, city cable, worldwide web, one person's Bluetooth) and PAN/LAN/MAN/WAN is asked — or 'the Internet is the largest ___'.",
+     "howToSpot": "A situation is described (school lab, city cable, worldwide web, one person's Bluetooth) and PAN, LAN, MAN or WAN is asked.",
      "formula": null,
-     "logic": "1. Line up the ladder: PAN (~10 m, one person) < LAN (building/campus) < MAN (city) < WAN (country/world).\n2. Match the situation's span, not its technology.\n3. Standard facts: Internet = largest WAN; school lab = LAN; Bluetooth headset = PAN.",
+     "steps": [
+      "Line up the ladder: PAN, LAN, MAN, WAN.",
+      "Find the span in the question: person, building, city or world.",
+      "Pick the type with that span.",
+      "Remember the Internet is the largest WAN."
+     ],
+     "why": "The span, not the technology, names the network.",
      "example": {
-      "q": "A computer lab of one school connected by a switch forms a —",
-      "solution": "**LAN (Local Area Network)** — a single-building privately owned network."
+      "q": "A computer lab of one school connected by a switch forms a",
+      "steps": [
+       "The lab is inside one building.",
+       "One building means a local span."
+      ],
+      "answer": "LAN (Local Area Network)"
      }
     },
     {
      "id": "nw-t2",
      "name": "Topology identification by description",
      "frequency": "very common",
-     "howToSpot": "The layout is described (every node to a central device; every node to every other; a single backbone; a circle) and the topology is asked.",
+     "howToSpot": "The layout is described (all nodes to a central device, every node to every other, one backbone, a circle) and the topology is asked.",
      "formula": null,
-     "logic": "1. Central device with all nodes hanging off = **Star**.\n2. Every node linked to every other = **Mesh**.\n3. One shared backbone cable with terminators = **Bus**; closed circle of neighbours = **Ring**; stars joined on a backbone = **Tree**.",
+     "steps": [
+      "Central device with all nodes on it: Star.",
+      "Every node linked to every other: Mesh.",
+      "One shared backbone cable with terminators: Bus.",
+      "Closed circle of neighbours: Ring. Stars joined on a backbone: Tree."
+     ],
+     "why": "Each topology has one giveaway layout phrase.",
      "example": {
       "q": "In which topology is every computer connected to a central hub or switch?",
-      "solution": "**Star topology** — one cable break isolates only that node, but the central device is the single point of failure."
+      "steps": [
+       "Central hub or switch is the giveaway.",
+       "One cable break isolates only one node."
+      ],
+      "answer": "Star topology"
      }
     },
     {
      "id": "nw-t3",
      "name": "Mesh link count (numeric)",
      "frequency": "common",
-     "howToSpot": "'How many links are needed for a full mesh of n computers?' — pure arithmetic on n(n-1)/2.",
-     "formula": null,
-     "logic": "1. Use links = n x (n-1) / 2 — every node talks to the other n-1, and each line would be counted twice.\n2. Never use n squared; halve the product.\n3. Check: n = 4 gives 6, n = 5 gives 10, n = 6 gives 15.",
+     "howToSpot": "How many links are needed for a full mesh of n computers? It is pure arithmetic.",
+     "formula": "$\\dfrac{n(n-1)}{2}$",
+     "steps": [
+      "Write the formula n(n-1)/2.",
+      "Put in n and multiply n by n - 1.",
+      "Halve the product.",
+      "Check with n = 4 giving 6."
+     ],
+     "why": "Each line is counted twice if you multiply n by n - 1.",
      "example": {
       "q": "How many cable links are needed for a full mesh of 6 computers?",
-      "solution": "6 x 5 / 2 = **15 links**."
+      "steps": [
+       "6 x 5 = 30.",
+       "30 / 2 = 15."
+      ],
+      "answer": "15 links"
      }
     },
     {
      "id": "nw-t4",
      "name": "Topology strengths and failure points",
      "frequency": "common",
-     "howToSpot": "A statement about which topology is cheapest, most reliable, has a single point of failure, or what happens when a cable breaks.",
+     "howToSpot": "A statement says which topology is cheapest, most reliable, has a single point of failure, or what happens when a cable breaks.",
      "formula": null,
-     "logic": "1. Star: one cable break = one node only; **central hub/switch failure = whole network down**.\n2. Bus: backbone break = total failure; cheapest.\n3. Mesh: most reliable, most cable (costliest).\n4. Ring: one broken node/link can stop the ring (token passing).",
+     "steps": [
+      "Star: one cable break hurts one node. Hub failure stops all.",
+      "Bus: backbone break means total failure. It is the cheapest.",
+      "Mesh: most reliable, most cable, costliest.",
+      "Ring: one broken node or link can stop the ring."
+     ],
+     "why": "The weakness of each shape follows from how it is wired.",
      "example": {
-      "q": "In a star topology, failure of the central hub results in —",
-      "solution": "**The whole network stops communicating** — every node depends on the hub; the individual cables are irrelevant."
+      "q": "In a star topology, failure of the central hub results in",
+      "steps": [
+       "Every node depends on the hub.",
+       "Individual cables do not matter here."
+      ],
+      "answer": "The whole network stops communicating"
      }
     },
     {
      "id": "nw-t5",
      "name": "IEEE standards and LAN jargon",
      "frequency": "occasional",
-     "howToSpot": "'Wi-Fi is IEEE ___' or 'Ethernet works on which standard' — matching 802.x numbers to technologies.",
+     "howToSpot": "Wi-Fi is IEEE what, or Ethernet works on which standard. It is matching 802.x numbers to technologies.",
      "formula": null,
-     "logic": "1. **Ethernet (wired) = IEEE 802.3**; **Wi-Fi (wireless) = IEEE 802.11**; **Bluetooth = 802.15**.\n2. The recurring trap: pairing Wi-Fi with 802.3.\n3. LAN = Ethernet/Wi-Fi family; the Internet = a WAN built of many networks.",
+     "steps": [
+      "Ethernet (wired) is 802.3.",
+      "Wi-Fi (wireless) is 802.11.",
+      "Bluetooth is 802.15.",
+      "Watch for the trap of pairing Wi-Fi with 802.3."
+     ],
+     "why": "The 802 family names the wire or the air.",
      "example": {
-      "q": "Wi-Fi networks are standardised under IEEE —",
-      "solution": "**802.11** — 802.3 is wired Ethernet, 802.15 is Bluetooth."
+      "q": "Wi-Fi networks are standardised under IEEE",
+      "steps": [
+       "Wi-Fi is wireless LAN.",
+       "802.3 is wired, 802.15 is Bluetooth."
+      ],
+      "answer": "802.11"
+     }
+    },
+    {
+     "id": "nw-t6",
+     "name": "Network models, VPN and wireless links",
+     "frequency": "occasional",
+     "howToSpot": "Questions ask what a VPN does, how client-server differs from peer-to-peer, or the range of Bluetooth.",
+     "formula": null,
+     "steps": [
+      "VPN: an encrypted private tunnel over a public network.",
+      "Client-server: dedicated servers serve clients.",
+      "Peer-to-peer: all machines are equals.",
+      "Bluetooth is a PAN of about 10 m. Infrared needs line of sight."
+     ],
+     "why": "Each term has one short definition to recall.",
+     "example": {
+      "q": "Which technology builds an encrypted private tunnel over a public network?",
+      "steps": [
+       "The key words are encrypted and private tunnel.",
+       "Public network means the Internet."
+      ],
+      "answer": "VPN (Virtual Private Network)"
      }
     }
+   ],
+   "revision": [
+    "PAN (10 m) < LAN (building) < MAN (city) < WAN (country or world).",
+    "The Internet is the largest WAN.",
+    "Bus = one backbone. Ring = circle of neighbours. Star = central hub or switch. Mesh = all to all.",
+    "Full-mesh links = n(n-1)/2. Six computers give 15 links.",
+    "Star's weakness is the central device. Bus's weakness is the backbone.",
+    "Ethernet is 802.3, Wi-Fi is 802.11, Bluetooth is 802.15."
    ]
   },
   {
    "id": "nw-devices",
    "title": "Network devices",
-   "concept": "| Device | OSI layer | Job |\n|---|---|---|\n| NIC (Network Interface Card) | 2 | Connects a machine to the network; carries the burned-in 48-bit MAC address |\n| Repeater | 1 | Regenerates a weakened signal to extend range |\n| Hub | 1 | Multi-port repeater: **broadcasts every bit to every port**; no intelligence, half-duplex |\n| Bridge | 2 | Joins two LAN segments, filtering by MAC |\n| Switch | 2 | Learns a MAC-address table and forwards frames **only to the destination port**; full duplex |\n| Router | 3 | Routes packets **between different networks** using IP addresses; the home gateway to the Internet |\n| Gateway | up to 7 | Converts between different protocol architectures ('entrance/exit door' of a network) |\n| Modem | - | **MO**dulator-**DEM**odulator: converts digital <-> analog for phone/cable lines |\n| Access Point | 2 | Bridges Wi-Fi clients onto the wired LAN |\n| Firewall | - | Hardware/software rule-filter that allows or blocks traffic (can sit at several layers) |\n\nMemory hooks: **hub = dumb loudspeaker; switch = smart postman (MAC table); router = intercity network connector (IP).**",
+   "concept": "Each network device has one job. A hub broadcasts to all ports. A switch sends to the right port by MAC address. A router joins different networks by IP address. A modem converts digital and analog signals. Exams rarely name the device. They describe its job.",
    "formulas": [],
    "tricks": [
     {
-     "title": "Hub-Switch-Router ladder",
-     "body": "**Hub** hears and shouts to all (layer 1); **S**witch = **S**elective, by MAC (layer 2, same network); **R**outer = **R**outes between networks by IP (layer 3). Exam verbs: 'broadcasts to all' -> hub; 'MAC address table' -> switch; 'connects two different networks' -> router.",
+     "title": "Hub, switch, router ladder",
+     "body": "Hub hears and shouts to all (layer 1). Switch is selective, by MAC (layer 2). Router routes between networks by IP (layer 3). 'Broadcasts to all' means hub. 'MAC address table' means switch. 'Connects two different networks' means router.",
      "example": {
       "q": "Which device forwards data only to the intended port using MAC addresses?",
-      "solution": "Switch."
+      "steps": [
+       "Selective forwarding is the switch's job.",
+       "The MAC table decides the port."
+      ],
+      "answer": "Switch"
      }
     },
     {
-     "title": "Modem = modulator + demodulator",
-     "body": "The full form itself is the answer: digital computer data is modulated onto an analog carrier and demodulated back. 'Digital to analog conversion' in a question = modem.",
+     "title": "Modem is modulator plus demodulator",
+     "body": "The full form is the answer. Digital data is modulated onto an analog carrier and demodulated back. 'Digital to analog conversion' in a question means modem.",
      "example": {
-      "q": "Device that converts digital signals to analog and back?",
-      "solution": "Modem."
+      "q": "Which device converts digital signals to analog and back?",
+      "steps": [
+       "Modulate means digital to analog.",
+       "Demodulate means analog to digital."
+      ],
+      "answer": "Modem"
      }
     }
    ],
    "mistakes": [
-    "Saying a hub forwards selectively - that is the switch; hubs always broadcast.",
-    "Placing the router at the Data Link layer - routers work on IP (Network layer, 3).",
-    "Confusing gateway (protocol converter) with router (route selector)."
+    {
+     "wrong": "Saying a hub forwards data selectively.",
+     "right": "That is the switch. A hub always broadcasts to every port."
+    },
+    {
+     "wrong": "Placing the router at the Data Link layer.",
+     "right": "A router reads IP addresses, so it sits at the Network layer (3)."
+    },
+    {
+     "wrong": "Confusing a gateway with a router.",
+     "right": "A gateway converts protocols. A router selects routes."
+    },
+    {
+     "wrong": "Thinking the MAC address changes with the network.",
+     "right": "MAC is permanent and physical. The IP is the one that is assigned."
+    }
    ],
-   "notes": "### The device ladder — hub to gateway\n| Device | Layer | What it does |\n|---|---|---|\n| **Hub** | Physical (1) | joins many machines; **broadcasts every bit to every port** — no intelligence |\n| **Switch** | Data Link (2) | **learns MAC addresses** and sends frames only to the right port |\n| **Router** | Network (3) | **joins different networks and chooses routes using IP addresses** |\n| **Repeater** | Physical (1) | **regenerates a weak signal** to extend the cable's range |\n| **Bridge** | Data Link (2) | joins **two LAN segments**, filtering local traffic |\n| **Gateway** | up to Application | a **protocol converter** between different systems (\"entry/exit door\" of a network) |\n| **Modem** | — | **MOdulator-DEModulator**: digital data of the PC to the analog phone line and back |\n| **NIC** (Network Interface Card) | 2 | the card that connects one machine to the network; carries its **MAC address** |\n| **Access Point** | 2 | lets wireless devices join a wired network (Wi-Fi) |\n\n### The one-line differences exams ask\n- **Hub vs Switch**: hub shouts to everyone; a **switch forwards only to the destination port** — faster and safer.\n- **Switch vs Router**: a switch moves traffic **inside** one network (by MAC); a **router moves traffic between networks by IP** and picks the best path — your home router joins your LAN to the Internet.\n- **Repeater vs Amplifier**: a repeater regenerates the clean digital signal; an amplifier would boost the noise along with it.\n- **Gateway vs Router**: a router selects routes; a **gateway translates between different protocol worlds** (e.g. a mail network to a phone network).\n- **Modem**: the name is the definition — modulate (digital to analog) + demodulate (analog to digital).\n\n### MAC address — the burnt-in identity\nEvery NIC carries a **48-bit physical address** (written like 1A:2B:3C:4D:5E:6F) fixed by the maker. The **MAC is physical and permanent**; the **IP is logical and assigned**. Switches read MACs; routers read IPs.\n\n### Reading a device question in the exam\nFind the **verb** first: \"sends to all ports\" = hub; \"sends only to the destination\" = switch; \"connects two different networks / chooses a path\" = router; \"regenerates a weak signal\" = repeater; \"converts protocols\" = gateway; \"digital to analog and back\" = modem. Exams rarely name the device — they name its job. And when the layer is asked, remember the ladder: no brain (L1) < MAC reader (L2) < IP reader (L3).\n\n### Quick revision\n- Hub = broadcast (L1); **Switch = learns MAC, sends to the right port (L2)**; **Router = routes between networks by IP (L3)**.\n- Repeater regenerates signals (L1); Bridge joins two LANs (L2); Gateway = protocol converter.\n- **Modem = modulator + demodulator** (digital to analog and back).\n- NIC carries the **48-bit MAC address**; MAC permanent, IP assigned.",
+   "notes": "### The device ladder\nLearn each device with its layer and its one job.\n\n| Device | Layer | What it does |\n|---|---|---|\n| **Repeater** | Physical (1) | regenerates a weak signal to extend range |\n| **Hub** | Physical (1) | broadcasts every bit to every port; no intelligence |\n| **Bridge** | Data Link (2) | joins two LAN segments and filters by MAC |\n| **Switch** | Data Link (2) | learns MAC addresses and sends frames only to the right port |\n| **NIC** | Data Link (2) | connects one machine to the network; carries its MAC |\n| **Access Point** | Data Link (2) | puts Wi-Fi devices onto the wired LAN |\n| **Router** | Network (3) | joins different networks and picks routes by IP |\n| **Gateway** | up to Application (7) | converts between different protocol systems |\n\n> **Tip:** Hub is a dumb loudspeaker. Switch is a smart postman. Router is the link between cities.\n\n### Modem and firewall\nA **modem** is a MOdulator-DEModulator. It turns the PC's digital data into analog signals for a phone or cable line. It turns analog back to digital.\n\nA **firewall** is a rule filter in hardware or software. It allows or blocks traffic by rule. It can work at several layers.\n\n### The one-line differences\n- **Hub vs switch:** a hub shouts to everyone. A switch sends only to the destination port. It is faster and safer.\n- **Switch vs router:** a switch moves data inside one network by MAC. A router moves data between networks by IP.\n- **Repeater vs amplifier:** a repeater regenerates a clean digital signal. An amplifier boosts the noise too.\n- **Gateway vs router:** a router chooses routes. A gateway translates between protocol worlds.\n\n> **Note:** Your home router joins your LAN to the Internet.\n\n### MAC address, the burnt-in identity\nEvery NIC carries a **48-bit physical address**, for example 1A:2B:3C:4D:5E:6F. The maker fixes it.\n\n- **MAC:** physical and permanent. Switches read it.\n- **IP:** logical and assigned. Routers read it.\n\n### A home network in four steps\nFollow one message from a laptop to a website. This shows where each device sits.\n\n1. The laptop's **NIC** puts the data on the network. It carries the laptop's MAC address.\n2. An **access point** takes the Wi-Fi signal and passes it to the wired LAN.\n3. A **switch** sends the frames to the router's port only, using its MAC table.\n4. The **router** reads the IP address and forwards the packets to the Internet.\n\nA **modem** sits between the router and the phone or cable line. It converts digital and analog signals.\n\n### Reading a device question\nFind the verb first. Then name the device.\n\n| Job in the question | Device |\n|---|---|\n| sends to all ports | hub |\n| sends only to the destination port | switch |\n| connects two different networks, chooses a path | router |\n| regenerates a weak signal | repeater |\n| converts protocols | gateway |\n| digital to analog and back | modem |\n\n> **Watch:** When a layer is asked, use the ladder. No address is layer 1. MAC is layer 2. IP is layer 3.\n",
    "patterns": [
     {
      "id": "nw-d1",
@@ -146,296 +273,712 @@
      "frequency": "very common",
      "howToSpot": "A behaviour is described (sends to all ports, forwards to the right port, connects two networks and picks a path) and the device is asked.",
      "formula": null,
-     "logic": "1. **Hub**: broadcasts every bit to every port — no intelligence (Layer 1).\n2. **Switch**: learns MAC addresses, forwards frames to the correct port only (Layer 2).\n3. **Router**: connects DIFFERENT networks and routes packets by IP address (Layer 3).\n4. 'Which device is more intelligent than a hub?' = switch; 'which joins two networks?' = router.",
+     "steps": [
+      "Sends to all ports: hub (layer 1).",
+      "Sends to the right port by MAC: switch (layer 2).",
+      "Joins different networks by IP: router (layer 3).",
+      "More intelligent than a hub: switch."
+     ],
+     "why": "The job words point to exactly one device.",
      "example": {
       "q": "Which device forwards data only to the intended port instead of all ports?",
-      "solution": "**A switch** — it reads MAC addresses; a hub would broadcast to every port."
+      "steps": [
+       "Forwarding to one port needs a MAC table.",
+       "Hubs broadcast to every port."
+      ],
+      "answer": "A switch"
      }
     },
     {
      "id": "nw-d2",
      "name": "Modem, repeater, bridge, gateway functions",
      "frequency": "common",
-     "howToSpot": "'A modem is used for', 'device that regenerates a weak signal', 'device that converts between protocols' — function-to-device matching.",
+     "howToSpot": "A modem is used for, a device that regenerates a weak signal, or a device that converts between protocols. It is function-to-device matching.",
      "formula": null,
-     "logic": "1. **Modem = MOdulator-DEModulator**: computer's digital signal to the analog line and back.\n2. **Repeater**: regenerates weak signals to extend range (Layer 1).\n3. **Bridge**: joins two LAN segments (Layer 2).\n4. **Gateway**: translates between different protocol systems — the entry/exit door.",
+     "steps": [
+      "Modem: digital signal to analog and back.",
+      "Repeater: regenerates weak signals.",
+      "Bridge: joins two LAN segments.",
+      "Gateway: translates between protocol systems."
+     ],
+     "why": "Each device is named after its single job.",
      "example": {
-      "q": "The device that regenerates and retransmits a weakening signal is a —",
-      "solution": "**Repeater** — it restores the clean digital signal so the cable can run farther."
+      "q": "The device that regenerates and retransmits a weakening signal is a",
+      "steps": [
+       "Regenerating a signal is the repeater's job.",
+       "It restores the clean signal so the cable can run farther."
+      ],
+      "answer": "Repeater"
      }
     },
     {
      "id": "nw-d3",
      "name": "Device-to-layer matching",
      "frequency": "common",
-     "howToSpot": "'A router works on which OSI layer?', 'a hub operates at layer ___' — device and OSI layer pairs.",
+     "howToSpot": "A router works on which OSI layer, or a hub operates at layer what. It is a device and layer pair.",
      "formula": null,
-     "logic": "1. Hub, repeater = **Layer 1 (Physical)**.\n2. Switch, bridge, NIC = **Layer 2 (Data Link)**.\n3. **Router = Layer 3 (Network)** — it reads IP addresses.\n4. Gateway spans up to the Application layer.",
+     "steps": [
+      "Hub and repeater: layer 1 (Physical).",
+      "Switch, bridge and NIC: layer 2 (Data Link).",
+      "Router: layer 3 (Network).",
+      "Gateway reaches up to the Application layer."
+     ],
+     "why": "The address type a device reads fixes its layer.",
      "example": {
       "q": "A router operates on which layer of the OSI model?",
-      "solution": "**Layer 3 (Network)** — routing decisions use IP addresses; switching by MAC happens on Layer 2."
+      "steps": [
+       "A router uses IP addresses.",
+       "IP addresses belong to layer 3, the Network layer."
+      ],
+      "answer": "Layer 3 (Network)"
      }
     },
     {
      "id": "nw-d4",
      "name": "NIC and MAC-address facts",
      "frequency": "common",
-     "howToSpot": "'A MAC address is ___ bits', 'where is the MAC address stored', 'MAC vs IP difference' questions.",
+     "howToSpot": "A MAC address is how many bits, where it is stored, or how MAC differs from IP.",
      "formula": null,
-     "logic": "1. MAC = **48-bit physical address** burnt into the NIC by the maker (like 1A:2B:3C:4D:5E:6F).\n2. MAC is permanent; IP is logical and changes with the network.\n3. Switches work on MAC (Layer 2); routers on IP (Layer 3).",
+     "steps": [
+      "MAC is a 48-bit physical address.",
+      "The maker burns it into the NIC.",
+      "MAC is permanent. IP is assigned and changes.",
+      "Switches use MAC. Routers use IP."
+     ],
+     "why": "MAC identifies the card. IP identifies the place in a network.",
      "example": {
-      "q": "The physical address burnt into a network interface card is the —",
-      "solution": "**MAC address** — 48 bits, factory-fixed; the IP address is only a logical label assigned by software."
+      "q": "The physical address burnt into a network interface card is the",
+      "steps": [
+       "A burnt-in, factory-fixed address is physical.",
+       "The IP is only a logical label."
+      ],
+      "answer": "MAC address (48 bits)"
+     }
+    },
+    {
+     "id": "nw-d5",
+     "name": "Firewall and access point",
+     "frequency": "occasional",
+     "howToSpot": "A device that allows or blocks traffic by rules, or a device that lets Wi-Fi devices join a wired LAN.",
+     "formula": null,
+     "steps": [
+      "Allows or blocks traffic by rules: firewall.",
+      "Joins wireless clients to a wired LAN: access point.",
+      "A firewall can be hardware or software.",
+      "An access point works at layer 2."
+     ],
+     "why": "Both devices guard or open a door to the network.",
+     "example": {
+      "q": "Which device filters traffic by rules to allow or block it?",
+      "steps": [
+       "Rule-based allow or block is filtering.",
+       "That is a firewall."
+      ],
+      "answer": "Firewall"
+     }
+    },
+    {
+     "id": "nw-d6",
+     "name": "One-line device differences",
+     "frequency": "common",
+     "howToSpot": "Statements compare two devices: switch vs router, repeater vs amplifier, gateway vs router.",
+     "formula": null,
+     "steps": [
+      "Switch: inside one network, by MAC. Router: between networks, by IP.",
+      "Repeater regenerates a clean signal. An amplifier also boosts noise.",
+      "Router selects routes. Gateway translates protocols.",
+      "Pick the option that matches the job."
+     ],
+     "why": "Each pair differs in one key job.",
+     "example": {
+      "q": "Which device translates between different protocol systems?",
+      "steps": [
+       "A router only chooses routes.",
+       "Protocol translation is the gateway's job."
+      ],
+      "answer": "Gateway"
      }
     }
+   ],
+   "revision": [
+    "Hub broadcasts (layer 1). Switch learns MAC and sends to the right port (layer 2). Router routes between networks by IP (layer 3).",
+    "Repeater regenerates a signal (layer 1). Bridge joins two LANs (layer 2).",
+    "Gateway is a protocol converter.",
+    "Modem is a modulator plus a demodulator (digital to analog and back).",
+    "NIC carries the 48-bit MAC address.",
+    "MAC is permanent and physical. IP is logical and assigned."
    ]
   },
   {
    "id": "nw-osi",
    "title": "OSI and TCP/IP reference models",
-   "concept": "**OSI (Open Systems Interconnection)** - 7 layers, top-down:\n\n| # | Layer | Function | Works with |\n|---|---|---|---|\n| 7 | Application | User-facing network services | HTTP, FTP, SMTP, DNS |\n| 6 | Presentation | Format, **encryption**, compression | JPEG, MP3, SSL/TLS concepts |\n| 5 | Session | Opens/manages/closes dialogues | NetBIOS, RPC |\n| 4 | Transport | End-to-end delivery, ports, reliability | **TCP, UDP** (data units: segments) |\n| 3 | Network | Logical addressing, **routing** | IP, **routers** (packets) |\n| 2 | Data Link | Framing, MAC addressing, error detect | Ethernet, **switches/bridges** (frames) |\n| 1 | Physical | Raw **bits** on the medium | Cables, hubs, repeaters |\n\n**TCP/IP model** compresses these into 4: Application (7+6+5), Transport (4), Internet (3), Network Access/Link (2+1) - it is what the real Internet runs.\n\nEncapsulation journey: data -> segments (L4) -> packets (L3) -> frames (L2) -> bits (L1).",
+   "concept": "The OSI model splits network work into 7 layers, so each layer can be built and replaced on its own. The TCP/IP model has 4 layers, and the real Internet runs on it. Most exam questions ask the layer count, the order, or which layer does a given job.",
    "formulas": [],
    "tricks": [
     {
      "title": "OSI mnemonics",
-     "body": "Bottom-up: \"**P**lease **D**o **N**ot **T**hrow **S**ausage **P**izza **A**way\" (Physical, Data link, Network, Transport, Session, Presentation, Application). Top-down: \"**A**ll **P**eople **S**eem **T**o **N**eed **D**ata **P**rocessing\".",
+     "body": "Bottom-up: Please Do Not Throw Sausage Pizza Away (Physical, Data link, Network, Transport, Session, Presentation, Application). Top-down: All People Seem To Need Data Processing.",
      "example": {
       "q": "Which OSI layer comes directly above the Network layer?",
-      "solution": "Transport (P-D-N-T: layer 4)."
+      "steps": [
+       "Bottom-up order: Physical, Data Link, Network, Transport.",
+       "Transport follows Network."
+      ],
+      "answer": "Transport (layer 4)"
      }
     },
     {
      "title": "Layer-device pairs",
-     "body": "**R**outer = layer **3** (both R words rhyme with 'routing/IP'); **Switch/Bridge** = layer 2 (frames/MAC); **Hub/Repeater** = layer 1 (bits). Any 'works at which layer' question resolves by the device's address type: IP = 3, MAC = 2, no address = 1.",
+     "body": "Router is layer 3. Switch and bridge are layer 2. Hub and repeater are layer 1. Use the address type: IP is 3, MAC is 2, no address is 1.",
      "example": {
       "q": "At which OSI layer does a router operate?",
-      "solution": "Layer 3 - Network."
+      "steps": [
+       "A router reads IP addresses.",
+       "IP belongs to the Network layer."
+      ],
+      "answer": "Layer 3 (Network)"
      }
     }
    ],
    "mistakes": [
-    "Counting 4 or 5 OSI layers - the model has 7 (the TCP/IP model has 4).",
-    "Putting encryption at the Application layer - classic encryption/formatting sits in Presentation (6).",
-    "Saying the Session layer routes packets - routing is Network (3)."
+    {
+     "wrong": "Counting 4 or 5 OSI layers.",
+     "right": "OSI has 7 layers. TCP/IP has 4."
+    },
+    {
+     "wrong": "Putting encryption at the Application layer.",
+     "right": "Encryption, formatting and compression sit in Presentation (6)."
+    },
+    {
+     "wrong": "Saying the Session layer routes packets.",
+     "right": "Routing is the Network layer (3). Session manages dialogues."
+    },
+    {
+     "wrong": "Placing TCP and UDP at the Network layer.",
+     "right": "TCP and UDP are Transport layer (4). IP is Network layer (3)."
+    }
    ],
-   "notes": "### Why a reference model exists\nMoving data from one machine to another needs many different jobs: signalling, framing, addressing, delivery, dialogue control, translation, and the user's service. The **OSI (Open Systems Interconnection) model** splits these into **7 layers**, so each layer can be designed and replaced independently.\n\n### The 7 layers — bottom to top\n| # | Layer | One-line job | Works with |\n|---|---|---|---|\n| 1 | **Physical** | raw **bits on cables/signals** | cables, hubs, repeaters |\n| 2 | **Data Link** | **frames**, MAC addresses, error detection | switches, bridges, NIC |\n| 3 | **Network** | **IP addressing and routing** | routers, IP |\n| 4 | **Transport** | **end-to-end delivery**, segmentation, ports | TCP, UDP |\n| 5 | **Session** | opens, manages, closes **dialogues** | session setup tokens |\n| 6 | **Presentation** | **translation, encryption, compression** | formats, SSL/TLS |\n| 7 | **Application** | the **user-facing services** | HTTP, FTP, SMTP, browsers |\n\nMnemonics, top-down: \"**A**ll **P**eople **S**eem **T**o **N**eed **D**ata **P**rocessing\". Bottom-up: \"**P**lease **D**o **N**ot **T**hrow **S**ausage **P**izza **A**way\".\n\n### How the layers are tested\n- **Device-to-layer**: hub/repeater = 1, switch/bridge = 2, **router = 3**.\n- **Function-to-layer**: routing = Network (3); framing/MAC = Data Link (2); **encryption and compression = Presentation (6)**; mail/web services = Application (7).\n- **Number questions**: 7 layers (OSI) vs 4 layers (TCP/IP). The middle is Transport in both.\n- Data flows DOWN the sender's stack (7 to 1), across the wire, and UP the receiver's stack (1 to 7).\n\n### The TCP/IP model — the practical cousin\n| TCP/IP layer | OSI layers it swallows |\n|---|---|\n| **Application** | 5 + 6 + 7 (Session, Presentation, Application) |\n| **Transport** | 4 |\n| **Internet** | 3 (Network) |\n| **Network Access / Link** | 1 + 2 (Physical, Data Link) |\n\nThe Internet actually runs on TCP/IP; OSI is the teaching map. \"Which model has 4 layers?\" — TCP/IP.\n\n### Reading a layer question in the exam\nFirst decide what the question is really asking: a **number** (7 layers, 4 in TCP/IP), an **order** (which sits above which), a **function** (what does this layer do), or a **worker** (which device or protocol lives here). For function questions, test the planted option against its neighbour: routing is NOT Transport (Transport only delivers end to end after Network has found the path), and encryption is NOT Application (Application serves the user; Presentation prepares the data format for it).\n\n### Quick revision\n- OSI = **7 layers**: Physical, Data Link, Network, Transport, Session, Presentation, Application.\n- Router L3, Switch L2, Hub L1; routing = Network; encryption/compression = Presentation.\n- Transport layer = TCP/UDP and ports; Session = dialogues.\n- **TCP/IP model = 4 layers** (Network Access, Internet, Transport, Application).",
+   "notes": "### Why a reference model exists\nSending data needs many jobs: signals, framing, addressing, delivery, dialogue control, translation and user services. The **OSI (Open Systems Interconnection) model** splits them into **7 layers**. Each layer can be designed and replaced on its own.\n\n### The 7 layers, bottom to top\n\n| # | Layer | Job | Works with |\n|---|---|---|---|\n| 1 | **Physical** | raw **bits** on the medium | cables, hubs, repeaters |\n| 2 | **Data Link** | **frames**, MAC addresses, error detection | Ethernet, switches, bridges, NIC |\n| 3 | **Network** | logical addressing and **routing** | IP, routers |\n| 4 | **Transport** | end-to-end delivery, ports, reliability | TCP, UDP |\n| 5 | **Session** | opens, manages and closes dialogues | NetBIOS, RPC |\n| 6 | **Presentation** | format, **encryption**, compression | JPEG, MP3, SSL/TLS |\n| 7 | **Application** | user-facing network services | HTTP, FTP, SMTP, DNS |\n\n> **Tip:** Bottom-up: \"Please Do Not Throw Sausage Pizza Away\". Top-down: \"All People Seem To Need Data Processing\".\n\n### Data units on the way down\nData changes name at each layer as it moves down the sender's stack.\n\n- Layer 4 makes **segments**.\n- Layer 3 makes **packets**.\n- Layer 2 makes **frames**.\n- Layer 1 sends **bits**.\n\nThe receiver does the reverse, from layer 1 up to layer 7.\n\n### How layer questions are asked\n- **Device to layer:** hub and repeater are layer 1. Switch and bridge are layer 2. Router is layer 3.\n- **Job to layer:** routing is Network (3). Framing and MAC are Data Link (2). Encryption and compression are Presentation (6).\n- **Number:** OSI has 7 layers. TCP/IP has 4.\n\n> **Watch:** Encryption is not Application. Routing is not Transport. Test the planted option against its neighbour layer.\n\n### Sorting a layer question\nFirst decide what the question really asks. Then use the matching tool.\n\n| Question asks | What to do |\n|---|---|\n| a **number** | 7 for OSI, 4 for TCP/IP |\n| an **order** | use the mnemonic and count |\n| a **job** | match the job to one layer |\n| a **worker** (device or protocol) | use the address type or the job |\n\n> **Example:** \"Which layer delivers data end to end using ports?\" The job is end-to-end delivery. That is Transport (4).\n\nFor job questions, compare the planted option with its neighbour. Transport only delivers after the Network layer has found the path. Application serves the user. Presentation prepares the data format for it.\n\n### The TCP/IP model\nThe real Internet runs on TCP/IP. OSI is the teaching map.\n\n| TCP/IP layer | OSI layers it covers |\n|---|---|\n| **Application** | 5 + 6 + 7 (Session, Presentation, Application) |\n| **Transport** | 4 |\n| **Internet** | 3 (Network) |\n| **Network Access / Link** | 1 + 2 (Physical, Data Link) |\n\n> **Rule:** Which model has 4 layers? TCP/IP.\n",
    "patterns": [
     {
      "id": "nw-o1",
      "name": "OSI layer count and order",
      "frequency": "very common",
-     "howToSpot": "'How many layers does the OSI model have?', correct ordering questions, or the layer that sits directly above/below another.",
+     "howToSpot": "How many layers does the OSI model have, an ordering question, or the layer directly above or below another.",
      "formula": null,
-     "logic": "1. OSI = **7 layers**: Physical, Data Link, Network, Transport, Session, Presentation, Application (bottom to top).\n2. Mnemonic top-down: All People Seem To Need Data Processing.\n3. Transport is the middle (4th); Application is 7th, Physical 1st.",
+     "steps": [
+      "Recall the 7 layers from Physical (1) to Application (7).",
+      "Use a mnemonic to fix the order.",
+      "Transport is the 4th, the middle layer.",
+      "Count up or down from the layer given."
+     ],
+     "why": "The order never changes, so a mnemonic is enough.",
      "example": {
       "q": "How many layers are there in the OSI reference model?",
-      "solution": "**7** — the TCP/IP model has only 4; the count mix-up is the standard trap."
+      "steps": [
+       "OSI is the 7-layer model.",
+       "The 4-layer model is TCP/IP."
+      ],
+      "answer": "7"
      }
     },
     {
      "id": "nw-o2",
      "name": "Function-to-layer matching",
      "frequency": "very common",
-     "howToSpot": "'Routing is done at which layer?', 'encryption/compression is a ___ layer function', 'framing and MAC addressing belong to ___'.",
+     "howToSpot": "Routing is done at which layer, encryption or compression is a which-layer function, or framing and MAC addressing belong to which layer.",
      "formula": null,
-     "logic": "1. Bits/cables = Physical (1); frames, MAC = Data Link (2); **addressing and routing = Network (3)**; end-to-end delivery, ports = Transport (4); dialogues = Session (5); **translation, encryption, compression = Presentation (6)**; user services = Application (7).\n2. The planted traps: encryption at Application, routing at Transport.\n3. Ports and TCP/UDP live in Transport, never Network.",
+     "steps": [
+      "Bits on cables: Physical (1).",
+      "Frames and MAC: Data Link (2). Routing: Network (3).",
+      "Delivery and ports: Transport (4). Dialogues: Session (5).",
+      "Encryption and compression: Presentation (6). User services: Application (7)."
+     ],
+     "why": "Each layer owns one clear job.",
      "example": {
       "q": "Encryption and data compression are functions of which OSI layer?",
-      "solution": "**Presentation (Layer 6)** — it prepares data formats before the Application's services use them."
+      "steps": [
+       "Data format work sits below the Application.",
+       "That layer is Presentation."
+      ],
+      "answer": "Presentation (layer 6)"
      }
     },
     {
      "id": "nw-o3",
-     "name": "Device/protocol-to-layer matching",
+     "name": "Device and protocol-to-layer matching",
      "frequency": "common",
-     "howToSpot": "'A switch works at which layer', 'HTTP is a ___ layer protocol', 'TCP sits in which layer'.",
+     "howToSpot": "A switch works at which layer, HTTP is a which-layer protocol, or TCP sits in which layer.",
      "formula": null,
-     "logic": "1. Hub/repeater L1; switch/bridge L2; **router L3**; TCP/UDP L4.\n2. HTTP, FTP, SMTP = Application (7); IP = Network (3).\n3. Match the job before the name: a router routes (3), a switch switches frames (2).",
+     "steps": [
+      "Hub and repeater are layer 1; switch and bridge layer 2; router layer 3.",
+      "TCP and UDP are layer 4.",
+      "HTTP, FTP and SMTP are layer 7. IP is layer 3.",
+      "Match the job before the name."
+     ],
+     "why": "A device or protocol lives at the layer of its job.",
      "example": {
       "q": "TCP and UDP work at which layer of the OSI model?",
-      "solution": "**Transport (Layer 4)** — end-to-end delivery, segmentation and port numbers."
+      "steps": [
+       "They deliver data end to end.",
+       "They use port numbers."
+      ],
+      "answer": "Transport (layer 4)"
      }
     },
     {
      "id": "nw-o4",
      "name": "TCP/IP model vs OSI",
      "frequency": "common",
-     "howToSpot": "'The TCP/IP model has how many layers', 'which OSI layers merge into TCP/IP Application', or mapping the four TCP/IP layers.",
+     "howToSpot": "The TCP/IP model has how many layers, which OSI layers merge into TCP/IP Application, or mapping the four TCP/IP layers.",
      "formula": null,
-     "logic": "1. TCP/IP = **4 layers**: Network Access (1+2), Internet (3), Transport (4), Application (5+6+7).\n2. OSI's top three merge into TCP/IP's Application.\n3. The Internet runs on TCP/IP; OSI is the reference map.",
+     "steps": [
+      "TCP/IP has 4 layers.",
+      "Network Access covers OSI 1 and 2. Internet is 3.",
+      "Transport is 4.",
+      "Application covers OSI 5, 6 and 7."
+     ],
+     "why": "TCP/IP merges the top three and bottom two OSI layers.",
      "example": {
       "q": "How many layers does the TCP/IP model have?",
-      "solution": "**4** — Network Access, Internet, Transport and Application (the last swallowing OSI layers 5-7)."
+      "steps": [
+       "Network Access, Internet, Transport, Application.",
+       "That makes four."
+      ],
+      "answer": "4"
+     }
+    },
+    {
+     "id": "nw-o5",
+     "name": "Data unit at each layer",
+     "frequency": "occasional",
+     "howToSpot": "What is the data unit at layer 2, or data is called packets at which layer.",
+     "formula": null,
+     "steps": [
+      "Layer 4: segments.",
+      "Layer 3: packets.",
+      "Layer 2: frames. Layer 1: bits.",
+      "Data moves down the sender and up the receiver."
+     ],
+     "why": "Each layer wraps data and gives it a new name.",
+     "example": {
+      "q": "Data is called a frame at which OSI layer?",
+      "steps": [
+       "Frames carry MAC addresses.",
+       "MAC belongs to Data Link."
+      ],
+      "answer": "Data Link (layer 2)"
      }
     }
+   ],
+   "revision": [
+    "OSI has 7 layers: Physical, Data Link, Network, Transport, Session, Presentation, Application.",
+    "Router is layer 3, switch is layer 2, hub is layer 1.",
+    "Routing is Network. Encryption and compression are Presentation.",
+    "Transport layer holds TCP and UDP and uses ports. Session manages dialogues.",
+    "Data units: segments (4), packets (3), frames (2), bits (1).",
+    "TCP/IP has 4 layers: Network Access, Internet, Transport, Application."
    ]
   },
   {
    "id": "nw-ip",
    "title": "IP addressing: IPv4 classes and IPv6",
-   "concept": "**IPv4** = 32-bit address, four octets 0-255 in dotted decimal (192.168.1.1). The first octet fixes the class:\n\n| Class | First octet | Default mask | Hosts/network | Use |\n|---|---|---|---|---|\n| A | 1 - 126 | 255.0.0.0 (/8) | 1,67,77,214 | Huge networks |\n| B | 128 - 191 | 255.255.0.0 (/16) | 65,534 | Large organisations |\n| C | 192 - 223 | 255.255.255.0 (/24) | 254 | Small networks |\n| D | 224 - 239 | - | - | Multicasting |\n| E | 240 - 255 | - | - | Experimental/R&D |\n\nSpecial addresses: **127.0.0.1 = loopback/localhost** (test your own stack); 0.0.0.0 = unspecified; 255.255.255.255 = broadcast. **Private ranges** (not routed on the Internet): 10.0.0.0/8, 172.16.0.0-172.31.255.255, **192.168.0.0/16** (home routers).\n\n**IPv6** = **128-bit**, written as eight hex groups with colons (2001:0db8::7334), solving IPv4 exhaustion. **MAC address** = 48-bit hardware address of the NIC (physical, layer 2) versus the IP (logical, layer 3). **DHCP** auto-assigns IPs; static addressing sets them by hand.",
+   "concept": "An IPv4 address has 32 bits, written as four numbers from 0 to 255. The first number decides the class. IPv6 has 128 bits, written in hexadecimal with colons. 127.0.0.1 is loopback, and 192.168.x.x is a private range.",
    "formulas": [],
    "tricks": [
     {
      "title": "Class ruler",
-     "body": "Remember three cut-points: **1 - 126 - 128 - 191 - 192 - 223**. A starts at 1, B at 128, C at 192, D (multicast) at 224. 127 is the loopback no-man's land between A and B.",
+     "body": "Remember the cut-points 1, 128, 192, 224, 240. A starts at 1, B at 128, C at 192, D (multicast) at 224, E at 240. The number 127 is loopback, between A and B.",
      "example": {
-      "q": "Class of 172.16.0.1?",
-      "solution": "B (first octet 172 lies in 128-191)."
+      "q": "What is the class of 172.16.0.1?",
+      "steps": [
+       "Read only the first octet: 172.",
+       "172 lies in 128 to 191."
+      ],
+      "answer": "Class B"
      }
     },
     {
-     "title": "Loopback = 127",
-     "body": "**127.0.0.1 = localhost** - pinging it tests your own TCP/IP stack, never the cable. Any question with 127.x wants 'loopback'.",
+     "title": "Loopback is 127",
+     "body": "127.0.0.1 is localhost. Pinging it tests your own TCP/IP stack, not the cable. Any question with 127.x wants loopback.",
      "example": {
-      "q": "Pinging 127.0.0.1 tests?",
-      "solution": "The local machine's own TCP/IP configuration."
+      "q": "Pinging 127.0.0.1 tests what?",
+      "steps": [
+       "127.0.0.1 is the machine itself.",
+       "It never leaves the computer."
+      ],
+      "answer": "The local machine's own TCP/IP setup"
      }
     },
     {
      "title": "IPv4 vs IPv6 size",
-     "body": "IPv4 = **32-bit** dotted decimal; IPv6 = **128-bit** colon-hex. 'Runs out of addresses' questions -> IPv6 as the fix.",
+     "body": "IPv4 is 32 bits in dotted decimal. IPv6 is 128 bits in colon-separated hexadecimal. If addresses are running out, IPv6 is the fix.",
      "example": {
       "q": "How many bits does an IPv6 address have?",
-      "solution": "128."
+      "steps": [
+       "IPv4 has 32 bits.",
+       "IPv6 has 128 bits."
+      ],
+      "answer": "128"
      }
     }
    ],
    "mistakes": [
-    "Placing 127.0.0.1 in Class A usage - 127 is reserved loopback; Class A networks proper end at 126.",
-    "Calling 192.168.1.1 a public address - it is the classic private home-router address.",
-    "Confusing MAC (48-bit, physical, burnt into NIC) with IP (logical, assignable)."
+    {
+     "wrong": "Calling 127.0.0.1 a Class A host address.",
+     "right": "127 is reserved for loopback. Class A networks end at 126."
+    },
+    {
+     "wrong": "Calling 192.168.1.1 a public address.",
+     "right": "It is the classic private home-router address."
+    },
+    {
+     "wrong": "Confusing the MAC address with the IP address.",
+     "right": "MAC is 48-bit, physical and burnt in. IP is logical and assigned."
+    },
+    {
+     "wrong": "Reading the whole address to find the class.",
+     "right": "Only the first octet decides the class."
+    },
+    {
+     "wrong": "Giving all 256 addresses of Class C as usable hosts.",
+     "right": "Two are reserved, so 254 are usable."
+    }
    ],
-   "notes": "### IPv4 — the 32-bit address\nAn **IPv4 address** is **32 bits** written as four numbers 0-255 separated by dots: 192.168.1.1. Each of the four blocks is an **octet** (8 bits). The leading numbers decide the **class**:\n\n| Class | First octet | Default mask | Use |\n|---|---|---|---|\n| **A** | 1 - 126 | 255.0.0.0 | giant networks |\n| **B** | 128 - 191 | 255.255.0.0 | medium networks |\n| **C** | 192 - 223 | 255.255.255.0 | small networks (most common) |\n| **D** | 224 - 239 | — | **multicasting** |\n| **E** | 240 - 255 | — | experimental/research |\n\nClass ruler: **1(A), 128(B), 192(C), 224(D), 240(E)**. Note 127 is NOT a class-A start — see below.\n\n### Special addresses\n- **127.0.0.1 = loopback / localhost** — a machine talking to itself; the whole 127 block is reserved.\n- **Private (non-routable) ranges**: **10.0.0.0 - 10.255.255.255**, **172.16.0.0 - 172.31.255.255**, **192.168.0.0 - 192.168.255.255**. Home routers hand out 192.168.x.x — that is why 192.168.1.1 is a private address, never a public one.\n- Hosts per network: Class C gives 256 addresses minus network & broadcast = **254 usable hosts**.\n\n### IPv6 — the 128-bit successor\nIPv4 offers about 4.3 billion addresses — too few for a connected planet. **IPv6 uses 128 bits**, written as **eight groups of hexadecimal digits separated by colons** (e.g. 2001:0db8:85a3:0000:0000:8a2e:0370:7334, which can be shortened with :: ). Benefits: a huge address space, built-in auto-configuration, better security support.\n\n### MAC vs IP — the twins that get swapped\n| | MAC address | IP address |\n|---|---|---|\n| Type | **physical**, burnt into the NIC | **logical**, assigned by network/DHCP |\n| Size | **48 bits** | IPv4 **32 bits** / IPv6 128 bits |\n| Changes | never (factory-fixed) | changes with the network |\n| Used by | switches (L2) | routers (L3) |\n\n### Reading an address question in the exam\nFor a class question, cover everything after the first dot — the answer lives only in the **first octet**. Anchor the ruler at 1, 128, 192, 224, 240 and drop the given number between the anchors. For \"which is private\" questions, check the three ranges like passwords: does it start with 10, or 172 with a second number 16-31, or 192.168? A 172 address with second number 32 or more is public — that is the planted trap. And loopback 127.x is its own reserved world, never listed as \"Class A hosts\".\n\n### Quick revision\n- IPv4 = **32 bits**, four octets 0-255; IPv6 = **128 bits**, hexadecimal, colon-separated.\n- Classes by first octet: A 1-126, B 128-191, C 192-223, D 224-239, E 240-255.\n- **127.0.0.1 = loopback**; private ranges 10.x, 172.16-31.x, 192.168.x.\n- Class C network = **254 usable hosts**; MAC = 48-bit physical, IP = logical.",
+   "notes": "### IPv4, the 32-bit address\nAn **IPv4 address** has **32 bits**. It is written as four numbers from 0 to 255 with dots, like 192.168.1.1. Each number is an **octet** (8 bits). The first octet decides the class.\n\n| Class | First octet | Default mask | Hosts per network | Use |\n|---|---|---|---|---|\n| **A** | 1 - 126 | 255.0.0.0 (/8) | 1,67,77,214 | huge networks |\n| **B** | 128 - 191 | 255.255.0.0 (/16) | 65,534 | large organisations |\n| **C** | 192 - 223 | 255.255.255.0 (/24) | 254 | small networks |\n| **D** | 224 - 239 | none | none | multicasting |\n| **E** | 240 - 255 | none | none | experimental or research |\n\n> **Tip:** Anchor the ruler at 1, 128, 192, 224 and 240. Drop the given number between them.\n\n### Usable hosts\nTwo addresses in each network are reserved: the network address and the broadcast address.\n\n> **Example:** Class C has 256 addresses. Take away 2. That leaves **254 usable hosts**.\n\n### Special addresses\n- **127.0.0.1** is loopback or localhost. A machine talks to itself. Pinging it tests your own TCP/IP stack.\n- **0.0.0.0** is the unspecified address.\n- **255.255.255.255** is the broadcast address.\n- **Private ranges** are not routed on the Internet: 10.0.0.0/8, 172.16.0.0 to 172.31.255.255, and 192.168.0.0/16.\n\n> **Watch:** 127 is not a Class A network. Class A ends at 126. Home routers use 192.168.x.x, which is private.\n\n### IPv6, the 128-bit address\nIPv4 has about 4.3 billion addresses. That is too few for the connected world. **IPv6 uses 128 bits**. It is written as **eight groups of hexadecimal digits** with colons, for example 2001:0db8::7334. A double colon can shorten a run of zeros.\n\n### MAC and IP compared\n\n| | MAC address | IP address |\n|---|---|---|\n| Type | physical, burnt into the NIC | logical, assigned |\n| Size | 48 bits | IPv4 32 bits, IPv6 128 bits |\n| Changes | never | changes with the network |\n| Used by | switches (layer 2) | routers (layer 3) |\n\n**DHCP** gives IP addresses automatically. A **static** address is set by hand.\n\n### Worked class checks\nCover everything after the first dot. Look at the first octet only.\n\n| Address | First octet | Class |\n|---|---|---|\n| 10.0.0.5 | 10 | A |\n| 130.10.5.2 | 130 | B |\n| 196.1.2.3 | 196 | C |\n| 225.5.4.1 | 225 | D (multicast) |\n| 245.0.0.1 | 245 | E |\n\n> **Rule:** 127.x.x.x is never a Class A host address. It is loopback.\n\n### Checking a private address\nA private address starts with 10, or with 172 and a second number from 16 to 31, or with 192.168. A 172 address with second number 32 or more is public.\n",
    "patterns": [
     {
      "id": "nw-p1",
      "name": "IP class identification",
      "frequency": "very common",
-     "howToSpot": "An address is given (10.0.0.5, 130.10.5.2, 196.1.2.3, 225.5.4.1) and its class is asked — or the first-octet range of a class is asked.",
+     "howToSpot": "An address is given (10.0.0.5, 130.10.5.2, 196.1.2.3, 225.5.4.1) and its class is asked, or the range of a class is asked.",
      "formula": null,
-     "logic": "1. Read the FIRST octet only: 1-126 = A, 128-191 = B, 192-223 = C, 224-239 = D (multicast), 240-255 = E.\n2. 127 is loopback, not Class A usage.\n3. Anchor the ruler: 1, 128, 192, 224, 240.",
+     "steps": [
+      "Read only the first octet.",
+      "1-126 is A, 128-191 is B, 192-223 is C.",
+      "224-239 is D (multicast). 240-255 is E.",
+      "Treat 127 as loopback, not Class A."
+     ],
+     "why": "The first octet alone fixes the class.",
      "example": {
       "q": "The IP address 196.20.5.1 belongs to which class?",
-      "solution": "**Class C** — the first octet 196 lies between 192 and 223."
+      "steps": [
+       "The first octet is 196.",
+       "196 lies between 192 and 223."
+      ],
+      "answer": "Class C"
      }
     },
     {
      "id": "nw-p2",
      "name": "Private ranges and loopback",
      "frequency": "very common",
-     "howToSpot": "'Which is a private IP address', 'what is 127.0.0.1', 'which address is reserved for testing/localhost'.",
+     "howToSpot": "Which is a private IP address, what is 127.0.0.1, or which address is reserved for testing or localhost.",
      "formula": null,
-     "logic": "1. Private ranges: **10.x.x.x, 172.16-31.x.x, 192.168.x.x** — home routers use 192.168.x.x.\n2. **127.0.0.1 = loopback/localhost** — the machine testing itself.\n3. 169.254.x.x = auto-configuration failure (APIPA) — optional extra.",
+     "steps": [
+      "Private: 10.x.x.x, 172.16 to 172.31.x.x, 192.168.x.x.",
+      "Home routers use 192.168.x.x.",
+      "127.0.0.1 is loopback (localhost).",
+      "169.254.x.x appears when automatic addressing fails (APIPA)."
+     ],
+     "why": "Private and loopback ranges are reserved and never routed on the Internet.",
      "example": {
-      "q": "The address 127.0.0.1 is used for —",
-      "solution": "**Loopback testing (localhost)** — the computer communicates with itself without touching the network."
+      "q": "The address 127.0.0.1 is used for",
+      "steps": [
+       "127 is the reserved loopback block.",
+       "The computer talks to itself."
+      ],
+      "answer": "Loopback testing (localhost)"
      }
     },
     {
      "id": "nw-p3",
      "name": "IPv4 vs IPv6 facts",
      "frequency": "common",
-     "howToSpot": "'IPv4 has how many bits', 'IPv6 addresses are written in ___', 'how many groups in an IPv6 address', or why IPv6 was needed.",
+     "howToSpot": "IPv4 has how many bits, IPv6 is written in what form, how many groups in an IPv6 address, or why IPv6 was needed.",
      "formula": null,
-     "logic": "1. IPv4 = **32 bits**, four dotted decimal octets (0-255), about 4.3 billion addresses.\n2. IPv6 = **128 bits**, **8 groups of hexadecimal** digits separated by colons.\n3. The need: IPv4 addresses ran out — 4.3 billion is less than the connected world.",
+     "steps": [
+      "IPv4: 32 bits, four decimal octets, about 4.3 billion addresses.",
+      "IPv6: 128 bits, eight hexadecimal groups with colons.",
+      "IPv6 was needed because IPv4 addresses ran out."
+     ],
+     "why": "More bits mean a far larger address space.",
      "example": {
       "q": "An IPv6 address is how many bits long?",
-      "solution": "**128 bits** — eight hexadecimal groups, e.g. 2001:0db8:85a3::8a2e:0370:7334."
+      "steps": [
+       "IPv6 has eight groups.",
+       "Eight groups of 16 bits make 128 bits."
+      ],
+      "answer": "128 bits"
      }
     },
     {
      "id": "nw-p4",
      "name": "MAC vs IP and usable-host counts",
      "frequency": "common",
-     "howToSpot": "'Difference between MAC and IP address', 'how many hosts can a Class C network have', 'which address changes when you shift networks'.",
+     "howToSpot": "Difference between MAC and IP, how many hosts a Class C network can have, or which address changes when you move networks.",
      "formula": null,
-     "logic": "1. MAC = 48-bit, physical, burnt in, permanent; IP = logical, assigned, changes with network.\n2. Class C hosts: 256 addresses minus network and broadcast = **254 usable**.\n3. Class B: 65,534 usable; Class A: 1,67,77,214 usable.",
+     "steps": [
+      "MAC: 48-bit, physical, permanent.",
+      "IP: logical, assigned, changes with the network.",
+      "Class C: 256 - 2 = 254 usable hosts.",
+      "Class B: 65,534. Class A: 1,67,77,214."
+     ],
+     "why": "Two addresses in every network are reserved.",
      "example": {
       "q": "How many usable host addresses does a Class C network provide?",
-      "solution": "**254** — 256 total minus the network address and the broadcast address."
+      "steps": [
+       "Class C has 256 addresses.",
+       "Take away the network and broadcast addresses: 254."
+      ],
+      "answer": "254"
+     }
+    },
+    {
+     "id": "nw-p5",
+     "name": "Default masks and special addresses",
+     "frequency": "occasional",
+     "howToSpot": "The default mask of a class, the broadcast address, or the unspecified address.",
+     "formula": null,
+     "steps": [
+      "Class A: 255.0.0.0 (/8). Class B: 255.255.0.0 (/16).",
+      "Class C: 255.255.255.0 (/24).",
+      "0.0.0.0 is unspecified.",
+      "255.255.255.255 is the broadcast address."
+     ],
+     "why": "The mask shows how many leading bits name the network.",
+     "example": {
+      "q": "What is the default subnet mask of a Class B network?",
+      "steps": [
+       "Class B has a /16 prefix.",
+       "Two full octets of 255."
+      ],
+      "answer": "255.255.0.0"
+     }
+    },
+    {
+     "id": "nw-p6",
+     "name": "DHCP and static addressing",
+     "frequency": "occasional",
+     "howToSpot": "Which protocol assigns IP addresses automatically, or how static addressing differs from it.",
+     "formula": null,
+     "steps": [
+      "DHCP gives IP addresses automatically.",
+      "Static addressing sets them by hand.",
+      "DHCP uses ports 67 and 68."
+     ],
+     "why": "Automatic assignment saves manual setup.",
+     "example": {
+      "q": "Which protocol assigns IP addresses automatically to devices?",
+      "steps": [
+       "Automatic assignment is the job of DHCP.",
+       "Its full form is Dynamic Host Configuration Protocol."
+      ],
+      "answer": "DHCP"
      }
     }
+   ],
+   "revision": [
+    "IPv4 has 32 bits in four octets from 0 to 255. IPv6 has 128 bits in hexadecimal with colons.",
+    "Classes by first octet: A 1-126, B 128-191, C 192-223, D 224-239, E 240-255.",
+    "127.0.0.1 is loopback.",
+    "Private ranges: 10.x, 172.16 to 172.31.x, 192.168.x.",
+    "A Class C network has 254 usable hosts.",
+    "MAC is 48-bit and physical. IP is logical.",
+    "DHCP gives IP addresses automatically."
    ]
   },
   {
    "id": "nw-protocols",
    "title": "Protocols and port numbers; TCP vs UDP",
-   "concept": "| Protocol | Port | Purpose |\n|---|---|---|\n| HTTP | 80 | Web pages (plain) |\n| HTTPS | **443** | Web over TLS/SSL encryption |\n| FTP | 21 (control) / 20 (data) | File transfer |\n| SSH | 22 | Secure remote login (encrypted successor of Telnet) |\n| Telnet | 23 | Plain-text remote login (insecure) |\n| SMTP | 25 | Sending e-mail |\n| DNS | 53 | Name-to-IP resolution |\n| DHCP | 67/68 | Automatic IP assignment |\n| POP3 | 110 | Receive e-mail (download) |\n| IMAP | 143 | Receive e-mail (sync) |\n| SNMP | 161 | Network management/monitoring |\n| RDP | 3389 | Windows remote desktop |\n\n**TCP (Transmission Control Protocol)** - connection-oriented, 3-way handshake (SYN, SYN-ACK, ACK), guaranteed ordered delivery: web, e-mail, file transfer. **UDP (User Datagram Protocol)** - connectionless, no delivery guarantee, faster/lower overhead: DNS queries, DHCP, video/audio streaming, VoIP, online gaming. Standards: Ethernet = IEEE 802.3, Wi-Fi = 802.11, Bluetooth = 802.15.",
+   "concept": "The IP address finds the computer. The port number finds the service on it. Learn the main ports: HTTP 80, HTTPS 443, FTP 21, SSH 22, Telnet 23, SMTP 25, DNS 53, POP3 110, IMAP 143. TCP is reliable and connection-oriented. UDP is fast and connectionless.",
    "formulas": [],
    "tricks": [
     {
      "title": "Port anchors",
-     "body": "Memorise six: **80 HTTP, 443 HTTPS, 25 SMTP, 53 DNS, 110 POP3, 21 FTP** - these cover most CKT options. Then '22 SSH, 23 Telnet' (Telnet = the insecure 23).",
+     "body": "Memorise six first: 80 HTTP, 443 HTTPS, 25 SMTP, 53 DNS, 110 POP3, 21 FTP. Then 22 SSH and 23 Telnet. Telnet is the insecure one.",
      "example": {
-      "q": "Default port of HTTPS?",
-      "solution": "443."
+      "q": "What is the default port of HTTPS?",
+      "steps": [
+       "HTTPS is the secure web protocol.",
+       "Its port is 443."
+      ],
+      "answer": "443"
      }
     },
     {
-     "title": "TCP = Tracked, UDP = Untracked",
-     "body": "**T**CP **T**racks every packet (reliable, slower - web/mail/files); **U**DP is **U**nreliable but quick (streaming, gaming, DNS). 'Guaranteed delivery' in the question = TCP.",
+     "title": "TCP tracks, UDP does not",
+     "body": "TCP tracks every packet, so it is reliable but slower. UDP is unreliable but quick. 'Guaranteed delivery' in a question means TCP.",
      "example": {
-      "q": "Live cricket video streaming mainly uses?",
-      "solution": "UDP (speed over retransmission)."
+      "q": "Live cricket video streaming mainly uses which protocol?",
+      "steps": [
+       "Speed matters more than perfect delivery.",
+       "Retransmission would pause the match."
+      ],
+      "answer": "UDP"
      }
     }
    ],
    "mistakes": [
-    "Giving HTTP the 443 port - 443 is HTTPS; plain HTTP is 80.",
-    "Choosing TCP for live streaming in the classic question - the intended answer is UDP (speed first).",
-    "Saying Telnet is secure - SSH (22) is the encrypted one; Telnet (23) sends everything in clear text."
+    {
+     "wrong": "Giving HTTP the port 443.",
+     "right": "443 is HTTPS. Plain HTTP is 80."
+    },
+    {
+     "wrong": "Choosing TCP for live streaming.",
+     "right": "The expected answer is UDP, because speed comes first."
+    },
+    {
+     "wrong": "Saying Telnet is secure.",
+     "right": "SSH (22) is encrypted. Telnet (23) sends plain text."
+    },
+    {
+     "wrong": "Using SMTP to receive mail.",
+     "right": "SMTP sends mail. POP3 and IMAP receive it."
+    }
    ],
-   "notes": "### Ports — numbered doors on a machine\nWhile the IP address finds the computer, the **port number** finds the service (door) on it. The classic exam set:\n\n| Protocol | Port | Job |\n|---|---|---|\n| **HTTP** | **80** | web pages (plain) |\n| **HTTPS** | **443** | web pages **encrypted** (TLS/SSL) |\n| **FTP** | **21** (control; 20 = data) | file transfer |\n| **SSH** | **22** | secure remote login |\n| **Telnet** | **23** | remote login (NOT encrypted) |\n| **SMTP** | **25** | sending e-mail |\n| **DNS** | **53** | name to IP resolution |\n| **POP3** | **110** | receiving e-mail (download) |\n| **IMAP** | **143** | receiving e-mail (sync) |\n\nAnchor pairs: 80/443 web, 21/23/25 climbing odd numbers (FTP, Telnet, SMTP), 53 DNS, 110/143 mail-in.\n\n### TCP vs UDP — the two delivery styles\n| | **TCP** (Transmission Control Protocol) | **UDP** (User Datagram Protocol) |\n|---|---|---|\n| Connection | **connection-oriented** (handshake first) | **connectionless** (just send) |\n| Reliability | guaranteed, ordered, error-checked | **no guarantee** — fast but unsafe |\n| Speed | slower | faster |\n| Used by | **web (HTTP/HTTPS), e-mail (SMTP), file transfer (FTP)** | **live streaming, gaming, VoIP, DNS queries, DHCP** |\n\nMemory hook: **TCP = Tracked, Careful, Precise; UDP = Untracked, Dashes**. Live cricket streaming chooses UDP — one lost frame is better than a paused match.\n\n### The protocols behind one web visit\n1. **DNS** (UDP 53) turns the name into an IP.\n2. **TCP** opens the connection.\n3. **HTTPS** (TCP 443) requests and delivers the page encrypted.\nFor e-mail: SMTP sends, POP3/IMAP receive — over TCP.\n\n### Full forms worth memorising\nHTTP HyperText Transfer Protocol; HTTPS secure HTTP over TLS/SSL; FTP File Transfer Protocol; SMTP Simple Mail Transfer Protocol; POP Post Office Protocol; IMAP Internet Message Access Protocol; TCP Transmission Control Protocol; UDP User Datagram Protocol; DNS Domain Name System; DHCP Dynamic Host Configuration Protocol; SSH Secure Shell.\n\n### Reading a protocol question in the exam\nAsk first: is the question about a **direction** (send mail = SMTP, receive = POP3/IMAP), a **number** (port), a **style** (reliable or fast), or a **full form**? For port questions, if you cannot recall the exact number, eliminate by neighbourhood — 21-22-23 are the file/remote trio, 25 is the mail sender, 80/443 the web pair, 110/143 the mail-in pair. For TCP-or-UDP questions, ask what a lost packet would cost: a corrupted file (use TCP) or one blurred frame (UDP is fine).\n\n### Quick revision\n- HTTP 80, **HTTPS 443**, FTP 21, SSH 22, Telnet 23, SMTP 25, DNS 53, POP3 110, IMAP 143.\n- **TCP = reliable, connection-oriented** (web, mail, FTP); **UDP = fast, connectionless** (streaming, games, VoIP).\n- Telnet is plaintext; **SSH (22) is its encrypted replacement**.\n- HTTPS = HTTP + TLS/SSL encryption.",
+   "notes": "### Ports, numbered doors on a machine\nThe IP address finds the computer. The **port number** finds the service on it. Learn this classic set.\n\n| Protocol | Port | Job |\n|---|---|---|\n| **HTTP** | **80** | web pages (plain) |\n| **HTTPS** | **443** | web pages, encrypted with TLS/SSL |\n| **FTP** | **21** (control), 20 (data) | file transfer |\n| **SSH** | **22** | secure remote login |\n| **Telnet** | **23** | remote login, not encrypted |\n| **SMTP** | **25** | sending e-mail |\n| **DNS** | **53** | name to IP resolution |\n| **DHCP** | 67 / 68 | automatic IP assignment |\n| **POP3** | **110** | receiving e-mail (download) |\n| **IMAP** | **143** | receiving e-mail (sync) |\n| **SNMP** | 161 | network management |\n| **RDP** | 3389 | Windows remote desktop |\n\n> **Tip:** 21, 22, 23 climb in order: FTP, SSH, Telnet. Then 25 is SMTP. 80 and 443 are the web pair. 110 and 143 bring mail in.\n\n### TCP vs UDP\n| | **TCP** | **UDP** |\n|---|---|---|\n| Full form | Transmission Control Protocol | User Datagram Protocol |\n| Connection | connection-oriented (handshake first) | connectionless (just send) |\n| Delivery | guaranteed and ordered | no guarantee |\n| Speed | slower | faster, low overhead |\n| Used by | web, e-mail, file transfer | DNS queries, DHCP, streaming, VoIP, gaming |\n\nThe TCP handshake has three steps: SYN, SYN-ACK, ACK.\n\n> **Example:** Live cricket streaming uses UDP. One lost frame is better than a paused match.\n\n### One web visit, step by step\n1. **DNS** turns the name into an IP address.\n2. **TCP** opens the connection.\n3. **HTTPS** (port 443) asks for the page and delivers it encrypted.\n\nFor e-mail, SMTP sends. POP3 or IMAP receive.\n\n### Reading a protocol question\nDecide what the question asks. Then use the matching tool.\n\n- **Direction:** send mail is SMTP. Receive mail is POP3 or IMAP.\n- **Number:** recall the port anchors. If unsure, eliminate by neighbourhood.\n- **Style:** reliable means TCP. Fast means UDP.\n- **Full form:** spell it out from the name.\n\n> **Tip:** For TCP or UDP, ask what a lost packet costs. A corrupted file is bad, so use TCP. One blurred video frame is fine, so use UDP.\n\n### Full forms to memorise\n- HTTP: HyperText Transfer Protocol. HTTPS: secure HTTP over TLS/SSL.\n- FTP: File Transfer Protocol. SMTP: Simple Mail Transfer Protocol.\n- POP: Post Office Protocol. IMAP: Internet Message Access Protocol.\n- DNS: Domain Name System. DHCP: Dynamic Host Configuration Protocol. SSH: Secure Shell.\n\n> **Watch:** Telnet sends everything in plain text. SSH (22) is the encrypted replacement.\n",
    "patterns": [
     {
      "id": "nw-r1",
      "name": "Port-number matching",
      "frequency": "very common",
-     "howToSpot": "'HTTPS works on which port', 'port of SMTP/FTP/DNS/POP3', or a matched pair with one number shifted.",
+     "howToSpot": "HTTPS works on which port, the port of SMTP, FTP, DNS or POP3, or a matched pair with one number shifted.",
      "formula": null,
-     "logic": "1. Anchors: **HTTP 80, HTTPS 443, FTP 21, SSH 22, Telnet 23, SMTP 25, DNS 53, POP3 110, IMAP 143**.\n2. The classic trap: 443 for plain HTTP or 80 for HTTPS.\n3. Remember 21-22-23 climbing (FTP, SSH, Telnet) and 25 as the mail sender's door.",
+     "steps": [
+      "Recall the anchors: HTTP 80, HTTPS 443, FTP 21, SSH 22, Telnet 23, SMTP 25, DNS 53, POP3 110, IMAP 143.",
+      "Watch for 443 given to HTTP or 80 given to HTTPS.",
+      "Use the climbing run 21, 22, 23.",
+      "Eliminate by neighbourhood if unsure."
+     ],
+     "why": "Port numbers are fixed facts, so anchors beat guessing.",
      "example": {
       "q": "HTTPS uses which port number by default?",
-      "solution": "**443** — plain HTTP uses 80; the S (secure) doubles the number in exam memory: 80 becomes 443."
+      "steps": [
+       "HTTPS is secure web traffic.",
+       "The port is 443. Plain HTTP uses 80."
+      ],
+      "answer": "443"
      }
     },
     {
      "id": "nw-r2",
      "name": "TCP vs UDP selection",
      "frequency": "very common",
-     "howToSpot": "'Which protocol is used for live streaming / file transfer', 'which is connection-oriented', reliability-vs-speed statements.",
+     "howToSpot": "Which protocol is used for live streaming or file transfer, which is connection-oriented, or reliability-versus-speed statements.",
      "formula": null,
-     "logic": "1. **TCP**: connection-oriented, reliable, ordered — web, e-mail, FTP.\n2. **UDP**: connectionless, fast, no delivery guarantee — **live streaming, gaming, VoIP, DNS queries**.\n3. The classic exam answer: live video streaming = UDP; downloading a file = TCP.",
+     "steps": [
+      "Ask what a lost packet would cost.",
+      "A corrupted file is costly: TCP.",
+      "One blurred frame is fine: UDP.",
+      "Live streaming, gaming, VoIP, DNS queries: UDP."
+     ],
+     "why": "Reliability needs TCP. Speed needs UDP.",
      "example": {
       "q": "Which transport protocol suits a live cricket stream?",
-      "solution": "**UDP** — speed matters more than perfect delivery; TCP's retransmissions would only pause the match."
+      "steps": [
+       "Speed matters more than perfect delivery.",
+       "TCP retransmission would only pause the match."
+      ],
+      "answer": "UDP"
      }
     },
     {
      "id": "nw-r3",
      "name": "Protocol purpose identification",
      "frequency": "common",
-     "howToSpot": "'Which protocol transfers files', 'which protocol sends e-mail', 'which service resolves names' — purpose matching across the famous protocols.",
+     "howToSpot": "Which protocol transfers files, sends e-mail or resolves names. It is purpose matching.",
      "formula": null,
-     "logic": "1. File transfer = **FTP**; send mail = **SMTP**; receive mail = POP3/IMAP; web pages = **HTTP/HTTPS**; names = **DNS**; remote login = Telnet (plain) / SSH (secure).\n2. FTP has two ports: 21 control, 20 data.\n3. DHCP assigns IP addresses automatically.",
+     "steps": [
+      "File transfer: FTP. Send mail: SMTP.",
+      "Receive mail: POP3 or IMAP. Web pages: HTTP or HTTPS.",
+      "Names to IPs: DNS. Remote login: Telnet (plain) or SSH (secure).",
+      "DHCP assigns IP addresses."
+     ],
+     "why": "Each protocol was built for one purpose.",
      "example": {
       "q": "Which protocol is used to transfer files between computers?",
-      "solution": "**FTP (File Transfer Protocol)** — control on port 21, data on port 20."
+      "steps": [
+       "File transfer is the purpose.",
+       "FTP uses port 21 for control and 20 for data."
+      ],
+      "answer": "FTP (File Transfer Protocol)"
      }
     },
     {
      "id": "nw-r4",
      "name": "Protocol full forms and security",
      "frequency": "common",
-     "howToSpot": "'Full form of FTP/TCP/UDP/DHCP', 'which remote-login protocol is secure', or Telnet-vs-SSH statements.",
+     "howToSpot": "Full form of FTP, TCP, UDP or DHCP, which remote-login protocol is secure, or Telnet-versus-SSH statements.",
      "formula": null,
-     "logic": "1. FTP = File Transfer Protocol; TCP = Transmission Control Protocol; UDP = User Datagram Protocol; DHCP = Dynamic Host Configuration Protocol; SSH = Secure Shell.\n2. **Telnet (23) sends everything in plaintext; SSH (22) is the encrypted replacement**.\n3. HTTPS = HTTP over TLS/SSL.",
+     "steps": [
+      "Spell out the full form from the name.",
+      "Telnet (23) sends plain text.",
+      "SSH (22) is the encrypted replacement.",
+      "HTTPS is HTTP over TLS/SSL."
+     ],
+     "why": "The S in SSH and HTTPS means secure.",
      "example": {
-      "q": "Which protocol provides an ENCRYPTED remote login?",
-      "solution": "**SSH (Secure Shell), port 22** — Telnet on port 23 sends passwords as plain text."
+      "q": "Which protocol provides an encrypted remote login?",
+      "steps": [
+       "Telnet on port 23 sends passwords as plain text.",
+       "SSH is the encrypted one."
+      ],
+      "answer": "SSH (Secure Shell), port 22"
+     }
+    },
+    {
+     "id": "nw-r5",
+     "name": "Mail protocol direction",
+     "frequency": "common",
+     "howToSpot": "Which protocol sends mail, which downloads it, or which keeps mail in sync across devices.",
+     "formula": null,
+     "steps": [
+      "Sending: SMTP (port 25).",
+      "Downloading: POP3 (port 110).",
+      "Syncing: IMAP (port 143).",
+      "All three run over TCP."
+     ],
+     "why": "Sending and receiving use different protocols.",
+     "example": {
+      "q": "Which protocol is used to send e-mail?",
+      "steps": [
+       "Sending is the direction asked.",
+       "SMTP is the sender; POP3 and IMAP receive."
+      ],
+      "answer": "SMTP (port 25)"
+     }
+    },
+    {
+     "id": "nw-r6",
+     "name": "Less common ports and services",
+     "frequency": "occasional",
+     "howToSpot": "Ports 67/68, 161 or 3389, or which service uses them.",
+     "formula": null,
+     "steps": [
+      "DHCP uses 67 and 68.",
+      "SNMP (network management) uses 161.",
+      "RDP (Windows remote desktop) uses 3389.",
+      "FTP data port is 20."
+     ],
+     "why": "These ports appear less often but are fixed facts.",
+     "example": {
+      "q": "Windows Remote Desktop uses which port?",
+      "steps": [
+       "RDP means Remote Desktop Protocol.",
+       "Its port is 3389."
+      ],
+      "answer": "3389"
      }
     }
+   ],
+   "revision": [
+    "HTTP 80, HTTPS 443, FTP 21, SSH 22, Telnet 23, SMTP 25, DNS 53, POP3 110, IMAP 143.",
+    "TCP is reliable and connection-oriented (web, mail, FTP). UDP is fast and connectionless (streaming, games, VoIP).",
+    "Telnet is plain text. SSH (22) is its encrypted replacement.",
+    "HTTPS is HTTP plus TLS/SSL encryption.",
+    "SMTP sends mail. POP3 and IMAP receive mail.",
+    "DNS resolves names to IP addresses. DHCP assigns IP addresses."
    ]
   }
  ],

@@ -47,6 +47,20 @@ export function getTopic(sectionId: SectionId, topicId: string): Topic | null {
   return readJson<Topic>(`topics/${sectionId}/${topicId}.json`);
 }
 
+/* Short plain-English copy for cards and the top of subject pages; the long
+   summary/overview stays on the topic page and below the subject's topic grid. */
+type Blurbs = { sections: Record<string, string>; topics: Record<string, string> };
+let blurbs: Blurbs | null = null;
+const getBlurbs = () => (blurbs ??= readJson<Blurbs>('blurbs.json') ?? { sections: {}, topics: {} });
+
+export function topicBlurb(t: Pick<Topic, 'sectionId' | 'id' | 'summary'>): string {
+  return getBlurbs().topics[`${t.sectionId}/${t.id}`] ?? t.summary;
+}
+
+export function sectionIntro(id: SectionId): string | undefined {
+  return getBlurbs().sections[id];
+}
+
 export function availableSections(): SectionId[] {
   return SECTION_ORDER.filter((s) => listTopics(s).length > 0);
 }

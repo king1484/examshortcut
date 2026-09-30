@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { SECTION_META, SECTION_ORDER, getSection, getTopic, listTopics } from '@/lib/content';
+import { SECTION_META, SECTION_ORDER, getSection, getTopic, listTopics, sectionIntro, topicBlurb } from '@/lib/content';
 import type { SectionId } from '@/lib/sections';
 import { Md } from '@/components/Md';
 import { TopicGrid } from '@/components/TopicGrid';
@@ -40,14 +40,9 @@ export default async function SectionPage({ params }: { params: Promise<{ sectio
         <span className="chip">SSC CGL Tier 1: {sec.tier1.questions} Q · {sec.tier1.marks} marks</span>
         <span className="chip">{topics.length} topics</span>
       </div>
-      <Md className="mt-4">{sec.overview}</Md>
+      <p className="mt-4 text-[15px] muted">{sectionIntro(sec.id) ?? ''}</p>
 
-      <div className="card p-5 mt-6">
-        <h2 className="text-lg font-extrabold">How to prepare this section</h2>
-        <Md className="mt-2 text-[15px]">{sec.strategy}</Md>
-      </div>
-
-      <h2 className="text-2xl font-extrabold mt-10">Topics in study order</h2>
+      <h2 className="text-2xl font-extrabold mt-6">Topics in study order</h2>
       <p className="text-sm muted mt-1">High importance = asked in nearly every shift. Do these first.
         {weight.high > 0 && <> ({weight.high} high · {weight.medium} medium · {weight.low} low)</>}
       </p>
@@ -56,6 +51,14 @@ export default async function SectionPage({ params }: { params: Promise<{ sectio
       ) : (
         <p className="card p-6 mt-4 text-center muted">Notes for this section are being compiled — check back shortly.</p>
       )}
+
+      <h2 className="text-2xl font-extrabold mt-12">About {sec.name}</h2>
+      <Md className="mt-3">{sec.overview}</Md>
+
+      <div className="card p-5 mt-6">
+        <h2 className="text-lg font-extrabold">How to prepare this section</h2>
+        <Md className="mt-2 text-[15px]">{sec.strategy}</Md>
+      </div>
     </div>
   );
 }
@@ -70,7 +73,7 @@ function gridTopics(cards: ReturnType<typeof listTopics>, section: string): Grid
     return {
       id: c.id,
       title: c.title,
-      summary: c.summary,
+      summary: topicBlurb(c),
       importance: c.importance,
       avgQ1: c.avgQuestions?.tier1 ?? undefined,
       avgQ2: c.avgQuestions?.tier2 ?? undefined,

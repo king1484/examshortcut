@@ -13,569 +13,1094 @@
   {
    "id": "simp-bodmas",
    "title": "BODMAS, 'of', brackets & vinculum",
-   "concept": "**Order of operations (VBODMAS):**\n\n1. **V**inculum (bar) — e.g. $\\overline{5-3}$\n2. **B**rackets, innermost first: ( ) → { } → [ ]\n3. **O**f (a multiplication that is done **before** ÷ and ×)\n4. **D**ivision and **M**ultiplication — left to right\n5. **A**ddition and **S**ubtraction — left to right\n\nThe key CGL trap is **'of'**: $64 \\div 4 \\text{ of } 2 = 64 \\div 8 = 8$, but $64 \\div 4 \\times 2 = 32$.\n\n**Continued fractions** are simplified from the bottom up. A minus sign before a bracket flips every sign inside it.",
+   "concept": "VBODMAS fixes the order: vinculum bar first, then brackets innermost first, then 'of', then division and multiplication left to right, then addition and subtraction left to right. The one trap that costs marks is 'of', which multiplies before any division sign.",
    "formulas": [
     {
-     "name": "'of' before division",
-     "tex": "a \\div b \\text{ of } c = \\frac{a}{b \\times c}"
+     "name": "'Of' before division",
+     "tex": "a \\div b \\text{ of } c = a \\div (b \\times c)",
+     "note": ""
     },
     {
-     "name": "÷ and × left to right",
-     "tex": "a \\div b \\times c = \\frac{a}{b} \\times c"
+     "name": "Division and multiplication left to right",
+     "tex": "a \\div b \\times c = \\dfrac{a}{b} \\times c",
+     "note": ""
     },
     {
-     "name": "Removing a bracket after minus",
-     "tex": "a - (b - c) = a - b + c"
+     "name": "Minus before a bracket",
+     "tex": "a - (b - c) = a - b + c",
+     "note": ""
     },
     {
-     "name": "Continued fraction (bottom-up)",
-     "tex": "a + \\cfrac{1}{b + \\cfrac{1}{c}} = a + \\frac{c}{bc + 1}"
+     "name": "Continued fraction",
+     "tex": "a + \\dfrac{1}{b + \\dfrac{1}{c}} = a + \\dfrac{c}{bc + 1}",
+     "note": ""
     }
    ],
    "tricks": [
     {
-     "title": "'of' binds tighter than ÷",
-     "body": "Convert every 'of' into a bracketed product before touching ÷.",
+     "title": "Bracket every 'of'",
+     "body": "Rewrite each 'of' as a bracketed product before doing any division. The bracket makes the grouping visible and kills the trap.",
      "example": {
-      "q": "Evaluate $64 \\div 4 \\text{ of } 2$.",
-      "solution": "$4 \\text{ of } 2 = 8$, so $64 \\div 8 = 8$ (not $16 \\times 2 = 32$)."
+      "q": "Evaluate 18 divided by 3 of 2, plus 5.",
+      "steps": [
+       "$3 \\text{ of } 2 = (3 \\times 2) = 6$.",
+       "$18 \\div 6 = 3$.",
+       "$3 + 5 = 8$."
+      ],
+      "answer": "8"
      }
     },
     {
-     "title": "Continued fractions bottom-up",
-     "body": "Start with the lowest fraction, invert and add step by step.",
+     "title": "Continued fractions from the bottom",
+     "body": "Simplify the deepest fraction first, invert it, add the next layer, and repeat upward.",
      "example": {
-      "q": "Evaluate $2 + \\cfrac{1}{2 + \\cfrac{1}{2 + \\frac{1}{2}}}$.",
-      "solution": "$2 + \\frac{1}{2} = \\frac{5}{2}$ → $2 + \\frac{2}{5} = \\frac{12}{5}$ → $2 + \\frac{5}{12} = \\frac{29}{12}$."
+      "q": "Evaluate 1 + 1/(2 + 1/(1 + 1/2)).",
+      "steps": [
+       "Bottom: $1 + \\dfrac{1}{2} = \\dfrac{3}{2}$.",
+       "Middle: $2 + \\dfrac{2}{3} = \\dfrac{8}{3}$.",
+       "Top: $1 + \\dfrac{3}{8} = \\dfrac{11}{8}$."
+      ],
+      "answer": "11/8"
      }
     },
     {
-     "title": "Digit-sum (casting out 9s) option check",
-     "body": "Digit sum of a product = digit sum of (digit sum × digit sum). Kills wrong options in long multiplication without computing.",
+     "title": "Digit-sum check",
+     "body": "Casting out nines: digit sums must match on both sides of the equals sign. It kills wrong options without computing the product.",
      "example": {
-      "q": "Which could be $3456 \\times 789$: 2726784 or 2726874 or 2762784?",
-      "solution": "Digit sums: 3456 → 9, 789 → 6, so product ≡ 9 × 6 = 54 → 9. 2+7+2+6+7+8+4 = 36 → 9 ✓. The other two also give 36 — so combine with the unit digit (6 × 9 = 54 → 4) and magnitude; exact value 2726784."
+      "q": "Could 1234 x 567 equal 699678?",
+      "steps": [
+       "$1234 \\to 1 + 2 + 3 + 4 = 10 \\to 1$.",
+       "$567 \\to 5 + 6 + 7 = 18 \\to 0$ (a multiple of 9).",
+       "Product must be a multiple of 9. $699678 \\to 45 \\to 9$. So it can."
+      ],
+      "answer": "Yes"
      }
     }
    ],
    "mistakes": [
-    "Doing $a \\div b \\times c$ as $a \\div (b \\times c)$.",
-    "Ignoring 'of' and treating it like ordinary ×, which is done after ÷.",
-    "Not removing the vinculum (bar) first.",
-    "Forgetting to flip signs when removing a bracket preceded by a minus."
+    {
+     "wrong": "Computing a divided by b times c as a divided by (b times c).",
+     "right": "Division and multiplication share a rank: work left to right."
+    },
+    {
+     "wrong": "Treating 'of' like an ordinary multiplication done after division.",
+     "right": "'Of' groups its two numbers into a product before any division acts."
+    },
+    {
+     "wrong": "Opening a square bracket before the round bracket inside it.",
+     "right": "Clear the innermost bracket first; each layer becomes one number."
+    },
+    {
+     "wrong": "Keeping the inner signs when a minus precedes a bracket.",
+     "right": "A minus before a bracket flips every sign inside it."
+    },
+    {
+     "wrong": "Clearing a vinculum bar after the brackets.",
+     "right": "The bar is the V in VBODMAS; it goes first."
+    }
    ],
-   "notes": "### What is VBODMAS?\nWhen a long expression has $+, -, \\times, \\div$, brackets and bars, every calculator (and every examiner) follows one fixed order, called **VBODMAS**:\n1. **V — Vinculum**: a bar over an expression, like $\\overline{9-7}$, is cleared first.\n2. **B — Brackets**: innermost first: $( )$ then $\\{ \\}$ then $[ ]$.\n3. **O — Of**: 'of' means multiply, but it is done **before** ÷ and ×.\n4. **D and M**: divisions and multiplications, strictly **left to right**.\n5. **A and S**: additions and subtractions, again left to right.\n\n### The 'of' trap\n$64 \\div 4 \\text{ of } 2$ is $64 \\div 8 = 8$, **not** $(64 \\div 4) \\times 2 = 32$.\nCompare: $64 \\div 4 \\times 2 = 16 \\times 2 = 32$ — no 'of', so left to right.\nAnother form: $\\frac{3}{4}$ of $48 \\div 2$ = $(\\frac{3}{4} \\times 48) \\div 2 = 18$, because 'of' groups $48$ with $\\frac{3}{4}$ before any $\\div$ outside.\n\n### Working through brackets\nAlways start from the innermost bracket. A minus sign in front of a bracket **flips every sign** inside: $25 - (10 - 6) = 25 - 10 + 6 = 21$. With three layers, clear $( )$, then $\\{ \\}$, then $[ ]$, one at a time. Do not try to open all brackets in one go.\n\n### Continued fractions\nA fraction written inside a fraction, like $1 + \\cfrac{1}{1 + \\cfrac{1}{2}}$, is simplified **from the bottom up**:\n- bottom: $1 + \\frac{1}{2} = \\frac{3}{2}$\n- next: $\\frac{1}{3/2} = \\frac{2}{3}$\n- top: $1 + \\frac{2}{3} = \\frac{5}{3}$.\n\n### Left-to-right chains\nWhen only $\\div$, $\\times$ (and later $+, -$) appear, work strictly left to right: $60 \\div 5 \\times 3 = 12 \\times 3 = 36$, **not** $60 \\div 15 = 4$.\n\n### Two speed tools\n- **Digit-sum check (casting out 9s):** replace each number by its digit sum (9 becomes 0), do the same operations on the digit sums, and compare with the digit sum of each option. It catches most slips. Example: $48 + 36 = 84$; digit sums $3 + 0 = 3$, and $84 \\to 3$ ✓.\n- **Last-digit check:** for $\\times$ and $+$ chains, the option's last digit must match the last digit you get by working only with last digits. $7 \\times 8 + 6 = 62$; last digits $6 + 6 = 12 \\to 2$ ✓.\n\n### Approximate placement of values\nSome questions ask \"what comes in place of ?\". Replace the ? by each option only after simplifying the fixed parts — do not solve with algebra when a check of two options is faster.\n\n### Quick revision\n- Order: vinculum → brackets → of → ÷/× (L→R) → +/− (L→R).\n- 'of' beats ÷ and ×.\n- Minus before a bracket flips signs inside.\n- Continued fractions: bottom-up.\n- Verify with digit sums or last digits.\n",
+   "notes": "A long expression with several operations is worked in one fixed order, called VBODMAS: Vinculum, Brackets, Of, Division, Multiplication, Addition, Subtraction. The whole method lives in one example: $64 \\div 4 \\text{ of } 2$ is $64 \\div 8 = 8$, while $64 \\div 4 \\times 2$ is $16 \\times 2 = 32$.\n\n### The order, step by step\n1. V for vinculum: a bar over an expression, like $\\overline{9 - 7}$, is cleared first.\n2. B for brackets: innermost first, $( )$ then $\\{ \\}$ then $[ ]$.\n3. O for of: 'of' means multiply, but it happens before $\\div$ and $\\times$.\n4. D and M: division and multiplication, strictly left to right.\n5. A and S: addition and subtraction, again left to right.\n\n> **Rule:** 'Of' outranks the division sign. Convert every 'of' into a bracketed product before touching any $\\div$.\n\n### Where 'of' goes wrong\n$64 \\div 4 \\text{ of } 2$ means $64 \\div (4 \\times 2) = 8$, not $(64 \\div 4) \\times 2 = 32$. The examiner builds both versions into the options. The same trap appears with fractions: $\\dfrac{3}{4}$ of $48 \\div 2$ is $\\left(\\dfrac{3}{4} \\times 48\\right) \\div 2 = 18$.\n\n> **Watch:** Percentages work the same way: $40\\%$ of $250$ is a product $\\dfrac{40}{100} \\times 250$, done before any division outside it.\n\n### Clearing brackets\nStart with the innermost bracket and move outward, one layer at a time. A minus sign in front of a bracket flips every sign inside: $25 - (10 - 6) = 25 - 10 + 6 = 21$. Never open all layers in one go; each layer must become a single number first.\n\n### Division and multiplication share a rank\nWhen only $\\div$ and $\\times$ appear, walk left to right: $60 \\div 5 \\times 3 = 12 \\times 3 = 36$. Doing $60 \\div 15 = 4$ instead is the standard slip, and 4 is always among the options.\n\n### Continued fractions\nA fraction inside a fraction is simplified from the bottom up. For $1 + \\dfrac{1}{1 + \\dfrac{1}{2}}$: the bottom gives $1 + \\dfrac{1}{2} = \\dfrac{3}{2}$, then $\\dfrac{1}{3/2} = \\dfrac{2}{3}$, then $1 + \\dfrac{2}{3} = \\dfrac{5}{3}$. Keep fractions as fractions; decimals half way through breed errors.\n\n> **Tip:** Invert the bottom result and add one layer up, every time. Never clear the stack top-down.\n\n### Two fast checks\nDigit-sum check: replace each number by its digit sum and repeat the operation; the digit sum of your answer must match. $48 + 36 = 84$: digit sums $3 + 9 \\to 12 \\to 3$, and $84 \\to 12 \\to 3$. Last-digit check: for products and sums, work only with last digits. $7 \\times 8 + 6 = 62$, and last digits $6 + 6 \\to 2$ agree.\n",
    "patterns": [
     {
      "id": "simp-bm-p1",
-     "name": "'of' before ÷ and × (including % of and missing value)",
+     "name": "'Of' before division and multiplication",
      "frequency": "very common",
-     "howToSpot": "The expression mixes $\\div$, $\\times$ and 'of' (or '% of'). Often '?' sits in place of one number.",
+     "howToSpot": "The expression mixes division, multiplication and 'of' (or '% of'), often with a question mark in place of one number.",
      "formula": "a \\div b \\text{ of } c = a \\div (b \\times c)",
-     "logic": "1. Replace every 'of' by a bracket: $4 \\text{ of } 3 \\to (4 \\times 3)$.\n2. Then do ÷ and × left to right, then + and −.\n3. For a missing value, simplify the rest first and solve the small equation.\n\nWhy: 'of' is a multiplication that examiners rank above ÷ and ×.",
+     "steps": [
+      "Replace every 'of' by a bracketed product.",
+      "Do division and multiplication left to right.",
+      "Finish with addition and subtraction left to right.",
+      "For a missing value, simplify the rest and solve the small equation."
+     ],
+     "why": "'Of' is a multiplication that the convention ranks above the division sign.",
      "example": {
-      "q": "Evaluate $64 \\div 4 \\text{ of } 2 + 8 \\times 3$.",
-      "solution": "$4 \\text{ of } 2 = 8$; $64 \\div 8 = 8$; $8 \\times 3 = 24$. Total $8 + 24 = 32$.\n(Wrong: $(64 \\div 4) \\times 2 = 32$ → $56$.)"
+      "q": "Evaluate $108 \\div 9$ of $3 + 6 \\times 5$.",
+      "steps": [
+       "$9$ of $3 = 27$.",
+       "$108 \\div 27 = 4$.",
+       "$6 \\times 5 = 30$, so the total is $4 + 30 = 34$."
+      ],
+      "answer": "34"
      }
     },
     {
      "id": "simp-bm-p2",
      "name": "Vinculum and three-layer brackets",
      "frequency": "very common",
-     "howToSpot": "An expression with a bar over some digits and ( ), { }, [ ] nested inside each other.",
-     "formula": null,
-     "logic": "1. Clear the vinculum (bar) first.\n2. Then the round bracket, then curly, then square.\n3. A minus in front of a bracket flips every sign inside it.\n\nWhy: each layer must become a single number before the layer outside it can act.",
+     "howToSpot": "An expression carries a bar over some digits and nested round, curly and square brackets.",
+     "formula": "",
+     "steps": [
+      "Clear the vinculum bar first.",
+      "Then the round bracket, then the curly, then the square.",
+      "Flip every sign inside a bracket that follows a minus.",
+      "Finish the outermost operation last."
+     ],
+     "why": "Each layer must collapse to a single number before the layer outside it can act.",
      "example": {
-      "q": "Simplify $25 - [12 - \\{8 - (7 - \\overline{9 - 5})\\}]$.",
-      "solution": "Bar: 4. Round: 7 − 4 = 3. Curly: 8 − 3 = 5. Square: 12 − 5 = 7. Answer $25 - 7 = 18$."
+      "q": "Simplify $40 - [24 - \\{16 - (12 - 6)\\}]$.",
+      "steps": [
+       "Round: $12 - 6 = 6$.",
+       "Curly: $16 - 6 = 10$.",
+       "Square: $24 - 10 = 14$.",
+       "$40 - 14 = 26$."
+      ],
+      "answer": "26"
      }
     },
     {
      "id": "simp-bm-p3",
      "name": "Continued (nested) fractions",
      "frequency": "common",
-     "howToSpot": "Fractions stacked inside fractions, often written with cfrac in the paper as small 1s stacked.",
+     "howToSpot": "Fractions stack inside fractions, written as small stacked numbers on the paper.",
      "formula": "\\text{simplify from the bottom upwards}",
-     "logic": "1. Start with the deepest (bottom) fraction and make it a single number.\n2. Move one layer up, repeat.\n3. The last step gives the value; keep fractions, not decimals.\n\nWhy: a fraction line is a division in disguise, and the deepest division must happen first.",
+     "steps": [
+      "Start at the deepest fraction and make it a single fraction.",
+      "Invert it and add the next layer up.",
+      "Repeat to the top; keep exact fractions, not decimals."
+     ],
+     "why": "Each fraction line is a division, and the deepest division must happen first.",
      "example": {
-      "q": "Find $1 + \\cfrac{1}{1 + \\cfrac{1}{1 + \\cfrac{1}{3}}}$.",
-      "solution": "$1+\\frac13=\\frac43 \\to \\frac{3}{4} \\to 1+\\frac34=\\frac74 \\to \\frac47 \\to 1+\\frac47=\\frac{11}{7}$."
+      "q": "Find $3 + \\dfrac{1}{2 + \\dfrac{1}{3 + \\dfrac{1}{4}}}$.",
+      "steps": [
+       "Bottom: $3 + \\dfrac{1}{4} = \\dfrac{13}{4}$.",
+       "Middle: $2 + \\dfrac{4}{13} = \\dfrac{30}{13}$.",
+       "Top: $3 + \\dfrac{13}{30} = \\dfrac{103}{30}$."
+      ],
+      "answer": "103/30"
      }
     },
     {
      "id": "simp-bm-p4",
-     "name": "Long ÷ × + − chains (left to right)",
+     "name": "Long division-multiplication chains",
      "frequency": "very common",
-     "howToSpot": "A plain chain like $96 \\div 8 \\times 4 + 12 \\times 2 \\div 3 - 10$ with no 'of' and no brackets.",
+     "howToSpot": "A plain chain like division, times, plus, times, minus with no 'of' and no brackets.",
      "formula": "\\div \\text{ and } \\times \\text{ share a level: go left to right}",
-     "logic": "1. Walk through the expression once, left to right.\n2. Do only ÷ and × in this pass (as they come).\n3. Then do + and − in a second left-to-right pass.\n\nWhy: ÷ and × have equal rank; the leftmost one acts first.",
+     "steps": [
+      "Walk the expression once, left to right, doing only division and multiplication.",
+      "Collect the additions and subtractions for a second pass.",
+      "Finish left to right again."
+     ],
+     "why": "Division and multiplication have equal rank, so the leftmost one acts first.",
      "example": {
-      "q": "Simplify $60 \\div 5 \\times 3 - 18 \\div 6 \\times 2 + 7$.",
-      "solution": "$60 \\div 5 = 12$, $\\times 3 = 36$; $18 \\div 6 = 3$, $\\times 2 = 6$; $36 - 6 + 7 = 37$."
+      "q": "Simplify $96 \\div 8 \\times 4 + 12 \\times 2 \\div 3 - 10$.",
+      "steps": [
+       "$96 \\div 8 = 12$, then $12 \\times 4 = 48$.",
+       "$12 \\times 2 = 24$, then $24 \\div 3 = 8$.",
+       "$48 + 8 - 10 = 46$."
+      ],
+      "answer": "46"
      }
     },
     {
      "id": "simp-bm-p5",
-     "name": "Full mixed expression (Tier-2 style, with fractions and %)",
+     "name": "Full mixed expression with fractions and percent",
      "frequency": "common",
-     "howToSpot": "A longer question mixing 'of', brackets, a fraction term and a percentage term.",
-     "formula": "x\\% \\text{ of } N = \\frac{x}{100} \\times N",
-     "logic": "1. Turn 'of' terms into products, percentages into fractions of 100.\n2. Simplify each term separately, then combine.\n3. Keep fractions (like 3/11 of 1331) exact — they usually divide neatly.\n\nWhy: term-by-term simplification avoids one giant unreadable line.",
+     "howToSpot": "A longer expression mixes 'of', a fraction term and a percentage term.",
+     "formula": "x\\% \\text{ of } N = \\dfrac{x}{100} \\times N",
+     "steps": [
+      "Turn 'of' terms into products and percentages into fractions over 100.",
+      "Simplify each term separately.",
+      "Combine the terms; the fraction parts usually divide neatly."
+     ],
+     "why": "Term-by-term simplification avoids one unreadable giant line.",
      "example": {
-      "q": "Simplify $\\frac{3}{11}$ $\\text{ of }$ $1331 - 25\\%$ $\\text{ of }$ $160 + 13$.",
-      "solution": "$363 - 40 + 13 = 336$."
+      "q": "Simplify $\\dfrac{2}{7}$ of $343 - 40\\%$ of $250 + 15$.",
+      "steps": [
+       "$\\dfrac{2}{7} \\times 343 = 98$.",
+       "$\\dfrac{40}{100} \\times 250 = 100$.",
+       "$98 - 100 + 15 = 13$."
+      ],
+      "answer": "13"
      }
     }
+   ],
+   "revision": [
+    "Order: vinculum, brackets, of, $\\div$ and $\\times$ left to right, then $+$ and $-$.",
+    "'Of' beats $\\div$ and $\\times$; bracket the 'of' product first.",
+    "Minus before a bracket flips every sign inside.",
+    "Continued fractions: simplify bottom-up, keeping fractions.",
+    "Check answers with digit sums and last digits."
    ]
   },
   {
    "id": "simp-identities",
    "title": "Algebraic identities in numerical simplification",
-   "concept": "Many CGL simplification questions are identities in disguise. Spot the shape, name $a$ and $b$, and the answer is often just $a+b$ or $a-b$.\n\n| Looks like | Equals |\n|---|---|\n| $\\frac{a^3 + b^3}{a^2 - ab + b^2}$ | $a + b$ |\n| $\\frac{a^3 - b^3}{a^2 + ab + b^2}$ | $a - b$ |\n| $\\frac{a^2 - b^2}{a - b}$ | $a + b$ |\n| $\\frac{(a+b)^2 - (a-b)^2}{ab}$ | 4 |\n| $\\frac{(a+b)^2 + (a-b)^2}{a^2 + b^2}$ | 2 |\n\nAlso: if $a + b + c = 0$ then $a^3 + b^3 + c^3 = 3abc$.",
+   "concept": "Many simplification questions are algebra identities with numbers pasted in. Name $a$ and $b$, match the signs, and the giant cubes cancel into a one-line answer like $a + b$ or $a - b$.",
    "formulas": [
     {
-     "name": "Square of sum / difference",
-     "tex": "(a \\pm b)^2 = a^2 \\pm 2ab + b^2"
-    },
-    {
-     "name": "Difference of squares",
-     "tex": "a^2 - b^2 = (a+b)(a-b)"
-    },
-    {
      "name": "Sum of cubes",
-     "tex": "a^3 + b^3 = (a+b)(a^2 - ab + b^2)"
+     "tex": "a^3 + b^3 = (a+b)(a^2 - ab + b^2)",
+     "note": ""
     },
     {
      "name": "Difference of cubes",
-     "tex": "a^3 - b^3 = (a-b)(a^2 + ab + b^2)"
+     "tex": "a^3 - b^3 = (a-b)(a^2 + ab + b^2)",
+     "note": ""
+    },
+    {
+     "name": "Difference of squares",
+     "tex": "a^2 - b^2 = (a+b)(a-b)",
+     "note": ""
     },
     {
      "name": "Cube of sum",
-     "tex": "(a+b)^3 = a^3 + b^3 + 3ab(a+b)"
+     "tex": "(a+b)^3 = a^3 + b^3 + 3ab(a+b)",
+     "note": ""
     },
     {
-     "name": "Three cubes",
-     "tex": "a^3 + b^3 + c^3 - 3abc = (a+b+c)(a^2+b^2+c^2-ab-bc-ca)"
+     "name": "Squares combine",
+     "tex": "(a+b)^2 + (a-b)^2 = 2(a^2+b^2)",
+     "note": ""
     },
     {
-     "name": "Zero-sum case",
-     "tex": "a + b + c = 0 \\Rightarrow a^3 + b^3 + c^3 = 3abc"
+     "name": "Squares subtract",
+     "tex": "(a+b)^2 - (a-b)^2 = 4ab",
+     "note": ""
+    },
+    {
+     "name": "Zero-sum cubes",
+     "tex": "a+b+c = 0 \\Rightarrow a^3+b^3+c^3 = 3abc",
+     "note": ""
+    },
+    {
+     "name": "Square-sum from pair facts",
+     "tex": "a^2 + b^2 = (a+b)^2 - 2ab",
+     "note": ""
     }
    ],
    "tricks": [
     {
      "title": "Pattern-match the fraction",
-     "body": "If the numerator has cubes and the denominator has three terms with a middle product, it is a sum/difference-of-cubes identity.",
+     "body": "Cubes on top and three terms with a middle product below mean a sum or difference of cubes. The fraction is just a plus or minus of the bases.",
      "example": {
-      "q": "Simplify $\\frac{0.8 \\times 0.8 \\times 0.8 - 0.5 \\times 0.5 \\times 0.5}{0.8 \\times 0.8 + 0.8 \\times 0.5 + 0.5 \\times 0.5}$.",
-      "solution": "Form $\\frac{a^3 - b^3}{a^2 + ab + b^2} = a - b$ with $a = 0.8$, $b = 0.5$ ⇒ $0.3$."
+      "q": "Simplify (0.7 x 0.7 x 0.7 - 0.3 x 0.3 x 0.3) over (0.7 x 0.7 + 0.7 x 0.3 + 0.3 x 0.3).",
+      "steps": [
+       "Shape: $\\dfrac{a^3 - b^3}{a^2 + ab + b^2}$ with $a = 0.7$, $b = 0.3$.",
+       "Value $= a - b = 0.7 - 0.3$.",
+       "$0.7 - 0.3 = 0.4 = \\dfrac{2}{5}$."
+      ],
+      "answer": "2/5"
      }
     },
     {
-     "title": "a + b + c = 0 ⇒ cubes = 3abc",
-     "body": "Check if the three bases add to zero before cubing anything.",
+     "title": "Zero-sum check before cubing",
+     "body": "Add the three bases. If they sum to zero, the cubes sum to three times their product, signs included.",
      "example": {
-      "q": "Find $(-12)^3 + 7^3 + 5^3$.",
-      "solution": "$-12 + 7 + 5 = 0$ ⇒ value $= 3 \\times (-12) \\times 7 \\times 5 = -1260$."
+      "q": "Find (-16)^3 + 9^3 + 7^3.",
+      "steps": [
+       "$-16 + 9 + 7 = 0$, so the zero-sum rule applies.",
+       "Value $= 3 \\times (-16) \\times 9 \\times 7$.",
+       "$3 \\times (-1008) = -3024$."
+      ],
+      "answer": "-3024"
      }
     },
     {
      "title": "Products around a round number",
-     "body": "$(n - d)(n + d) = n^2 - d^2$.",
+     "body": "Write the pair as centre minus gap and centre plus gap. The product is centre squared minus gap squared.",
      "example": {
-      "q": "Find $998 \\times 1002$.",
-      "solution": "$1000^2 - 2^2 = 1000000 - 4 = 999996$."
+      "q": "Find 997 x 1003.",
+      "steps": [
+       "Centre $1000$, gap $3$.",
+       "$1000^2 - 3^2 = 1000000 - 9$.",
+       "$= 999991$."
+      ],
+      "answer": "999991"
      }
     }
    ],
    "mistakes": [
-    "Using $a^2 + ab + b^2$ with the sum-of-cubes numerator (sign of the middle term must be opposite).",
-    "Expanding decimals by brute force instead of naming a and b.",
-    "Writing $(a+b)^3 = a^3 + b^3$."
+    {
+     "wrong": "Pairing a sum-of-cubes top with a plus middle term below.",
+     "right": "The middle sign below is opposite to the sign on top."
+    },
+    {
+     "wrong": "Cubing the decimals in an identity fraction.",
+     "right": "Name a and b, cancel the factor, subtract or add the bases."
+    },
+    {
+     "wrong": "Writing $(a+b)^3 = a^3 + b^3$.",
+     "right": "The cube of a sum carries the extra term $3ab(a+b)$."
+    },
+    {
+     "wrong": "Using $k^2 + 2$ when $x + 1/x = k$ is given.",
+     "right": "Plus version subtracts 2; minus version adds 2."
+    },
+    {
+     "wrong": "Applying the zero-sum rule without adding the bases.",
+     "right": "Check $a + b + c = 0$ first; otherwise cube honestly."
+    }
    ],
-   "notes": "### Why identities?\nMany simplification questions are just **algebraic identities** with numbers pasted in. If you can see the shape, the answer comes in one line — no cubing of 3.3 needed.\n\n### The identities you must know\n| Identity | Read as |\n|---|---|\n| $(a+b)^2 = a^2 + 2ab + b^2$ | square of sum |\n| $(a-b)^2 = a^2 - 2ab + b^2$ | square of difference |\n| $(a+b)(a-b) = a^2 - b^2$ | difference of squares |\n| $a^3 + b^3 = (a+b)(a^2 - ab + b^2)$ | sum of cubes |\n| $a^3 - b^3 = (a-b)(a^2 + ab + b^2)$ | difference of cubes |\n| $(a \\pm b)^3 = a^3 \\pm b^3 \\pm 3ab(a \\pm b)$ | cube of sum/difference |\n| $a^3 + b^3 + c^3 - 3abc = (a+b+c)(a^2+b^2+c^2-ab-bc-ca)$ | three-variable |\n\n**Zero-sum magic:** if $a + b + c = 0$, the long factor is not zero, so $a^3 + b^3 + c^3 = 3abc$.\nExample: $25^3 + (-17)^3 + (-8)^3 = 3 \\times 25 \\times (-17) \\times (-8) = 10200$.\n\n### Identity fractions (the most asked shape)\nBecause $a^3 + b^3 = (a+b)(a^2 - ab + b^2)$, the bracket cancels:\n$$\\frac{a^3 + b^3}{a^2 - ab + b^2} = a+b, \\qquad \\frac{a^3 - b^3}{a^2 + ab + b^2} = a-b$$\nExample: $\\frac{(15.2)^3 - (5.2)^3}{(15.2)^2 + 15.2 \\times 5.2 + (5.2)^2} = 15.2 - 5.2 = 10$.\nCheck the middle sign: **minus** in the denominator pairs with **plus** on top.\n\n### Shortcuts from the squares\n- $(a+b)^2 + (a-b)^2 = 2(a^2 + b^2)$\n- $(a+b)^2 - (a-b)^2 = 4ab$\n- $a^2 + b^2 = (a+b)^2 - 2ab$\n- $a^3 + b^3 = (a+b)^3 - 3ab(a+b)$\nExample: with $a+b = 7$, $ab = 12$: $a^3 + b^3 = 343 - 3 \\times 12 \\times 7 = 91$.\n\n### The x + 1/x family (asked again and again)\nIf $x + \\frac{1}{x} = k$, then:\n- $x^2 + \\frac{1}{x^2} = k^2 - 2$\n- $x^3 + \\frac{1}{x^3} = k^3 - 3k$\n- $x^4 + \\frac{1}{x^4} = (k^2-2)^2 - 2$\nIf $x - \\frac{1}{x} = k$, then $x^2 + \\frac{1}{x^2} = k^2 + 2$ and $x^3 - \\frac{1}{x^3} = k^3 + 3k$.\nExample: $x + \\frac{1}{x} = 4$ → $x^2 + \\frac{1}{x^2} = 16 - 2 = 14$.\n\n### Numbers near a round value\n$105^2 - 95^2 = (105-95)(105+95) = 10 \\times 200 = 2000$. Use $a^2 - b^2$ whenever two squares sit close together.\n\n### Cubes when a sum and a product are given\nIf $a+b$ and $ab$ are known, never cube anything big:\n- $a^2 + b^2 = (a+b)^2 - 2ab$\n- $a^3 + b^3 = (a+b)^3 - 3ab(a+b)$\nExample: $a+b = 10$, $ab = 21$ → $a^2 + b^2 = 100 - 42 = 58$.\nThe same two facts give $a^3 - b^3$ if you first find $a-b$ from $(a-b)^2 = (a+b)^2 - 4ab$.\n\n### How to attack any identity question\n1. Look at the **denominator first** (if there is one) — it tells you which factor will cancel.\n2. Match the **signs** to pick plus or minus identities; a wrong middle sign is the classic trap.\n3. Substitute only at the last step; keep $a$, $b$ symbolic until the expression is fully factored.\n\n### Quick revision\n- $\\frac{a^3 \\pm b^3}{a^2 \\mp ab + b^2} = a \\pm b$.\n- $a+b+c = 0$ → cubes sum to $3abc$.\n- $x+\\frac1x = k$: squares give $k^2-2$, cubes give $k^3-3k$.\n- $(a+b)^2 - (a-b)^2 = 4ab$.\n- Difference of squares for near numbers.\n",
+   "notes": "A cube of $9.3$ looks like hard work until you notice the shape underneath. $\\dfrac{9.3^3 - 3.3^3}{9.3^2 + 9.3 \\times 3.3 + 3.3^2}$ collapses to $9.3 - 3.3 = 6$ because the denominator is exactly the second factor of $a^3 - b^3$. That is the whole game: spot the identity, name $a$ and $b$, substitute at the end.\n\n### The identities that do the work\n| Identity | Reads as |\n|---|---|\n| $a^3 + b^3 = (a+b)(a^2 - ab + b^2)$ | sum of cubes |\n| $a^3 - b^3 = (a-b)(a^2 + ab + b^2)$ | difference of cubes |\n| $a^2 - b^2 = (a+b)(a-b)$ | difference of squares |\n| $(a+b)^2 + (a-b)^2 = 2(a^2+b^2)$ | squares combine |\n| $(a+b)^2 - (a-b)^2 = 4ab$ | squares subtract |\n\n> **Rule:** In an identity fraction, the sign in the denominator is opposite to the sign on top. Minus below pairs with plus above.\n\n### Identity fractions\nRead the denominator first, because it tells you what cancels. If the top is a difference of cubes and the bottom has a plus middle term, the whole fraction is $a - b$. Check $\\dfrac{12.4^3 - 2.4^3}{12.4^2 + 12.4 \\times 2.4 + 2.4^2}$: the bottom is the plus version, so the value is $12.4 - 2.4 = 10$. Never cube the decimals.\n\n### Squares that sit near each other\n$115^2 - 85^2 = (115 - 85)(115 + 85) = 30 \\times 200 = 6000$. Whenever two squares sit close together, factor instead of squaring. The same identity multiplies numbers around a round value: $997 \\times 1003 = 1000^2 - 3^2 = 999991$.\n\n> **Tip:** Look for a shared centre. Write the pair as centre minus gap and centre plus gap, then use centre squared minus gap squared.\n\n### The x plus one over x ladder\nIf $x + \\dfrac{1}{x} = k$, then $x^2 + \\dfrac{1}{x^2} = k^2 - 2$, and $x^3 + \\dfrac{1}{x^3} = k^3 - 3k$. With the minus version the twos flip: if $x - \\dfrac{1}{x} = k$, then $x^2 + \\dfrac{1}{x^2} = k^2 + 2$. So $x + \\dfrac{1}{x} = 4$ gives $16 - 2 = 14$ for the square, and $x + \\dfrac{1}{x} = 6$ gives $36 - 2 = 34$.\n\n### Cubes from a sum and a product\nGiven $a+b$ and $ab$, never hunt for $a$ and $b$. Use $a^2 + b^2 = (a+b)^2 - 2ab$ and $a^3 + b^3 = (a+b)^3 - 3ab(a+b)$. With $a+b = 7$ and $ab = 12$: $a^3 + b^3 = 343 - 252 = 91$, which is $3^3 + 4^3$.\n\n### Zero-sum cubes\nIf $a + b + c = 0$, then $a^3 + b^3 + c^3 = 3abc$. Test the bases before cubing anything: $17 - 10 - 7 = 0$, so $17^3 + (-10)^3 + (-7)^3 = 3 \\times 17 \\times 10 \\times 7 = 3570$. Two negative bases multiply to a positive here, so the sign needs one careful look.\n\n> **Watch:** Add the three bases first. If they do not sum to zero, this shortcut does not apply and the numbers must be cubed honestly.\n\n### A safe attacking order\n1. Read the denominator of any fraction; it names the identity.\n2. Match the middle sign to choose the plus or minus version.\n3. Keep $a$ and $b$ symbolic until the expression is factored.\n4. Substitute the numbers in the last line only.\n",
    "patterns": [
     {
      "id": "simp-id-p1",
      "name": "Identity fraction: cubes over the quadratic factor",
      "frequency": "very common",
-     "howToSpot": "A fraction with a³ + b³ (or a³ − b³) on top — often decimals — and a² − ab + b² (or a² + ab + b²) below.",
-     "formula": "\\frac{a^3 \\pm b^3}{a^2 \\mp ab + b^2} = a \\pm b",
-     "logic": "1. Check the sign in the denominator: minus below pairs with plus above; plus below pairs with minus above.\n2. Cancel the common quadratic factor.\n3. The answer is just a + b (or a − b).\n\nWhy: $a^3 \\pm b^3 = (a \\pm b)(a^2 \\mp ab + b^2)$ — the denominator is literally the second factor.",
+     "howToSpot": "A fraction with cubed decimals on top and three terms with a middle product below.",
+     "formula": "\\dfrac{a^3 \\pm b^3}{a^2 \\mp ab + b^2} = a \\pm b",
+     "steps": [
+      "Read the sign of the middle term in the denominator.",
+      "Pick the matching identity: minus below pairs with plus above.",
+      "Cancel the quadratic factor.",
+      "Add or subtract the two bases; that is the answer."
+     ],
+     "why": "The denominator is literally the second factor of the numerator's factorisation.",
      "example": {
-      "q": "$\\frac{(15.2)^3 - (5.2)^3}{(15.2)^2 + 15.2 \\times 5.2 + (5.2)^2}$ = ?",
-      "solution": "Denominator is $a^2+ab+b^2$ → value $= 15.2 - 5.2 = 10$."
+      "q": "Find the value of $\\dfrac{9.3^3 - 3.3^3}{9.3^2 + 9.3 \\times 3.3 + 3.3^2}$.",
+      "steps": [
+       "Bottom is the plus version, so the fraction equals $a - b$.",
+       "$a - b = 9.3 - 3.3$.",
+       "$= 6$."
+      ],
+      "answer": "6"
      }
     },
     {
      "id": "simp-id-p2",
-     "name": "Squares near each other; (x+y)² and (x−y)² combos",
+     "name": "Squares near each other; round-about products",
      "frequency": "very common",
-     "howToSpot": "$105^2 - 95^2$-type questions, or the value of $(x+y)^2 + (x-y)^2$ for given x, y.",
-     "formula": "a^2 - b^2 = (a-b)(a+b),\\quad (x+y)^2 + (x-y)^2 = 2(x^2+y^2)",
-     "logic": "1. Difference of two squares → factor it, never square the big numbers.\n2. $(x+y)^2 + (x-y)^2 = 2x^2 + 2y^2$; their difference is $4xy$.\n\nWhy: the cross terms ($\\pm 2xy$) cancel or double depending on the combination.",
+     "howToSpot": "Two squares of close numbers, or a product of two numbers placed symmetrically around a round value.",
+     "formula": "a^2 - b^2 = (a-b)(a+b)",
+     "steps": [
+      "Find the centre: the average of the two numbers.",
+      "Find the gap: the distance from the centre to either number.",
+      "Multiply the sum by the difference, or use centre squared minus gap squared."
+     ],
+     "why": "Factoring avoids squaring three-digit numbers by hand.",
      "example": {
-      "q": "Find $105^2 - 95^2$.",
-      "solution": "$(105-95)(105+95) = 10 \\times 200 = 2000$."
+      "q": "Find $115^2 - 85^2$.",
+      "steps": [
+       "$115 - 85 = 30$ and $115 + 85 = 200$.",
+       "$30 \\times 200 = 6000$."
+      ],
+      "answer": "6000"
      }
     },
     {
      "id": "simp-id-p3",
-     "name": "x + 1/x family (squares, cubes, fourth powers)",
+     "name": "The x plus one over x ladder",
      "frequency": "very common",
-     "howToSpot": "'If $x + \\frac{1}{x} = 4$, find $x^2 + \\frac{1}{x^2}$' — the minus version is equally common.",
-     "formula": "x^2+\\tfrac{1}{x^2} = k^2 \\mp 2,\\quad x^3\\pm\\tfrac{1}{x^3} = k^3 \\mp 3k",
-     "logic": "1. Square the given sum — the cross term is always 2.\n2. Subtract 2 (plus version) or add 2 (minus version).\n3. For cubes use $k^3 \\mp 3k$; for fourth powers, square the squared result and subtract 2.\n\nWhy: $\\left(x \\pm \\frac1x\\right)^2 = x^2 + \\frac{1}{x^2} \\pm 2$.",
+     "howToSpot": "A given value of $x + \\frac{1}{x}$ or $x - \\frac{1}{x}$, and a target square, cube or fourth power.",
+     "formula": "x + \\tfrac{1}{x} = k \\Rightarrow x^2 + \\tfrac{1}{x^2} = k^2 - 2",
+     "steps": [
+      "Square the given relation; the cross term is $\\pm 2$.",
+      "Plus version subtracts 2, minus version adds 2.",
+      "For cubes use $k^3 \\mp 3k$; for fourth powers, square the square result and subtract 2."
+     ],
+     "why": "Squaring $x \\pm \\frac{1}{x}$ produces the cross term $2$ or $-2$ beside the wanted square-sum.",
      "example": {
-      "q": "If $x - \\frac{1}{x} = 5$, find $x^2 + \\frac{1}{x^2}$.",
-      "solution": "$25 + 2 = 27$."
+      "q": "If $x + \\dfrac{1}{x} = 6$, find $x^2 + \\dfrac{1}{x^2}$.",
+      "steps": [
+       "Square: $6^2 = 36$.",
+       "Subtract the cross term: $36 - 2 = 34$."
+      ],
+      "answer": "34"
      }
     },
     {
      "id": "simp-id-p4",
-     "name": "Given a + b and ab: find a² + b², a³ + b³",
+     "name": "Given a + b and ab",
      "frequency": "very common",
-     "howToSpot": "The pair sum and product are given; the target is a square-sum, cube-sum or similar symmetric value.",
-     "formula": "a^2+b^2 = (a+b)^2-2ab,\\quad a^3+b^3 = (a+b)^3-3ab(a+b)",
-     "logic": "1. Write the target in terms of (a+b) and ab.\n2. Substitute the two given numbers.\n3. If asked for a and b themselves, spot small integer pairs.\n\nWhy: every symmetric expression in a and b is a function of (a+b) and ab.",
+     "howToSpot": "The pair sum and product are given; the target is a square-sum, cube-sum or a similar symmetric value.",
+     "formula": "a^3 + b^3 = (a+b)^3 - 3ab(a+b)",
+     "steps": [
+      "Write the target using only $(a+b)$ and $ab$.",
+      "Substitute the two given numbers.",
+      "If the numbers themselves are wanted, spot the small integer pair."
+     ],
+     "why": "Every symmetric expression in two letters is a function of their sum and product.",
      "example": {
-      "q": "If $a+b = 7$, $ab = 12$, find $a^3+b^3$.",
-      "solution": "$343 - 3 \\times 12 \\times 7 = 91$ (the numbers are 3 and 4)."
+      "q": "If $a + b = 8$ and $ab = 15$, find $a^3 + b^3$.",
+      "steps": [
+       "$(a+b)^3 = 512$.",
+       "$3ab(a+b) = 3 \\times 15 \\times 8 = 360$.",
+       "$512 - 360 = 152$, which is $3^3 + 5^3$."
+      ],
+      "answer": "152"
      }
     },
     {
      "id": "simp-id-p5",
-     "name": "Zero-sum cubes: a³ + b³ + c³ = 3abc",
+     "name": "Zero-sum cubes",
      "frequency": "common",
-     "howToSpot": "Three cubes (fractions or signed numbers) whose bases add up to 0.",
+     "howToSpot": "Three cubes, often with negative or fractional bases, whose bases add to zero.",
      "formula": "a+b+c = 0 \\Rightarrow a^3+b^3+c^3 = 3abc",
-     "logic": "1. Add the three bases — confirm the sum is 0.\n2. Multiply the bases together, then by 3.\n3. Mind the signs: two negatives multiply to a plus.\n\nWhy: $a^3+b^3+c^3 - 3abc = (a+b+c)(\\dots)$, so a zero sum forces the cube-sum to equal $3abc$.",
+     "steps": [
+      "Add the three bases and confirm the sum is zero.",
+      "Multiply the three bases together.",
+      "Triple the product, watching the signs."
+     ],
+     "why": "The identity for $a^3+b^3+c^3 - 3abc$ carries the factor $(a+b+c)$, which is zero here.",
      "example": {
-      "q": "Find $25^3 + (-17)^3 + (-8)^3$.",
-      "solution": "Bases: $25-17-8 = 0$ → $3 \\times 25 \\times 17 \\times 8 = 10200$."
+      "q": "Find $(-13)^3 + 9^3 + 4^3$.",
+      "steps": [
+       "$-13 + 9 + 4 = 0$, so the rule applies.",
+       "$(-13) \\times 9 \\times 4 = -468$.",
+       "$3 \\times (-468) = -1404$."
+      ],
+      "answer": "-1404"
      }
     }
+   ],
+   "revision": [
+    "$\\dfrac{a^3 \\pm b^3}{a^2 \\mp ab + b^2} = a \\pm b$.",
+    "$a^2 - b^2 = (a+b)(a-b)$ for near squares and round-about products.",
+    "$x + \\dfrac{1}{x} = k$: square gives $k^2 - 2$, cube gives $k^3 - 3k$.",
+    "$a^3 + b^3 = (a+b)^3 - 3ab(a+b)$ from a sum and a product.",
+    "$a + b + c = 0$ gives $a^3 + b^3 + c^3 = 3abc$.",
+    "Substitute numbers only in the last line."
    ]
   },
   {
    "id": "simp-surds-indices",
    "title": "Surds & indices",
-   "concept": "**Laws of indices** let you rewrite everything with a common base (usually a prime). Once bases match, equate exponents.\n\n**Surds** are irrational roots like $\\sqrt{3}$. Rationalise by multiplying with the conjugate: $\\frac{1}{\\sqrt{a} + \\sqrt{b}} = \\frac{\\sqrt{a} - \\sqrt{b}}{a - b}$.\n\n**Square root of a surd:** $\\sqrt{a + 2\\sqrt{b}} = \\sqrt{x} + \\sqrt{y}$ where $x + y = a$ and $xy = b$. E.g. $\\sqrt{7 + 4\\sqrt{3}} = \\sqrt{7 + 2\\sqrt{12}} = 2 + \\sqrt{3}$.\n\n**Comparing surds:** raise all to the LCM of the root orders. E.g. compare $\\sqrt[3]{3}$ and $\\sqrt{2}$ by raising to 6th power: 9 vs 8.",
+   "concept": "Indices rewrite every number as a power of one prime, then the exponents do the work. Surds rationalise through the conjugate, split via $x + y = a$ and $xy = b$, and compare after raising to a common root order.",
    "formulas": [
     {
-     "name": "Product / quotient",
-     "tex": "a^m \\cdot a^n = a^{m+n},\\quad \\frac{a^m}{a^n} = a^{m-n}"
+     "name": "Same base",
+     "tex": "a^m \\cdot a^n = a^{m+n},\\quad \\frac{a^m}{a^n} = a^{m-n}",
+     "note": ""
     },
     {
      "name": "Power of power",
-     "tex": "(a^m)^n = a^{mn},\\quad (ab)^n = a^n b^n"
+     "tex": "(a^m)^n = a^{mn},\\quad (ab)^n = a^n b^n",
+     "note": ""
     },
     {
-     "name": "Zero & negative index",
-     "tex": "a^0 = 1,\\quad a^{-n} = \\frac{1}{a^n}"
+     "name": "Zero and negative index",
+     "tex": "a^0 = 1,\\quad a^{-n} = \\frac{1}{a^n}",
+     "note": ""
     },
     {
      "name": "Fractional index",
-     "tex": "a^{p/q} = \\sqrt[q]{a^p}"
+     "tex": "a^{p/q} = \\sqrt[q]{a^p}",
+     "note": ""
     },
     {
      "name": "Rationalisation",
-     "tex": "\\frac{1}{\\sqrt{a} \\pm \\sqrt{b}} = \\frac{\\sqrt{a} \\mp \\sqrt{b}}{a - b}"
+     "tex": "\\frac{1}{\\sqrt{a} \\pm \\sqrt{b}} = \\frac{\\sqrt{a} \\mp \\sqrt{b}}{a - b}",
+     "note": ""
     },
     {
      "name": "Root of a surd",
-     "tex": "\\sqrt{a \\pm 2\\sqrt{b}} = \\sqrt{x} \\pm \\sqrt{y},\\ x + y = a,\\ xy = b,\\ x > y"
+     "tex": "\\sqrt{a \\pm 2\\sqrt{b}} = \\sqrt{x} \\pm \\sqrt{y},\\ x + y = a,\\ xy = b",
+     "note": ""
     },
     {
      "name": "Reciprocal of a unit surd",
-     "tex": "x = a + \\sqrt{b},\\ a^2 - b = 1 \\Rightarrow \\frac{1}{x} = a - \\sqrt{b}"
+     "tex": "x = a + \\sqrt{b},\\ a^2 - b = 1 \\Rightarrow \\tfrac{1}{x} = a - \\sqrt{b}",
+     "note": ""
     }
    ],
    "tricks": [
     {
      "title": "Common base, then equate powers",
-     "body": "Write both sides as powers of the same prime.",
+     "body": "Write both sides as powers of the same prime. The equation becomes a linear equation in the exponent.",
      "example": {
-      "q": "If $5^{2x - 1} = 125^{x - 3}$, find $x$.",
-      "solution": "$125 = 5^3$ ⇒ $2x - 1 = 3x - 9$ ⇒ $x = 8$."
+      "q": "If 3^(x+2) = 27^(x-2), find x.",
+      "steps": [
+       "$27 = 3^3$, so $3^{x+2} = 3^{3x-6}$.",
+       "$x + 2 = 3x - 6$.",
+       "$8 = 2x$, so $x = 4$."
+      ],
+      "answer": "4"
      }
     },
     {
-     "title": "Split a + 2√b",
-     "body": "Find two numbers with sum a and product b; the root is √(larger) ± √(smaller).",
+     "title": "Split a + 2 root b",
+     "body": "Force the middle term into the 2 root b shape, then find two numbers with the given sum and product.",
      "example": {
-      "q": "Simplify $\\sqrt{8 + 2\\sqrt{15}}$.",
-      "solution": "Sum 8, product 15 ⇒ 5 and 3 ⇒ $\\sqrt{5} + \\sqrt{3}$."
+      "q": "Simplify $\\sqrt{7 + 4\\sqrt{3}}$.",
+      "steps": [
+       "$4\\sqrt{3} = 2\\sqrt{12}$, so $x + y = 7$, $xy = 12$.",
+       "The pair is $4$ and $3$.",
+       "$\\sqrt{7 + 4\\sqrt{3}} = \\sqrt{4} + \\sqrt{3} = 2 + \\sqrt{3}$."
+      ],
+      "answer": "2 + sqrt(3)"
      }
     },
     {
-     "title": "LCM of root orders to compare",
-     "body": "Raise every surd to the LCM of the orders so all become integers.",
+     "title": "Reciprocal by the a squared minus b check",
+     "body": "For x = a + sqrt(b), test a squared minus b. If it equals 1, the reciprocal is a minus sqrt(b) with no work.",
      "example": {
-      "q": "Which is larger, $\\sqrt[3]{3}$ or $\\sqrt{2}$?",
-      "solution": "Raise to 6th power: $(\\sqrt[3]{3})^6 = 9$, $(\\sqrt{2})^6 = 8$ ⇒ $\\sqrt[3]{3}$ is larger."
+      "q": "If x = 5 + 2*sqrt(6), find 1/x.",
+      "steps": [
+       "$a = 5$, $b = 24$: $25 - 24 = 1$.",
+       "So $\\dfrac{1}{x} = 5 - 2\\sqrt{6}$.",
+       "Check: the product is $25 - 24 = 1$."
+      ],
+      "answer": "5 - 2*sqrt(6)"
      }
     }
    ],
    "mistakes": [
-    "Writing $\\sqrt{a + b} = \\sqrt{a} + \\sqrt{b}$ — false.",
-    "Treating $a^{-n}$ as $-a^n$.",
-    "Comparing surds of different orders by their radicands directly.",
-    "Adding exponents when bases differ ($2^3 \\times 3^2 \\neq 6^5$)."
+    {
+     "wrong": "Writing the square root of a sum as the sum of the square roots.",
+     "right": "Roots do not distribute over addition; only the a + 2 root b split opens a nested root."
+    },
+    {
+     "wrong": "Reading a to the power minus n as minus a to the n.",
+     "right": "A negative exponent flips the base: a to the power minus n is one over a to the n."
+    },
+    {
+     "wrong": "Adding exponents when the bases differ.",
+     "right": "Convert to one prime base first; only same-base powers add exponents."
+    },
+    {
+     "wrong": "Comparing surds of different orders by their radicands.",
+     "right": "Raise all surds to the LCM of the root orders and compare the integers."
+    },
+    {
+     "wrong": "Splitting a + 2 root b without rewriting the middle term.",
+     "right": "Force the middle term into the 2 root b shape so b is the product, not the visible number."
+    }
    ],
-   "notes": "### What are surds and indices?\n**Indices** are powers: $2^5$ means 2 multiplied 5 times. **Surds** are roots that stay irrational, like $\\sqrt{3}$ or $\\sqrt[3]{5}$. Simplification questions ask you to bend both into easy shapes.\n\n### Laws of indices\n- $a^m \\times a^n = a^{m+n}$, $\\frac{a^m}{a^n} = a^{m-n}$\n- $(a^m)^n = a^{mn}$\n- $a^0 = 1$, $a^{-n} = \\frac{1}{a^n}$\n- $a^{1/n} = \\sqrt[n]{a}$, $a^{m/n} = (\\sqrt[n]{a})^m$\n\n**Equation solving:** make every base the same, then set the powers equal.\nExample: $2^{x+3} \\times 4^{x-1} = 128$ → $2^{x+3+2x-2} = 2^7$ → $3x + 1 = 7$ → $x = 2$.\nFractional-index values: $(32)^{2/5} = (2^5)^{2/5} = 2^2 = 4$; $(81)^{3/4} = 27$.\n\n### Rationalising the denominator\nMultiply top and bottom by the **conjugate** (same terms, opposite middle sign):\n$$\\frac{1}{\\sqrt{a}+\\sqrt{b}} = \\frac{\\sqrt{a}-\\sqrt{b}}{a-b}$$\nSo $\\frac{1}{\\sqrt7 - \\sqrt6} = \\sqrt7 + \\sqrt6$, and $\\frac{1}{\\sqrt9+\\sqrt8} = \\sqrt9 - \\sqrt8$.\nA **telescoping chain** collapses to its ends. The plus-form chain:\n$$\\frac{1}{\\sqrt9+\\sqrt8} + \\frac{1}{\\sqrt8+\\sqrt7} + \\dots + \\frac{1}{\\sqrt2+1} = (\\sqrt9-\\sqrt8) + (\\sqrt8-\\sqrt7) + \\dots + (\\sqrt2-1) = \\sqrt9 - 1 = 2.$$\nWatch the form: a chain of $\\frac{1}{\\sqrt{k}+\\sqrt{k-1}}$ terms turns into $\\sqrt{k}-\\sqrt{k-1}$ and only the two ends survive.\n\n### Roots of surds: the a + 2√b split\nTo find $\\sqrt{a + 2\\sqrt{b}}$, find two numbers $x, y$ with $x + y = a$ and $xy = b$. Then the answer is $\\sqrt{x} + \\sqrt{y}$ (or $\\sqrt x - \\sqrt y$ when the middle sign is minus).\nExample: $\\sqrt{11 + 6\\sqrt2} = \\sqrt{11 + 2\\sqrt{18}}$; $x + y = 11$, $xy = 18$ → $x, y = 9, 2$ → answer $\\sqrt9 + \\sqrt2 = 3 + \\sqrt2$.\n\n### Comparing surds\nPut every surd to the power of the **LCM of the root orders** and compare the results.\n$\\sqrt3, \\sqrt[4]{7}, \\sqrt[3]{5}$: raise to the 12th power → $3^6 = 729$, $7^3 = 343$, $5^4 = 625$. So $\\sqrt3$ is the largest.\n\n### Surd plus its reciprocal\nIf $x = a + \\sqrt{b}$, then $\\frac{1}{x}$ is usually $a - \\sqrt{b}$-type. Example: $x = 5 + 2\\sqrt6$ → $\\frac{1}{x} = 5 - 2\\sqrt6$ (check: product = $25 - 24 = 1$). So $x + \\frac{1}{x} = 10$.\nThe condition is $a^2 - b = 1$ (or a perfect square): only then does the product land on a whole number. Always do this one-line check before writing the reciprocal.\n\n### Typical exam traps\n- $(a^m)^n = a^{mn}$, **not** $a^{m+n}$: $(2^3)^2 = 64$, not $2^5$.\n- Negative power flips the base: $2^{-3} = \\frac{1}{8}$ — an option pair (8 vs $\\frac{1}{8}$) usually tests exactly this.\n- $\\sqrt{a+b}$ is **not** $\\sqrt a + \\sqrt b$: $\\sqrt{9+16} = 5$, not 7.\n- In $\\sqrt{a + 2\\sqrt b}$, forget to write the middle term as $2\\sqrt b$ and the split fails: $6\\sqrt2 = 2\\sqrt{18}$, so $b = 18$, not 2.\n\n### Quick revision\n- Same base → equate exponents; fractional power = root first, then power.\n- Conjugate rationalises; telescoping chains collapse to first minus last.\n- $\\sqrt{a+2\\sqrt b}$: split $a$ into two factors of $b$.\n- Compare surds via LCM-of-orders power.\n- $x = a+2\\sqrt b$-type → reciprocal is $a-2\\sqrt b$.\n",
+   "notes": "A power question always has the same escape route: write every number as a power of one prime. $1024$ is $2^{10}$ and also $4^5$; $81$ is $3^4$ and also $27^{4/3}$, because $27^4 = 81^3$. Once the bases match, only the exponents remain.\n\n### The laws that move exponents\n| Law | Statement |\n|---|---|\n| same base, product | $a^m \\times a^n = a^{m+n}$ |\n| same base, quotient | $a^m \\div a^n = a^{m-n}$ |\n| power of a power | $(a^m)^n = a^{mn}$ |\n| zero and negative | $a^0 = 1$, $a^{-n} = \\dfrac{1}{a^n}$ |\n| fractional index | $a^{p/q} = \\sqrt[q]{a^p}$ |\n\n> **Rule:** Make every base the same prime first. Then add, subtract and multiply exponents; never touch the numbers again.\n\n### Solving a power equation\n$4^{x+1} \\times 16^{2-x} = 64$ becomes $2^{2x+2} \\times 2^{8-4x} = 2^6$, so $2x + 2 + 8 - 4x = 6$, giving $x = 2$. Fractional indices evaluate in the same spirit: $32^{2/5} = (2^5)^{2/5} = 2^2 = 4$, and $81^{3/4} = 27$.\n\n### Rationalising with the conjugate\nMultiply top and bottom by the conjugate, the same terms with the flipped middle sign:\n$$\\dfrac{1}{\\sqrt{a} \\pm \\sqrt{b}} = \\dfrac{\\sqrt{a} \\mp \\sqrt{b}}{a - b}$$\nThe product $(\\sqrt{a} + \\sqrt{b})(\\sqrt{a} - \\sqrt{b}) = a - b$ clears every root from the bottom.\n\n### Telescoping chains\nA sum like $\\dfrac{1}{\\sqrt{9}+\\sqrt{8}} + \\dfrac{1}{\\sqrt{8}+\\sqrt{7}} + \\dfrac{1}{\\sqrt{7}+\\sqrt{6}} + \\dfrac{1}{\\sqrt{6}+\\sqrt{5}}$ rationalises term by term into $\\sqrt{9}-\\sqrt{8} + \\sqrt{8}-\\sqrt{7} + \\dots$, and the middle roots kill each other. Only the ends survive: $\\sqrt{9} - \\sqrt{5} = 3 - \\sqrt{5}$.\n\n> **Tip:** In a chain of $\\dfrac{1}{\\sqrt{k}+\\sqrt{k-1}}$ terms, write the answer as first root minus last root and skip the middle entirely.\n\n### The a plus two root b split\nTo open $\\sqrt{a + 2\\sqrt{b}}$, hunt two numbers with sum $a$ and product $b$; the root is $\\sqrt{x} + \\sqrt{y}$. For $\\sqrt{7 + 4\\sqrt{3}}$, write $4\\sqrt{3}$ as $2\\sqrt{12}$, so $x + y = 7$ and $xy = 12$: the pair is $4$ and $3$, giving $2 + \\sqrt{3}$.\n\n> **Watch:** $\\sqrt{a+b}$ is not $\\sqrt{a} + \\sqrt{b}$. The split only works when the middle term is forced into the $2\\sqrt{b}$ shape first.\n\n### Comparing surds\nRaise every surd to the LCM of the root orders, then compare plain integers. For $\\sqrt{3}$, $\\sqrt[3]{7}$, $\\sqrt[4]{5}$, the orders 2, 3, 4 give LCM 12. Twelfth powers: $3^6 = 729$, $7^3 = 343$, $5^4 = 625$. So $\\sqrt{3}$ is the largest.\n\n### A surd and its reciprocal\nIf $x = a + \\sqrt{b}$ and $a^2 - b = 1$, then $\\dfrac{1}{x} = a - \\sqrt{b}$. Check first: for $5 + 2\\sqrt{6}$, $25 - 24 = 1$, so the reciprocal is $5 - 2\\sqrt{6}$ and $x + \\dfrac{1}{x} = 10$. If $a^2 - b$ is not a perfect square, do the long rationalisation instead.\n",
    "patterns": [
     {
      "id": "simp-si-p1",
-     "name": "Indices: evaluate powers or solve a power equation",
+     "name": "Evaluate fractional and negative powers",
      "frequency": "very common",
-     "howToSpot": "Fractional/negative powers to evaluate like $(32)^{2/5}$, or an equation like $2^{x+3} \\times 4^{x-1} = 128$.",
-     "formula": "a^m \\times a^n = a^{m+n},\\quad (a^m)^n = a^{mn},\\quad a^{-n} = \\tfrac{1}{a^n}",
-     "logic": "1. Rewrite every number as a power of one prime ($32 = 2^5$, $81 = 3^4$).\n2. Add the exponents on the left; write the right side as a power too.\n3. Equate exponents and solve.\n\nWhy: equal bases make the equation an ordinary linear equation in the exponent.",
+     "howToSpot": "Numbers raised to fractions or negatives, like $32^{2/5}$ or $81^{3/4}$, often mixed in one expression.",
+     "formula": "a^{p/q} = \\sqrt[q]{a^p}",
+     "steps": [
+      "Factor each base into primes.",
+      "Apply the fractional index: root first, then power.",
+      "Combine the results with ordinary arithmetic."
+     ],
+     "why": "A fractional index is a root in disguise, and prime bases make the root visible.",
      "example": {
-      "q": "Find $(32)^{2/5} \\times (81)^{3/4} \\div (27)^{2/3}$.",
-      "solution": "$= 2^2 \\times 3^3 \\div 3^2 = 4 \\times 3 = 12$."
+      "q": "Find $(32)^{2/5} + (81)^{3/4}$.",
+      "steps": [
+       "$32 = 2^5$, so $32^{2/5} = 2^2 = 4$.",
+       "$81 = 3^4$, so $81^{3/4} = 3^3 = 27$.",
+       "$4 + 27 = 31$."
+      ],
+      "answer": "31"
      }
     },
     {
      "id": "simp-si-p2",
      "name": "Rationalisation and telescoping surd fractions",
      "frequency": "very common",
-     "howToSpot": "Fractions like $\\frac{1}{\\sqrt7-\\sqrt6}$, sums of many such fractions, or a surd plus its reciprocal.",
-     "formula": "\\frac{1}{\\sqrt{a}\\pm\\sqrt{b}} = \\frac{\\sqrt{a}\\mp\\sqrt{b}}{a-b}",
-     "logic": "1. Multiply top and bottom by the conjugate.\n2. For a long sum, rationalise each term — the middle roots cancel (telescoping) and only the ends survive.\n3. If $x = a + \\sqrt b$ with $a^2 - b = 1$, then $\\frac{1}{x} = a - \\sqrt b$.\n\nWhy: $(\\sqrt a + \\sqrt b)(\\sqrt a - \\sqrt b) = a - b$ removes every root from the denominator.",
+     "howToSpot": "Fractions with roots in the denominator, or a long sum of such fractions with roots stepping down by one.",
+     "formula": "\\dfrac{1}{\\sqrt{a}\\pm\\sqrt{b}} = \\dfrac{\\sqrt{a}\\mp\\sqrt{b}}{a-b}",
+     "steps": [
+      "Multiply top and bottom by the conjugate.",
+      "In a long sum, rationalise every term.",
+      "Watch the middle roots cancel in pairs.",
+      "Write the answer as first root minus last root."
+     ],
+     "why": "Each term becomes a difference of roots that cancels with its neighbour, leaving only the two ends.",
      "example": {
-      "q": "Find $\\frac{1}{\\sqrt{9}+\\sqrt{8}} + \\frac{1}{\\sqrt{8}+\\sqrt{7}} + \\dots + \\frac{1}{\\sqrt{2}+1}$.",
-      "solution": "Each term $= \\sqrt k - \\sqrt{k-1}$; the chain collapses to $\\sqrt9 - 1 = 2$."
+      "q": "Find $\\dfrac{1}{\\sqrt{9}+\\sqrt{8}} + \\dfrac{1}{\\sqrt{8}+\\sqrt{7}} + \\dfrac{1}{\\sqrt{7}+\\sqrt{6}} + \\dfrac{1}{\\sqrt{6}+\\sqrt{5}}$.",
+      "steps": [
+       "Each term equals $\\sqrt{k} - \\sqrt{k-1}$.",
+       "The middle roots cancel pairwise.",
+       "Left with $\\sqrt{9} - \\sqrt{5} = 3 - \\sqrt{5}$."
+      ],
+      "answer": "3 - sqrt(5)"
      }
     },
     {
      "id": "simp-si-p3",
-     "name": "Root of a surd: $\\sqrt{a + 2\\sqrt{b}}$",
+     "name": "Root of a surd: the a plus two root b split",
      "frequency": "common",
-     "howToSpot": "Expressions like $\\sqrt{11+6\\sqrt2}$, $\\sqrt{9+4\\sqrt5}$, or a plus/minus pair of such roots.",
-     "formula": "\\sqrt{a + 2\\sqrt{b}} = \\sqrt{x} + \\sqrt{y} \\text{ where } x+y = a,\\ xy = b",
-     "logic": "1. Write the middle term as $2\\sqrt b$ ($6\\sqrt2 = 2\\sqrt{18}$).\n2. Find two numbers with sum $a$ and product $b$.\n3. Answer $= \\sqrt x + \\sqrt y$ (or their difference for the minus form).\n\nWhy: $(\\sqrt x + \\sqrt y)^2 = x + y + 2\\sqrt{xy}$ matches the given form exactly.",
+     "howToSpot": "A square root wrapped around a number plus a root, like $\\sqrt{9 + 4\\sqrt{5}}$.",
+     "formula": "\\sqrt{a + 2\\sqrt{b}} = \\sqrt{x} + \\sqrt{y},\\ x+y = a,\\ xy = b",
+     "steps": [
+      "Rewrite the middle term as $2\\sqrt{b}$ if needed.",
+      "Find two numbers with sum $a$ and product $b$.",
+      "Answer is $\\sqrt{x} + \\sqrt{y}$, or their difference when the middle sign is minus."
+     ],
+     "why": "Squaring $\\sqrt{x} + \\sqrt{y}$ returns exactly $x + y + 2\\sqrt{xy}$.",
      "example": {
-      "q": "Find $\\sqrt{11 + 6\\sqrt{2}}$.",
-      "solution": "$x+y = 11$, $xy = 18$ → 9 and 2 → $3 + \\sqrt2$."
+      "q": "Simplify $\\sqrt{9 + 4\\sqrt{5}}$.",
+      "steps": [
+       "$4\\sqrt{5} = 2\\sqrt{20}$, so sum $9$, product $20$.",
+       "The pair is $5$ and $4$.",
+       "$\\sqrt{9 + 4\\sqrt{5}} = \\sqrt{5} + \\sqrt{4} = \\sqrt{5} + 2$."
+      ],
+      "answer": "sqrt(5) + 2"
      }
     },
     {
      "id": "simp-si-p4",
-     "name": "Comparing surds; surd with its reciprocal",
+     "name": "Comparing surds of different orders",
      "frequency": "common",
-     "howToSpot": "'Which is largest: √3, ⁴√7, ³√5?' or 'if x = 5 + 2√6, find x + 1/x'.",
-     "formula": "\\sqrt[n]{a} > \\sqrt[m]{b} \\iff a^{m} > b^{n} \\text{ (compare at the LCM of orders)}",
-     "logic": "1. Raise every surd to the LCM of the root orders; compare the results.\n2. For $x = a + 2\\sqrt b$: check $a^2 - b$; if it is 1 (or a perfect square), $1/x$ is the conjugate.\n3. Add or subtract as asked — the roots cancel.\n\nWhy: powers remove the roots; conjugates multiply to a whole number.",
+     "howToSpot": "A list of roots with different orders, asking which is largest or smallest.",
+     "formula": "\\sqrt[n]{a} > \\sqrt[m]{b} \\iff a^{\\text{lcm}/n} > b^{\\text{lcm}/m}",
+     "steps": [
+      "Take the LCM of all the root orders.",
+      "Raise each surd to that LCM; roots disappear.",
+      "Compare the integers and read off the answer."
+     ],
+     "why": "A common power turns every surd into an integer, and integers compare at a glance.",
      "example": {
-      "q": "Which is greater: $\\sqrt[3]{4}$ or $\\sqrt[4]{6}$?",
-      "solution": "12th powers: $4^4 = 256$ vs $6^3 = 216$ → $\\sqrt[3]{4}$."
+      "q": "Which is the largest: $\\sqrt{3}$, $\\sqrt[3]{7}$ or $\\sqrt[4]{5}$?",
+      "steps": [
+       "Orders 2, 3, 4 give LCM 12.",
+       "Twelfth powers: $3^6 = 729$, $7^3 = 343$, $5^4 = 625$.",
+       "$729$ is largest, so $\\sqrt{3}$ wins."
+      ],
+      "answer": "sqrt(3)"
+     }
+    },
+    {
+     "id": "simp-si-p5",
+     "name": "Solve an equation in powers",
+     "frequency": "common",
+     "howToSpot": "An unknown sits in the exponent, and the bases are powers of one number.",
+     "formula": "a^{f(x)} = a^{g(x)} \\Rightarrow f(x) = g(x)",
+     "steps": [
+      "Write every base as a power of the smallest prime present.",
+      "Collect the exponents of the left side into one.",
+      "Write the right side in the same base.",
+      "Equate exponents and solve the linear equation."
+     ],
+     "why": "Equal bases make the exponent equation the only content left.",
+     "example": {
+      "q": "If $4^{x+1} \\times 16^{2-x} = 64$, find $x$.",
+      "steps": [
+       "$4 = 2^2$, $16 = 2^4$, $64 = 2^6$.",
+       "$2^{2x+2} \\times 2^{8-4x} = 2^6$.",
+       "$2x + 2 + 8 - 4x = 6$, so $-2x + 10 = 6$.",
+       "$x = 2$."
+      ],
+      "answer": "2"
      }
     }
+   ],
+   "revision": [
+    "One prime base; then exponents add, subtract or multiply.",
+    "Power of a power multiplies the exponents.",
+    "Conjugate rationalisation: flip the middle sign, divide by $a - b$.",
+    "Telescoping chain: answer is first root minus last root.",
+    "$\\sqrt{a + 2\\sqrt{b}} = \\sqrt{x} + \\sqrt{y}$ with $x + y = a$, $xy = b$.",
+    "Compare surds at the LCM of the root orders.",
+    "$a^2 - b = 1$ makes the reciprocal $a - \\sqrt{b}$."
    ]
   },
   {
    "id": "simp-roots",
    "title": "Square roots & cube roots",
-   "concept": "**Perfect squares** never end in 2, 3, 7 or 8, and end in an even number of zeros. **Unit digit map for squares:** a root ending in 1 or 9 → square ends in 1; 2/8 → 4; 3/7 → 9; 4/6 → 6; 5 → 5.\n\n**Cube unit digits** are one-to-one: 1↔1, 4↔4, 5↔5, 6↔6, 9↔9, 0↔0, and the swaps 2↔8, 3↔7.\n\n**Decimals:** the square root of a decimal with 2n decimal places has n places ($\\sqrt{0.0169} = 0.13$); a cube root of 3n places has n places.\n\n**Infinite radicals:** if $n = k(k+1)$, then $\\sqrt{n + \\sqrt{n + \\cdots}} = k + 1$ and $\\sqrt{n - \\sqrt{n - \\cdots}} = k$. Also $\\sqrt{x\\sqrt{x\\sqrt{x \\cdots}}} = x$.",
+   "concept": "A square root question is answered by digit pairs and the unit-digit map; a cube root by digit triples and the swap map. Least-add and least-subtract questions sit between two neighbouring squares, and radicals are opened from the inside out.",
    "formulas": [
     {
      "name": "Product rule",
-     "tex": "\\sqrt{ab} = \\sqrt{a}\\,\\sqrt{b},\\quad \\sqrt[3]{ab} = \\sqrt[3]{a}\\,\\sqrt[3]{b}"
+     "tex": "\\sqrt{ab} = \\sqrt{a}\\,\\sqrt{b},\\quad \\sqrt[3]{ab} = \\sqrt[3]{a}\\,\\sqrt[3]{b}",
+     "note": ""
     },
     {
-     "name": "Infinite radical (plus)",
-     "tex": "\\sqrt{n + \\sqrt{n + \\sqrt{n + \\cdots}}} = \\frac{1 + \\sqrt{1 + 4n}}{2}"
+     "name": "Infinite radical, plus",
+     "tex": "\\sqrt{n + \\sqrt{n + \\cdots}} = \\dfrac{1 + \\sqrt{1 + 4n}}{2}",
+     "note": ""
     },
     {
-     "name": "Infinite radical (minus)",
-     "tex": "\\sqrt{n - \\sqrt{n - \\sqrt{n - \\cdots}}} = \\frac{-1 + \\sqrt{1 + 4n}}{2}"
+     "name": "Infinite radical, minus",
+     "tex": "\\sqrt{n - \\sqrt{n - \\cdots}} = \\dfrac{-1 + \\sqrt{1 + 4n}}{2}",
+     "note": ""
     },
     {
      "name": "Infinite nested product",
-     "tex": "\\sqrt{x\\sqrt{x\\sqrt{x \\cdots}}} = x"
+     "tex": "\\sqrt{x\\sqrt{x\\sqrt{x \\cdots}}} = x",
+     "note": ""
     },
     {
-     "name": "Finite nested product",
-     "tex": "\\sqrt{x\\sqrt{x\\sqrt{x}}} = x^{7/8}",
-     "note": "n roots: exponent (2ⁿ − 1)/2ⁿ"
+     "name": "Least add or subtract",
+     "tex": "\\text{subtract } N - k^2,\\quad \\text{add } (k+1)^2 - N",
+     "note": ""
     }
    ],
    "tricks": [
     {
-     "title": "Cube root by unit digit + leading group",
-     "body": "Last digit of the root from the cube-digit map; first digit = largest cube not exceeding the leading group (digits left of the last three).",
+     "title": "Cube root by unit digit and leading group",
+     "body": "The last digit of the cube gives the last digit of the root; the leading group, compared with the small cubes, gives the first digit.",
      "example": {
-      "q": "Find $\\sqrt[3]{103823}$.",
-      "solution": "Ends in 3 ⇒ root ends in 7. Leading group 103: $4^3 = 64 \\le 103 < 125$ ⇒ 4. Root $= 47$."
+      "q": "Find the cube root of 175616.",
+      "steps": [
+       "Groups: $175 \\mid 616$, so the root has two digits.",
+       "$5^3 = 125 \\le 175 < 216 = 6^3$, so first digit is $5$.",
+       "Cube ends in $6$, and $6$ maps to itself: root $= 56$."
+      ],
+      "answer": "56"
      }
     },
     {
-     "title": "Square root of a perfect square",
-     "body": "Unit digit gives two candidates; compare with the square of the middle value (…5) to pick one.",
+     "title": "Square root by unit digit and size",
+     "body": "Digit pairs fix the number of digits and the first digit; the last-digit map gives two candidates; one size check picks between them.",
      "example": {
-      "q": "Find $\\sqrt{7744}$.",
-      "solution": "Ends in 4 ⇒ root ends in 2 or 8. $77$ lies between $8^2$ and $9^2$ ⇒ 8_. $85^2 = 7225 < 7744$ ⇒ take the larger: $88$."
+      "q": "Find the square root of 9604.",
+      "steps": [
+       "Pairs $96 \\mid 04$: two digits; $9^2 = 81 \\le 96$, so it starts with $9$.",
+       "Ends in $4$, so the root ends in $2$ or $8$.",
+       "$95^2 = 9025$ is below $9604$, so take $98$; check $98^2 = 9604$."
+      ],
+      "answer": "98"
      }
     },
     {
-     "title": "n = k(k + 1) radicals",
-     "body": "Factor n as two consecutive integers. Plus-signs give the larger one, minus-signs the smaller.",
+     "title": "n equals k times k plus one radicals",
+     "body": "Factor n into two consecutive integers. Plus signs give the larger one, minus signs the smaller.",
      "example": {
-      "q": "Find $\\sqrt{30 + \\sqrt{30 + \\sqrt{30 + \\cdots}}}$.",
-      "solution": "$30 = 5 \\times 6$ ⇒ value $= 6$ (check: $6^2 = 30 + 6$)."
+      "q": "Find $\\sqrt{72 + \\sqrt{72 + \\sqrt{72 + \\cdots}}}$.",
+      "steps": [
+       "$72 = 8 \\times 9$, two consecutive integers.",
+       "Plus form gives the larger: $9$.",
+       "Check: $9^2 = 81 = 72 + 9$."
+      ],
+      "answer": "9"
      }
     }
    ],
    "mistakes": [
-    "Miscounting decimal places when taking roots of decimals.",
-    "Picking the negative root of the quadratic for an infinite radical (value is always positive).",
-    "Assuming a number ending in 1, 4, 5, 6, 9 must be a perfect square — the unit digit only rules out, never confirms."
+    {
+     "wrong": "Miscounting decimal places in roots of decimals.",
+     "right": "Square root halves the decimal places; cube root divides them by three."
+    },
+    {
+     "wrong": "Keeping the negative root when solving x squared equals a plus x.",
+     "right": "A radical expression is positive; take the positive root of the quadratic."
+    },
+    {
+     "wrong": "Declaring a number a perfect square because it ends in 1, 4, 5, 6 or 9.",
+     "right": "The unit digit only rules candidates out; confirm with digit pairing and a check."
+    },
+    {
+     "wrong": "Swapping the add and subtract gaps.",
+     "right": "Subtract down to k squared; add up to the next square, k plus one squared."
+    },
+    {
+     "wrong": "Opening a nested radical from the outermost root.",
+     "right": "Evaluate from the innermost root outward, one layer at a time."
+    }
    ],
-   "notes": "### What you need about roots\nA **square root** asks: which number times itself gives this? $\\sqrt{11025} = 105$ because $105 \\times 105 = 11025$. A **cube root** asks: which number cubed gives this? $\\sqrt[3]{9261} = 21$.\n\n### Spotting and finding perfect squares\n- A perfect square never ends in 2, 3, 7 or 8, and never in an **odd** number of zeros.\n- Last-digit map (root → square): 1 or 9 → 1; 2 or 8 → 4; 3 or 7 → 9; 4 or 6 → 6; 5 → 5; 0 → 0.\n- To find $\\sqrt{11025}$: pair digits from the right (1 | 10 | 25). First pair: $1^2 = 1$ → first digit 1. Double it (2); find digit $d$ so that $2d \\times d$ fits 10 → $d = 4$ ($24 \\times 4 = 96$)? 96 fits under 110? wait — work with 010 remainder 10: bring down 25 → 1025; $24\\Box \\times \\Box \\le 1025$ → $245 \\times 5 = 1225$ too big, $244 \\times 4 = 976$ ✓ → root 105? The long-division method always lands exactly; in exams you mostly **match options** with the last-digit map and a rough size check.\n\n**Size check:** count digit pairs. A 5-digit number (like 11025 → pairs 1, 10, 25) has a 3-digit root. Between $100^2 = 10000$ and $110^2 = 12100$; last digit 5 → root ends in 5 → 105.\n\n### Cube roots in seconds\nGroup digits in **threes** from the right. The number of groups = number of root digits.\n- Unit digit of cube → unit digit of root: 1↔1, 4↔4, 5↔5, 6↔6, 9↔9, 0↔0, and swaps 2↔8, 3↔7.\nExample: $\\sqrt[3]{9261}$: groups 9 | 261. Cube ends in 1 → root ends in 1. $2^3 = 8 \\le 9 < 27 = 3^3$ → first digit 2. Root = **21**.\n\n### Roots of decimals\nThe decimal point just shifts: $\\sqrt{0.0169} = 0.13$ (2 decimal places in → 1 in the root); $\\sqrt[3]{0.000064} = 0.04$ (6 places → 2 places).\n\n### Least number to make a perfect square\n\"Find the least number to be **subtracted** from N\": take $\\sqrt{N}$, keep the whole part $k$, answer $= N - k^2$.\n\"Least number to be **added**\": use $(k+1)^2$; answer $= (k+1)^2 - N$.\nExample: $N = 1300$: $36^2 = 1296 < 1300 < 1369 = 37^2$ → add 69.\n\n### Nested radicals\n- **Infinite $\\sqrt{a+\\sqrt{a+\\dots}}$** equals the positive root of $x^2 = a + x$. For $a = 6$: $x^2 - x - 6 = 0$ → $x = 3$.\n- **Infinite $\\sqrt{a \\times \\sqrt{a \\times \\dots}}$** equals $a$.\n- **Finite nests** are worked from the **inside out**: $\\sqrt{30 + \\sqrt{24 + \\sqrt{144}}} = \\sqrt{30 + \\sqrt{36}} = \\sqrt{36} = 6$.\n- Quick identity: if $n = k(k+1)$ then $\\sqrt{n + \\sqrt{n + \\dots}} = k+1$ (e.g. 12 = 3 × 4 → 4) and $\\sqrt{n - \\sqrt{n - \\dots}} = k$.\n\n### Root equations\nMove the root to one side, square both sides once: $\\sqrt{1 + \\frac{x}{225}} = \\frac{16}{15}$ → $1 + \\frac{x}{225} = \\frac{256}{225}$ → $x = 31$.\n\n### Quick revision\n- Perfect squares: last digit in {0,1,4,5,6,9}; size from digit pairs; exact digit from the map.\n- Cube root: groups of three digits; unit-digit swap map.\n- Subtract → $N - k^2$; add → $(k+1)^2 - N$.\n- Infinite $\\sqrt{a+\\sqrt{a+\\dots}}$: solve $x^2 = a + x$.\n- Nested roots: inside out.\n",
+   "notes": "Every root question in this chapter is built on a perfect power, and the exam expects you to find it without long division. Two tools do it: the unit digit of the answer, and the size of the answer from digit grouping.\n\n### The unit-digit maps\nA perfect square ends only in $0, 1, 4, 5, 6$ or $9$; the digits $2, 3, 7, 8$ never appear. The map from root to square is short: root ending $1$ or $9$ gives square ending $1$. Root ending $2$ or $8$ gives $4$, and $3$ or $7$ gives $9$. Root ending $4$ or $6$ gives $6$, and $5$ gives $5$.\nCube digits are even friendlier: $1, 4, 5, 6, 9, 0$ map to themselves, and $2$ swaps with $8$, $3$ with $7$.\n\n> **Rule:** For a cube root, the last digit of the cube gives the last digit of the root directly, using the swap pairs 2 with 8 and 3 with 7.\n\n### Size from digit grouping\nPair the digits of a square from the right: the number of pairs equals the digits in the root. Group a cube in threes the same way. For $\\sqrt{9604}$: pairs $96 \\mid 04$, so a two-digit root; $9^2 = 81 \\le 96$, so it starts with $9$. Ending $4$ means root ends in $2$ or $8$; since $95^2 = 9025$ is too small, the root is $98$.\nFor a cube root, the leading group fixes the first digit: the largest cube not exceeding it. In $\\sqrt[3]{175616}$, groups are $175 \\mid 616$; $5^3 = 125 \\le 175 < 216 = 6^3$, so the root starts with $5$ and ends with $6$: answer $56$.\n\n### Roots of decimals\nCount decimal places. A square root halves them: $0.0169$ has four places, so its root has two: $0.13$. A cube root divides them by three: $0.000064$ has six places, root $0.04$. Combine both: $\\sqrt{1.69} + \\sqrt{0.0169} = 1.3 + 0.13 = 1.43$.\n\n> **Watch:** A unit digit can only rule a perfect square out, never confirm it. Always finish with the size check.\n\n### Least number to add or subtract\nBracket $N$ between neighbouring squares $k^2$ and $(k+1)^2$.\n- Subtract case: answer is $N - k^2$, the gap down.\n- Add case: answer is $(k+1)^2 - N$, the gap up.\nFor $456$: $21^2 = 441$ and $22^2 = 484$, so subtracting $456 - 441 = 15$ lands on $441$. For $2000$: $44^2 = 1936$ and $45^2 = 2025$, so adding $2025 - 2000 = 25$ lands on $2025$.\n\n### Nested radicals: inside out\nReplace the deepest root first; each layer then becomes a perfect square. $\\sqrt{20 + \\sqrt{19 + \\sqrt{36}}}$: innermost $\\sqrt{36} = 6$; then $\\sqrt{19 + 6} = \\sqrt{25} = 5$; then $\\sqrt{20 + 5} = \\sqrt{25} = 5$.\n\n> **Tip:** Setters place each layer to collapse exactly. If a layer does not land on a perfect square, recheck the inner layer before forcing on.\n\n### Infinite radicals\nCall the whole expression $x$; the tail equals $x$ again, so $x = \\sqrt{a + x}$. Then $x^2 - x - a = 0$; keep the positive root. Fast path: if $a = k(k+1)$, the answer is $k + 1$. Check with $12 = 3 \\times 4$: $4^2 = 12 + 4$ holds, so $\\sqrt{12 + \\sqrt{12 + \\cdots}} = 4$. The product form $\\sqrt{x\\sqrt{x\\sqrt{x \\cdots}}}$ equals $x$ itself.\n\n### Root equations with an unknown\nIsolate the root on one side and square once. $\\sqrt{1 + \\dfrac{x}{225}} = \\dfrac{16}{15}$ gives $1 + \\dfrac{x}{225} = \\dfrac{256}{225}$, so $x = 31$. Square both sides only after the root stands alone.\n",
    "patterns": [
     {
      "id": "simp-rt-p1",
      "name": "Square root or cube root of a perfect power",
      "frequency": "very common",
-     "howToSpot": "'Find $\\sqrt{11025}$' or 'Find $\\sqrt[3]{9261}$' — the number under the root is a perfect square/cube (options are clean).",
-     "formula": "\\text{square: digit pairs; cube root: digit triples, unit digits mapped}",
-     "logic": "1. For a cube root, group digits in threes from the right; the count of groups = root's digit count; use the unit-digit swap map (2↔8, 3↔7) and a size check for the first digit.\n2. For a square root, pair digits from the right to fix the root's size, then use the last-digit map (root 2/8 → square ends 4, root 3/7 → 9, etc.).\n3. Always verify by squaring/cubing the option.\n\nWhy: option-matching with the unit-digit map is much faster than long division.",
+     "howToSpot": "A clean big number sits under a root sign and the options are whole numbers.",
+     "formula": "\\text{digit pairs (squares) or triples (cubes) plus the unit-digit map}",
+     "steps": [
+      "Group digits from the right: pairs for a square root, triples for a cube root.",
+      "Read the size from the leading group.",
+      "Read the last digit from the map or swap map.",
+      "Verify by squaring or cubing the candidate."
+     ],
+     "why": "The grouping gives size, the unit digit gives the tail; together they pin the answer without long division.",
      "example": {
-      "q": "Find $\\sqrt[3]{9261}$.",
-      "solution": "Groups 9 | 261 → two digits; cube ends in 1 → root ends in 1; $2^3 = 8 \\le 9$ → **21**."
+      "q": "Find $\\sqrt[3]{175616}$.",
+      "steps": [
+       "Groups: $175 \\mid 616$, a two-digit root.",
+       "$5^3 = 125 \\le 175 < 216 = 6^3$: first digit $5$.",
+       "Ending $6$ maps to itself: root $56$; check $56^3 = 175616$."
+      ],
+      "answer": "56"
      }
     },
     {
      "id": "simp-rt-p2",
      "name": "Least number to add or subtract to reach a perfect square",
      "frequency": "very common",
-     "howToSpot": "'Least number which must be added to (or subtracted from) N so the result is a perfect square.'",
-     "formula": "\\text{subtract: } N - k^2, \\quad \\text{add: } (k+1)^2 - N \\text{ where } k = \\lfloor\\sqrt{N}\\rfloor",
-     "logic": "1. Find the whole part $k$ of $\\sqrt N$ (bracket N between two squares).\n2. Subtract case: answer $= N - k^2$.\n3. Add case: answer $= (k+1)^2 - N$.\n\nWhy: the nearest squares on either side of N are exactly $k^2$ and $(k+1)^2$.",
+     "howToSpot": "The question asks for the least number added to or subtracted from N so the result is a perfect square.",
+     "formula": "\\text{subtract: } N - k^2,\\quad \\text{add: } (k+1)^2 - N",
+     "steps": [
+      "Find $k$, the whole part of the square root of $N$.",
+      "Compute $k^2$ and $(k+1)^2$ to bracket $N$.",
+      "Subtract case: answer $N - k^2$; add case: answer $(k+1)^2 - N$."
+     ],
+     "why": "The nearest squares on the two sides of $N$ are exactly $k^2$ and $(k+1)^2$.",
      "example": {
-      "q": "Least number to add to 1300 for a perfect square?",
-      "solution": "$36^2 = 1296 < 1300 < 1369 = 37^2$ → add $1369 - 1300 = 69$."
+      "q": "Find the least number that must be added to $2000$ to make it a perfect square.",
+      "steps": [
+       "$44^2 = 1936 < 2000 < 2025 = 45^2$.",
+       "Gap up: $2025 - 2000 = 25$."
+      ],
+      "answer": "25"
      }
     },
     {
      "id": "simp-rt-p3",
-     "name": "Nested radicals (finite) and simple root equations",
+     "name": "Nested radicals, worked from the inside",
      "frequency": "common",
-     "howToSpot": "A stack like $\\sqrt{30+\\sqrt{24+\\sqrt{144}}}$, or an equation where $x$ sits under a square root.",
-     "formula": "\\text{evaluate from the innermost root outward; for equations, square both sides once}",
-     "logic": "1. Start at the deepest root and replace it by its value.\n2. Move one layer out at a time — each root now becomes exact.\n3. If $x$ is under a root, isolate the root and square both sides.\n\nWhy: each layer is built to collapse into the next perfect square.",
+     "howToSpot": "A finite stack of square roots, each wrapped around the previous result.",
+     "formula": "\\text{evaluate the innermost root first}",
+     "steps": [
+      "Replace the deepest root with its value.",
+      "Add or combine outward one layer at a time.",
+      "Each layer should land on a perfect square."
+     ],
+     "why": "Only the innermost layer is a number you can root immediately; every outer layer waits for it.",
      "example": {
-      "q": "Find $\\sqrt{30 + \\sqrt{24 + \\sqrt{144}}}$.",
-      "solution": "$\\sqrt{144} = 12$ → $24+12 = 36$ → $\\sqrt{36} = 6$ → $30+6 = 36$ → answer $6$."
+      "q": "Find $\\sqrt{20 + \\sqrt{19 + \\sqrt{36}}}$.",
+      "steps": [
+       "$\\sqrt{36} = 6$.",
+       "$\\sqrt{19 + 6} = \\sqrt{25} = 5$.",
+       "$\\sqrt{20 + 5} = \\sqrt{25} = 5$."
+      ],
+      "answer": "5"
      }
     },
     {
      "id": "simp-rt-p4",
-     "name": "Infinite radicals: $\\sqrt{a+\\sqrt{a+\\dots}}$ and $\\sqrt{a\\times\\sqrt{a\\times\\dots}}$",
+     "name": "Infinite radicals",
      "frequency": "common",
-     "howToSpot": "The pattern repeats forever — 'infinite' or '⋯' appears, or the expression just trails off.",
-     "formula": "x = \\sqrt{a + x} \\ \\text{(plus form)}, \\qquad x = \\sqrt{ax} \\ \\text{(product form)}, \\qquad \\sqrt{k(k+1)+\\sqrt{\\dots}} = k+1",
-     "logic": "1. Call the whole expression $x$; the tail inside equals $x$ again.\n2. Plus form: $x^2 = a + x$ → solve the quadratic, keep the positive root (shortcut: if $a = k(k+1)$, the answer is $k+1$).\n3. Product form: $x^2 = ax$ → $x = a$ (ignore $x = 0$).\n\nWhy: self-similarity turns the infinite tower into one equation.",
+     "howToSpot": "The same pattern repeats forever, shown by dots; the word infinite may appear.",
+     "formula": "x = \\sqrt{a + x} \\Rightarrow x^2 - x - a = 0",
+     "steps": [
+      "Name the whole expression $x$.",
+      "Spot the tail equals $x$ again and build the equation.",
+      "Solve and keep the positive root.",
+      "Fast path: factor $a$ as $k(k+1)$; the answer is $k + 1$."
+     ],
+     "why": "Self-similarity turns the endless tower into one short quadratic.",
      "example": {
-      "q": "Find $\\sqrt{6 + \\sqrt{6 + \\sqrt{6 + \\cdots}}}$.",
-      "solution": "$x^2 = 6 + x$ → $(x-3)(x+2) = 0$ → $x = 3$ (since $6 = 2 \\times 3$, answer $k+1 = 3$)."
+      "q": "Find $\\sqrt{12 + \\sqrt{12 + \\sqrt{12 + \\cdots}}}$.",
+      "steps": [
+       "$x^2 = 12 + x$, so $x^2 - x - 12 = 0$.",
+       "$12 = 3 \\times 4$, so the answer should be $4$.",
+       "Check: $4^2 = 16 = 12 + 4$. So $x = 4$."
+      ],
+      "answer": "4"
+     }
+    },
+    {
+     "id": "simp-rt-p5",
+     "name": "Roots of decimals",
+     "frequency": "common",
+     "howToSpot": "A decimal sits under the root sign, like $1.69$ or $0.000064$.",
+     "formula": "\\text{decimal places halve (square root) or divide by three (cube root)}",
+     "steps": [
+      "Count the decimal places of the number.",
+      "Halve them for a square root; take a third for a cube root.",
+      "Root the digits as a whole number and place the point."
+     ],
+     "why": "Rooting affects the place values exactly as the index divides the decimal count.",
+     "example": {
+      "q": "Find $\\sqrt{1.69} + \\sqrt{0.0169}$.",
+      "steps": [
+       "$\\sqrt{1.69} = 1.3$ (two places become one).",
+       "$\\sqrt{0.0169} = 0.13$ (four places become two).",
+       "$1.3 + 0.13 = 1.43$."
+      ],
+      "answer": "1.43"
      }
     }
+   ],
+   "revision": [
+    "Perfect squares end in $0, 1, 4, 5, 6, 9$; cubes use the swap map $2 \\leftrightarrow 8$, $3 \\leftrightarrow 7$.",
+    "Digit pairs size a square root; digit triples size a cube root.",
+    "Subtract $N - k^2$; add $(k+1)^2 - N$.",
+    "Nested radicals open from the inside out.",
+    "$x = \\sqrt{a + x}$; if $a = k(k+1)$, the answer is $k + 1$.",
+    "Product form $\\sqrt{x\\sqrt{x\\cdots}}$ equals $x$."
    ]
   },
   {
    "id": "simp-approximation",
    "title": "Approximation",
-   "concept": "Replace every number with the nearest 'friendly' value (whole numbers, round percentages, perfect squares), compute, then pick the **nearest** option. Options in approximation questions are usually far apart, so a small rounding error does not matter.\n\n- Round decimals to the nearest integer: 49.98 → 50.\n- Percentages → fractions: 24.9% → ¼, 33.2% → ⅓.\n- Near-perfect squares: $\\sqrt{1225.2} \\approx 35$.\n- When rounding two numbers that are multiplied, round one up and the other down if possible to cancel errors.",
+   "concept": "An approximation question hands you ugly numbers on purpose and options that sit far apart. Round every number to a friendly value, compute exactly on the rounded numbers, and pick the nearest option.",
    "formulas": [
     {
      "name": "Percentage swap",
-     "tex": "x\\% \\text{ of } y = y\\% \\text{ of } x"
+     "tex": "x\\% \\text{ of } y = y\\% \\text{ of } x",
+     "note": ""
     },
     {
      "name": "Near-square root",
-     "tex": "\\sqrt{n^2 + k} \\approx n + \\frac{k}{2n}"
+     "tex": "\\sqrt{n^2 + k} \\approx n + \\frac{k}{2n}",
+     "note": ""
     },
     {
      "name": "Percent-fraction anchors",
-     "tex": "12.5\\% = \\tfrac{1}{8},\\ 16.67\\% = \\tfrac{1}{6},\\ 33.33\\% = \\tfrac{1}{3},\\ 37.5\\% = \\tfrac{3}{8}"
+     "tex": "12.5\\% = \\tfrac{1}{8},\\quad 16.7\\% = \\tfrac{1}{6},\\quad 33.3\\% = \\tfrac{1}{3},\\quad 37.5\\% = \\tfrac{3}{8}",
+     "note": ""
     }
    ],
    "tricks": [
     {
-     "title": "Round and compute",
-     "body": "Round each term to the nearest convenient number and compute mentally.",
+     "title": "Swap the percentage",
+     "body": "x percent of y equals y percent of x. Flip to whichever side has the nicer multiplier.",
      "example": {
-      "q": "Approximately evaluate $399.87 \\div 7.99 + 18.03 \\times 4.97$.",
-      "solution": "$400 \\div 8 + 18 \\times 5 = 50 + 90 = 140$."
+      "q": "Find 8% of 125.",
+      "steps": [
+       "Swap: $8\\%$ of $125 = 125\\%$ of $8$.",
+       "$125\\%$ of $8 = 8 + \\dfrac{1}{4}$ of $8$.",
+       "$8 + 2 = 10$."
+      ],
+      "answer": "10"
      }
     },
     {
-     "title": "Swap the percentage",
-     "body": "If x% of y is awkward, compute y% of x instead.",
+     "title": "Balanced rounding for products",
+     "body": "Round one factor up and the other down. The two errors cancel and the product stays close.",
      "example": {
-      "q": "Find 16% of 25.",
-      "solution": "= 25% of 16 = ¼ × 16 = 4."
+      "q": "Approximate 15.02 x 23.9.",
+      "steps": [
+       "Round $15.02$ down to $15$.",
+       "Round $23.9$ up to $24$.",
+       "$15 \\times 24 = 360$; the exact value is $358.98$."
+      ],
+      "answer": "360"
+     }
+    },
+    {
+     "title": "Anchors before bases",
+     "body": "Turn the percent into its fraction anchor first, then apply it to the rounded base.",
+     "example": {
+      "q": "Approximate 37.48% of 479.9.",
+      "steps": [
+       "$37.5\\% = \\dfrac{3}{8}$ and $479.9 \\approx 480$.",
+       "$\\dfrac{3}{8} \\times 480 = 3 \\times 60$.",
+       "$= 180$."
+      ],
+      "answer": "180"
      }
     }
    ],
    "mistakes": [
-    "Rounding every number in the same direction in a product, compounding the error.",
-    "Choosing an option by computing exactly — wastes time; approximations are designed for mental math.",
-    "Forgetting 'of' and BODMAS order while approximating."
+    {
+     "wrong": "Rounding every number in a product in the same direction.",
+     "right": "Round one factor up and the other down so errors cancel."
+    },
+    {
+     "wrong": "Computing the exact value with long multiplication.",
+     "right": "Round, compute on friendly numbers, pick the nearest option; the spacing allows it."
+    },
+    {
+     "wrong": "Treating (?)% as a number and of ? as a percentage.",
+     "right": "The percent sign on the question mark makes the unknown a percent; otherwise it is a plain number."
+    },
+    {
+     "wrong": "Forgetting BODMAS order while approximating.",
+     "right": "The 'of' product still outranks the division sign in rounded work too."
+    }
    ],
-   "notes": "### What is an approximation question?\nThe question says \"what approximate value comes in place of ?\" — the numbers are deliberately awkward (1199.8, 24.98%, √2303.9) and the **options are far apart**. You are allowed to round every number to a friendly value, compute, and pick the closest option. Perfection is not wanted; speed is.\n\n### The rounding rules\n- Decimals round to the nearest whole number: 49.98 → 50, 15.02 → 15, 23.9 → 24.\n- Percentages become fractions: 24.9% ≈ $\\frac{1}{4}$, 33.3% ≈ $\\frac{1}{3}$, 16.7% ≈ $\\frac{1}{6}$, 12.5% = $\\frac{1}{8}$, 19.9% ≈ $\\frac{1}{5}$, 66.6% ≈ $\\frac{2}{3}$.\n- Near-perfect squares: √2303.9 ≈ 48 (since $48^2 = 2304$), √3968.9 ≈ 63, √625 ≈ 25.\n- Near-perfect cubes: ∛29791.03 ≈ 31 ($31^3 = 29791$).\n- Multiplying two rounded numbers? Round one **up** and the other **down** when you can — the errors cancel.\n\n### The fraction–percentage anchors (learn cold)\n| Fraction | Percent | Fraction | Percent |\n|---|---|---|---|\n| 1/2 | 50% | 1/9 | 11.1% |\n| 1/3 | 33.3% | 1/11 | 9.09% |\n| 1/4 | 25% | 1/12 | 8.33% |\n| 1/5 | 20% | 1/8 | 12.5% |\n| 1/6 | 16.67% | 2/5 | 40% |\n| 1/7 | 14.28% | 3/4 | 75% |\n\nSo \"16.98% of 800\" → $\\frac{1}{6} \\times 800 ≈ 133$ — no pen needed.\n\n### The usual question shapes\n1. **One expression**: 29.9% of 1199.8 + 15.02 × 23.9 → $360 + 360 = 720$.\n2. **Find ?**: 34.9% of 599.8 + ? = 299.9 → $210 + ? = 300$ → ? = 90.\n3. **Roots and powers mixed**: (23.98)² + √2303.9 − 4.99 × 8.01 → $576 + 48 - 40 = 584$.\n4. **Equation in ?**: (?)% of 650 + 40 = 350 → ? = 310/650 × 100 ≈ 48.\n\n### How precise must you be?\nWork to the nearest ten (or nearest hundred for big numbers), then choose the option nearest to your answer. If two options are close, redo only the step that separates them.\n\n### Two worked mini-examples\n- $\\sqrt{3968.9} + \\sqrt[3]{29791.03}$: $63^2 = 3969$ and $31^3 = 29791$, so the value is $63 + 31 = 94$. Both roots were placed next to perfect powers on purpose — that is how the setter builds the question.\n- $\\sqrt[3]{729.05} \\times 12.99 ≈ 18.02\\%$ of ?: left side $= 9 \\times 13 = 117$. Then $? = 117 \\times \\frac{100}{18} ≈ 650$. When ? is on the **right of a percentage**, divide by the fraction instead of multiplying.\n\n### Sanity checks that save marks\n- **Size first:** decide whether the answer is in the tens, hundreds or thousands before computing — one option in each region is usually a decoy.\n- **Direction of %:** \"18% of ? = 117\" means $? = 117 \\div 0.18$ (bigger than 117); \"?% of 650 = 310\" means ? is a percentage (around 48). Mixing these two up flips the answer by orders of magnitude.\n- **Balanced rounding:** for $15.02 \\times 23.9$ use $15 \\times 24$ — you rounded one factor down and the other up, so the error largely cancels.\n\n### Quick revision\n- Round everything; options are spaced 5–10% apart.\n- Percent → fraction anchors; squares/cubes nearby.\n- Round up-and-down pairs for products.\n- Then pick the closest option, never recompute from scratch.\n",
+   "notes": "When a question starts with 'what approximate value', it is permission to round. The numbers are deliberately awkward, like $399.87$ or $24.98\\%$, and the options sit $5$ to $10$ percent apart. Rounding error stays near one percent, so the nearest option is safe.\n\n### The rounding rules\nRound decimals to the nearest whole number: $49.98$ to $50$, $15.02$ to $15$, $23.9$ to $24$. Snap roots and powers to neighbours: $\\sqrt{1224.9}$ sits next to $35^2 = 1225$, and $(29.98)^2$ is $30^2 = 900$ for all practical purposes.\n\n> **Rule:** Round first, then compute exactly on the rounded numbers. Never carry ugly decimals through five steps.\n\n### Percentage anchors, learned cold\n| Fraction | Percent | Fraction | Percent |\n|---|---|---|---|\n| $1/2$ | $50\\%$ | $1/8$ | $12.5\\%$ |\n| $1/3$ | $33.3\\%$ | $1/9$ | $11.1\\%$ |\n| $1/4$ | $25\\%$ | $1/12$ | $8.3\\%$ |\n| $1/5$ | $20\\%$ | $3/8$ | $37.5\\%$ |\n| $1/6$ | $16.7\\%$ | $2/3$ | $66.7\\%$ |\n\nSo $16.98\\%$ of $600$ reads as one sixth of $600$, about $100$. Percentage times round bases is a one-step mental product.\n\n> **Tip:** Convert the percent to its fraction anchor before touching the base number; $37.5\\%$ of $480$ is three eighths of $480$, which is $180$.\n\n### Balanced rounding in products\nWhen two rounded numbers multiply, round one up and the other down so the errors cancel. $15.02 \\times 23.9$ becomes $15 \\times 24 = 360$, not $15 \\times 24$ after rounding both up. One factor down, one factor up, every time.\n\n### Roots and powers near perfect values\nSetters place roots beside perfect powers on purpose. $\\sqrt{3968.9}$ is $63$ because $63^2 = 3969$; $\\sqrt[3]{29791.03}$ is $31$ because $31^3 = 29791$. Spot the neighbour first, then read the root off it.\n\n### Size and direction checks\nDecide the size region before computing: tens, hundreds or thousands. One decoy option usually lives in each region. For unknowns, direction matters: $18\\%$ of $?$ equals $117$ means $? = 117$ divided by $0.18$, a bigger number; $(?)\\%$ of $800$ equals $240$ means $?$ is itself a percentage, here $30$.\n\n> **Watch:** A question mark before the percent sign asks for a percent; a question mark after 'of' asks for a number. Mixing them flips the answer by a factor of ten.\n\n### One clean run\n$19.98\\%$ of $200 + 11.99 \\times 6$: one fifth of $200$ is $40$, and $12 \\times 6 = 72$, so about $112$. Round, compute once, choose, move on.\n\n> **Remember:** An approximation question is a reading test, not an arithmetic test. The setter wrote ugly numbers so that rounding is the intended path; the student who multiplies $399.87$ by hand has already lost the time race.\n",
    "patterns": [
     {
      "id": "simp-ap-p1",
-     "name": "Mixed chain: % of, × and ÷ in one expression",
+     "name": "Mixed chain with percent, multiply and divide",
      "frequency": "very common",
-     "howToSpot": "'? ≈' with a chain like $29.9\\% \\text{ of } 1199.8 + 15.02 \\times 23.9$ — awkward decimals everywhere.",
-     "formula": "\\text{round every number to a friendly value, then compute exactly on the rounded numbers}",
-     "logic": "1. Round each decimal to the nearest whole/ten (1199.8 → 1200, 23.9 → 24).\n2. Convert percentages to the nearest fraction anchor (24.9% → 1/4).\n3. Compute the rounded expression and pick the closest option.\n\nWhy: the options sit 5–10% apart, but rounding error is usually under 2%.",
+     "howToSpot": "A question mark with 'approximately equals' and a chain mixing % of, products and divisions of decimals.",
+     "formula": "\\text{round each number, then compute exactly}",
+     "steps": [
+      "Round each decimal to its nearest friendly value.",
+      "Replace the percent with its fraction anchor.",
+      "Compute the chain with BODMAS order.",
+      "Pick the option nearest to the result."
+     ],
+     "why": "Options sit several percent apart while rounding error stays near one percent.",
      "example": {
-      "q": "$29.9\\% \\text{ of } 1199.8 + 15.02 \\times 23.9 ≈ \\ ?$",
-      "solution": "$30\\%$ of $1200 = 360$; $15 \\times 24 = 360$; total $≈ 720$."
+      "q": "$24.98\\%$ of $799.8 + 14.98 \\times 20.02 \\approx ?$",
+      "steps": [
+       "$24.98\\% \\approx 25\\% = \\dfrac{1}{4}$, and $799.8 \\approx 800$.",
+       "$\\dfrac{1}{4} \\times 800 = 200$.",
+       "$15 \\times 20 = 300$.",
+       "$200 + 300 = 500$."
+      ],
+      "answer": "500"
      }
     },
     {
      "id": "simp-ap-p2",
-     "name": "Percentage chains and (?)% equations",
+     "name": "Percentage chains and unknown percent equations",
      "frequency": "very common",
-     "howToSpot": "Two or more 'x% of N' terms added/subtracted, or an equation where ? is the unknown percentage.",
-     "formula": "(?)\\% = \\frac{\\text{target} - \\text{known part}}{\\text{base}} \\times 100",
-     "logic": "1. Replace each % with its fraction anchor and each N with a round number.\n2. For an equation, shift the known parts to the other side first.\n3. Then ? (%) = remainder ÷ base × 100, rounded to the nearest option.\n\nWhy: 'percent of a round hundred' is a one-step mental product.",
+     "howToSpot": "Two percent terms combined, or an equation where the unknown is itself a percentage.",
+     "formula": "(?)\\% = \\dfrac{\\text{target} - \\text{known part}}{\\text{base}} \\times 100",
+     "steps": [
+      "Round the base and the targets.",
+      "Shift the known numbers to the far side first.",
+      "Divide the remainder by the base and scale by 100."
+     ],
+     "why": "After shifting, the equation is one division on rounded numbers.",
      "example": {
-      "q": "$(?)\\% \\text{ of } 649.9 + 39.98 = 349.9$ — find ?.",
-      "solution": "$350 - 40 = 310$; $310/650 \\times 100 ≈ 48$."
+      "q": "$(?)\\%$ of $799.8 + 39.98 \\approx 279.9$. Find the value of $?$.",
+      "steps": [
+       "$799.8 \\approx 800$, $39.98 \\approx 40$, $279.9 \\approx 280$.",
+       "$280 - 40 = 240$ is the percent part.",
+       "$240 = 30\\%$ of $800$, so $? = 30$."
+      ],
+      "answer": "30"
      }
     },
     {
      "id": "simp-ap-p3",
      "name": "Roots and powers inside an approximation",
      "frequency": "common",
-     "howToSpot": "The expression hides near-perfect squares/cubes: √2303.9, (23.98)², ∛29791.03.",
-     "formula": "\\sqrt{N} \\approx r \\text{ if } r^2 \\approx N; \\quad (a.\\!99)^2 \\approx a^2",
-     "logic": "1. Snap each root to the nearest perfect power: √3968.9 → 63 (since $63^2 = 3969$).\n2. Snap each square to the rounded base: (23.98)² → 576.\n3. Combine, then pick the nearest option.\n\nWhy: exam roots/squares are placed within 0.05 of a perfect power on purpose.",
+     "howToSpot": "Near-perfect squares and cubes hide inside the expression, like $(29.98)^2$ or $\\sqrt{1224.9}$.",
+     "formula": "(a \\pm 0.02)^2 \\approx a^2,\\quad \\sqrt{n^2 \\pm k} \\approx n",
+     "steps": [
+      "Snap each square to the rounded base squared.",
+      "Snap each root to the neighbouring perfect power.",
+      "Combine the snapped values."
+     ],
+     "why": "Setters build these expressions within a whisker of perfect powers, so snapping loses almost nothing.",
      "example": {
-      "q": "$\\sqrt{3968.9} + \\sqrt[3]{29791.03} ≈ \\ ?$",
-      "solution": "$63 + 31 = 94$ ($63^2 = 3969$, $31^3 = 29791$)."
+      "q": "$(29.98)^2 + \\sqrt{1224.9} \\approx ?$",
+      "steps": [
+       "$29.98 \\approx 30$, so $(29.98)^2 \\approx 900$.",
+       "$35^2 = 1225$, so $\\sqrt{1224.9} \\approx 35$.",
+       "$900 + 35 = 935$."
+      ],
+      "answer": "935"
      }
     },
     {
      "id": "simp-ap-p4",
-     "name": "Find the missing value ?",
+     "name": "Find the missing value",
      "frequency": "very common",
-     "howToSpot": "The ? is a full term of the equation, not necessarily a percentage: '34.9% of 599.8 + ? = 299.85'.",
-     "formula": "? = \\text{(constant side)} - \\text{(evaluated terms)}",
-     "logic": "1. Evaluate every term that contains no ?.\n2. Move it to the other side of the equation (addition ↔ subtraction; × ↔ ÷).\n3. Round the result to the closest option; sanity-check its size.\n\nWhy: it is the same one-move algebra as the exact topic, just done on rounded numbers.",
+     "howToSpot": "The question mark is a whole term of the equation, not necessarily a percentage.",
+     "formula": "? = \\text{constant side} - \\text{evaluated terms}",
+     "steps": [
+      "Evaluate every term that holds no question mark.",
+      "Move it across the equals sign with the inverse operation.",
+      "Round the result and sanity-check its size."
+     ],
+     "why": "It is one move of algebra applied to rounded numbers.",
      "example": {
-      "q": "$34.9\\% \\text{ of } 599.8 + ? = 299.85$ — find ?.",
-      "solution": "$35\\%$ of $600 = 210$; $? ≈ 300 - 210 = 90$."
+      "q": "$27.98\\%$ of $449.9 + ? \\approx 200$. Find $?$.",
+      "steps": [
+       "$27.98\\% \\approx 28\\%$ and $449.9 \\approx 450$.",
+       "$28\\%$ of $450 = 126$.",
+       "$? \\approx 200 - 126 = 74$."
+      ],
+      "answer": "74"
+     }
+    },
+    {
+     "id": "simp-ap-p5",
+     "name": "Round before dividing",
+     "frequency": "common",
+     "howToSpot": "An awkward division like $399.87 \\div 7.99$, often mixed with other rounded terms.",
+     "formula": "\\text{round divisor and dividend to compatible values}",
+     "steps": [
+      "Round the divisor to a friendly one-digit number.",
+      "Round the dividend so the division comes out clean.",
+      "Finish the remaining terms and combine."
+     ],
+     "why": "A clean quotient beats a correct-but-slow long division, because options are far apart.",
+     "example": {
+      "q": "$399.87 \\div 7.99 + 18.03 \\times 4.97 \\approx ?$",
+      "steps": [
+       "$399.87 \\div 7.99 \\approx 400 \\div 8 = 50$.",
+       "$18.03 \\times 4.97 \\approx 18 \\times 5 = 90$.",
+       "$50 + 90 = 140$."
+      ],
+      "answer": "140"
      }
     }
+   ],
+   "revision": [
+    "Round every number first; compute exactly on rounded values.",
+    "Percent to fraction anchor before touching the base.",
+    "Products: round one factor up, one down.",
+    "Roots sit beside perfect powers; read the neighbour.",
+    "Check size region and the direction of the unknown percent."
    ]
   }
  ],

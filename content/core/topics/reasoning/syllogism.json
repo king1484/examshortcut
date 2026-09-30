@@ -13,7 +13,7 @@
   {
    "id": "syllogism-idea",
    "title": "What a syllogism is and how to test it",
-   "concept": "A syllogism gives 2-3 'statements' taken as TRUE, plus conclusions that must be judged: do they follow necessarily? The four statement forms:\n\n- **All A are B** (A inside B, overlap allowed only as A ⊆ B).\n- **No A is B** (two disjoint circles).\n- **Some A are B** (circles overlap, with at least the overlap populated).\n- **Some A are not B** (A has at least one member outside B).\n\nThe bullet-proof method is the **minimal-diagram + test** method: draw the least-committal diagram that satisfies the statements (e.g. 'Some A are B' = two overlapping circles), then try to **violate** each conclusion while keeping the statements true. If some valid diagram violates the conclusion, it does NOT follow. A conclusion follows only when every valid diagram keeps it true. The classic error is drawing the diagram you *want* (drawing A inside B because a conclusion says so) — that proves nothing.",
+   "concept": "A syllogism gives two or three statements that you must accept as true. Then you judge conclusions. A conclusion follows only if it holds in **every** picture that fits the statements.\n\nReal-world facts do not matter. Try to break each conclusion with one picture.",
    "formulas": [
     {
      "name": "Transitivity of All",
@@ -33,282 +33,680 @@
    ],
    "tricks": [
     {
-     "title": "Hunt for one counter-diagram",
-     "body": "To kill a conclusion, you need just ONE diagram satisfying all statements that breaks it. Ask: 'can the two circles stay apart / can this element sit outside?' If yes, the conclusion fails.",
+     "title": "Find the shared term",
+     "body": "The conclusion must join the two outer terms. Find the term that appears in both statements, and ask what travels through it.",
      "example": {
-      "q": "**Q.** Statements: Some pens are scales. Do 'Some scales are pens' and 'All scales are pens' follow?\n\n**Sol.** 'Some scales are pens' converts ✓. 'All scales are pens' — draw a scale outside every pen; statements still hold → does NOT follow.",
-      "solution": "One violating diagram is enough to reject; demanding diagrams can never prove a conclusion."
+      "q": "All pens are books. Some books are files. Does 'Some pens are files' follow?",
+      "steps": [
+       "The shared term is books.",
+       "The files that are books may not be pens.",
+       "Draw the file-books outside pens."
+      ],
+      "answer": "No."
      }
+    },
+    {
+     "title": "One counter-picture kills it",
+     "body": "You do not need to prove a conclusion. You need only one picture that fits the statements and breaks it."
     }
    ],
    "mistakes": [
-    "Drawing the conclusion's diagram instead of the statements'.",
-    "Rejecting a conclusion only because it 'feels' strong — test it.",
-    "Forgetting conversions: Some B are A follows from All A are B."
+    {
+     "wrong": "Rejecting a statement because it is false in real life.",
+     "right": "Accept every statement as true. Reason only from the statements."
+    },
+    {
+     "wrong": "Reading 'All A are B' as 'All B are A'.",
+     "right": "All does not reverse. Only 'Some B are A' follows."
+    },
+    {
+     "wrong": "Joining two 'Some' statements into a conclusion.",
+     "right": "Two 'Some' statements never join. Draw the overlaps apart to test."
+    },
+    {
+     "wrong": "Passing a 'Some-not' through an All.",
+     "right": "The A outside B may or may not be a C. Nothing follows."
+    },
+    {
+     "wrong": "Drawing the picture that supports the conclusion.",
+     "right": "Draw the smallest picture that fits the statements. Then try to break the conclusion."
+    }
    ],
-   "notes": "### What is a syllogism?\nA syllogism gives you two or three **statements** that you must accept as true, and a set of **conclusions**. You must decide which conclusions follow *necessarily*. The topic of the sentences is irrelevant — if the paper says \"All cats are engineers\", you accept it and reason from it. Real-world truth never matters here.\n\n### The four statement forms\n| Statement | Meaning | Least-committal picture |\n|---|---|---|\n| All A are B | every A is inside B; B may be bigger | A-circle inside B-circle |\n| No A is B | the two classes never meet | two separate circles |\n| Some A are B | at least one member sits in both | two overlapping circles |\n| Some A are not B | at least one member of A sits outside B | A-circle partly outside B |\n\nNotice the asymmetry: **All** and **No** fix the whole class, while **Some** fixes only that at least one member exists. That is why conclusions built on \"some\" are weak and easy to break.\n\n### The minimal-diagram method\n1. Draw the **least-committal** diagram that satisfies all statements — never draw what a conclusion wants. \"Some A are B\" is two overlapping circles, nothing more.\n2. For each conclusion, try to **break** it: move the free parts of the diagram while keeping every statement true.\n3. If even one valid diagram breaks the conclusion, it **does not follow**. If no valid diagram can break it, it **follows**.\n\nThis is the opposite of how students usually work. You are not collecting evidence for a conclusion; you are acting as its enemy. One successful attack kills it.\n\n### Moves that are always legal\n- **All-chain**: All A are B + All B are C → All A are C (and hence Some C are A).\n- **Conversion of All**: All A are B → Some B are A (classes are never empty in these exams).\n- **Conversion of Some**: Some A are B → Some B are A.\n- **Conversion of No**: No A is B → No B is A.\n- **Some + All chain**: Some A are B + All B are C → Some A are C. The shared member travels through.\n- **No + Some**: Some B are C + No A is B → Some C are not A (the shared member inherits B's exile from A).\n\n### Moves that look legal but are not\n- All A are B **does not** give All B are A (B may be much bigger).\n- Some A are B **does not** give Some A are not B (possibly all A are B).\n- No A is B + No B is C gives **nothing** about A and C.\n- Some A are B + Some B are C gives **nothing** definite about A and C.\n\n### Worked example\nStatements: No glass is metal. Some metals are solids.\nConclusion I: Some solids are not glass. Conclusion II: All glasses are solids.\nThe metal-that-is-solid cannot be glass, so that solid is \"a solid not a glass\" — I follows. Glass has no fixed link with solids, so a diagram with all glass inside solids and another with glass outside are both valid — II is breakable, so it fails.\n\n### Common traps\n- Drawing the conclusion's picture instead of the statements'.\n- Rejecting \"Some B are A\" because it \"reverses\" the statement — that reversal is always valid.\n- Judging a conclusion from the first diagram you drew instead of asking whether a second diagram could break it.\n\n### Quick revision\n- Accept statements as true; ignore real life.\n- Draw the least-committal diagram, then hunt one counter-diagram per conclusion.\n- Legal: All-chains, All→Some, Some/No conversions, Some+All travel, No+Some exile.\n- Illegal: reverse-All, Some→Some-not, No+No chains, Some+Some chains.\n- Follows = true in every valid diagram. Break it once = reject.\n",
+   "notes": "### What a syllogism asks\nYou get two or three statements. Accept them as true, even when they sound silly. Then you get conclusions to judge.\n\nA conclusion **follows** only if it is true in every picture that fits the statements. One picture that breaks it is enough to reject it.\n\n> **Rule:** Assume every group named in the statements has at least one member.\n\n### The four statement forms\n| Statement | Meaning |\n|---|---|\n| All A are B | Every A is inside B. B may be bigger. |\n| No A are B | A and B never meet. |\n| Some A are B | At least one member is in both. |\n| Some A are not B | At least one A lies outside B. |\n\n**All** and **No** describe the whole group. **Some** only promises that one member exists. That makes conclusions built on 'some' easy to break.\n\n### Safe reversals\n| Statement | Reversal that follows |\n|---|---|\n| All A are B | Some B are A |\n| No A are B | No B are A |\n| Some A are B | Some B are A |\n| Some A are not B | none |\n\n> **Watch:** 'All A are B' does not give 'All B are A'. 'Some A are not B' does not give 'Some B are not A'.\n\n### Chains that work\n- All A are B and All B are C give **All A are C**.\n- Some A are B and All B are C give **Some A are C**.\n- All A are B and No B are C give **No A are C**.\n- No A are B and Some B are C give **Some C are not A**.\n\n### Chains that do not work\n- Two 'Some' statements never join. Some A are B and Some B are C give nothing about A and C.\n- A 'Some-not' does not pass through an All. The A that is outside B may or may not be a C.\n\n### Try to break the conclusion\nDo not draw a picture that helps the conclusion. Draw the smallest picture that fits the statements. Then ask whether you can move one group to make the conclusion false.\n\nIf you can, the conclusion fails. If you cannot, it follows.\n\n### Reading the options\nJudge conclusion I and conclusion II separately. Then look at the options.\n\n- Only I follows: II can be broken.\n- Only II follows: I can be broken.\n- Both follow: neither can be broken.\n- Neither follows: both can be broken.\n\nNever let one conclusion influence the other. Each one has its own test.\n\n### A worked example\n**Statements**\n- Some pens are books.\n- All books are files.\n\n**Conclusions**\n- I. Some pens are files.\n- II. All pens are files.\n\n**Options**\n- (A) Only I follows\n- (B) Only II follows\n- (C) Both I and II follow\n- (D) Neither I nor II follows\n\n**Solution**\n- The shared term is books. The pen that is a book is also a file, so I follows.\n- For II, draw one pen outside books. All statements still hold, so II fails.\n\nAnswer: **(A) Only I follows**.\n",
    "patterns": [
     {
      "id": "syl-p1",
      "name": "Some + All chain (shared member travels)",
      "frequency": "very common",
-     "howToSpot": "A 'Some A are B' statement followed by 'All B are C' (or the reverse order), with a conclusion about A and C.",
+     "howToSpot": "'Some A are B' then 'All B are C' (or the other order). One conclusion links A and C.",
      "formula": null,
-     "logic": "1. Spot the term B that appears in both statements.\n2. The guaranteed A∩B member is a B, so it is also a C — the conclusion 'Some A are C' is forced.\n3. Check any second conclusion independently (it usually reverses the All, which is illegal).\n\n*Why it works:* one real member travels through both statements; the rest of the classes stay free.",
+     "steps": [
+      "Find the term that both statements share.",
+      "The guaranteed A-and-B member is a B, so it is also a C.",
+      "So 'Some A are C' follows.",
+      "Test the other conclusion by drawing a counter-picture."
+     ],
+     "why": "The member we are sure of travels through the All.",
      "example": {
-      "q": "**Some chairs are tables. All tables are desks.** Conclusions: I. Some chairs are desks. II. All desks are chairs.",
-      "solution": "The chair-that-is-a-table is a desk → I follows. II reverses an All → fails. **Only I follows.**"
+      "q": "**Statements**\n- Some pens are books.\n- All books are files.\n\n**Conclusions**\n- I. Some pens are files.\n- II. All pens are files.\n\n**Options**\n- (A) Only I follows\n- (B) Only II follows\n- (C) Both I and II follow\n- (D) Neither I nor II follows",
+      "steps": [
+       "The shared term is books. The pen that is a book is also a file, so I follows.",
+       "For II, draw one pen outside books. All statements still hold, so II fails."
+      ],
+      "answer": "(A) Only I follows"
      }
     },
     {
      "id": "syl-p2",
      "name": "All-chain with a conversion conclusion",
      "frequency": "very common",
-     "howToSpot": "Two 'All' statements in a chain, and one conclusion is the reversed 'Some C are A' while the other reverses an All directly.",
+     "howToSpot": "Two 'All' statements form a chain. One conclusion turns the chain around.",
      "formula": null,
-     "logic": "1. Chain the All's: A ⊂ B ⊂ C gives All A are C.\n2. Convert freely: Some C are A also follows.\n3. Reject any 'All C are A' — the chain never runs backwards.\n\n*Why it works:* containment carries forward; the reverse needs new information the statements never give.",
+     "steps": [
+      "Chain the All statements: A inside B inside C.",
+      "'All A are C' follows.",
+      "'Some C are A' also follows.",
+      "Reject 'All C are A'. The chain never runs backwards."
+     ],
+     "why": "Containment carries forward, and the reverse needs new information.",
      "example": {
-      "q": "**All stones are rocks. All rocks are minerals.** Conclusions: I. All stones are minerals. II. All minerals are stones.",
-      "solution": "Stones ⊂ rocks ⊂ minerals → I follows. Minerals stretch beyond stones → II fails. **Only I follows.**"
+      "q": "**Statements**\n- All rings are coins.\n- All coins are metals.\n\n**Conclusions**\n- I. Some metals are rings.\n- II. All metals are rings.\n\n**Options**\n- (A) Only II follows\n- (B) Both I and II follow\n- (C) Neither I nor II follows\n- (D) Only I follows",
+      "steps": [
+       "Chain the All statements: rings sit inside coins, and coins sit inside metals.",
+       "So all rings are metals, and the reverse form 'Some metals are rings' follows too.",
+       "II runs the chain backwards. A metal that is not a coin breaks it, so II fails."
+      ],
+      "answer": "(D) Only I follows"
      }
     },
     {
      "id": "syl-p3",
      "name": "No + Some gives Some-not",
      "frequency": "common",
-     "howToSpot": "A 'No A is B' plus a 'Some B are C' (or 'Some C are B'), conclusion about C and A.",
+     "howToSpot": "'No A are B' and 'Some B are C'. The conclusion is about C and A.",
      "formula": null,
-     "logic": "1. Find the shared class B.\n2. The guaranteed B∩C member cannot be an A, so it is 'a C that is not an A' → Some C are not A follows.\n3. Any stronger conclusion (No C is A, All C are A) is breakable.\n\n*Why it works:* the shared member inherits B's complete exile from A.",
+     "steps": [
+      "Find the shared class B.",
+      "The B-and-C member cannot be an A.",
+      "So 'Some C are not A' follows.",
+      "Reject stronger claims such as 'No C are A'."
+     ],
+     "why": "The shared member inherits B's total exile from A.",
      "example": {
-      "q": "**No lizard is a bird. Some birds are black.** Conclusion: Some black things are not lizards.",
-      "solution": "The black bird is a bird, and no bird is a lizard → it is a black thing that is not a lizard. **Follows.**"
+      "q": "**Statements**\n- No walls are doors.\n- Some doors are gates.\n\n**Conclusions**\n- I. Some gates are not walls.\n- II. No gates are walls.\n\n**Options**\n- (A) Both I and II follow\n- (B) Neither I nor II follows\n- (C) Only I follows\n- (D) Only II follows",
+      "steps": [
+       "The shared term is doors. A gate that is a door cannot be a wall, so I follows.",
+       "For II, a gate that is not a door might still be a wall. So II fails."
+      ],
+      "answer": "(C) Only I follows"
      }
     },
     {
      "id": "syl-p4",
-     "name": "Conversion-only pair (is the reversal enough?)",
+     "name": "Conversion-only pair",
      "frequency": "common",
-     "howToSpot": "A single statement and two conclusions where one is its exact conversion and the other overreaches it.",
+     "howToSpot": "One statement and two conclusions. One is its plain reversal, and the other overreaches it.",
      "formula": null,
-     "logic": "1. Recall: All→Some converts; Some converts; No converts.\n2. The conversion conclusion follows.\n3. The other conclusion adds a new quantifier (All, Some-not, No) that the statement never fixed → reject.\n\n*Why it works:* conversion only swaps the terms; it never strengthens the claim.",
+     "steps": [
+      "Recall the safe reversals: All gives Some. Some and No reverse both ways.",
+      "The reversal follows.",
+      "The other conclusion adds a new claim. Reject it."
+     ],
+     "why": "A reversal only swaps the terms. It never adds new information.",
      "example": {
-      "q": "**All actors are artists.** Conclusions: I. Some artists are actors. II. All artists are actors.",
-      "solution": "All→Some conversion makes I follow; II is the illegal reverse of an All. **Only I follows.**"
+      "q": "**Statements**\n- Some tables are chairs.\n\n**Conclusions**\n- I. Some chairs are tables.\n- II. All chairs are tables.\n\n**Options**\n- (A) Neither I nor II follows\n- (B) Only I follows\n- (C) Only II follows\n- (D) Both I and II follow",
+      "steps": [
+       "'Some' converts freely, so I follows.",
+       "II adds a new claim about every chair. The statement never says that."
+      ],
+      "answer": "(B) Only I follows"
+     }
+    },
+    {
+     "id": "syl-p17",
+     "name": "Three-statement chain",
+     "frequency": "common",
+     "howToSpot": "Three statements link four groups in a line, mostly All and No.",
+     "formula": null,
+     "steps": [
+      "Chain the All statements from the left.",
+      "Carry the chain through the group named in the No statement.",
+      "Anything inside that group is also cut off from the last group.",
+      "Remember to reverse a No statement freely."
+     ],
+     "why": "Everything inside a group inherits that group's No relation.",
+     "example": {
+      "q": "**Statements**\n- All cups are plates.\n- All plates are bowls.\n- No bowls are jars.\n\n**Conclusions**\n- I. No cups are jars.\n- II. No jars are plates.\n\n**Options**\n- (A) Only I follows\n- (B) Only II follows\n- (C) Both I and II follow\n- (D) Neither I nor II follows",
+      "steps": [
+       "Chain the first two: cups sit inside plates, and plates sit inside bowls.",
+       "No bowl is a jar, so nothing inside bowls can be a jar. Cups and plates are inside bowls.",
+       "That gives both I and II, because 'No' reads the same in both directions."
+      ],
+      "answer": "(C) Both I and II follow"
+     }
+    },
+    {
+     "id": "syl-p18",
+     "name": "Some-not does not travel",
+     "frequency": "common",
+     "howToSpot": "'Some A are not B' with 'All B are C'. The conclusions are about A and C.",
+     "formula": null,
+     "steps": [
+      "Find the outside member: an A that is not a B.",
+      "Ask whether it must be a C. Nothing forces it in or out.",
+      "Draw it outside C, then draw it inside C.",
+      "Neither conclusion is forced."
+     ],
+     "why": "The All statement covers B only. It says nothing about members outside B.",
+     "example": {
+      "q": "**Statements**\n- Some birds are not pets.\n- All pets are animals.\n\n**Conclusions**\n- I. Some birds are not animals.\n- II. No birds are animals.\n\n**Options**\n- (A) Only II follows\n- (B) Both I and II follow\n- (C) Neither I nor II follows\n- (D) Only I follows",
+      "steps": [
+       "The bird outside pets is the only bird we are sure of.",
+       "That bird may or may not be an animal. Nothing links it to animals.",
+       "So I and II both fail. A 'Some-not' does not travel through an All."
+      ],
+      "answer": "(C) Neither I nor II follows"
+     }
+    },
+    {
+     "id": "syl-p20",
+     "name": "Two Some statements",
+     "frequency": "common",
+     "howToSpot": "'Some A are B' and 'Some B are C'. Conclusions link A and C.",
+     "formula": null,
+     "steps": [
+      "Note that the two overlaps may involve different members of B.",
+      "Draw them apart.",
+      "Test both conclusions in that picture.",
+      "Neither follows."
+     ],
+     "why": "A 'Some' promises one member. Two promises can point to different members.",
+     "example": {
+      "q": "**Statements**\n- Some boxes are bags.\n- Some bags are sacks.\n\n**Conclusions**\n- I. Some boxes are sacks.\n- II. Some sacks are boxes.\n\n**Options**\n- (A) Both I and II follow\n- (B) Neither I nor II follows\n- (C) Only I follows\n- (D) Only II follows",
+      "steps": [
+       "The box that is a bag and the bag that is a sack can be different bags.",
+       "Draw the two overlaps apart. Boxes and sacks never meet.",
+       "Two 'Some' statements never join. Neither conclusion follows."
+      ],
+      "answer": "(B) Neither I nor II follows"
      }
     }
+   ],
+   "revision": [
+    "Accept the statements as true. A conclusion follows only if it holds in every picture.",
+    "All converts to Some. No and Some convert both ways. Some-not does not convert.",
+    "Chains that work: All+All, Some+All, All+No, No+Some (gives Some-not).",
+    "Two 'Some' statements never join. A 'Some-not' does not pass through an All.",
+    "Draw the smallest picture and try to break the conclusion with one counter-picture.",
+    "Assume every named group has at least one member."
    ]
   },
   {
    "id": "possibility-cases",
    "title": "Possibility conclusions",
-   "concept": "'X is a possibility' asks a different question: not 'is X forced?' but 'is X **consistent** with the statements?'. A possibility conclusion **follows** if you can draw even ONE diagram satisfying the statements where X also holds; it fails only when the statements make X impossible.\n\nSo 'All A being B is a possibility' usually follows unless a statement explicitly blocks it (typically a 'No' statement cutting across). Read carefully: a definite conclusion ('All A are B') needs to hold in **every** diagram; a possibility conclusion needs to hold in **at least one**.",
+   "concept": "A possibility conclusion asks a lighter question: can this be true without breaking a statement? One supporting picture is enough to make it follow.\n\nIt fails only when a statement makes it impossible.",
    "formulas": [],
    "tricks": [
     {
-     "title": "One supporting diagram wins for possibility",
-     "body": "For possibility conclusions, flip your thinking: you are now the defence lawyer. Build one diagram where the possibility is true alongside all statements — done, it follows.",
-     "example": {
-      "q": "**Q.** Statements: All keys are metal. Some metal is rusty. 'All rusty things being keys is a possibility' — follows?\n\n**Sol.** Draw rusty ⊆ keys, keys ⊆ metal, and a second metal piece outside keys. All statements + possibility hold → **follows**.",
-      "solution": "Definite = survive every diagram; possibility = survive in one diagram."
-     }
+     "title": "Defence lawyer thinking",
+     "body": "For a possibility, flip your mindset. Build one picture where it holds. Done."
     }
    ],
    "mistakes": [
-    "Testing a possibility conclusion like a definite one (demanding it hold everywhere).",
-    "Declaring a possibility false when a 'No' statement doesn't actually touch the terms."
+    {
+     "wrong": "Looking for a picture where the possibility must hold.",
+     "right": "You need only one picture where it can hold."
+    },
+    {
+     "wrong": "Ignoring the 'No' statement when you draw the possibility.",
+     "right": "A 'No' statement blocks every picture that puts a member across it."
+    },
+    {
+     "wrong": "Saying 'No B are A' is possible after 'All A are B'.",
+     "right": "Groups are non-empty. A member of A is a member of B, so B and A must meet."
+    },
+    {
+     "wrong": "Saying 'All A are B' is possible after 'Only a few A are B'.",
+     "right": "Only a few guarantees an A outside B, so that possibility is dead."
+    },
+    {
+     "wrong": "Judging a definite conclusion by the one-picture rule.",
+     "right": "A definite conclusion must hold in every picture."
+    }
    ],
-   "notes": "### What a possibility conclusion asks\nA definite conclusion says: \"this **must** be true\". A possibility conclusion says: \"this **can** be true without breaking any statement\". The question \"All A being B is a possibility\" is asking only whether some picture that satisfies the statements can also have A inside B. You are no longer the prosecutor hunting counter-examples — you are the defence lawyer who needs just **one** supporting diagram.\n\n### The one-diagram rule\n1. Read the possibility as a request: \"may I draw A inside B (or A meeting B, etc.)?\"\n2. Try to build that picture while keeping every statement true.\n3. If you succeed even once, the possibility **follows**. If every attempt collides with a statement, it fails.\n\n### What blocks a possibility\nAlmost always a **No statement** cutting across the terms. If some A is definitely a C, and No C is B, then putting all A inside B would force that C-member into B — a collision. The possibility dies. Two weaker blockers:\n- An **Only a few A are B** statement forbids \"All A are B\", but still allows most other possibilities.\n- A **Some A are not B** statement (given directly) also forbids All A are B, but allows A to move freely otherwise.\n\nAnything not touching the terms of the possibility is irrelevant — a \"No\" about two far-away classes never blocks anything.\n\n### Definite vs possibility — the mirror pair\n| Conclusion type | To prove it | To kill it |\n|---|---|---|\n| Definite (\"follows\") | must hold in every diagram | find ONE diagram that breaks it |\n| Possibility | find ONE diagram that supports it | show EVERY diagram collides |\n\nSo the same sentence (\"All A are B\") can fail as a definite conclusion and still follow as a possibility. Statements \"All keys are locks, some locks are doors\": \"Some keys are doors\" fails (the door-lock overlap can dodge keys), but \"All keys being doors is a possibility\" follows (draw all keys inside the key-door overlap).\n\n### Worked examples\n1. Statements: Some books are novels. All novels are stories. Conclusion: All books being stories is a possibility. Draw all books inside stories (the book-novel part is fine, the rest of the books too) — nothing objects → follows.\n2. Statements: Some phones are cameras. No camera is a charger. Conclusion: All phones being chargers is a possibility. The phone-camera member is a camera, so it can never be a charger — the picture is impossible → does not follow.\n\n### Speed habits\n- Possibility questions are usually **faster** than definite ones — one clever diagram ends the debate.\n- If a \"No\" statement's two classes do not both touch your terms, ignore it and answer \"follows\".\n- When one option says \"X is a possibility\" and the other is a definite claim, solve the definite one with counter-examples first; often only one survives.\n\n### Quick revision\n- Possibility = consistent with the statements = one supporting diagram is enough.\n- Definite = forced = must survive every diagram.\n- Only a crossing \"No\" (or an explicit Some-not / only-a-few on the same pair) can kill a possibility.\n- The shared member of a \"Some\" statement must obey every statement that mentions its class.\n- Same pair can fail as definite and pass as possibility — read the wording carefully.\n",
+   "notes": "### What a possibility conclusion asks\nA definite conclusion says: this **must** be true. A possibility conclusion says: this **can** be true.\n\nYou are now looking for one picture only. If some picture fits every statement and also makes the possibility true, the possibility follows.\n\n> **Rule:** For a possibility, one supporting picture is enough. It follows unless a statement blocks it.\n\n### The one-picture method\n1. Read the possibility as a request. For example: can I put all buses inside cars?\n2. Try to draw it. Keep every statement true, especially every overlap.\n3. If you can, it follows. If every attempt collides with a statement, it fails.\n\n### What blocks a possibility\n- **A No statement.** If no desk is a shelf, then no table inside desks can be a shelf.\n- **A forced overlap.** If every lion is a cat, no cat can fail to be a lion in all cases. 'No cat is a lion' is impossible.\n- **Only a few.** 'Only a few A are B' rules out 'All A are B'. It also rules out 'No A are B'.\n\n> **Watch:** Groups are never empty. So a possibility that empties a group always fails.\n\n### What stays possible\nMost other cases stay possible. From 'Some A are B', all of these can be true: all A are B, all B are A, some A are not B.\n\nFrom 'Only a few A are B', 'All B are A' is still possible. Draw B inside A and keep one A outside.\n\n### Two conclusions together\nOften one conclusion is a possibility and the other is definite. Judge them by different standards. The definite one needs every picture. The possibility needs one picture.\n\nThen match the pair to the options: only I, only II, both or neither.\n\n### Words that signal a possibility\nLook for 'is a possibility', 'may be true' or 'can be true'. These words change the question from 'must' to 'can'.\n\nWithout them, treat the conclusion as definite.\n\n### A quick self-check\nAfter you pick an answer, test it once. If you said a possibility fails, name the statement that blocks it. If you said it follows, name the picture that shows it.\n\nBoth answers should be easy to say in one sentence.\n\n### A worked example\n**Statements**\n- Some cars are trucks.\n- Some trucks are buses.\n\n**Conclusions**\n- I. All buses being cars is a possibility.\n- II. No cars are buses.\n\n**Options**\n- (A) Only I follows\n- (B) Only II follows\n- (C) Both I and II follow\n- (D) Neither I nor II follows\n\n**Solution**\n- For I, draw all buses inside cars. The car-truck overlap and the truck-bus overlap still hold. So I follows.\n- For II, cars and buses may overlap. So 'No car is a bus' is not forced, and II fails.\n\nAnswer: **(A) Only I follows**.\n",
    "patterns": [
     {
      "id": "syl-p5",
      "name": "Plain possibility (nothing blocks it)",
      "frequency": "very common",
-     "howToSpot": "'… is a possibility' wording and no No statement touching the two terms of the possibility.",
+     "howToSpot": "The words 'is a possibility' appear, and no 'No' statement touches the two terms.",
      "formula": null,
-     "logic": "1. Try to draw the possibility (e.g. all A inside B) around the given statements.\n2. Keep every statement true — especially every Some-overlap.\n3. If one clean picture survives, the possibility follows.\n\n*Why it works:* a possibility needs one consistent diagram, not all of them.",
+     "steps": [
+      "Try to draw the possibility around the statements.",
+      "Keep every 'Some' overlap alive.",
+      "If one clean picture survives, the possibility follows."
+     ],
+     "why": "A possibility needs one consistent picture, not every picture.",
      "example": {
-      "q": "**All windows are doors. Some doors are gates.** Conclusion: All gates being windows is a possibility.",
-      "solution": "Draw gates inside windows, windows inside doors, plus extra doors outside windows. Every statement holds → **follows.**"
+      "q": "**Statements**\n- Some cars are trucks.\n- Some trucks are buses.\n\n**Conclusions**\n- I. All buses being cars is a possibility.\n- II. No cars are buses.\n\n**Options**\n- (A) Only I follows\n- (B) Only II follows\n- (C) Both I and II follow\n- (D) Neither I nor II follows",
+      "steps": [
+       "For I, draw all buses inside cars. The car-truck overlap and the truck-bus overlap still hold. So I follows.",
+       "For II, cars and buses may overlap. So 'No car is a bus' is not forced, and II fails."
+      ],
+      "answer": "(A) Only I follows"
      }
     },
     {
      "id": "syl-p6",
      "name": "Possibility blocked by a No statement",
      "frequency": "very common",
-     "howToSpot": "The statements contain 'No X is Y' and the possibility would push a member of X (or of a class that must meet X) into Y.",
+     "howToSpot": "A 'No X are Y' statement, and a possibility that would push X members into Y.",
      "formula": null,
-     "logic": "1. Trace the guaranteed member created by a Some statement.\n2. Ask: could that member be forced into a forbidden class if the possibility were drawn?\n3. If yes, the possibility is impossible; also test the partner conclusion with the counter-method.\n\n*Why it works:* the shared member of a Some statement must obey every No statement that touches its class.",
+     "steps": [
+      "Trace the members that are sure to exist.",
+      "Ask if the possibility would force one of them across the 'No'.",
+      "If yes, the possibility fails.",
+      "Test the partner conclusion separately."
+     ],
+     "why": "A 'No' statement allows no crossing, whatever the picture.",
      "example": {
-      "q": "**Some phones are cameras. No camera is a charger.** Conclusion: All phones being chargers is a possibility.",
-      "solution": "The phone-camera member is a camera, so it can never be a charger — all phones inside chargers is impossible. **Does not follow.**"
+      "q": "**Statements**\n- All tables are desks.\n- No desks are shelves.\n\n**Conclusions**\n- I. All shelves being tables is a possibility.\n- II. No shelves are tables.\n\n**Options**\n- (A) Only II follows\n- (B) Both I and II follow\n- (C) Neither I nor II follows\n- (D) Only I follows",
+      "steps": [
+       "Tables sit inside desks, and no desk is a shelf. So no table can be a shelf. II follows.",
+       "For I, all shelves would sit inside tables, and so inside desks. That breaks 'No desk is a shelf'. I fails."
+      ],
+      "answer": "(A) Only II follows"
      }
     },
     {
      "id": "syl-p7",
      "name": "Possibility with only-a-few statements",
      "frequency": "common",
-     "howToSpot": "An 'Only a few A are B' statement plus a possibility conclusion about A, B or a third class.",
+     "howToSpot": "'Only a few A are B' and a possibility about A, B or a third group.",
      "formula": null,
-     "logic": "1. Split only-a-few into Some + Some-not.\n2. 'All A being B' is now impossible — the guaranteed non-B part forbids it.\n3. Other possibilities (about third classes, or All B being A) are usually still alive — try to draw them.\n\n*Why it works:* only-a-few pins the A-side split; everything not touching that split stays free.",
+     "steps": [
+      "Split it into Some and Some-not.",
+      "'All A are B' is now impossible.",
+      "Try to draw the other possibilities, such as 'All B are A'.",
+      "Keep the ones you can draw."
+     ],
+     "why": "Only-a-few fixes the A side and leaves the B side open.",
      "example": {
-      "q": "**Only a few chairs are sofas. All sofas are furniture.** Conclusions: I. All chairs being furniture is a possibility. II. Some chairs are not sofas.",
-      "solution": "I: draw every chair inside furniture (sofa-chairs are furniture, the rest too) — nothing objects → follows. II: guaranteed by only-a-few → follows. **Both follow.**"
+      "q": "**Statements**\n- Only a few lamps are bulbs.\n\n**Conclusions**\n- I. All lamps being bulbs is a possibility.\n- II. All bulbs being lamps is a possibility.\n\n**Options**\n- (A) Only II follows\n- (B) Both I and II follow\n- (C) Neither I nor II follows\n- (D) Only I follows",
+      "steps": [
+       "'Only a few lamps are bulbs' means some lamps are bulbs and some lamps are not bulbs.",
+       "I asks for all lamps to be bulbs. The lamp that is not a bulb blocks it.",
+       "II asks for all bulbs to be lamps. Draw bulbs inside lamps and keep one lamp outside. It works, so II follows."
+      ],
+      "answer": "(A) Only II follows"
      }
     },
     {
      "id": "syl-p8",
      "name": "Possibility paired with a definite conclusion",
      "frequency": "common",
-     "howToSpot": "One conclusion is a possibility, the other a definite claim about the same or another pair.",
+     "howToSpot": "One conclusion is a possibility. The other is a definite claim.",
      "formula": null,
-     "logic": "1. Solve the definite conclusion first with the counter-diagram method.\n2. Then build one diagram for the possibility.\n3. Match the combined result to the options — 'only I', 'only II', 'both' or 'neither'.\n\n*Why it works:* the two halves use different standards (every diagram vs one diagram) and must be judged separately.",
+     "steps": [
+      "Test the definite one with a counter-picture.",
+      "Build one picture for the possibility.",
+      "Match the two results to the options."
+     ],
+     "why": "The two halves use different standards.",
      "example": {
-      "q": "**All shirts are clothes. Some clothes are expensive.** Conclusions: I. Some shirts are expensive. II. All expensive things being shirts is a possibility.",
-      "solution": "I: the clothes-expensive overlap can dodge shirts → fails. II: draw all expensive things inside shirts (shirts inside clothes) — consistent → follows. **Only II follows.**"
+      "q": "**Statements**\n- All ships are boats.\n- Some boats are rafts.\n\n**Conclusions**\n- I. All rafts being ships is a possibility.\n- II. Some ships are rafts.\n\n**Options**\n- (A) Both I and II follow\n- (B) Neither I nor II follows\n- (C) Only I follows\n- (D) Only II follows",
+      "steps": [
+       "For I, draw rafts inside ships, and ships inside boats. The boat-raft overlap still exists. So I follows.",
+       "II is a definite claim. The raft that is a boat may not be a ship. So II fails."
+      ],
+      "answer": "(C) Only I follows"
+     }
+    },
+    {
+     "id": "syl-p19",
+     "name": "Possibility that empties a group",
+     "frequency": "occasional",
+     "howToSpot": "After 'All A are B', a possibility such as 'No B are A'.",
+     "formula": null,
+     "steps": [
+      "Remember that every group has at least one member.",
+      "Every A is a B, so B and A meet.",
+      "Any possibility that separates them fails."
+     ],
+     "why": "If groups cannot be empty, an All statement forces an overlap.",
+     "example": {
+      "q": "**Statements**\n- All lions are cats.\n\n**Conclusions**\n- I. No cats being lions is a possibility.\n- II. Some cats being lions is a possibility.\n\n**Options**\n- (A) Neither I nor II follows\n- (B) Only I follows\n- (C) Only II follows\n- (D) Both I and II follow",
+      "steps": [
+       "Every lion is a cat, and lions exist. So at least one cat is a lion.",
+       "I needs no cat to be a lion. That is impossible, so I fails.",
+       "II is already true in every picture. So it is certainly possible."
+      ],
+      "answer": "(C) Only II follows"
      }
     }
+   ],
+   "revision": [
+    "A possibility needs one supporting picture. A definite conclusion needs every picture.",
+    "A 'No' statement blocks a possibility that pushes a member across it.",
+    "Groups are non-empty. 'All A are B' makes 'No B are A' impossible.",
+    "'Only a few A are B' rules out 'All A are B' but leaves 'All B are A' possible.",
+    "Judge a mixed pair by different standards. Then match the options."
    ]
   },
   {
    "id": "either-or",
    "title": "Either-or (complementary pairs)",
-   "concept": "When neither conclusion follows individually, check whether the two form a **complementary pair** — two statements that together cover every case and never fail simultaneously:\n\n- **(All A are B) + (Some A are not B)**\n- **(Some A are B) + (No A is B)**\n\nBoth pairs are exact negations of each other. If neither follows on its own but the statements cannot break both at once, the answer is **'Either I or II follows'**. Note the trap: 'Some A are not B' pairs with 'All A are B' — NOT with 'No A is B'.",
+   "concept": "Sometimes neither conclusion follows on its own, but they are exact opposites. Then one of them is true in every picture, and the answer is 'Either I or II follows'.\n\nOnly two shapes of pairs qualify. Always test each conclusion alone first.",
    "formulas": [],
    "tricks": [
     {
-     "title": "Spot the negation pair",
-     "body": "Scan the two conclusions for the word pairs (All … , Some … not) or (Some … , No …) about the SAME two terms. If found and neither follows individually, mark either-or — no diagram needed.",
+     "title": "Spot the opposite pair",
+     "body": "Look for (All, Some-not) or (Some, No) on the same two terms. Then test each alone.",
      "example": {
-      "q": "**Q.** Conclusions: I. Some shirts are red. II. No shirt is red.\n\n**Sol.** Same terms, Some/No pair, neither provable from 'Some shirts are blue'-type statements → **either-or**.",
-      "solution": "Complementary pair = exact logical negations about the same two terms."
+      "q": "I. Some shirts are red. II. No shirts are red. The statements never mention red. Answer?",
+      "steps": [
+       "Same terms, and the pair is Some and No.",
+       "Neither follows alone.",
+       "So one of them holds in every picture."
+      ],
+      "answer": "Either I or II follows."
      }
     }
    ],
    "mistakes": [
-    "Pairing 'No A is B' with 'Some A are not B' — they are not negations.",
-    "Marking either-or when one conclusion already follows on its own."
+    {
+     "wrong": "Choosing either-or when one conclusion follows alone.",
+     "right": "Test each conclusion alone first. If one follows, choose 'Only I' or 'Only II'."
+    },
+    {
+     "wrong": "Treating 'No' and 'Some-not' as an opposite pair.",
+     "right": "They can both be false. Only (All, Some-not) and (Some, No) are opposites."
+    },
+    {
+     "wrong": "Pairing conclusions that use different terms.",
+     "right": "Both conclusions must use the same two terms."
+    },
+    {
+     "wrong": "Treating 'All' and 'No' as a pair.",
+     "right": "Both are false when A only partly overlaps B."
+    },
+    {
+     "wrong": "Skipping the pair check because the statements are long.",
+     "right": "Extra statements only matter in the alone test. The pair shape decides the rest."
+    }
    ],
-   "notes": "### What an either-or pair is\nSometimes neither conclusion follows on its own, but the two conclusions are **exact opposites** of each other. In that case one of them must be true in every possible picture — the exam answer is **\"Either I or II follows\"**. This is not generosity; it is logic. If two statements are negations, no valid diagram can make both false.\n\n### The two legal complementary pairs\nAbout the **same two terms**, in any order:\n\n| Pair | Why they are negations |\n|---|---|\n| All A are B  +  Some A are not B | either every A is inside B, or at least one A is outside — nothing else can happen |\n| Some A are B  +  No A is B | either the classes meet, or they never do — nothing else can happen |\n\n### The three-step test\n1. Check the pair: same two terms, and one of the two legal shapes above? If not, either-or is impossible.\n2. Test each conclusion separately with the counter-diagram method. If **either one follows alone**, answer \"Only I/II follows\" — never either-or.\n3. If neither follows alone, answer \"Either I or II follows\".\n\nStep 2 before step 3 — the commonest error is jumping to either-or when one conclusion was actually provable.\n\n### Traps that break the pair\n- **Different terms.** \"All cups are bowls\" + \"Some cups are not plates\" look like the (All, Some-not) shape but the second pair is cups–plates, not cups–bowls. Both can fail at once → neither follows.\n- **No + Some-not is NOT a pair.** \"No pencil is an eraser\" and \"Some pencils are not erasers\" can both be false — when all pencils are erasers. They are not negations.\n- **Reversed terms are fine.** \"Some A are B\" and \"No B is A\" are still negations (both links are symmetric), so the pair still works.\n- **One conclusion contradicts a statement.** It then fails immediately, but the other still needs checking — the pair rule only applies when neither follows alone.\n\n### Worked examples\n1. Statements: Some flowers are red. No flower is blue. Conclusions: I. All flowers are red. II. Some flowers are not red. Same pair (flowers–red), legal (All, Some-not) shape, neither provable → either-or.\n2. Statements: All beds are sofas. Conclusions: I. Some sofas are beds. II. No sofa is a bed. I follows at once by conversion — so the answer is \"Only I follows\", NOT either-or. This is the classic trap.\n\n### Why the rule is safe\nTake the (Some, No) pair about A–B. In any valid diagram either the A–B overlap is populated (I true) or empty (II true). Since every class is non-empty, there is no third option and no way to lose both. The same argument covers (All, Some-not): A is either fully inside B or it is not.\n\n### Quick revision\n- Legal pairs only: (All, Some-not) and (Some, No) — same two terms.\n- Order of work: check the shape → test each conclusion alone → only then mark either-or.\n- If one follows alone, pick it; never mark either-or.\n- No + Some-not is a fake pair; different-term pairs are fake.\n- Reversed word order does not spoil the pair.\n",
+   "notes": "### What an either-or pair is\nSometimes neither conclusion follows on its own, but the two conclusions are exact opposites. Then one of them is true in every picture. The answer is **Either I or II follows**.\n\nThis is logic, not luck. If two conclusions are negations of each other, no picture can make both false.\n\n### The two legal pairs\nBoth conclusions must use the **same two terms**, in either order.\n\n| Pair | Why it covers every case |\n|---|---|\n| All A are B and Some A are not B | Either every A is inside B, or one A is outside. |\n| Some A are B and No A are B | Either A and B meet, or they do not. |\n\n### The three-step test\n1. Check the pair. Same two terms? One of the two legal shapes? If not, there is no either-or.\n2. Test each conclusion alone. If one follows, the answer is 'Only I' or 'Only II'.\n3. If neither follows alone, the answer is 'Either I or II follows'.\n\n> **Rule:** Always do step 2 before step 3. A conclusion that follows alone rules out either-or.\n\n### Pairs that look right but are not\n- **Different terms.** 'All A are B' and 'Some A are not C' are not opposites.\n- **No and Some-not.** Both can be false. A group inside B has some A in B, but no A outside B.\n- **All and No.** Both can be false when A partly overlaps B.\n- **Some and Some-not.** Both can be true together, so exams do not treat them as a pair.\n\n> **Watch:** Two conclusions that are both false at the same time are never an either-or pair.\n\n### Extra statements\nWith three statements, ignore the extra one while you check the pair shape. It matters only in step 2, where it may prove one conclusion alone.\n\n### Where it shows up in the options\nThe option 'Either I or II follows' appears only when the answer is truly either-or. If you see it, do not pick it by habit.\n\nCheck the pair shape and run the alone test before you choose it.\n\n### Why the pairs work\nTake 'All A are B' and 'Some A are not B'. A is either entirely inside B or not. There is no third case.\n\nTake 'Some A are B' and 'No A are B'. The two groups either share a member or they share none. Again there is no third case.\n\n### A worked example\n**Statements**\n- All keys are metals.\n\n**Conclusions**\n- I. Some keys are iron.\n- II. No keys are iron.\n\n**Options**\n- (A) Either I or II follows\n- (B) Neither I nor II follows\n- (C) Only I follows\n- (D) Only II follows\n\n**Solution**\n- Same two terms: keys and iron. The pair is 'Some' and 'No'.\n- The statement does not link keys to iron, so neither follows alone.\n- Keys and iron either share a member or do not. One of the two is always true.\n\nAnswer: **(A) Either I or II follows**.\n",
    "patterns": [
     {
      "id": "syl-p9",
      "name": "(All, Some-not) complementary pair",
      "frequency": "very common",
-     "howToSpot": "Conclusions 'All A are B' and 'Some A are not B' — same two terms, neither follows alone.",
+     "howToSpot": "Conclusions 'All A are B' and 'Some A are not B'. The same two terms, and neither follows alone.",
      "formula": null,
-     "logic": "1. Confirm the two terms match.\n2. Test each alone: neither can be proved when the statements leave A's link with B open.\n3. Mark 'Either I or II follows'.\n\n*Why it works:* A is either wholly inside B or at least partly outside — no third option exists.",
+     "steps": [
+      "Check that the terms match.",
+      "Test each conclusion alone.",
+      "If neither follows, choose 'Either I or II'."
+     ],
+     "why": "A is either wholly inside B or partly outside. No third case exists.",
      "example": {
-      "q": "**Some candles are lamps.** Conclusions: I. All candles are lamps. II. Some candles are not lamps.",
-      "solution": "Neither is forced by the single Some statement, and they are exact negations. **Either I or II follows.**"
+      "q": "**Statements**\n- All rings are metals.\n- Some metals are heavy.\n\n**Conclusions**\n- I. All rings are heavy.\n- II. Some rings are not heavy.\n\n**Options**\n- (A) Only I follows\n- (B) Only II follows\n- (C) Either I or II follows\n- (D) Neither I nor II follows",
+      "steps": [
+       "Same two terms: rings and heavy. The pair is 'All' and 'Some-not'.",
+       "Test each alone. The statements do not fix how rings relate to heavy. Neither follows alone.",
+       "Either every ring is heavy, or some ring is not. Nothing else can happen."
+      ],
+      "answer": "(C) Either I or II follows"
      }
     },
     {
      "id": "syl-p10",
      "name": "(Some, No) complementary pair",
      "frequency": "very common",
-     "howToSpot": "Conclusions 'Some A are B' and 'No A is B' about the same two terms.",
+     "howToSpot": "Conclusions 'Some A are B' and 'No A are B' on the same two terms.",
      "formula": null,
-     "logic": "1. Confirm the pair and the terms.\n2. Check neither follows alone (the statements leave the A–B overlap undecided).\n3. Mark either-or.\n\n*Why it works:* the overlap is either populated or empty — one of the two must hold.",
+     "steps": [
+      "Check the terms and the pair shape.",
+      "Test each alone.",
+      "If neither follows, choose either-or."
+     ],
+     "why": "Two groups either share a member or they do not.",
      "example": {
-      "q": "**All keys are metal.** Conclusions: I. Some keys are iron. II. No key is iron.",
-      "solution": "Nothing fixes keys against iron, so neither follows alone; the pair is a true negation pair. **Either I or II follows.**"
+      "q": "**Statements**\n- All keys are metals.\n\n**Conclusions**\n- I. Some keys are iron.\n- II. No keys are iron.\n\n**Options**\n- (A) Either I or II follows\n- (B) Neither I nor II follows\n- (C) Only I follows\n- (D) Only II follows",
+      "steps": [
+       "Same two terms: keys and iron. The pair is 'Some' and 'No'.",
+       "The statement does not link keys to iron, so neither follows alone.",
+       "Keys and iron either share a member or do not. One of the two is always true."
+      ],
+      "answer": "(A) Either I or II follows"
      }
     },
     {
      "id": "syl-p11",
-     "name": "Fake complementary pair (trap)",
+     "name": "Fake complementary pair",
      "frequency": "common",
-     "howToSpot": "The conclusions LOOK like a legal pair but use different terms, or use (No, Some-not), or one of them actually follows alone.",
+     "howToSpot": "The conclusions look like a pair but use different terms, or use (No, Some-not), or one follows alone.",
      "formula": null,
-     "logic": "1. Check the terms word by word — both conclusions must use the same two classes.\n2. Reject the (No, Some-not) shape — it is not a negation pair.\n3. If one conclusion follows by itself, answer that one; never either-or.\n\n*Why it works:* the either-or shortcut is valid only for exact negations about one pair of terms.",
+     "steps": [
+      "Compare the terms word by word.",
+      "Reject the (No, Some-not) shape.",
+      "If one conclusion follows alone, answer that one."
+     ],
+     "why": "Both conclusions can be false together, so the either-or argument breaks.",
      "example": {
-      "q": "**Some pencils are erasers.** Conclusions: I. No pencil is an eraser. II. Some pencils are not erasers.",
-      "solution": "I is contradicted by the statement. II is not forced. And they can both fail (all pencils are erasers) → **Neither follows.**"
+      "q": "**Statements**\n- All cups are dishes.\n- Some dishes are pots.\n\n**Conclusions**\n- I. No cups are pots.\n- II. Some cups are not pots.\n\n**Options**\n- (A) Neither I nor II follows\n- (B) Only I follows\n- (C) Only II follows\n- (D) Both I and II follow",
+      "steps": [
+       "The pair is 'No' and 'Some-not'. That is not a complementary pair.",
+       "Draw every cup inside pots. Then I fails, and II fails as well.",
+       "Both can be false together, so there is no either-or. The answer is neither."
+      ],
+      "answer": "(A) Neither I nor II follows"
      }
     },
     {
      "id": "syl-p12",
      "name": "Either-or with three statements",
      "frequency": "occasional",
-     "howToSpot": "A three-statement puzzle where the two conclusions ignore most of it and just form a negation pair.",
+     "howToSpot": "Three statements, but the two conclusions only ask about one pair of terms.",
      "formula": null,
-     "logic": "1. Ignore the extra statement while checking the pair shape — it only matters for step 2.\n2. Test each conclusion alone (the extra statement may occasionally prove one).\n3. If neither is provable, mark either-or.\n\n*Why it works:* the pair argument needs only the two conclusion terms; extra statements cannot create a third option.",
+     "steps": [
+      "Ignore the extra statements while you check the pair shape.",
+      "Test each conclusion alone. An extra statement might prove one.",
+      "If neither is proved, choose either-or."
+     ],
+     "why": "The pair argument needs only the two conclusions.",
      "example": {
-      "q": "**All squares are rectangles. Some rectangles are big. No big thing is small.** Conclusions: I. Some squares are small. II. No square is small.",
-      "solution": "Squares may or may not be big, so small links stay undecided; neither follows alone → **Either I or II follows.**"
+      "q": "**Statements**\n- All pens are books.\n- No books are files.\n- Some files are bags.\n\n**Conclusions**\n- I. Some bags are pens.\n- II. No bags are pens.\n\n**Options**\n- (A) Only II follows\n- (B) Either I or II follows\n- (C) Neither I nor II follows\n- (D) Only I follows",
+      "steps": [
+       "The conclusions use bags and pens. They form the pair 'Some' and 'No'.",
+       "A bag can be a pen, and a bag can fail to be one. Neither follows alone.",
+       "The other statements do not settle the bags-pens link. So the answer is either-or."
+      ],
+      "answer": "(B) Either I or II follows"
+     }
+    },
+    {
+     "id": "syl-p22",
+     "name": "One of the pair is provable",
+     "frequency": "common",
+     "howToSpot": "The conclusions form a legal pair, but the statements give a chain that settles one of them.",
+     "formula": null,
+     "steps": [
+      "Notice the legal pair.",
+      "Do not stop there. Test each conclusion alone first.",
+      "If one follows, answer 'Only' that one."
+     ],
+     "why": "A conclusion that follows in every picture makes its opposite false in every picture.",
+     "example": {
+      "q": "**Statements**\n- All pens are books.\n- All books are files.\n\n**Conclusions**\n- I. All pens are files.\n- II. Some pens are not files.\n\n**Options**\n- (A) Only I follows\n- (B) Only II follows\n- (C) Both I and II follow\n- (D) Neither I nor II follows",
+      "steps": [
+       "The pair is 'All' and 'Some-not', so it looks like an either-or.",
+       "Test each alone first. Chain the statements: all pens are files. I follows.",
+       "Because I follows alone, the answer is 'Only I'. Never choose either-or here."
+      ],
+      "answer": "(A) Only I follows"
      }
     }
+   ],
+   "revision": [
+    "Either-or needs neither conclusion alone and an exact opposite pair.",
+    "Legal pairs: (All, Some-not) and (Some, No), on the same two terms.",
+    "(No, Some-not) and (All, No) can both be false. They are not pairs.",
+    "Test each conclusion alone first. One that follows ends the either-or idea.",
+    "Extra statements do not change the pair shape."
    ]
   },
   {
    "id": "definite-cases",
    "title": "Only-a-few and definite-case rulings",
-   "concept": "Two high-frequency modern patterns:\n\n- **Only a few A are B** = 'Some A are B' **and** 'Some A are not B' — both at once. It is stronger than 'some': the part of A outside B is guaranteed. (It says nothing about B outside A.)\n- **A few / Many A are B** = plain 'Some A are B'.\n\nConsequences worth memorising: from 'Only a few A are B', the conclusions 'Some A are not B' and 'Some A are B' both follow; 'All A are B' does not.",
+   "concept": "'Only a few A are B' means two things at once: some A are B and some A are not B. 'A few' and 'Many' mean plain 'Some'.\n\nSplit the statement first. Then treat it like any other syllogism.",
    "formulas": [],
    "tricks": [
     {
-     "title": "Split 'only a few' on sight",
-     "body": "Rewrite every 'Only a few A are B' as two arrows — ✓Some A are B, ✓Some A are not B — and feed both into your diagram. Everything else is ordinary syllogism.",
-     "example": {
-      "q": "**Q.** Only a few cups are plates. All plates are bowls. Does 'Some cups are not bowls' follow?\n\n**Sol.** The cup outside plates: is it outside bowls? Not necessarily — plates aren't all the bowls... the non-plate cup may still be a bowl → does NOT follow.",
-      "solution": "The guaranteed non-B cup is not automatically a non-bowl."
-     }
+     "title": "Split on sight",
+     "body": "Rewrite every 'Only a few A are B' as two lines: Some A are B, and Some A are not B. Then solve as normal."
     }
    ],
    "mistakes": [
-    "Reading 'Only a few A are B' as 'No A is B' or as plain 'Some'.",
-    "Adding 'All B are A' to 'Only a few A are B' — not implied."
+    {
+     "wrong": "Reading 'A few' or 'Many' as 'only a few'.",
+     "right": "They mean plain 'Some'. No outside part is guaranteed."
+    },
+    {
+     "wrong": "Assuming 'only a few A are B' says something about B outside A.",
+     "right": "It only fixes the A side. B outside A is undecided."
+    },
+    {
+     "wrong": "Passing the outside-A member through 'All B are C'.",
+     "right": "Only the A-and-B member travels. The outside member may or may not be a C."
+    },
+    {
+     "wrong": "Thinking 'only a few' allows 'All A are B'.",
+     "right": "It guarantees an A outside B, so 'All A are B' is false."
+    },
+    {
+     "wrong": "Joining two only-a-few statements.",
+     "right": "The overlaps can be different members. Nothing joins."
+    }
    ],
-   "notes": "### What \"only a few\" really says\nModern papers use three graded phrases:\n- **Some A are B** — at least one A is a B. Nothing more.\n- **A few / Many A are B** — exactly the same as Some. Treat them as synonyms.\n- **Only a few A are B** — two statements welded into one: **Some A are B AND Some A are not B**. The part of A outside B is *guaranteed*, not just possible.\n\nSo \"Only a few cups are plates\" gives you a definite gift: a part of the cups lies outside plates. But it says **nothing** about B: plates may be almost all cups or almost none — only the A-side is fixed.\n\n### Immediate consequences\nFrom **Only a few A are B**:\n- ✓ Some A are B (follows)\n- ✓ Some A are not B (follows)\n- ✗ All A are B (contradicted)\n- ✗ No A is B (contradicted)\n- ✗ All B are A, Some B are not A — nothing is fixed on the B side\n\nThe guaranteed \"A outside B\" member still moves freely with respect to any third class C: if All B are C, that member *may or may not* be a C. Do not chain \"Some A are not B\" through an All the way students chain \"Some A are B\".\n\n### Combining with All statements\nOnly a few A are B + All B are C:\n- ✓ Some A are C — the A∩B member is a C.\n- ✗ Some A are not C — the non-B A's are not pinned outside C.\nThis one-directional behaviour is the most tested subtlety of the whole subtopic.\n\n### Worked examples\n1. Only a few keys are brass. All brass items are metal. No metal is plastic. Conclusion: Some keys are not plastic. The key-that-is-brass is metal, hence not plastic — that key is \"a key not a plastic\" → follows. But \"All keys being plastic is a possibility\" fails: that same key can never be plastic.\n2. A few students are athletes. All athletes are fit. Conclusion: Some students are fit — follows (a few = some, then the shared member travels). Conclusion: All students are athletes — fails.\n\n### How exam questions use it\n- A conclusion pair where one half is \"Some A are not B\" — check whether an only-a-few statement already guarantees it.\n- A possibility conclusion \"All A being B is a possibility\" — if an only-a-few A-B statement exists, it is dead on arrival.\n- Mixed with plain Some statements to see if you notice which side is guaranteed.\n\n### Common mistakes\n- Reading \"only a few\" as \"few = almost none\" and inventing a No statement.\n- Reading it as plain Some and missing the guaranteed outside part.\n- Concluding \"Some B are not A\" from it — the B side is never fixed.\n\n### Quick revision\n- Only a few A are B = Some A are B + Some A are not B (A-side guaranteed split).\n- A few / many = plain Some.\n- Follows at once: Some A are B, Some A are not B. Dead at once: All A are B, No A is B.\n- B-side stays free: no conclusion about B outside A.\n- The guaranteed non-B member of A does not automatically escape any third class.\n",
+   "notes": "### What only a few really says\nModern papers use three phrases.\n\n- **Some A are B**: at least one A is a B. Nothing more.\n- **A few** and **Many A are B**: exactly the same as Some.\n- **Only a few A are B**: two facts at once. Some A are B, and some A are not B.\n\nSo 'Only a few cups are plates' guarantees a cup outside plates. It says nothing about plates that are not cups.\n\n> **Rule:** Split 'only a few' into two arrows. Feed both into your picture.\n\n### What follows at once\nFrom **Only a few A are B**:\n- Some A are B follows.\n- Some A are not B follows.\n- All A are B is false.\n- No A are B is false.\n- Anything about B outside A is undecided.\n\n### Combining with All\nTake 'Only a few A are B' and 'All B are C'.\n- Some A are C follows. The A that is a B is also a C.\n- Some A are not C does **not** follow. The A outside B may still be a C.\n\n> **Watch:** Only the A-and-B member travels through the All. The A-outside-B member does not.\n\n### Combining with No\nTake 'Only a few A are B' and 'No B are C'. Then some A are not C follows, because the A that is a B cannot be a C.\n\nBut 'All A are C' is impossible in this case. It would put that A into C.\n\n### Two only-a-few statements\n'Only a few A are B' and 'Only a few B are C' do not join. The A-and-B members and the B-and-C members can be different members.\n\n### Three phrases side by side\n| Phrase | Some A are B | Some A are not B |\n|---|---|---|\n| Some A are B | Yes | Not fixed |\n| A few / Many A are B | Yes | Not fixed |\n| Only a few A are B | Yes | Yes |\n\nOnly the last phrase guarantees the outside part. That is the whole difference between them. Do not read 'A few' or 'Many' as 'only a few'. They promise the overlap and nothing else.\n\n### Checking with a picture\nDraw the outside A member as a dot beside the B circle. Then ask whether the dot has to sit inside C. If it can sit either way, the conclusion is not forced.\n\nWatch which side each conclusion is about. 'Some A are not B' talks about the A side. 'Some B are not A' talks about the B side.\n\n'Only a few A are B' fixes the first and leaves the second open.\n\n### A worked example\n**Statements**\n- Only a few cups are plates.\n- All plates are bowls.\n\n**Conclusions**\n- I. Some cups are bowls.\n- II. Some cups are not bowls.\n\n**Options**\n- (A) Neither I nor II follows\n- (B) Only I follows\n- (C) Only II follows\n- (D) Both I and II follow\n\n**Solution**\n- The cup that is a plate is also a bowl. So I follows.\n- The cup that is not a plate may still be a bowl. So II fails.\n\nAnswer: **(B) Only I follows**.\n",
    "patterns": [
     {
      "id": "syl-p13",
      "name": "Only-a-few direct consequences",
      "frequency": "very common",
-     "howToSpot": "A statement 'Only a few A are B' and conclusions quoting Some A are B / Some A are not B / All A are B / No A is B.",
+     "howToSpot": "'Only a few A are B', and conclusions quoting Some, Some-not, All or No on A and B.",
      "formula": null,
-     "logic": "1. Rewrite at once: Some A are B ✓ and Some A are not B ✓.\n2. All A are B and No A is B are both dead.\n3. Anything about the B-side (Some B are not A) is undecided.\n\n*Why it works:* 'only a few' welds two facts about the A-side and nothing about the B-side.",
+     "steps": [
+      "Rewrite as Some A are B and Some A are not B.",
+      "All A are B and No A are B are false.",
+      "Anything about B outside A is undecided."
+     ],
+     "why": "Only-a-few welds two facts about the A side and says nothing about B.",
      "example": {
-      "q": "**Only a few mangoes are sweet.** Conclusions: I. Some mangoes are sweet. II. All mangoes are sweet.",
-      "solution": "I is half of the split → follows. II collides with the guaranteed non-sweet part → fails. **Only I follows.**"
+      "q": "**Statements**\n- Only a few pens are pencils.\n\n**Conclusions**\n- I. Some pens are not pencils.\n- II. Some pencils are not pens.\n\n**Options**\n- (A) Only II follows\n- (B) Both I and II follow\n- (C) Neither I nor II follows\n- (D) Only I follows",
+      "steps": [
+       "Split the statement: some pens are pencils, and some pens are not pencils.",
+       "I is the second half, so it follows.",
+       "II is about pencils outside pens. The statement says nothing about that side. II fails."
+      ],
+      "answer": "(D) Only I follows"
      }
     },
     {
      "id": "syl-p14",
      "name": "Only-a-few + All chain",
      "frequency": "common",
-     "howToSpot": "'Only a few A are B' plus 'All B are C', conclusions about A and C.",
+     "howToSpot": "'Only a few A are B' and 'All B are C'. Conclusions are about A and C.",
      "formula": null,
-     "logic": "1. Some A are B, and that member is a C → Some A are C follows.\n2. The guaranteed non-B A-member is NOT automatically a non-C — do not chain the Some-not through.\n3. Test any possibility about third classes with one supporting diagram.\n\n*Why it works:* only the B-side member is guaranteed to travel; the outside member stays free.",
+     "steps": [
+      "The A-and-B member is also a C, so 'Some A are C' follows.",
+      "The A outside B is not tied to C.",
+      "So 'Some A are not C' does not follow."
+     ],
+     "why": "Only the B member travels through the All.",
      "example": {
-      "q": "**Only a few cups are plates. All plates are dishes.** Conclusions: I. Some cups are dishes. II. Some cups are not dishes.",
-      "solution": "The cup-that-is-a-plate is a dish → I follows. Non-plate cups may still be dishes → II fails. **Only I follows.**"
+      "q": "**Statements**\n- Only a few cups are plates.\n- All plates are bowls.\n\n**Conclusions**\n- I. Some cups are bowls.\n- II. Some cups are not bowls.\n\n**Options**\n- (A) Neither I nor II follows\n- (B) Only I follows\n- (C) Only II follows\n- (D) Both I and II follow",
+      "steps": [
+       "The cup that is a plate is also a bowl. So I follows.",
+       "The cup that is not a plate may still be a bowl. So II fails."
+      ],
+      "answer": "(B) Only I follows"
      }
     },
     {
      "id": "syl-p15",
      "name": "'A few / Many' = plain Some",
      "frequency": "common",
-     "howToSpot": "The statement reads 'A few A are B' or 'Many A are B' — students over-read it as only-a-few.",
+     "howToSpot": "The statement says 'A few A are B' or 'Many A are B'. Students over-read it as only-a-few.",
      "formula": null,
-     "logic": "1. Treat it exactly as 'Some A are B' — no guaranteed outside part.\n2. 'Some A are not B' now does NOT follow.\n3. Chain the Some member through any All statement as usual.\n\n*Why it works:* 'a few/many' only asserts existence of the overlap, unlike 'only a few'.",
+     "steps": [
+      "Treat it exactly as 'Some A are B'.",
+      "No outside part is guaranteed.",
+      "Chain the Some member through any All."
+     ],
+     "why": "'A few' and 'Many' only promise that the overlap exists.",
      "example": {
-      "q": "**A few students are athletes. All athletes are fit.** Conclusions: I. Some students are fit. II. All students are athletes.",
-      "solution": "The student-athlete is fit → I follows. II is the reverse-All trap → fails. **Only I follows.**"
+      "q": "**Statements**\n- Some doctors are singers.\n- All singers are dancers.\n\n**Conclusions**\n- I. Some doctors are dancers.\n- II. Some doctors are not singers.\n\n**Options**\n- (A) Only I follows\n- (B) Only II follows\n- (C) Both I and II follow\n- (D) Neither I nor II follows",
+      "steps": [
+       "Treat 'A few' like 'Some'. Some doctors are singers, and every singer is a dancer.",
+       "So some doctors are dancers. I follows.",
+       "II needs a doctor outside singers. 'A few' does not guarantee it, so II fails."
+      ],
+      "answer": "(A) Only I follows"
      }
     },
     {
      "id": "syl-p16",
      "name": "Only-a-few with possibility and No statements",
      "frequency": "occasional",
-     "howToSpot": "An only-a-few puzzle whose conclusions mix a definite claim with an '… is a possibility'.",
+     "howToSpot": "An only-a-few statement, a No statement and a mix of definite and possibility conclusions.",
      "formula": null,
-     "logic": "1. Split only-a-few; use its guaranteed member for definite conclusions.\n2. For a possibility, try to draw it — only-a-few kills only 'All A are B' on its own pair.\n3. A No statement elsewhere can still block a possibility — trace the guaranteed member through it.\n\n*Why it works:* the guaranteed member obeys every statement; possibilities need one clean diagram elsewhere.",
+     "steps": [
+      "Split only-a-few into Some and Some-not.",
+      "Trace the guaranteed member through the No statement.",
+      "Test each conclusion by its own standard."
+     ],
+     "why": "The No statement can cut off the guaranteed member from a third group.",
      "example": {
-      "q": "**Only a few keys are brass. All brass items are metal. No metal is plastic.** Conclusions: I. Some keys are not plastic. II. All keys being plastic is a possibility.",
-      "solution": "The key-that-is-brass is metal, never plastic → I follows. That same key cannot be plastic, so II is impossible. **Only I follows.**"
+      "q": "**Statements**\n- Only a few birds are pets.\n- No pets are stones.\n\n**Conclusions**\n- I. Some birds are not stones.\n- II. All birds being stones is a possibility.\n\n**Options**\n- (A) Both I and II follow\n- (B) Neither I nor II follows\n- (C) Only I follows\n- (D) Only II follows",
+      "steps": [
+       "Some birds are pets. A pet is never a stone. So some birds are not stones. I follows.",
+       "II asks for all birds to be stones. The bird that is a pet would have to be a stone. II fails."
+      ],
+      "answer": "(C) Only I follows"
+     }
+    },
+    {
+     "id": "syl-p21",
+     "name": "Two only-a-few statements",
+     "frequency": "occasional",
+     "howToSpot": "'Only a few A are B' and 'Only a few B are C', with conclusions about A and C.",
+     "formula": null,
+     "steps": [
+      "Split both statements.",
+      "The A-and-B members and B-and-C members may differ.",
+      "Draw the two overlaps apart.",
+      "Neither Some nor Some-not is forced."
+     ],
+     "why": "Each only-a-few links one pair. Two links do not join.",
+     "example": {
+      "q": "**Statements**\n- Only a few trees are plants.\n- Only a few plants are shrubs.\n\n**Conclusions**\n- I. Some trees are shrubs.\n- II. Some trees are not shrubs.\n\n**Options**\n- (A) Only II follows\n- (B) Both I and II follow\n- (C) Neither I nor II follows\n- (D) Only I follows",
+      "steps": [
+       "Each 'only a few' gives some and some-not. The two links do not join up.",
+       "The trees that are plants may all be shrubs, or none of them may be. Neither claim is forced."
+      ],
+      "answer": "(C) Neither I nor II follows"
      }
     }
+   ],
+   "revision": [
+    "Only a few A are B = Some A are B + Some A are not B.",
+    "A few and Many = plain Some. Nothing is guaranteed outside.",
+    "Only the A-and-B member travels through All B are C.",
+    "Only a few A are B makes 'All A are B' and 'No A are B' false.",
+    "Nothing is fixed about B outside A."
    ]
   }
  ],

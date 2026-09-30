@@ -196,3 +196,37 @@ Append new questions to the topic's `practice` array. Target **>= 12 practice qu
 Same Question contract as above (4 unique options, 0-based answer, solution, shortcut when there is one).
 Quant/numeric answers MUST be computed by Python in your build script (assert the stored answer equals the
 computed value); if a question can't be verified, drop it.
+
+## Phase 3: readable lessons (added 2026-09-29)
+
+The subtopic page now renders each `###` of `notes` as its own numbered section, lifts traps and recaps
+into dedicated blocks, and shows every worked example as "try it first, then reveal the steps".
+Reference implementation: `content/_work/readable/quant/tw_pipes.py` (Time & Work > Pipes & Cisterns).
+
+### Writing rules (stricter than Phase 2)
+- One idea per sentence, **20 words or fewer**. Active voice. Everyday words ("speed", not "efficiency rate").
+  Define a term in plain words the first time it appears. No filler ("bookkeeping", "note that", "it is worth").
+- Open every notes section with the idea in one sentence, then a small worked number. Show, then tell.
+- Teach the **one fastest reliable method** first (e.g. LCM units in time & work), then the formula shortcut.
+- Original writing only. Never copy wording from any website, book or app. No links or sources.
+
+### Subtopic fields
+- `concept`: 2-4 short sentences, plain words, **no display math**. "The idea in one minute".
+- `notes`: 2500-5000 chars, 4-8 `###` sections. Headings are plain phrases, no numbers (the page numbers them).
+  **No "Common traps" / "Quick revision" sections** — those go in `mistakes` / `revision`.
+  Callouts: a blockquote starting with a bold label, e.g. `> **Rule:** …`, `> **Tip:** …`, `> **Watch:** …`,
+  `> **Note:** …`, `> **Example:** …`. Use 2-5 per subtopic. Put `$$…$$` on its own line.
+  In running text use `\dfrac` for fractions (plain `\frac` renders tiny inline).
+- `patterns`: 5-8 question types where the subtopic really has them (never pad), most common first.
+  Keep every existing pattern id (practice questions point to them); new ids continue the topic's sequence.
+  Each: `name`, `frequency`, `howToSpot` (the words in the question that give it away), `formula` (or null),
+  `steps` (3-5 short imperative steps), `why` (one sentence),
+  `example`: `{ "q", "steps": [2-5 short lines], "answer": "short final answer" }`. Drop `logic`/`solution`.
+- `mistakes`: 4-6 `{ "wrong": "what students do", "right": "what to do instead" }`.
+- `revision`: 4-8 one-line takeaways (formulas allowed).
+- `tricks`: keep useful ones, rewrite in the same plain style; `example` uses `steps` + `answer`.
+- `formulas`: keep; add a `note` in words where the symbol meaning is not obvious.
+- Quant/reasoning numbers: every number in every example is recomputed in the build script with
+  `fractions.Fraction` / asserts. GA/English/computer: keep facts exactly as they are; do not add new facts
+  you cannot state with certainty.
+- Validate with `python content/_work/readable/validate.py <topic json files…>` before finishing.

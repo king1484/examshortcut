@@ -13,550 +13,1043 @@
   {
    "id": "m2d-triangles",
    "title": "Areas of triangles",
-   "concept": "Area of a triangle $=\\frac12\\times\\text{base}\\times\\text{height}$. Special cases carry most CGL questions:\n- **Equilateral** (side $a$): area $\\frac{\\sqrt3}{4}a^2$, height $\\frac{\\sqrt3}{2}a$.\n- **Heron** for three sides $a,b,c$: semi-perimeter $s=\\frac{a+b+c}{2}$, area $=\\sqrt{s(s-a)(s-b)(s-c)}$.\n- **Right triangle:** the two legs are base and height, area $=\\frac12\\,p\\,b$.\n\nFor an equilateral triangle the inradius is $\\frac{a}{2\\sqrt3}$ and the circumradius is $\\frac{a}{\\sqrt3}$.",
+   "concept": "Area of a triangle is half of base times height, and any side can be the base. Equilateral, isosceles and right triangles have shortcuts that turn most exam questions into one line. Heron's formula covers everything else using only the three sides.",
    "formulas": [
     {
-     "name": "General triangle",
-     "tex": "K=\\frac12 b h"
+     "name": "Triangle area",
+     "tex": "K=\\frac{1}{2}bh",
+     "note": "b = any side, h = perpendicular height on it."
     },
     {
      "name": "Equilateral triangle",
-     "tex": "K=\\frac{\\sqrt3}{4}a^2,\\quad h=\\frac{\\sqrt3}{2}a"
+     "tex": "K=\\frac{\\sqrt3}{4}a^2,\\quad h=\\frac{\\sqrt3}{2}a",
+     "note": "a = side; height is root-three over two of the side."
     },
     {
      "name": "Heron's formula",
-     "tex": "s=\\frac{a+b+c}{2},\\quad K=\\sqrt{s(s-a)(s-b)(s-c)}"
+     "tex": "K=\\sqrt{s(s-a)(s-b)(s-c)},\\quad s=\\frac{a+b+c}{2}",
+     "note": "s = half the perimeter."
     },
     {
-     "name": "Radii of an equilateral triangle",
-     "tex": "r_{\\text{in}}=\\frac{a}{2\\sqrt3},\\quad R=\\frac{a}{\\sqrt3}"
+     "name": "Altitude to hypotenuse",
+     "tex": "h=\\frac{ab}{c}=\\frac{2K}{c}",
+     "note": "a, b legs, c hypotenuse; from equating two areas."
+    },
+    {
+     "name": "Inradius / circumradius",
+     "tex": "r=\\frac{K}{s},\\quad R=\\frac{abc}{4K}",
+     "note": "K = area, s = half-perimeter."
+    },
+    {
+     "name": "Median split",
+     "tex": "\\text{median}\\Rightarrow\\text{two equal areas}",
+     "note": "Each median halves the area of a triangle."
     }
    ],
    "tricks": [
     {
-     "title": "Equilateral area from the side table",
-     "body": "$\\frac{\\sqrt3}{4}=0.433$. Memorise: side 4 → $4\\sqrt3$, side 6 → $9\\sqrt3$, side 8 → $16\\sqrt3$, side 12 → $36\\sqrt3$,\nside 10 → $25\\sqrt3$. The coefficient is just $\\left(\\frac{\\text{side}}{4}\\right)^2$.",
+     "title": "Triplet beats Heron",
+     "body": "Before Heron, check for a triplet. A right triangle needs only half the product of its legs.",
      "example": {
-      "q": "Find the area of an equilateral triangle of side 12 cm.",
-      "solution": "$\\frac{\\sqrt3}{4}\\times12^2=36\\sqrt3$ sq cm."
+      "q": "Find the area of the triangle with sides 9 cm, 12 cm and 15 cm.",
+      "steps": [
+       "$9^2+12^2=81+144=225=15^2$, so it is right-angled.",
+       "$K=\\dfrac{9\\times12}{2}$.",
+       "$K=54$ sq cm."
+      ],
+      "answer": "54 sq cm"
      }
     },
     {
-     "title": "Heron with a triplet shortcut",
-     "body": "If the sides form a Pythagorean triple the triangle is right-angled: use $\\frac12\\times$ legs directly.\n13-14-15 is the classic non-right Heron case, area 84.",
+     "title": "Isosceles: half it first",
+     "body": "The median to the base is the height. Halve the base, then use Pythagoras with an equal side.",
      "example": {
-      "q": "Find the area of the triangle with sides 13 cm, 14 cm, 15 cm.",
-      "solution": "$s=21$, $K=\\sqrt{21\\times8\\times7\\times6}=84$ sq cm."
+      "q": "An isosceles triangle has equal sides of 17 cm and base 16 cm. Find its area.",
+      "steps": [
+       "Half-base $=8$ cm.",
+       "Height $=\\sqrt{17^2-8^2}=\\sqrt{225}=15$ cm.",
+       "$K=\\dfrac{16\\times15}{2}=120$ sq cm."
+      ],
+      "answer": "120 sq cm"
+     }
+    },
+    {
+     "title": "Two radii from Heron",
+     "body": "After Heron gives the area, both radii are one division away: r divides by s, R uses abc over 4K.",
+     "example": {
+      "q": "The sides of a triangle are 13, 14 and 15 cm. Find its inradius.",
+      "steps": [
+       "$s=21$, $K=84$.",
+       "$r=\\dfrac{K}{s}=\\dfrac{84}{21}$.",
+       "$r=4$ cm."
+      ],
+      "answer": "4 cm"
      }
     }
    ],
    "mistakes": [
-    "Using $\\frac{\\sqrt3}{2}a^2$ (the height formula's coefficient) for the equilateral area.",
-    "Heron: forgetting the square root at the end.",
-    "Taking the longest side as the height in a right triangle — the legs are base and height."
+    {
+     "wrong": "Using the slant side as the height.",
+     "right": "The height is perpendicular to the base. In the 17-17-16 triangle it is 15, not 17."
+    },
+    {
+     "wrong": "Forgetting to halve the base in an isosceles triangle.",
+     "right": "Pythagoras needs the half-base 8, so the height is $\\sqrt{289-64}=15$."
+    },
+    {
+     "wrong": "Running Heron on a right triangle.",
+     "right": "A triplet like 6-8-10 needs only $\\dfrac{6\\times8}{2}=24$."
+    },
+    {
+     "wrong": "Using the full perimeter as $s$.",
+     "right": "$s$ is the half-perimeter. For 13-14-15, $s=21$, not 42."
+    },
+    {
+     "wrong": "Mixing the legs with the hypotenuse in $h=\\dfrac{ab}{c}$.",
+     "right": "$c$ is the hypotenuse. Legs 6 and 8 over 10 give $h=4.8$."
+    }
    ],
-   "notes": "### The four area routes (pick by what's given)\n- **Base-height**: $K = \\frac{1}{2} \\times \\text{base} \\times \\text{height}$ — any triangle, when the perpendicular height is known.\n- **Equilateral**: $K = \\frac{\\sqrt{3}}{4}a^2$; also height $= \\frac{\\sqrt{3}}{2}a$. Reverse: from the area, $a^2 = \\frac{4K}{\\sqrt{3}}$.\n- **Heron (three sides)**: $s = \\frac{a+b+c}{2}$, $K = \\sqrt{s(s-a)(s-b)(s-c)}$.\n- **Right triangle**: $K = \\frac{1}{2} \\times \\text{leg} \\times \\text{leg}$ — and this doubles as a Heron bypass whenever the sides form a Pythagorean family.\n\n### The Heron bypass (memorised families)\nCheck for a triplet before touching Heron:\n| Family | Area |\n|---|---|\n| (5,12,13) | 30 |\n| (9,12,15) | 54 |\n| (10,24,26) | 120 |\n| (13,14,15) | 84 |\n| (7,24,25) | 84 |\n| (13,20,21) | 126 |\n\nIf the sides are a multiple of 3-4-5 or 5-12-13, the triangle is right-angled and the area is half the product of the two smaller sides. (13,14,15) is the classic non-right Heron example — its area 84 is worth memorising outright.\n\n### Isosceles triangles\nGiven equal sides $a$ and base $b$: the height to the base is $h = \\sqrt{a^2 - \\left(\\frac{b}{2}\\right)^2}$, then $K = \\frac{1}{2}bh$. These are engineered to give Pythagorean halves: (13,13,10) → h 12, K 60; (17,17,16) → h 15, K 120; (25,25,14) → h 24, K 168; (10,10,12) → h 8, K 48.\n\n### Area links inside the triangle\n- **Inradius**: $K = r \\cdot s$, so $r = \\frac{K}{s}$. For (13,14,15): $r = \\frac{84}{21} = 4$.\n- **A median divides the triangle into two equal areas** (same base halves, same height). A centroid therefore creates 6 triangles of equal area.\n- **Altitude to the hypotenuse**: $\\frac{1}{2}ab = \\frac{1}{2}ch$ gives $h = \\frac{ab}{c}$ for legs $a,b$ and hypotenuse $c$ — (6,8,10) → $h = 4.8$.\n\n### How the questions combine these\nA typical CGL question chains two of the routes: sides given → area via the triplet bypass → then inradius $r = K/s$; or isosceles sides → height via Pythagoras → area → then a median split halves it. Read the full question once before computing, note the LAST quantity asked, and work backwards from it to choose the shortest route. Unit discipline matters too: mixed units (m with cm) must be converted before any squaring, and answers in $\\text{cm}^2$ asked from metre dimensions need the $\\times 10^4$ conversion.\n\n### Quick revision\n- $K = \\frac{1}{2}bh$; equilateral $\\frac{\\sqrt3}{4}a^2$, height $\\frac{\\sqrt3}{2}a$.\n- Heron: $s$ first, then $\\sqrt{s(s-a)(s-b)(s-c)}$; triplet sides → $\\frac12 \\times$ legs.\n- Isosceles: $h = \\sqrt{a^2 - (b/2)^2}$; know the (13,13,10), (17,17,16), (25,25,14) shapes.\n- $r = K/s$; median halves the area; altitude to hypotenuse $h = \\frac{ab}{c}$.\n",
+   "notes": "### One master formula\n$$K=\\frac{1}{2}\\times\\text{base}\\times\\text{height}$$\nThe height is the perpendicular dropped onto the chosen base. Pick the side whose height is easiest, then stick with that pair.\n\nTwo triangles on the same base and between the same parallels always have equal areas. Half of the same base and the same height forces the same area. A median uses exactly that, which is why it never fails to halve a triangle.\n\n> **Rule:** Any side may be the base, but the height must be measured perpendicular to that exact side.\n\n### The three special triangles\n- **Right triangle**: the two legs act as base and height. Legs $6$ and $8$ give $K=\\dfrac{6\\times8}{2}=24$, hypotenuse $10$.\n- **Equilateral** (side $a$): height $=\\dfrac{\\sqrt3}{2}a$, area $=\\dfrac{\\sqrt3}{4}a^2$. Side $12$: height $6\\sqrt3$, area $36\\sqrt3$.\n- **Isosceles**: the median to the base is the height. Equal sides $17$, base $16$: half-base $8$, height $\\sqrt{289-64}=15$, area $\\dfrac{16\\times15}{2}=120$.\n\n> **Tip:** Equilateral numbers stay clean: for $a=6$ the area is $9\\sqrt3$, and every side gives a multiple of $\\sqrt3$.\n\n### Heron's formula\nWith all three sides, take the half-perimeter first:\n$$s=\\frac{a+b+c}{2},\\qquad K=\\sqrt{s(s-a)(s-b)(s-c)}$$\nSides $13$, $14$, $15$: $s=21$, so $K=\\sqrt{21\\times8\\times7\\times6}=\\sqrt{7056}=84$.\n\nSides $5$, $12$, $13$ give $s=15$ and $K=\\sqrt{15\\times10\\times3\\times2}=30$. But $5$-$12$-$13$ is a triplet, so $\\dfrac{5\\times12}{2}=30$ was faster.\n\n> **Shortcut:** Spot a Pythagorean triplet and skip Heron. A right triangle's area is just half the product of its legs.\n\n### Altitude to the hypotenuse: two areas\nThe right triangle with legs $6$, $8$ has hypotenuse $10$ and area $24$. Take the hypotenuse as the base instead:\n$$\\frac{1}{2}\\times10\\times h=24 \\Rightarrow h=4.8=\\frac{24}{5}$$\nSame triangle, same area, second route. That is the whole trick.\n\n> **Watch:** Equate the two area expressions before touching square roots. The altitude rule $h=\\dfrac{ab}{c}$ falls out of it.\n\n### Radii and the median split\n- Inradius $r=\\dfrac{K}{s}$. For $13$-$14$-$15$: $r=\\dfrac{84}{21}=4$.\n- Circumradius $R=\\dfrac{abc}{4K}=\\dfrac{2730}{336}=\\dfrac{65}{8}=8.125$.\n- Every median splits a triangle into two equal areas. Two medians cut it into four equal areas.\n- Equilateral: $R=2r$, and $a=6$ gives $r=\\sqrt3$, $R=2\\sqrt3$.\n\n> **Remember:** Small radius $r$ divides the area by the half-perimeter; big radius $R$ multiplies the sides. $R=2r$ only in the equilateral case.\n",
    "patterns": [
     {
      "id": "m2d-tr-p1",
      "name": "Area from base-height / equilateral formula",
      "frequency": "very common",
-     "howToSpot": "Base and height given directly — or 'equilateral triangle of side a' with area/perimeter/height asked.",
-     "formula": "K = \\frac{1}{2}bh;\\quad K_{\\text{eq}} = \\frac{\\sqrt{3}}{4}a^2",
-     "logic": "1. General triangle: halve the product of base and perpendicular height.\n2. Equilateral: $\\frac{\\sqrt3}{4}a^2$ for area, $\\frac{\\sqrt3}{2}a$ for height, $3a$ for perimeter.\n3. Reverse direction (area given → side) needs $a^2 = \\frac{4K}{\\sqrt3}$; keep the $\\sqrt3$ untouched.\n\nWhy: the equilateral formula is just base-height with height forced to $\\frac{\\sqrt3}{2}a$ by the 60-60-60 angles.",
+     "howToSpot": "A triangle with one length given, or an equilateral with its side.",
+     "steps": [
+      "Pick the base with the easiest height.",
+      "Right triangle: legs are base and height.",
+      "Equilateral: use $K=\\dfrac{\\sqrt3}{4}a^2$ directly.",
+      "Multiply and simplify."
+     ],
+     "why": "The direct formula is a one-liner, and equilateral sides keep the answer a clean multiple of $\\sqrt3$.",
      "example": {
       "q": "Find the area of an equilateral triangle of side 12 cm.",
-      "solution": "$K = \\frac{\\sqrt3}{4} \\times 12^2 = \\frac{\\sqrt3}{4} \\times 144 = 36\\sqrt{3}$ sq cm."
+      "steps": [
+       "$K=\\dfrac{\\sqrt3}{4}\\times12^2$.",
+       "$=\\dfrac{\\sqrt3}{4}\\times144=36\\sqrt3$ sq cm."
+      ],
+      "answer": "36*sqrt(3) sq cm (about 62.35 sq cm)"
      }
     },
     {
      "id": "m2d-tr-p2",
      "name": "Heron's formula (and the triplet bypass)",
      "frequency": "very common",
-     "howToSpot": "Three sides given with no height; sides often form a Pythagorean family in disguise.",
-     "formula": "K = \\sqrt{s(s-a)(s-b)(s-c)},\\quad s = \\frac{a+b+c}{2}",
-     "logic": "1. Spot a triplet family first — then the triangle is right-angled and $K = \\frac12 \\times$ legs.\n2. Otherwise compute $s$, then the four-factor product, then the root.\n3. (13,14,15) → 84 is the standard non-right Heron answer worth knowing cold.\n\nWhy: Heron works on any triangle, but exam sides are chosen so either a triplet bypass or a clean square root appears.",
+     "howToSpot": "Three sides, no right angle, no height.",
+     "steps": [
+      "Compute $s=\\dfrac{a+b+c}{2}$.",
+      "Form the product $s(s-a)(s-b)(s-c)$.",
+      "Take the square root.",
+      "Check for a triplet first to skip the work."
+     ],
+     "why": "Heron works from sides alone, and most exam values are perfect squares under the root.",
      "example": {
       "q": "Find the area of the triangle with sides 13 cm, 14 cm and 15 cm.",
-      "solution": "$s = 21$; $K = \\sqrt{21 \\cdot 8 \\cdot 7 \\cdot 6} = \\sqrt{7056} = 84$ sq cm."
+      "steps": [
+       "$s=\\dfrac{42}{2}=21$.",
+       "$K=\\sqrt{21\\times8\\times7\\times6}=\\sqrt{7056}=84$."
+      ],
+      "answer": "84 sq cm"
      }
     },
     {
      "id": "m2d-tr-p3",
      "name": "Isosceles triangle area",
      "frequency": "common",
-     "howToSpot": "Equal sides and base given — area asked; the numbers are built for a Pythagorean half-base.",
-     "formula": "h = \\sqrt{a^2 - (b/2)^2},\\quad K = \\frac{1}{2}bh",
-     "logic": "1. Halve the base; it is one leg of the right triangle formed by the height.\n2. Get $h$ from the equal side as hypotenuse — check for (5,12,13), (8,15,17) halves.\n3. Area $= \\frac12 \\times$ base $\\times h$.\n\nWhy: the height to the base of an isosceles triangle is also its median, splitting the base into equal halves.",
+     "howToSpot": "Two equal sides and the base, no height.",
+     "steps": [
+      "Halve the base.",
+      "Height $=\\sqrt{(\\text{equal side})^2-(\\text{half-base})^2}$.",
+      "$K=\\dfrac{1}{2}\\times\\text{base}\\times\\text{height}$."
+     ],
+     "why": "The median to the base doubles as the height, so Pythagoras finishes the job in two steps.",
      "example": {
       "q": "An isosceles triangle has equal sides of 17 cm and base 16 cm. Its area is:",
-      "solution": "$h = \\sqrt{17^2 - 8^2} = \\sqrt{289-64} = 15$; $K = \\frac12 \\times 16 \\times 15 = 120$ sq cm."
+      "steps": [
+       "Half-base $=8$; height $=\\sqrt{17^2-8^2}=15$.",
+       "$K=\\dfrac{16\\times15}{2}=120$ sq cm."
+      ],
+      "answer": "120 sq cm"
      }
     },
     {
      "id": "m2d-tr-p4",
      "name": "Inradius and median area-split",
      "frequency": "common",
-     "howToSpot": "'The inradius of a triangle…' with sides given ($r = K/s$), or a median/centroid with the two area pieces asked.",
-     "formula": "K = r\\,s \\ \\Rightarrow\\ r = \\frac{K}{s}",
-     "logic": "1. Find the area first (triplet bypass or Heron).\n2. Inradius $r = K/s$ — divide by the SEMI-perimeter, not the perimeter.\n3. Median question: a median halves the area (equal base halves, same height).\n\nWhy: the incircle touches all three sides, and joining the incentre to the vertices splits the triangle into three triangles of height $r$ — their areas total $r \\cdot s$.",
+     "howToSpot": "Sides given, question asks the inradius; or a median asks for an area ratio.",
+     "steps": [
+      "Find the area first (Heron or a triplet).",
+      "$r=\\dfrac{K}{s}$ with the half-perimeter.",
+      "For medians: each one splits the area in half."
+     ],
+     "why": "Both facts reuse the area you already computed, so nothing extra is needed.",
      "example": {
       "q": "The sides of a triangle are 13, 14 and 15 cm. Its inradius is:",
-      "solution": "$K = 84$ (Heron), $s = 21$: $r = \\frac{84}{21} = 4$ cm."
+      "steps": [
+       "$K=84$, $s=21$.",
+       "$r=\\dfrac{84}{21}=4$ cm."
+      ],
+      "answer": "4 cm"
      }
     },
     {
      "id": "m2d-tr-p5",
      "name": "Altitude to the hypotenuse (area two ways)",
      "frequency": "occasional",
-     "howToSpot": "A right triangle with the perpendicular drawn from the right angle to the hypotenuse; that altitude (or the area) is asked.",
-     "formula": "\\frac{1}{2}ab = \\frac{1}{2}ch \\ \\Rightarrow\\ h = \\frac{ab}{c}",
-     "logic": "1. Compute the area the easy way: half the product of the legs.\n2. The same area equals half × hypotenuse × the altitude to it.\n3. So altitude $h = \\frac{ab}{c}$; keep it as a fraction if it is not integral.\n\nWhy: the two legs and (hypotenuse + altitude) are two base-height pairs of the SAME triangle, so the areas are equal.",
+     "howToSpot": "A right triangle, question asks the height on the hypotenuse.",
+     "steps": [
+      "Compute the area from the two legs.",
+      "Set $\\dfrac{1}{2}\\times\\text{hypotenuse}\\times h$ equal to it.",
+      "Solve for $h$."
+     ],
+     "why": "One triangle, one area, two base choices. Equating them avoids the similar-triangle mess.",
      "example": {
       "q": "In a right triangle with legs 6 cm and 8 cm, find the length of the altitude drawn to the hypotenuse.",
-      "solution": "Hypotenuse $= 10$; area $= \\frac12 \\cdot 6 \\cdot 8 = 24 = \\frac12 \\cdot 10 \\cdot h \\Rightarrow h = 4.8$ cm."
+      "steps": [
+       "$K=\\dfrac{6\\times8}{2}=24$; hypotenuse $=10$.",
+       "$\\dfrac{1}{2}\\times10\\times h=24$.",
+       "$h=4.8$ cm."
+      ],
+      "answer": "4.8 cm"
      }
     }
+   ],
+   "revision": [
+    "Master formula: half of base times perpendicular height, any side as base.",
+    "Equilateral side $a$: height $\\dfrac{\\sqrt3}{2}a$, area $\\dfrac{\\sqrt3}{4}a^2$.",
+    "Isosceles: halve the base, Pythagoras with an equal side gives the height.",
+    "Heron: half-perimeter first; a triplet triangle skips Heron entirely.",
+    "Altitude to the hypotenuse equals $\\dfrac{ab}{c}$, from two area expressions.",
+    "$r=\\dfrac{K}{s}$, $R=\\dfrac{abc}{4K}$, and every median halves the area."
    ]
   },
   {
    "id": "m2d-quads",
    "title": "Areas of quadrilaterals",
-   "concept": "| Figure | Area | Perimeter / diagonal |\n|---|---|---|\n| Rectangle $l\\times b$ | $lb$ | $2(l+b)$; diagonal $\\sqrt{l^2+b^2}$ |\n| Square (side $a$) | $a^2$ | $4a$; diagonal $a\\sqrt2$ |\n| Square (diagonal $d$) | $\\frac{d^2}{2}$ | $2\\sqrt2\\,d$ |\n| Parallelogram | $b\\times h$ | — |\n| Rhombus | $\\frac12 d_1d_2$ | side $\\sqrt{(d_1/2)^2+(d_2/2)^2}$ |\n| Trapezium | $\\frac12(a+b)h$ | — |\n| Cyclic quadrilateral | $\\sqrt{(s-a)(s-b)(s-c)(s-d)}$ | opposite angles sum to $180^\\circ$ |\n\nA square gives the **maximum area for a given perimeter** among quadrilaterals.",
+   "concept": "A rectangle, square, parallelogram, rhombus or trapezium each has a two-part area formula. Most questions give two facts and ask for a third, so the fast route is an identity, not a quadratic. Any quadrilateral splits into two triangles along a diagonal.",
    "formulas": [
     {
      "name": "Rectangle",
-     "tex": "K=lb,\\quad P=2(l+b),\\quad d=\\sqrt{l^2+b^2}"
+     "tex": "K=lb,\\quad P=2(l+b),\\quad d=\\sqrt{l^2+b^2}",
+     "note": "Three linked facts; any two fix the third."
     },
     {
      "name": "Square",
-     "tex": "K=a^2=\\frac{d^2}{2},\\quad d=a\\sqrt2"
+     "tex": "K=a^2,\\quad d=a\\sqrt2",
+     "note": "Diagonal is root-two times the side."
+    },
+    {
+     "name": "Parallelogram",
+     "tex": "K=bh=ab\\sin\\theta",
+     "note": "theta = angle between the two given sides."
     },
     {
      "name": "Rhombus",
-     "tex": "K=\\frac{d_1d_2}{2}"
+     "tex": "K=\\frac{1}{2}d_1d_2",
+     "note": "Diagonals cross at right angles and halve each other."
     },
     {
      "name": "Trapezium",
-     "tex": "K=\\frac{(a+b)}{2}h"
+     "tex": "K=\\frac{1}{2}(a+b)h",
+     "note": "a, b = the two parallel sides."
     },
     {
-     "name": "Cyclic quadrilateral (Brahmagupta)",
-     "tex": "K=\\sqrt{(s-a)(s-b)(s-c)(s-d)}"
+     "name": "Any quadrilateral",
+     "tex": "K=\\frac{1}{2}d(h_1+h_2)",
+     "note": "d = a diagonal; h1, h2 = perpendiculars onto it."
     }
    ],
    "tricks": [
     {
-     "title": "Square from its diagonal",
-     "body": "Area $=\\frac{d^2}{2}$, side $=\\frac{d}{\\sqrt2}$. Halve any square-area question that gives a diagonal.",
+     "title": "Rectangle identities, not quadratics",
+     "body": "With perimeter and diagonal, jump straight to $(l+b)^2=l^2+b^2+2lb$ and read off the area.",
      "example": {
-      "q": "Find the area of the largest square that can be inscribed in a circle of radius 7 cm.",
-      "solution": "Diagonal of the square $=$ diameter $=14$. Area $=\\frac{14^2}{2}=98$ sq cm."
+      "q": "The perimeter of a rectangle is 34 cm and its diagonal is 13 cm. Its area is:",
+      "steps": [
+       "$l+b=17$, so $(l+b)^2=289$.",
+       "$l^2+b^2=13^2=169$.",
+       "$2lb=289-169=120$, so $lb=60$."
+      ],
+      "answer": "60 sq cm"
      }
     },
     {
-     "title": "Rhombus: the half-diagonals are a right triangle",
-     "body": "Perimeter → side → half the other diagonal by Pythagoras → area by $\\frac12d_1d_2$.\nTriplets (6,8,10) and (5,12,13) appear constantly.",
+     "title": "Rhombus ratio to perimeter",
+     "body": "Ratio plus area fixes both diagonals. Halve them, spot the triplet, read the side.",
      "example": {
-      "q": "The perimeter of a rhombus is 40 cm and one diagonal is 12 cm. Find its area.",
-      "solution": "Side $=10$, half-diagonal $=6$, other half-diagonal $=8$ → diagonals 12 and 16 → area $\\frac12\\times12\\times16=96$ sq cm."
+      "q": "The diagonals of a rhombus are in the ratio 5 : 12 and its area is 120 sq cm. Its perimeter is:",
+      "steps": [
+       "$\\dfrac{1}{2}\\times5k\\times12k=120$ gives $k=2$.",
+       "Diagonals $10$, $24$; halves $5$, $12$; side $13$.",
+       "Perimeter $=4\\times13=52$ cm."
+      ],
+      "answer": "52 cm"
+     }
+    },
+    {
+     "title": "Diagonal splits any quadrilateral",
+     "body": "No special shape? Draw one diagonal. The area is half the diagonal times the sum of the two heights.",
+     "example": {
+      "q": "A quadrilateral has a diagonal of 12 cm, and the perpendiculars to it from the other corners are 5 cm and 9 cm. Find the area.",
+      "steps": [
+       "$K=\\dfrac{1}{2}\\times12\\times(5+9)$.",
+       "$=6\\times14$.",
+       "$=84$ sq cm."
+      ],
+      "answer": "84 sq cm"
      }
     }
    ],
    "mistakes": [
-    "Rhombus area computed as $d_1d_2$ (missing the half).",
-    "Square from diagonal: using $d^2$ instead of $d^2/2$.",
-    "Trapezium: adding the parallel sides but forgetting the half."
+    {
+     "wrong": "Treating the slant side of a parallelogram as the height.",
+     "right": "Height is perpendicular. Sides 10 and 8 at $30^\\circ$ give area $10\\times8\\times\\dfrac12=40$."
+    },
+    {
+     "wrong": "Using $d_1d_2$ for the rhombus area.",
+     "right": "The formula has the half: $\\dfrac{1}{2}\\times10\\times24=120$, not 240."
+    },
+    {
+     "wrong": "Halving only one diagonal of a rhombus.",
+     "right": "Both diagonals bisect each other, so both become halves: 5 and 12."
+    },
+    {
+     "wrong": "Solving a quadratic for $l$ and $b$ when only $lb$ is asked.",
+     "right": "Use $(l+b)^2-(l^2+b^2)=2lb$ and stop at the product."
+    },
+    {
+     "wrong": "Adding the parallel sides after multiplying by the height.",
+     "right": "Trapezium area is $\\dfrac12(a+b)h$; add first, then halve and multiply."
+    }
    ],
-   "notes": "### Rectangle and square\n- Rectangle: $K = l \\times b$, $P = 2(l+b)$, diagonal $d = \\sqrt{l^2+b^2}$.\n- Square: $K = a^2 = \\frac{d^2}{2}$, $P = 4a$, $d = a\\sqrt2$.\nThe rectangle questions rarely hand you both $l$ and $b$; they hand two of $\\{K, P, d\\}$ and expect the pair. The fastest trick: for a rectangle, $d^2 = (l+b)^2 - 2K$, and $d^2 = (l-b)^2 + 2K$ — so from $P$ and $d$ you get $l+b$ and then $K = \\left(\\frac{l+b}{2}\\right)^2 - \\left(\\frac{d}{2}\\right)^2$. Memorised example: $P = 34$, $d = 13$ → $l+b = 17$ → sides 12 and 5 → $K = 60$.\n\n### Rhombus\nDiagonals bisect at right angles:\n$$K = \\frac{1}{2}d_1 d_2,\\qquad \\text{side} = \\sqrt{\\left(\\frac{d_1}{2}\\right)^2 + \\left(\\frac{d_2}{2}\\right)^2},\\qquad P = 4 \\times \\text{side}$$\nHalf-diagonals are engineered as triplets: (10, 24) → side 13; (16, 12) → side 10. Diagonal-ratio questions: write $d_1 = 5k$, $d_2 = 12k$, put into $K = \\frac12 d_1 d_2$, find $k$.\n\n### Parallelogram\n$K = \\text{base} \\times \\text{height}$ (height is perpendicular to that base). A second form used when two adjacent sides and the included angle $\\theta$ are known: $K = ab\\sin\\theta$. The $30^\\circ$/$150^\\circ$ pair ($\\sin = \\frac12$) is the favourite: sides 10, 8 at $30^\\circ$ → $K = 40$.\n\n### Trapezium\n$$K = \\frac{1}{2}(a+b)\\,h$$\nHeight-from-area: $h = \\frac{2K}{a+b}$. If the parallel sides differ by $d$: write them $a$ and $a+d$; then $K = (a + \\frac{d}{2})h$ solves for $a$ directly.\n\n### How the questions chain these\nWatch the compound shells: a rectangle with $P = 34$ and $d = 13$ needs BOTH the half-perimeter and the diagonal — the triplet (5, 12, 13) finishes it in one glance, while the algebra route $K = \\left(\\frac{l+b}{2}\\right)^2 - \\left(\\frac{d}{2}\\right)^2 = 8.5^2 - 6.5^2 = 60$ works when no triplet fits. For a rhombus the usual chain is three steps: diagonals → side (Pythagoras on the halves) → perimeter ($\\times 4$), or area → missing diagonal → side. With a ratio of diagonals, never guess the diagonals themselves — introduce $k$, use the area equation, then finish. Trapezium reverse questions hide the height: from $K$, $a$, $b$ get $h = \\frac{2K}{a+b}$, and if the slant sides matter, drop perpendiculars to build a right triangle with half the difference $\\frac{b-a}{2}$.\n\n### Quick revision\n- Square: $K = \\frac{d^2}{2}$; rectangle: $d^2 = (l+b)^2 - 2K$.\n- Rhombus: $K = \\frac12 d_1d_2$; side from half-diagonal triplet.\n- Parallelogram: $bh$ or $ab\\sin\\theta$ ($30°$ → half).\n- Trapezium: $\\frac12(a+b)h$; sides differing by $d$: $K = (a + \\frac{d}{2})h$.\n",
+   "notes": "### The family card\n| Figure | Area | Extras |\n|---|---|---|\n| Rectangle $l\\times b$ | $lb$ | $P=2(l+b)$, diagonal $\\sqrt{l^2+b^2}$ |\n| Square, side $a$ | $a^2$ | diagonal $a\\sqrt2$ |\n| Parallelogram | $bh$ or $ab\\sin\\theta$ | adjacent angles add to $180^\\circ$ |\n| Rhombus | $\\dfrac{1}{2}d_1d_2$ | diagonals cross at $90^\\circ$ |\n| Trapezium | $\\dfrac{1}{2}(a+b)h$ | $a$, $b$ parallel |\n\n> **Rule:** Any quadrilateral: $K=\\dfrac{1}{2}\\times\\text{diagonal}\\times(\\text{sum of the two perpendiculars on it})$. Every row above is a special case.\n\n### Rectangle from two facts\nGiven $P=34$ and diagonal $13$: $l+b=17$ and $l^2+b^2=169$. Use the identity\n$$(l+b)^2=l^2+b^2+2lb \\Rightarrow 289=169+2lb \\Rightarrow lb=60$$\nArea $60$ without ever finding $l$ and $b$. Check: $l+b=17$ with $lb=60$ gives sides $12$ and $5$, and $5$-$12$-$13$ confirms the diagonal.\n\nA square of side $a$ has diagonal $a\\sqrt2$. Given the diagonal $8\\sqrt2$, the side is $8$ and the area is $64$.\n\n> **Tip:** Two facts about a rectangle almost always combine through $(l+b)^2$ or $(l-b)^2$. Avoid solving a quadratic.\n\n### Rhombus through half-diagonals\nThe diagonals bisect each other at right angles, so the halves and one side form a right triangle.\n\nDiagonals in ratio $5:12$ with area $120$: $\\dfrac{1}{2}(5k)(12k)=120$ gives $k=2$, so diagonals $10$ and $24$. Halves $5$ and $12$ give side $13$ and perimeter $52$. All four sides are equal, so the perimeter is always four times one side.\n\n> **Watch:** Halves of rhombus diagonals are triplets in disguise: (5, 12, 13), (8, 6, 10), (12, 35, 37).\n\n### Parallelogram and trapezium\nParallelogram sides $10$ and $8$ with a $30^\\circ$ angle between them: $K=10\\times8\\times\\sin30^\\circ=80\\times\\dfrac{1}{2}=40$.\n\nTrapezium: parallel sides differ by $8$, height $6$, area $96$. Then $\\dfrac{1}{2}(a+b)\\times6=96$ gives $a+b=32$; with $a-b=8$, the sides are $20$ and $12$. The height on the base $10$ above is $8\\sin30^\\circ=4$ cm, and the midsegment between the slanted sides is $\\dfrac{20+12}{2}=16$.\n\n> **Remember:** The height of a parallelogram is perpendicular to the base, never the slant side.\n\n### Split along a diagonal\nA general quadrilateral with diagonal $12$ and perpendiculars $5$ and $9$ dropping onto it from the other two corners:\n$$K=\\frac{1}{2}\\times12\\times(5+9)=84$$\nThe diagonal makes two triangles; add their two areas to finish.\n\n> **Tip:** A square with diagonal $8\\sqrt2$ has side $8$, area $64$. Match the diagonal formula $a\\sqrt2$ backwards to the side.\n",
    "patterns": [
     {
      "id": "m2d-qd-p1",
      "name": "Rectangle from two of {area, perimeter, diagonal}",
      "frequency": "very common",
-     "howToSpot": "Two of perimeter/diagonal/area given; the missing sides, the area or the perimeter asked.",
-     "formula": "d^2 = (l+b)^2 - 2K",
-     "logic": "1. From the perimeter get $l+b$; from the diagonal get $d$.\n2. Use $(l-b)^2 = d^2 - (l+b)(l-b)$… fastest is $K = \\left(\\frac{l+b}{2}\\right)^2 - \\left(\\frac{d}{2}\\right)^2$.\n3. Or spot the family: $P = 34, d = 13$ → $l+b=17$, and 5-12-13 gives sides 5, 12.\n\nWhy: the diagonal and the two sides form a right triangle, and $l+b$ pins the half-perimeter — two facts squeeze out both sides.",
+     "howToSpot": "Two rectangle facts given, a third one asked.",
+     "steps": [
+      "Turn the perimeter into $l+b$.",
+      "Write the second fact as $l^2+b^2$ or $lb$.",
+      "Bridge with $(l+b)^2=l^2+b^2+2lb$.",
+      "Read off the asked quantity."
+     ],
+     "why": "Identities move between the three facts faster than solving for the sides.",
      "example": {
       "q": "The perimeter of a rectangle is 34 cm and its diagonal is 13 cm. Its area is:",
-      "solution": "$l+b = 17$; the 5-12-13 triplet fits ($5+12=17$, diag 13) → $K = 60$ sq cm."
+      "steps": [
+       "$l+b=17$ and $l^2+b^2=169$.",
+       "$2lb=289-169=120$.",
+       "$lb=60$ sq cm."
+      ],
+      "answer": "60 sq cm"
      }
     },
     {
      "id": "m2d-qd-p2",
-     "name": "Rhombus: diagonals ↔ area ↔ perimeter",
+     "name": "Rhombus: diagonals, area and perimeter",
      "frequency": "very common",
-     "howToSpot": "Diagonals given (or area + one diagonal, or area + diagonal ratio); side/perimeter/area asked.",
-     "formula": "K = \\frac{1}{2}d_1 d_2;\\quad \\text{side} = \\sqrt{(d_1/2)^2 + (d_2/2)^2}",
-     "logic": "1. Halve the diagonals; they form a right triangle with the side as hypotenuse.\n2. Triplet in halves: (10, 24) → 13; (16, 12) → 10; (48, 14) → 25.\n3. Ratio form: set $d_1 = mk$, $d_2 = nk$; feed $\\frac12 d_1 d_2 = K$; find $k$; then the side.\n\nWhy: diagonals of a rhombus bisect at $90^\\circ$ — every rhombus metric is Pythagoras on the quarters.",
+     "howToSpot": "Rhombus with diagonals in a ratio, or a mix of area and side asked.",
+     "steps": [
+      "Set the diagonals as $d_1$ and $d_2$ from the ratio.",
+      "Use $K=\\dfrac{1}{2}d_1d_2$ to fix them.",
+      "Halve both diagonals.",
+      "Side $=\\sqrt{(\\text{half}_1)^2+(\\text{half}_2)^2}$, perimeter is $4$ sides."
+     ],
+     "why": "Ratio plus area pins both diagonals; the half-diagonal right triangle does the rest.",
      "example": {
       "q": "The diagonals of a rhombus are in the ratio 5 : 12 and its area is 120 sq cm. Its perimeter is:",
-      "solution": "$\\frac12 \\cdot 5k \\cdot 12k = 30k^2 = 120 \\Rightarrow k = 2$: diagonals 10, 24 → side 13 → $P = 52$ cm."
+      "steps": [
+       "$\\dfrac12\\times5k\\times12k=120 \\Rightarrow k=2$: diagonals 10, 24.",
+       "Halves 5, 12 give side 13.",
+       "$P=4\\times13=52$ cm."
+      ],
+      "answer": "52 cm"
      }
     },
     {
      "id": "m2d-qd-p3",
-     "name": "Parallelogram area (base-height or ab·sinθ)",
+     "name": "Parallelogram area (base-height or ab sin theta)",
      "frequency": "common",
-     "howToSpot": "Base and height given — or two adjacent sides with the included angle ($30^\\circ$, $60^\\circ$, $90^\\circ$ favourites).",
-     "formula": "K = b\\,h = ab\\sin\\theta",
-     "logic": "1. With a height given: multiply base × height.\n2. With sides $a, b$ and angle $\\theta$: $K = ab\\sin\\theta$.\n3. Memorise $\\sin 30^\\circ = \\frac12$, $\\sin 60^\\circ = \\frac{\\sqrt3}{2}$, $\\sin 90^\\circ = 1$.\n\nWhy: dropping a perpendicular turns the parallelogram into a rectangle of the same base and height $b\\sin\\theta$.",
+     "howToSpot": "Parallelogram with two sides and the angle between them, or base and height.",
+     "steps": [
+      "If a height is given, use $K=bh$.",
+      "With two sides and the angle: $K=ab\\sin\\theta$.",
+      "Recall $\\sin30^\\circ=\\dfrac12$, $\\sin90^\\circ=1$."
+     ],
+     "why": "Two entry points cover every parallelogram question; the angle version needs no height.",
      "example": {
-      "q": "Two adjacent sides of a parallelogram are 10 cm and 8 cm and the angle between them is $30^\\circ$. Its area is:",
-      "solution": "$K = 10 \\times 8 \\times \\sin 30^\\circ = 80 \\times \\frac12 = 40$ sq cm."
+      "q": "Two adjacent sides of a parallelogram are 10 cm and 8 cm and the angle between them is $30^\\circ$. Its area is",
+      "steps": [
+       "$K=10\\times8\\times\\sin30^\\circ$.",
+       "$=80\\times\\dfrac12=40$ sq cm."
+      ],
+      "answer": "40 sq cm"
      }
     },
     {
      "id": "m2d-qd-p4",
      "name": "Square diagonal and trapezium area",
      "frequency": "common",
-     "howToSpot": "A square's diagonal with the area asked ($K = d^2/2$), or a trapezium with parallel sides/height/area mixed.",
-     "formula": "K_{\\text{sq}} = \\frac{d^2}{2};\\quad K_{\\text{trap}} = \\frac{1}{2}(a+b)h",
-     "logic": "1. Square: halve the SQUARE of the diagonal — no $\\sqrt2$ gymnastics needed.\n2. Trapezium: average the parallel sides, multiply by height.\n3. Sides differ by $d$? Write $a, a+d$; then $K = \\left(a + \\frac{d}{2}\\right)h$ solves directly.\n\nWhy: the square's diagonal splits it into two right-isosceles triangles of area $\\frac{d^2}{4}$ each.",
+     "howToSpot": "A square given by its diagonal, or a trapezium with a side difference.",
+     "steps": [
+      "Square: side $=\\dfrac{\\text{diagonal}}{\\sqrt2}$, then $K=a^2$.",
+      "Trapezium: write $a+b$ from $\\dfrac{2K}{h}$.",
+      "Combine with $a-b$ if a difference is given."
+     ],
+     "why": "Both shapes resolve with one substitution instead of full side-by-side solving.",
      "example": {
       "q": "The parallel sides of a trapezium differ by 8 cm and its height is 6 cm. If its area is 96 sq cm, the longer parallel side is:",
-      "solution": "$\\frac12(2a+8) \\cdot 6 = (a+4) \\cdot 6 = 96 \\Rightarrow a = 12$; longer side $= 20$ cm."
+      "steps": [
+       "$a+b=\\dfrac{2\\times96}{6}=32$ and $a-b=8$.",
+       "$2a=40 \\Rightarrow a=20$ cm."
+      ],
+      "answer": "20 cm"
+     }
+    },
+    {
+     "id": "m2d-qd-p5",
+     "name": "Any quadrilateral split by a diagonal",
+     "frequency": "common",
+     "howToSpot": "A quadrilateral that is not a named shape, with a diagonal and two heights.",
+     "steps": [
+      "Draw the given diagonal; it makes two triangles.",
+      "Collect both perpendicular heights onto it.",
+      "$K=\\dfrac{1}{2}\\times d\\times(h_1+h_2)$."
+     ],
+     "why": "One formula covers every irregular quadrilateral, and it is just two triangle areas added.",
+     "example": {
+      "q": "A quadrilateral has a 12 cm diagonal; the perpendiculars to it from the other two corners are 5 cm and 9 cm. Its area is:",
+      "steps": [
+       "$K=\\dfrac12\\times12\\times(5+9)$.",
+       "$=6\\times14=84$ sq cm."
+      ],
+      "answer": "84 sq cm"
      }
     }
+   ],
+   "revision": [
+    "Rectangle: $lb$, $2(l+b)$, $\\sqrt{l^2+b^2}$; two facts combine through an identity.",
+    "Square: diagonal $a\\sqrt2$; backwards from the diagonal, divide by $\\sqrt2$.",
+    "Parallelogram: $bh=ab\\sin\\theta$; the height is perpendicular.",
+    "Rhombus: $\\dfrac12 d_1d_2$; half-diagonals plus a side form a right triangle.",
+    "Trapezium: $\\dfrac12(a+b)h$ with $a$, $b$ the parallel sides.",
+    "Any quadrilateral: $\\dfrac12 \\times$ diagonal $\\times$ (sum of perpendiculars)."
    ]
   },
   {
    "id": "m2d-circles",
    "title": "Circles, sectors and rings",
-   "concept": "For a circle of radius $r$: area $\\pi r^2$, circumference $2\\pi r$ (use $\\pi=\\frac{22}{7}$ unless told otherwise).\n\n- **Arc length:** $\\frac{\\theta}{360}\\times2\\pi r$; **sector area:** $\\frac{\\theta}{360}\\times\\pi r^2$ — the sector\n  is just that fraction of the full circle.\n- **Segment:** sector area minus the triangle formed by the two radii and the chord.\n- **Ring (annulus):** $\\pi(R^2-r^2)$ — a path of width $w$ around a circle has outer radius $r+w$.\n- **Rolling wheel:** distance $=$ number of revolutions $\\times$ circumference $=n\\pi d$.",
+   "concept": "A circle of radius r has area pi times r squared and circumference two pi r, with pi as 22/7 on these exams. Sectors, arcs, rings and wheels are fractions of those two formulas. Quadrants and semicircles are just sectors of 90 and 180 degrees.",
    "formulas": [
     {
      "name": "Circle",
-     "tex": "K=\\pi r^2,\\quad C=2\\pi r=\\pi d"
+     "tex": "K=\\pi r^2,\\quad C=2\\pi r",
+     "note": "Take pi as 22/7 unless stated."
     },
     {
-     "name": "Sector",
-     "tex": "K=\\frac{\\theta}{360}\\pi r^2,\\quad \\ell=\\frac{\\theta}{360}\\,2\\pi r"
+     "name": "Arc and sector",
+     "tex": "\\text{arc}=\\frac{\\theta}{360}2\\pi r,\\quad \\text{sector}=\\frac{\\theta}{360}\\pi r^2",
+     "note": "Same fraction of circumference and area."
     },
     {
-     "name": "Segment",
-     "tex": "K=\\frac{\\theta}{360}\\pi r^2-\\frac12 r^2\\sin\\theta"
+     "name": "Ring",
+     "tex": "K=\\pi(R^2-r^2)",
+     "note": "R = outer radius, r = inner radius."
     },
     {
-     "name": "Ring / path",
-     "tex": "K=\\pi(R^2-r^2)=\\pi(R+r)(R-r)"
+     "name": "Wheel revolutions",
+     "tex": "N=\\frac{D}{C}=\\frac{\\text{distance}}{2\\pi r}",
+     "note": "Count turns by dividing distance by one circumference."
     },
     {
-     "name": "Rolling wheel",
-     "tex": "\\text{distance}=n\\pi d"
+     "name": "Quadrant / semicircle",
+     "tex": "\\text{quad}=\\frac{\\pi r^2}{4},\\quad \\text{semi}=\\frac{\\pi r^2}{2}",
+     "note": "Quarter and half of the circle area."
     }
    ],
    "tricks": [
     {
-     "title": "Sector as a fraction of the circle",
-     "body": "$\\theta=60^\\circ\\to\\frac16$, $90^\\circ\\to\\frac14$, $45^\\circ\\to\\frac18$, $120^\\circ\\to\\frac13$ of the circle.\nNo separate formula needed.",
+     "title": "Radius first, always",
+     "body": "Circumference, diameter or area given: convert to the radius before anything else. Every formula lives on r.",
      "example": {
-      "q": "Find the area of a sector of angle $45^\\circ$ in a circle of radius 14 cm.",
-      "solution": "$\\frac18\\times\\frac{22}{7}\\times14^2=\\frac18\\times616=77$ sq cm."
+      "q": "The circumference of a circle is 132 cm. Its area is:",
+      "steps": [
+       "$r=\\dfrac{132\\times7}{2\\times22}=21$ cm.",
+       "$K=\\dfrac{22}{7}\\times21\\times21$.",
+       "$K=1386$ sq cm."
+      ],
+      "answer": "1386 sq cm"
      }
     },
     {
-     "title": "Ring: difference of squares",
-     "body": "$R^2-r^2=(R+r)(R-r)$: with a path of width $w$, $R-r=w$ and $R+r=2r+w$ — often a one-line answer.",
+     "title": "Simplify the sector fraction",
+     "body": "Reduce theta over 360 first: 72/360 is 1/5, 90/360 is 1/4. Then one multiplication finishes.",
      "example": {
-      "q": "A path 7 m wide runs around a circular park of radius 14 m. Find the area of the path.",
-      "solution": "$\\frac{22}{7}\\times(21^2-14^2)=\\frac{22}{7}\\times245=770$ sq m."
+      "q": "Find the arc length of a sector of angle $72^\\circ$ in a circle of radius 35 cm.",
+      "steps": [
+       "$2\\pi r=2\\times\\dfrac{22}{7}\\times35=220$ cm.",
+       "$\\dfrac{72}{360}=\\dfrac15$.",
+       "Arc $=\\dfrac{220}{5}=44$ cm."
+      ],
+      "answer": "44 cm"
      }
     },
     {
-     "title": "Wheel revolutions = distance / circumference",
-     "body": "Convert the diameter to metres first: $d=70$ cm $=0.7$ m gives a 2.2 m circumference with $\\pi=\\frac{22}{7}$.",
+     "title": "Wheels: count the turns",
+     "body": "One turn covers one circumference. Divide total distance by it, in the same units.",
      "example": {
-      "q": "A wheel of diameter 70 cm makes 300 revolutions. How far does it travel?",
-      "solution": "$300\\times\\frac{22}{7}\\times0.7=300\\times2.2=660$ m."
+      "q": "A wheel of diameter 70 cm rolls a distance of 231 m. The number of revolutions it makes is:",
+      "steps": [
+       "$C=\\dfrac{22}{7}\\times70=220$ cm.",
+       "$231\\text{ m}=23100$ cm.",
+       "$\\dfrac{23100}{220}=105$ turns."
+      ],
+      "answer": "105"
      }
     }
    ],
    "mistakes": [
-    "Forgetting to add the path width when a path runs **around** a circle ($R=r+w$).",
-    "Sector area taken as a fraction of the circumference, or arc length as a fraction of the area.",
-    "Mixing units: radius in cm vs answer demanded in m."
+    {
+     "wrong": "Using the diameter as $r$.",
+     "right": "Diameter 70 means $r=35$. Halve before squaring."
+    },
+    {
+     "wrong": "Taking $\\pi$ as 3.14 when the numbers are multiples of 7.",
+     "right": "Radius 7, 14, 21, 35 with $\\pi=\\dfrac{22}{7}$ cancels the 7s cleanly."
+    },
+    {
+     "wrong": "Forgetting the two radii in a sector perimeter.",
+     "right": "Sector perimeter $=$ arc $+2r$. Radius 35, arc 44 gives 114."
+    },
+    {
+     "wrong": "Computing ring area as $\\pi(R-r)^2$.",
+     "right": "It is $\\pi(R^2-r^2)$; for 14 and 7 that is $\\dfrac{22}{7}\\times147=462$."
+    },
+    {
+     "wrong": "Mixing metres and centimetres in wheel counts.",
+     "right": "231 m is 23100 cm; match the wheel's units before dividing."
+    }
    ],
-   "notes": "### The π machinery (use $\\pi = \\frac{22}{7}$ unless told otherwise)\n$$C = 2\\pi r,\\qquad K = \\pi r^2$$\nReverse routes appear constantly: from circumference $r = \\frac{C}{2\\pi}$; from area $r = \\sqrt{\\frac{K}{\\pi}}$. Keep the favourite radii at hand: $r = 7$ → $C = 44$, $K = 154$; $r = 14$ → $C = 88$, $K = 616$; $r = 21$ → $C = 132$, $K = 1386$.\n\n### Sector and arc\nFor angle $\\theta$ at the centre:\n$$\\text{sector area} = \\frac{\\theta}{360} \\times \\pi r^2,\\qquad \\text{arc length} = \\frac{\\theta}{360} \\times 2\\pi r$$\nSector area is just the full area scaled by $\\frac{\\theta}{360}$ — the same fraction scales the circumference into the arc. Semi-circle, quarter-circle, $60^\\circ$ slice: halve, quarter, sixth.\n\n### Ring (annulus) and wheel\n- Ring: $K = \\pi(R^2 - r^2) = \\pi(R+r)(R-r)$ — factorise before multiplying.\n- Wheel: one revolution covers one circumference. Revolutions $= \\frac{\\text{distance}}{\\text{circumference}} = \\frac{d}{\\pi D}$ where $D$ is the wheel's diameter. Convert units first (cm vs m) — the classic trap.\n\n### Circles inside and outside squares\n- Circle **inscribed** in a square of side $a$: diameter $= a$, so $r = \\frac{a}{2}$.\n- Circle **circumscribed** about the square: diameter $=$ diagonal $= a\\sqrt2$, so $r = \\frac{a}{\\sqrt2}$ and $K = \\pi \\cdot \\frac{a^2}{2} = \\frac{\\pi a^2}{2}$ — exactly double the inscribed circle's area ($\\frac{\\pi a^2}{4}$). That 2 : 1 ratio is asked as often as the areas themselves.\n\n### Composite shapes and costs\nCompound figures are assembled from these pieces: a window of rectangle plus semicircle has perimeter $=$ (two widths + length) + half-circumference, and area $=$ rectangle + $\\frac12\\pi r^2$ — always add PERIMETER pieces for fencing/border costs and AREA pieces for carpeting/painting costs. Fencing a circular park: cost $= 2\\pi r \\times$ rate per metre. Ploughing/circular path questions use the ring area with a rate: cost $= \\pi(R^2 - r^2) \\times$ rate per sq m. Keep the pieces separate until the last step — merging them early is where sign and factor errors happen. A worked minute-example: a circular park of radius 35 m with a 7 m wide path outside → ring area $= \\frac{22}{7} \\times 42 \\times 28 = 3696$ sq m; at Rs 10 per sq m the path costs Rs 36,960.\n\n### Quick revision\n- $C = 2\\pi r$, $K = \\pi r^2$; $(7, 44, 154)$, $(14, 88, 616)$, $(21, 132, 1386)$.\n- Sector/arc: multiply by $\\frac{\\theta}{360}$.\n- Ring: $\\pi(R+r)(R-r)$; wheel revolutions $= \\frac{\\text{distance}}{\\pi D}$.\n- Inscribed in square: $r = a/2$; circumscribed: $r = a/\\sqrt2$ (areas in ratio $1:2$).\n",
+   "notes": "### The two core formulas\n$$K=\\pi r^2,\\qquad C=2\\pi r$$\nUse $\\pi=\\dfrac{22}{7}$ unless the paper says otherwise. Radius first, everything after is arithmetic. Halve any diameter before squaring; the formulas live on the radius.\n\nCircumference $132$ cm: $r=\\dfrac{132\\times7}{2\\times22}=21$, so $K=\\dfrac{22}{7}\\times441=1386$ sq cm.\n\n> **Rule:** Every circle question starts by fixing $r$. Reverse questions divide by $2\\pi$ to get it.\n\n### Sectors and arcs\nA sector is a pizza slice; the arc is its crust. Both take the fraction $\\dfrac{\\theta}{360}$ of the full shape:\n$$\\text{arc}=\\frac{\\theta}{360}\\times2\\pi r,\\qquad \\text{sector area}=\\frac{\\theta}{360}\\times\\pi r^2$$\nRadius $35$, angle $72^\\circ$: arc $=\\dfrac{72}{360}\\times220=44$ cm, sector $=\\dfrac{72}{360}\\times3850=770$ sq cm.\n\nPerimeter of a sector adds the two radii: $44+70=114$ cm. A $90^\\circ$ sector of the same circle has arc $\\dfrac14\\times220=55$ cm and perimeter $55+70=125$ cm.\n\nA ring between radii $17.5$ and $10.5$: $R^2-r^2=306.25-110.25=196$, so $K=\\dfrac{22}{7}\\times196=616$ sq cm. Difference of squares keeps it clean.\n\n> **Tip:** $\\dfrac{72}{360}=\\dfrac15$. Simplify the fraction before multiplying; big numbers shrink fast.\n\n### Rings and rolling wheels\nA ring between radii $R$ and $r$ has area $\\pi(R^2-r^2)$. Outer $14$, inner $7$: $\\dfrac{22}{7}\\times147=462$ sq cm.\n\nA wheel of diameter $70$ cm covers $C=\\dfrac{22}{7}\\times70=220$ cm per turn. Rolling $231$ m $=23100$ cm:\n$$\\text{revolutions}=\\frac{23100}{220}=105$$\nThe reverse works too: $150$ turns cover $150\\times220=33000$ cm, which is $330$ m.\n\n> **Watch:** Convert metres to centimetres before dividing. The wheel diameter is in centimetres.\n\n### Circles and squares together\n- Circle **inscribed** in a square: diameter $=$ square side. Side $14$ gives $r=7$ and $K=154$.\n- Square **inside** a circle: the square's diagonal is the circle's diameter.\n\n> **Remember:** Inscribed means the circle touches all four sides from inside, so side and diameter match.\n\n### Quadrants and semicircles\nA quadrant is a quarter circle ($90^\\circ$), a semicircle half ($180^\\circ$). Same fraction rules.\n\nQuadrant with $r=14$: area $=\\dfrac{1}{4}\\times\\dfrac{22}{7}\\times196=154$ sq cm. Arc $=\\dfrac14\\times88=22$ cm, so its perimeter is $14+14+22=50$ cm. A semicircle with $r=7$ has area $\\dfrac12\\times154=77$ sq cm and perimeter $14+22=36$ cm.\n\n> **Tip:** Perimeter of a quadrant is two radii plus the quarter arc. Semicircle: two radii make a diameter, plus the half arc.\n",
    "patterns": [
     {
      "id": "m2d-ci-p1",
      "name": "Area and circumference, forward and reverse",
      "frequency": "very common",
-     "howToSpot": "Radius/diameter given — or circumference/area given with the other quantity asked.",
-     "formula": "C = 2\\pi r,\\quad K = \\pi r^2",
-     "logic": "1. Forward: substitute $r$ (halve the diameter first — the classic slip).\n2. Reverse: $r = \\frac{C}{2\\pi}$ from circumference, $r = \\sqrt{K/\\pi}$ from area.\n3. Use the memorised set: (7→44, 154), (14→88, 616), (21→132, 1386).\n\nWhy: both formulas are functions of $r$ alone, so every question is a one-step conversion through $r$.",
+     "howToSpot": "One of area or circumference given, the other asked.",
+     "steps": [
+      "From circumference: $r=\\dfrac{C}{2\\pi}$.",
+      "From area: $r=\\sqrt{\\dfrac{K}{\\pi}}$.",
+      "Substitute into the asked formula."
+     ],
+     "why": "Both formulas share the single unknown $r$, so one conversion bridges the two.",
      "example": {
       "q": "The circumference of a circle is 132 cm. Its area is:",
-      "solution": "$r = \\frac{132 \\times 7}{44} = 21$ cm; $K = \\frac{22}{7} \\times 441 = 1386$ sq cm."
+      "steps": [
+       "$r=\\dfrac{132\\times7}{44}=21$ cm.",
+       "$K=\\dfrac{22}{7}\\times21^2=1386$ sq cm."
+      ],
+      "answer": "1386 sq cm"
      }
     },
     {
      "id": "m2d-ci-p2",
      "name": "Sector area and arc length",
      "frequency": "very common",
-     "howToSpot": "An angle at the centre with the radius given — sector area or arc length asked (or reversed).",
-     "formula": "\\frac{\\theta}{360}\\pi r^2,\\quad \\frac{\\theta}{360} 2\\pi r",
-     "logic": "1. Reduce the fraction $\\frac{\\theta}{360}$ first: $90°$ → $\\frac14$, $60°$ → $\\frac16$, $72°$ → $\\frac15$.\n2. Sector area: the fraction × full area; arc: the fraction × full circumference.\n3. Reverse: $\\theta = \\frac{\\text{arc}}{2\\pi r} \\times 360°$.\n\nWhy: the sector is a proportional slice of the circle — one fraction does everything.",
+     "howToSpot": "A sector angle with a radius; arc, sector area or perimeter asked.",
+     "steps": [
+      "Simplify $\\dfrac{\\theta}{360}$ to lowest terms.",
+      "Arc: multiply by $2\\pi r$.",
+      "Sector area: multiply by $\\pi r^2$.",
+      "Perimeter adds $2r$ to the arc."
+     ],
+     "why": "One fraction serves both quantities, and simplified fractions keep the arithmetic small.",
      "example": {
-      "q": "Find the arc length of a sector of angle $72^\\circ$ in a circle of radius $35$ cm.",
-      "solution": "$\\frac{72}{360} = \\frac15$; arc $= \\frac15 \\times 2 \\times \\frac{22}{7} \\times 35 = \\frac15 \\times 220 = 44$ cm."
+      "q": "Find the arc length of a sector of angle $72^\\circ$ in a circle of radius 35 cm.",
+      "steps": [
+       "$\\dfrac{72}{360}=\\dfrac15$ and $2\\pi r=220$ cm.",
+       "Arc $=\\dfrac{220}{5}=44$ cm."
+      ],
+      "answer": "44 cm"
      }
     },
     {
      "id": "m2d-ci-p3",
      "name": "Ring (annulus) area and wheel revolutions",
      "frequency": "common",
-     "howToSpot": "Two concentric circles (path/border) — area of the ring; or a wheel covering a distance — number of revolutions.",
-     "formula": "K = \\pi(R^2 - r^2) = \\pi(R+r)(R-r);\\quad \\text{revs} = \\frac{d}{\\pi D}",
-     "logic": "1. Ring: factorise $R^2 - r^2 = (R+r)(R-r)$ before multiplying by $\\pi$.\n2. Wheel: one revolution = one circumference $\\pi D$; convert distance and diameter to the SAME units.\n3. Revolutions $= \\frac{\\text{distance}}{\\pi D}$.\n\nWhy: the ring is the difference of two circle areas; a rolling wheel lays down its circumference per turn.",
+     "howToSpot": "Two concentric radii, or a wheel rolling a distance.",
+     "steps": [
+      "Ring: $K=\\pi(R^2-r^2)$.",
+      "Wheel: one turn $=$ one circumference.",
+      "Divide total distance by the circumference, same units."
+     ],
+     "why": "Both ideas reuse the circumference and area formulas with zero new theory.",
      "example": {
       "q": "A wheel of diameter 70 cm rolls a distance of 231 m. The number of revolutions it makes is:",
-      "solution": "$C = \\frac{22}{7} \\times 0.7 = 2.2$ m; revs $= \\frac{231}{2.2} = 105$."
+      "steps": [
+       "$C=\\dfrac{22}{7}\\times70=220$ cm; $231$ m $=23100$ cm.",
+       "$\\dfrac{23100}{220}=105$."
+      ],
+      "answer": "105 revolutions"
      }
     },
     {
      "id": "m2d-ci-p4",
      "name": "Circles inscribed in / circumscribed about squares",
      "frequency": "common",
-     "howToSpot": "A circle inside a square (touching sides) or around it (through corners); radius or area asked.",
-     "formula": "r_{\\text{in}} = \\frac{a}{2},\\quad r_{\\text{out}} = \\frac{a}{\\sqrt{2}}",
-     "logic": "1. Inscribed: diameter = side of square → $r = \\frac{a}{2}$, $K = \\frac{\\pi a^2}{4}$.\n2. Circumscribed: diameter = diagonal → $r = \\frac{a\\sqrt2}{2} = \\frac{a}{\\sqrt2}$, $K = \\frac{\\pi a^2}{2}$.\n3. Ratio fact: circumscribed area : inscribed area $= 2 : 1$.\n\nWhy: the inscribed diameter spans opposite sides; the circumscribed diameter spans opposite corners (the diagonal).",
+     "howToSpot": "A circle touching a square from inside, or a square inside a circle.",
+     "steps": [
+      "Circle in square: diameter $=$ side, so $r=\\dfrac{a}{2}$.",
+      "Square in circle: square diagonal $=$ circle diameter.",
+      "Substitute and compute the asked area."
+     ],
+     "why": "The touch conditions translate straight into one length equality, so the shape pair collapses to one line.",
      "example": {
       "q": "A circle is inscribed in a square of side 14 cm. The area of the circle is:",
-      "solution": "$r = 7$ cm; $K = \\frac{22}{7} \\times 49 = 154$ sq cm."
+      "steps": [
+       "$r=\\dfrac{14}{2}=7$ cm.",
+       "$K=\\dfrac{22}{7}\\times49=154$ sq cm."
+      ],
+      "answer": "154 sq cm"
+     }
+    },
+    {
+     "id": "m2d-ci-p5",
+     "name": "Quadrant and semicircle pieces",
+     "frequency": "common",
+     "howToSpot": "A quarter or half circle, area or perimeter asked.",
+     "steps": [
+      "Quadrant: take $\\dfrac14$ of circle area; semicircle $\\dfrac12$.",
+      "Arc is the same fraction of the circumference.",
+      "Perimeter adds the straight edges."
+     ],
+     "why": "These are sectors of $90^\\circ$ and $180^\\circ$, so the fraction rules already known do all the work.",
+     "example": {
+      "q": "A quadrant has radius 14 cm. Find its area and its perimeter.",
+      "steps": [
+       "Area $=\\dfrac14\\times\\dfrac{22}{7}\\times196=154$ sq cm.",
+       "Arc $=\\dfrac14\\times88=22$ cm.",
+       "Perimeter $=14+14+22=50$ cm."
+      ],
+      "answer": "Area 154 sq cm, perimeter 50 cm"
      }
     }
+   ],
+   "revision": [
+    "$K=\\pi r^2$, $C=2\\pi r$; fix the radius before anything else.",
+    "Arc and sector are the same fraction $\\dfrac{\\theta}{360}$ of circumference and area.",
+    "Sector perimeter adds the two radii to the arc.",
+    "Ring area is $\\pi(R^2-r^2)$, the difference of squares.",
+    "Wheel revolutions $=$ distance divided by one circumference, same units.",
+    "Quadrant $=\\dfrac14$ of the circle; semicircle $=\\dfrac12$; perimeter includes the straight edges."
    ]
   },
   {
    "id": "m2d-polygons",
    "title": "Regular polygons and inscribed figures",
-   "concept": "- **Regular hexagon** (side $a$): area $\\frac{3\\sqrt3}{2}a^2$ — six equilateral triangles of side $a$.\n- **Regular octagon:** area $2(1+\\sqrt2)\\,a^2$.\n- Any regular $n$-gon: area $=\\frac12\\times\\text{perimeter}\\times\\text{apothem}$.\n\n**Standard inscriptions (most-tested):**\n- Largest **square in a circle**: diagonal $=$ diameter.\n- Largest **circle in a square**: diameter $=$ side of square.\n- Largest **circle in an equilateral triangle**: $r=\\frac{a}{2\\sqrt3}$.\n- Largest **triangle in a semicircle** is right-angled.",
+   "concept": "A regular polygon has equal sides and equal angles, so one side length fixes everything. The regular hexagon is the star: it is six equilateral triangles glued together. Exterior angles, interior angles and diagonal counts all come from the number of sides alone.",
    "formulas": [
     {
      "name": "Regular hexagon",
-     "tex": "K=\\frac{3\\sqrt3}{2}a^2=6\\times\\frac{\\sqrt3}{4}a^2"
+     "tex": "K=\\frac{3\\sqrt3}{2}a^2",
+     "note": "Six equilateral triangles of side a."
     },
     {
-     "name": "Regular octagon",
-     "tex": "K=2(1+\\sqrt2)a^2"
+     "name": "Polygon from apothem",
+     "tex": "K=\\frac{1}{2}\\times P\\times a",
+     "note": "P = perimeter, a = apothem (centre to a side)."
     },
     {
-     "name": "Square in a circle",
-     "tex": "\\text{diagonal}=\\text{diameter}=2R"
+     "name": "Exterior angle",
+     "tex": "\\text{ext}=\\frac{360^\\circ}{n}",
+     "note": "Equal turns around the boundary."
     },
     {
-     "name": "Circle in a square",
-     "tex": "d_{\\text{circle}}=a"
+     "name": "Interior angle",
+     "tex": "\\text{int}=180^\\circ-\\text{ext},\\quad \\text{sum}=(n-2)180^\\circ",
+     "note": "One angle plus the total for all n."
     },
     {
-     "name": "Circle in an equilateral triangle",
-     "tex": "r=\\frac{a}{2\\sqrt3}"
+     "name": "Diagonals",
+     "tex": "d=\\frac{n(n-3)}{2}",
+     "note": "n sides give this many diagonals."
     }
    ],
    "tricks": [
     {
-     "title": "Hexagon = six equilateral triangles",
-     "body": "Multiply the equilateral area by 6: $\\frac{3\\sqrt3}{2}a^2$. Given the perimeter, divide by 6 first.",
+     "title": "Hexagon = 6 equilateral triangles",
+     "body": "Six triangles of side a. Use the equilateral area times six; the root-three factor is already familiar.",
      "example": {
-      "q": "Find the area of a regular hexagon of perimeter 36 cm.",
-      "solution": "Side $=6$: area $=\\frac{3\\sqrt3}{2}\\times36=54\\sqrt3$ sq cm."
+      "q": "Find the area of a regular hexagon of side 6 cm.",
+      "steps": [
+       "One triangle: $\\dfrac{\\sqrt3}{4}\\times36=9\\sqrt3$.",
+       "$K=6\\times9\\sqrt3$.",
+       "$K=54\\sqrt3$ sq cm."
+      ],
+      "answer": "54*sqrt(3) sq cm"
      }
     },
     {
-     "title": "Inscribed square → the diameter is the diagonal",
-     "body": "All four corners touch the circle, so the square's diagonal passes through the centre and equals the diameter.",
+     "title": "Exterior angle finds n",
+     "body": "Divide 360 by the exterior angle to get the side count; the interior angle is its partner to 180.",
      "example": {
-      "q": "A square is inscribed in a circle of radius $7\\sqrt2$ cm. Find the side of the square.",
-      "solution": "Diagonal $=14\\sqrt2\\Rightarrow$ side $=\\frac{14\\sqrt2}{\\sqrt2}=14$ cm."
+      "q": "Find the measure of each interior angle of a regular octagon.",
+      "steps": [
+       "Exterior $=\\dfrac{360}{8}=45^\\circ$.",
+       "Interior $=180-45=135^\\circ$."
+      ],
+      "answer": "135 degrees"
+     }
+    },
+    {
+     "title": "Diagonal equation factors",
+     "body": "Set n(n-3)/2 equal to the given count, then factor the quadratic. Exam answers are whole numbers.",
+     "example": {
+      "q": "A polygon has 90 diagonals. The number of its sides is:",
+      "steps": [
+       "$n(n-3)=180$.",
+       "$n^2-3n-180=(n-15)(n+12)=0$.",
+       "$n=15$."
+      ],
+      "answer": "15"
      }
     }
    ],
    "mistakes": [
-    "Hexagon area computed with $\\frac{\\sqrt3}{4}a^2$ (one triangle) instead of six triangles.",
-    "Inscribed vs circumscribed confusion: circle inside the triangle vs triangle inside the circle.",
-    "Using the side where the diagonal (or vice versa) is required."
+    {
+     "wrong": "Using $\\dfrac{\\sqrt3}{4}a^2$ once for the hexagon.",
+     "right": "That is one triangle. Six of them give $\\dfrac{3\\sqrt3}{2}a^2$."
+    },
+    {
+     "wrong": "Interior angle $=\\dfrac{360}{n}$.",
+     "right": "That is the exterior. Interior $=180-\\dfrac{360}{n}$; for an octagon, $135^\\circ$."
+    },
+    {
+     "wrong": "Forgetting to halve $n(n-3)$.",
+     "right": "Each diagonal was counted from both ends: $d=\\dfrac{n(n-3)}{2}$."
+    },
+    {
+     "wrong": "Longest hexagon diagonal taken as $a\\sqrt3$.",
+     "right": "$a\\sqrt3$ is the short one; the longest through the centre is $2a$."
+    },
+    {
+     "wrong": "Using the side as the apothem.",
+     "right": "The apothem is centre to the middle of a side; hexagon apothem $=\\dfrac{\\sqrt3}{2}a$."
+    }
    ],
-   "notes": "### The regular-polygon toolkit\nFor a regular polygon of $n$ sides (side $a$):\n- Exterior angle $= \\frac{360^\\circ}{n}$; interior angle $= 180^\\circ - $ exterior.\n- Interior angle sum $= (n-2) \\times 180^\\circ$ (any polygon).\n- Diagonals $= \\frac{n(n-3)}{2}$.\n- Area $= n \\times$ (area of the $n$ congruent isosceles triangles from the centre) $= \\frac{1}{2} \\times P \\times \\text{apothem}$, where $P = na$ and the apothem is the centre-to-side distance.\n\nAngle chain: interior $150^\\circ$ → ext $30^\\circ$ → $n = 12$. Sum chain: sum $1080^\\circ$ → $n = \\frac{1080}{180} + 2 = 8$. Diagonal chain: $d = 20$ → $n(n-3) = 40$ → $n = 8$.\n\n### The hexagon (the exam's favourite)\nA regular hexagon is **six equilateral triangles**: side = radius of the circumscribed circle.\n- Area $= 6 \\times \\frac{\\sqrt3}{4}a^2 = \\frac{3\\sqrt3}{2}a^2$ — know as \"6 equilateral pieces\", faster than the formula.\n- Long diagonal $= 2a$ (through the centre, two radii).\n- Short diagonal $= a\\sqrt3$ (skips one vertex).\n- Hexagon side = radius: an equilateral triangle built on alternate vertices has side $a\\sqrt3$.\n\n### How the questions are built\n- Given an interior/exterior angle → find $n$ (or the other angle).\n- Given the sum of interior angles → find $n$, then each exterior angle $\\frac{360^\\circ}{n}$.\n- Given diagonals → solve the quadratic-ish $n(n-3) = 2d$ by testing factors.\n- Hexagon area from side, or side from area — pure equilateral work.\n- Apothem questions: $K = \\frac12 \\times$ perimeter $\\times$ apothem, often with $\\sqrt3$ apothems for hexagons.\n\n### The table worth memorising\n| $n$ | Name | Interior angle | Diagonals |\n|---|---|---|---|\n| 5 | Pentagon | $108^\\circ$ | 5 |\n| 6 | Hexagon | $120^\\circ$ | 9 |\n| 7 | Heptagon | $\\approx 128.57^\\circ$ | 14 |\n| 8 | Octagon | $135^\\circ$ | 20 |\n| 9 | Nonagon | $140^\\circ$ | 27 |\n| 10 | Decagon | $144^\\circ$ | 35 |\n| 12 | Dodecagon | $150^\\circ$ | 54 |\n\nReading backwards from any column gives $n$ instantly: interior $144^\\circ$ → decagon; 20 diagonals → octagon; interior $150^\\circ$ → 12 sides. The exterior angle is always $\\frac{360^\\circ}{n}$ and the interior angles of ANY $n$-gon (regular or not) sum to $(n-2) \\times 180^\\circ$ — only the \"each angle\" phrasing requires regularity.\n\n### Quick revision\n- ext $= \\frac{360}{n}^\\circ$; int $= 180 -$ ext; sum $= (n-2) \\times 180^\\circ$.\n- Diagonals $= \\frac{n(n-3)}{2}$; solve by factor pairs.\n- $K = \\frac12 \\times P \\times$ apothem.\n- Hexagon $= 6$ equilateral triangles: $K = \\frac{3\\sqrt3}{2}a^2$; long diagonal $2a$; short $a\\sqrt3$.\n",
+   "notes": "### Hexagon: six equilateral triangles\nJoin the centre to all six corners. Six equilateral triangles of side $a$ appear, so\n$$K=\\frac{3\\sqrt3}{2}a^2 = 6\\times\\frac{\\sqrt3}{4}a^2$$\nSide $6$ cm: each small triangle has area $9\\sqrt3$, total $54\\sqrt3$ sq cm.\n\nGiven a hexagon perimeter instead, divide by $6$ first: perimeter $36$ cm means side $6$ cm and area $54\\sqrt3$ sq cm.\n\nA regular octagon has area $2(1+\\sqrt2)a^2$. Side $4$ cm gives $32+32\\sqrt2$ sq cm, but the six-triangle picture is the one that pays off weekly.\n\n> **Rule:** Hexagon side, radius (centre to corner) and side are equal: $R=a$. The apothem is $\\dfrac{\\sqrt3}{2}a$.\n\n### Any regular polygon from perimeter and apothem\n$$K=\\frac{1}{2}\\times\\text{perimeter}\\times\\text{apothem}$$\nThe apothem is the perpendicular from the centre to a side. Perimeter $72$ cm, apothem $6$ cm: $K=\\dfrac{1}{2}\\times72\\times6=216$ sq cm.\n\nFor the hexagon of side $6$: apothem $=\\dfrac{\\sqrt3}{2}\\times6=3\\sqrt3$, and $\\dfrac12\\times36\\times3\\sqrt3=54\\sqrt3$, matching the six triangles. Two routes, one answer.\n\n### Slices from the centre\nJoin the centre of any regular polygon to its corners. You get $n$ identical slices, each an isosceles triangle with apex angle $\\dfrac{360^\\circ}{n}$. That single picture generates the exterior angle, the apothem (slice height) and the area formula at once.\n\n> **Tip:** This one formula fits every regular polygon, hexagon included. It is the triangle formula applied to all the slices.\n\n### Angles from the side count\n- Each exterior angle $=\\dfrac{360^\\circ}{n}$ (the turn at each corner while walking the boundary).\n- Each interior angle $=180^\\circ-$ exterior.\n- Interior angle sum $=(n-2)\\times180^\\circ$.\n\nOctagon: exterior $=\\dfrac{360}{8}=45^\\circ$, interior $=135^\\circ$, angle sum $=6\\times180^\\circ=1080^\\circ$.\n\nPentagon: exterior $72^\\circ$, interior $108^\\circ$, sum $540^\\circ$. Decagon: exterior $36^\\circ$, interior $144^\\circ$. Reverse works too: interior $144^\\circ$ means exterior $36^\\circ$, so $n=\\dfrac{360}{36}=10$.\n\n> **Watch:** The regular polygon interior angles are equal, so divide the sum by $n$ to check one angle.\n\n### Counting diagonals\nFrom each corner, $n-3$ diagonals leave (skip itself and two neighbours). Each diagonal has two ends:\n$$d=\\frac{n(n-3)}{2}$$\nA polygon with $90$ diagonals: $n^2-3n-180=0$, which factors as $(n-15)(n+12)=0$, so $n=15$.\n\nSmall counts are worth memorising: hexagon $9$, pentagon $5$, octagon $20$, decagon $35$.\n\n### Hexagon special lengths\n- Longest diagonal (through the centre) $=2a$. Side $8$ gives $16$.\n- Short diagonal (skipping one corner) $=a\\sqrt3$.\n\n> **Remember:** In a hexagon, side $=$ radius and the longest diagonal $=$ diameter $=2a$. Both fall out of the six triangles picture.\n",
    "patterns": [
     {
      "id": "m2d-pg-p1",
      "name": "Hexagon as six equilateral triangles",
      "frequency": "very common",
-     "howToSpot": "A regular hexagon's side given — area asked; or area/long-diagonal given — side asked.",
-     "formula": "K = 6 \\times \\frac{\\sqrt3}{4}a^2 = \\frac{3\\sqrt{3}}{2}a^2",
-     "logic": "1. Picture the 6 equilateral triangles of side $a$.\n2. Area $= 6 \\times \\frac{\\sqrt3}{4}a^2 = \\frac{3\\sqrt3}{2}a^2$; keep $\\sqrt3$ symbolic.\n3. Reverse: $a^2 = \\frac{2K}{3\\sqrt3}$.\n\nWhy: the centre joins to all vertices, and the hexagon's central angle of $60^\\circ$ makes each piece equilateral.",
+     "howToSpot": "A regular hexagon with its side given.",
+     "steps": [
+      "One equilateral triangle: $\\dfrac{\\sqrt3}{4}a^2$.",
+      "Multiply by $6$.",
+      "Or apply $K=\\dfrac{3\\sqrt3}{2}a^2$ directly."
+     ],
+     "why": "The hexagon is the only regular polygon that splits into equilateral triangles, a free shortcut.",
      "example": {
       "q": "Find the area of a regular hexagon of side 6 cm.",
-      "solution": "$K = \\frac{3\\sqrt3}{2} \\times 36 = 54\\sqrt{3}$ sq cm (six $\\frac{\\sqrt3}{4} \\times 36 = 9\\sqrt3$ pieces)."
+      "steps": [
+       "One triangle: $9\\sqrt3$.",
+       "$K=6\\times9\\sqrt3=54\\sqrt3$ sq cm."
+      ],
+      "answer": "54*sqrt(3) sq cm"
      }
     },
     {
      "id": "m2d-pg-p2",
      "name": "Area from perimeter and apothem",
      "frequency": "common",
-     "howToSpot": "Perimeter and apothem (centre-to-side distance) given — or both derived — area asked.",
-     "formula": "K = \\frac{1}{2} \\times P \\times \\text{apothem}",
-     "logic": "1. Half of (perimeter × apothem) — one multiplication, no side counting.\n2. For a hexagon the apothem is $\\frac{\\sqrt3}{2}a$; square-side shapes give integer apothems.\n3. If the apothem arrives with $\\sqrt3$, expect a $\\sqrt3$ in the answer.\n\nWhy: the polygon splits into $n$ triangles of base (side) and height (apothem); their areas total exactly that formula.",
+     "howToSpot": "A regular polygon with perimeter and apothem (inradius) given.",
+     "steps": [
+      "Check the polygon is regular.",
+      "$K=\\dfrac{1}{2}\\times P\\times a$.",
+      "Multiply once."
+     ],
+     "why": "The formula needs no side count and no angles, just the two given lengths.",
      "example": {
       "q": "A regular polygon has perimeter 72 cm and apothem 6 cm. Its area is:",
-      "solution": "$K = \\frac12 \\times 72 \\times 6 = 216$ sq cm."
+      "steps": [
+       "$K=\\dfrac12\\times72\\times6$.",
+       "$K=216$ sq cm."
+      ],
+      "answer": "216 sq cm"
      }
     },
     {
      "id": "m2d-pg-p3",
-     "name": "Interior/exterior angles and the angle sum",
+     "name": "Interior and exterior angles and the angle sum",
      "frequency": "very common",
-     "howToSpot": "An interior angle, exterior angle, or the angle sum of a regular polygon given — find $n$ or the other angle.",
-     "formula": "\\text{ext} = \\frac{360^\\circ}{n},\\quad \\text{int} = 180^\\circ - \\text{ext},\\quad \\text{sum} = (n-2) \\times 180^\\circ",
-     "logic": "1. Whatever is given, route through the exterior angle: ext $= 180^\\circ - $ int.\n2. $n = \\frac{360^\\circ}{\\text{ext}}$; from the sum: $n = \\frac{\\text{sum}}{180^\\circ} + 2$.\n3. Answer the quantity actually asked (each angle vs total sum vs $n$).\n\nWhy: exterior angles always total $360^\\circ$ for any convex polygon — the cleanest hub of the three routes.",
+     "howToSpot": "A regular polygon with an angle or a side count given.",
+     "steps": [
+      "Exterior $=\\dfrac{360}{n}$.",
+      "Interior $=180-$ exterior.",
+      "Sum $=(n-2)\\times180^\\circ$; divide by $n$ for one angle."
+     ],
+     "why": "One small table answers every angle question for any regular polygon.",
      "example": {
       "q": "Find the measure of each interior angle of a regular octagon.",
-      "solution": "ext $= \\frac{360}{8} = 45^\\circ$; interior $= 180 - 45 = 135^\\circ$."
+      "steps": [
+       "Exterior $=\\dfrac{360}{8}=45^\\circ$.",
+       "Interior $=180-45=135^\\circ$."
+      ],
+      "answer": "135 degrees"
      }
     },
     {
      "id": "m2d-pg-p4",
      "name": "Counting diagonals",
      "frequency": "common",
-     "howToSpot": "'How many diagonals does a polygon of n sides have?' — or reversed: given the diagonal count, find $n$.",
-     "formula": "d = \\frac{n(n-3)}{2}",
-     "logic": "1. Forward: substitute $n$; the product $n(n-3)$ is always even.\n2. Reverse: set $n(n-3) = 2d$ and test factor pairs of $2d$ that differ by 3.\n3. Sanity: triangle 0, square 2, pentagon 5, hexagon 9, octagon 20, decagon 35.\n\nWhy: each of the $n$ vertices connects to $n-3$ non-adjacent vertices, and every diagonal gets counted twice.",
+     "howToSpot": "A diagonal count with the side count asked, or the reverse.",
+     "steps": [
+      "Write $\\dfrac{n(n-3)}{2}=\\text{count}$.",
+      "Expand into a quadratic.",
+      "Factor; keep the positive root."
+     ],
+     "why": "The count formula is quadratic in $n$, and exam values factor cleanly.",
      "example": {
       "q": "A polygon has 90 diagonals. The number of its sides is:",
-      "solution": "$n(n-3) = 180$: try $15 \\times 12 = 180$ → $n = 15$."
+      "steps": [
+       "$n(n-3)=180$.",
+       "$(n-15)(n+12)=0$.",
+       "$n=15$."
+      ],
+      "answer": "15"
      }
     },
     {
      "id": "m2d-pg-p5",
      "name": "Hexagon diagonals and side relations",
      "frequency": "occasional",
-     "howToSpot": "A hexagon's long/short diagonal related to its side, or a triangle built inside the hexagon.",
-     "formula": "\\text{long diagonal} = 2a,\\quad \\text{short diagonal} = a\\sqrt{3}",
-     "logic": "1. Long diagonal = two radii through the centre: $2a$.\n2. Short diagonal (skip one vertex) $= a\\sqrt3$ — it is the side of the inscribed equilateral triangle.\n3. Radius of the circumscribed circle = side $a$ — used for 'circle through hexagon corners' questions.\n\nWhy: the six $60^\\circ$ centre angles make every such segment a chord whose length follows from an equilateral or 30-60-90 triangle.",
+     "howToSpot": "Hexagon questions asking a diagonal or linking radius to side.",
+     "steps": [
+      "Side $=$ radius: $R=a$.",
+      "Longest diagonal $=2a$ (through the centre).",
+      "Short diagonal $=a\\sqrt3$ (skipping a corner)."
+     ],
+     "why": "All three lengths come from the six-equilateral-triangles picture, with no new formulas.",
      "example": {
       "q": "The length of the longest diagonal of a regular hexagon of side 8 cm is:",
-      "solution": "$2a = 16$ cm (it passes through the centre, spanning two radii = two sides)."
+      "steps": [
+       "Longest diagonal $=2a$.",
+       "$=2\\times8=16$ cm."
+      ],
+      "answer": "16 cm"
      }
     }
+   ],
+   "revision": [
+    "Hexagon $=$ six equilateral triangles; area $\\dfrac{3\\sqrt3}{2}a^2$.",
+    "Any regular polygon: $\\dfrac12\\times$ perimeter $\\times$ apothem.",
+    "Exterior $=\\dfrac{360}{n}$; interior $=180-$ exterior; sum $=(n-2)\\times180^\\circ$.",
+    "Diagonals $=\\dfrac{n(n-3)}{2}$; given a count, factor the quadratic.",
+    "Hexagon: side $=$ radius, longest diagonal $=2a$, short diagonal $=a\\sqrt3$."
    ]
   },
   {
    "id": "m2d-scaling",
    "title": "Percentage change, similarity and re-bent shapes",
-   "concept": "Three ideas cover the rest of 2-D mensuration:\n\n1. **Linear scale $k$:** all lengths ×$k$ → areas ×$k^2$ (perimeters only ×$k$).\n2. **Percentage change in area:** if length changes $a\\%$ and breadth $b\\%$, the area changes by\n   $a+b+\\frac{ab}{100}\\%$ (negative signs for decreases).\n3. **Re-bent wires / fences:** the perimeter (or circumference) is conserved — equate the perimeters of the two shapes.",
+   "concept": "When a shape grows by a scale factor k, every length multiplies by k but every area multiplies by k squared. For percentage changes the master formula is a + b + ab/100. The same wire bent into different shapes encloses different areas, and the circle always wins.",
    "formulas": [
     {
-     "name": "Scaling",
-     "tex": "\\ell\\to k\\ell\\ \\Rightarrow\\ K\\to k^2K,\\quad P\\to kP"
+     "name": "Similar figures",
+     "tex": "\\frac{a_1}{a_2}=k\\Rightarrow\\frac{K_1}{K_2}=k^2",
+     "note": "Lengths take k once; areas take k squared."
     },
     {
-     "name": "Successive change in area",
-     "tex": "\\Delta\\%=a+b+\\frac{ab}{100}"
+     "name": "Successive percentage change",
+     "tex": "\\text{net}=a+b+\\frac{ab}{100}",
+     "note": "Works for two changes in a row, like both dimensions."
     },
     {
-     "name": "Equal perimeter",
-     "tex": "P_1=P_2\\ \\text{(re-bent wire)}"
+     "name": "Reverse percentage area change",
+     "tex": "1+\\frac{x}{100}=\\left(1+\\frac{y}{100}\\right)^2",
+     "note": "Area factor is the side factor squared."
     },
     {
-     "name": "Side change from area change",
-     "tex": "\\Delta a\\%=\\left(\\sqrt{1+\\frac{\\Delta K}{100}}-1\\right)\\times100"
+     "name": "Map areas",
+     "tex": "\\text{true area}=\\text{map area}\\times(\\text{scale})^2",
+     "note": "Square the linear scale before converting units."
     }
    ],
    "tricks": [
     {
-     "title": "Two-dimensional percentage change",
-     "body": "Apply $a+b+\\frac{ab}{100}$ with signs. $+20\\%$ and $-10\\%$: $20-10-\\frac{200}{100}=+8\\%$.",
+     "title": "a + b + ab/100 in one line",
+     "body": "Both dimensions change by the same percent: plug once, no quadratics, no decimals.",
      "example": {
-      "q": "The length of a rectangle increases by 20% and the breadth decreases by 10%. Find the percentage change in area.",
-      "solution": "$20-10-\\frac{20\\times10}{100}=+8\\%$ increase."
+      "q": "If each side of a square is increased by 20%, the percentage increase in its area is:",
+      "steps": [
+       "$a=b=20$.",
+       "$20+20+\\dfrac{20\\times20}{100}$.",
+       "$=44\\%$."
+      ],
+      "answer": "44%"
      }
     },
     {
-     "title": "Area change → side change via square root",
-     "body": "The side multiplies by $\\sqrt{\\text{area factor}}$. An increase of 21% → factor 1.21 → side ×1.1 → +10%.",
+     "title": "Reverse the square root",
+     "body": "Area up 21%? Factor $1.21=1.1^2$, so the side rose 10%. Recognise perfect squares of decimals.",
      "example": {
-      "q": "If the area of a square increases by 96%, by what percentage does its side increase?",
-      "solution": "Factor $=1.96$, $\\sqrt{1.96}=1.4$ → the side increases 40%."
+      "q": "The area of a square increases by 21%. Each side increased by:",
+      "steps": [
+       "$1.21=1.1^2$.",
+       "Side factor $=1.1$.",
+       "Increase $=10\\%$."
+      ],
+      "answer": "10%"
      }
     },
     {
-     "title": "Re-bent wire: conserve the perimeter",
-     "body": "Circumference $=$ perimeter of the new shape. Compare the two areas computed from the common length $L$.",
+     "title": "Wire into shapes: circle wins",
+     "body": "Same perimeter, compare areas. Circle beats square beats any rectangle, so guess before computing.",
      "example": {
-      "q": "A wire bent as a circle of circumference 88 cm is re-bent into a square. Find the ratio of the areas of the circle and the square.",
-      "solution": "Circle: $r=\\frac{88}{2\\pi}=14$, area 616. Square: side $=\\frac{88}{4}=22$, area 484. Ratio $616:484=14:11$."
+      "q": "A wire 44 cm long is bent into a circle. The area enclosed is (take pi = 22/7):",
+      "steps": [
+       "$2\\pi r=44\\Rightarrow r=\\dfrac{44\\times7}{44}=7$ cm.",
+       "$K=\\dfrac{22}{7}\\times49=154$ sq cm."
+      ],
+      "answer": "154 sq cm"
      }
     }
    ],
    "mistakes": [
-    "Applying $k^2$ to perimeters or $k$ to areas.",
-    "Percentage formula with the wrong sign for a decrease.",
-    "Re-bent shapes: equating areas instead of perimeters."
+    {
+     "wrong": "Multiplying area by $k$ instead of $k^2$.",
+     "right": "Side ratio $3:5$ gives area ratio $9:25$. Square the length ratio."
+    },
+    {
+     "wrong": "Adding $20\\%+20\\%=40\\%$ for an area change.",
+     "right": "Use $a+b+\\dfrac{ab}{100}$: the answer is $44\\%$."
+    },
+    {
+     "wrong": "Scaling cost by the side ratio.",
+     "right": "Cost follows area: side $5\\to15$ is $k=3$, so cost multiplies by $9$."
+    },
+    {
+     "wrong": "Applying the map scale once to areas.",
+     "right": "Square it: $1:5000$ multiplies areas by $25{,}000{,}000$."
+    },
+    {
+     "wrong": "Cutting the area change in half to get the side change.",
+     "right": "Take the square root: $+21\\%$ area is $+10\\%$ side, not $+10.5\\%$."
+    }
    ],
-   "notes": "### The master rule: areas scale as the SQUARE\nIf every length of a figure is multiplied by $k$ (sides doubled, \"similar figures\", map scales, photo enlargements):\n- lengths, perimeters, diagonals → $\\times k$\n- **areas → $\\times k^2$**\n\nGoing backwards (area ratio → length ratio) needs the square root. Perimeter ratio $p:q$ → area ratio $p^2:q^2$; area ratio $a:b$ → perimeter ratio $\\sqrt a : \\sqrt b$. This single rule answers most of the subtopic.\n\n### Percentage side-changes\nSide $+x\\%$ → area $+\\left(2x + \\frac{x^2}{100}\\right)\\%$. Memorise the common pair: $+20\\% \\to +44\\%$, $-10\\% \\to -19\\%$. A negative change is a DECREASE in area, still computed as $k = (1 - \\frac{x}{100})^2$: $0.9^2 = 0.81$ → $-19\\%$.\n\n### Cost, paint, tiles, grass\nAny \"cost of carpeting/painting/fencing\" question scales with the QUANTITY it prices:\n- paint/carpet/grass → area → $k^2$.\n- fencing/border → perimeter → $k$.\nIf the side triples, an area-based cost becomes $9 \\times$; a fence cost becomes $3 \\times$.\n\n### Maps, models, photos\nMap scale $1:n$ means lengths on the map are $\\frac{1}{n}$ of reality, so **areas are $\\frac{1}{n^2}$**. Actual area $=$ map area $\\times n^2$ (watch the unit conversion: $1\\ \\text{m}^2 = 10^4\\ \\text{cm}^2$, $1\\ \\text{ha} = 10^4\\ \\text{m}^2$). Photo enlarged \"to 250% of original\" means $k = 2.5$ → area $\\times 6.25$.\n\n### Same perimeter, different areas\nOf all shapes with a given perimeter, the **circle encloses the most area**; among rectangles, the square wins. Wire-bending questions: a wire of length $L$ bent into a square gives side $\\frac{L}{4}$, into a circle gives $r = \\frac{L}{2\\pi}$ — the circle's area is bigger (for $L = 44$: square $121$, circle $154$).\n\n### A worked chain and the two traps\nTypical chain: perimeters $3:5$ → sides $3:5$ → areas $9:25$ → if the larger area is 200, the smaller is $200 \\times \\frac{9}{25} = 72$. Trap one: applying the linear ratio to areas (giving $120$ here) — the most common wrong option offered. Trap two: forgetting that a DECREASE also squares: $-10\\%$ on the side is $0.9^2 = 0.81$, i.e. $-19\\%$ (the recovery term $\\frac{x^2}{100}$ stops it from being $-20\\%$). And when volumes appear (boxes, tanks), the law is $k^3$ — that belongs to mensuration-3d, but a 2-D question offering a $k^3$-style answer is bait, not a route.\n\n### Quick revision\n- Lengths $\\times k$; areas $\\times k^2$; reverse needs $\\sqrt{\\ }$.\n- Side $+x\\%$ → area $+\\left(2x + \\frac{x^2}{100}\\right)\\%$; $+20\\% \\to 44\\%$, $-10\\% \\to -19\\%$.\n- Area costs (paint/carpet) scale $k^2$; fence costs scale $k$.\n- Map $1:n$: areas $\\times \\frac{1}{n^2}$. Photo to 250% → area $\\times 6.25$.\n- Same perimeter: circle area > square area.\n",
+   "notes": "### Lengths scale once, areas twice\nSimilar figures with a length ratio $k$ have an area ratio $k^2$. Perimeters are lengths, so they take $k$ too.\n\nPerimeters $3:5$ mean areas $9:25$. If the larger area is $200$ sq cm, the smaller is $200\\times\\dfrac{9}{25}=72$ sq cm. Multiply by the ratio; never subtract a guessed difference.\n\nGoing from areas back to lengths means a square root: areas $9:25$ give sides $3:5$. Two circles with areas $154$ and $616$ sq cm are in ratio $1:4$, so their radii are in ratio $1:2$.\n\n> **Rule:** Square going from lengths to areas; take the root going back. This single line is half the subtopic.\n\n### The percentage change master formula\nFor two successive percentage changes $a$ and $b$:\n$$\\text{net}=a+b+\\frac{ab}{100}$$\nSide $+20\\%$: area $=20+20+\\dfrac{400}{100}=+44\\%$. Side $-10\\%$: area $=-10-10+\\dfrac{100}{100}=-19\\%$.\n\nReverse it by factoring: area $+21\\%$ means the side grew by $10\\%$, because $1.21=1.1^2$.\n\n> **Watch:** A $20\\%$ side increase is a $44\\%$ area increase, not $40\\%$. The cross term is what the options try to hide.\n\n### Costs and tiles scale with area\nA square room of side $5$ m costs Rs $600$ to carpet. A similar room of side $15$ m has $k=3$, so area is $9$ times and cost is $600\\times9=$ Rs $5400$.\n\nTiles ask the same: divide the floor area by one tile's area, then multiply by the rate. A floor of $6$ m by $4$ m carries $24$ sq m $=240{,}000$ sq cm; tiles of $20\\times20$ cm cover $400$ sq cm each, so $600$ tiles.\n\nNumbers to trust: side ratio $2:3$ gives cost ratio $4:9$. A Rs $500$ job grows to Rs $1125$ at that scale, since $500\\times\\dfrac{9}{4}=1125$.\n\n> **Tip:** Never scale money by the side ratio. Money follows area, so it takes $k^2$.\n\n### Maps, models and enlargements\nA map scale $1:5000$ makes lengths $5000$ times bigger, so areas grow by $5000^2=25{,}000{,}000$. A $4$ sq cm plot is $10^8$ sq cm in truth, which is $10{,}000$ sq m ($1$ sq m $=10^4$ sq cm).\n\n> **Remember:** Square the map scale for areas, then convert units once at the end.\n\n### Same wire, different shapes\nA $44$ cm wire bent into a circle gives $r=\\dfrac{44}{2\\pi}=7$ cm, area $154$ sq cm. Bent into a square, side $11$ cm, area $121$ sq cm.\n\nFor a fixed perimeter, the circle encloses the most area; among rectangles, the square wins. Equilateral beats every other triangle. Order the options by shape generosity when the question says 'maximum area'.\n\n> **Watch:** Compare areas only after converting the perimeter into each shape's own dimensions.\n",
    "patterns": [
     {
      "id": "m2d-sc-p1",
-     "name": "Linear scale → area scale",
+     "name": "Linear scale to area scale",
      "frequency": "very common",
-     "howToSpot": "'Sides doubled/tripled', 'similar figures with perimeter ratio p : q' — new area or area ratio asked.",
-     "formula": "K' = k^2 K,\\quad \\frac{K_1}{K_2} = \\left(\\frac{P_1}{P_2}\\right)^2",
-     "logic": "1. Read off the linear factor $k$ (or the perimeter ratio).\n2. Square it for areas.\n3. Reverse direction (area ratio given → side/perimeter ratio) takes the root.\n\nWhy: area is the product of two lengths, so the factor enters twice.",
+     "howToSpot": "Two similar figures with a perimeter or side ratio, an area asked.",
+     "steps": [
+      "Read off the length ratio $k$.",
+      "Square it for the area ratio.",
+      "Apply the ratio to the given area."
+     ],
+     "why": "Squaring once converts any length comparison into an area comparison.",
      "example": {
       "q": "The perimeters of two similar figures are in the ratio 3 : 5. If the larger area is 200 sq cm, the smaller area is:",
-      "solution": "Area ratio $= 9 : 25$; smaller $= 200 \\times \\frac{9}{25} = 72$ sq cm."
+      "steps": [
+       "Area ratio $=\\dfrac{9}{25}$.",
+       "Smaller $=200\\times\\dfrac{9}{25}=72$ sq cm."
+      ],
+      "answer": "72 sq cm"
      }
     },
     {
      "id": "m2d-sc-p2",
-     "name": "Cost / tiles / carpet scaling",
+     "name": "Cost, tiles and carpet scaling",
      "frequency": "common",
-     "howToSpot": "Painting, carpeting, tiling or paving costs quoted for one size — the figure's side changes — new cost asked.",
-     "formula": "\\text{cost} \\propto \\text{area} \\Rightarrow \\text{cost}' = k^2 \\times \\text{cost}",
-     "logic": "1. Decide what the cost is proportional to: paint/carpet/tiles → AREA; fencing → PERIMETER.\n2. Find the linear factor $k$ between the sizes.\n3. Multiply the cost by $k^2$ (or $k$ for fencing).\n\nWhy: unit costs multiply a quantity — the question is only whether that quantity is 2-D or 1-D.",
+     "howToSpot": "A cost for one size, asked for a similar larger size.",
+     "steps": [
+      "Find the linear scale $k$ between the shapes.",
+      "Square it: cost multiplies by $k^2$.",
+      "Multiply the given cost."
+     ],
+     "why": "Cost per unit area is fixed, so total cost behaves exactly like area.",
      "example": {
       "q": "Carpeting a square room of side 5 m costs Rs 600. The cost of carpeting a square room of side 15 m is:",
-      "solution": "$k = 3$ → cost $\\times 9$: $600 \\times 9 = 5400$."
+      "steps": [
+       "$k=\\dfrac{15}{5}=3$, so area factor $=9$.",
+       "Cost $=600\\times9=$ Rs 5400."
+      ],
+      "answer": "Rs 5400"
      }
     },
     {
      "id": "m2d-sc-p3",
-     "name": "Percentage change in side → change in area",
+     "name": "Percentage change in side to change in area",
      "frequency": "very common",
-     "howToSpot": "'Side increased by x%' / 'side decreased by x%' — percentage change in area asked.",
-     "formula": "\\text{area change} = \\pm 2x + \\frac{x^2}{100} (\\%); \\text{ (for decrease: } -2x + \\frac{x^2}{100})",
-     "logic": "1. Write the linear multiplier: $1 + \\frac{x}{100}$ or $1 - \\frac{x}{100}$.\n2. Square it: that is the area multiplier.\n3. Convert to a percentage change; a decrease in side still yields the $+\\frac{x^2}{100}$ term ($0.9^2 = 0.81$ → $-19\\%$).\n\nWhy: $(1 \\pm \\epsilon)^2 = 1 \\pm 2\\epsilon + \\epsilon^2$ — the square of the small term is the famous 'extra' effect.",
+     "howToSpot": "A side percent change, area percent asked (or the reverse).",
+     "steps": [
+      "Put $a=b=$ the percent change.",
+      "Net $=a+b+\\dfrac{ab}{100}$.",
+      "Reverse direction: take the square root of the factor."
+     ],
+     "why": "The master formula handles both directions and dodges the missing cross term.",
      "example": {
       "q": "If each side of a square is increased by 20%, the percentage increase in its area is:",
-      "solution": "$1.2^2 = 1.44$ → $44\\%$ increase ($2 \\times 20 + \\frac{400}{100} = 44$)."
+      "steps": [
+       "$20+20+\\dfrac{400}{100}$.",
+       "$=44\\%$."
+      ],
+      "answer": "44%"
      }
     },
     {
      "id": "m2d-sc-p4",
      "name": "Maps, models and photo enlargements",
      "frequency": "common",
-     "howToSpot": "A map scale 1 : n with an area measured on the map — actual area asked; or a photo enlarged/shrunk — new area asked.",
-     "formula": "\\text{actual area} = \\text{map area} \\times n^2",
-     "logic": "1. Map scale is LINEAR: $1:n$ → areas are $1:n^2$.\n2. Multiply the map area by $n^2$; then convert units ($1\\,\\text{m}^2 = 10^4\\,\\text{cm}^2$).\n3. Photos: 'enlarged to 250%' → $k = 2.5$ → area $\\times 6.25$.\n\nWhy: both directions are the same square law; only the wording (shrink vs enlarge) changes whether $k$ is below or above 1.",
+     "howToSpot": "A map or model with a scale, a true area asked.",
+     "steps": [
+      "Note the linear scale.",
+      "Square it for the area factor.",
+      "Multiply the map area and convert units."
+     ],
+     "why": "Areas need the squared scale, and one clean unit conversion finishes it.",
      "example": {
       "q": "On a map of scale 1 : 5000, a plot measures 4 sq cm. Its actual area is:",
-      "solution": "$4 \\times 5000^2 = 10^8$ sq cm $= 10{,}000$ sq m (1 ha)."
+      "steps": [
+       "Area factor $=5000^2=25{,}000{,}000$.",
+       "$4\\times25{,}000{,}000=10^8$ sq cm $=10{,}000$ sq m."
+      ],
+      "answer": "10,000 sq m"
      }
     },
     {
      "id": "m2d-sc-p5",
      "name": "Same perimeter: square vs circle",
      "frequency": "occasional",
-     "howToSpot": "A wire/rope of fixed length bent into a square and a circle — areas (or their difference) asked.",
-     "formula": "\\text{square: } a = \\frac{L}{4};\\quad \\text{circle: } r = \\frac{L}{2\\pi};\\quad K_{\\text{circle}} > K_{\\text{square}}",
-     "logic": "1. Square: side $= \\frac{L}{4}$, area $= \\frac{L^2}{16}$.\n2. Circle: $r = \\frac{L}{2\\pi}$, area $= \\frac{L^2}{4\\pi}$ — always the bigger one.\n3. For $L = 44$ ($\\pi = 22/7$): square $121$, circle $154$, difference $33$.\n\nWhy: the circle is the maximal-area shape for a given perimeter — the isoperimetric fact exams love.",
+     "howToSpot": "One wire or fence bent into different shapes.",
+     "steps": [
+      "Split the perimeter into each shape's dimensions.",
+      "Compute each area.",
+      "Compare; the circle encloses the most."
+     ],
+     "why": "A fixed perimeter is shared, so the comparison isolates the shape effect alone.",
      "example": {
-      "q": "A wire 44 cm long is bent into a circle. The area enclosed is (take π = 22/7):",
-      "solution": "$r = \\frac{44}{2 \\times 22/7} = 7$ cm; area $= \\frac{22}{7} \\times 49 = 154$ sq cm."
+      "q": "A wire 44 cm long is bent into a circle. The area enclosed is (take pi = 22/7):",
+      "steps": [
+       "$r=\\dfrac{44\\times7}{2\\times22}=7$ cm.",
+       "$K=\\dfrac{22}{7}\\times7^2=154$ sq cm."
+      ],
+      "answer": "154 sq cm"
      }
     }
+   ],
+   "revision": [
+    "Length ratio $k$ gives area ratio $k^2$; perimeters take $k$ once.",
+    "Two successive changes: $a+b+\\dfrac{ab}{100}$; $+20\\%$ side means $+44\\%$ area.",
+    "Area to side: take the square root of the factor ($1.21\\to1.1$).",
+    "Money, tiles and paint scale with area, never with a side.",
+    "Map areas: square the linear scale, convert units once.",
+    "Fixed perimeter: circle encloses the most area; square beats other rectangles."
    ]
   }
  ],

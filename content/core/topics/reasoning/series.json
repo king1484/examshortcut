@@ -13,569 +13,1322 @@
   {
    "id": "series-idea",
    "title": "How every series is cracked",
-   "concept": "A series question shows 5-6 terms and asks for the next (or a missing middle) term. Every CGL series is built by one small rule — your job is to name it before the clock names it for you.\n\n**The universal method: the difference ladder.** Subtract neighbours. If the differences are constant, you have an AP. If not, subtract again (second differences). Repeat until a row is constant, then climb back up. Most CGL series die at the second row. If differences *look* meaningless, switch families: multiply (GP), alternate, or squares/cubes.\n\nReading the ladder tells you the family instantly:\n\n| What you see | Family to try |\n|---|---|\n| Differences constant | AP (add k) |\n| Second differences constant | based on n² |\n| Each term ≈ previous × k | GP / ×k ± r |\n| Ratios of differences constant | ×k on differences |\n| Two clean mini-rows (odd/even positions) | interleaved series |\n| Differences are 1, 8, 27... or 1, 3, 5... | cubes / odd numbers added |",
-   "formulas": [],
+   "concept": "A series is a list of numbers written in a fixed order. Every term comes from the one before it by one small rule. Your job is to name that rule, then find the next term or the missing term. The **difference ladder** finds the rule in most questions: subtract neighbours, and subtract again if needed.",
+   "formulas": [
+    {
+     "name": "Gap between terms",
+     "tex": "d_n = a_{n+1} - a_n",
+     "note": "Write these gaps under the series. If they are not clear, take gaps of the gaps."
+    },
+    {
+     "name": "Same number added",
+     "tex": "a_n = a_1 + (n - 1)d",
+     "note": "d is the equal gap. Use it when the first row of gaps is constant."
+    }
+   ],
    "tricks": [
     {
-     "title": "Difference ladder in 10 seconds",
-     "body": "Write the terms with gaps and subtract under them, twice if needed. A constant row anywhere fixes the whole rule; extend the row one step and climb back up to get the answer.",
+     "title": "Two rows of gaps in ten seconds",
+     "body": "Write the gaps under the series. If they are not equal, write the gaps of the gaps. Stop when a row is clear. Then work back up.",
      "example": {
-      "q": "**Q.** 9, 16, 25, 36, 49, ?\n\n**Sol.** Differences: 7, 9, 11, 13 → next 15. 49 + 15 = **64**. (One glance confirms these are squares 3² to 8² — both readings give 64.)",
-      "solution": "Ladder first; family names come free afterwards."
+      "q": "Find the next term: 4, 7, 12, 19, 28, ?",
+      "steps": [
+       "Gaps: 3, 5, 7, 9.",
+       "The gaps rise by 2, so the next gap is 11.",
+       "28 + 11 = 39."
+      ],
+      "answer": "39"
+     }
+    },
+    {
+     "title": "Say the rule aloud in words",
+     "body": "Before you calculate, say the rule in one plain sentence, like 'add 3, then add 6, then add 9'. If you cannot say it in a sentence, the rule is wrong.",
+     "example": {
+      "q": "Find the next term: 5, 8, 14, 23, 35, ?",
+      "steps": [
+       "Gaps: 3, 6, 9, 12.",
+       "Rule in words: the gap grows by 3 each time.",
+       "The next gap is 15. So 35 + 15 = 50."
+      ],
+      "answer": "50"
      }
     }
    ],
    "mistakes": [
-    "Extending only the difference row and forgetting to add back to the last term.",
-    "Trying exotic rules before finishing the ladder — 80% of CGL series are ladder-friendly.",
-    "Assuming the missing term is always last; CGL often hides '?' in the middle, where the ladder must run both ways."
+    {
+     "wrong": "Guessing the rule from the last two terms only.",
+     "right": "The rule must fit every term. Test it from the first term."
+    },
+    {
+     "wrong": "Stopping after one row of gaps when it is not equal.",
+     "right": "Take gaps of the gaps. The second row often shows the rule."
+    },
+    {
+     "wrong": "Filling a middle blank without checking the next term.",
+     "right": "Check that the term after the blank comes from your answer."
+    },
+    {
+     "wrong": "Reading decimals or fractions as unusual rules.",
+     "right": "Use the same ideas. Decimals follow ×k or ÷k. Fractions split into tops and bottoms."
+    },
+    {
+     "wrong": "Trying squares first on every series.",
+     "right": "Look at the size first. Slow growth means gaps. Fast growth means ratio."
+    }
    ],
-   "notes": "### What is a series?\nA series is a list of numbers or letters written in a fixed order. Every term is made from the one before it by the same small rule. Think of a savings box: you put ₹100 in January, ₹150 in February and ₹200 in March. Anyone can tell that April will be ₹250, because the rule \"add ₹50 every month\" is clear. A series question hides such a rule and asks you to find it.\n\nSSC, Railway and Banking papers ask series in three formats:\n- **Next term**: '4, 9, 16, 25, ?' — find what comes after the last term.\n- **Missing term**: '4, 9, ?, 25, 36' — a term in the middle is replaced by '?'.\n- **Wrong term**: the series is complete but one term is incorrect (see the Wrong number lesson).\n\n### Step 1: Look at the size of the numbers\nBefore any calculation, see how fast the terms grow.\n- Slow, steady growth (5, 9, 13, 17) → the rule **adds** something.\n- Terms roughly doubling or tripling (3, 7, 15, 31) → the rule **multiplies** (maybe with a small add or subtract).\n- Terms going up and down (8, 20, 10, 18, 12) → **two series are mixed** (alternate terms).\n- Terms close to famous numbers (3, 8, 15, 24 are just below 4, 9, 16, 25) → **squares or cubes**.\n\n### Step 2: The difference ladder\nWrite the gaps (differences) between neighbours under the series. This is the first difference row.\n\nExample: 2, 5, 10, 17, 26 → differences 3, 5, 7, 9. They rise by 2, so the next difference is 11 and the next term is 26 + 11 = 37.\n\nIf the first row is not clear, take differences again (second difference row). Most exam series become clear within two rows.\n\n| What the ladder shows | Family |\n|---|---|\n| First differences equal | Add the same number (AP) |\n| First differences rise evenly | Growing difference |\n| Differences double | Powers of 2 are being added |\n| Differences are 1, 4, 9, 16 | Squares are being added |\n| Each term ≈ previous × k | Multiply family (×k ± r) |\n\n### Step 3: When the ladder fails\nTry, in this order: (1) **ratio** — divide a term by the one before it; (2) **alternate terms** — read positions 1, 3, 5 and 2, 4, 6 separately; (3) **squares and cubes** near the terms; (4) **mixed operations** such as ×1+1, ×2+2, ×3+3.\n\n### Missing term in the middle\nFind the rule from the terms you can see on **both sides** of the gap. Then check your answer twice: it must come correctly from the term before it, and the term after it must come correctly from your answer.\n\nExample: 3, 7, ?, 31, 63 → each term is ×2 + 1, so ? = 7 × 2 + 1 = 15. Check: 15 × 2 + 1 = 31 ✓.\n\n### Fractions, decimals and halving\nDo not panic at decimals. 64, 32, 16, 8, 4, ? is just ÷2 → 2. 0.5, 1.5, 4.5, 13.5 is ×3 → 40.5. For fractions, read the top numbers (numerators) and the bottom numbers (denominators) as two separate series: 1/3, 3/5, 5/7 → tops 1, 3, 5 and bottoms 3, 5, 7 both rise by 2, so the next is 7/9.\n\n### Two missing terms\nSome questions blank two terms and give pairs as options. Find the rule from the visible terms, fill the first blank, then continue to the second blank. Check the term after each blank.\n\n### Quick revision\n- Look at size first: slow growth = add, fast growth = multiply, up-down = two series.\n- Difference ladder: first row, then second row.\n- If it fails: ratio → alternate terms → squares/cubes → mixed operations.\n- Missing term: check with the term before AND the term after.\n- Fractions: numerators and denominators are two separate series.\n- Your rule must fit every given term, not just the last two.",
+   "notes": "### What a series is\nA series is a list of numbers in a fixed order. Each term comes from the one before it by the same small rule.\n\nThink of a savings box. You save ₹100, ₹150 and ₹200. Next you save ₹250, because the rule is \"add ₹50\".\n\nExams ask series in three forms.\n\n- **Next term:** 4, 9, 16, 25, ? Find the term after the last one.\n- **Missing term:** 4, 9, ?, 25, 36. A term in the middle is hidden.\n- **Wrong term:** one term in a full series is wrong. The wrong number lesson covers it.\n\n### Look at the size first\nBefore you calculate, see how fast the terms grow.\n\n| What you see | Likely rule |\n|---|---|\n| 5, 9, 13, 17: slow and steady | Add a number |\n| 3, 7, 15, 31: nearly doubling | Multiply, maybe add a little |\n| 8, 20, 10, 18, 12: up and down | Two series mixed together |\n| 3, 8, 15, 24: just below 4, 9, 16, 25 | Squares |\n\n### The difference ladder\nWrite the gap between each pair of neighbours. This is the first row of gaps.\n\n> **Example:** 2, 5, 10, 17, 26. The gaps are 3, 5, 7, 9. They rise by 2, so the next gap is 11. The next term is 26 + 11 = **37**.\n\nIf the gaps are not clear, take the gaps of the gaps. Most exam series become clear in two rows.\n\n| What the gaps show | Rule |\n|---|---|\n| All gaps equal | Add the same number |\n| Gaps rise or fall evenly | Growing or shrinking gap |\n| Gaps double | Powers of 2 are added |\n| Gaps are 1, 4, 9, 16 | Squares are added |\n\n### When the ladder fails\nTry these in order.\n\n1. **Ratio:** divide each term by the one before it.\n2. **Alternate terms:** read places 1, 3, 5 and places 2, 4, 6 as two series.\n3. **Squares and cubes:** look for terms near them.\n4. **Mixed steps:** such as ×1 + 1, ×2 + 2, ×3 + 3.\n\n### The missing term in the middle\nUse the terms on **both sides** of the gap to find the rule. Then check twice. Your term must come from the one before it. The next term must come from your term.\n\n> **Example:** 3, 7, ?, 31, 63. Each term is ×2 + 1. So ? = 7 × 2 + 1 = 15. Check: 15 × 2 + 1 = 31.\n\n### Fractions, decimals and halving\nDo not panic at decimals. The series 64, 32, 16, 8, 4 halves each time, so the next term is 2. The series 0.5, 1.5, 4.5, 13.5 is ×3, so the next term is 40.5.\n\nFor fractions, treat the tops and the bottoms as two series. In $\\dfrac{1}{3}, \\dfrac{3}{5}, \\dfrac{5}{7}$ the tops go 1, 3, 5 and the bottoms go 3, 5, 7. Both rise by 2, so the next term is $\\dfrac{7}{9}$.\n\n### Two missing terms\nFind the rule from the visible terms. Fill the first blank, then move on to the second. Check the term after each blank.\n\n> **Tip:** Your rule must fit every term you can see, not just the last two.\n",
    "patterns": [
     {
      "id": "se-p1",
-     "name": "Find the next term — choose the family with the difference ladder",
+     "name": "Find the next term with the difference ladder",
      "frequency": "very common",
-     "howToSpot": "The question gives 5-7 terms ending in '?'. Nothing is hidden in the middle.",
-     "formula": "d_n = a_{n+1} - a_n",
-     "logic": "1. Look at growth: slow = add, fast = multiply, up-down = two series.\n2. Write the first difference row; if needed, the second row.\n3. Continue the row that is regular and climb back up to the next term.\n4. Check the rule on every given term.\n\n**Why it works:** every exam series is built by one small repeated rule, and differences expose adding-type rules at once.",
+     "howToSpot": "The question shows five to seven terms ending in a '?'. Nothing is hidden in the middle.",
+     "formula": null,
+     "steps": [
+      "Write the gaps under the series.",
+      "If the gaps are not equal, write the gaps of the gaps.",
+      "Continue the last row by one step.",
+      "Climb back up: add to the last gap, then to the last term."
+     ],
+     "why": "The ladder turns a hard series into a short list of simple gaps.",
      "example": {
-      "q": "**6, 11, 21, 36, 56, ?**",
-      "solution": "Differences: 5, 10, 15, 20 → next difference 25. 56 + 25 = **81**."
+      "q": "Find the next term: 6, 11, 21, 36, 56, ?",
+      "steps": [
+       "Gaps: 5, 10, 15, 20.",
+       "The gaps rise by 5, so the next gap is 25.",
+       "56 + 25 = 81."
+      ],
+      "answer": "81"
      }
     },
     {
      "id": "se-p2",
-     "name": "Missing term in the middle of the series",
+     "name": "A missing term in the middle",
      "frequency": "very common",
-     "howToSpot": "A '?' sits between given terms (e.g. 7, 15, ?, 63, 127).",
+     "howToSpot": "A '?' sits between the given terms, like 7, 15, ?, 63, 127.",
      "formula": null,
-     "logic": "1. Find the rule from the terms on both sides of the gap.\n2. Fill the gap from the term before it.\n3. Check that the term after the gap follows from your answer.\n\n**Why it works:** a middle term must fit twice — with its left neighbour and its right neighbour — so the double check removes wrong guesses.",
+     "steps": [
+      "Use the terms on both sides of the gap to find the rule.",
+      "Find the missing term from the term before it.",
+      "Check that the next term comes from your answer."
+     ],
+     "why": "The terms on both sides fix the rule, and the second check catches slips.",
      "example": {
-      "q": "**7, 15, ?, 63, 127**",
-      "solution": "15 = 7×2 + 1 and 127 = 63×2 + 1, so the rule is ×2 + 1. ? = 15×2 + 1 = **31**. Check: 31×2 + 1 = 63 ✓."
+      "q": "Find the missing term: 7, 15, ?, 63, 127",
+      "steps": [
+       "15 = 7 × 2 + 1 and 127 = 63 × 2 + 1. The rule is ×2 + 1.",
+       "? = 15 × 2 + 1 = 31.",
+       "Check: 31 × 2 + 1 = 63."
+      ],
+      "answer": "31"
      }
     },
     {
      "id": "se-p3",
-     "name": "Series with fractions, decimals or halving",
+     "name": "Fractions, decimals or halving",
      "frequency": "common",
-     "howToSpot": "Terms are decimals (0.5, 1.5 ...), fractions, or keep getting halved (240, 120, 60 ...).",
+     "howToSpot": "The terms are decimals, fractions, or keep getting divided, like 81, 27, 9, 3, 1.",
      "formula": null,
-     "logic": "1. Treat decimals exactly like whole numbers: try ×k or ÷k first.\n2. For fractions, write the numerators as one series and the denominators as another.\n3. Build the answer in the same form as the terms.\n\n**Why it works:** decimals and fractions only change how the numbers look, not the rule behind them.",
+     "steps": [
+      "Check the ratio between terms first: divide one term by the next.",
+      "For fractions, write the tops and bottoms as two series.",
+      "Apply the rule once to the last term."
+     ],
+     "why": "The same rules work on decimals and fractions. Only the numbers look different.",
      "example": {
-      "q": "**81, 27, 9, 3, 1, ?**",
-      "solution": "Each term is ÷3. 1 ÷ 3 = **$\\frac{1}{3}$**."
+      "q": "Find the next term: 81, 27, 9, 3, 1, ?",
+      "steps": [
+       "27 ÷ 81 = 1/3, and 9 ÷ 27 = 1/3.",
+       "Each term is the last one ÷ 3.",
+       "$1 \\div 3 = \\dfrac{1}{3}$."
+      ],
+      "answer": "$\\dfrac{1}{3}$"
      }
     },
     {
      "id": "se-p4",
-     "name": "Two missing terms — choose the correct pair",
+     "name": "Two missing terms: pick the right pair",
      "frequency": "common",
-     "howToSpot": "Two '?' marks in one series; each option is a pair of numbers.",
+     "howToSpot": "Two '?' marks sit in one series, and each option is a pair of numbers.",
      "formula": null,
-     "logic": "1. Find the rule from the visible terms.\n2. Fill the first blank, then keep going to the second blank.\n3. Check the terms right after each blank.\n4. Eliminate options where only one of the two numbers is right.\n\n**Why it works:** both numbers come from the same rule, so one wrong number kills the option.",
+     "steps": [
+      "Find the rule from the visible terms.",
+      "Fill the first blank.",
+      "Use the rule again to fill the second blank.",
+      "Check the terms after both blanks."
+     ],
+     "why": "Each blank follows from the one before it, so fill them in order.",
      "example": {
-      "q": "**5, ?, 15, 20, ?, 30**",
-      "solution": "The rule is +5. First blank = 5 + 5 = 10; second blank = 20 + 5 = 25. Answer **10, 25**."
+      "q": "Fill the blanks: 1, 2, 4, ?, 11, ?, 22",
+      "steps": [
+       "The first gaps are 1 and 2. Guess that the gaps rise by 1: 1, 2, 3, 4, 5, 6.",
+       "First blank: 4 + 3 = 7. Check: 7 + 4 = 11.",
+       "Second blank: 11 + 5 = 16. Check: 16 + 6 = 22."
+      ],
+      "answer": "7 and 16"
+     }
+    },
+    {
+     "id": "se-p31",
+     "name": "Find the first term",
+     "frequency": "occasional",
+     "howToSpot": "The '?' is at the start, like ?, 12, 20, 30, 42.",
+     "formula": null,
+     "steps": [
+      "Write the gaps between the visible terms.",
+      "Extend the gap row backwards by one step.",
+      "Subtract that gap from the first visible term."
+     ],
+     "why": "A series can be read backwards just like forwards.",
+     "example": {
+      "q": "Find the first term: ?, 12, 20, 30, 42",
+      "steps": [
+       "Gaps between the visible terms: 8, 10, 12. They rise by 2.",
+       "Going back, the gap before 8 is 6.",
+       "First term: 12 − 6 = 6. Check: 6, 12, 20, 30, 42 has gaps 6, 8, 10, 12."
+      ],
+      "answer": "6"
      }
     }
+   ],
+   "revision": [
+    "Look at the size first: slow growth adds, fast growth multiplies, up and down means two series.",
+    "Difference ladder: first row of gaps, then the gaps of the gaps.",
+    "If the ladder fails, try ratio, then alternate terms, then squares and cubes, then mixed steps.",
+    "Missing term: check with the term before it and the term after it.",
+    "Fractions: tops and bottoms are two separate series.",
+    "The rule must fit every visible term."
    ]
   },
   {
    "id": "number-series",
    "title": "Number series",
-   "concept": "The CGL number-series rule bank, in frequency order:\n\n1. **Linear recurrence**: a(n+1) = k·a(n) ± r — e.g. 5, 11, 23, 47, 95 is ×2 + 1.\n2. **Second-difference (n² family)**: 2, 6, 12, 20, 30 is n² + n; 3, 8, 15, 24 is n² − 1.\n3. **Cube/jump differences**: differences are 1, 8, 27, 64 (cubes) or 1, 2, 4, 8 (powers of 2).\n4. **Rising multipliers**: ×2, ×3, ×4 — e.g. 7, 14, 42, 168, 840.\n5. **Alternating/interleaved**: two mini-series on odd and even positions.\n6. **Fibonacci style**: each term = sum of previous two.\n\n**Uniqueness discipline**: after guessing the rule, check it reproduces *every* given term — not just the last. If two rules both fit, the exam keeps the second rule's answer out of the options; if your answer is missing, drop the rule, don't force it.",
+   "concept": "Most number-series questions come from eight families. Learn the families, and each question becomes a quick check against a short list. Slow growth points to gaps. Fast growth points to multiplying. Going up and down points to two series mixed together.",
    "formulas": [
     {
-     "name": "AP / ladder",
-     "tex": "a_n = a_1 + (n-1)d",
-     "note": "d = common difference from the ladder."
+     "name": "Same gap (AP)",
+     "tex": "a_n = a_1 + (n - 1)d",
+     "note": "d is the equal gap from the ladder."
     },
     {
-     "name": "Recurrence xk plus r",
+     "name": "Multiply then adjust",
      "tex": "a_{n+1} = k \\cdot a_n \\pm r",
-     "note": "Test k = 2, 3 first with r = ±1, ±2."
+     "note": "Try k = 2 and 3 first, with r = 1 or 2."
     },
     {
-     "name": "n-squared family",
-     "tex": "a_n = n^2 \\pm k \\text{ or } n^2 + n",
-     "note": "Second difference 2 ⇒ n²; second difference 2k ⇒ k·n²."
+     "name": "Squares family",
+     "tex": "a_n = n^2 \\pm k \\ \\text{ or } \\ n^2 + n",
+     "note": "If the second gaps are all 2, the series is built on n squared."
     },
     {
-     "name": "Geometric",
+     "name": "Same ratio (GP)",
      "tex": "a_n = a_1 \\cdot r^{\\,n-1}",
-     "note": "Constant ratio r; check ×2, ×3, ×1.5."
+     "note": "r is the fixed ratio. Test ×2, ×3 and ×1.5."
     }
    ],
    "tricks": [
     {
-     "title": "Ratio test before exotic rules",
-     "body": "Divide each term by the previous one. Constant ratio → GP. Ratio drifting by +1 each time → rising multipliers. Neither → back to the ladder.",
+     "title": "Ratio test before anything fancy",
+     "body": "Divide each term by the one before it. If the result is close to 2 or 3, try ×k ± r. Find r from what is left over.",
      "example": {
-      "q": "**Q.** 7, 14, 42, 168, ?\n\n**Sol.** Ratios: 2, 3, 4 → next ratio 5. 168 × 5 = **840**.",
-      "solution": "One division per gap; rising multipliers announce themselves immediately."
+      "q": "Find the next term: 5, 11, 23, 47, ?",
+      "steps": [
+       "11 ÷ 5, 23 ÷ 11 and 47 ÷ 23 are all near 2.",
+       "5 × 2 + 1 = 11, 11 × 2 + 1 = 23, 23 × 2 + 1 = 47.",
+       "47 × 2 + 1 = 95."
+      ],
+      "answer": "95"
      }
     },
     {
-     "title": "Interleaved split for jumpy series",
-     "body": "If the series jumps up-down-up-down, write odd-position terms in one row and even-position terms below. Each row is a friendly AP/GP; extend both, then read the term that falls on '?'",
+     "title": "Split a jumpy series",
+     "body": "If the terms go up and down, write the odd places on one line and the even places on another. Solve each line on its own. Then find which line the asked place belongs to.",
      "example": {
-      "q": "**Q.** 2, 9, 4, 13, 6, 17, ?\n\n**Sol.** Row A (odd): 2, 4, 6 → 8. Row B (even): 9, 13, 17 → 21. '?' is 7th term → **8**.",
-      "solution": "Splitting kills panic; each row is solvable in 3 seconds."
+      "q": "Find the seventh term: 12, 5, 14, 8, 16, 11, ?",
+      "steps": [
+       "Odd places: 12, 14, 16.",
+       "Even places: 5, 8, 11.",
+       "The seventh term is an odd place, so it is 16 + 2 = 18."
+      ],
+      "answer": "18"
      }
     },
     {
-     "title": "Cubes and powers hiding in the ladder",
-     "body": "Memorise the signature ladders: 1, 8, 27, 64 (cubes), 1, 3, 5, 7 (odds), 2, 4, 8, 16 (powers of 2), 1, 4, 9, 16 (squares). When the first difference row matches a signature, the series is solved.",
+     "title": "Cubes hiding in the gaps",
+     "body": "If the gaps grow very fast, check for cubes (1, 8, 27, 64, 125) or powers of 2 (1, 2, 4, 8, 16).",
      "example": {
-      "q": "**Q.** 12, 13, 21, 48, 112, ?\n\n**Sol.** Differences: 1, 8, 27, 64 → cubes! Next difference 125. 112 + 125 = **237**.",
-      "solution": "The ladder names the family — never subtract twice when the first row already looks famous."
+      "q": "Find the next term: 2, 3, 11, 38, 102, ?",
+      "steps": [
+       "Gaps: 1, 8, 27, 64. These are cubes.",
+       "The next gap is 5³ = 125.",
+       "102 + 125 = 227."
+      ],
+      "answer": "227"
      }
     }
    ],
    "mistakes": [
-    "Fitting ×2+1 from the first pair only and never verifying on the third term.",
-    "Missing mixed operators (×2+1 vs ×2) — check the residual r on every step.",
-    "In interleaved series, reading the answer from the wrong row (count positions carefully)."
+    {
+     "wrong": "Trying only 'add' on a series that grows fast.",
+     "right": "Look at the size first. Fast growth needs a ratio test."
+    },
+    {
+     "wrong": "Stopping at the first row of gaps.",
+     "right": "Take the gaps of the gaps. Look for squares, cubes and powers of 2."
+    },
+    {
+     "wrong": "Reading an up-and-down series as one series.",
+     "right": "Split into odd and even places. Then find the place asked."
+    },
+    {
+     "wrong": "Using the last two terms to guess the rule.",
+     "right": "Test the rule on every term from the start."
+    },
+    {
+     "wrong": "Forgetting that ×k ± r needs a small leftover.",
+     "right": "After ×2 or ×3, find what is left over. That is the r."
+    },
+    {
+     "wrong": "Giving the second-gap answer as the next term.",
+     "right": "Climb back up: next second gap, then next gap, then next term."
+    }
    ],
-   "notes": "### What this lesson covers\nNumber series is the most common series type in competitive exams. Almost every question uses one of eight families. Learn the families and every question becomes a quick check against a short list.\n\n### 1. Constant or growing difference\nAdd the same number every time: 7, 12, 17, 22 (+5). This is called an arithmetic progression (AP). In the growing type, the amount added itself grows: 11, 13, 17, 23, 31 → add 2, 4, 6, 8, so next add 10 → 41. It can also fall: 120, 119, 116, 111 (subtract 1, 3, 5).\n\n### 2. Multiply, then add or subtract (×k ± r)\nEach term is the previous term multiplied by a fixed number, sometimes with a small add or subtract. 3, 6, 12, 24 is ×2. 3, 7, 15, 31 is ×2 + 1. 4, 10, 28, 82 is ×3 − 2.\n\nTest: divide a big term by the one before. If the result is near 2 or 3, try ×2 or ×3 and see what small number is left over. That left-over is r.\n\n### 3. Squares and cubes\nKnow squares up to 30 and cubes up to 15. Look for terms just above or below them:\n- 3, 8, 15, 24, 35 = 2²−1, 3²−1, 4²−1 ...\n- 2, 9, 28, 65 = 1³+1, 2³+1, 3³+1, 4³+1\n- 2, 6, 12, 20, 30 = 1×2, 2×3, 3×4 ... (n × (n+1))\n\n### 4. Two-level difference\nThe first difference row is not constant, but the second row follows a clear rule.\n\nExample: 2, 5, 11, 21, 36 → differences 3, 6, 10, 15 → second differences 3, 4, 5. Next second difference is 6, so the next difference is 21 and the next term is 57.\n\n### 5. Differences that are famous numbers\nThe difference row itself may be squares (1, 4, 9, 16), cubes (1, 8, 27, 64), primes (2, 3, 5, 7, 11) or powers of 2 (1, 2, 4, 8).\n\nExample: 10, 11, 13, 17, 25 → differences 1, 2, 4, 8 → next 16 → 41.\n\n### 6. Alternate (interleaved) series\nTwo separate series are mixed. Terms 1, 3, 5, 7 form one series; terms 2, 4, 6, 8 form another.\n\nExample: 3, 50, 6, 45, 12, 40, 24, ? → odd places 3, 6, 12, 24 (×2); even places 50, 45, 40 (−5). The 8th term is an even place → 35. Suspect this when the series goes up and down.\n\n### 7. Mixed operations\nThe operation changes in a fixed way:\n- ×1+1, ×2+2, ×3+3 ...: 2, 3, 8, 27, 112 → next 112×5+5 = 565.\n- Two operations taking turns (+1, ×2, +1, ×2): 5, 6, 12, 13, 26, 27 → 54.\n- Changing signs (+2, −3, +4, −5): 10, 12, 9, 13, 8 → 14.\n\n### 8. Fibonacci type\nEach term is the sum of the previous two (2, 3, 5, 8, 13, 21) or of the previous three (1, 2, 3, 6, 11, 20, 37). Spot it when the difference row looks like the series itself.\n\n### How to choose quickly\n1. Growth is slow → difference ladder (families 1, 4, 5).\n2. Growth is fast → ratio test (families 2, 7).\n3. Terms go up and down → alternate series (family 6).\n4. Terms near squares or cubes → family 3.\n5. Each term is close to the sum of the two before it → Fibonacci (family 8).\n\n### Quick revision\n| Family | Example | Next |\n|---|---|---|\n| Constant difference | 7, 12, 17, 22 | 27 |\n| Growing difference | 11, 13, 17, 23, 31 | 41 |\n| ×k ± r | 3, 7, 15, 31 | 63 |\n| Squares/cubes | 3, 8, 15, 24 | 35 |\n| Two-level difference | 2, 5, 11, 21, 36 | 57 |\n| Famous differences | 10, 11, 13, 17, 25 | 41 |\n| Alternate | 3, 50, 6, 45, 12, 40 | 24 |\n| Mixed operations | 2, 3, 8, 27, 112 | 565 |\n| Fibonacci | 2, 3, 5, 8, 13 | 21 |",
+   "notes": "### The eight families\nAlmost every number series uses one of these rules.\n\n| Family | Example | Next |\n|---|---|---|\n| Same or growing gap | 7, 12, 17, 22 | 27 |\n| Multiply, then adjust | 3, 7, 15, 31 | 63 |\n| Squares and cubes | 3, 8, 15, 24 | 35 |\n| Gaps of gaps | 2, 5, 11, 21, 36 | 57 |\n| Famous gaps | 10, 11, 13, 17, 25 | 41 |\n| Alternate series | 3, 50, 6, 45, 12, 40 | 24 |\n| Mixed steps | 2, 3, 8, 27, 112 | 565 |\n| Sum of earlier terms | 2, 3, 5, 8, 13 | 21 |\n\n### Add the same or a growing number\nIn 7, 12, 17, 22 the gap is always 5. This is an arithmetic progression (AP).\n\nThe gap can also grow. In 11, 13, 17, 23, 31 the gaps are 2, 4, 6, 8. The next gap is 10, so the next term is 41. The gap can fall too: 120, 119, 116, 111 has gaps 1, 3, 5, all taken away.\n\n### Multiply, then add or subtract\nMultiply by a fixed number, then add or subtract a small number. The series 3, 6, 12, 24 is ×2. The series 3, 7, 15, 31 is ×2 + 1. The series 4, 10, 28, 82 is ×3 − 2.\n\n> **Tip:** Divide a big term by the one before it. If the answer is near 2 or 3, try ×2 or ×3. The small amount left over is the number to add or subtract.\n\n### Squares and cubes\nLearn squares up to 30 and cubes up to 15. Look for terms just above or below them.\n\n- 3, 8, 15, 24, 35 is $n^2 - 1$.\n- 2, 9, 28, 65 is $n^3 + 1$.\n- 2, 6, 12, 20, 30 is $n \\times (n + 1)$.\n\n### Gaps of gaps, and famous gaps\nSometimes the first gaps are not equal, but the second gaps follow a rule.\n\n> **Example:** 2, 5, 11, 21, 36. First gaps: 3, 6, 10, 15. Second gaps: 3, 4, 5. The next second gap is 6, so the next first gap is 21. The next term is 36 + 21 = **57**.\n\nThe gaps can also be squares (1, 4, 9, 16), cubes (1, 8, 27, 64), primes or powers of 2. In 10, 11, 13, 17, 25 the gaps are 1, 2, 4, 8. The next gap is 16, so the next term is 41.\n\n### Alternate series\nTwo series are mixed. Places 1, 3, 5, 7 make one series. Places 2, 4, 6, 8 make another.\n\nIn 3, 50, 6, 45, 12, 40, 24, ? the odd places are 3, 6, 12, 24 (×2). The even places are 50, 45, 40 (−5). The eighth term is an even place, so it is 35.\n\n> **Watch:** Suspect an alternate series when the terms jump up and down.\n\n### Mixed steps and sums of earlier terms\nThe step changes in a fixed way.\n\n- ×1 + 1, ×2 + 2, ×3 + 3: 2, 3, 8, 27, 112. The next term is 112 × 5 + 5 = 565.\n- Two steps take turns: 5, 6, 12, 13, 26, 27. The steps are +1, ×2, +1, ×2, so the next term is 54.\n- Signs change: 10, 12, 9, 13, 8. The steps are +2, −3, +4, −5, so the next step is +6 and the term is 14.\n\nIn a sum-of-earlier-terms series, each term is the sum of the last two: 2, 3, 5, 8, 13, 21. Or of the last three: 1, 2, 3, 6, 11, 20, 37.\n\n### How to choose fast\n1. Slow growth: use the ladder of gaps.\n2. Fast growth: divide each term by the last one.\n3. Up and down: split into odd and even places.\n4. Terms near squares or cubes: use the family of squares and cubes.\n5. Each term close to the sum of the two before: sum of earlier terms.\n",
    "patterns": [
     {
      "id": "se-p5",
-     "name": "Constant or growing difference (AP and near-AP)",
+     "name": "Same or growing gap",
      "frequency": "very common",
-     "howToSpot": "Terms grow slowly and steadily; the gaps are equal or rise/fall by the same amount.",
-     "formula": "a_{n+1} = a_n + d,\\quad d \\text{ constant or rising evenly}",
-     "logic": "1. Write the differences.\n2. If they are equal, add the same number again.\n3. If they change by a fixed amount (2, 4, 6, 8), continue that row.\n\n**Why it works:** an adding rule shows itself directly in the difference row.",
+     "howToSpot": "The terms grow slowly and steadily. The gaps are equal, or they rise or fall by the same amount.",
+     "formula": null,
+     "steps": [
+      "Write the gaps under the series.",
+      "If the gaps are equal, add one more gap.",
+      "If the gaps rise evenly, work out the next gap first."
+     ],
+     "why": "A steady gap and an evenly growing gap are the two simplest families.",
      "example": {
-      "q": "**4, 6, 10, 16, 24, ?**",
-      "solution": "Differences: 2, 4, 6, 8 → next 10. 24 + 10 = **34**."
+      "q": "Find the next term: 4, 6, 10, 16, 24, ?",
+      "steps": [
+       "Gaps: 2, 4, 6, 8.",
+       "The next gap is 10.",
+       "24 + 10 = 34."
+      ],
+      "answer": "34"
      }
     },
     {
      "id": "se-p6",
-     "name": "Multiply and add/subtract (×k ± r)",
+     "name": "Multiply, then add or subtract",
      "frequency": "very common",
-     "howToSpot": "Terms roughly double or triple each time; the ratio is almost (but not exactly) constant.",
-     "formula": "a_{n+1} = k\\,a_n \\pm r",
-     "logic": "1. Divide a term by the previous one to guess k (2, 3, 4 ...).\n2. Compute k × previous and see the small left-over r.\n3. Confirm the same k and r for every step, then apply.\n\n**Why it works:** a fixed multiply-then-add rule makes the ratio almost constant, and the left-over is the same each time.",
+     "howToSpot": "The terms roughly double or triple. The ratio is close to, but not exactly, the same.",
+     "formula": "a_{n+1} = k \\cdot a_n \\pm r",
+     "steps": [
+      "Divide a big term by the one before it.",
+      "Try ×2 or ×3 on a small term.",
+      "Find the number left over. That is r.",
+      "Check the rule on every term."
+     ],
+     "why": "Multiplying with a small fix at each step grows fast and looks messy.",
      "example": {
-      "q": "**2, 5, 14, 41, ?**",
-      "solution": "2×3 − 1 = 5, 5×3 − 1 = 14, 14×3 − 1 = 41. Next: 41×3 − 1 = **122**."
+      "q": "Find the next term: 2, 5, 14, 41, ?",
+      "steps": [
+       "Try ×3: 2 × 3 = 6, and 5 is 1 less.",
+       "14 = 5 × 3 − 1 and 41 = 14 × 3 − 1.",
+       "Next: 41 × 3 − 1 = 122."
+      ],
+      "answer": "122"
      }
     },
     {
      "id": "se-p7",
-     "name": "Squares, cubes and n(n+1) based terms",
+     "name": "Squares, cubes and n × (n + 1)",
      "frequency": "very common",
-     "howToSpot": "Terms sit on or just beside squares (4, 9, 16, 25) or cubes (8, 27, 64), or look like 2, 6, 12, 20.",
-     "formula": "a_n = n^2 \\pm k,\\ \\ n^3 \\pm k,\\ \\ n(n+1)",
-     "logic": "1. Compare every term with the nearest square or cube.\n2. Find the fixed adjustment (−1, +1, +2) or the n(n+1) form.\n3. Use the next n.\n\n**Why it works:** squares and cubes grow in a special way, so terms near them are easy to recognise once you know the tables.",
+     "howToSpot": "The terms sit on or next to squares (4, 9, 16), cubes (8, 27, 64), or look like 2, 6, 12, 20.",
+     "formula": "n^2 \\pm k,\\ n^3 \\pm k,\\ n(n+1)",
+     "steps": [
+      "Compare each term with the nearest square or cube.",
+      "Find the small number added or taken away.",
+      "Check that it is the same for every term.",
+      "Use the next n."
+     ],
+     "why": "Setters like squares and cubes because the terms grow in a way students can check.",
      "example": {
-      "q": "**0, 3, 8, 15, 24, ?**",
-      "solution": "Terms are 1²−1, 2²−1, 3²−1, 4²−1, 5²−1. Next: 6² − 1 = **35**."
+      "q": "Find the next term: 0, 3, 8, 15, 24, ?",
+      "steps": [
+       "$1^2 - 1 = 0$, $2^2 - 1 = 3$, $3^2 - 1 = 8$.",
+       "$4^2 - 1 = 15$ and $5^2 - 1 = 24$.",
+       "Next: $6^2 - 1 = 35$."
+      ],
+      "answer": "35"
      }
     },
     {
      "id": "se-p8",
-     "name": "Two-level difference (second differences follow a rule)",
+     "name": "Gaps of gaps",
      "frequency": "common",
-     "howToSpot": "The first differences are not equal, but they themselves rise in a pattern (1, 3, 6, 10 ...).",
-     "formula": "\\Delta^2 a_n \\text{ follows a simple rule}",
-     "logic": "1. Write the first difference row.\n2. Write the second difference row under it.\n3. Continue the second row, then the first row, then the series.\n\n**Why it works:** each extra ladder row removes one layer of the rule until a plain pattern remains.",
+     "howToSpot": "The first gaps are not equal, but they rise in a pattern like 1, 3, 6, 10.",
+     "formula": null,
+     "steps": [
+      "Write the first gaps.",
+      "Write the second gaps.",
+      "Continue the second gaps by one step.",
+      "Climb back to the next gap, then the next term."
+     ],
+     "why": "If the second gaps follow a rule, the first gaps are easy to extend.",
      "example": {
-      "q": "**3, 4, 7, 13, 23, ?**",
-      "solution": "First differences: 1, 3, 6, 10. Second: 2, 3, 4 → next 5. Next first difference = 10 + 5 = 15. 23 + 15 = **38**."
+      "q": "Find the next term: 3, 4, 7, 13, 23, ?",
+      "steps": [
+       "First gaps: 1, 3, 6, 10.",
+       "Second gaps: 2, 3, 4. The next is 5.",
+       "Next first gap = 10 + 5 = 15. Term = 23 + 15 = 38."
+      ],
+      "answer": "38"
      }
     },
     {
      "id": "se-p9",
-     "name": "Alternate (interleaved) two-in-one series",
+     "name": "Two series mixed together",
      "frequency": "common",
-     "howToSpot": "The series goes up and down, or big and small numbers take turns.",
+     "howToSpot": "The series goes up and down, or big and small terms take turns.",
      "formula": null,
-     "logic": "1. Separate the terms in odd places (1st, 3rd, 5th ...) and even places (2nd, 4th ...).\n2. Solve each small series on its own.\n3. Decide whether the '?' is an odd or even place, and take the answer from that series.\n\n**Why it works:** two independent rules are simply written one after the other.",
+     "steps": [
+      "Write odd places on one line and even places on another.",
+      "Solve each line on its own.",
+      "Find whether the asked place is odd or even.",
+      "Extend that line by one term."
+     ],
+     "why": "Two simple series woven together look like one messy series.",
      "example": {
-      "q": "**1, 10, 2, 20, 3, 30, ?**",
-      "solution": "Odd places: 1, 2, 3 → next 4. Even places: 10, 20, 30. The 7th term is an odd place → **4**."
+      "q": "Find the next term: 1, 10, 2, 20, 3, 30, ?",
+      "steps": [
+       "Odd places: 1, 2, 3. Even places: 10, 20, 30.",
+       "The seventh term is an odd place.",
+       "The odd line goes up by 1, so the term is 4."
+      ],
+      "answer": "4"
      }
     },
     {
      "id": "se-p10",
-     "name": "Mixed operations (×1+1, ×2+2 ... or operations taking turns)",
+     "name": "Mixed steps: ×1 + 1, ×2 + 2 and so on",
      "frequency": "common",
-     "howToSpot": "Terms grow faster and faster with no constant ratio; or operations clearly take turns (+, ×, +, ×).",
-     "formula": "a_{n+1} = n\\,a_n + n",
-     "logic": "1. Try ×1+1, ×2+2, ×3+3 (or ×1−1, ×2−2 ...).\n2. Try two operations taking turns (+1 then ×2).\n3. Try gaps with changing signs (+2, −3, +4, −5).\n4. Continue the operation pattern for the next step.\n\n**Why it works:** the operation itself forms a simple series, so the next operation is predictable.",
+     "howToSpot": "The terms grow faster and faster with no fixed ratio, or two steps clearly take turns.",
+     "formula": null,
+     "steps": [
+      "Try ×1 + 1 on the first pair.",
+      "If the multiplier and the added number both rise by 1 each step, this is the rule.",
+      "Check every pair, then apply the next multiplier."
+     ],
+     "why": "The multiplier keeps growing, so the ratio is never the same twice.",
      "example": {
-      "q": "**1, 2, 6, 21, 88, ?**",
-      "solution": "1×1+1 = 2, 2×2+2 = 6, 6×3+3 = 21, 21×4+4 = 88. Next: 88×5+5 = **445**."
+      "q": "Find the next term: 1, 2, 6, 21, 88, ?",
+      "steps": [
+       "1 × 1 + 1 = 2 and 2 × 2 + 2 = 6.",
+       "6 × 3 + 3 = 21 and 21 × 4 + 4 = 88.",
+       "Next: 88 × 5 + 5 = 445."
+      ],
+      "answer": "445"
      }
     },
     {
      "id": "se-p11",
-     "name": "Fibonacci type (sum of previous terms)",
+     "name": "Sum of the earlier terms",
      "frequency": "occasional",
      "howToSpot": "Each term is close to the sum of the two (or three) terms before it.",
-     "formula": "a_{n+2} = a_{n+1} + a_n",
-     "logic": "1. Add the previous two terms and compare with the next term.\n2. If that fails, add the previous three.\n3. Continue the same addition.\n\n**Why it works:** such a series grows by feeding on itself, so its difference row copies the series.",
+     "formula": null,
+     "steps": [
+      "Add the first two terms and compare with the third.",
+      "If it fits, add the last two terms for the next.",
+      "If the terms are small changes off, try the last three."
+     ],
+     "why": "In a Fibonacci-type series, the gaps look just like the series itself.",
      "example": {
-      "q": "**1, 1, 2, 3, 5, 8, ?**",
-      "solution": "Each term = sum of the previous two. 5 + 8 = **13**."
+      "q": "Find the next term: 1, 1, 2, 3, 5, 8, ?",
+      "steps": [
+       "1 + 1 = 2, 1 + 2 = 3, 2 + 3 = 5, 3 + 5 = 8.",
+       "Each term is the sum of the last two.",
+       "5 + 8 = 13."
+      ],
+      "answer": "13"
      }
     },
     {
      "id": "se-p12",
-     "name": "Differences are squares, cubes, primes or powers of 2",
-     "frequency": "common",
-     "howToSpot": "The difference row is itself a famous list: 1, 4, 9, 16 / 1, 8, 27 / 2, 3, 5, 7, 11 / 1, 2, 4, 8.",
-     "formula": "a_{n+1} = a_n + n^2 \\ (\\text{or } n^3,\\ p_n,\\ 2^n)",
-     "logic": "1. Write the differences.\n2. Match the row to squares, cubes, primes or powers of 2.\n3. Take the next member of that list and add it.\n\n**Why it works:** the examiner simply adds a famous list term by term.",
+     "name": "Gaps that are squares, cubes, primes or powers of 2",
+     "frequency": "occasional",
+     "howToSpot": "The gap row is a famous list: 1, 4, 9, 16, or 1, 8, 27, or 2, 3, 5, 7, or 1, 2, 4, 8.",
+     "formula": null,
+     "steps": [
+      "Write the first gaps.",
+      "Recognise the list of the gaps.",
+      "Take the next number of that list.",
+      "Add it to the last term."
+     ],
+     "why": "The gaps carry the rule, not the terms.",
      "example": {
-      "q": "**5, 6, 10, 19, 35, ?**",
-      "solution": "Differences: 1, 4, 9, 16 (squares) → next 25. 35 + 25 = **60**."
+      "q": "Find the next term: 5, 6, 10, 19, 35, ?",
+      "steps": [
+       "Gaps: 1, 4, 9, 16. These are squares.",
+       "The next square is 25.",
+       "35 + 25 = 60."
+      ],
+      "answer": "60"
      }
     }
+   ],
+   "revision": [
+    "Slow growth: gaps. Fast growth: ratio. Up and down: two series. Near squares or cubes: powers.",
+    "Same or growing gap: 7, 12, 17 (+5) and 11, 13, 17, 23 (+2, +4, +6).",
+    "Multiply then adjust: 3, 7, 15, 31 is ×2 + 1.",
+    "Squares and cubes: n² − 1, n³ + 1 and n(n + 1).",
+    "Gaps of gaps: find the next second gap, then the next gap, then the term.",
+    "Alternate series: split odd and even places and check which one the asked term is in.",
+    "Sum of earlier terms: each term is the sum of the last two, or three, terms."
    ]
   },
   {
    "id": "letter-series",
    "title": "Letter series",
-   "concept": "Letters hide number series. Convert A=1 ... Z=26 (EJOTY: E=5, J=10, O=15, T=20, Y=25) and every letter series becomes a number series with wrap-around after Z.\n\nTypical CGL letter rules:\n1. **Constant step per letter**: B, D, F, H (+2 each).\n2. **Rising step**: B, D, G, K, P (steps 2, 3, 4, 5).\n3. **Alternating steps**: A, C, B, D, C, E (steps +2, −1 repeating).\n4. **Two-track clusters**: in 'AZ, BY, CX' the first letters climb +1 while second letters fall −1.\n\nTreat multi-letter clusters slot by slot — each letter-position is its own mini-series.",
+   "concept": "Every letter series is a number series in disguise. Give each letter its place in the alphabet, then solve it as a number series. Go back to letters at the end, and wrap around after Z.",
    "formulas": [
     {
-     "name": "Slot steps",
-     "tex": "s_i = Q(L_{i+1}) - Q(L_i) \\pmod{26}",
-     "note": "Steps per slot decide the rule; wrap Y→B counts as +3."
+     "name": "Opposite letter",
+     "tex": "\\text{place of opposite} = 27 - \\text{place}",
+     "note": "A and Z, B and Y, and so on. Each pair adds up to 27."
     },
     {
-     "name": "Two-track cluster",
-     "tex": "Q(\\text{first}_i) = a + d_1 i,\\quad Q(\\text{second}_i) = b + d_2 i",
-     "note": "Tracks are independent; solve both."
+     "name": "Wrap around",
+     "tex": "\\text{place} > 26 \\Rightarrow \\text{place} - 26,\\ \\ \\text{place} < 1 \\Rightarrow \\text{place} + 26",
+     "note": "Use this whenever the rule takes you past Z or before A."
     }
    ],
    "tricks": [
     {
-     "title": "Step row under the letters",
-     "body": "Write positions over the letters and steps between them. One clean step row (+2, +2, +2...) or a rising row (2, 3, 4, 5) ends the question.",
+     "title": "A step row under the letters",
+     "body": "Write the place under every letter, then the gap between places. Work on the numbers only. Convert to a letter once, at the end.",
      "example": {
-      "q": "**Q.** B, D, G, K, ?\n\n**Sol.** Steps: +2, +3, +4 → next +5. K(11) + 5 = P(16) → **P**.",
-      "solution": "Steps convert letters to arithmetic — never eyeball letter gaps."
+      "q": "Find the next letter: H, J, L, N, ?",
+      "steps": [
+       "Places: 8, 10, 12, 14.",
+       "Each gap is 2, so the next place is 16.",
+       "Place 16 is P."
+      ],
+      "answer": "P"
      }
     },
     {
-     "title": "Wrap-around fluency",
-     "body": "After Z the alphabet restarts: Y + 4 = C. Practise from EJOTY anchors — every jump is at most 13, take the shorter direction.",
+     "title": "Wrap around with the number 26",
+     "body": "Never count letters on your fingers past Z. Add or subtract 26 on the number, then convert.",
      "example": {
-      "q": "**Q.** X, Z, B, ?\n\n**Sol.** X(24) +2 = Z(26), Z + 2 = B(2), B + 2 = **D**. The +2 step survives the wrap.",
-      "solution": "Wrap steps are the number one source of wrong letter answers — always add positions mod 26."
+      "q": "Find the letter that is 15 places after Q.",
+      "steps": [
+       "Q is 17. 17 + 15 = 32.",
+       "32 − 26 = 6.",
+       "Place 6 is F."
+      ],
+      "answer": "F"
      }
     }
    ],
    "mistakes": [
-    "Counting backwards through Z incorrectly (Z − 2 is X, not 'nothing').",
-    "Missing rising steps: treating +2, +3, +4 as a flat '+3 average' gives a wrong letter.",
-    "Applying one track's step to both tracks of a cluster pair."
+    {
+     "wrong": "Counting on your fingers from A each time.",
+     "right": "Use the anchors E, J, O, T, Y and count one or two steps from the nearest."
+    },
+    {
+     "wrong": "Forgetting to wrap around after Z.",
+     "right": "If the place is above 26, subtract 26 before you convert to a letter."
+    },
+    {
+     "wrong": "Solving a cluster as one long series.",
+     "right": "Solve each letter slot as its own series."
+    },
+    {
+     "wrong": "Reading a jumpy series as one series.",
+     "right": "Split it into odd and even places, or check for steps that take turns."
+    },
+    {
+     "wrong": "Mixing up forward places and reverse places.",
+     "right": "A = 1 counting forward. Z = 1 counting backward. Reverse place = 27 − place."
+    }
    ],
-   "notes": "### Letters are numbers in disguise\nEvery letter series is a number series written in letters. Give each letter its place in the alphabet: A=1, B=2 ... Z=26. Now 'C, G, K, O' is just 3, 7, 11, 15 — add 4 each time. The next is 19 = S.\n\n### Learn the anchors: EJOTY\nCounting from A every time is slow and causes mistakes. Remember five anchor letters:\n\n| E | J | O | T | Y |\n|---|---|---|---|---|\n| 5 | 10 | 15 | 20 | 25 |\n\nAny letter is one or two steps from an anchor: M = O − 2 = 13, R = T − 2 = 18, W = Y − 2 = 23.\n\nAlso learn the **reverse position** (Z=1, Y=2 ... A=26). Rule: reverse position = 27 − position. The **opposite pairs** add up to 27: A-Z, B-Y, C-X, D-W, E-V, F-U, G-T, H-S, I-R, J-Q, K-P, L-O, M-N.\n\n### Wrap-around\nAfter Z the alphabet starts again at A. If a rule gives a number above 26, subtract 26: X(24) + 4 = 28 → 28 − 26 = 2 = B. Going backwards below A, add 26: C(3) − 5 = −2 → −2 + 26 = 24 = X.\n\n### Type 1: constant step\nEvery letter moves by the same number: C, G, K, O, S (+4). It can go backwards too: Z, W, T, Q (−3). It can cross Z: T, W, Z, C, F (+3).\n\n### Type 2: rising or falling step\nThe step itself changes: C, D, F, I, M (+1, +2, +3, +4, so next +5 → R). Or Y, W, T, P, K (−2, −3, −4, −5, so next −6 → E).\n\n### Type 3: two series mixed\nPositions 1, 3, 5 form one series and positions 2, 4, 6 another: A, Z, C, X, E, V → A, C, E (+2) and Z, X, V (−2). Or the steps take turns: B, E, D, G, F, I (+3, −1, +3, −1).\n\n### Type 4: letter clusters\nEach term is a group of 2-4 letters: BDF, GIK, LNP. Treat each position as its own series: first letters B, G, L (+5), second letters D, I, N (+5), third letters F, K, P (+5). Next: QSU. The slots can move in different directions: AZ, CX, EV (first letter +2, second letter −2).\n\n### Type 5: positions follow a number pattern\nThe positions themselves may be squares (A, D, I, P, Y = 1, 4, 9, 16, 25) or primes (B, C, E, G, K = 2, 3, 5, 7, 11).\n\n### Method in four steps\n1. Write the position number under every letter (use EJOTY).\n2. Find the number rule with the difference ladder.\n3. Apply it, using wrap-around if the result passes 26 or goes below 1.\n4. Convert back to a letter and match the option.\n\n### Quick revision\n- A=1 ... Z=26; anchors E5, J10, O15, T20, Y25.\n- Reverse position = 27 − position; opposite pairs add to 27.\n- Above 26 → subtract 26; below 1 → add 26.\n- Clusters: solve each slot separately.\n- Letters going forward and back → split into two series.\n- Squares (A, D, I, P, Y) and primes (B, C, E, G, K) are favourite hidden rules.",
+   "notes": "### Letters are numbers in disguise\nGive each letter its place in the alphabet: A = 1, B = 2, up to Z = 26. Then C, G, K, O becomes 3, 7, 11, 15. Each term adds 4, so the next is 19, which is S.\n\n### Learn the anchor letters\nCounting from A each time is slow. Remember five anchors.\n\n| E | J | O | T | Y |\n|---|---|---|---|---|\n| 5 | 10 | 15 | 20 | 25 |\n\nEvery letter is one or two steps from an anchor. M is 2 less than O, so M = 13. R is 2 less than T, so R = 18.\n\n> **Rule:** The opposite of a letter is at place 27 minus its place. A and Z, B and Y, C and X, up to M and N. Each pair adds up to 27.\n\n### Wrap around after Z\nAfter Z the alphabet starts again at A. If the place goes above 26, subtract 26.\n\n> **Example:** X is 24. Add 4 to get 28. Then 28 − 26 = 2, which is B.\n\nGoing back below A, add 26. C is 3. Take away 5 to get −2. Then −2 + 26 = 24, which is X.\n\n### Five kinds of letter series\n**Constant step.** Every letter moves by the same amount. C, G, K, O, S adds 4. Z, W, T, Q takes away 3. T, W, Z, C, F crosses Z, because 26 + 3 = 29 and 29 − 26 = 3.\n\n**Rising or falling step.** The step itself changes. In C, D, F, I, M the steps are +1, +2, +3, +4. The next step is +5, so the next letter is R. In Y, W, T, P, K the steps are −2, −3, −4, −5. The next step is −6, so the letter is E.\n\n**Two series mixed.** Odd places make one series and even places make another. In A, Z, C, X, E, V the odd places are A, C, E (+2). The even places are Z, X, V (−2).\n\nOr the steps take turns. In B, E, D, G, F, I the steps are +3, −1, +3, −1.\n\n**Letter clusters.** A cluster is a group of two to four letters, like BDF, GIK, LNP. Each slot is its own series. First letters B, G, L add 5. So do the second and third slots. The next cluster is QSU.\n\nSlots may move in different directions. In AZ, CX, EV the first letter adds 2 and the second takes away 2.\n\n**Positions follow a number pattern.** The positions may be squares or primes.\n\n- A, D, I, P, Y are places 1, 4, 9, 16, 25.\n- B, C, E, G, K are places 2, 3, 5, 7, 11.\n\n> **Tip:** If the steps look random, write the places and check squares and primes.\n\n### A full walk-through\nFind the next letter: K, M, P, T, Y, ?\n\n1. Places: 11, 13, 16, 20, 25.\n2. Steps: +2, +3, +4, +5. The next step is +6.\n3. 25 + 6 = 31. That is above 26, so 31 − 26 = 5.\n4. Place 5 is **E**.\n\n> **Watch:** Without the wrap-around, you would look for place 31. No such letter exists.\n\n### The four steps\n1. Write the place under each letter, using the anchors.\n2. Find the number rule with the gap ladder.\n3. Apply the rule. Wrap around if the place is above 26 or below 1.\n4. Change the number back to a letter.\n",
    "patterns": [
     {
      "id": "se-p13",
-     "name": "Single letters with a constant step (forward, backward, wrap-around)",
+     "name": "Single letters with a constant step",
      "frequency": "very common",
-     "howToSpot": "Single letters that move the same distance each time, e.g. D, H, L, P.",
-     "formula": "L_{n+1} = L_n + k \\pmod{26}",
-     "logic": "1. Convert letters to positions (EJOTY anchors).\n2. Find the constant step.\n3. Add it; if the result passes 26, subtract 26 (below 1, add 26).\n\n**Why it works:** a letter series is a number series in disguise.",
+     "howToSpot": "Each letter moves the same number of places. It may go forward, go backward or cross Z.",
+     "formula": null,
+     "steps": [
+      "Write the place under each letter.",
+      "Find the equal step.",
+      "Add the step to the last place. Wrap around if it is above 26.",
+      "Convert to a letter."
+     ],
+     "why": "A constant step is an equal-gap number series.",
      "example": {
-      "q": "**D, H, L, P, ?**",
-      "solution": "Positions 4, 8, 12, 16 → +4. 16 + 4 = 20 = **T**."
+      "q": "Find the next letter: D, H, L, P, ?",
+      "steps": [
+       "Places: 4, 8, 12, 16.",
+       "Each step is +4.",
+       "16 + 4 = 20, which is T."
+      ],
+      "answer": "T"
      }
     },
     {
      "id": "se-p14",
      "name": "Rising or falling step between letters",
      "frequency": "very common",
-     "howToSpot": "The gaps between letters grow (+1, +2, +3) or shrink by a fixed amount.",
+     "howToSpot": "The gaps between places grow or shrink by one each time.",
      "formula": null,
-     "logic": "1. Write positions and the step row.\n2. Continue the step row.\n3. Add the next step to the last letter.\n\n**Why it works:** it is the letter version of the growing-difference number series.",
+     "steps": [
+      "Write the places.",
+      "Write the steps. They rise or fall evenly.",
+      "Take the next step.",
+      "Add it to the last place and convert."
+     ],
+     "why": "The steps are the gaps ladder, just on letters.",
      "example": {
-      "q": "**A, C, F, J, O, ?**",
-      "solution": "Steps +2, +3, +4, +5 → next +6. O(15) + 6 = 21 = **U**."
+      "q": "Find the next letter: A, C, F, J, O, ?",
+      "steps": [
+       "Places: 1, 3, 6, 10, 15.",
+       "Steps: +2, +3, +4, +5. The next step is +6.",
+       "15 + 6 = 21, which is U."
+      ],
+      "answer": "U"
      }
     },
     {
      "id": "se-p15",
-     "name": "Two letter series mixed (alternate letters or alternating steps)",
+     "name": "Two letter series mixed together",
      "frequency": "common",
-     "howToSpot": "Letters jump forward and back, or the same two steps keep taking turns.",
+     "howToSpot": "The letters go forward and backward by turns, or two clear tracks are visible.",
      "formula": null,
-     "logic": "1. Split odd places and even places, or write the step row.\n2. Solve each small series, or continue the step cycle.\n3. Pick the series that the '?' belongs to.\n\n**Why it works:** two simple rules written one after the other look messy only when read together.",
+     "steps": [
+      "Write odd places and even places as two lines.",
+      "Solve each line.",
+      "Check which line the asked place belongs to.",
+      "Extend that line only."
+     ],
+     "why": "Two easy series woven together look like one hard series.",
      "example": {
-      "q": "**B, Y, D, W, F, U, ?**",
-      "solution": "Odd places B, D, F (+2) → next H. Even places Y, W, U (−2). The 7th term is an odd place → **H**."
+      "q": "Find the next letter: B, Y, D, W, F, U, ?",
+      "steps": [
+       "Odd places: B, D, F. They add 2.",
+       "Even places: Y, W, U. They take away 2.",
+       "The seventh letter is an odd place. F + 2 = H."
+      ],
+      "answer": "H"
      }
     },
     {
      "id": "se-p16",
-     "name": "Letter-cluster series (each slot is its own series)",
+     "name": "Letter-cluster series",
      "frequency": "very common",
-     "howToSpot": "Every term is a group of 2-4 letters, e.g. AC, EG, IK.",
+     "howToSpot": "Each term is a group of two to four letters, and each slot changes by its own step.",
      "formula": null,
-     "logic": "1. Take the first letter of every cluster — find its rule.\n2. Do the same for the second letter, third letter ...\n3. Join the next letters of all slots.\n\n**Why it works:** each slot moves by its own rule, often the same step, sometimes opposite directions.",
+     "steps": [
+      "Write the places of the first slot in every cluster.",
+      "Find its step. Do the same for the second slot.",
+      "Apply each step to make the next cluster."
+     ],
+     "why": "Every slot is a small series of its own.",
      "example": {
-      "q": "**AC, EG, IK, ?**",
-      "solution": "First letters A, E, I (+4) → M. Second letters C, G, K (+4) → O. Answer **MO**."
+      "q": "Find the next cluster: AC, EG, IK, ?",
+      "steps": [
+       "First letters: A, E, I add 4. The next is M.",
+       "Second letters: C, G, K add 4. The next is O.",
+       "The cluster is MO."
+      ],
+      "answer": "MO"
      }
     },
     {
      "id": "se-p17",
-     "name": "Letter positions follow squares or primes",
+     "name": "Positions that are squares or primes",
      "frequency": "occasional",
-     "howToSpot": "The steps look irregular, but the positions are 1, 4, 9, 16 ... or 2, 3, 5, 7, 11 ...",
+     "howToSpot": "The steps look random, but the places are famous numbers.",
      "formula": null,
-     "logic": "1. Write the positions of all letters.\n2. Check squares and primes directly on the positions.\n3. Take the next square or prime and convert it to a letter.\n\n**Why it works:** the examiner hides a famous number list behind letters.",
+     "steps": [
+      "Write the places.",
+      "Check if they are squares (1, 4, 9, 16) or primes (2, 3, 5, 7, 11).",
+      "Take the next number in that list.",
+      "Convert it to a letter."
+     ],
+     "why": "The rule sits in the places, not in the steps.",
      "example": {
-      "q": "**C, E, G, K, M, ?**",
-      "solution": "Positions 3, 5, 7, 11, 13 are primes. Next prime 17 = **Q**."
+      "q": "Find the next letter: C, E, G, K, M, ?",
+      "steps": [
+       "Places: 3, 5, 7, 11, 13.",
+       "These are primes. The next prime is 17.",
+       "Place 17 is Q."
+      ],
+      "answer": "Q"
+     }
+    },
+    {
+     "id": "se-p32",
+     "name": "A missing letter in the middle",
+     "frequency": "common",
+     "howToSpot": "A blank sits inside the series, like F, I, ?, O, R.",
+     "formula": null,
+     "steps": [
+      "Write the places of the visible letters.",
+      "Find the rule from both sides of the blank.",
+      "Fill the blank.",
+      "Check the letter after the blank."
+     ],
+     "why": "The letters on both sides fix the rule.",
+     "example": {
+      "q": "Find the missing letter: F, I, ?, O, R",
+      "steps": [
+       "Places: 6, 9, ?, 15, 18. Each step is +3.",
+       "? = 9 + 3 = 12, which is L.",
+       "Check: 12 + 3 = 15."
+      ],
+      "answer": "L"
+     }
+    },
+    {
+     "id": "se-p33",
+     "name": "Clusters that cross Z",
+     "frequency": "occasional",
+     "howToSpot": "A slot moves past Z and starts again from A.",
+     "formula": null,
+     "steps": [
+      "Write the places of each slot.",
+      "Find each step.",
+      "If a place goes above 26, subtract 26.",
+      "Convert and join the slots."
+     ],
+     "why": "Wrap-around matters most in clusters, because it is easy to forget in one slot.",
+     "example": {
+      "q": "Find the next cluster: XB, AD, DF, ?",
+      "steps": [
+       "First letters: X = 24, then 27 − 26 = 1 = A, then D. The step is +3, so the next is G.",
+       "Second letters: B, D, F add 2. The next is H.",
+       "The cluster is GH."
+      ],
+      "answer": "GH"
      }
     }
+   ],
+   "revision": [
+    "A = 1 to Z = 26. Anchors: E 5, J 10, O 15, T 20, Y 25.",
+    "Opposite letters add up to 27.",
+    "Above 26: subtract 26. Below 1: add 26.",
+    "Clusters: solve each slot on its own.",
+    "Jumpy series: split into odd and even places.",
+    "Squares (A, D, I, P, Y) and primes (B, C, E, G, K) are favourite hidden rules."
    ]
   },
   {
    "id": "alphanumeric-series",
    "title": "Alphanumeric series",
-   "concept": "Terms mix a letter and a number ('A3, D6, G9, J12, ?'). The letter track and the number track are **independent series**. Solve each separately, then bolt the answer together: letter from track 1, number from track 2.\n\nCommon track rules: letters step ±2/±3 (or reverse), numbers run an AP (step 3), a ×2 GP, or squares (1, 4, 9, 16). Nothing couples the tracks — if you ever need the number to compute the letter, you have misread the question.",
+   "concept": "An alphanumeric term mixes a letter and a number, like A3 or D6. Most of the time the letters follow one series and the numbers follow another. Solve the two tracks separately, then join the answers in the same format as the terms.",
    "formulas": [],
    "tricks": [
     {
-     "title": "Two columns, two answers, one bolt",
-     "body": "Make a letter column and a number column. Solve the letter column (step row), solve the number column, then write them side by side in the original order.",
+     "title": "Two columns, two answers, one join",
+     "body": "Write letters in one column and numbers in the other. Solve each column on its own. Join only at the end, in the format of the question.",
      "example": {
-      "q": "**Q.** A3, D6, G9, J12, ?\n\n**Sol.** Letters: A, D, G, J (+3) → M. Numbers: 3, 6, 9, 12 (+3) → 15. Answer **M15**.",
-      "solution": "Tracks are independent — an error stays inside one column."
+      "q": "Find the next term: E4, H8, K12, N16, ?",
+      "steps": [
+       "Letters: E, H, K, N add 3, so the next is Q.",
+       "Numbers: 4, 8, 12, 16 add 4, so the next is 20.",
+       "The term is Q20."
+      ],
+      "answer": "Q20"
+     }
+    },
+    {
+     "title": "Test the letter-place link first",
+     "body": "Check whether the number equals the place of the letter, or its square. If yes, you only need the next letter.",
+     "example": {
+      "q": "Find the next term: D4, G7, J10, ?",
+      "steps": [
+       "D = 4, G = 7, J = 10. The number is the place of the letter.",
+       "The letters add 3, so the next letter is M.",
+       "M = 13. The term is M13."
+      ],
+      "answer": "M13"
      }
     }
    ],
    "mistakes": [
-    "Reading 'A3' as one base-30 code instead of two independent tracks.",
-    "Multiplying numbers when the track is a plain AP (check +3 vs ×2 quickly).",
-    "Mixing up the bolt order (writing 15M) — always mirror the question's order."
+    {
+     "wrong": "Picking an option with the right letter but a number from a wrong rule.",
+     "right": "Solve the number track on its own. Then match both parts."
+    },
+    {
+     "wrong": "Writing the answer in the wrong order, like 32J for J32.",
+     "right": "Copy the format of the given terms."
+    },
+    {
+     "wrong": "Using the letter's step for the number, or the number's step for the letter.",
+     "right": "Keep two separate columns. Each has its own step."
+    },
+    {
+     "wrong": "Not checking whether the number is the place of the letter.",
+     "right": "Test this link first. It is a common rule."
+    }
    ],
-   "notes": "### What an alphanumeric series is\n'Alpha' means letters and 'numeric' means numbers. Each term mixes both, like A3, D6, G9. Think of seats in a train: S1, S2, S3 is the coach series and 12, 13, 14 is the seat series. The two parts usually move by their own separate rules.\n\n### Rule 1: two independent tracks\nSplit every term into its letter part and its number part. Solve each as a separate series, then join the answers.\n\nExample: B2, D4, F8, H16, ? → letters B, D, F, H (+2) → J; numbers 2, 4, 8, 16 (×2) → 32. Answer **J32**.\n\nThe letter can come before or after the number: 3Z, 7W, 11T → numbers +4, letters −3 → 15Q.\n\n### Rule 2: number linked to the letter\nSometimes the number is not a separate series. It is the **position of the letter**, or something made from it:\n- C3, F6, I9 → number = position of the letter.\n- B4, D16, F36 → number = (position)².\n- Z26, X24, V22 → number = position, letters going backwards.\n\nCheck this link first. If it holds for every term, you only need the next letter; the number follows.\n\n### Rule 3: clusters with numbers\nTerms can have two letters and a number: AB2, DE4, GH8. Each letter slot is its own series (A, D, G and B, E, H, both +3) and the number doubles → JK16. Or the number comes first: 2CZ, 4EX, 6GV → numbers +2, first letters +2, last letters −2.\n\n### Rule 4: missing term in the middle\nWhen the '?' sits in the middle, find each track from the visible terms and fill the gap. Always check the term after the gap.\n\nExample: D5, G10, ?, M20, P25 → letters +3 → J; numbers +5 → 15. Answer **J15**.\n\n### Method\n1. Draw two (or three) columns: letters and numbers.\n2. Convert letters to positions (EJOTY anchors) and find the step.\n3. Find the number rule: +k, ×k, squares, cubes, or 'same as the letter position'.\n4. Build the answer in the **same format** as the terms (letter first or number first).\n5. Before marking, compare options that differ in only one character — examiners pair the right letter with a wrong number and the right number with a wrong letter.\n\n### Common traps\n- An option with the correct letter but a number from a wrong rule (J30 instead of J32).\n- An option in the wrong order (32J instead of J32).\n- Moving the letter by the number's step, or the number by the letter's step.\n\n### Quick revision\n| Series | Letter rule | Number rule | Next |\n|---|---|---|---|\n| B2, D4, F8, H16 | +2 | ×2 | J32 |\n| C3, F6, I9, L12 | +3 | = position | O15 |\n| B4, D16, F36, H64 | +2 | position² | J100 |\n| AB2, DE4, GH8, JK16 | +3 each slot | ×2 | MN32 |\n| Z1, W8, T27, Q64 | −3 | cubes | N125 |\n\n- Split, solve, join.\n- Test 'number = letter position' first.\n- Keep the answer in the same format as the terms.",
+   "notes": "### What an alphanumeric series is\nEach term holds a letter and a number, like A3, D6, G9. Think of seats in a train: the coach letter changes by one rule and the seat number by another.\n\n### Two independent tracks\nSplit every term into its letter and its number. Solve each as its own series. Then join.\n\n> **Example:** B2, D4, F8, H16, ? The letters B, D, F, H add 2, so the next is J. The numbers 2, 4, 8, 16 double, so the next is 32. Answer **J32**.\n\nThe number may come first. In 3Z, 7W, 11T the numbers add 4 and the letters go back 3. The next term is 15Q.\n\n### The number follows the letter\nSometimes the number is not a separate series. It is made from the letter's place. Check this first.\n\n| Terms | Link |\n|---|---|\n| C3, F6, I9, L12 | Number = place of the letter |\n| B4, D16, F36, H64 | Number = (place of the letter) squared |\n| Z1, W8, T27, Q64 | Number is a cube, letters go back |\n\nIf the link holds for every term, find the next letter. The number follows from it.\n\n> **Watch:** If you need the number to work out the letter, or the letter to work out the number, check the link first. Otherwise keep the tracks apart.\n\n### Terms with two letters and a number\nA term can carry two letters and a number, like AB2, DE4, GH8. Each letter slot is its own series. A, D, G add 3, and B, E, H add 3. The numbers double, so the next term is JK16.\n\nThe number can come first. In 2CZ, 4EX, 6GV the number adds 2, the first letter adds 2 and the last letter goes back 2.\n\n### A missing term in the middle\nFind each track from the visible terms. Fill the gap and check the term after it.\n\n> **Example:** D5, G10, ?, M20, P25. The letters add 3, so the gap has J. The numbers add 5, so the gap has 15. The missing term is **J15**.\n\n### Number tracks to know\nThe number track often uses one of these.\n\n| Track | Example |\n|---|---|\n| Add a fixed number | 5, 10, 15, 20 |\n| Multiply by 2 or 3 | 3, 6, 12, 24 |\n| Squares | 1, 4, 9, 16, 25 |\n| Cubes | 1, 8, 27, 64, 125 |\n\n> **Example:** F3, I6, L12, O24, ? The letters F, I, L, O add 3, so the next is R. The numbers 3, 6, 12, 24 double, so the next is 48. Answer **R48**.\n\n### The method\n1. Draw one column for letters and one for numbers.\n2. Change letters to places, using the anchors E, J, O, T, Y.\n3. Find each rule: add, multiply, square, cube, or same as the place.\n4. Write the answer in the same format as the terms.\n5. Compare options that differ in one character.\n\n### Reading the options\nExaminers set options like J30 and J32, or J32 and 32J. Only one option has the right letter, the right number and the right order. Check all three.\n",
    "patterns": [
     {
      "id": "se-p18",
-     "name": "Letter + number terms with two independent tracks",
+     "name": "Letter and number as two independent tracks",
      "frequency": "very common",
-     "howToSpot": "Each term is one letter and one number (B2, D4 ...), and the number does not match the letter position.",
+     "howToSpot": "The letters follow one visible series and the numbers follow another. Neither depends on the other.",
      "formula": null,
-     "logic": "1. Write the letters in one column and the numbers in another.\n2. Solve the letter track (positions, step) and the number track (+k, ×k, squares) separately.\n3. Join the answers in the same format.\n\n**Why it works:** the two parts are two separate series written side by side.",
+     "steps": [
+      "Write letters in one column and numbers in another.",
+      "Find each rule.",
+      "Apply both rules to the last term.",
+      "Join in the same format."
+     ],
+     "why": "Two simple series are easier than one mixed series.",
      "example": {
-      "q": "**K5, M10, O15, Q20, ?**",
-      "solution": "Letters K, M, O, Q (+2) → S. Numbers 5, 10, 15, 20 (+5) → 25. Answer **S25**."
+      "q": "Find the next term: K5, M10, O15, Q20, ?",
+      "steps": [
+       "Letters K, M, O, Q add 2. The next is S.",
+       "Numbers 5, 10, 15, 20 add 5. The next is 25.",
+       "The term is S25."
+      ],
+      "answer": "S25"
      }
     },
     {
      "id": "se-p19",
-     "name": "Number linked to the letter's position",
+     "name": "Number equals the place of the letter",
      "frequency": "common",
-     "howToSpot": "The number equals the letter's position, its square, or its reverse position (C3, F6 / B4, D16).",
+     "howToSpot": "Every number equals the alphabet place of its letter.",
      "formula": null,
-     "logic": "1. Check if number = position (or position², or 27 − position) for every term.\n2. Find the next letter.\n3. Compute its number by the same link.\n\n**Why it works:** once the link is confirmed, the whole question reduces to one letter series.",
+     "steps": [
+      "Check that each number matches the place of its letter.",
+      "Find the step of the letters.",
+      "Find the next letter.",
+      "Its place is the number."
+     ],
+     "why": "The number carries no new information, so only the letters need a rule.",
      "example": {
-      "q": "**E5, H8, K11, ?**",
-      "solution": "Numbers equal positions (E=5, H=8, K=11). Letters +3 → N = 14. Answer **N14**."
+      "q": "Find the next term: E5, H8, K11, ?",
+      "steps": [
+       "E = 5, H = 8, K = 11. Numbers match places.",
+       "The letters add 3, so the next letter is N.",
+       "N = 14. The term is N14."
+      ],
+      "answer": "N14"
      }
     },
     {
      "id": "se-p20",
-     "name": "Clusters with two or more letters and a number",
+     "name": "Terms with two letters and a number",
      "frequency": "common",
-     "howToSpot": "Terms like AB2, DE4 or 2CZ, 4EX — more than one letter slot plus a number.",
+     "howToSpot": "Each term has two letters and a number. Slots may move in different directions.",
      "formula": null,
-     "logic": "1. Make one column per slot (each letter place, the number).\n2. Solve every column separately.\n3. Assemble the next term in the same order.\n\n**Why it works:** every slot is independent; three small series are easier than one big cluster.",
+     "steps": [
+      "Solve the first letter.",
+      "Solve the second letter.",
+      "Solve the number.",
+      "Join in the same order."
+     ],
+     "why": "Each slot is a small series of its own.",
      "example": {
-      "q": "**AZ1, BY2, CX3, ?**",
-      "solution": "First letters A, B, C (+1) → D; second letters Z, Y, X (−1) → W; numbers +1 → 4. Answer **DW4**."
+      "q": "Find the next term: AZ1, BY2, CX3, ?",
+      "steps": [
+       "First letters A, B, C add 1. The next is D.",
+       "Second letters Z, Y, X go back 1. The next is W.",
+       "Numbers add 1. The next is 4. The term is DW4."
+      ],
+      "answer": "DW4"
      }
     },
     {
      "id": "se-p21",
-     "name": "Missing alphanumeric term in the middle",
+     "name": "A missing term in the middle",
      "frequency": "common",
-     "howToSpot": "The '?' is in the middle of an alphanumeric series.",
+     "howToSpot": "A '?' is inside the series, with terms on both sides.",
      "formula": null,
-     "logic": "1. Find each track from the visible terms on both sides.\n2. Fill the letter and the number of the gap.\n3. Check the term after the gap.\n\n**Why it works:** each track must pass through the gap smoothly.",
+     "steps": [
+      "Find each track from the visible terms.",
+      "Fill the letter and the number.",
+      "Check the term after the gap."
+     ],
+     "why": "The terms on both sides of the gap fix the rule.",
      "example": {
-      "q": "**B3, E6, ?, K12, N15**",
-      "solution": "Letters B, E, _, K, N (+3) → H. Numbers 3, 6, _, 12, 15 (+3) → 9. Answer **H9**."
+      "q": "Find the missing term: B3, E6, ?, K12, N15",
+      "steps": [
+       "Letters B, E, ?, K, N add 3. The missing letter is H.",
+       "Numbers 3, 6, ?, 12, 15 add 3. The missing number is 9.",
+       "The term is H9."
+      ],
+      "answer": "H9"
+     }
+    },
+    {
+     "id": "se-p34",
+     "name": "Number equals the place squared",
+     "frequency": "occasional",
+     "howToSpot": "The numbers are 4, 16, 36, 64, which are squares of even places.",
+     "formula": null,
+     "steps": [
+      "Write the place of each letter.",
+      "Compare each number with the square of the place.",
+      "Find the next letter.",
+      "Square its place."
+     ],
+     "why": "The number is made from the letter, so find the letter first.",
+     "example": {
+      "q": "Find the next term: B4, D16, F36, H64, ?",
+      "steps": [
+       "B = 2, D = 4, F = 6, H = 8. The letters add 2.",
+       "The numbers are 2², 4², 6², 8². The next letter is J = 10.",
+       "10² = 100. The term is J100."
+      ],
+      "answer": "J100"
+     }
+    },
+    {
+     "id": "se-p35",
+     "name": "Number comes first",
+     "frequency": "occasional",
+     "howToSpot": "The number is written before the letter, like 3Z, 7W, 11T.",
+     "formula": null,
+     "steps": [
+      "Split each term into its number and its letter.",
+      "Solve the numbers and the letters separately.",
+      "Write the answer with the number first."
+     ],
+     "why": "The format changes, but the method does not.",
+     "example": {
+      "q": "Find the next term: 3Z, 7W, 11T, ?",
+      "steps": [
+       "Numbers 3, 7, 11 add 4. The next is 15.",
+       "Letters Z = 26, W = 23, T = 20. Each takes away 3. The next is 17, which is Q.",
+       "The term is 15Q."
+      ],
+      "answer": "15Q"
      }
     }
+   ],
+   "revision": [
+    "Split each term into a letter part and a number part.",
+    "Solve each track alone, then join in the same format.",
+    "Test 'number = place of the letter' and 'number = place squared' first.",
+    "Clusters: every letter slot is its own series.",
+    "Check all three parts of the option: letter, number and order."
    ]
   },
   {
    "id": "wrong-number",
    "title": "Wrong number in the series",
-   "concept": "Here the series is **already complete** but one term was corrupted. You must find which term breaks the rule — not what should replace it. Method: build the difference ladder as usual; the corrupted term shows up as the place where the ladder stops making sense.\n\nStrategy: test the rule on terms 1-3 and terms 4-6 separately. The half that agrees gives you the family; the term in the other half that refuses to fit is the culprit. Verify by checking that the rule reproduces **all other terms exactly**.",
+   "concept": "In a wrong-number question the series is already complete, but one term does not fit. You must name that term as it is shown, not the correct value. The wrong term sits between two gaps that look wrong.",
    "formulas": [],
    "tricks": [
     {
      "title": "Ladder with one broken rung",
-     "body": "Compute all differences; all but one gap will follow the pattern (constant, rising, doubling). The term touching the odd gap(s) is the wrong one.",
+     "body": "Write the gaps. Find two bad gaps side by side. The term between them is the wrong term.",
      "example": {
-      "q": "**Q.** 2, 5, 10, 17, 26, 38\n\n**Sol.** These should be n² + 1: 2, 5, 10, 17, 26, **37**. The last term 38 breaks it → **38** is wrong. (Differences 3, 5, 7, 9 are clean; the last jump is 12, not 11.)",
-      "solution": "Find the family from the clean majority; the leftover term is the answer."
+      "q": "Find the wrong term: 12, 15, 18, 22, 24, 27",
+      "steps": [
+       "Gaps: 3, 3, 4, 2, 3.",
+       "The bad gaps 4 and 2 sit around 22.",
+       "The rule is +3, so 22 should be 21. The wrong term is 22."
+      ],
+      "answer": "22"
      }
     }
    ],
    "mistakes": [
-    "Reporting the *correct* value (37) instead of the wrong given term (38) — read the question twice.",
-    "Choosing a rule that fits only the first three terms; always test it on the tail too.",
-    "Forgetting that exactly ONE term is wrong — if two refuse to fit, your family is wrong."
+    {
+     "wrong": "Giving the correct value as the answer.",
+     "right": "The answer is the wrong term as it is shown in the question."
+    },
+    {
+     "wrong": "Blaming the term after the first bad gap.",
+     "right": "The wrong term sits between two bad gaps."
+    },
+    {
+     "wrong": "Testing the rule only on the last few terms.",
+     "right": "Test it from the first term. The first term can also be wrong."
+    },
+    {
+     "wrong": "Using the wrong term to build the next term.",
+     "right": "Rebuild each term from the correct one, starting from the beginning."
+    },
+    {
+     "wrong": "Missing an alternate series.",
+     "right": "If the gaps zigzag, split into odd and even places."
+    }
    ],
-   "notes": "### What the question asks\nThe series is complete, but one term was changed. You must find that **wrong** term — not the correct value. Think of a bank passbook with one typing mistake: every other entry follows the rule, only one breaks it.\n\n### The basic method\n1. Take the first three or four terms and guess the rule.\n2. Check the guess on every term, one by one.\n3. The single term that does not fit is the answer.\n4. Confirm: if you replace it with the correct value, the whole series must work, including the term just after it.\n\n### Why one wrong term spoils two differences\nWhen a term is wrong, both the gap before it and the gap after it look wrong. Example: 5, 9, 13, 17, 22, 25 → differences 4, 4, 4, 5, 3. Two gaps (5 and 3) are off, and the term between them, 22, is the culprit. The correct value is 21. So look for the term that sits between two bad gaps.\n\n### Type 1: difference series\nConstant or growing gaps: 3, 5, 9, 15, 23, 34, 45 → differences 2, 4, 6, 8, 11, 11. The expected gaps are 2, 4, 6, 8, 10, 12, so 34 should be 33.\n\n### Type 2: ratio and ×k ± r series\n2, 6, 18, 54, 164, 486 → ×3 gives 162, not 164. For ×k ± r, calculate each term from the previous one: 5, 11, 23, 48, 95 → ×2 + 1 gives 47, not 48.\n\nCareful: the term after the wrong one is made from the **correct** value. So 95 = 47 × 2 + 1 looks wrong if you use 48. Rebuild the series from the start instead of jumping between neighbours.\n\n### Type 3: squares and cubes\n1, 8, 27, 64, 124, 216 → 124 should be 125 (5³). 2, 6, 12, 20, 31, 42 → n × (n+1) gives 30, not 31. Near-miss numbers like 124, 31 or 65 are strong hints.\n\n### Type 4: alternate and mixed series\nSplit the series into odd and even positions. 2, 10, 4, 13, 6, 16, 9, 19 → odd places 2, 4, 6, 9 (should be 8); even places 10, 13, 16, 19 are fine. For mixed operations like ×1+1, ×2+2, check each step with its own multiplier.\n\n### Type 5: wrong term in a letter series\nThe same idea works with letters. BD, EG, HJ, KN, NP → every cluster has a gap of 2 inside, so KN (gap 3) should be KM.\n\n### Speed tips\n- The options are terms of the series. When short of time, test only the four option terms.\n- Odd/even check: if all terms but one are odd, that one is suspicious — but confirm with the rule.\n- The first term can also be wrong; check it against the second.\n\n### Quick revision\n- The wrong term sits between two bad gaps.\n- Rebuild each term from the correct previous term.\n- Near-miss values (124 vs 125, 31 vs 30) are giveaways.\n- Split up-down series into two series.\n- Answer = the wrong term as shown, not its correct value.",
+   "notes": "### What the question asks\nThe series is complete, but one term was changed. Find that wrong term. Do not give the correct value.\n\nThink of a bank passbook with one typing error. Every other entry follows the rule. Only one entry breaks it.\n\n### The basic method\n1. Take the first three or four terms and guess the rule.\n2. Test the guess on every term, one by one.\n3. The term that does not fit is the answer.\n4. Confirm: with the correct value, the whole series works, including the next term.\n\n### One wrong term spoils two gaps\nA wrong term makes both the gap before it and the gap after it look wrong.\n\n> **Example:** 5, 9, 13, 17, 22, 25. The gaps are 4, 4, 4, 5, 3. The bad gaps 5 and 3 sit around 22. So 22 is wrong. The correct value is 21.\n\nLook for the term between two bad gaps.\n\n### Wrong terms by kind of series\n**Wrong term in a gap series.** Take 3, 5, 9, 15, 23, 34, 45. The gaps are 2, 4, 6, 8, 11, 11. The expected gaps are 2, 4, 6, 8, 10, 12. So 34 should be 33.\n\n**Wrong term in a ratio series.** In 2, 6, 18, 54, 164, 486, the rule is ×3. The term after 54 should be 162, not 164.\n\nFor ×k ± r, find each term from the term before it. In 5, 11, 23, 48, 95 the rule is ×2 + 1. Then 23 × 2 + 1 = 47, so 48 is wrong.\n\n> **Watch:** The term after a wrong term comes from the correct value. So 95 = 47 × 2 + 1 looks wrong if you use 48. Rebuild from the start.\n\n**Wrong term in squares and cubes.** In 1, 8, 27, 64, 124, 216, the term 124 should be 125, which is 5³. In 2, 6, 12, 20, 31, 42, the rule is n × (n + 1), so 31 should be 30. Numbers just off a square or a cube are strong hints.\n\n**Wrong term in an alternate series.** Split into odd and even places. In 2, 10, 4, 13, 6, 16, 9, 19, the odd places are 2, 4, 6, 9. They should be 2, 4, 6, 8. The even places 10, 13, 16, 19 are fine, so 9 is wrong.\n\n**Wrong term in a letter series.** The same idea works with letters. In BD, EG, HJ, KN, NP, each cluster has an inner gap of 2. Only KN has a gap of 3. So KN is wrong and should be KM.\n\n### A full walk-through\nFind the wrong term: 4, 7, 13, 25, 50, 97\n\n1. Guess the rule from the first terms. 4 × 2 − 1 = 7 and 7 × 2 − 1 = 13.\n2. Apply it on. 13 × 2 − 1 = 25. Then 25 × 2 − 1 = 49.\n3. The series shows 50, not 49. The next term, 97, equals 49 × 2 − 1.\n4. So 50 is the wrong term.\n\n> **Tip:** If the next term fits the correct value, you have found the culprit.\n\n### Speed tips\n- The options are terms of the series. Test only the option terms.\n- If all terms but one are odd, that one is suspect. Confirm with the rule.\n- The first or last term can be the wrong one.\n",
    "patterns": [
     {
      "id": "se-p22",
-     "name": "Wrong term in a difference (AP / growing gap) series",
+     "name": "Wrong term in an equal-gap or growing-gap series",
      "frequency": "very common",
-     "howToSpot": "Gaps are almost equal or almost evenly rising, with two neighbouring gaps spoilt.",
+     "howToSpot": "The terms grow slowly, and the gaps are nearly equal or nearly in order.",
      "formula": null,
-     "logic": "1. Write the differences.\n2. Find the two neighbouring bad gaps.\n3. The term between them is wrong; confirm by putting the correct value back.\n\n**Why it works:** one wrong term changes both the gap before it and the gap after it.",
+     "steps": [
+      "Write the gaps.",
+      "Find the two bad gaps.",
+      "The term between them is the wrong term."
+     ],
+     "why": "A wrong term changes two neighbouring gaps.",
      "example": {
-      "q": "**8, 12, 16, 21, 24, 28**",
-      "solution": "Differences 4, 4, 5, 3, 4 — the bad gaps 5 and 3 sit around **21** (should be 20)."
+      "q": "Find the wrong term: 8, 12, 16, 21, 24, 28",
+      "steps": [
+       "Gaps: 4, 4, 5, 3, 4.",
+       "The bad gaps 5 and 3 sit around 21.",
+       "The rule is +4, so 21 should be 20."
+      ],
+      "answer": "21"
      }
     },
     {
      "id": "se-p23",
-     "name": "Wrong term in a ratio or ×k ± r series",
-     "frequency": "common",
-     "howToSpot": "Terms roughly double or triple; one term is slightly off.",
+     "name": "Wrong term in a ratio or multiply-and-add series",
+     "frequency": "very common",
+     "howToSpot": "The terms double or triple, and one term is a little off.",
      "formula": null,
-     "logic": "1. Find k (and r) from the first few terms.\n2. Rebuild the series from the first term.\n3. The first term that does not match is the wrong one.\n\n**Why it works:** the next term is made from the correct value, so rebuilding from the start finds the break.",
+     "steps": [
+      "Find the ratio from the first terms.",
+      "Build each term from the term before it.",
+      "Find where the built value differs."
+     ],
+     "why": "The near-miss shows itself as soon as you multiply.",
      "example": {
-      "q": "**3, 6, 12, 25, 48, 96**",
-      "solution": "Rule ×2: 3, 6, 12, 24, 48, 96. The term **25** is wrong (should be 24)."
+      "q": "Find the wrong term: 3, 6, 12, 25, 48, 96",
+      "steps": [
+       "The rule is ×2.",
+       "3, 6, 12, then 24. The series shows 25.",
+       "48 and 96 match the rule."
+      ],
+      "answer": "25"
      }
     },
     {
      "id": "se-p24",
-     "name": "Wrong term in a square / cube series",
+     "name": "Wrong term in a squares or cubes series",
      "frequency": "common",
-     "howToSpot": "Terms are near squares or cubes; one term misses by 1 or 2.",
+     "howToSpot": "The terms are close to squares or cubes, and one is just off.",
      "formula": null,
-     "logic": "1. Match every term with n², n³ or n(n+1) plus a fixed adjustment.\n2. The term that does not fit the adjustment is wrong.\n\n**Why it works:** squares and cubes are exact, so a near-miss stands out.",
+     "steps": [
+      "List the squares or cubes.",
+      "Compare each term.",
+      "The one that is off by a little is the answer."
+     ],
+     "why": "A square or cube list is fixed, so a slip stands out.",
      "example": {
-      "q": "**4, 9, 16, 25, 35, 49**",
-      "solution": "Squares 2² to 7²: 4, 9, 16, 25, 36, 49. **35** is wrong (should be 36)."
+      "q": "Find the wrong term: 4, 9, 16, 25, 35, 49",
+      "steps": [
+       "The terms are 2², 3², 4², 5², ?, 7².",
+       "The fifth term should be 6² = 36.",
+       "The series shows 35."
+      ],
+      "answer": "35"
      }
     },
     {
      "id": "se-p25",
-     "name": "Wrong term in an alternate or mixed-operation series",
+     "name": "Wrong term in an alternate series",
      "frequency": "common",
-     "howToSpot": "The series goes up and down, or uses ×1+1, ×2+2 type steps.",
+     "howToSpot": "The gaps zigzag up and down. There are two tracks.",
      "formula": null,
-     "logic": "1. Split into odd and even places, or list the operation for each step.\n2. Check each small series or each step separately.\n3. The one term that breaks its own series is wrong.\n\n**Why it works:** the error hides inside one of the two small series.",
+     "steps": [
+      "Split into odd and even places.",
+      "Check each track.",
+      "The track with a break holds the wrong term."
+     ],
+     "why": "Each track is a simple series, so a slip is easy to spot.",
      "example": {
-      "q": "**1, 20, 3, 18, 5, 17, 7**",
-      "solution": "Odd places 1, 3, 5, 7 fine. Even places 20, 18, _ should be 16 → **17** is wrong."
+      "q": "Find the wrong term: 1, 20, 3, 18, 5, 17, 7",
+      "steps": [
+       "Odd places: 1, 3, 5, 7. They add 2.",
+       "Even places: 20, 18, 17. They should take away 2 each time.",
+       "The third even term should be 16. The series shows 17."
+      ],
+      "answer": "17"
      }
     },
     {
      "id": "se-p26",
-     "name": "Wrong term in a letter / letter-cluster series",
+     "name": "Wrong term in a letter series",
      "frequency": "common",
-     "howToSpot": "Letters or clusters in a series; one of them does not follow the step.",
+     "howToSpot": "The terms are letters or letter clusters, and one step is off.",
      "formula": null,
-     "logic": "1. Convert letters to positions.\n2. Find the step pattern (between terms and inside clusters).\n3. The letter or cluster that breaks it is the answer.\n\n**Why it works:** it is the same wrong-term method on positions instead of numbers.",
+     "steps": [
+      "Write the places.",
+      "Find the step.",
+      "Find the letter that breaks the step."
+     ],
+     "why": "Letters are numbers, so the number method still works.",
      "example": {
-      "q": "**C, F, I, M, O**",
-      "solution": "Step +3: C, F, I, L, O. **M** is wrong (should be L)."
+      "q": "Find the wrong term: C, F, I, M, O",
+      "steps": [
+       "Places: 3, 6, 9, 13, 15.",
+       "The rule is +3: 3, 6, 9, 12, 15.",
+       "The fourth place should be 12, which is L. The series shows M."
+      ],
+      "answer": "M"
+     }
+    },
+    {
+     "id": "se-p36",
+     "name": "Wrong term in a gaps-of-gaps series",
+     "frequency": "occasional",
+     "howToSpot": "The gaps rise in a pattern like 2, 4, 6, 8, and one gap breaks it.",
+     "formula": null,
+     "steps": [
+      "Write the gaps.",
+      "Write the expected gaps.",
+      "Find the term between the two gaps that differ."
+     ],
+     "why": "The expected gap pattern shows where the slip is.",
+     "example": {
+      "q": "Find the wrong term: 3, 5, 9, 15, 23, 34, 45",
+      "steps": [
+       "Gaps: 2, 4, 6, 8, 11, 11.",
+       "The expected gaps are 2, 4, 6, 8, 10, 12.",
+       "The bad gaps sit around 34. It should be 33."
+      ],
+      "answer": "34"
+     }
+    },
+    {
+     "id": "se-p37",
+     "name": "The first term is wrong",
+     "frequency": "occasional",
+     "howToSpot": "The first gap looks odd, but all the other gaps agree.",
+     "formula": null,
+     "steps": [
+      "Write the gaps.",
+      "If all gaps but the first agree, the first term is wrong.",
+      "Check that it is not the second term."
+     ],
+     "why": "Only one gap is bad, because the first term has just one neighbour.",
+     "example": {
+      "q": "Find the wrong term: 13, 24, 33, 42, 51",
+      "steps": [
+       "Gaps: 11, 9, 9, 9.",
+       "Only the first gap is bad.",
+       "The first term should be 15. The series shows 13."
+      ],
+      "answer": "13"
      }
     }
+   ],
+   "revision": [
+    "The wrong term sits between two bad gaps.",
+    "Answer = the wrong term as shown, not its correct value.",
+    "Rebuild each term from the correct one before it.",
+    "Near misses like 124 for 125 and 31 for 30 are giveaways.",
+    "Up-and-down series: split into two series.",
+    "You can test just the option terms."
    ]
   },
   {
    "id": "letter-blank-series",
    "title": "Repeating letter series — fill the blanks",
-   "concept": "A line of small letters has some blanks (a _ c a b _ a b c _ b c). You choose the option whose letters, placed in the blanks from left to right, make the whole line follow one repeating pattern. The pattern is a fixed block, a growing block, a mirror block or a rotating block.",
+   "concept": "A line of small letters has blanks, like a _ c a b _ a b c _ b c. The line follows one repeating pattern. Find the pattern, fill the blanks from left to right, and match the option. The pattern is a fixed block, a growing block, a mirror block or a rotating block.",
    "formulas": [],
    "tricks": [
     {
      "title": "Write the blocks one below another",
-     "body": "Guess the block size from the total number of places (12 → try 3, 4 or 6). Write the blocks in rows; each column must hold one letter, so every blank copies the visible letter in its column.",
+     "body": "Cut the line into equal rows. Each column must hold one letter. Blanks take the letter of their column.",
      "example": {
-      "q": "**Q.** a _ c a b _ a b c _ b c",
-      "solution": "Block of 3: a_c / ab_ / abc / _bc. Columns are a, b, c → blanks **b, c, a** → answer **bca**."
+      "q": "Fill the blanks: a _ c d a b _ d a b c _",
+      "steps": [
+       "12 places, so try a block of 4: a _ c d, a b _ d, a b c _.",
+       "Column 1 is a, column 2 is b, column 3 is c, column 4 is d.",
+       "The blanks, from left to right, are b, c, d."
+      ],
+      "answer": "bcd"
      }
     },
     {
-     "title": "Double letter = mirror turn",
-     "body": "When you see 'rr' or 'cc' inside the line, the block probably reads forward and then backward (pqr rqp). Fill the second half as the first half reversed.",
+     "title": "A double letter marks a mirror turn",
+     "body": "If the line has a doubled letter like rr or nn, the block probably reads forward and then backward. The block is twice the length of the first half.",
      "example": {
-      "q": "**Q.** p _ r r _ p p q _ r q _",
-      "solution": "Block pqrrqp twice → blanks **q, q, r, p** → answer **qqrp**."
+      "q": "Fill the blanks: m n _ m _ n n m m _ n m",
+      "steps": [
+       "The doubled n and the doubled m suggest a mirror block: mnnm.",
+       "12 places = 3 blocks of mnnm.",
+       "The blanks, in order, are n, m and n."
+      ],
+      "answer": "nmn"
      }
     }
    ],
    "mistakes": [
-    "Choosing the block size by eye instead of counting total places — the wrong size makes two options look right.",
-    "Reading the answer letters in column order instead of left-to-right blank order.",
-    "Not re-reading the filled line once; a single swapped letter breaks the repeat."
+    {
+     "wrong": "Guessing the block size without counting the places.",
+     "right": "Count all places first. The block size divides the total (or the parts add up to it)."
+    },
+    {
+     "wrong": "Filling the blanks from right to left.",
+     "right": "Fill from left to right. The options are written in that order."
+    },
+    {
+     "wrong": "Not reading the full line after filling.",
+     "right": "Read the whole line once. One wrong letter breaks the repeat."
+    },
+    {
+     "wrong": "Treating a growing block as a fixed block.",
+     "right": "If the parts get longer, split the line as 1 + 2 + 3 + 4 places."
+    },
+    {
+     "wrong": "Swapping letters in a block with a repeated letter.",
+     "right": "Fill column by column, not from memory."
+    }
    ],
-   "notes": "### What this question looks like\nYou see a line of small letters with some blanks, for example: a _ c a b _ a b c _ b c. You must choose the group of letters that fills the blanks, in order from left to right, so that the whole line follows a repeating pattern. The options look like 'bca', 'bac', 'cab'.\n\nThink of a rangoli border: the same small design repeats again and again. Once you know one design unit, you can fill any gap in the border. SSC and Railway papers ask this type almost every shift.\n\n### Step 1: Find the block\nMost such series repeat a small block of 3, 4, 5 or 6 letters. Count the total number of places (letters + blanks). If the total is 12, the block is often 3, 4 or 6 letters long; if it is 15, often 3 or 5. Try splitting the line into equal parts and see whether the visible letters agree.\n\n### Step 2: Fill using the same place in other blocks\nWrite the line in blocks, one below another. Each column must have the same letter. A blank takes the letter shown elsewhere in its column.\n\nExample: a _ c a b _ a b c _ b c (12 places, block of 3)\n- a _ c\n- a b _\n- a b c\n- _ b c\n\nColumns read a, b, c. The blanks are b, c, a → answer **bca**.\n\n### Step 3: Try the options when stuck\nPut each option into the blanks and read the full line. The right option makes a clean repeat. This takes 10-15 seconds per option, so first cut options whose first letter clearly fails.\n\n### Pattern 1: fixed repeating block\nThe same block repeats: abc abc abc, pqrs pqrs pqrs, baab baab baab.\n\n### Pattern 2: growing block\nEach block adds a letter: a, ab, abc, abcd (line: aababcabcd). Or letter counts grow: ab, aabb, aaabbb. Here the block length changes, so read the line as 1 + 2 + 3 + 4 places, or 2 + 4 + 6 places.\n\n### Pattern 3: mirror block\nThe block reads forwards and then backwards: pqr rqp pqr rqp. A doubled letter in the middle (rr, cc) marks the turning point. Another form walks up and down: a b c d c b a b c d c b a.\n\n### Pattern 4: rotating block\nEach new block is the previous block with its first letter moved to the end: abcd, bcda, cdab, dabc. Or the last letter moves to the front: pqr, rpq, qrp. Split the line into equal blocks and check how each block is built from the one before.\n\n### Checks before you mark\n- Count the blanks: the answer must have exactly that many letters.\n- Fill in and read the whole line once. One wrong letter breaks the repeat.\n- If two options both seem to fit, you have picked the wrong block size — try the next size.\n- Blanks inside a word-like block (like 'baab') are easy to swap by mistake; fill column by column.\n\n### Quick revision\n- Count total places → guess block size (3, 4, 5, 6).\n- Write blocks one below another; columns must match.\n- Four shapes: fixed block, growing block, mirror block, rotating block.\n- A double letter (rr, cc) often marks a mirror turn.\n- Always fill and re-read the full line.",
+   "notes": "### What the question looks like\nYou see a line of small letters with some blanks. The options are groups like bca, bac, cab. Fill the blanks from left to right so the whole line repeats one pattern.\n\nThink of a rangoli border. One small design repeats again and again. Once you know one design, you can fill any gap.\n\n### Step 1: find the block\nCount all places, letters and blanks together. A line of 12 places may use a block of 3, 4 or 6. A line of 15 may use 3 or 5. Split the line into equal parts and see if the visible letters agree.\n\n### Step 2: write the blocks under each other\nWrite each block on its own row. Each column must hold the same letter. A blank takes the letter from its column.\n\n> **Example:** a _ c a b _ a b c _ b c has 12 places. The block has 3 letters.\n\n| Row | Letters |\n|---|---|\n| 1 | a _ c |\n| 2 | a b _ |\n| 3 | a b c |\n| 4 | _ b c |\n\nThe columns read a, b, c. The blanks are b, c, a. The answer is **bca**.\n\n### Step 3: try the options\nPut each option into the blanks. Read the full line. The right option gives a clean repeat. First drop options whose first letter clearly fails.\n\n### Four block shapes\n**Fixed block.** The same block repeats: abc abc abc, or pqrs pqrs. A block with a repeated letter, like baab baab, works the same way.\n\n**Growing block.** Each part is longer by one letter: a, ab, abc, abcd. The line is aababcabcd. The parts have 1, 2, 3, 4 places. Or the letters repeat more: ab, aabb, aaabbb.\n\n**Mirror block.** The block reads forward, then backward: pqr rqp pqr rqp. A doubled letter like rr marks the turn.\n\nA walk that goes up and down is also a mirror. In abcdcb abcdcb the letters go up to d and come back.\n\n**Rotating block.** Each block is the one before it with the first letter moved to the end: abcd, bcda, cdab, dabc. Or the last letter moves to the front: pqr, rpq, qrp.\n\n### Which block size to try\nThe total number of places tells you where to start.\n\n| Total places | Try blocks of |\n|---|---|\n| 9 | 3 |\n| 12 | 3, 4, 6 |\n| 15 | 3 or 5 |\n| 16 | 4 or 8 |\n\n> **Example:** a _ c d e a b _ d e a b c d _ has 15 places. Try blocks of 5: a _ c d e, a b _ d e, a b c d _. The block is abcde, and the blanks are b, c, e.\n\n### Blanks at the start or the end\nA blank can sit in the first or last place. Do not skip it. In row form, the first blank still takes its letter from the column below or above it. The last blank takes its letter from the same column in an earlier row.\n\n> **Tip:** Fill the easy blanks first. Then read the line again to confirm the rest.\n\n### Checks before you mark\n- Count the blanks. The answer has exactly that many letters.\n- Read the whole line once. One wrong letter breaks the repeat.\n- If two options fit, try another block size.\n",
    "patterns": [
     {
      "id": "se-p27",
      "name": "Fixed repeating block",
      "frequency": "very common",
-     "howToSpot": "The line is made of the same 3-6 letter block repeated (abc abc abc ...).",
+     "howToSpot": "The same short block repeats through the line. The line length is a multiple of the block size.",
      "formula": null,
-     "logic": "1. Count total places; try block sizes that divide it.\n2. Write blocks one below another.\n3. Each column has one letter; fill each blank from its column.\n4. Read the answer letters in order of the blanks.\n\n**Why it works:** in a repeating block, every place in a column must hold the same letter.",
+     "steps": [
+      "Count the places.",
+      "Try equal blocks and write them in rows.",
+      "Fill each blank from its column.",
+      "Read the blanks left to right."
+     ],
+     "why": "In a fixed block every column holds one letter.",
      "example": {
-      "q": "**a b _ a b c _ b c a _ c**",
-      "solution": "Block **abc** repeats (12 places = 4 blocks of 3). Filling column-wise gives abc | abc | abc | abc. Blanks in order: **cab**."
+      "q": "Fill the blanks: a b _ a b c _ b c a _ c",
+      "steps": [
+       "12 places. The block abc repeats 4 times.",
+       "Row 1: a b _ so the blank is c. Row 2: a b c. Row 3: _ b c so the blank is a. Row 4: a _ c so the blank is b.",
+       "The blanks are c, a, b."
+      ],
+      "answer": "cab"
      }
     },
     {
      "id": "se-p28",
-     "name": "Growing block (a, ab, abc ... or ab, aabb, aaabbb)",
+     "name": "Growing block",
      "frequency": "common",
-     "howToSpot": "Letters appear more and more times, or each part is one letter longer than the last.",
+     "howToSpot": "The parts get longer by one letter each time, like a, ab, abc, abcd.",
      "formula": null,
-     "logic": "1. Split the line into parts of length 1, 2, 3, 4 ... (or 2, 4, 6 ...).\n2. Check that each part adds one letter (or one more of each letter).\n3. Fill the blanks from the expected parts.\n\n**Why it works:** the block is not fixed, but its growth rule is.",
+     "steps": [
+      "Guess the parts: 1, 2, 3, 4 places.",
+      "Write the full line.",
+      "Match the blanks by place number."
+     ],
+     "why": "The full line is known once you see the growth.",
      "example": {
-      "q": "**a _ b a _ c a _ c _**",
-      "solution": "Parts of length 1, 2, 3, 4: a | ab | abc | abcd. Blanks in order: **abbd**."
+      "q": "Fill the blanks: a _ b a _ c a _ c _",
+      "steps": [
+       "10 places. Split as 1 + 2 + 3 + 4: a | ab | abc | abcd.",
+       "The full line is aababcabcd.",
+       "The blanks, in order, are a, b, b, d."
+      ],
+      "answer": "abbd"
      }
     },
     {
      "id": "se-p29",
-     "name": "Mirror block (forward then backward)",
+     "name": "Mirror block",
      "frequency": "common",
-     "howToSpot": "A doubled letter in the middle (rr, cc) or the letters climb and come back (a b c d c b a).",
+     "howToSpot": "The block goes forward then backward, with a doubled letter at the turn.",
      "formula": null,
-     "logic": "1. Find the turning point (double letter or highest letter).\n2. The second half repeats the first half in reverse.\n3. Use the mirror to fill each blank.\n\n**Why it works:** a mirror block is a fixed block whose second half copies the first half backwards.",
+     "steps": [
+      "Find the doubled letters.",
+      "Write the block forward and backward.",
+      "Fill the blanks from the repeat."
+     ],
+     "why": "The second half of the block mirrors the first.",
      "example": {
-      "q": "**p _ r _ q p p q _ r _ p**",
-      "solution": "Block **pqrrqp** (pqr, then rqp) repeats twice: pqrrqp | pqrrqp. Blanks in order: **qrrq**."
+      "q": "Fill the blanks: p _ r _ q p p q _ r _ p",
+      "steps": [
+       "The block is pqrrqp (pqr then rqp). 12 places = 2 blocks.",
+       "Full line: pqrrqp pqrrqp.",
+       "The blanks, in order, are q, r, r, q."
+      ],
+      "answer": "qrrq"
      }
     },
     {
      "id": "se-p30",
-     "name": "Rotating block (first letter moves to the end)",
-     "frequency": "occasional",
-     "howToSpot": "Equal blocks use the same letters, but each block starts one letter later (abcd, bcda, cdab).",
+     "name": "Rotating block",
+     "frequency": "common",
+     "howToSpot": "Each block is the last block with its first letter moved to the end.",
      "formula": null,
-     "logic": "1. Split into equal blocks (size = number of different letters).\n2. See how each block is the previous one rotated.\n3. Build every block and read off the blanks.\n\n**Why it works:** rotation keeps the letters and just shifts the starting point.",
+     "steps": [
+      "Split the line into equal blocks.",
+      "Check how each block comes from the one before.",
+      "Write the full line.",
+      "Read the blanks."
+     ],
+     "why": "The same letters appear in every block, in a shifted order.",
      "example": {
-      "q": "**a _ c b c _ _ a b**",
-      "solution": "Each block moves its first letter to the end: abc | bca | cab. Blanks in order: **bac**."
+      "q": "Fill the blanks: a _ c b c _ _ a b",
+      "steps": [
+       "9 places, blocks of 3: abc | bca | cab.",
+       "Full line: abcbcacab.",
+       "The blanks are place 2 (b), place 6 (a) and place 7 (c)."
+      ],
+      "answer": "bac"
+     }
+    },
+    {
+     "id": "se-p38",
+     "name": "Block with a repeated letter",
+     "frequency": "occasional",
+     "howToSpot": "The block has a doubled letter inside, like baab.",
+     "formula": null,
+     "steps": [
+      "Split into equal blocks.",
+      "Write each block in a row.",
+      "Fill column by column."
+     ],
+     "why": "Repeated letters are easy to swap. Columns keep them straight.",
+     "example": {
+      "q": "Fill the blanks: b a _ b _ a a b b _ a b",
+      "steps": [
+       "12 places, blocks of 4: b a _ b | _ a a b | b _ a b.",
+       "The block is baab.",
+       "The blanks, in order, are a, b, a."
+      ],
+      "answer": "aba"
+     }
+    },
+    {
+     "id": "se-p39",
+     "name": "Up-and-down walk",
+     "frequency": "occasional",
+     "howToSpot": "The letters climb to a peak, then come back down, like abcdcb.",
+     "formula": null,
+     "steps": [
+      "Find the peak letter.",
+      "Write the block: up, then down.",
+      "Fill the blanks from the repeat."
+     ],
+     "why": "A walk up and down is a mirror block without a doubled letter.",
+     "example": {
+      "q": "Fill the blanks: a b _ d c b a _ c d c _",
+      "steps": [
+       "The block is abcdcb, 6 letters. 12 places = 2 blocks.",
+       "Full line: abcdcb abcdcb.",
+       "The blanks, in order, are c, b, b."
+      ],
+      "answer": "cbb"
      }
     }
+   ],
+   "revision": [
+    "Count total places to guess the block size: 3, 4, 5 or 6.",
+    "Write blocks under each other. Columns must match.",
+    "Four shapes: fixed, growing, mirror, rotating.",
+    "A double letter often marks a mirror turn.",
+    "Fill left to right. Read the whole line again."
    ]
   }
  ],

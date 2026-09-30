@@ -13,305 +13,787 @@
   {
    "id": "order-idea",
    "title": "How ranking questions work",
-   "concept": "People (or objects) stand in a line or carry ranks, and you must convert between viewpoints: top↔bottom, left↔right, front↔back. The entire topic runs on two ideas:\n\n1. **Mirror conversion**: if there are $n$ positions, the person at position $p$ from one end sits at position $n + 1 - p$ from the other. The '+1' exists because the person's own seat is counted on both sides.\n2. **Two-viewpoint total**: if the same person is $a$-th from one end and $b$-th from the other, then $n = a + b - 1$.\n\nEverything else — 'how many between', overlaps, joined queues — is these two formulas plus careful reading. Draw a tiny line of boxes for any question that involves three or more people; the 5 seconds of drawing prevents every 'off by one' answer.",
+   "concept": "In a row or a queue, a person's rank tells how many people stand before them, plus one. Every ranking question comes from this one sentence. Learn two shortcuts: the rank from the other end, and the total from two ranks. Draw a small row of boxes whenever three or more people are involved.",
    "formulas": [
     {
-     "name": "Mirror position",
+     "name": "Rank from the other end",
      "tex": "p' = n + 1 - p",
-     "note": "Position from the other end."
+     "note": "n = total people, p = rank from one end."
     },
     {
      "name": "Total from two ranks",
      "tex": "n = a + b - 1",
-     "note": "Same person, ranked from both ends."
+     "note": "The same person is a-th from one end and b-th from the other end."
     },
     {
-     "name": "Between count",
+     "name": "Between count (same end)",
      "tex": "\\text{between} = |a - b| - 1",
-     "note": "Two positions measured from the SAME end."
+     "note": "Both ranks are from the same end."
+    },
+    {
+     "name": "Ahead and behind",
+     "tex": "\\text{ahead} = r - 1,\\quad \\text{behind} = n - r",
+     "note": "r = the person's rank from the front."
     }
    ],
    "tricks": [
     {
-     "title": "Draw the end-zones",
-     "body": "Sketch a short row of boxes. Fill in what you know at the ends: 'a-th from left' means a−1 people before her. Counting the unknowns at each end replaces every formula with a picture.",
+     "title": "Check that the two ranks add to total plus 1",
+     "body": "For one person, the two ranks from opposite ends always add up to the total plus 1. If they do not, you have misread a number.",
      "example": {
-      "q": "**Q.** In a row of 40, A is 11th from the left. How many are to her right?\n\n**Sol.** 11th from left → 10 before her; 40 − 11 = **29 to her right** (she is 30th from the right).",
-      "solution": "a-th from an end = (a−1) people beyond that end. The rest is subtraction."
+      "q": "A boy is 5th from the left and 8th from the right. How many people are in the row?",
+      "steps": [
+       "$5 + 8 - 1 = 12$.",
+       "Check: $5 + 8 = 13 = 12 + 1$."
+      ],
+      "answer": "12"
+     }
+    },
+    {
+     "title": "Draw the end zones",
+     "body": "Draw a short row of boxes. 'a-th from the left' means $a - 1$ people stand before the person. Counting people at each end is often faster than any formula.",
+     "example": {
+      "q": "In a class of 45, Priya is 12th from the top. What is her rank from the bottom?",
+      "steps": [
+       "People below her: $45 - 12 = 33$.",
+       "Her rank from the bottom: $33 + 1 = 34$."
+      ],
+      "answer": "34th"
      }
     }
    ],
    "mistakes": [
-    "Forgetting the +1/−1 corrections — the examiner sets traps exactly one away from the answer.",
-    "Mixing viewpoints: subtracting a 'from the right' rank from a 'from the left' rank directly.",
-    "Assuming the answer must be one less or one more than a listed option — compute first."
+    {
+     "wrong": "Forgetting the +1 or the -1.",
+     "right": "The person counts from both ends. Use $n + 1 - p$ and $a + b - 1$."
+    },
+    {
+     "wrong": "Subtracting a rank from the left directly from a rank from the right.",
+     "right": "Convert both to the same end first."
+    },
+    {
+     "wrong": "Calling 'ahead of him' the same as his rank.",
+     "right": "Ahead = rank $- 1$. Rank = ahead $+ 1$."
+    },
+    {
+     "wrong": "Guessing one more or one less than an option.",
+     "right": "Work it out. Wrong options are set exactly one away."
+    },
+    {
+     "wrong": "Using left and right the usual way for a row facing South.",
+     "right": "Underline the facing word. South-facing left is your right."
+    }
    ],
-   "notes": "### Rank, position and order: the three conversions\n\nEvery question here involves a line of people (or a stack of objects) and a rank measured from one end. Three facts convert anything into anything.\n\n**Fact 1 — the two ends are mirrors.** In a row of T people, the person r-th from the left is $(T - r + 1)$-th from the right. Example: 10th from the left in a row of 40 → $40 - 10 + 1$ = 31st from the right. The +1 exists because the person is counted once at each end.\n\n**Fact 2 — two ranks make the total.** If one person is a-th from one end and b-th from the other end, the row holds\n\n$$T = a + b - 1$$\n\nAgain the −1: the person was counted in both numbers. Example: 9th from the left and 11th from the right → $9 + 11 - 1$ = 19 people.\n\n**Fact 3 — a swap copies positions.** When two people interchange places, each simply takes over the other's seat. To find a new rank, convert the other person's rank into the same end first: Shyam 9th from the right in a row of 25 → $25 - 9 + 1$ = 17th from the left; after a swap, Ram sits 17th from the left.\n\n**Stacks and rows of objects.** Books, boxes and shelves follow the same logic vertically: 'above' is like 'to the left'. The only new skill is assembling a scattered description into one ordered list — draw the order top to bottom as each sentence arrives, then read the asked slot.\n\n**Facing direction changes everything.** A row facing north has its left and right in the usual sense; a row facing **south** has them swapped (their left is your right). Questions flag this deliberately — underline the facing word before using any left/right clue.\n\n**People ahead vs behind.** In a queue of T, a person r-th from the front has $r - 1$ people ahead and $T - r$ behind. The −1 on 'ahead' (the person is not ahead of themselves) is the most common slip in the whole topic.\n\n### Quick revision\n- Mirror: r-th from one end = $(T - r + 1)$ from the other.\n- Total: $T = a + b - 1$ for ranks a and b from opposite ends of the same person.\n- Swap: convert both people to the same end; each takes the other's number.\n- Ahead = r − 1; behind = T − r.\n- Facing south flips left/right — read the facing word first.\n\n**Why the formulas work (and why that matters).** Every shortcut in this topic is bookkeeping on one sentence: *a rank is one more than the number of people before you.* The mirror formula is that sentence counted from the other side (the people before you become the people after you, plus you); the total formula is the two before-counts overlapping on you, hence −1. When an exam twists the wording ('four people between them', 'equal number ahead and behind'), derive the equation from this sentence instead of memorising a new formula — it takes ten seconds and never breaks.\n\n**The twisted variants worth pre-solving.** 'Equal ahead and behind' → $r - 1 = T - r$ → $T = 2r - 1$. 'k people between A and B, same end' → $b = a + k + 1$. 'A is exactly in the middle of an odd row' → $r = (T+1)/2$. Practise these three derivations once and the variants stop costing time.",
+   "notes": "### The one idea\nA rank counts the person too. If 4 people stand before you, your rank is 5.\n\n> **Rule:** Rank = number of people before you + 1. Every formula in this topic comes from this line.\n\nExample: Sita is 5th in a queue of 12. Four people are ahead of her ($5 - 1 = 4$). Seven are behind her ($12 - 5 = 7$).\n\n### The other end\nThe same person has a different rank from the other end. Find it in one step.\n\n$$\\text{rank from the other end} = \\text{total} - \\text{rank} + 1$$\n\nExample: in a row of 40, Ravi is 10th from the left. From the right he is $40 - 10 + 1 = 31$st.\n\nWhy add 1? Ravi is counted once from each side. Take him out and count the people to his right: $40 - 10 = 30$. Then add Ravi himself.\n\n### Total from two ranks\nSuppose one person is $a$-th from one end and $b$-th from the other end. Both counts include that person. So he is counted twice.\n\n$$\\text{total} = a + b - 1$$\n\nExample: 9th from the left and 11th from the right gives $9 + 11 - 1 = 19$ people.\n\n> **Tip:** The two ranks always add up to the total plus 1. Use this to check yourself: $9 + 11 = 20 = 19 + 1$.\n\n### Ahead and behind\n\"Ahead\" does not include the person. So it is one less than his rank.\n\n- Ahead of him = rank $- 1$.\n- Behind him = total $-$ rank.\n- Ahead + behind + 1 = total.\n\nExample: 14 people are ahead of a girl and 21 are behind her. The total is $14 + 21 + 1 = 36$.\n\n### Two people swap places\nWhen two people exchange seats, each person takes the other's seat. So a new rank is just the old rank of the other seat.\n\nExample: a row has 25 people. Ram is 8th from the left. Shyam is 9th from the right, which is $25 + 1 - 9 = 17$th from the left. After the swap, Ram is 17th from the left.\n\n> **Watch:** Convert both ranks to the same end before you compare seats.\n\n### Stacks and rows of objects\nBooks, boxes and shelves work the same way. \"Above\" is like \"to the left\". Write the order from top to bottom as each sentence comes. Then read the seat that is asked.\n\n### A full walk-through\nRead this one slowly. A queue has 52 people. Kavya is 17th from the front.\n\n1. People ahead of her: $17 - 1 = 16$.\n2. People behind her: $52 - 17 = 35$.\n3. Check: $16 + 35 + 1 = 52$. The total matches.\n4. Her rank from the back: $35 + 1 = 36$. The formula gives the same: $52 + 1 - 17 = 36$.\n\n> **Example:** Two ways gave 36. When both routes agree, you can trust the answer. Use this check in the exam whenever time allows.\n\n### Facing South\nA row facing North has its usual left and right. A row facing **South** has them swapped. Their left is your right. Underline the facing word before you use any left or right clue.\n",
    "patterns": [
     {
      "id": "oi-p1",
-     "name": "Rank flips between the two ends",
+     "name": "Rank from the other end",
      "frequency": "very common",
-     "howToSpot": "One rank and the total are given; the same person's rank from the other end is asked.",
-     "formula": null,
-     "logic": "1. Other end = total − rank + 1.\n2. Keep the +1: the person sits at both counts.\n3. For queues: ahead = rank − 1, behind = total − rank.\n\n*Why it works:* the two counts meet at the same person.",
+     "howToSpot": "The total and one rank are given. The rank from the other end is asked.",
+     "formula": "p' = n + 1 - p",
+     "steps": [
+      "Write the total and the rank you know.",
+      "Subtract the rank from the total.",
+      "Add 1."
+     ],
+     "why": "The person is counted from both ends, so one seat is counted twice and you add it back.",
      "example": {
-      "q": "**In a row of 40 students, Ravi is 10th from the left. What is his position from the right?**",
-      "solution": "$40 - 10 + 1$ = **31st** from the right."
+      "q": "In a queue of 52 people, Kavya is 17th from the front. What is her position from the back?",
+      "steps": [
+       "Position from the back = $52 - 17 + 1$.",
+       "$= 36$."
+      ],
+      "answer": "36th from the back"
      }
     },
     {
      "id": "oi-p2",
-     "name": "Total from two opposite ranks",
+     "name": "Total from two ranks",
      "frequency": "very common",
-     "howToSpot": "One person's rank from both ends is given; the size of the row/class is asked.",
-     "formula": null,
-     "logic": "1. Total = a + b − 1.\n2. Sanity-check: total ≥ each rank.\n3. Works for rows, queues and class ranks alike.\n\n*Why it works:* the person was counted once in each rank; subtract the double count.",
+     "howToSpot": "One person's rank is given from both ends. The number of people is asked.",
+     "formula": "n = a + b - 1",
+     "steps": [
+      "Add the two ranks.",
+      "Subtract 1 for the person counted twice.",
+      "Check: the total must be bigger than each rank."
+     ],
+     "why": "The person is counted in both ranks, so one count must be removed.",
      "example": {
-      "q": "**A student is 23rd from the left and 12th from the right. How many students are in the row?**",
-      "solution": "$23 + 12 - 1$ = **34**."
+      "q": "Manoj is 19th from the left and 26th from the right in a row. How many people are in the row?",
+      "steps": [
+       "Total = $19 + 26 - 1$.",
+       "$= 44$."
+      ],
+      "answer": "44"
      }
     },
     {
      "id": "oi-p3",
-     "name": "Interchange of positions",
+     "name": "Two people swap places",
      "frequency": "common",
-     "howToSpot": "Two people swap places; a new rank after the swap is asked.",
+     "howToSpot": "Two people exchange seats. A rank after the swap is asked.",
      "formula": null,
-     "logic": "1. Convert the partner's rank to the asked end (mirror if needed).\n2. The swapper now holds exactly that converted number.\n3. The other person takes the first person's old number.\n\n*Why it works:* a swap is a copy of positions between two people.",
+     "steps": [
+      "Convert the second person's rank to the same end as the question.",
+      "That seat number is the first person's new rank.",
+      "Read the answer from that seat."
+     ],
+     "why": "Each person takes over the other's seat, so a new rank is an old seat number.",
      "example": {
-      "q": "**In a row of 25, Ram is 8th from the left and Shyam is 9th from the right. They swap places. What is Ram's new position from the left?**",
-      "solution": "Shyam's seat: $25 - 9 + 1$ = 17th from the left → Ram now **17th**."
+      "q": "In a row of 30, Asha is 12th from the left and Bina is 10th from the right. They exchange places. What is Asha's new position from the left?",
+      "steps": [
+       "Bina's seat from the left = $30 + 1 - 10 = 21$.",
+       "Asha moves to that seat."
+      ],
+      "answer": "21st from the left"
      }
     },
     {
      "id": "oi-p4",
-     "name": "Assembling a scattered stack or row",
+     "name": "Building a stack or row from clues",
      "frequency": "common",
-     "howToSpot": "Objects/friends described by above-below or left-right clues; a slot or extreme is asked.",
+     "howToSpot": "Boxes, books or people are described by 'above', 'below', 'left' or 'right'. A seat or an end is asked.",
      "formula": null,
-     "logic": "1. Convert each clue into order arrows (above = >).\n2. Merge into one list, drawing as you read.\n3. Read the asked slot off the finished list.\n\n*Why it works:* scattered clues describe one total order; drawing recovers it.",
+     "steps": [
+      "Draw a column or a row of empty boxes.",
+      "Fill in the sure fact first, such as 'at the bottom'.",
+      "Place each clue as it comes. Then read the asked seat."
+     ],
+     "why": "Each clue fixes one link. The links together make one ordered line.",
      "example": {
-      "q": "**Red is above Blue; Green is below Blue but above White; Yellow is at the bottom. Which box is at the top?**",
-      "solution": "Red > Blue > Green > White > Yellow → top = **Red**."
+      "q": "Five boxes are in a stack. P is above Q. R is below Q but above S. T is at the bottom. Which box is in the middle?",
+      "steps": [
+       "T is at the bottom.",
+       "Order from the top: P, Q, R, S, T.",
+       "The middle (third) box is R."
+      ],
+      "answer": "R"
+     }
+    },
+    {
+     "id": "oi-p5",
+     "name": "People ahead and behind",
+     "frequency": "common",
+     "howToSpot": "The question gives the people ahead of someone and the people behind, and asks the total or the rank.",
+     "formula": "n = \\text{ahead} + \\text{behind} + 1",
+     "steps": [
+      "Write the number ahead and the number behind.",
+      "Add the person himself: +1.",
+      "His rank from the front is ahead + 1."
+     ],
+     "why": "Ahead and behind leave out the person, so he must be added back.",
+     "example": {
+      "q": "In a queue, 14 people stand ahead of Sneha and 21 stand behind her. How many people are in the queue?",
+      "steps": [
+       "Total = $14 + 21 + 1$.",
+       "$= 36$."
+      ],
+      "answer": "36"
+     }
+    },
+    {
+     "id": "oi-p6",
+     "name": "Exactly in the middle",
+     "frequency": "occasional",
+     "howToSpot": "The person is exactly in the middle, or there are as many people ahead as behind.",
+     "formula": "n = 2r - 1",
+     "steps": [
+      "Write ahead = behind, so $r - 1 = n - r$.",
+      "Solve for the total: $n = 2r - 1$.",
+      "The middle person is in seat $\\dfrac{n+1}{2}$."
+     ],
+     "why": "The middle person has the same number of people on each side.",
+     "example": {
+      "q": "Meena is exactly in the middle of a row. She is 13th from the left. How many people are in the row?",
+      "steps": [
+       "Ahead of her: $13 - 1 = 12$.",
+       "Behind her: also 12.",
+       "Total = $12 + 12 + 1 = 25$."
+      ],
+      "answer": "25"
      }
     }
+   ],
+   "revision": [
+    "Rank = people before you + 1.",
+    "Other end: total $-$ rank $+ 1$.",
+    "Total from two ranks: $a + b - 1$.",
+    "Ahead = rank $- 1$. Behind = total $-$ rank.",
+    "Swap: each person takes the other's seat.",
+    "A South-facing row has left and right swapped."
    ]
   },
   {
    "id": "rank-position",
    "title": "Ranks and positions",
-   "concept": "Single-person rank conversions and totals:\n\n- **Convert an end**: 12th from top in a class of 45 → 45 + 1 − 12 = 34th from bottom.\n- **Find the total**: 8th from the left and 21st from the right → n = 8 + 21 − 1 = 28.\n- **'Same from both ends'**: 11th from either end → n = 11 + 11 − 1 = 21.\n\nWatch the exam's phrasing variants: 'how many students scored less than him' = his rank **from the bottom**, 'precedes him' = people before his position, 'queue joined from the front' shifts every old position forward by the number of joiners.",
-   "formulas": [],
+   "concept": "These questions are about one person's rank in a class, a queue or a row. Use the two shortcuts: total minus rank plus 1, and rank plus rank minus 1. When people join or leave the row, count the people before him first. Then add 1.",
+   "formulas": [
+    {
+     "name": "Rank from the other end",
+     "tex": "p' = n + 1 - p",
+     "note": "n = class size or row size."
+    },
+    {
+     "name": "Total from two ranks",
+     "tex": "n = a + b - 1",
+     "note": "The same person, ranked from both ends."
+    },
+    {
+     "name": "People joining or leaving ahead",
+     "tex": "r_{\\text{new}} = r_{\\text{old}} \\pm k",
+     "note": "Plus for k joiners ahead. Minus for k leavers who were ahead."
+    }
+   ],
    "tricks": [
     {
-     "title": "Sanity-span check",
-     "body": "The two ranks of one person must satisfy a + b = n + 1. Before marking a total, add the given ranks: if the sum is not total-plus-one, one of the numbers was misread.",
+     "title": "Check that the sum of the two ranks is total plus 1",
+     "body": "For one person, the two ranks add up to the total plus 1. Test it before you mark the answer.",
      "example": {
-      "q": "**Q.** K is 12th from the left and 19th from the right. Total?\n\n**Sol.** 12 + 19 = 31, so n = 31 − 1 = **30**. Check: 12th from left has 11 left of her; 19th from right has 18 right of her; 11 + 1 + 18 = 30 ✓.",
-      "solution": "a + b = n + 1 is a two-second self-check built into every question."
+      "q": "Sonu is 14th from the left and 20th from the right. How many are in the row?",
+      "steps": [
+       "$14 + 20 - 1 = 33$.",
+       "Check: $14 + 20 = 34 = 33 + 1$."
+      ],
+      "answer": "33"
      }
     }
    ],
    "mistakes": [
-    "Using n = a + b (no −1).",
-    "Treating '11th from either end' as two different people's ranks.",
-    "Missing queue shifts when people join or leave ahead of the person."
+    {
+     "wrong": "Using $n = a + b$ with no minus 1.",
+     "right": "The person is counted twice, so use $n = a + b - 1$."
+    },
+    {
+     "wrong": "Reading '11th from either end' as two different people.",
+     "right": "It is one person in the exact middle. Total $= 11 + 11 - 1 = 21$."
+    },
+    {
+     "wrong": "Changing his rank when people join or leave behind him.",
+     "right": "Only people ahead of him change his rank from the front."
+    },
+    {
+     "wrong": "Calling 'people below him' the same as his rank from the bottom.",
+     "right": "People below = his rank from the bottom $- 1$."
+    },
+    {
+     "wrong": "Forgetting to reduce the total when people leave.",
+     "right": "Every leaver reduces the total by 1, even if his rank does not change."
+    }
    ],
-   "notes": "### Single-person rank work\n\nThis subtopic drills the conversions one person at a time: one end to the other, two ends to the total, and the moving-queue variants where people join or leave.\n\n**The mirror conversion.** From-rank r in a row of T: other end = $T - r + 1$. Practical route: rank from bottom = class size − rank from top + 1. A 23rd-from-the-top rank in a class of 60 is 38th from the bottom: $60 - 23 + 1 = 38$.\n\n**The total from two ends.** When the question gives one person's rank from both ends, the class size pops out: $T = a + b - 1$. Sonu 14th from the left and 20th from the right → $14 + 20 - 1 = 33$ people. Sanity-check the answer: it must be at least as big as each rank.\n\n**Queues that change size.** People joining the front shift everyone back; people leaving the front pull everyone forward. Rule: adjust the *number of people before the person* first, then add one.\n- k people join **ahead** of you → new rank = old + k.\n- k people **leave from ahead** of you → new rank = old − k.\n- If the joiners/leavers are behind you, your rank does not change.\n\n**People leaving mid-queue.** '5 people left the row from the left side': anyone to the right of them slides left by 5. A person 16th from the left becomes 11th. Anyone to the **left** of the departed block keeps their rank but the total shrinks.\n\n**Ranks from both ends together.** Some questions hand you rank from the top *and* from the bottom of a class with a twist ('A is 12th from the top and 41st from the bottom; how many students are there?'). Same formula: $12 + 41 - 1 = 52$.\n\n**Watch the units.** 'Rank' counts the person; 'people ahead/behind' does not. Convert explicitly: ahead = rank − 1; rank = ahead + 1. Questions swap these words between the question and the options on purpose.\n\n### Quick revision\n- Other end: $T - r + 1$. Two ends: $T = a + b - 1$.\n- Joiners ahead: rank + k. Leavers ahead: rank − k. Changes behind you: no change.\n- Mid-row exits: slide only people to the right of the exit block.\n- ahead = rank − 1, behind = T − rank; convert words to numbers before computing.\n\n**Two-sided puzzles.** Harder variants give a rank from one end plus a second fact ('he is exactly midway', 'there are 3 people between him and the front'). Convert the fact into a before-count first: 'midway' means ahead = behind; '3 between him and the front' means ahead = 4. Once the before-count is known, rank = before + 1 and the total follows if the other side is described.\n\n**Class ranks vs rows.** The formulas are identical; only the words move (top/bottom instead of left/right, pass/fail groups at the ends). One warning: 'X failed' questions where 'rank from the bottom among failures' is asked — strip the failed students out of the total before mirroring. The formula never changes, but the total does.",
+   "notes": "### The other end, again\nThe rank from the other end of a class or a row is a simple sum.\n\n$$\\text{rank from the bottom} = \\text{class size} - \\text{rank from the top} + 1$$\n\nExample: in a class of 60, Neha is 23rd from the top. From the bottom she is $60 - 23 + 1 = 38$th.\n\n### The total from two ranks\nIf a person's two ranks are given, the total is their sum minus 1.\n\nExample: Sonu is 14th from the left and 20th from the right. The row has $14 + 20 - 1 = 33$ people.\n\nThree quick facts to remember:\n- 12th from the top in a class of 45 is 34th from the bottom.\n- 8th from the left and 21st from the right gives $8 + 21 - 1 = 28$ people.\n- 11th from either end gives $11 + 11 - 1 = 21$ people.\n\n> **Tip:** The total is always bigger than each of the two ranks. If not, you misread.\n\n### People above and below\nThe rank counts the person too. The number of people below him leaves him out.\n\n- People below him = class size $-$ his rank from the top.\n- People above him = his rank from the top $- 1$.\n\nExample: Reena is 12th from the top in a class of 40. So $40 - 12 = 28$ students are below her.\n\n### People join or leave the front\nCount the people before him first. Then add 1.\n\n- $k$ people join **ahead** of him: his rank becomes old rank $+ k$.\n- $k$ people who were **ahead** of him leave: his rank becomes old rank $- k$.\n- People who join or leave **behind** him do not change his rank from the front.\n\nExample: Ishaan is 18th in a queue. 6 people join in front of him. Then 3 people who were ahead of him leave. His new rank is $18 + 6 - 3 = 21$st.\n\n### People leave from the middle of a row\nOnly the people to the right of the leavers move. They slide left by the number who left.\n\nExample: A is 16th from the left. 5 people leave from the left end. A slides to $16 - 5 = 11$th.\n\n> **Watch:** Look at where the leavers stood. People on the same side as the person change his rank. People on the other side change only the total.\n\n### Rank from the other end after people leave\nWhen people to his left leave, his rank from the right does not change. Only the total falls.\n\nExample: in a row of 45, Gopal is 20th from the left. His rank from the right is $45 + 1 - 20 = 26$. Eight people to his left leave. He is now 12th from the left in a row of 37. His rank from the right is $37 + 1 - 12 = 26$. It did not change.\n\n### Class ranks with a twist\nIf some students fail, remove them from the total before you use the formula. The formula stays the same. Only the total changes.\n\nExample: a class of 50 has 4 failed students, and Anil is 10th from the top among the rest. Now the total is $50 - 4 = 46$. His rank from the bottom is $46 + 1 - 10 = 37$.\n",
    "patterns": [
     {
      "id": "rp-p1",
      "name": "Rank from the other end",
      "frequency": "very common",
-     "howToSpot": "Class/queue size known; rank from top/left/front given; the mirror rank is asked.",
-     "formula": null,
-     "logic": "1. Apply total − rank + 1.\n2. Read the end words carefully (top↔bottom, left↔right, front↔back).\n\n*Why it works:* the two counts meet at the same person.",
+     "howToSpot": "The size of the class or row and a rank from the top or left are given. The rank from the other end is asked.",
+     "formula": "p' = n + 1 - p",
+     "steps": [
+      "Write the class size and the rank.",
+      "Subtract the rank from the size.",
+      "Add 1."
+     ],
+     "why": "The person is counted from both ends, so add back the shared seat.",
      "example": {
-      "q": "**In a class of 60, Neha ranks 23rd from the top. What is her rank from the bottom?**",
-      "solution": "$60 - 23 + 1$ = **38th**."
+      "q": "In a class of 75, Varun ranks 28th from the top. What is his rank from the bottom?",
+      "steps": [
+       "$75 - 28 + 1$.",
+       "$= 48$."
+      ],
+      "answer": "48th from the bottom"
      }
     },
     {
      "id": "rp-p2",
      "name": "Total from two ranks",
      "frequency": "very common",
-     "howToSpot": "One person's rank from both ends is given; the total is asked.",
-     "formula": null,
-     "logic": "1. Add the ranks, subtract 1.\n2. Check the total is not smaller than either rank.\n\n*Why it works:* the shared person is counted twice.",
+     "howToSpot": "One person's rank from both ends is given. The total is asked.",
+     "formula": "n = a + b - 1",
+     "steps": [
+      "Add the two ranks.",
+      "Subtract 1.",
+      "Check that the total is bigger than each rank."
+     ],
+     "why": "The person is counted twice, once from each end.",
      "example": {
-      "q": "**Sonu is 14th from the left and 20th from the right in a row. How many people are in the row?**",
-      "solution": "$14 + 20 - 1$ = **33**."
+      "q": "Divya is 16th from the left and 24th from the right in a row. How many people are in the row?",
+      "steps": [
+       "$16 + 24 - 1$.",
+       "$= 39$."
+      ],
+      "answer": "39"
      }
     },
     {
      "id": "rp-p3",
-     "name": "Queue joining and leaving",
+     "name": "People join or leave ahead",
      "frequency": "common",
-     "howToSpot": "People join or leave a queue; the person's new position is asked.",
-     "formula": null,
-     "logic": "1. Count only people **ahead**: rank = (people ahead) + 1.\n2. k join ahead → +k; k leave from ahead → −k.\n3. Changes behind the person never move their rank.\n\n*Why it works:* a rank is one more than the number of people ahead.",
+     "howToSpot": "People join or leave a queue. The person's new position is asked.",
+     "formula": "r_{\\text{new}} = r_{\\text{old}} + \\text{joiners} - \\text{leavers}",
+     "steps": [
+      "Count only the people who joined or left ahead of him.",
+      "Add joiners and subtract leavers from his rank.",
+      "Ignore people behind him."
+     ],
+     "why": "Only the people before him change his rank.",
      "example": {
-      "q": "**In a queue of 35, Moni is 12th. If 8 people ahead of her leave, what is her new position?**",
-      "solution": "$12 - 8$ = **4th**."
+      "q": "Ishaan is 18th in a queue. 6 people join in front of him. Then 3 people who were ahead of him leave. What is his new position?",
+      "steps": [
+       "After the joiners: $18 + 6 = 24$.",
+       "After the leavers: $24 - 3 = 21$."
+      ],
+      "answer": "21st"
      }
     },
     {
      "id": "rp-p4",
-     "name": "Rank after people leave mid-row",
+     "name": "Rank after people leave the row",
      "frequency": "common",
-     "howToSpot": "Some people exit from one side of a standing row; a survivor's new rank is asked.",
+     "howToSpot": "Some people stand up and leave. A remaining person's new rank is asked.",
      "formula": null,
-     "logic": "1. If the exits are to the person's left, subtract the count.\n2. If they are to the right, the rank from the left is unchanged.\n3. Recompute the total if it is asked.\n\n*Why it works:* survivors slide toward the emptied side.",
+     "steps": [
+      "Note whether the leavers stood on his left or right.",
+      "Recount his rank from the side where they left. Subtract the leavers.",
+      "Reduce the total by the number who left. Then find the rank asked."
+     ],
+     "why": "Only leavers on his own side change his rank. All leavers change the total.",
      "example": {
-      "q": "**A is 16th from the left in a row of 40. If 5 people leave from the left end, what is A's new rank from the left?**",
-      "solution": "The 5 departed were all ahead of A → $16 - 5$ = **11th**."
+      "q": "In a row of 45, Gopal is 20th from the left. 8 people to his left leave the row. What is Gopal's position from the right now?",
+      "steps": [
+       "Row now: $45 - 8 = 37$ people. Gopal: $20 - 8 = 12$th from the left.",
+       "From the right: $37 + 1 - 12 = 26$."
+      ],
+      "answer": "26th from the right"
+     }
+    },
+    {
+     "id": "rp-p5",
+     "name": "The same rank from both ends",
+     "frequency": "occasional",
+     "howToSpot": "The person is said to be the same rank from both ends. The total is asked.",
+     "formula": "n = 2r - 1",
+     "steps": [
+      "Use $a = b = r$.",
+      "Total = $r + r - 1$.",
+      "He is the middle person."
+     ],
+     "why": "The person is in the exact middle, with the same number of people on each side.",
+     "example": {
+      "q": "Deepak is 14th from either end of a line. How many people are in the line?",
+      "steps": [
+       "$14 + 14 - 1$.",
+       "$= 27$."
+      ],
+      "answer": "27"
      }
     }
+   ],
+   "revision": [
+    "Other end: size $-$ rank $+ 1$.",
+    "Two ranks: total $= a + b - 1$.",
+    "Joiners ahead: rank $+ k$. Leavers ahead: rank $- k$.",
+    "People behind him never change his rank from the front.",
+    "Below him = rank from the bottom $- 1$.",
+    "If some students fail, remove them from the total first."
    ]
   },
   {
    "id": "between-overlapping",
    "title": "People between two positions",
-   "concept": "Three standard shapes:\n\n1. **Both from the same end**: between = |a − b| − 1.\n2. **From opposite ends**: convert one rank first (position from the other end = n + 1 − p), then subtract.\n3. **Overlapping ranks**: A is 10th from the left, B is 25th from the left, in a row of 20 — impossible unless ranks overlap; the between-count formula still works after conversion, but the exam usually avoids true contradictions.\n\nFor the **'middle person'** variant (odd gap), the middle position between ranks a and b (same end) is (a + b) ÷ 2 — it must come out as a whole number; if it does not, the question intends 'two middle people' and asks something else.",
-   "formulas": [],
+   "concept": "These questions ask how many people stand between two people. First find out which end each rank comes from. If both ranks are from the same end, subtract and take away 1. If they are from opposite ends, subtract both from the total.",
+   "formulas": [
+    {
+     "name": "Between, same end",
+     "tex": "\\text{between} = |a - b| - 1",
+     "note": "Both ranks are counted from the same end."
+    },
+    {
+     "name": "Between, opposite ends",
+     "tex": "\\text{between} = n - a - b",
+     "note": "n = total people, a and b = ranks from opposite ends."
+    },
+    {
+     "name": "Middle person",
+     "tex": "m = \\dfrac{a + b}{2}",
+     "note": "a and b from the same end. The result must be a whole number."
+    },
+    {
+     "name": "Rank from the gap",
+     "tex": "b = a + k + 1",
+     "note": "k people are between a and b, counted from the same end."
+    }
+   ],
    "tricks": [
     {
-     "title": "Convert, then count",
-     "body": "Never subtract ranks from different ends. Convert one with n + 1 − p, then |a − b| − 1.",
+     "title": "Convert first, then count",
+     "body": "Never subtract ranks from different ends. Convert one rank with $n + 1 - p$. Then use the same-end formula.",
      "example": {
-      "q": "**Q.** Row of 30: A is 10th from the left, B is 12th from the right. How many sit between?\n\n**Sol.** B from the left = 30 + 1 − 12 = 19th. Between = 19 − 10 − 1 = **8**.",
-      "solution": "One conversion, one subtraction, one final −1."
+      "q": "In a row of 40, A is 5th from the left and B is 10th from the right. How many people are between them?",
+      "steps": [
+       "B from the left: $40 + 1 - 10 = 31$.",
+       "Between: $31 - 5 - 1 = 25$."
+      ],
+      "answer": "25"
      }
     }
    ],
    "mistakes": [
-    "Subtracting a left-rank from a right-rank directly.",
-    "Dropping the final −1 (counting the endpoints themselves).",
-    "Using n + 1 − p twice, converting both ranks."
+    {
+     "wrong": "Subtracting a rank from the left from a rank from the right.",
+     "right": "Convert one rank to the other end first, or use $n - a - b$."
+    },
+    {
+     "wrong": "Forgetting the last -1 and counting the two people as well.",
+     "right": "'Between' leaves out both people."
+    },
+    {
+     "wrong": "Converting both ranks with $n + 1 - p$.",
+     "right": "Convert only one. Both ranks must end up on the same side."
+    },
+    {
+     "wrong": "Using the person's old seat after a swap.",
+     "right": "After a swap, the person sits in the other's seat."
+    },
+    {
+     "wrong": "Continuing when the answer is negative.",
+     "right": "A negative count means a misread end. Stop and convert again."
+    }
    ],
-   "notes": "### Counting between two people\n\nFour shapes cover every 'how many between' question. Know which end each rank comes from — that decides the formula.\n\n**Shape 1 — both ranks from the same end.** A is a-th and B is b-th from the left:\n\n$$\\text{between} = |a - b| - 1$$\n\nThe gap shrinks by one because 'between' excludes both people. Example: 9th and 26th from the top → 16 between.\n\n**Shape 2 — ranks from opposite ends.** Convert one rank to the shared end first, or use the total. In a row of T with P a-th from the left and Q b-th from the right:\n\n$$\\text{between} = T - a - b$$\n\nExample: row of 45, X 14th from the left, Y 18th from the right → $45 - 14 - 18 = 13$. If the total is not given, build it with $a + b - 1$ from any person who has both ranks.\n\n**Shape 3 — the middle person.** Both from the same end a and b: the midpoint rank is $(a + b) / 2$ from that end. 9th and 21st from the left → the middle person is 15th from the left. If a + b is odd, the exact middle is a half-position — exams phrase those as 'immediately between', and the two neighbours are $(a+b-1)/2$ and $(a+b+1)/2$.\n\n**Shape 4 — the overlap deduction.** The classic: 'Ram is 17th from the left, Shyam 9th from the right; after interchanging, Ram is 22nd from the left.' Ram takes Shyam's seat, keeping Shyam's from-right rank (9): total $= 22 + 9 - 1 = 30$. Then Shyam's old seat was $30 - 9 + 1 = 22$nd from the left, and the original gap is $22 - 17 - 1 = 4$. Overlap questions always split into: build the total first, then run a plain Shape 1 or 2 count.\n\n**Sanity checks.** Between-counts can never be negative — a negative answer means the two ranks described the same person or the ranks were from ends you did not account for. And between + 2 ≤ total: the two people themselves exist too.\n\n### Quick revision\n- Same end: $|a-b| - 1$. Opposite ends (total T): $T - a - b$.\n- Middle person (same end): $(a+b)/2$ from that end.\n- Overlap puzzles: recover T first ($a' + b' - 1$), then count between.\n- Convert every rank to the same end before subtracting; 'between' excludes both people.\n- Negative gap = misread ends; stop and re-convert.\n\n**A worked flow for exam speed.** Read the question once, labelling each rank with its end (L/R or T/B) and circling the total if present. Then one line of arithmetic:\n- same end → subtract, drop 2 (|a−b| − 1);\n- opposite ends → subtract from the total;\n- no total → build it from any both-ends person (a + b − 1).\nUnder exam pressure the labelling step is what prevents the classic error of subtracting ranks that came from different ends.\n\n**Between-counts with a twist.** Questions sometimes ask 'how many people do NOT lie between them' (= total − between − 2) or 'what fraction of the row lies between'. Both are one extra subtraction on the between-count — compute between first, always, then answer the actual question.",
+   "notes": "### The same end\n\"Between\" leaves out both people. So subtract the two ranks and drop 1.\n\n$$\\text{between} = |a - b| - 1$$\n\nExample: R is 9th from the top and S is 26th from the top. Between them: $26 - 9 - 1 = 16$ students.\n\n### Opposite ends\nSuppose P is $a$-th from the left and Q is $b$-th from the right. Take both ranks off the total. What is left is the people in between.\n\n$$\\text{between} = \\text{total} - a - b$$\n\nExample: a row has 45 people. X is 14th from the left and Y is 18th from the right. Between them: $45 - 14 - 18 = 13$.\n\n> **Tip:** No total given? Find it from any person who has ranks from both ends: $a + b - 1$.\n\n### The middle person\nTake two ranks from the same end. The person exactly in the middle has this rank from that end:\n\n$$\\dfrac{a + b}{2}$$\n\nExample: 9th and 21st from the left. The middle person is $\\dfrac{9 + 21}{2} = 15$th from the left. There are 5 people on each side of him, between him and each of the two.\n\nIf $a + b$ is odd, there is no single middle person. Two people stand in the middle.\n\n### The overlap puzzle\nA swap can reveal a rank that the row never stated. Build the total first. Then count between.\n\nExample: Ravi is 15th from the left. Sohan is 11th from the right. After they swap, Ravi is 20th from the left.\n\n1. Ravi took Sohan's seat. So Sohan's seat is 20th from the left and 11th from the right.\n2. Total $= 20 + 11 - 1 = 30$.\n3. Originally, Ravi was 15th and Sohan's seat was 20th. Between them: $20 - 15 - 1 = 4$.\n\n> **Watch:** The rank after the swap belongs to the other person's seat. It is not his old seat.\n\n### Given the gap, find the rank\nIf $k$ people stand between two people and they are counted from the same end, the second rank is:\n\n$$b = a + k + 1$$\n\nExample: Tina is 11th from the top. 7 students are between Tina and Uma, and Uma is below her. Uma is $11 + 7 + 1 = 19$th from the top.\n\n### People outside the pair\n\"How many people are not between them?\" Find between first. Then remove the two people themselves.\n\n$$\\text{outside} = \\text{total} - \\text{between} - 2$$\n\nExample: total 52, between 16. Outside: $52 - 16 - 2 = 34$.\n\n### Two ways to check\nCheck every answer once by drawing the row.\n\nExample: the row has 45 people. X is 14th from the left. Y is 18th from the right, so Y is $45 + 1 - 18 = 28$th from the left. Now use the same-end formula: $28 - 14 - 1 = 13$. The direct formula $45 - 14 - 18 = 13$ agrees.\n\nTwo routes, one answer. If they differ, one rank was read from the wrong end.\n\n> **Note:** Between can never be negative, and between plus 2 can never be more than the total. If it is, you misread an end.\n",
    "patterns": [
     {
      "id": "bo-p1",
      "name": "Between, same end",
      "frequency": "very common",
-     "howToSpot": "Both ranks measured from the same end (top, left, front).",
-     "formula": null,
-     "logic": "1. Between = |a − b| − 1.\n2. 'Between' excludes both named people.\n3. Absolute value: either rank may be bigger.\n\n*Why it works:* the gap between two positions minus the two endpoints.",
+     "howToSpot": "Both ranks are counted from the same end (left, top or front). The people between them are asked.",
+     "formula": "|a - b| - 1",
+     "steps": [
+      "Check that both ranks are from the same end.",
+      "Subtract the smaller from the larger.",
+      "Subtract 1."
+     ],
+     "why": "The two people themselves are not between, so one seat is dropped.",
      "example": {
-      "q": "**R ranks 9th from the top and S ranks 26th from the top. How many students are between them?**",
-      "solution": "$|26 - 9| - 1$ = **16**."
+      "q": "P is 7th from the left and Q is 31st from the left in a row. How many people are between them?",
+      "steps": [
+       "$31 - 7 = 24$.",
+       "$24 - 1 = 23$."
+      ],
+      "answer": "23"
      }
     },
     {
      "id": "bo-p2",
      "name": "Between, opposite ends",
      "frequency": "very common",
-     "howToSpot": "One rank from the left/top, the other from the right/bottom, total known.",
-     "formula": null,
-     "logic": "1. Between = total − rank1 − rank2.\n2. If no total is given, build one from a both-ends person first.\n3. Negative result = you misread the ends.\n\n*Why it works:* subtract both people and the ends from the row.",
+     "howToSpot": "One rank is from the left or top. The other is from the right or bottom. The total is given.",
+     "formula": "n - a - b",
+     "steps": [
+      "Write the total, then both ranks.",
+      "Subtract both ranks from the total.",
+      "No total? Build it from a person with both ranks."
+     ],
+     "why": "Taking both ranks off the total leaves exactly the people in the middle.",
      "example": {
-      "q": "**In a row of 45, X is 14th from the left and Y is 18th from the right. How many people are between them?**",
-      "solution": "$45 - 14 - 18$ = **13**."
+      "q": "In a row of 52, X is 15th from the left and Y is 21st from the right. How many people are between X and Y?",
+      "steps": [
+       "$52 - 15 - 21$.",
+       "$= 16$."
+      ],
+      "answer": "16"
      }
     },
     {
      "id": "bo-p3",
-     "name": "Middle person between two ranks",
+     "name": "The middle person",
      "frequency": "common",
-     "howToSpot": "'Who/which position is exactly in the middle of A and B?'",
-     "formula": null,
-     "logic": "1. Convert both ranks to the same end.\n2. Middle position = (a + b) / 2 from that end.\n3. Odd sum → the two immediate neighbours share the middle; read the options.\n\n*Why it works:* the midpoint of two positions is their average.",
+     "howToSpot": "The question asks who or which seat is exactly in the middle of two people.",
+     "formula": "\\dfrac{a + b}{2}",
+     "steps": [
+      "Get both ranks from the same end.",
+      "Add them and halve the sum.",
+      "Check the answer is a whole number."
+     ],
+     "why": "The middle is the average of the two seat numbers.",
      "example": {
-      "q": "**A is 9th from the left and B is 21st from the left. Which position is exactly in the middle?**",
-      "solution": "$(9 + 21)/2$ = **15th from the left**."
+      "q": "A is 12th from the left and B is 30th from the left. Which seat is exactly in the middle of them?",
+      "steps": [
+       "$\\dfrac{12 + 30}{2} = 21$.",
+       "There are 8 people between A and the middle person."
+      ],
+      "answer": "21st from the left"
      }
     },
     {
      "id": "bo-p4",
-     "name": "Overlap: swap reveals the total",
-     "frequency": "common",
-     "howToSpot": "A swap or second measurement exposes a rank the row never stated; count between in the original line.",
+     "name": "Swap and count between",
+     "frequency": "occasional",
+     "howToSpot": "A swap gives a new rank. The number of people between the two before the swap is asked.",
      "formula": null,
-     "logic": "1. The swapped person keeps the partner's from-end rank: total = new rank + partner's rank − 1.\n2. Convert everyone to one end.\n3. Between = |a − b| − 1 as usual.\n\n*Why it works:* the swap pins a second measurement to the same seat, fixing the row size.",
+     "steps": [
+      "The person who moved took the other's seat. That seat has the new rank.",
+      "Find the total: new rank $+$ other's rank from the other end $- 1$.",
+      "Count between with the same-end formula."
+     ],
+     "why": "The swap reveals one rank the row never stated. Once the total is known, it is a plain count.",
      "example": {
-      "q": "**Ram is 17th from the left, Shyam 9th from the right. After interchanging, Ram is 22nd from the left. How many students sat between them originally?**",
-      "solution": "Total $= 22 + 9 - 1 = 30$. Shyam's old seat = $30 - 9 + 1 = 22$nd from the left. Between = $22 - 17 - 1$ = **4**."
+      "q": "Ravi is 15th from the left and Sohan is 11th from the right. After they exchange places, Ravi is 20th from the left. How many people were between them before?",
+      "steps": [
+       "Sohan's seat is 20th from the left and 11th from the right. Total $= 20 + 11 - 1 = 30$.",
+       "Between: $20 - 15 - 1 = 4$."
+      ],
+      "answer": "4"
+     }
+    },
+    {
+     "id": "bo-p5",
+     "name": "People outside the pair",
+     "frequency": "occasional",
+     "howToSpot": "The question asks how many people are not between two people, or ahead of and behind them.",
+     "formula": "n - \\text{between} - 2",
+     "steps": [
+      "Find the people between first.",
+      "Subtract that from the total.",
+      "Subtract 2 for the two people themselves."
+     ],
+     "why": "Total = between + the two people + everyone outside.",
+     "example": {
+      "q": "In a row of 52, X is 15th from the left and Y is 21st from the right. How many people are outside the pair (not between them and not X or Y)?",
+      "steps": [
+       "Between $= 52 - 15 - 21 = 16$.",
+       "Outside $= 52 - 16 - 2 = 34$."
+      ],
+      "answer": "34"
+     }
+    },
+    {
+     "id": "bo-p6",
+     "name": "Find the rank from the gap",
+     "frequency": "occasional",
+     "howToSpot": "The number of people between two people is given. One person's rank is known and the other's is asked.",
+     "formula": "b = a + k + 1",
+     "steps": [
+      "Note which person is nearer to the start.",
+      "Add the gap $k$ and 1 to the nearer rank.",
+      "Subtract instead if the second person is closer to the start."
+     ],
+     "why": "The second person sits after the $k$ people between and one more seat.",
+     "example": {
+      "q": "Tina is 11th from the top. 7 students are between Tina and Uma, and Uma is below Tina. What is Uma's rank from the top?",
+      "steps": [
+       "$11 + 7 + 1$.",
+       "$= 19$."
+      ],
+      "answer": "19th from the top"
      }
     }
+   ],
+   "revision": [
+    "Same end: $|a - b| - 1$.",
+    "Opposite ends: total $- a - b$.",
+    "Middle person: $\\dfrac{a + b}{2}$ from the same end.",
+    "Swap puzzle: find the total first, then count between.",
+    "Given a gap $k$: $b = a + k + 1$.",
+    "Outside the pair = total $-$ between $- 2$."
    ]
   },
   {
    "id": "arrangement-comparison",
    "title": "Ordering and comparison chains",
-   "concept": "'P is taller than Q but shorter than R… who is second tallest?' The constraints sort a small set — five people, five or six statements. The reliable method:\n\n1. Write each statement as an inequality fragment: 'P taller than Q' → P > Q.\n2. Chain all fragments into one ordering, or brute-force by hand when fragments branch.\n3. Read the answer from the final chain.\n\nA complete CGL puzzle always has a **unique** chain. If two orderings satisfy your reading of the statements, you misread one — usually 'X is taller than Y' vs 'Y is taller than X', or a hidden 'immediately taller'. Note the special comparatives: 'immediately above' fixes adjacency; 'between A and B' fixes position, not just inequality.",
+   "concept": "These questions give scattered comparisons such as 'A is taller than B'. Write each clue as a short arrow. Join the arrows into one chain, then read the seat that is asked. Words like 'shorter', 'younger' and 'below' point the arrow the other way, so turn them around first.",
    "formulas": [],
    "tricks": [
     {
-     "title": "Longest-chain first",
-     "body": "Find the person who appears in the most statements and build outwards from them. The chain assembles in one pass instead of three.",
+     "title": "Write two symbols for each clue",
+     "body": "Turn each sentence into two letters with a sign, such as S < V. Keep the sign pointing the same way all through. The reversed words then become easy to see.",
      "example": {
-      "q": "**Q.** A > B; C > A; D > C but D < E. Order?\n\n**Sol.** Chain the A–C–D–E spine: E > D > C > A > B — unique. Middle (third tallest) = **C**.",
-      "solution": "Start from the most-mentioned name; attach the rest one fragment at a time."
+      "q": "Sunil is younger than Vijay. Vijay is younger than Wasim. Who is the oldest?",
+      "steps": [
+       "Arrows: Vijay > Sunil, Wasim > Vijay.",
+       "Chain: Wasim > Vijay > Sunil."
+      ],
+      "answer": "Wasim"
+     }
+    },
+    {
+     "title": "Start from the person named most often",
+     "body": "The person who appears in the most clues is the best starting point. Build the chain outwards from that person and it forms in one pass.",
+     "example": {
+      "q": "A is taller than B. B is taller than D. C is taller than A. Who is the tallest?",
+      "steps": [
+       "B appears twice. Chain B > D.",
+       "A is above B: A > B > D.",
+       "C is above A: C > A > B > D."
+      ],
+      "answer": "C"
      }
     }
    ],
    "mistakes": [
-    "Answering from a partial chain before all statements are used.",
-    "Ignoring 'immediately' — adjacency changes 'second tallest' answers.",
-    "Accepting two possible orders without re-reading the statements."
+    {
+     "wrong": "Answering from part of the chain before using every clue.",
+     "right": "Use all the clues, then read the chain."
+    },
+    {
+     "wrong": "Reading 'younger than' or 'less than' in the surface direction.",
+     "right": "Turn every clue so the bigger, older or higher person is on the left."
+    },
+    {
+     "wrong": "Ignoring the word 'immediately'.",
+     "right": "It means directly next to. It can change who is second or third."
+    },
+    {
+     "wrong": "Accepting two possible orders.",
+     "right": "A full puzzle has exactly one order. Read the clues again."
+    },
+    {
+     "wrong": "Building the whole order when the seat is already fixed.",
+     "right": "Check whether only one person can fill the seat asked."
+    }
    ],
-   "notes": "### 'Taller than, older than, scored more than': ranking from clues\n\nThese puzzles give scattered comparisons and ask for a slot: tallest, second oldest, least scorer. The method is always the same — merge the clues into one ordered line, then read it.\n\n**The chain-building routine.**\n1. Write each clue as an arrow: 'A is taller than B' → A > B.\n2. Join arrows that share a head or tail into one long chain. A > B and B > D merges to A > B > D.\n3. Where the chain is under-determined (two people never compared), the answer is 'cannot be determined' — but check the question first: many slots are fixed even when the full order is not.\n4. Read the asked slot from the finished chain: tallest = left end, shortest = right end, second tallest = second from the left.\n\n**Marks and scores.** 'Scored more' behaves exactly like 'taller'. Beware the reversed words: 'fewer than', 'younger than', 'less than' point the arrow the other way. Convert every clue into > arrows pointing at the *better/bigger/older* person before merging.\n\n**Under-determined traps.** Five clues about four people can still leave a free pair: 'A > B, C > D' says nothing about A vs C. If the question asks for the tallest and only one candidate can possibly top the chain (everyone else has someone above them), the answer stands even without a total order. Rule: fix the slot, not necessarily the list.\n\n**Objects in columns and shelves.** 'The red box is above the blue box' is a comparison with the arrow pointing up. Stack the chain top to bottom and read positions ('third from the top') exactly as you read 'second tallest'.\n\n**Facing pairs.** Two people facing **each other** (like a north-facing and a south-facing person) have opposite left/right directions: the north-facing person's left is the south-facing person's right. Draw the two arrows before using any such clue.\n\n### Quick revision\n- Every clue → an arrow toward the bigger/older/better; join arrows into one chain.\n- Read the slot: tallest = chain head, Nth = Nth from the head.\n- Reversed words (less, younger, fewer, shorter) flip the arrow — convert first.\n- A slot is answerable when only one person can fill it, even if the whole order is open.\n- Stacks: 'above' is the arrow; facing pairs have mirrored left/right.\n\n**Extraction habits that prevent wrong chains.** Rewrite every clue as a two-symbol line before thinking: 'Sunil is younger than Vijay' → S < V. Keep the inequality signs pointing the same way throughout (bigger/older/higher on the left). Most wrong answers here come from reading a reversed sentence ('younger than', 'fewer than', 'below') in its surface direction — the rewrite step makes the reversal visible.\n\n**When options expose the shortcut.** If two options share a person ('C' and 'C is second oldest'), the chain probably pins that person; test the slot directly: can anyone else occupy slot 2? If nobody can, stop building the chain and mark the answer — total order is a luxury, the slot is the requirement.",
+   "notes": "### Write each clue as an arrow\nUse one arrow for one clue. Point it towards the taller, older or higher person.\n\n- \"A is taller than B\" becomes A > B.\n- \"C is shorter than B\" becomes B > C.\n- \"D scored less than C\" becomes C > D.\n\n> **Rule:** Always put the bigger, older or higher person on the left. Turn 'shorter', 'younger', 'less' and 'below' around before you write.\n\n### Join the arrows into a chain\nClues that share a person join together. A > B and B > D make A > B > D.\n\nExample: \"A is taller than B. C is taller than D and shorter than B. E is shorter than D.\" Write A > B, B > C > D and D > E. The chain is A > B > C > D > E. The second tallest is B.\n\n### Read the seat\nRead the chain from the left end.\n\n- Tallest: the first person.\n- Shortest: the last person.\n- Second tallest: the second person from the left.\n\nThe middle seat of five people is the third one.\n\n### When the full order is not known\nSome clues leave two people unranked. For example, A > B and C > D say nothing about A against C. So the whole order is open.\n\nBut the answer may still be fixed. If only one person can stand first, that person is the tallest, even when other seats stay open.\n\n> **Tip:** Fix the seat that is asked. You do not always need the full order.\n\n### Marks, ages and objects\nMarks, ages, heights and weights all work alike. Use the same arrows for all of them.\n\nObjects in a stack work alike too. \"The red box is above the blue box\" is an arrow pointing up. Write the stack from the top down and read it like a chain. \"Third from the top\" is the third person in the chain.\n\n### Words that fix a place\nSome words fix a place more tightly than a simple \"taller than\".\n\n- \"Immediately above B\" means directly next to B, with no one between.\n- \"Between B and D\" means somewhere in the middle. It does not say the exact seat.\n\nUse \"immediately\" clues first. They join two people into one block.\n\n> **Watch:** Read the clue again if you find two possible orders. A full puzzle has one order only.\n\n### A slow example\nRead the clues once, then write the arrows. \"Ann is older than Ben. Cara is younger than Ben. Dev is older than Ann.\" Arrows: Ann > Ben, Ben > Cara, Dev > Ann. Chain: Dev > Ann > Ben > Cara. The youngest is Cara. The second oldest is Ann.\n\n> **Example:** Ask a different question of the same chain. Who is older than Ben but younger than Dev? Only Ann fits. Reading the chain answers every version of the question.\n\n### Facing pairs\nTwo people who face each other have opposite left and right. The left hand of one is the right hand of the other. Draw the two arrows first.\n",
    "patterns": [
     {
      "id": "ac-p1",
-     "name": "Height/size chain to a slot",
+     "name": "Height or size chain",
      "frequency": "very common",
-     "howToSpot": "'A is taller than B...' — find the tallest, shortest or an exact slot.",
+     "howToSpot": "Clues use 'taller than', 'bigger than' or 'heavier than'. The tallest, shortest or one seat is asked.",
      "formula": null,
-     "logic": "1. Write each clue as an arrow toward the taller.\n2. Merge into one chain; read slot from the end.\n3. If a pair is never compared but only one person can top the chain, that person is the answer.\n\n*Why it works:* 'taller than' is a total-order arrow; chains merge head to tail.",
+     "steps": [
+      "Write each clue as an arrow with the taller person first.",
+      "Join clues that share a person.",
+      "Read the chain from the left."
+     ],
+     "why": "Clues that share a person always join into a single line.",
      "example": {
-      "q": "**A is taller than B; C is taller than A; D is shorter than B. Who is the shortest?**",
-      "solution": "C > A > B > D → shortest = **D**."
+      "q": "A is taller than B. C is taller than D and shorter than B. E is shorter than D. Who is the second tallest?",
+      "steps": [
+       "Arrows: A > B, B > C > D, D > E.",
+       "Chain: A > B > C > D > E.",
+       "The second person from the left is B."
+      ],
+      "answer": "B"
      }
     },
     {
      "id": "ac-p2",
-     "name": "Marks ranking",
+     "name": "Marks and scores",
      "frequency": "very common",
-     "howToSpot": "'Scored more/less than' clues; highest, lowest or Nth scorer is asked.",
+     "howToSpot": "Clues use 'scored more than' or 'scored less than'. The highest, lowest or an exact seat is asked.",
      "formula": null,
-     "logic": "1. Convert 'scored less' clues so all arrows point toward more marks.\n2. Merge; read the slot from the top end.\n3. Double-check nobody outside the chain could beat the head.\n\n*Why it works:* scores order exactly like heights.",
+     "steps": [
+      "Write each clue as an arrow towards the higher score.",
+      "Turn 'less than' around.",
+      "Join the arrows and read the chain."
+     ],
+     "why": "'Scored more' works exactly like 'taller'.",
      "example": {
-      "q": "**A scored more than B; C scored less than D; B scored more than D. Who scored the least?**",
-      "solution": "A > B > D > C → least = **C**."
+      "q": "Kiran scored more than Lata but less than Manu. Neeta scored less than Lata. Om scored more than Manu. Who scored the second highest?",
+      "steps": [
+       "Arrows: Manu > Kiran > Lata, Lata > Neeta, Om > Manu.",
+       "Chain: Om > Manu > Kiran > Lata > Neeta.",
+       "The second person from the left is Manu."
+      ],
+      "answer": "Manu"
      }
     },
     {
      "id": "ac-p3",
-     "name": "Age ranking",
-     "frequency": "common",
-     "howToSpot": "'Older/younger than' clues about three to six people.",
+     "name": "Ages with 'younger' and 'older'",
+     "frequency": "very common",
+     "howToSpot": "Clues use 'older than' and 'younger than' about three to six people.",
      "formula": null,
-     "logic": "1. Point every arrow at the older person.\n2. Merge and read: oldest at the head, youngest at the tail.\n3. Watch 'younger' — it reverses the sentence's surface order.\n\n*Why it works:* ages are another total order.",
+     "steps": [
+      "Put the older person on the left in every arrow.",
+      "Turn each 'younger than' clue around.",
+      "Join and count from the left."
+     ],
+     "why": "Turning every clue to the same direction stops sign slips.",
      "example": {
-      "q": "**Rahul is older than Vijay; Sunil is younger than Vijay; Anil is older than Rahul. Who is the youngest?**",
-      "solution": "Anil > Rahul > Vijay > Sunil → youngest = **Sunil**."
+      "q": "Rita is younger than Sita. Tina is older than Sita. Uma is younger than Rita. Vani is older than Tina. Who is the third oldest?",
+      "steps": [
+       "Arrows: Sita > Rita, Tina > Sita, Rita > Uma, Vani > Tina.",
+       "Chain: Vani > Tina > Sita > Rita > Uma.",
+       "The third person from the left is Sita."
+      ],
+      "answer": "Sita"
      }
     },
     {
      "id": "ac-p4",
-     "name": "Stacked objects and shelves",
+     "name": "Stacked books and boxes",
      "frequency": "common",
-     "howToSpot": "Boxes/books/subjects with above-below clues; a slot from the top or bottom is asked.",
+     "howToSpot": "Books, boxes or subjects are described as above or below. A seat from the top or the bottom is asked.",
      "formula": null,
-     "logic": "1. Treat 'above' as > pointing upward.\n2. Build the stack top to bottom on paper.\n3. Slots: Nth from the top = Nth of the list; from the bottom = mirror.\n\n*Why it works:* vertical stacks obey the same order logic as lines.",
+     "steps": [
+      "Turn each 'below' clue into an 'above' clue.",
+      "Write the stack from the top down as a chain.",
+      "Count from the asked end."
+     ],
+     "why": "'Above' is just the arrow pointing up.",
      "example": {
-      "q": "**Civics is below Geography; History is below Economics but above Geography; Political Science is at the bottom. Which subject is third from the top?**",
-      "solution": "Economics > History > Geography > Civics > Political Science → third = **Geography**."
+      "q": "Five books are in a stack. Maths is above Science. History is below Science. Art is above Maths but below English. Which book is in the middle?",
+      "steps": [
+       "Arrows: Maths above Science, Science above History, English above Art above Maths.",
+       "Stack from the top: English, Art, Maths, Science, History.",
+       "The middle (third) book is Maths."
+      ],
+      "answer": "Maths"
+     }
+    },
+    {
+     "id": "ac-p5",
+     "name": "The seat is fixed but the order is not",
+     "frequency": "common",
+     "howToSpot": "Some pairs are never compared, but the question asks only for the tallest, shortest or one seat.",
+     "formula": null,
+     "steps": [
+      "Draw the arrows you have.",
+      "Check who has nobody above them. If only one person, that is the first seat.",
+      "Ignore the pairs that are never compared."
+     ],
+     "why": "A seat can be fixed even when the whole order is open.",
+     "example": {
+      "q": "P is taller than Q. Q is taller than R. S is taller than P. T is shorter than S. Who is the tallest?",
+      "steps": [
+       "Arrows: S > P > Q > R and S > T.",
+       "T is below S, but T is not compared with P, Q or R.",
+       "Nobody is above S."
+      ],
+      "answer": "S"
+     }
+    },
+    {
+     "id": "ac-p6",
+     "name": "Clues with 'immediately' and 'between'",
+     "frequency": "occasional",
+     "howToSpot": "Clues say 'immediately above' or 'between'. An exact rank is asked.",
+     "formula": null,
+     "steps": [
+      "Join 'immediately' pairs into one block first.",
+      "Place the other people above or below the block.",
+      "Fit each 'between' clue into the gap."
+     ],
+     "why": "An 'immediately' pair is a fixed block, and the other clues only place things around it.",
+     "example": {
+      "q": "Five students are ranked by marks. A is ranked immediately above B. C is ranked above A. D is ranked below B. E is ranked between B and D. Who is ranked 4th?",
+      "steps": [
+       "A and B form a block: A, B. C is above the block.",
+       "D is below B, and E is between B and D.",
+       "Order: C, A, B, E, D. Rank 4 is E."
+      ],
+      "answer": "E"
      }
     }
+   ],
+   "revision": [
+    "Every clue is an arrow towards the bigger, older or higher person.",
+    "Join clues that share a person into one chain.",
+    "Turn 'shorter', 'younger', 'less' and 'below' around first.",
+    "Read the chain: tallest is the first, shortest is the last.",
+    "A seat can be fixed even if the whole order is open.",
+    "'Immediately' means next to. 'Between' means somewhere inside."
    ]
   }
  ],

@@ -13,510 +13,1010 @@
   {
    "id": "m3d-cube-cuboid",
    "title": "Cube and cuboid",
-   "concept": "For a cube of edge $a$ and a cuboid $l\\times b\\times h$:\n\n| Quantity | Cuboid | Cube |\n|---|---|---|\n| Volume | $lbh$ | $a^3$ |\n| Lateral (4 walls) | $2(l+b)h$ | $4a^2$ |\n| Total surface | $2(lb+bh+lh)$ | $6a^2$ |\n| Space diagonal | $\\sqrt{l^2+b^2+h^2}$ | $a\\sqrt3$ |\n\nThe space diagonal is the **longest rod that fits in the room**. Wall questions use the lateral area only.",
+   "concept": "A cuboid has three dimensions l, b, h; a cube makes them equal. Volume is the product of the three; surface area adds the six faces. Capacity questions are volume questions with a litres conversion at the end.",
    "formulas": [
     {
-     "name": "Volume",
-     "tex": "V=lbh,\\qquad V_{\\text{cube}}=a^3"
+     "name": "Cuboid",
+     "tex": "V=lbh,\\quad \\text{LSA}=2h(l+b),\\quad \\text{TSA}=2(lb+bh+hl)",
+     "note": "l, b, h are the three dimensions."
     },
     {
-     "name": "Lateral surface",
-     "tex": "LSA=2(l+b)h,\\qquad LSA_{\\text{cube}}=4a^2"
+     "name": "Cube",
+     "tex": "V=a^3,\\quad \\text{LSA}=4a^2,\\quad \\text{TSA}=6a^2",
+     "note": "a = edge."
     },
     {
-     "name": "Total surface",
-     "tex": "TSA=2(lb+bh+lh),\\qquad TSA_{\\text{cube}}=6a^2"
+     "name": "Diagonals",
+     "tex": "d=\\sqrt{l^2+b^2+h^2},\\quad d_{\\text{cube}}=a\\sqrt3",
+     "note": "Corner to opposite corner."
     },
     {
-     "name": "Space diagonal",
-     "tex": "d=\\sqrt{l^2+b^2+h^2},\\qquad d_{\\text{cube}}=a\\sqrt3"
+     "name": "Capacity",
+     "tex": "1\\text{ m}^3=1000\\text{ L},\\quad 1\\text{ L}=1000\\text{ cm}^3",
+     "note": "Convert once, at the end."
+    },
+    {
+     "name": "Painted cube counts",
+     "tex": "8,\\ 12(n-2),\\ 6(n-2)^2,\\ (n-2)^3",
+     "note": "3, 2, 1, 0 painted faces for n by n by n."
     }
    ],
    "tricks": [
     {
-     "title": "Longest rod = space diagonal",
-     "body": "A rod can poke corner-to-corner through the room: $\\sqrt{l^2+b^2+h^2}$. Triplets like (3,4,12,13) exist:\n$3^2+4^2+12^2=169=13^2$.",
+     "title": "Cubes table, not cube roots",
+     "body": "Know the cubes to 12 by heart. Reverse questions become look-ups: 343 is 7 cubed.",
      "example": {
-      "q": "Find the length of the longest rod that can be placed in a room of dimensions $12\\text{ m}\\times9\\text{ m}\\times8\\text{ m}$.",
-      "solution": "$\\sqrt{12^2+9^2+8^2}=\\sqrt{144+81+64}=\\sqrt{289}=17$ m."
+      "q": "The volume of a cube is 343 cu cm. Its total surface area is:",
+      "steps": [
+       "$343=7^3$, so the edge is $7$ cm.",
+       "TSA $=6\\times7^2$.",
+       "$=294$ sq cm."
+      ],
+      "answer": "294 sq cm"
      }
     },
     {
-     "title": "Painting/flooring picks the right area",
-     "body": "Four walls → $2(l+b)h$ (ignore floor and roof). Full painting including roof and floor → TSA. Cost = area × rate.",
+     "title": "Capacity: metres to litres",
+     "body": "Compute the volume in cubic metres, then multiply by 1000 for litres. Never by 100.",
      "example": {
-      "q": "A room is 8 m long, 6 m wide and 4 m high. Find the cost of painting its four walls at ₹10 per sq m.",
-      "solution": "Four walls $=2(8+6)\\times4=112$ sq m; cost $=112\\times10=$ ₹1,120."
+      "q": "A tank is 1.5 m long, 1 m wide and 0.8 m deep. Its capacity in litres is:",
+      "steps": [
+       "$V=1.5\\times1\\times0.8=1.2$ m$^3$.",
+       "$1.2\\times1000$.",
+       "$=1200$ litres."
+      ],
+      "answer": "1200 litres"
+     }
+    },
+    {
+     "title": "Edge scaling in powers",
+     "body": "Edge times k: surface times k squared, volume times k cubed. Doubling is 4 and 8.",
+     "example": {
+      "q": "Each edge of a cube of edge 5 cm is doubled. The total surface area becomes:",
+      "steps": [
+       "Old TSA $=6\\times25=150$.",
+       "Area scales by $2^2=4$.",
+       "$150\\times4=600$ sq cm."
+      ],
+      "answer": "600 sq cm"
      }
     }
    ],
    "mistakes": [
-    "Using TSA where the question asks only for the four walls (or the reverse).",
-    "Cube diagonal $a\\sqrt3$ confused with the face diagonal $a\\sqrt2$.",
-    "Height left out of the wall formula: walls need $h$; floor area does not."
+    {
+     "wrong": "Using $6lb$ as the cuboid total surface.",
+     "right": "It is $2(lb+bh+hl)$. For $12\\times10\\times8$ that is 592, not 720."
+    },
+    {
+     "wrong": "Forgetting the two $lb$ faces in total surface.",
+     "right": "Total = lateral + top + bottom. Lateral $352$ plus $2\\times120=240$ gives 592."
+    },
+    {
+     "wrong": "Multiplying cubic metres by 100 for litres.",
+     "right": "One cubic metre is $1000$ litres: $1.2$ m$^3$ is 1200 L."
+    },
+    {
+     "wrong": "Doubling the edge and doubling the volume.",
+     "right": "Volume takes the cube of the scale: $2^3=8$ times, so $125\\to1000$."
+    },
+    {
+     "wrong": "Painted-cube corner counts other than 8.",
+     "right": "Only the 8 corners carry three painted faces, whatever $n$ is."
+    }
    ],
-   "notes": "### The four numbers of a box\nFor a cuboid of dimensions $l \\times b \\times h$ (and a cube, where $l = b = h = a$):\n| Quantity | Cuboid | Cube |\n|---|---|---|\n| Volume | $V = lbh$ | $a^3$ |\n| Total surface area | $2(lb + bh + lh)$ | $6a^2$ |\n| Lateral (4 walls) | $2h(l+b)$ | $4a^2$ |\n| Diagonal | $\\sqrt{l^2+b^2+h^2}$ | $a\\sqrt{3}$ |\n| Sum of edges | $4(l+b+h)$ | $12a$ |\n\nThese six pairs answer nearly every cube/cuboid question directly. The diagonal formula is the 2-D Pythagoras applied twice — it is the hypotenuse of a right triangle whose legs are a face diagonal and the third edge.\n\n### Units and capacity\nVolume in $\\text{cm}^3$ converts to millilitres 1:1; $1\\ \\text{m}^3 = 10^6\\ \\text{cm}^3 = 1000$ litres. Tank and pit questions: compute $V$ in $\\text{m}^3$, multiply by 1000 for litres. Reverse: a \"capacity of 50000 litres\" tank is $50\\ \\text{m}^3$. Area-based costs (painting, whitewashing) use the surface area asked — TOTAL for all faces, LATERAL for the four walls of a room (floor and ceiling excluded).\n\n### Composite box work\n- Cuboid cut into cubes: number of cubes $= \\frac{lbh}{a^3}$ when $a$ divides all dimensions.\n- Painting vs carpeting: carpeting is a floor area ($l \\times b$); painting four walls is lateral area; painting a closed box is total area. Read which one is priced.\n- Sum-of-edges questions: a frame or the total length of edges uses $4(l+b+h)$ — a different quantity from both area and volume.\n\n### Reading the ask, a worked mini-case\n\"A room 10 m x 6 m x 4 m is to be whitewashed, including the ceiling at Rs 5 per sq m\": whitewash covers four walls plus the ceiling (not the floor) $= 2h(l+b) + lb = 128 + 60 = 188$ sq m; cost $= 188 \\times 5 = 940$. The same room carpeted is $lb = 60$ sq m; the same room painted fully outside is the TSA. One set of dimensions, four different answers — the exam is testing which surface you price.\n\n### The cube number family\nCubes $1^3$ to $10^3$ (1, 8, 27, 64, 125, 216, 343, 512, 729, 1000) and their $6a^2$ (6, 24, 54, 96, 150, 216, 294, 384, 486, 600) cover most reverse questions at sight: TSA 294 → side 7 → diagonal $7\\sqrt3$ in two steps. The 3-D diagonal triplets reuse the 2-D ones: edges $(3, 4, 12)$ give diagonal $13$ ($9 + 16 + 144 = 169$), and edges $(2, 3, 6)$ give diagonal $7$ ($4 + 9 + 36 = 49$).\n\n### Quick revision\n- $V = lbh = a^3$; TSA $= 2(lb+bh+lh) = 6a^2$; LSA $= 2h(l+b) = 4a^2$.\n- Diagonal $\\sqrt{l^2+b^2+h^2} = a\\sqrt3$; edges $4(l+b+h) = 12a$.\n- $1\\ \\text{m}^3 = 1000$ L; $1\\ \\text{cm}^3 = 1$ mL.\n- Four walls of a room $= 2h(l+b)$; total incl. ceiling $= 2h(l+b) + lb$.\n",
+   "notes": "### The master table\n| Quantity | Cuboid $l\\times b\\times h$ | Cube, edge $a$ |\n|---|---|---|\n| Volume | $lbh$ | $a^3$ |\n| Lateral surface (4 walls) | $2h(l+b)$ | $4a^2$ |\n| Total surface (6 faces) | $2(lb+bh+hl)$ | $6a^2$ |\n| Diagonal | $\\sqrt{l^2+b^2+h^2}$ | $a\\sqrt3$ |\n\nCuboid $12\\times10\\times8$: volume $960$, walls $2\\times8\\times22=352$, total surface $2\\times(120+80+96)=592$.\n\nReverse works too: volume $960$ with two dimensions $12$ and $10$ leaves the third as $\\dfrac{960}{120}=8$. Attach square units to areas and cubic units to volumes, always.\n\n> **Rule:** Total surface is the walls plus top and bottom. Lateral surface alone skips the two $l\\times b$ faces.\n\n### Cube shortcuts\nEdge $6$: volume $216$, lateral $144$, total $216$, diagonal $6\\sqrt3$. The diagonal formula comes from using the cuboid diagonal with all three sides equal. A cube of volume $216$ has edge $6$; volume $125$ gives edge $5$.\n\nDoubling every edge multiplies area by $4$ and volume by $8$. Edge $5\\to10$: total surface $150\\to600$, volume $125\\to1000$.\n\n> **Tip:** Lengths take $k$, areas $k^2$, volumes $k^3$. Count what kind of quantity is asked before multiplying anything.\n\n### Capacity and cost\nOne cubic metre holds $1000$ litres, one litre is $1000$ cubic centimetres. A tank $1.5\\times1\\times0.8$ m has volume $1.2$ m$^3$, which is $1200$ litres.\n\nCost questions multiply volume by a rate: digging at Rs $20$ per m$^3$ costs $20\\times1.2=$ Rs $24$ for that tank. Match the rate's units to the volume's units before multiplying.\n\n> **Watch:** Convert units exactly once, at the end. Mixing cm and m midway is where capacity questions die.\n\n### Reverse questions\nGiven the volume or surface, peel back to the edge, then forward to the asked quantity.\n\nVolume $343$ cu cm means edge $7$ (since $7^3=343$); total surface is then $6\\times49=294$ sq cm. Two steps, no algebra.\n\n> **Remember:** Learn the cubes up to $12$: $1,8,27,64,125,216,343,512,729,1000,1331,1728$. Reverse questions then need no cube roots.\n\n### Painted cubes\nAn $n\\times n\\times n$ cube painted outside, cut into unit cubes:\n- $3$ faces painted: the $8$ corners\n- $2$ faces: the edges, $12(n-2)$\n- $1$ face: face centres, $6(n-2)^2$\n- $0$ faces: inside, $(n-2)^3$\n\nA $4$ cm cube cut into $1$ cm cubes: $8$, $24$, $24$, $8$. The four counts always add to $n^3=64$. A $3$ cm cube gives $8$, $12$, $6$, $1$.\n\n> **Tip:** Only corner cubes get three faces, always exactly $8$. Start there, then fill the edge and face counts. Slice counts never change when the whole cube is dipped instead of brushed.\n",
    "patterns": [
     {
      "id": "m3d-cb-p1",
      "name": "Volume and surface area of cuboid/cube",
      "frequency": "very common",
-     "howToSpot": "Dimensions given; volume or surface area (total/lateral) asked directly.",
-     "formula": "V = lbh;\\quad \\text{TSA} = 2(lb+bh+lh);\\quad \\text{LSA} = 2h(l+b)",
-     "logic": "1. Read whether TOTAL (all 6 faces), LATERAL (4 walls) or VOLUME is asked.\n2. Substitute; for a cube use the $a$-forms ($a^3$, $6a^2$, $4a^2$).\n3. Keep factor form until the last step to avoid arithmetic slips.\n\nWhy: each quantity prices a different real thing — capacity, full paint, wall paint — so the ask determines the formula.",
+     "howToSpot": "Three dimensions given, volume or a surface asked.",
+     "steps": [
+      "Volume: multiply all three.",
+      "Lateral: $2h(l+b)$.",
+      "Total: $2(lb+bh+hl)$, or $6a^2$ for a cube.",
+      "Attach square or cubic units."
+     ],
+     "why": "Both formulas are one substitution each once the dimensions are named.",
      "example": {
       "q": "Find the total surface area of a cuboid 12 cm x 10 cm x 8 cm.",
-      "solution": "TSA $= 2(12{\\cdot}10 + 10{\\cdot}8 + 12{\\cdot}8) = 2(120+80+96) = 592$ sq cm."
+      "steps": [
+       "$2\\times(12\\times10+10\\times8+12\\times8)$.",
+       "$=2\\times296=592$ sq cm."
+      ],
+      "answer": "592 sq cm"
      }
     },
     {
      "id": "m3d-cb-p2",
      "name": "Cube specifics: diagonal, lateral area, edges",
      "frequency": "common",
-     "howToSpot": "A cube's face diagonal/body diagonal, lateral surface, or the total edge length is asked.",
-     "formula": "d = a\\sqrt{3},\\quad \\text{LSA} = 4a^2,\\quad \\text{edges} = 12a",
-     "logic": "1. Body diagonal: side times $\\sqrt3$; face diagonal: side times $\\sqrt2$ — do not mix them.\n2. Lateral area (4 faces) vs total (6 faces): check the wording.\n3. Edge-total questions (frames, wire along edges): $12a$.\n\nWhy: the body diagonal spans a face diagonal and the third edge ($a^2 + 2a^2 = 3a^2$), giving the clean $a\\sqrt3$.",
+     "howToSpot": "A cube with one length given; a diagonal or surface asked.",
+     "steps": [
+      "Write the cube formulas in terms of the edge $a$.",
+      "Diagonal $=a\\sqrt3$.",
+      "Lateral $=4a^2$, total $=6a^2$."
+     ],
+     "why": "One variable drives every cube quantity, so a single given length answers everything.",
      "example": {
       "q": "The length of the diagonal of a cube of side 6 cm is:",
-      "solution": "$d = a\\sqrt3 = 6\\sqrt3$ cm."
+      "steps": [
+       "$d=a\\sqrt3$.",
+       "$=6\\sqrt3$ cm."
+      ],
+      "answer": "6*sqrt(3) cm"
      }
     },
     {
      "id": "m3d-cb-p3",
      "name": "Tank capacity in litres / volume cost",
      "frequency": "very common",
-     "howToSpot": "A tank, pit or room's capacity asked in litres — or digging/painting cost from volume/area at a rate.",
-     "formula": "V(\\text{m}^3) \\times 1000 = \\text{litres}",
-     "logic": "1. Compute the volume in the stated units; convert BEFORE comparing to rates.\n2. $1\\ \\text{m}^3 = 1000$ L; $1\\ \\text{cm}^3 = 1$ mL.\n3. Cost = (area or volume) x rate — decide which from the wording.\n\nWhy: rates are quoted per litre/sq m/cu m, so the conversion is where marks are won or lost.",
+     "howToSpot": "A tank, pit or room with dimensions; litres or rupees asked.",
+     "steps": [
+      "Compute the volume in cubic metres.",
+      "Capacity: multiply by $1000$.",
+      "Cost: multiply by the rate per cubic metre."
+     ],
+     "why": "Capacity and cost are both volume times a constant, so the geometry happens once.",
      "example": {
       "q": "A tank is 1.5 m long, 1 m wide and 0.8 m deep. Its capacity in litres is:",
-      "solution": "$V = 1.5 \\times 1 \\times 0.8 = 1.2\\ \\text{m}^3 = 1200$ litres."
+      "steps": [
+       "$V=1.2$ m$^3$.",
+       "$1.2\\times1000=1200$ litres."
+      ],
+      "answer": "1200 litres"
      }
     },
     {
      "id": "m3d-cb-p4",
-     "name": "Reverse: from volume/area back to a side",
+     "name": "Reverse: from volume or area back to a side",
      "frequency": "common",
-     "howToSpot": "Volume (or surface area) of a cube given — the side, diagonal or edge-sum asked.",
-     "formula": "a = \\sqrt[3]{V},\\quad a = \\sqrt{\\text{TSA}/6}",
-     "logic": "1. Cube: take the cube root of the volume for the side.\n2. From surface area: divide by 6, take the square root.\n3. Then answer the actual ask (diagonal $a\\sqrt3$, edges $12a$, face area $a^2$).\n\nWhy: every cube quantity is a clean power of $a$, so any one of them rebuilds the whole box.",
+     "howToSpot": "A volume or surface area given, an edge or another quantity asked.",
+     "steps": [
+      "Match the volume to a known cube ($7^3=343$).",
+      "Recover the edge.",
+      "Substitute into the asked formula."
+     ],
+     "why": "Reverse questions are look-ups when the cube table is memorised, algebra when it is not.",
      "example": {
       "q": "The volume of a cube is 343 cu cm. Its total surface area is:",
-      "solution": "$a = \\sqrt[3]{343} = 7$; TSA $= 6 \\times 49 = 294$ sq cm."
+      "steps": [
+       "$343=7^3$, edge $=7$ cm.",
+       "TSA $=6\\times49=294$ sq cm."
+      ],
+      "answer": "294 sq cm"
+     }
+    },
+    {
+     "id": "m3d-cb-p5",
+     "name": "Painted cube cut into unit cubes",
+     "frequency": "common",
+     "howToSpot": "A big painted cube sliced into equal small cubes; a count asked.",
+     "steps": [
+      "Find $n$: big edge over small edge.",
+      "Three painted faces: $8$ corners.",
+      "Two: $12(n-2)$; one: $6(n-2)^2$; none: $(n-2)^3$."
+     ],
+     "why": "Position, not luck, decides how many painted faces a small cube carries; the counts are pure formulas.",
+     "example": {
+      "q": "A cube of 4 cm edge is painted on all faces and cut into 1 cm cubes. How many small cubes have exactly two painted faces?",
+      "steps": [
+       "$n=\\dfrac{4}{1}=4$.",
+       "Two faces: $12(n-2)=12\\times2=24$."
+      ],
+      "answer": "24"
      }
     }
+   ],
+   "revision": [
+    "Cuboid: $V=lbh$, walls $2h(l+b)$, total $2(lb+bh+hl)$.",
+    "Cube: $V=a^3$, walls $4a^2$, total $6a^2$, diagonal $a\\sqrt3$.",
+    "$1$ m$^3=1000$ L and $1$ L $=1000$ cm$^3$; convert once at the end.",
+    "Reverse questions: recall the cube from the table ($343\\to7$), then move forward.",
+    "Scale $k$: areas $\\times k^2$, volumes $\\times k^3$.",
+    "Painted $n$-cube: $8$ corners, $12(n-2)$ edges, $6(n-2)^2$ faces, $(n-2)^3$ inside."
    ]
   },
   {
    "id": "m3d-cylinder",
    "title": "Cylinder",
-   "concept": "For a cylinder of radius $r$ and height $h$:\n- Volume $=\\pi r^2h$ (capacity in litres: multiply $\\text{m}^3$ by 1000)\n- Curved surface $=2\\pi rh$\n- Total surface $=2\\pi r(r+h)$\n- A **hollow pipe/well** of inner radius $r$, outer radius $R$: volume of material $=\\pi(R^2-r^2)h$\n- A **wire/rod** is a very long thin cylinder: its volume is $\\pi r^2\\times\\text{length}$.",
+   "concept": "A cylinder of radius r and height h has volume pi r squared h and curved surface two pi r h. The total surface adds the two circular ends. Most questions either substitute directly or reverse one dimension from the volume.",
    "formulas": [
     {
-     "name": "Volume",
-     "tex": "V=\\pi r^2h"
+     "name": "Cylinder",
+     "tex": "V=\\pi r^2h,\\quad \\text{CSA}=2\\pi rh,\\quad \\text{TSA}=2\\pi r(h+r)",
+     "note": "r = radius, h = height."
     },
     {
-     "name": "Curved surface",
-     "tex": "CSA=2\\pi rh"
-    },
-    {
-     "name": "Total surface",
-     "tex": "TSA=2\\pi r(r+h)"
-    },
-    {
-     "name": "Hollow cylinder",
-     "tex": "V=\\pi(R^2-r^2)h"
+     "name": "Missing height",
+     "tex": "h=\\frac{V}{\\pi r^2}",
+     "note": "Reverse of the volume formula."
     },
     {
      "name": "Capacity",
-     "tex": "1\\ \\text{m}^3=1000\\ \\ell"
+     "tex": "\\text{litres}=\\text{m}^3\\times1000",
+     "note": "Same conversion as tanks."
+    },
+    {
+     "name": "Dimension change",
+     "tex": "V\\propto r^2h,\\quad \\text{CSA}\\propto rh",
+     "note": "Scale each symbol by its own factor."
     }
    ],
    "tricks": [
     {
-     "title": "1 m³ = 1000 litres",
-     "body": "Tank answers in litres: compute $\\pi r^2h$ in metres, then ×1000. Keep radii in the units the answer needs.",
+     "title": "154 and friends",
+     "body": "pi r squared for r = 7, 14, 21 is 154, 616, 1386. Reverse questions then divide by a friendly number.",
      "example": {
-      "q": "A cylindrical water tank has a radius of 2 m and a depth of 7 m. Find its capacity in litres. [Use $\\pi=\\frac{22}{7}$]",
-      "solution": "$V=\\frac{22}{7}\\times4\\times7=88$ m$^3$ $=88{,}000$ litres."
+      "q": "The volume of a cylinder is 1540 cu cm and its radius is 7 cm. Its height is:",
+      "steps": [
+       "$\\pi r^2=\\dfrac{22}{7}\\times49=154$.",
+       "$h=\\dfrac{1540}{154}$.",
+       "$h=10$ cm."
+      ],
+      "answer": "10 cm"
      }
     },
     {
-     "title": "Hollow cylinder: difference of squared radii",
-     "body": "Material volume $=\\pi(R^2-r^2)h$ — the cross-section is a ring.",
+     "title": "Scale the symbols, not the shape",
+     "body": "Radius doubled, height halved: volume factor is 4 times 1/2 = 2. Track r squared and h separately.",
      "example": {
-      "q": "A metallic pipe has inner radius 3 cm, outer radius 5 cm and length 14 cm. Find the volume of metal. [Use $\\pi=\\frac{22}{7}$]",
-      "solution": "$\\frac{22}{7}\\times(25-9)\\times14=\\frac{22}{7}\\times224=704$ cu cm."
+      "q": "The radius of a cylinder is doubled and its height is halved. Its volume becomes:",
+      "steps": [
+       "$r^2$ factor: $2^2=4$.",
+       "$h$ factor: $\\dfrac12$.",
+       "Net: $4\\times\\dfrac12=2$ times."
+      ],
+      "answer": "2 times"
+     }
+    },
+    {
+     "title": "Melt: equate volumes",
+     "body": "Melting conserves volume. Write both volume formulas equal, cancel, solve for the new length.",
+     "example": {
+      "q": "A cone of radius 7 cm and height 12 cm is melted into a cylinder of radius 7 cm. The cylinder's height is:",
+      "steps": [
+       "Cone: $\\dfrac13\\times\\dfrac{22}{7}\\times49\\times12=616$ cu cm.",
+       "$616=\\dfrac{22}{7}\\times49\\times h=154h$.",
+       "$h=4$ cm."
+      ],
+      "answer": "4 cm"
      }
     }
    ],
    "mistakes": [
-    "Using the outer radius alone for a hollow pipe.",
-    "Forgetting the 1000 factor when the answer is asked in litres.",
-    "CSA ($2\\pi rh$) and TSA ($2\\pi r(r+h)$) mixed up when the question mentions a closed drum or an open tank."
+    {
+     "wrong": "Using the diameter in $\\pi r^2h$.",
+     "right": "Radius only. Diameter $14$ means $r=7$."
+    },
+    {
+     "wrong": "Calling the CSA the total surface.",
+     "right": "TSA $=$ CSA $+$ two ends: $440+308=748$, not 440."
+    },
+    {
+     "wrong": "Multiplying cubic metres by 100 for litres.",
+     "right": "The factor is $1000$: $30.8$ m$^3$ is 30,800 L."
+    },
+    {
+     "wrong": "Scaling volume by $2$ when only the radius doubles.",
+     "right": "$r$ is squared: volume $\\times4$. Height halving then brings it to $\\times2$."
+    },
+    {
+     "wrong": "Re-deriving $\\pi r^2$ every line.",
+     "right": "Factor it once ($154$ for $r=7$) and reuse; errors drop sharply."
+    }
    ],
-   "notes": "### The three measures\nFor a cylinder of radius $r$, height $h$:\n$$V = \\pi r^2 h,\\qquad \\text{CSA (curved)} = 2\\pi r h,\\qquad \\text{TSA} = 2\\pi r(h + r)$$\nThe curved surface unrolls into a rectangle of width $2\\pi r$ (the circumference) and height $h$ — that picture explains every formula. The two circular lids add $\\pi r^2$ each for the total.\n\n### Reverse and ratio work\n- From volume: $h = \\frac{V}{\\pi r^2}$; from CSA: $r = \\frac{\\text{CSA}}{2\\pi h}$.\n- Changing dimensions: $V \\propto r^2 h$, so doubling $r$ quadruples $V$, doubling $h$ doubles it; radius $\\times 2$ AND height $\\div 2$ leaves $V \\times 2$. These multiplier questions are one-line proportion bookkeeping.\n\n### Pipes, wells and flowing water\n- **Hollow pipe (tube)**: metal volume $= \\pi (R^2 - r^2) \\times$ length — the annulus times the length.\n- **Well/tank capacity**: compute $V$ in $\\text{m}^3$; litres $= 1000 V$.\n- **Water flow**: volume delivered per second $= \\pi r^2 \\times$ (speed); multiply by seconds for the total. Keep the speed units (cm/s) consistent with the radius units.\n\n### Melting and recasting\nMelting preserves VOLUME: a cylinder recast into a sphere/wire/spheres keeps $\\pi r^2 h$ (with the same metal). Drawn-wire questions: the wire is a thin cylinder of equal volume; if the wire's radius is given as a decimal (0.1 cm etc.), be careful with the fourth power ($r^2$ on both sides).\n\n### The 22/7 number family (with $r = 7$)\n- $\\pi r^2 = 154$ (base area), $2\\pi r = 44$ (circumference).\n- CSA $= 44h$: $h = 5 \\to 220$, $h = 10 \\to 440$, $h = 14 \\to 616$.\n- $V = 154h$: $h = 10 \\to 1540$, $h = 5 \\to 770$.\n- Radii 14, 21, 3.5 work the same way: $r = 14 \\Rightarrow \\pi r^2 = 616$; $r = 3.5 \\Rightarrow \\pi r^2 = 38.5$.\nReverse questions hide in this family: volume 1540 with $r = 7$ is instantly $h = 10$.\n\n### Two worked mini-cases\nPipe: outer R $= 5$, inner r $= 3$, length 14 — ring $= \\frac{22}{7}(25 - 9) = \\frac{352}{7}$; volume $= \\frac{352}{7} \\times 14 = 704$ cu cm. The ($R^2 - r^2$) factorises to $(R+r)(R-r) = 8 \\times 2$ — sometimes faster.\nFlow: a pipe of radius 2 cm delivers water at 10 cm/s for 60 s — volume $= \\pi \\times 4 \\times 10 \\times 60 = 2400\\pi$ cu cm. Length delivered $=$ speed $\\times$ time; the cross-section turns that length into volume.\n\n### Quick revision\n- $V = \\pi r^2 h$; CSA $= 2\\pi rh$; TSA $= 2\\pi r(h+r)$.\n- $V \\propto r^2 h$: radius changes square, height changes linear.\n- Pipe metal $= \\pi(R^2 - r^2)L$; litres $= 1000 \\times \\text{m}^3$.\n- Melting/recasting: volume is invariant.\n",
+   "notes": "### The three formulas\n$$V=\\pi r^2h,\\qquad \\text{CSA}=2\\pi rh,\\qquad \\text{TSA}=2\\pi r(h+r)$$\nTSA is the curved surface plus both circles: $2\\pi rh+2\\pi r^2$.\n\nRadius $7$, height $10$: volume $\\dfrac{22}{7}\\times49\\times10=1540$; CSA $2\\times\\dfrac{22}{7}\\times7\\times10=440$; TSA $440+308=748$. Check TSA the second way: $2\\pi r(h+r)=2\\times\\dfrac{22}{7}\\times7\\times17=748$.\n\n> **Rule:** Fix the radius first and keep it factored. The $r$ cancels out of most reverse questions.\n\n### Reverse: find the missing dimension\nVolume $1540$ with radius $7$: $h=\\dfrac{1540}{154}=10$, because $\\pi r^2=\\dfrac{22}{7}\\times49=154$. One division, and the same trick answers every reverse question.\n\nThe same move finds the radius when the height is given: $r^2=\\dfrac{V}{\\pi h}$, then recall the square. And the CSA reverses the same way: $440=2\\times\\dfrac{22}{7}\\times7\\times h$ gives $h=10$.\n\n> **Tip:** $\\pi r^2$ for $r=7$ is $154$; for $r=14$ it is $616$; for $r=21$ it is $1386$. Halves appear too: $r=3.5$ gives $38.5$. These four end up everywhere.\n\n### Pipes, wells and capacity\nA hollow pipe or a well uses the same cylinder; a pipe's length plays the height's role. Well of radius $1.4$ m and depth $5$ m:\n$$V=\\frac{22}{7}\\times1.96\\times5=30.8\\text{ m}^3=30{,}800\\text{ litres}$$\n\nCost of digging multiplies the volume by the rate per cubic metre, exactly like tank questions. At Rs $25$ per m$^3$, that well costs $25\\times30.8=$ Rs $770$.\n\nA one-litre bottle holds $1000$ cu cm; the tank and bottle rules are one rule.\n\n> **Watch:** Radius $1.4$ m is $140$ cm if the question mixes units. Pick one unit before the first line.\n\n### Changing the dimensions\n- Radius doubled, height same: volume $4$ times, curved surface $2$ times.\n- Radius doubled, height halved: volume $2$ times.\n- Height alone doubled: volume $2$ times, curved surface $2$ times.\n- Radius and height both doubled: volume $8$ times.\n\nThe exponent tracks the factor: $r$ appears squared in the volume, once in the curved surface.\n\n> **Remember:** Ask which symbols the change touches. Volume $V=\\pi r^2h$: scale $r^2$ by $4$ and $h$ by $\\dfrac12$, net $2$.\n\n### Melting into a cylinder\nVolume survives a melt. The shape changes; the amount of metal does not. A cone of radius $7$, height $12$ has volume $\\dfrac13\\times154\\times12=616$; poured into a cylinder of radius $7$ it reaches height $\\dfrac{616}{154}=4$ cm.\n\n> **Tip:** Melted questions never need the second solid's shape knowledge beyond its volume formula. Equate volumes, solve for one length.\n",
    "patterns": [
     {
      "id": "m3d-cy-p1",
-     "name": "Volume / CSA / TSA of a cylinder",
+     "name": "Volume, CSA and TSA of a cylinder",
      "frequency": "very common",
-     "howToSpot": "Radius and height given (diameter given — halve it first!); one of volume, curved or total surface asked.",
-     "formula": "V = \\pi r^2 h,\\quad \\text{CSA} = 2\\pi rh,\\quad \\text{TSA} = 2\\pi r(h+r)",
-     "logic": "1. Identify WHICH measure is asked: capacity → $V$, lateral/curved → CSA, closed drum → TSA.\n2. Substitute with $\\pi = 22/7$; the memorised (7 → 22, 154, 616) family speeds this up.\n3. Keep $\\pi$ symbolic until the last multiplication.\n\nWhy: the three measures price different real objects (content, label, full metal sheet) — the wording picks the formula.",
+     "howToSpot": "Radius and height given, a quantity asked.",
+     "steps": [
+      "Volume: $\\pi r^2h$.",
+      "CSA: $2\\pi rh$.",
+      "TSA: add $2\\pi r^2$ for the ends."
+     ],
+     "why": "Three direct substitutions cover the whole pattern; only the arithmetic changes.",
      "example": {
       "q": "Find the volume of a cylinder of radius 7 cm and height 10 cm.",
-      "solution": "$V = \\frac{22}{7} \\times 49 \\times 10 = 1540$ cu cm."
+      "steps": [
+       "$V=\\dfrac{22}{7}\\times49\\times10$.",
+       "$V=1540$ cu cm."
+      ],
+      "answer": "1540 cu cm"
      }
     },
     {
      "id": "m3d-cy-p2",
      "name": "Reverse: solve for the missing dimension",
      "frequency": "common",
-     "howToSpot": "Volume or CSA given with one dimension — the other asked.",
-     "formula": "h = \\frac{V}{\\pi r^2},\\quad r = \\frac{\\text{CSA}}{2\\pi h}",
-     "logic": "1. Write the formula; substitute the two knowns.\n2. Solve the linear equation for the missing dimension.\n3. Sanity-check the size against the given measure.\n\nWhy: each formula is linear in $h$ and quadratic in $r$ — solving for $h$ is direct algebra, solving for $r$ means a division then a root.",
+     "howToSpot": "Volume plus one dimension, the other asked.",
+     "steps": [
+      "Write $V=\\pi r^2h$ with the knowns in.",
+      "Compute $\\pi r^2$ (or $\\pi h$) as one number.",
+      "Divide to isolate the unknown."
+     ],
+     "why": "One equation with one hidden quantity; the pi terms cancel to a clean division.",
      "example": {
       "q": "The volume of a cylinder is 1540 cu cm and its radius is 7 cm. Its height is:",
-      "solution": "$h = \\frac{1540}{\\frac{22}{7} \\times 49} = \\frac{1540}{154} = 10$ cm."
+      "steps": [
+       "$\\pi r^2=154$.",
+       "$h=\\dfrac{1540}{154}=10$ cm."
+      ],
+      "answer": "10 cm"
      }
     },
     {
      "id": "m3d-cy-p3",
      "name": "Hollow pipe and well capacity",
      "frequency": "common",
-     "howToSpot": "A pipe/tube with outer and inner radii — metal volume; or a well/tank — capacity in litres.",
-     "formula": "V_{\\text{metal}} = \\pi (R^2 - r^2) L;\\quad \\text{litres} = 1000 \\times \\text{m}^3",
-     "logic": "1. Pipe: the cross-section is a ring — $\\pi(R^2 - r^2)$ — stretched over length $L$.\n2. Well: volume $\\pi r^2 h$ in $\\text{m}^3$, then $\\times 1000$ for litres.\n3. Watch units: radii in cm with length in m must be matched first.\n\nWhy: a hollow solid is the difference of two full solids; a well is just a fat cylinder priced by capacity.",
+     "howToSpot": "A pipe or well with radius and length; litres or cost asked.",
+     "steps": [
+      "Treat it as a cylinder: $V=\\pi r^2h$.",
+      "Convert cubic metres to litres by $1000$.",
+      "For cost, multiply by the rate."
+     ],
+     "why": "Wells and pipes add only a units conversion on top of the standard volume.",
      "example": {
       "q": "A cylindrical well has radius 1.4 m and depth 5 m. Its capacity in litres is:",
-      "solution": "$V = \\frac{22}{7} \\times 1.96 \\times 5 = 30.8\\ \\text{m}^3$ → $30{,}800$ litres."
+      "steps": [
+       "$V=\\dfrac{22}{7}\\times1.96\\times5=30.8$ m$^3$.",
+       "$30.8\\times1000=30{,}800$ litres."
+      ],
+      "answer": "30,800 litres"
      }
     },
     {
      "id": "m3d-cy-p4",
      "name": "Dimension-change multipliers",
      "frequency": "common",
-     "howToSpot": "'Radius doubled, height halved' — by what factor does the volume/surface change?",
-     "formula": "V' = \\pi (kr)^2 (mh) = k^2 m\\, V",
-     "logic": "1. Write the volume as $\\pi r^2 h$; apply the factor to each symbol.\n2. $r \\times k$ contributes $k^2$; $h \\times m$ contributes $m$.\n3. Multiply the contributions; for CSA ($\\propto rh$) the factors enter linearly.\n\nWhy: radius appears squared in the volume, so its changes compound — the most-tested multiplier fact of the subtopic.",
+     "howToSpot": "A radius or height scaled; the new volume or surface asked.",
+     "steps": [
+      "Note the factor on each symbol.",
+      "Raise it to the symbol's power ($r^2$ in volume).",
+      "Multiply the factors."
+     ],
+     "why": "No recomputation needed: the formula's exponents convert scale factors directly.",
      "example": {
       "q": "The radius of a cylinder is doubled and its height is halved. Its volume becomes:",
-      "solution": "$V' = \\pi (2r)^2 \\cdot \\frac{h}{2} = 4 \\times \\frac12 \\pi r^2 h = 2V$ — doubled."
+      "steps": [
+       "$r^2$ gives $4$, $h$ gives $\\dfrac12$.",
+       "$4\\times\\dfrac12=2$ times."
+      ],
+      "answer": "2 times"
+     }
+    },
+    {
+     "id": "m3d-cy-p5",
+     "name": "Melting another solid into a cylinder",
+     "frequency": "common",
+     "howToSpot": "A cone, sphere or cubes melted and recast as a cylinder.",
+     "steps": [
+      "Compute the source volume.",
+      "Set it equal to $\\pi r^2h$ of the cylinder.",
+      "Solve for the asked length."
+     ],
+     "why": "Melting conserves volume, so the cylinder formula becomes a one-unknown equation.",
+     "example": {
+      "q": "A cone of radius 7 cm and height 12 cm is melted into a cylinder of radius 7 cm. The cylinder's height is:",
+      "steps": [
+       "$V_{\\text{cone}}=\\dfrac13\\times154\\times12=616$ cu cm.",
+       "$154h=616$.",
+       "$h=4$ cm."
+      ],
+      "answer": "4 cm"
      }
     }
+   ],
+   "revision": [
+    "$V=\\pi r^2h$, CSA $=2\\pi rh$, TSA $=2\\pi r(h+r)$.",
+    "Reverse: $h=\\dfrac{V}{\\pi r^2}$; know $154$, $616$, $1386$ for $r=7,14,21$.",
+    "Wells and pipes are cylinders; litres $=$ m$^3\\times1000$.",
+    "Radius doubles: volume $\\times4$, CSA $\\times2$; both double: volume $\\times8$.",
+    "Melting keeps volume: equate the two formulas, cancel, solve."
    ]
   },
   {
    "id": "m3d-cone",
    "title": "Cone",
-   "concept": "For a cone of radius $r$, height $h$ and slant height $\\ell=\\sqrt{r^2+h^2}$:\n- Volume $=\\frac13\\pi r^2h$ (exactly one-third of the cylinder on the same base)\n- Curved surface $=\\pi r\\ell$\n- Total surface $=\\pi r(\\ell+r)$\n- If a cone is rolled from a sector of a circle: the sector's radius is $\\ell$, and arc length $=2\\pi r$.\n\nThe $r$-$h$-$\\ell$ triangle is right-angled, so Pythagorean triplets (3,4,5), (7,24,25), (5,12,13) appear constantly.",
+   "concept": "A cone of radius r and height h has slant height root of r squared plus h squared. Its volume is one third of a cylinder on the same base; its curved surface is pi r l. Radius-height-slant triples are Pythagorean triplets, most often 3-4-5 and 7-24-25.",
    "formulas": [
     {
      "name": "Slant height",
-     "tex": "\\ell=\\sqrt{r^2+h^2}"
+     "tex": "\\ell=\\sqrt{r^2+h^2}",
+     "note": "Radius, height, slant: a right triangle."
     },
     {
-     "name": "Volume",
-     "tex": "V=\\frac13\\pi r^2h"
+     "name": "Cone volume",
+     "tex": "V=\\frac{1}{3}\\pi r^2h",
+     "note": "One-third of the same-base cylinder."
     },
     {
-     "name": "Curved surface",
-     "tex": "CSA=\\pi r\\ell"
+     "name": "Cone surfaces",
+     "tex": "\\text{CSA}=\\pi r\\ell,\\quad \\text{TSA}=\\pi r(\\ell+r)",
+     "note": "Skirt alone, or skirt plus base."
     },
     {
-     "name": "Total surface",
-     "tex": "TSA=\\pi r(\\ell+r)"
+     "name": "Same base ratios",
+     "tex": "V_{\\text{cone}}=\\frac{V_{\\text{cyl}}}{3}",
+     "note": "Equal base and height."
     }
    ],
    "tricks": [
     {
-     "title": "Triplet for the slant height",
-     "body": "Check for (3,4,5) or (7,24,25) among $r,h,\\ell$ before computing a square root.",
+     "title": "Hunt the triplet",
+     "body": "7-24-25, 3-4-5 and their multiples cover nearly every cone. Two lengths known, read the third.",
      "example": {
-      "q": "The radius of a cone is 7 cm and its height 24 cm. Find its curved surface area. [Use $\\pi=\\frac{22}{7}$]",
-      "solution": "$\\ell=\\sqrt{7^2+24^2}=25$; CSA $=\\frac{22}{7}\\times7\\times25=550$ sq cm."
+      "q": "The radius of a cone is 7 cm and its height is 24 cm. Its curved surface area is:",
+      "steps": [
+       "$\\ell=\\sqrt{49+576}=25$ cm (triplet).",
+       "CSA $=\\dfrac{22}{7}\\times7\\times25$.",
+       "$=550$ sq cm."
+      ],
+      "answer": "550 sq cm"
      }
     },
     {
-     "title": "One-third of the cylinder",
-     "body": "Equal base and height: $V_{\\text{cone}}=\\frac13V_{\\text{cylinder}}$ — useful directly in ratio questions and for\nconical heaps of sand/grain.",
+     "title": "One-third both ways",
+     "body": "Cone to cylinder: divide by 3. Cone volume given: multiply by 3 before dividing by the base area.",
      "example": {
-      "q": "A conical tent has base radius 7 m and height 24 m. Find its volume. [Use $\\pi=\\frac{22}{7}$]",
-      "solution": "$V=\\frac13\\times\\frac{22}{7}\\times49\\times24=1232$ cu m."
+      "q": "The volume of a cone is 132 cu cm and its base radius is 3 cm. Its height is:",
+      "steps": [
+       "$132\\times3=396$.",
+       "$\\pi r^2=\\dfrac{22}{7}\\times9=\\dfrac{198}{7}$.",
+       "$h=396\\div\\dfrac{198}{7}=14$ cm."
+      ],
+      "answer": "14 cm"
+     }
+    },
+    {
+     "title": "Tent = curved surface",
+     "body": "Canvas touches only the slanted side, so use pi r l. Add the base circle only for a solid cone.",
+     "example": {
+      "q": "A conical tent has base radius 7 m and slant height 25 m. The canvas required to make it (sq m) is:",
+      "steps": [
+       "CSA $=\\dfrac{22}{7}\\times7\\times25$.",
+       "$=550$ sq m."
+      ],
+      "answer": "550 sq m"
      }
     }
    ],
    "mistakes": [
-    "Using $\\pi r^2h$ (cylinder volume) for a cone — the one-third is forgotten most often.",
-    "CSA computed with $h$ instead of $\\ell$.",
-    "Rounding $\\ell$ from a non-triplet when exact fractions were expected."
+    {
+     "wrong": "Using $\\pi rh$ for the curved surface.",
+     "right": "It is $\\pi r\\ell$ with the slant. For 7 and 24 that means 550, not $\\pi\\times7\\times24$."
+    },
+    {
+     "wrong": "Treating the slant as the height.",
+     "right": "Height is the drop down the middle; slant runs along the surface. $\\ell=\\sqrt{r^2+h^2}$."
+    },
+    {
+     "wrong": "Forgetting the $\\dfrac13$ in the cone volume.",
+     "right": "A cone is one-third of its cylinder: $120$ cylinder means $40$ cone."
+    },
+    {
+     "wrong": "Adding the base to a tent's canvas.",
+     "right": "Tents need the curved surface $\\pi r\\ell$ only."
+    },
+    {
+     "wrong": "Cancelling $\\pi$ but not the $\\dfrac13$ when melting.",
+     "right": "Carry the one-third: $288\\pi$ as a sphere gives $R^3=216$, $R=6$."
+    }
    ],
-   "notes": "### The cone formulas and the slant triplet\nFor a right circular cone of radius $r$, height $h$, slant $l$:\n$$l = \\sqrt{r^2 + h^2},\\qquad V = \\frac{1}{3}\\pi r^2 h,\\qquad \\text{CSA} = \\pi r l,\\qquad \\text{TSA} = \\pi r(l + r)$$\nThe curved surface unrolls into a sector of radius $l$ — that is why $l$ (not $h$) appears in CSA and TSA. Almost every cone question is built on a Pythagorean $(r, h, l)$ triplet, with $(7, 24, 25)$ dominating exams and $(3, 4, 5)$-multiples next. Memorise the whole 7-24-25 family at $\\pi = 22/7$:\n| given | CSA | TSA | Volume |\n|---|---|---|---|\n| $r=7, h=24, l=25$ | $550$ | $704$ | $1232$ |\n\nThe base circle is always $\\pi r^2 = 154$ here, so TSA $= 550 + 154$. A question tripling the size triples nothing — every length scales linearly, areas by $k^2$, volume by $k^3$.\n\n### Reverse routes\n- From CSA: $l = \\frac{\\text{CSA}}{\\pi r}$, then $h = \\sqrt{l^2 - r^2}$.\n- From volume: $h = \\frac{3V}{\\pi r^2}$ — the factor 3 moving to the top is the classic slip; $r = \\sqrt{\\frac{3V}{\\pi h}}$ likewise.\n- Conical heap questions: base circumference first — $r = \\frac{C}{2\\pi}$ (C $= 44$ m gives $r = 7$ m directly with $\\pi = 22/7$).\n- Tent questions: canvas $=$ CSA only (no floor). Painted/covered-including-base: add $\\pi r^2$.\n\n### Recasting and inscribed relations\nMelting preserves volume: a cone recast into a sphere satisfies $\\frac{1}{3}\\pi r^2 h = \\frac{4}{3}\\pi R^3$, so $R^3 = \\frac{r^2 h}{4}$ — and $r^2 h$ is chosen divisible by 4 in every exam instance. A cone melted into $n$ similar cones divides every length by $\\sqrt[3]{n}$ ($n = 27 \\Rightarrow$ height $\\div 3$).\nSolids on the same base with height equal to the radius: $\\text{cone} : \\text{hemisphere} : \\text{cylinder} = \\frac13\\pi r^3 : \\frac23\\pi r^3 : \\pi r^3 = 1 : 2 : 3$. The largest cone inscribed in a cylinder (same base, same height) holds exactly $\\frac13$ of the cylinder.\n\n### Frustum preview\nCutting a cone parallel to its base leaves a frustum: $V = \\frac{\\pi h}{3}(R^2 + r^2 + Rr)$ — the bucket/tumbler shape, worked in the prism-pyramid subtopic. If instead the TOP piece is asked, it is a smaller similar cone: subtract, or use the similarity ratio directly.\n\n### Quick revision\n- $l = \\sqrt{r^2+h^2}$; CSA $= \\pi r l$; TSA $= \\pi r(l + r)$; $V = \\frac13 \\pi r^2 h$.\n- Triplet $(7, 24, 25)$: CSA $550$, TSA $704$, $V$ $1232$, base $154$.\n- From $V$: $h = \\frac{3V}{\\pi r^2}$ (mind the 3). From $C$: $r = \\frac{C}{2\\pi}$.\n- Recast cone → sphere: $R^3 = \\frac{r^2 h}{4}$; into $n$ similar cones: lengths $\\div \\sqrt[3]{n}$.\n- Same base & height ($h = r$): cone : hemisphere : cylinder $= 1:2:3$.\n",
+   "notes": "### The three lengths first\n$$\\ell=\\sqrt{r^2+h^2}$$\nRadius $7$ and height $24$ give slant $25$: the $7$-$24$-$25$ triplet. Check for a triplet before squaring anything. Radius $21$ with height $28$ gives slant $35$, and $\\dfrac{22}{7}\\times21\\times35=2310$ sq cm of curved surface.\n\nThe three lengths make a right triangle inside the cone: radius and height at right angles, slant along the surface. Families to know: $3$-$4$-$5$ and its multiples, $7$-$24$-$25$, $8$-$15$-$17$, $12$-$35$-$37$.\n\nA classic ratio: cylinder, hemisphere and cone on the same base with cylinder height $=$ radius hold volumes $3:2:1$.\n\n> **Rule:** Find $\\ell$ first. Both surface formulas need it, and triplet spotting avoids the root.\n\n### Volume and the one-third\n$$V=\\frac{1}{3}\\pi r^2h$$\nExactly one-third of the cylinder with the same base and height. A cylinder of volume $120$ pairs with a cone of $40$. Radius $7$ with height $9$ gives $V=\\dfrac13\\times154\\times9=462$ cu cm.\n\nThe factor $\\dfrac13$ also runs in reverse: cone volume $132$ with radius $3$ gives height $\\dfrac{132\\times3}{\\dfrac{22}{7}\\times9}=14$ cm.\n\n> **Tip:** Multiply by $3$ before dividing by $\\pi r^2$. Keeping the fraction until the end invites slips.\n\n### Surfaces\n- Curved surface: $\\pi r\\ell$. Radius $7$, slant $25$: $\\dfrac{22}{7}\\times7\\times25=550$ sq cm.\n- Total surface: $\\pi r\\ell+\\pi r^2$, the skirt plus the circular base. Same cone: $550+154=704$ sq cm.\n\nA conical tent uses the curved surface only: no floor. Canvas for radius $7$ m and slant $25$ m is $550$ sq m. A heap whose base circumference is $44$ m has radius $\\dfrac{44\\times7}{44}=7$ m, so slant $25$ m again means $550$ sq m of sheet.\n\n> **Watch:** Tents and caps are curved surface; ice-cream cones and solid cones are total surface. Read what is covered.\n\n### Melting a cone\nVolume survives. A cone of radius $6$, height $24$ has volume $288\\pi$; as a sphere:\n$$\\frac{4}{3}\\pi R^3=288\\pi \\Rightarrow R^3=216 \\Rightarrow R=6$$\nThe sphere comes out with the same $6$ cm radius, a clean coincidence worth noticing. And $216=6^3$ came straight from the cubes table, not a calculator.\n\nThe reverse melt works the same way: a sphere of radius $6$ recast as a cone of radius $6$ needs $\\dfrac13\\times36\\times h=288$, so $h=24$ cm.\n\n### Heaps and tents\nA heap of rice is a cone: base circumference gives the radius, slant gives the canvas or sheet. Cloth width questions divide the curved area by the width.\n\n> **Remember:** Cone problems are two-part: the inner right triangle for lengths, then one formula for the asked quantity.\n",
    "patterns": [
     {
      "id": "m3d-co-p1",
-     "name": "Slant height + CSA/TSA with a triplet",
+     "name": "Slant height and CSA/TSA with a triplet",
      "frequency": "very common",
-     "howToSpot": "Radius and height given; curved or total surface asked — the $(r, h, l)$ triplet makes $l$ instant.",
-     "formula": "l = \\sqrt{r^2+h^2},\\quad \\text{CSA} = \\pi r l,\\quad \\text{TSA} = \\pi r(l+r)",
-     "logic": "1. Get $l$ from the triplet (7-24-25, 3-4-5 multiples) before any algebra.\n2. CSA $= \\pi r l$; TSA adds the base: $\\pi r(l + r)$.\n3. Announce the triplet out loud in the solution — it is the whole speed play.\n\nWhy: the curved surface is a sector of radius $l$; the exam numbers are chosen so $l$ is a triplet member.",
+     "howToSpot": "Radius and height given, slant or a surface asked.",
+     "steps": [
+      "Look for a triplet among $r$, $h$, $\\ell$.",
+      "Compute $\\ell$ if missing.",
+      "CSA $=\\pi r\\ell$; TSA adds $\\pi r^2$."
+     ],
+     "why": "The inner right triangle settles the lengths, then one multiplication finishes.",
      "example": {
       "q": "The radius of a cone is 7 cm and its height is 24 cm. Its curved surface area is:",
-      "solution": "$l = 25$ (7-24-25); CSA $= \\frac{22}{7} \\times 7 \\times 25 = 550$ sq cm."
+      "steps": [
+       "$\\ell=\\sqrt{49+576}=25$.",
+       "CSA $=\\dfrac{22}{7}\\times7\\times25=550$ sq cm."
+      ],
+      "answer": "550 sq cm"
      }
     },
     {
      "id": "m3d-co-p2",
      "name": "Volume of a cone (and reverse)",
      "frequency": "very common",
-     "howToSpot": "Volume asked from $r, h$ — or volume given with a dimension asked (mind the factor 3).",
-     "formula": "V = \\frac{1}{3}\\pi r^2 h;\\quad h = \\frac{3V}{\\pi r^2}",
-     "logic": "1. Third of the cylinder volume with the same base and height.\n2. Reverse: $h = \\frac{3V}{\\pi r^2}$ — bring the 3 up top.\n3. Keep $\\pi = 22/7$ till the end; thirds cancel cleanly with the 22/7 family.\n\nWhy: a cone fills a cylinder of the same base and height exactly one-third — the definition, not just a formula.",
+     "howToSpot": "Volume asked from dimensions, or a dimension from the volume.",
+     "steps": [
+      "$V=\\dfrac{1}{3}\\pi r^2h$.",
+      "Reverse: multiply the volume by $3$.",
+      "Divide by the known factors to isolate the unknown."
+     ],
+     "why": "The one-third factor runs both directions with one multiplication.",
      "example": {
       "q": "The volume of a cone is 132 cu cm and its base radius is 3 cm. Its height is:",
-      "solution": "$h = \\frac{3 \\times 132 \\times 7}{22 \\times 9} = 14$ cm."
+      "steps": [
+       "$3V=396$.",
+       "$\\pi r^2=\\dfrac{198}{7}$.",
+       "$h=396\\times\\dfrac{7}{198}=14$ cm."
+      ],
+      "answer": "14 cm"
      }
     },
     {
      "id": "m3d-co-p3",
-     "name": "Recasting: cone into sphere/spheres",
+     "name": "Recasting: cone into sphere or spheres",
      "frequency": "common",
-     "howToSpot": "A metallic cone melted and recast — the target solid's dimension asked.",
-     "formula": "\\frac{1}{3}\\pi r^2 h = \\frac{4}{3}\\pi R^3 \\Rightarrow R^3 = \\frac{r^2 h}{4}",
-     "logic": "1. Equate volumes; $\\frac{\\pi}{3}$ cancels both sides for the cone→sphere case.\n2. Solve $R^3 = \\frac{r^2 h}{4}$ (or sum the volumes for multiple targets).\n3. Take the cube root; the numbers are built to be perfect cubes.\n\nWhy: melting is volume-invariant; only the shape of the volume changes.",
+     "howToSpot": "A cone melted and recast; a radius of the new solid asked.",
+     "steps": [
+      "Write the cone volume.",
+      "Set it equal to the target solid's volume.",
+      "Cancel $\\pi$, solve the remaining equation."
+     ],
+     "why": "Melting conserves volume, and the pi cancels, leaving integer arithmetic.",
      "example": {
       "q": "A solid metallic cone of radius 6 cm and height 24 cm is melted into a sphere. The radius of the sphere is:",
-      "solution": "$\\frac13 \\pi \\cdot 36 \\cdot 24 = \\frac43 \\pi R^3 \\Rightarrow R^3 = 216 \\Rightarrow R = 6$ cm."
+      "steps": [
+       "$V=\\dfrac13\\pi\\times36\\times24=288\\pi$.",
+       "$\\dfrac43\\pi R^3=288\\pi\\Rightarrow R^3=216$.",
+       "$R=6$ cm."
+      ],
+      "answer": "6 cm"
      }
     },
     {
      "id": "m3d-co-p4",
-     "name": "Cone vs cylinder/hemisphere volume ratios",
+     "name": "Cone vs cylinder and hemisphere ratios",
      "frequency": "common",
-     "howToSpot": "'A cone, hemisphere and cylinder stand on the same base and have the same height' — ratio or one volume asked.",
-     "formula": "\\text{cone}:\\text{hemisphere}:\\text{cylinder} = 1:2:3 \\ \\ (h = r)",
-     "logic": "1. Same base (radius $r$) and height $h = r$: volumes are $\\frac13\\pi r^3, \\frac23\\pi r^3, \\pi r^3$.\n2. Ratio $1 : 2 : 3$; the max cone in a cylinder is $\\frac13$ of it.\n3. Scale the ratio to the given volume and read off the asked piece.\n\nWhy: each volume is a fixed fraction of the cylinder's — the geometry does the dividing for you.",
+     "howToSpot": "Two solids on the same base; a volume ratio asked.",
+     "steps": [
+      "Same base and height: cone $=$ one-third of cylinder.",
+      "Hemisphere on the same radius: volume $\\dfrac23\\pi r^3$.",
+      "Compare by dividing the formulas."
+     ],
+     "why": "With equal bases the pi and radius cancel, so ratios come from the constants alone.",
      "example": {
       "q": "A cylinder and a cone have equal bases and equal heights. If the cylinder's volume is 120 cu cm, the cone's volume is:",
-      "solution": "Cone $= \\frac13 \\times 120 = 40$ cu cm."
+      "steps": [
+       "Cone $=\\dfrac13$ of the cylinder.",
+       "$\\dfrac{120}{3}=40$ cu cm."
+      ],
+      "answer": "40 cu cm"
      }
     },
     {
      "id": "m3d-co-p5",
-     "name": "Conical heap / tent (word problems)",
+     "name": "Conical heap or tent word problems",
      "frequency": "common",
-     "howToSpot": "A heap of grain (from base circumference) or a conical tent (canvas = CSA) with real-world wording.",
-     "formula": "r = \\frac{C}{2\\pi};\\quad \\text{canvas} = \\pi r l",
-     "logic": "1. Heap: circumference → radius → volume $\\frac13\\pi r^2 h$.\n2. Tent: canvas covers the CURVED surface only — $\\pi r l$, no base.\n3. Compute $l$ via the triplet; watch metre/cm mixing.\n\nWhy: a heap has no lid and a tent has no floor — the physical object tells you which formula is 'the surface'.",
+     "howToSpot": "A tent, heap or cap; canvas, cloth or sheet area asked.",
+     "steps": [
+      "Extract $r$ (from circumference if needed) and $\\ell$.",
+      "Tent: CSA $=\\pi r\\ell$.",
+      "Cloth width: divide the area by the width."
+     ],
+     "why": "Real-world wording hides the same two formulas; the curved surface is almost always the target.",
      "example": {
       "q": "A conical tent has base radius 7 m and slant height 25 m. The canvas required to make it (sq m) is:",
-      "solution": "CSA $= \\frac{22}{7} \\times 7 \\times 25 = 550$ sq m of canvas."
+      "steps": [
+       "CSA $=\\dfrac{22}{7}\\times7\\times25$.",
+       "$=550$ sq m."
+      ],
+      "answer": "550 sq m"
      }
     }
+   ],
+   "revision": [
+    "Slant $\\ell=\\sqrt{r^2+h^2}$; hunt for triplets first.",
+    "$V=\\dfrac13\\pi r^2h$: one-third of the same-base cylinder.",
+    "CSA $=\\pi r\\ell$; TSA adds the base circle.",
+    "Tents and caps: curved surface only.",
+    "Melting keeps volume: equate $\\dfrac13\\pi r^2h$ with the new solid's formula."
    ]
   },
   {
    "id": "m3d-sphere",
    "title": "Sphere and hemisphere",
-   "concept": "- Sphere (radius $r$): volume $=\\frac43\\pi r^3$, surface $=4\\pi r^2$.\n- Hemisphere: volume $=\\frac23\\pi r^3$; curved surface $=2\\pi r^2$; **total** surface $=3\\pi r^2$ (adds the flat circular face).\n- Melting and recasting conserves **volume** (surface area almost never matches — that option is a trap).",
+   "concept": "A sphere of radius r has volume four-thirds pi r cubed and surface four pi r squared. A hemisphere is half a sphere for volume, but its total surface is three pi r squared because it adds the flat circle. Radius scaling cubes for volume and squares for surface.",
    "formulas": [
     {
      "name": "Sphere",
-     "tex": "V=\\frac43\\pi r^3,\\quad S=4\\pi r^2"
+     "tex": "V=\\frac{4}{3}\\pi r^3,\\quad S=4\\pi r^2",
+     "note": "One radius drives both."
     },
     {
      "name": "Hemisphere",
-     "tex": "V=\\frac23\\pi r^3,\\quad S_{\\text{curved}}=2\\pi r^2,\\quad S_{\\text{total}}=3\\pi r^2"
+     "tex": "V=\\frac{2}{3}\\pi r^3,\\quad \\text{curved}=2\\pi r^2,\\quad \\text{total}=3\\pi r^2",
+     "note": "Total adds the flat circle."
     },
     {
-     "name": "Melting rule",
-     "tex": "V_{\\text{before}}=V_{\\text{after}}"
+     "name": "Melting into n parts",
+     "tex": "r_{\\text{small}}^3=\\frac{R^3}{n}",
+     "note": "Divide the cubed length, then cube-root."
     },
     {
-     "name": "Count of small spheres",
-     "tex": "\\text{count}=\\left(\\frac{R}{r}\\right)^3"
+     "name": "Radius scaling",
+     "tex": "V\\to k^3V,\\quad S\\to k^2S",
+     "note": "k = radius scale factor."
     }
    ],
    "tricks": [
     {
-     "title": "Count small balls by the cube of the radius ratio",
-     "body": "Number of small spheres $=\\left(\\frac{R}{r}\\right)^3$. Radii in ratio 8:1 → 512 pieces, no π needed.",
+     "title": "Total hemisphere = 3 circles",
+     "body": "Curved shell 2 pi r squared plus flat face pi r squared equals 3 pi r squared. Never 2.",
      "example": {
-      "q": "A solid metallic sphere of radius 8 cm is melted and drawn into small spheres of radius 1 cm. How many are formed?",
-      "solution": "$\\left(\\frac81\\right)^3=512$."
+      "q": "Find the total surface area of a solid hemisphere of radius 7 cm (take pi = 22/7).",
+      "steps": [
+       "Total $=3\\pi r^2$.",
+       "$=3\\times\\dfrac{22}{7}\\times49$.",
+       "$=462$ sq cm."
+      ],
+      "answer": "462 sq cm"
      }
     },
     {
-     "title": "Hemisphere TSA is three circles",
-     "body": "$3\\pi r^2$: two for the curved half (recall the sphere is $4\\pi r^2$) plus one for the base.",
+     "title": "Cube-root the split",
+     "body": "One sphere into 8 equal spheres: each cubed radius is one-eighth, so each radius is half.",
      "example": {
-      "q": "Find the total surface area of a solid hemisphere of radius 7 cm. [Use $\\pi=\\frac{22}{7}$]",
-      "solution": "$3\\times\\frac{22}{7}\\times49=462$ sq cm."
+      "q": "A solid metal sphere of radius 6 cm is melted into 8 equal smaller spheres. The radius of each small sphere is:",
+      "steps": [
+       "$r^3=\\dfrac{6^3}{8}=\\dfrac{216}{8}=27$.",
+       "$r=\\sqrt[3]{27}$.",
+       "$r=3$ cm."
+      ],
+      "answer": "3 cm"
+     }
+    },
+    {
+     "title": "Ratio: cube it or square it",
+     "body": "Radii 3:4 mean volumes 27:64 and surfaces 9:16. Cancel pi, apply the right power.",
+     "example": {
+      "q": "The radii of two spheres are in the ratio 3 : 4. The ratio of their volumes is:",
+      "steps": [
+       "Cube the ratio: $3^3:4^3$.",
+       "$27:64$."
+      ],
+      "answer": "27 : 64"
      }
     }
    ],
    "mistakes": [
-    "Hemisphere TSA taken as $2\\pi r^2$ (that is the curved part only).",
-    "Melting questions answered with equality of surface areas.",
-    "$\\frac43\\pi r^3$ misremembered as $\\frac{4\\pi r^3}{3\\text{ or }2}$ variants — write the fraction before substituting."
+    {
+     "wrong": "Total hemisphere surface taken as $2\\pi r^2$.",
+     "right": "That is the curved part only. Solid hemisphere total is $3\\pi r^2=462$ for $r=7$."
+    },
+    {
+     "wrong": "Squaring instead of cubing for volume ratios.",
+     "right": "Volume goes with $r^3$: radii $3:4$ give $27:64$."
+    },
+    {
+     "wrong": "Forgetting $\\dfrac43$ when melting.",
+     "right": "Sphere volume is $\\dfrac43\\pi r^3$; drop it and the sphere comes out too big."
+    },
+    {
+     "wrong": "Dividing the radius by $n$ for $n$ small spheres.",
+     "right": "Divide the cubed radius: $n=8$ halves the radius, not eighth-ing it."
+    },
+    {
+     "wrong": "Doubling radius thought to double volume.",
+     "right": "Volume scales by $2^3=8$; surface by $2^2=4$."
+    }
    ],
-   "notes": "### The sphere family\nFor a sphere of radius $r$:\n$$V = \\frac{4}{3}\\pi r^3,\\qquad \\text{SA} = 4\\pi r^2$$\nFor a hemisphere of the same radius: curved surface $= 2\\pi r^2$ (half the sphere's), flat face $= \\pi r^2$, and total $= 3\\pi r^2$ — the famous \"3\" that examiners love. Volume of a hemisphere $= \\frac{2}{3}\\pi r^3$.\nThe radius is the only input: every question is \"get $r$, then apply one formula\". Given a diameter? Halve it first. Given the surface area? $r = \\sqrt{\\text{SA}/4\\pi}$. Given the volume? $r = \\sqrt[3]{\\frac{3V}{4\\pi}}$.\n\n### Melting, scaling and submersion\n- **Melting** preserves volume: a big sphere recast into $n$ small equal spheres gives $r_{\\text{small}} = \\frac{r}{\\sqrt[3]{n}}$ — for $n = 8$ the radius halves, for $n = 27$ it divides by 3.\n- **Scaling**: radius $\\times k$ → surface $\\times k^2$, volume $\\times k^3$. \"Radius doubled\" means SA $\\times 4$ and $V \\times 8$; \"radius halved\" gives $\\frac14$ and $\\frac18$.\n- **Submersion**: a solid dropped into a (partly filled) cylinder of base radius $R$ raises the water level by $h = \\frac{V_{\\text{solid}}}{\\pi R^2}$ — the displaced volume spreads over the base.\n\n### Same-base relations\nSphere vs cylinder of radius $r$, height $2r$ (the sphere fits exactly inside): both have volume $\\frac{4}{3}\\pi r^3$. Sphere vs hemisphere: hemisphere is half the volume, $\\frac34$ of the total surface ($3\\pi r^2$ vs $4\\pi r^2$).\n\n### The 22/7 number family\n- $r = 7$: SA $= 616$, $V = \\frac{4}{3} \\times \\frac{22}{7} \\times 343 = 4312/3$ — exams avoid it; they use $r = 21$: $r^3 = 9261$, $V = 4 \\times 22 \\times 441 = 38808$, SA $= 4 \\times \\frac{22}{7} \\times 441 = 5544$.\n- Hemisphere at $r = 7$: CSA $308$, TSA $462$; at $r = 21$: CSA $2772$, TSA $4158$.\n- The displacement pair worth memorising: a sphere of radius 3 displaces $36\\pi$; a cylinder of radius 4 therefore rises $\\frac{36}{16} = 2.25$ cm.\n\n### Scaling in percent form\nRadius $+10\\%$: SA $+21\\%$, $V$ $+33.1\\%$ (from $1.1^2$ and $1.1^3$). Radius $-50\\%$: SA $\\frac14$, $V$ $\\frac18$ — volume swings harder than area in both directions. Percent-change questions in this subtopic are always these two exponent rules; if you find yourself expanding $\\frac{4}{3}\\pi$, stop and write $k^2$ or $k^3$ instead.\n\n### Quick revision\n- $V = \\frac43\\pi r^3$; SA $= 4\\pi r^2$; hemisphere: CSA $2\\pi r^2$, TSA $3\\pi r^2$, $V = \\frac23\\pi r^3$.\n- Radius $\\times k$: SA $\\times k^2$, $V \\times k^3$.\n- Melt into $n$ equal spheres: radius $\\div \\sqrt[3]{n}$.\n- Water rise: $h = \\frac{V_{\\text{solid}}}{\\pi R^2}$ of the container.\n",
+   "notes": "### The sphere pair\n$$V=\\frac{4}{3}\\pi r^3,\\qquad S=4\\pi r^2$$\nRadius $7$: surface $4\\times154=616$ sq cm; volume $\\dfrac43\\times\\dfrac{22}{7}\\times343=\\dfrac{4312}{3}\\approx1437.3$ cu cm.\n\nRadius $14$: surface $4\\times616=2464$ sq cm; volume $\\dfrac43\\times\\dfrac{22}{7}\\times2744=\\dfrac{34496}{3}$ cu cm, exactly $8$ times the radius-$7$ volume. Radius $3.5$: surface $154$ sq cm, volume $\\dfrac{539}{3}\\approx179.7$ cu cm.\n\nThe surface formula is exactly four circles of the same radius. Half of it, $2\\pi r^2$, is the hemisphere's curved part. A sphere also fills exactly two-thirds of the cylinder that tightly contains it.\n\n> **Rule:** Surface grows with $r^2$, volume with $r^3$. Doubling the radius gives $4$ times the surface and $8$ times the volume, as the $7\\to14$ line above shows.\n\n### Hemisphere: three halves and three pi\n- Volume: $\\dfrac{2}{3}\\pi r^3$ (half the sphere).\n- Curved surface: $2\\pi r^2$ (half the shell).\n- **Total surface: $3\\pi r^2$** because the flat circular face $\\pi r^2$ joins the shell.\n\nRadius $7$: curved $308$, total $3\\times154=462$, volume $\\dfrac{2156}{3}$ cu cm. Radius $21$: curved $2772$, total $4158$, all from the $1386$ base circle.\n\n> **Watch:** 'Total surface of a hemisphere' is $3\\pi r^2$, never $2\\pi r^2$. The flat face counts once it is solid.\n\n### Melting and dividing\nA sphere of radius $6$ melted into $8$ equal small spheres: each carries $\\dfrac{216}{8}=27$ of the cubed length, so each radius is $3$.\n\nCount multiplies the volume, so the radius shrinks by the cube root of the count. Eight pieces mean half the radius; $27$ pieces mean one-third; counts $1,8,27$ pair with radius factors $1,\\dfrac12,\\dfrac13$.\n\n> **Tip**: When a big solid becomes $n$ equal small ones, divide the cubed length by $n$, then take the cube root.\n\n### Displacing water\nA solid dropped in a full tub pushes out its own volume. Sphere of radius $3$ in a full tank: overflow $=\\dfrac43\\pi\\times27=36\\pi$ cu cm.\n\nIn a partly filled cylinder the level rises instead: sphere of radius $7$ into a cylinder of radius $14$ raises the water by $\\dfrac{4312/3}{616}=\\dfrac73$ cm. Read the story: 'water level rose' means the rise's cylinder volume equals the sphere's volume.\n\n### Radius ratios\nRadii $3:4$ give volumes $27:64$ and surfaces $9:16$. Cube the ratio for volumes, square it for surfaces, and say which one the question wants. Equal surfaces force equal radii; equal volumes likewise.\n\n> **Remember:** Ratio questions never need pi. Cancel it first, then compare powers of the ratio.\n",
    "patterns": [
     {
      "id": "m3d-sp-p1",
-     "name": "Surface area / volume of a sphere",
+     "name": "Surface area and volume of a sphere",
      "frequency": "very common",
-     "howToSpot": "Radius (or diameter) given; SA or volume asked — or one of them given and $r$ asked.",
-     "formula": "SA = 4\\pi r^2,\\qquad V = \\frac{4}{3}\\pi r^3",
-     "logic": "1. Halve diameters first; then $r$ drives both formulas.\n2. With $\\pi = 22/7$, the 7-cube of $r = 21$ gives the classic $V = 38808$.\n3. Reverse: $r = \\sqrt{\\text{SA}/4\\pi}$ or $r = \\sqrt[3]{3V/4\\pi}$.\n\nWhy: the sphere has a single parameter, so forward and reverse questions differ only by which side you solve for.",
+     "howToSpot": "One radius given, surface or volume asked.",
+     "steps": [
+      "Surface: $4\\pi r^2$.",
+      "Volume: $\\dfrac{4}{3}\\pi r^3$.",
+      "Keep pi as $\\dfrac{22}{7}$ for radius multiples of $7$."
+     ],
+     "why": "Two direct formulas; radius $7$ alone answers many papers since $4\times154=616$.",
      "example": {
       "q": "Find the surface area of a sphere of radius 7 cm (take pi = 22/7).",
-      "solution": "SA $= 4 \\times \\frac{22}{7} \\times 49 = 616$ sq cm."
+      "steps": [
+       "$S=4\\times\\dfrac{22}{7}\\times49$.",
+       "$S=616$ sq cm."
+      ],
+      "answer": "616 sq cm"
      }
     },
     {
      "id": "m3d-sp-p2",
      "name": "Hemisphere: curved vs total vs volume",
      "frequency": "very common",
-     "howToSpot": "A hemisphere (dome, bowl) — the curved surface, total surface, or volume asked; the TSA = 3*pi*r^2 fact is the trap-setter.",
-     "formula": "\\text{CSA} = 2\\pi r^2,\\quad \\text{TSA} = 3\\pi r^2,\\quad V = \\frac{2}{3}\\pi r^3",
-     "logic": "1. Dome/tent/scoop of a sphere → hemisphere.\n2. Painted outside only → CSA $2\\pi r^2$; a solid hemisphere's whole surface → TSA $3\\pi r^2$; capacity → $\\frac23\\pi r^3$.\n3. Keep the three straight; the difference is exactly one $\\pi r^2$.\n\nWhy: half a sphere's skin plus one circular lid — the arithmetic is deliberately easy once the pieces are named.",
+     "howToSpot": "A solid or hollow hemisphere; a surface or volume asked.",
+     "steps": [
+      "Curved surface: $2\\pi r^2$.",
+      "Solid total: $3\\pi r^2$.",
+      "Volume: $\\dfrac23\\pi r^3$."
+     ],
+     "why": "The only trap is which surface: curved for hollow, total (plus flat face) for solid.",
      "example": {
       "q": "Find the total surface area of a solid hemisphere of radius 7 cm (take pi = 22/7).",
-      "solution": "TSA $= 3 \\times \\frac{22}{7} \\times 49 = 462$ sq cm."
+      "steps": [
+       "Total $=3\\pi r^2$.",
+       "$=3\\times154=462$ sq cm."
+      ],
+      "answer": "462 sq cm"
      }
     },
     {
      "id": "m3d-sp-p3",
      "name": "Recasting and water displacement",
      "frequency": "common",
-     "howToSpot": "A sphere melted into smaller spheres — or dropped into a cylindrical vessel, where the water rise is asked.",
-     "formula": "V_{\\text{total}} = n\\,V_{\\text{small}};\\quad h_{\\text{rise}} = \\frac{V_{\\text{sphere}}}{\\pi R^2}",
-     "logic": "1. Melting: equate volumes; for $n$ equal spheres divide the radius by $\\sqrt[3]{n}$.\n2. Displacement: the rise times the container's base area equals the sphere's volume.\n3. Watch which radius is which — the sphere's $r$ vs the vessel's $R$.\n\nWhy: displaced water is just the volume wearing a different shape; recasting is the same statement in metal.",
+     "howToSpot": "A sphere melted into smaller ones, or dropped into water.",
+     "steps": [
+      "Write the big sphere's volume.",
+      "Divide by the count for equal pieces.",
+      "Overflow equals the submerged volume."
+     ],
+     "why": "Both stories reduce to comparing volumes; the pi cancels on the way.",
      "example": {
       "q": "A solid metal sphere of radius 6 cm is melted into 8 equal smaller spheres. The radius of each small sphere is:",
-      "solution": "$\\frac{4}{3}\\pi 6^3 = 8 \\cdot \\frac43 \\pi r^3 \\Rightarrow r^3 = 27 \\Rightarrow r = 3$ cm."
+      "steps": [
+       "$r^3=\\dfrac{216}{8}=27$.",
+       "$r=3$ cm."
+      ],
+      "answer": "3 cm"
      }
     },
     {
      "id": "m3d-sp-p4",
      "name": "Radius-scaling multipliers",
      "frequency": "common",
-     "howToSpot": "'Radius doubled/halved/increased 50%' — how do surface area and volume change?",
-     "formula": "\\text{SA} \\times k^2,\\qquad V \\times k^3",
-     "logic": "1. Write the multiplier: $r \\to kr$.\n2. SA scales $k^2$; volume scales $k^3$ — never the same number.\n3. Percent form: radius $+50\\%$ → $k = 1.5$ → SA $\\times 2.25$, $V \\times 3.375$.\n\nWhy: area is a product of two lengths, volume of three — the exponents do all the work.",
+     "howToSpot": "The radius scaled; new volume or surface asked.",
+     "steps": [
+      "Read the scale factor $k$.",
+      "Volume: multiply by $k^3$.",
+      "Surface: multiply by $k^2$."
+     ],
+     "why": "The formulas' exponents convert any scale factor directly, no recomputation.",
      "example": {
       "q": "If the radius of a sphere is doubled, its volume becomes:",
-      "solution": "$k^3 = 8$ times the original volume."
+      "steps": [
+       "$k=2$.",
+       "Volume $\\times 2^3=8$ times."
+      ],
+      "answer": "8 times"
+     }
+    },
+    {
+     "id": "m3d-sp-p5",
+     "name": "Two spheres: ratio questions",
+     "frequency": "common",
+     "howToSpot": "Radii in a ratio; volume or surface ratio asked.",
+     "steps": [
+      "Cancel $\\pi$ and constants.",
+      "Volumes: cube the radius ratio.",
+      "Surfaces: square it."
+     ],
+     "why": "With pi cancelled, a ratio question is a pure power of the given ratio.",
+     "example": {
+      "q": "The radii of two spheres are in the ratio 3 : 4. The ratio of their surface areas is:",
+      "steps": [
+       "Square the ratio: $3^2:4^2$.",
+       "$9:16$."
+      ],
+      "answer": "9 : 16"
      }
     }
+   ],
+   "revision": [
+    "Sphere: $V=\\dfrac43\\pi r^3$, $S=4\\pi r^2$.",
+    "Hemisphere: volume $\\dfrac23\\pi r^3$, curved $2\\pi r^2$, total $3\\pi r^2$.",
+    "$n$ equal pieces: divide $r^3$ by $n$, then cube-root.",
+    "Overflow $=$ submerged volume; no new formula.",
+    "Ratios: volumes cube, surfaces square; cancel $\\pi$ first."
    ]
   },
   {
    "id": "m3d-prism-pyramid",
    "title": "Prisms, pyramids and painted cubes",
-   "concept": "- **Prism:** two parallel congruent bases; volume $=$ base area $\\times$ height.\n- **Pyramid:** volume $=\\frac13\\times$ base area $\\times$ height.\n- **Painted cube cut into $n^3$ unit cubes** (side $n$): cubes with 3 painted faces $=8$ (corners);\n  2 faces $=12(n-2)$ (edges); 1 face $=6(n-2)^2$; unpainted $=(n-2)^3$.",
+   "concept": "A prism's volume is base area times height; a pyramid's is one third of that. Frustums interpolate between two circular ends. Cutting and melting questions conserve volume, and painted or cut cubes follow counting formulas.",
    "formulas": [
     {
-     "name": "Prism volume",
-     "tex": "V=A_{\\text{base}}\\times h"
+     "name": "Prism",
+     "tex": "V=\\text{base area}\\times\\text{length}",
+     "note": "Base can be any polygon."
     },
     {
-     "name": "Pyramid volume",
-     "tex": "V=\\frac13A_{\\text{base}}h"
+     "name": "Pyramid",
+     "tex": "V=\\frac{1}{3}\\times\\text{base area}\\times h",
+     "note": "h = perpendicular height."
     },
     {
-     "name": "Painted-cube counts",
-     "tex": "3\\text{f}=8,\\ 2\\text{f}=12(n-2),\\ 1\\text{f}=6(n-2)^2,\\ 0\\text{f}=(n-2)^3"
+     "name": "Frustum",
+     "tex": "V=\\frac{\\pi h}{3}(R^2+r^2+Rr)",
+     "note": "R, r = the two end radii."
+    },
+    {
+     "name": "Lateral surfaces",
+     "tex": "\\text{prism}=P\\times L,\\quad \\text{pyramid}=\\frac12 P\\times\\ell",
+     "note": "P = base perimeter; L = length; slant for pyramid."
     }
    ],
    "tricks": [
     {
-     "title": "Painted-cube formula table",
-     "body": "Identify $n$ = number of small cubes along one edge. Corners are fixed at 8; the rest depend on $n-2$.",
+     "title": "One-third rule of thumb",
+     "body": "Same base and height: pyramid = one third of the prism. Use it to sanity-check any answer.",
      "example": {
-      "q": "A cube of side 7 cm is painted on all faces and cut into 1 cm cubes. How many small cubes have exactly two faces painted?",
-      "solution": "$12(n-2)=12\\times5=60$. (One face: $6\\times25=150$; none: $125$.)"
+      "q": "A pyramid stands on a square base of side 10 cm and is 12 cm high. Its volume is:",
+      "steps": [
+       "Prism would be $100\\times12=1200$.",
+       "Pyramid $=\\dfrac{1200}{3}$.",
+       "$=400$ cu cm."
+      ],
+      "answer": "400 cu cm"
      }
     },
     {
-     "title": "Pyramid by one-third",
-     "body": "Same base and height as a prism: the pyramid holds exactly one-third.",
+     "title": "Add volumes, then root",
+     "body": "Melting several solids: add the volumes, then take the cube root for a cube's edge.",
      "example": {
-      "q": "A pyramid stands on a square base of side 10 cm and is 12 cm high. Find its volume.",
-      "solution": "$V=\\frac13\\times100\\times12=400$ cu cm."
+      "q": "Three metal cubes of edges 3 cm, 4 cm and 5 cm are melted into a single cube. Its edge is:",
+      "steps": [
+       "$27+64+125=216$.",
+       "$216=6^3$.",
+       "Edge $=6$ cm."
+      ],
+      "answer": "6 cm"
+     }
+    },
+    {
+     "title": "Frustum: three terms",
+     "body": "R squared, r squared, Rr. Radii 5 and 3 give 25 + 9 + 15 = 49, and the numbers turn friendly.",
+     "example": {
+      "q": "A bucket is in the shape of a frustum with radii 5 cm and 3 cm and height 6 cm. Its volume is (take pi = 22/7):",
+      "steps": [
+       "$R^2+r^2+Rr=25+9+15=49$.",
+       "$V=\\dfrac{22}{7}\\times\\dfrac{6}{3}\\times49$.",
+       "$V=308$ cu cm."
+      ],
+      "answer": "308 cu cm"
      }
     }
    ],
    "mistakes": [
-    "Forgetting the $\\frac13$ in pyramid (and cone) volumes.",
-    "Painted-cube formulas applied with $n$ = side length in cm instead of cubes per edge.",
-    "Counting corner cubes as 6 or edge cubes as $12(n-1)$."
+    {
+     "wrong": "Using the full prism volume for a pyramid.",
+     "right": "The pyramid takes one-third: $\\dfrac13\\times100\\times12=400$, not 1200."
+    },
+    {
+     "wrong": "Dropping the $Rr$ term in a frustum.",
+     "right": "Radii $5$ and $3$ need $25+9+15=49$; without $Rr$ it is only 34."
+    },
+    {
+     "wrong": "Using the slant edge as the pyramid height.",
+     "right": "Volume needs the perpendicular height; slant heights serve the lateral surface."
+    },
+    {
+     "wrong": "Adding the cube edges when melting.",
+     "right": "Add volumes: $27+64+125=216$, edge $6$. Not $3+4+5=12$."
+    },
+    {
+     "wrong": "Prism lateral with the slant height.",
+     "right": "Prisms have no slant; lateral $=$ perimeter $\\times$ length."
+    }
    ],
-   "notes": "### Prisms and pyramids: the one-third rule\nA prism has a constant cross-section: $V = (\\text{area of base}) \\times (\\text{length/height})$. A pyramid with the same base and apex over the centre holds exactly one-third: $V = \\frac13 \\times \\text{base area} \\times h$. This is the cone/cylinder relation in flat-base form — the fraction $\\frac13$ is the whole topic.\n$$V_{\\text{prism}} = A_{\\text{base}} \\times h, \\qquad V_{\\text{pyramid}} = \\frac{1}{3} A_{\\text{base}} \\times h$$\n\n### Frustums (cut pyramids/cones)\nSlice a cone or pyramid parallel to its base and remove the top: what remains is a frustum.\n$$V = \\frac{\\pi h}{3}\\left(R^2 + r^2 + Rr\\right) \\text{ (conical)}, \\qquad V = \\frac{h}{3}\\left(A_1 + A_2 + \\sqrt{A_1 A_2}\\right) \\text{ (any)}$$\nwith $R, r$ the two radii (or $A_1, A_2$ the two face areas) and $h$ the perpendicular height between them. Bucket and tumbler questions are frustums.\n\n### Lateral surfaces\n- Prism lateral area $=$ (perimeter of cross-section) $\\times$ (length) — the tube unrolls flat.\n- Pyramid lateral area $= \\frac12 \\times$ (perimeter of base) $\\times$ (slant height) — sum of triangles.\nThe total adds the two base/cross-section ends.\n\n### Cube cutting and melting\nA cube of side $a$ cut into unit cubes yields $a^3$ of them. Melting several cubes into one: sum the volumes and take the cube root — edges $3, 4, 5$ combine into a cube of edge $\\sqrt[3]{27+64+125} = 6$. Both facts are volume bookkeeping; nothing else changes on melting.\n\n### Worked frustum\nBucket with $R = 5$, $r = 3$, $h = 6$: the bracket $R^2 + r^2 + Rr = 25 + 9 + 15 = 49$, and $\\frac{\\pi h}{3} = \\frac{22}{7} \\times 2$, so $V = \\frac{22}{7} \\times 2 \\times 49 = 308$ cu cm. Exam frustums are built so the bracket is a perfect square times $\\frac{22}{7}$-friendly numbers — if your bracket is ugly, recheck the radii (diameters halved?) and the terms ($Rr$ included?). For the cut-off top piece instead, either subtract the small cone from the big one or use the similarity ratio: cutting at half the height leaves $\\frac18$ of the volume below-cut... rather, the removed top cone has $\\frac18$ of the whole cone's volume, so the frustum is $\\frac78$ of it.\n\n### Cube numbers worth carrying\n$a^3$: 1, 8, 27, 64, 125, 216, 343, 512, 729, 1000, 1331, 1728 — the melting answers live here ($216 \\to 6$, $729 \\to 9$, $1728 \\to 12$). Two cubes of edge $a$ melted give $\\sqrt[3]{2a^3} = a\\sqrt[3]{2}$ — NOT $2a$; only cube-number sums recast into clean cubes, which is why exams pick $3^3 + 4^3 + 5^3 = 6^3$ (the only consecutive-cube identity).\n\n### Quick revision\n- Prism: $V = A \\times h$; pyramid: $\\frac13 A h$; lateral prism $= P \\times h$, pyramid $= \\frac12 P l$.\n- Frustum (cone form): $\\frac{\\pi h}{3}(R^2 + r^2 + Rr)$.\n- Cut cube of side $a$ into unit cubes: $a^3$ pieces.\n- Melted cubes: $\\sqrt[3]{\\sum a_i^3}$.\n",
+   "notes": "### Prism: base times length\n$$V=\\text{base area}\\times\\text{length}$$\nA triangular prism with cross-section $20$ sq cm and length $12$ cm holds $240$ cu cm. A rectangular base $7\\times5$ with length $10$ holds $350$ cu cm.\n\nThe base can be a triangle, square, hexagon, anything regular. Find its area first, multiply by the length second. A cuboid is just a prism with a rectangle base, so the tank formula lives here too.\n\n> **Rule:** The prism formula needs exactly two things: the base area and the prism length. Everything else is decoration.\n\n### Pyramid: a third of the prism\n$$V=\\frac{1}{3}\\times\\text{base area}\\times\\text{height}$$\nSquare base $10$, height $12$: $V=\\dfrac13\\times100\\times12=400$ cu cm. Rectangular base $9\\times4$ with height $7$: $V=\\dfrac13\\times36\\times7=84$ cu cm.\n\nSame base, same height: the pyramid always holds one-third of the prism's volume. The cone's one-third is the same idea on a circular base.\n\nWhen a face slant of $13$ sits on a base of side $10$, the half-base is $5$, so the true height is $\\sqrt{169-25}=12$. Slant first, height second.\n\n> **Tip:** The pyramid height is the perpendicular drop to the base centre, never the slant edge.\n\n### Frustum: the bucket shape\nA cone with its top sliced off. With radii $R$ (bottom) and $r$ (top), height $h$:\n$$V=\\frac{\\pi h}{3}\\left(R^2+r^2+Rr\\right)$$\nRadii $5$ and $3$, height $6$: $\\dfrac{22}{7}\\times\\dfrac{6}{3}\\times(25+9+15)=\\dfrac{44}{7}\\times49=308$ cu cm.\n\nA frustum is a big cone minus the small cone sliced off, and similar triangles link the two radii. Slant height $\\sqrt{h^2+(R-r)^2}$: with radii $8$ and $3$ and height $12$ it is $\\sqrt{144+25}=13$, the $5$-$12$-$13$ triplet again.\n\n> **Watch:** The cross term $Rr$ is the one students drop. Three terms, always: $R^2$, $r^2$, $Rr$.\n\n### Melting cubes\nThree cubes of edges $3$, $4$, $5$ melt into one cube. Volume adds: $27+64+125=216=6^3$, so the new edge is $6$ cm.\n\nMelting adds volumes, then one cube root. The cube table turns this into arithmetic. Splitting runs the other way: one cube of edge $12$ gives $8$ cubes of edge $6$, since $\\dfrac{1728}{8}=216=6^3$.\n\n### Lateral surfaces\n- Prism: perimeter of base $\\times$ length.\n- Pyramid: $\\dfrac12\\times$ perimeter of base $\\times$ slant height.\n\nSquare pyramid, base $10$, slant $13$: $\\dfrac12\\times40\\times13=260$ sq cm. The slant height belongs to each triangular face.\n\nTriangular prism with base sides $6$, $8$, $10$ and length $12$: perimeter $24$, so lateral $=24\\times12=288$ sq cm. The base is a right triangle by the $6$-$8$-$10$ test.\n\n> **Remember:** Prism lateral uses the length; pyramid lateral uses the slant height. Check which one the question gives.\n",
    "patterns": [
     {
      "id": "m3d-pp-p1",
      "name": "Volume of a prism",
      "frequency": "common",
-     "howToSpot": "A prism/tank/beam with a stated cross-section area (or easy base) and a length — volume or capacity asked.",
-     "formula": "V = A_{\\text{base}} \\times \\text{length}",
-     "logic": "1. Identify the constant cross-section (triangular, rectangular, any).\n2. Compute its area, then multiply by the length/height.\n3. Capacity questions: $\\text{m}^3 \\times 1000$ = litres.\n\nWhy: a prism is a base 'swept' along a line — the volume is literally area times distance swept.",
+     "howToSpot": "A prism with its cross-section described.",
+     "steps": [
+      "Identify the base shape.",
+      "Compute the base area.",
+      "Multiply by the prism length."
+     ],
+     "why": "One product of two quantities, whatever polygon the base is.",
      "example": {
       "q": "A triangular prism has a cross-section area of 20 sq cm and length 12 cm. Its volume is:",
-      "solution": "$V = 20 \\times 12 = 240$ cu cm."
+      "steps": [
+       "$V=20\\times12$.",
+       "$V=240$ cu cm."
+      ],
+      "answer": "240 cu cm"
      }
     },
     {
      "id": "m3d-pp-p2",
      "name": "Volume of a pyramid",
      "frequency": "common",
-     "howToSpot": "A pyramid (square/rectangular base) with base side(s) and height given — volume asked, or compared with a prism.",
-     "formula": "V = \\frac{1}{3} \\times A_{\\text{base}} \\times h",
-     "logic": "1. Base area from the sides; multiply by height.\n2. Then take one-third — the step exams test by omitting.\n3. Pyramid vs prism of the same base and height: volumes $1 : 3$.\n\nWhy: three pyramids fill the matching prism; the one-third is the definition being tested.",
+     "howToSpot": "A pyramid with a known base and height.",
+     "steps": [
+      "Find the base area.",
+      "Multiply by the height.",
+      "Take one-third."
+     ],
+     "why": "The one-third factor is the only step beyond a prism volume.",
      "example": {
       "q": "A pyramid stands on a square base of side 10 cm and is 12 cm high. Its volume is:",
-      "solution": "$V = \\frac13 \\times 100 \\times 12 = 400$ cu cm."
+      "steps": [
+       "$\\dfrac13\\times100\\times12$.",
+       "$V=400$ cu cm."
+      ],
+      "answer": "400 cu cm"
      }
     },
     {
      "id": "m3d-pp-p3",
      "name": "Frustum of a cone (bucket)",
      "frequency": "occasional",
-     "howToSpot": "A bucket/tumbler shape — two radii (or diameters) and the height given; capacity asked.",
-     "formula": "V = \\frac{\\pi h}{3}\\left(R^2 + r^2 + Rr\\right)",
-     "logic": "1. Halve diameters to get $R, r$; keep $h$ perpendicular (not slant).\n2. Compute $R^2 + r^2 + Rr$; multiply by $\\frac{\\pi h}{3}$.\n3. Litres conversion if the bucket capacity is asked.\n\nWhy: a frustum is the big cone minus the small cut-off cone; the three-term formula is its closed form.",
+     "howToSpot": "A bucket or lampshade with two radii and a height.",
+     "steps": [
+      "Label the radii $R$ and $r$.",
+      "Compute $R^2+r^2+Rr$.",
+      "$V=\\dfrac{\\pi h}{3}$ times that sum."
+     ],
+     "why": "The three-term bracket is the entire formula; heights and radii are given directly.",
      "example": {
       "q": "A bucket is in the shape of a frustum with radii 5 cm and 3 cm and height 6 cm. Its volume is (take pi = 22/7):",
-      "solution": "$V = \\frac{22 \\times 6}{21}(25 + 9 + 15) = \\frac{22}{7} \\times 2 \\times 49 = 308$ cu cm."
+      "steps": [
+       "$25+9+15=49$.",
+       "$V=\\dfrac{22}{7}\\times2\\times49=308$ cu cm."
+      ],
+      "answer": "308 cu cm"
      }
     },
     {
      "id": "m3d-pp-p4",
      "name": "Cube cutting and melting",
      "frequency": "very common",
-     "howToSpot": "A cube cut into smaller equal cubes — or several cubes melted into one big cube; the count or the new edge asked.",
-     "formula": "N = \\left(\\frac{a}{s}\\right)^3;\\quad A = \\sqrt[3]{\\sum a_i^3}",
-     "logic": "1. Cutting: the count is the cube of the side ratio; a cube of side $a$ cm gives $a^3$ unit cubes.\n2. Melting: add the volumes, take the cube root — triplet sums like $27+64+125=216$ are favourites.\n3. Surface-area questions after cutting: $6N s^2$, larger than the original block.\n\nWhy: volume is conserved on cutting/melting; only the shape of that volume is redistributed.",
+     "howToSpot": "Several solids melted into one, or one cube cut into many.",
+     "steps": [
+      "Add all volumes (or divide for pieces).",
+      "Equate to the target solid's volume formula.",
+      "Solve for the length asked."
+     ],
+     "why": "Volume conservation turns multi-solid stories into one equation.",
      "example": {
       "q": "Three metal cubes of edges 3 cm, 4 cm and 5 cm are melted into a single cube. Its edge is:",
-      "solution": "$\\sqrt[3]{27 + 64 + 125} = \\sqrt[3]{216} = 6$ cm."
+      "steps": [
+       "$27+64+125=216$.",
+       "$216=6^3$.",
+       "Edge $=6$ cm."
+      ],
+      "answer": "6 cm"
      }
     },
     {
      "id": "m3d-pp-p5",
-     "name": "Lateral surface of prism / pyramid",
+     "name": "Lateral surface of prism or pyramid",
      "frequency": "occasional",
-     "howToSpot": "Perimeter of the cross-section (or base) plus a length/slant height — the lateral (side) area asked.",
-     "formula": "\\text{prism}: P \\times h;\\qquad \\text{pyramid}: \\frac{1}{2} P l",
-     "logic": "1. Prism: the side walls unroll into a rectangle $P \\times h$.\n2. Pyramid: the sides are triangles — half the base perimeter times the slant height.\n3. Add the base area only if TOTAL surface is asked.\n\nWhy: both formulas are 'unroll the walls and measure the resulting flat shape'.",
+     "howToSpot": "A side surface asked, with perimeter and slant data.",
+     "steps": [
+      "Prism: perimeter $\\times$ length.",
+      "Pyramid: $\\dfrac12\\times$ perimeter $\\times$ slant.",
+      "Add base areas only if total surface is asked."
+     ],
+     "why": "Lateral formulas avoid computing each face separately.",
      "example": {
       "q": "A square pyramid has a base of side 10 cm and slant height 13 cm. Its lateral surface area is:",
-      "solution": "LSA $= \\frac12 \\times 40 \\times 13 = 260$ sq cm."
+      "steps": [
+       "$P=4\\times10=40$.",
+       "$\\dfrac12\\times40\\times13=260$ sq cm."
+      ],
+      "answer": "260 sq cm"
      }
     }
+   ],
+   "revision": [
+    "Prism: base area $\\times$ length.",
+    "Pyramid: one-third of the same-base prism volume.",
+    "Frustum: $\\dfrac{\\pi h}{3}(R^2+r^2+Rr)$; keep all three terms.",
+    "Melting: add volumes, then take the cube root for an edge.",
+    "Lateral: prism $P\\times L$; pyramid $\\dfrac12 P\\ell$ with the slant."
    ]
   }
  ],

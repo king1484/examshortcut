@@ -185,3 +185,36 @@ body {
 .notice-cta { padding: .15rem .6rem; border-radius: 999px; background: var(--brand-soft); color: var(--brand-text); font-weight: 700; }
 
 @media (prefers-reduced-motion: reduce) { .cycle-step.is-live .cycle-dot::before, .status-kicker::before, .notice-dot::after { animation: none; } }
+
+/* Lesson pages: numbered sections, callouts, try-first examples */
+.lesson .md { font-size: 1rem; line-height: 1.75; max-width: none; }
+.lesson .md h4 { font-size: 1.02rem; font-weight: 800; margin: 1.3rem 0 .4rem; }
+.lesson .md ul, .lesson .md ol { margin: .6rem 0; }
+.lesson .md li { margin: .25rem 0; }
+.lesson-sec { border-top: 1px solid var(--line); padding-top: 1.9rem; margin-top: 1.9rem; scroll-margin-top: 5rem; }
+.sec-num { flex: none; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .78rem; font-weight: 800; color: var(--brand-text); background: var(--brand-soft); border-radius: 8px; padding: .15rem .45rem; }
+.callout { border-left: 4px solid var(--ink-3); background: var(--surface-2); border-radius: 10px; padding: .75rem 1rem; margin: 1rem 0; }
+.callout > p { margin: .3rem 0; }
+.callout-rule { border-color: var(--brand); background: var(--brand-soft); }
+.callout-tip { border-color: var(--ok); background: var(--ok-soft); }
+.callout-note { border-color: var(--info); background: var(--info-soft); }
+.callout-warn { border-color: var(--warn); background: var(--warn-soft); }
+.callout-example { border-color: var(--line); }
+.steps { list-style: none; counter-reset: step; padding: 0; margin: .4rem 0; display: grid; gap: .55rem; }
+.steps li { counter-increment: step; position: relative; padding-left: 2.1rem; line-height: 1.6; font-size: .96rem; }
+.steps li::before { content: counter(step); position: absolute; left: 0; top: .05rem; width: 1.45rem; height: 1.45rem; border-radius: 999px; display: grid; place-items: center; font-size: .72rem; font-weight: 800; background: var(--surface-2); color: var(--ink-2); border: 1px solid var(--line); }
+.example { border: 1px dashed var(--line); border-radius: 12px; padding: .9rem 1rem; background: var(--surface); margin-top: .9rem; }
+.example-kicker, .kicker { font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+.solution-toggle { display: inline-flex; cursor: pointer; list-style: none; font-size: .82rem; font-weight: 700; padding: .3rem .75rem; border-radius: 999px; background: var(--brand-soft); color: var(--brand-text); }
+.solution-toggle::-webkit-details-marker { display: none; }
+.answer-pill { display: inline-flex; align-items: baseline; gap: .5rem; margin-top: .75rem; padding: .35rem .8rem; border-radius: 10px; background: var(--ok-soft); color: var(--ink); font-weight: 700; font-size: .95rem; }
+.answer-pill > span:first-child { font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ok); font-weight: 800; }
+.spot { display: flex; gap: .6rem; padding: .65rem .85rem; border-radius: 10px; background: var(--info-soft); font-size: .95rem; }
+.formula-box { overflow-x: auto; border-radius: 10px; padding: .5rem .85rem; background: var(--surface-2); border: 1px solid var(--line); }
+.toc { counter-reset: toc; display: grid; gap: .1rem; }
+.toc a { display: flex; gap: .7rem; align-items: baseline; padding: .35rem .5rem; border-radius: 8px; font-size: .93rem; color: var(--ink-2); }
+.toc a:hover { background: var(--surface-2); color: var(--ink); }
+.toc a b { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .72rem; color: var(--ink-3); font-weight: 800; }
+.check { list-style: none; padding: 0; display: grid; gap: .5rem; }
+.check li { position: relative; padding-left: 1.7rem; }
+.check li::before { content: '✓'; position: absolute; left: 0; top: 0; color: var(--ok); font-weight: 900; }

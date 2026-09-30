@@ -13,737 +13,1387 @@
   {
    "id": "alg-identities",
    "title": "Basic algebraic identities",
-   "concept": "An **identity** is true for every value of the variables, so it can be used both ways: to expand and to\ncompress. In CGL, identities are tested in three ways:\n\n1. **Given $a+b$ (or $a-b$) and $ab$, find $a^2+b^2$, $a^3\\pm b^3$ or $a^4+b^4$.** Never solve for $a$ and $b$ separately — build the answer from the given pieces.\n2. **Big-number simplification.** Expressions such as $\\frac{p^3+q^3}{p^2-pq+q^2}$ with decimals are just $p+q$ in disguise.\n3. **Sum of squares equal to zero.** If $(\\ldots)^2+(\\ldots)^2+(\\ldots)^2=0$ over real numbers, each bracket is zero. Questions hide this as $x^2+y^2-4x+6y+13=0$; complete the squares to expose it.",
+   "concept": "An identity is true for every value of the letters, so it works both ways: to expand and to compress. Exam questions hand you $a+b$ and $ab$, or a scary fraction, or squares that sum to zero; each is one identity away from a short answer.",
    "formulas": [
     {
-     "name": "Square of sum / difference",
-     "tex": "(a\\pm b)^2=a^2\\pm 2ab+b^2"
+     "name": "Square of sum or difference",
+     "tex": "(a \\pm b)^2 = a^2 \\pm 2ab + b^2",
+     "note": ""
     },
     {
      "name": "Difference of squares",
-     "tex": "a^2-b^2=(a+b)(a-b)"
-    },
-    {
-     "name": "Sum & difference of the two squares",
-     "tex": "(a+b)^2+(a-b)^2=2(a^2+b^2),\\quad (a+b)^2-(a-b)^2=4ab"
-    },
-    {
-     "name": "Cube of sum",
-     "tex": "(a+b)^3=a^3+b^3+3ab(a+b)"
-    },
-    {
-     "name": "Cube of difference",
-     "tex": "(a-b)^3=a^3-b^3-3ab(a-b)"
+     "tex": "a^2 - b^2 = (a+b)(a-b)",
+     "note": ""
     },
     {
      "name": "Sum of cubes",
-     "tex": "a^3+b^3=(a+b)(a^2-ab+b^2)=(a+b)^3-3ab(a+b)"
+     "tex": "a^3 + b^3 = (a+b)(a^2 - ab + b^2)",
+     "note": ""
     },
     {
      "name": "Difference of cubes",
-     "tex": "a^3-b^3=(a-b)(a^2+ab+b^2)=(a-b)^3+3ab(a-b)"
+     "tex": "a^3 - b^3 = (a-b)(a^2 + ab + b^2)",
+     "note": ""
     },
     {
-     "name": "Square of trinomial",
-     "tex": "(a+b+c)^2=a^2+b^2+c^2+2(ab+bc+ca)"
+     "name": "Cube of sum",
+     "tex": "(a+b)^3 = a^3 + b^3 + 3ab(a+b)",
+     "note": ""
     },
     {
-     "name": "Fourth-power factorisation",
-     "tex": "a^4+a^2b^2+b^4=(a^2+ab+b^2)(a^2-ab+b^2)"
+     "name": "Squares combine",
+     "tex": "(a+b)^2 + (a-b)^2 = 2(a^2+b^2)",
+     "note": ""
     },
     {
-     "name": "Fourth powers from sum and product",
-     "tex": "a^4+b^4=(a^2+b^2)^2-2a^2b^2"
+     "name": "Squares subtract",
+     "tex": "(a+b)^2 - (a-b)^2 = 4ab",
+     "note": ""
+    },
+    {
+     "name": "Square of a trinomial",
+     "tex": "(a+b+c)^2 = a^2+b^2+c^2+2(ab+bc+ca)",
+     "note": ""
+    },
+    {
+     "name": "Fourth powers from the ladder",
+     "tex": "a^4 + b^4 = (a^2+b^2)^2 - 2a^2b^2",
+     "note": ""
     }
    ],
    "tricks": [
     {
-     "title": "Build higher powers from $a+b$ and $ab$",
-     "body": "Memorise the chain: $a^2+b^2=(a+b)^2-2ab$, then $a^3+b^3=(a+b)^3-3ab(a+b)$. For differences use\n$(a-b)^2=(a+b)^2-4ab$. No need to find $a$ and $b$.",
+     "title": "Build higher powers from a sum and a product",
+     "body": "Chain the rungs: square-sum first, then cube-sum, then fourth powers. The individual letters are never needed.",
      "example": {
-      "q": "If $a+b=7$ and $ab=10$, find $a^3+b^3$.",
-      "solution": "$a^3+b^3=(a+b)^3-3ab(a+b)=343-3(10)(7)=343-210=133$. (Check: $a=5, b=2$ gives $125+8=133$.)"
+      "q": "If a + b = 5 and ab = 6, find a^3 + b^3.",
+      "steps": [
+       "$(a+b)^3 = 125$.",
+       "$3ab(a+b) = 3 \\times 6 \\times 5 = 90$.",
+       "$a^3 + b^3 = 125 - 90 = 35$ (the numbers are $2$ and $3$)."
+      ],
+      "answer": "35"
      }
     },
     {
      "title": "Recognise the identity inside decimals",
-     "body": "$\\frac{p^3+q^3}{p^2-pq+q^2}=p+q$ and $\\frac{p^3-q^3}{p^2+pq+q^2}=p-q$. If the denominator's middle sign is\n**opposite** to the numerator's sign, the identity fits.",
+     "body": "Cubed decimals over a trinomial mean a cube identity. The value is the sum or difference of the bases.",
      "example": {
-      "q": "Simplify $\\dfrac{8.3^3-3.7^3}{8.3^2+8.3\\times 3.7+3.7^2}$.",
-      "solution": "It is $\\frac{p^3-q^3}{p^2+pq+q^2}$ with $p=8.3,\\ q=3.7$, so the value is $p-q=4.6$."
+      "q": "Simplify (4.7^3 + 2.3^3) / (4.7^2 - 4.7 x 2.3 + 2.3^2).",
+      "steps": [
+       "Bottom has the minus middle term, so it pairs with a sum of cubes.",
+       "Value $= 4.7 + 2.3$.",
+       "$= 7$."
+      ],
+      "answer": "7"
      }
     },
     {
-     "title": "Value-putting for expression options",
-     "body": "When options are algebraic expressions, substitute small numbers (e.g. $a=1, b=1$ or $a=2, b=1$) in the\nquestion and in each option. Test a second pair if two options tie. Avoid values that make denominators zero.",
+     "title": "Value-putting among expression options",
+     "body": "Put small numbers into the question and each option. Wrong options die in one round; ties die in a second.",
      "example": {
-      "q": "$(a+b)^3-(a-b)^3-6a^2b$ equals: (a) $2b^3$ (b) $6ab^2$ (c) $2a^3$ (d) $0$",
-      "solution": "Put $a=1,b=1$: $8-0-6=2$. Options give (a) 2, (b) 6, (c) 2, (d) 0. Tie between (a) and (c); put $a=2,b=1$: $27-1-24=2$; (a) gives 2, (c) gives 16. Answer $2b^3$."
-     }
-    },
-    {
-     "title": "Complete the squares when an equation equals zero",
-     "body": "Group $x$-terms and $y$-terms, complete each square, and check that the leftover constants cancel.\nThen each square must be zero.",
-     "example": {
-      "q": "If $x^2+y^2-4x+6y+13=0$, find $x$ and $y$.",
-      "solution": "$(x^2-4x+4)+(y^2+6y+9)=0\\Rightarrow (x-2)^2+(y+3)^2=0$, so $x=2,\\ y=-3$."
+      "q": "(a + b)^2 - (a - b)^2 equals which of: 2ab, 4ab, 2(a^2+b^2), a^2-b^2?",
+      "steps": [
+       "Put $a = 1$, $b = 2$: value $= 9 - 1 = 8$.",
+       "Options give $4$, $8$, $10$, $-3$.",
+       "Only $4ab$ matches, so it is the answer."
+      ],
+      "answer": "4ab"
      }
     }
    ],
    "mistakes": [
-    "Writing $(a+b)^2=a^2+b^2$ — the $2ab$ term is the most common loss of marks.",
-    "Using $a^3-b^3=(a-b)^3-3ab(a-b)$; the correct sign is **plus**: $(a-b)^3+3ab(a-b)$.",
-    "Value-putting with $a=b$ or with zero: many options collapse to the same number. Always use two different non-zero values.",
-    "In the decimal identity, checking only the numerator: the denominator's middle sign decides which identity applies."
+    {
+     "wrong": "Writing $(a+b)^2 = a^2 + b^2$.",
+     "right": "The cross term $2ab$ is the most commonly lost mark; check with $a = b = 1$."
+    },
+    {
+     "wrong": "Pairing a sum of cubes with the plus middle trinomial.",
+     "right": "The middle sign in the factor is opposite to the sign between the cubes."
+    },
+    {
+     "wrong": "Solving for a and b individually when a+b and ab are given.",
+     "right": "Build the target from the sum and the product; the letters never surface."
+    },
+    {
+     "wrong": "Value-putting with a = b or with zero.",
+     "right": "Use two different non-zero values so options cannot collapse together."
+    },
+    {
+     "wrong": "Declaring a square-sum equation solved without completing both squares.",
+     "right": "The constants must absorb the loose number exactly; then each square is zero."
+    }
    ],
-   "notes": "### The five working identities\n$$(a+b)^2 = a^2 + 2ab + b^2 \\quad (a-b)^2 = a^2 - 2ab + b^2 \\quad a^2-b^2 = (a+b)(a-b)$$\n$$a^3+b^3 = (a+b)(a^2-ab+b^2) \\qquad a^3-b^3 = (a-b)(a^2+ab+b^2)$$\nEverything else in this subtopic is these five rearranged. Read them BOTH ways: expanding, and factoring a big expression into something you can divide out.\n\n### The symmetric machine: given $a \\pm b$ and $ab$\nAlmost every question hands you $a+b$ (or $a-b$) and $ab$, then asks for a higher symmetric expression. Never solve for $a$ and $b$ — rebuild from the top:\n$$a^2+b^2 = (a+b)^2 - 2ab \\qquad a^3+b^3 = (a+b)^3 - 3ab(a+b) \\qquad a^3-b^3 = (a-b)^3 + 3ab(a-b)$$\n$$a^4+b^4 = (a^2+b^2)^2 - 2a^2b^2$$\nWith $a+b = 5$, $ab = 6$: $a^2+b^2 = 13$, then $a^4+b^4 = 169 - 2\\cdot36 = 97$. Two identities chained — that is the whole game. For a minus-stem, $a^2+b^2$ works the same way from $(a-b)^2 + 2ab$.\n\n### Big numbers: match the identity first\nLarge decimals and cubes are always an identity in disguise. Scan the denominator's middle term:\n- $p^2 - pq + q^2$ under a numerator $p^3+q^3$ → the fraction collapses to $p+q$ (since $p^3+q^3 = (p+q)(p^2-pq+q^2)$).\n- $p^2 + pq + q^2$ with numerator $p^3-q^3$ → collapses to $p-q$.\nSo $\\frac{4.7^3 + 2.3^3}{4.7^2 - 4.7\\times2.3 + 2.3^2} = 4.7 + 2.3 = 7$ in one line. For sums like $873^2 + 127^2 + 873\\times127$, notice the structure $a^2+b^2+ab = (a+b)^2 - ab$ with $a+b = 1000$.\n\n### Sum of squares = zero\nA quadratic-type equation in several variables with real solutions is often a perfect-square sum:\n$$x^2 + y^2 - 8x + 6y + 25 = (x-4)^2 + (y+3)^2 = 0$$\nSquares are never negative, so each must be exactly zero → $x = 4$, $y = -3$. The same trick with three variables: complete every square and force each to zero; then any requested combination ($x-y$, $x+y+z$, …) is read off directly. A close cousin: $a^2+b^2+c^2 = ab+bc+ca \\iff a=b=c$, because the difference is half of $(a-b)^2+(b-c)^2+(c-a)^2$.\n\n### Direct evaluation\n$(103\\times97) = (100+3)(100-3) = 9991$ and $105^2 - 95^2 = 200\\times10 = 2000$ — spot the $(a\\pm b)$ forms around a round base. For products of two-digit numbers near 100, the base-100 split is faster than multiplication.\n\n### Common traps\n- Expanding $(a+b)^3$ and forgetting the $3ab(a+b)$ term — always cross-check with a small case.\n- Using $a^3+b^3$ with the WRONG trinomial ($p^2+pq+q^2$ belongs to $p^3-q^3$, not $p^3+q^3$).\n- Trying to find $a$ and $b$ individually from $a+b$ and $ab$ — wasted time, and the surds get ugly.\n- Missing that \"sum of squares = 0\" pins every variable exactly.\n\n### Quick revision\n- $a^2+b^2 = (a\\pm b)^2 \\mp 2ab$; $a^3\\pm b^3 = (a\\pm b)^3 \\mp 3ab(a\\pm b)$; $a^4+b^4 = (a^2+b^2)^2 - 2a^2b^2$.\n- Denominator $p^2 \\mp pq + q^2$ → fraction $= p \\pm q$.\n- $a^2+b^2+c^2 = ab+bc+ca \\Rightarrow a=b=c$.\n- Squares summing to zero → each square is 0.\n",
+   "notes": "Five identities answer almost everything here:\n$$(a+b)^2 = a^2 + 2ab + b^2 \\qquad (a-b)^2 = a^2 - 2ab + b^2 \\qquad a^2 - b^2 = (a+b)(a-b)$$\n$$a^3 + b^3 = (a+b)(a^2 - ab + b^2) \\qquad a^3 - b^3 = (a-b)(a^2 + ab + b^2)$$\nRead each one both ways. Expanding is one direction; spotting the factor inside a giant expression is the other, and that is the direction the exam pays for.\n\n### Build upward from a sum and a product\nWhen the question gives $a+b$ and $ab$, never solve for $a$ and $b$. Climb instead:\n$$a^2 + b^2 = (a+b)^2 - 2ab \\qquad a^3 + b^3 = (a+b)^3 - 3ab(a+b) \\qquad a^4 + b^4 = (a^2+b^2)^2 - 2a^2b^2$$\nWith $a+b = 5$ and $ab = 6$: first $a^2 + b^2 = 25 - 12 = 13$, then $a^3 + b^3 = 125 - 90 = 35$, then $a^4 + b^4 = 169 - 72 = 97$. Each rung reuses the one below it.\n\n> **Rule:** Every symmetric expression in two letters is a function of $a+b$ and $ab$ alone. Two given numbers are always enough.\n\n### Big numbers hide an identity\nA fraction with cubed terms is usually an identity fraction. Read the denominator first: a minus middle term pairs with a sum of cubes, a plus middle term with a difference of cubes. So $\\dfrac{94^3 + 6^3}{94^2 - 94 \\times 6 + 6^2}$ is just $94 + 6 = 100$.\nSquares stack the same way: $873^2 + 127^2 + 873 \\times 127$ is $(a+b)^2 - ab$ with $a + b = 1000$, giving $1000000 - 110871 = 889129$.\n\n### Squares that must be zero\nAn equation like $x^2 + y^2 - 12x + 4y + 40 = 0$ is two perfect squares in disguise. Group the $x$ terms and the $y$ terms: $x^2 - 12x + 36$ and $y^2 + 4y + 4$, so $(x-6)^2 + (y+2)^2 = 0$. A square is never negative, so both are zero: $x = 6$, $y = -2$.\n\n> **Watch:** Complete both squares and check that the constants exactly absorb the loose number. If they do not, the equation has other solutions and this route is wrong.\n\n### Products around a round base\nWrite each number as base plus or minus a small offset. $205^2 - 195^2 = (205 - 195)(205 + 195) = 10 \\times 400 = 4000$. And $103 \\times 97 = (100+3)(100-3) = 10000 - 9 = 9991$. No long multiplication anywhere.\n\n### Choose expressions by value-putting\nWhen the options are themselves expressions, substitute small numbers into the question and into every option. Only the right option survives. For $(a+b)^2 - (a-b)^2$ with $a = 1$, $b = 2$: the value is $9 - 1 = 8$, and $4ab = 8$ matches.\n\n> **Tip:** Use two different non-zero numbers, and test a second pair if two options tie. Avoid values that make a denominator zero.\n\n### An order that works\n1. Read the denominator of any fraction; it names the identity.\n2. Match the middle sign before choosing plus or minus forms.\n3. Keep the letters symbolic until the last line.\n4. Substitute once, at the end.\n",
    "patterns": [
     {
      "id": "alg-p1",
-     "name": "Symmetric expressions from a±b and ab",
+     "name": "Symmetric expressions from a sum and a product",
      "frequency": "very common",
-     "howToSpot": "Two conditions like $a+b=7$, $ab=12$ are given and a higher symmetric expression ($a^3\\pm b^3$, $a^2+b^2$, $a^4+b^4$, $xy$) is asked.",
-     "formula": "a^3+b^3 = (a+b)^3 - 3ab(a+b), \\quad a^3-b^3 = (a-b)^3 + 3ab(a-b)",
-     "logic": "1. Never solve for the variables individually.\n2. Build upward: $(a\\pm b)$ and $ab$ → $a^2+b^2$ → $a^3\\pm b^3$ → $a^4+b^4$.\n3. Each rung reuses the previous one — chain two identities at most.\n\nWhy: the expressions asked are all symmetric polynomials in $a,b$, hence expressible through $a+b$ and $ab$ alone.",
+     "howToSpot": "Two facts like $a+b=9$ and $ab=20$ are given, and a higher symmetric expression is asked.",
+     "formula": "a^3+b^3 = (a+b)^3 - 3ab(a+b)",
+     "steps": [
+      "Never solve for the two letters.",
+      "Write the target using only $(a+b)$ and $ab$.",
+      "Substitute the two given numbers and finish."
+     ],
+     "why": "Every symmetric polynomial in two letters is built from their sum and product.",
      "example": {
-      "q": "If $a+b=7$ and $ab=12$, then $a^3+b^3$ is:",
-      "solution": "$7^3 - 3\\times12\\times7 = 343 - 252 = 91$. No need to find $a$ and $b$ (they are 3 and 4)."
+      "q": "If $a + b = 9$ and $ab = 20$, find $a^3 + b^3$.",
+      "steps": [
+       "$(a+b)^3 = 729$.",
+       "$3ab(a+b) = 3 \\times 20 \\times 9 = 540$.",
+       "$729 - 540 = 189$ (the numbers are $4$ and $5$)."
+      ],
+      "answer": "189"
      }
     },
     {
      "id": "alg-p2",
      "name": "Big-number simplification by identity",
      "frequency": "very common",
-     "howToSpot": "Fractions of cubes over trinomials, or large squared terms like $873^2+127^2+873\\times127$, dressed up as arithmetic.",
-     "formula": "\\frac{p^3\\pm q^3}{p^2 \\mp pq + q^2} = p \\pm q; \\qquad a^2+b^2+ab = (a+b)^2 - ab",
-     "logic": "1. Match the denominator to a trinomial factor of a cube identity.\n2. The fraction collapses to the SUM (if the middle term is negative) or the DIFFERENCE (positive middle term).\n3. For $a^2+b^2+ab$ shapes, rewrite around $a+b$ and subtract $ab$.\n\nWhy: the trinomial $p^2 \\mp pq + q^2$ is exactly what survives when a cube is divided by $p \\pm q$.",
+     "howToSpot": "Fractions with cubed large numbers over a trinomial, or stacks of squares like $a^2+b^2+ab$.",
+     "formula": "\\dfrac{p^3 \\pm q^3}{p^2 \\mp pq + q^2} = p \\pm q",
+     "steps": [
+      "Read the denominator's middle sign.",
+      "Pick the cube identity with the opposite sign.",
+      "The fraction collapses to the sum or difference of the bases."
+     ],
+     "why": "The denominator is exactly the second factor of the cube identity.",
      "example": {
-      "q": "The value of $\\dfrac{198^3 + 12^3}{198^2 - 198\\times12 + 12^2}$ is:",
-      "solution": "Denominator $= p^2 - pq + q^2$ → fraction $= 198 + 12 = 210$. Never expand the cubes."
+      "q": "Find the value of $\\dfrac{94^3 + 6^3}{94^2 - 94 \\times 6 + 6^2}$.",
+      "steps": [
+       "Bottom has the minus middle term, so it pairs with a sum of cubes.",
+       "Value $= 94 + 6$.",
+       "$= 100$."
+      ],
+      "answer": "100"
      }
     },
     {
      "id": "alg-p3",
      "name": "Sum of squares equal to zero",
      "frequency": "very common",
-     "howToSpot": "One equation in two or three variables like $x^2+y^2-8x+6y+25=0$, or $a^2+b^2+c^2=ab+bc+ca$; a linear combination is asked.",
-     "formula": "x^2+y^2-8x+6y+25 = (x-4)^2+(y+3)^2 = 0",
-     "logic": "1. Group $x$-terms and $y$-terms and complete both squares; the constant should cancel exactly.\n2. Each square is $\\ge 0$, so the sum is zero only if every square is zero.\n3. Read off each variable, then compute the asked combination.\n4. The three-variable twin: $a^2+b^2+c^2-ab-bc-ca = \\frac12[(a-b)^2+(b-c)^2+(c-a)^2] = 0 \\Rightarrow a=b=c$.\n\nWhy: squares exhaust the constant, and non-negativity turns one equation into a full solution.",
+     "howToSpot": "One equation in two or three variables, with squared and linear terms and a loose constant.",
+     "formula": "(x-a)^2 + (y-b)^2 = 0 \\Rightarrow x = a,\\ y = b",
+     "steps": [
+      "Group the $x$ terms and the $y$ terms.",
+      "Complete each square; the constants must absorb the loose number.",
+      "Each square is zero, so read off both variables.",
+      "Compute the asked combination."
+     ],
+     "why": "A square cannot be negative, so a zero sum of squares pins every letter.",
      "example": {
-      "q": "If $a^2+b^2+c^2 = ab+bc+ca$ and $a+b+c = 15$, then $ab+bc+ca$ is:",
-      "solution": "The condition forces $a=b=c=5$ → $ab+bc+ca = 3\\times25 = 75$. Or: twice the target $= (a+b+c)^2 - (a^2+b^2+c^2) = 225 - 75 = 150$."
+      "q": "If $x^2 + y^2 - 12x + 4y + 40 = 0$, find $x - y$.",
+      "steps": [
+       "$x^2 - 12x + 36$ and $y^2 + 4y + 4$ use up the $40$ exactly.",
+       "$(x-6)^2 + (y+2)^2 = 0$, so $x = 6$, $y = -2$.",
+       "$x - y = 6 - (-2) = 8$."
+      ],
+      "answer": "8"
      }
     },
     {
      "id": "alg-p4",
-     "name": "Direct identity evaluation",
+     "name": "Direct evaluation near a round base",
      "frequency": "common",
-     "howToSpot": "Products or differences of round numbers: $103\\times97$, $105^2-95^2$, $(52)^2-(48)^2$ — expandable by a base-$100$ or $(a\\pm b)$ split.",
-     "formula": "(a+b)(a-b) = a^2-b^2",
-     "logic": "1. Write each number as round base $\\pm$ small offset (103 = 100+3, 97 = 100−3).\n2. Apply $(a+b)(a-b)$ or $(a\\pm b)^2$ directly.\n3. Compute in the base (100² = 10000) — no long multiplication.\n\nWhy: numbers near a round base make the $(a\\pm b)$ expansion trivial mental arithmetic.",
+     "howToSpot": "Products or differences of squares of numbers sitting symmetrically around a round base.",
+     "formula": "(a+b)(a-b) = a^2 - b^2",
+     "steps": [
+      "Write each number as base plus or minus an offset.",
+      "Apply the difference of squares.",
+      "Compute in the base, which squares easily."
+     ],
+     "why": "The round base squares in one step, and the small offsets square to nothing.",
      "example": {
-      "q": "The value of $105^2 - 95^2$ is:",
-      "solution": "$(105+95)(105-95) = 200\\times10 = 2000$."
+      "q": "Find the value of $205^2 - 195^2$.",
+      "steps": [
+       "$205 - 195 = 10$ and $205 + 195 = 400$.",
+       "$10 \\times 400 = 4000$."
+      ],
+      "answer": "4000"
+     }
+    },
+    {
+     "id": "alg-p25",
+     "name": "Pick the matching expression by value-putting",
+     "frequency": "common",
+     "howToSpot": "The options are algebraic expressions, not numbers, and the question asks which one is equal.",
+     "formula": "\\text{substitute small numbers in question and options}",
+     "steps": [
+      "Pick two different small non-zero numbers.",
+      "Evaluate the question expression.",
+      "Evaluate every option on the same numbers.",
+      "If two options survive, test a second pair."
+     ],
+     "why": "An identity holds for every value, so one clean substitution filters all wrong options.",
+     "example": {
+      "q": "$(a+b)^2 - (a-b)^2$ is equal to which of $2ab$, $4ab$, $2(a^2+b^2)$, $a^2-b^2$?",
+      "steps": [
+       "Put $a = 1$, $b = 2$: value $= 9 - 1 = 8$.",
+       "Options give $4$, $8$, $10$, $-3$.",
+       "Only $4ab$ gives $8$; answer $4ab$."
+      ],
+      "answer": "4ab"
      }
     }
+   ],
+   "revision": [
+    "$a^2+b^2 = (a+b)^2 - 2ab$; $a^3+b^3 = (a+b)^3 - 3ab(a+b)$.",
+    "$\\dfrac{a^3 \\pm b^3}{a^2 \\mp ab + b^2} = a \\pm b$.",
+    "$(a+b)^2 - (a-b)^2 = 4ab$.",
+    "Squares summing to zero force each bracket to zero.",
+    "Near a round base, split as base plus and minus the offset.",
+    "Test expression options by value-putting with two small pairs."
    ]
   },
   {
    "id": "alg-reciprocal",
    "title": "$x+\\frac{1}{x}$ type expressions",
-   "concept": "If $x+\\frac1x=k$ is known, every expression of the form $x^n+\\frac{1}{x^n}$ can be built from $k$ without solving\nfor $x$. The same works for $x-\\frac1x$ and for mixed forms like $2x+\\frac{1}{3x}$.\n\n**How it is disguised in CGL:**\n- a quadratic like $x^2-4x+1=0$ (divide by $x$: $x+\\frac1x=4$);\n- a surd like $x=2+\\sqrt3$ (then $\\frac1x=2-\\sqrt3$);\n- a special value: $x+\\frac1x=1,\\ -1,\\ \\sqrt3,\\ \\sqrt2$ gives cyclic powers of $x$.",
+   "concept": "If $x + \frac{1}{x} = k$, then every power sum $x^n + \frac{1}{x^n}$ climbs from $k$ without ever solving for $x$. The minus ladder, quadratics with equal end coefficients, and mixed forms like $2x + \frac{1}{2x}$ all ride the same machine.",
    "formulas": [
     {
-     "name": "Square",
-     "tex": "x^2+\\frac{1}{x^2}=\\left(x+\\frac1x\\right)^2-2=\\left(x-\\frac1x\\right)^2+2"
+     "name": "Square rung",
+     "tex": "x^2+\\frac{1}{x^2} = \\left(x+\\frac1x\\right)^2-2 = \\left(x-\\frac1x\\right)^2+2",
+     "note": ""
     },
     {
-     "name": "Cube (sum)",
-     "tex": "x^3+\\frac{1}{x^3}=\\left(x+\\frac1x\\right)^3-3\\left(x+\\frac1x\\right)",
-     "note": "if $x+\\frac1x=k$ then it is $k^3-3k$"
+     "name": "Cube rung, sum",
+     "tex": "x^3+\\frac{1}{x^3} = \\left(x+\\frac1x\\right)^3 - 3\\left(x+\\frac1x\\right)",
+     "note": ""
     },
     {
-     "name": "Cube (difference)",
-     "tex": "x^3-\\frac{1}{x^3}=\\left(x-\\frac1x\\right)^3+3\\left(x-\\frac1x\\right)"
+     "name": "Cube rung, difference",
+     "tex": "x^3-\\frac{1}{x^3} = \\left(x-\\frac1x\\right)^3 + 3\\left(x-\\frac1x\\right)",
+     "note": ""
     },
     {
-     "name": "Fourth power",
-     "tex": "x^4+\\frac{1}{x^4}=\\left(x^2+\\frac{1}{x^2}\\right)^2-2"
+     "name": "Fourth rung",
+     "tex": "x^4+\\frac{1}{x^4} = \\left(x^2+\\frac{1}{x^2}\\right)^2 - 2",
+     "note": ""
     },
     {
-     "name": "Fifth power",
-     "tex": "x^5+\\frac{1}{x^5}=\\left(x^2+\\frac{1}{x^2}\\right)\\left(x^3+\\frac{1}{x^3}\\right)-\\left(x+\\frac1x\\right)"
+     "name": "Fifth rung",
+     "tex": "x^5+\\frac{1}{x^5} = \\left(x^2+\\tfrac1{x^2}\\right)\\left(x^3+\\tfrac1{x^3}\\right)-\\left(x+\\tfrac1x\\right)",
+     "note": ""
     },
     {
-     "name": "Link between sum and difference",
-     "tex": "\\left(x+\\frac1x\\right)^2-\\left(x-\\frac1x\\right)^2=4"
+     "name": "Ladders link",
+     "tex": "\\left(x+\\frac1x\\right)^2 - \\left(x-\\frac1x\\right)^2 = 4",
+     "note": ""
     },
     {
-     "name": "Quadratic to reciprocal form",
-     "tex": "ax^2-bx+a=0\\ \\Rightarrow\\ x+\\frac1x=\\frac ba"
+     "name": "Equal-end quadratic",
+     "tex": "ax^2 - bx + a = 0 \\Rightarrow x+\\frac1x = \\frac ba",
+     "note": ""
     },
     {
      "name": "Mixed form",
-     "tex": "\\left(px+\\frac{1}{qx}\\right)^2=p^2x^2+\\frac{1}{q^2x^2}+\\frac{2p}{q}"
+     "tex": "\\left(px+\\frac{1}{qx}\\right)^2 = p^2x^2+\\frac{1}{q^2x^2}+\\frac{2p}{q}",
+     "note": ""
     }
    ],
    "tricks": [
     {
-     "title": "The ladder",
-     "body": "From $k=x+\\frac1x$: $x^2+\\frac{1}{x^2}=k^2-2$, $x^4+\\frac{1}{x^4}=(k^2-2)^2-2$, $x^8+\\frac{1}{x^8}=\\ldots$ — keep\nsquaring and subtracting 2. For the cube use $k^3-3k$.",
+     "title": "Run the ladder in order",
+     "body": "Square rung first, then cube rung, then reuse them for higher rungs. Never restart from k for each question part.",
      "example": {
-      "q": "If $x+\\frac1x=4$, find $x^2+\\frac{1}{x^2}$, $x^4+\\frac{1}{x^4}$ and $x^3+\\frac{1}{x^3}$.",
-      "solution": "$16-2=14$; $14^2-2=194$; $4^3-3(4)=64-12=52$."
+      "q": "If x + 1/x = 4, find x^2 + 1/x^2, x^4 + 1/x^4 and x^3 + 1/x^3.",
+      "steps": [
+       "$x^2+\\dfrac{1}{x^2} = 16 - 2 = 14$.",
+       "$x^4+\\dfrac{1}{x^4} = 14^2 - 2 = 194$.",
+       "$x^3+\\dfrac{1}{x^3} = 64 - 12 = 52$."
+      ],
+      "answer": "14, 194, 52"
      }
     },
     {
-     "title": "Special values give cyclic powers",
-     "body": "| If $x+\\frac1x=$ | Then |\n|---|---|\n| $2$ | $x=1$ |\n| $-2$ | $x=-1$ |\n| $1$ | $x^3=-1$ (so $x^6=1$) |\n| $-1$ | $x^3=1$ |\n| $\\sqrt3$ | $x^6=-1$ (so $x^{12}=1$) |\n| $\\sqrt2$ | $x^4=-1$ (so $x^8=1$) |\n\nReduce every exponent using the cycle.",
+     "title": "Divide the quadratic by x",
+     "body": "Equal first and last coefficients mean the quadratic is a k-value in disguise. Divide by x and read it off.",
      "example": {
-      "q": "If $x+\\frac1x=1$, find $x^{30}+x^{24}+x^{18}+x^{12}+x^6+1$.",
-      "solution": "$x+\\frac1x=1\\Rightarrow x^2-x+1=0\\Rightarrow x^3=-1\\Rightarrow x^6=1$. Every term is a power of $x^6$, so each equals 1. Sum $=6$."
+      "q": "If 3x^2 - 7x + 3 = 0, find x^2 + 1/x^2.",
+      "steps": [
+       "Divide by $3x$: $x + \\dfrac{1}{x} = \\dfrac{7}{3}$.",
+       "Square rung: $\\dfrac{49}{9} - 2$.",
+       "$= \\dfrac{31}{9}$."
+      ],
+      "answer": "31/9"
      }
     },
     {
-     "title": "Divide the quadratic by $x$",
-     "body": "$ax^2-bx+a=0$ (equal first and last coefficients) means $x+\\frac1x=\\frac ba$. Spot equal end coefficients instantly.",
+     "title": "Switch ladders with one square",
+     "body": "The two ladders differ by 4 under a square: k squared equals m squared plus 4. Convert once, then stay on the new ladder.",
      "example": {
-      "q": "If $3x^2-7x+3=0$, find $x^2+\\frac{1}{x^2}$.",
-      "solution": "Divide by $3x$: $x+\\frac1x=\\frac73$. Then $x^2+\\frac1{x^2}=\\frac{49}{9}-2=\\frac{31}{9}$."
-     }
-    },
-    {
-     "title": "Mixed form $px+\\frac{1}{qx}$",
-     "body": "Squaring gives a middle term $2\\cdot px\\cdot\\frac{1}{qx}=\\frac{2p}{q}$, not 2.",
-     "example": {
-      "q": "If $2x+\\frac{1}{3x}=5$, find $4x^2+\\frac{1}{9x^2}$.",
-      "solution": "Square: $4x^2+\\frac{1}{9x^2}+2\\cdot 2x\\cdot\\frac{1}{3x}=25\\Rightarrow 4x^2+\\frac{1}{9x^2}=25-\\frac43=\\frac{71}{3}$."
+      "q": "If x - 1/x = 3, find the positive value of x + 1/x.",
+      "steps": [
+       "$k^2 = m^2 + 4$.",
+       "$k^2 = 9 + 4 = 13$.",
+       "$k = \\sqrt{13}$ (positive)."
+      ],
+      "answer": "sqrt(13)"
      }
     }
    ],
    "mistakes": [
-    "Subtracting 2 instead of adding 2 when going from $x-\\frac1x$ to $x^2+\\frac{1}{x^2}$.",
-    "Writing $x^3+\\frac{1}{x^3}=k^3-3$ instead of $k^3-3k$.",
-    "Taking only the positive root of $\\left(x-\\frac1x\\right)^2$ when no condition like $x>1$ is given — check the options.",
-    "For $2x+\\frac{1}{3x}$ type, using a middle term of 2 instead of $\\frac{2p}{q}$."
+    {
+     "wrong": "Subtracting 2 on the minus ladder's square rung.",
+     "right": "The minus ladder adds 2: $m^2 + 2$."
+    },
+    {
+     "wrong": "Writing the cube rung as $k^3 - 3$.",
+     "right": "It is $k^3 - 3k$; the k must be multiplied back."
+    },
+    {
+     "wrong": "Dividing a quadratic by x when the end coefficients differ.",
+     "right": "The equal-ends trick needs $ax^2 + bx + a$ exactly."
+    },
+    {
+     "wrong": "Using a middle term of 2 when squaring $2x + 1/(2x)$.",
+     "right": "The middle term is $2p/q$; here it is 2 only because p equals q."
+    },
+    {
+     "wrong": "Expanding $x^{30}$-type stems directly.",
+     "right": "Reduce exponents modulo 3 or 6 first when k is 1 or -1."
+    }
    ],
-   "notes": "### The ladder\nIf $x+\\dfrac1x = k$, then every $x^n+\\dfrac1{x^n}$ climbs from $k$ without ever finding $x$:\n$$x^2+\\frac1{x^2} = k^2-2 \\qquad x^3+\\frac1{x^3} = k^3-3k \\qquad x^4+\\frac1{x^4} = (x^2+\\tfrac1{x^2})^2-2$$\nand the multiply-down shortcut for the fifth rung:\n$$x^5+\\frac1{x^5} = \\left(x^2+\\frac1{x^2}\\right)\\left(x^3+\\frac1{x^3}\\right) - \\left(x+\\frac1x\\right)$$\nWith $k=3$: $x^2+\\frac1{x^2} = 7$, $x^3+\\frac1{x^3} = 18$, $x^5+\\frac1{x^5} = 7\\times18-3 = 123$. Squaring again gives the fourth rung: $7^2-2 = 47$.\n\n### The difference ladder\nFor $x-\\dfrac1x = m$ the minus version works the same way, with **+2** in the square:\n$$x^2+\\frac1{x^2} = m^2+2 \\qquad x^3-\\frac1{x^3} = m^3+3m \\qquad x^4+\\frac1{x^4} = (m^2+2)^2-2$$\nAnd the two ladders connect: $\\left(x+\\frac1x\\right)^2 = \\left(x-\\frac1x\\right)^2+4$. Given either one, the other is one square away — $x+\\frac1x = \\sqrt{m^2+4}$.\n\n### Quadratics with equal end coefficients\n$4x^2 - 9x + 4 = 0$ — first and last coefficient equal — divides cleanly by $x$:\n$$4x - 9 + \\frac4x = 0 \\;\\Rightarrow\\; x+\\frac1x = \\frac94$$\nSo the quadratic IS the $k$-value in disguise. After that, run the ladder. Any $ax^2+bx+a=0$ gives $x+\\frac1x = \\frac ba$.\n\n### Special values — the cyclic escape\nSome $k$ values collapse the ladder entirely because $x$ satisfies a cyclotomic quadratic:\n- $x+\\frac1x = 1$ → $x^2-x+1 = 0$ → $x^3 = -1$ → $x^6 = x^9 = \\dots = 1$.\n- $x+\\frac1x = -1$ → $x^2+x+1 = 0$ → $x^3 = 1$.\n- $x+\\frac1x = \\sqrt3$ → $x^2+\\frac1{x^2} = -1$ → $x^4 = -1$-type cycling ($x^6+\\frac1{x^6} = -2$, $x^{18}$-type sums vanish to small integers).\nFor stems like $x^{18}+x^{12}+x^6+1$, reduce every exponent mod 3 (or mod 6) before doing anything.\n\n### Which rung to compute\nPlan the route BEFORE multiplying anything. For $k=5$ asking $x^4+\\frac1{x^4}$: two squarings — $23$, then $23^2-2 = 527$ — never touch a cube. For fifth rungs, multiply rung 2 by rung 3 and subtract $k$; do not compute the sixth rung by cubing rung two. When a stem mixes sum and difference ladders (given $x-\\frac1x$, asked about $x^3+\\frac1{x^3}$), convert once with $k^2 = m^2+4$, then stay on the ladder that matches the asked sign.\n\n### Common traps\n- Using $k^2-2$ for the difference ladder (it is $m^2+2$).\n- Writing $x^3+\\frac1{x^3} = k^3-3$ instead of $k^3-3k$.\n- Dividing a quadratic by $x$ when the end coefficients differ — that trick needs $ax^2+bx+a$.\n- For a cyclic stem, expanding powers instead of reducing exponents first.\n\n### Quick revision\n- $k = x+\\frac1x$: $x^2+\\frac1{x^2} = k^2-2$, $x^3+\\frac1{x^3} = k^3-3k$, $x^5+\\frac1{x^5} = (k^2-2)(k^3-3k)-k$.\n- $m = x-\\frac1x$: $x^2+\\frac1{x^2} = m^2+2$, $x^3-\\frac1{x^3} = m^3+3m$; $k^2 = m^2+4$.\n- $ax^2+bx+a=0$ → $x+\\frac1x = \\frac ba$.\n- $k = 1$ → $x^3 = -1$; $k = -1$ → $x^3 = 1$; $k = \\sqrt3$ → $x^2+\\frac1{x^2} = -1$.\n",
+   "notes": "The whole subtopic is one machine. Because $x \\times \\frac{1}{x} = 1$, the product of the two pieces is fixed, and every power sum becomes a short polynomial in $k$:\n$$x^2+\\frac{1}{x^2} = k^2 - 2 \\qquad x^3+\\frac{1}{x^3} = k^3 - 3k \\qquad x^4+\\frac{1}{x^4} = (k^2-2)^2 - 2$$\nThere is also a multiply-down rung: $x^5+\\frac{1}{x^5} = \\left(x^2+\\frac{1}{x^2}\\right)\\left(x^3+\\frac{1}{x^3}\\right) - k$.\n\n### Watch the ladder work\nTake $k = 3$. The square rung gives $9 - 2 = 7$. The cube rung gives $27 - 9 = 18$. The fourth rung squares the second: $49 - 2 = 47$. The fifth rung multiplies rung two by rung three and subtracts $k$: $7 \\times 18 - 3 = 123$. Four answers, and $x$ itself never appeared.\n\n> **Rule:** Square for even rungs, use $k^3 - 3k$ for the cube, and chain rungs already computed instead of restarting.\n\n### The minus ladder\nFor $x - \\frac{1}{x} = m$, the cross term flips sign:\n$$x^2+\\frac{1}{x^2} = m^2 + 2 \\qquad x^3-\\frac{1}{x^3} = m^3 + 3m$$\nWith $m = 3$: the square rung gives $9 + 2 = 11$ and the cube rung gives $27 + 9 = 36$. The two ladders connect through $\\left(x+\\frac{1}{x}\\right)^2 = \\left(x-\\frac{1}{x}\\right)^2 + 4$, so $k = \\sqrt{m^2 + 4} = \\sqrt{13}$ here.\n\n> **Watch:** The square rung of the minus ladder adds 2. Writing $m^2 - 2$ here is the single most common slip in this chapter.\n\n### Quadratics with equal end coefficients\nAn equation like $4x^2 - 9x + 4 = 0$ has matching first and last coefficients. Divide by $x$: $4x - 9 + \\dfrac{4}{x} = 0$, so $x + \\dfrac{1}{x} = \\dfrac{9}{4}$. Then the square rung gives $\\dfrac{81}{16} - 2 = \\dfrac{49}{16}$. The same move on $3x^2 - 7x + 3 = 0$ gives $k = \\dfrac{7}{3}$ and a square rung of $\\dfrac{31}{9}$.\n\n### Cyclic values\nTwo values of $k$ collapse the ladder entirely. If $k = 1$, then $x^2 - x + 1 = 0$; multiplying by $(x+1)$ gives $x^3 = -1$, so $x^6 = 1$. If $k = -1$, then $x^2 + x + 1 = 0$ and $x^3 = 1$. Stems with giant exponents like $x^{30}$ reduce to small powers by taking the exponent modulo 3 or 6.\n\n### Mixed forms\nFor $2x + \\dfrac{1}{2x} = 5$, square carefully. The middle term is $2 \\times 2x \\times \\dfrac{1}{2x} = 2$, so $4x^2 + \\dfrac{1}{4x^2} = 25 - 2 = 23$. In general the middle term of $\\left(px + \\dfrac{1}{qx}\\right)^2$ is $\\dfrac{2p}{q}$, not 2.\n\n### Combining the two ladders\nMultiplying the sum ladder by the difference ladder kills the cross terms:\n$$\\left(x+\\frac{1}{x}\\right)\\left(x-\\frac{1}{x}\\right) = x^2-\\frac{1}{x^2}$$\nFrom $m = 3$ above, $k = \\sqrt{13}$, so $x^2 - \\dfrac{1}{x^2} = 3\\sqrt{13}$ in one line. Any pair of $k$ and $m$ used together must first satisfy $k^2 - m^2 = 4$; an option that breaks this cannot be true for any real $x$.\n\n> **Tip:** Plan the route before multiplying. For $x^4+\\frac{1}{x^4}$, square twice and never touch the cube rung; for the fifth rung, multiply rung two by rung three.\n",
    "patterns": [
     {
      "id": "alg-p5",
-     "name": "Ladder from $x+\\frac1x=k$",
+     "name": "The ladder from x + 1/x = k",
      "frequency": "very common",
-     "howToSpot": "$x+\\frac1x = k$ given; $x^2+\\frac1{x^2}$, $x^3+\\frac1{x^3}$, $x^4+\\frac1{x^4}$ or $x^5+\\frac1{x^5}$ asked.",
-     "formula": "x^2+\\frac1{x^2} = k^2-2; \\quad x^3+\\frac1{x^3} = k^3-3k; \\quad x^4+\\frac1{x^4} = (k^2-2)^2-2",
-     "logic": "1. Square once: $x^2+\\frac1{x^2} = k^2-2$ (the $2x\\cdot\\frac1x = 2$ cancels).\n2. Cube for the third rung: $k^3-3k$.\n3. Fourth rung: square the second. Fifth rung: multiply the second and third and subtract $k$.\n\nWhy: the product $x\\cdot\\frac1x = 1$ makes every rung a polynomial in $k$ alone.",
+     "howToSpot": "A value of $x + \\frac{1}{x}$ is given and a power sum of $x$ is asked.",
+     "formula": "x^3+\\frac1{x^3} = k^3 - 3k",
+     "steps": [
+      "Identify the wanted rung: square, cube, fourth or fifth.",
+      "Square rung: $k^2 - 2$; cube rung: $k^3 - 3k$.",
+      "Fourth rung squares the square rung and subtracts 2.",
+      "Fifth rung multiplies rung two by rung three, minus $k$."
+     ],
+     "why": "The fixed product $x \\times \\frac{1}{x} = 1$ turns every rung into a polynomial in $k$.",
      "example": {
-      "q": "If $x+\\frac1x=6$, then $x^3+\\frac1{x^3}$ is:",
-      "solution": "$6^3 - 3\\times6 = 216 - 18 = 198$. One line, no solving for $x$."
+      "q": "If $x + \\dfrac{1}{x} = 5$, find $x^3 + \\dfrac{1}{x^3}$.",
+      "steps": [
+       "$k^3 = 125$.",
+       "$3k = 15$.",
+       "$125 - 15 = 110$."
+      ],
+      "answer": "110"
      }
     },
     {
      "id": "alg-p6",
-     "name": "Difference ladder from $x-\\frac1x=m$",
+     "name": "The difference ladder from x - 1/x = m",
      "frequency": "very common",
-     "howToSpot": "$x-\\frac1x = m$ given; the squared rung or $x^3-\\frac1{x^3}$ is asked.",
-     "formula": "x^2+\\frac1{x^2} = m^2+2; \\quad x^3-\\frac1{x^3} = m^3+3m; \\quad k^2 = m^2+4",
-     "logic": "1. Square: the cross term is $-2$ but it SUBTRACTS, so $x^2+\\frac1{x^2} = m^2+2$.\n2. Cube: $x^3-\\frac1{x^3} = m^3+3m$ (the correction adds).\n3. To switch ladders: $(x+\\frac1x)^2 = (x-\\frac1x)^2+4$.\n\nWhy: same expansions as the sum ladder with the sign of the cross term flipped.",
+     "howToSpot": "A value of $x - \\frac{1}{x}$ is given and a power sum is asked.",
+     "formula": "x^3-\\frac1{x^3} = m^3 + 3m",
+     "steps": [
+      "Square rung: $m^2 + 2$ (the sign flips to plus).",
+      "Cube rung: $m^3 + 3m$.",
+      "To reach the sum ladder, use $k^2 = m^2 + 4$."
+     ],
+     "why": "Squaring $x - \\frac{1}{x}$ leaves a minus 2 cross term, so it moves across as plus 2.",
      "example": {
-      "q": "If $x-\\frac1x=4$, then $x^3-\\frac1{x^3}$ is:",
-      "solution": "$4^3 + 3\\times4 = 64+12 = 76$. (And $x^2+\\frac1{x^2} = 18$. $x+\\frac1x = \\sqrt{20} = 2\\sqrt5$.)"
+      "q": "If $x - \\dfrac{1}{x} = 3$, find $x^3 - \\dfrac{1}{x^3}$.",
+      "steps": [
+       "$m^3 = 27$.",
+       "$3m = 9$.",
+       "$27 + 9 = 36$."
+      ],
+      "answer": "36"
      }
     },
     {
      "id": "alg-p7",
      "name": "Quadratic with equal end coefficients",
      "frequency": "very common",
-     "howToSpot": "An equation like $4x^2-9x+4=0$ (equal first and last coefficients) is given; a rung of the ladder is asked.",
-     "formula": "ax^2+bx+a=0 \\;\\Rightarrow\\; x+\\frac1x = \\frac ba",
-     "logic": "1. Divide the whole equation by $x$ (legal: $x=0$ is not a root since $a\\ne0$).\n2. Read off $x+\\frac1x = \\frac ba$.\n3. Climb the ladder as usual.\n\nWhy: dividing by $x$ merges the two end terms into $a(x+\\frac1x)$.",
+     "howToSpot": "An equation like $3x^2 - 8x + 3 = 0$ appears; a reciprocal power sum of its root is asked.",
+     "formula": "ax^2 - bx + a = 0 \\Rightarrow x + \\frac1x = \\frac ba",
+     "steps": [
+      "Check the first and last coefficients match.",
+      "Divide the whole equation by $x$.",
+      "Read off $k = b/a$.",
+      "Run the ladder for the asked rung."
+     ],
+     "why": "Dividing by $x$ merges the end terms into $a\\left(x + \\frac{1}{x}\\right)$.",
      "example": {
-      "q": "If $4x^2-9x+4=0$, then $x^2+\\frac1{x^2}$ equals:",
-      "solution": "$x+\\frac1x = \\frac94$ → $x^2+\\frac1{x^2} = \\frac{81}{16}-2 = \\frac{49}{16}$. No quadratic formula needed."
+      "q": "If $3x^2 - 8x + 3 = 0$, find $x^2 + \\dfrac{1}{x^2}$.",
+      "steps": [
+       "Divide by $3x$: $x + \\dfrac{1}{x} = \\dfrac{8}{3}$.",
+       "Square: $\\dfrac{64}{9}$.",
+       "Subtract 2: $\\dfrac{64}{9} - \\dfrac{18}{9} = \\dfrac{46}{9}$."
+      ],
+      "answer": "46/9"
      }
     },
     {
      "id": "alg-p8",
-     "name": "Special / cyclic values",
+     "name": "Cyclic values of the ladder",
      "frequency": "common",
-     "howToSpot": "$k$ is $1$, $-1$, $\\sqrt3$ (or the asked expression has huge exponents like $x^{18}$); a small value is expected.",
-     "formula": "k=1 \\Rightarrow x^3=-1; \\quad k=-1 \\Rightarrow x^3=1; \\quad \\text{reduce exponents mod } 3",
-     "logic": "1. From $x+\\frac1x = \\pm1$, multiply through by $x$: $x^2\\pm x+1 = 0$.\n2. Multiply by $(x\\mp1)$: $(x\\mp1)(x^2\\pm x+1) = x^3\\mp1 = 0$ → $x^3 = \\pm1$.\n3. Reduce every exponent modulo 3 (or 6) and substitute.\n4. For $k=\\sqrt3$: $x^2+\\frac1{x^2} = -1$, and higher even rungs alternate small values.\n\nWhy: these $x$ are cube roots of unity family — powers cycle with period 3.",
+     "howToSpot": "$k$ equals 1 or -1, or the asked stem has huge exponents like $x^{18}$ or $x^{30}$.",
+     "formula": "k = 1 \\Rightarrow x^3 = -1;\\qquad k = -1 \\Rightarrow x^3 = 1",
+     "steps": [
+      "Multiply $x^2 \\mp x + 1 = 0$ by the complementary factor.",
+      "Conclude $x^3 = \\mp 1$.",
+      "Reduce every exponent modulo 3 or 6.",
+      "Substitute the reduced powers."
+     ],
+     "why": "These $x$ values are cube roots of unity family, so powers repeat with period 3.",
      "example": {
-      "q": "If $x+\\frac1x=-1$, then $x^6+x^3+1$ equals:",
-      "solution": "$x^2+x+1=0$ → $x^3 = 1$ → $x^6+x^3+1 = 1+1+1 = 3$."
+      "q": "If $x + \\dfrac{1}{x} = 1$, find $x^3 + \\dfrac{1}{x^3}$.",
+      "steps": [
+       "$k = 1$, so $x^2 - x + 1 = 0$ and $x^3 = -1$.",
+       "Then $\\dfrac{1}{x^3} = -1$ too.",
+       "$x^3 + \\dfrac{1}{x^3} = 1 - 3 = -2$ by the cube rung."
+      ],
+      "answer": "-2"
+     }
+    },
+    {
+     "id": "alg-p26",
+     "name": "Mixed reciprocal forms",
+     "frequency": "common",
+     "howToSpot": "The given relation is $px + \\frac{1}{qx}$ or similar, and the target is the squared form.",
+     "formula": "\\left(px+\\frac{1}{qx}\\right)^2 = p^2x^2+\\frac{1}{q^2x^2}+\\frac{2p}{q}",
+     "steps": [
+      "Square the given relation.",
+      "Compute the middle term as $2p/q$.",
+      "Move it across to isolate the target."
+     ],
+     "why": "Only the coefficients decide the middle term; the $x$ cancels inside the product.",
+     "example": {
+      "q": "If $2x + \\dfrac{1}{2x} = 5$, find $4x^2 + \\dfrac{1}{4x^2}$.",
+      "steps": [
+       "Square: $4x^2 + \\dfrac{1}{4x^2} + 2 \\times 2x \\times \\dfrac{1}{2x} = 25$.",
+       "The middle term is $2$.",
+       "$4x^2 + \\dfrac{1}{4x^2} = 25 - 2 = 23$."
+      ],
+      "answer": "23"
      }
     }
+   ],
+   "revision": [
+    "$k = x + \\dfrac1x$: square rung $k^2 - 2$, cube rung $k^3 - 3k$.",
+    "$m = x - \\dfrac1x$: square rung $m^2 + 2$, cube rung $m^3 + 3m$.",
+    "$k^2 = m^2 + 4$ connects the two ladders.",
+    "$ax^2 - bx + a = 0$ gives $k = b/a$ after dividing by $x$.",
+    "$k = 1$ gives $x^3 = -1$; $k = -1$ gives $x^3 = 1$.",
+    "Mixed form $px + \\dfrac{1}{qx}$: middle term is $\\dfrac{2p}{q}$."
    ]
   },
   {
    "id": "alg-three-var",
    "title": "$a^3+b^3+c^3-3abc$ and conditional identities",
-   "concept": "The three-variable cube identity is a CGL favourite because it has two useful forms and a powerful special case.\n\n- If $a+b+c=0$, then $a^3+b^3+c^3=3abc$. Questions hide the zero sum, e.g. $(x-y)+(y-z)+(z-x)=0$.\n- If $a^2+b^2+c^2=ab+bc+ca$, then $(a-b)^2+(b-c)^2+(c-a)^2=0$, so $a=b=c$.\n- For numbers that are close together (like 25, 24, 23), use the half-sum-of-squared-differences form.",
+   "concept": "The three-variable cube identity $a^3+b^3+c^3-3abc = (a+b+c)(\\dots)$ has two money forms: a zero sum collapses the cubes to $3abc$, and the equal-squares condition forces $a=b=c$. Everything else routes through the power-sum expansion.",
    "formulas": [
     {
-     "name": "Main identity",
-     "tex": "a^3+b^3+c^3-3abc=(a+b+c)(a^2+b^2+c^2-ab-bc-ca)"
+     "name": "Master identity",
+     "tex": "a^3+b^3+c^3-3abc = (a+b+c)(a^2+b^2+c^2-ab-bc-ca)",
+     "note": ""
+    },
+    {
+     "name": "Sum form",
+     "tex": "a^3+b^3+c^3-3abc = s\\left(s^2-3P\\right)",
+     "note": ""
     },
     {
      "name": "Half form",
-     "tex": "a^3+b^3+c^3-3abc=\\tfrac12(a+b+c)\\left[(a-b)^2+(b-c)^2+(c-a)^2\\right]"
+     "tex": "a^3+b^3+c^3-3abc = \\tfrac12\\,s\\left[(a-b)^2+(b-c)^2+(c-a)^2\\right]",
+     "note": ""
     },
     {
      "name": "Zero-sum case",
-     "tex": "a+b+c=0\\ \\Rightarrow\\ a^3+b^3+c^3=3abc"
+     "tex": "a+b+c = 0 \\Rightarrow a^3+b^3+c^3 = 3abc",
+     "note": ""
     },
     {
-     "name": "Equal-variables case",
-     "tex": "a^2+b^2+c^2=ab+bc+ca\\ \\Rightarrow\\ a=b=c"
+     "name": "Equal case",
+     "tex": "a^2+b^2+c^2 = ab+bc+ca \\Rightarrow a=b=c",
+     "note": ""
     },
     {
-     "name": "Pairwise products",
-     "tex": "ab+bc+ca=\\frac{(a+b+c)^2-(a^2+b^2+c^2)}{2}"
+     "name": "Power-sum expansion",
+     "tex": "a^3+b^3+c^3 = s^3 - 3sP + 3R",
+     "note": ""
     },
     {
-     "name": "Cyclic differences",
-     "tex": "(a-b)^3+(b-c)^3+(c-a)^3=3(a-b)(b-c)(c-a)"
+     "name": "Pair products",
+     "tex": "(a+b)(b+c)(c+a) = sP - R",
+     "note": ""
+    },
+    {
+     "name": "Pairwise from squares",
+     "tex": "ab+bc+ca = \\dfrac{(a+b+c)^2-(a^2+b^2+c^2)}{2}",
+     "note": ""
     }
    ],
    "tricks": [
     {
      "title": "Hunt for a hidden zero sum",
-     "body": "$(x-y)+(y-z)+(z-x)=0$ always, so the sum of their cubes is $3(x-y)(y-z)(z-x)$. Similarly\n$(a^2-b^2)+(b^2-c^2)+(c^2-a^2)=0$.",
+     "body": "Brackets like x minus y, y minus z, z minus x always sum to zero. The cube-sum is three times the product.",
      "example": {
-      "q": "Find $\\dfrac{(x-y)^3+(y-z)^3+(z-x)^3}{9(x-y)(y-z)(z-x)}$.",
-      "solution": "Numerator $=3(x-y)(y-z)(z-x)$, so the value is $\\frac{3}{9}=\\frac13$."
+      "q": "If x - y = 2 and y - z = 3, find (x-y)^3 + (y-z)^3 + (z-x)^3.",
+      "steps": [
+       "$z - x = -(2 + 3) = -5$.",
+       "The three brackets sum to zero, so the cube-sum is $3$ times the product.",
+       "$3 \\times 2 \\times 3 \\times (-5) = -90$."
+      ],
+      "answer": "-90"
      }
     },
     {
      "title": "Close numbers: use the half form",
-     "body": "When $a,b,c$ differ by small amounts, $(a-b)^2+(b-c)^2+(c-a)^2$ is tiny and easy to compute.",
+     "body": "When the three numbers differ by little, the squared differences are tiny, and half of s times their sum is quick arithmetic.",
      "example": {
-      "q": "Find $25^3+24^3+23^3-3\\times25\\times24\\times23$.",
-      "solution": "$\\tfrac12(72)\\left[1^2+1^2+2^2\\right]=36\\times6=216$."
+      "q": "Find 25^3 + 24^3 + 23^3 - 3 x 25 x 24 x 23.",
+      "steps": [
+       "$s = 72$; differences: $(a-b)^2 = 1$, $(b-c)^2 = 1$, $(c-a)^2 = 4$.",
+       "$\\dfrac{1}{2} \\times 72 \\times 6$.",
+       "$= 216$."
+      ],
+      "answer": "216"
      }
     },
     {
      "title": "Value-putting under a condition",
-     "body": "If a condition like $a+b+c=0$ is given, pick numbers that satisfy it (e.g. $1,1,-2$) and evaluate.",
+     "body": "If a condition like a+b+c=0 is given, pick simple numbers that satisfy it and evaluate the expression.",
      "example": {
-      "q": "If $a+b+c=0$, find $\\dfrac{a^2}{bc}+\\dfrac{b^2}{ca}+\\dfrac{c^2}{ab}$.",
-      "solution": "Put $a=1,b=1,c=-2$: $\\frac{1}{-2}+\\frac{1}{-2}+\\frac{4}{1}=3$. (Algebraically it is $\\frac{a^3+b^3+c^3}{abc}=\\frac{3abc}{abc}=3$.)"
+      "q": "If a + b + c = 0, find a^2/bc + b^2/ca + c^2/ab.",
+      "steps": [
+       "Put $a = 1$, $b = 1$, $c = -2$.",
+       "$\\dfrac{1}{-2} + \\dfrac{1}{-2} + \\dfrac{4}{1}$.",
+       "$= -\\dfrac{1}{2} - \\dfrac{1}{2} + 4 = 3$."
+      ],
+      "answer": "3"
      }
     }
    ],
    "mistakes": [
-    "Using $a^3+b^3+c^3=3abc$ without first checking that $a+b+c=0$.",
-    "Dropping the $\\tfrac12$ in the half form, which doubles the answer.",
-    "Sign slips with negatives: for $a=11,b=-5,c=-6$, $3abc=3(11)(-5)(-6)=+990$."
+    {
+     "wrong": "Using $a^3+b^3+c^3 = 3abc$ without checking the sum is zero.",
+     "right": "The shortcut is valid only when $a+b+c = 0$."
+    },
+    {
+     "wrong": "Dropping the half in the half form.",
+     "right": "The factor is one half of $s$ times the squared differences; losing it doubles the answer."
+    },
+    {
+     "wrong": "Forgetting the $+3abc$ term in the power-sum expansion.",
+     "right": "$s^3$ expands to cube-sum plus $3sP$ minus $3R$; keep every sign."
+    },
+    {
+     "wrong": "Losing signs with negative variables.",
+     "right": "Two negatives multiply to a positive; recount minus signs before the final multiply."
+    }
    ],
-   "notes": "### The identity and its two forms\n$$a^3+b^3+c^3-3abc = (a+b+c)(a^2+b^2+c^2-ab-bc-ca)$$\nThe trinomial in brackets rewrites using the sum alone:\n$$a^3+b^3+c^3-3abc = (a+b+c)\\left[(a+b+c)^2 - 3(ab+bc+ca)\\right]$$\nEverything the exam asks routes through these two forms. With $a+b+c = 6$ and $ab+bc+ca = 11$: the value is $6\\times(36-33) = 18$.\n\n### The zero-sum shortcut\nIf $a+b+c = 0$, the left factor vanishes and the identity collapses to\n$$a^3+b^3+c^3 = 3abc$$\nThis one shortcut answers a whole family: \"if $a+b+c=0$, $abc=8$, find $a^3+b^3+c^3$\" → 24. It also explains why $(x-y)^3+(y-z)^3+(z-x)^3 = 3(x-y)(y-z)(z-x)$ — the three terms sum to zero, so the cube-sum is 3×(product). Terms like $(b+c-3a)$ are engineered the same way: check whether the three brackets add to zero FIRST, before any expansion.\n\n### The equal case\n$$a^2+b^2+c^2-ab-bc-ca = \\tfrac12\\left[(a-b)^2+(b-c)^2+(c-a)^2\\right] \\ge 0$$\nSo the bracket above is zero exactly when $a = b = c$. Hence $a^2+b^2+c^2 = ab+bc+ca \\iff a=b=c$. If additionally $a+b+c$ is known, every symmetric expression follows: with sum 9 and that condition, $a=b=c=3$ and $a^2+b^2+c^2 = 27$.\n\n### Power sums\nThe full expansion of the cube of the sum:\n$$a^3+b^3+c^3 = (a+b+c)^3 - 3(a+b+c)(ab+bc+ca) + 3abc$$\nGiven any three of the four quantities ($a+b+c$, $ab+bc+ca$, $abc$, $a^3+b^3+c^3$), the fourth drops out in one line. E.g. sum 9, pairwise 11, abc 6 → $729 - 297 + 18 = 450$. A useful companion: $(a+b)(b+c)(c+a) = (a+b+c)(ab+bc+ca) - abc$, and $(a+b+c)^3 = a^3+b^3+c^3 + 3(a+b)(b+c)(c+a)$. The pair form is also how $(x+y+z)^3 - x^3-y^3-z^3 = 3(x+y)(y+z)(z+x)$ is proved — subtract the individual cubes from the expansion.\n\n### How to attack any question\n1. Is a bracket-sum zero (like $x-y$, $y-z$, $z-x$)? → cubes sum to 3×product.\n2. Is $a+b+c$ given with $ab+bc+ca$? → factor/half form for $a^3+b^3+c^3-3abc$.\n3. Is $abc$ involved? → power-sum expansion.\n4. Does $a^2+b^2+c^2$ equal $ab+bc+ca$? → all variables equal.\n\n### Common traps\n- Forgetting the $+3abc$ term in the power-sum expansion (the commonest algebra slip in CGL).\n- Expanding $(x-y)^3+(y-z)^3+(z-x)^3$ brute-force — it is 3×product, instantly.\n- Missing the half in $\\frac12[(a-b)^2+\\dots]$ when proving the equal case.\n- Sign errors when a variable is negative (e.g. $c=-6$ with $a=11$, $b=-5$).\n\n### Quick revision\n- $a^3+b^3+c^3-3abc = (a+b+c)\\left[(a+b+c)^2-3(ab+bc+ca)\\right]$.\n- $a+b+c=0 \\Rightarrow a^3+b^3+c^3 = 3abc$.\n- $(x-y)^3+(y-z)^3+(z-x)^3 = 3(x-y)(y-z)(z-x)$.\n- $a^2+b^2+c^2 = ab+bc+ca \\iff a=b=c$.\n- $a^3+b^3+c^3 = s^3 - 3sP + 3R$ where $s$ = sum, $P$ = pairwise, $R$ = product.\n",
+   "notes": "The master identity:\n$$a^3+b^3+c^3-3abc = (a+b+c)(a^2+b^2+c^2-ab-bc-ca)$$\nRewrite the bracket with the sum alone, using $a^2+b^2+c^2 = s^2 - 2P$:\n$$a^3+b^3+c^3-3abc = s\\left(s^2 - 3P\\right) \\quad \\text{where } s = a+b+c,\\ P = ab+bc+ca$$\nWith $s = 6$ and $P = 11$: the value is $6 \\times (36 - 33) = 18$. One substitution, no cubing.\n\n### The zero-sum shortcut\nIf $s = 0$, the whole right side vanishes except one reading: $a^3+b^3+c^3 = 3abc$. The exam hides the zero sum inside brackets: $(x-y) + (y-z) + (z-x) = 0$ always. So $(x-y)^3+(y-z)^3+(z-x)^3 = 3(x-y)(y-z)(z-x)$, instantly. Check the shape before expanding anything: with $x-y = 2$ and $y-z = 3$, the third bracket is $-5$, and $3 \\times 2 \\times 3 \\times (-5) = -90$.\n\n> **Rule:** Add the three terms first. If they sum to zero, the cube-sum is three times the product, signs included.\n\n### Zero sum, squares and fourth powers\nWhen $s = 0$, squaring the sum gives $a^2+b^2+c^2 = -2P$. Square once more for fourth powers: $a^4+b^4+c^4 = 2P^2$. Check with $1, 1, -2$: the squares give $6 = -2 \\times (-3)$, and the fourth powers give $18 = 2 \\times 9$. These two lines answer every 'if $a+b+c=0$' stem that asks about squares or fourth powers, no cubes needed.\n\n### The equal case\nThe bracket also equals $\\dfrac{1}{2}\\left[(a-b)^2+(b-c)^2+(c-a)^2\\right]$, which is never negative and is zero exactly when $a = b = c$. So the condition $a^2+b^2+c^2 = ab+bc+ca$ forces all three equal. With the extra fact $x+y+z = 12$, each variable is $4$, and quantities like $xyz = 64$ follow at once.\n\n### Power sums\nThe cube of the sum expands as\n$$a^3+b^3+c^3 = s^3 - 3sP + 3R \\quad (R = abc)$$\nGiven any three of $\\{s, P, R, \\text{cube-sum}\\}$, the fourth is one linear step. Example: $s = 4$, $R = 2$, cube-sum $= 10$ (the numbers are $1, 1, 2$). Then $64 = 10 + 12P - 6$, so $P = 5$.\n\n> **Tip:** A useful companion: $(a+b)(b+c)(c+a) = sP - R$. Check with $1, 2, 3$: $3 \\times 5 \\times 4 = 60$ and $6 \\times 11 - 6 = 60$.\n\n### Close numbers: the half form\nWhen the three numbers sit close together, $\\dfrac{1}{2}(a+b+c)\\left[(a-b)^2+(b-c)^2+(c-a)^2\\right]$ is tiny arithmetic. For $25^3+24^3+23^3 - 3 \\times 25 \\times 24 \\times 23$: half of $72$ times $(1 + 1 + 4)$ gives $36 \\times 6 = 216$.\n\n### An order that works\n1. Do the three brackets or variables sum to zero? Use $3 \\times$ product.\n2. Are $s$ and $P$ given? Use $s(s^2 - 3P)$.\n3. Is $abc$ in the question? Use the power-sum expansion.\n4. Does $a^2+b^2+c^2 = ab+bc+ca$ hold? All variables are equal.\n",
    "patterns": [
     {
      "id": "alg-p9",
      "name": "Zero-sum cubes",
      "frequency": "very common",
-     "howToSpot": "A bracket sum of zero is hidden in the stem: $a+b+c=0$, or terms like $(x-y)^3+(y-z)^3+(z-x)^3$.",
-     "formula": "a+b+c=0 \\Rightarrow a^3+b^3+c^3=3abc",
-     "logic": "1. Check whether the three terms (or the three variables) add to zero.\n2. If yes, replace the cube-sum by 3×(product) — done in one line.\n3. For $(x-y)^3+(y-z)^3+(z-x)^3$ the product is $(x-y)(y-z)(z-x)$.\n\nWhy: with zero sum the big identity reduces to exactly this, for any three terms adding to zero.",
+     "howToSpot": "Three cubes whose bases or brackets add to zero, or a stated condition $a+b+c=0$ with $abc$ known.",
+     "formula": "a+b+c = 0 \\Rightarrow a^3+b^3+c^3 = 3abc",
+     "steps": [
+      "Add the three bases or brackets; confirm zero.",
+      "Multiply the three together.",
+      "Triple the product, watching signs."
+     ],
+     "why": "The master identity carries the factor $(a+b+c)$, and zero kills the rest.",
      "example": {
-      "q": "If $(x-y)=2$ and $(y-z)=3$, then $(x-y)^3+(y-z)^3+(z-x)^3$ equals:",
-      "solution": "Brackets sum to 0 → cube-sum $= 3(x-y)(y-z)(z-x)$.\n$z-x = -(2+3) = -5$ → value $= 3\\times2\\times3\\times(-5) = -90$."
+      "q": "If $a + b + c = 0$ and $abc = -20$, find $a^3 + b^3 + c^3$.",
+      "steps": [
+       "The sum is zero, so the rule applies.",
+       "$3 \\times abc = 3 \\times (-20)$.",
+       "$= -60$."
+      ],
+      "answer": "-60"
      }
     },
     {
      "id": "alg-p10",
-     "name": "Factor / half form of the cube identity",
+     "name": "The sum form s times s squared minus 3P",
      "frequency": "very common",
-     "howToSpot": "$a+b+c$ and $ab+bc+ca$ (or $a^2+b^2+c^2$) given; $a^3+b^3+c^3-3abc$ asked.",
-     "formula": "a^3+b^3+c^3-3abc = s(s^2-3P)",
-     "logic": "1. Write $s = a+b+c$, $P = ab+bc+ca$.\n2. If $a^2+b^2+c^2$ is given instead: $P = \\frac{s^2-(a^2+b^2+c^2)}{2}$.\n3. Answer $= s(s^2-3P)$.\n\nWhy: the bracket is exactly $(a+b+c)^2 - 3P$ after substituting $a^2+b^2+c^2 = s^2-2P$.",
+     "howToSpot": "The sum $a+b+c$ and the pairwise sum $ab+bc+ca$ are given; $a^3+b^3+c^3-3abc$ is asked.",
+     "formula": "a^3+b^3+c^3-3abc = s(s^2 - 3P)",
+     "steps": [
+      "Name $s = a+b+c$ and $P = ab+bc+ca$.",
+      "Compute $s^2 - 3P$.",
+      "Multiply by $s$."
+     ],
+     "why": "Substituting $a^2+b^2+c^2 = s^2 - 2P$ leaves the bracket as $s^2 - 3P$.",
      "example": {
-      "q": "If $a+b+c=6$ and $ab+bc+ca=11$, then $a^3+b^3+c^3-3abc$ equals:",
-      "solution": "$6\\times(36 - 33) = 18$."
+      "q": "If $a + b + c = 9$ and $ab + bc + ca = 26$, find $a^3+b^3+c^3-3abc$.",
+      "steps": [
+       "$s^2 = 81$.",
+       "$3P = 78$, so $s^2 - 3P = 3$.",
+       "$9 \\times 3 = 27$."
+      ],
+      "answer": "27"
      }
     },
     {
      "id": "alg-p11",
-     "name": "Equal variables case",
+     "name": "The equal variables case",
      "frequency": "common",
-     "howToSpot": "The condition $a^2+b^2+c^2 = ab+bc+ca$ (or a rearranged version) appears; conclude all variables are equal.",
-     "formula": "a^2+b^2+c^2-ab-bc-ca = \\tfrac12[(a-b)^2+(b-c)^2+(c-a)^2] = 0 \\Rightarrow a=b=c",
-     "logic": "1. Recognise the half-sum-of-squares form; the condition forces $a=b=c$.\n2. Substitute the common value $= \\frac{a+b+c}{3}$.\n3. Evaluate any symmetric expression from there.\n\nWhy: squares are non-negative, so their sum vanishes only pairwise.",
+     "howToSpot": "The condition $x^2+y^2+z^2 = xy+yz+zx$ appears, and a symmetric quantity is asked.",
+     "formula": "x^2+y^2+z^2 = xy+yz+zx \\Rightarrow x = y = z",
+     "steps": [
+      "Recognise the condition; it forces all three equal.",
+      "Find the common value from the given sum: divide by 3.",
+      "Evaluate the asked quantity with the common value."
+     ],
+     "why": "The difference of the two sides is half a sum of squares, zero only when all equal.",
      "example": {
-      "q": "If $x^2+y^2+z^2 = xy+yz+zx$ and $x+y+z=9$, then $x^2+y^2+z^2$ equals:",
-      "solution": "$x=y=z=3$ → $x^2+y^2+z^2 = 27$."
+      "q": "If $x^2+y^2+z^2 = xy+yz+zx$ and $x+y+z = 12$, find $xyz$.",
+      "steps": [
+       "The condition forces $x = y = z$.",
+       "$x + y + z = 12$ gives each variable $4$.",
+       "$xyz = 4 \\times 4 \\times 4 = 64$."
+      ],
+      "answer": "64"
      }
     },
     {
      "id": "alg-p12",
-     "name": "Power sums with abc",
+     "name": "Power sums with the product",
      "frequency": "common",
-     "howToSpot": "Three of $\\{a+b+c,\\ ab+bc+ca,\\ abc,\\ a^3+b^3+c^3\\}$ are given; the fourth is asked.",
-     "formula": "s^3 = a^3+b^3+c^3 + 3sP - 3R",
-     "logic": "1. Write the expansion $a^3+b^3+c^3 = s^3 - 3sP + 3R$.\n2. Substitute the three known quantities.\n3. Solve for the fourth — one linear step, no factoring of cubics.\n\nWhy: the cube of the sum expands into exactly these symmetric pieces.",
+     "howToSpot": "Three of sum, pairwise sum, product and cube-sum are given; the fourth is asked.",
+     "formula": "a^3+b^3+c^3 = s^3 - 3sP + 3R",
+     "steps": [
+      "Write the expansion with the known letters in place.",
+      "Substitute the three known quantities.",
+      "Solve the resulting linear equation for the fourth."
+     ],
+     "why": "The cube of the sum expands into exactly these four symmetric pieces.",
      "example": {
-      "q": "If $a+b+c=6$, $abc=6$ and $a^3+b^3+c^3=90$, then $ab+bc+ca$ equals:",
-      "solution": "$216 = 90 + 18P - 18$ → $18P = 144$ → $P = 8$."
+      "q": "If $a + b + c = 4$, $abc = 2$ and $a^3+b^3+c^3 = 10$, find $ab+bc+ca$.",
+      "steps": [
+       "$s^3 = 64$.",
+       "$64 = 10 + 3 \\times 4 \\times P - 3 \\times 2$.",
+       "$12P = 60$, so $P = 5$ (the numbers are $1, 1, 2$)."
+      ],
+      "answer": "5"
+     }
+    },
+    {
+     "id": "alg-p27",
+     "name": "Pair products from s, P and R",
+     "frequency": "common",
+     "howToSpot": "The question asks for $(a+b)(b+c)(c+a)$ while $a+b+c$, $ab+bc+ca$ and $abc$ are given or findable.",
+     "formula": "(a+b)(b+c)(c+a) = (a+b+c)(ab+bc+ca) - abc",
+     "steps": [
+      "Collect $s = a+b+c$, $P = ab+bc+ca$ and $R = abc$.",
+      "Substitute into $sP - R$.",
+      "Keep the product in one line; expand nothing."
+     ],
+     "why": "Each pair sum is the total minus the missing variable, and the three multiply to exactly $sP - R$.",
+     "example": {
+      "q": "If $a + b + c = 10$, $ab + bc + ca = 27$ and $abc = 18$, find $(a+b)(b+c)(c+a)$.",
+      "steps": [
+       "$sP = 10 \\times 27 = 270$.",
+       "$sP - R = 270 - 18 = 252$.",
+       "Check with $1, 3, 6$: $4 \\times 9 \\times 7 = 252$."
+      ],
+      "answer": "252"
      }
     }
+   ],
+   "revision": [
+    "$a^3+b^3+c^3-3abc = s(s^2 - 3P)$.",
+    "$a+b+c = 0$ gives $a^3+b^3+c^3 = 3abc$.",
+    "$(x-y)^3+(y-z)^3+(z-x)^3 = 3(x-y)(y-z)(z-x)$.",
+    "$a^2+b^2+c^2 = ab+bc+ca$ forces $a = b = c$.",
+    "$a^3+b^3+c^3 = s^3 - 3sP + 3R$.",
+    "$(a+b)(b+c)(c+a) = sP - R$."
    ]
   },
   {
    "id": "alg-surds",
    "title": "Surds: rationalisation and square roots of surds",
-   "concept": "A **surd** is an irrational root like $\\sqrt3$. CGL asks you to rationalise denominators, simplify nested\nroots such as $\\sqrt{7+4\\sqrt3}$, compare surds, and — most often — use a conjugate pair whose product is 1.\n\n**Conjugate pairs with product 1:** $(2+\\sqrt3)(2-\\sqrt3)=1$, $(3+2\\sqrt2)(3-2\\sqrt2)=1$, $(\\sqrt5+2)(\\sqrt5-2)=1$,\n$(\\sqrt2+1)(\\sqrt2-1)=1$. So if $x=2+\\sqrt3$, then $\\frac1x=2-\\sqrt3$ and $x+\\frac1x=4$ — this links surds to the\n$x+\\frac1x$ ladder.",
+   "concept": "A surd is a root that stays irrational. Four moves cover the exam: rationalise with the conjugate, denest $\\sqrt{a+b\\sqrt{c}}$, spot a conjugate pair whose product is 1, and compare surds after raising to a common power.",
    "formulas": [
     {
-     "name": "Rationalising",
-     "tex": "\\frac{1}{\\sqrt a+\\sqrt b}=\\frac{\\sqrt a-\\sqrt b}{a-b}"
+     "name": "Rationalisation",
+     "tex": "\\frac{1}{\\sqrt{a} \\pm \\sqrt{b}} = \\frac{\\sqrt{a} \\mp \\sqrt{b}}{a-b}",
+     "note": ""
     },
     {
      "name": "Conjugate product",
-     "tex": "(\\sqrt a+\\sqrt b)(\\sqrt a-\\sqrt b)=a-b"
+     "tex": "(\\sqrt{a}+\\sqrt{b})(\\sqrt{a}-\\sqrt{b}) = a-b",
+     "note": ""
     },
     {
-     "name": "Square root of a surd",
-     "tex": "\\sqrt{a+2\\sqrt b}=\\sqrt m+\\sqrt n,\\ \\text{where } m+n=a,\\ mn=b"
+     "name": "Root of a surd, plus",
+     "tex": "\\sqrt{a+2\\sqrt{b}} = \\sqrt{m}+\\sqrt{n},\\ m+n = a,\\ mn = b",
+     "note": ""
     },
     {
-     "name": "Square root (minus)",
-     "tex": "\\sqrt{a-2\\sqrt b}=\\sqrt m-\\sqrt n\\ \\ (m>n)"
+     "name": "Root of a surd, minus",
+     "tex": "\\sqrt{a-2\\sqrt{b}} = \\sqrt{m}-\\sqrt{n}\\ \\ (m > n)",
+     "note": ""
     },
     {
-     "name": "Product-1 pair",
-     "tex": "x=p+\\sqrt q,\\ p^2-q=1\\ \\Rightarrow\\ \\frac1x=p-\\sqrt q,\\ x+\\frac1x=2p"
+     "name": "Product-one pair",
+     "tex": "x = p+\\sqrt{q},\\ p^2-q = 1 \\Rightarrow \\tfrac1x = p-\\sqrt{q},\\ x+\\tfrac1x = 2p",
+     "note": ""
     },
     {
      "name": "Telescoping sum",
-     "tex": "\\sum_{n=1}^{N-1}\\frac{1}{\\sqrt n+\\sqrt{n+1}}=\\sqrt N-1"
+     "tex": "\\sum \\frac{1}{\\sqrt{n}+\\sqrt{n+1}} = \\sqrt{\\text{last}} - \\sqrt{\\text{first}}",
+     "note": ""
+    },
+    {
+     "name": "Difference of roots",
+     "tex": "\\sqrt{a}-\\sqrt{b} = \\frac{a-b}{\\sqrt{a}+\\sqrt{b}}",
+     "note": ""
     }
    ],
    "tricks": [
     {
-     "title": "Spot the product-1 conjugate",
-     "body": "If $x=p+\\sqrt q$ and $p^2-q=1$, write $\\frac1x=p-\\sqrt q$ at once. Then use $x+\\frac1x=2p$ or\n$x-\\frac1x=2\\sqrt q$ and the reciprocal ladder.",
+     "title": "Denest by sum and product",
+     "body": "Rewrite the inner coefficient as 2 root something, then find two numbers with the given sum and product.",
      "example": {
-      "q": "If $x=\\sqrt5+2$, find $x^2+\\frac{1}{x^2}$.",
-      "solution": "$\\frac1x=\\sqrt5-2$, so $x-\\frac1x=4$. Then $x^2+\\frac1{x^2}=4^2+2=18$."
+      "q": "Simplify $\\sqrt{17 - 4\\sqrt{13}}$.",
+      "steps": [
+       "$4\\sqrt{13} = 2\\sqrt{52}$, so sum $17$, product $52$.",
+       "The pair is $13$ and $4$.",
+       "$\\sqrt{17-4\\sqrt{13}} = \\sqrt{13} - 2$."
+      ],
+      "answer": "sqrt(13) - 2"
      }
     },
     {
-     "title": "Denest $\\sqrt{a\\pm2\\sqrt b}$ by sum-product",
-     "body": "Make the coefficient of the inner root 2 (e.g. $4\\sqrt3=2\\sqrt{12}$), then find two numbers with sum $a$ and\nproduct $b$.",
+     "title": "Spot the product-one conjugate",
+     "body": "For x = p + sqrt(q), test p squared minus q. If it is 1, the reciprocal is the conjugate and the ladder runs.",
      "example": {
-      "q": "Simplify $\\sqrt{14-6\\sqrt5}$.",
-      "solution": "$6\\sqrt5=2\\sqrt{45}$. Numbers with sum 14 and product 45: 9 and 5. So $\\sqrt{14-6\\sqrt5}=\\sqrt9-\\sqrt5=3-\\sqrt5$."
-     }
-    },
-    {
-     "title": "Compare differences of roots",
-     "body": "$\\sqrt a-\\sqrt b=\\frac{a-b}{\\sqrt a+\\sqrt b}$. With the same $a-b$, the pair with the **larger** roots gives the **smaller** difference.",
-     "example": {
-      "q": "Which is greater: $\\sqrt{12}-\\sqrt{11}$ or $\\sqrt{11}-\\sqrt{10}$?",
-      "solution": "Both numerators are 1; $\\sqrt{12}+\\sqrt{11}>\\sqrt{11}+\\sqrt{10}$, so $\\sqrt{11}-\\sqrt{10}$ is greater."
+      "q": "If x = sqrt(5) + 2, find x^2 + 1/x^2.",
+      "steps": [
+       "$p^2 - q = 5 - 4 = 1$, so $\\dfrac{1}{x} = \\sqrt{5} - 2$.",
+       "$x - \\dfrac{1}{x} = 4$.",
+       "$x^2+\\dfrac{1}{x^2} = 4^2 + 2 = 18$."
+      ],
+      "answer": "18"
      }
     },
     {
      "title": "Telescoping rationalisation",
-     "body": "Each $\\frac{1}{\\sqrt n+\\sqrt{n+1}}=\\sqrt{n+1}-\\sqrt n$; the middle terms cancel, leaving last minus first.",
+     "body": "Each fraction over consecutive roots becomes a difference; middle terms cancel, leaving last root minus first.",
      "example": {
-      "q": "Find $\\frac{1}{\\sqrt1+\\sqrt2}+\\frac{1}{\\sqrt2+\\sqrt3}+\\cdots+\\frac{1}{\\sqrt8+\\sqrt9}$.",
-      "solution": "$=(\\sqrt2-1)+(\\sqrt3-\\sqrt2)+\\cdots+(\\sqrt9-\\sqrt8)=\\sqrt9-1=2$."
+      "q": "Find $\\dfrac{1}{\\sqrt{4}+\\sqrt{5}} + \\dfrac{1}{\\sqrt{5}+\\sqrt{6}} + \\dfrac{1}{\\sqrt{6}+\\sqrt{7}}$.",
+      "steps": [
+       "Each term is $\\sqrt{n+1} - \\sqrt{n}$.",
+       "Middle roots cancel pairwise.",
+       "Answer $= \\sqrt{7} - \\sqrt{4} = \\sqrt{7} - 2$."
+      ],
+      "answer": "sqrt(7) - 2"
      }
     }
    ],
    "mistakes": [
-    "Writing $\\sqrt a+\\sqrt b=\\sqrt{a+b}$.",
-    "Denesting without first making the inner coefficient 2 (use $4\\sqrt3=2\\sqrt{12}$).",
-    "For $\\sqrt{a-2\\sqrt b}$, writing the smaller root first and getting a negative value."
+    {
+     "wrong": "Writing $\\sqrt{a} + \\sqrt{b} = \\sqrt{a+b}$.",
+     "right": "Roots do not split over sums; only products split under a root."
+    },
+    {
+     "wrong": "Denesting without making the inner coefficient 2.",
+     "right": "Rewrite $b\\sqrt{c}$ as $2\\sqrt{b^2c/4}$ first, so the product is read correctly."
+    },
+    {
+     "wrong": "Putting the smaller root first in $\\sqrt{a - 2\\sqrt{b}}$.",
+     "right": "The minus form is larger root minus smaller root, a positive value."
+    },
+    {
+     "wrong": "Claiming the reciprocal is the conjugate without checking $p^2 - q$.",
+     "right": "Test $p^2 - q$; only 1 or a perfect square gives the shortcut."
+    },
+    {
+     "wrong": "Comparing surds of different orders by their radicands.",
+     "right": "Raise all to the LCM of the root orders, then compare integers."
+    }
    ],
-   "notes": "### Rationalising: multiply by 1, dressed up\nTo clear a surd from a denominator, multiply top and bottom by the conjugate:\n$$\\frac{1}{\\sqrt7-\\sqrt6} = \\frac{\\sqrt7+\\sqrt6}{(\\sqrt7-\\sqrt6)(\\sqrt7+\\sqrt6)} = \\sqrt7+\\sqrt6$$\nsince $(\\sqrt7-\\sqrt6)(\\sqrt7+\\sqrt6) = 7-6 = 1$. With a coefficient, divide by it once: $\\frac{4}{\\sqrt5-1} = \\frac{4(\\sqrt5+1)}{4} = \\sqrt5+1$, and $\\frac{3}{\\sqrt5+\\sqrt2} = \\sqrt5-\\sqrt2$. The number under the pair must differ by exactly what the numerator supplies.\n\n### Denesting $\\sqrt{a+b\\sqrt c}$\nTry $\\sqrt{a+b\\sqrt c} = \\sqrt p+\\sqrt q$. Squaring: $p+q = a$ and $2\\sqrt{pq} = b\\sqrt c$. So find two numbers with sum $a$ and product $\\frac{b^2c}{4}$:\n$$\\sqrt{15+4\\sqrt{14}} = 2\\sqrt2+\\sqrt7 \\quad (8+7 = 15,\\; 2\\sqrt{8\\cdot7} = 4\\sqrt{14})$$\n$$\\sqrt{11+6\\sqrt2} = 3+\\sqrt2 \\quad (9+2 = 11,\\; 2\\sqrt9 = 6)$$\nIf the cross term is negative, take the positive root of the reversed pair: $\\sqrt{11-6\\sqrt2} = 3-\\sqrt2$.\n\n### The product-1 conjugate pair\nWhen $x = p+\\sqrt q$ satisfies $p^2-q = 1$, its reciprocal is the conjugate: $\\frac1x = p-\\sqrt q$. Then the reciprocal ladder runs for free:\n$$x = 2+\\sqrt3 \\Rightarrow x+\\frac1x = 4,\\quad x^2+\\frac1{x^2} = 14,\\quad x^3+\\frac1{x^3} = 52$$\nWith $x = 5+2\\sqrt6$: $\\frac1x = 5-2\\sqrt6$ (since $25-24=1$), so $x+\\frac1x = 10$ and $x^2+\\frac1{x^2} = 100-2 = 98$. For $p^2-q = m \\ne 1$, the pair multiplies to $m$: then $x+\\frac mx$, and you divide by $\\sqrt m$ to use the ladder.\n\n### Reducing a polynomial in a surd\nFor $P(x)$ with $x = p+\\sqrt q$, first reduce $P$ modulo the minimal quadratic $x^2-2px+(p^2-q) = 0$ — keep substituting $x^2 = 2px-(p^2-q)$ until everything is linear in $x$. Short cuts first, though: check whether the polynomial is symmetric (then the product-1 ladder applies) or whether $x^2$ itself simplifies.\n\n### Telescoping and comparison\nEach term of $\\frac{1}{\\sqrt{k+1}+\\sqrt k} = \\sqrt{k+1}-\\sqrt k$ telescopes:\n$$\\frac1{\\sqrt2+1}+\\frac1{\\sqrt3+\\sqrt2}+\\frac1{\\sqrt4+\\sqrt3}+\\frac1{\\sqrt5+\\sqrt4} = \\sqrt5-1$$\nAll interior terms cancel. For comparing surds, raise to a common power: $\\sqrt2$ vs $\\sqrt[3]3$ vs $\\sqrt[4]4$ → compare $2^6 = 64$, $3^4 = 81$, $4^3 = 64$ → $\\sqrt[3]3$ is the largest.\n\n### Common traps\n- Rationalising with the wrong conjugate sign (the denominator must get a DIFFERENCE to become rational).\n- Denesting with $p+q$ and $2pq$ mismatched — always re-square to check.\n- Forgetting $p^2-q=1$ before claiming $\\frac1x$ is the conjugate.\n- Assuming nested radicals simplify — some (like $\\sqrt{6+\\sqrt{11}}$) do not denest neatly; fall back to squaring the whole equation.\n\n### Quick revision\n- $\\frac1{\\sqrt a+\\sqrt b} = \\frac{\\sqrt a-\\sqrt b}{a-b}$.\n- $\\sqrt{a+b\\sqrt c} = \\sqrt p+\\sqrt q$ with $p+q = a$, $2\\sqrt{pq} = b\\sqrt c$.\n- $x = p+\\sqrt q$, $p^2-q=1$ → $\\frac1x = p-\\sqrt q$; run the $x+\\frac1x$ ladder.\n- $\\frac1{\\sqrt{k+1}+\\sqrt k} = \\sqrt{k+1}-\\sqrt k$ — telescopes.\n- Compare surds by a common power: $2^6$ vs $3^4$ vs $4^3$.\n",
+   "notes": "To clear a root from a denominator, multiply top and bottom by the conjugate, the same terms with the middle sign flipped:\n$$\\dfrac{1}{\\sqrt{a} \\pm \\sqrt{b}} = \\dfrac{\\sqrt{a} \\mp \\sqrt{b}}{a - b}$$\nSo $\\dfrac{1}{\\sqrt{7}-\\sqrt{6}} = \\sqrt{7}+\\sqrt{6}$, because the denominator product is $7 - 6 = 1$. With a coefficient, divide once: $\\dfrac{4}{\\sqrt{5}-1} = \\dfrac{4(\\sqrt{5}+1)}{4} = \\sqrt{5}+1$, and $\\dfrac{3}{\\sqrt{5}+\\sqrt{2}} = \\sqrt{5}-\\sqrt{2}$.\n\n### Denesting a nested root\nTry $\\sqrt{a + b\\sqrt{c}} = \\sqrt{p} + \\sqrt{q}$. Squaring gives the two conditions: $p + q = a$ and $2\\sqrt{pq} = b\\sqrt{c}$. Examples: $\\sqrt{15 + 4\\sqrt{14}} = 2\\sqrt{2} + \\sqrt{7}$, since $8 + 7 = 15$ and $2\\sqrt{56} = 4\\sqrt{14}$; and $\\sqrt{11 + 6\\sqrt{2}} = 3 + \\sqrt{2}$, since $9 + 2 = 11$ and $2\\sqrt{9} = 6$.\n\n> **Rule:** Force the inner coefficient to the shape $2\\sqrt{\\cdot}$ first: $6\\sqrt{2}$ is $2\\sqrt{18}$, so the product you need is 18, not 2.\n\n### The product-one conjugate pair\nWhen $x = p + \\sqrt{q}$ and $p^2 - q = 1$, the reciprocal is the conjugate: $\\dfrac{1}{x} = p - \\sqrt{q}$. Then the reciprocal ladder runs free. With $x = 2+\\sqrt{3}$: $x + \\dfrac{1}{x} = 4$, the square rung gives $14$, and the cube rung gives $52$. With $x = 5+2\\sqrt{6}$: $25 - 24 = 1$, so $x + \\dfrac{1}{x} = 10$ and the square rung gives $98$.\n\n> **Watch:** Check $p^2 - q$ before claiming the reciprocal. If it is not 1 or a perfect square, do the full rationalisation instead.\n\n### Telescoping chains\nEach term $\\dfrac{1}{\\sqrt{n+1}+\\sqrt{n}}$ equals $\\sqrt{n+1}-\\sqrt{n}$, so a chain cancels in the middle:\n$$\\dfrac{1}{\\sqrt{5}+\\sqrt{4}} + \\dfrac{1}{\\sqrt{6}+\\sqrt{5}} + \\dfrac{1}{\\sqrt{7}+\\sqrt{6}} = \\sqrt{7} - \\sqrt{4} = \\sqrt{7}-2$$\nWrite the answer as last root minus first root and skip the middle terms entirely. A chain running from $\\sqrt{3}$ to $\\sqrt{10}$ collapses to $\\sqrt{10}-\\sqrt{3}$ the same way, however many terms it lists.\n\n### Comparing surds\nRaise every surd to the LCM of the root orders and compare plain integers. For $\\sqrt{2}$, $\\sqrt[3]{3}$, $\\sqrt[4]{5}$: orders 2, 3, 4 give LCM 12, and twelfth powers are $2^6 = 64$, $3^4 = 81$, $5^3 = 125$. The last is largest, so $\\sqrt[4]{5}$ wins.\nFor differences of roots, use $\\sqrt{a}-\\sqrt{b} = \\dfrac{a-b}{\\sqrt{a}+\\sqrt{b}}$: with equal numerators, the pair with larger roots gives the smaller difference. That is why $\\sqrt{5}-\\sqrt{4}$ beats $\\sqrt{7}-\\sqrt{6}$.\n\n> **Tip:** Keep three decimal values ready: $\\sqrt{2} \\approx 1.414$, $\\sqrt{3} \\approx 1.732$, $\\sqrt{5} \\approx 2.236$. They settle close comparisons in seconds.\n",
    "patterns": [
     {
      "id": "alg-p13",
      "name": "Denesting a nested surd",
      "frequency": "common",
-     "howToSpot": "$\\sqrt{a+b\\sqrt c}$ to be written as $\\sqrt p+\\sqrt q$ (or simplified).",
-     "formula": "\\sqrt{a+b\\sqrt c} = \\sqrt p+\\sqrt q,\\quad p+q=a,\\ 2\\sqrt{pq}=b\\sqrt c",
-     "logic": "1. Look for two numbers with sum $a$ and product $\\frac{b^2c}{4}$.\n2. Write $\\sqrt p+\\sqrt q$ from the pair.\n3. Re-square mentally to confirm: $(\\sqrt p+\\sqrt q)^2 = a + 2\\sqrt{pq}$.\n\nWhy: squaring the ansatz produces exactly the two matching conditions.",
+     "howToSpot": "A square root wrapped around a number plus or minus a root, to be written without nesting.",
+     "formula": "\\sqrt{a+2\\sqrt{b}} = \\sqrt{m}+\\sqrt{n},\\ m+n=a,\\ mn=b",
+     "steps": [
+      "Rewrite the inner term in the $2\\sqrt{\\cdot}$ shape.",
+      "Find two numbers with sum $a$ and product $b$.",
+      "Answer is $\\sqrt{m}+\\sqrt{n}$, or the difference for the minus form.",
+      "Re-square mentally to confirm."
+     ],
+     "why": "Squaring $\\sqrt{m}+\\sqrt{n}$ returns exactly $a + 2\\sqrt{b}$.",
      "example": {
-      "q": "The simplified form of $\\sqrt{11+6\\sqrt2}$ is:",
-      "solution": "$3+\\sqrt2$ — since $3+2 = 5$... check: $(3+\\sqrt2)^2 = 9+2+6\\sqrt2 = 11+6\\sqrt2$. Correct."
+      "q": "Simplify $\\sqrt{16 - 6\\sqrt{7}}$.",
+      "steps": [
+       "$6\\sqrt{7} = 2\\sqrt{63}$, so sum $16$, product $63$.",
+       "The pair is $9$ and $7$.",
+       "$\\sqrt{16-6\\sqrt{7}} = \\sqrt{9}-\\sqrt{7} = 3-\\sqrt{7}$."
+      ],
+      "answer": "3 - sqrt(7)"
      }
     },
     {
      "id": "alg-p14",
      "name": "Rationalise the denominator",
      "frequency": "very common",
-     "howToSpot": "A fraction with a surd (or binomial surd) denominator; simplify or compute.",
-     "formula": "\\frac{1}{\\sqrt a\\pm\\sqrt b} = \\frac{\\sqrt a\\mp\\sqrt b}{a-b}",
-     "logic": "1. Multiply top and bottom by the conjugate of the denominator.\n2. The denominator becomes $a-b$ (or $p^2-qn$ for $p\\pm\\sqrt q$ forms).\n3. Cancel the common factor with the numerator before multiplying out.\n\nWhy: $(\\sqrt a-\\sqrt b)(\\sqrt a+\\sqrt b) = a-b$ removes the root from the denominator.",
+     "howToSpot": "A fraction with a root or a binomial surd in the denominator.",
+     "formula": "\\dfrac{1}{\\sqrt{a} \\pm \\sqrt{b}} = \\dfrac{\\sqrt{a} \\mp \\sqrt{b}}{a-b}",
+     "steps": [
+      "Multiply top and bottom by the conjugate.",
+      "The denominator becomes $a - b$.",
+      "Cancel any common factor before expanding."
+     ],
+     "why": "The conjugate product removes every root from the denominator.",
      "example": {
-      "q": "The simplified value of $\\dfrac{4}{\\sqrt5-1}$ is:",
-      "solution": "$\\frac{4(\\sqrt5+1)}{5-1} = \\sqrt5+1$. Cancel the 4 first if the form allows."
+      "q": "Find the simplified value of $\\dfrac{6}{\\sqrt{7}-1}$.",
+      "steps": [
+       "Multiply by $\\dfrac{\\sqrt{7}+1}{\\sqrt{7}+1}$.",
+       "Denominator: $7 - 1 = 6$.",
+       "$\\dfrac{6(\\sqrt{7}+1)}{6} = \\sqrt{7}+1$."
+      ],
+      "answer": "sqrt(7) + 1"
      }
     },
     {
      "id": "alg-p15",
-     "name": "Conjugate pair $x\\cdot y = 1$",
+     "name": "Conjugate pair with product one",
      "frequency": "very common",
-     "howToSpot": "$x = p+\\sqrt q$ (e.g. $2+\\sqrt3$, $5+2\\sqrt6$) given; $x+\\frac1x$, $x^2+\\frac1{x^2}$, $x^3+\\frac1{x^3}$ asked.",
-     "formula": "p^2-q=1 \\Rightarrow \\frac1x = p-\\sqrt q",
-     "logic": "1. Check $p^2-q$: if it equals 1, then $\\frac1x = p-\\sqrt q$.\n2. $x+\\frac1x = 2p$ — instant.\n3. Climb the ladder: square (subtract 2), cube ($k^3-3k$).\n\nWhy: the conjugate is the exact reciprocal when the norm $p^2-q$ is 1.",
+     "howToSpot": "$x = p + \\sqrt{q}$ is given, and $x + \\frac{1}{x}$ or a higher rung is asked.",
+     "formula": "p^2 - q = 1 \\Rightarrow \\dfrac{1}{x} = p - \\sqrt{q},\\ x + \\dfrac{1}{x} = 2p",
+     "steps": [
+      "Test $p^2 - q$; confirm it equals 1.",
+      "Write the reciprocal as the conjugate.",
+      "Add to get $x + \\frac{1}{x} = 2p$.",
+      "Climb the reciprocal ladder if a higher rung is asked."
+     ],
+     "why": "A product-one pair means the conjugate is exactly the reciprocal.",
      "example": {
-      "q": "If $x=2+\\sqrt3$, then $x^3+\\frac1{x^3}$ equals:",
-      "solution": "$\\frac1x = 2-\\sqrt3$ → $x+\\frac1x = 4$ → $x^3+\\frac1{x^3} = 64-12 = 52$."
+      "q": "If $x = 5 + 2\\sqrt{6}$, find $x + \\dfrac{1}{x}$.",
+      "steps": [
+       "$p^2 - q = 25 - 24 = 1$.",
+       "$\\dfrac{1}{x} = 5 - 2\\sqrt{6}$.",
+       "$x + \\dfrac{1}{x} = (5 + 2\\sqrt{6}) + (5 - 2\\sqrt{6}) = 10$."
+      ],
+      "answer": "10"
      }
     },
     {
      "id": "alg-p16",
-     "name": "Telescoping / comparing surds",
+     "name": "Comparing surds of different orders",
      "frequency": "common",
-     "howToSpot": "A sum of fractions $\\frac1{\\sqrt{k+1}+\\sqrt k}$ that cancels, or a comparison of unlike roots ($\\sqrt2$ vs $\\sqrt[3]3$ vs $\\sqrt[4]4$).",
-     "formula": "\\frac1{\\sqrt{k+1}+\\sqrt k} = \\sqrt{k+1}-\\sqrt k; \\qquad \\text{compare via } a^{\\text{lcm}}",
-     "logic": "1. Rewrite each fraction as a difference of consecutive roots; the middle terms cancel.\n2. For comparisons, raise everything to the LCM power and compare integers.\n3. Keep the numeric values of small roots ready ($\\sqrt2 = 1.414$, $\\sqrt3 = 1.732$, $\\sqrt5 = 2.236$).\n\nWhy: the conjugate turns each term into a telescoping difference; common powers make roots comparable.",
+     "howToSpot": "A list of unlike roots asks which is greatest or smallest.",
+     "formula": "\\text{raise all to the LCM of the root orders}",
+     "steps": [
+      "Take the LCM of all root orders.",
+      "Raise each surd to that power; roots vanish.",
+      "Compare the integers."
+     ],
+     "why": "A common power turns every surd into a whole number.",
      "example": {
-      "q": "The greatest of $\\sqrt2,\\ \\sqrt[3]3,\\ \\sqrt[4]4$ is:",
-      "solution": "Raise to the 12th power: $2^6 = 64$, $3^4 = 81$, $4^3 = 64$ → $\\sqrt[3]3$ wins."
+      "q": "Which is the greatest: $\\sqrt{2}$, $\\sqrt[3]{3}$ or $\\sqrt[4]{5}$?",
+      "steps": [
+       "Orders 2, 3, 4 give LCM 12.",
+       "Twelfth powers: $2^6 = 64$, $3^4 = 81$, $5^3 = 125$.",
+       "$125$ is largest, so $\\sqrt[4]{5}$ is the greatest."
+      ],
+      "answer": "fourth root of 5"
+     }
+    },
+    {
+     "id": "alg-p28",
+     "name": "Ranking fractions with root-sum denominators",
+     "frequency": "common",
+     "howToSpot": "Options like $\\dfrac{1}{\\sqrt{n}+\\sqrt{n+1}}$ ask which fraction is largest or smallest.",
+     "formula": "\\dfrac{1}{\\sqrt{a}+\\sqrt{b}} = \\dfrac{\\sqrt{a}-\\sqrt{b}}{a-b}",
+     "steps": [
+      "Rationalise every option with its conjugate.",
+      "Each difference of radicands is $1$ here, so each value is a plain root difference.",
+      "With equal numerators, the smallest pair of roots gives the largest value.",
+      "Rank and pick."
+     ],
+     "why": "After rationalisation all options share numerator $1$, so only the size of the root pair decides.",
+     "example": {
+      "q": "Which is the largest: $\\dfrac{1}{\\sqrt{3}+\\sqrt{2}}$, $\\dfrac{1}{\\sqrt{5}+\\sqrt{4}}$ or $\\dfrac{1}{\\sqrt{7}+\\sqrt{6}}$?",
+      "steps": [
+       "Rationalising gives $\\sqrt{3}-\\sqrt{2}$, $\\sqrt{5}-2$ and $\\sqrt{7}-\\sqrt{6}$.",
+       "All equal $\\dfrac{1}{\\text{sum of the roots}}$, so the smallest roots win.",
+       "$\\sqrt{3}+\\sqrt{2}$ is the smallest sum, so $\\sqrt{3}-\\sqrt{2}$ is the largest value."
+      ],
+      "answer": "1/(sqrt(3)+sqrt(2))"
      }
     }
+   ],
+   "revision": [
+    "Conjugate rationalisation divides by $a - b$.",
+    "$\\sqrt{a+2\\sqrt{b}} = \\sqrt{m}+\\sqrt{n}$ with $m+n = a$, $mn = b$.",
+    "$p^2 - q = 1$ makes the reciprocal $p - \\sqrt{q}$.",
+    "Chains of $\\dfrac{1}{\\sqrt{n}+\\sqrt{n+1}}$ collapse to last minus first.",
+    "Compare at the LCM of root orders.",
+    "$\\sqrt{2} \\approx 1.414$, $\\sqrt{3} \\approx 1.732$, $\\sqrt{5} \\approx 2.236$."
    ]
   },
   {
    "id": "alg-linear-poly",
    "title": "Linear equations, graphs and polynomials",
-   "concept": "**Pair of linear equations** $a_1x+b_1y=c_1$, $a_2x+b_2y=c_2$ represent two lines. Compare the ratios of\ncoefficients to decide the number of solutions.\n\n**Graphs:** the line $ax+by=c$ cuts the $x$-axis at $\\frac ca$ and the $y$-axis at $\\frac cb$. With the axes it\nforms a right triangle — its area is a common one-liner.\n\n**Polynomials:** the remainder when $f(x)$ is divided by $x-a$ is $f(a)$ (remainder theorem); if $f(a)=0$,\nthen $x-a$ is a factor (factor theorem). For a quadratic $ax^2+bx+c$, sum of roots $=-\\frac ba$ and\nproduct $=\\frac ca$.",
+   "concept": "Two linear equations are two lines; the ratios of their coefficients say whether the lines cross once, never, or lie on each other. A single line with the axes cuts a triangle whose area is half the product of intercepts. Polynomials reduce to substitutions through the remainder theorem.",
    "formulas": [
     {
      "name": "Unique solution",
-     "tex": "\\frac{a_1}{a_2}\\neq\\frac{b_1}{b_2}",
-     "note": "lines intersect"
+     "tex": "\\frac{a_1}{a_2} \\ne \\frac{b_1}{b_2}",
+     "note": "lines cross once"
     },
     {
      "name": "No solution",
-     "tex": "\\frac{a_1}{a_2}=\\frac{b_1}{b_2}\\neq\\frac{c_1}{c_2}",
+     "tex": "\\frac{a_1}{a_2} = \\frac{b_1}{b_2} \\ne \\frac{c_1}{c_2}",
      "note": "parallel lines"
     },
     {
-     "name": "Infinitely many solutions",
-     "tex": "\\frac{a_1}{a_2}=\\frac{b_1}{b_2}=\\frac{c_1}{c_2}",
-     "note": "coincident lines"
-    },
-    {
-     "name": "Intercept form",
-     "tex": "\\frac xp+\\frac yq=1"
+     "name": "Infinite solutions",
+     "tex": "\\frac{a_1}{a_2} = \\frac{b_1}{b_2} = \\frac{c_1}{c_2}",
+     "note": "same line"
     },
     {
      "name": "Area with the axes",
-     "tex": "\\text{Area}=\\frac12\\cdot\\left|\\frac ca\\right|\\cdot\\left|\\frac cb\\right|=\\frac{c^2}{2|ab|}"
-    },
-    {
-     "name": "Slope of ax+by+c=0",
-     "tex": "m=-\\frac ab"
+     "tex": "\\text{Area} = \\frac{1}{2}\\cdot\\left|\\frac{c}{a}\\right|\\cdot\\left|\\frac{c}{b}\\right|",
+     "note": ""
     },
     {
      "name": "Remainder theorem",
-     "tex": "f(x)\\div(x-a)\\Rightarrow R=f(a);\\quad f(x)\\div(px-q)\\Rightarrow R=f\\!\\left(\\tfrac qp\\right)"
+     "tex": "p(x) \\div (x-a) \\Rightarrow R = p(a)",
+     "note": "for px - q, substitute q/p"
     },
     {
      "name": "Roots of a quadratic",
-     "tex": "\\alpha+\\beta=-\\frac ba,\\quad \\alpha\\beta=\\frac ca"
+     "tex": "\\alpha+\\beta = -\\frac ba,\\quad \\alpha\\beta = \\frac ca",
+     "note": ""
+    },
+    {
+     "name": "Discriminant",
+     "tex": "b^2 - 4ac \\gtrless 0",
+     "note": "decides root nature"
     }
    ],
    "tricks": [
     {
-     "title": "Area with axes from intercepts",
-     "body": "Put $y=0$ for the $x$-intercept and $x=0$ for the $y$-intercept, then area $=\\frac12\\times|p|\\times|q|$.",
+     "title": "Area from intercepts",
+     "body": "Put y = 0 for the x-intercept and x = 0 for the y-intercept, then halve the product of the absolute values.",
      "example": {
-      "q": "Find the area of the triangle formed by $5x-2y=20$ and the coordinate axes.",
-      "solution": "Intercepts: $x=4$ and $y=-10$. Area $=\\frac12\\times4\\times10=20$ sq units."
+      "q": "Find the area of the triangle formed by 5x - 4y = 20 and the axes.",
+      "steps": [
+       "$y = 0$: $x = 4$.",
+       "$x = 0$: $y = -5$, length $5$.",
+       "Area $= \\dfrac{1}{2} \\times 4 \\times 5 = 10$."
+      ],
+      "answer": "10 square units"
      }
     },
     {
-     "title": "Remainder = put the zero of the divisor",
-     "body": "No long division. For divisor $x-2$, put $x=2$; for $2x+1$, put $x=-\\frac12$.",
+     "title": "Remainder equals substitution at the zero",
+     "body": "No long division: substitute the zero of the divisor into the polynomial.",
      "example": {
-      "q": "Find the remainder when $2x^3-3x^2+4x-5$ is divided by $x-2$.",
-      "solution": "$f(2)=16-12+8-5=7$."
+      "q": "Find the remainder when x^3 - 2x^2 - 2x + 6 is divided by x - 2.",
+      "steps": [
+       "Zero of the divisor: $x = 2$.",
+       "$p(2) = 8 - 8 - 4 + 6$.",
+       "$= 2$."
+      ],
+      "answer": "2"
      }
     },
     {
-     "title": "Intersection point: test the options",
-     "body": "For 'the lines meet at' questions, substitute each option into both equations — usually faster than solving.",
+     "title": "Test the options for the intersection point",
+     "body": "For a meeting-point question, plug each option into both equations instead of solving the pair.",
      "example": {
-      "q": "Where do $2x+3y=13$ and $3x-y=3$ intersect? (a) $(2,3)$ (b) $(3,2)$ (c) $(1,0)$ (d) $(5,1)$",
-      "solution": "$(2,3)$: $4+9=13$ ✓ and $6-3=3$ ✓. Answer (a)."
+      "q": "Where do 2x + 3y = 13 and 3x - y = 3 meet?",
+      "steps": [
+       "Try $(2, 3)$: $4 + 9 = 13$ holds.",
+       "Second check: $6 - 3 = 3$ holds.",
+       "Both equations pass, so the point is $(2, 3)$."
+      ],
+      "answer": "(2, 3)"
      }
     }
    ],
    "mistakes": [
-    "Taking a negative intercept as negative area — use absolute values.",
-    "Mixing up the 'no solution' and 'infinitely many' conditions — the constant-term ratio decides.",
-    "For divisor $2x-1$ putting $x=1$ or $x=-\\frac12$ instead of $x=\\frac12$."
+    {
+     "wrong": "Answering parallel without checking the constant ratio.",
+     "right": "The c-ratio separates parallel from coincident; check it last, always."
+    },
+    {
+     "wrong": "Taking c/b as the x-intercept.",
+     "right": "The x-intercept is c/a; put y = 0 to see it."
+    },
+    {
+     "wrong": "Substituting the wrong sign for divisor x + 3.",
+     "right": "Its zero is -3; substitute minus 3."
+    },
+    {
+     "wrong": "Writing the root sum as b/a.",
+     "right": "It is minus b over a; the sign flips."
+    },
+    {
+     "wrong": "Using a negative intercept as a negative area.",
+     "right": "Lengths are absolute; the area is always positive."
+    }
    ],
-   "notes": "### Two lines, three outcomes\nFor $a_1x+b_1y=c_1$ and $a_2x+b_2y=c_2$ compare the ratios:\n$$\\frac{a_1}{a_2} \\ne \\frac{b_1}{b_2} \\Rightarrow \\text{unique solution} \\qquad \\frac{a_1}{a_2} = \\frac{b_1}{b_2} \\ne \\frac{c_1}{c_2} \\Rightarrow \\text{no solution (parallel)} \\qquad \\frac{a_1}{a_2} = \\frac{b_1}{b_2} = \\frac{c_1}{c_2} \\Rightarrow \\text{infinitely many (same line)}$$\nFind-k questions fix one ratio from the known pair and set it equal to (or apart from) the third: $3x+4y=10$, $6x+ky=20$ → infinitely many needs $\\frac36 = \\frac4k = \\frac{10}{20}$ → $k=8$. No solution needs $\\frac36 = \\frac{k}{...}$ matched on the first two ratios but NOT on $c$: e.g. $2x+ky=5$, $4x+6y=10$ → $\\frac24 = \\frac k6 = \\frac12$ gives $k=3$ and then $\\frac55$-checking $c$: $\\frac12 \\ne \\frac{10}{10}=1$ → indeed no solution at $k=3$ only if the $c$-ratio differs. Always finish the check with the $c$-ratio.\n\n### Area with the axes\nA line $ax+by=c$ cuts the axes at $\\left(\\frac ca, 0\\right)$ and $\\left(0, \\frac cb\\right)$:\n$$\\text{area} = \\frac12 \\times \\frac ca \\times \\frac cb = \\frac{c^2}{2ab}$$\n$3x+4y=24$ → intercepts 8 and 6 → area 24. With axes and one more line, find the intersection first, then use the base-height read-off. This little formula answers a surprisingly common CGL question in five seconds.\n\n### Remainder and factor theorems\nRemainder theorem: dividing $p(x)$ by $(x-\\alpha)$ leaves $p(\\alpha)$ — just substitute. Dividing by $(x+1)$? Substitute $x=-1$. Two remainders give two linear equations in the unknown coefficients: $p(x)=x^4-2x^3+3x^2-ax+b$ with remainders 3 and 9 at $x=1$ and $x=-1$ → $p(1)=2-a+b=3$, $p(-1)=6+a+b=9$ → $a=1$, $b=2$.\nFactor theorem: $(x-\\alpha)$ is a factor $\\iff p(\\alpha)=0$. \"Is a factor\" questions are remainder questions with the remainder forced to zero.\n\n### Quadratic roots\nFor $x^2-px+q=0$ (i.e. $ax^2+bx+c$): $\\alpha+\\beta = -\\frac ba$, $\\alpha\\beta = \\frac ca$. The standard follow-ups:\n$$\\alpha^2+\\beta^2 = (\\alpha+\\beta)^2-2\\alpha\\beta \\qquad \\alpha^3+\\beta^3 = (\\alpha+\\beta)^3-3\\alpha\\beta(\\alpha+\\beta) \\qquad \\frac1\\alpha+\\frac1\\beta = \\frac{\\alpha+\\beta}{\\alpha\\beta}$$\nRoots real & distinct $\\iff b^2-4ac>0$; equal $\\iff =0$; no real roots $\\iff <0$. A \"for what $k$\" question is just that inequality solved.\n\n### Common traps\n- Quoting the parallel-lines condition without checking the $c$-ratio (many \"find k\" questions hinge on it).\n- Using $\\frac cb$ as the $x$-intercept (it is the $y$-intercept).\n- Substituting the wrong sign into the remainder theorem ($x+3$ → use $-3$).\n- Sign slips in $\\alpha+\\beta = -b/a$ — it is MINUS $b$ over $a$.\n\n### Quick revision\n- Ratios decide: unequal → unique; equal-equal-unequal → none; all equal → infinite.\n- Area with axes $= \\frac{c^2}{2ab}$.\n- Remainder $= p(\\alpha)$; factor $\\iff p(\\alpha)=0$.\n- $\\alpha+\\beta = -\\frac ba$, $\\alpha\\beta = \\frac ca$; $\\alpha^3+\\beta^3 = (\\alpha+\\beta)^3-3\\alpha\\beta(\\alpha+\\beta)$.\n- Real distinct roots $\\iff b^2 > 4ac$.\n",
+   "notes": "For the pair $a_1x + b_1y = c_1$ and $a_2x + b_2y = c_2$, compare three ratios:\n| Ratios | Outcome |\n|---|---|\n| $a_1/a_2 \\ne b_1/b_2$ | one solution, lines cross |\n| $a_1/a_2 = b_1/b_2 \\ne c_1/c_2$ | no solution, parallel |\n| all three ratios equal | same line, infinite solutions |\n\nFind-$k$ questions fix the known ratios first, then force the third. For $3x+4y=10$ and $6x+ky=20$: infinite solutions needs $6/3 = 2$, so $k/4 = 2$ gives $k = 8$, and $20/10 = 2$ agrees.\n\n> **Rule:** The constant ratio decides between parallel and coincident. Never answer before checking $c_1/c_2$.\n\n### Area with the axes\nThe line $ax + by = c$ cuts the $x$-axis at $\\dfrac{c}{a}$ (put $y = 0$) and the $y$-axis at $\\dfrac{c}{b}$ (put $x = 0$). The axes are perpendicular, so the triangle area is half the product:\n$$\\text{area} = \\frac{1}{2} \\times \\frac{c}{a} \\times \\frac{c}{b}$$\nFor $4x + 5y = 40$: intercepts $10$ and $8$, area $\\dfrac{1}{2} \\times 10 \\times 8 = 40$. For $5x - 4y = 20$: intercepts $4$ and $-5$, area $\\dfrac{1}{2} \\times 4 \\times 5 = 10$.\n\n> **Watch:** The $x$-intercept divides by $a$ and the $y$-intercept by $b$. Swapping them is the classic slip. Take absolute values for the area.\n\n### Remainder and factor theorems\nDividing $p(x)$ by $(x - \\alpha)$ leaves remainder $p(\\alpha)$: just substitute. For divisor $x + 1$, substitute $x = -1$. Two remainders give two linear equations in unknown coefficients.\nFactor questions are the same with the remainder forced to zero: $(x - \\alpha)$ is a factor exactly when $p(\\alpha) = 0$.\n\n> **Tip:** For a divisor like $2x - 1$, substitute $x = \\frac{1}{2}$, the zero of the divisor, not $1$.\n\n### Quadratic roots\nFor $ax^2 + bx + c = 0$ with roots $\\alpha, \\beta$: sum $= -\\frac{b}{a}$, product $= \\frac{c}{a}$. Build targets from these two: $\\alpha^2+\\beta^2 = (\\alpha+\\beta)^2 - 2\\alpha\\beta$, and $\\alpha^4+\\beta^4 = (\\alpha^2+\\beta^2)^2 - 2(\\alpha\\beta)^2$. For $x^2 - 3x + 1$: sum $3$, product $1$, so $\\alpha^2+\\beta^2 = 7$ and $\\alpha^4+\\beta^4 = 47$.\nThe rebuild also works backwards: roots $4$ and $8$ give the equation $x^2 - 12x + 32 = 0$, the sum as the flipped middle coefficient and the product as the constant.\n\n### Discriminant for root nature\nReal distinct roots need $b^2 > 4ac$; equal roots need $b^2 = 4ac$; no real roots when $b^2 < 4ac$. A question saying 'always positive' translates to $a > 0$ together with $b^2 < 4ac$.\n\n### A quick habit\nFor 'where do the lines meet' questions with options, substitute each option into both equations. Testing options is usually faster than solving the pair.\n",
    "patterns": [
     {
      "id": "alg-p17",
-     "name": "Consistency of a linear pair (find k)",
+     "name": "Consistency of a linear pair, find k",
      "frequency": "common",
-     "howToSpot": "Two linear equations with an unknown $k$; asked whether there are unique / no / infinitely many solutions.",
-     "formula": "\\frac{a_1}{a_2} \\ne \\frac{b_1}{b_2}\\ (\\text{unique}); \\quad =\\ \\&\\ \\ne\\ \\frac{c_1}{c_2}\\ (\\text{none}); \\quad =\\ =\\ (\\text{infinite})",
-     "logic": "1. Compute the $a$-ratio and $b$-ratio from the known coefficients.\n2. Set them equal (or unequal) as the question demands and solve for $k$.\n3. ALWAYS check the $c$-ratio: for \"no solution\" it must differ, for \"infinite\" it must match.\n\nWhy: two lines coincide, cross once, or never meet — the coefficient ratios tell you which, completely.",
+     "howToSpot": "Two linear equations with an unknown coefficient $k$; the question fixes the number of solutions.",
+     "formula": "\\dfrac{a_1}{a_2} = \\dfrac{b_1}{b_2} = \\dfrac{c_1}{c_2} \\text{ for infinite solutions}",
+     "steps": [
+      "Compute the ratio of the coefficients that are fully known.",
+      "Set the $k$-ratio equal to it and solve for $k$.",
+      "Check the constant ratio: equal for infinite, different for none."
+     ],
+     "why": "Coincident lines must agree in all three ratios, which pins $k$.",
      "example": {
-      "q": "For what value of $k$ does $2x+ky=5$, $4x+6y=12$ have no solution?",
-      "solution": "No solution: $\\frac{a_1}{a_2}=\\frac{b_1}{b_2}\\ne\\frac{c_1}{c_2}$. $\\frac24=\\frac k6=\\frac12$ → $k=3$, and $\\frac{5}{12}\\ne\\frac12$ — consistent."
+      "q": "For what value of $k$ do $3x + 4y = 12$ and $9x + ky = 36$ have infinitely many solutions?",
+      "steps": [
+       "$9/3 = 3$, so $k/4 = 3$ gives $k = 12$.",
+       "Check constants: $36/12 = 3$. All three ratios equal.",
+       "So $k = 12$."
+      ],
+      "answer": "12"
      }
     },
     {
      "id": "alg-p18",
-     "name": "Area of the triangle cut by a line from the axes",
+     "name": "Area of the triangle cut from the axes",
      "frequency": "common",
-     "howToSpot": "A line $ax+by=c$ with the coordinate axes bounds a triangle; its area is asked.",
-     "formula": "\\text{area} = \\frac12\\cdot\\frac ca\\cdot\\frac cb = \\frac{c^2}{2ab}",
-     "logic": "1. $x$-intercept: put $y=0$ → $x = \\frac ca$.\n2. $y$-intercept: put $x=0$ → $y = \\frac cb$.\n3. Area $= \\frac12 \\times$ product of intercepts.\n\nWhy: the axes are perpendicular, so the intercepts are exactly the base and height.",
+     "howToSpot": "A line with the coordinate axes bounds a triangle; its area is asked.",
+     "formula": "\\text{area} = \\dfrac{c^2}{2ab}",
+     "steps": [
+      "Put $y = 0$ and read the $x$-intercept $c/a$.",
+      "Put $x = 0$ and read the $y$-intercept $c/b$.",
+      "Halve the product of the absolute lengths."
+     ],
+     "why": "The axes are perpendicular, so the intercepts are exactly base and height.",
      "example": {
-      "q": "The area of the triangle formed by $3x+4y=24$ and the coordinate axes is:",
-      "solution": "Intercepts 8 and 6 → area $= \\frac12\\times8\\times6 = 24$ square units."
+      "q": "Find the area of the triangle formed by $4x + 5y = 40$ and the coordinate axes.",
+      "steps": [
+       "$x$-intercept: $40/4 = 10$.",
+       "$y$-intercept: $40/5 = 8$.",
+       "Area $= \\dfrac{1}{2} \\times 10 \\times 8 = 40$."
+      ],
+      "answer": "40 square units"
      }
     },
     {
      "id": "alg-p19",
-     "name": "Remainder / factor theorem",
+     "name": "Remainder theorem for unknown coefficients",
      "frequency": "very common",
-     "howToSpot": "A polynomial divided by $(x-\\alpha)$ or $(x+\\alpha)$ — the remainder, an unknown coefficient, or the factor condition is asked.",
-     "formula": "p(x) \\div (x-\\alpha) \\Rightarrow \\text{remainder} = p(\\alpha); \\quad (x-\\alpha)\\ \\text{factor} \\iff p(\\alpha)=0",
-     "logic": "1. Substitute the zero of the divisor: $x-2$ → $x=2$; $x+1$ → $x=-1$.\n2. For long divisors like $(x-1)(x+1)$, substitute each root separately and solve the resulting linear system.\n3. For factor questions set $p(\\alpha)=0$ and solve for the unknown coefficient.\n\nWhy: the remainder theorem reduces a whole division to one evaluation.",
+     "howToSpot": "A polynomial with unknown coefficients is divided by two linear factors; the two remainders are given.",
+     "formula": "p(x) \\div (x-a) \\Rightarrow R = p(a)",
+     "steps": [
+      "Substitute the zero of each divisor into the polynomial.",
+      "Set each result equal to the given remainder.",
+      "Solve the two linear equations for the unknowns.",
+      "Compute the asked quantity."
+     ],
+     "why": "Each substitution turns a whole division into one evaluation, giving clean linear equations.",
      "example": {
-      "q": "When $x^4-2x^3+3x^2-ax+b$ is divided by $(x-1)$ and $(x+1)$ the remainders are 3 and 9. Then $ab$ equals:",
-      "solution": "$p(1) = 2-a+b = 3$, $p(-1) = 6+a+b = 9$ → $a=1$, $b=2$ → $ab = 2$. Two substitutions, two linear equations."
+      "q": "When $x^3 - 2x^2 + ax + b$ is divided by $(x-1)$ and $(x+1)$ the remainders are $3$ and $5$. Find $ab$.",
+      "steps": [
+       "$p(1) = 1 - 2 + a + b = 3$, so $a + b = 4$.",
+       "$p(-1) = -1 - 2 - a + b = 5$, so $b - a = 8$.",
+       "Solving: $b = 6$, $a = -2$.",
+       "$ab = -12$."
+      ],
+      "answer": "-12"
      }
     },
     {
      "id": "alg-p20",
      "name": "Quadratic roots and symmetric functions",
      "frequency": "very common",
-     "howToSpot": "A quadratic is given (or its $\\alpha+\\beta$, $\\alpha\\beta$); expressions in the roots, or the $k$ for a given root nature, are asked.",
-     "formula": "\\alpha+\\beta = -\\frac ba, \\quad \\alpha\\beta = \\frac ca",
-     "logic": "1. Read off $\\alpha+\\beta$ and $\\alpha\\beta$ from the coefficients (mind the minus).\n2. Build the asked expression from squares/cubes: $\\alpha^2+\\beta^2$, $\\alpha^3+\\beta^3$, $\\frac1\\alpha+\\frac1\\beta$.\n3. Root-nature questions: solve $b^2-4ac$ compared with 0.\n\nWhy: every symmetric rational function of the roots is a function of the two elementary ones.",
+     "howToSpot": "A quadratic is given, or its root sum and product; an expression in the roots is asked.",
+     "formula": "\\alpha+\\beta = -\\frac ba,\\qquad \\alpha\\beta = \\frac ca",
+     "steps": [
+      "Read the sum and product from the coefficients.",
+      "Write the target using the sum and product.",
+      "Substitute and finish.",
+      "For fourth powers, square the square-sum and subtract twice the product squared."
+     ],
+     "why": "Every symmetric function of the roots is built from their sum and product.",
      "example": {
-      "q": "If $\\alpha,\\beta$ are the roots of $x^2-3x+1=0$, then $\\alpha^4+\\beta^4$ equals:",
-      "solution": "$\\alpha+\\beta = 3$, $\\alpha\\beta = 1$ → $\\alpha^2+\\beta^2 = 7$ → $\\alpha^4+\\beta^4 = 49-2 = 47$."
+      "q": "If $\\alpha, \\beta$ are the roots of $x^2 - 12x + 32 = 0$, find $\\alpha^2 + \\beta^2$.",
+      "steps": [
+       "$\\alpha + \\beta = 12$ and $\\alpha\\beta = 32$.",
+       "$\\alpha^2+\\beta^2 = 144 - 64$.",
+       "$= 80$."
+      ],
+      "answer": "80"
+     }
+    },
+    {
+     "id": "alg-p29",
+     "name": "Factor theorem for an unknown constant",
+     "frequency": "very common",
+     "howToSpot": "A stated linear factor like $(x-2)$ appears with a polynomial holding one unknown coefficient.",
+     "formula": "(x-a) \\text{ is a factor} \\iff p(a) = 0",
+     "steps": [
+      "Write the zero of the stated factor.",
+      "Substitute it into the polynomial.",
+      "Set the result to zero and solve for the unknown.",
+      "Verify by substituting a nearby point if time allows."
+     ],
+     "why": "A factor means zero remainder, and the remainder is just the substitution value.",
+     "example": {
+      "q": "If $(x - 2)$ is a factor of $x^3 - 3x^2 + kx + 10$, find $k$.",
+      "steps": [
+       "$p(2) = 8 - 12 + 2k + 10 = 6 + 2k$.",
+       "Factor means $p(2) = 0$, so $2k = -6$.",
+       "$k = -3$."
+      ],
+      "answer": "-3"
      }
     }
+   ],
+   "revision": [
+    "Ratios: unequal gives one solution; all equal gives infinite.",
+    "Parallel needs the first two ratios equal and the third different.",
+    "Intercepts $c/a$ and $c/b$; area is half their product.",
+    "Remainder $= p(\\alpha)$ for divisor $x - \\alpha$.",
+    "$\\alpha+\\beta = -b/a$, $\\alpha\\beta = c/a$.",
+    "$b^2 - 4ac$ compared with 0 decides root nature."
    ]
   },
   {
    "id": "alg-maxmin",
    "title": "Maxima and minima (AM ≥ GM, quadratics)",
-   "concept": "Two tools cover almost every CGL max–min question:\n\n1. **AM ≥ GM** for positive quantities: $\\frac{a+b}{2}\\ge\\sqrt{ab}$, equality when $a=b$. So $ax+\\frac bx$\n   ($x>0$) is smallest when the two terms are equal, and the minimum is $2\\sqrt{ab}$.\n2. **Completing the square / vertex** for quadratics: $ax^2+bx+c$ has its turning point at $x=-\\frac{b}{2a}$.\n   If $a>0$ this is a minimum, if $a<0$ a maximum.",
+   "concept": "Maximum and minimum questions here are not calculus. A plus-shaped expression has its floor from AM-GM, a parabola peaks at its vertex, fixed sums cap products, and 'positive for every x' is a discriminant statement.",
    "formulas": [
     {
-     "name": "AM–GM",
-     "tex": "\\frac{a+b}{2}\\ge\\sqrt{ab}\\quad(a,b>0)"
+     "name": "AM-GM",
+     "tex": "\\frac{x+y}{2} \\ge \\sqrt{xy}",
+     "note": "equality when x = y"
     },
     {
-     "name": "Min of ax + b/x",
-     "tex": "ax+\\frac bx\\ge 2\\sqrt{ab},\\ \\text{at } x=\\sqrt{\\tfrac ba}"
+     "name": "Plus-form floor",
+     "tex": "ax + \\frac{b}{x} \\ge 2\\sqrt{ab}\\ \\ (x>0)",
+     "note": "at x = sqrt(b/a)"
     },
     {
-     "name": "Vertex of a quadratic",
-     "tex": "x=-\\frac{b}{2a},\\quad \\text{extreme value}=\\frac{4ac-b^2}{4a}"
+     "name": "Vertex location",
+     "tex": "x = -\\frac{b}{2a}",
+     "note": ""
+    },
+    {
+     "name": "Extreme value",
+     "tex": "\\frac{4ac-b^2}{4a}",
+     "note": "max for a < 0, min for a > 0"
     },
     {
      "name": "Fixed sum",
-     "tex": "x+y=S\\ \\Rightarrow\\ xy\\le\\frac{S^2}{4}"
+     "tex": "x+y = S \\Rightarrow xy \\le \\frac{S^2}{4}",
+     "note": ""
     },
     {
      "name": "Fixed product",
-     "tex": "xy=P\\ \\Rightarrow\\ x+y\\ge 2\\sqrt P"
+     "tex": "xy = P \\Rightarrow x+y \\ge 2\\sqrt{P}",
+     "note": ""
+    },
+    {
+     "name": "Always positive",
+     "tex": "ax^2+bx+c > 0 \\iff a > 0,\\ b^2 < 4ac",
+     "note": "strict inequality, strict discriminant"
     }
    ],
    "tricks": [
     {
-     "title": "Equal-terms rule for $ax+\\frac bx$",
-     "body": "Minimum $=2\\sqrt{ab}$. No calculus needed.",
+     "title": "Equal split for weighted sums",
+     "body": "To maximise a product under a weighted sum, set the weighted pieces equal, then square.",
      "example": {
-      "q": "Find the minimum value of $x+\\frac{16}{x}$ for $x>0$.",
-      "solution": "$2\\sqrt{1\\times16}=8$ (at $x=4$)."
+      "q": "If 2x + 3y = 9 with x, y > 0, find the largest value of (2x)(3y).",
+      "steps": [
+       "Set $2x = 3y = \\dfrac{9}{2}$.",
+       "Peak $= \\left(\\dfrac{9}{2}\\right)^2$.",
+       "$= 20.25$."
+      ],
+      "answer": "20.25"
      }
     },
     {
-     "title": "Complete the square",
-     "body": "Write the quadratic as $(x-h)^2+m$; the minimum is $m$. For a negative leading coefficient write $M-(x-h)^2$; the maximum is $M$.",
+     "title": "Complete the square, read the floor",
+     "body": "For a > 0, the completed square shows the least value directly as the loose constant.",
      "example": {
-      "q": "Find the minimum value of $x^2-8x+21$.",
-      "solution": "$x^2-8x+21=(x-4)^2+5$, so the minimum is $5$ (at $x=4$)."
+      "q": "Find the least value of x^2 + 4x + 5.",
+      "steps": [
+       "$x^2 + 4x + 5 = (x+2)^2 + 1$.",
+       "A square is never negative.",
+       "Least value $= 1$ at $x = -2$."
+      ],
+      "answer": "1"
      }
     },
     {
-     "title": "Fixed weighted sum → equalise the parts",
-     "body": "If $px+qy=S$ with $x,y>0$, the product $(px)(qy)$ is greatest when $px=qy=\\frac S2$.",
+     "title": "Equal roots sit on the boundary",
+     "body": "Equal roots mean the discriminant is exactly zero; solve the resulting equation for the unknown.",
      "example": {
-      "q": "If $2x+3y=12$ with $x,y>0$, find the maximum of $xy$.",
-      "solution": "$2x=3y=6\\Rightarrow x=3,\\ y=2$, so the maximum of $xy$ is $6$."
+      "q": "For what k does x^2 - 12x + k = 0 have equal roots?",
+      "steps": [
+       "$b^2 = 4ac$: $144 = 4k$.",
+       "$k = 36$.",
+       "Check: roots are $6$ and $6$, sum $12$."
+      ],
+      "answer": "36"
      }
     }
    ],
    "mistakes": [
-    "Applying AM–GM when a term can be negative (e.g. $x+\\frac1x$ for $x<0$ has no minimum of 2).",
-    "Reporting the $x$ where the extreme occurs instead of the extreme value itself.",
-    "Calling the vertex a minimum when the leading coefficient is negative."
+    {
+     "wrong": "Quoting $2\\sqrt{ab}$ when x can be negative.",
+     "right": "For negative x the plus-form has a greatest value of $-2\\sqrt{ab}$; check the domain first."
+    },
+    {
+     "wrong": "Writing the peak location as b/(2a).",
+     "right": "It is $-b/(2a)$; for $-2x^2+8x+3$ that gives $+2$."
+    },
+    {
+     "wrong": "Maximising xy under a fixed sum as S squared.",
+     "right": "The cap is $(S/2)^2$: halve the sum first."
+    },
+    {
+     "wrong": "Accepting the boundary k = 10 for 'always positive'.",
+     "right": "Equality touches zero, which is not positive; strict wording needs $k^2 < 100$, so 9."
+    },
+    {
+     "wrong": "Reading the sum floor from xy = 64 as the root alone.",
+     "right": "The floor is $2\\sqrt{P} = 16$; the factor 2 is part of the formula."
+    }
    ],
-   "notes": "### AM ≥ GM — the one-line minimum\nFor positive quantities:\n$$\\frac{u+v}{2} \\ge \\sqrt{uv} \\quad\\text{with equality iff } u=v$$\nAny expression $ax+\\frac bx$ (for $x>0$) has minimum $2\\sqrt{ab}$ at $x=\\sqrt{b/a}$: $x+\\frac4x \\ge 2\\sqrt4 = 4$; $4x+\\frac9x \\ge 2\\sqrt{36} = 12$ at $x = \\frac32$. The same idea handles substitution shapes: $(x-1)^2+\\frac9{(x-1)^2} \\ge 2\\sqrt9 = 6$, since $(x-1)^2$ is positive for $x\\ne1$. Three-term version: $x^2+\\frac{250}x = x^2+\\frac{125}x+\\frac{125}x \\ge 3\\sqrt[3]{125\\times125} = 75$ — split the extra term so all three pieces multiply to a constant.\n\n### Completing the square — the quadratic extreme\n$$ax^2+bx+c = a\\left(x+\\frac b{2a}\\right)^2 + \\left(c-\\frac{b^2}{4a}\\right)$$\n$a>0$: the square is $\\ge0$, so the minimum is $c-\\frac{b^2}{4a}$ at $x=-\\frac b{2a}$. $x^2+4x+5 = (x+2)^2+1 \\ge 1$. $a<0$: maximum at the same vertex: $5+12x-3x^2 = -3(x-2)^2+17 \\le 17$. Remember the two line-readings: least value for upward parabolas, greatest for downward ones — and check which one the question wants.\n\n### Fixed sum / fixed product\n- Fixed sum, product maximised: equal split. $x+y = 20$ → $xy \\le 100$ at $x=y=10$.\n- Fixed product, sum minimised: equal factors. $xy = 36$ → $x+y \\ge 12$ at $x=y=6$.\nBoth are AM ≥ GM in disguise ($\\frac{x+y}{2}\\ge\\sqrt{xy}$), and both are asked verbatim.\n\n### Positive definite and the discriminant\n$ax^2+bx+c>0$ for ALL real $x$ needs $a>0$ AND $b^2-4ac<0$: $4x^2-kx+25>0$ always → $k^2<400$ → largest integer $k = 19$. Root-nature reads the same table: real & distinct $\\iff b^2>4ac$, equal $\\iff b^2=4ac$, none real $\\iff b^2<4ac$. For $x^2+kx+16$ to have real distinct roots, $k^2>64$ → $|k|>8$.\n\n### Chained shapes\nA hard stem often folds one tool inside another: the least value of $(x+\\frac1x)^2-4(x+\\frac1x)+5$ — set $t = x+\\frac1x \\ge 2$ first (AM ≥ GM), then $(t-2)^2+1 \\ge 1$ (vertex). Two moves, each a standard one.\n\n### Common traps\n- Applying AM ≥ GM to $x+\\frac4x$ without checking $x>0$ (for $x<0$ the expression is negative).\n- Forgetting the vertex $x$-value when the question asks WHERE the minimum occurs, not just its value.\n- Using $c-\\frac{b^2}{4a}$ for a downward parabola as a minimum — that shape has no minimum.\n- Missing that equality in AM ≥ GM needs the two pieces EQUAL, which pins $x$.\n\n### Quick revision\n- $ax+\\frac bx \\ge 2\\sqrt{ab}$ for $x>0$; equality at $x=\\sqrt{b/a}$.\n- Vertex: $x=-\\frac b{2a}$; extreme value $c-\\frac{b^2}{4a}$ (min if $a>0$, max if $a<0$).\n- Fixed sum → max product at equal split; fixed product → min sum at equal factors.\n- Always positive: $a>0$ and $b^2<4ac$.\n- Substitute $t = x+\\frac1x \\ge 2$ before completing the square.\n",
+   "notes": "The arithmetic mean is never below the geometric mean:\n$$\\frac{x+y}{2} \\ge \\sqrt{xy} \\qquad (x, y > 0)$$\nEquality holds exactly when $x = y$. Every 'least value' question with a plus sign is this line in disguise.\n\n### The least of ax + b over x\nFor $x > 0$, the two pieces of $ax + \\dfrac{b}{x}$ multiply to $b$, so:\n$$ax + \\frac{b}{x} \\ge 2\\sqrt{ab}$$\nThe floor is reached when $ax = \\dfrac{b}{x}$, that is $x = \\sqrt{b/a}$. Check $x + \\dfrac{4}{x}$: the floor is $2\\sqrt{4} = 4$ at $x = 2$, and indeed $2 + 2 = 4$. Check $4x + \\dfrac{9}{x}$: the floor is $2\\sqrt{36} = 12$ at $x = \\dfrac{3}{2}$, and indeed $6 + 6 = 12$.\n\n> **Rule:** For $x > 0$, the least value of $ax + \\dfrac{b}{x}$ is $2\\sqrt{ab}$, at $x = \\sqrt{b/a}$. Learn the shape; the derivation is never needed.\n\n### The parabola vertex\nFor $f(x) = ax^2 + bx + c$ with $a < 0$, the peak sits at $x = -\\dfrac{b}{2a}$ and the greatest value is $\\dfrac{4ac - b^2}{4a}$. Completing the square gives both at once: $-2x^2 + 8x + 3 = -2(x-2)^2 + 11$, so the greatest value is $11$ at $x = 2$. Farther out the value drops: at $x = 4$ it is $3$.\nFor $a > 0$ the same work gives the least value. $x^2 + 4x + 5 = (x+2)^2 + 1$ is never below $1$.\n\n> **Tip:** Complete the square instead of recalling the formula. One line yields the location, the value, and the direction.\n\n### Fixed sum or fixed product\nWith $x + y = S$ fixed, the product peaks at $\\dfrac{S^2}{4}$. With $xy = P$ fixed, the sum floors at $2\\sqrt{P}$. So $x + y = 10$ forces $xy \\le 25$, and $3xy \\le 75$. And $xy = 64$ forces $x + y \\ge 16$, met at $x = y = 8$.\nWeighted forms split first: for $2x + 3y = 9$, the peak of $(2x)(3y)$ comes from $2x = 3y = \\dfrac{9}{2}$, giving $\\left(\\dfrac{9}{2}\\right)^2 = 20.25$.\n\n> **Watch:** AM-GM needs positive numbers. For $x < 0$, the expression $x + \\dfrac{25}{x}$ has a greatest value of $-10$, not a least value of $10$.\n\n### Always positive means the discriminant stays negative\n'$x^2 - kx + 25 > 0$ for every real $x$' means the parabola never touches the axis. So $k^2 < 4 \\times 1 \\times 25 = 100$, giving $|k| < 10$ and largest integer $k = 9$. The boundary $k = 10$ touches zero at $x = 5$, which is not positive. Equal-root questions sit on the same boundary: $x^2 - 12x + k$ has equal roots when $k = 36$, both roots $6$.\n\n### An order that works\n1. A plus-form $ax + \\dfrac{b}{x}$ with $x > 0$? Use $2\\sqrt{ab}$.\n2. A quadratic? Vertex, or complete the square.\n3. Fixed sum or fixed product? Split equally.\n4. An inequality for every $x$? Discriminant, strict.\n\n> **Remember:** State the equality point too. 'Least value' and 'where it happens' are often separate marks.\n",
    "patterns": [
     {
      "id": "alg-p21",
-     "name": "AM-GM least value of $ax+\\frac bx$",
+     "name": "Least value of a plus-form by AM-GM",
      "frequency": "very common",
-     "howToSpot": "'Least value of $x+\\frac4x$', '$4x+\\frac9x$', or a substitution shape like $(x-1)^2+\\frac9{(x-1)^2}$.",
-     "formula": "ax+\\frac bx \\ge 2\\sqrt{ab}",
-     "logic": "1. Confirm both pieces are positive for the allowed $x$.\n2. Least value $= 2\\sqrt{ab}$, attained where the two pieces are equal.\n3. For substitution shapes, name the substituted square $t>0$ and reuse the same bound.\n\nWhy: AM ≥ GM is exact here because the two pieces multiply to the constant $ab$.",
+     "howToSpot": "An expression like $x + \\dfrac{25}{x}$ with $x > 0$; its least value is asked.",
+     "formula": "ax + \\frac{b}{x} \\ge 2\\sqrt{ab}",
+     "steps": [
+      "Confirm $x > 0$ so both pieces are positive.",
+      "Multiply the two pieces to get $ab$.",
+      "Write the floor as $2\\sqrt{ab}$.",
+      "State the equality point $x = \\sqrt{b/a}$."
+     ],
+     "why": "A fixed product between the two pieces is exactly the AM-GM setup.",
      "example": {
-      "q": "The least value of $(x-1)^2+\\dfrac9{(x-1)^2}$ (for $x\\ne1$) is:",
-      "solution": "AM ≥ GM on the two positive pieces: $\\ge 2\\sqrt9 = 6$, at $(x-1)^2 = 3$."
+      "q": "For $x > 0$, find the least value of $x + \\dfrac{25}{x}$.",
+      "steps": [
+       "Product of the pieces: $x \\times \\dfrac{25}{x} = 25$.",
+       "Floor $= 2\\sqrt{25} = 10$.",
+       "At $x = 5$: $5 + 5 = 10$. Confirmed."
+      ],
+      "answer": "10"
      }
     },
     {
      "id": "alg-p22",
-     "name": "Quadratic extreme by completing the square",
+     "name": "Greatest value of a downward parabola",
      "frequency": "very common",
-     "howToSpot": "'Least value of $x^2+4x+5$' or 'greatest value of $5+12x-3x^2$' — a quadratic with both linear and constant terms.",
-     "formula": "ax^2+bx+c = a\\left(x+\\frac b{2a}\\right)^2 + c-\\frac{b^2}{4a}",
-     "logic": "1. Vertex at $x = -\\frac b{2a}$; extreme value $c-\\frac{b^2}{4a}$.\n2. $a>0$ → least value asked; $a<0$ → greatest value.\n3. Complete the square mentally to double-check.\n\nWhy: the squared term can only push the value one way — away from the vertex.",
+     "howToSpot": "A quadratic with a negative $x^2$ coefficient; the greatest value is asked.",
+     "formula": "\\max = \\frac{4ac - b^2}{4a} \\text{ at } x = -\\frac{b}{2a}",
+     "steps": [
+      "Compute $x = -\\dfrac{b}{2a}$.",
+      "Substitute back, or complete the square.",
+      "Report the value and where it occurs."
+     ],
+     "why": "A downward parabola peaks exactly at its vertex.",
      "example": {
-      "q": "The greatest value of $7+4x-x^2$ is:",
-      "solution": "$-(x-2)^2+11 \\le 11$, attained at $x=2$. Greatest value $= 11$."
+      "q": "Find the greatest value of $-2x^2 + 8x + 3$.",
+      "steps": [
+       "$x = -\\dfrac{8}{2 \\times (-2)} = 2$.",
+       "$-8 + 16 + 3 = 11$.",
+       "Square form: $-2(x-2)^2 + 11$, peak $11$."
+      ],
+      "answer": "11"
      }
     },
     {
      "id": "alg-p23",
-     "name": "Fixed sum / fixed product",
+     "name": "Fixed product gives the sum floor",
      "frequency": "common",
-     "howToSpot": "Two positive numbers with a fixed sum (maximise the product) or fixed product (minimise the sum).",
-     "formula": "x+y=s \\Rightarrow xy \\le \\frac{s^2}{4}; \\qquad xy=p \\Rightarrow x+y \\ge 2\\sqrt p",
-     "logic": "1. Equal split is optimal in both directions — that is AM ≥ GM with equality.\n2. Fixed sum $s$: max product $= \\frac{s^2}{4}$ at $x=y=\\frac s2$.\n3. Fixed product $p$: min sum $= 2\\sqrt p$ at $x=y=\\sqrt p$.\n\nWhy: for a fixed sum the product is a downward parabola peaking at the midpoint (and vice versa).",
+     "howToSpot": "$xy$ is a fixed positive number and the least of $x + y$ is asked.",
+     "formula": "xy = P \\Rightarrow x+y \\ge 2\\sqrt{P}",
+     "steps": [
+      "Confirm both variables are positive.",
+      "Take $2\\sqrt{P}$ as the floor.",
+      "State equality at $x = y = \\sqrt{P}$."
+     ],
+     "why": "AM-GM turns a fixed product into a lower bound on the sum.",
      "example": {
-      "q": "The least value of $x+y$ for positive $x,y$ with $xy=36$ is:",
-      "solution": "$x+y \\ge 2\\sqrt{36} = 12$, at $x=y=6$."
+      "q": "If $xy = 64$ with $x, y > 0$, find the least value of $x + y$.",
+      "steps": [
+       "$2\\sqrt{64} = 2 \\times 8 = 16$.",
+       "Equality at $x = y = 8$.",
+       "Check: $8 + 8 = 16$."
+      ],
+      "answer": "16"
      }
     },
     {
      "id": "alg-p24",
-     "name": "Always-positive / root nature via discriminant",
+     "name": "Positive for every x, find the parameter",
      "frequency": "common",
-     "howToSpot": "'$4x^2-kx+25>0$ for all $x$' or 'find $k$ so that the roots are real and distinct' — a discriminant condition in disguise.",
-     "formula": "a>0 \\text{ and } b^2-4ac<0 \\Rightarrow \\text{positive for all } x",
-     "logic": "1. Translate the requirement: always positive = upward opening + no real roots.\n2. Write $b^2 - 4ac$ and impose the right inequality.\n3. Solve for $k$; if an integer is asked, take the floor/ceiling of the boundary.\n\nWhy: a positive quadratic never touches zero exactly when its discriminant is negative.",
+     "howToSpot": "A quadratic with an unknown coefficient must stay positive for all real $x$.",
+     "formula": "ax^2+bx+c > 0 \\ \\forall x \\iff a > 0,\\ b^2 - 4ac < 0",
+     "steps": [
+      "Check the leading coefficient is positive.",
+      "Write the strict discriminant inequality.",
+      "Solve for the parameter.",
+      "Take integers strictly inside the range."
+     ],
+     "why": "Staying above the axis means the parabola never touches it, a discriminant condition.",
      "example": {
-      "q": "The largest integer $k$ for which $4x^2-kx+25>0$ for all real $x$ is:",
-      "solution": "Need $k^2 < 4\\times4\\times25 = 400$ → $|k| < 20$ → $k_{\\max} = 19$."
+      "q": "If $x^2 - kx + 25 > 0$ for every real $x$, find the largest integer value of $k$.",
+      "steps": [
+       "Need $k^2 < 4 \\times 1 \\times 25 = 100$.",
+       "$|k| < 10$.",
+       "$k = 10$ touches zero, so it fails.",
+       "Largest integer: $k = 9$."
+      ],
+      "answer": "9"
+     }
+    },
+    {
+     "id": "alg-p30",
+     "name": "Greatest product under a fixed sum",
+     "frequency": "very common",
+     "howToSpot": "A fixed positive sum $x + y = S$ is given and the greatest value of $xy$, or a multiple of it, is asked.",
+     "formula": "x+y = S \\Rightarrow xy \\le \\frac{S^2}{4}",
+     "steps": [
+      "Halve the sum: the peak sits at $x = y = \\dfrac{S}{2}$.",
+      "Square the half.",
+      "Scale by any outside multiplier the question carries."
+     ],
+     "why": "AM-GM caps the product at the square of half the sum, met only when the two parts are equal.",
+     "example": {
+      "q": "If $x + y = 12$ with $x, y > 0$, find the greatest value of $xy$.",
+      "steps": [
+       "Peak at $x = y = 6$.",
+       "$xy \\le 6 \\times 6 = 36$.",
+       "Neighbour check: $7 \\times 5 = 35$, smaller."
+      ],
+      "answer": "36"
      }
     }
+   ],
+   "revision": [
+    "$ax + \\dfrac{b}{x} \\ge 2\\sqrt{ab}$ for $x > 0$, at $x = \\sqrt{b/a}$.",
+    "Peak of $ax^2+bx+c$ at $x = -\\dfrac{b}{2a}$; value $\\dfrac{4ac-b^2}{4a}$.",
+    "Fixed sum: $xy \\le \\dfrac{S^2}{4}$. Fixed product: $x+y \\ge 2\\sqrt{P}$.",
+    "Weighted sums: set the weighted pieces equal.",
+    "$ax^2+bx+c > 0$ for all x needs $a > 0$ and $b^2 < 4ac$.",
+    "Equality in AM-GM only when the two pieces are equal."
    ]
   }
  ],

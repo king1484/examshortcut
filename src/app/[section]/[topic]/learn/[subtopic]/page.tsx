@@ -6,6 +6,7 @@ import type { SectionId } from '@/lib/sections';
 import { Md, Tex } from '@/components/Md';
 import { PracticeSets } from '@/components/PracticeSets';
 import { StudiedToggle } from '@/components/StudiedToggle';
+import { Example, MistakeCard, SectionHead, Steps, pad2, readMinutes, splitLogic, splitNotes } from '@/components/Lesson';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -51,67 +52,101 @@ export default async function SubtopicPage({ params }: { params: Promise<{ secti
   const byPattern: Record<string, number> = {};
   questions.forEach((q) => { if (q.pattern) byPattern[q.pattern] = (byPattern[q.pattern] ?? 0) + 1; });
 
+  const { sections, traps, recap } = splitNotes(s.notes);
+  const patterns = s.patterns ?? [];
+  const mistakes = s.mistakes?.length ? s.mistakes : traps;
+  const revision = s.revision?.length ? s.revision : recap;
+  const minutes = readMinutes(s.concept, s.notes, ...patterns.map((p) => `${p.logic ?? ''} ${(p.steps ?? []).join(' ')} ${p.example?.q ?? ''}`));
+
+  // One numbered list drives both the "on this page" box and the section headings.
+  const toc: { id: string; title: string }[] = [
+    ...sections.map((x) => ({ id: x.id, title: x.title })),
+    ...(patterns.length ? [{ id: 'types', title: `Question types (${patterns.length})` }] : []),
+    ...(s.formulas?.length ? [{ id: 'formulas', title: 'Formula sheet' }] : []),
+    ...(s.tricks?.length ? [{ id: 'shortcuts', title: 'Shortcuts' }] : []),
+    ...(mistakes.length ? [{ id: 'mistakes', title: 'Mistakes to avoid' }] : []),
+    ...(revision.length ? [{ id: 'revision', title: 'Quick revision' }] : []),
+    ...(questions.length ? [{ id: 'practice', title: `Practice (${questions.length} questions)` }] : []),
+  ];
+  const num = (id: string) => toc.findIndex((x) => x.id === id) + 1;
+
   return (
-    <div>
+    <div className="lesson">
       <div className="flex items-center gap-2 mt-4 flex-wrap text-xs faint">
-        <span>Subtopic {si + 1} of {t.subtopics.length}</span>
-        {prev && <><span>·</span><Link href={`${learnBase}/${prev.id}/`} className="underline decoration-dotted">← {prev.title}</Link></>}
-        {next && <><span>·</span><Link href={`${learnBase}/${next.id}/`} className="underline decoration-dotted">{next.title} →</Link></>}
+        <Link href={`${learnBase}/`} className="underline decoration-dotted">All subtopics</Link>
+        <span>·</span><span>Subtopic {si + 1} of {t.subtopics.length}</span>
       </div>
       <div className="flex items-start gap-3 mt-1">
-        <h2 className="text-2xl font-extrabold flex-1">{s.title}</h2>
+        <h2 className="text-2xl sm:text-3xl font-extrabold flex-1 leading-tight">{s.title}</h2>
         <StudiedToggle storeKey={`${t.sectionId}/${t.id}/${s.id}`} />
       </div>
+      <div className="flex flex-wrap gap-2 mt-3 text-xs">
+        <span className="chip">⏱ {minutes} min read</span>
+        {patterns.length > 0 && <span className="chip">🧩 {patterns.length} question types</span>}
+        {questions.length > 0 && <span className="chip">🎯 {questions.length} practice Q</span>}
+      </div>
 
-      <Md className="mt-3 text-[15px]">{s.concept}</Md>
+      <div className="card p-4 sm:p-5 mt-5" style={{ borderLeft: '4px solid var(--brand)' }}>
+        <div className="kicker">The idea in one minute</div>
+        <Md className="mt-1.5">{s.concept}</Md>
+      </div>
 
-      {(s.patterns?.length || questions.length > 0) ? (
-        <div className="flex flex-wrap gap-2 mt-4 text-xs">
-          {s.notes && <a href="#notes" className="chip">📖 Notes</a>}
-          {s.patterns && s.patterns.length > 0 && <a href="#types" className="chip">🧩 {s.patterns.length} question types</a>}
-          {s.formulas && s.formulas.length > 0 && <a href="#formulas" className="chip">⚡ Formulas</a>}
-          {questions.length > 0 && <a href="#practice" className="chip">🎯 {questions.length} practice Q</a>}
-        </div>
-      ) : null}
-
-      {s.notes && (
-        <section id="notes" className="mt-6 scroll-mt-20">
-          <h3 className="text-xl font-extrabold">Detailed notes</h3>
-          <Md className="mt-2 text-[15px] notes">{s.notes}</Md>
-        </section>
+      {toc.length > 2 && (
+        <nav className="card p-3 sm:p-4 mt-4" aria-label="On this page">
+          <div className="kicker px-2">On this page</div>
+          <div className="toc mt-1.5 sm:grid-cols-2">
+            {toc.map((x, k) => <a key={x.id} href={`#${x.id}`}><b>{pad2(k + 1)}</b><span>{x.title}</span></a>)}
+          </div>
+        </nav>
       )}
 
-      {s.patterns && s.patterns.length > 0 && (
-        <section id="types" className="mt-8 scroll-mt-20">
-          <h3 className="text-xl font-extrabold">Types of questions asked</h3>
-          <p className="text-sm muted mt-1">Every way this subtopic shows up in exams — how to recognise it, the formula or logic to use, and a solved example.</p>
-          <div className="space-y-3 mt-3">
-            {s.patterns.map((p, k) => (
-              <details key={p.id} className="card p-4" open={k < 2}>
-                <summary className="cursor-pointer flex items-center gap-2 flex-wrap">
-                  <span className="font-bold text-sm">Type {k + 1}: {p.name}</span>
-                  {p.frequency && <span className={`chip ${FREQ_CHIP[p.frequency] ?? ''}`}>{p.frequency}</span>}
-                  {byPattern[p.id] ? <span className="chip">{byPattern[p.id]} practice Q</span> : null}
-                </summary>
-                {p.howToSpot && <div className="text-sm mt-2.5"><b>How to spot it:</b> <Md inline>{p.howToSpot}</Md></div>}
-                {p.formula && <div className="mt-2 overflow-x-auto rounded-lg px-3 py-2" style={{ background: 'var(--surface-2)' }}><Tex tex={p.formula} display /></div>}
-                {p.logic && <Md className="mt-2 text-[15px]">{p.logic}</Md>}
-                {p.example && (
-                  <div className="mt-3 rounded-xl p-3.5 text-sm" style={{ background: 'var(--surface-2)' }}>
-                    <Md className="font-semibold">{`**Example:** ${p.example.q}`}</Md>
-                    <Md className="mt-1.5">{p.example.solution}</Md>
+      {sections.map((x) => (
+        <section key={x.id} id={x.id} className="lesson-sec">
+          <SectionHead n={num(x.id)} title={x.title} />
+          <Md className="mt-3">{x.body}</Md>
+        </section>
+      ))}
+
+      {patterns.length > 0 && (
+        <section id="types" className="lesson-sec">
+          <SectionHead n={num('types')} title="Question types you will see" sub="Each type: how to recognise it, the method step by step, and one question to try." />
+          <div className="space-y-4 mt-4">
+            {patterns.map((p, k) => {
+              const legacy = splitLogic(p.logic);
+              const steps = p.steps?.length ? p.steps : legacy.steps;
+              const why = p.why ?? legacy.why;
+              return (
+                <div key={p.id} id={`type-${p.id}`} className="card p-4 sm:p-5 scroll-mt-20">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="kicker" style={{ color: 'var(--brand-text)' }}>Type {k + 1}</span>
+                    {p.frequency && <span className={`chip ${FREQ_CHIP[p.frequency] ?? ''}`}>{p.frequency}</span>}
+                    {byPattern[p.id] ? <span className="chip">{byPattern[p.id]} practice Q</span> : null}
                   </div>
-                )}
-              </details>
-            ))}
+                  <h4 className="text-lg font-extrabold mt-1 leading-snug">{p.name}</h4>
+                  {p.howToSpot && (
+                    <div className="spot mt-3"><span aria-hidden>🔍</span><div><b>How to spot it: </b><Md inline>{p.howToSpot}</Md></div></div>
+                  )}
+                  {p.formula && <div className="formula-box mt-3"><Tex tex={p.formula} display /></div>}
+                  {steps.length > 0 && (
+                    <div className="mt-3.5">
+                      <div className="kicker">Method</div>
+                      <div className="mt-1.5"><Steps steps={steps} /></div>
+                    </div>
+                  )}
+                  {legacy.rest && !p.steps?.length && <Md className="mt-2.5">{legacy.rest}</Md>}
+                  {why && <div className="text-sm muted mt-3"><b>Why it works: </b><Md inline>{why}</Md></div>}
+                  {p.example && <Example ex={p.example} />}
+                </div>
+              );
+            })}
           </div>
         </section>
       )}
 
       {s.formulas && s.formulas.length > 0 && (
-        <div id="formulas" className="mt-8 scroll-mt-20">
-          <h3 className="text-xs font-bold uppercase tracking-wide faint">Formulas</h3>
-          <div className="grid sm:grid-cols-2 gap-2.5 mt-2">
+        <section id="formulas" className="lesson-sec">
+          <SectionHead n={num('formulas')} title="Formula sheet" />
+          <div className="grid sm:grid-cols-2 gap-2.5 mt-4">
             {s.formulas.map((f, k) => (
               <div key={k} className="card p-3.5">
                 <div className="text-sm font-bold">{f.name}</div>
@@ -120,50 +155,64 @@ export default async function SubtopicPage({ params }: { params: Promise<{ secti
               </div>
             ))}
           </div>
-        </div>
-      )}
-
-      {s.tricks && s.tricks.length > 0 && (
-        <div className="mt-6">
-          <h3 className="text-xs font-bold uppercase tracking-wide faint">Shortcut tricks</h3>
-          <div className="space-y-2.5 mt-2">
-            {s.tricks.map((k, ki) => (
-              <details key={ki} className="card p-4" open={ki === 0}>
-                <summary className="font-bold text-sm cursor-pointer">⚡ {k.title}</summary>
-                <Md className="mt-2 text-[15px]">{k.body}</Md>
-                {k.example && (
-                  <div className="mt-3 rounded-xl p-3.5 text-sm" style={{ background: 'var(--surface-2)' }}>
-                    <Md inline className="font-semibold [&_p]:font-semibold">{`Example: ${k.example.q}`}</Md>
-                    <Md className="mt-1.5">{k.example.solution}</Md>
-                  </div>
-                )}
-              </details>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {s.mistakes && s.mistakes.length > 0 && (
-        <div className="mt-5 rounded-xl p-4" style={{ background: 'var(--bad-soft)' }}>
-          <h3 className="text-xs font-bold uppercase tracking-wide" style={{ color: 'var(--bad)' }}>Where students lose marks</h3>
-          <ul className="list-disc pl-5 text-sm mt-1.5 space-y-1">
-            {s.mistakes.map((m, k) => <li key={k}><Md inline>{m}</Md></li>)}
-          </ul>
-        </div>
-      )}
-
-      {questions.length > 0 && (
-        <section id="practice" className="mt-10 scroll-mt-20">
-          <h3 className="text-xl font-extrabold">Practice sets — {questions.length} questions</h3>
-          <p className="text-sm muted mt-1">Sets of 10, mixed across the question types above. Each answer comes with a step-by-step explanation.</p>
-          <div className="mt-3"><PracticeSets questions={questions} storageKey={`${t.sectionId}/${t.id}/${s.id}`} href={`${learnBase}/${s.id}/`} section={t.sectionId} title={`${meta.short} · ${t.title} · ${s.title}`} /></div>
         </section>
       )}
 
-      <nav className="flex justify-between gap-3 mt-10 text-sm">
-        {prev ? <Link className="card p-3 flex-1 hover:-translate-y-0.5 transition-transform" href={`${learnBase}/${prev.id}/`}>← {prev.title}</Link> : <Link className="card p-3 flex-1" href={`${learnBase}/`}>↑ All subtopics</Link>}
-        {next ? <Link className="card p-3 flex-1 text-right hover:-translate-y-0.5 transition-transform" href={`${learnBase}/${next.id}/`}>{next.title} →</Link> : <Link className="card p-3 flex-1 text-right" href={`/${t.sectionId}/${t.id}/practice/`}>Take the full topic test →</Link>}
-      </nav>
+      {s.tricks && s.tricks.length > 0 && (
+        <section id="shortcuts" className="lesson-sec">
+          <SectionHead n={num('shortcuts')} title="Shortcuts that save time" />
+          <div className="space-y-3 mt-4">
+            {s.tricks.map((k, ki) => (
+              <div key={ki} className="card p-4 sm:p-5">
+                <div className="font-extrabold">⚡ {k.title}</div>
+                <Md className="mt-1.5">{k.body}</Md>
+                {k.example && <Example ex={k.example} label="Example" />}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {mistakes.length > 0 && (
+        <section id="mistakes" className="lesson-sec">
+          <SectionHead n={num('mistakes')} title="Mistakes to avoid" sub="Where most students lose marks on this subtopic." />
+          <div className="grid sm:grid-cols-2 gap-2.5 mt-4">
+            {mistakes.map((m, k) => <MistakeCard key={k} m={m} i={k} />)}
+          </div>
+        </section>
+      )}
+
+      {revision.length > 0 && (
+        <section id="revision" className="lesson-sec">
+          <SectionHead n={num('revision')} title="Quick revision" sub="Read this the night before the exam." />
+          <div className="card p-4 sm:p-5 mt-4">
+            <ul className="check">{revision.map((r, k) => <li key={k}><Md inline>{r}</Md></li>)}</ul>
+          </div>
+        </section>
+      )}
+
+      {questions.length > 0 && (
+        <section id="practice" className="lesson-sec">
+          <SectionHead n={num('practice')} title={`Practice: ${questions.length} questions`} sub="Sets of 10, mixed across the question types above. Every answer has a step-by-step explanation." />
+          <div className="mt-4"><PracticeSets questions={questions} storageKey={`${t.sectionId}/${t.id}/${s.id}`} href={`${learnBase}/${s.id}/`} section={t.sectionId} title={`${meta.short} · ${t.title} · ${s.title}`} /></div>
+        </section>
+      )}
+
+      <div className="lesson-sec">
+        <div className="kicker">Continue learning</div>
+        <nav className="grid sm:grid-cols-2 gap-3 mt-2.5 text-sm">
+          {prev ? (
+            <Link className="card p-4 hover:-translate-y-0.5 transition-transform" href={`${learnBase}/${prev.id}/`}><span className="faint text-xs">← Previous</span><div className="font-bold mt-0.5">{prev.title}</div></Link>
+          ) : (
+            <Link className="card p-4" href={`${learnBase}/`}><span className="faint text-xs">↑ Back</span><div className="font-bold mt-0.5">All {t.title} subtopics</div></Link>
+          )}
+          {next ? (
+            <Link className="card p-4 sm:text-right hover:-translate-y-0.5 transition-transform" style={{ borderColor: 'var(--brand)' }} href={`${learnBase}/${next.id}/`}><span className="text-xs" style={{ color: 'var(--brand-text)' }}>Next up →</span><div className="font-bold mt-0.5">{next.title}</div></Link>
+          ) : (
+            <Link className="card p-4 sm:text-right" style={{ borderColor: 'var(--brand)' }} href={`/${t.sectionId}/${t.id}/practice/`}><span className="text-xs" style={{ color: 'var(--brand-text)' }}>Finished the topic →</span><div className="font-bold mt-0.5">Take the full {t.title} test</div></Link>
+          )}
+        </nav>
+      </div>
     </div>
   );
 }
