@@ -64,6 +64,7 @@ export default function ExamPage() {
         <div className="status-callout">
           <span className="status-kicker">Latest</span>
           <div className="mt-1.5"><DatePhases phases={[{ node: <Md>{lc.status}</Md> }, ...(lc.statusPhases ?? []).map((ph: { from: string; status: string }) => ({ from: ph.from, node: <Md>{ph.status}</Md> }))]} /></div>
+          <Link href="/exam-analysis/ssc-cgl-2026/" className="inline-block mt-2 text-sm font-semibold underline decoration-dotted">Shift-wise Tier 1 exam analysis — difficulty, good attempts, questions asked →</Link>
         </div>
         {lc.milestones && (
           <div style={{ ['--cycle-n' as string]: lc.milestones.length }}>

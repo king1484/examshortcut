@@ -12,6 +12,7 @@ const NAV = [
   { href: '/learn/', label: 'Subjects & Notes' },
   { href: '/daily-quiz/', label: 'Daily Quiz' },
   { href: '/exams/ssc-cgl/mocks/', label: 'Mock Tests' },
+  { href: '/exam-analysis/', label: 'Exam Analysis' },
   { href: '/formula-sheet/', label: 'Formula Sheet' },
   { href: '/current-affairs/', label: 'Current Affairs' },
   { href: '/exams/ssc-cgl/cutoffs/', label: 'Cutoffs' },
