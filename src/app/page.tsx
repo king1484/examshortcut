@@ -27,7 +27,7 @@ export default function Home() {
       <section className="text-center max-w-3xl mx-auto pt-8 pb-4 sm:pt-14">
         <ExamNotice exam="SSC CGL" stage="Tier 1" start="2026-09-30" end="2026-10-30" href="/exams/ssc-cgl/#status" builtAt={BUILT_AT} />
         <div className="flex justify-center gap-2 flex-wrap mt-4">
-          <span className="chip chip-high">SSC · Railways · Teaching · Entrance</span>
+          <span className="chip chip-high">SSC · Railways</span>
         </div>
         <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight mt-4 leading-tight">
           Prepare for any exam with<br /><span style={{ color: 'var(--brand)' }}>shortcuts, not slog</span>
@@ -41,6 +41,7 @@ export default function Home() {
           <Link href="/learn/" className="btn btn-brand">Start learning</Link>
           <Link href="/daily-quiz/" className="btn">Today&apos;s quiz</Link>
           <Link href="/exams/ssc-cgl/mocks/" className="btn">Take a mock test</Link>
+          <Link href="/exam-analysis/" className="btn">📊 Today&apos;s exam analysis</Link>
         </div>
         <p className="faint text-xs mt-3">
           {stats.questions > 0 ? `${stats.questions}+ questions · ${stats.formulas}+ formulas · ${stats.tricks}+ shortcut tricks` : 'Content is being compiled right now — refresh in a bit.'}
@@ -71,7 +72,7 @@ export default function Home() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
           {mocks.map((m) => (
             <Link key={m.id} href={`/exams/ssc-cgl/mocks/${m.id}/`} className="card p-5 flex flex-col">
-              <span className="flex gap-2"><span className={`chip ${m.available ? 'chip-low' : 'chip-medium'}`}>{m.available ? 'Ready' : 'Coming up'}</span><span className="chip">Tier {m.tier}</span><span className="chip">{m.open ? 'Open to all' : '🔒 Login'}</span></span>
+              <span className="flex gap-2"><span className={`chip ${m.available ? 'chip-low' : 'chip-medium'}`}>{m.available ? 'Ready' : 'Coming up'}</span><span className="chip">Tier {m.tier}</span><span className="chip">Free</span></span>
               <h3 className="font-bold mt-2">{m.title}</h3>
               <p className="text-sm muted mt-1 flex-1">{m.blurb}</p>
             </Link>

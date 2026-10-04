@@ -17,8 +17,7 @@ export default function MocksPage() {
       <p className="muted mt-2 max-w-3xl">
         Same interface as the real SSC CBT — palette, Save &amp; Next, Mark for Review, auto-submit at 00:00.
         After submitting you get section-wise scores, accuracy, <b>time spent per question</b>, and the topics to fix first.
-        Wrong answers go straight into your <Link className="underline" href="/revision/">mistake notebook</Link>. No login, no limits.
-      </p>
+        Wrong answers go straight into your <Link className="underline" href="/revision/">mistake notebook</Link>.      </p>
       <MockList mocks={mocks.map((m) => ({ id: m.id, title: m.title, blurb: m.blurb, available: m.available, questionCount: m.questionCount, durationMin: m.durationMin, tier: m.tier }))} />
     </div>
   );

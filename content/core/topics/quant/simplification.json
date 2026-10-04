@@ -1106,102 +1106,102 @@
  ],
  "pyqPatterns": [
   {
-   "pattern": "VBODMAS with 'of' and brackets",
+   "pattern": "Mixed sums with 'of' and brackets",
    "frequency": "very common",
-   "howToSpot": "A long mixed expression with ÷, ×, 'of', brackets and a vinculum. The word 'of' is the trap marker.",
-   "approach": "Follow VBODMAS strictly: vinculum, brackets innermost first, then 'of' (it multiplies but comes before ÷ and ×), then ÷ and × left to right, then + and −. A minus before a bracket flips every sign inside.",
+   "howToSpot": "A long sum with ÷, ×, brackets and the word 'of'.",
+   "approach": "Do brackets first, then 'of', then ÷ and ×, then + and −.\n'Of' always comes before ÷ and ×.",
    "subtopic": "simp-bodmas",
    "example": {
-    "q": "Evaluate $64 \\div 4 \\text{ of } 2 + 8 \\times 3$.",
-    "solution": "'of' first: $64 \\div 8 = 8$, then $+ 24 = 32$."
+    "q": "Evaluate 64 ÷ 4 of 2 + 8 × 3.",
+    "solution": "'of' first: 4 of 2 = 8\n64 ÷ 8 = 8\n8 × 3 = 24\n8 + 24 = **32**"
    }
   },
   {
-   "pattern": "Identity fractions: (a³±b³) over the quadratic",
+   "pattern": "Cubes over squares: use the identity",
    "frequency": "very common",
-   "howToSpot": "A fraction whose top is a sum/difference of cubes (often decimals) and whose bottom is a²∓ab+b² or a²±ab+b².",
-   "approach": "Match the denominator to the identity factor and cancel: (a³+b³)/(a²−ab+b²) = a+b; (a³−b³)/(a²+ab+b²) = a−b. Read the middle sign carefully — minus below pairs with plus above.",
+   "howToSpot": "\"(15.2³ − 5.2³) ÷ (15.2² + 15.2 × 5.2 + 5.2²)\"",
+   "approach": "Top is a³ − b³ and bottom is a² + ab + b². They cancel to leave a − b.\nFor a³ + b³ over a² − ab + b², the answer is a + b.",
    "subtopic": "simp-identities",
    "example": {
-    "q": "$\\frac{(15.2)^3-(5.2)^3}{(15.2)^2+15.2\\times5.2+(5.2)^2}$ = ?",
-    "solution": "Denominator a²+ab+b² → value = a − b = 10."
+    "q": "(15.2³ − 5.2³) ÷ (15.2² + 15.2 × 5.2 + 5.2²) = ?",
+    "solution": "Top is a³ − b³ with a = 15.2 and b = 5.2\nBottom is a² + ab + b², so it cancels\nAnswer = a − b = 15.2 − 5.2 = **10**"
    }
   },
   {
-   "pattern": "x + 1/x family",
+   "pattern": "Given x + 1/x, find the squares and cubes",
    "frequency": "very common",
-   "howToSpot": "'If $x + \\frac{1}{x} = 4$, find $x^2 + \\frac{1}{x^2}$ (or $x^3 + \\frac{1}{x^3}$, $x^4 + \\frac{1}{x^4}$)' — also the minus version.",
-   "approach": "Square the given: $x^2 + \\frac{1}{x^2} = k^2 - 2$ (plus) or $k^2 + 2$ (minus). Cube: $k^3 \\mp 3k$. Fourth power: square the squared result and subtract 2.",
+   "howToSpot": "\"If x + 1/x = 4, find x³ + 1/x³.\"",
+   "approach": "For the square: (given)² − 2.\nFor the cube: (given)³ − 3 × (given).",
    "subtopic": "simp-identities",
    "example": {
-    "q": "$x+\\frac1x=4$ → $x^3+\\frac{1}{x^3}$?",
-    "solution": "$4^3 - 3 \\times 4 = 52$."
+    "q": "If x + 1/x = 4, find x³ + 1/x³.",
+    "solution": "Cube the given: 4³ = 64\nThat equals x³ + 1/x³ + 3 × (x + 1/x)\nSo x³ + 1/x³ = 64 − 3 × 4\n= 64 − 12 = **52**"
    }
   },
   {
-   "pattern": "Indices equation with a common base",
+   "pattern": "Powers with the same base",
    "frequency": "very common",
-   "howToSpot": "An equation like $2^{x+3} \\times 4^{x-1} = 128$ or $3^{x+2} + 3^x = 810$.",
-   "approach": "Write every term as a power of one prime (4 = 2², 25 = 5²). Take the common power outside if it is a sum. Then equate the exponents.",
+   "howToSpot": "\"2^(x+3) × 4^(x−1) = 128. Find x.\"",
+   "approach": "Write every number as a power of the same base (4 = 2², 128 = 2⁷).\nThen make the powers equal.",
    "subtopic": "simp-surds-indices",
    "example": {
-    "q": "Solve $2^{x+3} \\times 4^{x-1} = 128$.",
-    "solution": "$2^{3x+1} = 2^7$ → $x = 2$."
+    "q": "Solve 2^(x+3) × 4^(x−1) = 128.",
+    "solution": "4 = 2², so 4^(x−1) = 2^(2x−2)\nAdd the powers: (x + 3) + (2x − 2) = 3x + 1\n128 = 2⁷, so 3x + 1 = 7\nx = **2**"
    }
   },
   {
-   "pattern": "Rationalisation and surd sums",
+   "pattern": "Remove roots from the bottom of a fraction",
    "frequency": "very common",
-   "howToSpot": "Fractions like $\\frac{1}{\\sqrt7-\\sqrt6}$, sums of conjugate fractions, or a surd plus its reciprocal.",
-   "approach": "Multiply top and bottom by the conjugate. Telescoping chains collapse to (first root − last root). If x = a+2√b type, then 1/x is the conjugate a−2√b.",
+   "howToSpot": "\"1/(√4 + √3) + 1/(√3 + √2) + 1/(√2 + 1)\"",
+   "approach": "Multiply top and bottom by the same numbers with the middle sign flipped.\nIn a chain, the middle terms cancel.",
    "subtopic": "simp-surds-indices",
    "example": {
-    "q": "$\\frac{1}{\\sqrt9+\\sqrt8}+\\dots+\\frac{1}{\\sqrt2+1}$ = ?",
-    "solution": "Each term is $\\sqrt k - \\sqrt{k-1}$; the sum collapses to $3 - 1 = 2$."
+    "q": "1/(√4 + √3) + 1/(√3 + √2) + 1/(√2 + 1) = ?",
+    "solution": "1/(√4 + √3) = √4 − √3 = 2 − √3 (bottom becomes 4 − 3 = 1)\nSimilarly: √3 − √2 and √2 − 1\nSum = (2 − √3) + (√3 − √2) + (√2 − 1)\nMiddle terms cancel: 2 − 1 = **1**"
    }
   },
   {
-   "pattern": "Root of a surd: √(a + 2√b)",
+   "pattern": "Square root of a number with a root inside",
    "frequency": "common",
-   "howToSpot": "Expressions like $\\sqrt{11+6\\sqrt2}$ or $\\sqrt{7+4\\sqrt3}$ (and the two-root sum/difference versions).",
-   "approach": "Rewrite as $\\sqrt{a+2\\sqrt b}$; split $a = x+y$ with $xy = b$; the value is $\\sqrt x+\\sqrt y$. For a pair like $\\sqrt{7+4\\sqrt3} \\pm \\sqrt{7-4\\sqrt3}$, take $x = 2+\\sqrt3$, $y = 2-\\sqrt3$ and add or subtract.",
+   "howToSpot": "\"Find √(11 + 6√2).\"",
+   "approach": "Write it as a + 2√b.\nFind two numbers that add to a and multiply to b; their square roots add up.",
    "subtopic": "simp-surds-indices",
    "example": {
-    "q": "$\\sqrt{11+6\\sqrt2}$ = ?",
-    "solution": "$11 = 9+2$, $9 \\times 2 = 18$ → $3+\\sqrt2$."
+    "q": "Find √(11 + 6√2).",
+    "solution": "6√2 = 2 × 3√2 = 2√18\nTwo numbers adding to 11 and multiplying to 18: 9 and 2\n√(11 + 2√18) = √9 + √2\n= **3 + √2**"
    }
   },
   {
-   "pattern": "Cube and square roots of perfect powers; least number for a square",
+   "pattern": "Square root, cube root and making a perfect square",
    "frequency": "very common",
-   "howToSpot": "'Find ∛9261', '√11025', or 'least number to add/subtract to N to make a perfect square'.",
-   "approach": "Cube root: group digits in threes, use the unit-digit swap map (2↔8, 3↔7) plus a size check. Square root: digit pairs, last-digit map and neighbours. For least add/subtract, bracket N between k² and (k+1)².",
+   "howToSpot": "\"What is the least number to add to 1300 to make it a perfect square?\"",
+   "approach": "Find the perfect squares just below and just above the number.\nThe gap to the next one is what you add.",
    "subtopic": "simp-roots",
    "example": {
-    "q": "Least number to add to 1300 for a perfect square?",
-    "solution": "$37^2 = 1369$ → add $69$."
+    "q": "Least number to add to 1300 to get a perfect square?",
+    "solution": "36² = 1296 (too small)\n37² = 1369 (just above 1300)\n1369 − 1300 = **69**"
    }
   },
   {
-   "pattern": "Infinite and nested radicals",
+   "pattern": "Roots inside roots that never end",
    "frequency": "common",
-   "howToSpot": "$\\sqrt{6+\\sqrt{6+\\dots}}$, $\\sqrt{20\\times\\sqrt{20\\times\\dots}}$, or a finite nest like $\\sqrt{30+\\sqrt{24+\\sqrt{144}}}$. (already exists as solved example — same type, new numbers)",
-   "approach": "Infinite plus-radical: solve $x^2 = a + x$ (or use $a = k(k+1)$ → answer $k+1$). Infinite product-radical: the answer is $a$. Finite nests: work from the innermost root outward.",
+   "howToSpot": "\"√(20 × √(20 × √(20 × ...)))\"",
+   "approach": "Call the whole thing x.\nThe inside repeats, so replace it by x and solve.",
    "subtopic": "simp-roots",
    "example": {
-    "q": "$\\sqrt{20\\times\\sqrt{20\\times\\sqrt{20\\times\\cdots}}}$ = ?",
-    "solution": "$x^2 = 20x$ → $x = 20$."
+    "q": "√(20 × √(20 × √(20 × ...))) = ?",
+    "solution": "Let x = √(20 × x)\nSquare both sides: x² = 20x\nDivide by x: x = **20**"
    }
   },
   {
-   "pattern": "Approximation with percentages, products and roots",
+   "pattern": "Quick estimates",
    "frequency": "very common",
-   "howToSpot": "'What approximate value comes in place of ?' with decimals like 1199.8, 24.98%, √2303.9.",
-   "approach": "Round every number to a friendly value (nearest ten, percentage → fraction, root → nearest perfect power), compute mentally, and pick the closest option. Options are spaced far apart; do not chase exact decimals.",
+   "howToSpot": "\"Find the approximate value of 29.9% of 1199.8 + 15.02 × 23.9.\"",
+   "approach": "Round every number to an easy one.\nCalculate and pick the nearest option.",
    "subtopic": "simp-approximation",
    "example": {
-    "q": "$29.9\\%$ of $1199.8 + 15.02 \\times 23.9 ≈$ ?",
-    "solution": "$360 + 360 = 720$."
+    "q": "29.9% of 1199.8 + 15.02 × 23.9 ≈ ?",
+    "solution": "29.9% ≈ 30% and 1199.8 ≈ 1200, so 30% of 1200 = 360\n15.02 × 23.9 ≈ 15 × 24 = 360\n360 + 360 = **720**"
    }
   }
  ],

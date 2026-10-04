@@ -1249,102 +1249,102 @@
  ],
  "pyqPatterns": [
   {
-   "pattern": "Letter-shift coding of a new word",
+   "pattern": "Shift the letters",
    "frequency": "very common",
-   "howToSpot": "A sample word and its code are given ('If PEN is written as RGP...'). Every letter of the code is a fixed number of places ahead of or behind the original letter, or the shift changes slot by slot.",
-   "approach": "Write the shift under each letter of the sample (e.g. +2, +2, +2). Apply exactly the same shifts to the new word. Remember that after Z you come back to A.",
+   "howToSpot": "A word and its code are given, like 'PEN is written as RGP'.",
+   "approach": "Find how far each letter moved in the sample.\nMove the new word's letters the same way.",
    "subtopic": "letter-shift-coding",
    "example": {
     "q": "If PEN is written as RGP, how is RING written?",
-    "solution": "P→R, E→G, N→P: +2 each. R+2 = T, I+2 = K, N+2 = P, G+2 = I → **TKPI**."
+    "solution": "P→R, E→G, N→P: each letter moves +2\nR+2 = T, I+2 = K\nN+2 = P, G+2 = I\nAnswer: **TKPI**"
    }
   },
   {
-   "pattern": "Decoding: find the original word",
+   "pattern": "Find the original word",
    "frequency": "common",
-   "howToSpot": "The code of the new word is given and the real word is asked ('Which word is written as TKPI?').",
-   "approach": "Find the rule from the sample, then run it backwards: subtract where the rule adds, un-reverse where it reverses. Check the answer by coding it forward once.",
+   "howToSpot": "A code is given and you must find the real word.",
+   "approach": "Find the rule from the sample.\nDo the opposite of the rule to decode.",
    "subtopic": "letter-shift-coding",
    "example": {
     "q": "If PEN is written as RGP, which word is written as TKPI?",
-    "solution": "The rule is +2, so decode with −2: T→R, K→I, P→N, I→G → **RING**."
+    "solution": "The rule is +2, so decode with −2\nT−2 = R, K−2 = I\nP−2 = N, I−2 = G\nAnswer: **RING**"
    }
   },
   {
-   "pattern": "Reversal and reverse-plus-shift coding",
+   "pattern": "Reverse the word and shift",
    "frequency": "common",
-   "howToSpot": "Read the code from right to left. If you see the original word, or the original word with every letter moved by the same amount, the rule contains a reversal.",
-   "approach": "Reverse the new word, then apply the same shift as the sample. Keep the same order of steps (reverse then shift, or shift then reverse) that the sample used.",
+   "howToSpot": "The code looks like the word read backwards, or backwards with a shift.",
+   "approach": "Find the shift and whether the word was reversed.\nDo the same steps, in the same order, on the new word.",
    "subtopic": "reverse-coding",
    "example": {
     "q": "If GOLD is written as EMPH, how is SILK written?",
-    "solution": "GOLD +1 = HPME; reversed = EMPH ✓. SILK +1 = TJML; reversed = **LMJT**."
+    "solution": "GOLD shifted +1 = HPME, reversed = EMPH ✓\nSILK shifted +1 = TJML\nReverse TJML\nAnswer: **LMJT**"
    }
   },
   {
-   "pattern": "Opposite-letter coding",
+   "pattern": "Opposite letters",
    "frequency": "common",
-   "howToSpot": "Each code letter and its original letter add up to 27 in position (A↔Z, M↔N). Codes look 'far away' from the word, e.g. MILK → NROP.",
-   "approach": "Confirm the 27 total on two letters, then write the opposite of each letter of the new word. If the code is also reversed, reverse at the end.",
+   "howToSpot": "Each code letter and its real letter add up to 27 (A↔Z, B↔Y, M↔N).",
+   "approach": "Check that two letter pairs add up to 27.\nReplace each letter of the new word by its opposite.",
    "subtopic": "reverse-coding",
    "example": {
     "q": "If MILK is written as NROP, how is CAKE written?",
-    "solution": "M(13)+N(14) = 27, so opposite letters. C↔X, A↔Z, K↔P, E↔V → **XZPV**."
+    "solution": "M(13) + N(14) = 27, I(9) + R(18) = 27, so letters become their opposites\nC↔X, A↔Z\nK↔P, E↔V\nAnswer: **XZPV**"
    }
   },
   {
-   "pattern": "Word to number coding",
+   "pattern": "Word to number",
    "frequency": "very common",
-   "howToSpot": "A word is given a number ('BAT = 23'). The number is built from alphabet positions: plain sum, sum plus/minus or times a constant, weighted sum, reverse positions, or the letter positions written side by side.",
-   "approach": "Find the plain position sum of the sample first and compare it with the code. The gap (+k, ×k, or a letter-count link) is the rule. Apply the same rule to the new word.",
+   "howToSpot": "A word gives a number, like 'BAT = 23'.",
+   "approach": "Add the place numbers of the letters (A = 1, B = 2 ...).\nCompare with the given number and apply the same rule.",
    "subtopic": "number-coding",
    "example": {
     "q": "If BAT = 23, what is CAR?",
-    "solution": "B+A+T = 2+1+20 = 23, a plain sum. C+A+R = 3+1+18 = **22**."
+    "solution": "B + A + T = 2 + 1 + 20 = 23, so the rule is: add the place numbers\nC + A + R = 3 + 1 + 18\nAnswer: **22**"
    }
   },
   {
-   "pattern": "Substitution (renaming) chains",
+   "pattern": "Changed names",
    "frequency": "common",
-   "howToSpot": "'Sky is called sea, sea is called water...' followed by a real-life question such as 'where do fish live?'",
-   "approach": "First answer the real-life question in your head (fish live in the sea). Then give the code name of that answer (sea is called water) — rename exactly once.",
+   "howToSpot": "'Milk is called water, water is called juice ...' followed by a normal question.",
+   "approach": "First answer the question in the normal way.\nThen give the new name of that answer.",
    "subtopic": "substitution-coding",
    "example": {
     "q": "If milk is called water, water is called juice and juice is called tea, what do we drink when thirsty?",
-    "solution": "Real answer: water. 'Water' is called **juice** in this code."
+    "solution": "Normally, we drink water when thirsty\nIn this code, water is called juice\nAnswer: **Juice**"
    }
   },
   {
-   "pattern": "Language coding with common words",
+   "pattern": "Code words in sentences",
    "frequency": "very common",
-   "howToSpot": "Two to four sentences with jumbled code words ('good morning sir' = 'pa ka ni'); code of one word asked, or 'which could be the code', or 'cannot be determined'.",
-   "approach": "Take the sentences that contain the word, keep the code words common to all of them, remove codes already fixed for other words. One code left = answer; two left = cannot be determined.",
+   "howToSpot": "Two or three coded sentences, and you must find the code of one word.",
+   "approach": "Find the code words that appear in both sentences and match the common words.\nThe code word left over is the answer.",
    "subtopic": "language-coding",
    "example": {
     "q": "'sun is hot' = 'ta mo ri' and 'sun is bright' = 'ri ze mo'. What is the code for 'bright'?",
-    "solution": "'sun is' ↔ 'ri mo' (common). Sentence 2 left over: bright ↔ **ze**."
+    "solution": "Common words: 'sun is'\nCommon codes: 'ri' and 'mo'\nIn the second sentence, only 'ze' is left\nAnswer: **ze**"
    }
   },
   {
-   "pattern": "Letter-to-symbol / digit coding",
+   "pattern": "Letters to digits or symbols",
    "frequency": "common",
-   "howToSpot": "Letters or digits are replaced by symbols, either from a given table (sometimes with conditions) or from a few coded words that share letters.",
-   "approach": "Match shared letters with shared symbols across the given words. For tables, check the conditions first, then code letter by letter.",
+   "howToSpot": "Letters are replaced by digits or symbols, and some coded words are given.",
+   "approach": "Match each letter with its digit in the order they come.\nUse a letter that appears in both words to check.",
    "subtopic": "symbol-coding",
    "example": {
     "q": "If ROSE = 6821 and SORE = 2861, what is the code for O?",
-    "solution": "The digits follow the letter order: R = 6, O = 8, S = 2, E = 1. Check: SORE = 2 8 6 1 ✓. So O = **8**."
+    "solution": "ROSE = 6821 gives R = 6, O = 8, S = 2, E = 1\nCheck SORE = 2, 8, 6, 1 ✓\nSo O is the digit in second place\nAnswer: **8**"
    }
   },
   {
-   "pattern": "Rearrangement and mixed-rule coding",
+   "pattern": "Letters rearranged",
    "frequency": "occasional",
-   "howToSpot": "The code uses the same letters as the word but in a new order (pairs swapped, halves reversed, first and last interchanged), or two rules act together (vowels +1 and consonants −1).",
-   "approach": "Compare letter by letter: are the letters the same (rearrangement) or changed (shift)? For rearrangement, note which slot went where; for mixed rules, note which group of letters got which change.",
+   "howToSpot": "The code has the same letters as the word, but in a new order.",
+   "approach": "Compare the two words to see which letters swapped places.\nDo the same swaps on the new word.",
    "subtopic": "coding-idea",
    "example": {
     "q": "If PLANET is written as LPNATE, how is FOREST written?",
-    "solution": "Letters are swapped in pairs: PL→LP, AN→NA, ET→TE. FO→OF, RE→ER, ST→TS → **OFERTS**."
+    "solution": "PLANET → PL, AN, ET → LP, NA, TE\nEach pair of letters is swapped\nFOREST → FO, RE, ST → OF, ER, TS\nAnswer: **OFERTS**"
    }
   }
  ],

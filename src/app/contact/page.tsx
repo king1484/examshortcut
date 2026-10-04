@@ -27,6 +27,13 @@ export default function ContactPage() {
       </div>
 
       <div className="card p-5 mt-4 text-sm">
+        <p>
+          Prefer a quick message? Reach <b>Vinay</b>, who builds ExamShortcut, on{' '}
+          <a className="underline font-bold" href="https://www.instagram.com/vinni1484" target="_blank" rel="noopener">Instagram @vinni1484</a>.
+        </p>
+      </div>
+
+      <div className="card p-5 mt-4 text-sm">
         <p className="font-bold">Please don&apos;t ask us about:</p>
         <p className="mt-1">
           Application status, admit-card problems, exam-centre changes or result grievances — these are handled only by the exam body.

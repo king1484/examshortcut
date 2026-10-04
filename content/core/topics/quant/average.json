@@ -848,102 +848,102 @@
  ],
  "pyqPatterns": [
   {
-   "pattern": "Person joins / leaves, average changes",
+   "pattern": "Someone joins the group",
    "frequency": "very common",
-   "howToSpot": "The average age, weight or salary of a group is given; a teacher, manager or new member joins (or someone leaves) and the new average is stated.",
-   "approach": "Change both averages into totals and subtract. Shortcut: newcomer = new average + n × rise; leaver = new average + n × fall. Check with totals.",
+   "howToSpot": "\"The average age of 30 students is 14. With the teacher, the average goes up by 1.\"",
+   "approach": "Turn each average into a total (average × number of people).\nThe newcomer is the difference of the two totals.",
    "subtopic": "avg-inclusion-exclusion",
    "example": {
     "q": "The average age of 30 students is 14 years. When the teacher's age is included, the average rises by 1 year. Find the teacher's age.",
-    "solution": "Teacher = 15 + 30 × 1 = 45 years. (Check: 31 × 15 − 30 × 14 = 465 − 420 = 45.)"
+    "solution": "Students' total = 30 × 14 = 420\nWith teacher: 31 people × 15 = 465\nTeacher = 465 − 420 = **45 years**"
    }
   },
   {
-   "pattern": "Replacement of one member / wrong entry",
+   "pattern": "One member is replaced (or one wrong entry)",
    "frequency": "very common",
-   "howToSpot": "One person is replaced by another, or a value was copied wrongly, and the average changes by a known amount. The count stays the same.",
-   "approach": "Change in total = n × change in average, and all of it belongs to the replaced value. For a wrong entry, the average moves by (correct − wrong)/n.",
+   "howToSpot": "One person is replaced, or one value was copied wrongly, and the average changes by a known amount.",
+   "approach": "Total change = number of people × change in average.\nAdd it to the old person's value (subtract if the average fell).",
    "subtopic": "avg-inclusion-exclusion",
    "example": {
     "q": "The average weight of 10 men rises by 1.5 kg when one man weighing 58 kg is replaced by a new man. Find the new man's weight.",
-    "solution": "58 + 10 × 1.5 = 73 kg."
+    "solution": "Total rise = 10 × 1.5 = 15 kg\nNew man = old man + rise\n58 + 15 = **73 kg**"
    }
   },
   {
-   "pattern": "Batsman / bowler average",
+   "pattern": "Batsman's average after one more innings",
    "frequency": "common",
-   "howToSpot": "'Scores x in the nth innings and his average rises by d', or a bowler's runs-per-wicket average improves after a match.",
-   "approach": "Write the old and new totals. Batsman: new average = x − (n − 1)d. Bowler: aW + r = (a − d)(W + w), solve for W.",
+   "howToSpot": "\"Scores 87 in his 17th innings and his average rises by 3.\"",
+   "approach": "The new score first lifts the 16 earlier innings by 3 each.\nWhat is left of the score is the new average.",
    "subtopic": "avg-misc",
    "example": {
     "q": "A batsman scores 87 runs in his 17th innings and his average rises by 3. Find his new average.",
-    "solution": "87 − 16 × 3 = 39. (Old average 36: 16 × 36 + 87 = 663 = 17 × 39.)"
+    "solution": "Lifting 16 earlier innings by 3 = 16 × 3 = 48 runs\nNew average = 87 − 48 = 39\nCheck: old average 36, so 16 × 36 + 87 = 663 = 17 × 39\nNew average = **39**"
    }
   },
   {
-   "pattern": "Weighted average of groups",
+   "pattern": "Average of two groups joined",
    "frequency": "very common",
-   "howToSpot": "Boys and girls, sections, or workers and managers with separate averages; the combined average or a missing group average is asked.",
-   "approach": "Totals first: combined = Σ(n × average) ÷ Σn. The answer lies closer to the bigger group. For a missing group, subtract known totals from the overall total.",
+   "howToSpot": "\"30 boys average 42 kg and 20 girls average 37 kg. Find the class average.\"",
+   "approach": "Find each group's total (number × average).\nAdd the totals and divide by all the people.",
    "subtopic": "avg-weighted",
    "example": {
     "q": "30 boys average 42 kg and 20 girls average 37 kg. Find the class average.",
-    "solution": "(1260 + 740) ÷ 50 = 40 kg."
+    "solution": "Boys: 30 × 42 = 1260\nGirls: 20 × 37 = 740\nTotal = 2000 for 50 students\n2000 ÷ 50 = **40 kg**"
    }
   },
   {
-   "pattern": "Group sizes from averages (balance method)",
+   "pattern": "Group sizes from averages",
    "frequency": "common",
-   "howToSpot": "Both group averages and the combined average are given; the ratio or number of members in a group is asked.",
-   "approach": "Sizes are in the reverse ratio of the distances from the combined average: n₁ : n₂ = (x̄₂ − x̄) : (x̄ − x̄₁). The group closer to the mean is bigger.",
+   "howToSpot": "Both group averages and the overall average are given; asks the ratio of the two groups.",
+   "approach": "Find how far each group's average is from the overall average.\nThe ratio is those two distances swapped.",
    "subtopic": "avg-weighted",
    "example": {
     "q": "The class average is 58; boys average 62 and girls 52. Find boys : girls.",
-    "solution": "(58 − 52) : (62 − 58) = 6 : 4 = 3 : 2."
+    "solution": "Boys are 62 − 58 = 4 away\nGirls are 58 − 52 = 6 away\nSwap them: boys : girls = 6 : 4\n= **3 : 2**"
    }
   },
   {
-   "pattern": "Average of standard series and consecutive numbers",
+   "pattern": "Average of a run of numbers",
    "frequency": "very common",
-   "howToSpot": "Average of the first n naturals, odd or even numbers, squares, cubes, or of consecutive / equally spaced numbers.",
-   "approach": "Use the table: (n + 1)/2, n, n + 1. Equally spaced numbers: average = middle term = (first + last)/2.",
+   "howToSpot": "\"Average of all multiples of 6 between 1 and 100\" or \"average of the first n odd numbers\".",
+   "approach": "Evenly spaced numbers: average = (first + last) ÷ 2.\nFirst n counting numbers (1, 2, 3, …): average = (n + 1) ÷ 2.",
    "subtopic": "avg-basics",
    "example": {
     "q": "Find the average of all multiples of 6 between 1 and 100.",
-    "solution": "6, 12, …, 96 → (6 + 96)/2 = 51."
+    "solution": "Multiples: 6, 12, 18, …, 96 (next is 102, too big)\nFirst + last = 6 + 96 = 102\n102 ÷ 2 = **51**"
    }
   },
   {
-   "pattern": "Sum bridge and uniform operations",
+   "pattern": "Same change to every number",
    "frequency": "common",
-   "howToSpot": "Average and count given with some values known, or every value is increased, multiplied or divided by the same number.",
-   "approach": "Sum = average × count, then subtract known values. A uniform operation acts on the average in the same order: ×k then +c gives kA + c.",
+   "howToSpot": "Average and count given with some numbers known, or every number is multiplied or increased by the same amount.",
+   "approach": "Total = average × count. Subtract the known numbers to find a missing one.\nA change done to every number is done to the average too, in the same order.",
    "subtopic": "avg-basics",
    "example": {
     "q": "The average of 6 numbers is 15. Each number is multiplied by 3 and then increased by 5. Find the new average.",
-    "solution": "15 × 3 + 5 = 50."
+    "solution": "Old average = 15\nMultiply by 3: 15 × 3 = 45\nAdd 5: 45 + 5 = **50**"
    }
   },
   {
-   "pattern": "Overlapping averages and split sets",
+   "pattern": "Overlapping groups",
    "frequency": "occasional",
-   "howToSpot": "Averages over overlapping windows (Mon–Thu and Tue–Fri; first 7 and last 7 of 13) or parts of a set with a relation between unknowns.",
-   "approach": "All averages to sums. Overlapping days: subtract and the shared days cancel. First/last parts: shared term = part sums − total. Split set: one variable for the unknown.",
+   "howToSpot": "Two parts of one list overlap, e.g. the first 6 and the last 6 of 11 numbers.",
+   "approach": "Turn every average into a total.\nAdd the two part totals, then subtract the whole total. What is left is the shared number.",
    "subtopic": "avg-misc",
    "example": {
     "q": "The average of 11 numbers is 50. The first 6 average 49 and the last 6 average 52. Find the 6th number.",
-    "solution": "294 + 312 − 550 = 56."
+    "solution": "First 6: 6 × 49 = 294\nLast 6: 6 × 52 = 312\nAll 11: 11 × 50 = 550\n294 + 312 − 550 = **56**"
    }
   },
   {
-   "pattern": "Ages over time",
+   "pattern": "Ages in the past or future",
    "frequency": "common",
-   "howToSpot": "Average age of a family n years ago or at a marriage / birth, with a child or member added later.",
-   "approach": "Bring every average to the same year: a fixed group's average rises 1 per year. Then use totals and adjust the count.",
+   "howToSpot": "\"Five years ago the average age was …\" and then a child or new member is added.",
+   "approach": "Move every age to the same year (each person adds 1 year per year).\nThen use totals and adjust the head count.",
    "subtopic": "avg-misc",
    "example": {
-    "q": "Five years ago the average age of a husband and wife was 25. Now the average of husband, wife and child is 22. Child's age?",
-    "solution": "Couple now = 50 + 10 = 60; family = 66 → child = 6 years."
+    "q": "Five years ago the average age of a husband and wife was 25. Now the average of husband, wife and child is 22. Find the child's age.",
+    "solution": "Couple 5 years ago: 2 × 25 = 50\nCouple now: 50 + 5 + 5 = 60\nFamily now: 3 × 22 = 66\nChild = 66 − 60 = **6 years**"
    }
   }
  ],

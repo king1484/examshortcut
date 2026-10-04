@@ -1,0 +1,2431 @@
+{
+ "id": "sequences-progressions",
+ "sectionId": "quant",
+ "title": "Sequences & Progressions",
+ "order": 21,
+ "importance": "medium",
+ "avgQuestions": {
+  "tier1": 1,
+  "tier2": 2
+ },
+ "summary": "Progressions are lists that follow a fixed rule: APs add a constant, GPs multiply by one, HPs hide an AP in their reciprocals, and special series come with ready-made sum formulas. Alongside term-pattern sequences, this block gives a quick mark in SSC, Railway and Banking papers and anchors the series questions of CAT algebra.",
+ "subtopics": [
+  {
+   "id": "sp-ap",
+   "title": "Arithmetic Progressions",
+   "concept": "An arithmetic progression (AP) is a list of numbers that grows or falls by the same fixed amount, the common difference $d$. Its $n$-th term is $a + (n-1)d$, and its $n$-term sum is $\\dfrac{n}{2}$ times (first + last). Row-of-seats, monthly savings and wage-step questions are APs in disguise.",
+   "formulas": [
+    {
+     "name": "nth term",
+     "tex": "a_n = a + (n-1)d",
+     "note": "$a$ is the first term, $d$ the common difference."
+    },
+    {
+     "name": "Sum of n terms",
+     "tex": "S_n = \\frac{n}{2}\\left[2a + (n-1)d\\right]",
+     "note": "Works for any AP."
+    },
+    {
+     "name": "Sum from first and last",
+     "tex": "S_n = \\frac{n}{2}(a + l)",
+     "note": "$l$ is the last term."
+    },
+    {
+     "name": "Middle term",
+     "tex": "\\text{middle} = \\frac{S_n}{n}",
+     "note": "Only when the count $n$ is odd."
+    },
+    {
+     "name": "Gap when inserting k means",
+     "tex": "d = \\frac{b - a}{k + 1}",
+     "note": "$k$ means create $k + 1$ gaps."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "The middle term is the average",
+     "body": "For an odd count of AP terms, sum $=$ middle $\\times$ count. One division gives the middle term, and one multiplication gives the sum.",
+     "example": {
+      "q": "The sum of 9 terms of an AP is 135. Its middle term is:",
+      "steps": [
+       "Middle $= 135 \\div 9$.",
+       "$= 15$."
+      ],
+      "answer": "15"
+     }
+    },
+    {
+     "title": "Equidistant terms add to the same value",
+     "body": "$a_2 + a_{15}$, $a_1 + a_{16}$ — pairs placed equally far from the ends share one sum. A sum of all $n$ terms then needs no $a$ or $d$ at all.",
+     "example": {
+      "q": "In an AP of 16 terms, the sum of the 2nd and 15th terms is 40. Find the sum of all 16 terms.",
+      "steps": [
+       "$a_2 + a_{15} = a_1 + a_{16} = 40$.",
+       "$S_{16} = \\dfrac{16}{2} \\times 40$.",
+       "$= 320$."
+      ],
+      "answer": "320"
+     }
+    },
+    {
+     "title": "Name three terms a-d, a, a+d",
+     "body": "Three consecutive AP terms collapse to one unknown $a$ plus $d$. Sum gives $a$ at once; product or another condition then gives $d$.",
+     "example": {
+      "q": "The sum of three numbers in AP is 27 and their product is 504. Find the numbers.",
+      "steps": [
+       "Middle $= 27 \\div 3 = 9$.",
+       "$9(81 - d^2) = 504$, so $d^2 = 25$.",
+       "$d = 5$: the numbers are 4, 9, 14."
+      ],
+      "answer": "4, 9, 14"
+     }
+    }
+   ],
+   "mistakes": [
+    "Using $a + nd$ for the nth term — the 1st term must come out at $n = 1$, so the term is $a + (n-1)d$.",
+    "Writing the sum as $\\dfrac{n}{2} \\times$ last term — the rule is $\\dfrac{n}{2} \\times$ (first term + last term).",
+    "Using $(b - a)/k$ as the gap when inserting $k$ arithmetic means — the $k$ means create $k + 1$ steps, so the gap is $(b-a)/(k+1)$.",
+    "In word problems, taking the 10th row as $a + 10d$ — row 1 is $a$ itself, so row 10 is $a + 9d$.",
+    "Forgetting that an AP may have a negative common difference — terms then fall, and the sum can shrink as $n$ grows.",
+    "Looking for a middle term when the count is even — no single middle term exists, so the $S_n/n$ shortcut does not apply."
+   ],
+   "notes": "### What an arithmetic progression is\nAn arithmetic progression (AP) is a list of numbers with one simple rule. Every term comes from the previous term by adding the same fixed number.\n\nThat fixed number is the **common difference**, written $d$. The first term is $a$.\n\nSeats in a hall: row 1 has 12 seats, row 2 has 15, row 3 has 18. Here $a = 12$ and $d = 3$.\n\n> **Rule:** Before using any formula, check $d$. Subtract any two neighbouring terms — the answer must be the same everywhere.\n\nA falling list like 40, 36, 32 is also an AP. Its $d$ is $-4$. A difference can be zero, positive or negative.\n\n### The nth term\nThe $n$-th term is the first term plus $n - 1$ jumps of size $d$.\n\n$$a_n = a + (n - 1)d$$\n\nWhy $n - 1$? From term 1 to term 10 there are 9 jumps, not 10.\n\nThe 10th term of 7, 11, 15, ... is $7 + 9 \\times 4 = 43$.\n\nThe last of $n$ terms is $a + (n-1)d$ — the same formula counted from the other end.\n\n> **Tip:** In word problems, \"the 10th row\" means $n = 10$. The 10th row is $a + 9d$, never $a + 10d$.\n\n### The sum of n terms\nAdd the first and the last term. An AP makes every such pair equal: $a_1 + a_n = a_2 + a_{n-1}$, and so on.\n\nThere are $n$ such pairs, shared between two terms at a time. Half of $n$ pairs, each worth first + last:\n\n$$S_n = \\frac{n}{2}\\left[2a + (n-1)d\\right] \\qquad S_n = \\frac{n}{2}(\\text{first} + \\text{last})$$\n\nSum of 20 terms of 5, 9, 13, ...: $\\dfrac{20}{2}[10 + 19 \\times 4] = 10 \\times 86 = 860$.\n\n### The middle term trick\nFor an odd number of terms, the middle term equals the average.\n\n$$\\text{middle} = \\frac{S_n}{n}$$\n\nThe sum of 15 terms is 375, so the 8th (middle) term is $\\dfrac{375}{15} = 25$.\n\nThree consecutive terms are best named $a - d$, $a$, $a + d$. Their sum is $3a$, so $a$ is the sum divided by 3.\n\nThe sum of three numbers in AP is 27 and their product is 504. Middle $= 9$, so $9(81 - d^2) = 504$, giving $d = 5$: the numbers are 4, 9, 14.\n\n> **Example:** Terms equally far from the ends add to the same value: $a_2 + a_{15} = a_1 + a_{16}$.\n\n### Inserting arithmetic means\nNumbers placed between two numbers so that the whole list becomes an AP are arithmetic means (AMs).\n\nWith $k$ means between $a$ and $b$, the $k$ means create $k + 1$ equal jumps:\n\n$$d = \\frac{b - a}{k + 1}$$\n\nInsert 4 means between 8 and 23: $d = \\dfrac{15}{5} = 3$, so the means are 11, 14, 17, 20.\n\n> **Watch:** Divide by $k + 1$, not by $k$. Four means between two numbers make five gaps.\n\n### Word problems: rows, savings, wages\nTranslate the story into $a$, $d$ and $n$ first.\n\n- First month or first row gives $a$.\n- The fixed increase every step gives $d$.\n- A total asks for $S_n$; the value of step $n$ is $a + (n-1)d$.\n\nA man saves Rs 200 in the first month and adds Rs 25 every month. Twelve months: $S_{12} = \\dfrac{12}{2}[400 + 11 \\times 25] = 6 \\times 675 = 4050$.\n\nSeats: 15 rows, first row 15 chairs, each row 2 more. Last row $= 15 + 14 \\times 2 = 43$; total $= \\dfrac{15}{2}(15 + 43) = 435$.\n\n> **Tip:** Say what each symbol means in the story before touching the formulas.\n",
+   "patterns": [
+    {
+     "id": "sp-a1",
+     "name": "nth term of an AP",
+     "frequency": "very common",
+     "howToSpot": "A list with a constant gap is given, and a specific term (5th, 10th, last) is asked.",
+     "formula": "a_n = a + (n-1)d",
+     "steps": [
+      "Read $a$ and $d$ from the list.",
+      "Count the jumps: $n - 1$.",
+      "Add $d$ $(n-1)$ times to $a$."
+     ],
+     "why": "Each step of the list adds exactly one $d$, and reaching term $n$ takes $n - 1$ steps.",
+     "example": {
+      "q": "Find the 10th term of the AP 7, 11, 15, 19, ...",
+      "steps": [
+       "$a = 7$, $d = 4$.",
+       "$a_{10} = 7 + 9 \\times 4 = 43$."
+      ],
+      "answer": "43"
+     }
+    },
+    {
+     "id": "sp-a2",
+     "name": "Sum of n terms of an AP",
+     "frequency": "very common",
+     "howToSpot": "'Find the sum of the first 20 terms' — a total of a constant-gap list is asked.",
+     "formula": "S_n = \\frac{n}{2}\\left[2a + (n-1)d\\right]",
+     "steps": [
+      "Read $a$, $d$ and $n$.",
+      "Compute $2a + (n-1)d$.",
+      "Multiply by $n/2$."
+     ],
+     "why": "Equal end-pairs let the whole sum collapse to (average term) × (number of terms).",
+     "example": {
+      "q": "Find the sum of the first 20 terms of the AP 5, 9, 13, ...",
+      "steps": [
+       "$a = 5$, $d = 4$, $n = 20$.",
+       "$S = \\dfrac{20}{2}[10 + 76] = 10 \\times 86$."
+      ],
+      "answer": "860"
+     }
+    },
+    {
+     "id": "sp-a3",
+     "name": "Which term of the AP is this value?",
+     "frequency": "common",
+     "howToSpot": "'Which term of 3, 8, 13, ... is 78?' — a value is given and its position $n$ is asked.",
+     "formula": null,
+     "steps": [
+      "Write $a + (n-1)d = $ target.",
+      "Move $a$ across and divide by $d$.",
+      "Add 1 to get $n$."
+     ],
+     "why": "The target value fixes the number of $d$-jumps after the first term.",
+     "example": {
+      "q": "Which term of the AP 3, 8, 13, 18, ... is 78?",
+      "steps": [
+       "$3 + (n-1)5 = 78$.",
+       "$(n-1) = 15$, so $n = 16$."
+      ],
+      "answer": "16th term"
+     }
+    },
+    {
+     "id": "sp-a4",
+     "name": "Middle term: sum, average and three-term problems",
+     "frequency": "common",
+     "howToSpot": "The sum of an odd number of AP terms is given and the middle term is asked — or three AP numbers hide behind a sum and a product.",
+     "formula": "\\text{middle} = \\frac{S_n}{n}",
+     "steps": [
+      "Divide the sum by the count for the middle term.",
+      "For three terms, write $a-d$, $a$, $a+d$.",
+      "Use the product (or second condition) to find $d$."
+     ],
+     "why": "In an AP the average sits exactly at the middle, and three consecutive terms are symmetric about it.",
+     "example": {
+      "q": "The sum of 15 terms of an AP is 375. Find the 8th term.",
+      "steps": [
+       "8th is the middle of 15 terms.",
+       "$375 \\div 15 = 25$."
+      ],
+      "answer": "25"
+     }
+    },
+    {
+     "id": "sp-a5",
+     "name": "Insert arithmetic means between a and b",
+     "frequency": "occasional",
+     "howToSpot": "'Insert 4 arithmetic means between 8 and 23' — the means, their gap, or one of them is asked.",
+     "formula": "d = \\frac{b - a}{k + 1}",
+     "steps": [
+      "Count the gaps: $k + 1$ for $k$ means.",
+      "Find the gap $d = (b-a)/(k+1)$.",
+      "Add $d$ repeatedly from $a$."
+     ],
+     "why": "The $k$ inserted numbers split the distance from $a$ to $b$ into $k + 1$ equal jumps.",
+     "example": {
+      "q": "Insert 4 arithmetic means between 8 and 23.",
+      "steps": [
+       "$d = \\dfrac{23 - 8}{5} = 3$.",
+       "Means: 11, 14, 17, 20."
+      ],
+      "answer": "11, 14, 17, 20"
+     }
+    },
+    {
+     "id": "sp-a6",
+     "name": "AP word problems: rows, seats, savings, wages",
+     "frequency": "very common",
+     "howToSpot": "Seats grow by a fixed number per row, savings by a fixed amount per month, wages by a fixed step — a total or a later value is asked.",
+     "formula": "S_n = \\frac{n}{2}\\left[2a + (n-1)d\\right]",
+     "steps": [
+      "Name $a$ (first value), $d$ (fixed step), $n$ (count).",
+      "Use $a + (n-1)d$ for one term.",
+      "Use $S_n$ for the total."
+     ],
+     "why": "A story with a constant per-step change is exactly an AP wearing words.",
+     "example": {
+      "q": "A hall has 18 rows of chairs; the first row has 15 chairs and each row has 3 more than the previous row. How many chairs are there in all?",
+      "steps": [
+       "$a = 15$, $d = 3$, $n = 18$.",
+       "$S = \\dfrac{18}{2}[30 + 17 \\times 3] = 9 \\times 81$."
+      ],
+      "answer": "729"
+     }
+    }
+   ],
+   "revision": [
+    "nth term: $a + (n-1)d$ — $n-1$ jumps, not $n$.",
+    "Sum: $\\dfrac{n}{2}[2a + (n-1)d]$ or $\\dfrac{n}{2}(\\text{first} + \\text{last})$.",
+    "Middle term of an odd-count AP $= S_n \\div n$.",
+    "Terms equidistant from the ends add to the same value.",
+    "Inserting $k$ means: gap $= \\dfrac{b-a}{k+1}$.",
+    "Three AP terms: $a-d$, $a$, $a+d$; their sum is $3a$."
+   ]
+  },
+  {
+   "id": "sp-gp",
+   "title": "Geometric Progressions",
+   "concept": "A geometric progression (GP) grows or shrinks by a fixed multiplier, the common ratio $r$. Its $n$-th term is $ar^{n-1}$, and a GP with $|r| < 1$ has an infinite sum of $\\dfrac{a}{1-r}$. Doubling money, bounce heights and repeated percentage growth are GPs in disguise.",
+   "formulas": [
+    {
+     "name": "nth term",
+     "tex": "a_n = a r^{n-1}",
+     "note": "$r$ is the common ratio; power is $n-1$."
+    },
+    {
+     "name": "Sum of n terms",
+     "tex": "S_n = \\frac{a(r^n - 1)}{r - 1}",
+     "note": "For $r \\ne 1$; if $r = 1$, the sum is $na$."
+    },
+    {
+     "name": "Sum to infinity",
+     "tex": "S_\\infty = \\frac{a}{1 - r}",
+     "note": "Only when $|r| < 1$."
+    },
+    {
+     "name": "Three GP terms",
+     "tex": "\\frac{a}{r},\\ a,\\ ar",
+     "note": "Their product is $a^3$."
+    },
+    {
+     "name": "Bouncing ball total",
+     "tex": "h + \\frac{2hr}{1 - r}",
+     "note": "$h$ is the drop height, $r$ the rebound fraction."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Name three GP terms a/r, a, ar",
+     "body": "The product of the three is $a^3$, so a given product fixes the middle term at once. The sum then fixes $r$.",
+     "example": {
+      "q": "Three numbers in GP have sum 21 and product 216. Find them.",
+      "steps": [
+       "$a^3 = 216$, so $a = 6$.",
+       "$\\dfrac{6}{r} + 6 + 6r = 21$ gives $r = 2$.",
+       "The numbers are 3, 6, 12."
+      ],
+      "answer": "3, 6, 12"
+     }
+    },
+    {
+     "title": "Sum to infinity reflex",
+     "body": "See an endless list whose ratio sits between $-1$ and 1 — divide the first term by ($1 - r$). One division, no powers.",
+     "example": {
+      "q": "Find the sum 8 + 4 + 2 + 1 + ...",
+      "steps": [
+       "$a = 8$, $r = \\dfrac{1}{2}$.",
+       "$\\dfrac{8}{1 - 1/2} = 16$."
+      ],
+      "answer": "16"
+     }
+    },
+    {
+     "title": "Bouncing ball: first drop once, pairs twice",
+     "body": "Add the first drop, then twice the sum of all rebounds. The rebound chain is a GP with first term $hr$.",
+     "example": {
+      "q": "A ball is dropped from 36 m and rebounds to half its height each time. Find the total distance travelled.",
+      "steps": [
+       "Rebounds: $18 + 9 + 4.5 + \\cdots = 36$.",
+       "Total $= 36 + 2 \\times 36$.",
+       "$= 108$ m."
+      ],
+      "answer": "108 m"
+     }
+    }
+   ],
+   "mistakes": [
+    "Using $a r^n$ for the nth term — at $n = 1$ it must give $a$, so the term is $a r^{n-1}$.",
+    "Applying $\\dfrac{a}{1-r}$ to every GP — it works only when $|r| < 1$; for $r = 2$ the sum simply grows.",
+    "Mixing signs: $\\dfrac{a(r^n - 1)}{r - 1}$ and $\\dfrac{a(1 - r^n)}{1 - r}$ are the same sum; flipping one sign makes it negative.",
+    "Counting the first drop twice in a bouncing-ball question — the first fall happens once; later up-and-down pairs happen twice.",
+    "Treating 'doubles every year' as an AP — doubling is a GP with $r = 2$.",
+    "Forgetting the $r = 1$ case — a GP with $r = 1$ is a constant list, and its sum is $n \\times a$."
+   ],
+   "notes": "### What a geometric progression is\nA geometric progression (GP) is a list where every term comes from the previous one by multiplying the same fixed number.\n\nThat number is the **common ratio**, written $r$. The first term is $a$.\n\n3, 6, 12, 24 is a GP: each term is twice the one before. Here $a = 3$ and $r = 2$.\n\nDoubling money, bounce heights and repeated percentage growth all move by a fixed ratio.\n\n> **Rule:** Check $r$ first: divide any term by the one before it. The answer must be the same everywhere.\n\nA ratio can be a fraction. 8, 4, 2, 1 has $r = \\dfrac{1}{2}$ — the list shrinks toward zero.\n\n### The nth term\nThe $n$-th term is the first term multiplied by $n - 1$ jumps of the ratio.\n\n$$a_n = a r^{\\,n-1}$$\n\nThe 5th term of 3, 6, 12, ... is $3 \\times 2^4 = 48$.\n\n> **Tip:** The power is one less than the term number. Term 5 uses $2^4$, because term 1 uses $2^0$.\n\n### The sum of n terms\nMultiply the first term by ($r^n - 1$), then divide by ($r - 1$):\n\n$$S_n = \\frac{a(r^n - 1)}{r - 1}, \\qquad r \\ne 1$$\n\nSum of 6 terms of 4, 12, 36, ...: $\\dfrac{4(3^6 - 1)}{2} = 2 \\times 728 = 1456$.\n\nIf $r = 1$, every term equals $a$, and the sum is simply $n \\times a$.\n\n> **Watch:** $\\dfrac{a(r^n-1)}{r-1}$ and $\\dfrac{a(1-r^n)}{1-r}$ are the same sum. Keep the signs consistent.\n\n### Sum to infinity\nWhen $r$ lies between $-1$ and 1, the terms shrink and the total settles at one number.\n\n$$S_\\infty = \\frac{a}{1 - r}, \\qquad |r| < 1$$\n\n$8 + 4 + 2 + 1 + \\cdots$: $a = 8$, $r = \\dfrac{1}{2}$, so the sum is $\\dfrac{8}{1/2} = 16$.\n\n> **Watch:** This formula fails for $r = 2$ or any ratio of size 1 or more. The list must shrink.\n\n### Three-term tricks\nThree consecutive GP terms are best named $\\dfrac{a}{r}$, $a$, $ar$. Their product is $a^3$.\n\nThree numbers in GP have sum 21 and product 216. Then $a^3 = 216$, so $a = 6$. Now $\\dfrac{6}{r} + 6 + 6r = 21$ gives $r = 2$: the numbers are 3, 6, 12.\n\nThe middle of any three terms is the geometric mean of its neighbours: $b^2 = ac$.\n\n### Bounces and doubling\nA ball dropped from height $h$, rebounding to a fraction $r$ each time, travels in total:\n\n$$h + \\frac{2hr}{1 - r}$$\n\nThe first drop happens once; every later up-and-down pair happens twice.\n\nFrom 36 m, rebounding to half each time: the rebounds are $18 + 9 + 4.5 + \\cdots = 36$. Total $= 36 + 2 \\times 36 = 108$ m.\n\nMoney that multiplies is a GP too. Savings of Rs 2, 4, 8, ... for 10 months total $2(2^{10} - 1) = 2046$.\n\nRs 1 doubled daily for 15 days gives $1 + 2 + 4 + \\cdots + 2^{14} = 2^{15} - 1 = 32767$.\n\n> **Tip:** \"Doubles every year or hour\" means $r = 2$. \"Grows 10% every year\" means $r = 1.1$ — a GP, not an AP.\n",
+   "patterns": [
+    {
+     "id": "sp-g1",
+     "name": "nth term of a GP",
+     "frequency": "very common",
+     "howToSpot": "A list with a constant multiplier is given and a later term (5th, 10th) is asked.",
+     "formula": "a_n = a r^{n-1}",
+     "steps": [
+      "Read $a$ and $r$.",
+      "Raise $r$ to the power $n - 1$.",
+      "Multiply by $a$."
+     ],
+     "why": "Each step multiplies by $r$, and reaching term $n$ takes $n - 1$ multiplications.",
+     "example": {
+      "q": "Find the 5th term of the GP 3, 6, 12, 24, ...",
+      "steps": [
+       "$a = 3$, $r = 2$.",
+       "$3 \\times 2^4 = 48$."
+      ],
+      "answer": "48"
+     }
+    },
+    {
+     "id": "sp-g2",
+     "name": "Sum of n terms of a GP",
+     "frequency": "very common",
+     "howToSpot": "'Sum of the first 6 terms' of a multiplying list, or 'how many terms give total S'.",
+     "formula": "S_n = \\frac{a(r^n - 1)}{r - 1}",
+     "steps": [
+      "Read $a$, $r$, $n$.",
+      "Compute $r^n$.",
+      "Apply $\\dfrac{a(r^n - 1)}{r - 1}$."
+     ],
+     "why": "Subtracting $rS_n$ from $S_n$ collapses the list, which gives the closed form.",
+     "example": {
+      "q": "Find the sum of the first 6 terms of 4, 12, 36, 108, ...",
+      "steps": [
+       "$a = 4$, $r = 3$, $n = 6$.",
+       "$\\dfrac{4(729 - 1)}{2} = 2 \\times 728$."
+      ],
+      "answer": "1456"
+     }
+    },
+    {
+     "id": "sp-g3",
+     "name": "Sum to infinity",
+     "frequency": "common",
+     "howToSpot": "An endless list with $|r| < 1$ (8 + 4 + 2 + ...) and its total is asked — or the total and one of $a$, $r$ are given.",
+     "formula": "S_\\infty = \\frac{a}{1 - r}",
+     "steps": [
+      "Confirm $|r| < 1$.",
+      "Apply $\\dfrac{a}{1-r}$.",
+      "Reverse use: find $a$ or $r$ from the given sum."
+     ],
+     "why": "As $n$ grows, $r^n$ vanishes for $|r| < 1$, so the finite sum settles at $\\dfrac{a}{1-r}$.",
+     "example": {
+      "q": "Find the sum of the infinite GP 9 + 3 + 1 + 1/3 + ...",
+      "steps": [
+       "$a = 9$, $r = \\dfrac{1}{3}$.",
+       "$\\dfrac{9}{2/3} = 13.5$."
+      ],
+      "answer": "27/2"
+     }
+    },
+    {
+     "id": "sp-g4",
+     "name": "Three numbers in GP (sum and product given)",
+     "frequency": "common",
+     "howToSpot": "'Three numbers in GP' with their sum and product — the numbers are asked.",
+     "formula": null,
+     "steps": [
+      "Write the terms $\\dfrac{a}{r}$, $a$, $ar$.",
+      "Product $= a^3$ gives $a$.",
+      "Sum gives $r$; keep both roots."
+     ],
+     "why": "The symmetric naming makes the product collapse to $a^3$ and the sum linear in $r$.",
+     "example": {
+      "q": "Three numbers in GP have sum 21 and product 216. Find the numbers.",
+      "steps": [
+       "$a^3 = 216$, so $a = 6$.",
+       "$\\dfrac{6}{r} + 6r = 15$ gives $r = 2$ or $\\dfrac{1}{2}$."
+      ],
+      "answer": "3, 6, 12"
+     }
+    },
+    {
+     "id": "sp-g5",
+     "name": "Bouncing ball and repeating distances",
+     "frequency": "occasional",
+     "howToSpot": "A ball or pendulum covers a fixed fraction of its previous path each time; the total distance is asked.",
+     "formula": "h + \\frac{2hr}{1 - r}",
+     "steps": [
+      "First drop: $h$, once.",
+      "Each later up-down pair: twice the rebound chain.",
+      "Rebound chain is a GP; sum it for $|r| < 1$."
+     ],
+     "why": "After the first fall, every stretch is travelled twice, and the stretch sizes form a GP.",
+     "example": {
+      "q": "A ball is dropped from 36 m and rebounds to half its height each time. Find the total distance.",
+      "steps": [
+       "Rebounds sum: $\\dfrac{18}{1 - 1/2} = 36$.",
+       "Total $= 36 + 2 \\times 36 = 108$ m."
+      ],
+      "answer": "108 m"
+     }
+    },
+    {
+     "id": "sp-g6",
+     "name": "Doubling money and repeated growth",
+     "frequency": "common",
+     "howToSpot": "Savings double each month, a count doubles each hour, or a value grows by a fixed per cent each period.",
+     "formula": null,
+     "steps": [
+      "Name $a$ and the multiplier $r$.",
+      "One value: $ar^{n-1}$.",
+      "A running total: $\\dfrac{a(r^n - 1)}{r - 1}$."
+     ],
+     "why": "Any fixed multiplier per period makes the list a GP, so both formulas apply.",
+     "example": {
+      "q": "A man saves Rs 2 in the first month, Rs 4 in the second, Rs 8 in the third, and so on. Find his total savings in 10 months.",
+      "steps": [
+       "$a = 2$, $r = 2$, $n = 10$.",
+       "$2(2^{10} - 1) = 2 \\times 1023$."
+      ],
+      "answer": "Rs 2046"
+     }
+    }
+   ],
+   "revision": [
+    "nth term: $ar^{n-1}$.",
+    "Sum of $n$ terms: $\\dfrac{a(r^n-1)}{r-1}$; if $r = 1$, it is $na$.",
+    "Sum to infinity: $\\dfrac{a}{1-r}$, only for $|r| < 1$.",
+    "Three GP terms $\\dfrac{a}{r}, a, ar$; product $= a^3$.",
+    "Ball: total $= h + \\dfrac{2hr}{1-r}$.",
+    "'Doubles' means $r = 2$; '+10% per period' means $r = 1.1$."
+   ]
+  },
+  {
+   "id": "sp-hp-agp",
+   "title": "Harmonic Progressions & AGP",
+   "concept": "A harmonic progression (HP) is a list whose reciprocals form an AP, so every HP question is solved on the reciprocals. Two related tools sit beside it: the AM-GM-HM trio for two positive numbers, and the arithmetico-geometric series, where an AP and a GP are multiplied term by term.",
+   "formulas": [
+    {
+     "name": "nth term of an HP",
+     "tex": "\\frac{1}{a + (n-1)d}",
+     "note": "$a$, $d$ come from the AP of reciprocals."
+    },
+    {
+     "name": "HM of two numbers",
+     "tex": "\\frac{2ab}{a + b}",
+     "note": "The reciprocal of the AM of the reciprocals."
+    },
+    {
+     "name": "AM x HM = GM squared",
+     "tex": "AM \\times HM = GM^2",
+     "note": "For positive numbers, AM $\\ge$ GM $\\ge$ HM."
+    },
+    {
+     "name": "Infinite AGP sum",
+     "tex": "\\frac{a}{1-r} + \\frac{dr}{(1-r)^2}",
+     "note": "For $|r| < 1$, series $a + (a+d)r + (a+2d)r^2 + \\cdots$"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Flip every HP into its AP",
+     "body": "Reciprocal the list, do all the work with AP tools, reciprocal the final answer. This solves every HP question.",
+     "example": {
+      "q": "Which term of the HP 1/2, 1/5, 1/8, ... is 1/32?",
+      "steps": [
+       "Reciprocals: 2, 5, 8, ... ($d = 3$).",
+       "$2 + (n-1)3 = 32$ gives $n = 11$."
+      ],
+      "answer": "11th term"
+     }
+    },
+    {
+     "title": "AM x HM = GM squared",
+     "body": "One relation replaces a page of algebra. Any two of AM, GM, HM give the third.",
+     "example": {
+      "q": "The AM of two numbers is 10 and their GM is 8. Find the HM.",
+      "steps": [
+       "$AM \\times HM = GM^2$.",
+       "$HM = \\dfrac{8^2}{10} = 6.4$."
+      ],
+      "answer": "6.4"
+     }
+    },
+    {
+     "title": "AGP: multiply by r and subtract",
+     "body": "Write $rS$ below $S$ with the powers aligned. Subtracting kills the middle and leaves a small GP minus one end.",
+     "example": {
+      "q": "Find the sum 1 + 2×2 + 3×4 + 4×8 + 5×16.",
+      "steps": [
+       "Line up $S$ and $2S$ with equal powers of 2.",
+       "$S - 2S = 1 + 2 + 4 + 8 + 16 - 160 = -129$.",
+       "So $S = 129$."
+      ],
+      "answer": "129"
+     }
+    }
+   ],
+   "mistakes": [
+    "Looking for a common difference in an HP — the HP terms have none; their reciprocals do.",
+    "Writing the HP nth term as $\\dfrac{1}{a} + (n-1)\\dfrac{1}{d}$ — the whole denominator changes: $\\dfrac{1}{a + (n-1)d}$.",
+    "Using the infinite AGP sum without checking $|r| < 1$ — the formula fails for $r = 2$ or larger.",
+    "Writing AM $\\le$ GM $\\le$ HM — for positive numbers the order is AM $\\ge$ GM $\\ge$ HM.",
+    "Subtracting the shifted AGP series with powers out of line — align matching powers before subtracting.",
+    "Reporting an HM larger than the AM — that is impossible for positive numbers, so recheck the working."
+   ],
+   "notes": "### What a harmonic progression is\nA harmonic progression (HP) is a list whose reciprocals form an AP.\n\n1/2, 1/5, 1/8, 1/11 is an HP. Turn it upside down: 2, 5, 8, 11 — an AP with $a = 2$ and $d = 3$.\n\nThe HP terms themselves have no common difference. Never look for one.\n\n> **Rule:** Every HP question is solved on the reciprocals. Flip first, work in the AP, flip back at the end.\n\n### Working with an HP\nThe $n$-th term of the HP is the reciprocal of the AP's $n$-th term:\n\n$$a_n = \\frac{1}{a + (n-1)d}$$\n\nHere $a$ and $d$ belong to the AP of reciprocals.\n\nWhich term of 1/2, 1/5, 1/8, ... is 1/32? Solve $2 + (n-1)3 = 32$, so $n = 11$: the 11th term.\n\nWhich term of 1/5, 1/8, 1/11, ... is 1/29? Solve $5 + (n-1)3 = 29$, so $n = 9$.\n\nGiven two HP terms, write the two reciprocals as AP terms. If the 4th term is 1/10 and the 10th is 1/28, then $a_4 = 10$ and $a_{10} = 28$, so $d = 3$ and $a = 1$. The 15th HP term is $\\dfrac{1}{1 + 14 \\times 3} = \\dfrac{1}{43}$.\n\n> **Tip:** In $\\dfrac{1}{a + (n-1)d}$ the whole expression sits under the 1. Writing $\\dfrac{1}{a} + (n-1)\\dfrac{1}{d}$ is a different list.\n\n### The AM-GM-HM trio\nFor two positive numbers $x$ and $y$: AM $= \\dfrac{x+y}{2}$, GM $= \\sqrt{xy}$, HM $= \\dfrac{2xy}{x+y}$.\n\nThey always line up in the order AM $\\ge$ GM $\\ge$ HM.\n\nThe three are tied by one clean relation:\n\n$$AM \\times HM = GM^2$$\n\nThe AM of two numbers is 10 and the GM is 8, so the HM is $\\dfrac{64}{10} = 6.4$.\n\nThe relation also finds the numbers. AM is 13 and GM is 12: sum 26, product 144, so the numbers are 8 and 18.\n\n> **Note:** For two numbers, the HM is the reciprocal of the AM of the reciprocals — the HP idea again.\n\n### What an AGP looks like\nAn arithmetico-geometric series (AGP) multiplies two patterns: the coefficients grow by addition, the powers grow by multiplication.\n\n$$1 + 2 \\cdot 2 + 3 \\cdot 4 + 4 \\cdot 8 + 5 \\cdot 16$$\n\nThe numbers 1, 2, 3, 4, 5 form an AP; the powers of 2 form a GP. Neither plain sum formula works.\n\n### The AGP subtraction method\nMultiply the whole series by $r$ and write it below $S$, with equal powers lined up. Subtract.\n\nFor $S = 1 + 2 \\cdot 2 + 3 \\cdot 4 + 4 \\cdot 8 + 5 \\cdot 16 = 129$:\n\n$S - 2S = 1 + 2 + 4 + 8 + 16 - 160 = -129$, so $S = 129$.\n\nThe coefficients drop by one, leaving a small GP minus one far end. That leftover sum is easy.\n\n> **Tip:** Line up the powers before subtracting. A misaligned shift is the classic error here.\n\n### Infinite AGP sums\nWhen $|r| < 1$, the finite method settles into a formula. For $a + (a+d)r + (a+2d)r^2 + \\cdots$:\n\n$$S_\\infty = \\frac{a}{1-r} + \\frac{dr}{(1-r)^2}$$\n\n$1 + \\dfrac{2}{3} + \\dfrac{3}{9} + \\dfrac{4}{27} + \\cdots$: here $a = 1$, $d = 1$, $r = \\dfrac{1}{3}$. Sum $= \\dfrac{3}{2} + \\dfrac{1/3}{4/9} = \\dfrac{3}{2} + \\dfrac{3}{4} = \\dfrac{9}{4}$.\n\n> **Watch:** The formula needs $|r| < 1$. For $r = 2$ the terms grow and no sum exists.\n",
+   "patterns": [
+    {
+     "id": "sp-h1",
+     "name": "Which term of an HP is it?",
+     "frequency": "very common",
+     "howToSpot": "A fraction list like 1/2, 1/5, 1/8 is given and the position of one term is asked.",
+     "formula": null,
+     "steps": [
+      "Flip the list into its AP.",
+      "Solve $a + (n-1)d =$ target.",
+      "Report the term number $n$."
+     ],
+     "why": "The reciprocals are an AP, so position questions become ordinary AP equations.",
+     "example": {
+      "q": "Which term of the HP 1/2, 1/5, 1/8, ... is 1/32?",
+      "steps": [
+       "AP of reciprocals: 2, 5, 8, ...",
+       "$2 + (n-1)3 = 32$, so $n = 11$."
+      ],
+      "answer": "11th term"
+     }
+    },
+    {
+     "id": "sp-h2",
+     "name": "Find an HP term from two given HP terms",
+     "frequency": "common",
+     "howToSpot": "Two terms of an HP are given (say the 4th and the 10th) and another term is asked.",
+     "formula": null,
+     "steps": [
+      "Write the two reciprocals as AP terms.",
+      "Get $d$, then $a$, from the pair.",
+      "Compute the AP term and flip it back."
+     ],
+     "why": "Two AP terms fix $a$ and $d$, and every other term follows from them.",
+     "example": {
+      "q": "The 4th term of an HP is 1/10 and the 10th term is 1/28. Find the 15th term.",
+      "steps": [
+       "$a_4 = 10$, $a_{10} = 28$: $d = 3$, $a = 1$.",
+       "15th AP term $= 1 + 14 \\times 3 = 43$."
+      ],
+      "answer": "1/43"
+     }
+    },
+    {
+     "id": "sp-h3",
+     "name": "AM, GM, HM of two numbers",
+     "frequency": "common",
+     "howToSpot": "AM, GM or HM of two positive numbers is given (two of them), and the third — or the numbers — are asked.",
+     "formula": "AM \\times HM = GM^2",
+     "steps": [
+      "Use $AM \\times HM = GM^2$ for the missing average.",
+      "AM gives the sum; GM gives the product.",
+      "Solve the quadratic for the two numbers."
+     ],
+     "why": "AM fixes the sum, GM fixes the product, and two numbers with a given sum and product are unique up to order.",
+     "example": {
+      "q": "The AM of two positive numbers is 13 and their GM is 12. Find the numbers.",
+      "steps": [
+       "Sum $= 26$, product $= 144$.",
+       "$t^2 - 26t + 144 = 0$ gives $t = 8, 18$."
+      ],
+      "answer": "8 and 18"
+     }
+    },
+    {
+     "id": "sp-h4",
+     "name": "AGP: finite sum by subtraction",
+     "frequency": "occasional",
+     "howToSpot": "Terms like 1 + 2·2 + 3·4 + 4·8 — a counting part times a powering part.",
+     "formula": null,
+     "steps": [
+      "Write $S$ and $rS$ with powers aligned.",
+      "Subtract: coefficients drop by 1.",
+      "Sum the leftover small GP and solve for $S$."
+     ],
+     "why": "The shift by one power turns each AGP term into a single GP term plus a constant.",
+     "example": {
+      "q": "Find the sum 1 + 2×2 + 3×4 + 4×8 + 5×16.",
+      "steps": [
+       "$S - 2S = 1 + 2 + 4 + 8 + 16 - 160 = -129$.",
+       "So $S = 129$."
+      ],
+      "answer": "129"
+     }
+    },
+    {
+     "id": "sp-h5",
+     "name": "Infinite AGP sum",
+     "frequency": "occasional",
+     "howToSpot": "An endless AGP like 1 + 2/3 + 3/9 + 4/27 + ... with $|r| < 1$.",
+     "formula": "\\frac{a}{1-r} + \\frac{dr}{(1-r)^2}",
+     "steps": [
+      "Confirm $|r| < 1$.",
+      "Name $a$, $d$, $r$.",
+      "Apply the two-part formula."
+     ],
+     "why": "As the powers die out, the subtraction method leaves exactly $\\dfrac{a}{1-r} + \\dfrac{dr}{(1-r)^2}$.",
+     "example": {
+      "q": "Find the sum 1 + 2/3 + 3/9 + 4/27 + ...",
+      "steps": [
+       "$a = 1$, $d = 1$, $r = \\dfrac{1}{3}$.",
+       "$\\dfrac{3}{2} + \\dfrac{1/3}{4/9} = \\dfrac{3}{2} + \\dfrac{3}{4}$."
+      ],
+      "answer": "9/4"
+     }
+    }
+   ],
+   "revision": [
+    "HP: reciprocals form an AP — always flip first.",
+    "HP nth term: $\\dfrac{1}{a + (n-1)d}$.",
+    "AM $\\times$ HM $=$ GM$^2$; AM $\\ge$ GM $\\ge$ HM.",
+    "HM of $a, b$: $\\dfrac{2ab}{a+b}$.",
+    "AGP: multiply $S$ by $r$, align, subtract.",
+    "Infinite AGP: $\\dfrac{a}{1-r} + \\dfrac{dr}{(1-r)^2}$ for $|r| < 1$."
+   ]
+  },
+  {
+   "id": "sp-special",
+   "title": "Special Series & Standard Sums",
+   "concept": "Some sums are so common that formulas exist: $\\sum n = \\dfrac{n(n+1)}{2}$, $\\sum n^2 = \\dfrac{n(n+1)(2n+1)}{6}$, $\\sum n^3 = \\left[\\dfrac{n(n+1)}{2}\\right]^2$. Telescoping fractions cancel in a line, leaving only the ends. One formula pick usually finishes the question.",
+   "formulas": [
+    {
+     "name": "Sum of first n numbers",
+     "tex": "\\sum_{k=1}^{n} k = \\frac{n(n+1)}{2}"
+    },
+    {
+     "name": "Sum of first n squares",
+     "tex": "\\sum_{k=1}^{n} k^2 = \\frac{n(n+1)(2n+1)}{6}"
+    },
+    {
+     "name": "Sum of first n cubes",
+     "tex": "\\sum_{k=1}^{n} k^3 = \\left[\\frac{n(n+1)}{2}\\right]^2",
+     "note": "The square of the natural-number sum."
+    },
+    {
+     "name": "First n odd numbers",
+     "tex": "1 + 3 + \\cdots + (2n-1) = n^2",
+     "note": "The run must start at 1."
+    },
+    {
+     "name": "First n even numbers",
+     "tex": "2 + 4 + \\cdots + 2n = n(n+1)"
+    },
+    {
+     "name": "Telescoping split",
+     "tex": "\\frac{1}{k(k+1)} = \\frac{1}{k} - \\frac{1}{k+1}"
+    },
+    {
+     "name": "Consecutive products",
+     "tex": "\\sum_{k=1}^{n} k(k+1) = \\frac{n(n+1)(n+2)}{3}"
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Pair the ends of a natural-number sum",
+     "body": "1 + 40, 2 + 39, ... every pair adds to 41. With 20 pairs, the sum is $20 \\times 41$. The formula $\\dfrac{n(n+1)}{2}$ does the same in one line.",
+     "example": {
+      "q": "Find the sum 1 + 2 + 3 + ... + 40.",
+      "steps": [
+       "$\\dfrac{40 \\times 41}{2}$.",
+       "$= 820$."
+      ],
+      "answer": "820"
+     }
+    },
+    {
+     "title": "Odd numbers build squares",
+     "body": "Count the odd numbers; the sum is that count squared. A run that starts past 1 is a difference of two squares.",
+     "example": {
+      "q": "Find the sum 1 + 3 + 5 + ... + 25.",
+      "steps": [
+       "Odd numbers: $\\dfrac{25+1}{2} = 13$.",
+       "Sum $= 13^2 = 169$."
+      ],
+      "answer": "169"
+     }
+    },
+    {
+     "title": "Telescoping: keep only the ends",
+     "body": "Split each fraction as a difference. Writing the first few terms shows the middle cancelling in a diagonal line.",
+     "example": {
+      "q": "Find the sum 1/(1·2) + 1/(2·3) + ... + 1/(9·10).",
+      "steps": [
+       "$\\dfrac{1}{k(k+1)} = \\dfrac{1}{k} - \\dfrac{1}{k+1}$.",
+       "Sum $= 1 - \\dfrac{1}{10} = \\dfrac{9}{10}$."
+      ],
+      "answer": "9/10"
+     }
+    }
+   ],
+   "mistakes": [
+    "Using $\\dfrac{n(n+1)}{2}$ for squares or cubes — each power has its own formula.",
+    "Forgetting to square $\\left[\\dfrac{n(n+1)}{2}\\right]$ in the sum of cubes.",
+    "Counting terms as $b - a$ — from $a$ to $b$ inclusive there are $b - a + 1$ terms.",
+    "Squaring the count for odd numbers that do not start at 1 — $11 + 13 + \\cdots + 29$ is $15^2 - 5^2$, not $10^2$.",
+    "Adding telescoping fractions one by one — pair the cancellations; only the two ends survive."
+   ],
+   "notes": "### Three power sums\nThree formulas cover most direct asks. For the first $n$ natural numbers:\n\n$$\\sum n = \\frac{n(n+1)}{2} \\qquad \\sum n^2 = \\frac{n(n+1)(2n+1)}{6} \\qquad \\sum n^3 = \\left[\\frac{n(n+1)}{2}\\right]^2$$\n\n$1 + 2 + \\cdots + 40 = \\dfrac{40 \\times 41}{2} = 820$.\n\n$1^2 + 2^2 + \\cdots + 10^2 = \\dfrac{10 \\times 11 \\times 21}{6} = 385$.\n\n$1^3 + 2^3 + \\cdots + 5^3 = \\left(\\dfrac{5 \\times 6}{2}\\right)^2 = 15^2 = 225$.\n\n> **Rule:** The cube sum is the square of the natural-number sum. Memorise all three shapes.\n\n### Odd and even number sums\nThe first $n$ odd numbers add to a perfect square:\n\n$$1 + 3 + 5 + \\cdots + (2n-1) = n^2$$\n\n$1 + 3 + \\cdots + 25$ has 13 odd numbers, so the sum is $13^2 = 169$.\n\nThe first $n$ even numbers add to $n(n+1)$: $2 + 4 + \\cdots + 20 = 10 \\times 11 = 110$.\n\nAn odd-number run that starts later is the difference of two squares. $11 + 13 + \\cdots + 29 = 15^2 - 5^2 = 200$, because 11 is the 6th odd number and 29 the 15th.\n\n> **Tip:** $n^2$ works only when the run starts at 1. Otherwise subtract two square sums.\n\n### Count the terms first\nFrom $a$ to $b$, both included, the count is $b - a + 1$.\n\n$21 + 22 + \\cdots + 50 = \\dfrac{50 \\times 51}{2} - \\dfrac{20 \\times 21}{2} = 1275 - 210 = 1065$.\n\nSubtracting the sum up to 20 removes the first 20 terms cleanly.\n\n> **Watch:** 21 to 50 is 30 terms, not 29. The $+1$ matters.\n\n### Telescoping sums\nA telescoping sum hides cancellations. Each fraction splits into two parts:\n\n$$\\frac{1}{k(k+1)} = \\frac{1}{k} - \\frac{1}{k+1}$$\n\nSo $\\dfrac{1}{1 \\cdot 2} + \\dfrac{1}{2 \\cdot 3} + \\cdots + \\dfrac{1}{9 \\cdot 10} = 1 - \\dfrac{1}{10} = \\dfrac{9}{10}$.\n\nEverything in the middle cancels. Only the first and last pieces survive.\n\nThe gaps need not be 1. $\\dfrac{1}{1 \\cdot 5} + \\dfrac{1}{5 \\cdot 9} + \\cdots + \\dfrac{1}{37 \\cdot 41} = \\dfrac{1}{4}\\left(1 - \\dfrac{1}{41}\\right) = \\dfrac{10}{41}$.\n\n> **Rule:** Split each term as a difference of two simple fractions, then cancel in one line.\n\n### Sums of consecutive products\n$1 \\times 2 + 2 \\times 3 + \\cdots + n(n+1)$ has a ready answer:\n\n$$\\sum_{k=1}^{n} k(k+1) = \\frac{n(n+1)(n+2)}{3}$$\n\nUp to $10 \\times 11$: $\\dfrac{10 \\times 11 \\times 12}{3} = 440$.\n\nIn reverse, a total of 168 means $n(n+1)(n+2) = 504 = 7 \\times 8 \\times 9$, so $n = 7$.\n\n> **Note:** The formula comes from $k(k+1) = \\dfrac{k^3 - k}{3}$ plus the power sums.\n\n### Choosing the formula\nRead the question, name the last term, then pick:\n\n- A plain list of numbers gives $\\dfrac{n(n+1)}{2}$, or a difference of two such sums.\n- Squares, cubes or products point to the matching formula above.\n- A chain of fractions points to telescoping.\n\nA sum like $2^2 + 4^2 + \\cdots + 20^2$ is $4(1^2 + \\cdots + 10^2) = 4 \\times 385 = 1540$.\n\n> **Tip:** Factor out the common piece first; the power sum then applies to small numbers.\n",
+   "patterns": [
+    {
+     "id": "sp-s1",
+     "name": "Sum of a run of natural numbers",
+     "frequency": "very common",
+     "howToSpot": "A run like 21 + 22 + ... + 50, or a reverse ask: 'the sum 1 to n is S, find n'.",
+     "formula": "\\sum_{k=1}^{n} k = \\frac{n(n+1)}{2}",
+     "steps": [
+      "Find the count: last minus first plus 1.",
+      "Use $\\dfrac{n(n+1)}{2}$ for each full run.",
+      "Subtract the part before the start."
+     ],
+     "why": "A run from $a$ to $b$ is (sum up to $b$) minus (sum up to $a - 1$).",
+     "example": {
+      "q": "Find the sum 21 + 22 + ... + 50.",
+      "steps": [
+       "$\\dfrac{50 \\times 51}{2} - \\dfrac{20 \\times 21}{2}$.",
+       "$1275 - 210 = 1065$."
+      ],
+      "answer": "1065"
+     }
+    },
+    {
+     "id": "sp-s2",
+     "name": "Sum of squares",
+     "frequency": "common",
+     "howToSpot": "A list of squares 1² + 2² + ... + n², sometimes with a factor like even squares only.",
+     "formula": "\\sum_{k=1}^{n} k^2 = \\frac{n(n+1)(2n+1)}{6}",
+     "steps": [
+      "Read $n$ from the last square.",
+      "Apply the formula.",
+      "Factor out common pieces first for even or odd squares."
+     ],
+     "why": "The closed form replaces adding every square individually — one formula, no listing.",
+     "example": {
+      "q": "Find the sum 1² + 2² + 3² + ... + 10².",
+      "steps": [
+       "$\\dfrac{10 \\times 11 \\times 21}{6}$.",
+       "$= 385$."
+      ],
+      "answer": "385"
+     }
+    },
+    {
+     "id": "sp-s3",
+     "name": "Sum of cubes",
+     "frequency": "occasional",
+     "howToSpot": "1³ + 2³ + ... appears, or a cube sum equals a square in disguise.",
+     "formula": "\\sum_{k=1}^{n} k^3 = \\left[\\frac{n(n+1)}{2}\\right]^2",
+     "steps": [
+      "Compute $\\dfrac{n(n+1)}{2}$.",
+      "Square it."
+     ],
+     "why": "The cube sum equals the square of the triangular number — the fastest cube fact in exams.",
+     "example": {
+      "q": "Find the sum 1³ + 2³ + 3³ + 4³ + 5³.",
+      "steps": [
+       "$\\dfrac{5 \\times 6}{2} = 15$.",
+       "$15^2 = 225$."
+      ],
+      "answer": "225"
+     }
+    },
+    {
+     "id": "sp-s4",
+     "name": "Sum of odd and even numbers",
+     "frequency": "common",
+     "howToSpot": "Runs of odd or even numbers, starting at 1 (or 2) or later.",
+     "formula": "1 + 3 + \\cdots + (2n-1) = n^2",
+     "steps": [
+      "Count the terms in the run.",
+      "Start at 1: the sum is the count squared.",
+      "Start later: subtract two square sums."
+     ],
+     "why": "Each new odd number extends the previous square by one L-shaped layer, so $n$ odds make $n^2$.",
+     "example": {
+      "q": "Find the sum 11 + 13 + 15 + ... + 29.",
+      "steps": [
+       "$= (1 + \\cdots + 29) - (1 + \\cdots + 9)$.",
+       "$15^2 - 5^2 = 200$."
+      ],
+      "answer": "200"
+     }
+    },
+    {
+     "id": "sp-s5",
+     "name": "Telescoping fraction sums",
+     "frequency": "common",
+     "howToSpot": "A fraction chain with overlapping denominators: 1/(1·2) + 1/(2·3) + ..., or gaps of more than 1.",
+     "formula": "\\frac{1}{k(k+1)} = \\frac{1}{k} - \\frac{1}{k+1}",
+     "steps": [
+      "Split each term into a difference.",
+      "Cancel the diagonal pairs.",
+      "Keep the first piece of term 1 and the last piece of the final term."
+     ],
+     "why": "Each split term cancels most of the next one, so the whole chain collapses to its two ends.",
+     "example": {
+      "q": "Find the sum 1/(1·2) + 1/(2·3) + ... + 1/(9·10).",
+      "steps": [
+       "Split each term.",
+       "Sum $= 1 - \\dfrac{1}{10}$."
+      ],
+      "answer": "9/10"
+     }
+    },
+    {
+     "id": "sp-s6",
+     "name": "Sums of consecutive products",
+     "frequency": "occasional",
+     "howToSpot": "1×2 + 2×3 + 3×4 + ... — neighbouring whole numbers multiply.",
+     "formula": "\\sum_{k=1}^{n} k(k+1) = \\frac{n(n+1)(n+2)}{3}",
+     "steps": [
+      "Read $n$ from the last product.",
+      "Apply $\\dfrac{n(n+1)(n+2)}{3}$.",
+      "Reverse asks: match the total with three consecutive numbers."
+     ],
+     "why": "The product chain equals one third of $n(n+1)(n+2)$, so both directions are one line.",
+     "example": {
+      "q": "Find the sum 1×2 + 2×3 + 3×4 + ... + 10×11.",
+      "steps": [
+       "$\\dfrac{10 \\times 11 \\times 12}{3}$.",
+       "$= 440$."
+      ],
+      "answer": "440"
+     }
+    }
+   ],
+   "revision": [
+    "$\\sum n = \\dfrac{n(n+1)}{2}$, $\\sum n^2 = \\dfrac{n(n+1)(2n+1)}{6}$, $\\sum n^3 = \\left[\\dfrac{n(n+1)}{2}\\right]^2$.",
+    "First $n$ odd numbers: $n^2$; first $n$ even numbers: $n(n+1)$.",
+    "Run from $a$ to $b$: subtract two power sums; count is $b - a + 1$.",
+    "Telescoping: $\\dfrac{1}{k(k+1)} = \\dfrac{1}{k} - \\dfrac{1}{k+1}$; only the ends survive.",
+    "$1 \\times 2 + \\cdots + n(n+1) = \\dfrac{n(n+1)(n+2)}{3}$.",
+    "Factor common pieces (like $2^2$) before applying a power sum."
+   ]
+  },
+  {
+   "id": "sp-pattern-terms",
+   "title": "Pattern Sequences: Next, Missing & Wrong Terms",
+   "concept": "A pattern sequence hides a rule, and the question asks for the next term, a missing term, or the wrong term. The work is a fixed routine: take differences, check ratios, split alternating chains, and test position rules like $n^2$ or $2^n$.",
+   "formulas": [
+    {
+     "name": "Common position rules",
+     "tex": "n^2,\\ n^3,\\ n^2+1,\\ n^2-1,\\ 2^n,\\ n(n+1)",
+     "note": "Compare each term with its position $n$."
+    },
+    {
+     "name": "Multiply-and-add rule",
+     "tex": "a_{n+1} = a_n \\times r + c",
+     "note": "A frequent hidden rule; test it when differences fail."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Take differences, then differences again",
+     "body": "The first differences often hide a second pattern — odd numbers, squares, doubling. Two ladders solve most series.",
+     "example": {
+      "q": "Find the next term: 2, 5, 10, 17, 26, ...",
+      "steps": [
+       "Gaps: 3, 5, 7, 9 (odd numbers).",
+       "Next gap 11: $26 + 11 = 37$."
+      ],
+      "answer": "37"
+     }
+    },
+    {
+     "title": "Split alternating series into two chains",
+     "body": "One rule for odd positions, one for even positions. Answer from the chain the asked position belongs to.",
+     "example": {
+      "q": "Find the next term: 5, 9, 7, 11, 9, 13, ...",
+      "steps": [
+       "Odd positions: 5, 7, 9 ($+2$).",
+       "7th term continues it: 11."
+      ],
+      "answer": "11"
+     }
+    },
+    {
+     "title": "Test the position rules",
+     "body": "Compare each term with $n^2$, $n^3$, $n^2 \\pm 1$, $2^n$ and primes at its position. One of them usually snaps into place.",
+     "example": {
+      "q": "Find the next term: 3, 8, 15, 24, 35, ...",
+      "steps": [
+       "Terms are $2^2-1$, $3^2-1$, $4^2-1$, ...",
+       "Next: $7^2 - 1 = 48$."
+      ],
+      "answer": "48"
+     }
+    }
+   ],
+   "mistakes": [
+    "Testing only addition — many series multiply, alternate two operations, or follow squares and cubes.",
+    "Stopping at the first difference — the differences themselves often form a pattern (second differences).",
+    "Applying one chain's rule to the other in an alternating series — split the series first.",
+    "Ignoring the position of each term — rules like $n^2 + 1$ tie a term to its place in the list.",
+    "Changing two things at once while testing a guessed rule — a valid rule must fit every given term unchanged."
+   ],
+   "notes": "### What a pattern sequence asks\nA list of numbers hides a rule. The question asks for the next term, a missing middle term, or the one wrong term.\n\nThere is no formula to memorise. There is a routine: test the common rules in order until one fits every term.\n\n> **Rule:** A correct rule must match every given term. Two matching terms prove nothing.\n\n### The difference ladder\nSubtract each term from the next. If the differences are equal, it is an AP — add the difference once more.\n\nIf the differences differ, take their differences too (the second differences).\n\n2, 5, 10, 17, 26: the gaps are 3, 5, 7, 9 — the odd numbers. Next gap is 11, so the next term is $26 + 11 = 37$.\n\nThe same list is $n^2 + 1$: $1^2+1$, $2^2+1$, $3^2+1$, ... Both roads give 37.\n\n3, 4, 8, 17, 33: gaps are 1, 4, 9, 16 — the squares. Next gap 25 gives 58.\n\n> **Tip:** Odd-number gaps, square gaps and doubling gaps cover most exam series.\n\n### Multiply and mixed operations\nWhen the list grows fast, try division instead of subtraction.\n\n5, 10, 20, 40: each term is double the one before, so the next is 80.\n\n2, 4, 12, 48, 240: the multipliers are $\\times 2$, $\\times 3$, $\\times 4$, $\\times 5$, so the next multiplier is 6 and the next term is 1440.\n\nMixed rules multiply and add: 5, 11, 23, 47 uses \"$\\times 2 + 1$\" each time, giving 95 next.\n\n> **Watch:** A ratio check (divide neighbours) catches multiplication; a difference check cannot.\n\n### Two alternating chains\nOdd-position terms and even-position terms can follow different rules.\n\n5, 9, 7, 11, 9, 13: positions 1, 3, 5 give 5, 7, 9 ($+2$). Positions 2, 4, 6 give 9, 11, 13 ($+2$). The 7th term belongs to the first chain: 11.\n\n7, 12, 10, 15, 13, 18: chains $7, 10, 13$ and $12, 15, 18$, both $+3$. Next is 16.\n\n> **Tip:** If one single rule fails after two or three terms, split odd and even positions before anything else.\n\n### Position-based rules\nMany series tie each term to its position $n$:\n\n- $n^2$: 1, 4, 9, 16.\n- $n^3$: 1, 8, 27, 64.\n- $n^2 - 1$: 3, 8, 15, 24, 35.\n- $n^n$: 1, 4, 27, 256.\n\n3, 8, 15, 24, 35: these are $2^2-1$, $3^2-1$, $4^2-1$, ..., so the next is $7^2 - 1 = 48$.\n\nPrime numbers 2, 3, 5, 7, 11 and their $\\pm 1$ shifts appear often too.\n\n### Missing and wrong terms\nA missing middle term uses the same routine — the rule must fit both neighbours.\n\n7, 14, 28, ?, 112: each term doubles, so the missing term is 56.\n\n2, 3, 6, ?, 14, 15, 30: the rule alternates $+1$ and $\\times 2$, so the missing term is 7.\n\nFor a wrong-number question, build the correct series from the rule, then point at the term that breaks it.\n\n2, 6, 12, 20, 30, 40, 56: the rule is $n(n+1)$, so the sixth term should be 42. The wrong number is 40.\n\n> **Example:** 5, 11, 23, 47, 94, 191 — the rule \"$\\times 2 + 1$\" gives 95 in fifth place, so 94 is wrong.\n",
+   "patterns": [
+    {
+     "id": "sp-t1",
+     "name": "Next term by the difference ladder",
+     "frequency": "very common",
+     "howToSpot": "A plain list of growing numbers; the gaps themselves show a pattern.",
+     "formula": null,
+     "steps": [
+      "Write the first differences.",
+      "If needed, write the second differences.",
+      "Extend the gap pattern and add."
+     ],
+     "why": "Differences strip one layer of the rule, and the layer beneath is usually a familiar list.",
+     "example": {
+      "q": "Find the next term: 2, 5, 10, 17, 26, ...",
+      "steps": [
+       "Gaps: 3, 5, 7, 9.",
+       "Next gap 11 gives $26 + 11$."
+      ],
+      "answer": "37"
+     }
+    },
+    {
+     "id": "sp-t2",
+     "name": "Next term by multiply or divide",
+     "frequency": "common",
+     "howToSpot": "The list grows (or shrinks) fast; dividing neighbours gives equal or stepping ratios.",
+     "formula": null,
+     "steps": [
+      "Divide each term by the one before.",
+      "Read the ratio pattern (equal, or 2, 3, 4, ...).",
+      "Apply the next ratio."
+     ],
+     "why": "Constant or stepping multipliers show up only under division, never under subtraction.",
+     "example": {
+      "q": "Find the next term: 2, 4, 12, 48, 240, ...",
+      "steps": [
+       "Ratios: $\\times 2$, $\\times 3$, $\\times 4$, $\\times 5$.",
+       "Next: $240 \\times 6$."
+      ],
+      "answer": "1440"
+     }
+    },
+    {
+     "id": "sp-t3",
+     "name": "Two alternating chains",
+     "frequency": "common",
+     "howToSpot": "The numbers jump up and down, or one clean rule fits only every other term.",
+     "formula": null,
+     "steps": [
+      "Split into odd and even positions.",
+      "Find each chain's rule.",
+      "Answer from the chain that owns the asked position."
+     ],
+     "why": "Two interleaved simple rules look like chaos until the positions are separated.",
+     "example": {
+      "q": "Find the next term: 5, 9, 7, 11, 9, 13, ...",
+      "steps": [
+       "Odd positions: 5, 7, 9; even: 9, 11, 13.",
+       "7th term: odd chain $+2$ gives 11."
+      ],
+      "answer": "11"
+     }
+    },
+    {
+     "id": "sp-t4",
+     "name": "Squares, cubes and position rules",
+     "frequency": "common",
+     "howToSpot": "The terms sit near familiar squares or cubes — one less, one more, or the cubes themselves.",
+     "formula": null,
+     "steps": [
+      "Compare each term with $n^2$ and $n^3$.",
+      "Find the fixed offset ($\\pm 1$, $\\pm 2$...).",
+      "Apply the rule at the next position."
+     ],
+     "why": "Offset squares and cubes are the most reused hidden rules in exam series.",
+     "example": {
+      "q": "Find the next term: 3, 8, 15, 24, 35, ...",
+      "steps": [
+       "$2^2-1$, $3^2-1$, $4^2-1$, ...",
+       "Next: $7^2 - 1 = 48$."
+      ],
+      "answer": "48"
+     }
+    },
+    {
+     "id": "sp-t5",
+     "name": "Missing term inside the series",
+     "frequency": "very common",
+     "howToSpot": "A '?' sits between two given terms instead of at the end.",
+     "formula": null,
+     "steps": [
+      "Find a rule that fits every known term.",
+      "Apply it at the missing position.",
+      "Check the answer against both neighbours."
+     ],
+     "why": "A middle term must satisfy the rule from both sides, which makes it a strong check.",
+     "example": {
+      "q": "Find the missing term: 7, 14, 28, ?, 112",
+      "steps": [
+       "Each term doubles.",
+       "Missing term: $28 \\times 2 = 56$."
+      ],
+      "answer": "56"
+     }
+    },
+    {
+     "id": "sp-t6",
+     "name": "Wrong number in the series",
+     "frequency": "common",
+     "howToSpot": "'Find the wrong number' — one listed term breaks the rule the others follow.",
+     "formula": null,
+     "steps": [
+      "Find the rule from the terms that agree.",
+      "Build the correct series.",
+      "Point at the position that breaks it."
+     ],
+     "why": "The rule fixed by the majority of terms exposes the single misfit.",
+     "example": {
+      "q": "Find the wrong number: 2, 6, 12, 20, 30, 40, 56",
+      "steps": [
+       "Rule $n(n+1)$: 2, 6, 12, 20, 30, 42, 56.",
+       "The sixth term is 40 — wrong."
+      ],
+      "answer": "40"
+     }
+    }
+   ],
+   "revision": [
+    "Routine: differences, second differences, ratios, alternating chains, position rules.",
+    "Odd gaps, square gaps, doubling gaps cover most series.",
+    "Fast growth: divide neighbours to find the multiplier.",
+    "Jumping lists: split odd and even positions.",
+    "A rule must fit every term; one misfit marks the wrong number.",
+    "Common position rules: $n^2$, $n^3$, $n^2 \\pm 1$, $2^n$, $n(n+1)$, primes."
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "nth term or sum of an AP",
+   "frequency": "very common",
+   "howToSpot": "Rows of seats, monthly savings, wage steps — a quantity changes by the same amount each step, and a term or a total is asked.",
+   "approach": "Name $a$, $d$ and $n$ from the story.\nUse $a + (n-1)d$ for one term, $\\frac{n}{2}[2a + (n-1)d]$ for the total.",
+   "subtopic": "sp-ap",
+   "example": {
+    "q": "A hall has 18 rows of chairs; the first row has 15 chairs and each row has 3 more than the previous row. How many chairs in all?",
+    "solution": "$S_{18} = \\frac{18}{2}[2 \\times 15 + 17 \\times 3] = 9 \\times 81$ = **729**"
+   }
+  },
+  {
+   "pattern": "Middle term of an AP",
+   "frequency": "common",
+   "howToSpot": "The sum of an odd number of AP terms is given, and the middle term — or a term named by its middle position — is asked.",
+   "approach": "Middle term = sum ÷ count.\nFor three terms, name them a − d, a, a + d.",
+   "subtopic": "sp-ap",
+   "example": {
+    "q": "The sum of 15 terms of an AP is 375. Find the 8th term.",
+    "solution": "Middle $= \\frac{375}{15}$ = **25**"
+   }
+  },
+  {
+   "pattern": "Inserting arithmetic means",
+   "frequency": "occasional",
+   "howToSpot": "'Insert k arithmetic means between a and b' — the means, their gap, or one of them is asked.",
+   "approach": "Gap = (b − a)/(k + 1).\nBuild the means by adding the gap repeatedly.",
+   "subtopic": "sp-ap",
+   "example": {
+    "q": "Insert 4 arithmetic means between 8 and 23. Find the largest mean.",
+    "solution": "$d = \\frac{15}{5} = 3$; means 11, 14, 17, 20 → largest is **20**"
+   }
+  },
+  {
+   "pattern": "GP term or finite sum",
+   "frequency": "very common",
+   "howToSpot": "A quantity multiplies by the same factor each step (doubling, tripling) and a later term or a total is asked.",
+   "approach": "One term: $ar^{n-1}$.\nTotal: $\\frac{a(r^n - 1)}{r - 1}$; if $r = 1$, the total is $na$.",
+   "subtopic": "sp-gp",
+   "example": {
+    "q": "Find the sum of the first 6 terms of 4, 12, 36, ...",
+    "solution": "$\\frac{4(3^6 - 1)}{2} = 2 \\times 728$ = **1456**"
+   }
+  },
+  {
+   "pattern": "Sum to infinity",
+   "frequency": "common",
+   "howToSpot": "An endless list with ratio between −1 and 1 (8 + 4 + 2 + ...) and its total is asked.",
+   "approach": "Check $|r| < 1$, then use $\\frac{a}{1-r}$.\nReverse use: given the sum, find $a$ or $r$.",
+   "subtopic": "sp-gp",
+   "example": {
+    "q": "Find the sum 8 + 4 + 2 + 1 + ...",
+    "solution": "$\\frac{8}{1 - 1/2}$ = **16**"
+   }
+  },
+  {
+   "pattern": "HP through reciprocals",
+   "frequency": "common",
+   "howToSpot": "The list has unit fractions like 1/2, 1/5, 1/8 — and a term or term-number is asked.",
+   "approach": "Flip the list into its AP.\nSolve in the AP, flip the final answer back.",
+   "subtopic": "sp-hp-agp",
+   "example": {
+    "q": "Which term of the HP 1/2, 1/5, 1/8, ... is 1/32?",
+    "solution": "AP of reciprocals: 2, 5, 8, ...; $2 + (n-1)3 = 32$, so $n$ = **11**"
+   }
+  },
+  {
+   "pattern": "AGP series sums",
+   "frequency": "occasional",
+   "howToSpot": "Coefficients grow by addition while powers grow by multiplication: 1 + 2·2 + 3·4 + 4·8.",
+   "approach": "Multiply S by r, line up the powers, subtract.\nInfinite case: $\\frac{a}{1-r} + \\frac{dr}{(1-r)^2}$.",
+   "subtopic": "sp-hp-agp",
+   "example": {
+    "q": "Find the sum 1 + 2×2 + 3×4 + 4×8 + 5×16.",
+    "solution": "$S - 2S = 1 + 2 + 4 + 8 + 16 - 160 = -129$, so $S$ = **129**"
+   }
+  },
+  {
+   "pattern": "Direct power sums (Σn, Σn², Σn³)",
+   "frequency": "very common",
+   "howToSpot": "A run of natural numbers, squares or cubes is to be added, often starting past 1.",
+   "approach": "Apply the matching power-sum formula.\nRuns that start past 1: subtract two power sums.",
+   "subtopic": "sp-special",
+   "example": {
+    "q": "Find the sum 21 + 22 + ... + 50.",
+    "solution": "$\\frac{50 \\times 51}{2} - \\frac{20 \\times 21}{2} = 1275 - 210$ = **1065**"
+   }
+  },
+  {
+   "pattern": "Telescoping fraction sums",
+   "frequency": "common",
+   "howToSpot": "A chain of fractions like 1/(1·2) + 1/(2·3) + ... — the denominators overlap.",
+   "approach": "Split each term as a difference of two simple fractions.\nCancel; only the ends survive.",
+   "subtopic": "sp-special",
+   "example": {
+    "q": "Find the sum 1/(1·2) + 1/(2·3) + ... + 1/(9·10).",
+    "solution": "Split: $\\frac{1}{k(k+1)} = \\frac{1}{k} - \\frac{1}{k+1}$; sum $= 1 - \\frac{1}{10}$ = **9/10**"
+   }
+  },
+  {
+   "pattern": "Next, missing or wrong term in a series",
+   "frequency": "very common",
+   "howToSpot": "A bare list of numbers with a '?' or 'find the wrong number' — the reasoning staple of SSC, Railway and Banking papers.",
+   "approach": "Run the routine: differences, second differences, ratios, alternating chains, position rules.\nA wrong number must break the rule that fits every other term.",
+   "subtopic": "sp-pattern-terms",
+   "example": {
+    "q": "Find the wrong number: 2, 6, 12, 20, 30, 40, 56.",
+    "solution": "Rule $n(n+1)$ gives 2, 6, 12, 20, 30, 42, 56 — so **40** is wrong"
+   }
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "sp-s01",
+   "q": "A hall has 18 rows of chairs. The first row has 15 chairs and each row has 3 more chairs than the previous one. How many chairs are there in the hall?",
+   "figure": null,
+   "options": [
+    "711",
+    "720",
+    "729",
+    "738"
+   ],
+   "answer": 2,
+   "solution": "AP with $a = 15$, $d = 3$, $n = 18$.\n$S_{18} = \\dfrac{18}{2}[2 \\times 15 + 17 \\times 3] = 9(30 + 51) = 9 \\times 81 = 729$.",
+   "shortcut": "Last row $= 15 + 17 \\times 3 = 66$; sum $= \\dfrac{18}{2}(15 + 66) = 9 \\times 81 = 729$.",
+   "difficulty": "medium",
+   "subtopic": "sp-ap",
+   "pattern": "AP word problem: rows",
+   "timeSec": 45
+  },
+  {
+   "id": "sp-s02",
+   "q": "Three numbers in GP have a sum of 21 and a product of 216. The numbers are:",
+   "figure": null,
+   "options": [
+    "2, 6, 18",
+    "3, 6, 12",
+    "4, 6, 9",
+    "1, 6, 36"
+   ],
+   "answer": 1,
+   "solution": "Name the terms $\\dfrac{a}{r}, a, ar$; the product is $a^3 = 216$, so $a = 6$.\nSum: $\\dfrac{6}{r} + 6 + 6r = 21 \\Rightarrow 6r^2 - 15r + 6 = 0 \\Rightarrow 2r^2 - 5r + 2 = 0$.\n$r = 2$ (or $\\dfrac{1}{2}$): the numbers are 3, 6, 12.",
+   "shortcut": "$a^3 = 216$ gives $a = 6$; try 3, 6, 12 — sum 21, product 216. Both check.",
+   "difficulty": "medium",
+   "subtopic": "sp-gp",
+   "pattern": "three GP terms: sum and product",
+   "timeSec": 60
+  },
+  {
+   "id": "sp-s03",
+   "q": "The sum of the infinite GP $9 + 3 + 1 + \\dfrac{1}{3} + \\cdots$ is:",
+   "figure": null,
+   "options": [
+    "12",
+    "27/2",
+    "14",
+    "81/4"
+   ],
+   "answer": 1,
+   "solution": "$a = 9$, $r = \\dfrac{1}{3}$.\n$S_\\infty = \\dfrac{9}{1 - 1/3} = \\dfrac{9}{2/3} = \\dfrac{27}{2}$.",
+   "shortcut": "$\\dfrac{a}{1-r}$ with $r = 1/3$ gives 13.5, i.e. $\\dfrac{27}{2}$.",
+   "difficulty": "easy",
+   "subtopic": "sp-gp",
+   "pattern": "sum to infinity",
+   "timeSec": 30
+  },
+  {
+   "id": "sp-s04",
+   "q": "Which term of the HP $\\dfrac{1}{2}, \\dfrac{1}{5}, \\dfrac{1}{8}, \\ldots$ is $\\dfrac{1}{32}$?",
+   "figure": null,
+   "options": [
+    "10th",
+    "11th",
+    "12th",
+    "13th"
+   ],
+   "answer": 1,
+   "solution": "Reciprocals: 2, 5, 8, ... — an AP with $a = 2$, $d = 3$.\n$2 + (n-1)3 = 32 \\Rightarrow 3(n-1) = 30 \\Rightarrow n = 11$.",
+   "shortcut": "Flip to the AP: $(32 - 2) \\div 3 = 10$ jumps after the first term, so the 11th term.",
+   "difficulty": "medium",
+   "subtopic": "sp-hp-agp",
+   "pattern": "HP via reciprocals",
+   "timeSec": 40
+  },
+  {
+   "id": "sp-s05",
+   "q": "Find the sum $\\dfrac{1}{1 \\cdot 2} + \\dfrac{1}{2 \\cdot 3} + \\dfrac{1}{3 \\cdot 4} + \\cdots + \\dfrac{1}{9 \\cdot 10}$.",
+   "figure": null,
+   "options": [
+    "8/9",
+    "9/10",
+    "10/11",
+    "1/10"
+   ],
+   "answer": 1,
+   "solution": "$\\dfrac{1}{k(k+1)} = \\dfrac{1}{k} - \\dfrac{1}{k+1}$.\nSum $= 1 - \\dfrac{1}{10} = \\dfrac{9}{10}$.",
+   "shortcut": "Telescoping: everything between 1 and $-1/10$ cancels.",
+   "difficulty": "medium",
+   "subtopic": "sp-special",
+   "pattern": "telescoping sum",
+   "timeSec": 40
+  }
+ ],
+ "practice": [
+  {
+   "id": "sp-ap-p01",
+   "q": "Find the 10th term of the arithmetic progression 7, 11, 15, 19, ...",
+   "figure": null,
+   "options": [
+    "39",
+    "41",
+    "43",
+    "47"
+   ],
+   "answer": 2,
+   "solution": "$a = 7$, $d = 4$.\n$a_{10} = 7 + 9 \\times 4 = 43$.",
+   "shortcut": "9 jumps, not 10: $7 + 9 \\times 4 = 43$.",
+   "difficulty": "easy",
+   "subtopic": "sp-ap",
+   "pattern": "sp-a1",
+   "timeSec": 25
+  },
+  {
+   "id": "sp-ap-p02",
+   "q": "In an AP, the 4th term is 14 and the 9th term is 34. What is the 15th term?",
+   "figure": null,
+   "options": [
+    "54",
+    "56",
+    "58",
+    "62"
+   ],
+   "answer": 2,
+   "solution": "$5d = 34 - 14 = 20$, so $d = 4$.\n$a = 14 - 3 \\times 4 = 2$.\n$a_{15} = 2 + 14 \\times 4 = 58$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "sp-ap",
+   "pattern": "sp-a1",
+   "timeSec": 40
+  },
+  {
+   "id": "sp-ap-p03",
+   "q": "What is the sum of the first 20 terms of the AP 5, 9, 13, 17, ...?",
+   "figure": null,
+   "options": [
+    "820",
+    "840",
+    "860",
+    "880"
+   ],
+   "answer": 2,
+   "solution": "$S_{20} = \\dfrac{20}{2}[2 \\times 5 + 19 \\times 4] = 10 \\times 86 = 860$.",
+   "shortcut": "Last term $= 5 + 19 \\times 4 = 81$; sum $= \\dfrac{20}{2}(5 + 81) = 860$.",
+   "difficulty": "easy",
+   "subtopic": "sp-ap",
+   "pattern": "sp-a2",
+   "timeSec": 30
+  },
+  {
+   "id": "sp-ap-p04",
+   "q": "How many terms of the AP 21, 18, 15, ... must be taken so that their sum is 54?",
+   "figure": null,
+   "options": [
+    "3 only",
+    "12 only",
+    "3 or 12",
+    "9 only"
+   ],
+   "answer": 2,
+   "solution": "$S_n = \\dfrac{n}{2}[42 - 3(n-1)] = 54$ gives $n^2 - 15n + 36 = 0$.\n$n = 3$ or $n = 12$.\nCheck: $21 + 18 + 15 = 54$, and the 12-term sum (terms fall to $-12$) is also $54$.",
+   "shortcut": "A falling AP can pass the same total twice — test both roots.",
+   "difficulty": "medium",
+   "subtopic": "sp-ap",
+   "pattern": "sp-a2",
+   "timeSec": 55
+  },
+  {
+   "id": "sp-ap-p05",
+   "q": "Which term of the AP 3, 8, 13, 18, ... is 78?",
+   "figure": null,
+   "options": [
+    "15th",
+    "16th",
+    "17th",
+    "18th"
+   ],
+   "answer": 1,
+   "solution": "$3 + (n-1)5 = 78 \\Rightarrow (n-1) = 15 \\Rightarrow n = 16$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "sp-ap",
+   "pattern": "sp-a3",
+   "timeSec": 25
+  },
+  {
+   "id": "sp-ap-p06",
+   "q": "Which term of the AP $-5, -1, 3, 7, \\ldots$ is 91?",
+   "figure": null,
+   "options": [
+    "24th",
+    "25th",
+    "26th",
+    "27th"
+   ],
+   "answer": 1,
+   "solution": "$a = -5$, $d = 4$.\n$-5 + (n-1)4 = 91 \\Rightarrow (n-1) = 24 \\Rightarrow n = 25$.",
+   "shortcut": "Move $-5$ across first: $(91 + 5) \\div 4 = 24$ jumps, so the 25th term.",
+   "difficulty": "medium",
+   "subtopic": "sp-ap",
+   "pattern": "sp-a3",
+   "timeSec": 30
+  },
+  {
+   "id": "sp-ap-p07",
+   "q": "The sum of 15 terms of an AP is 375. What is its 8th term?",
+   "figure": null,
+   "options": [
+    "20",
+    "25",
+    "27",
+    "30"
+   ],
+   "answer": 1,
+   "solution": "The 8th term is the middle of 15 terms.\nMiddle $= \\dfrac{S_{15}}{15} = \\dfrac{375}{15} = 25$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "sp-ap",
+   "pattern": "sp-a4",
+   "timeSec": 25
+  },
+  {
+   "id": "sp-ap-p08",
+   "q": "The sum of three numbers in AP is 27 and their product is 504. The numbers are:",
+   "figure": null,
+   "options": [
+    "3, 9, 15",
+    "4, 9, 14",
+    "5, 9, 13",
+    "6, 9, 12"
+   ],
+   "answer": 1,
+   "solution": "Middle $= \\dfrac{27}{3} = 9$.\nProduct: $9(81 - d^2) = 504 \\Rightarrow d^2 = 25 \\Rightarrow d = 5$.\nNumbers: 4, 9, 14.",
+   "shortcut": "Name the terms $a-d$, $a$, $a+d$; the sum fixes $a = 9$ at once.",
+   "difficulty": "hard",
+   "subtopic": "sp-ap",
+   "pattern": "sp-a4",
+   "timeSec": 75
+  },
+  {
+   "id": "sp-ap-p09",
+   "q": "Four arithmetic means are inserted between 8 and 23. The largest of these means is:",
+   "figure": null,
+   "options": [
+    "17",
+    "19",
+    "20",
+    "21"
+   ],
+   "answer": 2,
+   "solution": "$d = \\dfrac{23 - 8}{5} = 3$.\nMeans: 11, 14, 17, 20. Largest $= 20$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "sp-ap",
+   "pattern": "sp-a5",
+   "timeSec": 30
+  },
+  {
+   "id": "sp-ap-p10",
+   "q": "How many arithmetic means must be inserted between 5 and 35 so that the first mean is one-third of the last mean?",
+   "figure": null,
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "answer": 2,
+   "solution": "First mean $= 5 + d$, last mean $= 35 - d$.\n$5 + d = \\dfrac{35 - d}{3} \\Rightarrow d = 5$.\nGaps $= \\dfrac{30}{5} = 6$, so means $= 6 - 1 = 5$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "sp-ap",
+   "pattern": "sp-a5",
+   "timeSec": 55
+  },
+  {
+   "id": "sp-ap-p11",
+   "q": "A man saves Rs 200 in the first month and increases his savings by Rs 25 every month. His total savings in 12 months (in rupees) are:",
+   "figure": null,
+   "options": [
+    "3900",
+    "4000",
+    "4050",
+    "4100"
+   ],
+   "answer": 2,
+   "solution": "$a = 200$, $d = 25$, $n = 12$.\n$S_{12} = \\dfrac{12}{2}[400 + 11 \\times 25] = 6 \\times 675 = 4050$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "sp-ap",
+   "pattern": "sp-a6",
+   "timeSec": 40
+  },
+  {
+   "id": "sp-ap-p12",
+   "q": "A training fee starts at Rs 800 in the first year and rises by Rs 150 every year. In which year does the total fee paid first exceed Rs 12,000?",
+   "figure": null,
+   "options": [
+    "8th year",
+    "9th year",
+    "10th year",
+    "11th year"
+   ],
+   "answer": 1,
+   "solution": "$S_n = 800n + 150 \\cdot \\dfrac{n(n-1)}{2}$.\n$S_8 = 6400 + 4200 = 10{,}600$; $S_9 = 7200 + 5400 = 12{,}600$.\nSo the total first exceeds Rs 12,000 in the 9th year.",
+   "shortcut": "Test years around the estimate $n \\approx 9$ instead of solving a quadratic.",
+   "difficulty": "hard",
+   "subtopic": "sp-ap",
+   "pattern": "sp-a6",
+   "timeSec": 80
+  },
+  {
+   "id": "sp-ap-p13",
+   "q": "In an AP, the sum of the first $p$ terms equals the sum of the first $q$ terms, where $p \\ne q$. The sum of the first $(p + q)$ terms is:",
+   "figure": null,
+   "options": [
+    "p + q",
+    "(p+q)/2",
+    "pq",
+    "0"
+   ],
+   "answer": 3,
+   "solution": "$S_p - S_q = (p-q)\\left[a + \\dfrac{(p+q-1)d}{2}\\right] = 0$.\nSince $p \\ne q$, the bracket is 0.\n$S_{p+q} = (p+q)\\left[a + \\dfrac{(p+q-1)d}{2}\\right] = 0$.",
+   "shortcut": "Concrete check: 7, 5, 3, ... has $S_2 = S_6 = 12$, and $S_8 = 0$.",
+   "difficulty": "hard",
+   "subtopic": "sp-ap",
+   "pattern": "sp-a2",
+   "timeSec": 90
+  },
+  {
+   "id": "sp-gp-p01",
+   "q": "Find the 5th term of the GP 3, 6, 12, 24, ...",
+   "figure": null,
+   "options": [
+    "42",
+    "46",
+    "48",
+    "96"
+   ],
+   "answer": 2,
+   "solution": "$a = 3$, $r = 2$.\n$a_5 = 3 \\times 2^4 = 48$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "sp-gp",
+   "pattern": "sp-g1",
+   "timeSec": 25
+  },
+  {
+   "id": "sp-gp-p02",
+   "q": "The 3rd term of a GP is 12 and the 6th term is 96. The 10th term is:",
+   "figure": null,
+   "options": [
+    "768",
+    "1024",
+    "1536",
+    "3072"
+   ],
+   "answer": 2,
+   "solution": "$\\dfrac{a_6}{a_3} = r^3 = \\dfrac{96}{12} = 8$, so $r = 2$.\n$a r^2 = 12 \\Rightarrow a = 3$.\n$a_{10} = 3 \\times 2^9 = 1536$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "sp-gp",
+   "pattern": "sp-g1",
+   "timeSec": 45
+  },
+  {
+   "id": "sp-gp-p03",
+   "q": "What is the sum of the first 6 terms of the GP 4, 12, 36, 108, ...?",
+   "figure": null,
+   "options": [
+    "1188",
+    "1296",
+    "1456",
+    "1608"
+   ],
+   "answer": 2,
+   "solution": "$a = 4$, $r = 3$, $n = 6$.\n$S_6 = \\dfrac{4(3^6 - 1)}{2} = \\dfrac{4 \\times 728}{2} = 1456$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "sp-gp",
+   "pattern": "sp-g2",
+   "timeSec": 35
+  },
+  {
+   "id": "sp-gp-p04",
+   "q": "How many terms of the GP 3, 6, 12, ... must be added to get a sum of 189?",
+   "figure": null,
+   "options": [
+    "5",
+    "6",
+    "7",
+    "8"
+   ],
+   "answer": 1,
+   "solution": "$\\dfrac{3(2^n - 1)}{1} = 189 \\Rightarrow 2^n - 1 = 63 \\Rightarrow 2^n = 64$.\n$n = 6$.",
+   "shortcut": "Sums of 3, 6, 12, ... run 3, 9, 21, 45, 93, 189 — six terms.",
+   "difficulty": "medium",
+   "subtopic": "sp-gp",
+   "pattern": "sp-g2",
+   "timeSec": 45
+  },
+  {
+   "id": "sp-gp-p05",
+   "q": "The sum of the infinite GP $8 + 4 + 2 + 1 + \\cdots$ is:",
+   "figure": null,
+   "options": [
+    "12",
+    "15",
+    "16",
+    "18"
+   ],
+   "answer": 2,
+   "solution": "$a = 8$, $r = \\dfrac{1}{2}$.\n$S_\\infty = \\dfrac{8}{1 - 1/2} = 16$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "sp-gp",
+   "pattern": "sp-g3",
+   "timeSec": 25
+  },
+  {
+   "id": "sp-gp-p06",
+   "q": "The sum of an infinite GP is 27 and its first term is 18. The common ratio is:",
+   "figure": null,
+   "options": [
+    "1/4",
+    "1/3",
+    "1/2",
+    "2/3"
+   ],
+   "answer": 1,
+   "solution": "$\\dfrac{18}{1 - r} = 27 \\Rightarrow 1 - r = \\dfrac{2}{3} \\Rightarrow r = \\dfrac{1}{3}$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "sp-gp",
+   "pattern": "sp-g3",
+   "timeSec": 35
+  },
+  {
+   "id": "sp-gp-p07",
+   "q": "Three numbers in GP have a sum of 35 and a product of 1000. The largest number is:",
+   "figure": null,
+   "options": [
+    "10",
+    "15",
+    "20",
+    "25"
+   ],
+   "answer": 2,
+   "solution": "Product $= a^3 = 1000$, so $a = 10$.\n$\\dfrac{10}{r} + 10 + 10r = 35 \\Rightarrow 2r^2 - 5r + 2 = 0 \\Rightarrow r = 2$.\nNumbers: 5, 10, 20. Largest $= 20$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "sp-gp",
+   "pattern": "sp-g4",
+   "timeSec": 60
+  },
+  {
+   "id": "sp-gp-p08",
+   "q": "Three numbers in GP have a product of 64 and a sum of 21. The numbers are:",
+   "figure": null,
+   "options": [
+    "1, 4, 16",
+    "2, 4, 8",
+    "1, 2, 4",
+    "4, 8, 16"
+   ],
+   "answer": 0,
+   "solution": "$a^3 = 64$, so $a = 4$.\n$\\dfrac{4}{r} + 4 + 4r = 21 \\Rightarrow 4r^2 - 17r + 4 = 0 \\Rightarrow r = 4$.\nNumbers: 1, 4, 16.",
+   "shortcut": "Option check: only 1, 4, 16 has product 64 and sum 21.",
+   "difficulty": "medium",
+   "subtopic": "sp-gp",
+   "pattern": "sp-g4",
+   "timeSec": 60
+  },
+  {
+   "id": "sp-gp-p09",
+   "q": "The sum of an infinite GP is 6 and the sum of the squares of its terms is 18. The first term is:",
+   "figure": null,
+   "options": [
+    "2",
+    "3",
+    "4",
+    "6"
+   ],
+   "answer": 2,
+   "solution": "$\\dfrac{a}{1-r} = 6$ and $\\dfrac{a^2}{1-r^2} = 18$.\nDividing: $\\dfrac{a}{1+r} = 3$, and with $a = 6(1-r)$:\n$\\dfrac{36(1-r)^2}{1-r^2} = 18 \\Rightarrow \\dfrac{1-r}{1+r} = \\dfrac{1}{2} \\Rightarrow r = \\dfrac{1}{3}$, $a = 4$.",
+   "shortcut": "Divide the two sums: $\\dfrac{a^2/(1-r^2)}{a/(1-r)} = \\dfrac{a}{1+r} = 3$.",
+   "difficulty": "hard",
+   "subtopic": "sp-gp",
+   "pattern": "sp-g3",
+   "timeSec": 90
+  },
+  {
+   "id": "sp-gp-p10",
+   "q": "A ball is dropped from 12 m and rebounds to half its height each time. The height of its 4th rebound (in m) is:",
+   "figure": null,
+   "options": [
+    "0.5",
+    "0.75",
+    "1.5",
+    "3"
+   ],
+   "answer": 1,
+   "solution": "Rebound heights form a GP: $12 \\times \\dfrac{1}{2}, 12 \\times \\dfrac{1}{4}, \\ldots$\n4th rebound $= 12 \\times \\left(\\dfrac{1}{2}\\right)^4 = 0.75$ m.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "sp-gp",
+   "pattern": "sp-g5",
+   "timeSec": 35
+  },
+  {
+   "id": "sp-gp-p11",
+   "q": "A ball is dropped from a height of 54 m. After each bounce it rises to two-thirds of its previous height. The total distance travelled (in m) before it comes to rest is:",
+   "figure": null,
+   "options": [
+    "216",
+    "252",
+    "270",
+    "324"
+   ],
+   "answer": 2,
+   "solution": "First drop: 54 m, once.\nRebounds: $36 + 24 + 16 + \\cdots = \\dfrac{36}{1 - 2/3} = 108$; travelled twice.\nTotal $= 54 + 2 \\times 108 = 270$ m.",
+   "shortcut": "Formula: $h + \\dfrac{2hr}{1-r} = 54 + \\dfrac{2 \\times 54 \\times 2/3}{1/3} = 270$.",
+   "difficulty": "hard",
+   "subtopic": "sp-gp",
+   "pattern": "sp-g5",
+   "timeSec": 75
+  },
+  {
+   "id": "sp-gp-p12",
+   "q": "A man saves Rs 2 in the first month, Rs 4 in the second, Rs 8 in the third, and so on. His total savings in 10 months (in rupees) are:",
+   "figure": null,
+   "options": [
+    "1023",
+    "1024",
+    "2046",
+    "2048"
+   ],
+   "answer": 2,
+   "solution": "$a = 2$, $r = 2$, $n = 10$.\n$S_{10} = \\dfrac{2(2^{10} - 1)}{1} = 2 \\times 1023 = 2046$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "sp-gp",
+   "pattern": "sp-g6",
+   "timeSec": 45
+  },
+  {
+   "id": "sp-gp-p13",
+   "q": "A bacteria culture has 50 cells and the count doubles every hour. How many cells are there after 6 hours?",
+   "figure": null,
+   "options": [
+    "1600",
+    "3000",
+    "3200",
+    "6400"
+   ],
+   "answer": 2,
+   "solution": "Count is a GP: $a = 50$, $r = 2$.\nAfter 6 hours: $50 \\times 2^6 = 3200$.",
+   "shortcut": "Six doublings: $2^6 = 64$, and $50 \\times 64 = 3200$.",
+   "difficulty": "easy",
+   "subtopic": "sp-gp",
+   "pattern": "sp-g6",
+   "timeSec": 30
+  },
+  {
+   "id": "sp-hp-agp-p01",
+   "q": "Which term of the HP $\\dfrac{1}{2}, \\dfrac{1}{5}, \\dfrac{1}{8}, \\ldots$ is $\\dfrac{1}{32}$?",
+   "figure": null,
+   "options": [
+    "9th",
+    "10th",
+    "11th",
+    "12th"
+   ],
+   "answer": 2,
+   "solution": "Reciprocals: 2, 5, 8, ... — an AP with $a = 2$, $d = 3$.\n$2 + (n-1)3 = 32 \\Rightarrow n = 11$.",
+   "shortcut": "Flip to the AP: $(32 - 2) \\div 3 = 10$ jumps after the first term, so 11th.",
+   "difficulty": "easy",
+   "subtopic": "sp-hp-agp",
+   "pattern": "sp-h1",
+   "timeSec": 30
+  },
+  {
+   "id": "sp-hp-agp-p02",
+   "q": "The 4th term of an HP is $\\dfrac{1}{10}$ and the 10th term is $\\dfrac{1}{28}$. The 15th term is:",
+   "figure": null,
+   "options": [
+    "1/40",
+    "1/41",
+    "1/43",
+    "1/45"
+   ],
+   "answer": 2,
+   "solution": "Reciprocal AP: $a_4 = 10$, $a_{10} = 28$.\n$6d = 18 \\Rightarrow d = 3$; $a = 10 - 9 = 1$.\n15th AP term $= 1 + 14 \\times 3 = 43$, so the HP term is $\\dfrac{1}{43}$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "sp-hp-agp",
+   "pattern": "sp-h2",
+   "timeSec": 55
+  },
+  {
+   "id": "sp-hp-agp-p03",
+   "q": "Which term of the HP $\\dfrac{1}{3}, \\dfrac{1}{6}, \\dfrac{1}{9}, \\ldots$ is $\\dfrac{1}{51}$?",
+   "figure": null,
+   "options": [
+    "15th",
+    "16th",
+    "17th",
+    "18th"
+   ],
+   "answer": 2,
+   "solution": "Reciprocals: 3, 6, 9, ... ($d = 3$).\n$3 + (n-1)3 = 51 \\Rightarrow n = 17$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "sp-hp-agp",
+   "pattern": "sp-h1",
+   "timeSec": 30
+  },
+  {
+   "id": "sp-hp-agp-p04",
+   "q": "The 4th term of an HP is $\\dfrac{1}{22}$ and the 11th term is $\\dfrac{1}{43}$. The 15th term is:",
+   "figure": null,
+   "options": [
+    "1/52",
+    "1/54",
+    "1/55",
+    "1/57"
+   ],
+   "answer": 2,
+   "solution": "Reciprocal AP: $a_4 = 22$, $a_{11} = 43$.\n$7d = 21 \\Rightarrow d = 3$; $a = 22 - 9 = 13$.\n15th AP term $= 13 + 14 \\times 3 = 55$, so the HP term is $\\dfrac{1}{55}$.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "sp-hp-agp",
+   "pattern": "sp-h2",
+   "timeSec": 70
+  },
+  {
+   "id": "sp-hp-agp-p05",
+   "q": "The AM of two numbers is 10 and their GM is 8. Their HM is:",
+   "figure": null,
+   "options": [
+    "5.4",
+    "6",
+    "6.4",
+    "12.5"
+   ],
+   "answer": 2,
+   "solution": "$AM \\times HM = GM^2$.\n$HM = \\dfrac{8^2}{10} = 6.4$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "sp-hp-agp",
+   "pattern": "sp-h3",
+   "timeSec": 30
+  },
+  {
+   "id": "sp-hp-agp-p06",
+   "q": "The AM of two positive numbers is 13 and their GM is 12. The numbers are:",
+   "figure": null,
+   "options": [
+    "6 and 20",
+    "8 and 18",
+    "9 and 17",
+    "10 and 16"
+   ],
+   "answer": 1,
+   "solution": "Sum $= 26$, product $= 144$.\n$t^2 - 26t + 144 = 0$: $t = \\dfrac{26 \\pm 10}{2} = 18$ or $8$.\nThe numbers are 8 and 18.",
+   "shortcut": "Check: AM $= \\dfrac{8+18}{2} = 13$; GM $= \\sqrt{8 \\times 18} = 12$.",
+   "difficulty": "medium",
+   "subtopic": "sp-hp-agp",
+   "pattern": "sp-h3",
+   "timeSec": 55
+  },
+  {
+   "id": "sp-hp-agp-p07",
+   "q": "Find the sum $1 + 2 \\times 2 + 3 \\times 4 + 4 \\times 8 + 5 \\times 16$.",
+   "figure": null,
+   "options": [
+    "99",
+    "109",
+    "129",
+    "149"
+   ],
+   "answer": 2,
+   "solution": "Terms: 1, 4, 12, 32, 80.\n$S - 2S = 1 + 2 + 4 + 8 + 16 - 160 = -129$.\nSo $S = 129$.",
+   "shortcut": "Or add directly: $1 + 4 + 12 + 32 + 80 = 129$.",
+   "difficulty": "medium",
+   "subtopic": "sp-hp-agp",
+   "pattern": "sp-h4",
+   "timeSec": 60
+  },
+  {
+   "id": "sp-hp-agp-p08",
+   "q": "Find the sum $1 \\times 2 + 2 \\times 4 + 3 \\times 8 + 4 \\times 16 + 5 \\times 32 + 6 \\times 64$.",
+   "figure": null,
+   "options": [
+    "510",
+    "576",
+    "642",
+    "702"
+   ],
+   "answer": 2,
+   "solution": "Terms: 2, 8, 24, 64, 160, 384.\nShift-and-subtract with $r = 2$ (or add directly): $S = 642$.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "sp-hp-agp",
+   "pattern": "sp-h4",
+   "timeSec": 85
+  },
+  {
+   "id": "sp-hp-agp-p09",
+   "q": "The sum of the infinite series $1 + \\dfrac{2}{3} + \\dfrac{3}{9} + \\dfrac{4}{27} + \\cdots$ is:",
+   "figure": null,
+   "options": [
+    "3/2",
+    "2",
+    "9/4",
+    "3"
+   ],
+   "answer": 2,
+   "solution": "$a = 1$, $d = 1$, $r = \\dfrac{1}{3}$.\n$S_\\infty = \\dfrac{1}{2/3} + \\dfrac{1/3}{(2/3)^2} = \\dfrac{3}{2} + \\dfrac{3}{4} = \\dfrac{9}{4}$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "sp-hp-agp",
+   "pattern": "sp-h5",
+   "timeSec": 65
+  },
+  {
+   "id": "sp-hp-agp-p10",
+   "q": "The sum of the infinite series $\\dfrac{1}{2} + \\dfrac{2}{4} + \\dfrac{3}{8} + \\dfrac{4}{16} + \\cdots$ is:",
+   "figure": null,
+   "options": [
+    "3/2",
+    "2",
+    "5/2",
+    "3"
+   ],
+   "answer": 1,
+   "solution": "Series: $\\sum \\dfrac{k}{2^k}$, an AGP with $a = \\dfrac{1}{2}$, $d = \\dfrac{1}{2}$, $r = \\dfrac{1}{2}$.\n$S = \\dfrac{1/2}{1/2} + \\dfrac{(1/2)(1/2)}{(1/2)^2} = 1 + 1 = 2$.",
+   "shortcut": "Shift-and-subtract: $2S - S = \\dfrac{1}{2} + \\dfrac{1}{4} + \\dfrac{1}{8} + \\cdots = 1$, so $S = 2$.",
+   "difficulty": "hard",
+   "subtopic": "sp-hp-agp",
+   "pattern": "sp-h5",
+   "timeSec": 75
+  },
+  {
+   "id": "sp-hp-agp-p11",
+   "q": "The reciprocals of the terms of an HP form the AP 4, 7, 10, ... The 8th term of the HP is:",
+   "figure": null,
+   "options": [
+    "1/22",
+    "1/24",
+    "1/25",
+    "1/28"
+   ],
+   "answer": 2,
+   "solution": "8th AP term $= 4 + 7 \\times 3 = 25$.\nSo the 8th HP term is $\\dfrac{1}{25}$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "sp-hp-agp",
+   "pattern": "sp-h1",
+   "timeSec": 35
+  },
+  {
+   "id": "sp-hp-agp-p12",
+   "q": "Which term of the HP $\\dfrac{1}{9}, \\dfrac{1}{14}, \\dfrac{1}{19}, \\ldots$ is $\\dfrac{1}{54}$?",
+   "figure": null,
+   "options": [
+    "9th",
+    "10th",
+    "11th",
+    "12th"
+   ],
+   "answer": 1,
+   "solution": "Reciprocals: 9, 14, 19, ... ($d = 5$).\n$9 + (n-1)5 = 54 \\Rightarrow n = 10$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "sp-hp-agp",
+   "pattern": "sp-h1",
+   "timeSec": 35
+  },
+  {
+   "id": "sp-special-p01",
+   "q": "What is the sum $1 + 2 + 3 + \\cdots + 40$?",
+   "figure": null,
+   "options": [
+    "780",
+    "800",
+    "820",
+    "840"
+   ],
+   "answer": 2,
+   "solution": "$\\dfrac{40 \\times 41}{2} = 820$.",
+   "shortcut": "20 pairs, each 41: $20 \\times 41 = 820$.",
+   "difficulty": "easy",
+   "subtopic": "sp-special",
+   "pattern": "sp-s1",
+   "timeSec": 25
+  },
+  {
+   "id": "sp-special-p02",
+   "q": "What is the sum $21 + 22 + 23 + \\cdots + 50$?",
+   "figure": null,
+   "options": [
+    "1035",
+    "1055",
+    "1065",
+    "1085"
+   ],
+   "answer": 2,
+   "solution": "$\\dfrac{50 \\times 51}{2} - \\dfrac{20 \\times 21}{2} = 1275 - 210 = 1065$.",
+   "shortcut": "30 terms, each averaging $\\dfrac{21+50}{2} = 35.5$: $30 \\times 35.5 = 1065$.",
+   "difficulty": "medium",
+   "subtopic": "sp-special",
+   "pattern": "sp-s1",
+   "timeSec": 40
+  },
+  {
+   "id": "sp-special-p03",
+   "q": "What is the sum $1^2 + 2^2 + 3^2 + \\cdots + 10^2$?",
+   "figure": null,
+   "options": [
+    "385",
+    "380",
+    "550",
+    "3025"
+   ],
+   "answer": 0,
+   "solution": "$\\dfrac{10 \\times 11 \\times 21}{6} = 385$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "sp-special",
+   "pattern": "sp-s2",
+   "timeSec": 30
+  },
+  {
+   "id": "sp-special-p04",
+   "q": "What is the sum $2^2 + 4^2 + 6^2 + \\cdots + 20^2$?",
+   "figure": null,
+   "options": [
+    "770",
+    "1540",
+    "1770",
+    "2870"
+   ],
+   "answer": 1,
+   "solution": "$= 4(1^2 + 2^2 + \\cdots + 10^2) = 4 \\times 385 = 1540$.",
+   "shortcut": "Factor out $2^2$ first; the power sum then runs to 10, not 20.",
+   "difficulty": "medium",
+   "subtopic": "sp-special",
+   "pattern": "sp-s2",
+   "timeSec": 45
+  },
+  {
+   "id": "sp-special-p05",
+   "q": "What is the sum $1^3 + 2^3 + 3^3 + 4^3 + 5^3$?",
+   "figure": null,
+   "options": [
+    "125",
+    "150",
+    "225",
+    "255"
+   ],
+   "answer": 2,
+   "solution": "$\\left[\\dfrac{5 \\times 6}{2}\\right]^2 = 15^2 = 225$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "sp-special",
+   "pattern": "sp-s3",
+   "timeSec": 30
+  },
+  {
+   "id": "sp-special-p06",
+   "q": "What is the sum $1^3 + 2^3 + \\cdots + 8^3$?",
+   "figure": null,
+   "options": [
+    "1152",
+    "1296",
+    "1369",
+    "1444"
+   ],
+   "answer": 1,
+   "solution": "$\\left[\\dfrac{8 \\times 9}{2}\\right]^2 = 36^2 = 1296$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "sp-special",
+   "pattern": "sp-s3",
+   "timeSec": 40
+  },
+  {
+   "id": "sp-special-p07",
+   "q": "What is the sum $1 + 3 + 5 + \\cdots + 25$?",
+   "figure": null,
+   "options": [
+    "144",
+    "156",
+    "169",
+    "196"
+   ],
+   "answer": 2,
+   "solution": "13 odd numbers (since $2 \\times 13 - 1 = 25$).\nSum $= 13^2 = 169$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "sp-special",
+   "pattern": "sp-s4",
+   "timeSec": 25
+  },
+  {
+   "id": "sp-special-p08",
+   "q": "What is the sum $11 + 13 + 15 + \\cdots + 29$?",
+   "figure": null,
+   "options": [
+    "180",
+    "190",
+    "200",
+    "210"
+   ],
+   "answer": 2,
+   "solution": "$= (1 + 3 + \\cdots + 29) - (1 + 3 + \\cdots + 9) = 15^2 - 5^2 = 200$.",
+   "shortcut": "10 terms averaging 20: $10 \\times 20 = 200$.",
+   "difficulty": "medium",
+   "subtopic": "sp-special",
+   "pattern": "sp-s4",
+   "timeSec": 45
+  },
+  {
+   "id": "sp-special-p09",
+   "q": "What is the sum $\\dfrac{1}{1 \\cdot 2} + \\dfrac{1}{2 \\cdot 3} + \\cdots + \\dfrac{1}{9 \\cdot 10}$?",
+   "figure": null,
+   "options": [
+    "1/10",
+    "8/9",
+    "9/10",
+    "10/11"
+   ],
+   "answer": 2,
+   "solution": "$\\dfrac{1}{k(k+1)} = \\dfrac{1}{k} - \\dfrac{1}{k+1}$.\nSum $= 1 - \\dfrac{1}{10} = \\dfrac{9}{10}$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "sp-special",
+   "pattern": "sp-s5",
+   "timeSec": 40
+  },
+  {
+   "id": "sp-special-p10",
+   "q": "What is the sum $\\dfrac{1}{1 \\cdot 5} + \\dfrac{1}{5 \\cdot 9} + \\dfrac{1}{9 \\cdot 13} + \\cdots + \\dfrac{1}{37 \\cdot 41}$?",
+   "figure": null,
+   "options": [
+    "1/41",
+    "9/41",
+    "10/41",
+    "40/41"
+   ],
+   "answer": 2,
+   "solution": "$\\dfrac{1}{k(k+4)} = \\dfrac{1}{4}\\left(\\dfrac{1}{k} - \\dfrac{1}{k+4}\\right)$.\nSum $= \\dfrac{1}{4}\\left(1 - \\dfrac{1}{41}\\right) = \\dfrac{10}{41}$.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "sp-special",
+   "pattern": "sp-s5",
+   "timeSec": 80
+  },
+  {
+   "id": "sp-special-p11",
+   "q": "If $1 + 2 + 3 + \\cdots + n = 325$, then $n$ is:",
+   "figure": null,
+   "options": [
+    "24",
+    "25",
+    "26",
+    "27"
+   ],
+   "answer": 1,
+   "solution": "$\\dfrac{n(n+1)}{2} = 325 \\Rightarrow n(n+1) = 650$.\n$25 \\times 26 = 650$, so $n = 25$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "sp-special",
+   "pattern": "sp-s1",
+   "timeSec": 40
+  },
+  {
+   "id": "sp-special-p12",
+   "q": "What is the sum $1 \\times 2 + 2 \\times 3 + 3 \\times 4 + \\cdots + 10 \\times 11$?",
+   "figure": null,
+   "options": [
+    "420",
+    "440",
+    "462",
+    "550"
+   ],
+   "answer": 1,
+   "solution": "$\\dfrac{n(n+1)(n+2)}{3}$ with $n = 10$:\n$\\dfrac{10 \\times 11 \\times 12}{3} = 440$.",
+   "shortcut": "Or $\\sum (k^2 + k) = 385 + 55 = 440$.",
+   "difficulty": "medium",
+   "subtopic": "sp-special",
+   "pattern": "sp-s6",
+   "timeSec": 50
+  },
+  {
+   "id": "sp-special-p13",
+   "q": "If $1 \\times 2 + 2 \\times 3 + 3 \\times 4 + \\cdots + n(n+1) = 168$, then $n$ is:",
+   "figure": null,
+   "options": [
+    "6",
+    "7",
+    "8",
+    "9"
+   ],
+   "answer": 1,
+   "solution": "$\\dfrac{n(n+1)(n+2)}{3} = 168 \\Rightarrow n(n+1)(n+2) = 504$.\n$7 \\times 8 \\times 9 = 504$, so $n = 7$.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "sp-special",
+   "pattern": "sp-s6",
+   "timeSec": 70
+  },
+  {
+   "id": "sp-pattern-terms-p01",
+   "q": "Find the next term: 2, 5, 10, 17, 26, ...",
+   "figure": null,
+   "options": [
+    "35",
+    "36",
+    "37",
+    "38"
+   ],
+   "answer": 2,
+   "solution": "Gaps: 3, 5, 7, 9 — the odd numbers.\nNext gap 11: $26 + 11 = 37$.\n(The list is $n^2 + 1$: $6^2 + 1 = 37$.)",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "sp-pattern-terms",
+   "pattern": "sp-t1",
+   "timeSec": 30
+  },
+  {
+   "id": "sp-pattern-terms-p02",
+   "q": "Find the next term: 3, 4, 8, 17, 33, ...",
+   "figure": null,
+   "options": [
+    "56",
+    "57",
+    "58",
+    "60"
+   ],
+   "answer": 2,
+   "solution": "Gaps: 1, 4, 9, 16 — the squares.\nNext gap 25: $33 + 25 = 58$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "sp-pattern-terms",
+   "pattern": "sp-t1",
+   "timeSec": 40
+  },
+  {
+   "id": "sp-pattern-terms-p03",
+   "q": "Find the next term: 5, 10, 20, 40, ...",
+   "figure": null,
+   "options": [
+    "60",
+    "70",
+    "80",
+    "90"
+   ],
+   "answer": 2,
+   "solution": "Each term doubles.\nNext $= 80$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "sp-pattern-terms",
+   "pattern": "sp-t2",
+   "timeSec": 25
+  },
+  {
+   "id": "sp-pattern-terms-p04",
+   "q": "Find the next term: 2, 4, 12, 48, 240, ...",
+   "figure": null,
+   "options": [
+    "720",
+    "960",
+    "1440",
+    "1680"
+   ],
+   "answer": 2,
+   "solution": "Multipliers: $\\times 2$, $\\times 3$, $\\times 4$, $\\times 5$.\nNext: $240 \\times 6 = 1440$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "sp-pattern-terms",
+   "pattern": "sp-t2",
+   "timeSec": 45
+  },
+  {
+   "id": "sp-pattern-terms-p05",
+   "q": "Find the next term: 5, 9, 7, 11, 9, 13, ...",
+   "figure": null,
+   "options": [
+    "10",
+    "11",
+    "12",
+    "15"
+   ],
+   "answer": 1,
+   "solution": "Odd positions: 5, 7, 9 ($+2$); even positions: 9, 11, 13 ($+2$).\nThe 7th term belongs to the odd chain: $9 + 2 = 11$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "sp-pattern-terms",
+   "pattern": "sp-t3",
+   "timeSec": 35
+  },
+  {
+   "id": "sp-pattern-terms-p06",
+   "q": "Find the next term: 7, 12, 10, 15, 13, 18, ...",
+   "figure": null,
+   "options": [
+    "15",
+    "16",
+    "17",
+    "21"
+   ],
+   "answer": 1,
+   "solution": "Odd positions: 7, 10, 13 ($+3$); even positions: 12, 15, 18 ($+3$).\n7th term: $13 + 3 = 16$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "sp-pattern-terms",
+   "pattern": "sp-t3",
+   "timeSec": 40
+  },
+  {
+   "id": "sp-pattern-terms-p07",
+   "q": "Find the next term: 1, 8, 27, 64, 125, ...",
+   "figure": null,
+   "options": [
+    "196",
+    "216",
+    "225",
+    "256"
+   ],
+   "answer": 1,
+   "solution": "The terms are $1^3, 2^3, 3^3, 4^3, 5^3$.\nNext: $6^3 = 216$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "sp-pattern-terms",
+   "pattern": "sp-t4",
+   "timeSec": 30
+  },
+  {
+   "id": "sp-pattern-terms-p08",
+   "q": "Find the next term: 3, 8, 15, 24, 35, ...",
+   "figure": null,
+   "options": [
+    "45",
+    "46",
+    "48",
+    "49"
+   ],
+   "answer": 2,
+   "solution": "Terms are $2^2 - 1$, $3^2 - 1$, $4^2 - 1$, ...\nNext: $7^2 - 1 = 48$.",
+   "shortcut": "Gaps are 5, 7, 9, 11 — same answer either way.",
+   "difficulty": "medium",
+   "subtopic": "sp-pattern-terms",
+   "pattern": "sp-t4",
+   "timeSec": 40
+  },
+  {
+   "id": "sp-pattern-terms-p09",
+   "q": "Find the missing term: 7, 14, 28, ?, 112",
+   "figure": null,
+   "options": [
+    "42",
+    "48",
+    "56",
+    "64"
+   ],
+   "answer": 2,
+   "solution": "Each term doubles.\nMissing term $= 28 \\times 2 = 56$ (and $56 \\times 2 = 112$ checks).",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "sp-pattern-terms",
+   "pattern": "sp-t5",
+   "timeSec": 25
+  },
+  {
+   "id": "sp-pattern-terms-p10",
+   "q": "Find the missing term: 2, 3, 6, ?, 14, 15, 30",
+   "figure": null,
+   "options": [
+    "5",
+    "7",
+    "8",
+    "10"
+   ],
+   "answer": 1,
+   "solution": "The rule alternates $+1$ and $\\times 2$: 2, 3, 6, 7, 14, 15, 30.\nMissing term $= 7$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "sp-pattern-terms",
+   "pattern": "sp-t5",
+   "timeSec": 50
+  },
+  {
+   "id": "sp-pattern-terms-p11",
+   "q": "Find the wrong number in the series: 2, 6, 12, 20, 30, 40, 56",
+   "figure": null,
+   "options": [
+    "6",
+    "20",
+    "30",
+    "40"
+   ],
+   "answer": 3,
+   "solution": "The rule $n(n+1)$ gives 2, 6, 12, 20, 30, 42, 56.\nThe sixth term is listed as 40 — it should be 42.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "sp-pattern-terms",
+   "pattern": "sp-t6",
+   "timeSec": 50
+  },
+  {
+   "id": "sp-pattern-terms-p12",
+   "q": "Find the wrong number in the series: 5, 11, 23, 47, 94, 191",
+   "figure": null,
+   "options": [
+    "11",
+    "23",
+    "47",
+    "94"
+   ],
+   "answer": 3,
+   "solution": "The rule $\\times 2 + 1$ gives 5, 11, 23, 47, 95, 191.\nThe fifth term is listed as 94 — it should be 95.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "sp-pattern-terms",
+   "pattern": "sp-t6",
+   "timeSec": 60
+  },
+  {
+   "id": "sp-pattern-terms-p13",
+   "q": "Find the next term: 2, 3, 8, 27, 112, ...",
+   "figure": null,
+   "options": [
+    "448",
+    "492",
+    "565",
+    "620"
+   ],
+   "answer": 2,
+   "solution": "Rules: $\\times 1 + 1$, $\\times 2 + 2$, $\\times 3 + 3$, $\\times 4 + 4$.\nNext: $112 \\times 5 + 5 = 565$.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "sp-pattern-terms",
+   "pattern": "sp-t1",
+   "timeSec": 75
+  },
+  {
+   "id": "sp-pattern-terms-p14",
+   "q": "Find the next term: 1, 4, 27, 256, ...",
+   "figure": null,
+   "options": [
+    "625",
+    "1024",
+    "3125",
+    "4096"
+   ],
+   "answer": 2,
+   "solution": "The terms are $1^1, 2^2, 3^3, 4^4$.\nNext: $5^5 = 3125$.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "sp-pattern-terms",
+   "pattern": "sp-t4",
+   "timeSec": 60
+  }
+ ]
+}

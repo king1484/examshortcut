@@ -1,0 +1,2296 @@
+{
+ "id": "set-theory",
+ "sectionId": "quant",
+ "title": "Set Theory & Venn Diagrams",
+ "order": 22,
+ "importance": "medium",
+ "avgQuestions": {
+  "tier1": 1,
+  "tier2": 2
+ },
+ "summary": "Sets, subsets and Venn diagrams: two- and three-group survey counting shared by SSC, Railway, Banking and CAT papers. A handful of formulas — union, inclusion–exclusion and max–min bounds — solve nearly every question. Most errors come from misreading regions, not from hard algebra.",
+ "subtopics": [
+  {
+   "id": "st-basics",
+   "title": "Sets, Subsets & Power Sets",
+   "concept": "A set is a well-defined collection of objects, and Venn diagrams are its picture. The core skill here is counting: subsets, unions, intersections and complements. Most exam questions are direct formula applications.",
+   "formulas": [
+    {
+     "name": "Number of subsets",
+     "tex": "2^n",
+     "note": "A set with $n$ elements; the power set has $2^n$ elements."
+    },
+    {
+     "name": "Proper subsets",
+     "tex": "2^n - 1",
+     "note": "All subsets except the set itself."
+    },
+    {
+     "name": "Non-empty subsets",
+     "tex": "2^n - 1",
+     "note": "All subsets except the empty set."
+    },
+    {
+     "name": "Non-empty proper subsets",
+     "tex": "2^n - 2",
+     "note": "Drops both the empty set and the full set."
+    },
+    {
+     "name": "Subsets of size r",
+     "tex": "^{n}C_r",
+     "note": "Order does not matter inside a subset."
+    },
+    {
+     "name": "Union of two sets",
+     "tex": "n(A \\cup B) = n(A) + n(B) - n(A \\cap B)",
+     "note": "Subtract the overlap counted twice."
+    },
+    {
+     "name": "De Morgan's laws",
+     "tex": "(A \\cup B)' = A' \\cap B',\\quad (A \\cap B)' = A' \\cup B'",
+     "note": "A complement swaps the join sign."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Know powers of 2 by heart",
+     "body": "Subset questions are pure powers of two. Learn $2, 4, 8, \\ldots, 512$ and every variant (proper, non-empty) becomes a one-step subtraction.",
+     "example": {
+      "q": "A set has 9 elements. How many subsets does it have?",
+      "steps": [
+       "Subsets $= 2^9$.",
+       "$= 512$."
+      ],
+      "answer": "512"
+     }
+    },
+    {
+     "title": "Count what you do not want",
+     "body": "For 'at least one of these elements' or 'non-empty proper', count the unwanted subsets and subtract from $2^n$.",
+     "example": {
+      "q": "A set has 6 elements. How many non-empty proper subsets does it have?",
+      "steps": [
+       "Subsets: $2^6 = 64$.",
+       "Drop the empty and the full set: $64 - 2 = 62$."
+      ],
+      "answer": "62"
+     }
+    },
+    {
+     "title": "De Morgan turns the question into one union",
+     "body": "$n(A' \\cap B')$ looks scary. De Morgan converts it to $n(U) - n(A \\cup B)$, a two-line count.",
+     "example": {
+      "q": "In a universal set of 80 elements, $n(A) = 45$, $n(B) = 35$ and $n(A \\cap B) = 15$. Find $n(A' \\cap B')$.",
+      "steps": [
+       "Union: $45 + 35 - 15 = 65$.",
+       "Complement: $80 - 65 = 15$."
+      ],
+      "answer": "15"
+     }
+    }
+   ],
+   "mistakes": [
+    "Using $2^n$ where a smaller count is asked — proper subsets are $2^n - 1$ and non-empty proper subsets are $2^n - 2$.",
+    "Adding $n(A)$ and $n(B)$ without subtracting the overlap — the common elements get counted twice.",
+    "Reading $n(A - B)$ as $n(A) - n(B)$ — subtract the overlap $n(A \\cap B)$, not the whole of $n(B)$.",
+    "Mixing up De Morgan — $(A \\cup B)'$ becomes $A' \\cap B'$, not $A' \\cup B'$.",
+    "Forgetting the empty set when listing subsets — $\\emptyset$ is a subset of every set.",
+    "Treating equivalent sets as equal — equal needs the same elements; equivalent only the same count."
+   ],
+   "notes": "### What a set is\nA set is a collection of well-defined objects. The objects are called its elements.\n\nWrite a set in roster form: $A = \\{2, 4, 6, 8\\}$. Then $n(A) = 4$, the number of elements.\n\n- $4 \\in A$ means 4 belongs to A.\n- $5 \\notin A$ means 5 does not belong to A.\n\nTwo sets are **equal** when they have exactly the same elements. They are **equivalent** when they only have the same number of elements. $\\{1, 2\\}$ and $\\{3, 4\\}$ are equivalent but not equal.\n\nThe empty set $\\emptyset$ has no elements, so $n(\\emptyset) = 0$. A singleton set has exactly one element.\n\n### Subsets and the power set\n$A$ is a subset of $B$ (written $A \\subseteq B$) when every element of A is also in B.\n\nEach element makes two choices: in or out. So a set with $n$ elements has $2^n$ subsets.\n\nThe set of all subsets is the **power set**. A power set of an $n$-element set has $2^n$ elements.\n\n- Subsets: $2^n$\n- Proper subsets (drop the set itself): $2^n - 1$\n- Non-empty subsets (drop the empty set): $2^n - 1$\n- Non-empty proper subsets: $2^n - 2$\n\n> **Rule:** For $n$ elements: subsets $2^n$, proper $2^n - 1$, non-empty proper $2^n - 2$.\n\nCheck with $A = \\{1, 2, 3\\}$: the 8 subsets are $\\emptyset$, three singletons, three pairs and the full set. Proper: 7. Non-empty proper: 6.\n\n### Subsets of a fixed size\nSubsets with exactly $r$ elements are counted by $^{n}C_r$.\n\nFrom $\\{1, 2, 3, 4, 5, 6\\}$, the subsets of size 2 number $^{6}C_2 = \\dfrac{6 \\times 5}{2} = 15$.\n\nTo count subsets that must contain a given element, put that element in first and choose the rest from the remaining $n - 1$. To count subsets that must avoid an element, choose everything from the other $n - 1$.\n\n> **Tip:** \"At least one of two given elements\" flips to \"avoid both\". Count the avoid case and subtract from $2^n$.\n\n### Union, intersection, difference, complement\nTake $A = \\{1, 2, 3, 4\\}$ and $B = \\{3, 4, 5\\}$.\n\n- Union $A \\cup B = \\{1, 2, 3, 4, 5\\}$, so $n(A \\cup B) = 5$: in A or B or both.\n- Intersection $A \\cap B = \\{3, 4\\}$, so $n(A \\cap B) = 2$: in both.\n- Difference $A - B = \\{1, 2\\}$: in A but not in B.\n- Complement $A' = U - A$: everything of the universal set $U$ outside A.\n\n> **Rule:** $n(A - B) = n(A) - n(A \\cap B)$. Subtract the overlap, not $n(B)$.\n\n### The union counting formula\n$$n(A \\cup B) = n(A) + n(B) - n(A \\cap B)$$\n\nAdding $n(A)$ and $n(B)$ counts the common elements twice. Subtract the overlap once.\n\nWorked: $n(A) = 23$, $n(B) = 18$, $n(A \\cap B) = 9$. Union $= 23 + 18 - 9 = 32$.\n\nThe formula also runs backwards. If the union is known, any one of the other three counts follows from it.\n\n> **Tip:** \"At least one of A or B\" always means the union. Spot those words and reach for this formula.\n\n### De Morgan's laws\nThe complement flips unions and intersections:\n\n$$(A \\cup B)' = A' \\cap B' \\qquad (A \\cap B)' = A' \\cup B'$$\n\nIn words: \"not in A or B\" means \"outside A and outside B\".\n\nExam use: $n(A' \\cap B') = n(U) - n(A \\cup B)$.\n\nWorked: $n(U) = 50$, $n(A) = 30$, $n(B) = 24$, $n(A \\cap B) = 10$. Union $= 44$, so $n(A' \\cap B') = 50 - 44 = 6$.\n\n> **Watch:** A complement turns $\\cup$ into $\\cap$ and $\\cap$ into $\\cup$. Do not keep the same join sign.",
+   "patterns": [
+    {
+     "id": "st-b1",
+     "name": "Number of subsets of a set",
+     "frequency": "very common",
+     "howToSpot": "'How many subsets does a set with n elements have?' — a direct power-set ask.",
+     "formula": "2^n",
+     "steps": [
+      "Count the elements $n$.",
+      "Compute $2^n$.",
+      "For proper subsets subtract 1."
+     ],
+     "why": "Each element independently joins or stays out, so the choices double for every element.",
+     "example": {
+      "q": "A set has 6 elements. How many subsets does it have?",
+      "steps": [
+       "Count the elements: $n = 6$.",
+       "Subsets $= 2^6 = 64$."
+      ],
+      "answer": "64"
+     }
+    },
+    {
+     "id": "st-b2",
+     "name": "Proper and non-empty subsets",
+     "frequency": "common",
+     "howToSpot": "The word 'proper' (drop the set itself) or 'non-empty' (drop the empty set) is attached to subsets.",
+     "formula": "2^n - 1,\\ \\text{non-empty proper} = 2^n - 2",
+     "steps": [
+      "Compute $2^n$.",
+      "Subtract 1 for proper, 1 for non-empty.",
+      "Subtract 2 when both words appear."
+     ],
+     "why": "Proper removes the full set and non-empty removes the empty set from the $2^n$ total.",
+     "example": {
+      "q": "A set has 5 elements. How many non-empty proper subsets does it have?",
+      "steps": [
+       "Subsets: $2^5 = 32$.",
+       "Non-empty proper: $32 - 2 = 30$."
+      ],
+      "answer": "30"
+     }
+    },
+    {
+     "id": "st-b3",
+     "name": "Subsets of a fixed size or containing given elements",
+     "frequency": "common",
+     "howToSpot": "'Exactly 2 elements', 'containing a particular element', or 'at least one of two given elements'.",
+     "formula": "^{n}C_r",
+     "steps": [
+      "Fixed size r: answer $^{n}C_r$.",
+      "Must contain a set of k elements: choose the rest from $n - k$.",
+      "At least one of some elements: $2^n$ minus the subsets avoiding all of them."
+     ],
+     "why": "Fixing or banning elements just shrinks the pool that the remaining choice works on.",
+     "example": {
+      "q": "A set has 6 elements. How many subsets have exactly 2 elements?",
+      "steps": [
+       "Count size-2 subsets: $^{6}C_2$.",
+       "$\\dfrac{6 \\times 5}{2} = 15$."
+      ],
+      "answer": "15"
+     }
+    },
+    {
+     "id": "st-b4",
+     "name": "Union of two sets and the difference region",
+     "frequency": "very common",
+     "howToSpot": "$n(A \\cup B)$ or $n(A - B)$ is asked from counts of $A$, $B$ and $A \\cap B$.",
+     "formula": "n(A \\cup B) = n(A) + n(B) - n(A \\cap B);\\quad n(A - B) = n(A) - n(A \\cap B)",
+     "steps": [
+      "Write the union formula (or the difference formula).",
+      "Substitute the three counts.",
+      "Subtract the overlap for a union; subtract it from $n(A)$ for a difference."
+     ],
+     "why": "The plain sum double-counts the overlap, so it must be removed once.",
+     "example": {
+      "q": "If $n(A) = 21$, $n(B) = 17$ and $n(A \\cap B) = 8$, find $n(A \\cup B)$.",
+      "steps": [
+       "$21 + 17 - 8$.",
+       "$= 30$."
+      ],
+      "answer": "30"
+     }
+    },
+    {
+     "id": "st-b5",
+     "name": "De Morgan complement count",
+     "frequency": "common",
+     "howToSpot": "The ask uses complements like $n(A' \\cap B')$ or words like 'outside both A and B'.",
+     "formula": "n(A' \\cap B') = n(U) - n(A \\cup B)",
+     "steps": [
+      "Convert the complement expression with De Morgan.",
+      "Find $n(A \\cup B)$ from the counts.",
+      "Subtract the union from $n(U)$."
+     ],
+     "why": "'Not (A or B)' equals 'not A and not B', so the complement of the union is the answer.",
+     "example": {
+      "q": "In a universal set of 50 elements, $n(A) = 30$, $n(B) = 24$ and $n(A \\cap B) = 10$. Find $n(A' \\cap B')$.",
+      "steps": [
+       "$A' \\cap B' = (A \\cup B)'$.",
+       "Union: $30 + 24 - 10 = 44$.",
+       "$50 - 44 = 6$."
+      ],
+      "answer": "6"
+     }
+    }
+   ],
+   "revision": [
+    "Subsets of an $n$-element set: $2^n$; power set has $2^n$ elements.",
+    "Proper subsets $2^n - 1$; non-empty proper $2^n - 2$.",
+    "Fixed size $r$: $^{n}C_r$ subsets.",
+    "$n(A \\cup B) = n(A) + n(B) - n(A \\cap B)$.",
+    "$n(A - B) = n(A) - n(A \\cap B)$.",
+    "De Morgan: $(A \\cup B)' = A' \\cap B'$, $(A \\cap B)' = A' \\cup B'$.",
+    "$n(A' \\cap B') = n(U) - n(A \\cup B)$."
+   ]
+  },
+  {
+   "id": "st-two-sets",
+   "title": "Two-Set Venn Diagrams",
+   "concept": "Two overlapping circles inside a rectangle give four regions. Every two-group question is a read-off from those regions once the overlap is found. One formula, $n(A) + n(B) - n(A \\cap B)$, does most of the work.",
+   "formulas": [
+    {
+     "name": "Union",
+     "tex": "n(A \\cup B) = n(A) + n(B) - n(A \\cap B)",
+     "note": "At least one of the two groups."
+    },
+    {
+     "name": "Only A",
+     "tex": "n(A) - n(A \\cap B)",
+     "note": "The wing region outside B."
+    },
+    {
+     "name": "Exactly one",
+     "tex": "n(A) + n(B) - 2\\,n(A \\cap B)",
+     "note": "Only A plus only B."
+    },
+    {
+     "name": "Neither",
+     "tex": "n(U) - n(A \\cup B)",
+     "note": "Outside both circles."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Fill the four regions, then read off",
+     "body": "Get the overlap first, then peel off each wing. Every ask — both, only, exactly one — becomes a subtraction.",
+     "example": {
+      "q": "In a class of 100 students, 60 take History, 55 take Geography and 20 take neither. How many take both subjects?",
+      "steps": [
+       "Union: $100 - 20 = 80$.",
+       "Both: $60 + 55 - 80 = 35$."
+      ],
+      "answer": "35"
+     }
+    },
+    {
+     "title": "Four regions must add to the total",
+     "body": "Only A $+$ only B $+$ both $+$ neither $=$ total. Use it as a check, or to find the one missing region.",
+     "example": {
+      "q": "In a survey of 150 people, 85 like tea, 80 like coffee and 30 like both. How many like neither?",
+      "steps": [
+       "Union: $85 + 80 - 30 = 135$.",
+       "Neither: $150 - 135 = 15$."
+      ],
+      "answer": "15"
+     }
+    },
+    {
+     "title": "Exactly one subtracts the overlap twice",
+     "body": "At least one is the union; exactly one removes the overlap from it. One subtraction apart.",
+     "example": {
+      "q": "In a group of 100 people, 60 like tea, 55 like coffee and 25 like both. How many like exactly one drink?",
+      "steps": [
+       "Union: $60 + 55 - 25 = 90$.",
+       "Exactly one: $90 - 25 = 65$."
+      ],
+      "answer": "65"
+     }
+    }
+   ],
+   "mistakes": [
+    "Putting 'neither' inside the circles — neither $= n(U) - n(A \\cup B)$ and sits outside both.",
+    "Reporting $n(A) - n(A \\cap B)$ as 'both' — that is only A; both is $n(A \\cap B)$ itself.",
+    "Using $n(A) + n(B) - n(A \\cap B)$ for exactly one — subtract the overlap twice.",
+    "Answering the union when 'exactly one' is asked — at least one and exactly one differ by the overlap.",
+    "Dropping one region in the final check — the four regions must add exactly to the total.",
+    "Forgetting that 'every person likes at least one' fixes the union at the group size."
+   ],
+   "notes": "### The picture: two circles in a box\nDraw two overlapping circles inside a rectangle. The rectangle is the universal set.\n\nThe four regions are: only A, only B, both, and neither. Their counts always add to the total.\n\nWorked: a class of 60 has 35 tea drinkers and 30 coffee drinkers, and 10 drink neither.\n\n1. At least one drink: $60 - 10 = 50$.\n2. Both: $35 + 30 - 50 = 15$.\n3. Only tea: $35 - 15 = 20$; only coffee: $30 - 15 = 15$.\n4. Check: $20 + 15 + 15 + 10 = 60$.\n\n> **Rule:** only A $= n(A) - n(A \\cap B)$. Get the overlap first; every other region follows.\n\n### The union formula\n$$n(A \\cup B) = n(A) + n(B) - n(A \\cap B)$$\n\n\"Tea or coffee\" means at least one of the two. The plain sum counts the overlap twice, so subtract it once.\n\nThe formula runs backwards too: $n(A \\cap B) = n(A) + n(B) - n(A \\cup B)$.\n\nWhen every person belongs to at least one group, the union is the whole group size.\n\nWorked: an office of 90 employees has 55 Hindi speakers and 40 English speakers, and everyone speaks at least one. Both $= 55 + 40 - 90 = 5$.\n\n> **Example:** A class of 70 has 45 chess players and 40 card players, with 10 playing neither. The union is $60$, so both $= 45 + 40 - 60 = 25$.\n\n### The neither region\n\"Neither\" sits outside both circles. Count the union first, then subtract from the total.\n\n$$\\text{neither} = n(U) - n(A \\cup B)$$\n\nWorked: 90 people, 50 like cricket, 45 like football, 25 like both. Union $= 50 + 45 - 25 = 70$, so neither $= 90 - 70 = 20$.\n\n> **Tip:** \"At least one\" and \"neither\" always add to the total. They are complements.\n\n### Exactly one\n\"Exactly one\" counts the two wing regions only.\n\n$$\\text{exactly one} = n(A) + n(B) - 2\\,n(A \\cap B)$$\n\nWorked: 200 people, 120 read paper A, 90 read B, 45 read both. Exactly one $= 210 - 90 = 120$.\n\n> **Watch:** \"At least one\" subtracts the overlap once; \"exactly one\" subtracts it twice.\n\n### Reading the words carefully\nThe wording decides the region.\n\n- \"like A or B\" — usually the union.\n- \"like A or B but not both\" — exactly one.\n- \"do not like either\" — neither.\n- \"only A\" — the wing region.\n\nUnderline the deciding words before computing. One word changes the answer.\n\nCompare two asks on the same data: 60 people, 35 speak Hindi, 30 speak English, everyone speaks at least one.\n\n- \"How many speak both?\" gives $35 + 30 - 60 = 5$.\n- \"How many speak only Hindi?\" gives $35 - 5 = 30$.\n\n> **Note:** Options in the exam usually include the union answer for an exactly-one question. Read twice, then answer.\n\n### Ratio problems on four regions\nWhen a region is a multiple of another, name the smaller one $x$.\n\nWorked: a class of 45, everyone plays cricket or badminton, only-cricket is twice only-badminton, and 9 play both.\n\n1. Let only badminton $= x$; only cricket $= 2x$.\n2. $x + 2x + 9 = 45$, so $x = 12$.\n3. Badminton players $= 12 + 9 = 21$.\n\n> **Note:** The four-region sum is one linear equation. Ratios only fix the coefficients.",
+   "patterns": [
+    {
+     "id": "st-t1",
+     "name": "Find both from totals and neither",
+     "frequency": "very common",
+     "howToSpot": "Two group sizes, the total, and a 'neither' line; the overlap is asked.",
+     "formula": "n(A \\cap B) = n(A) + n(B) - n(A \\cup B)",
+     "steps": [
+      "Union $=$ total $-$ neither.",
+      "Both $= n(A) + n(B) -$ union.",
+      "Check the four regions add to the total."
+     ],
+     "why": "Removing the neither block first makes the union the sum the formula needs.",
+     "example": {
+      "q": "In a group of 120 people, 70 like tea and 65 like coffee. If 15 like neither, how many like both?",
+      "steps": [
+       "At least one: $120 - 15 = 105$.",
+       "Both: $70 + 65 - 105 = 30$."
+      ],
+      "answer": "30"
+     }
+    },
+    {
+     "id": "st-t2",
+     "name": "Find neither from totals and both",
+     "frequency": "very common",
+     "howToSpot": "Group sizes and the overlap are given; 'how many like none' is asked.",
+     "formula": "\\text{neither} = n(U) - n(A \\cup B)",
+     "steps": [
+      "Union $= n(A) + n(B) -$ both.",
+      "Neither $=$ total $-$ union.",
+      "Keep the neither block outside the circles."
+     ],
+     "why": "The union covers everyone in a circle, so the total minus it is exactly the outside block.",
+     "example": {
+      "q": "In a survey of 90 people, 50 like cricket and 45 like football, and 25 like both. How many like neither?",
+      "steps": [
+       "Union: $50 + 45 - 25 = 70$.",
+       "Neither: $90 - 70 = 20$."
+      ],
+      "answer": "20"
+     }
+    },
+    {
+     "id": "st-t3",
+     "name": "Only-A / only-B regions",
+     "frequency": "very common",
+     "howToSpot": "'Only tea', 'only Hindi', 'have a bicycle but not a scooter' — a single wing region is asked.",
+     "formula": "n(A) - n(A \\cap B)",
+     "steps": [
+      "Find the overlap first.",
+      "Subtract it from the group size.",
+      "State the wing region."
+     ],
+     "why": "The overlap is the part of the circle shared with the other, so removing it leaves the pure wing.",
+     "example": {
+      "q": "In a class of 100 students, 60 take History, 55 take Geography and 20 take neither. How many take only History?",
+      "steps": [
+       "Union: $100 - 20 = 80$.",
+       "Both: $60 + 55 - 80 = 35$.",
+       "Only History: $60 - 35 = 25$."
+      ],
+      "answer": "25"
+     }
+    },
+    {
+     "id": "st-t4",
+     "name": "Exactly one of the two",
+     "frequency": "common",
+     "howToSpot": "'Exactly one', 'but not both', or 'one of the two only' appears in the question.",
+     "formula": "n(A) + n(B) - 2\\,n(A \\cap B)",
+     "steps": [
+      "Compute the union.",
+      "Subtract the overlap once more.",
+      "Or subtract $2 \\times$ both from the plain sum."
+     ],
+     "why": "Exactly one keeps the wings and drops the shared middle completely.",
+     "example": {
+      "q": "In a group of 300 people, 180 speak Hindi, 150 speak English and 60 speak both. How many speak exactly one language?",
+      "steps": [
+       "Union: $180 + 150 - 60 = 270$.",
+       "Exactly one: $270 - 60 = 210$."
+      ],
+      "answer": "210"
+     }
+    },
+    {
+     "id": "st-t5",
+     "name": "Total when everyone is covered",
+     "frequency": "common",
+     "howToSpot": "'Every person plays at least one' with the group size asked.",
+     "formula": "n(U) = n(A \\cup B)",
+     "steps": [
+      "Note that neither is 0.",
+      "Total $=$ union.",
+      "Apply the union formula."
+     ],
+     "why": "With no outside block, the total and the union are the same number.",
+     "example": {
+      "q": "Every student of a class studies at least one of Hindi or English. 18 study Hindi, 14 study English and 6 study both. How many students are in the class?",
+      "steps": [
+       "Total $= n(H \\cup E)$.",
+       "$18 + 14 - 6 = 26$."
+      ],
+      "answer": "26"
+     }
+    },
+    {
+     "id": "st-t6",
+     "name": "Ratio between the wing regions",
+     "frequency": "occasional",
+     "howToSpot": "'Only cricket is twice only badminton' — one region is a multiple of another.",
+     "formula": null,
+     "steps": [
+      "Name the smaller wing $x$.",
+      "Write the four-region sum with the multiples of $x$.",
+      "Solve the linear equation.",
+      "Add the overlap back for the full group size if asked."
+     ],
+     "why": "The four regions add to the total, so the ratio turns it into one linear equation.",
+     "example": {
+      "q": "In a class of 48 students, every student plays at least one of cricket or badminton. The number playing only cricket is twice the number playing only badminton. If 9 play both, how many play badminton?",
+      "steps": [
+       "Let only badminton $= x$: $x + 2x + 9 = 48$.",
+       "$3x = 39$, so $x = 13$.",
+       "Badminton $= 13 + 9 = 22$."
+      ],
+      "answer": "22"
+     }
+    }
+   ],
+   "revision": [
+    "Union: $n(A) + n(B) - n(A \\cap B)$.",
+    "Only A $= n(A) - n(A \\cap B)$.",
+    "Exactly one $= n(A) + n(B) - 2n(A \\cap B)$.",
+    "Neither $= n(U) - n(A \\cup B)$.",
+    "Four regions add to the total: wings $+$ both $+$ neither $= n(U)$.",
+    "'Every person at least one' means the union is the whole total."
+   ]
+  },
+  {
+   "id": "st-three-sets",
+   "title": "Three-Set Venn Diagrams",
+   "concept": "Three overlapping circles create seven regions inside the union. The union formula adds the singles, subtracts the pairs and adds back the triple. Word problems hide one region and give the rest.",
+   "formulas": [
+    {
+     "name": "Union of three sets",
+     "tex": "n(A \\cup B \\cup C) = n(A) + n(B) + n(C) - p_{AB} - p_{BC} - p_{CA} + t",
+     "note": "$p$ are the pair intersections and $t$ the triple."
+    },
+    {
+     "name": "Exactly two",
+     "tex": "p_{AB} + p_{BC} + p_{CA} - 3t",
+     "note": "Petals only; the triple is removed from each pair."
+    },
+    {
+     "name": "At least two",
+     "tex": "p_{AB} + p_{BC} + p_{CA} - 2t",
+     "note": "Exactly two plus the triple."
+    },
+    {
+     "name": "Exactly one",
+     "tex": "n(A) + n(B) + n(C) - 2(p_{AB} + p_{BC} + p_{CA}) + 3t",
+     "note": "The three wings together."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Add singles, subtract pairs, add the triple",
+     "body": "One line gives the union. Sing the sign pattern $+ + +\\ -\\ -\\ -\\ +$ while writing it.",
+     "example": {
+      "q": "For three sets, $n(A) = 22$, $n(B) = 18$, $n(C) = 16$, $n(A \\cap B) = 7$, $n(B \\cap C) = 5$, $n(A \\cap C) = 6$ and $n(A \\cap B \\cap C) = 2$. Find $n(A \\cup B \\cup C)$.",
+      "steps": [
+       "Singles: $56$; pairs: $18$.",
+       "$56 - 18 + 2 = 40$."
+      ],
+      "answer": "40"
+     }
+    },
+    {
+     "title": "Exactly two: pair sum minus three times the triple",
+     "body": "Each pair count hides the triple. Subtract it three times to strip it out of all three pairs.",
+     "example": {
+      "q": "Pair counts are 16, 12 and 10, and 5 elements lie in all three sets. How many lie in exactly two sets?",
+      "steps": [
+       "Pair sum: $38$.",
+       "Exactly two: $38 - 3 \\times 5 = 23$."
+      ],
+      "answer": "23"
+     }
+    },
+    {
+     "title": "Exactly one: singles minus twice the pairs plus three times the triple",
+     "body": "The wings survive only after both double and triple counting is removed.",
+     "example": {
+      "q": "$n(A) = 24$, $n(B) = 20$, $n(C) = 16$, $n(A \\cap B) = 8$, $n(B \\cap C) = 6$, $n(A \\cap C) = 7$, $n(A \\cap B \\cap C) = 2$. How many elements lie in exactly one set?",
+      "steps": [
+       "Singles: $60$; pairs: $21$.",
+       "$60 - 42 + 6 = 24$."
+      ],
+      "answer": "24"
+     }
+    }
+   ],
+   "mistakes": [
+    "Subtracting the triple the wrong number of times — the union formula adds it back once after the pairs are subtracted.",
+    "Using pair sums directly as 'exactly two' — subtract $3t$ for exactly two and $2t$ for at least two.",
+    "Forgetting that 'at least two' includes the all-three region.",
+    "Adding the singles and calling it the union — every overlap must be removed first.",
+    "Leaving a negative region in the diagram — a negative count means the data is inconsistent.",
+    "Mixing 'exactly one' with 'at least one' — they differ by every multi-set region."
+   ],
+   "notes": "### The union formula for three sets\n$$n(A \\cup B \\cup C) = n(A) + n(B) + n(C) - n(A \\cap B) - n(B \\cap C) - n(A \\cap C) + n(A \\cap B \\cap C)$$\n\nSay it as: add singles, subtract pairs, add back the triple.\n\nWhy: a point in exactly two sets is counted twice by the singles, so subtract one copy. A point in all three is counted three times by the singles and three times removed by the pairs — so add one copy back.\n\nWorked: $n(A) = 30$, $n(B) = 25$, $n(C) = 20$; pairs $10, 8, 9$; triple $4$.\n\nUnion $= 75 - 27 + 4 = 52$.\n\n> **Rule:** The signs run $+, +, +, -, -, -, +$ in that order. Write them before substituting.\n\n### The seven regions\nThree circles cut the union into seven regions: three \"only\" wings, three \"exactly two\" petals and one middle.\n\nFill the regions in this order:\n\n1. Start from the middle: the triple count.\n2. Each petal: pair count minus the triple.\n3. Each wing: single minus its two petals minus the triple.\n\nWorked: pairs $10, 8, 9$, triple $4$: petals are $6, 4, 5$.\n\n> **Tip:** Fill all seven regions once and every sub-question becomes a read-off.\n\n### Exactly two and at least two\nPair sums count the triple region three times — once inside each pair.\n\n$$\\text{exactly two} = (p_{AB} + p_{BC} + p_{CA}) - 3t$$\n$$\\text{at least two} = (p_{AB} + p_{BC} + p_{CA}) - 2t$$\n\nWorked: pairs $16, 14, 12$, triple $6$. Exactly two $= 42 - 18 = 24$; at least two $= 42 - 12 = 30$.\n\nExactly two and the triple cannot overlap, so at least two is just their sum: $24 + 6 = 30$.\n\n### Exactly one\n$$\\text{exactly one} = n(A) + n(B) + n(C) - 2(p_{AB} + p_{BC} + p_{CA}) + 3t$$\n\nWorked: singles $26, 22, 18$; pairs $9, 7, 5$; triple $2$.\n\nExactly one $= 66 - 42 + 6 = 30$.\n\n> **Watch:** 'At least two' includes the triple; 'exactly two' does not. One word changes the coefficient.\n\n### Solving backwards\nWord problems usually hide the triple. Put $t$ in the formula and solve.\n\nWorked: union $70$; singles $42, 36, 30$; pairs $18, 14, 12$.\n\n$70 = 108 - 44 + t$, so $t = 6$.\n\nWhen \"none\" is mentioned, first write union $= $ total $-$ none, then solve for $t$.\n\n> **Note:** \"Every person likes at least one\" means the union equals the total. That sentence is often the key equation.\n\n### The sanity check\nNo region can be negative. Compute the wings; a negative wing means the data is impossible.\n\nEach wing: $n(A) - p_{AB} - p_{CA} + t$. If this drops below zero, the given numbers cannot all be true.\n\nOptions that force a negative region are wrong choices, not answers.\n\n> **Watch:** Before trusting any answer, check all seven regions are non-negative and add to the union.",
+   "patterns": [
+    {
+     "id": "st-h1",
+     "name": "Union of three sets",
+     "frequency": "very common",
+     "howToSpot": "Three singles, three pairs and a triple are given; 'at least one' is asked.",
+     "formula": "n(A \\cup B \\cup C) = \\Sigma\\,n(A) - \\Sigma\\,n(A \\cap B) + n(A \\cap B \\cap C)",
+     "steps": [
+      "Add the three singles.",
+      "Subtract the three pair counts.",
+      "Add the triple back."
+     ],
+     "why": "Each overlap is removed as many times as it was counted in excess.",
+     "example": {
+      "q": "For three sets, $n(A) = 25$, $n(B) = 20$, $n(C) = 15$, $n(A \\cap B) = 8$, $n(B \\cap C) = 6$, $n(A \\cap C) = 5$ and $n(A \\cap B \\cap C) = 3$. Find $n(A \\cup B \\cup C)$.",
+      "steps": [
+       "Singles: $60$.",
+       "Pairs: $19$.",
+       "$60 - 19 + 3 = 44$."
+      ],
+      "answer": "44"
+     }
+    },
+    {
+     "id": "st-h2",
+     "name": "Reverse-solve the triple intersection",
+     "frequency": "common",
+     "howToSpot": "The union (or 'everyone covered') is known, and $n(A \\cap B \\cap C)$ is asked.",
+     "formula": "t = n(A \\cup B \\cup C) - \\Sigma\\,n(A) + \\Sigma\\,n(A \\cap B)",
+     "steps": [
+      "Write the union formula with $t$.",
+      "Move every known count to one side.",
+      "Solve for $t$."
+     ],
+     "why": "The union equation is linear in $t$, so one known union pins it down.",
+     "example": {
+      "q": "$n(A \\cup B \\cup C) = 55$ with $n(A) = 32$, $n(B) = 28$, $n(C) = 24$, $n(A \\cap B) = 12$, $n(B \\cap C) = 9$ and $n(A \\cap C) = 10$. Find $n(A \\cap B \\cap C)$.",
+      "steps": [
+       "Singles: $84$; pairs: $31$.",
+       "$55 = 84 - 31 + t$.",
+       "$t = 2$."
+      ],
+      "answer": "2"
+     }
+    },
+    {
+     "id": "st-h3",
+     "name": "Exactly two regions",
+     "frequency": "common",
+     "howToSpot": "'Exactly two' with three groups — the petals of the diagram are asked.",
+     "formula": "\\Sigma\\,n(A \\cap B) - 3t",
+     "steps": [
+      "Add the three pair counts.",
+      "Subtract $3 \\times$ the triple.",
+      "Read off the answer."
+     ],
+     "why": "Each pair sum includes the triple once, so stripping the triple needs three subtractions.",
+     "example": {
+      "q": "In a group, 45 like tea, 40 like coffee and 35 like milk. 18 like tea and coffee, 12 like coffee and milk, 15 like tea and milk, and 5 like all three. How many like exactly two drinks?",
+      "steps": [
+       "Pair sum: $18 + 12 + 15 = 45$.",
+       "Exactly two: $45 - 3 \\times 5 = 30$."
+      ],
+      "answer": "30"
+     }
+    },
+    {
+     "id": "st-h4",
+     "name": "Exactly one region",
+     "frequency": "common",
+     "howToSpot": "'Exactly one' with three groups — the wings of the diagram are asked.",
+     "formula": "\\Sigma\\,n(A) - 2\\,\\Sigma\\,n(A \\cap B) + 3t",
+     "steps": [
+      "Add the three singles.",
+      "Subtract twice the pair sum.",
+      "Add three times the triple."
+     ],
+     "why": "A wing element is counted once, a petal twice and the middle three times by the singles.",
+     "example": {
+      "q": "$n(A) = 35$, $n(B) = 30$, $n(C) = 25$, $n(A \\cap B) = 12$, $n(B \\cap C) = 10$, $n(A \\cap C) = 8$ and $n(A \\cap B \\cap C) = 3$. How many elements lie in exactly one set?",
+      "steps": [
+       "Singles: $90$; pairs: $30$.",
+       "$90 - 60 + 9 = 39$."
+      ],
+      "answer": "39"
+     }
+    },
+    {
+     "id": "st-h5",
+     "name": "At least two regions",
+     "frequency": "common",
+     "howToSpot": "'At least two' or 'two or more' with three groups.",
+     "formula": "\\Sigma\\,n(A \\cap B) - 2t",
+     "steps": [
+      "Add the three pair counts.",
+      "Subtract $2 \\times$ the triple.",
+      "Or add exactly two and the triple."
+     ],
+     "why": "The triple is inside every pair, so two of its three copies must be removed.",
+     "example": {
+      "q": "In a group, 45 like tea, 40 like coffee and 35 like milk; 20 like tea and coffee, 15 like coffee and milk, 12 like tea and milk, and 5 like all three. How many like at least two drinks?",
+      "steps": [
+       "Pair sum: $47$.",
+       "At least two: $47 - 2 \\times 5 = 37$."
+      ],
+      "answer": "37"
+     }
+    },
+    {
+     "id": "st-h6",
+     "name": "None of the three",
+     "frequency": "common",
+     "howToSpot": "'How many play none / like neither of the three' with a fixed total.",
+     "formula": "\\text{none} = n(U) - n(A \\cup B \\cup C)",
+     "steps": [
+      "Compute the union first.",
+      "Subtract it from the total.",
+      "Check the union does not exceed the total."
+     ],
+     "why": "The union covers everyone inside a circle, so the leftover is the outside block.",
+     "example": {
+      "q": "In a class of 75 students, 40 play cricket, 35 play hockey and 30 play football. 15 play cricket and hockey, 12 play hockey and football, 10 play cricket and football, and 3 play all three. How many play none?",
+      "steps": [
+       "Union: $105 - 37 + 3 = 71$.",
+       "None: $75 - 71 = 4$."
+      ],
+      "answer": "4"
+     }
+    }
+   ],
+   "revision": [
+    "Union: singles $-$ pairs $+$ triple.",
+    "Exactly two: pair sum $-\\,3t$.",
+    "At least two: pair sum $-\\,2t$.",
+    "Exactly one: singles $-\\,2 \\times$ pairs $+\\,3t$.",
+    "None: total $-$ union.",
+    "Fill seven regions once; read every answer off.",
+    "A negative region means inconsistent data."
+   ]
+  },
+  {
+   "id": "st-max-min",
+   "title": "Maximum–Minimum Region Problems",
+   "concept": "When totals are fixed, regions cannot take any size they like. Maximum and minimum questions ask for the extreme possible size of one region. Two bounds decide everything: the union cannot exceed the total, and no region can be negative.",
+   "formulas": [
+    {
+     "name": "Maximum overlap",
+     "tex": "\\max n(A \\cap B) = \\min(n(A), n(B))",
+     "note": "One set wholly inside the other."
+    },
+    {
+     "name": "Minimum overlap",
+     "tex": "\\min n(A \\cap B) = \\max(0,\\ n(A) + n(B) - N)",
+     "note": "$N$ is the size of the universal set."
+    },
+    {
+     "name": "Maximum neither",
+     "tex": "N - \\max(n(A), n(B))",
+     "note": "Shrink the union to its largest member set."
+    },
+    {
+     "name": "Minimum triple",
+     "tex": "\\max(0,\\ n(A) + n(B) + n(C) - 2N)",
+     "note": "Union fixed at $N$; everyone covered."
+    },
+    {
+     "name": "Maximum triple",
+     "tex": "\\min(n(A), n(B), n(C))",
+     "note": "All three sets nested."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Push the smaller set inside the larger",
+     "body": "For a maximum overlap, nest the circles. The smaller group sits entirely inside the bigger one.",
+     "example": {
+      "q": "In a class of 45 students, 28 play cricket and 22 play football. What is the maximum number who play both?",
+      "steps": [
+       "Maximum $= \\min(28, 22)$.",
+       "$= 22$."
+      ],
+      "answer": "22"
+     }
+    },
+    {
+     "title": "Min overlap: stretch the union to its limit",
+     "body": "Let the two circles cover as many people as the total allows. The forced sharing is the answer.",
+     "example": {
+      "q": "In a group of 80 people, 50 like tea and 45 like coffee. What is the minimum number who like both?",
+      "steps": [
+       "$50 + 45 - 80$.",
+       "$= 15$."
+      ],
+      "answer": "15"
+     }
+    },
+    {
+     "title": "Leftover demand forces the triple",
+     "body": "Singles beyond $2N$ cannot fit outside the middle. Subtract $2N$ from the singles sum.",
+     "example": {
+      "q": "In a group of 120 people where everyone likes at least one drink, 110 like tea, 90 like coffee and 80 like milk. What is the minimum number who like all three?",
+      "steps": [
+       "Singles: $280$.",
+       "$280 - 2 \\times 120 = 40$."
+      ],
+      "answer": "40"
+     }
+    }
+   ],
+   "mistakes": [
+    "Calling $n(A) + n(B) - N$ the maximum overlap — that is the minimum when the total is fixed.",
+    "Allowing a negative minimum — write $\\max(0,\\ n(A) + n(B) - N)$; counts cannot go below zero.",
+    "Comparing with the wrong total — the bound uses the universe size, not the sum of the groups.",
+    "Assuming the minimum overlap is always 0 — with a tight total it is forced above zero.",
+    "Maximising 'neither' by shrinking both circles — only the largest set must stay whole.",
+    "Skipping the achievability check — every Venn region must stay non-negative at your extreme."
+   ],
+   "notes": "### Two bounds run everything\nRegion sizes cannot wander freely. Two rules bind them:\n\n1. The union never exceeds the total: $n(A \\cup B) \\le N$.\n2. No region is negative.\n\nMaximum questions push a region up; minimum questions push it down. Apply the two rules and the extremes fall out.\n\n### Maximum overlap of two sets\nOne circle can sit wholly inside the other.\n\n$$\\max n(A \\cap B) = \\min(n(A), n(B))$$\n\nWorked: 120 like cricket and 100 like football in a group of 200. Maximum both $= 100$ — every football lover also likes cricket.\n\n### Minimum overlap of two sets\nStretch the union to its largest, $N$. The overlap is then squeezed to its smallest.\n\n$$\\min n(A \\cap B) = \\max\\left(0,\\ n(A) + n(B) - N\\right)$$\n\nWorked: in a group of 100, 60 drink tea and 50 drink coffee. Minimum both $= 60 + 50 - 100 = 10$.\n\n> **Rule:** If $n(A) + n(B) > N$, at least $n(A) + n(B) - N$ people must sit in both. Counts cannot be negative, so keep the floor at 0.\n\n### Maximum 'neither' and minimum union\n\"Neither\" is largest when the union is smallest, and the union cannot drop below its largest member set.\n\n$$\\max \\text{neither} = N - \\max(n(A), n(B))$$\n\nWorked: 50 students, 30 like maths and 25 like physics. Maximum neither $= 50 - 30 = 20$: everyone who likes physics also likes maths.\n\nThe same bound gives the minimum union of three sets: it is the largest of the three counts.\n\n### Three sets and the triple\nThe same two bounds fix the triple's limits.\n\n- Maximum triple $= \\min(n(A), n(B), n(C))$.\n- Minimum triple $= \\max\\left(0,\\ n(A) + n(B) + n(C) - 2N\\right)$.\n\nWhy the minimum: a person outside the triple sits in at most two of the three sets. The singles total can therefore hide at most $2N$ memberships outside the middle, and whatever is left over must sit in all three.\n\nWorked: everyone in a group of 150 likes at least one of tea (120), coffee (110) and milk (100). Minimum triple $= 330 - 300 = 30$.\n\n> **Watch:** The formula needs the union fixed at $N$. If people may like none, replace $N$ by the number who like at least one.\n\n### Extremes of the derived regions\nExactly one and at least two move opposite to the overlap.\n\n- Exactly one is smallest when \"both\" is largest: $n(A) + n(B) - 2\\min(n(A), n(B))$.\n- For three sets, at least two $= n(A) + n(B) + n(C) - n(A \\cup B \\cup C) - t$, so it is smallest when the triple $t$ is largest.\n\nWorked: 130 play cricket and 120 play football in a group of 200. Both can reach 120, so exactly one can drop to $250 - 240 = 10$.\n\n> **Note:** After computing an extreme, check every region stays non-negative. If some region breaks, the extreme is not achievable.",
+   "patterns": [
+    {
+     "id": "st-m1",
+     "name": "Maximum overlap (two sets or the triple)",
+     "frequency": "very common",
+     "howToSpot": "'Maximum possible number who like both / all three' with overlapping groups.",
+     "formula": "\\min(n(A), n(B)) \\quad \\text{or} \\quad \\min(n(A), n(B), n(C))",
+     "steps": [
+      "Take the smallest group size.",
+      "Nest the other sets inside it.",
+      "Check the union stays within the total."
+     ],
+     "why": "No overlap can exceed the smallest set, and nesting achieves exactly that.",
+     "example": {
+      "q": "In a class of 90 students, 55 take Drawing and 40 take Music. What is the maximum number who take both?",
+      "steps": [
+       "Maximum $= \\min(55, 40)$.",
+       "$= 40$."
+      ],
+      "answer": "40"
+     }
+    },
+    {
+     "id": "st-m2",
+     "name": "Minimum overlap of two groups",
+     "frequency": "very common",
+     "howToSpot": "'At least how many like both' or 'minimum number who take both' with a fixed total.",
+     "formula": "\\max(0,\\ n(A) + n(B) - N)",
+     "steps": [
+      "Add the two group sizes.",
+      "Subtract the total.",
+      "Keep a floor of 0 if the difference is negative."
+     ],
+     "why": "Beyond the total, the two groups must share people, and the forced share is the minimum.",
+     "example": {
+      "q": "In a hostel of 90 students, 70 take tea and 35 take coffee, and every student takes at least one drink. What is the minimum number who take both?",
+      "steps": [
+       "Minimum $= 70 + 35 - 90$.",
+       "$= 15$."
+      ],
+      "answer": "15"
+     }
+    },
+    {
+     "id": "st-m3",
+     "name": "Maximum 'neither' or minimum union",
+     "frequency": "common",
+     "howToSpot": "'Maximum number who play none' or 'minimum who play at least one' with a fixed class size.",
+     "formula": "\\max \\text{neither} = N - \\max(n(A), n(B))",
+     "steps": [
+      "Find the largest single group.",
+      "Shrink the union to that size by nesting.",
+      "Subtract the union from the total."
+     ],
+     "why": "The union must contain its biggest member set, and nesting achieves that minimum.",
+     "example": {
+      "q": "In an office of 120 employees, 70 know typing, 60 know shorthand and 50 know data entry. What is the maximum number who know none of the three?",
+      "steps": [
+       "Union at least $\\max(70, 60, 50) = 70$.",
+       "None at most $120 - 70 = 50$."
+      ],
+      "answer": "50"
+     }
+    },
+    {
+     "id": "st-m4",
+     "name": "Minimum triple overlap",
+     "frequency": "common",
+     "howToSpot": "'At least how many like all three' when everyone is covered by three groups.",
+     "formula": "\\max(0,\\ n(A) + n(B) + n(C) - 2N)",
+     "steps": [
+      "Add the three singles.",
+      "Subtract twice the total.",
+      "Keep a floor of 0."
+     ],
+     "why": "A person outside the triple holds at most two memberships, so extras beyond $2N$ pile into the middle.",
+     "example": {
+      "q": "In a group of 200 people, every person likes at least one of tea, coffee and milk. 150 like tea, 140 like coffee and 130 like milk. What is the minimum number who like all three?",
+      "steps": [
+       "Singles: $150 + 140 + 130 = 420$.",
+       "$420 - 2 \\times 200 = 20$."
+      ],
+      "answer": "20"
+     }
+    },
+    {
+     "id": "st-m5",
+     "name": "Extremes of exactly one and at least two",
+     "frequency": "occasional",
+     "howToSpot": "'Minimum who play exactly one game' or 'minimum who play at least two games'.",
+     "formula": "\\text{exactly one} = n(A) + n(B) - 2\\,n(A \\cap B)",
+     "steps": [
+      "Push the overlap to its extreme (largest or smallest).",
+      "Compute the region from the overlap.",
+      "Check all regions stay non-negative."
+     ],
+     "why": "These regions fall as the overlap rises, so their extremes sit at the overlap's extremes.",
+     "example": {
+      "q": "In a group of 150 people, 90 like tea and 80 like coffee. What is the minimum number who like exactly one drink?",
+      "steps": [
+       "Both at most $\\min(90, 80) = 80$.",
+       "Exactly one: $170 - 160 = 10$."
+      ],
+      "answer": "10"
+     }
+    }
+   ],
+   "revision": [
+    "Max both $= \\min(n(A), n(B))$; max triple $= \\min$ of the three.",
+    "Min both $= \\max(0,\\ n(A) + n(B) - N)$.",
+    "Max neither $= N - \\max(n(A), n(B))$.",
+    "Min triple $= \\max(0,\\ n(A) + n(B) + n(C) - 2N)$.",
+    "Exactly one and at least two are extreme at the overlap's extremes.",
+    "Always re-check that no region goes negative."
+   ]
+  },
+  {
+   "id": "st-caselets",
+   "title": "Survey & Caselet Word Problems",
+   "concept": "Surveys, languages and subscriptions are set questions in disguise. Convert each sentence into a region count or a percentage, then read off the answer. Checking that every region stays non-negative catches bad data.",
+   "formulas": [
+    {
+     "name": "Union of two groups (percent)",
+     "tex": "(A \\cup B)\\% = a\\% + b\\% - (A \\cap B)\\%",
+     "note": "Same formula, percent units."
+    },
+    {
+     "name": "Neither (percent)",
+     "tex": "100 - (a + b - ab)",
+     "note": "$ab$ is the both percent here."
+    },
+    {
+     "name": "Union of three groups (percent)",
+     "tex": "(A \\cup B \\cup C)\\% = a + b + c - p_{AB} - p_{BC} - p_{CA} + t",
+     "note": "Inclusion–exclusion in percent units."
+    },
+    {
+     "name": "Exactly one (percent)",
+     "tex": "a + b - 2ab",
+     "note": "Two groups; percent units."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Percent questions: work on 100",
+     "body": "Assume 100 people, place every percent in its region, and read the answer as a percent.",
+     "example": {
+      "q": "In a survey, 65% read newspaper A, 48% read B and 20% read neither. What percentage read both?",
+      "steps": [
+       "At least one: $80\\%$.",
+       "Both: $65 + 48 - 80 = 33\\%$."
+      ],
+      "answer": "33%"
+     }
+    },
+    {
+     "title": "Neither is the leftover of the union",
+     "body": "Union first, then subtract from 100. The neither percent is never inside the circles.",
+     "example": {
+      "q": "60% of families have a car, 55% have a bike and 35% have both. What percentage have neither?",
+      "steps": [
+       "Union: $60 + 55 - 35 = 80\\%$.",
+       "Neither: $100 - 80 = 20\\%$."
+      ],
+      "answer": "20%"
+     }
+    },
+    {
+     "title": "Bound the overlap before computing",
+     "body": "A quick max-min check on the overlap catches impossible survey data and wrong options.",
+     "example": {
+      "q": "In a group of 100 people, 70 like tea and 80 like coffee. Between which limits does the number who like both lie?",
+      "steps": [
+       "Minimum: $70 + 80 - 100 = 50$.",
+       "Maximum: $\\min(70, 80) = 70$.",
+       "Both must lie between 50 and 70."
+      ],
+      "answer": "between 50 and 70"
+     }
+    }
+   ],
+   "mistakes": [
+    "Mixing counts and percentages in one equation — convert everything to one scale first.",
+    "Reading '65% read A' as 65 people — multiply the percent by the survey total.",
+    "Dropping the neither block when checking the total — regions plus neither must equal the total.",
+    "Accepting impossible survey data — a negative region means the numbers cannot all be true.",
+    "Forgetting the triple sits inside every pair sum when solving a percentage caselet.",
+    "Answering in percent when the question asks for a number of people (or the reverse)."
+   ],
+   "notes": "### Turn sentences into regions\nA survey caselet is a set question wearing words. Underline each group name and each joining word.\n\n- \"like tea\" — a single count.\n- \"like tea and coffee\" — the overlap.\n- \"like none of these\" — the neither block.\n\nWrite the four-region sum and fill what is given. The one unknown region falls out of the total.\n\nWorked: a survey of 250 students has 130 taking Mathematics and 120 taking Biology, while 40 take neither.\n\n1. At least one subject: $250 - 40 = 210$.\n2. Both: $130 + 120 - 210 = 40$.\n3. Check: only Maths $90$ $+$ only Biology $80$ $+$ both $40$ $+$ neither $40$ $= 250$.\n\n### Percentage surveys\nWork on a base of 100 when everything is in percent. The arithmetic is the same; only the units change.\n\nWorked: 65% read A, 48% read B, 20% read neither.\n\n1. At least one $= 80\\%$.\n2. Both $= 65 + 48 - 80 = 33\\%$.\n3. Exactly one $= 80 - 33 = 47\\%$.\n\nWhen a percent must become people, multiply it by the survey total.\n\n> **Tip:** Never mix counts and percents in one line. Convert everything to one scale first.\n\n### Surveys with three groups\nLanguages and three-product surveys use the three-set union formula. Keep a small table: three singles, three pairs, the triple and none.\n\nWorked: 55% tea, 45% coffee, 35% milk; pairs 18%, 15%, 12%; triple 6%.\n\nUnion $= 135 - 45 + 6 = 96\\%$, so none $= 4\\%$.\n\n> **Note:** With \"every person likes at least one\", the union must equal 100%. That pins a hidden triple.\n\n### Checking the data\nReal surveys sometimes carry impossible numbers. Regions catch them.\n\n- The union cannot exceed the total.\n- Each \"only\" region must stay non-negative.\n\nWorked: 200 people; singles 120, 100, 90; pairs 60, 50, 45; triple 30.\n\nUnion $= 310 - 155 + 30 = 185$, so none $= 15$. A report claiming \"no one said none\" would be wrong.\n\n> **Watch:** If a region turns negative, do not force an answer — the data is inconsistent.\n\n### CAT-style caselets\nA caselet gives four or five facts and asks two or three sub-questions. The hidden unknown is usually the triple intersection.\n\n1. Write the union formula with $t$ for the triple.\n2. Use \"everyone covered\" or the total to fix the union.\n3. Solve for $t$, then fill all seven regions.\n4. Answer each sub-question by reading the regions.\n\nWorked: 60% tea, 50% coffee, 45% milk; pairs 25%, 20%, 15%; everyone drinks at least one.\n\n1. Union $= 155 - 60 + t = 95 + t$.\n2. The union must be $100\\%$, so $t = 5\\%$.\n3. Every sub-question is now a read-off: only tea $= 25\\%$, both tea and coffee only $= 20\\%$.\n\n> **Tip:** Percentages multiply cleanly on a base of 100. Keep the base fixed through the whole caselet.",
+   "patterns": [
+    {
+     "id": "st-c1",
+     "name": "Survey with a 'neither' block",
+     "frequency": "very common",
+     "howToSpot": "A count-based survey of two groups with 'n like neither' or 'n like none'.",
+     "formula": "n(A \\cap B) = n(A) + n(B) - (n(U) - \\text{neither})",
+     "steps": [
+      "Union $=$ total $-$ neither.",
+      "Apply the union formula for the missing region.",
+      "Check the four regions add up."
+     ],
+     "why": "The neither block is the complement of the union, so removing it exposes the union.",
+     "example": {
+      "q": "In a survey of 500 people, 300 like mangoes, 260 like apples and 80 like neither. How many like both?",
+      "steps": [
+       "At least one: $500 - 80 = 420$.",
+       "Both: $560 - 420 = 140$."
+      ],
+      "answer": "140"
+     }
+    },
+    {
+     "id": "st-c2",
+     "name": "Percentage-based caselet",
+     "frequency": "very common",
+     "howToSpot": "All figures are percentages of people, families or students; two or three groups.",
+     "formula": "(A \\cup B \\cup C)\\% = a + b + c - p_{AB} - p_{BC} - p_{CA} + t",
+     "steps": [
+      "Work on a base of 100.",
+      "Find the union percent.",
+      "Subtract from 100 for 'none', or peel regions as asked."
+     ],
+     "why": "Percentages are counts on a base of 100, so every set formula carries over unchanged.",
+     "example": {
+      "q": "In a survey, 55% like tea, 45% like coffee and 35% like milk. 18% like tea and coffee, 15% like coffee and milk, 12% like tea and milk, and 6% like all three. What percentage like none?",
+      "steps": [
+       "Union: $135 - 45 + 6 = 96\\%$.",
+       "None: $100 - 96 = 4\\%$."
+      ],
+      "answer": "4%"
+     }
+    },
+    {
+     "id": "st-c3",
+     "name": "Exactly-one split in a survey",
+     "frequency": "common",
+     "howToSpot": "The survey asks how many use 'only one' product, language or service.",
+     "formula": "n(A) + n(B) - 2\\,n(A \\cap B)",
+     "steps": [
+      "Find the overlap first.",
+      "Subtract twice the overlap from the plain sum.",
+      "Or take the union minus the overlap."
+     ],
+     "why": "Exactly one keeps the wings only, so the shared middle is removed completely.",
+     "example": {
+      "q": "In a group of 250 people, 130 play cricket, 110 play hockey and 40 play both. How many play exactly one game?",
+      "steps": [
+       "Union: $130 + 110 - 40 = 200$.",
+       "Exactly one: $200 - 40 = 160$."
+      ],
+      "answer": "160"
+     }
+    },
+    {
+     "id": "st-c4",
+     "name": "Reverse-solve a hidden region in a caselet",
+     "frequency": "common",
+     "howToSpot": "The caselet gives the union (or 'everyone covered') and hides one region — often the triple or a wing.",
+     "formula": null,
+     "steps": [
+      "Name the hidden region $t$.",
+      "Write the union equation with $t$.",
+      "Solve, then fill the remaining regions.",
+      "Read every sub-question off the regions."
+     ],
+     "why": "The union equation is linear in the hidden region, so one extra fact pins it down.",
+     "example": {
+      "q": "Every member of a club of 120 members knows at least one of Hindi or English. 85 know Hindi and 70 know English. How many know only Hindi?",
+      "steps": [
+       "Both: $85 + 70 - 120 = 35$.",
+       "Only Hindi: $85 - 35 = 50$."
+      ],
+      "answer": "50"
+     }
+    }
+   ],
+   "revision": [
+    "Percent formulas mirror count formulas on a base of 100.",
+    "Neither percent $= 100 -$ union percent.",
+    "Exactly one: $a + b - 2ab$ (percent units).",
+    "Three-group union: singles $-$ pairs $+$ triple, all in percent.",
+    "Union fixed at 100% when everyone is covered.",
+    "A negative region flags impossible data."
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Two groups with a 'neither' block",
+   "frequency": "very common",
+   "howToSpot": "A survey gives two group sizes, a total and a line like '5 like neither'.",
+   "approach": "First find the union: total minus neither.\nThen overlap $=$ sum of the groups minus the union.",
+   "subtopic": "st-two-sets",
+   "example": {
+    "q": "In a class of 70 students, 45 play chess and 40 play cards. If 10 students play neither game, how many play both?",
+    "solution": "At least one: $70 - 10 = 60$.\nBoth: $45 + 40 - 60 = 25$"
+   }
+  },
+  {
+   "pattern": "Overlap when everyone is covered",
+   "frequency": "very common",
+   "howToSpot": "Two group sizes and the total are given, and every person belongs to at least one group.",
+   "approach": "The union is the whole total.\nOverlap $=$ sum of the groups $-$ total.",
+   "subtopic": "st-two-sets",
+   "example": {
+    "q": "In an office of 125 people, 95 like tea and 80 like coffee. If every person likes at least one drink, how many like both?",
+    "solution": "Both $= 95 + 80 - 125 = 50$"
+   }
+  },
+  {
+   "pattern": "Three groups: at least one",
+   "frequency": "very common",
+   "howToSpot": "Three group sizes with three pair counts and a triple; 'at least one' or 'none' is asked.",
+   "approach": "Use the three-set union formula: singles minus pairs plus triple.\nFor 'none', subtract the union from the total.",
+   "subtopic": "st-three-sets",
+   "example": {
+    "q": "In a survey, 32 play cricket, 26 play hockey and 20 play football. 12 play cricket and hockey, 9 play hockey and football, 10 play cricket and football, and 4 play all three. How many play at least one game?",
+    "solution": "$32 + 26 + 20 - (12 + 9 + 10) + 4 = 51$"
+   }
+  },
+  {
+   "pattern": "Exactly two or exactly one region",
+   "frequency": "common",
+   "howToSpot": "The words 'exactly two' or 'exactly one' appear with three groups.",
+   "approach": "Exactly two $=$ pair sum $-\\,3 \\times$ triple.\nExactly one $=$ singles $-\\,2 \\times$ pair sum $+\\,3 \\times$ triple.",
+   "subtopic": "st-three-sets",
+   "example": {
+    "q": "In a group, 45 like tea, 38 like coffee and 32 like milk. 14 like tea and coffee, 11 like coffee and milk, 13 like tea and milk, and 4 like all three. How many like exactly two drinks?",
+    "solution": "Pair sum $= 38$; exactly two $= 38 - 3 \\times 4 = 26$"
+   }
+  },
+  {
+   "pattern": "Minimum overlap (pigeonhole bound)",
+   "frequency": "common",
+   "howToSpot": "'At least how many...' with two or three groups and a fixed total.",
+   "approach": "Minimum overlap $=$ sum of the sizes minus the total.\nKeep a floor of 0.",
+   "subtopic": "st-max-min",
+   "example": {
+    "q": "In a group of 90 people, 60 like tea and 50 like coffee. At least how many like both?",
+    "solution": "$60 + 50 - 90 = 20$"
+   }
+  },
+  {
+   "pattern": "Maximum overlap",
+   "frequency": "common",
+   "howToSpot": "'At most how many...' or 'maximum possible' with overlapping groups.",
+   "approach": "Maximum overlap $=$ the smallest group size (nest one set inside the other).",
+   "subtopic": "st-max-min",
+   "example": {
+    "q": "In a class of 75 students, 48 play cricket and 36 play football. What is the maximum number who play both?",
+    "solution": "$\\min(48, 36) = 36$"
+   }
+  },
+  {
+   "pattern": "Subset and power-set counting",
+   "frequency": "common",
+   "howToSpot": "'How many subsets' of a set with $n$ elements, sometimes with 'proper' or 'non-empty'.",
+   "approach": "Use $2^n$; subtract 1 or 2 for the proper and non-empty proper variants.",
+   "subtopic": "st-basics",
+   "example": {
+    "q": "A set has 8 elements. How many subsets does it have?",
+    "solution": "$2^8 = 256$"
+   }
+  },
+  {
+   "pattern": "De Morgan complement counting",
+   "frequency": "occasional",
+   "howToSpot": "The ask uses complements, e.g. $n(A' \\cap B')$, or words like 'outside both'.",
+   "approach": "Convert with De Morgan to $n(U) - n(A \\cup B)$ and finish in two lines.",
+   "subtopic": "st-basics",
+   "example": {
+    "q": "In a universal set of 100 elements, $n(A) = 60$, $n(B) = 50$ and $n(A \\cap B) = 20$. Find $n(A' \\cap B')$.",
+    "solution": "Union $= 90$, so $n(A' \\cap B') = 100 - 90 = 10$"
+   }
+  },
+  {
+   "pattern": "Percentage survey caselet",
+   "frequency": "common",
+   "howToSpot": "All figures are percentages of people or families; 'neither', 'both' or 'exactly one' is asked.",
+   "approach": "Work on a base of 100.\nEvery set formula carries over with % signs.",
+   "subtopic": "st-caselets",
+   "example": {
+    "q": "In a survey, 60% read paper A and 45% read paper B. If 25% read neither, what percentage read exactly one paper?",
+    "solution": "Union $= 75\\%$; both $= 60 + 45 - 75 = 30\\%$; exactly one $= 75 - 30 = 45\\%$"
+   }
+  },
+  {
+   "pattern": "Reverse-solve the triple intersection",
+   "frequency": "occasional",
+   "howToSpot": "The union (or 'everyone covered') is given; the singles and pairs pin down the triple.",
+   "approach": "Put $t$ in the union formula and solve the linear equation.",
+   "subtopic": "st-three-sets",
+   "example": {
+    "q": "$n(A \\cup B \\cup C) = 70$ with $n(A) = 40$, $n(B) = 35$, $n(C) = 30$, $n(A \\cap B) = 15$, $n(B \\cap C) = 12$ and $n(A \\cap C) = 14$. Find $n(A \\cap B \\cap C)$.",
+    "solution": "$70 = 105 - 41 + t$, so $t = 6$"
+   }
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "st-s01",
+   "q": "In a class of 60 students, 35 like tea and 30 like coffee. If 10 students like neither beverage, how many students like both tea and coffee?",
+   "figure": null,
+   "options": [
+    "10",
+    "12",
+    "15",
+    "20"
+   ],
+   "answer": 2,
+   "solution": "At least one drink: $60 - 10 = 50$.\nBoth $= 35 + 30 - 50 = 15$.",
+   "shortcut": "Overlap $=$ both singles $-$ (total $-$ neither) $= 65 - 50 = 15$.",
+   "difficulty": "medium",
+   "subtopic": "st-two-sets",
+   "pattern": "union formula with neither",
+   "timeSec": 45
+  },
+  {
+   "id": "st-s02",
+   "q": "In a group of 50 people, 28 like cricket, 24 like football and 18 like tennis. 10 like cricket and football, 8 like football and tennis, 6 like cricket and tennis, and 4 like all three. How many like at least one of the three games?",
+   "figure": null,
+   "options": [
+    "46",
+    "48",
+    "50",
+    "52"
+   ],
+   "answer": 2,
+   "solution": "Union $= (28 + 24 + 18) - (10 + 8 + 6) + 4 = 70 - 24 + 4 = 50$.\nSo every person in the group likes at least one game.",
+   "shortcut": "The union lands exactly on the group size — a neat consistency check.",
+   "difficulty": "medium",
+   "subtopic": "st-three-sets",
+   "pattern": "three-set union",
+   "timeSec": 60
+  },
+  {
+   "id": "st-s03",
+   "q": "In a group of 120 people, 85 like tea and 75 like coffee, and every person likes at least one drink. What is the minimum number of people who like both?",
+   "figure": null,
+   "options": [
+    "30",
+    "35",
+    "40",
+    "45"
+   ],
+   "answer": 2,
+   "solution": "The union is fixed at 120.\nBoth $= 85 + 75 - 120 = 40$.",
+   "shortcut": "With the union fixed, the overlap is not a range — it is one exact number.",
+   "difficulty": "medium",
+   "subtopic": "st-max-min",
+   "pattern": "minimum overlap with fixed union",
+   "timeSec": 45
+  },
+  {
+   "id": "st-s04",
+   "q": "A set has 8 elements. How many proper subsets does it have?",
+   "figure": null,
+   "options": [
+    "254",
+    "255",
+    "256",
+    "512"
+   ],
+   "answer": 1,
+   "solution": "Subsets $= 2^8 = 256$.\nProper subsets $= 256 - 1 = 255$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "st-basics",
+   "pattern": "power-set count",
+   "timeSec": 30
+  },
+  {
+   "id": "st-s05",
+   "q": "In a survey of 500 families, 280 buy brand A soap and 300 buy brand B. If 120 families buy both, how many families buy neither?",
+   "figure": null,
+   "options": [
+    "20",
+    "30",
+    "40",
+    "60"
+   ],
+   "answer": 2,
+   "solution": "Union $= 280 + 300 - 120 = 460$.\nNeither $= 500 - 460 = 40$.",
+   "shortcut": "Neither $=$ total $-$ singles $+$ overlap: $500 - 580 + 120 = 40$.",
+   "difficulty": "easy",
+   "subtopic": "st-caselets",
+   "pattern": "survey with neither",
+   "timeSec": 40
+  }
+ ],
+ "practice": [
+  {
+   "id": "st-basics-p01",
+   "q": "A set has 7 elements. How many subsets does it have?",
+   "figure": null,
+   "options": [
+    "49",
+    "64",
+    "128",
+    "256"
+   ],
+   "answer": 2,
+   "solution": "Number of subsets $= 2^n = 2^7 = 128$.",
+   "shortcut": "Powers of two: 2, 4, 8, 16, 32, 64, 128 — the seventh doubling is 128.",
+   "difficulty": "easy",
+   "subtopic": "st-basics",
+   "pattern": "st-b1",
+   "timeSec": 30
+  },
+  {
+   "id": "st-basics-p02",
+   "q": "A set has 5 elements. How many proper subsets does it have?",
+   "figure": null,
+   "options": [
+    "30",
+    "31",
+    "32",
+    "33"
+   ],
+   "answer": 1,
+   "solution": "Proper subsets $= 2^n - 1 = 2^5 - 1 = 32 - 1 = 31$ (every subset except the set itself).",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "st-basics",
+   "pattern": "st-b2",
+   "timeSec": 30
+  },
+  {
+   "id": "st-basics-p03",
+   "q": "A set P has 4 elements. How many non-empty subsets does it have?",
+   "figure": null,
+   "options": [
+    "8",
+    "14",
+    "15",
+    "16"
+   ],
+   "answer": 2,
+   "solution": "Non-empty subsets $= 2^4 - 1 = 16 - 1 = 15$ (all subsets except $\\emptyset$).",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "st-basics",
+   "pattern": "st-b2",
+   "timeSec": 30
+  },
+  {
+   "id": "st-basics-p04",
+   "q": "A set has 6 elements. How many of its subsets contain exactly 2 elements?",
+   "figure": null,
+   "options": [
+    "12",
+    "14",
+    "15",
+    "30"
+   ],
+   "answer": 2,
+   "solution": "Subsets of size 2: $^{6}C_2 = \\dfrac{6 \\times 5}{2} = 15$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "st-basics",
+   "pattern": "st-b3",
+   "timeSec": 40
+  },
+  {
+   "id": "st-basics-p05",
+   "q": "If $n(A) = 24$, $n(B) = 19$ and $n(A \\cap B) = 10$, then $n(A \\cup B)$ equals:",
+   "figure": null,
+   "options": [
+    "33",
+    "34",
+    "43",
+    "53"
+   ],
+   "answer": 0,
+   "solution": "$n(A \\cup B) = n(A) + n(B) - n(A \\cap B) = 24 + 19 - 10 = 33$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "st-basics",
+   "pattern": "st-b4",
+   "timeSec": 35
+  },
+  {
+   "id": "st-basics-p06",
+   "q": "If $n(A) = 30$, $n(A \\cap B) = 12$ and $n(A \\cup B) = 42$, then $n(B)$ equals:",
+   "figure": null,
+   "options": [
+    "18",
+    "22",
+    "24",
+    "26"
+   ],
+   "answer": 2,
+   "solution": "$n(B) = n(A \\cup B) - n(A) + n(A \\cap B) = 42 - 30 + 12 = 24$.",
+   "shortcut": "Run the union formula backwards: the union adds $n(B) - n(A \\cap B)$ new elements to A.",
+   "difficulty": "medium",
+   "subtopic": "st-basics",
+   "pattern": "st-b4",
+   "timeSec": 45
+  },
+  {
+   "id": "st-basics-p07",
+   "q": "Let $U = \\{1, 2, 3, \\ldots, 20\\}$. A is the set of multiples of 3 in U and B is the set of multiples of 4 in U. Find $n(A \\cup B)$.",
+   "figure": null,
+   "options": [
+    "9",
+    "10",
+    "11",
+    "12"
+   ],
+   "answer": 1,
+   "solution": "$A = \\{3, 6, 9, 12, 15, 18\\}$ (6 elements) and $B = \\{4, 8, 12, 16, 20\\}$ (5 elements).\n$A \\cap B = \\{12\\}$, so $n(A \\cup B) = 6 + 5 - 1 = 10$.",
+   "shortcut": "Multiples of both 3 and 4 are multiples of 12 — only 12 lies below 20.",
+   "difficulty": "medium",
+   "subtopic": "st-basics",
+   "pattern": "st-b4",
+   "timeSec": 60
+  },
+  {
+   "id": "st-basics-p08",
+   "q": "In a universal set of 60 elements, $n(A) = 35$, $n(B) = 28$ and $n(A \\cap B) = 12$. Find $n(A' \\cap B')$.",
+   "figure": null,
+   "options": [
+    "6",
+    "9",
+    "12",
+    "15"
+   ],
+   "answer": 1,
+   "solution": "By De Morgan, $A' \\cap B' = (A \\cup B)'$.\n$n(A \\cup B) = 35 + 28 - 12 = 51$.\n$n(A' \\cap B') = 60 - 51 = 9$.",
+   "shortcut": "'Outside both' is the complement of 'inside at least one'.",
+   "difficulty": "medium",
+   "subtopic": "st-basics",
+   "pattern": "st-b5",
+   "timeSec": 50
+  },
+  {
+   "id": "st-basics-p09",
+   "q": "If $n(A) = 26$ and $n(A \\cap B) = 9$, then $n(A - B)$ equals:",
+   "figure": null,
+   "options": [
+    "9",
+    "16",
+    "17",
+    "35"
+   ],
+   "answer": 2,
+   "solution": "$n(A - B) = n(A) - n(A \\cap B) = 26 - 9 = 17$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "st-basics",
+   "pattern": "st-b4",
+   "timeSec": 30
+  },
+  {
+   "id": "st-basics-p10",
+   "q": "Set A has one element more than set B, and set A has 64 more subsets than set B. How many elements does A have?",
+   "figure": null,
+   "options": [
+    "5",
+    "6",
+    "7",
+    "8"
+   ],
+   "answer": 2,
+   "solution": "Let B have $m$ elements. Then $2^{m+1} - 2^m = 64$, so $2^m = 64$ and $m = 6$.\nA has $6 + 1 = 7$ elements.",
+   "shortcut": "One extra element doubles the subsets: the extra count is itself $2^m$.",
+   "difficulty": "hard",
+   "subtopic": "st-basics",
+   "pattern": "st-b1",
+   "timeSec": 75
+  },
+  {
+   "id": "st-basics-p11",
+   "q": "In a universal set of 100 elements, $n(A) = 55$, $n(B) = 45$ and $n(A' \\cup B') = 70$. Find $n(A \\cap B)$.",
+   "figure": null,
+   "options": [
+    "20",
+    "25",
+    "30",
+    "35"
+   ],
+   "answer": 2,
+   "solution": "By De Morgan, $A' \\cup B' = (A \\cap B)'$.\nSo $n(A \\cap B) = 100 - 70 = 30$.",
+   "shortcut": "The complement flips the join: 'outside A or outside B' is 'not in both'.",
+   "difficulty": "hard",
+   "subtopic": "st-basics",
+   "pattern": "st-b5",
+   "timeSec": 70
+  },
+  {
+   "id": "st-basics-p12",
+   "q": "A set has 9 elements. How many of its subsets contain at least one of two particular given elements?",
+   "figure": null,
+   "options": [
+    "256",
+    "320",
+    "384",
+    "448"
+   ],
+   "answer": 2,
+   "solution": "Subsets avoiding both given elements: $2^{9-2} = 2^7 = 128$.\nRequired $= 2^9 - 2^7 = 512 - 128 = 384$.",
+   "shortcut": "Complement counting: count what you do not want and subtract from $2^n$.",
+   "difficulty": "medium",
+   "subtopic": "st-basics",
+   "pattern": "st-b3",
+   "timeSec": 60
+  },
+  {
+   "id": "st-two-sets-p01",
+   "q": "In a class of 50 students, 30 play cricket and 25 play football. If 5 students play neither game, how many students play both?",
+   "figure": null,
+   "options": [
+    "5",
+    "10",
+    "15",
+    "20"
+   ],
+   "answer": 1,
+   "solution": "Playing at least one: $50 - 5 = 45$.\nBoth $= 30 + 25 - 45 = 10$.",
+   "shortcut": "Overlap $=$ both singles $-$ (total $-$ neither) $= 55 - 45 = 10$.",
+   "difficulty": "easy",
+   "subtopic": "st-two-sets",
+   "pattern": "st-t1",
+   "timeSec": 35
+  },
+  {
+   "id": "st-two-sets-p02",
+   "q": "In a group of 40 people, 25 like tea, 20 like coffee and 8 like both. How many like neither?",
+   "figure": null,
+   "options": [
+    "0",
+    "3",
+    "5",
+    "8"
+   ],
+   "answer": 1,
+   "solution": "$n(\\text{tea or coffee}) = 25 + 20 - 8 = 37$.\nNeither $= 40 - 37 = 3$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "st-two-sets",
+   "pattern": "st-t2",
+   "timeSec": 30
+  },
+  {
+   "id": "st-two-sets-p03",
+   "q": "Every student in a class plays at least one of two indoor games. 18 students play chess, 14 play carrom and 6 play both. How many students are there in the class?",
+   "figure": null,
+   "options": [
+    "22",
+    "24",
+    "26",
+    "38"
+   ],
+   "answer": 2,
+   "solution": "Total $= n(A \\cup B) = 18 + 14 - 6 = 26$.",
+   "shortcut": "With nobody outside the circles, the union is the class strength.",
+   "difficulty": "easy",
+   "subtopic": "st-two-sets",
+   "pattern": "st-t5",
+   "timeSec": 30
+  },
+  {
+   "id": "st-two-sets-p04",
+   "q": "In a class of 60 students, 35 drink tea, 30 drink coffee and 10 drink neither. How many students drink exactly one of the two?",
+   "figure": null,
+   "options": [
+    "25",
+    "30",
+    "35",
+    "40"
+   ],
+   "answer": 2,
+   "solution": "At least one: $60 - 10 = 50$. Both $= 35 + 30 - 50 = 15$.\nExactly one $= 50 - 15 = 35$.",
+   "shortcut": "Exactly one $= n(A) + n(B) - 2\\,n(A \\cap B) = 65 - 30 = 35$.",
+   "difficulty": "medium",
+   "subtopic": "st-two-sets",
+   "pattern": "st-t4",
+   "timeSec": 45
+  },
+  {
+   "id": "st-two-sets-p05",
+   "q": "In an office of 90 employees, 55 can speak Hindi and 40 can speak English, and every employee can speak at least one of the two languages. How many employees can speak both?",
+   "figure": null,
+   "options": [
+    "5",
+    "10",
+    "15",
+    "20"
+   ],
+   "answer": 0,
+   "solution": "The union is the whole office: 90.\nBoth $= 55 + 40 - 90 = 5$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "st-two-sets",
+   "pattern": "st-t5",
+   "timeSec": 40
+  },
+  {
+   "id": "st-two-sets-p06",
+   "q": "In a colony, 70% of residents watch channel X, 55% watch channel Y and 40% watch both. What percentage watch neither channel?",
+   "figure": null,
+   "options": [
+    "10%",
+    "12%",
+    "15%",
+    "18%"
+   ],
+   "answer": 2,
+   "solution": "Union $= 70 + 55 - 40 = 85\\%$.\nNeither $= 100 - 85 = 15\\%$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "st-two-sets",
+   "pattern": "st-t2",
+   "timeSec": 40
+  },
+  {
+   "id": "st-two-sets-p07",
+   "q": "In a survey of 200 people, 120 read newspaper A, 90 read newspaper B and 45 read both. How many read exactly one newspaper?",
+   "figure": null,
+   "options": [
+    "110",
+    "120",
+    "130",
+    "165"
+   ],
+   "answer": 1,
+   "solution": "Exactly one $= 120 + 90 - 2 \\times 45 = 210 - 90 = 120$.",
+   "shortcut": "Union is 165; drop the 45 who read both to get exactly one.",
+   "difficulty": "medium",
+   "subtopic": "st-two-sets",
+   "pattern": "st-t4",
+   "timeSec": 45
+  },
+  {
+   "id": "st-two-sets-p08",
+   "q": "Of 80 students, 48 have a bicycle, 36 have a scooter and 12 have neither. How many have only a scooter?",
+   "figure": null,
+   "options": [
+    "16",
+    "20",
+    "24",
+    "28"
+   ],
+   "answer": 1,
+   "solution": "At least one: $80 - 12 = 68$. Both $= 48 + 36 - 68 = 16$.\nOnly scooter $= 36 - 16 = 20$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "st-two-sets",
+   "pattern": "st-t3",
+   "timeSec": 45
+  },
+  {
+   "id": "st-two-sets-p09",
+   "q": "In a class of 45 students, every student plays at least one of cricket or badminton. The number of students who play only cricket is twice the number who play only badminton. If 9 students play both, how many play badminton?",
+   "figure": null,
+   "options": [
+    "12",
+    "18",
+    "21",
+    "24"
+   ],
+   "answer": 2,
+   "solution": "Let only badminton $= x$, so only cricket $= 2x$.\n$x + 2x + 9 = 45$, so $x = 12$.\nBadminton players $= 12 + 9 = 21$.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "st-two-sets",
+   "pattern": "st-t6",
+   "timeSec": 70
+  },
+  {
+   "id": "st-two-sets-p10",
+   "q": "In a group of 500 people, the number who like only tea is twice the number who like only coffee. If 90 people like both and 50 like neither, how many people like coffee?",
+   "figure": null,
+   "options": [
+    "180",
+    "200",
+    "210",
+    "230"
+   ],
+   "answer": 2,
+   "solution": "Only tea $+$ only coffee $= 500 - 90 - 50 = 360$.\nOnly coffee $= 360 \\div 3 = 120$.\nCoffee $= 120 + 90 = 210$.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "st-two-sets",
+   "pattern": "st-t6",
+   "timeSec": 75
+  },
+  {
+   "id": "st-two-sets-p11",
+   "q": "In an examination, 80% of the students passed in English, 70% passed in Mathematics and 10% failed in both. If 210 students passed in both subjects, how many students appeared for the examination?",
+   "figure": null,
+   "options": [
+    "300",
+    "320",
+    "350",
+    "400"
+   ],
+   "answer": 2,
+   "solution": "Passed in at least one $= 100 - 10 = 90\\%$.\nBoth $= 80 + 70 - 90 = 60\\%$ of the total.\n$60\\%$ of total $= 210$, so total $= 350$.",
+   "shortcut": "'Failed in both' is the neither block: $10\\%$.",
+   "difficulty": "hard",
+   "subtopic": "st-two-sets",
+   "pattern": "st-t1",
+   "timeSec": 80
+  },
+  {
+   "id": "st-two-sets-p12",
+   "q": "In a group of 60 people, 35 speak Hindi and 30 speak English, and every person speaks at least one language. The number of people who speak both is how much less than the number who speak only Hindi?",
+   "figure": null,
+   "options": [
+    "20",
+    "25",
+    "30",
+    "35"
+   ],
+   "answer": 1,
+   "solution": "Both $= 35 + 30 - 60 = 5$.\nOnly Hindi $= 35 - 5 = 30$.\nDifference $= 30 - 5 = 25$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "st-two-sets",
+   "pattern": "st-t3",
+   "timeSec": 50
+  },
+  {
+   "id": "st-three-sets-p01",
+   "q": "In a group of students, 30 study Physics, 25 study Chemistry and 20 study Mathematics. 10 study Physics and Chemistry, 8 study Chemistry and Mathematics, 12 study Physics and Mathematics, and 5 study all three. How many study at least one subject?",
+   "figure": null,
+   "options": [
+    "45",
+    "50",
+    "55",
+    "60"
+   ],
+   "answer": 1,
+   "solution": "$n(A \\cup B \\cup C) = (30 + 25 + 20) - (10 + 8 + 12) + 5 = 75 - 30 + 5 = 50$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "st-three-sets",
+   "pattern": "st-h1",
+   "timeSec": 45
+  },
+  {
+   "id": "st-three-sets-p02",
+   "q": "If $n(A) = 40$, $n(B) = 35$, $n(C) = 30$, $n(A \\cap B) = 15$, $n(B \\cap C) = 10$, $n(A \\cap C) = 12$ and $n(A \\cap B \\cap C) = 5$, then $n(A \\cup B \\cup C)$ equals:",
+   "figure": null,
+   "options": [
+    "68",
+    "73",
+    "78",
+    "83"
+   ],
+   "answer": 1,
+   "solution": "$= 105 - 37 + 5 = 73$.",
+   "shortcut": "Singles 105, pairs 37, add the triple back once.",
+   "difficulty": "easy",
+   "subtopic": "st-three-sets",
+   "pattern": "st-h1",
+   "timeSec": 40
+  },
+  {
+   "id": "st-three-sets-p03",
+   "q": "If $n(A \\cup B \\cup C) = 60$, $n(A) = 30$, $n(B) = 28$, $n(C) = 25$, $n(A \\cap B) = 10$, $n(B \\cap C) = 8$ and $n(A \\cap C) = 9$, then $n(A \\cap B \\cap C)$ equals:",
+   "figure": null,
+   "options": [
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "answer": 2,
+   "solution": "$60 = (30 + 28 + 25) - (10 + 8 + 9) + t = 56 + t$, so $t = 4$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "st-three-sets",
+   "pattern": "st-h2",
+   "timeSec": 50
+  },
+  {
+   "id": "st-three-sets-p04",
+   "q": "In a survey of 100 people, 45 like brand A, 40 like brand B and 35 like brand C. 15 like A and B, 12 like B and C, 10 like A and C, and 5 like all three. How many like exactly two brands?",
+   "figure": null,
+   "options": [
+    "18",
+    "20",
+    "22",
+    "27"
+   ],
+   "answer": 2,
+   "solution": "Exactly two $= (15 + 12 + 10) - 3 \\times 5 = 37 - 15 = 22$.",
+   "shortcut": "Subtract the triple from each pair sum: $10 + 7 + 5 = 22$.",
+   "difficulty": "medium",
+   "subtopic": "st-three-sets",
+   "pattern": "st-h3",
+   "timeSec": 50
+  },
+  {
+   "id": "st-three-sets-p05",
+   "q": "In a group, 50 people like tea, 42 like coffee and 38 like milk. 16 like tea and coffee, 14 like coffee and milk and 12 like tea and milk. If 6 like all three, how many like at least two drinks?",
+   "figure": null,
+   "options": [
+    "24",
+    "28",
+    "30",
+    "36"
+   ],
+   "answer": 2,
+   "solution": "At least two $= (16 + 14 + 12) - 2 \\times 6 = 42 - 12 = 30$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "st-three-sets",
+   "pattern": "st-h5",
+   "timeSec": 50
+  },
+  {
+   "id": "st-three-sets-p06",
+   "q": "If $n(A) = 28$, $n(B) = 24$, $n(C) = 20$, $n(A \\cap B) = 8$, $n(B \\cap C) = 6$, $n(A \\cap C) = 5$ and $n(A \\cap B \\cap C) = 2$, how many elements belong to at least two sets?",
+   "figure": null,
+   "options": [
+    "12",
+    "15",
+    "18",
+    "21"
+   ],
+   "answer": 1,
+   "solution": "At least two $= (8 + 6 + 5) - 2 \\times 2 = 19 - 4 = 15$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "st-three-sets",
+   "pattern": "st-h5",
+   "timeSec": 50
+  },
+  {
+   "id": "st-three-sets-p07",
+   "q": "In a class of 60 students, 30 play cricket, 25 play hockey and 20 play football. 10 play cricket and hockey, 8 play hockey and football, 9 play cricket and football, and 3 play all three. How many students play none of the games?",
+   "figure": null,
+   "options": [
+    "5",
+    "7",
+    "9",
+    "12"
+   ],
+   "answer": 2,
+   "solution": "$n(A \\cup B \\cup C) = 75 - 27 + 3 = 51$.\nNone $= 60 - 51 = 9$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "st-three-sets",
+   "pattern": "st-h6",
+   "timeSec": 55
+  },
+  {
+   "id": "st-three-sets-p08",
+   "q": "In a group of 70 people, 42 like tea, 36 like coffee and 30 like milk. 18 like tea and coffee, 14 like coffee and milk and 12 like tea and milk. Every person likes at least one drink. How many like all three?",
+   "figure": null,
+   "options": [
+    "4",
+    "6",
+    "8",
+    "10"
+   ],
+   "answer": 1,
+   "solution": "The union is 70.\n$70 = (42 + 36 + 30) - (18 + 14 + 12) + t = 64 + t$, so $t = 6$.",
+   "shortcut": "'Every person likes at least one' fixes the union at the group size.",
+   "difficulty": "medium",
+   "subtopic": "st-three-sets",
+   "pattern": "st-h2",
+   "timeSec": 60
+  },
+  {
+   "id": "st-three-sets-p09",
+   "q": "In a survey of 150 people, 80 read newspaper A, 70 read B and 60 read C. 40 read A and B, 35 read B and C, 30 read A and C, and 20 read all three. How many read exactly one newspaper?",
+   "figure": null,
+   "options": [
+    "50",
+    "55",
+    "60",
+    "70"
+   ],
+   "answer": 2,
+   "solution": "Exactly one $= (80 + 70 + 60) - 2(40 + 35 + 30) + 3 \\times 20 = 210 - 210 + 60 = 60$.",
+   "shortcut": "Wings: $30 + 15 + 15 = 60$.",
+   "difficulty": "hard",
+   "subtopic": "st-three-sets",
+   "pattern": "st-h4",
+   "timeSec": 70
+  },
+  {
+   "id": "st-three-sets-p10",
+   "q": "In a school, 60% of students like cricket, 50% like football and 40% like tennis. 25% like cricket and football, 20% like football and tennis, 22% like cricket and tennis, and 10% like all three. What percentage of students like none of the three?",
+   "figure": null,
+   "options": [
+    "5%",
+    "7%",
+    "9%",
+    "12%"
+   ],
+   "answer": 1,
+   "solution": "Union $= 150 - 67 + 10 = 93\\%$.\nNone $= 100 - 93 = 7\\%$.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "st-three-sets",
+   "pattern": "st-h6",
+   "timeSec": 70
+  },
+  {
+   "id": "st-three-sets-p11",
+   "q": "Each of the 100 students in a school plays at least one of chess, carrom and table tennis. 50 play chess, 45 play carrom and 55 play table tennis. 20 play chess and carrom, 15 play carrom and table tennis and 25 play chess and table tennis. How many play exactly two games?",
+   "figure": null,
+   "options": [
+    "25",
+    "30",
+    "35",
+    "40"
+   ],
+   "answer": 1,
+   "solution": "Triple: $100 = 150 - 60 + t$, so $t = 10$.\nExactly two $= 60 - 3 \\times 10 = 30$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "st-three-sets",
+   "pattern": "st-h3",
+   "timeSec": 65
+  },
+  {
+   "id": "st-three-sets-p12",
+   "q": "For three sets, $n(A) = 45$, $n(B) = 40$, $n(C) = 35$ and $n(A \\cup B \\cup C) = 80$. If 22 elements lie in exactly two sets, how many elements lie in exactly one set?",
+   "figure": null,
+   "options": [
+    "45",
+    "47",
+    "49",
+    "51"
+   ],
+   "answer": 2,
+   "solution": "Let exactly one $= e$ and the triple $= t$.\n$e + 22 + t = 80$ and $e + 44 + 3t = 120$.\nSubtracting: $22 + 2t = 40$, so $t = 9$ and $e = 80 - 31 = 49$.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "st-three-sets",
+   "pattern": "st-h4",
+   "timeSec": 85
+  },
+  {
+   "id": "st-max-min-p01",
+   "q": "In a group of 200 people, 120 like cricket and 100 like football. What is the maximum possible number of people who like both?",
+   "figure": null,
+   "options": [
+    "80",
+    "100",
+    "120",
+    "220"
+   ],
+   "answer": 1,
+   "solution": "Maximum $= \\min(120, 100) = 100$: every football lover also likes cricket.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "st-max-min",
+   "pattern": "st-m1",
+   "timeSec": 30
+  },
+  {
+   "id": "st-max-min-p02",
+   "q": "In a class of 60 students, 40 play cricket and 35 play badminton, and every student plays at least one game. What is the minimum number of students who play both?",
+   "figure": null,
+   "options": [
+    "5",
+    "10",
+    "15",
+    "20"
+   ],
+   "answer": 2,
+   "solution": "The union is fixed at 60.\nMinimum both $= 40 + 35 - 60 = 15$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "st-max-min",
+   "pattern": "st-m2",
+   "timeSec": 35
+  },
+  {
+   "id": "st-max-min-p03",
+   "q": "In a group of 100 people, 60 drink tea and 50 drink coffee. What is the minimum number of people who drink both?",
+   "figure": null,
+   "options": [
+    "10",
+    "20",
+    "30",
+    "50"
+   ],
+   "answer": 0,
+   "solution": "Minimum $= \\max(0,\\ 60 + 50 - 100) = 10$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "st-max-min",
+   "pattern": "st-m2",
+   "timeSec": 30
+  },
+  {
+   "id": "st-max-min-p04",
+   "q": "In a class of 50 students, 30 like Mathematics and 25 like Physics. What is the maximum number of students who like neither subject?",
+   "figure": null,
+   "options": [
+    "15",
+    "20",
+    "25",
+    "30"
+   ],
+   "answer": 1,
+   "solution": "The union is smallest when Physics sits inside Mathematics: $\\max(30, 25) = 30$.\nNeither $\\le 50 - 30 = 20$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "st-max-min",
+   "pattern": "st-m3",
+   "timeSec": 45
+  },
+  {
+   "id": "st-max-min-p05",
+   "q": "In a group of 150 people, every person likes at least one of tea, coffee and milk. 120 like tea, 110 like coffee and 100 like milk. What is the minimum number of people who like all three?",
+   "figure": null,
+   "options": [
+    "20",
+    "25",
+    "30",
+    "40"
+   ],
+   "answer": 2,
+   "solution": "Minimum triple $= \\max(0,\\ 330 - 2 \\times 150) = 30$.",
+   "shortcut": "Singles beyond $2 \\times 150 = 300$ memberships must pile into the middle.",
+   "difficulty": "medium",
+   "subtopic": "st-max-min",
+   "pattern": "st-m4",
+   "timeSec": 65
+  },
+  {
+   "id": "st-max-min-p06",
+   "q": "In a class of 40 students, 30 play hockey, 25 play football and 20 play cricket. What is the maximum number of students who play none of these games?",
+   "figure": null,
+   "options": [
+    "5",
+    "10",
+    "15",
+    "20"
+   ],
+   "answer": 1,
+   "solution": "The union is at least $\\max(30, 25, 20) = 30$.\nNone $\\le 40 - 30 = 10$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "st-max-min",
+   "pattern": "st-m3",
+   "timeSec": 45
+  },
+  {
+   "id": "st-max-min-p07",
+   "q": "In a group of 200 students, 130 play cricket and 120 play football. What is the minimum number of students who play exactly one of the two games?",
+   "figure": null,
+   "options": [
+    "10",
+    "30",
+    "50",
+    "70"
+   ],
+   "answer": 0,
+   "solution": "Both can be as large as $\\min(130, 120) = 120$.\nExactly one $= 130 + 120 - 2 \\times 120 = 10$.",
+   "shortcut": "Maximise the overlap to minimise the wings.",
+   "difficulty": "hard",
+   "subtopic": "st-max-min",
+   "pattern": "st-m5",
+   "timeSec": 75
+  },
+  {
+   "id": "st-max-min-p08",
+   "q": "In a class of 60 students, 35 play cricket, 30 play hockey and 25 play football, and some students may play none. What is the minimum number of students who play at least one game?",
+   "figure": null,
+   "options": [
+    "30",
+    "35",
+    "40",
+    "45"
+   ],
+   "answer": 1,
+   "solution": "The union cannot be smaller than its largest member set: $\\max(35, 30, 25) = 35$.",
+   "shortcut": "Nest hockey and football inside cricket; the union is then exactly 35.",
+   "difficulty": "medium",
+   "subtopic": "st-max-min",
+   "pattern": "st-m3",
+   "timeSec": 45
+  },
+  {
+   "id": "st-max-min-p09",
+   "q": "In a hostel of 100 students, 72 take tea and 60 take coffee. Some students may take neither. What is the minimum number of students who take both?",
+   "figure": null,
+   "options": [
+    "12",
+    "22",
+    "32",
+    "42"
+   ],
+   "answer": 2,
+   "solution": "Minimum $= \\max(0,\\ 72 + 60 - 100) = 32$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "st-max-min",
+   "pattern": "st-m2",
+   "timeSec": 45
+  },
+  {
+   "id": "st-max-min-p10",
+   "q": "In a group of 100 people, 80 like tea, 70 like coffee and 60 like milk. If every person likes at least one drink, what is the minimum number of people who like all three?",
+   "figure": null,
+   "options": [
+    "0",
+    "5",
+    "10",
+    "20"
+   ],
+   "answer": 2,
+   "solution": "Minimum triple $= \\max(0,\\ 210 - 2 \\times 100) = 10$.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "st-max-min",
+   "pattern": "st-m4",
+   "timeSec": 70
+  },
+  {
+   "id": "st-max-min-p11",
+   "q": "In a school of 300 students, 200 take Mathematics, 180 take Physics and 150 take Chemistry. Each student takes at least one subject. What is the maximum number of students who take all three?",
+   "figure": null,
+   "options": [
+    "100",
+    "120",
+    "150",
+    "180"
+   ],
+   "answer": 2,
+   "solution": "Maximum $= \\min(200, 180, 150) = 150$: all three sets can share those 150 students.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "st-max-min",
+   "pattern": "st-m1",
+   "timeSec": 45
+  },
+  {
+   "id": "st-max-min-p12",
+   "q": "In a school of 130 students, every student plays at least one of carrom, chess and ludo. 75 play carrom, 65 play chess and 55 play ludo. What is the minimum number of students who play at least two games?",
+   "figure": null,
+   "options": [
+    "25",
+    "30",
+    "33",
+    "40"
+   ],
+   "answer": 2,
+   "solution": "Singles sum $= 195$, so extra memberships $= 195 - 130 = 65$.\nAt least two $= 65 - t$, so maximise the triple $t$.\n$t \\le (195 - 130) \\div 2 = 32$ (exactly-two regions cannot go negative).\nMinimum $= 65 - 32 = 33$.",
+   "shortcut": "Each 'at least two' person absorbs extra memberships; push the triple as high as it can go.",
+   "difficulty": "hard",
+   "subtopic": "st-max-min",
+   "pattern": "st-m5",
+   "timeSec": 90
+  },
+  {
+   "id": "st-caselets-p01",
+   "q": "In a survey of 400 people, 240 watch news channels, 200 watch movies and 100 watch both. How many people watch neither?",
+   "figure": null,
+   "options": [
+    "40",
+    "60",
+    "80",
+    "100"
+   ],
+   "answer": 1,
+   "solution": "$n(\\text{news or movies}) = 240 + 200 - 100 = 340$.\nNeither $= 400 - 340 = 60$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "st-caselets",
+   "pattern": "st-c1",
+   "timeSec": 35
+  },
+  {
+   "id": "st-caselets-p02",
+   "q": "In a group of 250 students, 130 opted for Mathematics, 120 opted for Biology and 40 opted for neither. How many students opted for both?",
+   "figure": null,
+   "options": [
+    "30",
+    "40",
+    "50",
+    "60"
+   ],
+   "answer": 1,
+   "solution": "At least one $= 250 - 40 = 210$.\nBoth $= 130 + 120 - 210 = 40$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "st-caselets",
+   "pattern": "st-c1",
+   "timeSec": 35
+  },
+  {
+   "id": "st-caselets-p03",
+   "q": "In a town, 55% of families have a television and 45% have a refrigerator. If 25% have neither, what percentage of families have both?",
+   "figure": null,
+   "options": [
+    "15%",
+    "20%",
+    "25%",
+    "30%"
+   ],
+   "answer": 2,
+   "solution": "At least one $= 100 - 25 = 75\\%$.\nBoth $= 55 + 45 - 75 = 25\\%$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "st-caselets",
+   "pattern": "st-c2",
+   "timeSec": 30
+  },
+  {
+   "id": "st-caselets-p04",
+   "q": "In a class of 70 students, 40 like tea, 35 like coffee and 15 like both. How many students like exactly one drink?",
+   "figure": null,
+   "options": [
+    "35",
+    "40",
+    "45",
+    "50"
+   ],
+   "answer": 2,
+   "solution": "Exactly one $= 40 + 35 - 2 \\times 15 = 45$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "st-caselets",
+   "pattern": "st-c3",
+   "timeSec": 30
+  },
+  {
+   "id": "st-caselets-p05",
+   "q": "Of 300 employees in a company, 180 know Hindi and 150 know English. If 60 know neither language, how many know exactly one language?",
+   "figure": null,
+   "options": [
+    "120",
+    "140",
+    "150",
+    "160"
+   ],
+   "answer": 2,
+   "solution": "At least one $= 240$. Both $= 330 - 240 = 90$.\nExactly one $= 240 - 90 = 150$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "st-caselets",
+   "pattern": "st-c3",
+   "timeSec": 35
+  },
+  {
+   "id": "st-caselets-p06",
+   "q": "In a survey of 500 households, 310 own a smartphone, 260 own a laptop and 90 own neither. How many households own both?",
+   "figure": null,
+   "options": [
+    "120",
+    "140",
+    "160",
+    "180"
+   ],
+   "answer": 2,
+   "solution": "At least one $= 500 - 90 = 410$.\nBoth $= 310 + 260 - 410 = 160$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "st-caselets",
+   "pattern": "st-c1",
+   "timeSec": 40
+  },
+  {
+   "id": "st-caselets-p07",
+   "q": "In a survey, 65% of the people read newspaper A, 48% read newspaper B and 20% read neither. What percentage read exactly one newspaper?",
+   "figure": null,
+   "options": [
+    "42%",
+    "45%",
+    "47%",
+    "53%"
+   ],
+   "answer": 2,
+   "solution": "At least one $= 80\\%$. Both $= 65 + 48 - 80 = 33\\%$.\nExactly one $= 80 - 33 = 47\\%$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "st-caselets",
+   "pattern": "st-c2",
+   "timeSec": 45
+  },
+  {
+   "id": "st-caselets-p08",
+   "q": "In a group of 600 people, 75% speak Hindi and 40% speak English, and 10% speak neither language. How many people speak both languages?",
+   "figure": null,
+   "options": [
+    "120",
+    "135",
+    "150",
+    "165"
+   ],
+   "answer": 2,
+   "solution": "At least one $= 90\\%$. Both $= 75 + 40 - 90 = 25\\%$.\n$25\\%$ of $600 = 150$ people.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "st-caselets",
+   "pattern": "st-c2",
+   "timeSec": 45
+  },
+  {
+   "id": "st-caselets-p09",
+   "q": "In a college, 40% of students play cricket, 30% play football and 20% play hockey. 10% play cricket and football, 8% play football and hockey, 6% play cricket and hockey, and 2% play all three. What percentage of students play none of the games?",
+   "figure": null,
+   "options": [
+    "28%",
+    "30%",
+    "32%",
+    "36%"
+   ],
+   "answer": 2,
+   "solution": "Union $= 90 - 24 + 2 = 68\\%$.\nNone $= 100 - 68 = 32\\%$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "st-caselets",
+   "pattern": "st-c2",
+   "timeSec": 55
+  },
+  {
+   "id": "st-caselets-p10",
+   "q": "In a survey of 200 people, 120 like tea, 100 like coffee and 90 like milk. 60 like tea and coffee, 50 like coffee and milk, 45 like tea and milk, and 30 like all three. How many people like none of the three drinks?",
+   "figure": null,
+   "options": [
+    "10",
+    "15",
+    "20",
+    "25"
+   ],
+   "answer": 1,
+   "solution": "Union $= 310 - 155 + 30 = 185$.\nNone $= 200 - 185 = 15$.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "st-caselets",
+   "pattern": "st-c4",
+   "timeSec": 70
+  },
+  {
+   "id": "st-caselets-p11",
+   "q": "In a class of 80 students, every student plays at least one of two games. 50 play chess and 55 play cards. How many students play chess only?",
+   "figure": null,
+   "options": [
+    "20",
+    "25",
+    "30",
+    "35"
+   ],
+   "answer": 1,
+   "solution": "Both $= 50 + 55 - 80 = 25$.\nOnly chess $= 50 - 25 = 25$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "st-caselets",
+   "pattern": "st-c4",
+   "timeSec": 45
+  },
+  {
+   "id": "st-caselets-p12",
+   "q": "In a hostel, 60% of students drink tea, 50% drink coffee and 45% drink milk. 25% drink tea and coffee, 20% drink coffee and milk and 15% drink tea and milk. Every student drinks at least one beverage. What is the minimum percentage of students who drink all three?",
+   "figure": null,
+   "options": [
+    "0%",
+    "5%",
+    "10%",
+    "15%"
+   ],
+   "answer": 1,
+   "solution": "Union $= (60 + 50 + 45) - (25 + 20 + 15) + t = 95 + t$.\nEveryone drinks at least one, so the union is $100\\%$: $95 + t = 100$.\n$t = 5\\%$.",
+   "shortcut": "With the union pinned at 100%, the triple is fixed, not free.",
+   "difficulty": "hard",
+   "subtopic": "st-caselets",
+   "pattern": "st-c2",
+   "timeSec": 85
+  }
+ ]
+}

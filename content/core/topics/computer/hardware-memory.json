@@ -1167,80 +1167,80 @@
  ],
  "pyqPatterns": [
   {
-   "pattern": "Memory-unit ladder conversion",
+   "pattern": "Memory unit conversion",
    "frequency": "very common",
-   "howToSpot": "'4 GB = how many MB?', 'bits in a byte/nibble', 'which is largest: 1024 KB / 1 MB / …', or a speed question mixing megabits with megabytes.",
-   "approach": "Convert step by step with the ×1024 ladder (bit → byte → KB → MB → GB → TB), never 1000. For speed questions, remember line speeds are in bits: divide Mbps by 8 to get megabytes per second. For 'which is largest', convert every option to one unit first.",
+   "howToSpot": "\"How many MB are there in 2 GB?\" or \"bits in a byte\".",
+   "approach": "Go up or down the ladder: bit, byte, KB, MB, GB, TB.\nEach step is ×1024 (not 1000).",
    "subtopic": "hm-memory-units",
    "example": {
     "q": "How many MB are there in 2 GB?",
-    "solution": "2 × 1024 = 2048 MB — each step up the ladder multiplies by 1024."
+    "solution": "1 GB = 1024 MB\n2 GB = 2 × 1024\n= 2048\nAnswer: **2048 MB**"
    }
   },
   {
-   "pattern": "Binary/decimal/hex/octal conversion",
+   "pattern": "Binary, decimal, hex, octal conversion",
    "frequency": "very common",
-   "howToSpot": "'The decimal value of (1101)₂', 'the binary equivalent of 45', '(11011011)₂ in hexadecimal', 'how many values can 8 bits represent'.",
-   "approach": "Base→decimal: digit × base^position from the right. Decimal→base: divide repeatedly and read remainders bottom-to-top. Binary→octal/hex: group in 3s or 4s from the right. Always verify by converting back. Digit validity is a free elimination: no 8/9 in octal, nothing after F in hex.",
+   "howToSpot": "\"Binary equivalent of 45\" or \"decimal value of (1101)₂\".",
+   "approach": "To binary: divide by 2 again and again, read remainders bottom to top.\nAlways check by converting back.",
    "subtopic": "hm-number-systems",
    "example": {
-    "q": "The binary equivalent of decimal 45 is:",
-    "solution": "Divide by 2 and read remainders upward: 101101. Check: 32+8+4+1 = 45."
+    "q": "What is the binary equivalent of decimal 45?",
+    "solution": "45 ÷ 2 = 22 r 1, 22 ÷ 2 = 11 r 0, 11 ÷ 2 = 5 r 1\n5 ÷ 2 = 2 r 1, 2 ÷ 2 = 1 r 0, 1 ÷ 2 = 0 r 1\nRemainders bottom to top: 101101\nCheck: 32 + 8 + 4 + 1 = 45, so **(101101)₂**"
    }
   },
   {
-   "pattern": "Volatile memory / ROM family",
+   "pattern": "Volatile memory and ROM types",
    "frequency": "common",
-   "howToSpot": "'Which is volatile?', 'EPROM is erased by…', 'where is the BIOS stored?', 'SRAM vs DRAM refresh', 'cache lies where?'.",
-   "approach": "Volatile = vanishes with power (registers, cache, RAM). Non-volatile = ROM family, flash, disk. ROM ladder: PROM once → EPROM (UV) → EEPROM (electrically) → flash. SRAM = cache (no refresh); DRAM = main memory (needs refresh); virtual memory = disk overflow, not RAM.",
+   "howToSpot": "\"Which memory is volatile?\" or \"EPROM is erased by ___\".",
+   "approach": "Volatile = lost when power goes off (RAM, cache, registers).\nROM order: PROM (once) → EPROM (UV light) → EEPROM (electric).",
    "subtopic": "hm-memory-hierarchy",
    "example": {
-    "q": "EPROM differs from PROM because it can be erased by:",
-    "solution": "Ultraviolet light — EEPROM goes one step further and erases electrically."
+    "q": "EPROM can be erased by:",
+    "solution": "PROM can be written only once\nEPROM is erased using a special light\nEEPROM is erased electrically\nAnswer: **Ultraviolet light**"
    }
   },
   {
-   "pattern": "Port/device identification",
+   "pattern": "Which port for which device",
    "frequency": "common",
-   "howToSpot": "'Which port carries audio + video?', 'one bit at a time', 'RJ-45 is for…', 'hot-swappable means…', 'which port for the old keyboard?'.",
-   "approach": "Port table recall: HDMI = digital video + audio, VGA = analog video only, Ethernet/RJ-45 = network, PS/2 = old keyboard/mouse, USB = universal + hot-swap + power. Serial = 1 bit at a time over long runs; parallel = 8 bits, the old printer (LPT) port.",
+   "howToSpot": "\"Which port connects to a wired network?\" or \"which port carries audio and video?\"",
+   "approach": "Learn one job per port: HDMI = video + audio, VGA = video only.\nEthernet (RJ-45) = network cable. USB = most devices.",
    "subtopic": "hm-ports",
    "example": {
     "q": "Which port connects a computer to a wired LAN?",
-    "solution": "The Ethernet port (RJ-45) — the tabbed socket for the network cable."
+    "solution": "LAN means a network cable\nThe cable has an RJ-45 plug\nIt fits the Ethernet port\nAnswer: **Ethernet (RJ-45) port**"
    }
   },
   {
-   "pattern": "Printer/device classification",
+   "pattern": "Impact and non-impact printers",
    "frequency": "common",
-   "howToSpot": "'Which is an impact printer?', 'OMR/OCR/MICR reads what?', 'plotter is used for', '3D printer produces'.",
-   "approach": "Impact = physically strikes (dot matrix, daisy wheel); non-impact = laser, inkjet, thermal. Readers by one word: OMR marks, OCR characters, MICR magnetic ink on cheques. Plotter = large drawings; 3D printer = solid objects layer by layer.",
+   "howToSpot": "\"Which of these is an impact printer?\"",
+   "approach": "Impact printers hit the paper (dot matrix, daisy wheel).\nLaser, inkjet and thermal never hit.",
    "subtopic": "hm-io-devices",
    "example": {
-    "q": "Which is an impact printer?",
-    "solution": "Dot matrix — its pins strike the ribbon against the paper; laser and inkjet never hit."
+    "q": "Which is an impact printer: Laser, Inkjet, Dot matrix, Thermal?",
+    "solution": "Impact means it strikes the paper\nDot matrix pins strike the ribbon\nLaser and inkjet spray or print without a hit\nAnswer: **Dot matrix**"
    }
   },
   {
-   "pattern": "Input/output device classification",
+   "pattern": "Input and output devices",
    "frequency": "common",
-   "howToSpot": "'Which is an input device?', 'which is NOT an input device?', 'soft copy vs hard copy', 'which device is both input and output?'.",
-   "approach": "Direction test: data flowing INTO the computer = input (keyboard, mouse, scanner, mic, readers, biometrics); results OUT = output (monitor, printer, speaker, plotter, projector). Soft copy = screen; hard copy = paper. Touch screen does both — the standard both-direction answer.",
+   "howToSpot": "\"Which is an input device?\" or \"soft copy vs hard copy\".",
+   "approach": "Data going into the computer = input (keyboard, mouse, scanner).\nResults coming out = output (monitor, printer).",
    "subtopic": "hm-io-devices",
    "example": {
     "q": "A printout on paper is called a:",
-    "solution": "Hard copy — permanent output; a monitor's display is a soft copy."
+    "solution": "Screen display = soft copy (not permanent)\nPaper printout is permanent\nPermanent paper output is called\nAnswer: **Hard copy**"
    }
   },
   {
-   "pattern": "Storage media identification",
+   "pattern": "Storage devices and capacity",
    "frequency": "common",
-   "howToSpot": "'Capacity of a CD/DVD/Blu-ray', 'which storage has no moving parts', 'sequential access example', 'match medium to technology'.",
-   "approach": "Capacity row: CD 700 MB, DVD 4.7 GB (dual 8.5), Blu-ray 25 GB with its blue-violet laser. Technology families: magnetic (HDD, tape), optical (CD/DVD/BD), flash (SSD, pen drive, card). Tape = sequential access, archival; disk/SSD = random access; SSD beats HDD on speed, loses on cost per GB.",
+   "howToSpot": "\"How much does a DVD / Blu-ray store?\" or \"which storage has no moving parts?\"",
+   "approach": "Learn the sizes: CD 700 MB, DVD 4.7 GB, Blu-ray 25 GB.\nSSD and pen drive = flash, no moving parts.",
    "subtopic": "hm-storage",
    "example": {
     "q": "A single-layer Blu-ray disc stores about:",
-    "solution": "25 GB — its short-wavelength blue-violet laser packs far more data than a DVD's red laser."
+    "solution": "CD = 700 MB\nDVD = 4.7 GB\nBlu-ray uses a blue-violet laser and stores more\nAnswer: **25 GB**"
    }
   }
  ],

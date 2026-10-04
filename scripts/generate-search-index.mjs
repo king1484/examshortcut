@@ -23,6 +23,11 @@ const push = (doc) => docs.push(doc);
 [
   ['/exams/', 'All exams SSC Railway Banking entrance choose exam'],
   ['/exams/ssc-cgl/', 'SSC CGL exam guide pattern eligibility posts salary selection process'],
+  ['/exams/ssc-chsl/', 'SSC CHSL exam guide pattern eligibility posts salary selection process'],
+  ['/exams/ssc-mts/', 'SSC MTS Havaldar exam guide pattern eligibility posts salary selection process'],
+  ['/exams/ssc-gd/', 'SSC GD Constable exam guide pattern eligibility posts salary selection process'],
+  ['/exams/rrb-ntpc/', 'RRB NTPC exam guide pattern eligibility posts salary selection process'],
+  ['/exams/rrb-group-d/', 'RRB Group D exam guide pattern eligibility posts salary selection process'],
   ['/learn/', 'Subjects notes syllabus all sections topics list'],
   ['/daily-quiz/', 'Daily quiz today streak practice'],
   ['/exams/ssc-cgl/mocks/', 'Mock tests free CBT full paper previous year'],

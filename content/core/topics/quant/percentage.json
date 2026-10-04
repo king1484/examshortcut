@@ -1119,91 +1119,91 @@
  ],
  "pyqPatterns": [
   {
-   "pattern": "x% of a number / fraction conversion",
+   "pattern": "Find a % of a number",
    "frequency": "very common",
-   "howToSpot": "'What is 35% of 480', '1/8 as a percentage', 'if p% of N is k find N'.",
-   "approach": "Fraction table + one multiplication or division; recover the whole with N = 100k/p. Under 30 seconds — never long-multiply.",
+   "howToSpot": "\"What is 35% of 480?\"",
+   "approach": "Find 10% first (move the dot one place left).\nBuild your % from pieces of 10% and 5%.",
    "subtopic": "pct-basics",
    "example": {
     "q": "What is 35% of 480?",
-    "solution": "Table route: 35% = 7/20 → 480 × 7/20 = 168. Or 10% is 48, so 35% = 3.5 × 48 = 168."
+    "solution": "10% of 480 = 48\n5% = half of 48 = 24\n35% = 48 + 48 + 48 + 24 = **168**"
    }
   },
   {
-   "pattern": "Successive percentage change",
+   "pattern": "Goes up by some %, then down",
    "frequency": "very common",
-   "howToSpot": "Two or three changes applied one after another (price/population/marks), asking net change or final value.",
-   "approach": "Multiplier chips (×6/5, ×3/4 …) or a + b + ab/100 for two changes. Up-then-down by the same rate → net −x²/100%. Three changes: chain the chips.",
+   "howToSpot": "A price or number rises, then falls (or the reverse). Asks the final change.",
+   "approach": "Start with 100.\nApply the changes one at a time.",
    "subtopic": "pct-change",
    "example": {
-    "q": "The price of an article rises by 20% and then falls by 20%. What is the net change?",
-    "solution": "Net = −20²/100 = −4%. Chips: 6/5 × 4/5 = 24/25 → a 4% decrease."
+    "q": "Price rises 20%, then falls 20%. Net change?",
+    "solution": "Start: 100\nUp 20% → 120\nDown 20% of 120 (that is 24) → 96\n100 became 96, so **4% less**"
    }
   },
   {
-   "pattern": "'More than / less than' flip",
+   "pattern": "\"A is more than B\" — so B is less than A",
    "frequency": "very common",
-   "howToSpot": "'A's income is 25% more than B's; B's income is what % less than A's?' — the base changes mid-question.",
-   "approach": "Flip formulas: 100x/(100+x) (more→less) and 100x/(100−x) (less→more). Or set the unmentioned quantity to 100. Chains of percentages: multiply fractions.",
+   "howToSpot": "\"A is 20% more than B. B is what % less than A?\"",
+   "approach": "Start with B = 100 and find A.\nCompare the gap with A (the bigger one), not B.",
    "subtopic": "pct-more-less",
    "example": {
-    "q": "A's income is 20% more than B's. B's income is what per cent less than A's?",
-    "solution": "B = 100, A = 120 → gap 20 on base 120 → 100 × 20/120 = 16⅔% less."
+    "q": "A is 20% more than B. B is how much % less than A?",
+    "solution": "B = 100, so A = 120\nGap = 20\nGap out of A: 20 ÷ 120 = **16⅔% less**"
    }
   },
   {
-   "pattern": "Population / depreciation over years",
+   "pattern": "Population growing or falling",
    "frequency": "common",
-   "howToSpot": "Population grows or falls at stated yearly rates (same or different); find present, past, or future value.",
-   "approach": "Chain the chips forward (×1.1, ×0.9 …); divide by them to go back. Two different rates: never average — multiply chips. (1 − r/100)² ≠ 1 − 2r/100.",
+   "howToSpot": "Population changes by some % each year. Find the number after 2–3 years.",
+   "approach": "Do one year at a time.\nNever add the % of different years.",
    "subtopic": "pct-population-election",
    "example": {
-    "q": "The population of a town is 40,000. It increases by 10% in the first year and decreases by 5% in the second. Population at the end of the second year?",
-    "solution": "40000 × 11/10 × 19/20 = 44,000 × 0.95 = 41,800."
+    "q": "Population 40,000. Up 10% in year 1, down 5% in year 2. Final?",
+    "solution": "Year 1: 10% of 40,000 = 4,000 → 44,000\nYear 2: 5% of 44,000 = 2,200 → 44,000 − 2,200 = **41,800**"
    }
   },
   {
-   "pattern": "Election / voting percentages",
+   "pattern": "Election votes",
    "frequency": "common",
-   "howToSpot": "Two candidates, invalid votes given, winner's share of valid votes and margin given; find total votes or votes got.",
-   "approach": "Everything sits on VALID votes: valid = (100 − invalid)% of polled; margin = share gap × valid; then unmask the total.",
+   "howToSpot": "Some votes are invalid. Winner's % and winning margin are given.",
+   "approach": "Use only the valid votes.\nThe winner's lead = gap between the two % × valid votes.",
    "subtopic": "pct-population-election",
    "example": {
-    "q": "In an election, 20% of the votes polled were invalid. The winner got 60% of the valid votes and won by 1,200 votes. How many votes were polled?",
-    "solution": "Margin = 20% of valid → valid = 6,000 = 80% of polled → polled = 7,500."
+    "q": "20% of votes are invalid. Winner gets 60% of valid votes and wins by 1,200. Total votes?",
+    "solution": "Winner 60%, loser 40% → lead = 20% of valid votes\n20% of valid = 1,200 → valid = 6,000\nValid is 80% of total → total = 6,000 ÷ 80 × 100 = **7,500**"
    }
   },
   {
-   "pattern": "Pass marks with two candidates",
+   "pattern": "Pass marks",
    "frequency": "common",
-   "howToSpot": "One candidate fails by f marks at p%, another exceeds pass by e at q%; find maximum marks or the pass mark.",
-   "approach": "(q − p)% of M = f + e. Solve M, then pass mark = pM/100 + f; verify with the second candidate.",
+   "howToSpot": "One student fails by some marks, another passes with extra. Find full marks.",
+   "approach": "The % gap between the two scores = the marks gap between them.",
    "subtopic": "pct-marks-income",
    "example": {
-    "q": "A candidate scoring 33% fails by 45 marks; another scoring 45% gets 15 marks more than the pass marks. Find the maximum marks.",
-    "solution": "12% of M = 45 + 15 = 60 → M = 500; pass mark = 165 + 45 = 210."
+    "q": "33% fails by 45 marks. 45% gets 15 above pass marks. Full marks?",
+    "solution": "33% → 45% is a gap of 12%\nMarks gap = 45 + 15 = 60\n12% of full marks = 60 → full marks = 60 ÷ 12 × 100 = **500**"
    }
   },
   {
-   "pattern": "Price rise vs consumption / expenditure",
+   "pattern": "Price changes, so you buy more or less",
    "frequency": "common",
-   "howToSpot": "'Price rises 20%, by what % reduce consumption to keep expenditure same' or the reverse (k kg more for a fixed outlay).",
-   "approach": "Quantity factor = expenditure factor ÷ price factor; standard cut = 100r/(100+r)%. Outlay version: r% of the money buys the extra quantity at the reduced price.",
+   "howToSpot": "\"Price falls 20%, now you can buy 5 kg more for the same money.\"",
+   "approach": "Work out how much money the price cut saves.\nThat saved money buys the extra kg.",
    "subtopic": "pct-marks-income",
    "example": {
-    "q": "A 20% cut in the price of oil lets a family buy 5 kg more for ₹400. Find the original price per kg.",
-    "solution": "Saving = 20% of 400 = ₹80 → reduced price = 80/5 = ₹16 → original = 16 × 5/4 = ₹20."
+    "q": "After a 20% price cut, ₹400 buys 5 kg more. Old price per kg?",
+    "solution": "Cut saves 20% of 400 = ₹80\n₹80 buys 5 kg → new price = 80 ÷ 5 = ₹16\n₹16 is 80% of old price → old = 16 ÷ 80 × 100 = **₹20**"
    }
   },
   {
-   "pattern": "Income–expenditure–savings change",
+   "pattern": "Income, spending and savings",
    "frequency": "occasional",
-   "howToSpot": "Savings % given; income and expenditure change by given %; find the % change in savings.",
-   "approach": "Set income = 100, track all three quantities with chips, and compute the new savings directly — the % change in savings is never guessed.",
+   "howToSpot": "Income and spending both rise. Asks how much savings change.",
+   "approach": "Start with income = 100.\nFind new spending, then new savings.",
    "subtopic": "pct-marks-income",
    "example": {
-    "q": "A person spends 80% of his income. Income rises 15% and expenditure rises 10%. Find the % increase in savings.",
-    "solution": "100/80/20 → 115/88/27 → savings rise 7/20 × 100 = 35%."
+    "q": "Spends 80% of income. Income +15%, spending +10%. Savings up by what %?",
+    "solution": "Income 100, spends 80, saves 20\nNew income 115, new spending 88, saves 27\nSavings rose 7 on 20 → **35%**"
    }
   }
  ],

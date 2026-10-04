@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { Metadata } from 'next';
 import { allFormulas, SECTION_META } from '@/lib/content';
 import { LazyTex } from '@/components/LazyTex';
@@ -5,8 +6,8 @@ import { PrintButton } from '@/components/PrintButton';
 
 export const dynamic = 'force-static';
 export const metadata: Metadata = {
-  title: 'SSC CGL formula sheet — every formula & shortcut trick, printable',
-  description: 'The complete SSC CGL formula sheet: all Quant formulas, reasoning rules, English grammar rules and GA mnemonics on one printable page. Built for last-minute revision.',
+  title: 'SSC CGL formula sheet PDF — all Quant formulas & shortcuts, free',
+  description: 'Free SSC CGL formula sheet (save as PDF): every Quant formula, reasoning rule, English grammar rule and GA mnemonic on one page, with shortcut tricks for last-minute revision.',
 };
 
 /** 220-char trick preview as plain text + browser-rendered inline math. Full
@@ -35,7 +36,7 @@ export default function FormulaSheetPage() {
       <div className="flex items-start justify-between gap-4 flex-wrap no-print">
         <div>
           <h1 className="text-3xl sm:text-4xl font-extrabold">SSC CGL formula sheet</h1>
-          <p className="muted mt-2 max-w-2xl">Every formula and shortcut trick from the notes, on one page. Print it (Ctrl/Cmd + P) or save as PDF — it's formatted for paper.</p>
+          <p className="muted mt-2 max-w-2xl">Every formula and shortcut trick from the notes, on one page. Tap “Download PDF” (or press Ctrl/Cmd + P) and choose “Save as PDF” — it's formatted for paper.</p>
         </div>
         <PrintButton />
       </div>
@@ -72,6 +73,17 @@ export default function FormulaSheetPage() {
         </section>
       ))}
       {sections.every((s) => s.topics.length === 0) && <p className="card p-6 mt-8 text-center muted">Formulas are being compiled — check back shortly.</p>}
+
+      <aside className="card p-4 mt-10 text-sm no-print">
+        <div className="font-bold">More ways to revise</div>
+        <p className="muted mt-1">
+          <Link href="/quant-formulas/" className="underline decoration-dotted">Quant formulas by topic</Link> (with per-topic links) ·{' '}
+          <Link href="/shortcut-tricks/" className="underline decoration-dotted">All shortcut tricks</Link> ·{' '}
+          <Link href="/data-interpretation/" className="underline decoration-dotted">Data interpretation formulas &amp; tricks</Link> ·{' '}
+          <Link href="/exams/ssc-cgl/mocks/" className="underline decoration-dotted">Mock tests</Link> ·{' '}
+          <Link href="/daily-quiz/" className="underline decoration-dotted">Daily quiz</Link>
+        </p>
+      </aside>
     </div>
   );
 }

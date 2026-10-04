@@ -1015,91 +1015,91 @@
  ],
  "pyqPatterns": [
   {
-   "pattern": "Combined average of two groups",
+   "pattern": "Average of two groups joined",
    "frequency": "very common",
-   "howToSpot": "Two classes/teams/genders with different sizes and averages merge into one.",
-   "approach": "Weighted mean $\\frac{n_1\\bar{x}_1 + n_2\\bar{x}_2}{n_1+n_2}$; equal sizes → plain average of the means.",
+   "howToSpot": "\"30 boys average 62 kg and 20 girls average 58 kg. Find the class average.\"",
+   "approach": "Find each group's total (number × average).\nAdd the totals and divide by all the people.",
    "subtopic": "stat-mean",
    "example": {
-    "q": "30 boys average 62 kg and 20 girls average 58 kg. The class average is:",
-    "solution": "$\\frac{30 \\times 62 + 20 \\times 58}{50} = 60.4$ kg."
+    "q": "30 boys average 62 kg and 20 girls average 58 kg. Class average?",
+    "solution": "Boys' total = 30 × 62 = 1860\nGirls' total = 20 × 58 = 1160\nAll together = 3020 for 50 students\n3020 ÷ 50 = **60.4 kg**"
    }
   },
   {
-   "pattern": "Member joins / leaves / replaced",
+   "pattern": "Someone joins or leaves the group",
    "frequency": "very common",
-   "howToSpot": "A new batsman, teacher or watch changes the group average by a stated amount.",
-   "approach": "Work in totals: newcomer $= b + n(b-a)$; leaver $= a + n(a-b)$; replacement carries $n \\times$ the shift.",
+   "howToSpot": "\"With the teacher included, the average rises by 0.5 kg.\"",
+   "approach": "Work with totals, not averages.\nThe newcomer's value = new total − old total.",
    "subtopic": "stat-mean",
    "example": {
-    "q": "24 students average 35 kg; with the teacher it rises 0.5 kg. The teacher's weight is:",
-    "solution": "$35 + 25 \\times 0.5 = 47.5$ kg."
+    "q": "24 students average 35 kg. With the teacher, the average rises by 0.5 kg. Teacher's weight?",
+    "solution": "Students' total = 24 × 35 = 840\nWith teacher: 25 × 35.5 = 887.5\nTeacher = 887.5 − 840 = **47.5 kg**"
    }
   },
   {
-   "pattern": "Empirical 3M relation",
+   "pattern": "Mean, median and mode together",
    "frequency": "very common",
-   "howToSpot": "Two of mean/median/mode given (often clean integers), the third asked.",
-   "approach": "$\\text{mode} = 3\\,\\text{median} - 2\\,\\text{mean}$; rearrange for whichever is missing.",
+   "howToSpot": "\"Median is 32 and mean is 30. Find the mode.\"",
+   "approach": "Mode = 3 × median − 2 × mean.\nRearrange if a different one is missing.",
    "subtopic": "stat-median-mode",
    "example": {
-    "q": "Median 32, mean 30. The mode is:",
-    "solution": "$3 \\times 32 - 2 \\times 30 = 36$."
+    "q": "Median is 32 and mean is 30. Find the mode.",
+    "solution": "Mode = 3 × median − 2 × mean\n= 3 × 32 − 2 × 30\n= 96 − 60\nMode = **36**"
    }
   },
   {
-   "pattern": "Median/mode of grouped data",
+   "pattern": "Median from a frequency table",
    "frequency": "common",
-   "howToSpot": "A frequency table with class intervals; sometimes a missing frequency to solve for.",
-   "approach": "cf column → median class → $L + \\frac{n/2 - cf}{f}h$; tallest frequency → mode formula.",
+   "howToSpot": "A table of class intervals (0–10, 10–20, ...) with frequencies.",
+   "approach": "Add running totals until you pass half the total; that class holds the median.\nMedian = class start + (half − total before) ÷ frequency × class width.",
    "subtopic": "stat-grouped",
    "example": {
-    "q": "Frequencies 4, 6, 10, 8, 2 over classes 0-10...40-50. The median is:",
-    "solution": "$20 + \\frac{15-10}{10} \\times 10 = 25$."
+    "q": "Frequencies 4, 6, 10, 8, 2 for classes 0–10, 10–20, 20–30, 30–40, 40–50. Find the median.",
+    "solution": "Total = 30, half = 15\nRunning totals: 4, 10, 20, so the median class is 20–30\nBefore it: 10 students; in it: 10 students\nMedian = 20 + (15 − 10) ÷ 10 × 10 = **25**"
    }
   },
   {
-   "pattern": "Effect of scaling on mean and SD",
+   "pattern": "Every value is changed the same way",
    "frequency": "common",
-   "howToSpot": "'Each value is multiplied/divided and then shifted; find the new mean/SD/median.'",
-   "approach": "Mean and median scale by $a$ then shift by $b$; SD only scales by $|a|$ — the shift never enters.",
+   "howToSpot": "\"Each value is tripled and 5 is added. Find the new SD.\"",
+   "approach": "Multiplying changes both the average and the spread.\nAdding only moves the average; the spread stays the same.",
    "subtopic": "stat-dispersion",
    "example": {
-    "q": "SD is 7; each value is tripled and 5 added. The new SD is:",
-    "solution": "$3 \\times 7 = 21$."
+    "q": "SD is 7. Each value is tripled and then 5 is added. New SD?",
+    "solution": "Tripling makes the spread 3 times: 3 × 7 = 21\nAdding 5 slides every value, so the spread is unchanged\nNew SD = **21**"
    }
   },
   {
-   "pattern": "Averages of consecutive / special series",
+   "pattern": "Average of a number series",
    "frequency": "common",
-   "howToSpot": "First n naturals/squares/cubes, consecutive odds/evens, AP terms.",
-   "approach": "AP → middle term; squares/cubes → closed-form sums ÷ n; cubes sum = (naturals sum)².",
+   "howToSpot": "\"Find the mean of the squares of the first 10 natural numbers.\"",
+   "approach": "Use the sum formula for the series, then divide by how many terms.\nFor evenly spaced numbers, the average is the middle value.",
    "subtopic": "stat-series-sums",
    "example": {
-    "q": "The mean of the squares of the first 10 naturals is:",
-    "solution": "$\\frac{11 \\times 21}{6} = 38.5$."
+    "q": "Mean of the squares of the first 10 natural numbers?",
+    "solution": "Sum of squares 1 to n = n × (n + 1) × (2n + 1) ÷ 6\nFor n = 10: 10 × 11 × 21 ÷ 6 = 385\nMean = 385 ÷ 10 = **38.5**"
    }
   },
   {
-   "pattern": "Raise-the-average / innings problems",
+   "pattern": "Runs needed to lift the average",
    "frequency": "common",
-   "howToSpot": "'How many runs in the next innings to raise the average to X?'",
-   "approach": "Needed = new total − old total $= (n+1)X - n\\bar{x}$, i.e. $X + n(X - \\bar{x})$.",
+   "howToSpot": "\"How many runs in the next innings to make the average 50?\"",
+   "approach": "Find the total needed after the next innings.\nSubtract the total so far.",
    "subtopic": "stat-mean",
    "example": {
-    "q": "Averaging 45 over 8 innings; score in the 9th to average 50:",
-    "solution": "$450 - 360 = 90$."
+    "q": "A batsman averages 45 over 8 innings. What must he score in the 9th to average 50?",
+    "solution": "Runs so far = 8 × 45 = 360\nNeeded after 9 innings = 9 × 50 = 450\nScore in the 9th = 450 − 360 = **90**"
    }
   },
   {
-   "pattern": "Misrecorded value corrections",
+   "pattern": "One value was written wrongly",
    "frequency": "occasional",
-   "howToSpot": "A value was wrongly recorded; the corrected mean (or SD) asked.",
-   "approach": "Correct the total by (true − recorded); mean shifts by $\\frac{\\text{error}}{n}$. For SD, correct $\\sum x^2$ too.",
+   "howToSpot": "\"24 was wrongly recorded as 21. Find the correct average.\"",
+   "approach": "Fix the total by adding or removing the mistake.\nThen divide by the same number of items.",
    "subtopic": "stat-mean",
    "example": {
-    "q": "Average of 30 results was 20; 24 was recorded as 21. The corrected average is:",
-    "solution": "$\\frac{600 + 3}{30} = 20.1$."
+    "q": "The average of 30 results was 20, but 24 was recorded as 21. Correct average?",
+    "solution": "Wrong total = 30 × 20 = 600\n24 was written as 21, so 3 is missing\nCorrect total = 603\n603 ÷ 30 = **20.1**"
    }
   }
  ],

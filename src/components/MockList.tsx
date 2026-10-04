@@ -19,6 +19,7 @@ export function MockList({ mocks }: { mocks: Row[] }) {
                 <h2 className="font-extrabold text-lg">{m.title}</h2>
                 <span className={`chip ${m.available ? 'chip-low' : 'chip-medium'}`}>{m.available ? 'Ready' : 'Coming up'}</span>
                 <span className="chip">Tier {m.tier}</span>
+                <span className="chip">Free</span>
               </div>
               <p className="text-sm muted mt-1.5">{m.blurb}</p>
               <p className="text-xs faint mt-2">

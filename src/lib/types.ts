@@ -95,13 +95,15 @@ export interface MockSection { sectionId: SectionId; name: string; questions: Qu
 export interface Mock {
   id: string;
   title: string;
-  kind: 'full' | 'pyq-pattern';
+  kind: 'full' | 'pyq-pattern' | 'real-pyq';
   tier: 1 | 2;
   durationMin: number;
   plus: number;
   minus: number;
   blurb: string;
   open?: boolean;
+  /** owning exam id; omitted = ssc-cgl */
+  exam?: string;
   sections: MockSection[];
 }
 

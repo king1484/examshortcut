@@ -94,9 +94,68 @@ export function getCaYear(year: number): CaYear | null {
 interface MockDef {
   id: string; title: string; kind: Mock['kind']; tier: 1 | 2; durationMin: number;
   plus: number; minus: number; blurb: string; sections: SectionId[]; open?: boolean;
+  /** exam id; omitted = ssc-cgl */
+  exam?: string;
+  /** display names per section (e.g. CAT shows VARC / DILR / QA); default = subject name */
+  sectionNames?: Partial<Record<SectionId, string>>;
 }
 
 export const MOCK_DEFS: MockDef[] = [
+  {
+    id: 't1-real-2025-0926-s3', title: 'CGL 2025 Tier 1 — real paper, 26 Sept Shift 3', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
+    blurb: 'Real questions from the SSC CGL 2025 Tier 1 paper held on 26 Sept 2025 (Shift 3), official answers, original step-by-step solutions. 92 questions — passage-based and a few unverifiable ones are left out.',
+  },
+  {
+    id: 't1-real-2025-0912-s1', title: 'CGL 2025 Tier 1 — real paper, 12 Sept Shift 1', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
+    blurb: 'Real questions from the SSC CGL 2025 Tier 1 paper held on 12 Sept 2025 (Shift 1), official answers, original step-by-step solutions. 90 questions — passage-based and a few unverifiable ones are left out.',
+  },
+  {
+    id: 't1-real-2025-0912-s2', title: 'CGL 2025 Tier 1 — real paper, 12 Sept Shift 2', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
+    blurb: 'Real questions from the SSC CGL 2025 Tier 1 paper held on 12 Sept 2025 (Shift 2), official answers, original step-by-step solutions. 89 questions — passage-based and a few unverifiable ones are left out.',
+  },
+  {
+    id: 't1-real-2025-0913-s1', title: 'CGL 2025 Tier 1 — real paper, 13 Sept Shift 1', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
+    blurb: 'Real questions from the SSC CGL 2025 Tier 1 paper held on 13 Sept 2025 (Shift 1), official answers, original step-by-step solutions. 92 questions — passage-based and a few unverifiable ones are left out.',
+  },
+  {
+    id: 't1-real-2025-0913-s2', title: 'CGL 2025 Tier 1 — real paper, 13 Sept Shift 2', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
+    blurb: 'Real questions from the SSC CGL 2025 Tier 1 paper held on 13 Sept 2025 (Shift 2), official answers, original step-by-step solutions. 92 questions — passage-based and a few unverifiable ones are left out.',
+  },
+  {
+    id: 't1-real-2025-0914-s1', title: 'CGL 2025 Tier 1 — real paper, 14 Sept Shift 1', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
+    blurb: 'Real questions from the SSC CGL 2025 Tier 1 paper held on 14 Sept 2025 (Shift 1), official answers, original step-by-step solutions. 94 questions — passage-based and a few unverifiable ones are left out.',
+  },
+  {
+    id: 't1-real-2025-0914-s2', title: 'CGL 2025 Tier 1 — real paper, 14 Sept Shift 2', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
+    blurb: 'Real questions from the SSC CGL 2025 Tier 1 paper held on 14 Sept 2025 (Shift 2), official answers, original step-by-step solutions. 89 questions — passage-based and a few unverifiable ones are left out.',
+  },
+  {
+    id: 't1-real-2025-0915-s1', title: 'CGL 2025 Tier 1 — real paper, 15 Sept Shift 1', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
+    blurb: 'Real questions from the SSC CGL 2025 Tier 1 paper held on 15 Sept 2025 (Shift 1), official answers, original step-by-step solutions. 92 questions — passage-based and a few unverifiable ones are left out.',
+  },
+  {
+    id: 't1-real-2025-0915-s2', title: 'CGL 2025 Tier 1 — real paper, 15 Sept Shift 2', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
+    blurb: 'Real questions from the SSC CGL 2025 Tier 1 paper held on 15 Sept 2025 (Shift 2), official answers, original step-by-step solutions. 91 questions — passage-based and a few unverifiable ones are left out.',
+  },
+  {
+    id: 't1-real-2025-0916-s1', title: 'CGL 2025 Tier 1 — real paper, 16 Sept Shift 1', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
+    blurb: 'Real questions from the SSC CGL 2025 Tier 1 paper held on 16 Sept 2025 (Shift 1), official answers, original step-by-step solutions. 84 questions — passage-based and a few unverifiable ones are left out.',
+  },
+  {
+    id: 't1-real-2025-0916-s2', title: 'CGL 2025 Tier 1 — real paper, 16 Sept Shift 2', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
+    blurb: 'Real questions from the SSC CGL 2025 Tier 1 paper held on 16 Sept 2025 (Shift 2), official answers, original step-by-step solutions. 89 questions — passage-based and a few unverifiable ones are left out.',
+  },
   {
     id: 't1-pyq-2025', title: 'CGL 2025 Tier 1 — PYQ-pattern paper', kind: 'pyq-pattern', tier: 1,
     durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
@@ -122,6 +181,80 @@ export const MOCK_DEFS: MockDef[] = [
     durationMin: 135, plus: 3, minus: 1, sections: ['quant', 'reasoning', 'english', 'ga', 'computer'],
     blurb: '150 questions · Maths, Reasoning, English, GA + Computer module · +3 / −1.',
   },
+  // ---------- other exams ----------
+  {
+    id: 'chsl-t1-real-2025-1112-s2', title: 'CHSL 2025 Tier 1 — real paper, 12 Nov Shift 2', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['english', 'reasoning', 'quant', 'ga'], open: true,
+    exam: 'ssc-chsl',
+    blurb: 'Real questions from the SSC CHSL 2025 Tier 1 paper held on 12 Nov 2025 (Shift 2), official answers, original step-by-step solutions. 95 questions — a few passage-based and unverifiable ones are left out.',
+  },
+  {
+    id: 'chsl-t1-real-2025-1113-s1', title: 'CHSL 2025 Tier 1 — real paper, 13 Nov Shift 1', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['english', 'ga', 'quant', 'reasoning'], open: true,
+    exam: 'ssc-chsl',
+    blurb: 'Real questions from the SSC CHSL 2025 Tier 1 paper held on 13 Nov 2025 (Shift 1), official answers, original step-by-step solutions. 95 questions — a few passage-based and unverifiable ones are left out.',
+  },
+  {
+    id: 'gd-real-2026-0504-s1', title: 'GD Constable 2026 — real paper, 4 May Shift 1', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
+    exam: 'ssc-gd',
+    blurb: 'Real questions from the SSC GD Constable 2026 paper held on 4 May 2026 (Shift 1), official answers, original step-by-step solutions. 80 questions · 160 marks.',
+  },
+  {
+    id: 'gd-real-2026-0505-s1', title: 'GD Constable 2026 — real paper, 5 May Shift 1', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['english', 'ga', 'quant', 'reasoning'], open: true,
+    exam: 'ssc-gd',
+    blurb: 'Real questions from the SSC GD Constable 2026 paper held on 5 May 2026 (Shift 1), official answers, original step-by-step solutions. 76 of the 80 questions — a few passage-based and unverifiable ones are left out.',
+  },
+  {
+    id: 'mts-real-2025-0205-s1', title: 'MTS 2025 — real paper, 5 Feb 2026 Shift 1', kind: 'real-pyq', tier: 1,
+    durationMin: 90, plus: 3, minus: 0, sections: ['quant', 'reasoning', 'ga', 'english'], open: true,
+    exam: 'ssc-mts',
+    blurb: 'Real questions from the SSC MTS 2025 paper held on 5 Feb 2026 (Shift 1) — Session 1 + Session 2 in one sitting, official answers, original solutions. 89 questions · 270 marks · no negative marking.',
+  },
+  {
+    id: 'mts-real-2025-0205-s2', title: 'MTS 2025 — real paper, 5 Feb 2026 Shift 2', kind: 'real-pyq', tier: 1,
+    durationMin: 90, plus: 3, minus: 0, sections: ['quant', 'reasoning', 'ga', 'english'], open: true,
+    exam: 'ssc-mts',
+    blurb: 'Real questions from the SSC MTS 2025 paper held on 5 Feb 2026 (Shift 2) — official answers, original step-by-step solutions. 87 questions · no negative marking.',
+  },
+  {
+    id: 'ntpc-cbt1-mock-1', title: 'NTPC CBT 1 Full Mock 1', kind: 'full', tier: 1,
+    durationMin: 90, plus: 1, minus: 0.33, sections: ['ga', 'quant', 'reasoning'], open: true,
+    exam: 'rrb-ntpc',
+    blurb: '100 questions · 100 marks · 90 minutes · −0.33 per wrong answer. GA 40, Maths 30, Reasoning 30 — real CBT-1 difficulty.',
+  },
+  {
+    id: 'groupd-cbt-mock-1', title: 'Group D CBT Full Mock 1', kind: 'full', tier: 1,
+    durationMin: 90, plus: 1, minus: 0.33, sections: ['quant', 'reasoning', 'ga'], open: true,
+    exam: 'rrb-group-d',
+    blurb: '100 questions · 100 marks · 90 minutes · −0.33 per wrong answer. Maths 25, Reasoning 30, General Science + GA 45.',
+  },
+  {
+    id: 'cat-mock-1', title: 'CAT Full Mock 1', kind: 'full', tier: 1,
+    durationMin: 120, plus: 3, minus: 1, sections: ['english', 'reasoning', 'quant'], open: true,
+    exam: 'cat',
+    sectionNames: { english: 'VARC', reasoning: 'DILR', quant: 'QA' },
+    blurb: 'CAT pattern — VARC 24, DILR 22, QA 22 · 68 questions · 198 marks · +3 / −1 · 40 minutes per section (try keeping 40 each in this combined 120-minute run).',
+  },
+  {
+    id: 'cpo-p1-real-2025-1209-s1', title: 'CPO 2025 Paper 1 — real paper, 9 Dec Shift 1', kind: 'real-pyq', tier: 1,
+    durationMin: 120, plus: 1, minus: 0.25, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
+    exam: 'ssc-cpo',
+    blurb: 'Real questions from the SSC CPO 2025 Paper 1 held on 9 Dec 2025 (Shift 1) — the pre-2026 200-question pattern. Official answers, original step-by-step solutions. 195 questions · 200 marks · −0.25 per wrong answer.',
+  },
+  {
+    id: 'ibps-po-pre-mock-1', title: 'IBPS PO Prelims Mock 1', kind: 'full', tier: 1,
+    durationMin: 60, plus: 1, minus: 0.25, sections: ['english', 'quant', 'reasoning'], open: true,
+    exam: 'ibps-po',
+    blurb: 'Prelims pattern — English 30, Quant 35, Reasoning 35 · 100 questions · 100 marks · +1 / −0.25 · 20 minutes per section (try keeping 20 each in this combined 60-minute run).',
+  },
+  {
+    id: 'ibps-clerk-pre-mock-1', title: 'IBPS Clerk Prelims Mock 1', kind: 'full', tier: 1,
+    durationMin: 60, plus: 1, minus: 0.25, sections: ['english', 'quant', 'reasoning'], open: true,
+    exam: 'ibps-clerk',
+    blurb: 'Prelims pattern — English 30, Quant 35, Reasoning 35 · 100 questions · 100 marks · +1 / −0.25 · 20 minutes per section (try keeping 20 each in this combined 60-minute run).',
+  },
 ];
 
 export function getMock(id: string): Mock | null {
@@ -129,9 +262,9 @@ export function getMock(id: string): Mock | null {
   if (!def) return null;
   const sections = def.sections
     .map((sid) => {
-      const part = readExam<{ questions: Question[] }>('ssc-cgl', `mocks/parts/${id}--${sid}.json`);
+      const part = readExam<{ questions: Question[] }>(def.exam ?? 'ssc-cgl', `mocks/parts/${id}--${sid}.json`);
       if (!part) return null;
-      return { sectionId: sid, name: SECTION_META[sid].name, questions: part.questions };
+      return { sectionId: sid, name: def.sectionNames?.[sid] ?? SECTION_META[sid].name, questions: part.questions };
     })
     .filter((s): s is NonNullable<typeof s> => !!s && s.questions.length > 0);
   if (sections.length === 0) return null;
@@ -140,8 +273,8 @@ export function getMock(id: string): Mock | null {
   return { ...rest, sections };
 }
 
-export function listMocks(): (MockDef & { available: boolean; questionCount: number })[] {
-  return MOCK_DEFS.map((d) => {
+export function listMocks(examId = 'ssc-cgl'): (MockDef & { available: boolean; questionCount: number })[] {
+  return MOCK_DEFS.filter((d) => (d.exam ?? 'ssc-cgl') === examId).map((d) => {
     const m = getMock(d.id);
     return { ...d, available: !!m && m.sections.length === d.sections.length, questionCount: m ? m.sections.reduce((n, s) => n + s.questions.length, 0) : 0 };
   });

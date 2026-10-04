@@ -43,8 +43,29 @@ export default async function TopicOverviewPage({ params }: { params: Promise<{ 
     { href: `${base}/practice/`, icon: '🎯', title: 'Practice & test', body: `${t.practice?.length ?? 0} questions — untimed practice or a timed test with analysis.` },
   ];
 
+  const url = `https://examshortcut.in${base}/`;
+  const ld = [
+    {
+      '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://examshortcut.in/' },
+        { '@type': 'ListItem', position: 2, name: meta.name, item: `https://examshortcut.in/${t.sectionId}/` },
+        { '@type': 'ListItem', position: 3, name: t.title, item: url },
+      ],
+    },
+    {
+      '@context': 'https://schema.org', '@type': 'LearningResource',
+      name: `${t.title}: notes, formulas, shortcut tricks & practice`,
+      url, inLanguage: 'en-IN', isAccessibleForFree: true,
+      educationalLevel: 'Competitive exam preparation',
+      teaches: t.subtopics.map((s) => s.title),
+      provider: { '@type': 'Organization', name: 'ExamShortcut', url: 'https://examshortcut.in/' },
+    },
+  ];
+
   return (
     <div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <Md className="mt-4 text-[15px]">{t.summary}</Md>
 
       {t.subtopics[0] && (
@@ -103,12 +124,19 @@ export default async function TopicOverviewPage({ params }: { params: Promise<{ 
                   <h3 className="font-bold text-sm">{p.pattern}</h3>
                   {p.frequency && <span className={`chip ${FREQ_CHIP[p.frequency] ?? ''}`}>{p.frequency}</span>}
                 </div>
-                {p.howToSpot && <div className="text-sm mt-1.5"><b>Spot it:</b> <Md inline>{p.howToSpot}</Md></div>}
-                {p.approach && <Md className="text-sm mt-1">{`**How to solve:** ${p.approach}`}</Md>}
+                {p.howToSpot && <div className="text-sm mt-2 flex gap-2"><span aria-hidden>👀</span><span className="muted"><Md inline>{p.howToSpot}</Md></span></div>}
+                {p.approach && (
+                  <div className="text-sm mt-1.5 flex gap-2"><span aria-hidden>⚡</span>
+                    <div className="font-semibold space-y-0.5">{p.approach.split('\n').map((l, j) => <div key={j}><Md inline>{l}</Md></div>)}</div>
+                  </div>
+                )}
                 {p.example && (
-                  <div className="mt-2.5 rounded-xl p-3 text-sm" style={{ background: 'var(--surface-2)' }}>
-                    <Md className="font-semibold">{`**Example:** ${p.example.q}`}</Md>
-                    <Md className="mt-1">{p.example.solution}</Md>
+                  <div className="mt-2.5 rounded-xl px-3 py-2.5 text-sm" style={{ background: 'var(--surface-2)' }}>
+                    <div className="faint text-xs font-semibold uppercase tracking-wide">Example</div>
+                    <div className="font-semibold mt-0.5"><Md inline>{p.example.q}</Md></div>
+                    <div className="mt-1.5 space-y-0.5 pl-2.5" style={{ borderLeft: `2px solid ${meta.color}` }}>
+                      {p.example.solution.split('\n').map((l, j) => <div key={j}><Md inline>{l}</Md></div>)}
+                    </div>
                   </div>
                 )}
                 {p.subtopic && subTitle[p.subtopic] && (

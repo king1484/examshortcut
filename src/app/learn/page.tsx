@@ -22,6 +22,13 @@ export default function LearnPage() {
         with its own formula and logic, worked examples and <b>practice sets</b>.
       </p>
       <LearnExamFilter />
+      <p className="text-sm muted mt-4 max-w-3xl">
+        Short on time? Go straight to the{' '}
+        <Link href="/shortcut-tricks/" className="underline decoration-dotted">shortcut tricks index</Link>,{' '}
+        <Link href="/quant-formulas/" className="underline decoration-dotted">Quant formulas by topic</Link>,{' '}
+        <Link href="/data-interpretation/" className="underline decoration-dotted">data interpretation formulas &amp; tricks</Link> or the{' '}
+        <Link href="/formula-sheet/" className="underline decoration-dotted">full formula sheet</Link>.
+      </p>
 
       {sections.map((sid) => {
         const topics = listTopics(sid);

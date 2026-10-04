@@ -706,80 +706,80 @@
  ],
  "pyqPatterns": [
   {
-   "pattern": "Row-rule hunt in a grid",
+   "pattern": "Find the rule in rows",
    "frequency": "very common",
-   "howToSpot": "A 3×3 grid with one missing cell; rows (or columns) share a hidden rule.",
-   "approach": "Test bridges in order: a+b, |a−b|, ab, 2ab, ab±k, a²+b², (a+b)² — fit on every complete row before applying.",
+   "howToSpot": "A 3×3 grid with one missing number, and each row follows the same hidden rule.",
+   "approach": "Try simple rules on the complete rows: add, multiply, multiply then ± a number.\nUse only a rule that fits every complete row.",
    "subtopic": "grid-row-rules",
    "example": {
-    "q": "**Rows: (6,3,15), (8,4,28), (9,5,?)**",
-    "solution": "Plain a+b fails (9, 12). Divide out: 15 = 5×3, 28 = 7×4 — the multipliers 5, 7 are one less than the first numbers → c = (a−1)×b → (9−1)×5 = **40**."
+    "q": "Rows: (6, 3, 15), (8, 4, 28), (9, 5, ?)",
+    "solution": "Adding does not work (6 + 3 = 9)\n15 = 5 × 3 and 28 = 7 × 4, so third = (first − 1) × second\nRow 3: (9 − 1) × 5 = **40**"
    }
   },
   {
    "pattern": "Two grids, one rule",
    "frequency": "common",
-   "howToSpot": "Two complete grids and an incomplete third.",
-   "approach": "Derive the rule on the first grid, verify it on the second, then apply to the third.",
+   "howToSpot": "Two full grids and a third grid with a missing number.",
+   "approach": "Find the rule in the first grid.\nCheck it on the second grid, then use it on the third.",
    "subtopic": "grid-row-rules",
    "example": {
-    "q": "**Grid 1: (2,3,7),(3,4,13). Grid 2: (4,5,?),(5,6,31)**",
-    "solution": "c = a×b + 1 → 31 ✓ → 4×5 + 1 = **21**."
+    "q": "Grid 1: (2, 3, 7), (3, 4, 13). Grid 2: (4, 5, ?), (5, 6, 31). Find ?",
+    "solution": "Try first × second + 1: 2 × 3 + 1 = 7 ✓\n3 × 4 + 1 = 13 ✓ and 5 × 6 + 1 = 31 ✓\n4 × 5 + 1 = **21**"
    }
   },
   {
-   "pattern": "Square-based row rule",
+   "pattern": "Rule with squares",
    "frequency": "common",
-   "howToSpot": "Output cells sit next to perfect squares (26, 48, 50, 63...).",
-   "approach": "Square the first (or second) input and read the leftover: a² ± b, a² ± 1, a² + b².",
+   "howToSpot": "The answers are close to square numbers (like 26, 48, 50, 63).",
+   "approach": "Square one of the numbers and see what is left over.\nTry a² − b, a² + b, a² + 1.",
    "subtopic": "missing-number-idea",
    "example": {
-    "q": "**Rows: (4,6,10), (5,3,22), (7,2,?)**",
-    "solution": "a + b fits row 1 only. a² − b: 16−6 = 10 ✓, 25−3 = 22 ✓ → 49−2 = **47**."
+    "q": "Rows: (4, 6, 10), (5, 3, 22), (7, 2, ?)",
+    "solution": "Try first² − second: 16 − 6 = 10 ✓\n25 − 3 = 22 ✓\n49 − 2 = **47**"
    }
   },
   {
-   "pattern": "Circle / triangle segments",
+   "pattern": "Triangle or circle with a centre number",
    "frequency": "common",
-   "howToSpot": "Numbers placed in sectors of a circle or corners of a triangle with a centre value.",
-   "approach": "Treat each sector as a row, or pair opposite sectors; test constant sum, then centre = sum/product of corners.",
+   "howToSpot": "Numbers are at the corners of a triangle (or sectors of a circle) with a number in the centre.",
+   "approach": "Test the sum and the product of the outer numbers.\nCheck the rule on every complete figure.",
    "subtopic": "grid-row-rules",
    "example": {
-    "q": "**Triangles (corners → centre): (2,3,4 → 24), (1,5,6 → 30), (3,2,5 → ?)**",
-    "solution": "Centre = product of corners: 2×3×4 = 24 ✓, 1×5×6 = 30 ✓ → 3×2×5 = **30**."
+    "q": "Triangles (corners → centre): (2, 3, 4 → 24), (1, 5, 6 → 30), (3, 2, 5 → ?)",
+    "solution": "Try the product of the corners: 2 × 3 × 4 = 24 ✓\n1 × 5 × 6 = 30 ✓\n3 × 2 × 5 = **30**"
    }
   },
   {
    "pattern": "Reversed-digit rule",
    "frequency": "common",
-   "howToSpot": "Mirror-image digits across the row (23 beside 32); outputs look like scrambled sums.",
-   "approach": "Test R(a) + R(b) and R(a + b); confirm on both complete rows.",
+   "howToSpot": "Two-digit numbers in the row, and the answers look like scrambled sums.",
+   "approach": "Reverse the digits of each number (23 becomes 32).\nThen add them and compare.",
    "subtopic": "digit-operations",
    "example": {
-    "q": "**Rows: (23,14,73), (45,12,75), (62,23,?)**",
-    "solution": "R(23)+R(14) = 32+41 = 73 ✓; R(45)+R(12) = 54+21 = 75 ✓ → 26+32 = **58**."
+    "q": "Rows: (23, 14, 73), (45, 12, 75), (62, 23, ?)",
+    "solution": "Reverse and add: 32 + 41 = 73 ✓\n54 + 21 = 75 ✓\nRow 3: 26 + 32 = **58**"
    }
   },
   {
    "pattern": "Digit-product rule",
    "frequency": "occasional",
-   "howToSpot": "Outputs are small and factor neatly into the digits of the inputs.",
-   "approach": "P(n) = product of digits; test P(a), P(a) + P(b), then weighted mixtures.",
+   "howToSpot": "The answers are small compared with the two-digit numbers in the row.",
+   "approach": "Multiply the digits of each number.\nThen add the two products and compare.",
    "subtopic": "digit-operations",
    "example": {
-    "q": "**Rows: (24,35,23), (43,26,24), (52,33,?)**",
-    "solution": "P(24)+P(35) = 8+15 = 23 ✓; P(43)+P(26) = 12+12 = 24 ✓ → P(52)+P(33) = 10+9 = **19**."
+    "q": "Rows: (24, 35, 23), (43, 26, 24), (52, 33, ?)",
+    "solution": "Digit products: 2 × 4 = 8 and 3 × 5 = 15; 8 + 15 = 23 ✓\n4 × 3 = 12 and 2 × 6 = 12; 12 + 12 = 24 ✓\nRow 3: 5 × 2 + 3 × 3 = 10 + 9 = **19**"
    }
   },
   {
-   "pattern": "Digit-sum grid",
+   "pattern": "Digit-sum rule",
    "frequency": "common",
-   "howToSpot": "Third numbers tiny compared with the values.",
-   "approach": "S(a)+S(b) first, then S(a+b); fit on all complete rows.",
+   "howToSpot": "The answers are tiny compared with the numbers in the row.",
+   "approach": "Add the digits of each number, then add the two sums.\nIf it does not match, look for a fixed number left over.",
    "subtopic": "digit-operations",
    "example": {
-    "q": "**Rows: (29,14,18), (38,25,20), (56,34,?)**",
-    "solution": "S(29)+S(14) = 11+5 = 16, but the answer is 18 — a constant +2 gap. Check row 2: S(38)+S(25) = 11+7 = 18, +2 = 20 ✓ → rule is S(a)+S(b)+2 → 11+7+2 = **20**."
+    "q": "Rows: (29, 14, 18), (38, 25, 20), (56, 34, ?)",
+    "solution": "Row 1: digit sums 11 and 5 make 16; answer 18, so add 2\nRow 2: 11 + 7 + 2 = 20 ✓\nRow 3: digit sums 11 and 7, so 11 + 7 + 2 = **20**"
    }
   }
  ],

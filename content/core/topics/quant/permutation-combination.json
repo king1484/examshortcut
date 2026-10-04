@@ -1,0 +1,2787 @@
+{
+ "id": "permutation-combination",
+ "sectionId": "quant",
+ "title": "Permutation, Combination & Probability",
+ "order": 20,
+ "importance": "medium",
+ "avgQuestions": {
+  "tier1": 1,
+  "tier2": 2
+ },
+ "summary": "Selections, arrangements and chance — the modern-maths block shared by SSC, Banking and CAT papers. The topic is small, but a handful of repeating patterns (word arrangements, committees, bag draws, two-dice sums) make its marks near-guaranteed with a little practice.",
+ "subtopics": [
+  {
+   "id": "pc-counting",
+   "title": "Counting Principles: Product & Sum Rules",
+   "concept": "Almost every counting question is built from two rules. When steps happen one after another ('and'), multiply the choices. When separate cases work ('or'), add them. Numbers and codes are built slot by slot.",
+   "formulas": [
+    {
+     "name": "Product rule",
+     "tex": "m \\times n",
+     "note": "$m$ options for step 1 and $n$ for step 2, joined by 'and'."
+    },
+    {
+     "name": "Sum rule",
+     "tex": "m + n",
+     "note": "Two cases that cannot happen together, joined by 'or'."
+    },
+    {
+     "name": "Strings with repetition",
+     "tex": "n^r",
+     "note": "$r$ slots from $n$ items, repeats allowed."
+    },
+    {
+     "name": "Arrangements without repetition",
+     "tex": "n(n-1)(n-2)\\ldots(n-r+1)",
+     "note": "$r$ ordered slots, no item reused."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Fill the restricted slot first",
+     "body": "Even numbers, numbers ending in 5, no leading zero — the condition always lives in one slot. Fill that slot first, then the rest.",
+     "example": {
+      "q": "How many 3-digit numbers from 1, 2, 3, 4, 5 (no repetition) end in 5?",
+      "steps": [
+       "Units: only 5 — 1 way.",
+       "Hundreds: 4; tens: 3.",
+       "$4 \\times 3 = 12$."
+      ],
+      "answer": "12"
+     }
+    },
+    {
+     "title": "AND multiply, OR add — say it out loud",
+     "body": "Read the question and underline the joining words. 'And' multiplies counts; 'or' adds cases. Most counting errors are one wrong joining word.",
+     "example": {
+      "q": "A to B: 2 roads. B to C: 3 roads. A to C direct: 4 flights. How many ways from A to C?",
+      "steps": [
+       "Via B: $2 \\times 3 = 6$.",
+       "Direct: 4.",
+       "$6 + 4 = 10$."
+      ],
+      "answer": "10"
+     }
+    }
+   ],
+   "mistakes": [
+    "Adding steps instead of multiplying — 3 choices and then 4 choices make $12$ outcomes, not $7$.",
+    "Letting zero lead the number — fill the first slot before the others whenever 0 is among the digits.",
+    "Reading 'without repetition' as with repetition — $5^3 = 125$ and $5 \\times 4 \\times 3 = 60$ answer two different questions.",
+    "Adding overlapping cases — 'flights or morning departures' share some flights, so the plain sum double-counts.",
+    "Forgetting the condition in the middle of the work — re-check the restricted slot before answering."
+   ],
+   "notes": "### What counting means\nA counting question asks \"in how many ways\". A way is one complete choice or one complete outcome.\n\nA menu has 3 drinks and 4 snacks. Picking one drink and one snack is one way. There are 12 such ways.\n\n> **Rule:** Every counting question is built from just two rules — multiply for \"and\", add for \"or\".\n\n### The product rule\nTwo steps happen one after another. Step 1 has $m$ options. Step 2 has $n$ options. The pair happens in $m \\times n$ ways.\n\nA canteen has 2 shirts and 3 trousers. Outfits $= 2 \\times 3 = 6$.\n\nThree steps work the same way. 2 shirts, 3 trousers and 2 caps give $2 \\times 3 \\times 2 = 12$ outfits.\n\n> **Tip:** Underline the joining word in the question. \"Shirt **and** trousers\" means multiply.\n\n### The sum rule\nTwo separate cases can happen, but only one will. Case 1 has $m$ ways. Case 2 has $n$ ways. The total is $m + n$.\n\nA town has 4 direct flights and 3 direct trains to another town. Travel options $= 4 + 3 = 7$.\n\n> **Watch:** Add only when the cases cannot happen together. Overlapping cases count some outcomes twice.\n\n### Numbers with repetition allowed\nA code or a number is built slot by slot. Each slot is one step.\n\nDigits 1, 2, 3, 4 make 3-digit codes with repetition allowed. Each slot has 4 options: $4 \\times 4 \\times 4 = 64$ codes.\n\nWith $n$ distinct items and $r$ slots, repetition allowed gives $n^r$ outcomes. A 4-digit PIN from ten digits: $10^4 = 10000$.\n\n### Numbers without repetition\nNo digit may be used twice. The first slot has $n$ options. The next has $n - 1$. Then $n - 2$, and so on.\n\n3-digit numbers from 1, 2, 3, 4, 5 without repetition: $5 \\times 4 \\times 3 = 60$.\n\nEach such arrangement is a permutation. The permutation subtopic continues exactly from here.\n\n### When zero is in the digits\nZero cannot lead a number. Fill the restricted slot first.\n\nDigits 0, 1, 2, 3 give 3-digit numbers without repetition. First slot: 3 options (1, 2, 3). Second slot: 3 (zero plus the two unused digits). Third: 2. Total $3 \\times 3 \\times 2 = 18$.\n\n> **Watch:** $4 \\times 3 \\times 2 = 24$ counts strings like 012, which are not 3-digit numbers.\n\n### Mixing the two rules\nLong questions chain both rules. Split the situation into cases first. Add the cases. Use the product rule inside each case.\n\nFrom A to C: 4 direct flights, or a bus then a train through B (3 buses, 2 trains). Total $= 4 + 3 \\times 2 = 10$ ways.\n\n> **Example:** Numbers of 1 to 3 digits from 1, 2, 3 without repetition: $3 + 3 \\times 2 + 3 \\times 2 \\times 1 = 15$.\n\nCount each case fully before adding. Half-built cases are the main source of errors here.",
+   "patterns": [
+    {
+     "id": "pc-n1",
+     "name": "Multi-step choices (product rule)",
+     "frequency": "very common",
+     "howToSpot": "Two or more choices happen one after another — shirts and trousers, a route from A to B and then B to C.",
+     "formula": "m \\times n",
+     "steps": [
+      "Spot the independent steps.",
+      "Count the options for each step.",
+      "Multiply all the counts together."
+     ],
+     "why": "Each option of step 1 pairs with each option of step 2, so the counts multiply.",
+     "example": {
+      "q": "A man has 2 shirts, 3 trousers and 2 caps. How many different shirt-trouser-cap outfits can he wear?",
+      "steps": [
+       "Outfits $= 2 \\times 3 \\times 2$.",
+       "$= 12$."
+      ],
+      "answer": "12"
+     }
+    },
+    {
+     "id": "pc-n2",
+     "name": "Numbers or codes with repetition allowed",
+     "frequency": "very common",
+     "howToSpot": "'Digits/letters may be repeated', or the question says nothing about repeating.",
+     "formula": "n^r",
+     "steps": [
+      "Count the available digits or letters ($n$).",
+      "Count the slots ($r$).",
+      "Each slot has $n$ choices, so the answer is $n^r$.",
+      "For a number, keep zero out of the first slot."
+     ],
+     "why": "Every slot is filled independently, so the counts multiply into a power.",
+     "example": {
+      "q": "How many 3-digit numbers can be formed using 1, 2, 3, 4 if digits may repeat?",
+      "steps": [
+       "Each slot has 4 choices.",
+       "$4^3 = 64$."
+      ],
+      "answer": "64"
+     }
+    },
+    {
+     "id": "pc-n3",
+     "name": "Numbers without repeating a digit",
+     "frequency": "very common",
+     "howToSpot": "'Without repeating any digit' appears in the question.",
+     "formula": "n(n-1)(n-2)\\ldots(n-r+1)",
+     "steps": [
+      "Give the first slot $n$ options.",
+      "Give each later slot one option fewer.",
+      "Multiply the slot counts.",
+      "For $r$ slots the last factor is $n - r + 1$."
+     ],
+     "why": "A used digit cannot return, so every later slot loses one option.",
+     "example": {
+      "q": "How many 3-digit numbers can be formed from 1, 2, 3, 4, 5 without repetition?",
+      "steps": [
+       "Slots: $5 \\times 4 \\times 3$.",
+       "$= 60$."
+      ],
+      "answer": "60"
+     }
+    },
+    {
+     "id": "pc-n4",
+     "name": "Numbers with a property (even, odd, greater than)",
+     "frequency": "common",
+     "howToSpot": "'How many are even / odd / greater than…' — a condition on the first or last digit.",
+     "formula": null,
+     "steps": [
+      "Fill the most restricted slot first.",
+      "Then fill the remaining slots.",
+      "Multiply the slot counts.",
+      "Check the condition is truly enforced."
+     ],
+     "why": "The condition cuts the options of one slot, and the rest of the slots follow.",
+     "example": {
+      "q": "How many 3-digit even numbers can be formed from 1, 2, 3, 4 without repetition?",
+      "steps": [
+       "Units: 2 or 4 → 2 options.",
+       "Hundreds: 3 left; tens: 2 left.",
+       "$2 \\times 3 \\times 2 = 12$."
+      ],
+      "answer": "12"
+     }
+    },
+    {
+     "id": "pc-n5",
+     "name": "Sum rule over separate cases",
+     "frequency": "common",
+     "howToSpot": "'Or' joins two routes or cases, or the journey/items come in disjoint types.",
+     "formula": "m + n",
+     "steps": [
+      "Split the outcomes into cases that cannot overlap.",
+      "Count each case with the product rule.",
+      "Add the case counts."
+     ],
+     "why": "Cases that cannot happen together never share an outcome, so their counts simply add.",
+     "example": {
+      "q": "To reach town C from town A: 4 direct flights, or a bus from A to B and then a train from B to C (3 buses, 2 trains). How many travel options are there?",
+      "steps": [
+       "Direct: 4.",
+       "Via B: $3 \\times 2 = 6$.",
+       "$4 + 6 = 10$."
+      ],
+      "answer": "10"
+     }
+    },
+    {
+     "id": "pc-n6",
+     "name": "Zero cannot be the first digit",
+     "frequency": "common",
+     "howToSpot": "0 is among the given digits and numbers (not codes) are asked.",
+     "formula": null,
+     "steps": [
+      "Fill the first slot first, skipping zero.",
+      "Fill the other slots from what remains.",
+      "Multiply the slot counts."
+     ],
+     "why": "A leading zero makes a shorter number, so zero is banned from the first slot.",
+     "example": {
+      "q": "How many 3-digit numbers can be formed from 0, 2, 3, 4 without repetition?",
+      "steps": [
+       "First slot: 3 options (2, 3, 4).",
+       "Second: 3; third: 2.",
+       "$3 \\times 3 \\times 2 = 18$."
+      ],
+      "answer": "18"
+     }
+    }
+   ],
+   "revision": [
+    "'And' multiplies; 'or' adds.",
+    "Repetition allowed: $n^r$ outcomes for $r$ slots.",
+    "No repetition: $n(n-1)(n-2)\\ldots$",
+    "Zero never leads a number — fill the first slot first.",
+    "Fill the most restricted slot first in every question.",
+    "Split into non-overlapping cases, then add the cases."
+   ]
+  },
+  {
+   "id": "pc-permutation",
+   "title": "Permutations: Arrangements",
+   "concept": "A permutation is an arrangement in which order matters. $^{n}P_r$ arranges $r$ of $n$ distinct things; a word of $n$ letters has $n!$ arrangements, divided by the repeats.",
+   "formulas": [
+    {
+     "name": "Arrange r of n",
+     "tex": "^{n}P_r = \\frac{n!}{(n-r)!}",
+     "note": "Order matters; $0! = 1$."
+    },
+    {
+     "name": "All letters of a word",
+     "tex": "n!",
+     "note": "All $n$ letters distinct."
+    },
+    {
+     "name": "Word with repeated letters",
+     "tex": "\\frac{n!}{p!\\,q!\\,r!}",
+     "note": "$p$, $q$, $r$ are the repeat counts of the repeated letters."
+    },
+    {
+     "name": "Round table",
+     "tex": "(n-1)!",
+     "note": "Fix one person; rotations are the same seating."
+    },
+    {
+     "name": "Necklace or garland",
+     "tex": "\\frac{(n-1)!}{2}",
+     "note": "Flips look identical, so divide by 2."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Block method for 'together'",
+     "body": "Tie the must-together people into one bundle. Arrange the bundle with the others, then arrange inside the bundle.",
+     "example": {
+      "q": "In how many ways can A, B, C, D, E sit in a row with A and B together?",
+      "steps": [
+       "4 units: $4! = 24$.",
+       "Inside the block: $2$.",
+       "$24 \\times 2 = 48$."
+      ],
+      "answer": "48"
+     }
+    },
+    {
+     "title": "Divide out the repeats",
+     "body": "Repeated letters divide the factorial. Learn the repeat patterns of common exam words as you practise.",
+     "example": {
+      "q": "How many arrangements does ALL have?",
+      "steps": [
+       "3 letters, L twice.",
+       "$\\dfrac{3!}{2!} = 3$."
+      ],
+      "answer": "3"
+     }
+    },
+    {
+     "title": "Fix one person for circles",
+     "body": "In a circle, fix one person and arrange the rest. For necklaces and garlands, divide by 2 more.",
+     "example": {
+      "q": "In how many ways can 6 people sit around a round table?",
+      "steps": [
+       "Fix one person.",
+       "$5! = 120$."
+      ],
+      "answer": "120"
+     }
+    }
+   ],
+   "mistakes": [
+    "Using $n!$ when letters repeat — BETTER has $\\dfrac{6!}{2!\\,2!} = 180$ arrangements, not $720$.",
+    "Forgetting the $2!$ inside the block — 'A and B together' is $4! \\times 2!$, not just $4!$.",
+    "Answering 'total $-$ together' for 'no two girls sit together' — that removes only the all-together case; use the gap method.",
+    "Giving a round table $n!$ seatings — rotations are the same seating, so it is $(n-1)!$.",
+    "Dividing a necklace answer by 2 and forgetting, or dividing a round-table answer by 2 when it should not be."
+   ],
+   "notes": "### What a permutation is\nA permutation is an arrangement in which order matters. ABC and ACB use the same letters but count as two arrangements.\n\nSeats in a row, ranks in a race, digits in a number — all are permutations.\n\n### The nPr formula\n$^{n}P_r$ counts the arrangements of $r$ items taken from $n$ distinct items.\n\n$$^{n}P_r = \\frac{n!}{(n-r)!}$$\n\nHere $n!$ ($n$ factorial) means $n \\times (n-1) \\times \\cdots \\times 1$, and $0! = 1$.\n\nFill the slots: the first has $n$ choices, the second $n-1$, the $r$-th has $n - r + 1$.\n\n$^{5}P_2 = 5 \\times 4 = 20$. A chair and a secretary from 5 people: 20 ways.\n\n### Words with all different letters\nAll letters distinct: the arrangements are $n!$.\n\nLEAD has 4 letters, so $4! = 24$ arrangements. PROBLEM has 7 letters, so $7! = 5040$.\n\n### Words with repeated letters\nRepeats make some arrangements look identical. Divide them out.\n\nBETTER has 6 letters with E twice and T twice: $\\dfrac{6!}{2!\\,2!} = 180$.\n\n> **Rule:** Divide $n!$ by the factorial of each letter's repeat count.\n\nSUCCESS: 7 letters, S thrice, C twice: $\\dfrac{7!}{3!\\,2!} = 420$.\n\n### Some people together\nTie the people who must sit together into one block. Arrange the block with the rest, then arrange inside the block.\n\n5 friends in a row with A and B together: the block plus 3 others make 4 units, so $4! \\times 2! = 48$.\n\n### Some people never together\nTwo wordings need two methods.\n\n\"All girls sit together\" uses the block method above.\n\n\"No two girls sit together\" uses the gap method. Arrange the others first, then place the girls in the gaps.\n\n4 boys and 3 girls, no two girls together: arrange the 4 boys, $4! = 24$. Five gaps lie between and around them. Choose and fill 3 gaps: $^{5}P_3 = 60$. Total $24 \\times 60 = 1440$.\n\n> **Watch:** \"Total $-$ together\" answers \"at least two are together\", not \"no two are together\".\n\n### Fixed places\nPin the people whose seats are fixed. Arrange only the free people.\n\n6 people in a row, Ravi always first: $5! = 120$.\n\nVowel-place questions work the same way. Place the vowels in their allowed spots first, then the consonants. STRANGE with vowels in the odd places: $^{4}P_2 \\times 5! = 12 \\times 120 = 1440$.\n\n### Round tables and necklaces\nAround a round table, rotations are the same seating. Fix one person and arrange the rest.\n\n$$\\text{round table} = (n-1)!$$\n\n5 people: $4! = 24$ ways.\n\nIn a necklace or garland, the flipped arrangement looks the same too. Divide by 2 more: $\\dfrac{(n-1)!}{2}$.\n\n> **Note:** Necklaces, garlands and key chains divide by 2. Seating people does not — a mirror image around a table is a different seating.",
+   "patterns": [
+    {
+     "id": "pc-p1",
+     "name": "Arrange r of n (nPr)",
+     "frequency": "very common",
+     "howToSpot": "'In how many ways can r of n things be arranged', or ordered posts like president and secretary are filled.",
+     "formula": "^{n}P_r = \\frac{n!}{(n-r)!}",
+     "steps": [
+      "Check that order matters.",
+      "Compute $^{n}P_r = n!/(n-r)!$.",
+      "Expand only as far as needed: $^{7}P_3 = 7 \\times 6 \\times 5$."
+     ],
+     "why": "Filling $r$ ordered slots from $n$ items multiplies $n$, $n-1$, … down to $n-r+1$.",
+     "example": {
+      "q": "A chairperson and a secretary are chosen from 8 members. In how many ways can this be done?",
+      "steps": [
+       "Two ordered posts: $^{8}P_2$.",
+       "$8 \\times 7 = 56$."
+      ],
+      "answer": "56"
+     }
+    },
+    {
+     "id": "pc-p2",
+     "name": "Arrange all letters of a word (all distinct)",
+     "frequency": "very common",
+     "howToSpot": "'Arrange the letters of the word…' and every letter is different.",
+     "formula": "n!",
+     "steps": [
+      "Count the letters.",
+      "All distinct means the answer is the factorial of the count.",
+      "Use remembered factorials up to $7!$."
+     ],
+     "why": "Every ordering of all $n$ letters is a full permutation, and there are $n!$ of them.",
+     "example": {
+      "q": "In how many ways can the letters of LEAD be arranged?",
+      "steps": [
+       "4 distinct letters.",
+       "$4! = 24$."
+      ],
+      "answer": "24"
+     }
+    },
+    {
+     "id": "pc-p3",
+     "name": "Arrange letters of a word with repeats",
+     "frequency": "very common",
+     "howToSpot": "'Arrange the letters of…' and a letter appears twice or more (LETTERS, SUCCESS, BANANA).",
+     "formula": "\\frac{n!}{p!\\,q!\\,r!}",
+     "steps": [
+      "Count all the letters ($n$).",
+      "Note each letter's repeat count.",
+      "Divide $n!$ by the factorial of each repeat count."
+     ],
+     "why": "Swapping identical letters changes nothing, so each distinct word is counted $p!\\,q!\\ldots$ times.",
+     "example": {
+      "q": "In how many ways can the letters of BETTER be arranged?",
+      "steps": [
+       "6 letters; E twice, T twice.",
+       "$\\dfrac{6!}{2!\\,2!} = 180$."
+      ],
+      "answer": "180"
+     }
+    },
+    {
+     "id": "pc-p4",
+     "name": "Restrictions: together or never together",
+     "frequency": "very common",
+     "howToSpot": "'Two people always sit together' (block method) or 'no two girls sit together' (gap method).",
+     "formula": null,
+     "steps": [
+      "Together: tie them into one block; arrange units, then arrange inside the block.",
+      "Never together: arrange the others first.",
+      "Place the restricted people in the gaps between the others.",
+      "Multiply the stage counts."
+     ],
+     "why": "A block acts as one unit, and gaps are the only seats that keep people apart.",
+     "example": {
+      "q": "In how many ways can 5 friends sit in a row if two particular friends always sit together?",
+      "steps": [
+       "Block + 3 others = 4 units: $4!$.",
+       "Inside the block: $2!$.",
+       "$24 \\times 2 = 48$."
+      ],
+      "answer": "48"
+     }
+    },
+    {
+     "id": "pc-p5",
+     "name": "Fixed places for particular people",
+     "frequency": "common",
+     "howToSpot": "'A always sits in the first seat', 'the vowels occupy the odd places'.",
+     "formula": null,
+     "steps": [
+      "Fix the pinned people or letters first.",
+      "Count the ways to place them in their allowed spots.",
+      "Arrange the remaining people in the remaining spots.",
+      "Multiply the two counts."
+     ],
+     "why": "Fixed seats remove people from the pool, and the rest arrange freely.",
+     "example": {
+      "q": "In how many ways can 6 people sit in a row if Ravi always sits in the first seat?",
+      "steps": [
+       "Ravi is fixed: 1 way.",
+       "The rest: $5! = 120$."
+      ],
+      "answer": "120"
+     }
+    },
+    {
+     "id": "pc-p6",
+     "name": "Circular seating and necklaces",
+     "frequency": "common",
+     "howToSpot": "'Around a round table' or 'in a circle' — or beads, flowers, necklace, garland.",
+     "formula": "(n-1)!; \\quad \\text{necklace} = \\frac{(n-1)!}{2}",
+     "steps": [
+      "For a round table, fix one person to kill the rotations.",
+      "Arrange the other $n-1$ people: the answer is $(n-1)!$.",
+      "For a necklace or garland, also divide by 2 for the flip."
+     ],
+     "why": "Rotating everyone gives the same circular seating, so one fixed anchor removes the overcount.",
+     "example": {
+      "q": "In how many ways can 5 people be seated around a round table?",
+      "steps": [
+       "Fix one person.",
+       "$4! = 24$."
+      ],
+      "answer": "24"
+     }
+    }
+   ],
+   "revision": [
+    "Order matters, so it is a permutation.",
+    "$^{n}P_r = \\dfrac{n!}{(n-r)!}$; all letters of a word: $n!$.",
+    "Repeated letters: divide by each repeat's factorial.",
+    "Together: (units)! $\\times$ (inside block)!.",
+    "Never together: arrange the rest, then fill the gaps.",
+    "Round table $(n-1)!$; necklace $\\dfrac{(n-1)!}{2}$."
+   ]
+  },
+  {
+   "id": "pc-combination",
+   "title": "Combinations: Selections",
+   "concept": "A combination is a selection in which order does not matter. $^{n}C_r$ picks $r$ of $n$ things, and 'at least one' questions are best answered as total minus none.",
+   "formulas": [
+    {
+     "name": "Select r of n",
+     "tex": "^{n}C_r = \\frac{n!}{r!\\,(n-r)!}"
+    },
+    {
+     "name": "Link with nPr",
+     "tex": "^{n}C_r = \\frac{^{n}P_r}{r!}",
+     "note": "Divide arrangements by $r!$ for selections."
+    },
+    {
+     "name": "Symmetry",
+     "tex": "^{n}C_r = ^{n}C_{n-r}",
+     "note": "Flip a large lower index before computing."
+    },
+    {
+     "name": "Sum of all nCr",
+     "tex": "\\sum_{r=0}^{n} {}^{n}C_r = 2^n",
+     "note": "The number of subsets of an $n$-element set."
+    },
+    {
+     "name": "Pairs",
+     "tex": "^{n}C_2 = \\frac{n(n-1)}{2}",
+     "note": "Handshakes, league matches, diagonals."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Total minus none for 'at least one'",
+     "body": "Instead of counting the one, two, three… cases, count everything and remove the all-avoid case.",
+     "example": {
+      "q": "From 7 men and 3 women, a committee of 3 with at least one woman is formed. How many committees are possible?",
+      "steps": [
+       "Total: $^{10}C_3 = 120$.",
+       "No woman: $^{7}C_3 = 35$.",
+       "$120 - 35 = 85$."
+      ],
+      "answer": "85"
+     }
+    },
+    {
+     "title": "Flip nCr when the lower index is large",
+     "body": "$^{n}C_r = ^{n}C_{n-r}$. Turn $^{18}C_{16}$ into $^{18}C_2$ before computing.",
+     "example": {
+      "q": "Find $^{18}C_{16}$.",
+      "steps": [
+       "$= ^{18}C_2$.",
+       "$\\dfrac{18 \\times 17}{2} = 153$."
+      ],
+      "answer": "153"
+     }
+    }
+   ],
+   "mistakes": [
+    "Using $^{n}P_r$ where a selection is asked — a president and a secretary is $^{n}P_r$, a committee is $^{n}C_r$.",
+    "Adding group selections joined by 'and' — 2 men of 5 and 1 woman of 3 is $10 \\times 3$, not $13$.",
+    "Forgetting the subtraction in 'at least one' — the answer is total minus the all-none case, never the total itself.",
+    "Missing that $^{n}C_x = ^{n}C_y$ forces $x + y = n$ — $^{n}C_3 = ^{n}C_5$ gives $n = 8$, not $n = 3$ or $n = 5$.",
+    "Counting knockout matches as $^{n}C_2$ — a knockout has $n - 1$ matches; only a league has $^{n}C_2$."
+   ],
+   "notes": "### Selection, not arrangement\nA combination is a selection. Order does not matter. AB and BA are the same team.\n\nCommittees, teams, handshakes and groups of friends are all selections.\n\n### The nCr formula\n$^{n}C_r$ counts the selections of $r$ items from $n$ distinct items.\n\n$$^{n}C_r = \\frac{n!}{r!\\,(n-r)!}$$\n\nEvery selection of $r$ items can be lined up in $r!$ orders. So arrangements $=$ selections $\\times\\ r!$, which gives $^{n}C_r = \\dfrac{^{n}P_r}{r!}$.\n\n$^{5}C_2 = 10$: two friends from five make 10 pairs.\n\n### Committees and teams\nSplit the choice into independent groups and multiply.\n\nFrom 5 men and 3 women, choose 2 men and 1 woman: $^{5}C_2 \\times ^{3}C_1 = 10 \\times 3 = 30$ committees.\n\nIf a group may send any number of members (including none), its share is $2^m$ for $m$ members — the sum of all its nCr terms.\n\n> **Rule:** \"2 men **and** 1 woman\" means two selections joined by \"and\", so multiply.\n\n### At least one\n\"At least one woman\" means one, two, three or more women. Counting every case is slow. The fast way:\n\n$$\\text{at least one} = \\text{total selections} - \\text{selections with none}$$\n\nFrom 5 men and 4 women, a committee of 4 with at least one woman: total $^{9}C_4 = 126$. All-men committees: $^{5}C_4 = 5$. Answer $126 - 5 = 121$.\n\n> **Tip:** \"At least one\" always flips to \"none\". Subtract and finish in two lines.\n\n### Handshakes, matches and diagonals\nAny question about pairs is $^{n}C_2$.\n\n10 friends shake hands once each: $^{10}C_2 = 45$ handshakes. 12 teams in a league: $^{12}C_2 = 66$ matches.\n\nA polygon with $n$ sides has $^{n}C_2 - n$ diagonals: join any two vertices, then remove the $n$ sides.\n\nA knockout tournament with $n$ players has $n - 1$ matches, because every match removes exactly one player.\n\n### Useful nCr facts\nThese facts save real time:\n\n- $^{n}C_r = ^{n}C_{n-r}$, so $^{15}C_{12} = ^{15}C_3 = 455$.\n- $^{n}C_0 = ^{n}C_n = 1$.\n- $^{n}C_x = ^{n}C_y$ means $x = y$ or $x + y = n$.\n- $^{n}C_0 + ^{n}C_1 + \\cdots + ^{n}C_n = 2^n$.\n- $^{n+1}C_{r+1} = ^{n}C_r + ^{n}C_{r-1}$.\n\nQuick use: $^{10}C_8 = ^{10}C_2 = 45$ — flip first, compute second.\n\n> **Note:** The sum fact answers subset questions too: a set of $n$ elements has $2^n$ subsets, or $2^n - 1$ non-empty ones.\n\n### Practice the wording\nRead each question and ask one thing: does order matter?\n\nA president and a secretary: order matters, use $^{n}P_r$. A committee of two: order does not, use $^{n}C_r$. Numbers and words: order matters. Teams and hands: order does not. When in doubt, ask if swapping two members creates a new outcome — if not, it is a combination.",
+   "patterns": [
+    {
+     "id": "pc-c1",
+     "name": "Evaluate nCr",
+     "frequency": "very common",
+     "howToSpot": "A direct ask: 'Find the value of 12C4', or an expression built from nCr terms.",
+     "formula": "^{n}C_r = \\frac{n!}{r!\\,(n-r)!}",
+     "steps": [
+      "Use $^{n}C_r = ^{n}C_{n-r}$ to shrink the lower index.",
+      "Cancel before multiplying.",
+      "Simplify step by step."
+     ],
+     "why": "Factorials cancel heavily, so dividing first keeps every number small.",
+     "example": {
+      "q": "Find the value of $^{8}C_3$.",
+      "steps": [
+       "$\\dfrac{8 \\times 7 \\times 6}{3 \\times 2 \\times 1}$.",
+       "$= 56$."
+      ],
+      "answer": "56"
+     }
+    },
+    {
+     "id": "pc-c2",
+     "name": "Committee or team from two groups",
+     "frequency": "very common",
+     "howToSpot": "'From 6 men and 4 women choose…' — a fixed number from each group is required.",
+     "formula": null,
+     "steps": [
+      "Choose from each group separately.",
+      "Multiply the group counts.",
+      "Check the joining word: 'and' multiplies, 'or' adds."
+     ],
+     "why": "Each group's selection is independent, so the counts multiply.",
+     "example": {
+      "q": "From 6 men and 4 women, a committee of 3 men and 2 women is formed. In how many ways?",
+      "steps": [
+       "Men: $^{6}C_3 = 20$.",
+       "Women: $^{4}C_2 = 6$.",
+       "$20 \\times 6 = 120$."
+      ],
+      "answer": "120"
+     }
+    },
+    {
+     "id": "pc-c3",
+     "name": "At least one (or at least r)",
+     "frequency": "very common",
+     "howToSpot": "'At least one woman', 'at least one defective', 'at least 3 girls' in the team.",
+     "formula": null,
+     "steps": [
+      "One or two cases: count each and add.",
+      "Many cases: take total minus none.",
+      "'At least r' with few people: add the cases $r, r+1, \\ldots$"
+     ],
+     "why": "The complement of 'at least one' is 'none', and 'none' is a single clean count.",
+     "example": {
+      "q": "From 6 boys and 4 girls, a team of 4 with at least one girl is chosen. In how many ways?",
+      "steps": [
+       "Total: $^{10}C_4 = 210$.",
+       "No girl: $^{6}C_4 = 15$.",
+       "$210 - 15 = 195$."
+      ],
+      "answer": "195"
+     }
+    },
+    {
+     "id": "pc-c4",
+     "name": "Particular people included or excluded",
+     "frequency": "common",
+     "howToSpot": "'Two particular players must be included', 'one particular student must be excluded'.",
+     "formula": null,
+     "steps": [
+      "Included people are fixed: take them out of the pool.",
+      "Excluded people are banned: remove them from the pool.",
+      "Select the rest from the reduced pool."
+     ],
+     "why": "Fixing or banning people just shrinks the pool that the remaining choice works on.",
+     "example": {
+      "q": "A team of 4 is chosen from 10 players, and 2 particular players must be included. In how many ways?",
+      "steps": [
+       "2 are fixed; choose 2 of the remaining 8.",
+       "$^{8}C_2 = 28$."
+      ],
+      "answer": "28"
+     }
+    },
+    {
+     "id": "pc-c5",
+     "name": "nCr identities and equations",
+     "frequency": "common",
+     "howToSpot": "An equation like $^nC_4 = ^nC_6$, or a big sum of nCr terms.",
+     "formula": "^{n}C_0 + \\cdots + ^{n}C_n = 2^n",
+     "steps": [
+      "For $^{n}C_x = ^{n}C_y$: the answer is $x = y$ or $x + y = n$.",
+      "For the full sum, the answer is $2^n$.",
+      "For a missing term, use $2^n$ minus the known terms."
+     ],
+     "why": "The symmetry of nCr and the subset count behind $2^n$ settle these at sight.",
+     "example": {
+      "q": "If $^{n}C_3 = ^{n}C_5$, find $n$.",
+      "steps": [
+       "The indices differ, so they must add to $n$.",
+       "$n = 3 + 5 = 8$."
+      ],
+      "answer": "8"
+     }
+    },
+    {
+     "id": "pc-c6",
+     "name": "Handshakes, matches and diagonals",
+     "frequency": "very common",
+     "howToSpot": "'Every pair shakes hands / plays once', or the diagonals of a polygon are asked.",
+     "formula": "\\text{pairs} = ^{n}C_2 = \\frac{n(n-1)}{2}",
+     "steps": [
+      "Pairs of any kind are $^{n}C_2$.",
+      "League matches: $^{n}C_2$; knockout: $n - 1$.",
+      "Diagonals: $^{n}C_2$ minus the $n$ sides."
+     ],
+     "why": "A handshake, a match and a diagonal are all just a pair chosen from $n$ things.",
+     "example": {
+      "q": "12 teams play a league in which every pair meets once. How many matches are played?",
+      "steps": [
+       "$^{12}C_2 = \\dfrac{12 \\times 11}{2}$.",
+       "$= 66$."
+      ],
+      "answer": "66"
+     }
+    }
+   ],
+   "revision": [
+    "Order irrelevant, so it is a combination.",
+    "$^{n}C_r = \\dfrac{n!}{r!(n-r)!} = \\dfrac{^{n}P_r}{r!}$.",
+    "$^{n}C_r = ^{n}C_{n-r}$ — flip before computing.",
+    "Groups joined by 'and' multiply; joined by 'or' add.",
+    "At least one $=$ total $-$ none.",
+    "Pairs, handshakes, league matches: $^{n}C_2$; knockout: $n-1$.",
+    "$\\sum_{r=0}^{n} {}^{n}C_r = 2^n$."
+   ]
+  },
+  {
+   "id": "pc-distribution",
+   "title": "Distribution & Grouping",
+   "concept": "Distribution questions split items or people into groups. Identical items use the cut formulas; different items use powers and factorial divisions.",
+   "formulas": [
+    {
+     "name": "Groups of sizes a, b, c",
+     "tex": "\\frac{n!}{a!\\,b!\\,c!}",
+     "note": "$n$ different people; divide again by $k!$ for $k$ equal groups."
+    },
+    {
+     "name": "Identical items, each at least one",
+     "tex": "^{n-1}C_{r-1}",
+     "note": "$n$ items, $r$ people, no one empty."
+    },
+    {
+     "name": "Identical items, zeros allowed",
+     "tex": "^{n+r-1}C_{r-1}"
+    },
+    {
+     "name": "Different items to n people",
+     "tex": "n^r",
+     "note": "$r$ different items, each choosing a person."
+    },
+    {
+     "name": "2n people into n pairs",
+     "tex": "\\frac{(2n)!}{2^n\\,n!}"
+    },
+    {
+     "name": "One or more selections",
+     "tex": "2^n - 1",
+     "note": "$n$ different items, at least one taken."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Give everyone the minimum first",
+     "body": "'Each gets at least 2'? Hand out 2 to each person, then share the rest with the usual formula.",
+     "example": {
+      "q": "6 identical toffees go to 2 children, each getting at least 2. In how many ways?",
+      "steps": [
+       "Give 2 to each: 2 left.",
+       "Share 2, zeros allowed: $^{3}C_1 = 3$."
+      ],
+      "answer": "3"
+     }
+    },
+    {
+     "title": "Equal groups divide further",
+     "body": "Two groups of the same size can swap without changing anything, so divide by $2!$.",
+     "example": {
+      "q": "6 people are divided into two groups of 3 each. In how many ways?",
+      "steps": [
+       "$\\dfrac{1}{2} \\times \\dfrac{6!}{3!\\,3!}$.",
+       "$= \\dfrac{720}{72} = 10$."
+      ],
+      "answer": "10"
+     }
+    }
+   ],
+   "mistakes": [
+    "Using $^{n-1}C_{r-1}$ when zeros are allowed — that formula is only for 'each gets at least one'.",
+    "Skipping the extra division for equal groups — two teams of 4 need $\\frac{1}{2} \\times ^{8}C_4 = 35$, not $70$.",
+    "Using $n^r$ for identical items — powers count different items choosing their person.",
+    "Dividing $n!$ by the sum of the group sizes instead of the product of their factorials.",
+    "Ignoring the minimum in 'each basket at least 2' — place the minimums first, then share the rest."
+   ],
+   "notes": "### Splitting into groups\nTo split $n$ different people into groups of sizes $a$, $b$ and $c$:\n\n$$\\text{ways} = \\frac{n!}{a!\\,b!\\,c!}$$\n\nDivide by the factorial of each group size, because order inside a group does not matter.\n\n9 students into groups of 4, 3 and 2: $\\dfrac{9!}{4!\\,3!\\,2!} = 1260$.\n\nTwo groups of the same size can swap with each other, so divide by $2!$ as well. 8 people into two teams of 4: $\\dfrac{1}{2!} \\times \\dfrac{8!}{4!\\,4!} = 35$.\n\n> **Watch:** Groups of the same size are interchangeable. Divide by the number of equal groups.\n\n### Sharing with everyone at least one\nDistribute $n$ identical items among $r$ people, each getting at least one.\n\n$$\\text{ways} = \\,^{n-1}C_{r-1}$$\n\n8 identical chocolates, 3 children, each at least one: $^{7}C_2 = 21$.\n\nWhy it works: lay the 8 chocolates in a row and cut twice. There are 7 gaps between them and 2 cuts, so $^{7}C_2$.\n\nTest the rule on a tiny case: 3 chocolates, 2 children, each at least one gives $^{2}C_1 = 2$ — the splits (1, 2) and (2, 1). Listing confirms it.\n\n### Sharing with zero allowed\nNow empty hands are allowed — a child may get nothing.\n\n$$\\text{ways} = \\,^{n+r-1}C_{r-1}$$\n\n5 identical sweets, 3 children, zeros allowed: $^{7}C_2 = 21$.\n\n> **Rule:** \"Each at least one\" gives $^{n-1}C_{r-1}$. \"Zero allowed\" gives $^{n+r-1}C_{r-1}$. One changed word changes the formula.\n\n### Different things to different people\nWhen the items are different, each item chooses its person.\n\n3 different letters into 2 letterboxes: each letter has 2 choices, so $2^3 = 8$ ways.\n\nTwo letters, two boxes: $2^2 = 4$ — both letters in one box (two ways) or split between the boxes (two ways).\n\n$r$ different items to $n$ people give $n^r$ ways. If each person may hold at most one item, the count becomes $^{n}P_r$ instead.\n\n### Identical things to different people\nIdentical items use the cut formulas of the last two sections. Watch the wording closely.\n\n7 identical pens among 4 shops, zeros allowed: $^{10}C_3 = 120$.\n\nThe algebra version is the same idea. Positive solutions of $x + y + z = 12$: $^{11}C_2 = 55$. Non-negative: $^{14}C_2 = 91$.\n\n> **Example:** \"Each basket at least 2\"? Put 2 into each basket first, then share what remains by the usual formula.\n\n### Making pairs\n$2n$ different people into $n$ unordered pairs:\n\n$$\\text{ways} = \\frac{(2n)!}{2^n\\,n!}$$\n\n8 people into 4 pairs: $\\dfrac{8!}{2^4 \\times 4!} = 105$.\n\nThe $2^4$ removes the order inside each pair; the $4!$ removes the order of the pairs themselves.",
+   "patterns": [
+    {
+     "id": "pc-d1",
+     "name": "Identical items, everyone at least one",
+     "frequency": "very common",
+     "howToSpot": "'Distribute n identical items among r people, each gets at least one' — or 'positive integer solutions'.",
+     "formula": "^{n-1}C_{r-1}",
+     "steps": [
+      "Lay the $n$ items in a row: there are $n-1$ gaps.",
+      "Choose $r-1$ gaps to cut.",
+      "Answer $^{n-1}C_{r-1}$."
+     ],
+     "why": "Each set of cuts splits the row into $r$ non-empty heaps, one per person.",
+     "example": {
+      "q": "9 identical toffees are shared by 3 children, each getting at least one. In how many ways?",
+      "steps": [
+       "Gaps: 8; cuts: 2.",
+       "$^{8}C_2 = 28$."
+      ],
+      "answer": "28"
+     }
+    },
+    {
+     "id": "pc-d2",
+     "name": "Identical items, zero allowed",
+     "frequency": "very common",
+     "howToSpot": "'…a person may get none' or 'non-negative integer solutions of x + y + z = n'.",
+     "formula": "^{n+r-1}C_{r-1}",
+     "steps": [
+      "Note that empty hands are allowed now.",
+      "Answer $^{n+r-1}C_{r-1}$.",
+      "Check: 'at least one' would give $^{n-1}C_{r-1}$ instead."
+     ],
+     "why": "Allowing empty heaps adds the extra spots where cuts may fall.",
+     "example": {
+      "q": "5 identical sweets are given to 3 children; a child may get none. In how many ways?",
+      "steps": [
+       "$^{5+3-1}C_{3-1} = ^{7}C_2$.",
+       "$= 21$."
+      ],
+      "answer": "21"
+     }
+    },
+    {
+     "id": "pc-d3",
+     "name": "Split n different people into groups",
+     "frequency": "common",
+     "howToSpot": "'Divide 9 students into groups of 4, 3 and 2', or two teams of equal size.",
+     "formula": "\\frac{n!}{a!\\,b!\\,c!}",
+     "steps": [
+      "Write $n!$ over $a!\\,b!\\,c!$ for the group sizes.",
+      "Equal groups: divide further by the number of such groups ($2!$ for a pair).",
+      "Compute with cancellation."
+     ],
+     "why": "Shuffling people inside a group changes nothing, and equal groups can swap with each other.",
+     "example": {
+      "q": "In how many ways can 10 people be divided into groups of 5, 3 and 2?",
+      "steps": [
+       "$\\dfrac{10!}{5!\\,3!\\,2!}$.",
+       "$= 2520$."
+      ],
+      "answer": "2520"
+     }
+    },
+    {
+     "id": "pc-d4",
+     "name": "Different items to different people",
+     "frequency": "common",
+     "howToSpot": "'3 different letters into letterboxes', '4 different toys among children' — the items are different.",
+     "formula": "n^r",
+     "steps": [
+      "Each item picks its own person.",
+      "With $n$ people and $r$ items the answer is $n^r$.",
+      "At most one item per person? Use $^{n}P_r$ instead."
+     ],
+     "why": "Independent choices for each item multiply into a power.",
+     "example": {
+      "q": "4 different toys are distributed among 3 children. In how many ways can this be done?",
+      "steps": [
+       "Each toy: 3 choices.",
+       "$3^4 = 81$."
+      ],
+      "answer": "81"
+     }
+    },
+    {
+     "id": "pc-d5",
+     "name": "Divide into pairs",
+     "frequency": "common",
+     "howToSpot": "'8 people form 4 pairs', or doubles teams are made from a group.",
+     "formula": "\\frac{(2n)!}{2^n\\,n!}",
+     "steps": [
+      "Arrange all $2n$ people in a row.",
+      "Cut into $n$ pairs; divide by $2^n$ for the order inside each pair.",
+      "Divide by $n!$ for the order of the pairs themselves."
+     ],
+     "why": "Swaps inside a pair and swaps of whole pairs do not create new pairings.",
+     "example": {
+      "q": "In how many ways can 6 people be divided into 3 pairs?",
+      "steps": [
+       "$\\dfrac{6!}{2^3 \\times 3!}$.",
+       "$= \\dfrac{720}{48} = 15$."
+      ],
+      "answer": "15"
+     }
+    },
+    {
+     "id": "pc-d6",
+     "name": "Buy or choose one or more",
+     "frequency": "common",
+     "howToSpot": "'At least one item is bought' from several different designs, shops or menus.",
+     "formula": "2^n - 1",
+     "steps": [
+      "Each of the $n$ different items is taken or left: $2^n$.",
+      "Remove the empty choice.",
+      "Answer $2^n - 1$."
+     ],
+     "why": "A take-or-leave decision per item doubles the outcomes, and only 'take nothing' is excluded.",
+     "example": {
+      "q": "A shop has 6 different designs. In how many ways can a customer buy one or more designs?",
+      "steps": [
+       "$2^6 - 1$.",
+       "$= 63$."
+      ],
+      "answer": "63"
+     }
+    }
+   ],
+   "revision": [
+    "Groups of sizes $a, b, c$: $\\dfrac{n!}{a!\\,b!\\,c!}$; equal groups: divide again.",
+    "Identical items, each at least one: $^{n-1}C_{r-1}$.",
+    "Identical items, zeros allowed: $^{n+r-1}C_{r-1}$.",
+    "Different items to $n$ people: $n^r$; at most one each: $^{n}P_r$.",
+    "$2n$ people into $n$ pairs: $\\dfrac{(2n)!}{2^n n!}$.",
+    "One or more from $n$ different designs: $2^n - 1$."
+   ]
+  },
+  {
+   "id": "pc-probability",
+   "title": "Probability: Core Rules",
+   "concept": "Probability is favourable outcomes over total outcomes. Three tools cover almost every exam question: the complement, the addition rule and the multiplication rule.",
+   "formulas": [
+    {
+     "name": "Classical definition",
+     "tex": "P(E) = \\frac{m}{n}",
+     "note": "$m$ favourable of $n$ equally likely outcomes."
+    },
+    {
+     "name": "Complement",
+     "tex": "P(\\bar{E}) = 1 - P(E)",
+     "note": "'Not the event'."
+    },
+    {
+     "name": "Addition rule",
+     "tex": "P(A \\cup B) = P(A) + P(B) - P(A \\cap B)",
+     "note": "Subtract the overlap once."
+    },
+    {
+     "name": "Multiplication (independent)",
+     "tex": "P(A \\cap B) = P(A) \\times P(B)",
+     "note": "For independent events."
+    },
+    {
+     "name": "At least one",
+     "tex": "P(\\text{at least one}) = 1 - P(\\text{none})",
+     "note": "The complement of 'none'."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Flip 'at least' to 'none'",
+     "body": "For any 'at least one' question, compute the none case and subtract from 1. It is always shorter.",
+     "example": {
+      "q": "Two dice are thrown. Find P(at least one six).",
+      "steps": [
+       "None: $\\dfrac{25}{36}$.",
+       "$1 - \\dfrac{25}{36} = \\dfrac{11}{36}$."
+      ],
+      "answer": "11/36"
+     }
+    },
+    {
+     "title": "Multiply draw by draw",
+     "body": "Without replacement, multiply the fractions and let each total drop by one. With replacement, totals stay.",
+     "example": {
+      "q": "A bag has 4 red and 3 black balls. Two are drawn without replacement. Find P(both black).",
+      "steps": [
+       "$\\dfrac{3}{7} \\times \\dfrac{2}{6}$.",
+       "$= \\dfrac{1}{7}$."
+      ],
+      "answer": "1/7"
+     }
+    }
+   ],
+   "mistakes": [
+    "Adding probabilities of overlapping events — 'king or heart' must remove the king of hearts once.",
+    "Multiplying without shrinking the total — without replacement the second draw runs on one ball fewer.",
+    "Counting 'at least one' case by case — use $1 - P(\\text{none})$ instead.",
+    "Reporting a probability above 1 — a probability always lies between 0 and 1, so recheck the sample space.",
+    "Mixing 'exactly one' with 'at least one' — they are different events with different counts."
+   ],
+   "notes": "### What probability means\nProbability measures how likely an event is.\n\n$$P(E) = \\frac{\\text{favourable outcomes}}{\\text{total outcomes}}$$\n\nThe value always lies between 0 and 1. Zero means impossible; one means certain.\n\nA bag has 4 red and 6 blue balls. One draw: $P(\\text{red}) = \\dfrac{4}{10} = \\dfrac{2}{5}$.\n\n### The sample space\nThe sample space is the list of all equally likely outcomes. Count it first.\n\nOne die: 6 outcomes. Two dice: $6 \\times 6 = 36$. One card: 52. Three coins: $2^3 = 8$.\n\n> **Rule:** Every probability in a question must sit on the same sample space.\n\n### The complement rule\n\"NOT the event\" is its complement.\n\n$$P(\\text{not } E) = 1 - P(E)$$\n\nA number from 1 to 20: primes number 8, so $P(\\text{prime}) = \\dfrac{8}{20}$ and $P(\\text{not prime}) = \\dfrac{12}{20} = \\dfrac{3}{5}$.\n\n### The addition rule\nFor \"A or B\", add the two probabilities and remove the overlap counted twice.\n\n$$P(A \\text{ or } B) = P(A) + P(B) - P(A \\text{ and } B)$$\n\nA card: $P(\\text{king}) = \\dfrac{4}{52}$, $P(\\text{heart}) = \\dfrac{13}{52}$, and the king of hearts sits in both groups, so $P = \\dfrac{4 + 13 - 1}{52} = \\dfrac{16}{52} = \\dfrac{4}{13}$.\n\nIf A and B cannot happen together, the overlap is 0 and the last term drops.\n\n### The multiplication rule\nFor \"A and B\" in sequence, multiply.\n\nTwo shooters hit with $\\dfrac{1}{2}$ and $\\dfrac{1}{3}$, independently. Both hit: $\\dfrac{1}{2} \\times \\dfrac{1}{3} = \\dfrac{1}{6}$.\n\nWithout replacement, the second draw's total shrinks. A bag with 3 red and 2 white, two draws, both red: $\\dfrac{3}{5} \\times \\dfrac{2}{4} = \\dfrac{3}{10}$.\n\n> **Rule:** With replacement, totals stay. Without replacement, each total drops by one.\n\n### At least one\n\"At least one\" means one or more. Counting each case is slow. Flip it:\n\n$$P(\\text{at least one}) = 1 - P(\\text{none})$$\n\nTwo shots with $\\dfrac{1}{2}$ and $\\dfrac{1}{3}$: none hit $= \\dfrac{1}{2} \\times \\dfrac{2}{3} = \\dfrac{1}{3}$, so at least one hit $= \\dfrac{2}{3}$.\n\n> **Tip:** The complement of \"at least one\" is exactly \"none\". Use this pair every time.\n\n### Drawing without replacement\nTwo draws together behave like one combined selection. Two roads, one answer.\n\nA bag holds 4 red and 3 black. Both black: multiply $\\dfrac{3}{7} \\times \\dfrac{2}{6} = \\dfrac{1}{7}$, or select $^{3}C_2 \\div \\, ^{7}C_2 = \\dfrac{3}{21} = \\dfrac{1}{7}$.\n\nOne of each colour: $\\dfrac{^{4}C_1 \\times ^{3}C_1}{^{7}C_2} = \\dfrac{12}{21} = \\dfrac{4}{7}$.\n\n> **Example:** Order makes no difference in a simultaneous draw — count unordered pairs with nCr and both roads agree.",
+   "patterns": [
+    {
+     "id": "pc-pr1",
+     "name": "Single-event probability",
+     "frequency": "very common",
+     "howToSpot": "One draw or one pick: 'a ball is drawn', 'a number is chosen from 1 to 30'.",
+     "formula": "P(E) = \\frac{\\text{favourable}}{\\text{total}}",
+     "steps": [
+      "Count the total outcomes.",
+      "Count the favourable outcomes.",
+      "Write the fraction and reduce it."
+     ],
+     "why": "Equally likely outcomes make probability one favourable share of the whole.",
+     "example": {
+      "q": "A bag has 5 red and 3 white balls. One ball is drawn. Find P(red).",
+      "steps": [
+       "Total 8, red 5.",
+       "$\\dfrac{5}{8}$."
+      ],
+      "answer": "5/8"
+     }
+    },
+    {
+     "id": "pc-pr2",
+     "name": "Complement (not the event)",
+     "frequency": "very common",
+     "howToSpot": "'…is not a prime', 'does not happen', or the direct count looks long.",
+     "formula": "P(\\text{not } E) = 1 - P(E)",
+     "steps": [
+      "Find $P(E)$ the short way.",
+      "Subtract from 1.",
+      "Reduce the fraction."
+     ],
+     "why": "The event and its complement split all outcomes, so their probabilities add to 1.",
+     "example": {
+      "q": "A number is chosen from 1 to 20. Find the probability that it is not prime.",
+      "steps": [
+       "Primes: 8, so $P(\\text{prime}) = \\dfrac{8}{20}$.",
+       "$1 - \\dfrac{2}{5} = \\dfrac{3}{5}$."
+      ],
+      "answer": "3/5"
+     }
+    },
+    {
+     "id": "pc-pr3",
+     "name": "Either-or (addition rule)",
+     "frequency": "common",
+     "howToSpot": "'King or heart', 'red or blue', 'A or B' — the two groups may overlap.",
+     "formula": "P(A \\cup B) = P(A) + P(B) - P(A \\cap B)",
+     "steps": [
+      "Add the two probabilities.",
+      "Subtract the overlap once.",
+      "No overlap? Skip the subtraction."
+     ],
+     "why": "Outcomes in both events get counted twice, so the overlap is removed once.",
+     "example": {
+      "q": "One card is drawn from a deck. Find P(king or heart).",
+      "steps": [
+       "$\\dfrac{4}{52} + \\dfrac{13}{52} - \\dfrac{1}{52}$.",
+       "$= \\dfrac{16}{52} = \\dfrac{4}{13}$."
+      ],
+      "answer": "4/13"
+     }
+    },
+    {
+     "id": "pc-pr4",
+     "name": "Independent events (multiplication)",
+     "frequency": "common",
+     "howToSpot": "'With replacement', 'independently', or two separate shooters, coins or exams.",
+     "formula": "P(A \\cap B) = P(A) \\times P(B)",
+     "steps": [
+      "Confirm the events do not affect each other.",
+      "Multiply the probabilities.",
+      "Reduce the fraction."
+     ],
+     "why": "Independence leaves each probability unchanged, so the joint chance is the product.",
+     "example": {
+      "q": "Two shooters hit a target with probabilities 1/2 and 1/3, independently. Find P(both hit).",
+      "steps": [
+       "$\\dfrac{1}{2} \\times \\dfrac{1}{3}$.",
+       "$= \\dfrac{1}{6}$."
+      ],
+      "answer": "1/6"
+     }
+    },
+    {
+     "id": "pc-pr5",
+     "name": "At least one via the complement",
+     "frequency": "very common",
+     "howToSpot": "'At least one hit / head / six', 'at least one red ball is drawn'.",
+     "formula": "1 - P(\\text{none})",
+     "steps": [
+      "Find $P(\\text{none})$ — the complement case.",
+      "Subtract from 1.",
+      "Reduce the fraction."
+     ],
+     "why": "'None' is a single clean case, while 'at least one' splits into many.",
+     "example": {
+      "q": "Two shooters hit with probabilities 3/4 and 2/3, independently. Find P(at least one hits).",
+      "steps": [
+       "None: $\\dfrac{1}{4} \\times \\dfrac{1}{3} = \\dfrac{1}{12}$.",
+       "$1 - \\dfrac{1}{12} = \\dfrac{11}{12}$."
+      ],
+      "answer": "11/12"
+     }
+    },
+    {
+     "id": "pc-pr6",
+     "name": "Draws without replacement",
+     "frequency": "very common",
+     "howToSpot": "'Two balls are drawn together / one after another' and nothing is put back.",
+     "formula": null,
+     "steps": [
+      "Multiply draw by draw, shrinking the totals.",
+      "Or count pairs with nCr and divide.",
+      "For 'one of each colour', pick one from each colour and multiply."
+     ],
+     "why": "Every draw removes a ball, so each later draw runs on a smaller pool.",
+     "example": {
+      "q": "A bag has 5 red and 4 white balls. Two are drawn without replacement. Find P(both red).",
+      "steps": [
+       "$\\dfrac{5}{9} \\times \\dfrac{4}{8}$.",
+       "$= \\dfrac{5}{18}$."
+      ],
+      "answer": "5/18"
+     }
+    }
+   ],
+   "revision": [
+    "$P = \\dfrac{\\text{favourable}}{\\text{total}}$, always between 0 and 1.",
+    "Complement: $P(\\text{not } E) = 1 - P(E)$.",
+    "Addition: $P(A) + P(B) - P(A \\cap B)$.",
+    "Independent 'and': multiply the probabilities.",
+    "Without replacement: each total drops by one.",
+    "At least one $= 1 - P(\\text{none})$."
+   ]
+  },
+  {
+   "id": "pc-dice-cards",
+   "title": "Dice, Cards & Coins",
+   "concept": "Dice, cards and coins come with fixed sample spaces: 6, 36, 216 and 52. Learn the standard counts once and every question becomes a division.",
+   "formulas": [
+    {
+     "name": "Coin outcomes",
+     "tex": "2^n",
+     "note": "$n$ fair coins tossed together."
+    },
+    {
+     "name": "Two dice outcomes",
+     "tex": "6 \\times 6 = 36",
+     "note": "Ordered pairs, not unordered."
+    },
+    {
+     "name": "Three dice outcomes",
+     "tex": "6^3 = 216"
+    },
+    {
+     "name": "At least one six (three dice)",
+     "tex": "1 - \\left(\\frac{5}{6}\\right)^3 = \\frac{91}{216}"
+    },
+    {
+     "name": "Two-card pairs",
+     "tex": "^{52}C_2 = 1326",
+     "note": "Total for any two-card question."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "The two-dice sum ladder",
+     "body": "Memorise how many ordered pairs make each sum: 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1 for sums 2 to 12.",
+     "example": {
+      "q": "Two dice are thrown. Find P(sum = 9).",
+      "steps": [
+       "Ladder: 4 ways for sum 9.",
+       "$\\dfrac{4}{36} = \\dfrac{1}{9}$."
+      ],
+      "answer": "1/9"
+     }
+    },
+    {
+     "title": "Deck facts at your fingertips",
+     "body": "13 per suit, 4 suits, 12 face cards, 4 aces, 26 red, 26 black. Every card answer starts from one of these.",
+     "example": {
+      "q": "One card is drawn from a deck. Find P(ace).",
+      "steps": [
+       "4 aces of 52.",
+       "$\\dfrac{4}{52} = \\dfrac{1}{13}$."
+      ],
+      "answer": "1/13"
+     }
+    }
+   ],
+   "mistakes": [
+    "Treating $(3,4)$ and $(4,3)$ as one outcome — ordered pairs keep all 36 outcomes equally likely.",
+    "Counting three-dice outcomes as 36 — three dice give $6^3 = 216$ outcomes.",
+    "Calling the aces face cards — face cards are J, Q, K: 12 in all; aces are a separate group of 4.",
+    "Forgetting the overlap in 'spade or ace' — the ace of spades sits in both groups, so subtract it once.",
+    "Using 52 as the total for two cards — two cards together draw from $^{52}C_2 = 1326$ pairs."
+   ],
+   "notes": "### Coin tosses\n$n$ tosses give $2^n$ equally likely outcomes.\n\nTwo coins: HH, HT, TH, TT. Exactly one head: $\\dfrac{2}{4} = \\dfrac{1}{2}$.\n\nFour coins: $2^4 = 16$ outcomes, and at least one head is $1 - \\dfrac{1}{16} = \\dfrac{15}{16}$.\n\nThree coins, at least one tail: \"none\" means HHH, so $1 - \\dfrac{1}{8} = \\dfrac{7}{8}$.\n\n### One die\nA fair die has 6 outcomes. Favourable counts come straight from the words.\n\nEven: 3 of 6, so $\\dfrac{1}{2}$. Prime (2, 3, 5): $\\dfrac{1}{2}$. More than 4 (5 and 6): $\\dfrac{1}{3}$.\n\n### Two dice\nTwo dice give $6 \\times 6 = 36$ outcomes. Questions live on the sum.\n\nThe sum counts form a ladder: sums 2 and 12 have 1 way each, sums 3 and 11 have 2, rising to sum 7 with 6 ways.\n\nSum 7: $(1,6), (2,5), (3,4), (4,3), (5,2), (6,1)$ — 6 of 36, so $\\dfrac{1}{6}$.\n\nSum 8 has 5 ways, so $P = \\dfrac{5}{36}$.\n\n'At least' sums use the ladder too. Sum more than 9: sums 10, 11, 12 give $3 + 2 + 1 = 6$ of 36, so $\\dfrac{1}{6}$.\n\n> **Rule:** Count ordered pairs. $(3,4)$ and $(4,3)$ are different outcomes.\n\n### Three dice\nThree dice give $6^3 = 216$ outcomes. Direct counting is slow — use the complement.\n\nAll three same: 6 outcomes, so $\\dfrac{6}{216} = \\dfrac{1}{36}$.\n\nAt least one six: none shows 6 in $5^3 = 125$ ways, so $1 - \\dfrac{125}{216} = \\dfrac{91}{216}$.\n\nExactly one six: choose the die that shows it (3 ways) and fill the other two from 1 to 5 ($25$ ways): $75$ of $216$, so $\\dfrac{25}{72}$.\n\n> **Tip:** \"At least one\" with dice or coins almost always means $1 - P(\\text{none})$.\n\n### The standard deck\nLearn the deck's structure once. It feeds every card question.\n\n- 52 cards, 4 suits: spades and clubs are black; hearts and diamonds are red.\n- Each suit has 13 cards: A, 2 to 10, J, Q, K.\n- Face cards: J, Q, K — 12 in all. Aces: 4. Honour cards (A, K, Q, J): 16.\n- Red cards 26, black cards 26. Number cards (2 to 10): 36, nine per suit.\n\n$P(\\text{heart}) = \\dfrac{13}{52} = \\dfrac{1}{4}$. $P(\\text{face card}) = \\dfrac{12}{52} = \\dfrac{3}{13}$.\n\n> **Note:** \"King or heart\" overlaps — the king of hearts sits in both groups, so subtract it once.\n\n### Cards drawn together\nTwo cards drawn together behave like two draws without replacement.\n\nBoth kings: $\\dfrac{^{4}C_2}{^{52}C_2} = \\dfrac{6}{1326} = \\dfrac{1}{221}$.\n\nBoth hearts: $\\dfrac{^{13}C_2}{^{52}C_2} = \\dfrac{78}{1326} = \\dfrac{1}{17}$.\n\nOne heart and one spade: $\\dfrac{13 \\times 13}{1326} = \\dfrac{169}{1326} = \\dfrac{13}{102}$.\n\nBoth from the same suit: $4 \\times \\dfrac{78}{1326} = \\dfrac{312}{1326} = \\dfrac{4}{17}$.\n\nRemember the total: $^{52}C_2 = 1326$. It appears in nearly every two-card question.",
+   "patterns": [
+    {
+     "id": "pc-dc1",
+     "name": "One die or one coin",
+     "frequency": "very common",
+     "howToSpot": "A single die is rolled or a coin is tossed, and one simple event is asked.",
+     "formula": null,
+     "steps": [
+      "Write the sample space (6 or $2^n$ outcomes).",
+      "List or count the favourable outcomes.",
+      "Divide and reduce."
+     ],
+     "why": "Small sample spaces can be listed directly, with no risk.",
+     "example": {
+      "q": "A die is rolled once. Find P(prime number).",
+      "steps": [
+       "Primes: 2, 3, 5 — three of them.",
+       "$\\dfrac{3}{6} = \\dfrac{1}{2}$."
+      ],
+      "answer": "1/2"
+     }
+    },
+    {
+     "id": "pc-dc2",
+     "name": "Two dice and the sum",
+     "frequency": "very common",
+     "howToSpot": "'Two dice are thrown. Find P(sum …)' — any condition on the total.",
+     "formula": "\\text{total} = 36",
+     "steps": [
+      "Fix the total outcomes at 36.",
+      "Count the ordered pairs making the sum (or use the sum ladder).",
+      "Divide by 36 and reduce."
+     ],
+     "why": "Ordered pairs keep every outcome equally likely, which the classical definition needs.",
+     "example": {
+      "q": "Two dice are thrown. Find P(sum = 5).",
+      "steps": [
+       "Pairs: $(1,4), (2,3), (3,2), (4,1)$ — 4 ways.",
+       "$\\dfrac{4}{36} = \\dfrac{1}{9}$."
+      ],
+      "answer": "1/9"
+     }
+    },
+    {
+     "id": "pc-dc3",
+     "name": "Three dice (use the complement)",
+     "frequency": "common",
+     "howToSpot": "'Three dice are thrown' with 'at least one' in the question.",
+     "formula": "1 - \\left(\\frac{5}{6}\\right)^3",
+     "steps": [
+      "Set the total at $6^3 = 216$.",
+      "Count the 'none' case: $5^3 = 125$.",
+      "Answer $1 - \\dfrac{125}{216} = \\dfrac{91}{216}$."
+     ],
+     "why": "'None shows six' is one clean power, while 'at least one' is many cases.",
+     "example": {
+      "q": "Three dice are thrown. Find P(at least one six).",
+      "steps": [
+       "None: 125 of 216.",
+       "$1 - \\dfrac{125}{216} = \\dfrac{91}{216}$."
+      ],
+      "answer": "91/216"
+     }
+    },
+    {
+     "id": "pc-dc4",
+     "name": "One card from the deck",
+     "frequency": "very common",
+     "howToSpot": "'One card is drawn from a pack of 52' — suit, colour or rank is asked.",
+     "formula": null,
+     "steps": [
+      "Recall the deck facts: 13 per suit, 12 faces, 4 aces.",
+      "Count the favourable cards.",
+      "Divide by 52 and reduce."
+     ],
+     "why": "The deck's fixed structure gives every count without listing cards.",
+     "example": {
+      "q": "One card is drawn from a deck. Find P(face card).",
+      "steps": [
+       "Face cards: $3 \\times 4 = 12$.",
+       "$\\dfrac{12}{52} = \\dfrac{3}{13}$."
+      ],
+      "answer": "3/13"
+     }
+    },
+    {
+     "id": "pc-dc5",
+     "name": "Two cards drawn together",
+     "frequency": "common",
+     "howToSpot": "'Two cards are drawn from a pack' — 'both' or 'one of each' is asked.",
+     "formula": "^{52}C_2 = 1326",
+     "steps": [
+      "Set the total at $^{52}C_2 = 1326$.",
+      "Count the favourable pairs with nCr.",
+      "Divide and reduce."
+     ],
+     "why": "A simultaneous draw is one 2-card selection, so nCr counts it directly.",
+     "example": {
+      "q": "Two cards are drawn from a deck. Find P(both spades).",
+      "steps": [
+       "$\\dfrac{^{13}C_2}{^{52}C_2} = \\dfrac{78}{1326}$.",
+       "$= \\dfrac{1}{17}$."
+      ],
+      "answer": "1/17"
+     }
+    },
+    {
+     "id": "pc-dc6",
+     "name": "Coin toss patterns",
+     "frequency": "common",
+     "howToSpot": "'Two/three coins are tossed' with exactly / at least / at most in the question.",
+     "formula": "2^n \\text{ outcomes}",
+     "steps": [
+      "Fix the outcomes at $2^n$.",
+      "For 2–3 coins, list the outcomes and count directly.",
+      "'At least one' flips to $1 - P(\\text{none})$."
+     ],
+     "why": "Few outcomes make listing safe, and the complement kills the 'at least' cases.",
+     "example": {
+      "q": "Three coins are tossed. Find P(at least one tail).",
+      "steps": [
+       "None: HHH only, $\\dfrac{1}{8}$.",
+       "$1 - \\dfrac{1}{8} = \\dfrac{7}{8}$."
+      ],
+      "answer": "7/8"
+     }
+    }
+   ],
+   "revision": [
+    "Coins: $2^n$ outcomes.",
+    "One die: 6 outcomes.",
+    "Two dice: 36 outcomes; sum ladder 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1.",
+    "Three dice: 216; at least one six $= \\dfrac{91}{216}$.",
+    "Deck: 52 cards, 4 suits of 13; 12 faces; 4 aces; 26 red.",
+    "Two cards: $^{52}C_2 = 1326$ pairs."
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Forming numbers from given digits",
+   "frequency": "very common",
+   "howToSpot": "Some digits are given, and numbers of a fixed length must be formed — often 'without repetition' or with a condition like 'even' or 'greater than'.",
+   "approach": "Fill the restricted slot first (first digit or units place).\nMultiply the slot choices.",
+   "subtopic": "pc-counting",
+   "example": {
+    "q": "How many 3-digit numbers can be formed from 1, 2, 3, 4, 5 without repeating a digit?",
+    "solution": "Slots: $5 \\times 4 \\times 3$ = **60**"
+   }
+  },
+  {
+   "pattern": "Arrange the letters of a word",
+   "frequency": "very common",
+   "howToSpot": "'In how many ways can the letters of WORD be arranged?' A repeated letter means an extra division.",
+   "approach": "All different: the answer is $n!$.\nAny repeat: divide by the factorial of each repeat count.",
+   "subtopic": "pc-permutation",
+   "example": {
+    "q": "In how many ways can the letters of APPLE be arranged?",
+    "solution": "5 letters, P twice: $\\dfrac{5!}{2!}$ = **60**"
+   }
+  },
+  {
+   "pattern": "Two people always (or never) together",
+   "frequency": "common",
+   "howToSpot": "'A and B always sit together' or 'no two girls sit together' in a row of people.",
+   "approach": "Together: make one block, arrange units and then inside the block.\nNever together: arrange the rest, then place people in the gaps.",
+   "subtopic": "pc-permutation",
+   "example": {
+    "q": "In how many ways can 6 friends sit in a row with two particular friends always together?",
+    "solution": "Block + 4 others: $5! \\times 2!$ = **240**"
+   }
+  },
+  {
+   "pattern": "Committee of men and women",
+   "frequency": "very common",
+   "howToSpot": "A team must be chosen from two groups with a fixed number from each.",
+   "approach": "Use nCr for each group.\n'And' multiplies the group counts; 'or' adds them.",
+   "subtopic": "pc-combination",
+   "example": {
+    "q": "From 6 men and 4 women, a committee of 3 men and 2 women is formed. How many committees?",
+    "solution": "$^{6}C_3 \\times ^{4}C_2 = 20 \\times 6$ = **120**"
+   }
+  },
+  {
+   "pattern": "Handshakes and league matches",
+   "frequency": "common",
+   "howToSpot": "Every pair shakes hands or plays exactly once — or the diagonals of a polygon are asked.",
+   "approach": "Pairs are $^{n}C_2 = \\frac{n(n-1)}{2}$.\nKnockout matches are $n - 1$, not $^{n}C_2$.",
+   "subtopic": "pc-combination",
+   "example": {
+    "q": "12 teams play a league where every pair meets once. How many matches are played?",
+    "solution": "$^{12}C_2 = \\frac{12 \\times 11}{2}$ = **66**"
+   }
+  },
+  {
+   "pattern": "At least one in the selection",
+   "frequency": "common",
+   "howToSpot": "'At least one woman / defective / red ball' inside a selection question.",
+   "approach": "Total selections minus selections with none.",
+   "subtopic": "pc-combination",
+   "example": {
+    "q": "A box has 10 bulbs, 4 of them defective. 2 bulbs are drawn. How many draws contain at least one defective bulb?",
+    "solution": "$^{10}C_2 - ^{6}C_2 = 45 - 15$ = **30**"
+   }
+  },
+  {
+   "pattern": "Balls drawn from a bag",
+   "frequency": "very common",
+   "howToSpot": "A bag with coloured balls; one or two balls are drawn and a colour probability is asked.",
+   "approach": "One draw: favourable over total.\nTwo draws: multiply with shrinking totals, or count pairs with nCr.",
+   "subtopic": "pc-probability",
+   "example": {
+    "q": "A bag has 4 red and 5 black balls. Two are drawn without replacement. Find P(one red, one black).",
+    "solution": "$\\dfrac{4 \\times 5}{^{9}C_2} = \\dfrac{20}{36}$ = **5/9**"
+   }
+  },
+  {
+   "pattern": "Two dice and the sum",
+   "frequency": "very common",
+   "howToSpot": "'Two dice are thrown. Find P(sum is 7 / even / more than 9)'.",
+   "approach": "36 outcomes; count the ordered pairs that make the sum.",
+   "subtopic": "pc-dice-cards",
+   "example": {
+    "q": "Two dice are thrown. Find P(sum = 10).",
+    "solution": "Pairs: $(4,6), (5,5), (6,4)$ → $\\dfrac{3}{36}$ = **1/12**"
+   }
+  },
+  {
+   "pattern": "Cards from a pack",
+   "frequency": "common",
+   "howToSpot": "'One/two cards are drawn from a pack of 52'; suits, colours, aces or face cards are asked.",
+   "approach": "Recall the deck facts: 13 per suit, 12 faces, 4 aces.\nTwo cards together: nCr pairs over $^{52}C_2 = 1326$.",
+   "subtopic": "pc-dice-cards",
+   "example": {
+    "q": "Two cards are drawn from a pack. Find P(both hearts).",
+    "solution": "$\\dfrac{^{13}C_2}{^{52}C_2} = \\dfrac{78}{1326}$ = **1/17**"
+   }
+  },
+  {
+   "pattern": "Sharing identical items",
+   "frequency": "common",
+   "howToSpot": "'Distribute n identical items among r people', often with 'each gets at least one'.",
+   "approach": "Each at least one: $^{n-1}C_{r-1}$.\nZeros allowed: $^{n+r-1}C_{r-1}$.",
+   "subtopic": "pc-distribution",
+   "example": {
+    "q": "9 identical toffees are shared by 3 children, each getting at least one. In how many ways?",
+    "solution": "$^{8}C_2$ = **28**"
+   }
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "pc-s01",
+   "q": "In how many different ways can the letters of the word SUCCESS be arranged?",
+   "figure": null,
+   "options": [
+    "240",
+    "420",
+    "2520",
+    "5040"
+   ],
+   "answer": 1,
+   "solution": "7 letters; S appears 3 times, C twice.\n$\\dfrac{7!}{3!\\,2!} = \\dfrac{5040}{12} = 420$.",
+   "shortcut": "Divide $7!$ by $3!\\,2!$ — one division per repeated letter.",
+   "difficulty": "medium",
+   "subtopic": "pc-permutation",
+   "pattern": "word with repeated letters",
+   "timeSec": 45
+  },
+  {
+   "id": "pc-s02",
+   "q": "From 5 men and 4 women, a committee of 4 members with at least 2 women is to be formed. In how many ways can this be done?",
+   "figure": null,
+   "options": [
+    "60",
+    "81",
+    "120",
+    "126"
+   ],
+   "answer": 1,
+   "solution": "2 women: $^{4}C_2 \\times ^{5}C_2 = 6 \\times 10 = 60$.\n3 women: $^{4}C_3 \\times ^{5}C_1 = 4 \\times 5 = 20$.\n4 women: $^{4}C_4 = 1$.\nTotal $60 + 20 + 1 = 81$.",
+   "shortcut": "Or: total minus 0-women minus 1-woman $= 126 - 5 - 40 = 81$.",
+   "difficulty": "medium",
+   "subtopic": "pc-combination",
+   "pattern": "at least r of a group",
+   "timeSec": 60
+  },
+  {
+   "id": "pc-s03",
+   "q": "Two dice are thrown together. What is the probability that the sum of the numbers is 8?",
+   "figure": null,
+   "options": [
+    "1/9",
+    "5/36",
+    "1/6",
+    "7/36"
+   ],
+   "answer": 1,
+   "solution": "Total outcomes: 36.\nSum 8: $(2,6), (3,5), (4,4), (5,3), (6,2)$ — five ways.\n$P = \\dfrac{5}{36}$.",
+   "shortcut": "Sum ladder: sums 8 and 6 have 5 ways each.",
+   "difficulty": "easy",
+   "subtopic": "pc-dice-cards",
+   "pattern": "two dice sum",
+   "timeSec": 35
+  },
+  {
+   "id": "pc-s04",
+   "q": "A bag contains 3 red and 2 white balls. Two balls are drawn one after the other without replacement. What is the probability that both are red?",
+   "figure": null,
+   "options": [
+    "2/5",
+    "9/25",
+    "3/5",
+    "3/10"
+   ],
+   "answer": 3,
+   "solution": "$\\dfrac{3}{5} \\times \\dfrac{2}{4} = \\dfrac{6}{20} = \\dfrac{3}{10}$.",
+   "shortcut": "9/25 forgets the shrink — the second total drops to 4.",
+   "difficulty": "medium",
+   "subtopic": "pc-probability",
+   "pattern": "draw without replacement",
+   "timeSec": 40
+  },
+  {
+   "id": "pc-s05",
+   "q": "In how many ways can 10 identical apples be distributed among 3 children so that each child gets at least one apple?",
+   "figure": null,
+   "options": [
+    "28",
+    "36",
+    "45",
+    "55"
+   ],
+   "answer": 1,
+   "solution": "Each at least one: $^{n-1}C_{r-1} = ^{9}C_2 = 36$.",
+   "shortcut": "Row of 10, two cuts among 9 gaps.",
+   "difficulty": "medium",
+   "subtopic": "pc-distribution",
+   "pattern": "identical items positive",
+   "timeSec": 45
+  }
+ ],
+ "practice": [
+  {
+   "id": "pc-counting-p01",
+   "q": "A menu has 4 types of bread and 3 types of cheese. A sandwich uses one bread and one cheese. In how many ways can a sandwich be ordered?",
+   "figure": null,
+   "options": [
+    "7",
+    "9",
+    "12",
+    "24"
+   ],
+   "answer": 2,
+   "solution": "Bread **and** cheese: product rule.\n$4 \\times 3 = 12$.",
+   "shortcut": "7 comes from adding — 'and' means multiply.",
+   "difficulty": "easy",
+   "subtopic": "pc-counting",
+   "pattern": "pc-n1",
+   "timeSec": 25
+  },
+  {
+   "id": "pc-counting-p02",
+   "q": "A password consists of 2 different letters from A to Z followed by 1 digit from 0 to 9. How many such passwords are possible?",
+   "figure": null,
+   "options": [
+    "676",
+    "6500",
+    "6760",
+    "67600"
+   ],
+   "answer": 1,
+   "solution": "Letters (different): $26 \\times 25$.\nDigit: $10$ ways.\n$26 \\times 25 \\times 10 = 6500$.",
+   "shortcut": "'Different letters' drops the second 26, so 6500 and not 6760.",
+   "difficulty": "medium",
+   "subtopic": "pc-counting",
+   "pattern": "pc-n1",
+   "timeSec": 40
+  },
+  {
+   "id": "pc-counting-p03",
+   "q": "How many 4-digit PINs can be formed using the digits 0 to 9 if repetition of digits is allowed?",
+   "figure": null,
+   "options": [
+    "5040",
+    "9000",
+    "9999",
+    "10000"
+   ],
+   "answer": 3,
+   "solution": "Repetition allowed: every slot has 10 options.\n$10^4 = 10000$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pc-counting",
+   "pattern": "pc-n2",
+   "timeSec": 25
+  },
+  {
+   "id": "pc-counting-p04",
+   "q": "How many 3-letter codes can be formed from the letters A, B, C, D and E if letters may be repeated?",
+   "figure": null,
+   "options": [
+    "60",
+    "100",
+    "120",
+    "125"
+   ],
+   "answer": 3,
+   "solution": "Each slot has 5 choices.\n$5^3 = 125$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pc-counting",
+   "pattern": "pc-n2",
+   "timeSec": 25
+  },
+  {
+   "id": "pc-counting-p05",
+   "q": "How many 2-digit numbers can be formed from the digits 1, 2, 3, 4 and 5 without repeating any digit?",
+   "figure": null,
+   "options": [
+    "10",
+    "20",
+    "25",
+    "30"
+   ],
+   "answer": 1,
+   "solution": "Slots: $5 \\times 4 = 20$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pc-counting",
+   "pattern": "pc-n3",
+   "timeSec": 25
+  },
+  {
+   "id": "pc-counting-p06",
+   "q": "How many 4-digit numbers can be formed from the digits 2, 3, 5, 7 and 9 without repetition?",
+   "figure": null,
+   "options": [
+    "60",
+    "100",
+    "120",
+    "125"
+   ],
+   "answer": 2,
+   "solution": "$5 \\times 4 \\times 3 \\times 2 = 120$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "pc-counting",
+   "pattern": "pc-n3",
+   "timeSec": 35
+  },
+  {
+   "id": "pc-counting-p07",
+   "q": "How many 3-digit even numbers can be formed from the digits 1 to 7 without repeating a digit?",
+   "figure": null,
+   "options": [
+    "60",
+    "75",
+    "90",
+    "120"
+   ],
+   "answer": 2,
+   "solution": "Units (2, 4 or 6): 3 options.\nHundreds: 6; tens: 5.\n$3 \\times 6 \\times 5 = 90$.",
+   "shortcut": "Fill the restricted (units) slot first.",
+   "difficulty": "medium",
+   "subtopic": "pc-counting",
+   "pattern": "pc-n4",
+   "timeSec": 40
+  },
+  {
+   "id": "pc-counting-p08",
+   "q": "How many 3-digit numbers greater than 400 can be formed from the digits 1, 2, 3, 4, 5 and 6 without repetition?",
+   "figure": null,
+   "options": [
+    "40",
+    "48",
+    "60",
+    "66"
+   ],
+   "answer": 2,
+   "solution": "First digit: 4, 5 or 6 → 3 options.\n$3 \\times 5 \\times 4 = 60$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "pc-counting",
+   "pattern": "pc-n4",
+   "timeSec": 40
+  },
+  {
+   "id": "pc-counting-p09",
+   "q": "How many 3-digit numbers can be formed from the digits 0, 1, 2, 3 and 4 without repetition?",
+   "figure": null,
+   "options": [
+    "36",
+    "48",
+    "60",
+    "64"
+   ],
+   "answer": 1,
+   "solution": "First digit: 4 options (zero is banned).\nSecond: 4; third: 3.\n$4 \\times 4 \\times 3 = 48$.",
+   "shortcut": "Zero only bans the first slot: $4 \\times 4 \\times 3$.",
+   "difficulty": "medium",
+   "subtopic": "pc-counting",
+   "pattern": "pc-n6",
+   "timeSec": 40
+  },
+  {
+   "id": "pc-counting-p10",
+   "q": "To travel from town A to town C one must pass through town B. There are 3 buses and 2 trains from A to B, and 4 buses from B to C. In how many ways can the journey be made?",
+   "figure": null,
+   "options": [
+    "9",
+    "12",
+    "20",
+    "24"
+   ],
+   "answer": 2,
+   "solution": "A to B: $3 + 2 = 5$ (the legs are joined by 'or').\nB to C: 4 (joined by 'and').\n$5 \\times 4 = 20$.",
+   "shortcut": "Add the or-cases first, then multiply along the route.",
+   "difficulty": "medium",
+   "subtopic": "pc-counting",
+   "pattern": "pc-n5",
+   "timeSec": 40
+  },
+  {
+   "id": "pc-counting-p11",
+   "q": "How many numbers with one or more digits can be formed using the digits 1, 2, 3, 4 and 5 without repetition?",
+   "figure": null,
+   "options": [
+    "120",
+    "240",
+    "320",
+    "325"
+   ],
+   "answer": 3,
+   "solution": "Add the counts for lengths 1 to 5:\n$5 + 20 + 60 + 120 + 120 = 325$.",
+   "shortcut": "The 4-digit and 5-digit counts are both $5! = 120$.",
+   "difficulty": "hard",
+   "subtopic": "pc-counting",
+   "pattern": "pc-n5",
+   "timeSec": 70
+  },
+  {
+   "id": "pc-counting-p12",
+   "q": "How many 3-digit even numbers can be formed from the digits 0, 1, 2 and 3 without repetition?",
+   "figure": null,
+   "options": [
+    "6",
+    "8",
+    "10",
+    "12"
+   ],
+   "answer": 2,
+   "solution": "Units 0: first 3 ways, middle 2 → $3 \\times 2 = 6$.\nUnits 2: first from $\\{1, 3\\}$ (2 ways), middle 2 → $4$.\nTotal $6 + 4 = 10$.",
+   "shortcut": "Split by the units digit, and never let zero lead.",
+   "difficulty": "hard",
+   "subtopic": "pc-counting",
+   "pattern": "pc-n6",
+   "timeSec": 75
+  },
+  {
+   "id": "pc-permutation-p01",
+   "q": "A president and a secretary are to be chosen from 8 members of a club. In how many ways can the two posts be filled?",
+   "figure": null,
+   "options": [
+    "28",
+    "56",
+    "64",
+    "112"
+   ],
+   "answer": 1,
+   "solution": "Two different posts: order matters, so $^{8}P_2$.\n$8 \\times 7 = 56$.",
+   "shortcut": "28 would be $^{8}C_2$ — the posts are different, so order counts.",
+   "difficulty": "easy",
+   "subtopic": "pc-permutation",
+   "pattern": "pc-p1",
+   "timeSec": 25
+  },
+  {
+   "id": "pc-permutation-p02",
+   "q": "Find the value of $^{7}P_3$.",
+   "figure": null,
+   "options": [
+    "21",
+    "35",
+    "210",
+    "343"
+   ],
+   "answer": 2,
+   "solution": "$^{7}P_3 = 7 \\times 6 \\times 5 = 210$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "pc-permutation",
+   "pattern": "pc-p1",
+   "timeSec": 30
+  },
+  {
+   "id": "pc-permutation-p03",
+   "q": "In how many ways can the letters of the word FLOWER be arranged?",
+   "figure": null,
+   "options": [
+    "120",
+    "240",
+    "720",
+    "5040"
+   ],
+   "answer": 2,
+   "solution": "6 distinct letters.\n$6! = 720$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pc-permutation",
+   "pattern": "pc-p2",
+   "timeSec": 25
+  },
+  {
+   "id": "pc-permutation-p04",
+   "q": "In how many ways can the letters of the word PROBLEM be arranged?",
+   "figure": null,
+   "options": [
+    "720",
+    "2520",
+    "5040",
+    "40320"
+   ],
+   "answer": 2,
+   "solution": "7 distinct letters.\n$7! = 5040$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "pc-permutation",
+   "pattern": "pc-p2",
+   "timeSec": 30
+  },
+  {
+   "id": "pc-permutation-p05",
+   "q": "In how many ways can the letters of the word LETTERS be arranged?",
+   "figure": null,
+   "options": [
+    "630",
+    "1260",
+    "2520",
+    "5040"
+   ],
+   "answer": 1,
+   "solution": "7 letters; T twice and E twice.\n$\\dfrac{7!}{2!\\,2!} = \\dfrac{5040}{4} = 1260$.",
+   "shortcut": "Divide by the factorial of each repeat count.",
+   "difficulty": "medium",
+   "subtopic": "pc-permutation",
+   "pattern": "pc-p3",
+   "timeSec": 40
+  },
+  {
+   "id": "pc-permutation-p06",
+   "q": "In how many ways can the letters of the word ASSESS be arranged?",
+   "figure": null,
+   "options": [
+    "30",
+    "60",
+    "120",
+    "720"
+   ],
+   "answer": 0,
+   "solution": "6 letters; S appears 4 times.\n$\\dfrac{6!}{4!} = 30$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pc-permutation",
+   "pattern": "pc-p3",
+   "timeSec": 25
+  },
+  {
+   "id": "pc-permutation-p07",
+   "q": "In how many ways can 5 friends sit in a row so that two particular friends always sit together?",
+   "figure": null,
+   "options": [
+    "24",
+    "48",
+    "96",
+    "120"
+   ],
+   "answer": 1,
+   "solution": "Block + 3 others = 4 units: $4! = 24$.\nInside the block: $2! = 2$.\n$24 \\times 2 = 48$.",
+   "shortcut": "Never forget the $2!$ inside the block.",
+   "difficulty": "medium",
+   "subtopic": "pc-permutation",
+   "pattern": "pc-p4",
+   "timeSec": 40
+  },
+  {
+   "id": "pc-permutation-p08",
+   "q": "4 boys and 3 girls sit in a row. In how many ways can they be seated so that no two girls sit together?",
+   "figure": null,
+   "options": [
+    "720",
+    "1440",
+    "2880",
+    "5040"
+   ],
+   "answer": 1,
+   "solution": "Seat the boys first: $4! = 24$.\n5 gaps lie between and around them; fill 3 with girls: $^{5}P_3 = 60$.\n$24 \\times 60 = 1440$.",
+   "shortcut": "'No two together' means gaps, not total minus block.",
+   "difficulty": "medium",
+   "subtopic": "pc-permutation",
+   "pattern": "pc-p4",
+   "timeSec": 50
+  },
+  {
+   "id": "pc-permutation-p09",
+   "q": "7 people are to sit in a row. In how many ways can they sit if two particular people must occupy the two end seats?",
+   "figure": null,
+   "options": [
+    "120",
+    "240",
+    "480",
+    "720"
+   ],
+   "answer": 1,
+   "solution": "The two ends: $2! = 2$ orders.\nThe middle 5 seats: $5! = 120$.\n$2 \\times 120 = 240$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "pc-permutation",
+   "pattern": "pc-p5",
+   "timeSec": 40
+  },
+  {
+   "id": "pc-permutation-p10",
+   "q": "In how many ways can the letters of the word STRANGE be arranged so that the vowels occupy only the odd places?",
+   "figure": null,
+   "options": [
+    "720",
+    "1200",
+    "1440",
+    "2880"
+   ],
+   "answer": 2,
+   "solution": "Vowels A, E go into places 1, 3, 5, 7: $^{4}P_2 = 12$.\nConsonants fill the rest: $5! = 120$.\n$12 \\times 120 = 1440$.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "pc-permutation",
+   "pattern": "pc-p5",
+   "timeSec": 70
+  },
+  {
+   "id": "pc-permutation-p11",
+   "q": "In how many ways can 8 people be seated around a round table?",
+   "figure": null,
+   "options": [
+    "720",
+    "5040",
+    "10080",
+    "40320"
+   ],
+   "answer": 1,
+   "solution": "Fix one person to remove the rotations.\n$(8-1)! = 7! = 5040$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pc-permutation",
+   "pattern": "pc-p6",
+   "timeSec": 25
+  },
+  {
+   "id": "pc-permutation-p12",
+   "q": "In how many ways can 10 people be seated around a round table if two particular people must always sit together?",
+   "figure": null,
+   "options": [
+    "40320",
+    "80640",
+    "362880",
+    "725760"
+   ],
+   "answer": 1,
+   "solution": "The block joins 8 others: 9 units around the table → $(9-1)! = 8! = 40320$.\nInside the block: $2!$.\n$40320 \\times 2 = 80640$.",
+   "shortcut": "Fix one person of the block; its partner sits on either side — the same 2! factor.",
+   "difficulty": "hard",
+   "subtopic": "pc-permutation",
+   "pattern": "pc-p6",
+   "timeSec": 75
+  },
+  {
+   "id": "pc-combination-p01",
+   "q": "Find the value of $^{12}C_4$.",
+   "figure": null,
+   "options": [
+    "220",
+    "495",
+    "990",
+    "11880"
+   ],
+   "answer": 1,
+   "solution": "$^{12}C_4 = \\dfrac{12 \\times 11 \\times 10 \\times 9}{4 \\times 3 \\times 2 \\times 1} = 495$.",
+   "shortcut": "11880 is $^{12}P_4$ — divide by $4!$ for a selection.",
+   "difficulty": "easy",
+   "subtopic": "pc-combination",
+   "pattern": "pc-c1",
+   "timeSec": 30
+  },
+  {
+   "id": "pc-combination-p02",
+   "q": "Find the value of $^{15}C_{12}$.",
+   "figure": null,
+   "options": [
+    "455",
+    "1365",
+    "2730",
+    "560"
+   ],
+   "answer": 0,
+   "solution": "$^{15}C_{12} = ^{15}C_3 = \\dfrac{15 \\times 14 \\times 13}{6} = 455$.",
+   "shortcut": "Flip first: $^{15}C_{12} = ^{15}C_3$.",
+   "difficulty": "easy",
+   "subtopic": "pc-combination",
+   "pattern": "pc-c1",
+   "timeSec": 30
+  },
+  {
+   "id": "pc-combination-p03",
+   "q": "From 6 men and 4 women, a committee of 3 men and 2 women is to be formed. In how many ways can this be done?",
+   "figure": null,
+   "options": [
+    "60",
+    "120",
+    "240",
+    "480"
+   ],
+   "answer": 1,
+   "solution": "Men: $^{6}C_3 = 20$. Women: $^{4}C_2 = 6$.\n'And' joins the groups: $20 \\times 6 = 120$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "pc-combination",
+   "pattern": "pc-c2",
+   "timeSec": 40
+  },
+  {
+   "id": "pc-combination-p04",
+   "q": "From 7 boys and 5 girls, a team of 5 with exactly 2 girls is chosen. In how many ways can this be done?",
+   "figure": null,
+   "options": [
+    "210",
+    "350",
+    "420",
+    "462"
+   ],
+   "answer": 1,
+   "solution": "Girls: $^{5}C_2 = 10$. Boys: $^{7}C_3 = 35$.\n$10 \\times 35 = 350$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "pc-combination",
+   "pattern": "pc-c2",
+   "timeSec": 45
+  },
+  {
+   "id": "pc-combination-p05",
+   "q": "From 5 men and 4 women, a committee of 4 with at least one woman is formed. In how many ways can this be done?",
+   "figure": null,
+   "options": [
+    "105",
+    "121",
+    "126",
+    "240"
+   ],
+   "answer": 1,
+   "solution": "Total: $^{9}C_4 = 126$.\nAll men: $^{5}C_4 = 5$.\n$126 - 5 = 121$.",
+   "shortcut": "At least one = total minus none.",
+   "difficulty": "medium",
+   "subtopic": "pc-combination",
+   "pattern": "pc-c3",
+   "timeSec": 45
+  },
+  {
+   "id": "pc-combination-p06",
+   "q": "From 6 boys and 4 girls, a team of 5 with at least 3 girls is chosen. In how many ways can this be done?",
+   "figure": null,
+   "options": [
+    "24",
+    "46",
+    "60",
+    "66"
+   ],
+   "answer": 3,
+   "solution": "3 girls: $^{4}C_3 \\times ^{6}C_2 = 4 \\times 15 = 60$.\n4 girls: $^{4}C_4 \\times ^{6}C_1 = 6$.\n$60 + 6 = 66$.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "pc-combination",
+   "pattern": "pc-c3",
+   "timeSec": 65
+  },
+  {
+   "id": "pc-combination-p07",
+   "q": "A team of 4 is selected from 10 players. In how many ways can this be done if 2 particular players must always be included?",
+   "figure": null,
+   "options": [
+    "28",
+    "56",
+    "70",
+    "210"
+   ],
+   "answer": 0,
+   "solution": "The 2 are fixed; choose 2 more from the remaining 8.\n$^{8}C_2 = 28$.",
+   "shortcut": "210 is the plain $^{10}C_4$ — the condition shrinks the pool.",
+   "difficulty": "medium",
+   "subtopic": "pc-combination",
+   "pattern": "pc-c4",
+   "timeSec": 40
+  },
+  {
+   "id": "pc-combination-p08",
+   "q": "A team of 4 is selected from 9 students. In how many ways can this be done if 2 particular students must be included and 1 particular student must be excluded?",
+   "figure": null,
+   "options": [
+    "15",
+    "21",
+    "35",
+    "45"
+   ],
+   "answer": 0,
+   "solution": "2 are fixed, 1 is banned: choose 2 from the remaining 6.\n$^{6}C_2 = 15$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "pc-combination",
+   "pattern": "pc-c4",
+   "timeSec": 45
+  },
+  {
+   "id": "pc-combination-p09",
+   "q": "If $^{n}C_4 = ^{n}C_6$, then $n$ equals:",
+   "figure": null,
+   "options": [
+    "2",
+    "4",
+    "10",
+    "24"
+   ],
+   "answer": 2,
+   "solution": "Different indices, so they must add to $n$: $4 + 6 = 10$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "pc-combination",
+   "pattern": "pc-c5",
+   "timeSec": 35
+  },
+  {
+   "id": "pc-combination-p10",
+   "q": "The value of $^{12}C_0 + ^{12}C_1 + ^{12}C_2 + \\cdots + ^{12}C_{12}$ is:",
+   "figure": null,
+   "options": [
+    "1024",
+    "2048",
+    "4096",
+    "8192"
+   ],
+   "answer": 2,
+   "solution": "The full sum of all nCr terms is $2^n$.\n$2^{12} = 4096$.",
+   "shortcut": "Sum of all nCr = $2^n$ — the count of subsets.",
+   "difficulty": "easy",
+   "subtopic": "pc-combination",
+   "pattern": "pc-c5",
+   "timeSec": 30
+  },
+  {
+   "id": "pc-combination-p11",
+   "q": "10 friends meet at a party. Every pair of friends shakes hands exactly once. How many handshakes take place?",
+   "figure": null,
+   "options": [
+    "20",
+    "45",
+    "90",
+    "100"
+   ],
+   "answer": 1,
+   "solution": "Every handshake is a pair: $^{10}C_2$.\n$\\dfrac{10 \\times 9}{2} = 45$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pc-combination",
+   "pattern": "pc-c6",
+   "timeSec": 30
+  },
+  {
+   "id": "pc-combination-p12",
+   "q": "A polygon has 12 sides. How many diagonals does it have?",
+   "figure": null,
+   "options": [
+    "44",
+    "54",
+    "66",
+    "108"
+   ],
+   "answer": 1,
+   "solution": "Join any two of the 12 vertices: $^{12}C_2 = 66$.\nRemove the 12 sides.\n$66 - 12 = 54$.",
+   "shortcut": "66 is $^{12}C_2$ — the sides are not diagonals.",
+   "difficulty": "hard",
+   "subtopic": "pc-combination",
+   "pattern": "pc-c6",
+   "timeSec": 60
+  },
+  {
+   "id": "pc-distribution-p01",
+   "q": "8 identical chocolates are distributed among 3 children so that each child gets at least one. In how many ways can this be done?",
+   "figure": null,
+   "options": [
+    "21",
+    "28",
+    "36",
+    "56"
+   ],
+   "answer": 0,
+   "solution": "Lay the 8 chocolates in a row; cut twice among the 7 gaps.\n$^{7}C_2 = 21$.",
+   "shortcut": "Each at least one: $^{n-1}C_{r-1}$.",
+   "difficulty": "easy",
+   "subtopic": "pc-distribution",
+   "pattern": "pc-d1",
+   "timeSec": 35
+  },
+  {
+   "id": "pc-distribution-p02",
+   "q": "The number of positive integer solutions of $x + y + z = 12$ is:",
+   "figure": null,
+   "options": [
+    "55",
+    "66",
+    "78",
+    "120"
+   ],
+   "answer": 0,
+   "solution": "Positive solutions: $^{n-1}C_{r-1} = ^{11}C_2 = 55$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "pc-distribution",
+   "pattern": "pc-d1",
+   "timeSec": 40
+  },
+  {
+   "id": "pc-distribution-p03",
+   "q": "5 identical sweets are distributed among 3 children, and a child may get none. In how many ways can this be done?",
+   "figure": null,
+   "options": [
+    "10",
+    "15",
+    "21",
+    "27"
+   ],
+   "answer": 2,
+   "solution": "Zeros allowed: $^{n+r-1}C_{r-1} = ^{7}C_2 = 21$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pc-distribution",
+   "pattern": "pc-d2",
+   "timeSec": 35
+  },
+  {
+   "id": "pc-distribution-p04",
+   "q": "The number of non-negative integer solutions of $x + y + z + w = 7$ is:",
+   "figure": null,
+   "options": [
+    "84",
+    "120",
+    "165",
+    "210"
+   ],
+   "answer": 1,
+   "solution": "Zeros allowed, 4 variables: $^{7+4-1}C_{4-1} = ^{10}C_3 = 120$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "pc-distribution",
+   "pattern": "pc-d2",
+   "timeSec": 45
+  },
+  {
+   "id": "pc-distribution-p05",
+   "q": "In how many ways can 9 students be divided into three groups of sizes 4, 3 and 2?",
+   "figure": null,
+   "options": [
+    "630",
+    "1260",
+    "2520",
+    "7560"
+   ],
+   "answer": 1,
+   "solution": "$\\dfrac{9!}{4!\\,3!\\,2!} = \\dfrac{362880}{24 \\times 6 \\times 2} = 1260$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "pc-distribution",
+   "pattern": "pc-d3",
+   "timeSec": 50
+  },
+  {
+   "id": "pc-distribution-p06",
+   "q": "In how many ways can 8 people be divided into two teams of 4 each?",
+   "figure": null,
+   "options": [
+    "35",
+    "70",
+    "140",
+    "1400"
+   ],
+   "answer": 0,
+   "solution": "$\\dfrac{8!}{4!\\,4!} = 70$ pairs of named teams.\nThe two teams are interchangeable: $70 \\div 2 = 35$.",
+   "shortcut": "70 counts 'Team A vs Team B' twice — equal groups divide by 2!.",
+   "difficulty": "medium",
+   "subtopic": "pc-distribution",
+   "pattern": "pc-d3",
+   "timeSec": 50
+  },
+  {
+   "id": "pc-distribution-p07",
+   "q": "In how many ways can 3 different letters be posted into 2 different letterboxes?",
+   "figure": null,
+   "options": [
+    "4",
+    "6",
+    "8",
+    "12"
+   ],
+   "answer": 2,
+   "solution": "Each letter picks a box: $2^3 = 8$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pc-distribution",
+   "pattern": "pc-d4",
+   "timeSec": 30
+  },
+  {
+   "id": "pc-distribution-p08",
+   "q": "4 different toys are to be distributed among 3 children. In how many ways can this be done?",
+   "figure": null,
+   "options": [
+    "24",
+    "36",
+    "64",
+    "81"
+   ],
+   "answer": 3,
+   "solution": "Each toy has 3 choices of child: $3^4 = 81$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "pc-distribution",
+   "pattern": "pc-d4",
+   "timeSec": 40
+  },
+  {
+   "id": "pc-distribution-p09",
+   "q": "7 identical pens are distributed among 4 shops, and a shop may get none. In how many ways can this be done?",
+   "figure": null,
+   "options": [
+    "35",
+    "84",
+    "120",
+    "210"
+   ],
+   "answer": 2,
+   "solution": "Zeros allowed: $^{7+4-1}C_{4-1} = ^{10}C_3 = 120$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "pc-distribution",
+   "pattern": "pc-d5",
+   "timeSec": 45
+  },
+  {
+   "id": "pc-distribution-p10",
+   "q": "In how many ways can 8 people be divided into 4 pairs?",
+   "figure": null,
+   "options": [
+    "105",
+    "210",
+    "420",
+    "2520"
+   ],
+   "answer": 0,
+   "solution": "$\\dfrac{8!}{2^4 \\times 4!} = \\dfrac{40320}{16 \\times 24} = 105$.",
+   "shortcut": "$2^4$ kills order inside pairs; $4!$ kills the order of the pairs.",
+   "difficulty": "hard",
+   "subtopic": "pc-distribution",
+   "pattern": "pc-d5",
+   "timeSec": 70
+  },
+  {
+   "id": "pc-distribution-p11",
+   "q": "A gift shop has 5 different designs. In how many ways can a customer buy one or more designs?",
+   "figure": null,
+   "options": [
+    "25",
+    "30",
+    "31",
+    "32"
+   ],
+   "answer": 2,
+   "solution": "Each design is taken or left: $2^5$.\nRemove the empty basket: $2^5 - 1 = 31$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pc-distribution",
+   "pattern": "pc-d6",
+   "timeSec": 30
+  },
+  {
+   "id": "pc-distribution-p12",
+   "q": "A shop offers 4 different pens and 3 different notebooks. In how many ways can a student buy one or more items?",
+   "figure": null,
+   "options": [
+    "63",
+    "127",
+    "128",
+    "255"
+   ],
+   "answer": 1,
+   "solution": "7 different items, each taken or left: $2^7 = 128$.\nRemove the empty basket: $128 - 1 = 127$.",
+   "shortcut": "The 4+3 split is a distraction — all 7 items are take-or-leave.",
+   "difficulty": "medium",
+   "subtopic": "pc-distribution",
+   "pattern": "pc-d6",
+   "timeSec": 40
+  },
+  {
+   "id": "pc-distribution-p13",
+   "q": "12 identical apples are distributed among 3 baskets so that each basket gets at least 2 apples. In how many ways can this be done?",
+   "figure": null,
+   "options": [
+    "21",
+    "28",
+    "36",
+    "55"
+   ],
+   "answer": 1,
+   "solution": "Put 2 apples in each basket: 6 remain.\nShare 6 among 3, zeros allowed: $^{6+3-1}C_{3-1} = ^{8}C_2 = 28$.",
+   "shortcut": "Hand out the minimum first, then share the rest.",
+   "difficulty": "hard",
+   "subtopic": "pc-distribution",
+   "pattern": "pc-d1",
+   "timeSec": 70
+  },
+  {
+   "id": "pc-probability-p01",
+   "q": "A bag contains 4 red and 6 blue balls. One ball is drawn at random. What is the probability that it is red?",
+   "figure": null,
+   "options": [
+    "1/2",
+    "2/5",
+    "3/5",
+    "3/10"
+   ],
+   "answer": 1,
+   "solution": "Total balls: 10; red: 4.\n$P = \\dfrac{4}{10} = \\dfrac{2}{5}$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pc-probability",
+   "pattern": "pc-pr1",
+   "timeSec": 30
+  },
+  {
+   "id": "pc-probability-p02",
+   "q": "A number is chosen at random from 1 to 30. What is the probability that it is a multiple of 4?",
+   "figure": null,
+   "options": [
+    "1/4",
+    "1/5",
+    "7/30",
+    "7/15"
+   ],
+   "answer": 2,
+   "solution": "Multiples of 4 up to 30: 4, 8, …, 28 — seven of them.\n$P = \\dfrac{7}{30}$.",
+   "shortcut": "1/4 would hold only if 30 were a multiple of 4.",
+   "difficulty": "easy",
+   "subtopic": "pc-probability",
+   "pattern": "pc-pr1",
+   "timeSec": 30
+  },
+  {
+   "id": "pc-probability-p03",
+   "q": "A number is chosen at random from 1 to 20. What is the probability that it is NOT a prime number?",
+   "figure": null,
+   "options": [
+    "2/5",
+    "1/2",
+    "3/5",
+    "3/4"
+   ],
+   "answer": 2,
+   "solution": "Primes up to 20: 2, 3, 5, 7, 11, 13, 17, 19 — eight of them.\n$P(\\text{prime}) = \\dfrac{8}{20}$, so $P(\\text{not prime}) = 1 - \\dfrac{2}{5} = \\dfrac{3}{5}$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pc-probability",
+   "pattern": "pc-pr2",
+   "timeSec": 30
+  },
+  {
+   "id": "pc-probability-p04",
+   "q": "A bag has 5 red, 4 black and 3 blue balls. One ball is drawn at random. What is the probability that it is red or blue?",
+   "figure": null,
+   "options": [
+    "2/3",
+    "5/12",
+    "1/2",
+    "7/12"
+   ],
+   "answer": 0,
+   "solution": "Red or blue: $5 + 3 = 8$ of 12.\n$P = \\dfrac{8}{12} = \\dfrac{2}{3}$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pc-probability",
+   "pattern": "pc-pr3",
+   "timeSec": 30
+  },
+  {
+   "id": "pc-probability-p05",
+   "q": "If $P(A) = 0.4$, $P(B) = 0.5$ and $P(A \\text{ and } B) = 0.2$, then $P(A \\text{ or } B)$ equals:",
+   "figure": null,
+   "options": [
+    "0.6",
+    "0.7",
+    "0.9",
+    "1.1"
+   ],
+   "answer": 1,
+   "solution": "$P(A \\text{ or } B) = 0.4 + 0.5 - 0.2 = 0.7$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "pc-probability",
+   "pattern": "pc-pr3",
+   "timeSec": 35
+  },
+  {
+   "id": "pc-probability-p06",
+   "q": "Two shooters fire at a target. Their probabilities of hitting it are 1/2 and 1/3, independently. What is the probability that both hit the target?",
+   "figure": null,
+   "options": [
+    "1/6",
+    "1/5",
+    "1/2",
+    "5/6"
+   ],
+   "answer": 0,
+   "solution": "Independent events: multiply.\n$\\dfrac{1}{2} \\times \\dfrac{1}{3} = \\dfrac{1}{6}$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pc-probability",
+   "pattern": "pc-pr4",
+   "timeSec": 30
+  },
+  {
+   "id": "pc-probability-p07",
+   "q": "A bag contains 3 red and 2 white balls. Two balls are drawn one after the other, with replacement. What is the probability that both are red?",
+   "figure": null,
+   "options": [
+    "3/10",
+    "6/25",
+    "9/25",
+    "1/2"
+   ],
+   "answer": 2,
+   "solution": "With replacement, the bag is unchanged for the second draw.\n$\\dfrac{3}{5} \\times \\dfrac{3}{5} = \\dfrac{9}{25}$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "pc-probability",
+   "pattern": "pc-pr4",
+   "timeSec": 40
+  },
+  {
+   "id": "pc-probability-p08",
+   "q": "Two shooters fire at a target. Their probabilities of hitting it are 3/4 and 2/3, independently. What is the probability that at least one of them hits?",
+   "figure": null,
+   "options": [
+    "1/2",
+    "2/3",
+    "3/4",
+    "11/12"
+   ],
+   "answer": 3,
+   "solution": "None hit: $\\dfrac{1}{4} \\times \\dfrac{1}{3} = \\dfrac{1}{12}$.\nAt least one: $1 - \\dfrac{1}{12} = \\dfrac{11}{12}$.",
+   "shortcut": "'At least one' always flips to $1 - P(\\text{none})$.",
+   "difficulty": "medium",
+   "subtopic": "pc-probability",
+   "pattern": "pc-pr5",
+   "timeSec": 45
+  },
+  {
+   "id": "pc-probability-p09",
+   "q": "A bag contains 5 red and 3 white balls. Three balls are drawn at random without replacement. What is the probability that at least one of them is red?",
+   "figure": null,
+   "options": [
+    "1/56",
+    "5/8",
+    "3/4",
+    "55/56"
+   ],
+   "answer": 3,
+   "solution": "None red means all 3 white: $\\dfrac{^{3}C_3}{^{8}C_3} = \\dfrac{1}{56}$.\nAt least one red: $1 - \\dfrac{1}{56} = \\dfrac{55}{56}$.",
+   "shortcut": null,
+   "difficulty": "hard",
+   "subtopic": "pc-probability",
+   "pattern": "pc-pr5",
+   "timeSec": 70
+  },
+  {
+   "id": "pc-probability-p10",
+   "q": "A bag contains 4 red and 3 black balls. Two balls are drawn without replacement. What is the probability that both are black?",
+   "figure": null,
+   "options": [
+    "1/7",
+    "2/7",
+    "3/7",
+    "1/3"
+   ],
+   "answer": 0,
+   "solution": "$\\dfrac{3}{7} \\times \\dfrac{2}{6} = \\dfrac{6}{42} = \\dfrac{1}{7}$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pc-probability",
+   "pattern": "pc-pr6",
+   "timeSec": 35
+  },
+  {
+   "id": "pc-probability-p11",
+   "q": "A bag contains 5 white and 4 black balls. Two balls are drawn without replacement. What is the probability that one is white and one is black?",
+   "figure": null,
+   "options": [
+    "4/9",
+    "1/2",
+    "5/9",
+    "5/18"
+   ],
+   "answer": 2,
+   "solution": "Favourable pairs: $^{5}C_1 \\times ^{4}C_1 = 20$; total pairs: $^{9}C_2 = 36$.\n$P = \\dfrac{20}{36} = \\dfrac{5}{9}$.",
+   "shortcut": "5/18 forgets that either colour can come first.",
+   "difficulty": "medium",
+   "subtopic": "pc-probability",
+   "pattern": "pc-pr6",
+   "timeSec": 45
+  },
+  {
+   "id": "pc-probability-p12",
+   "q": "A bag contains 4 red and 5 white balls. Three balls are drawn without replacement. What is the probability that all three are of the same colour?",
+   "figure": null,
+   "options": [
+    "5/42",
+    "1/6",
+    "2/9",
+    "1/3"
+   ],
+   "answer": 1,
+   "solution": "All red: $^{4}C_3 = 4$. All white: $^{5}C_3 = 10$.\nTotal triples: $^{9}C_3 = 84$.\n$P = \\dfrac{4 + 10}{84} = \\dfrac{14}{84} = \\dfrac{1}{6}$.",
+   "shortcut": "5/42 is all-white only — the red triples must be added.",
+   "difficulty": "hard",
+   "subtopic": "pc-probability",
+   "pattern": "pc-pr6",
+   "timeSec": 70
+  },
+  {
+   "id": "pc-probability-p13",
+   "q": "A number is chosen at random from 1 to 50. What is the probability that it is not a perfect square?",
+   "figure": null,
+   "options": [
+    "7/50",
+    "6/25",
+    "43/50",
+    "21/25"
+   ],
+   "answer": 2,
+   "solution": "Perfect squares up to 50: 1, 4, 9, 16, 25, 36, 49 — seven.\nNot squares: $1 - \\dfrac{7}{50} = \\dfrac{43}{50}$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "pc-probability",
+   "pattern": "pc-pr2",
+   "timeSec": 40
+  },
+  {
+   "id": "pc-dice-cards-p01",
+   "q": "A fair die is rolled once. What is the probability of getting an even number?",
+   "figure": null,
+   "options": [
+    "1/6",
+    "1/3",
+    "1/2",
+    "2/3"
+   ],
+   "answer": 2,
+   "solution": "Even faces: 2, 4, 6 — three of six.\n$P = \\dfrac{3}{6} = \\dfrac{1}{2}$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pc-dice-cards",
+   "pattern": "pc-dc1",
+   "timeSec": 25
+  },
+  {
+   "id": "pc-dice-cards-p02",
+   "q": "A fair die is rolled once. What is the probability of getting a number greater than 4?",
+   "figure": null,
+   "options": [
+    "1/6",
+    "1/3",
+    "1/2",
+    "2/3"
+   ],
+   "answer": 1,
+   "solution": "Faces 5 and 6 qualify: two of six.\n$P = \\dfrac{2}{6} = \\dfrac{1}{3}$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pc-dice-cards",
+   "pattern": "pc-dc1",
+   "timeSec": 25
+  },
+  {
+   "id": "pc-dice-cards-p03",
+   "q": "Two dice are thrown together. What is the probability that the sum of the numbers is 7?",
+   "figure": null,
+   "options": [
+    "1/6",
+    "1/9",
+    "5/36",
+    "7/36"
+   ],
+   "answer": 0,
+   "solution": "Total outcomes: 36. Sum 7: $(1,6), (2,5), (3,4), (4,3), (5,2), (6,1)$ — six ways.\n$P = \\dfrac{6}{36} = \\dfrac{1}{6}$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pc-dice-cards",
+   "pattern": "pc-dc2",
+   "timeSec": 35
+  },
+  {
+   "id": "pc-dice-cards-p04",
+   "q": "Two dice are thrown together. What is the probability that the sum is even or at least 9?",
+   "figure": null,
+   "options": [
+    "1/2",
+    "5/9",
+    "2/3",
+    "7/9"
+   ],
+   "answer": 2,
+   "solution": "Even sums: 18 of 36. Sum at least 9: $4 + 3 + 2 + 1 = 10$ of 36.\nBoth (even and $\\ge 9$): sums 10 and 12 → $3 + 1 = 4$.\n$P = \\dfrac{18 + 10 - 4}{36} = \\dfrac{24}{36} = \\dfrac{2}{3}$.",
+   "shortcut": "Apply $P(A) + P(B) - P(\\text{both})$ on the 36 pairs.",
+   "difficulty": "hard",
+   "subtopic": "pc-dice-cards",
+   "pattern": "pc-dc2",
+   "timeSec": 75
+  },
+  {
+   "id": "pc-dice-cards-p05",
+   "q": "Three dice are thrown together. What is the probability that all three show the same number?",
+   "figure": null,
+   "options": [
+    "1/216",
+    "1/36",
+    "1/18",
+    "1/6"
+   ],
+   "answer": 1,
+   "solution": "Total: $6^3 = 216$. Same number: $(1,1,1), \\ldots, (6,6,6)$ — six ways.\n$P = \\dfrac{6}{216} = \\dfrac{1}{36}$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "pc-dice-cards",
+   "pattern": "pc-dc3",
+   "timeSec": 45
+  },
+  {
+   "id": "pc-dice-cards-p06",
+   "q": "Three fair dice are thrown together. What is the probability that at least one of them shows a 6?",
+   "figure": null,
+   "options": [
+    "1/6",
+    "1/2",
+    "91/216",
+    "125/216"
+   ],
+   "answer": 2,
+   "solution": "No six: $5^3 = 125$ of 216.\nAt least one six: $1 - \\dfrac{125}{216} = \\dfrac{91}{216}$.",
+   "shortcut": "125/216 is the probability of NO six — the complement answers.",
+   "difficulty": "hard",
+   "subtopic": "pc-dice-cards",
+   "pattern": "pc-dc3",
+   "timeSec": 70
+  },
+  {
+   "id": "pc-dice-cards-p07",
+   "q": "One card is drawn from a well-shuffled deck of 52 cards. What is the probability that it is a heart?",
+   "figure": null,
+   "options": [
+    "1/3",
+    "1/4",
+    "1/2",
+    "1/13"
+   ],
+   "answer": 1,
+   "solution": "13 hearts of 52.\n$P = \\dfrac{13}{52} = \\dfrac{1}{4}$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pc-dice-cards",
+   "pattern": "pc-dc4",
+   "timeSec": 25
+  },
+  {
+   "id": "pc-dice-cards-p08",
+   "q": "One card is drawn from a deck of 52 cards. What is the probability that it is a spade or an ace?",
+   "figure": null,
+   "options": [
+    "1/13",
+    "1/4",
+    "4/13",
+    "17/52"
+   ],
+   "answer": 2,
+   "solution": "Spades: 13. Aces: 4. Ace of spades counted twice: 1.\n$P = \\dfrac{13 + 4 - 1}{52} = \\dfrac{16}{52} = \\dfrac{4}{13}$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "pc-dice-cards",
+   "pattern": "pc-dc4",
+   "timeSec": 40
+  },
+  {
+   "id": "pc-dice-cards-p09",
+   "q": "Two cards are drawn together from a deck of 52 cards. What is the probability that both are kings?",
+   "figure": null,
+   "options": [
+    "1/26",
+    "2/13",
+    "1/169",
+    "1/221"
+   ],
+   "answer": 3,
+   "solution": "Favourable: $^{4}C_2 = 6$. Total: $^{52}C_2 = 1326$.\n$P = \\dfrac{6}{1326} = \\dfrac{1}{221}$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "pc-dice-cards",
+   "pattern": "pc-dc5",
+   "timeSec": 45
+  },
+  {
+   "id": "pc-dice-cards-p10",
+   "q": "Two cards are drawn together from a deck of 52 cards. What is the probability that both are red?",
+   "figure": null,
+   "options": [
+    "1/4",
+    "13/51",
+    "1/2",
+    "25/102"
+   ],
+   "answer": 3,
+   "solution": "Favourable: $^{26}C_2 = 325$. Total: $^{52}C_2 = 1326$.\n$P = \\dfrac{325}{1326} = \\dfrac{25}{102}$.",
+   "shortcut": "1/4 is one red card — two red cards together is $\\dfrac{25}{102}$.",
+   "difficulty": "medium",
+   "subtopic": "pc-dice-cards",
+   "pattern": "pc-dc5",
+   "timeSec": 45
+  },
+  {
+   "id": "pc-dice-cards-p11",
+   "q": "Two fair coins are tossed together. What is the probability of getting exactly one head?",
+   "figure": null,
+   "options": [
+    "1/4",
+    "1/3",
+    "1/2",
+    "3/4"
+   ],
+   "answer": 2,
+   "solution": "Outcomes: HH, HT, TH, TT. Exactly one head: HT, TH.\n$P = \\dfrac{2}{4} = \\dfrac{1}{2}$.",
+   "shortcut": null,
+   "difficulty": "easy",
+   "subtopic": "pc-dice-cards",
+   "pattern": "pc-dc6",
+   "timeSec": 25
+  },
+  {
+   "id": "pc-dice-cards-p12",
+   "q": "Three fair coins are tossed together. What is the probability of getting at least two heads?",
+   "figure": null,
+   "options": [
+    "1/4",
+    "3/8",
+    "1/2",
+    "5/8"
+   ],
+   "answer": 2,
+   "solution": "8 outcomes. At least two heads: HHH, HHT, HTH, THH — four.\n$P = \\dfrac{4}{8} = \\dfrac{1}{2}$.",
+   "shortcut": null,
+   "difficulty": "medium",
+   "subtopic": "pc-dice-cards",
+   "pattern": "pc-dc6",
+   "timeSec": 35
+  }
+ ]
+}

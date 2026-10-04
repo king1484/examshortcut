@@ -21,6 +21,16 @@ export default function AboutPage() {
         ))}
       </div>
 
+      <h2 className="text-2xl font-extrabold mt-10">Built by Vinay</h2>
+      <div className="card p-5 mt-3 text-sm">
+        <p>
+          ExamShortcut is built and maintained by{' '}
+          <a className="underline font-bold" href="https://www.instagram.com/vinni1484" target="_blank" rel="noopener">Vinay</a>{' '}
+          — made with <span aria-label="love">❤️</span> for aspirants who want clear notes and honest practice without the noise.
+          Feedback is welcome on <a className="underline" href="https://www.instagram.com/vinni1484" target="_blank" rel="noopener">Instagram</a> or through the <Link className="underline" href="/contact/">contact page</Link>.
+        </p>
+      </div>
+
       <h2 className="text-2xl font-extrabold mt-10">Where the content comes from</h2>
       <ul className="list-disc pl-5 mt-3 space-y-1.5 text-sm">
         <li><b>Exam data &amp; cutoffs</b> — compiled from official notifications and result notices, and checked against each new cycle.</li>
@@ -39,7 +49,7 @@ export default function AboutPage() {
       <h2 className="text-2xl font-extrabold mt-10">Roadmap</h2>
       <ul className="list-disc pl-5 mt-3 space-y-1.5 text-sm">
         <li><b>Now</b> — the common subjects (Quant, Reasoning, English, GA, Computer) in depth, daily quiz, 5 years of current affairs, and the full SSC CGL hub.</li>
-        <li><b>Next</b> — full hubs for SSC CHSL, MTS, GD, RRB NTPC / Group D, CTET, NEET UG, JEE Main and CUET UG.</li>
+        <li><b>Live</b> — exam hubs for SSC CHSL, MTS, GD Constable, RRB NTPC and RRB Group D, next to SSC CGL.</li>
         <li><b>Later</b> — Hindi medium, error reporting on every question, spaced-repetition revision.</li>
       </ul>
 

@@ -697,91 +697,91 @@
  ],
  "pyqPatterns": [
   {
-   "pattern": "Mixed-statement family tree",
+   "pattern": "Mixed family statements",
    "frequency": "very common",
-   "howToSpot": "3-6 shuffled sentences describe one family; the question asks 'How is X related to Y?' or 'How many males are there?'.",
-   "approach": "Ignore the given order. Find the person nobody calls a child, place them at the top, hang children below, join marriages on the same row, and read the shortest path. Tick genders while drawing for counting questions.",
+   "howToSpot": "Several shuffled sentences describe one family, and you are asked 'How is X related to Y?'.",
+   "approach": "Draw a small tree with one arrow per sentence.\nRead the relation from the tree.",
    "subtopic": "family-tree-puzzles",
    "example": {
-    "q": "**Anil is the brother of Sunil. Sunil is the father of Mohan. Ritu is the daughter of Kavita. Mohan is the brother of Ritu.** How is Kavita related to Anil?",
-    "solution": "Mohan and Ritu share parents; Ritu's mother is Kavita → Kavita is Sunil's wife → Anil's **sister-in-law**."
+    "q": "Anil is Sunil's brother. Sunil is Mohan's father. Ritu is Kavita's daughter. Mohan is Ritu's brother. How is Kavita related to Anil?",
+    "solution": "Mohan and Ritu are brother and sister\nSo Sunil is also Ritu's father, and Kavita is her mother\nKavita is Sunil's wife, and Sunil is Anil's brother\nAnswer: **Sister-in-law**"
    }
   },
   {
    "pattern": "Pointing to a photograph",
    "frequency": "very common",
-   "howToSpot": "'Pointing to X, Y said, \"He/She is the ___ of my ___'s ___\"' — the tree hides in one spoken phrase.",
-   "approach": "Replace 'my' with the speaker's name and decode inside-out, one layer per line. Test the self-reference first ('my mother's only child' = the speaker), then read the final relation in the direction the question asks.",
+   "howToSpot": "Someone points to a person and says 'He is the son of my mother's mother's only child'.",
+   "approach": "Replace 'my' with the speaker.\nSolve the phrase from the inside out, one step at a time.",
    "subtopic": "pointing-introduction",
    "example": {
-    "q": "Pointing to a man, Sunita said, **\"He is the only son of my mother's mother's only child.\"** How is the man related to Sunita?",
-    "solution": "Mother's mother's only child = Sunita's mother; her only son = Sunita's brother → **Brother**."
+    "q": "Pointing to a man, Sunita said, \"He is the only son of my mother's mother's only child.\" How is the man related to Sunita?",
+    "solution": "Mother's mother's only child = Sunita's mother\nHer only son = Sunita's brother\nAnswer: **Brother**"
    }
   },
   {
    "pattern": "Symbol-coded relations",
    "frequency": "common",
-   "howToSpot": "'P + Q means P is the father of Q...' plus a coded string like A + B × C.",
-   "approach": "Decode one symbol at a time into plain sentences, draw the mini-tree, and mark the gender each symbol fixes (a symbol fixes only its first person). Answer in the question's direction; a blank gender forces a neutral word or 'cannot be determined'.",
+   "howToSpot": "Symbols like + and ÷ stand for relations, and a coded line like A + B ÷ C is given.",
+   "approach": "Write each symbol as a plain sentence.\nJoin the sentences and read the relation.",
    "subtopic": "coded-relations",
    "example": {
-    "q": "'**P + Q**' means P is the son of Q; '**P ÷ Q**' means P is the wife of Q. In '**A + B ÷ C**', how is A related to C?",
-    "solution": "A is B's son and B is C's wife → A is C's **son** (the couple's child)."
+    "q": "'P + Q' means P is the son of Q. 'P ÷ Q' means P is the wife of Q. In 'A + B ÷ C', how is A related to C?",
+    "solution": "A + B: A is the son of B\nB ÷ C: B is the wife of C\nSo A is the son of C's wife\nAnswer: **Son**"
    }
   },
   {
-   "pattern": "Chain relations",
+   "pattern": "Chain of relations",
    "frequency": "common",
-   "howToSpot": "Two or three short links in a row: 'A's son is B, B's daughter is C...'.",
-   "approach": "Draw one arrow per sentence, count arrows between the asked pair (1 = parent/child, 2 = grand-, 3 = great-grand-), then fix the exact word with the gender.",
+   "howToSpot": "Two or three short links in a row, like 'Mohan is Rekha's father. Ramesh is Mohan's father.'",
+   "approach": "Draw one arrow for each link.\nCount the arrows: 1 = parent, 2 = grandparent, 3 = great-grandparent.",
    "subtopic": "family-tree-puzzles",
    "example": {
-    "q": "**Mohan is Rekha's father. Ramesh is Mohan's father.** How is Ramesh related to Rekha?",
-    "solution": "Two arrows up from Rekha, male → **Grandfather**."
+    "q": "Mohan is Rekha's father. Ramesh is Mohan's father. How is Ramesh related to Rekha?",
+    "solution": "Rekha → her father Mohan (1 step up)\nMohan → his father Ramesh (2 steps up)\nTwo steps up and male\nAnswer: **Grandfather**"
    }
   },
   {
-   "pattern": "Counting males/females",
+   "pattern": "Counting males or females",
    "frequency": "common",
-   "howToSpot": "A full family description plus 'How many male/female members are there?'.",
-   "approach": "Draw the whole tree, write +/− beside every name only where a word fixes the gender (including married-in spouses), then count ticks. Never count a name whose gender stayed blank.",
+   "howToSpot": "A full family is described, then 'How many males (or females) are there?'.",
+   "approach": "Draw the tree and mark each person M or F only when a word tells you.\nCount the marks.",
    "subtopic": "family-tree-puzzles",
    "example": {
-    "q": "**Dinesh and Gauri have a son Ashok. Ashok married Nutan; children Pankaj and Seema. Pankaj married Usha; son Tinku. How many males?**",
-    "solution": "Males: Dinesh, Ashok, Pankaj, Tinku = **4**."
+    "q": "Mr Dinesh and Mrs Gauri have a son Ashok. Ashok's wife Nutan has a son Pankaj and a daughter Seema. Pankaj's wife is Usha. Their son is Tinku. How many males are there?",
+    "solution": "Mr Dinesh is a male\nAshok is a son, so male. Pankaj is a son, so male\nTinku is a son, so male\nMales: Dinesh, Ashok, Pankaj, Tinku = **4**"
    }
   },
   {
    "pattern": "In-law relations",
    "frequency": "common",
-   "howToSpot": "Wives, husbands, in-laws: 'wife of my son', 'father of my spouse', 'brother of my wife'.",
-   "approach": "Apply the in-law map one crossing at a time: spouse's parent = father/mother-in-law; sibling's spouse or spouse's sibling = brother/sister-in-law; child's spouse = son/daughter-in-law.",
+   "howToSpot": "Words like 'wife of my son' or 'brother of my wife' appear.",
+   "approach": "Spouse's parent = father/mother-in-law. Spouse's brother/sister = brother/sister-in-law.\nChild's spouse = son/daughter-in-law.",
    "subtopic": "family-tree-puzzles",
    "example": {
-    "q": "**Rita's son is Amit. Amit's wife is Sneha.** How is Sneha related to Rita?",
-    "solution": "Sneha married Rita's child → one crossing from 'daughter' → **daughter-in-law**."
+    "q": "Rita's son is Amit. Amit's wife is Sneha. How is Sneha related to Rita?",
+    "solution": "Amit is Rita's son\nSneha is Amit's wife\nSo Sneha is the wife of Rita's son\nAnswer: **Daughter-in-law**"
    }
   },
   {
    "pattern": "Direction and gender traps",
    "frequency": "very common",
-   "howToSpot": "Short statements with 'How is A related to B?' where reversing the direction or guessing a gender gives a plausible wrong option.",
-   "approach": "Start from the person named after 'related to'. Mark genders only where words state them; if the needed gender is blank, pick the neutral option or 'cannot be determined'. Never leave a chain in your head — one arrow per sentence on paper.",
+   "howToSpot": "Short statements with 'How is A related to B?' where the gender is not given.",
+   "approach": "Start from the person named after 'related to'.\nIf the gender is not given, do not guess.",
    "subtopic": "blood-relations-idea",
    "example": {
-    "q": "**A and B are siblings. C is the mother of A and B.** How is B related to C?",
-    "solution": "B is C's child, gender never stated → **cannot be determined**."
+    "q": "A and B are siblings. C is the mother of A and B. How is B related to C?",
+    "solution": "C is the mother of both A and B\nSo B is C's child\nB could be a son or a daughter, and it is not stated\nAnswer: **Cannot be determined** (son or daughter)"
    }
   },
   {
    "pattern": "Build the coded expression",
    "frequency": "occasional",
-   "howToSpot": "'Which expression means M is the maternal uncle of K?' — the options are strings, not words.",
-   "approach": "Write the target relation as two plain sentences ('M is the brother of K's mother'), then match symbols sentence by sentence. Reject options that change a gender or shift a generation.",
+   "howToSpot": "You must pick the code string that means a given relation, like 'M is the maternal uncle of K'.",
+   "approach": "Break the relation into simple sentences.\nMatch each sentence with a symbol.",
    "subtopic": "coded-relations",
    "example": {
-    "q": "'**P + Q**' = P is the brother of Q; '**P − Q**' = P is the mother of Q. Which means 'M is the maternal uncle of K'?",
-    "solution": "Need M = brother of K's mother → **M + L − K** (M is L's brother, L is K's mother)."
+    "q": "'P + Q' means P is the brother of Q. 'P − Q' means P is the mother of Q. Which expression means 'M is the maternal uncle of K'?",
+    "solution": "Maternal uncle = mother's brother\nSo M is the brother of K's mother, say L\nM + L: M is the brother of L. L − K: L is the mother of K\nAnswer: **M + L − K**"
    }
   }
  ],

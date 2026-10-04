@@ -66,8 +66,8 @@ export function PostPlanner({ posts, cutoffDate }: { posts: PlannerPost[]; cutof
 
   const status = (p: PlannerPost) => {
     if (!born || !age) return p.paper2 && !stats ? { ok: false, why: 'Needs Statistics in your degree' } : null;
-    // Born not earlier than (cutoff − (max+relax+1) years + 1 day) and not later than (cutoff − min years).
-    const earliest = new Date(on); earliest.setFullYear(on.getFullYear() - (p.ageMax + relax + 1)); earliest.setDate(earliest.getDate() + 1);
+    // Born not earlier than (cutoff − (max+relax) years + 1 day) and not later than (cutoff − min years).
+    const earliest = new Date(on); earliest.setFullYear(on.getFullYear() - (p.ageMax + relax)); earliest.setDate(earliest.getDate() + 1);
     const latest = new Date(on); latest.setFullYear(on.getFullYear() - p.ageMin);
     if (born < earliest) return { ok: false, why: `Over age — born before ${fmt(earliest)}` };
     if (born > latest) return { ok: false, why: `Under age — born after ${fmt(latest)}` };

@@ -709,69 +709,69 @@
  ],
  "pyqPatterns": [
   {
-   "pattern": "Letter-by-letter sorting",
+   "pattern": "Sort words in dictionary order",
    "frequency": "very common",
-   "howToSpot": "Words with a shared opening; 'which comes first/last/third'.",
-   "approach": "Compare to the first differing letter; earlier letter wins; prefix sorts before extensions; sort once, number, read.",
+   "howToSpot": "A few words that start the same way, and you are asked 'which comes first or last?'.",
+   "approach": "Compare letter by letter up to the first different letter.\nA shorter word that is the start of another comes first.",
    "subtopic": "dict-idea",
    "example": {
-    "q": "**Arrange Scant, Scan, Scandal. Which comes last?**",
-    "solution": "Scan (prefix) → Scandal (5th d) → Scant (5th t) → last = **Scant**."
+    "q": "Arrange Scant, Scan, Scandal in dictionary order. Which comes last?",
+    "solution": "Scan is the start of Scandal, so Scan comes first\nScandal and Scant: the 5th letters are d and t, and d comes before t\nOrder: Scan, Scandal, Scant\nAnswer: **Scant**"
    }
   },
   {
-   "pattern": "Slot picking in a 4-6 word sort",
+   "pattern": "Find the Nth word",
    "frequency": "very common",
-   "howToSpot": "A list of near-identical words plus 'which is the Nth'.",
-   "approach": "Strip the stem, sort tails letter by letter, number the list, read the slot; convert 'from the right' to N+1−k.",
+   "howToSpot": "A list of similar words and 'which word is third from the left?'.",
+   "approach": "Sort the words in dictionary order and number them.\nFrom the right, the kth word is number (total + 1 − k) from the left.",
    "subtopic": "arrange-words",
    "example": {
-    "q": "**Arrange Statue, Status, Station, Statute, Stature. Which is third from the left?**",
-    "solution": "Station, Statue, Stature, Status, Statute → third = **Stature**."
+    "q": "Arrange Statue, Status, Station, Statute, Stature in dictionary order. Which is third from the left?",
+    "solution": "All start with Stat, so compare the next letter: i comes before u\nStation comes first. The rest (Statue, Stature, Status, Statute) differ at the 6th letter: e, r, s, t\nOrder: Station, Statue, Stature, Status, Statute\nAnswer: **Stature**"
    }
   },
   {
-   "pattern": "EJOTY positions and mirrors",
+   "pattern": "Letter position in the alphabet",
    "frequency": "very common",
-   "howToSpot": "'Nth letter', 'k-th from the right', 'letters between X and Y'.",
-   "approach": "Anchors E=5 J=10 O=15 T=20 Y=25; between = difference − 1; mirror = 27 − position.",
+   "howToSpot": "'Which letter is 9th from the right?' or 'how many letters between X and Y?'.",
+   "approach": "Remember E = 5, J = 10, O = 15, T = 20, Y = 25.\nKth from the right = position 27 − k from the left.",
    "subtopic": "letter-position",
    "example": {
-    "q": "**Which letter is 9th from the right of the English alphabet?**",
-    "solution": "$27 - 9 = 18$ → **R**."
+    "q": "Which letter is 9th from the right of the English alphabet?",
+    "solution": "Position from the left = 27 − 9 = 18\nCount: A = 1, ... O = 15, P = 16, Q = 17, R = 18\nAnswer: **R**"
    }
   },
   {
-   "pattern": "Modified alphabet strips",
+   "pattern": "Changed alphabet",
    "frequency": "common",
-   "howToSpot": "'Half the alphabet reversed' plus a position lookup.",
-   "approach": "Write the new strip once, then count on paper; full reverse: position p ↔ letter 27−p.",
+   "howToSpot": "The alphabet is changed (for example reversed), and you are asked for a letter's place.",
+   "approach": "Write the new alphabet once, then count on paper.\nFully reversed: place p from the left is the letter at place 27 − p in the usual order.",
    "subtopic": "letter-position",
    "example": {
-    "q": "**Alphabet reversed (Z first). Which letter is 5th from the left?**",
-    "solution": "Z Y X W V → 5th = **V**."
+    "q": "If the alphabet is written in reverse (Z first), which letter is 5th from the left?",
+    "solution": "New order: Z, Y, X, W, V, ...\nCount 5 places from the left\nAnswer: **V**"
    }
   },
   {
-   "pattern": "Dictionary rank of a word",
+   "pattern": "Rank of a word",
    "frequency": "very common",
-   "howToSpot": "'Rank of the word among all arrangements of its letters'.",
-   "approach": "Position by position: smaller unused letters × arrangements of the rest; add, then +1; divide by repeat factorials.",
+   "howToSpot": "'What is the rank of the word among all words made from its letters?'.",
+   "approach": "Go letter by letter: count the words that start with each smaller unused letter.\nAdd them up, then add 1.",
    "subtopic": "word-formation",
    "example": {
-    "q": "**Rank of BEAD among all arrangements of its letters?**",
-    "solution": "B: A smaller → 1 × 3! = 6. E: A and D smaller → 2 × 2! = 4. A: nothing smaller. Rank = 6 + 4 + 0 + 1 = **11**."
+    "q": "Find the rank of BEAD when all its arrangements are written in dictionary order.",
+    "solution": "Letters in order: A, B, D, E. Starting with A: 3! = 6 words\nStarting with BA or BD: 2 + 2 = 4 words\nBEAD is the first word starting with BE, so 6 + 4 = 10 words come before it\nRank = 10 + 1 = **11**"
    }
   },
   {
-   "pattern": "Word from a letter bag",
+   "pattern": "Make a word from letters",
    "frequency": "common",
-   "howToSpot": "'Which word can/cannot be formed from the letters of X?'",
-   "approach": "Bag with repeat counts; check each option's rarest letter first; a missing letter or an over-used repeated letter kills the option.",
+   "howToSpot": "'Which word can (or cannot) be made from the letters of ...?'.",
+   "approach": "Count each letter of the big word.\nCheck each option for a missing letter or a letter used too many times.",
    "subtopic": "word-formation",
    "example": {
-    "q": "**Which word CANNOT be formed from the letters of DISTRIBUTION: STUDIO, BIRD, ROBUST, BRUSH?**",
-    "solution": "The bag has no **H** → BRUSH cannot be formed; the rest fit inside the letter counts."
+    "q": "Which word cannot be made from the letters of DISTRIBUTION: STUDIO, BIRD, ROBUST, BRUSH?",
+    "solution": "DISTRIBUTION has D, I, S, T, R, B, U, O, N (I three times, T twice)\nSTUDIO, BIRD and ROBUST use only these letters\nBRUSH needs an H, and there is no H\nAnswer: **BRUSH**"
    }
   }
  ],

@@ -6,7 +6,7 @@ export const dynamic = 'force-static';
 export const dynamicParams = false;
 
 export const metadata: Metadata = {
-  title: 'Current affairs — month-wise, with a quiz | ExamShortcut',
+  title: 'Current affairs — month-wise, with a quiz',
   description: 'Current affairs for SSC, Railway and other govt exams, month by month: appointments, awards, sports, schemes, summits, reports, defence, science and economy — every month ends with a quiz.',
 };
 
@@ -15,7 +15,7 @@ export default function CurrentAffairsPage() {
 
   return (
     <div className="max-w-3xl mx-auto">
-      <p className="text-xs font-bold uppercase tracking-wide mt-4" style={{ color: 'var(--brand)' }}>General awareness · No login needed</p>
+      <p className="text-xs font-bold uppercase tracking-wide mt-4" style={{ color: 'var(--brand)' }}>General awareness</p>
       <h1 className="text-3xl sm:text-4xl font-extrabold mt-1">Current affairs</h1>
       <p className="muted mt-2 text-[15px]">Month-wise, exam-relevant only — no news dump. Appointments, awards, sports, schemes, summits, reports, defence, science and the economy, in simple English. Every month ends with a quiz so the facts actually stick.</p>
 

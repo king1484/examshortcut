@@ -1481,113 +1481,113 @@
  ],
  "pyqPatterns": [
   {
-   "pattern": "Missing digits for divisibility (11, 72, 88, 99)",
+   "pattern": "Missing digit so a number divides evenly",
    "frequency": "very common",
-   "howToSpot": "A number with one or two blanks (x, y) and the words 'is divisible by'. The options are digits or x + y.",
-   "approach": "Split a composite divisor into co-prime parts (72 = 8 × 9, 88 = 8 × 11). Apply the rule with fewest choices first — the last-three-digits rule of 8 or the alternating-sum rule of 11 — then the digit-sum rule. List the few cases; the asked quantity is usually the same in all of them.",
+   "howToSpot": "Find the missing digit in a number that must divide by 9, 11 or 88.",
+   "approach": "Use the divisibility rule for each part of the divisor.\nTry only the few digits that fit.",
    "subtopic": "ns-divisibility",
    "example": {
-    "q": "If 8x6y4 is divisible by 88, find x + y.",
-    "solution": "Rule of 8: 6y4 → y = 2 or 6. Rule of 11: $18 - (x + y) \\in \\{0, 11\\}$ → $x + y = 7$."
+    "q": "Find x if 7x35 is divisible by 11.",
+    "solution": "Odd places: 7 + 3 = 10\nEven places: x + 5\nFor 11, these must match (or differ by 11): x + 5 = 10\nSo x = **5**"
    }
   },
   {
-   "pattern": "Remainder when the new divisor is a factor of the old one",
+   "pattern": "Remainder when the divisor is a factor of the old one",
    "frequency": "very common",
-   "howToSpot": "'A number divided by 527 leaves 64. What is the remainder when it is divided by 17?'",
-   "approach": "Check that the new divisor divides the old one. If it does, just divide the old remainder by the new divisor. This is a 20-second question.",
+   "howToSpot": "\"A number divided by 195 leaves 47. What is the remainder when divided by 15?\"",
+   "approach": "Check that the new divisor divides the old one.\nThen divide the old remainder by the new divisor.",
    "subtopic": "ns-remainders",
    "example": {
-    "q": "N ÷ 195 leaves 47. Find N ÷ 15.",
-    "solution": "$195 = 15 \\times 13$; $47 \\bmod 15 = 2$."
+    "q": "A number divided by 195 leaves 47. Remainder when divided by 15?",
+    "solution": "195 = 15 × 13, so 15 divides 195\nSo the remainder is the same as 47 ÷ 15\n47 = 3 × 15 + 2\nRemainder = **2**"
    }
   },
   {
-   "pattern": "Remainder of large powers and products",
+   "pattern": "Remainder of a big power",
    "frequency": "very common",
-   "howToSpot": "Huge powers such as $5^{70}$, $67^{67} + 67$ or products like $1021 \\times 1023 \\times 1025$ divided by a small number.",
-   "approach": "Replace every number by its remainder (negative remainders are allowed). For powers, find a small power that leaves 1 or −1 and split the exponent. If the final result is negative, add the divisor.",
+   "howToSpot": "\"What is the remainder when 67^67 + 67 is divided by 68?\"",
+   "approach": "Find a number close to the divisor, like 1 less, and treat it as −1.\nAn odd power of −1 is −1; an even power is +1.",
    "subtopic": "ns-remainders",
    "example": {
-    "q": "Remainder of $67^{67} + 67$ divided by 68?",
-    "solution": "$67 \\equiv -1$, so $(-1)^{67} + 67 = 66$."
+    "q": "Remainder of 67^67 + 67 divided by 68?",
+    "solution": "67 is 1 less than 68, so treat it as −1\n(−1) to an odd power = −1\n−1 + 67 = 66\nRemainder = **66**"
    }
   },
   {
-   "pattern": "Unit digit of powers, products and sums",
+   "pattern": "Last digit of a big power",
    "frequency": "very common",
-   "howToSpot": "'Find the unit digit of $7^{95} \\times 3^{58}$' or of a sum/difference of powers or a factorial sum.",
-   "approach": "Keep only the unit digit of each base and the exponent mod 4 (remainder 0 means the 4th power). Multiply or add the unit digits. For a negative difference add 10. Factorials from 5! end in 0.",
+   "howToSpot": "\"Find the unit digit of 2137^754.\"",
+   "approach": "Keep only the last digit of the base.\nLast digits repeat in a cycle of 4; divide the power by 4 and use the remainder.",
    "subtopic": "ns-unit-digit",
    "example": {
-    "q": "Unit digit of $2137^{754}$?",
-    "solution": "$754 \\bmod 4 = 2$ → $7^2 = 49$ → **9**."
+    "q": "Unit digit of 2137^754?",
+    "solution": "Last digit of the base = 7\nPowers of 7 end in 7, 9, 3, 1 and repeat\n754 ÷ 4 leaves 2, so take the 2nd: 9\nUnit digit = **9**"
    }
   },
   {
-   "pattern": "Number of factors, odd/even factors, sum of factors",
+   "pattern": "Count the factors of a number",
    "frequency": "very common",
-   "howToSpot": "'How many factors does 720 have?', 'how many even factors …', 'sum of all factors of 360'.",
-   "approach": "Prime-factorise. Number of factors = product of (power + 1). Odd factors: drop the 2. Sum of factors = product of brackets (1 + p + … + p^a).",
+   "howToSpot": "\"How many factors (or odd factors) does 3600 have?\"",
+   "approach": "Break the number into primes.\nAdd 1 to each power and multiply. For odd factors, ignore the 2s.",
    "subtopic": "ns-factors",
    "example": {
     "q": "How many odd factors does 3600 have?",
-    "solution": "$3600 = 2^4 \\times 3^2 \\times 5^2$ → odd factors $= 3 \\times 3 = 9$."
+    "solution": "3600 = 2⁴ × 3² × 5²\nIgnore the 2s: the powers left are 2 and 2\n(2 + 1) × (2 + 1) = 3 × 3\nOdd factors = **9**"
    }
   },
   {
-   "pattern": "Trailing zeros and highest power in n!",
+   "pattern": "Zeros at the end of a factorial",
    "frequency": "common",
-   "howToSpot": "'How many zeros are at the end of 125!?', 'largest n such that $3^n$ divides 100!'.",
-   "approach": "Successively divide n by 5 (for zeros) or by the prime p and add all quotients. For a composite like 12 find the exponent of each prime part and take the smallest after dividing by the needed power.",
+   "howToSpot": "\"How many zeros are at the end of 125!?\"",
+   "approach": "Count the 5s: divide by 5, then keep dividing the answer by 5.\nAdd all the answers.",
    "subtopic": "ns-factors",
    "example": {
-    "q": "Zeros at the end of 125!?",
-    "solution": "$25 + 5 + 1 = 31$."
+    "q": "How many zeros are at the end of 125!?",
+    "solution": "125 ÷ 5 = 25\n25 ÷ 5 = 5\n5 ÷ 5 = 1\n25 + 5 + 1 = **31** zeros"
    }
   },
   {
-   "pattern": "Algebraic divisibility of a^n ± b^n",
+   "pattern": "Is this big sum or difference divisible by ...?",
    "frequency": "common",
-   "howToSpot": "Expressions like $17^{25} + 23^{25}$ or $7^{24} - 1$ with 'is divisible by'.",
-   "approach": "Odd power sum → divisible by (a + b). Difference → always divisible by (a − b), and by (a + b) too when the power is even. Match these with the options.",
+   "howToSpot": "\"17^25 + 23^25 is divisible by which number?\"",
+   "approach": "Odd power with a + sign: divisible by the sum of the two numbers.\nDifference: divisible by the difference of the two numbers.",
    "subtopic": "ns-divisibility",
    "example": {
-    "q": "$19^{32} - 11^{32}$ is divisible by?",
-    "solution": "Even power difference → both 19 − 11 = 8 and 19 + 11 = 30."
+    "q": "17^25 + 23^25 is divisible by which number?",
+    "solution": "The power 25 is odd and the sign is +\nSo it divides by 17 + 23\n17 + 23 = 40\nAnswer: **40**"
    }
   },
   {
-   "pattern": "Recurring decimals to fractions and their sums",
+   "pattern": "Repeating decimals into fractions",
    "frequency": "common",
-   "howToSpot": "Barred decimals like $2.4\\overline{7}$ or $0.\\overline{6} + 0.\\overline{7} + 0.\\overline{8}$.",
-   "approach": "Pure recurring: repeating digits over 9s. Mixed: (all digits − non-repeating digits) over (9s then 0s). Convert every term to a fraction before adding.",
+   "howToSpot": "\"Find 0.666... + 0.777... + 0.888...\"",
+   "approach": "Put the repeating digit over 9: 0.777... = 7/9.\nChange every decimal into a fraction, then add.",
    "subtopic": "ns-fractions-decimals",
    "example": {
-    "q": "$0.4\\overline{7} + 0.3\\overline{5} = ?$",
-    "solution": "$\\frac{43}{90} + \\frac{32}{90} = \\frac{75}{90} = \\frac{5}{6}$."
+    "q": "0.666... + 0.777... + 0.888... = ?",
+    "solution": "0.666... = 6/9\n0.777... = 7/9\n0.888... = 8/9\n6/9 + 7/9 + 8/9 = 21/9 = **7/3** (2⅓)"
    }
   },
   {
-   "pattern": "Counting multiples in a range and series sums",
+   "pattern": "Count multiples in a range",
    "frequency": "common",
-   "howToSpot": "'How many numbers between 200 and 600 are divisible by 4, 5 and 6?', 'sum of all three-digit multiples of 7'.",
-   "approach": "Use floor division: multiples of k from a to b = ⌊b/k⌋ − ⌊(a−1)/k⌋. 'And' means LCM; 'or' means inclusion–exclusion. For sums use n/2 × (first + last).",
+   "howToSpot": "\"How many numbers from 1 to 1000 are divisible by neither 4 nor 6?\"",
+   "approach": "Multiples of k up to N = N ÷ k (ignore the decimal part).\nFor 'both', use the LCM. Subtract the overlap once.",
    "subtopic": "ns-types-counting",
    "example": {
-    "q": "How many integers from 1 to 1000 are divisible by neither 4 nor 6?",
-    "solution": "$1000 - (250 + 166 - 83) = 667$."
+    "q": "How many numbers from 1 to 1000 are divisible by neither 4 nor 6?",
+    "solution": "Multiples of 4: 1000 ÷ 4 = 250\nMultiples of 6: 1000 ÷ 6 = 166\nBoth (multiples of 12): 1000 ÷ 12 = 83\nEither: 250 + 166 − 83 = 333, so neither = 1000 − 333 = **667**"
    }
   },
   {
-   "pattern": "Two-digit numbers with reversed digits",
+   "pattern": "Two-digit number and its reverse",
    "frequency": "occasional",
-   "howToSpot": "'If the digits are reversed the number increases by 27', 'a number is 4 times the sum of its digits'.",
-   "approach": "Write the number as 10a + b. Difference with the reverse is 9(a − b); sum with the reverse is 11(a + b). Or test the options quickly.",
+   "howToSpot": "\"A number is 4 times the sum of its digits. Adding 27 reverses the digits.\"",
+   "approach": "Call the digits a and b. The number is 10a + b.\nNumber and reverse differ by 9 × (difference of digits).",
    "subtopic": "ns-types-counting",
    "example": {
-    "q": "A two-digit number is 4 times its digit sum; adding 27 reverses it. Find it.",
-    "solution": "$b = 2a$ and $b - a = 3$ → 36."
+    "q": "A two-digit number is 4 times its digit sum. Adding 27 reverses it. Find it.",
+    "solution": "10a + b = 4(a + b), so b = 2a\nReverse minus number = 9(b − a) = 27, so b − a = 3\nSo a = 3 and b = 6\nNumber = **36**"
    }
   }
  ],

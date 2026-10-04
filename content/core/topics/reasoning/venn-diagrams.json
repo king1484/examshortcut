@@ -777,91 +777,91 @@
  ],
  "pyqPatterns": [
   {
-   "pattern": "Two-set region count",
+   "pattern": "Two sets, find the rest",
    "frequency": "very common",
-   "howToSpot": "Two totals and the overlap; asks at least one, only one or neither.",
-   "approach": "Union = A + B − both; neither = total − union; only A = A − both.",
+   "howToSpot": "Two totals and the overlap are given. Asks for \"neither\", \"only one\" or \"at least one\".",
+   "approach": "At least one = A + B − both.\nNeither = total − at least one.",
    "subtopic": "two-set-operations",
    "example": {
     "q": "In a class of 60, 35 like tea, 30 like coffee and 10 like both. How many like neither?",
-    "solution": "35 + 30 − 10 = 55; 60 − 55 = **5**."
+    "solution": "At least one = 35 + 30 − 10 = 55\nNeither = 60 − 55\n= **5**"
    }
   },
   {
-   "pattern": "Reverse two-set puzzle",
+   "pattern": "Two sets, find the overlap",
    "frequency": "common",
-   "howToSpot": "Some regions are given; the overlap, a circle total or the group size is asked.",
-   "approach": "Draw four boxes (only A, only B, both, neither), fill the known ones and solve for the gap.",
+   "howToSpot": "The group size and both circle totals are given. Asks how many are in both.",
+   "approach": "Both = A + B − total (when everyone is in at least one).\nDraw a box with four parts to check.",
    "subtopic": "two-set-operations",
    "example": {
-    "q": "Everyone in a class of 80 plays chess or carrom; 50 play chess and 40 carrom. How many play both?",
-    "solution": "50 + 40 − 80 = **10**."
+    "q": "In a class of 80, everyone plays chess or carrom. 50 play chess and 40 play carrom. How many play both?",
+    "solution": "Add: 50 + 40 = 90\nThat is 10 more than 80, because those who play both are counted twice\nBoth = **10**"
    }
   },
   {
-   "pattern": "Percentage-based sets",
+   "pattern": "Sets in percent",
    "frequency": "common",
-   "howToSpot": "Data in percent, answer in percent or in people.",
-   "approach": "Solve in percent with total 100, convert to people at the end.",
+   "howToSpot": "The data is in percent.",
+   "approach": "Take the total as 100.\nSolve in percent, then change to people if asked.",
    "subtopic": "two-set-operations",
    "example": {
-    "q": "70% watch cricket, 60% football, 40% both. What percent watch neither?",
-    "solution": "Union 90% → neither **10%**."
+    "q": "70% watch cricket, 60% watch football and 40% watch both. What percent watch neither?",
+    "solution": "At least one = 70 + 60 − 40 = 90%\nNeither = 100 − 90\n= **10%**"
    }
   },
   {
-   "pattern": "Maximum / minimum overlap",
+   "pattern": "Largest or smallest overlap",
    "frequency": "occasional",
-   "howToSpot": "Overlap not given; asks its largest or smallest possible value.",
-   "approach": "Max both = smaller set; min both = A + B − N (not below 0); max neither = N − larger set.",
+   "howToSpot": "The overlap is not given. Asks the maximum or minimum.",
+   "approach": "Maximum overlap = the smaller set.\nMaximum \"neither\" happens when the smaller set is inside the bigger one.",
    "subtopic": "two-set-operations",
    "example": {
-    "q": "80 people; 50 like cricket, 40 hockey. Maximum who like neither?",
-    "solution": "Hockey inside cricket → neither = 80 − 50 = **30**."
+    "q": "In a group of 80, 50 like cricket and 40 like hockey. What is the maximum number who like neither?",
+    "solution": "For most in neither, the overlap should be biggest\nPut all 40 hockey fans inside the 50 cricket fans\nNeither = 80 − 50 = **30**"
    }
   },
   {
-   "pattern": "Three-set union / none",
+   "pattern": "Three sets, at least one or none",
    "frequency": "very common",
-   "howToSpot": "Three totals, three pairs, the triple and a group size.",
-   "approach": "Union = ΣA − Σpairs + triple; none = total − union.",
+   "howToSpot": "Three totals, three pair overlaps and the triple overlap are given.",
+   "approach": "At least one = sum of totals − sum of pairs + triple.\nNone = total − at least one.",
    "subtopic": "three-set-operations",
    "example": {
-    "q": "200 people: coffee 90, tea 80, milk 70; pairs 40, 35, 30; all three 15. How many drink none?",
-    "solution": "Union 150 → none **50**."
+    "q": "Out of 200 people, 90 drink coffee, 80 tea and 70 milk. Pairs: 40, 35 and 30. All three: 15. How many drink none?",
+    "solution": "Totals: 90 + 80 + 70 = 240\nPairs: 40 + 35 + 30 = 105\nAt least one = 240 − 105 + 15 = 150\nNone = 200 − 150 = **50**"
    }
   },
   {
-   "pattern": "Exactly two / exactly one",
+   "pattern": "Exactly two of three",
    "frequency": "common",
-   "howToSpot": "Asks for exactly one, exactly two or at least two sets.",
-   "approach": "Exactly two = Σpairs − 3 × triple; at least two = Σpairs − 2 × triple; exactly one = union − exactly two − triple.",
+   "howToSpot": "Asks for \"exactly two\", \"exactly one\" or \"at least two\" in a three-set problem.",
+   "approach": "Exactly two = sum of pairs − 3 × triple.\nAt least two = sum of pairs − 2 × triple.",
    "subtopic": "three-set-operations",
    "example": {
-    "q": "Pairs 8, 7, 6 and all three 3. Exactly two?",
-    "solution": "21 − 9 = **12**."
+    "q": "Pairs overlap by 8, 7 and 6 people. All three overlap by 3. How many are in exactly two sets?",
+    "solution": "Sum of pairs = 8 + 7 + 6 = 21\nThe triple group is counted 3 times in it: 3 × 3 = 9\nExactly two = 21 − 9 = **12**"
    }
   },
   {
-   "pattern": "Reading a region diagram",
+   "pattern": "Numbers written in each part",
    "frequency": "common",
-   "howToSpot": "Numbers are written in each region; the question describes a group in words.",
-   "approach": "List the regions the phrase covers and add them once each; use total − regions for 'not' phrases.",
+   "howToSpot": "A diagram has a number in each part and the question describes a group in words.",
+   "approach": "List the parts that match the words.\nAdd each part once.",
    "subtopic": "venn-idea",
    "example": {
-    "q": "Only N 20, only T 25, only R 5, N-T 15, T-R 6, N-R 4, all 10. How many use exactly one source?",
-    "solution": "20 + 25 + 5 = **50**."
+    "q": "Only N: 20, only T: 25, only R: 5, N and T only: 15, T and R only: 6, N and R only: 4, all three: 10. How many use exactly one source?",
+    "solution": "\"Exactly one\" means the \"only\" parts\n20 + 25 + 5\n= **50**"
    }
   },
   {
-   "pattern": "Choose-the-diagram",
+   "pattern": "Pick the right diagram",
    "frequency": "very common",
-   "howToSpot": "Three words; options describe circle pictures.",
-   "approach": "For each pair decide inside / apart / cross by definition, then match all three marks to one picture.",
+   "howToSpot": "Three words are given and the options are circle pictures.",
+   "approach": "Compare the words two at a time.\nDecide if they are separate, inside one another, or overlapping.",
    "subtopic": "relation-diagrams",
    "example": {
-    "q": "Even numbers, Odd numbers, Prime numbers.",
-    "solution": "Even and odd never meet; 2 and 3 are prime → **two separate circles, with the third intersecting both**."
+    "q": "Which diagram fits: Even numbers, Odd numbers, Prime numbers?",
+    "solution": "Even and odd numbers never overlap\n2 is even and prime; 3 is odd and prime\nSo prime overlaps both: **two separate circles with a third circle touching both**"
    }
   }
  ],

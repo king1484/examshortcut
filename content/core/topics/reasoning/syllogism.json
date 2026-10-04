@@ -712,91 +712,91 @@
  ],
  "pyqPatterns": [
   {
-   "pattern": "Two-statement definite",
+   "pattern": "Two statements, two conclusions",
    "frequency": "very common",
-   "howToSpot": "Two statements (an All and a Some/No in some order) with two conclusions about the outer terms.",
-   "approach": "Draw the least-committal diagram, then hunt one counter-diagram per conclusion. The Some-member travels through an All; a No statement exiles it. Reject every conclusion a single moved diagram can break.",
+   "howToSpot": "Two statements like \"All A are B\" and \"Some B are C\", then conclusions.",
+   "approach": "Draw the smallest picture that fits the statements.\nA conclusion follows only if it is true in every possible picture.",
    "subtopic": "syllogism-idea",
    "example": {
-    "q": "**Some dogs are cats. All cats are rats.** Conclusions: I. Some dogs are rats. II. All rats are dogs.",
-    "solution": "The dog-cat member is a rat → I follows. Rats spread beyond dogs → II fails. **Only I.**"
+    "q": "Statements: Some dogs are cats. All cats are rats. I. Some dogs are rats. II. All rats are dogs.",
+    "solution": "The dogs that are cats are also rats, so I follows\nRats can be outside the dogs, so II does not follow\nAnswer: **only I**"
    }
   },
   {
-   "pattern": "Three-statement chain",
+   "pattern": "Three statements in a chain",
    "frequency": "common",
-   "howToSpot": "Three statements, usually two All's and one Some/No, with conclusions that need the whole chain.",
-   "approach": "Chain the All-links first (A⊂B⊂C), place the Some/No member last, and trace the guaranteed member through every statement it meets before judging any conclusion.",
+   "howToSpot": "Three statements (All, Some or No) and conclusions that need the whole chain.",
+   "approach": "Join the \"All\" links first.\nFollow the \"Some\" part through each statement.",
    "subtopic": "syllogism-idea",
    "example": {
-    "q": "**All keys are locks. Some locks are doors. No door is a window.** Conclusions: I. Some keys are doors. II. Some locks are not windows.",
-    "solution": "The lock-door overlap can dodge keys → I fails. That door-lock is never a window → II follows. **Only II.**"
+    "q": "Statements: All keys are locks. Some locks are doors. No door is a window. I. Some keys are doors. II. Some locks are not windows.",
+    "solution": "The locks that are doors may not be keys, so I does not follow\nThose locks are doors, and no door is a window, so II follows\nAnswer: **only II**"
    }
   },
   {
-   "pattern": "Possibility conclusion",
+   "pattern": "\"Is a possibility\" conclusion",
    "frequency": "very common",
-   "howToSpot": "Any conclusion ending in 'is a possibility'.",
-   "approach": "Build ONE diagram where the possibility holds alongside every statement. It fails only when a guaranteed member would be forced into a forbidden (No) class. Definite and possibility use opposite standards — never mix them.",
+   "howToSpot": "The conclusion ends with \"is a possibility\".",
+   "approach": "Try to draw one picture where the conclusion is true and all statements still hold.\nIf you can, it follows.",
    "subtopic": "possibility-cases",
    "example": {
-    "q": "**All roads are streets. Some streets are lanes.** Conclusion: All lanes being roads is a possibility.",
-    "solution": "Draw lanes inside roads, roads inside streets, extra streets outside → consistent → **follows.**"
+    "q": "Statements: All roads are streets. Some streets are lanes. Conclusion: All lanes being roads is a possibility.",
+    "solution": "Draw lanes inside roads, and roads inside streets\nSome streets are lanes, so that still holds\nThe picture works, so it **follows**"
    }
   },
   {
-   "pattern": "Either-or complementary pair",
+   "pattern": "Either-or conclusions",
    "frequency": "very common",
-   "howToSpot": "Neither conclusion follows alone but the pair is (All, Some-not) or (Some, No) about the same two terms.",
-   "approach": "Check the shape first, then test each conclusion alone — if either follows by itself, pick it. Only a true negation pair with no individual proof earns 'Either I or II follows'.",
+   "howToSpot": "Neither conclusion follows, but they are opposites of each other (like All and Some not).",
+   "approach": "Check each conclusion alone first.\nUse \"Either I or II\" only if they are exact opposites and neither follows alone.",
    "subtopic": "either-or",
    "example": {
-    "q": "**Some flowers are red. No flower is blue.** Conclusions: I. All flowers are red. II. Some flowers are not red.",
-    "solution": "Neither is provable and the pair is exact negation → **Either I or II follows.**"
+    "q": "Statements: Some flowers are red. No flower is blue. I. All flowers are red. II. Some flowers are not red.",
+    "solution": "I does not follow alone, and II does not follow alone\nThey are exact opposites, so one of them must be true\nAnswer: **Either I or II follows**"
    }
   },
   {
-   "pattern": "Only-a-few statements",
+   "pattern": "\"Only a few\" statements",
    "frequency": "common",
-   "howToSpot": "'Only a few A are B' — the modern quantifier.",
-   "approach": "Rewrite as Some A are B + Some A are not B. The A-side split is guaranteed; the B-side is free. Chain only the overlap member through All statements; never chain the outside member.",
+   "howToSpot": "\"Only a few A are B\".",
+   "approach": "Read it as: some A are B, and some A are not B.\nUse only the A that are B when you chain it forward.",
    "subtopic": "definite-cases",
    "example": {
-    "q": "**Only a few cups are plates. All plates are bowls.** Conclusions: I. Some cups are not plates. II. No cup is a bowl.",
-    "solution": "I is guaranteed → follows. Plate-cups are bowls and non-plate cups may be bowls → II fails. **Only I.**"
+    "q": "Statements: Only a few cups are plates. All plates are bowls. I. Some cups are not plates. II. No cup is a bowl.",
+    "solution": "\"Only a few\" means some cups are not plates, so I follows\nThe cups that are plates are also bowls, so II is false\nAnswer: **only I**"
    }
   },
   {
-   "pattern": "Conversion-based conclusion",
+   "pattern": "Turn a statement around",
    "frequency": "occasional",
-   "howToSpot": "The correct conclusion is a reversal: Some B are A from All A are B, or swapped Some/No.",
-   "approach": "Recall the free conversions — All→Some, Some↔Some, No↔No — before rejecting a conclusion as 'reversed'. The only illegal reversal is All B are A.",
+   "howToSpot": "The conclusion is a reversed form of a statement.",
+   "approach": "All A are B gives Some B are A.\nSome A are B gives Some B are A; No A is B gives No B is A.",
    "subtopic": "syllogism-idea",
    "example": {
-    "q": "**All roses are flowers.** Conclusion: Some flowers are roses.",
-    "solution": "All→Some conversion always holds (no class is empty) → **follows.**"
+    "q": "Statement: All roses are flowers. Conclusion: Some flowers are roses.",
+    "solution": "Every rose is a flower\nSo at least some flowers are roses\nThis always holds, so it **follows**"
    }
   },
   {
-   "pattern": "Counter-example hunt",
+   "pattern": "Try to break the conclusion",
    "frequency": "common",
-   "howToSpot": "A conclusion that looks natural but rests on drawing the picture you want.",
-   "approach": "Ask of every conclusion: can I move a free part of the diagram — push an overlap aside, extend a circle — while all statements stay true? One success rejects it. Follows only when no movement can break it.",
+   "howToSpot": "A conclusion that looks natural but needs a picture you chose.",
+   "approach": "Move a part of the picture while the statements stay true.\nIf the conclusion breaks, it does not follow.",
    "subtopic": "syllogism-idea",
    "example": {
-    "q": "**Some spoons are forks.** Conclusion: Some spoons are not forks.",
-    "solution": "Draw all spoons inside the overlap — statements hold, conclusion breaks → **does not follow.**"
+    "q": "Statement: Some spoons are forks. Conclusion: Some spoons are not forks.",
+    "solution": "Draw all spoons as forks\nThe statement still holds\nBut the conclusion fails, so it **does not follow**"
    }
   },
   {
-   "pattern": "Possibility blocked by a No statement",
+   "pattern": "Possibility blocked by a \"No\"",
    "frequency": "common",
-   "howToSpot": "A possibility question whose statements include 'No X is Y' near the possibility's terms.",
-   "approach": "Trace the member guaranteed by a Some or only-a-few statement. If drawing the possibility would push that member into the forbidden class, the possibility is impossible; otherwise it follows.",
+   "howToSpot": "A possibility conclusion, and a \"No\" statement is close to it.",
+   "approach": "Find the members that must exist.\nIf the possibility would put them in a banned group, it fails.",
    "subtopic": "possibility-cases",
    "example": {
-    "q": "**Some phones are cameras. No camera is a charger.** Conclusion: All phones being chargers is a possibility.",
-    "solution": "The phone-camera member can never be a charger → **does not follow.**"
+    "q": "Statements: Some phones are cameras. No camera is a charger. Conclusion: All phones being chargers is a possibility.",
+    "solution": "Some phones are cameras, and these phones must exist\nNo camera is a charger\nSo not all phones can be chargers: **does not follow**"
    }
   }
  ],

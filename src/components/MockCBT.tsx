@@ -1,6 +1,8 @@
 'use client';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useAuth } from './Auth';
 import type { Mock, Question } from '@/lib/types';
 import { store, type MockAttempt } from '@/lib/store';
 import { Explanation, LETTERS, OptionButton, QuestionBody, withPassages } from './QuestionView';
@@ -145,7 +147,7 @@ export function MockCBT({ mock }: { mock: Mock }) {
   if (phase === 'intro') {
     return (
       <div className="max-w-3xl mx-auto">
-        <Link href="/exams/ssc-cgl/mocks/" className="text-sm faint">← All mock tests</Link>
+        <Link href={`/exams/${mock.exam ?? "ssc-cgl"}/mocks/`} className="text-sm faint">← All mock tests</Link>
         <h1 className="text-2xl sm:text-3xl font-extrabold mt-2">{mock.title}</h1>
         <p className="muted mt-2">{mock.blurb}</p>
         <div className="tbl-wrap mt-5">
@@ -297,6 +299,8 @@ export function MockCBT({ mock }: { mock: Mock }) {
 function MockResult({ mock, flat, answers, times, attempt }: { mock: Mock; flat: Flat[]; answers: (number | null)[]; times: number[]; attempt: MockAttempt }) {
   const [filter, setFilter] = useState<'all' | 'wrong' | 'skipped' | 'correct' | 'slow'>('wrong');
   const [open, setOpen] = useState<number | null>(null);
+  const { user, configured } = useAuth();
+  const path = usePathname() || '/';
   const history = store.attempts()[mock.id] ?? [];
   const accuracy = attempt.correct + attempt.wrong ? Math.round((100 * attempt.correct) / (attempt.correct + attempt.wrong)) : 0;
 
@@ -321,7 +325,7 @@ function MockResult({ mock, flat, answers, times, attempt }: { mock: Mock; flat:
 
   return (
     <div className="max-w-5xl mx-auto">
-      <Link href="/exams/ssc-cgl/mocks/" className="text-sm faint">← All mock tests</Link>
+      <Link href={`/exams/${mock.exam ?? "ssc-cgl"}/mocks/`} className="text-sm faint">← All mock tests</Link>
       <h1 className="text-2xl sm:text-3xl font-extrabold mt-2">Result · {mock.title}</h1>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-5">
         {[
@@ -421,6 +425,11 @@ function MockResult({ mock, flat, answers, times, attempt }: { mock: Mock; flat:
       </div>
       <div className="flex gap-3 mt-8 flex-wrap">
         <Link className="btn btn-brand" href="/revision/">Open mistake notebook</Link>
+        {configured && !user && (
+          <Link href={`/login/?next=${encodeURIComponent(path)}`} className="inline-flex items-center gap-1 rounded-full font-bold px-4 text-sm" style={{ color: '#fff', background: 'linear-gradient(135deg,#f97316,#ec4899 55%,#8b5cf6)' }}>
+            ✨ Login to track your scores
+          </Link>
+        )}
         <button className="btn" onClick={() => location.reload()}>Retake this paper</button>
       </div>
     </div>

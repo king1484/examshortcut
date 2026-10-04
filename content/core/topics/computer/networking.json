@@ -984,80 +984,80 @@
  ],
  "pyqPatterns": [
   {
-   "pattern": "Device identification by job",
+   "pattern": "Name the network device",
    "frequency": "very common",
-   "howToSpot": "'Which device sends data to all ports', 'which device connects two different networks', 'which device regenerates a weak signal' — a behaviour is described and the device named.",
-   "approach": "Climb the ladder: hub = broadcasts to every port (Layer 1); switch = learns MAC addresses, sends only to the right port (Layer 2); router = joins different networks and routes by IP (Layer 3); repeater = regenerates signals; modem = modulator-demodulator; gateway = protocol converter. Match the verb in the question to the one-line job.",
+   "howToSpot": "\"Which device sends data to the correct network using IP addresses?\"",
+   "approach": "Hub sends to all ports. Switch sends only to the right port.\nRouter joins different networks. Repeater boosts a weak signal.",
    "subtopic": "nw-devices",
    "example": {
-    "q": "Which device forwards a data packet towards the correct network using IP addresses?",
-    "solution": "Router — it works on Layer 3, reading IP addresses and choosing the best path between networks."
+    "q": "Which device forwards data packets towards the correct network using IP addresses?",
+    "solution": "Hub and switch work inside one network\nJoining networks needs IP addresses\nThat job belongs to a router\nAnswer: **Router**"
    }
   },
   {
-   "pattern": "OSI layer count, order and functions",
+   "pattern": "OSI model layers",
    "frequency": "very common",
-   "howToSpot": "'How many layers in the OSI model', 'routing/encryption/framing is a ___ layer function', 'a router/switch works at which layer', correct-order statements.",
-   "approach": "Fix the map: 7 layers — Physical (bits), Data Link (frames, MAC), Network (IP, routing), Transport (TCP/UDP, ports), Session (dialogues), Presentation (translation, encryption, compression), Application (HTTP, FTP, SMTP). Devices: hub 1, switch 2, router 3. The planted traps: encryption at Application, routing at Transport.",
+   "howToSpot": "\"Routing is a function of which OSI layer?\" or \"how many layers in OSI?\"",
+   "approach": "OSI has 7 layers: Physical, Data Link, Network, Transport, Session, Presentation, Application.\nRouting and IP = Network layer.",
    "subtopic": "nw-osi",
    "example": {
-    "q": "In the OSI model, routing of packets is the function of which layer?",
-    "solution": "Network (Layer 3) — IP addressing and route selection; Transport (4) only delivers end to end."
+    "q": "In the OSI model, routing of packets is done by which layer?",
+    "solution": "Layer 3 handles IP addresses and routes\nLayer 3 is called the Network layer\nTransport (layer 4) only delivers end to end\nAnswer: **Network layer**"
    }
   },
   {
-   "pattern": "IP class identification",
+   "pattern": "IP address class",
    "frequency": "very common",
-   "howToSpot": "An address is printed (10.0.0.5, 130.10.5.2, 196.1.2.3, 225.1.1.1) and its class asked; or the first-octet range of a class; or 'which is a private address'; 'what is 127.0.0.1'.",
-   "approach": "Read the FIRST octet only against the ruler 1(A) - 128(B) - 192(C) - 224(D) - 240(E); 127 = loopback. Private ranges: 10.x.x.x, 172.16-31.x.x, 192.168.x.x. Multicast = Class D. One octet decides everything — do not read the second number.",
+   "howToSpot": "An IP address like 130.10.5.2 is given and its class is asked.",
+   "approach": "Look only at the first number.\n1-126 = A, 128-191 = B, 192-223 = C, 224-239 = D.",
    "subtopic": "nw-ip",
    "example": {
-    "q": "The IP address 130.10.5.2 belongs to which class?",
-    "solution": "Class B — the first octet 130 lies between 128 and 191."
+    "q": "Which class does the IP address 130.10.5.2 belong to?",
+    "solution": "First number = 130\n128 to 191 is Class B\n130 is in that range\nAnswer: **Class B**"
    }
   },
   {
-   "pattern": "Port-number matching",
+   "pattern": "Port numbers",
    "frequency": "very common",
-   "howToSpot": "'HTTPS works on which port', 'SMTP port', 'FTP uses which ports', or a matched pair where one number is shifted.",
-   "approach": "Anchors: HTTP 80, HTTPS 443, FTP 21 (data 20), SSH 22, Telnet 23, SMTP 25, DNS 53, POP3 110, IMAP 143. The classic trap swaps 80 and 443, or pairs POP3 with 143 (that is IMAP). Climb 21-22-23 for FTP-SSH-Telnet.",
+   "howToSpot": "\"HTTPS uses which port?\" or \"SMTP port number\".",
+   "approach": "Learn: HTTP 80, HTTPS 443, FTP 21, SSH 22, Telnet 23, SMTP 25, DNS 53.\nPOP3 is 110, IMAP is 143.",
    "subtopic": "nw-protocols",
    "example": {
-    "q": "Data transfer of the World Wide Web over an encrypted connection uses which default port?",
-    "solution": "443 — HTTPS; plain HTTP uses port 80."
+    "q": "Which default port does HTTPS use?",
+    "solution": "HTTP uses port 80\nHTTPS is the secure version of HTTP\nIt has its own port\nAnswer: **443**"
    }
   },
   {
-   "pattern": "TCP vs UDP selection",
+   "pattern": "TCP or UDP",
    "frequency": "very common",
-   "howToSpot": "'Which protocol for live streaming / file download', 'which is connection-oriented', statements about reliability and speed.",
-   "approach": "TCP = connection-oriented, reliable, ordered — web pages, e-mail, file transfer. UDP = connectionless, fast, no guarantee — live streaming, gaming, VoIP, DNS queries. The recurring answer: live video = UDP; downloading a file = TCP.",
+   "howToSpot": "\"Which protocol is best for live streaming or file download?\"",
+   "approach": "TCP = reliable and ordered (web pages, file download).\nUDP = fast, no guarantee (live video, gaming).",
    "subtopic": "nw-protocols",
    "example": {
     "q": "Which protocol would a live video streaming service prefer?",
-    "solution": "UDP — speed matters more than perfect delivery; TCP's retransmissions would only pause the stream."
+    "solution": "Live video needs speed\nA few lost packets do not matter\nTCP would pause to resend them\nAnswer: **UDP**"
    }
   },
   {
-   "pattern": "Topology identification",
+   "pattern": "Network topology",
    "frequency": "common",
-   "howToSpot": "'Every computer connected to a central hub', 'every node connected to every other node', 'all computers share a single backbone' — the layout described and the topology asked.",
-   "approach": "Central device with all nodes = Star; every node to every other = Mesh; one shared backbone with terminators = Bus; circle of neighbours = Ring; stars joined on a backbone = Tree. Also know failure points: star dies with its hub, bus dies with its backbone, mesh is the most reliable.",
+   "howToSpot": "\"All computers are connected to a central hub\" and the topology is asked.",
+   "approach": "Central device = Star. Every node linked to every other = Mesh.\nOne common cable = Bus. A circle = Ring.",
    "subtopic": "nw-types-topologies",
    "example": {
-    "q": "In which topology does every node have a direct link to every other node?",
-    "solution": "Mesh — the most reliable topology, needing n(n-1)/2 links."
+    "q": "All computers are connected to one central hub. Which topology is this?",
+    "solution": "One central device in the middle\nEvery computer has its own cable to it\nThe shape looks like a star\nAnswer: **Star topology**"
    }
   },
   {
-   "pattern": "Mesh link count (numeric)",
+   "pattern": "Links in a mesh network",
    "frequency": "occasional",
-   "howToSpot": "'How many links are required for a mesh of 5/6/8 computers' — pure arithmetic.",
-   "approach": "links = n x (n-1) / 2. For n = 4 give 6; n = 5 give 10; n = 6 give 15; n = 8 give 28. The trap option is n squared or the unhalved n(n-1).",
+   "howToSpot": "\"How many links are needed for a mesh of 6 computers?\"",
+   "approach": "Use n × (n − 1) ÷ 2.\nDo not forget to divide by 2.",
    "subtopic": "nw-types-topologies",
    "example": {
     "q": "How many cable links are needed for a full mesh of 6 computers?",
-    "solution": "6 x 5 / 2 = 15 links."
+    "solution": "n = 6\nn × (n − 1) = 6 × 5 = 30\nDivide by 2: 30 ÷ 2\n= **15 links**"
    }
   }
  ],

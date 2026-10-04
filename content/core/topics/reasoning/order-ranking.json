@@ -799,69 +799,69 @@
  ],
  "pyqPatterns": [
   {
-   "pattern": "Rank conversion at the two ends",
+   "pattern": "Rank from one end, find the other",
    "frequency": "very common",
-   "howToSpot": "A rank from one end plus a total; the other end is asked.",
-   "approach": "Mirror: total − rank + 1; queues: ahead = rank − 1, behind = total − rank.",
+   "howToSpot": "A person's rank from one end and the total are given.",
+   "approach": "People ahead = rank − 1.\nPeople behind = total − rank.",
    "subtopic": "order-idea",
    "example": {
-    "q": "**In a queue of 60, S is 21st from the front. How many people are behind her?**",
-    "solution": "$60 - 21$ = **39** behind."
+    "q": "In a queue of 60, Sita is 21st from the front. How many people are behind her?",
+    "solution": "Total = 60\nPeople ahead = 21 − 1 = 20\nPeople behind = 60 − 21 = **39**"
    }
   },
   {
-   "pattern": "Two ranks to the total",
+   "pattern": "Find the total from two ranks",
    "frequency": "very common",
-   "howToSpot": "One person's rank from both ends; class size asked.",
-   "approach": "Add the ranks and subtract 1; the shared person was counted twice.",
+   "howToSpot": "One person's rank from the left and from the right is given. Asks the total.",
+   "approach": "Add the two ranks and subtract 1.\nThe person was counted twice.",
    "subtopic": "rank-position",
    "example": {
-    "q": "**A is 9th from the left and 11th from the right. How many people are in the row?**",
-    "solution": "$9 + 11 - 1$ = **19**."
+    "q": "A is 9th from the left and 11th from the right in a row. How many people are in the row?",
+    "solution": "Add the ranks: 9 + 11 = 20\nA is counted twice, so subtract 1\nTotal = **19**"
    }
   },
   {
-   "pattern": "Counting between two ranks",
+   "pattern": "People between two persons",
    "frequency": "very common",
-   "howToSpot": "'How many between A and B' with ranks from the same or opposite ends.",
-   "approach": "Same end: |a − b| − 1. Opposite ends with total T: T − a − b. Convert ends before subtracting.",
+   "howToSpot": "\"How many people are between P and Q?\"",
+   "approach": "If the ranks are from opposite ends: total − rank 1 − rank 2.\nIf from the same end: difference − 1.",
    "subtopic": "between-overlapping",
    "example": {
-    "q": "**P is 11th from the left and Q is 9th from the right in a row of 30. How many sit between?**",
-    "solution": "$30 - 11 - 9$ = **10**."
+    "q": "P is 11th from the left and Q is 9th from the right in a row of 30. How many are between them?",
+    "solution": "Opposite ends, so use total − both ranks\n30 − 11 − 9\n= **10**"
    }
   },
   {
-   "pattern": "The middle person",
+   "pattern": "Who is in the middle",
    "frequency": "common",
-   "howToSpot": "'Who is exactly in the middle of A and B?'",
-   "approach": "Convert to the same end; the midpoint is (a + b) / 2 from that end.",
+   "howToSpot": "\"Who is exactly in the middle of A and B?\"",
+   "approach": "Change both ranks to the same end.\nMiddle rank = (first + second) ÷ 2.",
    "subtopic": "between-overlapping",
    "example": {
-    "q": "**Manish is 14th from the left; Rakesh is 8th from the right in a row of 35. Who is midway between them?**",
-    "solution": "Rakesh = $35 - 8 + 1 = 28$th from the left; midway = $(14 + 28)/2$ = **21st from the left**."
+    "q": "In a row of 35, Manish is 14th from the left and Rakesh is 8th from the right. Who is exactly midway?",
+    "solution": "Rakesh from the left = 35 − 8 + 1 = 28\nMiddle = (14 + 28) ÷ 2 = 21\nThe middle person is **21st from the left**"
    }
   },
   {
-   "pattern": "Comparison chain to a named slot",
+   "pattern": "Order by height, age or marks",
    "frequency": "very common",
-   "howToSpot": "Taller/older/more-marks clues; tallest, youngest or Nth is asked.",
-   "approach": "Arrows toward the bigger/older/better; merge into a chain; read the slot; reversed words flip the arrow.",
+   "howToSpot": "Clues like \"taller than\" or \"older than\". Asks who is highest, lowest or Nth.",
+   "approach": "Write each clue as A > B.\nJoin the clues into one chain, then read the rank.",
    "subtopic": "arrangement-comparison",
    "example": {
-    "q": "**M > N; O < N; P > M; Q < O. Who is second highest?**",
-    "solution": "P > M > N > O > Q → second highest = **M**."
+    "q": "M > N, O < N, P > M, Q < O. Who is second highest?",
+    "solution": "M > N and P > M gives P > M > N\nN > O and O > Q gives N > O > Q\nFull chain: P > M > N > O > Q\nSecond highest = **M**"
    }
   },
   {
-   "pattern": "Scattered stack assembly",
+   "pattern": "Stack of books or boxes",
    "frequency": "common",
-   "howToSpot": "Above/below clues for boxes, books or shelves; a slot is asked.",
-   "approach": "Above = arrow up; stack the chain on paper; read 'Nth from top' directly off the list.",
+   "howToSpot": "Clues like \"above\" and \"below\" for boxes, books or floors.",
+   "approach": "Draw the stack from the top.\nRead the place you need straight from your list.",
    "subtopic": "arrangement-comparison",
    "example": {
-    "q": "**Red above Blue; Green below Blue but above White; Yellow at the bottom. Which is second from the top?**",
-    "solution": "Red, Blue, Green, White, Yellow → second = **Blue**."
+    "q": "Red is above Blue. Green is below Blue but above White. Yellow is at the bottom. Which is second from the top?",
+    "solution": "Red is above Blue; Green and White come below Blue\nGreen is above White; Yellow is last\nOrder from top: Red, Blue, Green, White, Yellow\nSecond from top = **Blue**"
    }
   }
  ],

@@ -5,6 +5,7 @@ import { Md } from '@/components/Md';
 import { CountdownChip } from '@/components/CountdownChip';
 import { DatePhases } from '@/components/DatePhases';
 import { CycleTimeline } from '@/components/CycleTimeline';
+import { MoreOnExam } from '@/components/exam-subpages/common';
 
 const BUILT_AT = Date.now();
 
@@ -102,6 +103,8 @@ export default function ExamPage() {
           </Link>
         ))}
       </nav>
+
+      <MoreOnExam id="ssc-cgl" />
 
       <h2 className="text-2xl font-extrabold mt-10">Exam pattern</h2>
       {exam.stages.map((st: any) => (

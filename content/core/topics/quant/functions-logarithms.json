@@ -1,0 +1,2632 @@
+{
+ "id": "functions-logarithms",
+ "sectionId": "quant",
+ "title": "Functions, Graphs & Logarithms",
+ "order": 23,
+ "importance": "medium",
+ "avgQuestions": {
+  "tier1": null,
+  "tier2": 2
+ },
+ "summary": "Function notation, graphs, modulus and logarithms — the algebra engine room of management exams. Banking and SSC papers meet it mainly in Tier 2 and higher-level sets, where 1–2 clean, formula-driven questions reward anyone who knows the standard moves.",
+ "subtopics": [
+  {
+   "id": "fl-basics",
+   "title": "Functions, domain & range",
+   "concept": "A function is a machine: one input in, exactly one output out. The domain lists the inputs the machine accepts, and the range lists the outputs it can actually produce.",
+   "formulas": [
+    {
+     "name": "Domain: denominator",
+     "tex": "x \\ne \\text{(zeros of the denominator)}",
+     "note": "Reject every input that makes the bottom zero."
+    },
+    {
+     "name": "Domain: square root",
+     "tex": "\\sqrt{A} \\text{ needs } A \\ge 0",
+     "note": "The inside of a root stays on the non-negative side."
+    },
+    {
+     "name": "Range of a quadratic",
+     "tex": "a(x-h)^2 + k \\Rightarrow \\text{range} = [k, \\infty) \\text{ if } a > 0",
+     "note": "Complete the square; $k$ is the floor or the ceiling."
+    },
+    {
+     "name": "Vertex input",
+     "tex": "x = -\\frac{b}{2a}",
+     "note": "Substitute back to get the minimum or maximum value."
+    },
+    {
+     "name": "Even / odd test",
+     "tex": "f(-x) = f(x) \\text{ (even)}; \\quad f(-x) = -f(x) \\text{ (odd)}",
+     "note": "Replace $x$ by $-x$ and simplify fully before deciding."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Hunt the two troublemakers",
+     "body": "For a domain, only two things can go wrong: a zero bottom or a negative root. Scan the rule for $\\div$ and $\\sqrt{}$, write the condition, solve.",
+     "example": {
+      "q": "Find the domain of $f(x) = \\dfrac{1}{x - 7}$.",
+      "steps": [
+       "Bottom is $x - 7$; it must not be zero.",
+       "$x \\ne 7$; everything else is fine."
+      ],
+      "answer": "All real numbers except $x = 7$"
+     }
+    },
+    {
+     "title": "Complete the square for range",
+     "body": "Write $ax^2 + bx + c$ as $a(x - h)^2 + k$. The square cannot go below $0$, so $k$ is the smallest (or largest) output.",
+     "example": {
+      "q": "Find the minimum value of $f(x) = x^2 - 4x + 7$.",
+      "steps": [
+       "$f(x) = (x-2)^2 + 3$.",
+       "$(x-2)^2 \\ge 0$, so the least value is $3$."
+      ],
+      "answer": "3"
+     }
+    },
+    {
+     "title": "Test $f(-1)$ for even / odd",
+     "body": "Compute $f(-1)$ and compare with $f(1)$ and $-f(1)$. Equal means even, opposite means odd. Always confirm with the full rule $f(-x)$.",
+     "example": {
+      "q": "Is $f(x) = x^3 - x$ even, odd or neither?",
+      "steps": [
+       "$f(-x) = -x^3 + x = -(x^3 - x)$.",
+       "This equals $-f(x)$."
+      ],
+      "answer": "Odd"
+     }
+    }
+   ],
+   "mistakes": [
+    "Treating $x = 0$ as always forbidden — only a denominator equal to zero is forbidden, not the input zero itself.",
+    "Giving the domain of $\\sqrt{x-4}$ as all real numbers — the inside must stay $\\ge 0$, so $x \\ge 4$.",
+    "Swapping domain and range — domain is the set of inputs, range is the set of outputs.",
+    "For $\\dfrac{1}{\\sqrt{x-2}}$, writing $x \\ge 2$ — the bottom cannot be zero, so $x > 2$ strictly.",
+    "Testing even/odd at a single value and concluding without checking the rule $f(-x)$ for all $x$.",
+    "Judging even/odd from the powers alone — $x^2 + 1$ is even and $x^3 + 1$ is neither; only the test with $f(-x)$ decides."
+   ],
+   "notes": "### A function is a machine\nThink of a currency-exchange counter. You hand over a number, the machine applies one fixed rule, and hands back exactly one number. That is a function.\n\nWe write $f(x) = 2x + 3$. Here $f$ is the rule, $x$ is the input, and $f(x)$ is the output.\n\nFeed in $x = 4$: $f(4) = 2(4) + 3 = 11$.\n\n> **Rule:** One input must give exactly one output. If some input gives two different outputs, it is not a function.\n\n### Checking a relation is a function\nTake the pairs $(1, 2)$, $(2, 5)$, $(1, 7)$. The input $1$ gives two outputs, $2$ and $7$. Not a function.\n\nNow $(1, 2)$, $(2, 5)$, $(3, 5)$. Inputs $2$ and $3$ share the output $5$ — that is allowed. Two inputs may share one output; one input may not split into two outputs.\n\nOn a graph this becomes the vertical line test: a vertical line must cut the curve at most once.\n\n### Domain: which inputs are allowed\nThe domain is the set of inputs the machine accepts. Two things break a machine:\n\n1. Division by zero. In $f(x) = \\dfrac{1}{x-3}$, the input $x = 3$ gives $\\dfrac{1}{0}$. Reject it. Domain: all real numbers except $3$.\n2. Square roots of negatives. In $f(x) = \\sqrt{x-5}$, the input must keep $x - 5 \\ge 0$, so $x \\ge 5$.\n\nPolynomials like $x^2 + 3x$ carry no such traps. Every real number is allowed.\n\n> **Watch:** For $\\dfrac{1}{\\sqrt{x-3}}$ both traps act together. The root needs $x - 3 \\ge 0$ and the bottom cannot be zero, so $x > 3$ strictly.\n\nWorked: domain of $\\dfrac{x+1}{x^2 - 5x + 6}$. Factor the bottom: $(x-2)(x-3)$. Reject $x = 2$ and $x = 3$.\n\n### Range: which outputs can come out\nThe range is the set of outputs the machine can actually produce.\n\nA straight line like $f(x) = 2x + 5$ climbs forever in both directions. It can output every real number.\n\nA parabola has a floor or a ceiling. Complete the square to find it:\n\n$$f(x) = x^2 - 4x + 7 = (x-2)^2 + 3$$\n\nA square is never negative, so the smallest output is $3$, reached at $x = 2$. Range: $f(x) \\ge 3$.\n\nIf the $x^2$ term carries a minus sign, the parabola opens down. Then the vertex value is the maximum.\n\n> **Tip:** For $a(x-h)^2 + k$, the range is $[k, \\infty)$ when $a > 0$ and $(-\\infty, k]$ when $a < 0$.\n\n### Even and odd functions\nReplace $x$ by $-x$ and simplify.\n\n- Same result: $f(-x) = f(x)$ — even. The graph mirrors in the $y$-axis. Example: $x^4 + x^2$ stays itself.\n- Sign flips: $f(-x) = -f(x)$ — odd. The graph looks the same after a half turn. Example: $x^3 + x$ flips sign cleanly.\n- Neither: $f(x) = x + 1$ gives $-x + 1$, which is neither $f(x)$ nor $-f(x)$.\n\n> **Note:** Test the rule, not the powers. $x^2 + 1$ is even though $1$ is an odd number; $x^3 + 1$ is neither.\n\n### Reading the question\nExams ask value, domain, range and symmetry as four separate question types.\n\n- \"For which values is $f$ defined?\" — hunt denominators and roots first.\n- \"The minimum value of $f(x)$\" — complete the square.\n- \"Find $k$ given the minimum\" — vertex form, then compare.\n- \"Even, odd or neither\" — compute $f(-x)$ fully before deciding.\n\nWrite the restriction first, then answer. That order catches almost every domain error.",
+   "patterns": [
+    {
+     "id": "fl-b1",
+     "name": "Find the value of a function",
+     "frequency": "very common",
+     "howToSpot": "A rule like $f(x) = 3x - 4$ is given and $f(5)$ or $f(a) + f(b)$ is asked.",
+     "formula": "f(a) = \\text{(rule with } x = a)",
+     "steps": [
+      "Write the rule.",
+      "Replace every $x$ by the given number, in brackets.",
+      "Simplify once, carefully.",
+      "For $f(a) + f(b)$, evaluate each part separately."
+     ],
+     "why": "A function value is just the output of the rule at that input, so substitution is the whole method.",
+     "example": {
+      "q": "If $f(x) = x^2 + 2x$, find $f(3)$.",
+      "steps": [
+       "$f(3) = 3^2 + 2(3)$.",
+       "$= 9 + 6 = 15$."
+      ],
+      "answer": "15"
+     }
+    },
+    {
+     "id": "fl-b2",
+     "name": "Domain of a rational function",
+     "frequency": "very common",
+     "howToSpot": "The rule is a fraction. 'For what values of $x$ is $f$ defined?' is asked.",
+     "formula": "\\text{denominator} \\ne 0",
+     "steps": [
+      "Set the bottom equal to zero.",
+      "Solve for the rejected values.",
+      "State the domain as all reals except those values.",
+      "For a quadratic bottom, factor or use the formula."
+     ],
+     "why": "Division by zero is undefined, so exactly the zeros of the bottom drop out of the domain.",
+     "example": {
+      "q": "Find the domain of $f(x) = \\dfrac{x+1}{x^2 - 5x + 6}$.",
+      "steps": [
+       "$x^2 - 5x + 6 = (x-2)(x-3)$.",
+       "Reject $x = 2$ and $x = 3$."
+      ],
+      "answer": "All real numbers except $x = 2$ and $x = 3$"
+     }
+    },
+    {
+     "id": "fl-b3",
+     "name": "Domain with a square root",
+     "frequency": "common",
+     "howToSpot": "The rule contains $\\sqrt{\\;}$ of an expression in $x$, alone or under a fraction.",
+     "formula": "\\text{(inside of root)} \\ge 0",
+     "steps": [
+      "Keep the inside of the root $\\ge 0$.",
+      "Solve the inequality for $x$.",
+      "If the root sits in a denominator, make it strict: $> 0$.",
+      "Combine both conditions when both appear."
+     ],
+     "why": "Square roots of negative numbers are not real, so the inside must stay on the non-negative side.",
+     "example": {
+      "q": "Find the domain of $f(x) = \\sqrt{2x - 8}$.",
+      "steps": [
+       "$2x - 8 \\ge 0$.",
+       "$x \\ge 4$."
+      ],
+      "answer": "x ≥ 4"
+     }
+    },
+    {
+     "id": "fl-b4",
+     "name": "Range of a linear function",
+     "frequency": "common",
+     "howToSpot": "$f(x) = ax + b$ with $a \\ne 0$, and the set of possible outputs is asked.",
+     "formula": "a \\ne 0 \\Rightarrow \\text{range} = \\text{all real numbers}",
+     "steps": [
+      "Check the slope $a$ is not zero.",
+      "A non-horizontal line climbs or falls forever.",
+      "Conclude the range is all real numbers."
+     ],
+     "why": "A slanted line keeps rising or falling without end, so no output value is missed.",
+     "example": {
+      "q": "Find the range of $f(x) = 2x + 5$.",
+      "steps": [
+       "Slope $2 \\ne 0$.",
+       "As $x$ runs over all reals, $2x + 5$ also runs over all reals."
+      ],
+      "answer": "All real numbers"
+     }
+    },
+    {
+     "id": "fl-b5",
+     "name": "Range or minimum of a quadratic",
+     "frequency": "very common",
+     "howToSpot": "$ax^2 + bx + c$ is given and its minimum (or maximum) value, or the full range, is asked.",
+     "formula": "a(x-h)^2 + k \\Rightarrow \\text{min/max} = k",
+     "steps": [
+      "Complete the square, or use $x = -b/2a$.",
+      "Note the sign of $a$: $a > 0$ gives a minimum.",
+      "Substitute the vertex input back into $f$.",
+      "Write the range from the vertex value."
+     ],
+     "why": "The parabola turns around at its vertex, so the vertex value bounds the range on one side.",
+     "example": {
+      "q": "Find the range of $f(x) = x^2 - 4x + 7$.",
+      "steps": [
+       "$f(x) = (x-2)^2 + 3$.",
+       "Smallest value $3$ at $x = 2$."
+      ],
+      "answer": "f(x) ≥ 3"
+     }
+    },
+    {
+     "id": "fl-b6",
+     "name": "Even, odd or neither",
+     "frequency": "common",
+     "howToSpot": "'$f(x) = \\ldots$ is:' with options even / odd / neither. Symmetry is asked without drawing.",
+     "formula": "f(-x) = f(x) \\text{ even}; \\quad f(-x) = -f(x) \\text{ odd}",
+     "steps": [
+      "Replace $x$ by $-x$ everywhere.",
+      "Simplify the new rule.",
+      "Compare with $f(x)$ and $-f(x)$.",
+      "If neither matches, answer 'neither'."
+     ],
+     "why": "Even means the rule is blind to the sign of $x$; odd means the output flips sign with the input.",
+     "example": {
+      "q": "Classify $f(x) = x^4 + x^2$.",
+      "steps": [
+       "$f(-x) = (-x)^4 + (-x)^2 = x^4 + x^2$.",
+       "This equals $f(x)$."
+      ],
+      "answer": "Even"
+     }
+    }
+   ],
+   "revision": [
+    "Function: one input gives exactly one output.",
+    "Domain traps: denominator $\\ne 0$; inside of $\\sqrt{}$ $\\ge 0$.",
+    "$1/\\sqrt{x-a}$ needs $x > a$ strictly.",
+    "Line $ax + b$, $a \\ne 0$: range is all real numbers.",
+    "Quadratic $a(x-h)^2 + k$: least or greatest value is $k$.",
+    "Even: $f(-x) = f(x)$. Odd: $f(-x) = -f(x)$."
+   ]
+  },
+  {
+   "id": "fl-composite-inverse",
+   "title": "Composite & inverse functions",
+   "concept": "A composite feeds one function's output into another: $f(g(x))$. An inverse runs a function backwards, turning each output into the input it came from.",
+   "formulas": [
+    {
+     "name": "Composite",
+     "tex": "(f \\circ g)(x) = f(g(x))",
+     "note": "$g$ acts first; work inside out."
+    },
+    {
+     "name": "Inverse check",
+     "tex": "f(f^{-1}(x)) = f^{-1}(f(x)) = x",
+     "note": "Composition both ways must return $x$."
+    },
+    {
+     "name": "Inverse of (ax+b)/(cx+d)",
+     "tex": "f^{-1}(x) = \\frac{b - dx}{cx - a}",
+     "note": "From swap-and-solve; memorise for speed."
+    },
+    {
+     "name": "Sum-type equation",
+     "tex": "f(x+y) = f(x) + f(y),\\ f(1) = k \\Rightarrow f(x) = kx",
+     "note": "Each unit step adds $k$."
+    },
+    {
+     "name": "Product-type equation",
+     "tex": "f(x+y) = f(x)f(y),\\ f(1) = k \\Rightarrow f(x) = k^x",
+     "note": "Each unit step multiplies by $k$."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Work inside out",
+     "body": "In $f(g(a))$, compute $g(a)$ first, box it, then feed that number into $f$. Two tiny calculations, no algebra.",
+     "example": {
+      "q": "If $f(x) = x + 4$ and $g(x) = 3x$, find $f(g(2))$.",
+      "steps": [
+       "$g(2) = 6$.",
+       "$f(6) = 10$."
+      ],
+      "answer": "10"
+     }
+    },
+    {
+     "title": "Swap-and-solve for inverses",
+     "body": "Write $y = f(x)$, swap $x$ and $y$, solve for $y$. Works for every invertible rule, including fractions.",
+     "example": {
+      "q": "Find the inverse of $f(x) = 5x - 2$.",
+      "steps": [
+       "$y = 5x - 2$, so $x = 5y - 2$.",
+       "$y = \\dfrac{x+2}{5}$."
+      ],
+      "answer": "$f^{-1}(x) = \\dfrac{x+2}{5}$"
+     }
+    },
+    {
+     "title": "Climb from the given value",
+     "body": "Functional equations reward stepping: use $x = y = 1$ to get $f(2)$, then $f(2)$ and $f(1)$ for $f(3)$, and so on.",
+     "example": {
+      "q": "$f(x+y) = f(x) + f(y)$ and $f(1) = 4$. Find $f(5)$.",
+      "steps": [
+       "Each step adds $4$: $f(2) = 8$, $f(3) = 12$.",
+       "$f(5) = 4 \\times 5 = 20$."
+      ],
+      "answer": "20"
+     }
+    }
+   ],
+   "mistakes": [
+    "Computing $f(g(x))$ as $g(f(x))$ — the order matters; in $f \\circ g$ the inner rule $g$ acts first.",
+    "Treating $f^{-1}(x)$ as $1/f(x)$ — the $-1$ means undo, not divide.",
+    "Swapping $x$ and $y$ but not solving for $y$ — the inverse must end as '$y =$ rule in $x$'.",
+    "Assuming every function has an inverse — $x^2$ sends $2$ and $-2$ to the same output, so it cannot be undone on all reals.",
+    "In $f(x+y) = f(x) + f(y)$, guessing $f(x) = x$ without using the given $f(1)$ — the given value fixes the multiple.",
+    "For a shifted rule like $f(x+y) = f(x) + f(y) + 3$, forgetting the extra $+3$ at every step."
+   ],
+   "notes": "### Two machines in a line\nA tiffin service: the first machine packs rice, the second adds a sweet. Feed $x$ through $g$ first, then push the result through $f$. The combined rule is the composite, written $f(g(x))$ or $f \\circ g$.\n\nTake $f(x) = x + 1$ and $g(x) = 2x$.\n\n$f(g(3))$: $g(3) = 6$, then $f(6) = 7$.\n\n> **Rule:** In $f(g(x))$, always work from the inside out. $g$ acts first, $f$ acts on what comes out.\n\n### Order matters\nSwap the machines and watch the answer change.\n\n$g(f(3))$: $f(3) = 4$, then $g(4) = 8$.\n\nSo $f(g(3)) = 7$ but $g(f(3)) = 8$. In general the two composites differ. Never run $f$ first unless the question says $g \\circ f$.\n\nBuilding the full rule is plain substitution. With $f(x) = x + 3$ and $g(x) = 2x$:\n\n$$f(g(x)) = f(2x) = 2x + 3$$\n\nThe reverse: $g(f(x)) = 2(x + 3) = 2x + 6$. Same parts, different result.\n\n### The inverse machine\nThe inverse $f^{-1}$ runs the machine backwards: output in, original input out.\n\nIf $f(x) = 3x - 2$, then $f^{-1}(x) = \\dfrac{x+2}{3}$.\n\nFind it by swap-and-solve:\n\n1. Write $y = 3x - 2$.\n2. Swap: $x = 3y - 2$.\n3. Solve for $y$: $y = \\dfrac{x+2}{3}$.\n\nCheck: $f(2) = 4$, then $f^{-1}(4) = 2$. Back where we started.\n\n> **Watch:** $f^{-1}(x)$ is not $\\dfrac{1}{f(x)}$. The $-1$ means \"undo\", never \"divide by\".\n\n### When an inverse exists\nUndoing needs each output to point back to exactly one input.\n\n$f(x) = x^2$ fails: $2$ and $-2$ both give $4$, so $4$ cannot choose a way back. Restrict to $x \\ge 0$ and it works: $f^{-1}(x) = \\sqrt{x}$.\n\nFractional linear functions always pass. For $f(x) = \\dfrac{ax+b}{cx+d}$, swap-and-solve gives\n\n$$f^{-1}(x) = \\frac{b - dx}{cx - a}$$\n\n> **Tip:** When $d = -a$, the function is its own inverse. Check: $f(x) = \\dfrac{3x+1}{x-3}$ undoes itself, so $f^{-1}(t) = f(t)$ for every $t$.\n\n### Functional equations\nThe question gives a rule connecting values of $f$ and asks for one value. Feed small numbers and climb.\n\nTake $f(x+y) = f(x) + f(y)$ with $f(1) = 5$. Each step adds $5$: $f(2) = 10$, $f(3) = 15$, so $f(7) = 35$. In general $f(x) = 5x$.\n\nThe product version $f(x+y) = f(x) \\cdot f(y)$ with $f(1) = 3$ multiplies at every step: $f(2) = 9$, $f(3) = 27$, $f(4) = 81$. Such a function is $f(x) = 3^x$.\n\nA shifted rule needs the same climbing, one step at a time. For $f(x+y) = f(x) + f(y) + 3$ with $f(1) = 2$:\n\n$f(2) = 2 + 2 + 3 = 7$, then $f(3) = f(2) + f(1) + 3 = 12$.\n\n> **Note:** In every functional equation, build outward from the given value using the given rule. Two or three steps almost always reach the asked value.\n\n### Reading the question\n- \"Find $f(g(2))$\" — evaluate the inside rule first.\n- \"Find $f^{-1}(3)$\" — swap-and-solve, or substitute into the inverse formula.\n- \"Is $f^{-1}$ possible?\" — look for two inputs sharing one output.\n- \"$f(x+y) = \\ldots$, find $f(10)$\" — iterate from $f(1)$; the steps repeat.",
+   "patterns": [
+    {
+     "id": "fl-c1",
+     "name": "Composite at a point",
+     "frequency": "very common",
+     "howToSpot": "Two rules $f$ and $g$ are given and $f(g(a))$ or $g(f(a))$ is asked for a number $a$.",
+     "formula": "f(g(a)) = f\\big(g(a)\\big)",
+     "steps": [
+      "Spot the inner function (the one next to $a$).",
+      "Evaluate the inner rule at $a$.",
+      "Feed the result into the outer rule.",
+      "Check which composition the question names."
+     ],
+     "why": "A composite is two substitutions done one after another, so point-wise evaluation is fastest.",
+     "example": {
+      "q": "If $f(x) = 2x + 3$ and $g(x) = x^2$, find $f(g(2))$.",
+      "steps": [
+       "$g(2) = 4$.",
+       "$f(4) = 11$."
+      ],
+      "answer": "11"
+     }
+    },
+    {
+     "id": "fl-c2",
+     "name": "Build or compare the composite rule",
+     "frequency": "common",
+     "howToSpot": "'Find $f(g(x))$' as a rule, or the difference $f(g(x)) - g(f(x))$ is asked.",
+     "formula": "f(g(x)) = \\text{(outer rule with inner rule substituted)}",
+     "steps": [
+      "Substitute the inner rule into the outer one.",
+      "Expand and simplify.",
+      "Build the reverse composite too if asked.",
+      "Subtract or compare as the question says."
+     ],
+     "why": "Composition is substitution of one whole rule into the other, so algebra finishes it.",
+     "example": {
+      "q": "If $f(x) = 3x - 4$ and $g(x) = x + 2$, find $f(g(x)) - g(f(x))$.",
+      "steps": [
+       "$f(g(x)) = 3(x+2) - 4 = 3x + 2$.",
+       "$g(f(x)) = (3x - 4) + 2 = 3x - 2$.",
+       "Difference $= 4$."
+      ],
+      "answer": "4"
+     }
+    },
+    {
+     "id": "fl-c3",
+     "name": "Find the inverse function",
+     "frequency": "very common",
+     "howToSpot": "$f(x)$ is given and $f^{-1}(x)$ is asked — often for the fractional linear shape $\\dfrac{ax+b}{cx+d}$.",
+     "formula": "f^{-1}(x) = \\frac{b - dx}{cx - a}",
+     "steps": [
+      "Write $y = f(x)$.",
+      "Swap $x$ and $y$.",
+      "Solve for $y$.",
+      "Check one value: $f(f^{-1}(a))$ must return $a$."
+     ],
+     "why": "The inverse swaps the roles of input and output, so interchanging the letters and re-solving does the job.",
+     "example": {
+      "q": "Find $f^{-1}(x)$ for $f(x) = \\dfrac{x+5}{x-2}$.",
+      "steps": [
+       "$y(x-2) = x + 5$, so $xy - 2y = x + 5$.",
+       "$x(y - 1) = 2y + 5$.",
+       "$x = \\dfrac{2y+5}{y-1}$."
+      ],
+      "answer": "$f^{-1}(x) = \\dfrac{2x+5}{x-1}$"
+     }
+    },
+    {
+     "id": "fl-c4",
+     "name": "Self-inverse and inverse values",
+     "frequency": "occasional",
+     "howToSpot": "$f(x) = \\dfrac{ax+b}{x-a}$ (bottom constant is minus the top coefficient of $x$), or $f^{-1}(t)$ is asked for one number $t$.",
+     "formula": "d = -a \\Rightarrow f^{-1}(t) = f(t)",
+     "steps": [
+      "Compare the rule with $\\dfrac{ax+b}{cx+d}$.",
+      "If $d = -a$, the function is self-inverse.",
+      "Then $f^{-1}(t)$ is just $f(t)$.",
+      "Otherwise compute $f^{-1}$ first."
+     ],
+     "why": "A self-inverse function undoes itself, so the inverse value equals the function value.",
+     "example": {
+      "q": "If $f(x) = \\dfrac{4x+1}{x-4}$, find $f^{-1}(5)$.",
+      "steps": [
+       "Here $a = 4$, $d = -4$, so $f$ is self-inverse.",
+       "$f^{-1}(5) = f(5) = \\dfrac{21}{1} = 21$."
+      ],
+      "answer": "21"
+     }
+    },
+    {
+     "id": "fl-c5",
+     "name": "Functional equation of sum type",
+     "frequency": "common",
+     "howToSpot": "A rule like $f(x+y) = f(x) + f(y)$ (possibly with a constant added) and one value such as $f(1)$ are given.",
+     "formula": "f(x+y) = f(x) + f(y),\\ f(1) = k \\Rightarrow f(x) = kx",
+     "steps": [
+      "Get $f(2)$ from $x = y = 1$.",
+      "Climb one step at a time.",
+      "For the shifted rule, add the constant at every step.",
+      "State the general form if asked."
+     ],
+     "why": "The rule tells how outputs combine, so known small values generate all the others.",
+     "example": {
+      "q": "If $f(x+y) = f(x) + f(y) + 3$ for all $x, y$ and $f(1) = 2$, find $f(3)$.",
+      "steps": [
+       "$f(2) = 2 + 2 + 3 = 7$.",
+       "$f(3) = f(2) + f(1) + 3 = 7 + 2 + 3$."
+      ],
+      "answer": "12"
+     }
+    },
+    {
+     "id": "fl-c6",
+     "name": "Functional equation of product type",
+     "frequency": "occasional",
+     "howToSpot": "A rule like $f(x+y) = f(x) \\cdot f(y)$ and a value such as $f(1) = 3$ or $f(3) = 8$ are given.",
+     "formula": "f(x+y) = f(x)f(y),\\ f(1) = k \\Rightarrow f(x) = k^x",
+     "steps": [
+      "Note the given value.",
+      "Each extra unit multiplies once more.",
+      "$f(n)$ equals the given value to the power $n$ (or a matching power).",
+      "Use powers of powers for big jumps."
+     ],
+     "why": "The rule multiplies outputs as inputs add, which is exactly how powers behave.",
+     "example": {
+      "q": "If $f(x+y) = f(x) f(y)$ and $f(3) = 8$, find $f(9)$.",
+      "steps": [
+       "$f(9) = f(3 + 3 + 3) = f(3)^3$.",
+       "$= 8^3 = 512$."
+      ],
+      "answer": "512"
+     }
+    }
+   ],
+   "revision": [
+    "$f(g(x))$: inside first, then outside.",
+    "Generally $f(g(x)) \\ne g(f(x))$.",
+    "Inverse: swap $x$ and $y$, solve for $y$.",
+    "$\\dfrac{ax+b}{cx+d}$ has inverse $\\dfrac{b-dx}{cx-a}$; self-inverse when $d = -a$.",
+    "Sum type: $f(x) = kx$. Product type: $f(x) = k^x$.",
+    "No inverse when two inputs share one output."
+   ]
+  },
+  {
+   "id": "fl-graphs",
+   "title": "Graphs & transformations",
+   "concept": "Every function has a picture. Rules like $f(x) + k$, $f(x - a)$, $-f(x)$ and $|f(x)|$ slide, flip or fold that picture in fixed ways, and the vertex of a parabola gives its peak or valley.",
+   "formulas": [
+    {
+     "name": "Vertical shift",
+     "tex": "y = f(x) + k",
+     "note": "$k > 0$ lifts the picture, $k < 0$ lowers it."
+    },
+    {
+     "name": "Horizontal shift",
+     "tex": "y = f(x - a)",
+     "note": "Moves right by $a$; $f(x+a)$ moves left."
+    },
+    {
+     "name": "Reflections",
+     "tex": "y = -f(x), \\quad y = f(-x)",
+     "note": "First flips over the $x$-axis, second over the $y$-axis."
+    },
+    {
+     "name": "Modulus graph",
+     "tex": "y = |f(x)|",
+     "note": "The part below the axis is reflected up."
+    },
+    {
+     "name": "Vertex of a parabola",
+     "tex": "x = -\\frac{b}{2a}, \\quad \\text{value} = f\\left(-\\frac{b}{2a}\\right)",
+     "note": "Minimum if $a > 0$, maximum if $a < 0$."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Vertex in one line",
+     "body": "For $ax^2 + bx + c$, the turning input is $-b/2a$. Substitute it back for the peak or valley value. Check the sign of $a$ first.",
+     "example": {
+      "q": "Find the maximum value of $f(x) = -2x^2 + 12x - 11$.",
+      "steps": [
+       "$a = -2 < 0$, so a maximum exists.",
+       "$x = -12/(-4) = 3$.",
+       "$f(3) = -18 + 36 - 11 = 7$."
+      ],
+      "answer": "7"
+     }
+    },
+    {
+     "title": "Inside moves opposite",
+     "body": "For shifts, look at where the rule sits: inside the bracket means the move is opposite to the sign; outside means the move is as written.",
+     "example": {
+      "q": "How does $y = (x - 3)^2$ relate to $y = x^2$?",
+      "steps": [
+       "Inside change $x - 3$.",
+       "Opposite direction: right."
+      ],
+      "answer": "Shifted 3 units right"
+     }
+    },
+    {
+     "title": "Count crossings, not algebra",
+     "body": "For 'how many solutions', sketch the V or parabola roughly and count crossings with the horizontal line. No solving needed.",
+     "example": {
+      "q": "How many solutions does $|x + 2| = 5$ have?",
+      "steps": [
+       "V with corner at $x = -2$, opening up.",
+       "Line $y = 5$ sits above the corner."
+      ],
+      "answer": "2 solutions"
+     }
+    }
+   ],
+   "mistakes": [
+    "Reading $f(x + 3)$ as a shift right — inside changes work in reverse: $f(x+3)$ is $3$ left.",
+    "Taking $y = f(x) + 2$ down — an outside $+k$ lifts the picture up.",
+    "For $y = |f(x)|$, mirroring the above-axis part too — only the part below the axis folds up.",
+    "Calling the vertex a minimum for every quadratic — if $a < 0$ the parabola opens down and the vertex is a maximum.",
+    "Reflecting the wrong coordinate: $y = -f(x)$ flips $y$-values, $y = f(-x)$ flips $x$-values.",
+    "Answering '2 solutions' for $|x - a| = 0$ — at the corner the V meets the line once, not twice."
+   ],
+   "notes": "### A graph is a picture of the rule\nEvery point on the curve $y = f(x)$ says: at input $x$, the output is $f(x)$.\n\nFor $f(x) = 2x + 1$ the points $(0, 1)$, $(1, 3)$, $(2, 5)$ line up into a straight line.\n\nGraph questions are scoring. The paper shows a shifted parabola or a V shape and asks where it peaks, where it cuts an axis, or how many times it crosses a line.\n\n### Sliding up and down\nAdding outside the bracket lifts or lowers the whole picture.\n\n$y = f(x) + 3$ moves every point up by $3$. $y = f(x) - 2$ drops it by $2$.\n\nThe parabola $y = x^2$ has its lowest point at $(0, 0)$. So $y = x^2 + 4$ has its lowest point at $(0, 4)$.\n\n> **Rule:** Changes made outside the rule (added after $f$) move the picture up or down, exactly as written.\n\n### Sliding left and right\nChanges inside the bracket work in reverse.\n\n$y = f(x - 2)$ moves the picture $2$ units right. $y = f(x + 3)$ moves it $3$ units left.\n\nWhy backwards? At $x = 2$, the rule $f(x-2)$ computes $f(0)$ — the old picture starts where the new zero sits.\n\nThe parabola $y = (x-2)^2$ has its vertex at $x = 2$: the old vertex at $0$ has walked to $2$.\n\n> **Watch:** Inside changes are opposite. $(x - a)$ shifts right, $(x + a)$ shifts left. Under pressure, this is the one students flip.\n\n### Flips and mirrors\n- $y = -f(x)$: outputs multiplied by $-1$. The picture flips over the $x$-axis — a water image. Point $(3, -2)$ becomes $(3, 2)$.\n- $y = f(-x)$: inputs replaced by their negatives. The picture flips over the $y$-axis — a mirror image. Point $(2, 5)$ becomes $(-2, 5)$.\n\nThe point itself tells you the answer: flip the sign of the $y$ for the first, flip the sign of the $x$ for the second.\n\n### The modulus folds the graph up\n$y = |f(x)|$ keeps everything on or above the axis. Outputs below zero are reflected up; the rest stays put.\n\n$y = |x - 3|$ is a V with its corner at $(3, 0)$ and arms climbing at $45^\\circ$. It cuts the $y$-axis where $|0 - 3| = 3$, at $(0, 3)$.\n\nOnly the below-axis part folds. The above-axis part never changes.\n\n> **Tip:** For $y = |x - a|$, draw a V with corner at $(a, 0)$. Read crossings straight off the picture.\n\n### The parabola and its vertex\nFor $f(x) = ax^2 + bx + c$:\n\n- $a > 0$: opens up, vertex is the minimum.\n- $a < 0$: opens down, vertex is the maximum.\n- Vertex input: $x = -\\dfrac{b}{2a}$.\n\nWorked: $f(x) = -2x^2 + 12x - 11$. Here $a = -2 < 0$, so a maximum exists. $x = -\\dfrac{12}{-4} = 3$. Then $f(3) = -18 + 36 - 11 = 7$. Maximum value $7$.\n\nWhere the graph meets the $x$-axis, put $f(x) = 0$. For $(x-1)^2 - 4 = 0$: $(x-1)^2 = 4$, so $x = 3$ or $x = -1$.\n\n> **Example:** $f(x) = x^2 - 6x + 8$ has vertex at $x = 3$ and cuts the axis where $(x-2)(x-3) = 0$, at $x = 2$ and $x = 3$.\n\n### Counting solutions from a picture\n\"How many solutions?\" means \"how many times do the two pictures cross?\"\n\n$|2x - 5| = 3$: the V with corner at $x = 2.5$ meets the flat line $y = 3$ twice. Answer: $2$ solutions.\n\nA horizontal line above a V's corner cuts it twice; exactly at the corner, once; below the corner, never.\n\n> **Rule:** Rough-sketch the V or parabola with its corner and one point on each arm. Counting crossings beats algebra when only the number of solutions is asked.",
+   "patterns": [
+    {
+     "id": "fl-g1",
+     "name": "Vertex: maximum or minimum value",
+     "frequency": "very common",
+     "howToSpot": "A quadratic is given and 'the maximum/minimum value of $f(x)$' or the input where it occurs is asked.",
+     "formula": "x = -\\frac{b}{2a}",
+     "steps": [
+      "Check the sign of $a$ for min or max.",
+      "Compute $x = -b/2a$.",
+      "Substitute back for the value.",
+      "State both the input and the value if asked."
+     ],
+     "why": "The parabola turns around at its vertex, so the vertex carries the peak or the valley.",
+     "example": {
+      "q": "Find the minimum value of $f(x) = x^2 - 8x + 17$.",
+      "steps": [
+       "$a = 1 > 0$, so a minimum.",
+       "$x = 8/2 = 4$.",
+       "$f(4) = 16 - 32 + 17 = 1$."
+      ],
+      "answer": "1"
+     }
+    },
+    {
+     "id": "fl-g2",
+     "name": "Shift a graph",
+     "frequency": "common",
+     "howToSpot": "'$y = f(x)$ is shifted...' or a new rule like $f(x - 3) + 1$ is given and the movement is asked.",
+     "formula": "y = f(x - a) + k",
+     "steps": [
+      "Look for changes inside the bracket: they move opposite.",
+      "Look for changes outside: they move as written.",
+      "Combine both moves.",
+      "State right/left and up/down."
+     ],
+     "why": "Inputs feed the rule from inside, so an inside change delays or advances the picture — the reverse of its sign.",
+     "example": {
+      "q": "How does $y = (x - 3)^2 + 1$ relate to $y = x^2$?",
+      "steps": [
+       "Inside $-3$: shift $3$ right.",
+       "Outside $+1$: shift $1$ up."
+      ],
+      "answer": "3 right and 1 up"
+     }
+    },
+    {
+     "id": "fl-g3",
+     "name": "Graph of a modulus",
+     "frequency": "common",
+     "howToSpot": "A rule with $|\\;|$, or 'the graph of $y = |x - a|$...' with an axis crossing asked.",
+     "formula": "|x - a| = \\begin{cases} x - a, & x \\ge a \\\\ a - x, & x < a \\end{cases}",
+     "steps": [
+      "Mark the corner at $(a, 0)$.",
+      "Draw two rising arms at $45^\\circ$.",
+      "For $|f(x)|$, fold the below-axis part up.",
+      "Read axis crossings from the sketch."
+     ],
+     "why": "A modulus erases negative signs, so the picture is whatever remains above the axis.",
+     "example": {
+      "q": "Where does $y = |x - 3|$ cut the $y$-axis?",
+      "steps": [
+       "Put $x = 0$.",
+       "$y = |0 - 3| = 3$."
+      ],
+      "answer": "At (0, 3)"
+     }
+    },
+    {
+     "id": "fl-g4",
+     "name": "Count solutions from the picture",
+     "frequency": "common",
+     "howToSpot": "'How many solutions does ... have?' — usually a modulus or parabola against a constant.",
+     "formula": null,
+     "steps": [
+      "Sketch the modulus V or the parabola roughly.",
+      "Draw the horizontal line on the other side.",
+      "Count the crossing points.",
+      "Answer with the count only."
+     ],
+     "why": "Each crossing is one solution, so a rough sketch answers a counting question without solving.",
+     "example": {
+      "q": "How many solutions does $|2x - 5| = 3$ have?",
+      "steps": [
+       "V with corner at $x = 2.5$.",
+       "Line $y = 3$ is above the corner value $0$.",
+       "Two crossings."
+      ],
+      "answer": "2"
+     }
+    },
+    {
+     "id": "fl-g5",
+     "name": "Reflect a graph or a point",
+     "frequency": "occasional",
+     "howToSpot": "'$(a, b)$ lies on $y = f(x)$. Which point lies on $y = -f(x)$ or $y = f(-x)$?'",
+     "formula": "y = -f(x): (a, b) \\to (a, -b); \\quad y = f(-x): (a, b) \\to (-a, b)",
+     "steps": [
+      "Identify which rule changed: outside minus flips outputs.",
+      "Inside minus flips inputs.",
+      "Change the sign of the matching coordinate.",
+      "Leave the other coordinate alone."
+     ],
+     "why": "Multiplying outputs by $-1$ reflects over the $x$-axis; negating inputs reflects over the $y$-axis.",
+     "example": {
+      "q": "$(3, -2)$ lies on $y = f(x)$. Which point lies on $y = -f(x)$?",
+      "steps": [
+       "Outside minus: outputs flip.",
+       "$(3, -2) \\to (3, 2)$."
+      ],
+      "answer": "(3, 2)"
+     }
+    },
+    {
+     "id": "fl-g6",
+     "name": "Where a graph meets the axes",
+     "frequency": "common",
+     "howToSpot": "'The graph of ... cuts the x-axis at' — find roots, or the y-axis crossing.",
+     "formula": null,
+     "steps": [
+      "For the $x$-axis, put $y = 0$ and solve.",
+      "For the $y$-axis, put $x = 0$.",
+      "Factor the quadratic if needed.",
+      "List all crossing points."
+     ],
+     "why": "Crossings are exactly the points where one coordinate is zero, so one substitution does it.",
+     "example": {
+      "q": "Where does $y = (x - 1)^2 - 4$ cut the $x$-axis?",
+      "steps": [
+       "$(x-1)^2 - 4 = 0$.",
+       "$(x-1)^2 = 4$, so $x - 1 = \\pm 2$."
+      ],
+      "answer": "At x = -1 and x = 3"
+     }
+    }
+   ],
+   "revision": [
+    "$f(x) + k$: up $k$. $f(x - a)$: right $a$.",
+    "Inside changes work opposite to their sign.",
+    "$-f(x)$: water image. $f(-x)$: mirror image.",
+    "$|f(x)|$: fold everything above the axis.",
+    "Vertex at $x = -b/2a$; $a > 0$ minimum, $a < 0$ maximum.",
+    "Axis crossings: put the other coordinate equal to $0$."
+   ]
+  },
+  {
+   "id": "fl-logs",
+   "title": "Logarithms",
+   "concept": "A logarithm asks 'what power?'. $\\log_2 32 = 5$ because $2^5 = 32$. Three laws handle products, quotients and powers, and the base decides how inequalities behave.",
+   "formulas": [
+    {
+     "name": "Definition",
+     "tex": "\\log_a b = x \\Leftrightarrow a^x = b",
+     "note": "Base $a > 0$, $a \\ne 1$; argument $b > 0$."
+    },
+    {
+     "name": "Product / quotient laws",
+     "tex": "\\log_a(mn) = \\log_a m + \\log_a n, \\quad \\log_a\\frac{m}{n} = \\log_a m - \\log_a n",
+     "note": "Multiplication becomes addition; division becomes subtraction."
+    },
+    {
+     "name": "Power law",
+     "tex": "\\log_a m^p = p \\log_a m",
+     "note": "The exponent comes out front."
+    },
+    {
+     "name": "Change of base",
+     "tex": "\\log_a b = \\frac{\\log b}{\\log a}",
+     "note": "Any common base works; base 10 is standard."
+    },
+    {
+     "name": "Special values",
+     "tex": "\\log_a 1 = 0, \\quad \\log_a a = 1, \\quad a^{\\log_a b} = b",
+     "note": "Log of 1 is 0; log of the base is 1; base and log cancel."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Translate to power language",
+     "body": "Read every log aloud as 'base to the what gives this?'. Then match powers of the base. No formula needed for direct values.",
+     "example": {
+      "q": "Evaluate $\\log_2 64$.",
+      "steps": [
+       "$2$ to the what is $64$?",
+       "$64 = 2^6$."
+      ],
+      "answer": "6"
+     }
+    },
+    {
+     "title": "Fraction or root arguments: use negative and fractional powers",
+     "body": "$1/8$ is $2^{-3}$, $27$ is $3^3$, $\\sqrt{9}$ is $9^{1/2}$. Write both sides with the same base and the answer falls out.",
+     "example": {
+      "q": "Evaluate $\\log_9 27$.",
+      "steps": [
+       "$9 = 3^2$, $27 = 3^3$.",
+       "$3^{2x} = 3^3$, so $2x = 3$."
+      ],
+      "answer": "$\\dfrac{3}{2}$"
+     }
+    },
+    {
+     "title": "Split products, pop powers",
+     "body": "Seeing a product inside a log, split it. Seeing a power, bring it out front. Known values such as $\\log 2 = 0.3010$ then finish the job.",
+     "example": {
+      "q": "Given $\\log 2 = 0.3010$, find $\\log 8$.",
+      "steps": [
+       "$8 = 2^3$.",
+       "$\\log 8 = 3 \\times 0.3010$."
+      ],
+      "answer": "0.9030"
+     }
+    }
+   ],
+   "mistakes": [
+    "Reading $\\log_2 8$ as $8 \\div 2$ — a log asks for the power: $2^3 = 8$, so the answer is $3$.",
+    "Splitting $\\log_a(m + n)$ into $\\log_a m + \\log_a n$ — the laws work on products and quotients, never sums.",
+    "Forgetting the base condition in inequalities — with base $\\dfrac{1}{2}$ the sign flips.",
+    "Ignoring the domain: $\\log(x - 2)$ needs $x > 2$, so a root making the argument zero or negative must be rejected.",
+    "Writing change of base upside down — $\\log_a b = \\dfrac{\\log b}{\\log a}$, both logs of the same side stay together.",
+    "Assuming $\\log 100 = 2$ in every base — that is a base-10 fact; $\\log_2 100$ is about $6.64$."
+   ],
+   "notes": "### A log asks: what power?\nA logarithm answers one question: this base, raised to what power, gives that number?\n\n$2$ to the what gives $32$? Count the doublings: $2, 4, 8, 16, 32$ — five. So $\\log_2 32 = 5$.\n\nThe three players: $2$ is the base, $32$ is the argument, $5$ is the answer.\n\nRead $\\log_5 125$ as \"$5$ to the what is $125$?\" The answer is $3$.\n\n### The definition is the master key\n$$\\log_a b = x \\quad \\Leftrightarrow \\quad a^x = b$$\n\nAny log question can be rewritten as a power question. Three small ones:\n\n- $\\log_3 81$: $3^4 = 81$, so the answer is $4$.\n- $\\log_5 \\dfrac{1}{25}$: $5^{-2} = \\dfrac{1}{25}$, so the answer is $-2$.\n- $\\log_7 1$: any power $0$ gives $1$, so the answer is $0$.\n\nConditions: the base is positive and not $1$; the argument must be positive. Logs of zero or negatives do not exist.\n\n> **Rule:** Stuck on any log — convert it to \"$a^x = b$\" and match the powers.\n\n### Three laws, one idea\nLogs turn multiplication into addition, division into subtraction, and powers into multiples.\n\n- $\\log_a(mn) = \\log_a m + \\log_a n$ — a product becomes a sum.\n- $\\log_a \\dfrac{m}{n} = \\log_a m - \\log_a n$ — a quotient becomes a difference.\n- $\\log_a m^p = p \\log_a m$ — the power pops out front.\n\nWorked: $\\log_{10} 4 + \\log_{10} 25 = \\log_{10}(4 \\times 25) = \\log_{10} 100 = 2$.\n\nAnd $\\log_{10} 8 = \\log_{10} 2^3 = 3\\log_{10} 2$. With $\\log_{10} 2 = 0.3010$, this is $0.9030$.\n\n> **Watch:** The laws work on products and quotients, never on sums. $\\log(m + n)$ is not $\\log m + \\log n$.\n\n### Change of base\nTo evaluate a log in an awkward base, divide two logs in a friendly base:\n\n$$\\log_a b = \\frac{\\log_{10} b}{\\log_{10} a}$$\n\nWorked: $\\log_2 5 = \\dfrac{\\log 5}{\\log 2} = \\dfrac{0.6990}{0.3010} \\approx 2.32$.\n\nThe same idea links related bases. Since $4 = 2^2$:\n\n$$\\log_4 x = \\frac{1}{2}\\log_2 x$$\n\nSo $\\log_2 x + \\log_4 x = \\dfrac{3}{2}\\log_2 x$. If that equals $3$, then $\\log_2 x = 2$ and $x = 4$.\n\nOne identity more: $a^{\\log_a b} = b$. Base and log cancel, leaving the argument: $5^{\\log_5 9} = 9$.\n\n### Log equations and the domain check\nSame base on both sides: equate the powers.\n\n$\\log_2(x - 1) = 5$ means $x - 1 = 2^5 = 32$, so $x = 33$.\n\nProducts need one extra step. Solve $\\log_{10} x + \\log_{10}(x - 3) = 1$:\n\n1. Combine: $\\log_{10}\\big(x(x-3)\\big) = 1$.\n2. So $x(x - 3) = 10$, giving $x^2 - 3x - 10 = 0$.\n3. Roots: $x = 5$ and $x = -2$.\n4. Domain check: $x = -2$ makes $\\log_{10}(-2)$ impossible. Reject it.\n\nAnswer: $x = 5$ only. This rejection is exactly where exam setters plant a trap option.\n\n> **Watch:** After solving a log equation, test every root in the original question. Arguments must stay positive.\n\n### Inequalities: the base rule\nBase greater than $1$: the log climbs, so the inequality sign stays.\n\n$\\log_2 x < 4$ gives $0 < x < 16$ — below by the power, and $x$ must stay positive.\n\nBase between $0$ and $1$: the log falls as $x$ grows, so the sign flips.\n\n$\\log_{1/2} x > 3$: compare with the power $\\left(\\dfrac{1}{2}\\right)^3 = \\dfrac{1}{8}$. Bigger log now means smaller argument: $0 < x < \\dfrac{1}{8}$.\n\n> **Rule:** A small base ($0 < a < 1$) reverses the inequality. Check with one number: $\\log_{1/2} \\dfrac{1}{16} = 4 > 3$, and $\\dfrac{1}{16} < \\dfrac{1}{8}$. Consistent.",
+   "patterns": [
+    {
+     "id": "fl-l1",
+     "name": "Evaluate a basic log",
+     "frequency": "very common",
+     "howToSpot": "A direct value like $\\log_5 125$ or $\\log_2 64$ is asked.",
+     "formula": "\\log_a b = x \\Leftrightarrow a^x = b",
+     "steps": [
+      "Name the base and the argument.",
+      "Ask: base to the what gives the argument?",
+      "Write the argument as a power of the base.",
+      "Read off the exponent."
+     ],
+     "why": "The definition converts every log into a power match.",
+     "example": {
+      "q": "Evaluate $\\log_5 125$.",
+      "steps": [
+       "$125 = 5^3$.",
+       "Exponent is $3$."
+      ],
+      "answer": "3"
+     }
+    },
+    {
+     "id": "fl-l2",
+     "name": "Log of a fraction or a different base",
+     "frequency": "common",
+     "howToSpot": "Arguments like $\\dfrac{1}{32}$ or bases like $9$ with argument $27$ — the powers look mismatched.",
+     "formula": "a^{-p} = \\frac{1}{a^p}, \\quad (a^m)^n = a^{mn}",
+     "steps": [
+      "Write base and argument as powers of one common number.",
+      "Use a negative power for fractions.",
+      "Equate the exponents.",
+      "Solve the small linear equation."
+     ],
+     "why": "One common base turns any log into a simple exponent equation.",
+     "example": {
+      "q": "Evaluate $\\log_2 \\dfrac{1}{32}$.",
+      "steps": [
+       "$\\dfrac{1}{32} = 2^{-5}$.",
+       "Exponent is $-5$."
+      ],
+      "answer": "-5"
+     }
+    },
+    {
+     "id": "fl-l3",
+     "name": "Combine or expand with the laws",
+     "frequency": "very common",
+     "howToSpot": "A sum or difference of logs, or $\\log$ of a big product, or a value like $\\log 8$ built from $\\log 2$.",
+     "formula": "\\log_a(mn) = \\log_a m + \\log_a n, \\quad \\log_a m^p = p\\log_a m",
+     "steps": [
+      "Spot products, quotients or powers inside logs.",
+      "Combine into one log, or split a big one.",
+      "Pop exponents out front.",
+      "Use given values or easy numbers like $\\log 100 = 2$."
+     ],
+     "why": "The laws convert one messy log into known small ones.",
+     "example": {
+      "q": "Find $\\log_{10} 4 + \\log_{10} 25$.",
+      "steps": [
+       "Combine: $\\log_{10}(4 \\times 25) = \\log_{10} 100$.",
+       "$100 = 10^2$."
+      ],
+      "answer": "2"
+     }
+    },
+    {
+     "id": "fl-l4",
+     "name": "Change of base",
+     "frequency": "common",
+     "howToSpot": "Two different bases in one question, or logs given in base 10 while the question uses base 2 or 4.",
+     "formula": "\\log_a b = \\frac{\\log b}{\\log a}",
+     "steps": [
+      "Write the awkward log as a quotient of base-10 logs.",
+      "Substitute the given values.",
+      "Divide.",
+      "For related bases, use $\\log_{a^k} x = \\frac{1}{k}\\log_a x$."
+     ],
+     "why": "Change of base expresses every log through one common base, so given values apply.",
+     "example": {
+      "q": "Given $\\log 2 = 0.3010$ and $\\log 5 = 0.6990$, find $\\log_2 5$.",
+      "steps": [
+       "$\\log_2 5 = \\dfrac{\\log 5}{\\log 2}$.",
+       "$= \\dfrac{0.6990}{0.3010} \\approx 2.32$."
+      ],
+      "answer": "≈ 2.32"
+     }
+    },
+    {
+     "id": "fl-l5",
+     "name": "Solve a log equation",
+     "frequency": "very common",
+     "howToSpot": "An equation with $\\log$ terms equals a number; $x$ sits inside the log or its argument.",
+     "formula": "\\log_a(f(x)) = c \\Rightarrow f(x) = a^c",
+     "steps": [
+      "Combine logs into a single log if there are several.",
+      "Convert to the power form.",
+      "Solve the resulting equation.",
+      "Reject roots that break the domain."
+     ],
+     "why": "The definition converts the whole equation into ordinary algebra, but the domain still rules.",
+     "example": {
+      "q": "Solve $\\log_2(x - 1) = 5$.",
+      "steps": [
+       "$x - 1 = 2^5 = 32$.",
+       "$x = 33$, and $33 - 1 > 0$: valid."
+      ],
+      "answer": "x = 33"
+     }
+    },
+    {
+     "id": "fl-l6",
+     "name": "Log inequality with base care",
+     "frequency": "common",
+     "howToSpot": "'Solve $\\log_a x > c$' or '<' — check the base before answering.",
+     "formula": "0 < a < 1 \\text{ flips the sign}",
+     "steps": [
+      "Look at the base first.",
+      "Base $> 1$: keep the direction; add $x > 0$.",
+      "Base between 0 and 1: flip the direction.",
+      "Write the answer as one interval."
+     ],
+     "why": "A base below 1 is a falling function, so bigger logs come from smaller arguments.",
+     "example": {
+      "q": "Solve $\\log_{1/2} x > 3$.",
+      "steps": [
+       "Base $\\dfrac{1}{2}$ is below 1, so flip.",
+       "$\\left(\\dfrac{1}{2}\\right)^3 = \\dfrac{1}{8}$.",
+       "Answer: $0 < x < \\dfrac{1}{8}$."
+      ],
+      "answer": "0 < x < 1/8"
+     }
+    },
+    {
+     "id": "fl-l7",
+     "name": "Exponent-log identity",
+     "frequency": "occasional",
+     "howToSpot": "An expression like $5^{\\log_5 9}$ or $\\log_5 5 + 3^{\\log_3 4}$ mixing powers and logs.",
+     "formula": "a^{\\log_a b} = b",
+     "steps": [
+      "Match each power's base with the log's base below it.",
+      "Cancel the pair: the argument remains.",
+      "Add or multiply the leftovers.",
+      "State the final number."
+     ],
+     "why": "Raising a base to its own log undoes the log, leaving the argument untouched.",
+     "example": {
+      "q": "Evaluate $5^{\\log_5 9}$.",
+      "steps": [
+       "Base $5$ matches log base $5$.",
+       "The pair cancels, leaving $9$."
+      ],
+      "answer": "9"
+     }
+    }
+   ],
+   "revision": [
+    "$\\log_a b = x$ means $a^x = b$.",
+    "$\\log_a 1 = 0$, $\\log_a a = 1$, $a^{\\log_a b} = b$.",
+    "Products add, quotients subtract, powers multiply: $\\log m^p = p\\log m$.",
+    "$\\log_a b = \\dfrac{\\log b}{\\log a}$.",
+    "Reject roots with non-positive arguments.",
+    "Base below 1 flips the inequality; always keep $x > 0$."
+   ]
+  },
+  {
+   "id": "fl-modulus-equations",
+   "title": "Modulus & equations",
+   "concept": "The modulus $|x|$ is a distance, so it is never negative. Equations split into two cases, inequalities give a band or two arms, and exponential equations fall to matching bases.",
+   "formulas": [
+    {
+     "name": "Modulus equation",
+     "tex": "|x - a| = d \\Rightarrow x = a \\pm d",
+     "note": "Two points at distance $d$ from $a$."
+    },
+    {
+     "name": "Inside the band",
+     "tex": "|x| < a \\Rightarrow -a < x < a",
+     "note": "One interval; needs $a > 0$."
+    },
+    {
+     "name": "Outside the band",
+     "tex": "|x| > a \\Rightarrow x < -a \\text{ or } x > a",
+     "note": "Two arms; the sign '>' splits."
+    },
+    {
+     "name": "Distance sum",
+     "tex": "\\min\\big(|x-a| + |x-b|\\big) = |a - b|",
+     "note": "Every $x$ between $a$ and $b$ achieves it."
+    },
+    {
+     "name": "Exponential match",
+     "tex": "a^{f(x)} = a^{g(x)} \\Rightarrow f(x) = g(x)",
+     "note": "Write both sides with the same base first."
+    }
+   ],
+   "tricks": [
+    {
+     "title": "Think distance, not cases",
+     "body": "$|x - 3| = 2$ asks for points at distance $2$ from $3$. Walk $2$ left and $2$ right: $x = 1$ and $x = 5$. No case work.",
+     "example": {
+      "q": "Solve $|x - 2| = 5$.",
+      "steps": [
+       "Points at distance $5$ from $2$.",
+       "$2 + 5 = 7$, $2 - 5 = -3$."
+      ],
+      "answer": "x = 7 or x = -3"
+     }
+    },
+    {
+     "title": "Band or arms — one glance",
+     "body": "For $|x - a| < d$ the answer sits between $a - d$ and $a + d$. For $> d$ it sits outside those two numbers.",
+     "example": {
+      "q": "Solve $|x - 3| < 4$.",
+      "steps": [
+       "Band around $3$ at radius $4$.",
+       "$3 - 4 = -1$, $3 + 4 = 7$."
+      ],
+      "answer": "-1 < x < 7"
+     }
+    },
+    {
+     "title": "Subtract the pins for the minimum",
+     "body": "The least value of $|x - a| + |x - b|$ is the gap between the pins. One subtraction, done.",
+     "example": {
+      "q": "Find the minimum of $|x - 1| + |x - 7|$.",
+      "steps": [
+       "Pins at $1$ and $7$.",
+       "Gap $= 7 - 1 = 6$."
+      ],
+      "answer": "6"
+     }
+    }
+   ],
+   "mistakes": [
+    "Solving $|x| = -4$ and writing $x = \\pm 4$ — a modulus is never negative, so there is no solution.",
+    "Splitting $|x - 2| < 5$ as $x < 7$ only — the other side gives $x > -3$ too.",
+    "Writing $-a < x < a$ for $|x| > a$ — that is the band for '<'; the sign '>' gives two arms outside.",
+    "Accepting a case root without checking it in the original equation — fake roots appear when the right side contains $x$.",
+    "Putting the minimum of $|x-a| + |x-b|$ only at $x = a$ — every point between the pins gives the same minimum.",
+    "Solving $2^{x+1} = 8$ as $x + 1 = 8$ — first write $8 = 2^3$, then equate powers: $x + 1 = 3$."
+   ],
+   "notes": "### Modulus means distance\n$|x|$ is the distance of $x$ from $0$. Distance is never negative, so $|-7| = 7$ and $|7| = 7$.\n\n$|x - 3|$ is the distance of $x$ from $3$. The point $x = 5$ sits at distance $2$, and so does $x = 1$: both give $|x - 3| = 2$.\n\nDistance thinking solves modulus questions faster than algebra. Ask: which points sit at this distance from this number?\n\n> **Rule:** $|x - a| = d$ means $x$ sits at distance $d$ from $a$ — the two points $a + d$ and $a - d$.\n\n### Equations: split into two cases\nThe inside of a modulus is either positive or negative. Solve both ways.\n\nSolve $|2x - 3| = 5$:\n\n1. Case one: $2x - 3 = 5$, so $x = 4$.\n2. Case two: $2x - 3 = -5$, so $x = -1$.\n3. Both are valid: $x = 4$ or $x = -1$.\n\nOr use distance: $|x - 2| = 5$ asks for points at distance $5$ from $2$, namely $7$ and $-3$.\n\n$|x| = -4$ has no solution — no distance is negative.\n\n### Inequalities: inside or outside\n$|x - a| < d$ keeps $x$ within distance $d$ of $a$ — one band.\n\n$|x - 3| < 4$ gives $-1 < x < 7$.\n\n$|x - a| > d$ pushes $x$ outside the band — two arms.\n\n$|2x - 1| \\ge 5$: the quantity $2x - 1$ sits at least $5$ from zero, so $2x - 1 \\ge 5$ or $2x - 1 \\le -5$. That gives $x \\ge 3$ or $x \\le -2$.\n\n> **Watch:** \"<\" gives one interval, \">\" gives two arms. Mixing them up is the most common modulus error in the paper.\n\n### Sum of two distances\n$|x - a| + |x - b|$ adds the distances from $x$ to two fixed pins $a$ and $b$.\n\nWalk between the pins: each step moves you closer to one pin and further from the other by the same amount, so the total stays fixed inside.\n\n$$\\text{minimum of } |x-a| + |x-b| = |a - b|$$\n\nWorked: the minimum of $|x - 4| + |x + 2|$ is the gap between the pins $4$ and $-2$, which is $6$. Every $x$ from $-2$ to $4$ achieves it.\n\nOutside the pins the total grows: at $x = 10$ it is already $18$.\n\n> **Tip:** For the minimum of $|x - a| + |x - b|$, just subtract the pins. Any $x$ between them achieves it.\n\n### The validity check\nWhen a modulus equals an expression containing $x$, a case solution can be fake. Test each root in the original equation.\n\nSolve $|x - 3| = 2x - 5$:\n\n1. Case $x \\ge 3$: $x - 3 = 2x - 5$ gives $x = 2$. But $2 < 3$ — the root breaks its own case. Reject.\n2. Case $x < 3$: $3 - x = 2x - 5$ gives $3x = 8$, so $x = \\dfrac{8}{3}$.\n3. Check: $\\left|\\dfrac{8}{3} - 3\\right| = \\dfrac{1}{3}$ and $2 \\cdot \\dfrac{8}{3} - 5 = \\dfrac{1}{3}$. Valid.\n\nAnswer: $x = \\dfrac{8}{3}$ alone. The right side $2x - 5$ must be non-negative for any solution, and $x = 2$ made it negative.\n\n### Exponential equations\nMatch the bases, then equate the powers.\n\n$2^x = 64$: since $64 = 2^6$, $x = 6$.\n\n$3^{x+2} = 27$: since $27 = 3^3$, $x + 2 = 3$ and $x = 1$.\n\nProducts on one side add powers. $2^x \\cdot 2^{x+1} = 32$ becomes $2^{2x+1} = 2^5$, so $2x + 1 = 5$ and $x = 2$.\n\nWhen no power matches, take logs: $3^x = 20$ gives $x = \\dfrac{\\log 20}{\\log 3}$.\n\n> **Note:** Every exponential equation is a log equation with the base matched first. Logs step in only when the bases refuse to match.",
+   "patterns": [
+    {
+     "id": "fl-m1",
+     "name": "Solve |expression| = number",
+     "frequency": "very common",
+     "howToSpot": "An equation like $|2x - 3| = 5$ or $|x - 2| = 5$ with two solutions expected.",
+     "formula": "|x - a| = d \\Rightarrow x = a \\pm d",
+     "steps": [
+      "Write the two cases: inside $= +d$ and $= -d$.",
+      "Solve each linear equation.",
+      "Or use distance: $a + d$ and $a - d$.",
+      "List both answers."
+     ],
+     "why": "The inside of a modulus can be positive or negative, so both sign choices are candidates.",
+     "example": {
+      "q": "Solve $|2x - 3| = 5$.",
+      "steps": [
+       "$2x - 3 = 5$ gives $x = 4$.",
+       "$2x - 3 = -5$ gives $x = -1$."
+      ],
+      "answer": "x = 4 or x = -1"
+     }
+    },
+    {
+     "id": "fl-m2",
+     "name": "Modulus inequality: inside the band",
+     "frequency": "common",
+     "howToSpot": "$|x - a| < d$ or $\\le d$ — one interval is the answer.",
+     "formula": "|x - a| < d \\Rightarrow a - d < x < a + d",
+     "steps": [
+      "Identify the centre $a$ and radius $d$.",
+      "Subtract: $a - d$. Add: $a + d$.",
+      "Write the interval between them.",
+      "Keep strict or loose signs as given."
+     ],
+     "why": "Staying within distance $d$ of $a$ means living inside the band of radius $d$.",
+     "example": {
+      "q": "Solve $|x - 3| < 4$.",
+      "steps": [
+       "Centre $3$, radius $4$.",
+       "$-1 < x < 7$."
+      ],
+      "answer": "-1 < x < 7"
+     }
+    },
+    {
+     "id": "fl-m3",
+     "name": "Modulus inequality: outside the band",
+     "frequency": "common",
+     "howToSpot": "$|x - a| > d$ or $\\ge d$ — two separate arms are the answer.",
+     "formula": "|x - a| > d \\Rightarrow x < a - d \\text{ or } x > a + d",
+     "steps": [
+      "Identify centre $a$ and radius $d$.",
+      "Split into the two cases $\\ge d$ and $\\le -d$ inside.",
+      "Solve each inequality.",
+      "Join the two arms with 'or'."
+     ],
+     "why": "Being further than $d$ from $a$ leaves only the two outer regions of the line.",
+     "example": {
+      "q": "Solve $|x + 2| > 6$.",
+      "steps": [
+       "$x + 2 > 6$ gives $x > 4$.",
+       "$x + 2 < -6$ gives $x < -8$."
+      ],
+      "answer": "x < -8 or x > 4"
+     }
+    },
+    {
+     "id": "fl-m4",
+     "name": "Minimum of |x−a| + |x−b|",
+     "frequency": "common",
+     "howToSpot": "'The minimum value of $|x - a| + |x - b|$' with two fixed numbers $a$ and $b$.",
+     "formula": "\\min\\big(|x-a| + |x-b|\\big) = |a - b|",
+     "steps": [
+      "Spot the two pins $a$ and $b$.",
+      "Take their gap $|a - b|$.",
+      "State that any $x$ between them achieves it.",
+      "Check one inside value if unsure."
+     ],
+     "why": "Between the pins, one distance grows exactly as the other shrinks, so the sum cannot drop below the gap.",
+     "example": {
+      "q": "Find the minimum of $|x - 4| + |x + 2|$.",
+      "steps": [
+       "Pins at $4$ and $-2$.",
+       "Gap $= 4 - (-2) = 6$."
+      ],
+      "answer": "6"
+     }
+    },
+    {
+     "id": "fl-m5",
+     "name": "Equations needing a validity check",
+     "frequency": "occasional",
+     "howToSpot": "A modulus equals an expression with $x$, like $|x - 3| = 2x - 5$. One case may fail.",
+     "formula": null,
+     "steps": [
+      "Split into the two sign cases.",
+      "Solve each case.",
+      "Check each root in the original equation.",
+      "Reject roots that make the non-modulus side negative or break the case."
+     ],
+     "why": "A modulus is non-negative, so the other side must be too — some algebraic roots break that.",
+     "example": {
+      "q": "Solve $|x - 3| = 2x - 5$.",
+      "steps": [
+       "Case $x \\ge 3$: $x = 2$ — rejected, breaks the case.",
+       "Case $x < 3$: $x = \\dfrac{8}{3}$.",
+       "Check: both sides equal $\\dfrac{1}{3}$."
+      ],
+      "answer": "x = 8/3"
+     }
+    },
+    {
+     "id": "fl-m6",
+     "name": "Exponential equation by matching bases",
+     "frequency": "very common",
+     "howToSpot": "Powers like $2^x = 64$ or $3^{x+2} = 27$ — both sides can share one base.",
+     "formula": "a^{f(x)} = a^{g(x)} \\Rightarrow f(x) = g(x)",
+     "steps": [
+      "Write both sides as powers of the same base.",
+      "Equate the exponents.",
+      "Solve the small equation.",
+      "Products become sums of exponents."
+     ],
+     "why": "Equal powers of the same base force equal exponents.",
+     "example": {
+      "q": "Solve $2^x \\cdot 2^{x+1} = 32$.",
+      "steps": [
+       "Left side: $2^{2x+1}$; right side: $2^5$.",
+       "$2x + 1 = 5$.",
+       "$x = 2$."
+      ],
+      "answer": "x = 2"
+     }
+    }
+   ],
+   "revision": [
+    "$|x - a| = d$: two answers, $a + d$ and $a - d$.",
+    "$|x - a| < d$: one band; $|x - a| > d$: two arms.",
+    "$\\min(|x-a| + |x-b|) = |a - b|$, true for all $x$ between the pins.",
+    "Check every root when a modulus equals an expression in $x$.",
+    "$a^{f(x)} = a^{g(x)}$ gives $f(x) = g(x)$ after matching bases.",
+    "$|x| = $ negative has no solution."
+   ]
+  }
+ ],
+ "pyqPatterns": [
+  {
+   "pattern": "Function value from a rule",
+   "frequency": "very common",
+   "howToSpot": "A rule like $f(x) = x^2 + 2x$ is given and a value such as $f(3)$ is asked.",
+   "approach": "Substitute the number into the rule.\nSimplify in one careful line.",
+   "subtopic": "fl-basics",
+   "example": {
+    "q": "If $f(x) = x^2 + 2x$, find $f(3)$.",
+    "solution": "$f(3) = 9 + 6 = $ **15**"
+   }
+  },
+  {
+   "pattern": "Domain of a rational or root function",
+   "frequency": "very common",
+   "howToSpot": "'For what values of $x$ is $f$ defined?' — the rule has a denominator or a root.",
+   "approach": "Reject inputs that make the denominator zero.\nKeep the inside of every root non-negative.",
+   "subtopic": "fl-basics",
+   "example": {
+    "q": "Find the domain of $f(x) = \\dfrac{x+1}{x^2 - 5x + 6}$.",
+    "solution": "$x^2 - 5x + 6 = (x-2)(x-3)$\nReject $x = 2$ and $x = 3$: domain is all reals except **2 and 3**"
+   }
+  },
+  {
+   "pattern": "Composite function at a point",
+   "frequency": "very common",
+   "howToSpot": "Two rules $f$ and $g$ are given; $f(g(a))$ is asked for a number.",
+   "approach": "Evaluate the inner rule first.\nFeed the result into the outer rule.",
+   "subtopic": "fl-composite-inverse",
+   "example": {
+    "q": "If $f(x) = 2x + 3$ and $g(x) = x^2$, find $f(g(2))$.",
+    "solution": "$g(2) = 4$\n$f(4) = $ **11**"
+   }
+  },
+  {
+   "pattern": "Inverse of a fractional linear function",
+   "frequency": "common",
+   "howToSpot": "$f(x) = \\dfrac{ax+b}{cx+d}$ is given and $f^{-1}(x)$ or $f^{-1}(t)$ is asked.",
+   "approach": "Use $f^{-1}(x) = \\dfrac{b-dx}{cx-a}$, or swap and solve.\nFor $f^{-1}(t)$ with $d = -a$, just compute $f(t)$.",
+   "subtopic": "fl-composite-inverse",
+   "example": {
+    "q": "Find $f^{-1}(x)$ for $f(x) = \\dfrac{2x+3}{x-1}$.",
+    "solution": "$y(x-1) = 2x + 3$, so $x(y-2) = y+3$\n$f^{-1}(x) = $ **$\\dfrac{x+3}{x-2}$** (check: $f(8/3) = 5$)"
+   }
+  },
+  {
+   "pattern": "Functional equation with small values",
+   "frequency": "occasional",
+   "howToSpot": "$f(x+y) = f(x) + f(y)$ style with one value like $f(1)$ given.",
+   "approach": "Climb one unit step at a time from the given value.\nSum type adds; product type multiplies.",
+   "subtopic": "fl-composite-inverse",
+   "example": {
+    "q": "If $f(x+y) = f(x) + f(y)$ and $f(1) = 4$, find $f(5)$.",
+    "solution": "Each step adds $4$: $f(5) = 5 \\times 4 = $ **20**"
+   }
+  },
+  {
+   "pattern": "Maximum or minimum of a quadratic via the vertex",
+   "frequency": "very common",
+   "howToSpot": "'Find the maximum/minimum value of $ax^2 + bx + c$' — or the input where it occurs.",
+   "approach": "Vertex at $x = -b/2a$.\n$a > 0$ gives a minimum, $a < 0$ a maximum.\nSubstitute back for the value.",
+   "subtopic": "fl-graphs",
+   "example": {
+    "q": "Find the maximum value of $f(x) = -2x^2 + 12x - 11$.",
+    "solution": "$x = -12/(-4) = 3$\n$f(3) = -18 + 36 - 11 = $ **7**"
+   }
+  },
+  {
+   "pattern": "Logarithm evaluation with the laws",
+   "frequency": "very common",
+   "howToSpot": "A log value is asked directly, or logs of products and powers must be combined.",
+   "approach": "Convert to power language.\nSplit products into sums; pop powers out front.",
+   "subtopic": "fl-logs",
+   "example": {
+    "q": "Find $\\log_{10} 25 + \\log_{10} 4$.",
+    "solution": "$= \\log_{10}(25 \\times 4) = \\log_{10} 100 = $ **2**"
+   }
+  },
+  {
+   "pattern": "Log equation with a rejected root",
+   "frequency": "common",
+   "howToSpot": "An equation like $\\log x + \\log(x-3) = 1$ — the quadratic gives two roots.",
+   "approach": "Combine into one log, convert to power form, solve.\nReject roots with non-positive arguments.",
+   "subtopic": "fl-logs",
+   "example": {
+    "q": "Solve $\\log_{10} x + \\log_{10}(x - 3) = 1$.",
+    "solution": "$x(x-3) = 10$, so $x = 5$ or $x = -2$\n$x = -2$ breaks the domain, so **x = 5**"
+   }
+  },
+  {
+   "pattern": "Modulus equation with two cases",
+   "frequency": "very common",
+   "howToSpot": "$|2x - 3| = 5$ style — a modulus equals a number.",
+   "approach": "Split into $+$ and $-$ cases (or use distance).\nBoth solutions usually count.",
+   "subtopic": "fl-modulus-equations",
+   "example": {
+    "q": "Solve $|2x - 3| = 5$.",
+    "solution": "$2x - 3 = 5$ gives $4$; $2x - 3 = -5$ gives $-1$\n**x = 4 or x = -1**"
+   }
+  },
+  {
+   "pattern": "Exponential equation by matching bases",
+   "frequency": "common",
+   "howToSpot": "$3^{2x-1} = 81$ style — powers on both sides.",
+   "approach": "Write both sides with the same base.\nEquate exponents and solve.",
+   "subtopic": "fl-modulus-equations",
+   "example": {
+    "q": "Solve $3^{2x-1} = 81$.",
+    "solution": "$81 = 3^4$, so $2x - 1 = 4$\n**x = 5/2**"
+   }
+  }
+ ],
+ "solvedExamples": [
+  {
+   "id": "fl-s01",
+   "q": "Find the value of $\\log_2 32 + \\log_3 27$.",
+   "figure": null,
+   "options": [
+    "8",
+    "6",
+    "15",
+    "5"
+   ],
+   "answer": 0,
+   "solution": "$\\log_2 32 = 5$ because $32 = 2^5$.\n$\\log_3 27 = 3$ because $27 = 3^3$.\nSum $= 5 + 3 = $ **8**.",
+   "shortcut": "Translate each log to power language and add.",
+   "difficulty": "easy",
+   "subtopic": "fl-logs",
+   "pattern": "log evaluation",
+   "timeSec": 30
+  },
+  {
+   "id": "fl-s02",
+   "q": "If $f(x) = \\dfrac{2x+3}{x-1}$, then $f^{-1}(5)$ equals:",
+   "figure": null,
+   "options": [
+    "$\\dfrac{8}{3}$",
+    "$\\dfrac{3}{8}$",
+    "5",
+    "13"
+   ],
+   "answer": 0,
+   "solution": "Swap and solve: $y(x-1) = 2x+3$, so $x(y-2) = y+3$.\n$f^{-1}(x) = \\dfrac{x+3}{x-2}$.\n$f^{-1}(5) = \\dfrac{8}{3}$.\nCheck: $f(8/3) = \\dfrac{16/3 + 3}{8/3 - 1} = \\dfrac{25/3}{5/3} = 5$. ✓",
+   "shortcut": "Solve $f(t) = 5$ directly: $2t + 3 = 5t - 5$ gives $t = 8/3$ — one line, no inverse needed.",
+   "difficulty": "medium",
+   "subtopic": "fl-composite-inverse",
+   "pattern": "inverse function",
+   "timeSec": 60
+  },
+  {
+   "id": "fl-s03",
+   "q": "The minimum value of $f(x) = x^2 - 12x + 40$ is:",
+   "figure": null,
+   "options": [
+    "4",
+    "-4",
+    "40",
+    "6"
+   ],
+   "answer": 0,
+   "solution": "$a = 1 > 0$, so a minimum exists at $x = -b/2a = 6$.\n$f(6) = 36 - 72 + 40 = 4$.",
+   "shortcut": "Complete the square: $(x-6)^2 + 4$ — the square is $\\ge 0$, so the least value is **4**.",
+   "difficulty": "medium",
+   "subtopic": "fl-graphs",
+   "pattern": "vertex minimum",
+   "timeSec": 45
+  },
+  {
+   "id": "fl-s04",
+   "q": "The minimum value of $|x - 1| + |x - 7|$ for real $x$ is:",
+   "figure": null,
+   "options": [
+    "6",
+    "7",
+    "8",
+    "0"
+   ],
+   "answer": 0,
+   "solution": "The two pins are at $1$ and $7$.\nThe sum of distances is least between the pins, and equals the gap: $7 - 1 = 6$.",
+   "shortcut": "Subtract the pins: $|1 - 7| = 6$. Any $x$ from 1 to 7 gives it.",
+   "difficulty": "medium",
+   "subtopic": "fl-modulus-equations",
+   "pattern": "distance sum minimum",
+   "timeSec": 40
+  },
+  {
+   "id": "fl-s05",
+   "q": "If $\\log_2 x + \\log_2 (x - 7) = 3$, then $x$ equals:",
+   "figure": null,
+   "options": [
+    "8",
+    "-1",
+    "7",
+    "15"
+   ],
+   "answer": 0,
+   "solution": "Combine: $\\log_2 \\big(x(x-7)\\big) = 3$, so $x(x-7) = 8$.\n$x^2 - 7x - 8 = 0$, so $(x-8)(x+1) = 0$: $x = 8$ or $x = -1$.\n$x = -1$ makes $\\log_2(-1)$ undefined — reject.\nAnswer: $x = 8$. Check: $\\log_2 8 + \\log_2 1 = 3 + 0 = 3$. ✓",
+   "shortcut": "Reject any root with a non-positive argument — the trap option is always there.",
+   "difficulty": "hard",
+   "subtopic": "fl-logs",
+   "pattern": "log equation with rejected root",
+   "timeSec": 75
+  }
+ ],
+ "practice": [
+  {
+   "id": "fl-basics-p01",
+   "q": "If $f(x) = 3x - 4$, then $f(5)$ equals:",
+   "figure": null,
+   "options": [
+    "11",
+    "9",
+    "15",
+    "19"
+   ],
+   "answer": 0,
+   "solution": "$f(5) = 3(5) - 4 = 15 - 4 = 11$.",
+   "shortcut": "Substitute once and simplify.",
+   "difficulty": "easy",
+   "subtopic": "fl-basics",
+   "pattern": "fl-b1",
+   "timeSec": 25
+  },
+  {
+   "id": "fl-basics-p02",
+   "q": "If $f(x) = x^2 + 2x$, then $f(3)$ equals:",
+   "figure": null,
+   "options": [
+    "12",
+    "21",
+    "15",
+    "11"
+   ],
+   "answer": 2,
+   "solution": "$f(3) = 9 + 6 = 15$.",
+   "shortcut": "Square first, then add $2x$.",
+   "difficulty": "easy",
+   "subtopic": "fl-basics",
+   "pattern": "fl-b1",
+   "timeSec": 25
+  },
+  {
+   "id": "fl-basics-p03",
+   "q": "The domain of $f(x) = \\dfrac{1}{x - 7}$ is:",
+   "figure": null,
+   "options": [
+    "All real numbers",
+    "All real numbers except $x = 7$",
+    "Only $x = 7$",
+    "$x \\ge 7$"
+   ],
+   "answer": 1,
+   "solution": "The bottom vanishes only at $x = 7$.\nReject it; every other real number works.",
+   "shortcut": "Only the zero of the denominator is forbidden.",
+   "difficulty": "easy",
+   "subtopic": "fl-basics",
+   "pattern": "fl-b2",
+   "timeSec": 30
+  },
+  {
+   "id": "fl-basics-p04",
+   "q": "The domain of $f(x) = \\sqrt{x - 5}$ is:",
+   "figure": null,
+   "options": [
+    "$x > 5$",
+    "$x \\ge 5$",
+    "$x \\le 5$",
+    "All real numbers"
+   ],
+   "answer": 1,
+   "solution": "The inside must stay non-negative: $x - 5 \\ge 0$, so $x \\ge 5$.",
+   "shortcut": "Root condition: inside $\\ge 0$.",
+   "difficulty": "easy",
+   "subtopic": "fl-basics",
+   "pattern": "fl-b3",
+   "timeSec": 30
+  },
+  {
+   "id": "fl-basics-p05",
+   "q": "The domain of $f(x) = \\dfrac{x + 2}{x^2 - 9}$ is:",
+   "figure": null,
+   "options": [
+    "$x \\ne 3$ only",
+    "$x \\ne -3$ only",
+    "$x \\ne 3$ and $x \\ne -3$",
+    "All real numbers"
+   ],
+   "answer": 2,
+   "solution": "$x^2 - 9 = (x-3)(x+3)$ vanishes at $x = 3$ and $x = -3$.\nBoth are rejected.",
+   "shortcut": "Factor the bottom; reject every root.",
+   "difficulty": "medium",
+   "subtopic": "fl-basics",
+   "pattern": "fl-b2",
+   "timeSec": 45
+  },
+  {
+   "id": "fl-basics-p06",
+   "q": "The domain of $f(x) = \\dfrac{1}{\\sqrt{x - 3}}$ is:",
+   "figure": null,
+   "options": [
+    "$x \\ge 3$",
+    "$x > 3$",
+    "$x < 3$",
+    "$x \\ne 3$"
+   ],
+   "answer": 1,
+   "solution": "The root needs $x - 3 \\ge 0$ and the bottom must not be zero.\nTogether: $x > 3$ strictly.",
+   "shortcut": "Root in a denominator: strict inequality.",
+   "difficulty": "medium",
+   "subtopic": "fl-basics",
+   "pattern": "fl-b3",
+   "timeSec": 45
+  },
+  {
+   "id": "fl-basics-p07",
+   "q": "The range of $f(x) = x^2 - 4x + 7$ is:",
+   "figure": null,
+   "options": [
+    "$f(x) \\ge 3$",
+    "$f(x) \\ge 7$",
+    "$f(x) \\le 3$",
+    "All real numbers"
+   ],
+   "answer": 0,
+   "solution": "$f(x) = (x-2)^2 + 3$.\nThe square is never negative, so the least output is $3$.",
+   "shortcut": "Complete the square; the constant left over is the floor.",
+   "difficulty": "medium",
+   "subtopic": "fl-basics",
+   "pattern": "fl-b5",
+   "timeSec": 45
+  },
+  {
+   "id": "fl-basics-p08",
+   "q": "The range of $f(x) = 2x + 5$ is:",
+   "figure": null,
+   "options": [
+    "$f(x) \\ge 5$",
+    "$f(x) > 0$",
+    "All real numbers",
+    "$f(x) \\ge 0$"
+   ],
+   "answer": 2,
+   "solution": "A line with slope $2 \\ne 0$ climbs forever in both directions.\nEvery real output occurs.",
+   "shortcut": "Non-horizontal line: range is all reals.",
+   "difficulty": "medium",
+   "subtopic": "fl-basics",
+   "pattern": "fl-b4",
+   "timeSec": 30
+  },
+  {
+   "id": "fl-basics-p09",
+   "q": "The function $f(x) = x^4 + x^2$ is:",
+   "figure": null,
+   "options": [
+    "Odd",
+    "Even",
+    "Neither even nor odd",
+    "Both even and odd"
+   ],
+   "answer": 1,
+   "solution": "$f(-x) = (-x)^4 + (-x)^2 = x^4 + x^2 = f(x)$.\nEven.",
+   "shortcut": "Even powers survive the sign change unchanged.",
+   "difficulty": "medium",
+   "subtopic": "fl-basics",
+   "pattern": "fl-b6",
+   "timeSec": 40
+  },
+  {
+   "id": "fl-basics-p10",
+   "q": "The range of $f(x) = 5 - 2x$ is:",
+   "figure": null,
+   "options": [
+    "All real numbers",
+    "$f(x) \\le 5$",
+    "$f(x) \\ge 5$",
+    "$f(x) > 0$"
+   ],
+   "answer": 0,
+   "solution": "Slope $-2 \\ne 0$: the line falls forever but never stops.\nEvery real output occurs.",
+   "shortcut": "Slope non-zero: range is all reals, whatever the intercept.",
+   "difficulty": "medium",
+   "subtopic": "fl-basics",
+   "pattern": "fl-b4",
+   "timeSec": 30
+  },
+  {
+   "id": "fl-basics-p11",
+   "q": "If $f(x) = x^3 - x$, then $f(-2)$ equals:",
+   "figure": null,
+   "options": [
+    "-6",
+    "6",
+    "-2",
+    "0"
+   ],
+   "answer": 0,
+   "solution": "$f(2) = 8 - 2 = 6$.\nThe rule is odd ($f(-x) = -f(x)$), so $f(-2) = -6$.",
+   "shortcut": "Odd rule: flip the sign of $f(2)$.",
+   "difficulty": "medium",
+   "subtopic": "fl-basics",
+   "pattern": "fl-b6",
+   "timeSec": 40
+  },
+  {
+   "id": "fl-basics-p12",
+   "q": "The domain of $f(x) = \\sqrt{x^2 - 16}$ is:",
+   "figure": null,
+   "options": [
+    "$x \\ge 4$ only",
+    "$x \\ge 4$ or $x \\le -4$",
+    "$-4 \\le x \\le 4$",
+    "All real numbers"
+   ],
+   "answer": 1,
+   "solution": "Need $x^2 - 16 \\ge 0$, i.e. $x^2 \\ge 16$, i.e. $|x| \\ge 4$.\nSo $x \\ge 4$ or $x \\le -4$.",
+   "shortcut": "$x^2 \\ge a^2$ means outside the band $(-a, a)$.",
+   "difficulty": "hard",
+   "subtopic": "fl-basics",
+   "pattern": "fl-b3",
+   "timeSec": 60
+  },
+  {
+   "id": "fl-basics-p13",
+   "q": "If the minimum value of $f(x) = x^2 - 6x + k$ is $2$, then $k$ equals:",
+   "figure": null,
+   "options": [
+    "11",
+    "9",
+    "13",
+    "2"
+   ],
+   "answer": 0,
+   "solution": "$f(x) = (x-3)^2 + k - 9$.\nMinimum $= k - 9 = 2$, so $k = 11$.",
+   "shortcut": "Vertex form: min is the leftover constant.",
+   "difficulty": "hard",
+   "subtopic": "fl-basics",
+   "pattern": "fl-b5",
+   "timeSec": 60
+  },
+  {
+   "id": "fl-composite-inverse-p01",
+   "q": "If $f(x) = x + 4$ and $g(x) = 3x$, then $f(g(2))$ equals:",
+   "figure": null,
+   "options": [
+    "10",
+    "8",
+    "13",
+    "16"
+   ],
+   "answer": 0,
+   "solution": "$g(2) = 6$, then $f(6) = 10$.",
+   "shortcut": "Inside rule first.",
+   "difficulty": "easy",
+   "subtopic": "fl-composite-inverse",
+   "pattern": "fl-c1",
+   "timeSec": 25
+  },
+  {
+   "id": "fl-composite-inverse-p02",
+   "q": "If $f(x) = 2x - 1$, then $f(f(3))$ equals:",
+   "figure": null,
+   "options": [
+    "5",
+    "9",
+    "11",
+    "7"
+   ],
+   "answer": 1,
+   "solution": "$f(3) = 5$, then $f(5) = 9$.",
+   "shortcut": "Feed the output straight back in.",
+   "difficulty": "easy",
+   "subtopic": "fl-composite-inverse",
+   "pattern": "fl-c1",
+   "timeSec": 30
+  },
+  {
+   "id": "fl-composite-inverse-p03",
+   "q": "The inverse of $f(x) = 5x - 2$ is:",
+   "figure": null,
+   "options": [
+    "$\\dfrac{x+2}{5}$",
+    "$\\dfrac{x-2}{5}$",
+    "$5x + 2$",
+    "$\\dfrac{2-x}{5}$"
+   ],
+   "answer": 0,
+   "solution": "$y = 5x - 2$ gives $x = 5y - 2$, so $y = \\dfrac{x+2}{5}$.\nCheck: $f(2) = 8$ and $f^{-1}(8) = \\dfrac{8+2}{5} = 2$. ✓",
+   "shortcut": "Swap and solve; divide by the slope.",
+   "difficulty": "easy",
+   "subtopic": "fl-composite-inverse",
+   "pattern": "fl-c3",
+   "timeSec": 30
+  },
+  {
+   "id": "fl-composite-inverse-p04",
+   "q": "If $f(x) = x + 7$, then $f^{-1}(12)$ equals:",
+   "figure": null,
+   "options": [
+    "19",
+    "7",
+    "5",
+    "12"
+   ],
+   "answer": 2,
+   "solution": "$f^{-1}$ subtracts $7$: $12 - 7 = 5$.",
+   "shortcut": "Inverse of '+7' is '−7'.",
+   "difficulty": "easy",
+   "subtopic": "fl-composite-inverse",
+   "pattern": "fl-c3",
+   "timeSec": 25
+  },
+  {
+   "id": "fl-composite-inverse-p05",
+   "q": "If $f(x) = x^2$ and $g(x) = x + 1$, then $g(f(3)) - f(g(3))$ equals:",
+   "figure": null,
+   "options": [
+    "-6",
+    "6",
+    "10",
+    "16"
+   ],
+   "answer": 0,
+   "solution": "$g(f(3)) = g(9) = 10$.\n$f(g(3)) = f(4) = 16$.\nDifference $= 10 - 16 = -6$.",
+   "shortcut": "Compute both composites at the point, then subtract.",
+   "difficulty": "medium",
+   "subtopic": "fl-composite-inverse",
+   "pattern": "fl-c2",
+   "timeSec": 45
+  },
+  {
+   "id": "fl-composite-inverse-p06",
+   "q": "If $f(x) = \\dfrac{x+5}{x-2}$, then $f^{-1}(x)$ equals:",
+   "figure": null,
+   "options": [
+    "$\\dfrac{2x+5}{x-1}$",
+    "$\\dfrac{x-5}{x+2}$",
+    "$\\dfrac{2x-5}{x+1}$",
+    "$\\dfrac{x+2}{x-5}$"
+   ],
+   "answer": 0,
+   "solution": "$y(x-2) = x + 5$, so $xy - 2y = x + 5$.\n$x(y-1) = 2y + 5$, giving $x = \\dfrac{2y+5}{y-1}$.\nSo $f^{-1}(x) = \\dfrac{2x+5}{x-1}$.",
+   "shortcut": "Swap, collect $x$-terms on one side, solve.",
+   "difficulty": "medium",
+   "subtopic": "fl-composite-inverse",
+   "pattern": "fl-c3",
+   "timeSec": 60
+  },
+  {
+   "id": "fl-composite-inverse-p07",
+   "q": "If $f(x) = 3x - 4$ and $g(x) = x + 2$, then $f(g(x)) - g(f(x))$ equals:",
+   "figure": null,
+   "options": [
+    "4",
+    "-4",
+    "0",
+    "2x"
+   ],
+   "answer": 0,
+   "solution": "$f(g(x)) = 3(x+2) - 4 = 3x + 2$.\n$g(f(x)) = (3x - 4) + 2 = 3x - 2$.\nDifference $= 4$.",
+   "shortcut": "Build both composites; the $x$-terms cancel.",
+   "difficulty": "medium",
+   "subtopic": "fl-composite-inverse",
+   "pattern": "fl-c2",
+   "timeSec": 50
+  },
+  {
+   "id": "fl-composite-inverse-p08",
+   "q": "If $f(x+y) = f(x) + f(y)$ for all $x, y$ and $f(1) = 5$, then $f(7)$ equals:",
+   "figure": null,
+   "options": [
+    "12",
+    "25",
+    "35",
+    "30"
+   ],
+   "answer": 2,
+   "solution": "Each unit step adds $5$: $f(7) = 7 \\times 5 = 35$.",
+   "shortcut": "Sum type: $f(n) = n \\cdot f(1)$.",
+   "difficulty": "medium",
+   "subtopic": "fl-composite-inverse",
+   "pattern": "fl-c5",
+   "timeSec": 45
+  },
+  {
+   "id": "fl-composite-inverse-p09",
+   "q": "If $f(x+y) = f(x) \\cdot f(y)$ for all $x, y$ and $f(1) = 3$, then $f(4)$ equals:",
+   "figure": null,
+   "options": [
+    "81",
+    "12",
+    "27",
+    "64"
+   ],
+   "answer": 0,
+   "solution": "$f(2) = f(1)^2 = 9$, $f(3) = 27$, $f(4) = 81$.\nEquivalently $f(4) = f(1)^4 = 3^4$.",
+   "shortcut": "Product type: multiply at every step.",
+   "difficulty": "medium",
+   "subtopic": "fl-composite-inverse",
+   "pattern": "fl-c6",
+   "timeSec": 45
+  },
+  {
+   "id": "fl-composite-inverse-p10",
+   "q": "If $f(x) = \\dfrac{4x+1}{x-4}$, then $f^{-1}(5)$ equals:",
+   "figure": null,
+   "options": [
+    "21",
+    "5",
+    "25",
+    "19"
+   ],
+   "answer": 0,
+   "solution": "Here $a = 4$ and the bottom constant is $-4 = -a$, so $f$ is self-inverse.\n$f^{-1}(5) = f(5) = \\dfrac{21}{1} = 21$.\nCheck: $f(21) = \\dfrac{85}{17} = 5$. ✓",
+   "shortcut": "Self-inverse: bottom constant $=-$ top coefficient of $x$.",
+   "difficulty": "hard",
+   "subtopic": "fl-composite-inverse",
+   "pattern": "fl-c4",
+   "timeSec": 75
+  },
+  {
+   "id": "fl-composite-inverse-p11",
+   "q": "If $f(x+y) = f(x) + f(y) + 3$ for all $x, y$ and $f(1) = 2$, then $f(3)$ equals:",
+   "figure": null,
+   "options": [
+    "9",
+    "12",
+    "6",
+    "15"
+   ],
+   "answer": 1,
+   "solution": "$f(2) = f(1) + f(1) + 3 = 7$.\n$f(3) = f(2) + f(1) + 3 = 7 + 2 + 3 = 12$.",
+   "shortcut": "Shifted rule: add the constant at every step.",
+   "difficulty": "hard",
+   "subtopic": "fl-composite-inverse",
+   "pattern": "fl-c5",
+   "timeSec": 75
+  },
+  {
+   "id": "fl-composite-inverse-p12",
+   "q": "If $f(x) = x^2$ for $x \\ge 0$ only, then $f^{-1}(81)$ equals:",
+   "figure": null,
+   "options": [
+    "9",
+    "$\\pm 9$",
+    "81",
+    "40.5"
+   ],
+   "answer": 0,
+   "solution": "On $x \\ge 0$ the function is one-one, so the inverse exists.\n$f^{-1}(81) = \\sqrt{81} = 9$.",
+   "shortcut": "Restricted domain kills the $-9$ twin.",
+   "difficulty": "medium",
+   "subtopic": "fl-composite-inverse",
+   "pattern": "fl-c4",
+   "timeSec": 45
+  },
+  {
+   "id": "fl-composite-inverse-p13",
+   "q": "If $f(x+y) = f(x) \\cdot f(y)$ for all $x, y$ and $f(3) = 8$, then $f(9)$ equals:",
+   "figure": null,
+   "options": [
+    "64",
+    "729",
+    "24",
+    "512"
+   ],
+   "answer": 3,
+   "solution": "$f(9) = f(3 + 3 + 3) = f(3)^3 = 8^3 = 512$.",
+   "shortcut": "Jump in steps of 3: powers of the given value.",
+   "difficulty": "hard",
+   "subtopic": "fl-composite-inverse",
+   "pattern": "fl-c6",
+   "timeSec": 75
+  },
+  {
+   "id": "fl-graphs-p01",
+   "q": "The graph of $y = x^2$ is shifted 4 units up. The new equation is:",
+   "figure": null,
+   "options": [
+    "$y = x^2 + 4$",
+    "$y = (x + 4)^2$",
+    "$y = x^2 - 4$",
+    "$y = 4x^2$"
+   ],
+   "answer": 0,
+   "solution": "An outside $+4$ lifts every point by $4$: $y = x^2 + 4$.",
+   "shortcut": "Outside change moves as written.",
+   "difficulty": "easy",
+   "subtopic": "fl-graphs",
+   "pattern": "fl-g2",
+   "timeSec": 30
+  },
+  {
+   "id": "fl-graphs-p02",
+   "q": "Compared with $y = f(x)$, the graph of $y = f(x - 3)$ is shifted:",
+   "figure": null,
+   "options": [
+    "3 units right",
+    "3 units left",
+    "3 units up",
+    "3 units down"
+   ],
+   "answer": 0,
+   "solution": "An inside $-3$ works in reverse: the graph moves $3$ right.",
+   "shortcut": "Inside change: opposite direction.",
+   "difficulty": "easy",
+   "subtopic": "fl-graphs",
+   "pattern": "fl-g2",
+   "timeSec": 30
+  },
+  {
+   "id": "fl-graphs-p03",
+   "q": "The vertex of $y = x^2 - 6x + 8$ lies at $x$ equal to:",
+   "figure": null,
+   "options": [
+    "-3",
+    "6",
+    "3",
+    "2"
+   ],
+   "answer": 2,
+   "solution": "$x = -b/2a = 6/2 = 3$.",
+   "shortcut": "Half of the $x$-coefficient, sign flipped.",
+   "difficulty": "easy",
+   "subtopic": "fl-graphs",
+   "pattern": "fl-g1",
+   "timeSec": 30
+  },
+  {
+   "id": "fl-graphs-p04",
+   "q": "The point $(2, 5)$ lies on $y = f(x)$. Which point lies on $y = f(-x)$?",
+   "figure": null,
+   "options": [
+    "$(-2, 5)$",
+    "$(2, -5)$",
+    "$(5, 2)$",
+    "$(-2, -5)$"
+   ],
+   "answer": 0,
+   "solution": "$f(-x)$ mirrors in the $y$-axis: flip the sign of the $x$-coordinate.\n$(-2, 5)$.",
+   "shortcut": "Inside minus flips inputs.",
+   "difficulty": "easy",
+   "subtopic": "fl-graphs",
+   "pattern": "fl-g5",
+   "timeSec": 30
+  },
+  {
+   "id": "fl-graphs-p05",
+   "q": "The minimum value of $f(x) = x^2 - 8x + 17$ is:",
+   "figure": null,
+   "options": [
+    "-1",
+    "1",
+    "4",
+    "17"
+   ],
+   "answer": 1,
+   "solution": "$f(x) = (x-4)^2 + 1$, so the minimum is $1$ at $x = 4$.",
+   "shortcut": "Complete the square; read the constant.",
+   "difficulty": "medium",
+   "subtopic": "fl-graphs",
+   "pattern": "fl-g1",
+   "timeSec": 45
+  },
+  {
+   "id": "fl-graphs-p06",
+   "q": "The maximum value of $f(x) = -x^2 + 6x - 5$ is:",
+   "figure": null,
+   "options": [
+    "4",
+    "-4",
+    "6",
+    "9"
+   ],
+   "answer": 0,
+   "solution": "$a = -1 < 0$, so a maximum exists at $x = -6/(-2) = 3$.\n$f(3) = -9 + 18 - 5 = 4$.",
+   "shortcut": "Vertex first, substitute back.",
+   "difficulty": "medium",
+   "subtopic": "fl-graphs",
+   "pattern": "fl-g1",
+   "timeSec": 45
+  },
+  {
+   "id": "fl-graphs-p07",
+   "q": "The graph of $y = |x - 3|$ cuts the $y$-axis at:",
+   "figure": null,
+   "options": [
+    "$(3, 0)$",
+    "$(0, -3)$",
+    "$(0, 0)$",
+    "$(0, 3)$"
+   ],
+   "answer": 3,
+   "solution": "Put $x = 0$: $y = |0 - 3| = 3$.\nPoint: $(0, 3)$.",
+   "shortcut": "Y-axis crossing: substitute $x = 0$.",
+   "difficulty": "medium",
+   "subtopic": "fl-graphs",
+   "pattern": "fl-g3",
+   "timeSec": 40
+  },
+  {
+   "id": "fl-graphs-p08",
+   "q": "The number of solutions of $|x + 2| = 5$ is:",
+   "figure": null,
+   "options": [
+    "1",
+    "2",
+    "0",
+    "3"
+   ],
+   "answer": 1,
+   "solution": "The V with corner at $x = -2$ meets the line $y = 5$ twice.\nRoots: $x = 3$ and $x = -7$.",
+   "shortcut": "Line above the corner: two crossings.",
+   "difficulty": "medium",
+   "subtopic": "fl-graphs",
+   "pattern": "fl-g4",
+   "timeSec": 40
+  },
+  {
+   "id": "fl-graphs-p09",
+   "q": "The point $(3, -2)$ lies on $y = f(x)$. Which point lies on $y = -f(x)$?",
+   "figure": null,
+   "options": [
+    "$(3, 2)$",
+    "$(-3, 2)$",
+    "$(-3, -2)$",
+    "$(2, -3)$"
+   ],
+   "answer": 0,
+   "solution": "$-f(x)$ mirrors in the $x$-axis: flip the sign of the $y$-coordinate.\n$(3, 2)$.",
+   "shortcut": "Outside minus flips outputs.",
+   "difficulty": "medium",
+   "subtopic": "fl-graphs",
+   "pattern": "fl-g5",
+   "timeSec": 35
+  },
+  {
+   "id": "fl-graphs-p10",
+   "q": "The quadratic $f(x) = x^2 + bx + 25$ has its minimum at $x = 4$. Then $b$ equals:",
+   "figure": null,
+   "options": [
+    "-8",
+    "8",
+    "-4",
+    "-16"
+   ],
+   "answer": 0,
+   "solution": "Vertex input: $-b/2 = 4$, so $b = -8$.\nCheck: $f(4) = 16 - 32 + 25 = 9 > 0$, a genuine minimum.",
+   "shortcut": "Vertex formula run backwards.",
+   "difficulty": "hard",
+   "subtopic": "fl-graphs",
+   "pattern": "fl-g1",
+   "timeSec": 70
+  },
+  {
+   "id": "fl-graphs-p11",
+   "q": "The number of solutions of $|2x - 5| = 3$ is:",
+   "figure": null,
+   "options": [
+    "1",
+    "0",
+    "2",
+    "4"
+   ],
+   "answer": 2,
+   "solution": "Corner at $x = 2.5$; the line $y = 3$ is above the corner.\nTwo crossings: $x = 4$ and $x = 1$.",
+   "shortcut": "Count crossings of the V with the line.",
+   "difficulty": "hard",
+   "subtopic": "fl-graphs",
+   "pattern": "fl-g4",
+   "timeSec": 60
+  },
+  {
+   "id": "fl-graphs-p12",
+   "q": "The graphs of $y = |x - 1|$ and $y = 3$ meet at how many points?",
+   "figure": null,
+   "options": [
+    "1",
+    "3",
+    "2",
+    "0"
+   ],
+   "answer": 2,
+   "solution": "The V has corner $(1, 0)$; the line $y = 3$ sits above it.\nTwo crossings: $x = 4$ and $x = -2$.",
+   "shortcut": "Line above the corner: two meetings.",
+   "difficulty": "medium",
+   "subtopic": "fl-graphs",
+   "pattern": "fl-g3",
+   "timeSec": 45
+  },
+  {
+   "id": "fl-graphs-p13",
+   "q": "The graph of $y = (x - 1)^2 - 4$ cuts the $x$-axis at:",
+   "figure": null,
+   "options": [
+    "$x = -1$ and $x = 3$",
+    "$x = 1$ and $x = -3$",
+    "$x = 1$ and $x = 3$",
+    "$x = -1$ and $x = -3$"
+   ],
+   "answer": 0,
+   "solution": "$(x-1)^2 - 4 = 0$ gives $(x-1)^2 = 4$, so $x = 3$ or $x = -1$.",
+   "shortcut": "Shift the roots of $x^2 = 4$ right by 1.",
+   "difficulty": "medium",
+   "subtopic": "fl-graphs",
+   "pattern": "fl-g6",
+   "timeSec": 45
+  },
+  {
+   "id": "fl-graphs-p14",
+   "q": "The graph of $y = x^2 - 9$ cuts the $x$-axis at:",
+   "figure": null,
+   "options": [
+    "$x = 3$ only",
+    "$x = 3$ and $x = -3$",
+    "$x = -3$ only",
+    "$x = 9$"
+   ],
+   "answer": 1,
+   "solution": "$x^2 - 9 = 0$ gives $x = \\pm 3$.",
+   "shortcut": "Difference of squares, two roots.",
+   "difficulty": "easy",
+   "subtopic": "fl-graphs",
+   "pattern": "fl-g6",
+   "timeSec": 30
+  },
+  {
+   "id": "fl-logs-p01",
+   "q": "The value of $\\log_2 64$ is:",
+   "figure": null,
+   "options": [
+    "6",
+    "8",
+    "32",
+    "5"
+   ],
+   "answer": 0,
+   "solution": "$64 = 2^6$, so the answer is $6$.",
+   "shortcut": "Count doublings: 2, 4, 8, 16, 32, 64.",
+   "difficulty": "easy",
+   "subtopic": "fl-logs",
+   "pattern": "fl-l1",
+   "timeSec": 25
+  },
+  {
+   "id": "fl-logs-p02",
+   "q": "The value of $\\log_5 125$ is:",
+   "figure": null,
+   "options": [
+    "5",
+    "2",
+    "3",
+    "25"
+   ],
+   "answer": 2,
+   "solution": "$125 = 5^3$, so the answer is $3$.",
+   "shortcut": "$5^3$ = 125.",
+   "difficulty": "easy",
+   "subtopic": "fl-logs",
+   "pattern": "fl-l1",
+   "timeSec": 25
+  },
+  {
+   "id": "fl-logs-p03",
+   "q": "The value of $\\log_{10} 4 + \\log_{10} 25$ is:",
+   "figure": null,
+   "options": [
+    "2",
+    "1",
+    "100",
+    "10"
+   ],
+   "answer": 0,
+   "solution": "$\\log_{10}(4 \\times 25) = \\log_{10} 100 = 2$.",
+   "shortcut": "Product becomes sum; $100 = 10^2$.",
+   "difficulty": "easy",
+   "subtopic": "fl-logs",
+   "pattern": "fl-l3",
+   "timeSec": 30
+  },
+  {
+   "id": "fl-logs-p04",
+   "q": "The value of $5^{\\log_5 9}$ is:",
+   "figure": null,
+   "options": [
+    "5",
+    "9",
+    "45",
+    "4"
+   ],
+   "answer": 1,
+   "solution": "$a^{\\log_a b} = b$, so the expression equals $9$.",
+   "shortcut": "Base and its own log cancel.",
+   "difficulty": "easy",
+   "subtopic": "fl-logs",
+   "pattern": "fl-l7",
+   "timeSec": 30
+  },
+  {
+   "id": "fl-logs-p05",
+   "q": "The value of $\\log_2 \\dfrac{1}{32}$ is:",
+   "figure": null,
+   "options": [
+    "-5",
+    "5",
+    "-32",
+    "$\\dfrac{1}{5}$"
+   ],
+   "answer": 0,
+   "solution": "$\\dfrac{1}{32} = 2^{-5}$, so the answer is $-5$.",
+   "shortcut": "Fractions mean negative powers.",
+   "difficulty": "medium",
+   "subtopic": "fl-logs",
+   "pattern": "fl-l2",
+   "timeSec": 40
+  },
+  {
+   "id": "fl-logs-p06",
+   "q": "The value of $\\log_9 27$ is:",
+   "figure": null,
+   "options": [
+    "$\\dfrac{2}{3}$",
+    "$\\dfrac{3}{2}$",
+    "3",
+    "$\\dfrac{1}{2}$"
+   ],
+   "answer": 1,
+   "solution": "$9 = 3^2$ and $27 = 3^3$.\n$3^{2x} = 3^3$ gives $2x = 3$, so $x = \\dfrac{3}{2}$.",
+   "shortcut": "Common base 3, then equate exponents.",
+   "difficulty": "medium",
+   "subtopic": "fl-logs",
+   "pattern": "fl-l2",
+   "timeSec": 45
+  },
+  {
+   "id": "fl-logs-p07",
+   "q": "If $\\log_{10} 2 = 0.3010$, then $\\log_{10} 8$ equals:",
+   "figure": null,
+   "options": [
+    "0.9030",
+    "0.6020",
+    "1.2040",
+    "0.3010"
+   ],
+   "answer": 0,
+   "solution": "$8 = 2^3$, so $\\log 8 = 3 \\times 0.3010 = 0.9030$.",
+   "shortcut": "Pop the power out front.",
+   "difficulty": "medium",
+   "subtopic": "fl-logs",
+   "pattern": "fl-l3",
+   "timeSec": 40
+  },
+  {
+   "id": "fl-logs-p08",
+   "q": "If $\\log_2 (x - 1) = 5$, then $x$ equals:",
+   "figure": null,
+   "options": [
+    "32",
+    "6",
+    "11",
+    "33"
+   ],
+   "answer": 3,
+   "solution": "$x - 1 = 2^5 = 32$, so $x = 33$.\nDomain check: $33 - 1 = 32 > 0$. ✓",
+   "shortcut": "Convert to power form, then check the argument.",
+   "difficulty": "medium",
+   "subtopic": "fl-logs",
+   "pattern": "fl-l5",
+   "timeSec": 40
+  },
+  {
+   "id": "fl-logs-p09",
+   "q": "Given $\\log 2 = 0.3010$ and $\\log 5 = 0.6990$, the value of $\\log_2 5$ is about:",
+   "figure": null,
+   "options": [
+    "2.32",
+    "1.46",
+    "0.43",
+    "2.58"
+   ],
+   "answer": 0,
+   "solution": "$\\log_2 5 = \\dfrac{\\log 5}{\\log 2} = \\dfrac{0.6990}{0.3010} \\approx 2.32$.",
+   "shortcut": "Change of base: divide the two logs.",
+   "difficulty": "medium",
+   "subtopic": "fl-logs",
+   "pattern": "fl-l4",
+   "timeSec": 50
+  },
+  {
+   "id": "fl-logs-p10",
+   "q": "The number of digits in $2^{64}$ is ($\\log_{10} 2 = 0.3010$):",
+   "figure": null,
+   "options": [
+    "20",
+    "19",
+    "21",
+    "64"
+   ],
+   "answer": 0,
+   "solution": "$\\log_{10} 2^{64} = 64 \\times 0.3010 = 19.264$.\nDigits $= \\lfloor 19.264 \\rfloor + 1 = 20$.",
+   "shortcut": "Digits = floor of the log + 1.",
+   "difficulty": "hard",
+   "subtopic": "fl-logs",
+   "pattern": "fl-l3",
+   "timeSec": 75
+  },
+  {
+   "id": "fl-logs-p11",
+   "q": "If $\\log_{10} x + \\log_{10} (x - 3) = 1$, then $x$ equals:",
+   "figure": null,
+   "options": [
+    "-2",
+    "10",
+    "5",
+    "2"
+   ],
+   "answer": 2,
+   "solution": "$\\log_{10}\\big(x(x-3)\\big) = 1$, so $x(x-3) = 10$.\n$x^2 - 3x - 10 = 0$ gives $x = 5$ or $x = -2$.\n$x = -2$ makes the argument negative — reject. Answer: $x = 5$.",
+   "shortcut": "Quadratic first, domain check last.",
+   "difficulty": "hard",
+   "subtopic": "fl-logs",
+   "pattern": "fl-l5",
+   "timeSec": 70
+  },
+  {
+   "id": "fl-logs-p12",
+   "q": "The solution of $\\log_{1/2} x > 3$ is:",
+   "figure": null,
+   "options": [
+    "$0 < x < \\dfrac{1}{8}$",
+    "$x > \\dfrac{1}{8}$",
+    "$x < \\dfrac{1}{8}$",
+    "$x > 8$"
+   ],
+   "answer": 0,
+   "solution": "Base $\\dfrac{1}{2}$ lies between 0 and 1, so the sign flips.\n$\\left(\\dfrac{1}{2}\\right)^3 = \\dfrac{1}{8}$, and $x$ must stay positive: $0 < x < \\dfrac{1}{8}$.",
+   "shortcut": "Small base flips; keep $x > 0$.",
+   "difficulty": "hard",
+   "subtopic": "fl-logs",
+   "pattern": "fl-l6",
+   "timeSec": 70
+  },
+  {
+   "id": "fl-logs-p13",
+   "q": "If $\\log_2 x + \\log_4 x = 3$, then $x$ equals:",
+   "figure": null,
+   "options": [
+    "2",
+    "8",
+    "4",
+    "16"
+   ],
+   "answer": 2,
+   "solution": "$\\log_4 x = \\dfrac{1}{2}\\log_2 x$.\nSo $\\dfrac{3}{2}\\log_2 x = 3$, giving $\\log_2 x = 2$ and $x = 4$.\nCheck: $2 + 1 = 3$. ✓",
+   "shortcut": "Convert the bigger base with change of base.",
+   "difficulty": "hard",
+   "subtopic": "fl-logs",
+   "pattern": "fl-l4",
+   "timeSec": 75
+  },
+  {
+   "id": "fl-logs-p14",
+   "q": "The solution of $\\log_2 x < 4$ is:",
+   "figure": null,
+   "options": [
+    "$0 < x < 16$",
+    "$x < 16$",
+    "$x > 16$",
+    "$0 < x < 4$"
+   ],
+   "answer": 0,
+   "solution": "Base $2 > 1$: direction stays.\n$x < 2^4 = 16$, and $x$ must stay positive: $0 < x < 16$.",
+   "shortcut": "Big base keeps the sign; never drop $x > 0$.",
+   "difficulty": "medium",
+   "subtopic": "fl-logs",
+   "pattern": "fl-l6",
+   "timeSec": 50
+  },
+  {
+   "id": "fl-logs-p15",
+   "q": "The value of $\\log_5 5 + 3^{\\log_3 4}$ is:",
+   "figure": null,
+   "options": [
+    "5",
+    "9",
+    "4",
+    "20"
+   ],
+   "answer": 0,
+   "solution": "$\\log_5 5 = 1$ and $3^{\\log_3 4} = 4$.\nSum $= 5$.",
+   "shortcut": "Base-to-itself is 1; identity kills the power.",
+   "difficulty": "easy",
+   "subtopic": "fl-logs",
+   "pattern": "fl-l7",
+   "timeSec": 30
+  },
+  {
+   "id": "fl-modulus-equations-p01",
+   "q": "If $|x| = 9$, then:",
+   "figure": null,
+   "options": [
+    "$x = \\pm 9$",
+    "$x = 9$ only",
+    "$x = -9$ only",
+    "no solution"
+   ],
+   "answer": 0,
+   "solution": "Both $9$ and $-9$ sit at distance $9$ from zero.",
+   "shortcut": "Distance works both ways.",
+   "difficulty": "easy",
+   "subtopic": "fl-modulus-equations",
+   "pattern": "fl-m1",
+   "timeSec": 25
+  },
+  {
+   "id": "fl-modulus-equations-p02",
+   "q": "The solutions of $|x - 2| = 5$ are:",
+   "figure": null,
+   "options": [
+    "$x = 7$ or $x = -3$",
+    "$x = 7$ only",
+    "$x = -3$ only",
+    "$x = 3$ or $x = -7$"
+   ],
+   "answer": 0,
+   "solution": "Points at distance $5$ from $2$: $2 + 5 = 7$ and $2 - 5 = -3$.",
+   "shortcut": "Walk the distance both ways from the pin.",
+   "difficulty": "easy",
+   "subtopic": "fl-modulus-equations",
+   "pattern": "fl-m1",
+   "timeSec": 30
+  },
+  {
+   "id": "fl-modulus-equations-p03",
+   "q": "The value of $|-7| + |3|$ is:",
+   "figure": null,
+   "options": [
+    "4",
+    "10",
+    "-4",
+    "-10"
+   ],
+   "answer": 1,
+   "solution": "$|-7| = 7$ and $|3| = 3$, so the sum is $10$.",
+   "shortcut": "Modulus erases the minus sign.",
+   "difficulty": "easy",
+   "subtopic": "fl-modulus-equations",
+   "pattern": "fl-m1",
+   "timeSec": 25
+  },
+  {
+   "id": "fl-modulus-equations-p04",
+   "q": "If $2^x = 64$, then $x$ equals:",
+   "figure": null,
+   "options": [
+    "6",
+    "8",
+    "32",
+    "5"
+   ],
+   "answer": 0,
+   "solution": "$64 = 2^6$, so $x = 6$.",
+   "shortcut": "Match the base, read the power.",
+   "difficulty": "easy",
+   "subtopic": "fl-modulus-equations",
+   "pattern": "fl-m6",
+   "timeSec": 25
+  },
+  {
+   "id": "fl-modulus-equations-p05",
+   "q": "The solutions of $|2x + 1| = 9$ are:",
+   "figure": null,
+   "options": [
+    "$x = 4$ or $x = -5$",
+    "$x = 4$ only",
+    "$x = -5$ only",
+    "$x = 5$ or $x = -4$"
+   ],
+   "answer": 0,
+   "solution": "$2x + 1 = 9$ gives $x = 4$.\n$2x + 1 = -9$ gives $x = -5$.",
+   "shortcut": "Two cases, two linear equations.",
+   "difficulty": "medium",
+   "subtopic": "fl-modulus-equations",
+   "pattern": "fl-m1",
+   "timeSec": 40
+  },
+  {
+   "id": "fl-modulus-equations-p06",
+   "q": "The solution of $|x - 3| < 4$ is:",
+   "figure": null,
+   "options": [
+    "$-1 < x < 7$",
+    "$x < 7$",
+    "$x > -1$",
+    "$-7 < x < 1$"
+   ],
+   "answer": 0,
+   "solution": "Band of radius $4$ around $3$: from $3 - 4 = -1$ to $3 + 4 = 7$.",
+   "shortcut": "'<' means between.",
+   "difficulty": "medium",
+   "subtopic": "fl-modulus-equations",
+   "pattern": "fl-m2",
+   "timeSec": 40
+  },
+  {
+   "id": "fl-modulus-equations-p07",
+   "q": "The solution of $|2x - 1| \\ge 5$ is:",
+   "figure": null,
+   "options": [
+    "$x \\le -2$ or $x \\ge 3$",
+    "$-2 \\le x \\le 3$",
+    "$x \\ge 3$ only",
+    "$x \\le -2$ only"
+   ],
+   "answer": 0,
+   "solution": "$2x - 1 \\ge 5$ gives $x \\ge 3$.\n$2x - 1 \\le -5$ gives $x \\le -2$.\nTwo arms joined by 'or'.",
+   "shortcut": "'≥' splits into two arms.",
+   "difficulty": "medium",
+   "subtopic": "fl-modulus-equations",
+   "pattern": "fl-m3",
+   "timeSec": 45
+  },
+  {
+   "id": "fl-modulus-equations-p08",
+   "q": "If $3^{x+2} = 27$, then $x$ equals:",
+   "figure": null,
+   "options": [
+    "3",
+    "1",
+    "9",
+    "-1"
+   ],
+   "answer": 1,
+   "solution": "$27 = 3^3$, so $x + 2 = 3$ and $x = 1$.",
+   "shortcut": "Same base, equate powers.",
+   "difficulty": "medium",
+   "subtopic": "fl-modulus-equations",
+   "pattern": "fl-m6",
+   "timeSec": 35
+  },
+  {
+   "id": "fl-modulus-equations-p09",
+   "q": "The minimum value of $|x - 4| + |x + 2|$ is:",
+   "figure": null,
+   "options": [
+    "2",
+    "6",
+    "4",
+    "0"
+   ],
+   "answer": 1,
+   "solution": "Pins at $4$ and $-2$.\nMinimum $=$ gap $= 4 - (-2) = 6$.",
+   "shortcut": "Subtract the pins.",
+   "difficulty": "medium",
+   "subtopic": "fl-modulus-equations",
+   "pattern": "fl-m4",
+   "timeSec": 40
+  },
+  {
+   "id": "fl-modulus-equations-p10",
+   "q": "The equation $|x - 3| = 2x - 5$ has the solution:",
+   "figure": null,
+   "options": [
+    "$x = \\dfrac{8}{3}$",
+    "$x = 2$",
+    "$x = 3$",
+    "$x = \\dfrac{8}{3}$ and $x = 2$"
+   ],
+   "answer": 0,
+   "solution": "Case $x \\ge 3$: $x - 3 = 2x - 5$ gives $x = 2$ — rejected, it breaks the case.\nCase $x < 3$: $3 - x = 2x - 5$ gives $x = \\dfrac{8}{3}$.\nCheck: $\\left|\\dfrac{8}{3} - 3\\right| = \\dfrac{1}{3} = 2 \\cdot \\dfrac{8}{3} - 5$. ✓",
+   "shortcut": "Check each root; the right side must stay non-negative.",
+   "difficulty": "hard",
+   "subtopic": "fl-modulus-equations",
+   "pattern": "fl-m5",
+   "timeSec": 75
+  },
+  {
+   "id": "fl-modulus-equations-p11",
+   "q": "How many integers $x$ with $-5 \\le x \\le 5$ satisfy $|x - 1| < 3$?",
+   "figure": null,
+   "options": [
+    "4",
+    "5",
+    "6",
+    "7"
+   ],
+   "answer": 1,
+   "solution": "$-3 < x - 1 < 3$ gives $-2 < x < 4$.\nIntegers: $-1, 0, 1, 2, 3$ — five of them.",
+   "shortcut": "Strict inequality: endpoints drop out.",
+   "difficulty": "medium",
+   "subtopic": "fl-modulus-equations",
+   "pattern": "fl-m2",
+   "timeSec": 55
+  },
+  {
+   "id": "fl-modulus-equations-p12",
+   "q": "The number of real solutions of $x^2 - 5|x| + 6 = 0$ is:",
+   "figure": null,
+   "options": [
+    "2",
+    "3",
+    "4",
+    "0"
+   ],
+   "answer": 2,
+   "solution": "Let $t = |x|$: $t^2 - 5t + 6 = 0$ gives $t = 2$ or $t = 3$.\nEach gives two values of $x$: $\\pm 2$, $\\pm 3$ — four in all.",
+   "shortcut": "Substitute $t = |x|$, then double the roots.",
+   "difficulty": "hard",
+   "subtopic": "fl-modulus-equations",
+   "pattern": "fl-m1",
+   "timeSec": 70
+  },
+  {
+   "id": "fl-modulus-equations-p13",
+   "q": "If $2^x \\cdot 2^{x+1} = 32$, then $x$ equals:",
+   "figure": null,
+   "options": [
+    "1",
+    "3",
+    "5",
+    "2"
+   ],
+   "answer": 3,
+   "solution": "$2^{2x+1} = 2^5$, so $2x + 1 = 5$ and $x = 2$.\nCheck: $4 \\times 8 = 32$. ✓",
+   "shortcut": "Products add exponents.",
+   "difficulty": "hard",
+   "subtopic": "fl-modulus-equations",
+   "pattern": "fl-m6",
+   "timeSec": 60
+  },
+  {
+   "id": "fl-modulus-equations-p14",
+   "q": "The minimum value of $|x + 5| + |x - 3|$ is:",
+   "figure": null,
+   "options": [
+    "8",
+    "2",
+    "5",
+    "3"
+   ],
+   "answer": 0,
+   "solution": "Pins at $-5$ and $3$.\nMinimum $=$ gap $= 3 - (-5) = 8$.",
+   "shortcut": "Distance between the pins.",
+   "difficulty": "medium",
+   "subtopic": "fl-modulus-equations",
+   "pattern": "fl-m4",
+   "timeSec": 40
+  },
+  {
+   "id": "fl-modulus-equations-p15",
+   "q": "The solution of $|x + 2| > 6$ is:",
+   "figure": null,
+   "options": [
+    "$x < -8$ or $x > 4$",
+    "$-8 < x < 4$",
+    "$x > 4$ only",
+    "$x < -8$ only"
+   ],
+   "answer": 0,
+   "solution": "$x + 2 > 6$ gives $x > 4$.\n$x + 2 < -6$ gives $x < -8$.\nTwo arms.",
+   "shortcut": "'>' means outside the band.",
+   "difficulty": "medium",
+   "subtopic": "fl-modulus-equations",
+   "pattern": "fl-m3",
+   "timeSec": 45
+  },
+  {
+   "id": "fl-modulus-equations-p16",
+   "q": "The equation $|x - 1| = x + 3$ has the solution:",
+   "figure": null,
+   "options": [
+    "$x = -1$",
+    "$x = 1$",
+    "$x = -1$ and $x = 1$",
+    "no solution"
+   ],
+   "answer": 0,
+   "solution": "Case $x \\ge 1$: $x - 1 = x + 3$ gives $-1 = 3$ — impossible, no root here.\nCase $x < 1$: $1 - x = x + 3$ gives $2x = -2$, so $x = -1$.\nCheck: $|-1 - 1| = 2$ and $-1 + 3 = 2$. ✓\nAnswer: $x = -1$ only.",
+   "shortcut": "One case can be impossible; always check the survivor.",
+   "difficulty": "medium",
+   "subtopic": "fl-modulus-equations",
+   "pattern": "fl-m5",
+   "timeSec": 60
+  }
+ ]
+}

@@ -1399,91 +1399,91 @@
  ],
  "pyqPatterns": [
   {
-   "pattern": "$x+\\frac1x=k$ → higher powers",
+   "pattern": "Given x + 1/x, find x³ + 1/x³",
    "frequency": "very common",
-   "howToSpot": "Given $x+\\frac1x$, $x-\\frac1x$ or a quadratic with equal end coefficients; asked for $x^3+\\frac1{x^3}$, $x^4+\\frac1{x^4}$, $x^5+\\frac1{x^5}$.",
-   "approach": "Climb the ladder: square and subtract 2; cube with $k^3-3k$; fifth rung $= (k^2-2)(k^3-3k)-k$. Recognise special values ($1,\\ -1,\\ \\sqrt3$) for cyclic exponents.",
+   "howToSpot": "\"If x + 1/x = 6, find x³ + 1/x³.\"",
+   "approach": "For x² + 1/x²: square the given value, then subtract 2.\nFor x³ + 1/x³: cube the given value, then subtract 3 times the value.",
    "subtopic": "alg-reciprocal",
    "example": {
-    "q": "If $x+\\frac1x=6$, then $x^3+\\frac1{x^3}$ is:",
-    "solution": "$6^3 - 3\\times6 = 216 - 18 = 198$."
+    "q": "If x + 1/x = 6, then x³ + 1/x³ is:",
+    "solution": "Cube the value: 6 × 6 × 6 = 216\nSubtract 3 × 6 = 18\n216 − 18 = **198**"
    }
   },
   {
-   "pattern": "Given $a\\pm b$ and $ab$, find $a^3\\pm b^3$ / $a^4+b^4$",
+   "pattern": "Given a + b and ab, find a³ + b³",
    "frequency": "very common",
-   "howToSpot": "Two conditions on two variables and a symmetric expression to evaluate.",
-   "approach": "Never solve for $a,b$. Build upward: $(a\\pm b)^2 \\mp 2ab$ for squares, $(a\\pm b)^3 \\mp 3ab(a\\pm b)$ for cubes, $(a^2+b^2)^2-2a^2b^2$ for fourth powers.",
+   "howToSpot": "\"If a + b = 7 and ab = 12, find a³ + b³.\"",
+   "approach": "Do not solve for a and b.\nCube (a + b), then subtract 3 × ab × (a + b).",
    "subtopic": "alg-identities",
    "example": {
-    "q": "If $a+b=7$ and $ab=12$, then $a^3+b^3$ is:",
-    "solution": "$343 - 3\\times12\\times7 = 343 - 252 = 91$."
+    "q": "If a + b = 7 and ab = 12, then a³ + b³ is:",
+    "solution": "Cube of the sum: 7 × 7 × 7 = 343\n3 × ab × (a + b) = 3 × 12 × 7 = 252\n343 − 252 = **91**"
    }
   },
   {
-   "pattern": "Conjugate surd $x=p+\\sqrt q$",
+   "pattern": "Value with a root, like 2 + √3",
    "frequency": "very common",
-   "howToSpot": "$x=2+\\sqrt3$, $3-2\\sqrt2$, $\\frac{1}{\\sqrt5-2}$ etc., asked for $x^2+\\frac1{x^2}$ or a polynomial in $x$.",
-   "approach": "Check $p^2-q=1$ → $\\frac1x=p-\\sqrt q$; then $x+\\frac1x = 2p$ and run the ladder. Otherwise reduce the polynomial modulo the minimal quadratic.",
+   "howToSpot": "x is given as a number with a root, e.g. x = 2 + √3, and you must find x² + 1/x².",
+   "approach": "Find 1/x. It is usually the same number with the sign flipped (2 − √3).\nAdd them to get x + 1/x, then square it and subtract 2.",
    "subtopic": "alg-surds",
    "example": {
-    "q": "If $x=2+\\sqrt3$, then $x^2+\\frac1{x^2}$ is:",
-    "solution": "$\\frac1x = 2-\\sqrt3$ → $x+\\frac1x = 4$ → $x^2+\\frac1{x^2} = 14$."
+    "q": "If x = 2 + √3, then x² + 1/x² is:",
+    "solution": "1/x = 2 − √3 (because (2 + √3)(2 − √3) = 4 − 3 = 1)\nx + 1/x = 2 + √3 + 2 − √3 = 4\nSquare: 4 × 4 = 16\n16 − 2 = **14**"
    }
   },
   {
-   "pattern": "$a^3+b^3+c^3-3abc$ / zero-sum cubes",
+   "pattern": "a³ + b³ + c³ − 3abc",
    "frequency": "common",
-   "howToSpot": "Three variables with $a+b+c$ given, or expressions like $(x-y)^3+(y-z)^3+(z-x)^3$.",
-   "approach": "Factor form $s(s^2-3P)$; zero sum → cube-sum $= 3abc$; power sum $s^3 - 3sP + 3R$ when $abc$ is in play.",
+   "howToSpot": "\"If a + b + c = 6 and ab + bc + ca = 11, find a³ + b³ + c³ − 3abc.\"",
+   "approach": "If a + b + c = 0, then a³ + b³ + c³ is simply 3abc.\nOtherwise: (a + b + c) × (a² + b² + c² − ab − bc − ca).",
    "subtopic": "alg-three-var",
    "example": {
-    "q": "If $a+b+c=6$ and $ab+bc+ca=11$, then $a^3+b^3+c^3-3abc$ is:",
-    "solution": "$6\\times(36-33) = 18$."
+    "q": "If a + b + c = 6 and ab + bc + ca = 11, then a³ + b³ + c³ − 3abc is:",
+    "solution": "a² + b² + c² = 6 × 6 − 2 × 11 = 14\nBracket: 14 − 11 = 3\n6 × 3 = **18**"
    }
   },
   {
-   "pattern": "Sum of squares equal to zero",
+   "pattern": "Squares adding up to zero",
    "frequency": "common",
-   "howToSpot": "An equation like $x^2+y^2+z^2-2x+4y-6z+14=0$ or $a^2+b^2+c^2=ab+bc+ca$.",
-   "approach": "Complete squares so the constants cancel; each square is zero, giving exact values. The pairwise form forces $a=b=c$.",
+   "howToSpot": "One equation with x², y² and plain x, y terms, all equal to 0.",
+   "approach": "Turn it into perfect squares like (x − 4)².\nA sum of squares is 0 only when each square is 0.",
    "subtopic": "alg-identities",
    "example": {
-    "q": "If $x^2+y^2-8x+6y+25=0$, then $x-y$ is:",
-    "solution": "$(x-4)^2+(y+3)^2=0$ → $x=4$, $y=-3$ → $x-y=7$."
+    "q": "If x² + y² − 8x + 6y + 25 = 0, then x − y is:",
+    "solution": "x² − 8x + 16 = (x − 4)² and y² + 6y + 9 = (y + 3)² (16 + 9 = 25)\n(x − 4)² + (y + 3)² = 0, so x = 4 and y = −3\nx − y = 4 − (−3) = **7**"
    }
   },
   {
-   "pattern": "Big-number / decimal simplification",
+   "pattern": "Big cubes over a matching square",
    "frequency": "common",
-   "howToSpot": "Fractions with cubes over quadratics of the same two numbers, e.g. $\\frac{p^3+q^3}{p^2-pq+q^2}$.",
-   "approach": "Match the identity using the sign of the denominator's middle term; answer is $p\\pm q$.",
+   "howToSpot": "A fraction with cubes on top and a matching three-term expression below.",
+   "approach": "Match it to the pattern (p³ + q³) ÷ (p² − pq + q²) = p + q.\nFor (p³ − q³) ÷ (p² + pq + q²), the answer is p − q.",
    "subtopic": "alg-identities",
    "example": {
-    "q": "The value of $\\dfrac{4.7^3+2.3^3}{4.7^2-4.7\\times2.3+2.3^2}$ is:",
-    "solution": "$p^2-pq+q^2$ under $p^3+q^3$ → the fraction $= 4.7+2.3 = 7$."
+    "q": "The value of (4.7³ + 2.3³) ÷ (4.7² − 4.7 × 2.3 + 2.3²) is:",
+    "solution": "Top has p³ + q³, with p = 4.7 and q = 2.3\nBottom is p² − pq + q², the matching pattern\nSo the fraction = p + q = 4.7 + 2.3 = **7**"
    }
   },
   {
-   "pattern": "Linear equations, graphs, remainder",
+   "pattern": "Remainder when dividing by (x − a)",
    "frequency": "occasional",
-   "howToSpot": "Condition for unique/no/infinite solutions, area of triangle with axes, remainder or factor of a polynomial.",
-   "approach": "Ratios of coefficients; area $= \\frac{c^2}{2ab}$ from the intercepts; remainder $= p(\\alpha)$ by direct substitution.",
+   "howToSpot": "\"Find the remainder when x³ − 3x² + 4x − 5 is divided by (x − 2).\"",
+   "approach": "Find the x that makes the divisor zero (x − 2 = 0 gives x = 2).\nPut that value in the expression. The result is the remainder.",
    "subtopic": "alg-linear-poly",
    "example": {
-    "q": "The remainder when $x^3-3x^2+4x-5$ is divided by $(x-2)$ is:",
-    "solution": "$p(2) = 8-12+8-5 = -1$."
+    "q": "The remainder when x³ − 3x² + 4x − 5 is divided by (x − 2) is:",
+    "solution": "x − 2 = 0, so x = 2\nPut x = 2: 8 − 12 + 8 − 5\n= **−1**"
    }
   },
   {
-   "pattern": "Maximum / minimum value",
+   "pattern": "Greatest or least value",
    "frequency": "occasional",
-   "howToSpot": "'Least value of $4x+\\frac9x$', 'greatest value of $7+4x-x^2$'.",
-   "approach": "AM ≥ GM for $ax+\\frac bx$ (value $2\\sqrt{ab}$); complete the square for quadratics (vertex $c-\\frac{b^2}{4a}$).",
+   "howToSpot": "\"Greatest value of 7 + 4x − x²\" or \"least value of 4x + 9/x\".",
+   "approach": "Write the expression as a square plus a number. A square is never negative.\nFor 4x + 9/x, the least value is 2 × √(4 × 9) = 12.",
    "subtopic": "alg-maxmin",
    "example": {
-    "q": "The greatest value of $7+4x-x^2$ is:",
-    "solution": "$-(x-2)^2+11 \\le 11$ → greatest value 11 at $x=2$."
+    "q": "The greatest value of 7 + 4x − x² is:",
+    "solution": "7 + 4x − x² = 11 − (x − 2)²\n(x − 2)² is never below 0\nBest case is (x − 2)² = 0, at x = 2\nGreatest value = 11 − 0 = **11**"
    }
   }
  ],

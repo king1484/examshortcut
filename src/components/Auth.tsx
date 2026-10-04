@@ -59,7 +59,7 @@ export function AuthGate({ children, what = 'track your progress' }: { children:
 export function LoginPrompt({ what, next }: { what: string; next: string }) {
   return (
     <div className="card p-6 sm:p-8 text-center max-w-xl mx-auto">
-      <p className="text-2xl">🔒</p>
+      <p className="text-2xl">☁️</p>
       <h2 className="text-xl font-extrabold mt-1">Log in to {what}</h2>
       <p className="muted text-sm mt-2">
         All notes, practice, calculators and cutoffs stay open to everyone. A free account is only needed to save your

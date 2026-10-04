@@ -707,80 +707,80 @@
  ],
  "pyqPatterns": [
   {
-   "pattern": "Function-output computation",
+   "pattern": "Output of an Excel function",
    "frequency": "very common",
-   "howToSpot": "A small cell list (often with a text cell or a blank planted inside) is given and the output of SUM, AVERAGE, MAX, ROUND, MOD or LEN is asked.",
-   "approach": "Add or work the function by hand first — and remember SUM and AVERAGE silently skip text and blank cells, so AVERAGE divides by the number of NUMERIC cells, not by the range length. Then match the computed value to the options.",
+   "howToSpot": "A few cells (may include text or blanks) and \"=AVERAGE(...) gives?\"",
+   "approach": "Work the function by hand.\nSUM and AVERAGE skip text and blank cells.",
    "subtopic": "me-functions",
    "example": {
-    "q": "A1=10, A2=20, A3=30. What does =AVERAGE(A1:A3) return?",
-    "solution": "60 — (10+20+30)/3. Blanks would be excluded from both the sum and the divisor."
+    "q": "A1 = 10, A2 = 20, A3 = \"abc\" (text), A4 = 30. What does =AVERAGE(A1:A4) return?",
+    "solution": "Text cell is skipped, so numbers are 10, 20, 30\nSum = 60\nCount of numbers = 3\nAverage = 60 ÷ 3 = **20**"
    }
   },
   {
-   "pattern": "Shortcut-key recall",
+   "pattern": "Excel shortcut keys",
    "frequency": "very common",
-   "howToSpot": "'Shortcut to insert the current date', 'which key runs AutoSum / edits a cell / toggles \\$ references' — with Ctrl+D planted as the fake date key.",
-   "approach": "Keep the card: Ctrl+; date, Ctrl+Shift+; time, Alt+= AutoSum, F2 edit cell, F4 reference toggle (only while editing), Ctrl+1 Format Cells, F12 Save As, Shift+F11 new sheet, Ctrl+Home A1, Ctrl+End last used cell. Ctrl+D is FILL DOWN, never date.",
+   "howToSpot": "\"Shortcut for AutoSum\" or \"shortcut to insert the current date\".",
+   "approach": "Learn: Alt+= AutoSum, Ctrl+; today's date, F2 edit cell.\nCtrl+D is Fill Down, not date.",
    "subtopic": "me-shortcuts",
    "example": {
-    "q": "The shortcut of AutoSum in MS Excel is:",
-    "solution": "Alt+= — it writes =SUM() around the neighbouring numbers in one stroke."
+    "q": "The shortcut for AutoSum in MS Excel is:",
+    "solution": "AutoSum writes the SUM formula for you\nIt uses the Alt key with the equals key\nCtrl+D is Fill Down, not AutoSum\nAnswer: **Alt+=**"
    }
   },
   {
-   "pattern": "Error-message identification",
+   "pattern": "Excel error messages",
    "frequency": "very common",
-   "howToSpot": "A broken-formula story (divide by an empty cell, misspelt function, text plus number, deleted range, missing lookup) and the error code is asked — or the code is given and the cause.",
-   "approach": "Map the story: empty divisor gives #DIV/0!, unknown text gives #NAME?, wrong data type gives #VALUE!, deleted cells give #REF!, lookup miss gives #N/A, impossible number gives #NUM!. ##### is not an error at all — it is a narrow column.",
+   "howToSpot": "A cell shows an error code and the reason is asked.",
+   "approach": "#DIV/0! = divide by zero. #NAME? = unknown name.\n#VALUE! = wrong data type. #REF! = deleted cell. #N/A = not found.",
    "subtopic": "me-errors-charts",
    "example": {
-    "q": "A cell shows #NAME?. The most likely reason is:",
-    "solution": "Excel cannot recognise the text — usually a misspelt function name like =SUIM(A1:A5)."
+    "q": "A cell shows #NAME?. What is the most likely reason?",
+    "solution": "#NAME? means Excel does not know a word in the formula\nExample: =SUIM(A1:A5) has a misspelt function\nSo the function name is wrong\nAnswer: **Misspelt function name**"
    }
   },
   {
-   "pattern": "Chart selection",
+   "pattern": "Choose the right chart",
    "frequency": "common",
-   "howToSpot": "'Which chart best shows a trend over time / share of one whole / comparison between categories / relationship of two variables?'",
-   "approach": "Purpose decides the chart: Line = trend across time; Pie = shares of ONE whole (one series only); Column/Bar = compare categories; Scatter = two number variables. Words like 'over the years', 'percentage split', 'who scored most' are the spotters.",
+   "howToSpot": "\"Which chart best shows a trend over time?\"",
+   "approach": "Line = trend over time. Pie = parts of one whole.\nColumn or bar = compare categories.",
    "subtopic": "me-errors-charts",
    "example": {
-    "q": "To display the monthly growth of users during a year, the best chart is:",
-    "solution": "A line chart — trends across time are its exact purpose; a pie cannot show time."
+    "q": "Which chart best shows the monthly growth of users during a year?",
+    "solution": "Months in a row = time\nShowing change over time needs a line\nA pie cannot show time\nAnswer: **Line chart**"
    }
   },
   {
-   "pattern": "Reference behaviour on copy",
+   "pattern": "Formula after copy-paste",
    "frequency": "common",
-   "howToSpot": "A formula like =A1*\\$B\\$1 is copied to another cell and the resulting formula is asked — or the type of a written reference (relative/absolute/mixed) is asked.",
-   "approach": "Slide only the parts without dollar signs, by the exact rows/columns moved. A1 relative moves fully; \\$A\\$1 never moves; \\$A1 and A\\$1 move partially. F4 cycles A1, \\$A\\$1, A\\$1, \\$A1 while editing.",
+   "howToSpot": "A formula is copied to another cell and the new formula is asked.",
+   "approach": "References without $ move with the copy.\n$A$1 never moves.",
    "subtopic": "me-basics",
    "example": {
-    "q": "C1 holds =A1+B1. Copied to C3 (two rows down), C3 contains:",
-    "solution": "=A3+B3 — both references are relative and slide down with the copy."
+    "q": "C1 has =A1+B1. It is copied to C3. What does C3 contain?",
+    "solution": "C3 is 2 rows below C1\nBoth references have no $, so both move down 2 rows\nA1 becomes A3, B1 becomes B3\nAnswer: **=A3+B3**"
    }
   },
   {
-   "pattern": "COUNT family trap",
+   "pattern": "COUNT, COUNTA and COUNTBLANK",
    "frequency": "common",
-   "howToSpot": "A range mixing numbers, text and blanks is described and COUNT / COUNTA / COUNTBLANK is asked — options differ by exactly the text or blank cells.",
-   "approach": "COUNT counts only numeric cells, COUNTA counts everything filled, COUNTBLANK counts empties, and COUNTA + COUNTBLANK = total cells. Read the mixture twice before choosing.",
+   "howToSpot": "A range with numbers, text and blanks, and \"=COUNT(...) gives?\"",
+   "approach": "COUNT counts only numbers.\nCOUNTA counts all filled cells. COUNTBLANK counts empty cells.",
    "subtopic": "me-functions",
    "example": {
-    "q": "A1=5, A2='word', A3 blank, A4=9. =COUNT(A1:A4) gives:",
-    "solution": "2 — only 5 and 9 are numbers; COUNTA would give 3 and COUNTBLANK 1."
+    "q": "A1 = 5, A2 = \"word\", A3 is blank, A4 = 9. What does =COUNT(A1:A4) give?",
+    "solution": "Numbers are 5 and 9\n\"word\" is text, A3 is empty\nCOUNT counts only numbers\nAnswer: **2**"
    }
   },
   {
-   "pattern": "Grid facts (rows/columns/cells)",
+   "pattern": "Rows and columns in a sheet",
    "frequency": "common",
-   "howToSpot": "'How many rows/columns does an Excel 2007+ sheet have?', 'the last column letter', or a multiplication into total cells — with Excel 2003 numbers planted as traps.",
-   "approach": "2007 onwards: 1,048,576 rows, 16,384 columns (last label XFD), about 17.18 billion cells. Excel 2003 and older: 65,536 rows, 256 columns (last label IV). Cell address = column letter + row number; ranges use a colon (A1:B5).",
+   "howToSpot": "\"How many rows does an Excel 2007 sheet have?\" or \"the last column label\".",
+   "approach": "Excel 2007 and later: 1,048,576 rows and 16,384 columns.\nThe last column is XFD. Old Excel 2003 had 65,536 rows and 256 columns (last IV).",
    "subtopic": "me-basics",
    "example": {
-    "q": "The last column of an Excel 2016 worksheet is labelled:",
-    "solution": "XFD — IV (the 256th column) was the limit of Excel 2003."
+    "q": "What is the last column label of an Excel 2016 worksheet?",
+    "solution": "Excel 2016 has 16,384 columns\nColumn labels run A to Z, then AA and so on\nThe 16,384th column is XFD\nAnswer: **XFD**"
    }
   }
  ],
