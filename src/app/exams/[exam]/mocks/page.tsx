@@ -39,7 +39,7 @@ export default async function MocksPage({ params }: { params: Params }) {
         After submitting you get section-wise scores, accuracy, <b>time spent per question</b>, and the topics to fix first.
         Wrong answers go straight into your <Link className="underline" href="/revision/">mistake notebook</Link>.
       </p>
-      <MockList mocks={mocks.map((m) => ({ id: m.id, title: m.title, blurb: m.blurb, available: m.available, questionCount: m.questionCount, durationMin: m.durationMin, tier: m.tier }))} />
+      <MockList examId={id} showTier={id.startsWith('ssc-')} mocks={mocks.map((m) => ({ id: m.id, title: m.title, blurb: m.blurb, available: m.available, questionCount: m.questionCount, durationMin: m.durationMin, tier: m.tier }))} />
     </div>
   );
 }

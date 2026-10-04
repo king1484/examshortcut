@@ -4,7 +4,7 @@ import { store, useStore } from '@/lib/store';
 
 interface Row { id: string; title: string; blurb: string; available: boolean; questionCount: number; durationMin: number; tier: 1 | 2 }
 
-export function MockList({ mocks }: { mocks: Row[] }) {
+export function MockList({ mocks, examId = 'ssc-cgl', showTier = true }: { mocks: Row[]; examId?: string; showTier?: boolean }) {
   const attempts = useStore(store.attempts, {});
 
   return (
@@ -18,7 +18,7 @@ export function MockList({ mocks }: { mocks: Row[] }) {
               <div className="flex items-center gap-2 flex-wrap">
                 <h2 className="font-extrabold text-lg">{m.title}</h2>
                 <span className={`chip ${m.available ? 'chip-low' : 'chip-medium'}`}>{m.available ? 'Ready' : 'Coming up'}</span>
-                <span className="chip">Tier {m.tier}</span>
+                {showTier && <span className="chip">Tier {m.tier}</span>}
                 <span className="chip">Free</span>
               </div>
               <p className="text-sm muted mt-1.5">{m.blurb}</p>
@@ -28,7 +28,7 @@ export function MockList({ mocks }: { mocks: Row[] }) {
               </p>
             </div>
             <div className="flex gap-2 shrink-0">
-              <Link href={`/exams/ssc-cgl/mocks/${m.id}/`} className={`btn ${m.available ? 'btn-brand' : ''}`}>{m.available ? (hist.length ? 'Retake' : 'Start test') : 'Preview'}</Link>
+              <Link href={`/exams/${examId}/mocks/${m.id}/`} className={`btn ${m.available ? 'btn-brand' : ''}`}>{m.available ? (hist.length ? 'Retake' : 'Start test') : 'Preview'}</Link>
             </div>
           </div>
         );

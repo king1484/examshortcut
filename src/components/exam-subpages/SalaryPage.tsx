@@ -6,9 +6,94 @@ import { SubpageFrame, VerifiedChip, loadExamPage, pickFaqs, subPath, type Faq }
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const levelNum = (s: string) => Number(String(s).match(/Level\s*(\d+)/i)?.[1] ?? 0);
 
+/** MBA entrance exams (CAT): the "posts" in the data are institutes and programmes, and there is no pay level. */
+function ProgramsPage({ id }: { id: string }) {
+  const page = loadExamPage(id);
+  if (!page) notFound();
+  const { info, exam, year } = page;
+  const lc = exam.latestCycle ?? {};
+  const programs: any[] = exam.posts ?? [];
+  const groups = Array.from(new Set(programs.map((p) => p.group).filter(Boolean)));
+  const withNotes = programs.filter((p) => p.special);
+
+  const faqs: Faq[] = [];
+  if (programs.length) {
+    faqs.push({
+      q: `Which institutes and programs accept ${info.name} scores?`,
+      a: programs.map((p) => `${p.department} — ${p.name}`).join('; ') + '. Hundreds of other business schools also accept the same score; check each institute\'s admission policy.',
+    });
+  }
+  faqs.push(...pickFaqs(exam, /percentile do i need|99 percentile|after the .* result|score valid/i, undefined, 4));
+
+  return (
+    <SubpageFrame
+      id={id}
+      kind="salary-and-posts"
+      h1={`${info.name} ${year} institutes & programs — IIMs, FMS, shortlist criteria`}
+      faqs={faqs}
+      intro={
+        <>
+          <p>
+            <b>{info.name}</b> ({exam.fullName}) is an entrance test, not a recruitment exam: there are no posts or pay levels. Your percentile opens the door to MBA/PGP programs at the IIMs, FMS Delhi and many other business schools. The table below lists the main program groups ({programs.length}) with the institute, type and duration, taken from the same verified data as the <Link className="underline" href={`/exams/${id}/`}>{info.name} guide</Link>.
+          </p>
+          <p>
+            {groups.length > 0 && <>Groups covered: <b>{groups.join(', ')}</b>. </>}
+            {lc.fee && <>The {lc.year} application fee is <b>{lc.fee}</b>. </>}
+            Salary outcomes depend on the institute and batch, so use each institute&apos;s own placement report rather than a single figure.
+          </p>
+          <p><VerifiedChip exam={exam} /></p>
+        </>
+      }
+    >
+      <h2 className="text-2xl font-extrabold mt-8">Institutes and programs accepting {info.name}</h2>
+      <div className="tbl-wrap mt-3">
+        <table className="tbl">
+          <thead><tr><th>Program</th><th>Institute</th><th>Type</th><th>Duration</th></tr></thead>
+          <tbody>
+            {programs.map((p) => (
+              <tr key={p.id ?? `${p.department}-${p.name}`}>
+                <td className="font-semibold">{p.name}</td>
+                <td>{p.department ?? '—'}</td>
+                <td>{p.group ?? '—'}</td>
+                <td>{p.payLevel ?? '—'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {withNotes.length > 0 && (
+        <>
+          <h2 className="text-2xl font-extrabold mt-10">How each institute shortlists</h2>
+          <ul className="card p-5 mt-3 space-y-2 text-sm list-disc pl-9">
+            {withNotes.map((p) => <li key={p.id ?? `${p.department}-${p.name}`}><b>{p.department}{p.name ? ` (${p.name})` : ''}:</b> <Md inline>{p.special}</Md></li>)}
+          </ul>
+        </>
+      )}
+
+      <h2 className="text-2xl font-extrabold mt-10">Fees, placements and salary after an MBA</h2>
+      <div className="card p-5 mt-3 text-sm space-y-3">
+        <p><b>Program fees</b> vary widely between institutes and change every batch, so this page does not quote a single figure. Check the fee structure in each institute&apos;s admission brochure before you shortlist.</p>
+        <p><b>Placements</b> are published by each institute in its final placement report: median and average salary, the sector mix and the number of offers. Compare reports for the same batch year, and read median alongside average, since a few very high offers can lift the average.</p>
+        <p><b>Return on investment</b> depends on the fee, your pre-MBA salary and the sector you target. Newer IIMs generally have lower cutoffs than the older ones, while a few non-IIM programs such as FMS Delhi are known for strong return on investment.</p>
+        <p><b>Always confirm with the official source.</b> Institute lists, program names and shortlist weights change between cycles; each institute&apos;s admission policy is the final word.</p>
+      </div>
+
+      <h2 className="text-2xl font-extrabold mt-10">Choosing between institutes</h2>
+      <div className="card p-5 mt-3 text-sm space-y-3">
+        <p>Start from your likely percentile band on the <Link className="underline" href={`/exams/${id}/cutoffs/`}>{info.name} cutoffs page</Link>, then build a spread: a few reach institutes, some in the middle and a safe set. Remember that most shortlists are a composite of CAT percentile, academics, work experience and diversity, so the same percentile can lead to different outcomes at different institutes.</p>
+        <p>
+          Before you decide, confirm that you meet the education rules on the <Link className="underline" href={subPath(id, 'eligibility')}>{info.name} eligibility page</Link>, and see how the paper is scored on the <Link className="underline" href={subPath(id, 'exam-pattern')}>{info.name} exam pattern page</Link>.
+        </p>
+      </div>
+    </SubpageFrame>
+  );
+}
+
 export function SalaryPage({ id }: { id: string }) {
   const page = loadExamPage(id);
   if (!page) notFound();
+  if (page.info.category === 'MBA') return <ProgramsPage id={id} />;
   const { info, exam, year } = page;
   const lc = exam.latestCycle ?? {};
   const posts: any[] = exam.posts ?? [];

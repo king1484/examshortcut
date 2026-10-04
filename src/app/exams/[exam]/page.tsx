@@ -7,6 +7,7 @@ import { Md } from '@/components/Md';
 import { DatePhases } from '@/components/DatePhases';
 import { CycleTimeline } from '@/components/CycleTimeline';
 import { MoreOnExam } from '@/components/exam-subpages/common';
+import { CatToolsBlock } from '@/components/cat/CatToolsNav';
 
 const BUILT_AT = Date.now();
 
@@ -63,6 +64,11 @@ export default async function ExamHub({ params }: { params: Params }) {
 
   const lc = exam.latestCycle ?? {};
   const sections = info.sections;
+  const isMba = info.category === 'MBA';
+  const timeline: any[] = exam.timeline ?? [];
+  const hasVacancies = timeline.some((t) => t.vacancies != null);
+  const hasConducted = timeline.some((t) => t.conducted);
+  const hasCandidates = timeline.some((t) => t.registered);
   const faqLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -87,7 +93,7 @@ export default async function ExamHub({ params }: { params: Params }) {
     ['/formula-sheet/', '⚡ Formula sheet', 'Printable, all sections'],
     ['/daily-quiz/', '🎯 Daily quiz', 'A fresh mix every day'],
     ['/current-affairs/', '📰 Current affairs', 'Exam-relevant, month-wise'],
-    ['/static-gk/', '🗺️ Static GK tables', 'Dances, parks, firsts, books, sports'],
+    ...(sections.includes('ga') ? [['/static-gk/', '🗺️ Static GK tables', 'Dances, parks, firsts, books, sports'] as [string, string, string]] : []),
     ['/vocab/', '🔤 Vocab bank', 'Idioms, one-word, synonyms, spellings'],
     ['/revision/', '📝 Mistake notebook', 'Your wrong answers, ready to revise'],
   ];
@@ -130,13 +136,14 @@ export default async function ExamHub({ params }: { params: Params }) {
       </nav>
 
       <MoreOnExam id={id} />
+      {id === 'cat' && <CatToolsBlock />}
 
       <h2 className="text-2xl font-extrabold mt-10">Exam pattern</h2>
       {(exam.stages ?? []).map((st: any) => (
         <div key={st.id} className="mt-4">
           <h3 className="font-bold">{st.name} {st.nature && <span className="chip ml-1">{st.nature}</span>}</h3>
-          <p className="text-xs faint mt-1">{st.mode} · {st.durationMin} min · {st.negative}</p>
-          <div className="tbl-wrap mt-2">
+          <p className="text-xs faint mt-1">{[st.mode, st.durationMin != null && `${st.durationMin} min`, st.negative].filter(Boolean).join(' · ')}</p>
+          {(st.sections ?? []).length > 0 && <div className="tbl-wrap mt-2">
             <table className="tbl">
               <thead><tr><th>Section</th><th>Questions</th><th>Marks</th></tr></thead>
               <tbody>
@@ -150,10 +157,10 @@ export default async function ExamHub({ params }: { params: Params }) {
                     <td>{s.questions}</td><td>{s.marks}</td>
                   </tr>
                 ))}
-                <tr><td className="font-bold">Total</td><td className="font-bold">{st.totalQuestions}</td><td className="font-bold">{st.totalMarks}</td></tr>
+                {st.totalQuestions != null && <tr><td className="font-bold">Total</td><td className="font-bold">{st.totalQuestions}</td><td className="font-bold">{st.totalMarks}</td></tr>}
               </tbody>
             </table>
-          </div>
+          </div>}
           {st.notes && <Md className="mt-2 text-sm muted">{st.notes}</Md>}
         </div>
       ))}
@@ -167,29 +174,31 @@ export default async function ExamHub({ params }: { params: Params }) {
         <Row k="Age" v={
           <div className="space-y-1">{(exam.eligibility?.age ?? []).map((e: any, i: number) => (
             <div key={i}><b>{e.posts}:</b> {e.range}</div>))}</div>} />
-        <Row k="Relaxation" v={
+        {(exam.eligibility?.ageRelaxation ?? []).length > 0 && <Row k="Relaxation" v={
           <div className="tbl-wrap"><table className="tbl"><tbody>
             {(exam.eligibility?.ageRelaxation ?? []).map((e: any, i: number) => (
               <tr key={i}><td>{e.category}</td><td>{e.years}</td></tr>))}
-          </tbody></table></div>} />
+          </tbody></table></div>} />}
         {exam.eligibility?.notes && <Row k="Notes" v={<Md inline>{exam.eligibility.notes}</Md>} />}
       </div>
 
-      <h2 className="text-2xl font-extrabold mt-10">Posts, pay &amp; who should apply</h2>
+      <h2 className="text-2xl font-extrabold mt-10">{isMba ? 'Institutes & programs' : 'Posts, pay & who should apply'}</h2>
       <div className="tbl-wrap mt-3">
         <table className="tbl">
-          <thead><tr><th>Post</th><th>Department</th><th>Group</th><th>Pay level</th><th>Approx. in-hand</th></tr></thead>
+          <thead>{isMba
+            ? <tr><th>Program</th><th>Institute</th><th>Type</th><th>Duration</th></tr>
+            : <tr><th>Post</th><th>Department</th><th>Group</th><th>Pay level</th><th>Approx. in-hand</th></tr>}</thead>
           <tbody>
             {(exam.posts ?? []).map((p: any) => (
-              <tr key={p.name}>
+              <tr key={p.id ?? p.name}>
                 <td className="font-semibold">{p.name}</td>
-                <td>{p.department}</td><td>{p.group}</td><td>{p.payLevel}</td><td>{p.inHandApprox}</td>
+                <td>{p.department}</td><td>{p.group}</td><td>{p.payLevel}</td>{!isMba && <td>{p.inHandApprox}</td>}
               </tr>))}
           </tbody>
         </table>
       </div>
       {(exam.posts ?? []).some((p: any) => p.special) && (
-        <Md className="mt-2 text-sm muted">{`**Special requirements:** ${(exam.posts ?? []).filter((p: any) => p.special).map((p: any) => `${p.name} — ${p.special}`).join(' · ')}`}</Md>
+        <Md className="mt-2 text-sm muted">{`**${isMba ? 'How each institute shortlists' : 'Special requirements'}:** ${(exam.posts ?? []).filter((p: any) => p.special).map((p: any) => `${isMba ? p.department : p.name} — ${p.special}`).join(' · ')}`}</Md>
       )}
 
       <h2 className="text-2xl font-extrabold mt-10">Selection process</h2>
@@ -209,7 +218,7 @@ export default async function ExamHub({ params }: { params: Params }) {
           return (
             <div key={sid} className="card p-4" style={{ borderTop: `3px solid ${SECTION_META[sid].color}` }}>
               <div className="flex items-baseline justify-between gap-2">
-                <Link href={`/${sid}/`} className="font-bold underline underline-offset-2">{SECTION_META[sid].name}</Link>
+                <Link href={`/${sid}/`} className="font-bold underline underline-offset-2">{info.sectionLabels?.[sid] ?? SECTION_META[sid].name}</Link>
                 <span className="text-xs faint shrink-0">{topics.length} topics</span>
               </div>
               <ul className="mt-2 space-y-1 text-sm">
@@ -229,10 +238,10 @@ export default async function ExamHub({ params }: { params: Params }) {
           <h2 className="text-2xl font-extrabold mt-10">Notification dates history</h2>
           <div className="tbl-wrap mt-3">
             <table className="tbl">
-              <thead><tr><th>Year</th><th>Vacancies</th><th>Notification</th><th>Exam</th><th>Result</th></tr></thead>
+              <thead><tr><th>Year</th>{hasConducted && <th>Conducted by</th>}{hasVacancies && <th>Vacancies</th>}<th>Notification</th><th>Exam</th><th>Result</th>{hasCandidates && <th>Candidates</th>}</tr></thead>
               <tbody>
                 {(exam.timeline ?? []).slice().sort((a: any, b: any) => b.year - a.year).map((t: any) => (
-                  <tr key={t.year}><td className="font-bold">{t.year}</td><td>{t.vacancies ?? '—'}</td><td>{t.notification ?? '—'}</td><td>{t.exam ?? t.tier1 ?? '—'}</td><td>{t.result ?? t.finalResult ?? '—'}</td></tr>
+                  <tr key={t.year}><td className="font-bold">{t.year}</td>{hasConducted && <td>{t.conducted ?? '—'}</td>}{hasVacancies && <td>{t.vacancies ?? '—'}</td>}<td>{t.notification ?? '—'}</td><td>{t.exam ?? t.tier1 ?? '—'}</td><td>{t.result ?? t.finalResult ?? '—'}</td>{hasCandidates && <td>{t.registered ?? '—'}</td>}</tr>
                 ))}
               </tbody>
             </table>

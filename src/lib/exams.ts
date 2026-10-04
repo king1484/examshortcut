@@ -25,6 +25,12 @@ export interface ExamInfo {
   status: 'live' | 'soon';
   blurb: string;
   basics: ExamBasics;
+  /** exam-specific section names (e.g. CAT: english → VARC); default = the shared subject name */
+  sectionLabels?: Partial<Record<SectionId, string>>;
+  /** exam-specific preparation advice per section; default = generic advice */
+  sectionApproach?: Partial<Record<SectionId, string>>;
+  /** topic ids to feature per section on the exam pattern page; default = topics flagged high-importance */
+  sectionFocus?: Partial<Record<SectionId, string[]>>;
 }
 
 export const EXAMS: ExamInfo[] = [
@@ -68,7 +74,22 @@ export const EXAMS: ExamInfo[] = [
     blurb: 'IIM MBA entrance — VARC, DILR and Quantitative Ability at full difficulty.',
     basics: { conductingBody: 'Indian Institutes of Management (IIMs)', eligibility: 'Bachelor\u2019s degree, 50% (45% for reserved categories); final-year students eligible',
       stages: 'CAT CBT → IIM shortlist → written ability / group discussion / interview',
-      applicants: '≈3.3 lakh (2024)' } },
+      applicants: '≈3.3 lakh (2024)' },
+    sectionLabels: {
+      english: 'VARC — Verbal Ability & Reading Comprehension',
+      reasoning: 'DILR — Data Interpretation & Logical Reasoning',
+      quant: 'QA — Quantitative Ability',
+    },
+    sectionApproach: {
+      english: 'VARC is roughly two-thirds reading comprehension (four passages of four questions each in CAT 2025), plus a handful of verbal-ability items (para-jumbles, summary, odd sentence out). Build reading speed and stamina first with daily long-form reading, then practise RC sets under a timer. Pick passages whose topic you can follow and leave the densest one for last; keep each passage near 8–10 minutes and treat verbal-ability questions as quick marks.',
+      reasoning: 'DILR is a set-selection game, not a speed test: the section has about five sets and you will not finish all of them. Spend the first 3–4 minutes scanning every set, start with the one that looks easiest, and drop a set early if it is not opening up. Practise arrangements, scheduling, tables, bar and line charts, caselets and Venn problems, and always check the data carefully before answering the first question of a set.',
+      quant: 'QA rewards a strong arithmetic base: percentages, ratio, time-speed-distance, time and work, profit and loss and mixtures are the biggest chunk, followed by algebra, geometry, number systems and modern maths. Learn the shortcut for each topic, then drill timed sets. Solve the quick questions first, skip anything that needs a long multi-step grind, and attempt every TITA, since TITA has no negative marking.',
+    },
+    sectionFocus: {
+      english: ['reading-comprehension', 'paragraph-summary', 'sentence-rearrangement', 'cloze-test'],
+      reasoning: ['seating-arrangement', 'order-ranking', 'syllogism', 'venn-diagrams', 'blood-relations', 'direction-distance'],
+      quant: ['number-system', 'percentage', 'profit-loss-discount', 'time-speed-distance', 'time-work', 'algebra', 'geometry', 'permutation-combination'],
+    } },
   { id: 'ssc-cpo', name: 'SSC CPO', short: 'CPO', category: 'SSC', status: 'live',
     sections: ['quant', 'reasoning', 'english', 'ga'],
     blurb: 'Sub-Inspectors in Delhi Police and CAPFs.',

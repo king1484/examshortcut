@@ -4,6 +4,10 @@ import type { Metadata } from 'next';
 import { getTopic, listMocks } from '@/lib/content';
 import { LazyTex } from '@/components/LazyTex';
 import { MathText } from '@/components/MathText';
+import { BarGraph } from '@/components/di/BarGraph';
+import { LineGraph } from '@/components/di/LineGraph';
+import { PieGraph } from '@/components/di/PieGraph';
+import { CasletTable } from '@/components/di/CasletTable';
 
 export const dynamic = 'force-static';
 
@@ -79,6 +83,7 @@ export default function DataInterpretationPage() {
         <span className="font-bold">On this page:</span>
         <a href="#formulas" className="chip">Formulas</a>
         <a href="#approach" className="chip">How to approach each chart</a>
+        <a href="#graphs" className="chip">Try the graphs</a>
         <a href="#tricks" className="chip">Time-saving tricks</a>
         <a href="#traps" className="chip">Common traps</a>
         <a href="#types" className="chip">Question types</a>
@@ -167,6 +172,20 @@ export default function DataInterpretationPage() {
               gives the split, then connect them. The setup time is repaid across the several questions that follow the same data.
             </p>
           </article>
+        </div>
+      </section>
+
+      <section id="graphs" className="mt-12 scroll-mt-24">
+        <h2 className="text-2xl font-extrabold">Try it: DI graphs with questions</h2>
+        <p className="text-sm muted mt-1 max-w-3xl">
+          One worked set for each chart type. Read the chart, try each question yourself, then tap Show answer to see the
+          answer and the shortcut. Every figure, answer and solution below is computed from the same data, so they always agree.
+        </p>
+        <div className="grid gap-4 mt-4 min-w-0">
+          <BarGraph />
+          <LineGraph />
+          <PieGraph />
+          <CasletTable />
         </div>
       </section>
 
@@ -301,6 +320,15 @@ export default function DataInterpretationPage() {
           <Link href="/formula-sheet/" className="underline decoration-dotted">Formula sheet</Link>
         </p>
       </section>
+
+      <aside className="mt-8 text-sm muted max-w-3xl">
+        <h2 className="font-extrabold text-base" style={{ color: 'var(--ink)' }}>Practice yourself</h2>
+        <p className="mt-1">
+          The graphs above use illustrative data, so treat them as warm-up. For exam-style sets, attempt the{' '}
+          <Link href="/daily-quiz/" className="underline decoration-dotted font-semibold">daily quiz</Link> to keep your
+          calculation speed up, then time yourself on a full{' '}
+          <Link href="/exams/ssc-cgl/mocks/" className="underline decoration-dotted font-semibold">SSC CGL mock test</Link>.        </p>
+      </aside>
     </div>
   );
 }

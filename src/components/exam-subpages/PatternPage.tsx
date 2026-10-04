@@ -127,25 +127,28 @@ export function PatternPage({ id }: { id: string }) {
       {sectionIds.length > 0 && (
         <>
           <h2 className="text-2xl font-extrabold mt-10">How to approach each section</h2>
-          <p className="text-sm muted mt-2">Each subject below links to the full notes on ExamShortcut. Topics are listed as high importance where our topic data flags them; the question counts come from the pattern above.</p>
+          <p className="text-sm muted mt-2">Each subject below links to the full notes on ExamShortcut. Key topics are the high-importance ones where our topic data flags them (or the ones that matter most for this exam); the question counts come from the pattern above.</p>
           <div className="space-y-4 mt-4">
             {sectionIds.map((sid) => {
               const meta = SECTION_META[sid];
               const topics = listTopics(sid);
-              const key = topics.filter((t) => t.importance === 'high').slice(0, 6);
+              const focusIds = info.sectionFocus?.[sid];
+              const key = focusIds
+                ? focusIds.map((fid) => topics.find((t) => t.id === fid)).filter((t): t is NonNullable<typeof t> => !!t)
+                : topics.filter((t) => t.importance === 'high').slice(0, 6);
               const shown = key.length ? key : topics.slice(0, 6);
               const appears = stages.flatMap((st) => (st.sections ?? []).filter((s: any) => s.sectionId === sid).map((s: any) => `${st.name}: ${s.questions} questions, ${s.marks} marks`));
               return (
                 <section key={sid} className="card p-5" style={{ borderTop: `3px solid ${meta.color}` }}>
                   <div className="flex items-baseline justify-between gap-2 flex-wrap">
-                    <h3 className="font-bold text-lg">{meta.name}</h3>
+                    <h3 className="font-bold text-lg">{info.sectionLabels?.[sid] ?? meta.name}</h3>
                     <Link href={`/${sid}/`} className="text-sm underline decoration-dotted">All {topics.length} topics →</Link>
                   </div>
                   {appears.length > 0 && <p className="text-xs faint mt-1">{appears.join(' · ')}</p>}
-                  <p className="text-sm mt-2">{APPROACH[sid]}</p>
+                  <p className="text-sm mt-2">{info.sectionApproach?.[sid] ?? APPROACH[sid]}</p>
                   {shown.length > 0 && (
                     <p className="text-sm mt-3">
-                      <b>{key.length ? 'High-importance topics' : 'Start with'}:</b>{' '}
+                      <b>{focusIds && key.length ? 'Key topics for this exam' : key.length ? 'High-importance topics' : 'Start with'}:</b>{' '}
                       {shown.map((t, i) => (
                         <span key={t.id}>{i > 0 && ', '}<Link className="underline decoration-dotted" href={`/${sid}/${t.id}/`}>{t.title}</Link></span>
                       ))}

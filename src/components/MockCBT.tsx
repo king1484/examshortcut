@@ -121,7 +121,7 @@ export function MockCBT({ mock }: { mock: Mock }) {
     flat.forEach((f, i) => {
       const a = answers[i];
       if (a !== null && a !== f.q.answer)
-        store.addMistake({ key: `mock/${mock.id}/${f.q.id}`, question: f.q, chosen: a, from: mock.title, href: `/exams/ssc-cgl/mocks/${mock.id}/`, section: mock.sections[f.s].sectionId, at: Date.now() });
+        store.addMistake({ key: `mock/${mock.id}/${f.q.id}`, question: f.q, chosen: a, from: mock.title, href: `/exams/${mock.exam ?? 'ssc-cgl'}/mocks/${mock.id}/`, section: mock.sections[f.s].sectionId, at: Date.now() });
     });
     setSt((p) => ({ ...p, answers }));
     window.scrollTo(0, 0);
@@ -162,7 +162,7 @@ export function MockCBT({ mock }: { mock: Mock }) {
           </table>
         </div>
         <div className="card p-5 mt-5 text-sm space-y-2">
-          <h2 className="font-bold text-base">Instructions (same as the SSC CBT)</h2>
+          <h2 className="font-bold text-base">Instructions (same as the real CBT)</h2>
           <ul className="list-disc pl-5 space-y-1 muted">
             <li>Total time: <b>{mock.durationMin} minutes</b>. The clock at the top counts down; the test submits automatically at 00:00.</li>
             <li>+{mock.plus} for every correct answer, −{mock.minus} for every wrong answer. No marks deducted for unattempted questions.</li>
@@ -338,7 +338,7 @@ function MockResult({ mock, flat, answers, times, attempt }: { mock: Mock; flat:
         ))}
       </div>
       {mock.tier === 1 && (
-        <p className="text-sm muted mt-3">Compare your score with the <Link className="underline" href="/exams/ssc-cgl/cutoffs/">year-wise official cutoffs</Link> for your category
+        <p className="text-sm muted mt-3">Compare your score with the <Link className="underline" href={`/exams/${mock.exam ?? 'ssc-cgl'}/cutoffs/`}>year-wise official cutoffs</Link> for your category
           (remember real scores are normalised across shifts).</p>
       )}
 

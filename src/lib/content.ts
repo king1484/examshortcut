@@ -235,7 +235,7 @@ export const MOCK_DEFS: MockDef[] = [
     durationMin: 120, plus: 3, minus: 1, sections: ['english', 'reasoning', 'quant'], open: true,
     exam: 'cat',
     sectionNames: { english: 'VARC', reasoning: 'DILR', quant: 'QA' },
-    blurb: 'CAT pattern — VARC 24, DILR 22, QA 22 · 68 questions · 198 marks · +3 / −1 · 40 minutes per section (try keeping 40 each in this combined 120-minute run).',
+    blurb: 'CAT pattern — VARC 24, DILR 22, QA 22 · 68 questions · 204 marks · +3 / −1 · 40 minutes per section (try keeping 40 each in this combined 120-minute run).',
   },
   {
     id: 'cpo-p1-real-2025-1209-s1', title: 'CPO 2025 Paper 1 — real paper, 9 Dec Shift 1', kind: 'real-pyq', tier: 1,
@@ -247,13 +247,13 @@ export const MOCK_DEFS: MockDef[] = [
     id: 'ibps-po-pre-mock-1', title: 'IBPS PO Prelims Mock 1', kind: 'full', tier: 1,
     durationMin: 60, plus: 1, minus: 0.25, sections: ['english', 'quant', 'reasoning'], open: true,
     exam: 'ibps-po',
-    blurb: 'Prelims pattern — English 30, Quant 35, Reasoning 35 · 100 questions · 100 marks · +1 / −0.25 · 20 minutes per section (try keeping 20 each in this combined 60-minute run).',
+    blurb: 'Prelims pattern — English 30, Quant 35, Reasoning 35 · 100 questions · 60 minutes · +1 / −0.25 for every question (a simple practice scale — the real 2026 prelims weights sections differently, see the exam pattern page). The real test gives 20 minutes per section; try keeping 20 each in this combined run.',
   },
   {
     id: 'ibps-clerk-pre-mock-1', title: 'IBPS Clerk Prelims Mock 1', kind: 'full', tier: 1,
     durationMin: 60, plus: 1, minus: 0.25, sections: ['english', 'quant', 'reasoning'], open: true,
     exam: 'ibps-clerk',
-    blurb: 'Prelims pattern — English 30, Quant 35, Reasoning 35 · 100 questions · 100 marks · +1 / −0.25 · 20 minutes per section (try keeping 20 each in this combined 60-minute run).',
+    blurb: 'Prelims pattern — English 30, Numerical Ability 35, Reasoning 35 · 100 questions · 100 marks · 60 minutes · +1 / −0.25 · the real test gives 20 minutes per section; try keeping 20 each in this combined run.',
   },
 ];
 

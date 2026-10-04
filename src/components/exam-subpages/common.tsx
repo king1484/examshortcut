@@ -22,6 +22,14 @@ export const SUB_META: Record<SubKind, { label: string; blurb: string; emoji: st
   'exam-pattern': { label: 'Exam pattern', blurb: 'Stages, marks, negative marking, selection', emoji: '📝' },
 };
 
+/** Per-exam label for a sub-page: MBA entrance exams have programs, not posts or pay levels. */
+export function subMeta(id: string, kind: SubKind) {
+  if (kind === 'salary-and-posts' && getExamInfo(id)?.category === 'MBA') {
+    return { label: 'Institutes & programs', blurb: 'IIMs, FMS and CAP programs, shortlist weights', emoji: '🏛️' };
+  }
+  return SUB_META[kind];
+}
+
 export const hubPath = (id: string) => `/exams/${id}/`;
 export const subPath = (id: string, kind: SubKind) => `/exams/${id}/${kind}/`;
 
@@ -53,6 +61,9 @@ export function metaFor(id: string, kind: SubKind): Metadata {
     title = `${n} ${year} Eligibility — Age Limit, Qualification, Relaxation`;
     const cutoff = exam.eligibility?.ageCutoffDate;
     description = `${n} eligibility: age limit by post, educational qualification, nationality and category-wise age relaxation, with a free age calculator${cutoff ? ` pre-set to the ${fmtDate(cutoff)} cut-off date` : ''}.`;
+  } else if (kind === 'salary-and-posts' && info.category === 'MBA') {
+    title = `${n} ${year} Institutes & Programs — IIMs, FMS, Shortlist Criteria`;
+    description = `${n} participating institutes and programs: ${(exam.posts ?? []).length} listed with programme type, duration and how each shortlists, plus links to the exam pattern and eligibility.`;
   } else if (kind === 'salary-and-posts') {
     title = `${n} ${year} Salary & Posts — Pay Level, In-Hand, Department`;
     description = `${n} posts with department, group, pay level and what in-hand salary means: ${(exam.posts ?? []).length} posts listed, special requirements, and links to the exam pattern and eligibility.`;
@@ -76,8 +87,8 @@ function SiblingNav({ id, current }: { id: string; current: SubKind }) {
       <Link href={hubPath(id)} className="chip hover:underline">← {info.name} guide</Link>
       {SUB_KINDS.map((k) =>
         k === current
-          ? <span key={k} className="chip chip-brand" aria-current="page">{SUB_META[k].label}</span>
-          : <Link key={k} href={subPath(id, k)} className="chip hover:underline">{SUB_META[k].label}</Link>)}
+          ? <span key={k} className="chip chip-brand" aria-current="page">{subMeta(id, k).label}</span>
+          : <Link key={k} href={subPath(id, k)} className="chip hover:underline">{subMeta(id, k).label}</Link>)}
     </nav>
   );
 }
@@ -92,8 +103,8 @@ export function MoreOnExam({ id }: { id: string }) {
       <div className="grid sm:grid-cols-3 gap-3 mt-3">
         {SUB_KINDS.map((k) => (
           <Link key={k} href={subPath(id, k)} className="card p-4 hover:-translate-y-0.5 transition-transform">
-            <div className="font-bold text-sm">{SUB_META[k].emoji} {info.name} {SUB_META[k].label.toLowerCase()}</div>
-            <div className="text-xs faint mt-0.5">{SUB_META[k].blurb}</div>
+            <div className="font-bold text-sm">{subMeta(id, k).emoji} {info.name} {subMeta(id, k).label.toLowerCase()}</div>
+            <div className="text-xs faint mt-0.5">{subMeta(id, k).blurb}</div>
           </Link>
         ))}
       </div>
@@ -107,7 +118,7 @@ export function RelatedLinks({ id, current }: { id: string; current: SubKind }) 
   const analysis = listShiftExams().find((e) => e.guide === hubPath(id));
   const links: [string, string, string][] = [
     [hubPath(id), `${info.name} complete guide`, 'Status, dates, pattern, eligibility, FAQs'],
-    ...SUB_KINDS.filter((k) => k !== current).map((k) => [subPath(id, k), `${info.name} ${SUB_META[k].label.toLowerCase()}`, SUB_META[k].blurb] as [string, string, string]),
+    ...SUB_KINDS.filter((k) => k !== current).map((k) => [subPath(id, k), `${info.name} ${subMeta(id, k).label.toLowerCase()}`, subMeta(id, k).blurb] as [string, string, string]),
     ...(hasMocks ? [[`/exams/${id}/mocks/`, 'Mock tests', 'Real CBT interface + analysis'] as [string, string, string]] : []),
     ['/daily-quiz/', 'Daily quiz', 'A fresh mix every day'],
     [analysis ? `/exam-analysis/${analysis.slug}/` : '/exam-analysis/', analysis ? `${analysis.name} analysis` : 'Exam analysis', 'Shift-wise difficulty and questions asked'],
@@ -139,7 +150,7 @@ export function SubpageFrame({ id, kind, h1, intro, faqs, children }: {
   id: string; kind: SubKind; h1: string; intro: ReactNode; faqs: Faq[]; children: ReactNode;
 }) {
   const info = getExamInfo(id)!;
-  const label = SUB_META[kind].label;
+  const label = subMeta(id, kind).label;
   const crumbLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',

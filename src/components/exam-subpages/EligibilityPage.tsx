@@ -16,6 +16,7 @@ export function EligibilityPage({ id }: { id: string }) {
   const relax: { category: string; years: string }[] = el.ageRelaxation ?? [];
   const model = buildAgeModel(exam);
   const cutoff: string = model?.cutoff ?? '';
+  const noAgeLimit = ages.length > 0 && ages.every((a) => /no age limit/i.test(a.range));
 
   const faqs: Faq[] = [];
   if (ages.length) {
@@ -50,8 +51,10 @@ export function EligibilityPage({ id }: { id: string }) {
             This page collects who can apply for <b>{info.name}</b> ({exam.fullName}), conducted by {info.basics.conductingBody}: the age limit for each group of posts, the educational qualification, nationality rules and the age relaxation for each category. It is built from the same verified data as the <Link className="underline" href={`/exams/${id}/`}>{info.name} guide</Link>, which also carries the {year} cycle status and dates.
           </p>
           <p>
-            In one line: the basic educational requirement is <b>{info.basics.eligibility}</b>{ages.length > 0 && <>, and the age limit is {ages.length === 1 ? <b>{ages[0].range}</b> : <>set per post group ({ages.map((a) => a.range.match(/\d{1,2}\s*[–-]\s*\d{1,2}\s*years/)?.[0] ?? a.range).join(', ')})</>}</>}.
-            {cutoff && <> Age is counted as on <b>{fmtDate(cutoff)}</b> in the data below.</>} Use the calculator to see your own eligible date-of-birth window.
+            In one line: the basic educational requirement is <b>{info.basics.eligibility}</b>{noAgeLimit
+              ? <>, and there is <b>no age limit</b>.</>
+              : <>{ages.length > 0 && <>, and the age limit is {ages.length === 1 ? <b>{ages[0].range}</b> : <>set per post group ({ages.map((a) => a.range.match(/\d{1,2}\s*[–-]\s*\d{1,2}\s*years/)?.[0] ?? a.range).join(', ')})</>}</>}.</>}
+            {cutoff && <> Age is counted as on <b>{fmtDate(cutoff)}</b> in the data below.</>}{model && <> Use the calculator to see your own eligible date-of-birth window.</>}
           </p>
           <p><VerifiedChip exam={exam} /></p>
         </>
@@ -111,10 +114,20 @@ export function EligibilityPage({ id }: { id: string }) {
 
       <h2 className="text-2xl font-extrabold mt-10">How to read these eligibility rules</h2>
       <div className="card p-5 mt-3 text-sm space-y-3">
-        <p><b>The cut-off date decides your age.</b> Your age is not measured on the day you apply or the day of the exam. It is measured on one fixed date written in the notification{cutoff ? <> (<b>{fmtDate(cutoff)}</b> in the data used for this page)</> : null}.</p>
-        <p><b>Relaxation is added to the upper limit only.</b> A category relaxation raises the maximum age, not the minimum. The calculator adds the number of years for the category you pick and shows the resulting birth-date window per post group.</p>
-        <p><b>Your date of birth is taken from your certificate.</b> Age is checked against the date of birth on your Class 10 / matriculation certificate, so use that date rather than the one on any other document.</p>
-        <p><b>Education is checked separately.</b> Meeting the age limit does not make you eligible on its own. Check the qualification table above for your post, including any row about final-year students or candidates who are still waiting for a result.</p>
+        {noAgeLimit ? (
+          <>
+            <p><b>There is no age limit.</b> You can attempt as many times as you like, so eligibility comes down to your degree and the minimum marks it was completed with.</p>
+            <p><b>Education is what is checked.</b> Check the qualification table above, including the row about final-year students or candidates who are still waiting for a result, and the marks bar for your category.</p>
+            <p><b>Institutes can add their own rules.</b> Individual institutes may set extra minimums or program-specific criteria in their admission policies, so check the policy of every institute you plan to apply to.</p>
+          </>
+        ) : (
+          <>
+            <p><b>The cut-off date decides your age.</b> Your age is not measured on the day you apply or the day of the exam. It is measured on one fixed date written in the notification{cutoff ? <> (<b>{fmtDate(cutoff)}</b> in the data used for this page)</> : null}.</p>
+            <p><b>Relaxation is added to the upper limit only.</b> A category relaxation raises the maximum age, not the minimum. The calculator adds the number of years for the category you pick and shows the resulting birth-date window per post group.</p>
+            <p><b>Your date of birth is taken from your certificate.</b> Age is checked against the date of birth on your Class 10 / matriculation certificate, so use that date rather than the one on any other document.</p>
+            <p><b>Education is checked separately.</b> Meeting the age limit does not make you eligible on its own. Check the qualification table above for your post, including any row about final-year students or candidates who are still waiting for a result.</p>
+          </>
+        )}
         <p><b>The notification always wins.</b> Where the official notification differs from this page, follow the notification.</p>
       </div>
 
