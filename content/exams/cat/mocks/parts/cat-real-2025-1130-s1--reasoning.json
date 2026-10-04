@@ -1,0 +1,186 @@
+{
+ "mockId": "cat-real-2025-1130-s1",
+ "sectionId": "reasoning",
+ "questions": [
+  {
+   "id": "q-cat-real-2025-1130-s1-reasoning-12",
+   "q": "Who sits on the chair numbered 4 at the end of Turn 3?",
+   "figure": null,
+   "options": [
+    "Bashir",
+    "Chhavi",
+    "Davies",
+    "No one"
+   ],
+   "answer": 3,
+   "solution": "**Pinning down the start.** Aslam (A) and Chhavi (C) are neighbours; Bashir (B) and Davies (D) each have an empty chair on both sides. Davies is on chair 2 after Turn 1, and Turn 1 is Aslam's move, so Davies never moves before Turn 4 and starts on chair 2 (chairs 1 and 3 empty). Chhavi is on chair 7 after Turn 2; Chhavi moves only in Turn 3, so she starts on chair 7.\n\nAslam must be next to Chhavi, so he starts on 6 or 1; chair 1 is excluded because he would then sit beside Davies's empty neighbour and the four chairs would need to stay non-consecutive after Turn 2 only in the way the clue demands. Trying both and running the clue \"four consecutive chairs only after Turns 2 and 6\" leaves one consistent layout: **A=6, B=4, C=7, D=2**.\n\n**Turn by turn** (A, B, C, D):\n\n| After | A | B | C | D | Occupied |\n|---|---|---|---|---|---|\n| Start | 6 | 4 | 7 | 2 | 2, 4, 6, 7 |\n| T1 (A clockwise, skips 7) | 1 | 4 | 7 | 2 | 1, 2, 4, 7 |\n| T2 (B anticlockwise) | 1 | 3 | 7 | 2 | 7, 1, 2, 3 (consecutive) |\n| T3 (C anticlockwise) | 1 | 3 | 6 | 2 | 1, 2, 3, 6 |\n| T4 (D clockwise, skips 3) | 1 | 3 | 6 | 4 | 1, 3, 4, 6 |\n| T5 (A anticlockwise) | 7 | 3 | 6 | 4 | 3, 4, 6, 7 |\n| T6 (B clockwise, skips 4) | 7 | 5 | 6 | 4 | 4, 5, 6, 7 (consecutive) |\n| T7 (C moves to 3 or 1) | 7 | 5 | 3 or 1 | 4 | not consecutive |\n\nAt the end of Turn 3 the occupied chairs are 1, 2, 3 and 6, so chair 4 is empty: **No one**.\n**Answer: No one**",
+   "shortcut": "Rebuild the table of positions turn by turn; after Turn 3 the chairs in use are 1, 2, 3, 6, so chair 4 is vacant.",
+   "difficulty": "hard",
+   "subtopic": "seating-arrangement",
+   "pattern": "Simulate each turn on a circle, using the consecutive-chairs clue as a filter",
+   "timeSec": 190,
+   "group": "set3",
+   "passage": "A round table has seven chairs around it. The chairs are numbered 1 through 7 in a clockwise direction. Four friends, Aslam, Bashir, Chhavi, and Davies, sit on four of the chairs. In the starting position, Aslam and Chhavi are sitting next to each other, while for Bashir as well as Davies, there are empty chairs on either side of the chairs that are sitting on.\n\nThe friends take turns moving either clockwise or counterclockwise from their chair. The friend who has to move in a turn occupies the first empty chair in whichever direction (s)he chooses to move. Aslam moves first (Turn 1), followed by Bashir, Chhavi, and Davies (Turns 2, 3, and 4, respectively). Then Aslam moves again followed by Bashir, and Chhavi (Turns 5, 6, and 7, respectively).\n\nThe following information is known.\n\n1. The four friends occupy adjacent chairs only at the end of Turn 2 and Turn 6.\n2. Davies occupies Chair 2 after Turn 1 and Chair 4 after Turn 5, and Chhavi occupies Chair 7 after Turn 2."
+  },
+  {
+   "id": "q-cat-real-2025-1130-s1-reasoning-13",
+   "q": "Which of the chairs are occupied at the end of Turn 6?",
+   "figure": null,
+   "options": [
+    "Chairs numbered 1, 2, 3, and 4",
+    "Chairs numbered 2, 3, 4, and 5",
+    "Chairs numbered 1, 2, 6, and 7",
+    "Chairs numbered 4, 5, 6, and 7"
+   ],
+   "answer": 3,
+   "solution": "Using the position table built from the clues (start A=6, B=4, C=7, D=2):\n\n- After Turn 5: A=7, B=3, C=6, D=4.\n- Turn 6 is Bashir's. From chair 3 he goes clockwise: chair 4 is taken by Davies, so he lands on chair 5.\n- Occupied chairs after Turn 6: 7 (A), 5 (B), 6 (C), 4 (D) = chairs **4, 5, 6, 7**. These are four consecutive chairs, which agrees with the clue that the friends are adjacent at the end of Turn 6.\n\nThe other options are impossible: no one is ever on chair 1, 2 or 3 together with 4 at this stage.\n**Answer: Chairs numbered 4, 5, 6, and 7**",
+   "shortcut": "After Turn 5 the chairs are 7, 3, 6, 4; Bashir hops over Davies to 5, giving 4–5–6–7.",
+   "difficulty": "medium",
+   "subtopic": "seating-arrangement",
+   "pattern": "Follow a single move from a reconstructed position",
+   "timeSec": 120,
+   "group": "set3",
+   "passage": null
+  },
+  {
+   "id": "q-cat-real-2025-1130-s1-reasoning-14",
+   "q": "Which of the following BEST describes the friends sitting on chairs adjacent to the one occupied by Bashir at the end of Turn 7?",
+   "figure": null,
+   "options": [
+    "Aslam and Chhavi",
+    "Chhavi only",
+    "Davies only",
+    "Chhavi and Davies"
+   ],
+   "answer": 2,
+   "solution": "After Turn 6 the chairs are A=7, B=5, C=6, D=4. In Turn 7 Chhavi moves from chair 6:\n\n- anticlockwise: chairs 5 and 4 are occupied, so she lands on 3;\n- clockwise: chair 7 is occupied, so she lands on 1.\n\nEither way she leaves chair 6. Bashir stays on chair 5, and his neighbours are chairs 4 and 6. Chair 4 is Davies's; chair 6 is now empty. So only **Davies** is next to Bashir.\n**Answer: Davies only**",
+   "shortcut": "Chhavi leaves chair 6 in Turn 7, so Bashir's neighbours are Davies (4) and an empty chair (6).",
+   "difficulty": "medium",
+   "subtopic": "seating-arrangement",
+   "pattern": "Check neighbours after the last move",
+   "timeSec": 100,
+   "group": "set3",
+   "passage": null
+  },
+  {
+   "id": "q-cat-real-2025-1130-s1-reasoning-15",
+   "q": "How much is Japan's export to India worth?",
+   "figure": null,
+   "options": [
+    "7.0 Billion USD",
+    "1.75 Billion USD",
+    "16.0 Billion USD",
+    "8.5 Billion USD"
+   ],
+   "answer": 0,
+   "solution": "Chart values used (see the tables in the set): India levies a tariff of 3.5 billion USD on Japan, at a rate of 50%.\n\nTariff $= \\text{rate} \\times \\text{imports}$, so India's imports from Japan $= \\dfrac{3.5}{0.5} = 7$ billion USD.\n\nBy the assumption in the passage, imports of India from Japan equal exports of Japan to India, so Japan's exports to India are **7.0 billion USD**.\n**Answer: 7.0 Billion USD**",
+   "shortcut": "Imports = tariff ÷ rate = 3.5 ÷ 0.5 = 7, and that equals the other country's exports to India.",
+   "difficulty": "easy",
+   "subtopic": "venn-diagrams",
+   "pattern": "Reverse a percentage: import = tariff ÷ rate",
+   "timeSec": 90,
+   "group": "set4",
+   "passage": "Five countries engage in trade with each other. Each country levies import tariffs on the other countries. The import tariff levied by Country X on Country Y is calculated by multiplying the corresponding tariff percentage with the total imports of Country X from Country Y.\n\nThe radar chart in the original paper gave the import tariff percentage each of the five countries charges on the others, and the bar chart gave the import tariff (in billion USD) each country levied on the others. Both charts are reproduced below as tables (row = country that levies the tariff, column = country the goods are imported from).\n\n**Import tariff percentage (radar chart)**\n\n| Levied by \\ On imports from | US | France | India | Japan | UK |\n|---|---|---|---|---|---|\n| US | - | 20% | 40% | 30% | 30% |\n| France | 30% | - | 40% | 30% | 40% |\n| India | 40% | 50% | - | 50% | 20% |\n| Japan | 40% | 30% | 50% | - | 40% |\n| UK | 20% | 30% | 30% | 40% | - |\n\n**Import tariff levied (bar chart), in billion USD**\n\n| Levied by \\ On imports from | US | France | India | Japan | UK |\n|---|---|---|---|---|---|\n| US | - | 6 | 4.5 | 7 | 3 |\n| France | 5.5 | - | 6.5 | 4 | 4.5 |\n| India | 9 | 5 | - | 3.5 | 5 |\n| Japan | 4 | 3 | 8 | - | 3 |\n| UK | 2.5 | 4 | 3 | 6 | - |\n\nAssume that imports from one country to another equals the exports from the latter to the former.\n\nThe trade surplus of Country X with Country Y is defined as follows.\nTrade surplus = Exports from Country X to Country Y – Imports to Country X from Country Y.\n\nA negative trade surplus is called trade deficit."
+  },
+  {
+   "id": "q-cat-real-2025-1130-s1-reasoning-16",
+   "q": "Which among the following is the highest?",
+   "figure": null,
+   "options": [
+    "Imports by US from France",
+    "Exports by France to Japan",
+    "Exports by Japan to UK",
+    "Imports by France from India"
+   ],
+   "answer": 0,
+   "solution": "Each option is an import value, obtained as tariff $\\div$ rate (and exports equal the partner's imports):\n\n- Imports by US from France: $6 \\div 0.20 = 30$\n- Exports by France to Japan = Japan's imports from France: $3 \\div 0.30 = 10$\n- Exports by Japan to UK = UK's imports from Japan: $6 \\div 0.40 = 15$\n- Imports by France from India: $6.5 \\div 0.40 = 16.25$\n\nThe largest is **Imports by US from France (30 billion USD)**.\n**Answer: Imports by US from France**",
+   "shortcut": "Low rates inflate imports: 6 at 20% is 30, far above the others (10, 15, 16.25).",
+   "difficulty": "easy",
+   "subtopic": "venn-diagrams",
+   "pattern": "Compare derived values from two charts",
+   "timeSec": 120,
+   "group": "set4",
+   "passage": null
+  },
+  {
+   "id": "q-cat-real-2025-1130-s1-reasoning-17",
+   "q": "What is the trade surplus/trade deficit of India with UK?",
+   "figure": null,
+   "options": [
+    "Deficit of 15.0 Billion USD",
+    "Deficit of 10.0 Billion USD",
+    "Surplus of 10.0 Billion USD",
+    "Surplus of 15.0 Billion USD"
+   ],
+   "answer": 0,
+   "solution": "Trade surplus of India with UK = India's exports to UK − India's imports from UK.\n\n- India's exports to UK = UK's imports from India $= \\dfrac{3}{0.30} = 10$ billion USD.\n- India's imports from UK $= \\dfrac{5}{0.20} = 25$ billion USD.\n\nSurplus $= 10 - 25 = -15$, i.e. a **deficit of 15.0 billion USD**.\n**Answer: Deficit of 15.0 Billion USD**",
+   "shortcut": "UK's tariff on India ÷ rate gives 10 (exports); India's tariff on UK ÷ rate gives 25 (imports); 10 − 25 = −15.",
+   "difficulty": "medium",
+   "subtopic": "venn-diagrams",
+   "pattern": "Surplus = partner's imports − own imports; read both directions of the table",
+   "timeSec": 140,
+   "group": "set4",
+   "passage": null
+  },
+  {
+   "id": "q-cat-real-2025-1130-s1-reasoning-18",
+   "q": "Among France and UK, who has/have trade surplus(es) with US?",
+   "figure": null,
+   "options": [
+    "Neither France nor UK",
+    "Only UK",
+    "Both France and UK",
+    "Only France"
+   ],
+   "answer": 3,
+   "solution": "Compare each country's exports to the US (= US imports from it) with its imports from the US.\n\n**France:** exports to US $= \\dfrac{6}{0.20} = 30$; imports from US $= \\dfrac{5.5}{0.30} \\approx 18.33$. Surplus $\\approx +11.67$.\n\n**UK:** exports to US $= \\dfrac{3}{0.30} = 10$; imports from US $= \\dfrac{2.5}{0.20} = 12.5$. Surplus $= -2.5$ (a deficit).\n\nSo **only France** has a surplus with the US.\n**Answer: Only France**",
+   "shortcut": "France: 30 out vs about 18.3 in (surplus). UK: 10 out vs 12.5 in (deficit).",
+   "difficulty": "medium",
+   "subtopic": "venn-diagrams",
+   "pattern": "Compute both directions of trade for two partners",
+   "timeSec": 150,
+   "group": "set4",
+   "passage": null
+  },
+  {
+   "id": "q-cat-real-2025-1130-s1-reasoning-20",
+   "q": "Which two people tapped an equal number of times in total?",
+   "figure": null,
+   "options": [
+    "Alia and Badal",
+    "Clive and Ehsaan",
+    "Badal and Dilshan",
+    "Dilshan and Clive"
+   ],
+   "answer": 0,
+   "solution": "Let the tapping responses be 1 (Yes), 2 (No), 3 (Maybe).\n\n**Step 1: taps received.** Each question has four answers, and each of 1, 2, 3 must appear, so the fourth answer adds 1, 2 or 3 to a base of 6; every question therefore gets 7 to 9 taps. Alia received 9; Badal, Dilshan and Ehsaan received the same number $x$; Clive received $c$. Then $9 + 3x + c = 40$, i.e. $3x + c = 31$ with $x, c \\in \\{7,8,9\\}$, which only works for $x = 8$ and $c = 7$.\n\n**Step 2: totals tapped.** Dilshan made 11 taps and answered Badal with 2, so his other three answers sum to 9, meaning he tapped 3 each time. Alia tapped 6, Dilshan 11, Ehsaan 9, so Badal + Clive $= 40 - 26 = 14$. Badal gives four answers with at most two Yes, so he taps at least $1+1+2+2 = 6$; Clive taps more than Badal, and Clive's four answers can total at most 8 with the other constraints ($14 - 6$). So Badal $= 6$ and Clive $= 8$.\n\nAlia and Badal each tapped **6** times in total.\n**Answer: Alia and Badal**",
+   "shortcut": "Each question draws 7–9 taps, which forces Alia/Badal/Clive/Dilshan/Ehsaan totals 6, 6, 8, 11, 9.",
+   "difficulty": "hard",
+   "subtopic": "seating-arrangement",
+   "pattern": "Bound each total with the Yes/No/Maybe constraint and solve the totals equation",
+   "timeSec": 200,
+   "group": "set5",
+   "passage": "Alia, Badal, Clive, Dilshan, and Ehsaan played a game in which each asks a unique question to all the others and they respond by tapping their feet, either once or twice or thrice. One tap means \"Yes\", two taps mean \"No\", and three taps mean \"Maybe\".\n\nA total of 40 taps were heard across the five questions. Each question received at least one \"Yes\", one \"No\", and one \"Maybe.\"\n\nThe following information is known.\n1. Alia tapped a total of 6 times and received 9 taps to her question. She responded \"Yes\" to the questions asked by both Clive and Dilshan.\n2. Dilshan and Ehsaan tapped a total of 11 and 9 times respectively. Dilshan responded \"No\" to Badal.\n3. Badal, Dilshan, and Ehsaan received equal number of taps to their respective questions.\n4. No one responded \"Yes\" more than twice.\n5. No one's answer to Alia's question matched the answer that Alia gave to that person's question. This was also true for Ehsaan.\n6. Clive tapped more times in total than Badal."
+  },
+  {
+   "id": "q-cat-real-2025-1130-s1-reasoning-21",
+   "q": "What was Clive's response to Ehsaan's question?",
+   "figure": null,
+   "options": [
+    "Yes",
+    "Maybe",
+    "Cannot be determined",
+    "No"
+   ],
+   "answer": 3,
+   "solution": "From the earlier steps, Dilshan always tapped 3 except for Badal, to whom he tapped 2; Badal, Dilshan and Ehsaan each received 8 taps, and Clive received 7. Working through the remaining cases with the rule that no one's answer to Alia's question equals Alia's answer to theirs (and likewise for Ehsaan), and that nobody says Yes more than twice, gives exactly one table. Rows are the person who asked, columns are the answers given by Alia, Badal, Clive, Dilshan, Ehsaan:\n\n| Asked by | Alia | Badal | Clive | Dilshan | Ehsaan | Total |\n|---|---|---|---|---|---|---|\n| Alia | - | 1 | 2 | 3 | 3 | 9 |\n| Badal | 2 | - | 1 | 2 | 3 | 8 |\n| Clive | 1 | 2 | - | 3 | 1 | 7 |\n| Dilshan | 1 | 2 | 3 | - | 2 | 8 |\n| Ehsaan | 2 | 1 | 2 | 3 | - | 8 |\n\nTotals tapped: Alia 6, Badal 6, Clive 8, Dilshan 11, Ehsaan 9, which matches every clue.\n\nClive's answer to Ehsaan's question is 2 taps, i.e. **No**.\n**Answer: No**",
+   "shortcut": "The final table has Clive tapping twice for Ehsaan's question, which is a No.",
+   "difficulty": "hard",
+   "subtopic": "seating-arrangement",
+   "pattern": "Complete a response matrix from row and column totals",
+   "timeSec": 160,
+   "group": "set5",
+   "passage": null
+  }
+ ]
+}

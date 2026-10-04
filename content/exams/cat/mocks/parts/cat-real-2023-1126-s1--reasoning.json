@@ -1,0 +1,166 @@
+{
+ "mockId": "cat-real-2023-1126-s1",
+ "sectionId": "reasoning",
+ "questions": [
+  {
+   "id": "q-cat-real-2023-1126-s1-reasoning-1",
+   "q": "Which two candidates can belong to the same department?",
+   "figure": null,
+   "options": [
+    "Prof. Pakrasi and Prof. Samuel",
+    "Prof. Pakrasi and Prof. Qureshi",
+    "Prof. Qureshi and Prof. Ramaswamy",
+    "Prof. Ramaswamy and Prof. Samuel"
+   ],
+   "answer": 1,
+   "solution": "Each candidate's own vote is fixed: Pakrasi voted Ramaswamy, Qureshi voted Samuel, Ramaswamy voted Qureshi, Samuel voted Pakrasi. So the non-candidate votes are Pakrasi 3-1=2, Qureshi 14-1=13, Ramaswamy 6-1=5, Samuel 1-1=0. A department's non-candidates all back one outsider, and department strengths are F&A 9, M&S 7, O&Q 5, B&H 3. Qureshi's 13 can only be F&A's 9 plus O&Q's 4 (one candidate there), so F&A fields no candidate and Qureshi is in neither department. Ramaswamy's 5 is exactly M&S minus two candidates, and Pakrasi's 2 is B&H minus its one candidate (Ramaswamy). Hence M&S holds Qureshi plus one of Pakrasi/Samuel, B&H holds Ramaswamy, and O&Q holds the other of Pakrasi/Samuel — Pakrasi and Qureshi can share M&S (B). Pakrasi with Samuel is impossible: with both in M&S, Samuel could not have voted for Pakrasi.\n**Answer: Prof. Pakrasi and Prof. Qureshi**",
+   "shortcut": "Subtract each candidate's cross-vote from his tally to get the non-candidate votes, then split 13 as 9+4.",
+   "difficulty": "hard",
+   "subtopic": "seating-arrangement",
+   "pattern": "Vote arithmetic from candidate cross-votes",
+   "timeSec": 150,
+   "group": "set1",
+   "passage": "Faculty members in a management school can belong to one of four departments – Finance and Accounting (F&A), Marketing and Strategy (M&S), Operations and Quants (O&Q) and Behaviour and Human Resources (B&H). The numbers of faculty members in F&A, M&S, O&Q and B&H departments are 9, 7, 5 and 3 respectively.\n\nProf. Pakrasi, Prof. Qureshi, Prof. Ramaswamy and Prof. Samuel are four members of the school's faculty who were candidates for the post of the Dean of the school. Only one of the candidates was from O&Q.\n\nEvery faculty member, including the four candidates, voted for the post. In each department, all the faculty members who were not candidates voted for the same candidate. The rules for the election are listed below.\n\n1. There cannot be more than two candidates from a single department.\n2. A candidate cannot vote for himself/herself.\n3. Faculty members cannot vote for a candidate from their own department.\n\nAfter the election, it was observed that Prof. Pakrasi received 3 votes, Prof. Qureshi received 14 votes, Prof. Ramaswamy received 6 votes and Prof. Samuel received 1 vote. Prof. Pakrasi voted for Prof. Ramaswamy, Prof. Qureshi for Prof. Samuel, Prof. Ramaswamy for Prof. Qureshi and Prof. Samuel for Prof. Pakrasi."
+  },
+  {
+   "id": "q-cat-real-2023-1126-s1-reasoning-2",
+   "q": "Which of the following can be the number of votes that Prof. Qureshi received from a single department?",
+   "figure": null,
+   "options": [
+    "8",
+    "7",
+    "9",
+    "6"
+   ],
+   "answer": 2,
+   "solution": "From the reconstruction: F&A has no candidates, so all its 9 members vote for Qureshi. The other contributions to him are O&Q's 4 non-candidates; M&S's 5 non-candidates back Ramaswamy and B&H's 2 back Pakrasi. A single department can therefore give Qureshi only 9 — 8, 7 or 6 would require a department with that many non-candidates, and none exists (F&A's 9 is untouched by any candidate, M&S's maximum free strength is 5 once its two candidates are placed). Answer: 9 (C).\n**Answer: 9**",
+   "shortcut": "With F&A candidate-free, its full 9 go to Qureshi; check no other department can give him more.",
+   "difficulty": "medium",
+   "subtopic": "seating-arrangement",
+   "pattern": "Department contribution analysis",
+   "timeSec": 120,
+   "group": "set1",
+   "passage": null
+  },
+  {
+   "id": "q-cat-real-2023-1126-s1-reasoning-3",
+   "q": "If Prof. Samuel belongs to B&H, which of the following statements is/are true?\n\nStatement A: Prof. Pakrasi belongs to M&S.\nStatement B: Prof. Ramaswamy belongs to O&Q.",
+   "figure": null,
+   "options": [
+    "Both statements A and B",
+    "Only statement B",
+    "Only statement A",
+    "Neither statement A nor statement B"
+   ],
+   "answer": 0,
+   "solution": "Fixing Samuel in B&H: B&H's single candidate is Samuel, so its 2 non-candidates still give Pakrasi his 2 votes. M&S must then hold two candidates whose removal leaves Ramaswamy's 5 — those are Qureshi and Pakrasi — leaving O&Q's single seat to Ramaswamy. Every cross-vote checks out (Pakrasi to Ramaswamy, Qureshi to Samuel, Ramaswamy to Qureshi, Samuel to Pakrasi, each across departments). So Pakrasi is in M&S (A true) and Ramaswamy in O&Q (B true): both statements hold (A).\n**Answer: Both statements A and B**",
+   "shortcut": "Pin Samuel in B&H and re-run the split: M&S must carry Qureshi and Pakrasi, O&Q Ramaswamy.",
+   "difficulty": "hard",
+   "subtopic": "seating-arrangement",
+   "pattern": "Constraint propagation with a fixed department",
+   "timeSec": 140,
+   "group": "set1",
+   "passage": null
+  },
+  {
+   "id": "q-cat-real-2023-1126-s1-reasoning-4",
+   "q": "What best can be concluded about the candidate from O&Q?",
+   "figure": null,
+   "options": [
+    "It was either Prof. Pakrasi or Prof. Qureshi.",
+    "It was Prof. Samuel.",
+    "It was Prof. Ramaswamy.",
+    "It was either Prof. Ramaswamy or Prof. Samuel."
+   ],
+   "answer": 3,
+   "solution": "The two consistent arrangements are: M&S = {Qureshi, Pakrasi}, B&H = {Ramaswamy}, O&Q = {Samuel}; and M&S = {Qureshi, Pakrasi}, B&H = {Samuel}, O&Q = {Ramaswamy}. A third idea — Pakrasi in O&Q with Qureshi and Samuel sharing M&S — fails because Samuel could not then have voted for Qureshi (same department). F&A is impossible since Qureshi draws its 9 votes as an outsider. So the O&Q candidate is either Ramaswamy or Samuel (D).\n**Answer: It was either Prof. Ramaswamy or Prof. Samuel.**",
+   "shortcut": "Try each candidate in O&Q; the cross-vote rule kills one case, leaving Ramaswamy or Samuel.",
+   "difficulty": "hard",
+   "subtopic": "seating-arrangement",
+   "pattern": "Case enumeration with vote-rule filter",
+   "timeSec": 120,
+   "group": "set1",
+   "passage": null
+  },
+  {
+   "id": "q-cat-real-2023-1126-s1-reasoning-5",
+   "q": "Which of the following statements is/are true?\n\nStatement A: Non-candidates from M&S voted for Prof. Qureshi.\nStatement B: Non-candidates from F&A voted for Prof. Qureshi.",
+   "figure": null,
+   "options": [
+    "Only statement B",
+    "Only statement A",
+    "Both statements A and B",
+    "Neither statement A nor statement B"
+   ],
+   "answer": 0,
+   "solution": "In the unique vote split, M&S's 5 non-candidates all voted for Ramaswamy — so Statement A is false. F&A's 9 non-candidates all voted for Qureshi — Statement B is true. Only statement B holds (A).\n**Answer: Only statement B**",
+   "shortcut": "Ramaswamy's 5 come from M&S; Qureshi's 9 come from F&A.",
+   "difficulty": "easy",
+   "subtopic": "seating-arrangement",
+   "pattern": "Read the vote split off the reconstruction",
+   "timeSec": 100,
+   "group": "set1",
+   "passage": null
+  },
+  {
+   "id": "q-cat-real-2023-1126-s1-reasoning-13",
+   "q": "Which of the following is the closest to the time when Nandini's application process got over?",
+   "figure": null,
+   "options": [
+    "9:35 am",
+    "9:50 am",
+    "9:37 am",
+    "9:45 am"
+   ],
+   "answer": 3,
+   "solution": "Per slot the mix is 5 US + 3 Schengen + 2 Others (UK has none): US takes half of the 200 applications, and the 9:15 slot holds Ira, Vijay and Nandini (Schengen) while the 9:30 slot holds Mahira and Osman (Others), forcing the 3+2 split. The two Schengen counters free up at 9:25, when Ira and Vijay are called; with 10-minute Schengen processing both finish at 9:35, and Nandini, next in the category queue, is processed 9:35-9:45. She is done closest to 9:45 am (D).\n**Answer: 9:45 am**",
+   "shortcut": "Two Schengen counters open at 9:25; the third member of the trio starts when the first frees.",
+   "difficulty": "medium",
+   "subtopic": "seating-arrangement",
+   "pattern": "Slot arithmetic with category-wise counters",
+   "timeSec": 120,
+   "group": "set3",
+   "passage": "A visa processing office (VPO) accepts visa applications in four categories – US, UK, Schengen, and Others. The applications are scheduled for processing in twenty 15-minute slots starting at 9:00 am and ending at 2:00 pm. Ten applications are scheduled in each slot.\nThere are ten counters in the office, four dedicated to US applications, and two each for UK applications, Schengen applications and Others applications. Applicants are called in for processing sequentially on a first-come-first-served basis whenever a counter gets freed for their category. The processing time for an application is the same within each category. But it may vary across the categories. Each US and UK application requires 10 minutes of processing time. Depending on the number of applications in a category and time required to process an application for that category, it is possible that an applicant for a slot may be processed later.\nOn a particular day, Ira, Vijay and Nandini were scheduled for Schengen visa processing in that order. They had a 9:15 am slot but entered the VPO at 9:20 am. When they entered the office, exactly six out of the ten counters were either processing applications, or had finished processing one and ready to start processing the next.\nMahira and Osman were scheduled in the 9:30 am slot on that day for visa processing in the Others category.\nThe following additional information is known about that day.1. All slots were full.2. The number of US applications was the same in all the slots. The same was true for the other three categories.3. 50% of the applications were US applications.4. All applicants except Ira, Vijay and Nandini arrived on time.5. Vijay was called to a counter at 9:25 am."
+  },
+  {
+   "id": "q-cat-real-2023-1126-s1-reasoning-14",
+   "q": "Which of the following statements is false?",
+   "figure": null,
+   "options": [
+    "The application process of Mahira was completed before Nandini's.",
+    "The application process of Osman was completed before Vijay's.",
+    "The application process of Osman was completed before 9:45 am.",
+    "The application process of Mahira started after Nandini's."
+   ],
+   "answer": 3,
+   "solution": "Others processing is 5 minutes per application (with 10 minutes, Mahira could not finish before Nandini). The Others counters are free by 9:30, so Mahira and Osman start at 9:30 and finish at 9:35. Nandini runs 9:35-9:45. So Mahira started (9:30) and finished (9:35) before Nandini started (9:35) — statement D (\"Mahira started after Nandini's\") is false. Osman finished at 9:35, no later than Vijay (B true), and before 9:45 (C true), and Mahira did finish before Nandini (A true). Answer: D.\n**Answer: The application process of Mahira started after Nandini's.**",
+   "shortcut": "Others jobs take 5 minutes; Mahira and Osman run 9:30-9:35, before Nandini's 9:45 finish.",
+   "difficulty": "medium",
+   "subtopic": "seating-arrangement",
+   "pattern": "Timeline comparison across categories",
+   "timeSec": 120,
+   "group": "set3",
+   "passage": null
+  },
+  {
+   "id": "q-cat-real-2023-1126-s1-reasoning-15",
+   "q": "When did the application processing for all US applicants get over on that day?",
+   "figure": null,
+   "options": [
+    "2:25 pm",
+    "3:40 pm",
+    "2:00 pm",
+    "2:05 pm"
+   ],
+   "answer": 3,
+   "solution": "US applications number 100 (5 per slot), each needing 10 minutes on one of 4 dedicated counters. Every slot adds 50 counter-minutes of work against 60 available, so a queue of one or two applicants persists all day rather than clearing. Walking the first-come-first-served flow through the twenty slots, the last slot's five applications (1:45 pm) start clearing from 1:45-1:55, and the very last US application finishes at 2:05 pm (D).\n**Answer: 2:05 pm**",
+   "shortcut": "5 US jobs of 10 min on 4 counters = 50 min of work per 15-min slot: a small queue rides through the day.",
+   "difficulty": "hard",
+   "subtopic": "seating-arrangement",
+   "pattern": "Queue-flow simulation over 20 slots",
+   "timeSec": 130,
+   "group": "set3",
+   "passage": null
+  }
+ ]
+}

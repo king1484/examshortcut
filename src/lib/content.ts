@@ -207,6 +207,30 @@ export const MOCK_DEFS: MockDef[] = [
     blurb: 'Real questions from the SSC GD Constable 2026 paper held on 5 May 2026 (Shift 1), official answers, original step-by-step solutions. 76 of the 80 questions — a few passage-based and unverifiable ones are left out.',
   },
   {
+    id: 'gd-real-2026-0428-s1', title: 'GD Constable 2026 — real paper, 28 Apr Shift 1', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
+    exam: 'ssc-gd',
+    blurb: 'Real questions from the SSC GD Constable 2026 paper held on 28 Apr 2026 (Shift 1), official answers, original step-by-step solutions. 78 of the 80 questions.',
+  },
+  {
+    id: 'gd-real-2026-0428-s2', title: 'GD Constable 2026 — real paper, 28 Apr Shift 2', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
+    exam: 'ssc-gd',
+    blurb: 'Real questions from the SSC GD Constable 2026 paper held on 28 Apr 2026 (Shift 2), official answers, original step-by-step solutions. 80 questions.',
+  },
+  {
+    id: 'gd-real-2026-0506-s1', title: 'GD Constable 2026 — real paper, 6 May Shift 1', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
+    exam: 'ssc-gd',
+    blurb: 'Real questions from the SSC GD Constable 2026 paper held on 6 May 2026 (Shift 1), official answers, original step-by-step solutions. 78 of the 80 questions — two image-based ones are left out.',
+  },
+  {
+    id: 'gd-real-2026-0506-s2', title: 'GD Constable 2026 — real paper, 6 May Shift 2', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
+    exam: 'ssc-gd',
+    blurb: 'Real questions from the SSC GD Constable 2026 paper held on 6 May 2026 (Shift 2), official answers, original step-by-step solutions. 72 of the 80 questions — image-based and unanswerable ones are left out.',
+  },
+  {
     id: 'mts-real-2025-0205-s1', title: 'MTS 2025 — real paper, 5 Feb 2026 Shift 1', kind: 'real-pyq', tier: 1,
     durationMin: 90, plus: 3, minus: 0, sections: ['quant', 'reasoning', 'ga', 'english'], open: true,
     exam: 'ssc-mts',
@@ -225,10 +249,22 @@ export const MOCK_DEFS: MockDef[] = [
     blurb: '100 questions · 100 marks · 90 minutes · −0.33 per wrong answer. GA 40, Maths 30, Reasoning 30 — real CBT-1 difficulty.',
   },
   {
+    id: 'ntpc-g-real-2026-0316-s1', title: 'NTPC CBT 1 — real paper, 16 Mar 2026 Shift 1', kind: 'real-pyq', tier: 1,
+    durationMin: 90, plus: 1, minus: 0.33, sections: ['ga', 'quant', 'reasoning'], open: true,
+    exam: 'rrb-ntpc',
+    blurb: 'Real questions from the RRB NTPC CBT 1 paper held on 16 Mar 2026 (Shift 1), official answers, original step-by-step solutions. 83 questions — a few image-based ones are left out.',
+  },
+  {
     id: 'groupd-cbt-mock-1', title: 'Group D CBT Full Mock 1', kind: 'full', tier: 1,
     durationMin: 90, plus: 1, minus: 0.33, sections: ['quant', 'reasoning', 'ga'], open: true,
     exam: 'rrb-group-d',
     blurb: '100 questions · 100 marks · 90 minutes · −0.33 per wrong answer. Maths 25, Reasoning 30, General Science + GA 45.',
+  },
+  {
+    id: 'groupd-real-2025-1127-s1', title: 'Group D CBT 1 — real paper, 27 Nov 2025 Shift 1', kind: 'real-pyq', tier: 1,
+    durationMin: 90, plus: 1, minus: 0.33, sections: ['quant', 'reasoning', 'ga'], open: true,
+    exam: 'rrb-group-d',
+    blurb: 'Real questions from the RRB Group D CBT 1 held on 27 Nov 2025 (Shift 1) — memory-based reproduction with the published answer key, fresh step-by-step solutions. 59 questions (Maths 18, Reasoning 21, GA & Current Affairs 20) — the Science set was never published and provably-wrong keys are dropped.',
   },
   {
     id: 'cat-mock-1', title: 'CAT Full Mock 1', kind: 'full', tier: 1,
@@ -238,10 +274,49 @@ export const MOCK_DEFS: MockDef[] = [
     blurb: 'CAT pattern — VARC 24, DILR 22, QA 22 · 68 questions · 204 marks · +3 / −1 · 40 minutes per section (try keeping 40 each in this combined 120-minute run).',
   },
   {
+    id: 'cat-real-2023-1126-s1', title: 'CAT 2023 Slot 1 — real paper', kind: 'real-pyq', tier: 1,
+    durationMin: 120, plus: 3, minus: 1, sections: ['english', 'reasoning', 'quant'], open: true,
+    exam: 'cat',
+    sectionNames: { english: 'VARC', reasoning: 'DILR', quant: 'QA' },
+    blurb: 'Real questions from CAT 2023 Slot 1 (26 Nov 2023), official answer key, original step-by-step solutions. 42 of the 68 questions — type-in-answer and image-only sets are dropped.',
+  },
+  {
+    id: 'cat-real-2024-1124-s1', title: 'CAT 2024 Slot 1 — real paper', kind: 'real-pyq', tier: 1,
+    durationMin: 120, plus: 3, minus: 1, sections: ['english', 'reasoning', 'quant'], open: true,
+    exam: 'cat',
+    sectionNames: { english: 'VARC', reasoning: 'DILR', quant: 'QA' },
+    blurb: 'Real questions from CAT 2024 Slot 1 (24 Nov 2024), official answer key, original step-by-step solutions. 41 of the 68 questions — type-in-answer and image-only sets are dropped.',
+  },
+  {
+    id: 'cat-real-2025-1130-s1', title: 'CAT 2025 Slot 1 — real paper', kind: 'real-pyq', tier: 1,
+    durationMin: 120, plus: 3, minus: 1, sections: ['english', 'reasoning', 'quant'], open: true,
+    exam: 'cat',
+    sectionNames: { english: 'VARC', reasoning: 'DILR', quant: 'QA' },
+    blurb: 'Real questions from CAT 2025 Slot 1 (30 Nov 2025), official answer key, original step-by-step solutions. 39 of the 68 questions — type-in-answer and image-only sets are dropped.',
+  },
+  {
     id: 'cpo-p1-real-2025-1209-s1', title: 'CPO 2025 Paper 1 — real paper, 9 Dec Shift 1', kind: 'real-pyq', tier: 1,
     durationMin: 120, plus: 1, minus: 0.25, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
     exam: 'ssc-cpo',
-    blurb: 'Real questions from the SSC CPO 2025 Paper 1 held on 9 Dec 2025 (Shift 1) — the pre-2026 200-question pattern. Official answers, original step-by-step solutions. 195 questions · 200 marks · −0.25 per wrong answer.',
+    blurb: 'Real questions from the SSC CPO 2025 Paper 1 held on 9 Dec 2025 (Shift 1) — the pre-2026 200-question pattern. Official answers, original step-by-step solutions. 188 of 200 questions · −0.25 per wrong answer.',
+  },
+  {
+    id: 'cpo-p1-real-2025-1209-s2', title: 'CPO 2025 Paper 1 — real paper, 9 Dec Shift 2', kind: 'real-pyq', tier: 1,
+    durationMin: 120, plus: 1, minus: 0.25, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
+    exam: 'ssc-cpo',
+    blurb: 'Real questions from the SSC CPO 2025 Paper 1 held on 9 Dec 2025 (Shift 2) — the pre-2026 200-question pattern. Official answers, original step-by-step solutions. 195 of 200 questions · −0.25 per wrong answer.',
+  },
+  {
+    id: 'cpo-p1-real-2025-1210-s1', title: 'CPO 2025 Paper 1 — real paper, 10 Dec Shift 1', kind: 'real-pyq', tier: 1,
+    durationMin: 120, plus: 1, minus: 0.25, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
+    exam: 'ssc-cpo',
+    blurb: 'Real questions from the SSC CPO 2025 Paper 1 held on 10 Dec 2025 (Shift 1) — the pre-2026 200-question pattern. Official answers, original step-by-step solutions. 187 of 200 questions · −0.25 per wrong answer.',
+  },
+  {
+    id: 'cpo-p1-real-2025-1210-s2', title: 'CPO 2025 Paper 1 — real paper, 10 Dec Shift 2', kind: 'real-pyq', tier: 1,
+    durationMin: 120, plus: 1, minus: 0.25, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
+    exam: 'ssc-cpo',
+    blurb: 'Real questions from the SSC CPO 2025 Paper 1 held on 10 Dec 2025 (Shift 2) — the pre-2026 200-question pattern. Official answers, original step-by-step solutions. 192 of 200 questions · −0.25 per wrong answer.',
   },
   {
     id: 'ibps-po-pre-mock-1', title: 'IBPS PO Prelims Mock 1', kind: 'full', tier: 1,
@@ -250,10 +325,34 @@ export const MOCK_DEFS: MockDef[] = [
     blurb: 'Prelims pattern — English 30, Quant 35, Reasoning 35 · 100 questions · 60 minutes · +1 / −0.25 for every question (a simple practice scale — the real 2026 prelims weights sections differently, see the exam pattern page). The real test gives 20 minutes per section; try keeping 20 each in this combined run.',
   },
   {
+    id: 'ibps-po-real-2026-0822-s1', title: 'IBPS PO 2026 Prelims — real paper, 22 Aug Shift 1', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 1, minus: 0.25, sections: ['english', 'quant', 'reasoning'], open: true,
+    exam: 'ibps-po',
+    blurb: 'Real questions from the IBPS PO 2026 prelims held on 22 Aug 2026 (Shift 1) — memory-based reproduction with the original answer keys, fresh step-by-step solutions for every question. 96 of the 100 questions.',
+  },
+  {
+    id: 'ibps-po-real-2026-0823-s1', title: 'IBPS PO 2026 Prelims — real paper, 23 Aug Shift 1', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 1, minus: 0.25, sections: ['english', 'quant', 'reasoning'], open: true,
+    exam: 'ibps-po',
+    blurb: 'Real questions from the IBPS PO 2026 prelims held on 23 Aug 2026 (Shift 1) — memory-based reproduction with the original answer keys, fresh step-by-step solutions for every question. 90 of the 100 questions.',
+  },
+  {
     id: 'ibps-clerk-pre-mock-1', title: 'IBPS Clerk Prelims Mock 1', kind: 'full', tier: 1,
     durationMin: 60, plus: 1, minus: 0.25, sections: ['english', 'quant', 'reasoning'], open: true,
     exam: 'ibps-clerk',
     blurb: 'Prelims pattern — English 30, Numerical Ability 35, Reasoning 35 · 100 questions · 100 marks · 60 minutes · +1 / −0.25 · the real test gives 20 minutes per section; try keeping 20 each in this combined run.',
+  },
+  {
+    id: 'ibps-clerk-real-2025-1004-s2', title: 'IBPS Clerk 2025 Prelims — real paper, 4 Oct Shift 2', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 1, minus: 0.25, sections: ['quant', 'english', 'reasoning'], open: true,
+    exam: 'ibps-clerk',
+    blurb: 'Real questions from the IBPS Clerk 2025 prelims held on 4 Oct 2025 (Shift 2) — memory-based reproduction with the original answer keys, fresh step-by-step solutions for every question. 100 questions · 100 marks · +1 / −0.25.',
+  },
+  {
+    id: 'ibps-clerk-real-2025-1004-s3', title: 'IBPS Clerk 2025 Prelims — real paper, 4 Oct Shift 3', kind: 'real-pyq', tier: 1,
+    durationMin: 60, plus: 1, minus: 0.25, sections: ['english', 'quant', 'reasoning'], open: true,
+    exam: 'ibps-clerk',
+    blurb: 'Real questions from the IBPS Clerk 2025 prelims held on 4 Oct 2025 (Shift 3) — memory-based reproduction with the original answer keys, fresh step-by-step solutions for every question. 95 of the 100 questions.',
   },
 ];
 
