@@ -5,8 +5,8 @@ import { EXAMS } from '@/lib/exams';
 
 export const dynamic = 'force-static';
 export const metadata: Metadata = {
-  title: "Choose your exam — SSC & Railway exams",
-  description: 'SSC CGL, CHSL, MTS, GD Constable, RRB NTPC and RRB Group D — pattern, eligibility, posts, selection process and FAQs, with shared maths, reasoning, English and GA notes, practice and tracking.',
+  title: "Choose your exam — SSC, Railway, Banking & CAT",
+  description: 'SSC CGL, CHSL, MTS, GD, CPO, RRB NTPC, RRB Group D, IBPS PO, IBPS Clerk and CAT — pattern, eligibility, posts, selection process and FAQs, with shared maths, reasoning, English and GA notes, practice and tracking.',
   alternates: { canonical: '/exams/' },
 };
 
@@ -17,7 +17,7 @@ export default function ExamsPage() {
       <div>
         <h1 className="text-3xl sm:text-4xl font-extrabold">Exams</h1>
         <p className="muted mt-2 max-w-3xl">
-          SSC and Railway exams test the same core subjects — maths, reasoning, English and general
+          SSC, Railway, Banking and CAT exams mostly test the same core subjects — maths, reasoning, English and general
           awareness. Choose your exam and ExamShortcut shows the subjects it tests, and tracks your preparation for it.
         </p>
       </div>

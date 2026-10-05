@@ -13,9 +13,9 @@ const sans = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-sans', di
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://examshortcut.in'),
-  title: { default: 'ExamShortcut — SSC & Railway Exam Preparation', template: '%s · ExamShortcut' },
+  title: { default: 'ExamShortcut — SSC, Railway, Banking & CAT Exam Preparation', template: '%s · ExamShortcut' },
   description:
-    'Prepare for SSC, Railway, teaching and entrance exams: topic notes, shortcut tricks, practice sets, a daily quiz, full mocks, cutoffs and current affairs.',
+    'Prepare for SSC, Railway, Banking and CAT exams: topic notes, shortcut tricks, practice sets, a daily quiz, full mocks, cutoffs and current affairs.',
   authors: [{ name: 'Vinay', url: 'https://www.instagram.com/vinni1484' }],
   creator: 'Vinay',
   manifest: '/manifest.webmanifest',

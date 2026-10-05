@@ -27,7 +27,7 @@ export default function Home() {
       <section className="text-center max-w-3xl mx-auto pt-8 pb-4 sm:pt-14">
         <ExamNotice exam="SSC CGL" stage="Tier 1" start="2026-09-30" end="2026-10-30" href="/exams/ssc-cgl/#status" builtAt={BUILT_AT} />
         <div className="flex justify-center gap-2 flex-wrap mt-4">
-          <span className="chip chip-high">SSC · Railways</span>
+          <span className="chip chip-high">SSC · Railways · Banking · CAT</span>
         </div>
         <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight mt-4 leading-tight">
           Prepare for any exam with<br /><span style={{ color: 'var(--brand)' }}>shortcuts, not slog</span>
