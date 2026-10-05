@@ -78,10 +78,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">{children}</main>
         <footer className="border-t mt-10" style={{ borderColor: 'var(--line)' }}>
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 text-sm faint space-y-3">
-            <p>
-              📣 Daily shortcut tricks on Telegram —{' '}
-              <a href="https://t.me/examshortcutin" target="_blank" rel="noopener" className="underline font-medium">join the channel</a>
-            </p>
+            <a
+              href="https://t.me/examshortcutin"
+              target="_blank"
+              rel="noopener"
+              aria-label="Join our Telegram channel for daily shortcut tricks"
+              className="inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-sm font-semibold text-white"
+              style={{ backgroundColor: '#229ED9' }}
+            >
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                <path d="M21.9 4.6c.3-1.2-.9-2.2-2-1.7L2.7 9.6c-1.2.5-1.2 2.2.1 2.6l4.4 1.4 1.7 5.4c.4 1.1 1.8 1.4 2.6.5l2.4-2.5 4.5 3.3c1 .8 2.5.2 2.7-1.1l2.8-14.6zM8.5 13.1l9.7-6.1c.2-.1.4.2.2.3l-8 7.4-.3 3.2-1.6-4.8z" />
+              </svg>
+              Join Telegram
+            </a>
             <div className="flex flex-wrap gap-x-5 gap-y-2">
               <Link href="/exams/">All exams</Link>
               <Link href="/learn/">Subjects &amp; notes</Link>
@@ -116,19 +125,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </p>
           </div>
         </footer>
-        <a
-          href="https://t.me/examshortcutin"
-          target="_blank"
-          rel="noopener"
-          aria-label="Join our Telegram channel for daily tricks"
-          className="fixed bottom-4 right-4 z-40 flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold text-white shadow-lg print:hidden"
-          style={{ backgroundColor: '#229ED9' }}
-        >
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
-            <path d="M21.9 4.6c.3-1.2-.9-2.2-2-1.7L2.7 9.6c-1.2.5-1.2 2.2.1 2.6l4.4 1.4 1.7 5.4c.4 1.1 1.8 1.4 2.6.5l2.4-2.5 4.5 3.3c1 .8 2.5.2 2.7-1.1l2.8-14.6zM8.5 13.1l9.7-6.1c.2-.1.4.2.2.3l-8 7.4-.3 3.2-1.6-4.8z" />
-          </svg>
-          Join Telegram
-        </a>
         <NavLoader />
         <SwRegister />
         {/* lazyOnload: gtag.js is ~170 KB and ~0.8 s of main-thread work on mobile; load it after the page is idle */}
