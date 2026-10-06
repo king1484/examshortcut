@@ -30,7 +30,8 @@ Only include shifts the source actually discusses. If the source is about an ear
 
 MERGE_SYS = """You write one shift's entry for an exam-analysis website from several extracted source reports. Reply with ONE JSON object and nothing else.
 Style: plain, short sentences, neutral, like a careful student writing notes. Say 'reported' or 'candidates said'. No hype, no marketing words, no em dashes (use commas or colons; en dash only in numeric ranges). All figures are unofficial.
-Use ONLY facts present in the reports. Where reports disagree, say so in "disagreements" instead of picking one. Do not invent topics, counts or questions. If a section has no data, set difficulty "Not reported" and leave topics empty.
+Use ONLY facts present in the reports. Do not invent topics, counts or questions.
+Aggregate, never answer 'Varied' or 'Not reported' when any report gives a level. "overall" and every section "difficulty" must be a short label built from the reports: the most common level, or a range such as "Easy to Moderate" when reports spread (use only Easy / Easy to Moderate / Moderate / Moderate to Difficult / Difficult). Add "(most reports)" or "(reports differ)" only if useful. "goodAttempts" is a figure range from the reports, for example "78–92 overall" (section: "20–23"); it is the number of questions candidates said they attempted well. Put any real disagreement in "disagreements" as a sentence naming the split (for example '4 reports called Quant easy, 2 called it difficult'). Only if NO report mentions a section or the overall level, set it to "Not reported". Leave topics empty for a section with no data.
 Schema: {"overall":str,"goodAttempts":str,"summary":"3-5 sentences","sections":{"reasoning":{"difficulty":str,"goodAttempts":str|null,"notes":"1-3 sentences","topics":[{"topic":str,"count":str|null}]},"ga":{...},"quant":{...},"english":{...}},
 "asked":[{"section":"reasoning|ga|quant|english","q":str}],"observations":[str],"disagreements":[str]}
 Limit: topics max 8 per section, asked max 14, observations max 4, disagreements max 4."""
@@ -140,8 +141,10 @@ def build_shift(date, n, extractions, valid_topics):
 
 def quality(sh):
     """How many headline fields carry real content (a shift full of 'Not reported' is worth less than one with data)."""
-    q = sum(1 for k in ("overall", "goodAttempts") if sh.get(k) and not str(sh[k]).startswith("Not "))
-    q += sum(1 for s in sh.get("sections") or [] if s.get("difficulty") and not str(s["difficulty"]).startswith("Not "))
+    def real(v):
+        return bool(v) and not str(v).startswith(("Not ", "Varied"))
+    q = sum(1 for k in ("overall", "goodAttempts") if real(sh.get(k)))
+    q += sum(1 for s in sh.get("sections") or [] if real(s.get("difficulty")))
     return q + min(len(sh.get("asked") or []), 6) / 10
 
 
