@@ -186,8 +186,9 @@ def transcript(vid: str, use_yt: bool = True, use_api: bool = True):
     t = {"lang": "", "text": "", "error": "skipped"}
     if use_yt:
         t = yt_transcript(vid)
-        if t.get("text") or "no captions" in t.get("error", ""):
+        if t.get("text"):
             return t
+        # A blocked/proxied request can surface as "no captions", so never trust that: try the API too.
         print(f"  yt transcript {vid}: {t.get('error', '?')[:110]}", file=sys.stderr)
         t["yt_blocked"] = True            # blocked or any other failure: try the free API fallback
     if use_api:
@@ -299,7 +300,7 @@ def main():
                 yt_ok = False
             if t.get("blocked"):
                 api_ok = False
-            if t.get("text") or "no captions" in t.get("error", ""):
+            if t.get("text"):                 # cache only real transcripts; "no captions" can be a disguised block
                 json.dump(t, open(cf, "w", encoding="utf8"), ensure_ascii=False)
             time.sleep(random.uniform(1.0, 2.5))
         t = t or {"text": "", "error": "skipped: transcript routes blocked earlier in this run"}
