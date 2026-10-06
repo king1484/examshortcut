@@ -114,6 +114,7 @@ def build_shift(date, n, extractions, valid_topics):
     payload = [{"source": e["channel"][:40], "type": e["kind"], "reports": f} for e, f in rel]
     m = ask_json(MERGE_SYS, f"Date: {date}, Shift {n}.\nExtracted reports:\n" + json.dumps(payload, ensure_ascii=False)[:60000], max_tokens=7000, log=log)
     m = clean_tree(m)
+    log(f"  merge shift {n}: {len(rel)} sources, payload {len(json.dumps(payload, ensure_ascii=False))} chars -> overall={m.get('overall')!r} good={m.get('goodAttempts')!r} sections={ {k: (v or {}).get('difficulty') for k, v in (m.get('sections') or {}).items()} }")
     secs = []
     for sid, name in SECTIONS:
         s = (m.get("sections") or {}).get(sid) or {}
