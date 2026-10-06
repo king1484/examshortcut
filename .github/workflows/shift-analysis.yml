@@ -23,6 +23,10 @@ on:
         description: 'Work on the date even if all shifts look done'
         type: boolean
         default: false
+      build_check:
+        description: 'Only test validate + build on the runner (skips collect, commit and deploy)'
+        type: boolean
+        default: false
 
 concurrency:
   group: shift-analysis
@@ -64,6 +68,7 @@ jobs:
           restore-keys: shift-cache-
 
       - name: Collect and analyse
+        if: inputs.build_check != true
         run: |
           args=""
           if [ -n "${{ inputs.date }}" ]; then args="$args --date ${{ inputs.date }}"; fi
@@ -73,7 +78,7 @@ jobs:
       - name: Detect changes
         id: diff
         run: |
-          if [ -n "$(git status --porcelain content/shift-analysis)" ]; then echo "changed=true" >> "$GITHUB_OUTPUT"; fi
+          if [ -n "$(git status --porcelain content/shift-analysis)" ] || [ "${{ inputs.build_check }}" = "true" ]; then echo "changed=true" >> "$GITHUB_OUTPUT"; fi
 
       - uses: actions/setup-node@v4
         if: steps.diff.outputs.changed == 'true'
@@ -99,7 +104,7 @@ jobs:
           test -f out/exam-analysis/ssc-cgl-2026/index.html
 
       - name: Commit data
-        if: steps.diff.outputs.changed == 'true'
+        if: steps.diff.outputs.changed == 'true' && inputs.build_check != true
         run: |
           git config user.name "shift-analysis-bot"
           git config user.email "shift-analysis-bot@users.noreply.github.com"
@@ -109,7 +114,7 @@ jobs:
           git push origin HEAD:master
 
       - name: Deploy to Cloudflare Pages
-        if: steps.diff.outputs.changed == 'true'
+        if: steps.diff.outputs.changed == 'true' && inputs.build_check != true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
