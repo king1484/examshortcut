@@ -29,9 +29,9 @@ export function TopicGrid({ section, topics }: { section: string; topics: GridTo
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-xs faint font-bold">#{i + 1}</span>
               <span className="font-bold">{t.title}</span>
-              {isStudied && <span className="chip chip-low text-[10px]">✓ studied</span>}
+              {isStudied && <span className="chip chip-low text-xs">✓ studied</span>}
               {pct !== null && (
-                <span className="chip text-[10px]" style={{
+                <span className="chip text-xs" style={{
                   background: pct >= 80 ? 'var(--ok-soft)' : pct >= 50 ? 'var(--warn-soft)' : 'var(--bad-soft)',
                   color: pct >= 80 ? 'var(--ok)' : pct >= 50 ? 'var(--warn)' : 'var(--bad)', borderColor: 'transparent',
                 }}>{pct}%</span>

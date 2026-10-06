@@ -13,11 +13,18 @@ export default function TypingTestPage() {
   return (
     <div className="max-w-4xl mx-auto">
       <nav className="text-xs faint"><Link href="/exams/ssc-cgl/" className="underline decoration-dotted">SSC CGL</Link> / Typing test (DEST)</nav>
-      <h1 className="text-3xl sm:text-4xl font-extrabold mt-2">SSC CGL typing test (DEST) practice</h1>
+      <h1 className="text-2xl sm:text-4xl font-extrabold mt-2">SSC CGL typing test (DEST) practice</h1>
       <p className="muted mt-3 text-[15px]">
-        The Data Entry Speed Test is part of Tier 2 (Paper 1, Section III, Module II). You type an English passage of about <b>2000 key depressions in 15 minutes</b>. It is qualifying only, but you must clear it for posts such as Tax Assistant, CSS ASO and Inspector. This simulator uses the same rules: no copy-paste, no spell-check, and every mistake is marked the way SSC marks it.
+        Practise the Tier 2 typing test: about <b>2000 key depressions in 15 minutes</b>, marked the way SSC marks it.
       </p>
       <div className="mt-6"><DestTyping passages={DEST_PASSAGES} /></div>
+
+      <h2 className="text-2xl font-extrabold mt-10">About the DEST</h2>
+      <div className="card p-4 mt-3 text-sm space-y-2">
+        <p>The Data Entry Speed Test is part of Tier 2 (Paper 1, Section III, Module II). You type an English passage of about <b>2000 key depressions in 15 minutes</b>.</p>
+        <p>It is qualifying only, but you must clear it for posts such as Tax Assistant, CSS ASO and Inspector.</p>
+        <p>This simulator uses the same rules: no copy-paste, no spell-check, and every mistake is marked the way SSC marks it.</p>
+      </div>
 
       <h2 className="text-2xl font-extrabold mt-10">How DEST is evaluated</h2>
       <div className="grid sm:grid-cols-2 gap-3 mt-3 text-sm">

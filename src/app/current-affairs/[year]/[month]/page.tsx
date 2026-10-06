@@ -54,13 +54,13 @@ export default async function CaMonthPage({ params }: { params: Promise<{ year: 
         <Link href="/current-affairs/" className="underline decoration-dotted">Current affairs</Link> /{' '}
         <Link href={`/current-affairs/${year}/`} className="underline decoration-dotted">{year}</Link> / {m.label}
       </div>
-      <h1 className="text-3xl sm:text-4xl font-extrabold mt-1">Current affairs — {m.label}</h1>
+      <h1 className="text-2xl sm:text-4xl font-extrabold mt-1">Current affairs — {m.label}</h1>
       <p className="muted mt-2 text-[15px]">{m.items.length} exam-relevant headlines, written simply. Read the bold fact in each — that's what exams ask.</p>
 
       <div className="space-y-3 mt-6">
         {m.items.map((it, i) => (
           <article key={i} className="card p-4" style={{ borderLeft: `3px solid ${CAT_COLOR[it.category.toLowerCase()] ?? 'var(--line)'}` }}>
-            <div className="flex items-center gap-2 flex-wrap text-[11px] faint">
+            <div className="flex items-center gap-2 flex-wrap text-xs faint">
               <span className="chip">{it.date}</span>
               <span className="chip capitalize">{it.category}</span>
             </div>

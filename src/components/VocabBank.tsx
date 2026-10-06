@@ -1,5 +1,6 @@
 'use client';
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { canTrack } from '@/lib/store';
 import { VOCAB_LISTS, type VocabItem, type VocabList, type VocabListId } from '@/data/vocab';
 
 const KEY = 'es-vocab-known';
@@ -26,6 +27,7 @@ function readKnown(): Known {
   } catch { return {}; }
 }
 function writeKnown(k: Known) {
+  if (!canTrack()) return;
   try { localStorage.setItem(KEY, JSON.stringify(k)); window.dispatchEvent(new Event('es-store')); } catch {}
 }
 
@@ -417,7 +419,7 @@ export function VocabBank() {
                 </button>
               </div>
               <div className="flex justify-between items-center mt-3">
-                <span className="text-[11px] faint hidden sm:inline">Keys: Space = reveal · 1 = didn’t know · 2 = knew it</span>
+                <span className="text-xs faint hidden sm:inline">Keys: Space = reveal · 1 = didn’t know · 2 = knew it</span>
                 <button className="text-sm font-semibold underline faint ml-auto" onClick={() => setDeck(null)}>End round</button>
               </div>
             </div>
@@ -456,7 +458,7 @@ export function VocabBank() {
         </div>
       )}
 
-      <p className="text-[11px] faint mt-8">
+      <p className="text-xs faint mt-8">
         {TOTAL} entries across {VOCAB_LISTS.length} lists. Meanings are short study notes, not dictionary entries — when an option in the exam is a closer fit, trust the context of the sentence. Flashcard progress is saved in this browser only.
       </p>
     </div>

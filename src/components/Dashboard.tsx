@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { SECTION_META, SECTION_ORDER, type SectionId } from '@/lib/sections';
 import { store, useStore, type MockAttempt, type SavedQ } from '@/lib/store';
 import { CountdownChip } from './CountdownChip';
+import { StreakCard } from './Streak';
 
 type TopicDoc = { t: string; title: string; url: string; section: string };
 type TopicScore = { best: number; last: number; total: number; at: number };
@@ -14,13 +15,12 @@ type ToolState = {
 };
 
 const DAY = 86400000;
-const istDay = (ts: number) => Math.floor((ts + 5.5 * 3600000) / DAY);
 
 function Ring({ value, max, label, sub, color = 'var(--brand)' }: { value: number; max: number; label: string; sub: string; color?: string }) {
   const pct = max > 0 ? value / max : 0;
   const R = 26, C = 2 * Math.PI * R;
   return (
-    <div className="card p-4 flex items-center gap-3">
+    <div className="card p-3 sm:p-4 flex flex-col sm:flex-row items-center text-center sm:text-left gap-2 sm:gap-3">
       <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden>
         <circle cx="32" cy="32" r={R} fill="none" stroke="var(--line)" strokeWidth="7" />
         <circle cx="32" cy="32" r={R} fill="none" stroke={color} strokeWidth="7" strokeLinecap="round"
@@ -100,16 +100,7 @@ export function Dashboard() {
     const bestMock = allAttempts.reduce((b, a) => Math.max(b, mockPct(a)), 0);
     const testedKeys = Object.keys(topicScores);
 
-    // Activity days → streak (any studied/score/attempt/mistake write counts)
-    const stamps = [
-      ...Object.values(studied), ...testedKeys.map((k) => topicScores[k].at),
-      ...allAttempts.map((a) => a.at), ...Object.values(mistakes).map((m) => m.at),
-    ].map(istDay);
-    const activeDays = new Set(stamps);
-    let streak = 0;
-    for (let d = istDay(Date.now()); activeDays.has(d); d--) streak++;
-
-    // Trend: mocks + last topic-test per topic, chronological
+        // Trend: mocks + last topic-test per topic, chronological
     const trend = [
       ...allAttempts.map((a) => ({ at: a.at, pct: mockPct(a), label: `Mock ${a.mockId}` })),
       ...testedKeys.map((k) => ({ at: topicScores[k].at, pct: (topicScores[k].last / Math.max(1, topicScores[k].total)) * 100, label: `Test ${k}` })),
@@ -146,7 +137,7 @@ export function Dashboard() {
       ...testedKeys.map((k) => ({ at: topicScores[k].at, icon: '📝', title: `Topic test — ${k.split('/')[1].replace(/-/g, ' ')}`, sub: `last ${topicScores[k].last}/${topicScores[k].total} · best ${topicScores[k].best}/${topicScores[k].total}`, href: `/${k}/`, pct: Math.round((topicScores[k].last / Math.max(1, topicScores[k].total)) * 100) })),
     ].sort((a, b) => b.at - a.at).slice(0, 6);
 
-    return { topics, testedKeys, bestMock, streak, trend, perSection, strength, weakest, nextTopic, mockCount, mistakeCount, plan, activity, bookmarkCount: Object.keys(bookmarks).length };
+    return { topics, testedKeys, bestMock, trend, perSection, strength, weakest, nextTopic, mockCount, mistakeCount, plan, activity, bookmarkCount: Object.keys(bookmarks).length };
   }, [catalog, studied, topicScores, attempts, mistakes, bookmarks]);
 
   const isEmpty = model.testedKeys.length === 0 && model.mockCount === 0 && Object.keys(studied).length === 0;
@@ -155,43 +146,47 @@ export function Dashboard() {
     <div>
       <div className="flex items-center justify-between flex-wrap gap-2">
         <div>
-          <h1 className="text-3xl font-extrabold">Your dashboard</h1>
-          <p className="muted text-sm mt-1">Everything you've done on this device, and what to do next.</p>
+          <h1 className="text-2xl sm:text-3xl font-extrabold">Your dashboard</h1>
+          <p className="muted text-sm mt-1">Your progress, and what to do next.</p>
         </div>
         <CountdownChip date="2026-09-30" end="2026-10-30" />
       </div>
 
       {isEmpty && catalog !== null && (
-        <div className="card p-6 mt-5 text-center">
-          <div className="text-3xl">🚀</div>
-          <h2 className="font-extrabold text-lg mt-1">Three steps to get going</h2>
-          <div className="grid sm:grid-cols-3 gap-3 mt-4 text-sm">
+        <div className="card p-4 sm:p-6 mt-5 sm:text-center">
+          <h2 className="font-extrabold text-lg"><span className="hidden sm:inline">🚀 </span>Three steps to get going</h2>
+          <div className="grid sm:grid-cols-3 gap-2 sm:gap-3 mt-3 sm:mt-4 text-sm">
             {[
               ['1', 'Study a topic', 'Notes → formulas → shortcut tricks', '/learn/', 'Browse syllabus'],
               ['2', 'Pass its topic test', '12–15 questions, instant explanations', '/learn/', 'Pick a topic'],
               ['3', 'Take a full mock', 'Real CBT interface + analysis', '/exams/ssc-cgl/mocks/', 'Start a mock'],
             ].map(([n, t, b, href, cta]) => (
-              <div key={n} className="rounded-xl p-4" style={{ background: 'var(--surface-2)' }}>
-                <div className="w-7 h-7 mx-auto rounded-full font-extrabold flex items-center justify-center" style={{ background: 'var(--brand)', color: '#fff' }}>{n}</div>
-                <div className="font-bold mt-2">{t}</div>
-                <div className="faint text-xs mt-1">{b}</div>
-                <Link className="btn text-xs mt-3 self-start" href={href} style={{ padding: '.3rem .7rem' }}>{cta}</Link>
-              </div>
+              <Link key={n} href={href} className="rounded-xl p-3 sm:p-4 flex sm:block items-center gap-3 text-left sm:text-center" style={{ background: 'var(--surface-2)' }}>
+                <div className="w-7 h-7 sm:mx-auto shrink-0 rounded-full font-extrabold flex items-center justify-center" style={{ background: 'var(--brand)', color: '#fff' }}>{n}</div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-bold sm:mt-2">{t}</div>
+                  <div className="faint text-xs mt-0.5 sm:mt-1">{b}</div>
+                </div>
+                <span className="btn text-xs sm:mt-3 hidden sm:inline-flex" style={{ padding: '.3rem .7rem' }}>{cta}</span>
+                <span className="sm:hidden faint" aria-hidden>›</span>
+              </Link>
             ))}
           </div>
         </div>
       )}
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-5">
+      <div className="mt-5"><StreakCard /></div>
+
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-3">
         <Ring value={Object.keys(studied).length} max={model.topics.length} label="Syllabus studied" sub={`${Object.keys(studied).length} of ${model.topics.length || '…'} topics`} />
         <Ring value={model.testedKeys.length} max={model.topics.length} label="Topics tested" sub={`${model.testedKeys.length} topic tests passed`} color="var(--info)" />
         <Ring value={model.bestMock} max={100} label="Best mock score" sub={`${model.mockCount} mock${model.mockCount === 1 ? '' : 's'} attempted`} color="var(--ok)" />
-        <div className="card p-4 flex items-center gap-3">
-          <div className="text-3xl">🔥</div>
+        <div className="card p-3 sm:p-4 flex flex-col sm:flex-row items-center text-center sm:text-left gap-2 sm:gap-3">
+          <div className="text-3xl">📕</div>
           <div>
-            <div className="text-2xl font-extrabold leading-none">{model.streak}</div>
-            <div className="text-xs faint mt-1">day streak{model.streak > 0 ? ' — keep it alive' : ' — study something today'}</div>
-            <div className="text-xs faint mt-0.5">📕 {model.mistakeCount} mistakes · 🔖 {model.bookmarkCount} bookmarks</div>
+            <div className="text-2xl font-extrabold leading-none">{model.mistakeCount}</div>
+            <div className="text-xs faint mt-1">mistakes to revisit</div>
+            <div className="text-xs faint mt-0.5">🔖 {model.bookmarkCount} bookmarks</div>
           </div>
         </div>
       </div>
@@ -199,7 +194,7 @@ export function Dashboard() {
       {model.perSection.some((s) => s.total > 0) && (
         <section className="mt-6">
           <h2 className="font-extrabold text-lg">Section progress</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3 mt-3">
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 mt-3">
             {model.perSection.filter((s) => s.total > 0).map((s) => {
               const pct = s.total ? Math.round((s.studiedCount / s.total) * 100) : 0;
               return (
@@ -218,7 +213,7 @@ export function Dashboard() {
 
       <section className="mt-6">
         <h2 className="font-extrabold text-lg">Your tools</h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-3">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-3">
           <Link href="/exams/ssc-cgl/study-plan/" className="card p-4">
             <div className="font-bold text-sm">🗓️ Study plan</div>
             <div className="text-xs muted mt-1">{tools.planDone !== null ? `${tools.planDone} step${tools.planDone === 1 ? '' : 's'} ticked off${tools.planTotal ? ` · ${tools.planTotal} planned` : ''}` : 'Build a day-by-day timetable to exam day'}</div>
@@ -323,7 +318,7 @@ export function Dashboard() {
                     <span className="font-semibold block truncate">{a.title}</span>
                     <span className="text-xs faint">{a.sub}</span>
                   </span>
-                  <span className="chip text-[10px]">{when}</span>
+                  <span className="chip text-xs">{when}</span>
                 </Link>
               );
             })}
@@ -331,7 +326,7 @@ export function Dashboard() {
         </section>
       )}
 
-      <p className="text-[11px] faint mt-6">Your progress is saved in this browser, and synced to your account when you're logged in — log in on every device you study from so nothing is lost.</p>
+      <p className="text-xs faint mt-6">Saved in this browser, and synced to your account when you're logged in.</p>
     </div>
   );
 }

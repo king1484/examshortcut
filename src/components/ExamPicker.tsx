@@ -63,9 +63,8 @@ export function ExamPicker({ heading = 'Which exam are you preparing for?', coll
                     <span className="flex items-center gap-1.5">
                       <span className="font-bold text-sm">{e.name}</span>
                       {e.status === 'soon' && !on && <span className="chip chip-low ml-auto" style={{ fontSize: 10 }}>soon</span>}
-                      {on && <span className="ml-auto text-xs font-bold" style={{ color: 'var(--brand)' }}>✓</span>}
                     </span>
-                    <span className="text-[11px] muted mt-1 block line-clamp-2">{e.blurb}</span>
+                    <span className="text-xs muted mt-1 block line-clamp-2">{e.blurb}</span>
                   </button>
                 );
               })}

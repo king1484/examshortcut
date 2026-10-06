@@ -137,7 +137,7 @@ export function ScoreCalculator({ cutoffs, latestYear }: { cutoffs: any; latestY
                     {gap !== null && <b style={{ color: verdict?.c }}>{gap >= 0 ? '+' : ''}{gap.toFixed(2).replace(/\.00$/, '')} vs cutoff</b>}
                   </p>
                   {verdict && <p className="text-sm font-semibold mt-1" style={{ color: verdict.c }}>{verdict.t}</p>}
-                  <p className="text-[11px] faint mt-2">List used: {cats.list}. *Normalisation band is an estimate based on typical year-to-year/shift-to-shift movement — SSC's exact normalised score depends on your shift's difficulty.</p>
+                  <p className="text-xs faint mt-2">List used: {cats.list}. *Normalisation band is an estimate based on typical year-to-year/shift-to-shift movement — SSC's exact normalised score depends on your shift's difficulty.</p>
                 </div>
               );
             })()}

@@ -80,7 +80,7 @@ export function TopicQuiz({ questions: raw, storageKey, href, section, title }: 
         <p className="muted text-sm mt-1">Suggested time {Math.round(budget / 60)} min · wrong answers go to your mistake notebook automatically.
           {prev && <> Your best: <b>{prev.best}/{prev.total}</b>.</>}</p>
         <div className="grid sm:grid-cols-2 gap-3 mt-4">
-          <button className="btn btn-brand" onClick={() => reset('practice')}>Practice mode — instant answers</button>
+          <button className="btn btn-brand" onClick={() => reset('practice')}>Practice mode</button>
           <button className="btn" onClick={() => reset('test')}>Timed test — {Math.round(budget / 60)} min</button>
         </div>
       </div>

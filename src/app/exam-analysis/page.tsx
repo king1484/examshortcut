@@ -13,7 +13,7 @@ export default function ExamAnalysisIndex() {
   const exams = listShiftExams().map((e) => ({ e, days: listShiftDays(e.slug) }));
   return (
     <div className="max-w-3xl mx-auto">
-      <h1 className="text-3xl sm:text-4xl font-extrabold mt-4">Exam analysis — shift by shift</h1>
+      <h1 className="text-2xl sm:text-4xl font-extrabold mt-4">Exam analysis — shift by shift</h1>
       <p className="muted mt-2 text-[15px]">How each shift went, straight after it ends: difficulty, safe attempts, and the topics and questions candidates recall. Use it to calibrate before your own shift.</p>
       <div className="space-y-4 mt-6">
         {exams.map(({ e, days }) => (

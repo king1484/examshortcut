@@ -30,13 +30,15 @@ export default function CalendarPage() {
     <div className="max-w-3xl mx-auto">
       {jsonLd.length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />}
       <nav className="text-xs faint"><Link href="/exams/ssc-cgl/" className="underline decoration-dotted">SSC CGL</Link> / Exam calendar</nav>
-      <h1 className="text-3xl sm:text-4xl font-extrabold mt-2">SSC CGL {cal?.cycle} exam calendar</h1>
+      <h1 className="text-2xl sm:text-4xl font-extrabold mt-2">SSC CGL {cal?.cycle} exam calendar</h1>
       <p className="muted mt-3 text-[15px]">
-        {tier1 && <>Tier 1 runs from <b>30 Sep to 30 Oct 2026</b>. </>}
-        Every date for this cycle is on this page, from notification to final result, with a countdown to each tier. Add them to your phone calendar so you don&apos;t miss the admit card or the answer-key objection window. The objection window is only a few days.
+        {tier1 && <>Tier 1 runs <b>30 Sep – 30 Oct 2026</b>. </>}
+        Every date from notification to final result, with a countdown.
       </p>
       <div className="mt-6"><ExamCalendar events={events} /></div>
       {cal?.note && <p className="text-xs faint mt-2">{cal.note.replaceAll('*', '')}</p>}
+
+      <p className="text-sm muted mt-4">Add the dates to your phone calendar so you don&apos;t miss the admit card or the answer-key objection window — that window is only a few days.</p>
 
       <h2 className="text-2xl font-extrabold mt-10">Use the time you have</h2>
       <div className="grid sm:grid-cols-2 gap-3 mt-3">

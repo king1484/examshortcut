@@ -79,25 +79,14 @@ export default function ShortcutTricksPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
 
       <p className="text-xs font-bold uppercase tracking-wide faint">Shortcut tricks · all subjects</p>
-      <h1 className="text-3xl sm:text-4xl font-extrabold mt-1">SSC shortcut tricks</h1>
+      <h1 className="text-2xl sm:text-4xl font-extrabold mt-1">SSC shortcut tricks</h1>
       <div className="flex gap-2 mt-3 flex-wrap text-sm">
         <span className="chip chip-brand">{total} tricks</span>
         <span className="chip">{topicCount} topics</span>
         <span className="chip">{sections.length} subjects</span>
       </div>
       <p className="mt-4 text-[15px] muted">
-        SSC CGL Tier 1 gives you 60 minutes for 100 questions, so the real skill is not solving a question, it is
-        solving it in under a minute. This page collects every shortcut trick in the ExamShortcut notes in one place,
-        grouped by subject and topic. Each trick is a small, checkable idea: a pattern to spot, a calculation you can do
-        in your head, or an elimination rule that saves you a full working. Nothing here is a trick without a reason, and
-        every one links back to the full subtopic page where it sits next to the formula it depends on and a worked
-        example.
-      </p>
-      <p className="mt-3 text-[15px] muted">
-        Use it two ways. If you have a weak topic, jump to that subject below and read the previews for it, then open the
-        topic page for the full notes. If you are in the last two weeks, read the top tricks first, then drill the
-        topics where you lose the most time in a timed mock. A shortcut only helps when you can recall it without
-        thinking, so after reading one, solve three questions with it before moving on.
+        Every shortcut trick in our notes, by subject and topic. Each links to its full topic page.
       </p>
 
       <nav aria-label="Jump to subject" className="card p-3.5 mt-6 flex flex-wrap gap-2 items-center text-sm">
@@ -201,6 +190,26 @@ export default function ShortcutTricksPage() {
           </section>
         );
       })}
+
+      <section className="mt-12">
+        <h2 className="text-xl font-extrabold">How to use this page</h2>
+        <div className="card p-5 mt-3 text-sm muted space-y-3 max-w-3xl">
+          <p>
+            SSC CGL Tier 1 gives you 60 minutes for 100 questions, so the real skill is not solving a question, it is
+        solving it in under a minute. This page collects every shortcut trick in the ExamShortcut notes in one place,
+        grouped by subject and topic. Each trick is a small, checkable idea: a pattern to spot, a calculation you can do
+        in your head, or an elimination rule that saves you a full working. Nothing here is a trick without a reason, and
+        every one links back to the full subtopic page where it sits next to the formula it depends on and a worked
+        example.
+          </p>
+          <p>
+            Use it two ways. If you have a weak topic, jump to that subject below and read the previews for it, then open the
+        topic page for the full notes. If you are in the last two weeks, read the top tricks first, then drill the
+        topics where you lose the most time in a timed mock. A shortcut only helps when you can recall it without
+        thinking, so after reading one, solve three questions with it before moving on.
+          </p>
+        </div>
+      </section>
 
       <section id="practice" className="card p-5 mt-12 scroll-mt-24">
         <h2 className="text-xl font-extrabold">Turn tricks into speed</h2>

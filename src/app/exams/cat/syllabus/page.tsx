@@ -63,7 +63,7 @@ export default function CatSyllabusPage() {
             </div>
 
             <div className="card p-4 mt-3">
-              <div className="flex items-center gap-2"><span className="font-bold text-sm">Strategy</span><span className="chip chip-low text-[10px]">illustrative</span></div>
+              <div className="flex items-center gap-2"><span className="font-bold text-sm">Strategy</span><span className="chip chip-low text-xs">illustrative</span></div>
               <ul className="mt-1.5 space-y-1 text-sm list-disc pl-5">
                 {c.strategy.map((t) => <li key={t}>{t}</li>)}
               </ul>

@@ -3,6 +3,8 @@
 // Meanings are written in our own words. Kept outside content/ so the content
 // validator does not see it.
 
+import { MORE_IDIOMS, MORE_OWS, MORE_SYNONYMS, MORE_ANTONYMS, MORE_SPELLING } from './vocabMore';
+
 export type VocabListId = 'idioms' | 'ows' | 'synonyms' | 'antonyms' | 'spelling';
 
 export interface VocabItem {
@@ -883,34 +885,34 @@ export const VOCAB_LISTS: VocabList[] = [
     label: 'Idioms & phrases',
     short: 'Idioms',
     blurb: 'Asked as “choose the meaning of the idiom” in every Tier 1 English section — usually 1-2 questions.',
-    items: basic(IDIOMS),
+    items: basic([...IDIOMS, ...MORE_IDIOMS]),
   },
   {
     id: 'ows',
     label: 'One-word substitution',
     short: 'One-word',
     blurb: 'SSC gives the description and asks for the word. Learn the families: -cide, -cracy, -logy, -phobia, -gamy.',
-    items: basic(OWS),
+    items: basic([...OWS, ...MORE_OWS]),
   },
   {
     id: 'synonyms',
     label: 'Synonyms',
     short: 'Synonyms',
     blurb: 'Each headword with 2-3 synonyms that show up as options. The rarer the headword, the likelier SSC repeats it.',
-    items: withWords(SYNONYMS),
+    items: withWords([...SYNONYMS, ...MORE_SYNONYMS]),
   },
   {
     id: 'antonyms',
     label: 'Antonyms',
     short: 'Antonyms',
     blurb: 'Word → opposite. The meaning is given so you can reason out the opposite when options differ.',
-    items: withWords(ANTONYMS),
+    items: withWords([...ANTONYMS, ...MORE_ANTONYMS]),
   },
   {
     id: 'spelling',
     label: 'Commonly misspelt words',
     short: 'Spellings',
     blurb: 'SSC asks “select the correctly spelt word”. Each entry shows the right spelling and the trap variant.',
-    items: SPELLING.map(([term, wrong, meaning]) => ({ term, wrong, meaning })),
+    items: [...SPELLING, ...MORE_SPELLING].map(([term, wrong, meaning]) => ({ term, wrong, meaning })),
   },
 ];

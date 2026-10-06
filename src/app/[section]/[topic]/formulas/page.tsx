@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getTopic } from '@/lib/content';
 import { LazyTex } from '@/components/LazyTex';
-import { PrintButton } from '@/components/TopicTabs';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -27,10 +26,7 @@ export default async function FormulasPage({ params }: { params: Promise<{ secti
 
   return (
     <div>
-      <div className="flex items-center justify-between gap-3 mt-4 flex-wrap">
-        <p className="muted text-sm">Every formula in this topic, grouped by subtopic. Print it and pin it above your desk.</p>
-        <PrintButton />
-      </div>
+      <p className="muted text-sm mt-4">Every formula in this topic, grouped by subtopic.</p>
       {groups.length === 0 && <p className="card p-6 mt-4 text-center muted">No formulas in this topic — it's a technique/logic topic. Head to <Link className="underline" href={`/${t.sectionId}/${t.id}/learn/`}>Learn</Link> instead.</p>}
       {groups.map((s) => (
         <section key={s.id} className="mt-6">

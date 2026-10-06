@@ -31,7 +31,7 @@ export default function RevisionPage() {
   return (
     <AuthGate what="see your revision list">
     <div className="max-w-4xl mx-auto">
-      <h1 className="text-3xl sm:text-4xl font-extrabold">My revision</h1>
+      <h1 className="text-2xl sm:text-4xl font-extrabold">My revision</h1>
       <p className="muted mt-2">Everything you got wrong, saved, or studied — saved in this browser and synced to your account when you're logged in.</p>
 
       <div className="flex gap-2 mt-5 flex-wrap">

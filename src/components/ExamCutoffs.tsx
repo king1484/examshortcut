@@ -176,7 +176,7 @@ function StateCards({ cutoffs, maxMarks }: { cutoffs: Record<string, any>; maxMa
           <div key={state} className="card p-3">
             <div className="text-xs font-bold faint">{state}</div>
             <div className="text-xl font-extrabold">{typeof val === 'number' ? show(val) : String(val)}</div>
-            {maxMarks ? <div className="text-[11px] faint">out of {maxMarks}</div> : null}
+            {maxMarks ? <div className="text-xs faint">out of {maxMarks}</div> : null}
           </div>
         ))}
         {entries.length === 0 && <p className="muted text-sm col-span-full">No state matches “{q}”.</p>}
@@ -236,7 +236,7 @@ function RowNotes({ row }: { row: any }) {
         </div>
       )}
       {text.map((t, i) => <Md key={i} className="text-sm muted mt-3">{t}</Md>)}
-      {row.source && <p className="text-[11px] faint mt-2">Source: {row.source}</p>}
+      {row.source && <p className="text-xs faint mt-2">Source: {row.source}</p>}
     </>
   );
 }
@@ -295,7 +295,7 @@ function Trend({ rows, cats }: { rows: any[]; cats: string[] }) {
           ))}
         </svg>
       )}
-      <p className="text-[11px] faint">Maximum marks in these lists: {maxMarks}. Marking schemes can change between cycles, so read the trend as a band, not a promise.</p>
+      <p className="text-xs faint">Maximum marks in these lists: {maxMarks}. Marking schemes can change between cycles, so read the trend as a band, not a promise.</p>
     </div>
   );
 }

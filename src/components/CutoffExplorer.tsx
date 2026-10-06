@@ -114,7 +114,7 @@ function Trend({ lists, cats, maxMarks }: { lists: any[]; cats: string[]; maxMar
           </g>
         ))}
       </svg>
-      <p className="text-[11px] faint">Maximum marks in these lists: {maxMarks}. Values are official cutoffs, pre-normalisation basis as published by SSC.</p>
+      <p className="text-xs faint">Maximum marks in these lists: {maxMarks}. Values are official cutoffs, pre-normalisation basis as published by SSC.</p>
     </div>
   );
 }

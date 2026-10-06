@@ -46,26 +46,14 @@ export default function QuantFormulasPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
 
       <p className="text-xs font-bold uppercase tracking-wide" style={{ color: 'var(--c-quant)' }}>Quant · Formulas by topic</p>
-      <h1 className="text-3xl sm:text-4xl font-extrabold mt-1">SSC CGL maths formulas, topic-wise</h1>
+      <h1 className="text-2xl sm:text-4xl font-extrabold mt-1">SSC CGL maths formulas, topic-wise</h1>
       <div className="flex gap-2 mt-3 flex-wrap text-sm">
         <span className="chip chip-brand">{total} formulas</span>
         <span className="chip">{topics.length} topics</span>
       </div>
 
       <p className="mt-4 text-[15px] muted">
-        This is the Quantitative Aptitude formula reference for SSC CGL, Railway and other government exams, organised the
-        way you actually study: by topic, then by subtopic. Every topic below has its own anchor, so you can bookmark
-        <span className="whitespace-nowrap"> /quant-formulas/#percentage</span> or any other topic and come straight back
-        to it. Each formula has a name and, where the usage is not obvious, a one-line note on when to apply it.
-      </p>
-      <p className="mt-3 text-[15px] muted">
-        {intro ? <>{intro} </> : null}
-        Formulas are the cheapest marks in Quant: a question that takes three minutes without the right formula takes
-        thirty seconds with it. But a formula you only recognise is not enough. You need to recall it, and to know which
-        question types call for it. For that, each topic links to its notes (with every question type), a printable
-        topic formula page, and a timed practice test. If you want these formulas together with shortcut tricks for
-        Reasoning, English and GA on one printable page, use the <Link href="/formula-sheet/" className="underline decoration-dotted">full formula sheet</Link>;
-        this page is the Quant-only, topic-first version.
+        Every Quant formula for SSC CGL, by topic and subtopic. Jump to a topic below.
       </p>
 
       <nav aria-label="Quant topics" className="card p-3.5 mt-6">
@@ -114,6 +102,27 @@ export default function QuantFormulasPage() {
           ))}
         </section>
       ))}
+
+      <section className="mt-12">
+        <h2 className="text-xl font-extrabold">About this page</h2>
+        <div className="card p-5 mt-3 text-sm muted space-y-3 max-w-3xl">
+          <p>
+            This is the Quantitative Aptitude formula reference for SSC CGL, Railway and other government exams, organised the
+            way you actually study: by topic, then by subtopic. Every topic has its own anchor, so you can bookmark
+            <span className="whitespace-nowrap"> /quant-formulas/#percentage</span> or any other topic and come straight back
+            to it. Each formula has a name and, where the usage is not obvious, a one-line note on when to apply it.
+          </p>
+          <p>
+            {intro ? <>{intro} </> : null}
+            Formulas are the cheapest marks in Quant: a question that takes three minutes without the right formula takes
+            thirty seconds with it. But a formula you only recognise is not enough. You need to recall it, and to know which
+            question types call for it. For that, each topic links to its notes (with every question type), a printable
+            topic formula page, and a timed practice test. If you want these formulas together with shortcut tricks for
+            Reasoning, English and GA on one printable page, use the <Link href="/formula-sheet/" className="underline decoration-dotted">full formula sheet</Link>;
+            this page is the Quant-only, topic-first version.
+          </p>
+        </div>
+      </section>
 
       <section className="card p-5 mt-12">
         <h2 className="text-xl font-extrabold">Use the formulas, don&apos;t just read them</h2>

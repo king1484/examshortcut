@@ -1,10 +1,13 @@
 'use client';
+import { Spinner } from './Spinner';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { onAuthStateChanged, signOut as fbSignOut, type User } from 'firebase/auth';
 import { auth, authConfigured } from '@/lib/firebase';
 import { pullAndMerge, resetSyncState, startAutoPush } from '@/lib/sync';
+import { startLeaderboardPublish } from '@/lib/leaderboard';
+import { setTracking } from '@/lib/store';
 
 interface AuthState { user: User | null; loading: boolean; configured: boolean; signOut: () => Promise<void> }
 
@@ -18,19 +21,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!auth) return;
     let stopPush: (() => void) | undefined;
+    let stopLb: (() => void) | undefined;
     let syncedFor: string | null = null;
     const unsub = onAuthStateChanged(auth, (u) => {
       setUser(u);
       setLoading(false);
       if (u && syncedFor !== u.uid) {
         syncedFor = u.uid;
-        stopPush?.();
-        void pullAndMerge(u.uid).then(() => { stopPush = startAutoPush(u.uid); });
+        stopPush?.(); stopLb?.();
+        void pullAndMerge(u.uid).then(() => { stopPush = startAutoPush(u.uid); stopLb = startLeaderboardPublish(u.uid); });
       }
-      if (!u) { syncedFor = null; stopPush?.(); stopPush = undefined; resetSyncState(); }
+      if (!u) { syncedFor = null; stopPush?.(); stopPush = undefined; stopLb?.(); stopLb = undefined; resetSyncState(); }
     });
-    return () => { unsub(); stopPush?.(); };
+    return () => { unsub(); stopPush?.(); stopLb?.(); };
   }, []);
+
+  // Track progress only once logged in (or when accounts aren't configured, i.e. preview mode).
+  setTracking(!authConfigured || !!user);
 
   const signOut = async () => { if (auth) await fbSignOut(auth); };
 
@@ -51,7 +58,7 @@ export function AuthGate({ children, what = 'track your progress' }: { children:
       </>
     );
   }
-  if (loading) return <div className="card p-8 text-center muted">Checking your account…</div>;
+  if (loading) return <div className="card"><Spinner label="Checking your account" /></div>;
   if (!user) return <LoginPrompt what={what} next={path} />;
   return <>{children}</>;
 }
@@ -62,10 +69,9 @@ export function LoginPrompt({ what, next }: { what: string; next: string }) {
       <p className="text-2xl">☁️</p>
       <h2 className="text-xl font-extrabold mt-1">Log in to {what}</h2>
       <p className="muted text-sm mt-2">
-        All notes, practice, calculators and cutoffs stay open to everyone. A free account is only needed to save your
-        revision list, studied topics and test scores, and to keep them in sync on every device.
+        Saves your progress and syncs it across devices.
       </p>
-      <Link href={`/login/?next=${encodeURIComponent(next)}`} className="btn btn-brand mt-4 inline-flex">Log in / Sign up — free</Link>
+      <Link href={`/login/?next=${encodeURIComponent(next)}`} className="btn btn-brand mt-4 inline-flex">Log in / Sign up</Link>
     </div>
   );
 }
@@ -75,7 +81,7 @@ export function AccountButton() {
   const { user, configured, signOut } = useAuth();
   const [open, setOpen] = useState(false);
   if (!configured || !user) {
-    return <Link href="/login/" className="btn" style={{ padding: '.4rem .75rem' }}>Log in</Link>;
+    return <Link href="/login/" className="btn icon-btn">Log in</Link>;
   }
   const name = user.displayName || user.email || 'Account';
   const initial = name.trim()[0]?.toUpperCase() ?? 'U';

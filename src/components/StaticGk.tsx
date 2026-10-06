@@ -91,7 +91,7 @@ export function StaticGk() {
         </section>
       ))}
 
-      <p className="text-[11px] faint mt-8">
+      <p className="text-xs faint mt-8">
         {STATIC_GK.length} tables, {TOTAL_ROWS} rows. Static facts only — no office-holders or current affairs, so nothing here goes out of date between notifications. Where sources disagree we left the entry out rather than guess.
       </p>
     </div>

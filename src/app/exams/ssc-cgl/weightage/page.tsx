@@ -18,9 +18,8 @@ export default function WeightagePage() {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <h1 className="text-3xl sm:text-4xl font-extrabold">Topic-wise weightage, from real shifts</h1>
-      <p className="muted mt-2">Average questions per shift by topic, compiled from public post-exam analyses of recent CGL Tier 1 papers. Use it to decide what to study first — it's also why every topic page shows an importance tag.</p>
-      <Md text={w.notes} />
+      <h1 className="text-2xl sm:text-4xl font-extrabold">Topic-wise weightage, from real shifts</h1>
+      <p className="muted mt-2">Average questions per shift by topic, from recent CGL Tier 1 papers. Use it to decide what to study first.</p>
 
       {(Object.keys(w.sections ?? {}) as SectionId[]).map((sid) => {
         const rows = (w.sections[sid] ?? []).slice().sort((a: any, b: any) => (b.avg ?? 0) - (a.avg ?? 0));
@@ -69,6 +68,13 @@ export default function WeightagePage() {
         </section>
       )}
 
+      <section className="mt-8">
+        <h2 className="text-2xl font-extrabold">About this data</h2>
+        <div className="card p-5 mt-3">
+          <p className="text-sm muted">Compiled from public post-exam analyses of recent CGL Tier 1 papers. It is also why every topic page shows an importance tag.</p>
+          <Md text={w.notes} />
+        </div>
+      </section>
     </div>
   );
 }

@@ -6,5 +6,20 @@ service cloud.firestore {
     match /user_progress/{uid} {
       allow read, write: if request.auth != null && request.auth.uid == uid;
     }
+
+    // Opt-in public leaderboard: anyone can read; a user can only create/update/delete their own row,
+    // and only with sane field shapes (display name + points and counts, no email or other PII; streak is never published).
+    match /leaderboard/{uid} {
+      allow read: if true;
+      allow create, update: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['name', 'points', 'studied', 'tests', 'mocks', 'updatedAt'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 2 && request.resource.data.name.size() <= 24
+        && request.resource.data.points is int && request.resource.data.points >= 0 && request.resource.data.points <= 200000
+        && request.resource.data.studied is int && request.resource.data.studied >= 0 && request.resource.data.studied <= 2000
+        && request.resource.data.tests is int && request.resource.data.tests >= 0 && request.resource.data.tests <= 20000
+        && request.resource.data.mocks is int && request.resource.data.mocks >= 0 && request.resource.data.mocks <= 2000;
+      allow delete: if request.auth != null && request.auth.uid == uid;
+    }
   }
 }

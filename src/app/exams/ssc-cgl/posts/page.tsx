@@ -18,9 +18,9 @@ export default function PostsPage() {
   return (
     <div className="max-w-3xl mx-auto">
       <nav className="text-xs faint"><Link href="/exams/ssc-cgl/" className="underline decoration-dotted">SSC CGL</Link> / Posts & eligibility</nav>
-      <h1 className="text-3xl sm:text-4xl font-extrabold mt-2">SSC CGL posts, salary & age-limit checker</h1>
+      <h1 className="text-2xl sm:text-4xl font-extrabold mt-2">SSC CGL posts, salary & age-limit checker</h1>
       <p className="muted mt-3 text-[15px]">
-        CGL fills {posts.length}+ kinds of Group B and Group C posts. They differ in pay level, age limit, field vs desk work and where you get posted. Check which ones you can apply for, then rank them. You&apos;ll need this order when you fill the option form, and it decides which post you actually get.
+        {posts.length}+ kinds of Group B and C posts. Check which ones you can apply for, then rank them.
       </p>
 
       <div className="mt-6"><PostPlanner posts={posts} cutoffDate={cutoff} /></div>
@@ -37,6 +37,7 @@ export default function PostsPage() {
 
       <h2 className="text-2xl font-extrabold mt-10">How to choose</h2>
       <div className="card p-5 mt-3 text-sm space-y-2">
+        <p><b>Why the order matters.</b> Posts differ in pay level, age limit, field vs desk work and where you get posted. You&apos;ll need your ranked order when you fill the option form, and it decides which post you actually get.</p>
         <p><b>Pay first, then lifestyle.</b> AAO is Level 8. ASO, Inspectors and SI CBI are Level 7. JSO is Level 6. Auditor and Accountant are Level 5. Tax Assistant is Level 4. Within the same level, the day-to-day job is very different.</p>
         <p><b>Field or desk.</b> CBIC Preventive Officer, Examiner and Inspector jobs involve customs, excise or anti-evasion field work, often at ports and airports. CSS ASO is desk work in Delhi ministries with good promotion prospects. Income Tax Inspector is a mix of both.</p>
         <p><b>Posting.</b> CSS ASO is mostly Delhi. Income Tax and CBIC posts are zone-wise, so you stay in your region for longer. MEA ASO includes foreign postings.</p>

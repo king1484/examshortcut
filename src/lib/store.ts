@@ -5,7 +5,14 @@ import type { Question } from './types';
 function read<T>(key: string, fallback: T): T {
   try { const v = localStorage.getItem(key); return v ? (JSON.parse(v) as T) : fallback; } catch { return fallback; }
 }
+// Progress is tracked only for logged-in visitors (AuthProvider flips this). Default true so
+// "accounts not switched on" preview mode still works.
+let tracking = true;
+export function setTracking(v: boolean) { tracking = v; }
+export function canTrack() { return tracking; }
+
 function write(key: string, value: unknown) {
+  if (!tracking) return;
   try { localStorage.setItem(key, JSON.stringify(value)); window.dispatchEvent(new Event('es-store')); } catch {}
 }
 

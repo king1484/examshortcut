@@ -15,11 +15,9 @@ export default function LearnPage() {
   const sections = availableSections();
   return (
     <div className="max-w-5xl mx-auto">
-      <h1 className="text-3xl sm:text-4xl font-extrabold">Subjects &amp; notes</h1>
+      <h1 className="text-2xl sm:text-4xl font-extrabold">Subjects &amp; notes</h1>
       <p className="muted mt-2 max-w-3xl">
-        These subjects are common to almost every government and entrance exam. Learn them once, well: every topic
-        breaks into subtopics, and every subtopic has <b>detailed notes in simple English</b>, <b>every question type</b>{' '}
-        with its own formula and logic, worked examples and <b>practice sets</b>.
+        Common to almost every government and entrance exam. Pick a subject, then a topic.
       </p>
       <LearnExamFilter />
       <p className="text-sm muted mt-4 max-w-3xl">
@@ -63,6 +61,15 @@ export default function LearnPage() {
         );
       })}
       {sections.length === 0 && <p className="card p-6 mt-6 text-center muted">Notes are being compiled right now — check back shortly.</p>}
+
+      <section className="mt-10">
+        <h2 className="text-2xl font-extrabold">How every topic is built</h2>
+        <p className="card p-5 mt-3 text-sm muted max-w-3xl">
+          These subjects are common to almost every government and entrance exam. Learn them once, well: every topic
+          breaks into subtopics, and every subtopic has <b>detailed notes in simple English</b>, <b>every question type</b>{' '}
+          with its own formula and logic, worked examples and <b>practice sets</b>.
+        </p>
+      </section>
     </div>
   );
 }

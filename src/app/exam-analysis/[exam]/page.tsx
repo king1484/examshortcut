@@ -30,7 +30,7 @@ export default async function ExamShiftHub({ params }: Params) {
   return (
     <div className="max-w-3xl mx-auto">
       <nav className="text-xs faint mt-4"><Link href="/exam-analysis/" className="underline decoration-dotted">Exam analysis</Link> / {exam.short}</nav>
-      <h1 className="text-3xl sm:text-4xl font-extrabold mt-1">{exam.name} Exam Analysis — Shift-wise</h1>
+      <h1 className="text-2xl sm:text-4xl font-extrabold mt-1">{exam.name} Exam Analysis — Shift-wise</h1>
       <p className="muted mt-2 text-[15px]">
         Every shift from {dayLabel(exam.window.start)} to {dayLabel(exam.window.end)}: how tough it was, safe attempts, and the topics and questions candidates remember. Updated after each shift.
         {exam.guide && <> New to the exam? Read the <Link href={exam.guide} className="underline">complete {exam.short} guide</Link>.</>}
@@ -38,7 +38,7 @@ export default async function ExamShiftHub({ params }: Params) {
 
       {!!exam.pattern?.length && (
         <div className="card p-4 mt-5 grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm">
-          {exam.pattern.map((p) => <div key={p.label}><div className="text-[11px] uppercase faint font-bold">{p.label}</div><div className="font-semibold">{p.value}</div></div>)}
+          {exam.pattern.map((p) => <div key={p.label}><div className="text-xs uppercase faint font-bold">{p.label}</div><div className="font-semibold">{p.value}</div></div>)}
         </div>
       )}
 

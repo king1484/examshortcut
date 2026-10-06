@@ -130,8 +130,8 @@ export function PostPlanner({ posts, cutoffDate }: { posts: PlannerPost[]; cutof
                 <div className="flex-1 min-w-0">
                   <div className="font-bold text-sm">
                     <Link href={`/exams/ssc-cgl/posts/${p.id}/`} className="hover:underline" style={{ color: 'var(--ink)' }}>{p.name}</Link>
-                    <span className="chip ml-1.5 text-[10px]">Group {p.group}</span>
-                    {p.paper2 && <span className="chip ml-1 text-[10px]">+ Paper 2</span>}
+                    <span className="chip ml-1.5 text-xs">Group {p.group}</span>
+                    {p.paper2 && <span className="chip ml-1 text-xs">+ Paper 2</span>}
                   </div>
                   <div className="text-xs faint mt-0.5">{p.department} · {p.payLevel} · {p.inHandApprox} · age {p.ageMin}–{p.ageMax}</div>
                   {p.special && <div className="text-xs muted mt-0.5">{p.special}</div>}

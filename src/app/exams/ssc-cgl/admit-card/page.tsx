@@ -40,12 +40,13 @@ export default function AdmitCardPage() {
         mainEntity: FAQS.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
       }) }} />
       <nav className="text-xs faint"><Link href="/exams/ssc-cgl/" className="underline decoration-dotted">SSC CGL</Link> / Admit card &amp; answer key</nav>
-      <h1 className="text-3xl sm:text-4xl font-extrabold mt-2">SSC CGL 2026 admit card &amp; answer key</h1>
+      <h1 className="text-2xl sm:text-4xl font-extrabold mt-2">SSC CGL 2026 admit card &amp; answer key</h1>
       <p className="muted mt-3 text-[15px]">
-        The admit card (admission certificate) is released region-wise about <b>2–3 days before your own exam date</b> — for Tier 1 2026, from 27 September. The answer key and your response sheet follow two to three weeks after the last shift, with a short window to challenge. Here is exactly how both work.
+        Admit card <b>2–3 days before your exam</b>; answer key 2–3 weeks after the last shift.
       </p>
 
       <h2 className="text-2xl font-extrabold mt-8">Downloading your admit card, step by step</h2>
+      <p className="text-sm muted mt-2">The admit card (admission certificate) is released region-wise — for Tier 1 2026, from 27 September.</p>
       <ol className="mt-4 space-y-3">
         {STEPS.map(([t, b], i) => (
           <li key={t} className="card p-4 flex gap-3">

@@ -1,4 +1,6 @@
 'use client';
+import { Spinner } from './Spinner';
+import { canTrack } from '@/lib/store';
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 
@@ -119,6 +121,7 @@ export function StudyPlanner({ topics, mocks, t1Default, t2Default }: { topics: 
 
   useEffect(() => {
     if (!today || !result) return;
+    if (!canTrack()) return;
     try { localStorage.setItem(KEY, JSON.stringify({ cfg, done, total: result.plan.flatMap((p) => p.items).length })); window.dispatchEvent(new Event('es-store')); } catch {}
   }, [cfg, done, today, result]);
   const set = <K extends keyof Config>(k: K, v: Config[K]) => setCfg((c) => ({ ...c, [k]: v }));
@@ -165,7 +168,7 @@ export function StudyPlanner({ topics, mocks, t1Default, t2Default }: { topics: 
         {cfg.target === 'tier2' && <p className="text-xs faint mt-3">SSC announces Tier 2 dates after Tier 1 ends. The default date is only an estimate based on last year&apos;s gap, so set your own once dates are announced.</p>}
       </div>
 
-      {!result ? <p className="card p-6 mt-5 text-center muted">Building your plan…</p> :
+      {!result ? <div className="card mt-5"><Spinner label="Building your plan" /></div> :
         result.days <= 0 ? <p className="card p-6 mt-5 text-center muted">That exam date has passed. Pick a future date above.</p> : (
         <>
           <div className="card p-5 mt-5">
@@ -199,8 +202,8 @@ export function StudyPlanner({ topics, mocks, t1Default, t2Default }: { topics: 
                   <div className="flex items-center gap-2 text-sm">
                     <span className="font-extrabold">Day {di + 1}</span>
                     <span className="faint">{day.date.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' })}</span>
-                    {isToday && <span className="chip chip-high text-[10px]">today</span>}
-                    {dayDone && <span className="chip text-[10px]" style={{ background: 'var(--ok-soft)', color: 'var(--ok)', borderColor: 'transparent' }}>✓ done</span>}
+                    {isToday && <span className="chip chip-high text-xs">today</span>}
+                    {dayDone && <span className="chip text-xs" style={{ background: 'var(--ok-soft)', color: 'var(--ok)', borderColor: 'transparent' }}>✓ done</span>}
                   </div>
                   <ul className="mt-2 space-y-1.5">
                     {day.items.map((it) => (

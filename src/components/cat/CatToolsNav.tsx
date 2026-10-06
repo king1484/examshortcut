@@ -30,7 +30,7 @@ export function CatToolHeader({ current, h1, intro }: { current: string; h1: str
       <nav aria-label="Breadcrumb" className="text-xs faint">
         <Link href="/exams/" className="underline decoration-dotted">Exams</Link> / <Link href="/exams/cat/" className="underline decoration-dotted">CAT</Link> / {CAT_TOOLS.find((t) => t.href === current)?.label}
       </nav>
-      <h1 className="text-3xl sm:text-4xl font-extrabold mt-2">{h1}</h1>
+      <h1 className="text-2xl sm:text-4xl font-extrabold mt-2">{h1}</h1>
       <div className="muted mt-3 text-[15px]">{intro}</div>
       <nav aria-label="CAT tools" className="flex flex-wrap gap-2 mt-4 text-sm">
         <Link href="/exams/cat/" className="chip hover:underline">← CAT guide</Link>

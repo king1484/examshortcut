@@ -21,11 +21,20 @@ export default function StudyPlanPage() {
   return (
     <div className="max-w-3xl mx-auto">
       <nav className="text-xs faint"><Link href="/exams/ssc-cgl/" className="underline decoration-dotted">SSC CGL</Link> / Study plan</nav>
-      <h1 className="text-3xl sm:text-4xl font-extrabold mt-2">Your SSC CGL study plan</h1>
+      <h1 className="text-2xl sm:text-4xl font-extrabold mt-2">Your SSC CGL study plan</h1>
       <p className="muted mt-3 text-[15px]">
-        Enter your exam date, your daily study hours and how strong you are in each section, and you&apos;ll get a day-by-day plan over all {topics.length} topics on this site. Sections are mixed every day so none gets neglected. There is a full mock every 7th day, and the last stretch is kept for mocks and revision. If time is short, lower-weightage topics are dropped first. Every item links to its notes or test. Tick items as you go; the plan is saved in this browser.
+        A day-by-day plan over all {topics.length} topics, built from your exam date, daily hours and strong and weak sections.
       </p>
       <div className="mt-6"><StudyPlanner topics={topics} mocks={mocks} t1Default="2026-09-30" t2Default="2027-01-10" /></div>
+
+      <h2 className="text-2xl font-extrabold mt-10">How the plan works</h2>
+      <ul className="card p-5 mt-3 text-sm muted list-disc pl-9 space-y-1.5">
+        <li>You enter your exam date, daily study hours and how strong you are in each section.</li>
+        <li>Sections are mixed every day, so none gets neglected.</li>
+        <li>There is a full mock every 7th day, and the last stretch is kept for mocks and revision.</li>
+        <li>If time is short, lower-weightage topics are dropped first.</li>
+        <li>Every item links to its notes or test. Tick items as you go; the plan is saved in this browser.</li>
+      </ul>
     </div>
   );
 }

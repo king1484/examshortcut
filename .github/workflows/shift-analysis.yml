@@ -1,0 +1,116 @@
+name: Shift analysis
+
+# Runs without the laptop: collect YouTube reviews (via proxy) + web articles, analyse with an open-weights LLM,
+# commit the day JSON, build the static site and deploy it to Cloudflare Pages.
+# Slots are ~45 min after each SSC CGL shift ends (11:00 / 14:30 / 18:00 IST), plus a retry an hour later,
+# an evening pass and a next-morning refresh. Cron is UTC (IST - 5:30). GitHub may delay a run by a few minutes.
+on:
+  schedule:
+    - cron: '0 3 * * *'      # 08:30 IST
+    - cron: '15 6 * * *'     # 11:45 IST
+    - cron: '15 7 * * *'     # 12:45 IST
+    - cron: '45 9 * * *'     # 15:15 IST
+    - cron: '45 10 * * *'    # 16:15 IST
+    - cron: '15 13 * * *'    # 18:45 IST
+    - cron: '15 14 * * *'    # 19:45 IST
+    - cron: '0 16 * * *'     # 21:30 IST
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Exam day YYYY-MM-DD (default: automatic)'
+        required: false
+      force:
+        description: 'Work on the date even if all shifts look done'
+        type: boolean
+        default: false
+
+concurrency:
+  group: shift-analysis
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      YT_PROXY: ${{ secrets.YT_PROXY }}
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      NOUS_API_KEY: ${{ secrets.NOUS_API_KEY }}
+      NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: scripts/shift-collector/requirements.txt
+
+      - name: Install collector dependencies
+        run: pip install -r scripts/shift-collector/requirements.txt
+
+      - name: Collect and analyse
+        run: |
+          args=""
+          if [ -n "${{ inputs.date }}" ]; then args="$args --date ${{ inputs.date }}"; fi
+          if [ "${{ inputs.force }}" = "true" ]; then args="$args --force"; fi
+          python -X utf8 scripts/shift-collector/run.py $args
+
+      - name: Detect changes
+        id: diff
+        run: |
+          if [ -n "$(git status --porcelain content/shift-analysis)" ]; then echo "changed=true" >> "$GITHUB_OUTPUT"; fi
+
+      - uses: actions/setup-node@v4
+        if: steps.diff.outputs.changed == 'true'
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Validate content
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          npm ci
+          # The validator carries ~1900 pre-existing "mistakes[n] must be a string" shape errors (stale rule).
+          # Ignore only those; anything else aborts before deploy.
+          node scripts/validate-content.mjs > validate.log 2>&1 || true
+          if grep -E '^ - ' validate.log | grep -vE 'mistakes\[[0-9]+\] must be a string'; then
+            echo "content validation failed"; exit 1
+          fi
+
+      - name: Build
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          npm run build
+          test -f out/exam-analysis/ssc-cgl-2026/index.html
+
+      - name: Commit data
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "shift-analysis-bot"
+          git config user.email "shift-analysis-bot@users.noreply.github.com"
+          git add content/shift-analysis
+          git commit -m "Shift analysis: automatic update $(TZ=Asia/Kolkata date +'%Y-%m-%d %H:%M IST')"
+          git pull --rebase origin master
+          git push origin HEAD:master
+
+      - name: Deploy to Cloudflare Pages
+        if: steps.diff.outputs.changed == 'true'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler pages deploy out --project-name examshortcut --branch main --commit-dirty=true
+
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shift-logs
+          path: scripts/shift-collector/logs/
+          if-no-files-found: ignore
+          retention-days: 7

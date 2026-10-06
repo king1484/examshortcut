@@ -62,7 +62,7 @@ function DiffChip({ label }: { label?: string }) {
 function Stat({ k, v, color }: { k: string; v: React.ReactNode; color?: string }) {
   return (
     <div className="card p-4 flex-1 min-w-[9rem]" style={color ? { borderTop: `3px solid ${color}` } : undefined}>
-      <div className="text-[11px] uppercase tracking-wide faint font-bold">{k}</div>
+      <div className="text-xs uppercase tracking-wide faint font-bold">{k}</div>
       <div className="text-lg font-extrabold mt-1">{v}</div>
     </div>
   );
@@ -308,7 +308,7 @@ export default async function ShiftAnalysisPage({ params }: Params) {
         <Link href={`/exam-analysis/${examSlug}/`} className="underline decoration-dotted">{exam.short}</Link> /{' '}
         {shift ? <><Link href={`/exam-analysis/${examSlug}/${daySlug(day.date)}/`} className="underline decoration-dotted">{dayLabel(day.date, false)}</Link> / Shift {shift.shift}</> : dayLabel(day.date, false)}
       </nav>
-      <h1 className="text-3xl sm:text-4xl font-extrabold mt-1">{h1}</h1>
+      <h1 className="text-2xl sm:text-4xl font-extrabold mt-1">{h1}</h1>
       <p className="text-xs faint mt-2">
         {exam.name}{shift ? ` · ${shift.time}` : ''} · Updated {istTime(day.updatedAt)}
       </p>

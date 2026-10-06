@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useAuth } from './Auth';
 import type { Mock, Question } from '@/lib/types';
 import { store, type MockAttempt } from '@/lib/store';
+import { ShareScore } from './ShareScore';
 import { Explanation, LETTERS, OptionButton, QuestionBody, withPassages } from './QuestionView';
 
 // SSC-style palette states
@@ -337,6 +338,19 @@ function MockResult({ mock, flat, answers, times, attempt }: { mock: Mock; flat:
           <div key={k} className="card p-4"><div className="text-xs faint font-semibold">{k}</div><div className="text-xl font-extrabold mt-1">{v}</div></div>
         ))}
       </div>
+      {attempt.score > 0 && (
+        <ShareScore
+          title={mock.title} score={attempt.score} max={attempt.max} accuracy={accuracy}
+          correct={attempt.correct} wrong={attempt.wrong} skipped={attempt.skipped}
+          url={`https://examshortcut.in/exams/${mock.exam ?? 'ssc-cgl'}/mocks/${mock.id}/`}
+        />
+      )}
+      {configured && !user && (
+        <p className="text-xs muted mt-3">
+          This score isn&apos;t saved yet.{' '}
+          <Link href={`/login/?next=${encodeURIComponent(path)}`} className="btn" style={{ padding: '.2rem .65rem', fontSize: '.75rem', marginLeft: '.25rem' }}>Log in to save</Link>
+        </p>
+      )}
       {mock.tier === 1 && (
         <p className="text-sm muted mt-3">Compare your score with the <Link className="underline" href={`/exams/${mock.exam ?? 'ssc-cgl'}/cutoffs/`}>year-wise official cutoffs</Link> for your category
           (remember real scores are normalised across shifts).</p>
@@ -425,11 +439,6 @@ function MockResult({ mock, flat, answers, times, attempt }: { mock: Mock; flat:
       </div>
       <div className="flex gap-3 mt-8 flex-wrap">
         <Link className="btn btn-brand" href="/revision/">Open mistake notebook</Link>
-        {configured && !user && (
-          <Link href={`/login/?next=${encodeURIComponent(path)}`} className="inline-flex items-center gap-1 rounded-full font-bold px-4 text-sm" style={{ color: '#fff', background: 'linear-gradient(135deg,#f97316,#ec4899 55%,#8b5cf6)' }}>
-            ✨ Login to track your scores
-          </Link>
-        )}
         <button className="btn" onClick={() => location.reload()}>Retake this paper</button>
       </div>
     </div>

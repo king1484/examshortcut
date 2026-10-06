@@ -51,7 +51,7 @@ export default async function PostPage({ params }: { params: Promise<{ post: str
     <div className="max-w-3xl mx-auto">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <nav className="text-xs faint"><Link href="/exams/ssc-cgl/" className="underline decoration-dotted">SSC CGL</Link> / <Link href="/exams/ssc-cgl/posts/" className="underline decoration-dotted">Posts</Link> / {short}</nav>
-      <h1 className="text-3xl sm:text-4xl font-extrabold mt-2">SSC CGL {short}: salary, job profile &amp; promotion</h1>
+      <h1 className="text-2xl sm:text-4xl font-extrabold mt-2">SSC CGL {short}: salary, job profile &amp; promotion</h1>
       <p className="muted mt-3 text-[15px]">{d.tagline}</p>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6 text-sm">

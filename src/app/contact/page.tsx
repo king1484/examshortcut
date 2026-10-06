@@ -14,7 +14,7 @@ export default function ContactPage() {
       <p className="muted mt-2">Found a wrong answer, a broken page, or want a topic added? Tell us — corrections go out fast.</p>
 
       <div className="card p-5 mt-6 text-sm space-y-3">
-        <p className="text-base">Email: <a className="underline font-bold" href="mailto:contact@examshortcut.in">contact@examshortcut.in</a></p>
+        <p className="text-base">Email: <a className="underline font-bold" href="mailto:singirikonda3@gmail.com">singirikonda3@gmail.com</a></p>
         <p>For a content correction, include:</p>
         <ul className="list-disc pl-5 space-y-1">
           <li>The page URL (or the exam, section and topic name)</li>
@@ -22,7 +22,7 @@ export default function ContactPage() {
           <li>What you think is wrong and, ideally, the correct working</li>
         </ul>
         <p>
-          Suggestions for new topics, posts, or features are equally welcome — the roadmap is driven by what aspirants ask for.
+          Suggestions for new topics, posts, or features are equally welcome — we build what aspirants ask for.
         </p>
       </div>
 

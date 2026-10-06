@@ -15,10 +15,9 @@ export default function ExamsPage() {
   return (
     <div className="max-w-5xl mx-auto space-y-6">
       <div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold">Exams</h1>
+        <h1 className="text-2xl sm:text-4xl font-extrabold">Exams</h1>
         <p className="muted mt-2 max-w-3xl">
-          SSC, Railway, Banking and CAT exams mostly test the same core subjects — maths, reasoning, English and general
-          awareness. Choose your exam and ExamShortcut shows the subjects it tests, and tracks your preparation for it.
+          Choose your exam to see the subjects it tests and track your preparation.
         </p>
       </div>
       <ExamPicker />
@@ -33,6 +32,13 @@ export default function ExamsPage() {
             </Link>
           ))}
         </div>
+      </section>
+      <section>
+        <h2 className="text-xl font-extrabold">One syllabus, many exams</h2>
+        <p className="text-sm muted mt-1 max-w-3xl">
+          SSC, Railway, Banking and CAT exams mostly test the same core subjects: maths, reasoning, English and general
+          awareness. Notes and practice are shared, so what you study for one exam counts for the others.
+        </p>
       </section>
     </div>
   );

@@ -4,19 +4,21 @@ import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from './ThemeToggle';
 import { AccountButton } from './Auth';
+import { StreakChip } from './Streak';
 import { useSelectedExam } from '@/lib/useExam';
 
 const NAV = [
   { href: '/', label: 'Home', exact: true },
   { href: '/exams/', label: 'Exams' },
-  { href: '/learn/', label: 'Subjects & Notes' },
+  { href: '/learn/', label: 'Notes' },
   { href: '/daily-quiz/', label: 'Daily Quiz' },
-  { href: '/exams/ssc-cgl/mocks/', label: 'Mock Tests' },
-  { href: '/exam-analysis/', label: 'Exam Analysis' },
-  { href: '/formula-sheet/', label: 'Formula Sheet' },
+  { href: '/exams/ssc-cgl/mocks/', label: 'Mocks' },
+  { href: '/dashboard/', label: 'Progress', exact: true },
+  { href: '/leaderboard/', label: 'Leaderboard' },
+  { href: '/exam-analysis/', label: 'Analysis' },
+  { href: '/formula-sheet/', label: 'Formulas' },
   { href: '/current-affairs/', label: 'Current Affairs' },
   { href: '/exams/ssc-cgl/cutoffs/', label: 'Cutoffs' },
-  { href: '/dashboard/', label: 'My Progress', exact: true },
   { href: '/revision/', label: 'Revision' },
 ];
 
@@ -45,15 +47,19 @@ export function SiteHeader() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-2 sm:gap-3">
         <Link href="/" aria-label="ExamShortcut home"><Logo /></Link>
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-          <Link href="/search/" aria-label="Search" className="btn" style={{ padding: '.4rem .7rem' }}>🔍<span className="hidden md:inline ml-1">Search</span></Link>
-          <Link href="/exams/" className="btn hidden sm:inline-flex" style={{ padding: '.4rem .75rem' }} title="Change exam">
+          <Link href="/search/" aria-label="Search" className="btn icon-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+            <span className="hidden md:inline">Search</span>
+          </Link>
+          <Link href="/exams/" className="btn icon-btn hidden sm:inline-flex" title="Change exam">
             🎯 {exam ? exam.short : 'Choose exam'}
           </Link>
+          <StreakChip />
           <ThemeToggle />
           <AccountButton />
         </div>
       </div>
-      <nav className="max-w-6xl mx-auto px-2 sm:px-4 flex gap-1 overflow-x-auto text-sm font-semibold" style={{ scrollbarWidth: 'none' }}>
+      <nav className="max-w-6xl mx-auto px-2 sm:px-4 flex gap-1 overflow-x-auto md:overflow-visible md:flex-wrap text-sm font-semibold" style={{ scrollbarWidth: 'none' }}>
         {NAV.map((n) => {
           const active = pendingHref ? pendingHref === n.href
             : n.exact ? path === n.href || path === n.href.slice(0, -1) : path.startsWith(n.href);

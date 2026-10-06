@@ -88,7 +88,7 @@ export function Example({ ex, label = 'Try this' }: { ex: WorkedExample; label?:
 export function MistakeCard({ m, i }: { m: string | Mistake; i: number }) {
   return (
     <div className="card p-4">
-      <div className="text-[11px] font-extrabold tracking-wider uppercase" style={{ color: 'var(--bad)' }}>Mistake {pad2(i + 1)}</div>
+      <div className="text-xs font-extrabold tracking-wider uppercase" style={{ color: 'var(--bad)' }}>Mistake {pad2(i + 1)}</div>
       {typeof m === 'string' ? (
         <Md className="mt-1.5 text-[15px]">{m}</Md>
       ) : (

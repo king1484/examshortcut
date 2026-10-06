@@ -13,11 +13,9 @@ export default function SyllabusPage() {
 
   return (
     <div className="max-w-5xl mx-auto">
-      <h1 className="text-3xl sm:text-4xl font-extrabold">SSC CGL syllabus, topic by topic</h1>
+      <h1 className="text-2xl sm:text-4xl font-extrabold">SSC CGL syllabus, topic by topic</h1>
       <p className="muted mt-2 max-w-3xl">
-        The exact topics SSC asks, ordered by what gives the most marks for your time. Every topic page has:
-        concept notes → all formulas → <b>shortcut tricks with worked examples</b> → mistakes to avoid → the recurring
-        question patterns → a topic test.
+        The exact topics SSC asks, ordered by what gives the most marks for your time.
       </p>
 
       {sections.map((sid) => {
@@ -51,6 +49,14 @@ export default function SyllabusPage() {
         );
       })}
       {sections.length === 0 && <p className="card p-6 mt-6 text-center muted">Notes are being compiled right now — check back shortly.</p>}
+
+      <section className="mt-10">
+        <h2 className="text-2xl font-extrabold">What every topic page has</h2>
+        <p className="card p-5 mt-3 text-sm muted max-w-3xl">
+          Concept notes → all formulas → <b>shortcut tricks with worked examples</b> → mistakes to avoid → the recurring
+          question patterns → a topic test.
+        </p>
+      </section>
     </div>
   );
 }

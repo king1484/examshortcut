@@ -1,4 +1,5 @@
 'use client';
+import { Spinner } from '../Spinner';
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import { CAT_SECS, CONCEPT_ROTATION, type CatSecId } from '@/lib/catSyllabus';
@@ -151,7 +152,7 @@ export function CatStudyPlanner({ examDate, events }: { examDate: string; events
         </div>
       </div>
 
-      {!plan ? <p className="card p-6 mt-5 text-center muted">{valid ? 'Building your plan…' : 'Pick a valid exam date above.'}</p> :
+      {!plan ? <p className="card p-6 mt-5 text-center muted">{valid ? <Spinner label="Building your plan" block={false} /> : 'Pick a valid exam date above.'}</p> :
         plan.days <= 0 ? (
           <p className="card p-6 mt-5 text-center muted">
             {plan.days === 0
@@ -198,7 +199,7 @@ export function CatStudyPlanner({ examDate, events }: { examDate: string; events
                       <span className="font-extrabold">Week {wi + 1}</span>
                       <span className="faint">{fmt(w.start)} – {fmt(w.end)}</span>
                       <span className="chip" style={{ color: ph.color, borderColor: ph.color }}>{ph.label}</span>
-                      {isNow && <span className="chip chip-high text-[10px]">this week</span>}
+                      {isNow && <span className="chip chip-high text-xs">this week</span>}
                       <span className="ml-auto text-xs faint">{w.n} wk to exam</span>
                     </div>
                     {evs.length > 0 && (

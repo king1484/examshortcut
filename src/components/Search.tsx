@@ -1,4 +1,5 @@
 'use client';
+import { Spinner } from './Spinner';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { SECTION_META, type SectionId } from '@/lib/sections';
@@ -111,7 +112,7 @@ export function Search() {
         </div>
       </div>
 
-      {docs === null && <p className="muted mt-6 text-sm">Loading index…</p>}
+      {docs === null && <div className="mt-4"><Spinner label="Loading search index" /></div>}
       {docs !== null && q.trim().length >= 2 && shown.length === 0 && (
         <div className="card p-8 text-center mt-6">
           <p className="font-bold">No matches for “{q}”</p>
@@ -135,7 +136,7 @@ export function Search() {
                 <span className="font-semibold text-sm block truncate"><Highlight text={d.title} q={q.trim()} /></span>
                 {d.section && <span className="text-xs faint">{SECTION_META[d.section as SectionId]?.name ?? d.section}</span>}
               </span>
-              <span className="chip shrink-0 text-[10px]">{tm.label}</span>
+              <span className="chip shrink-0 text-xs">{tm.label}</span>
             </Link>
           );
         })}

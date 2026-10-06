@@ -2,12 +2,11 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { allFormulas, SECTION_META } from '@/lib/content';
 import { LazyTex } from '@/components/LazyTex';
-import { PrintButton } from '@/components/PrintButton';
 
 export const dynamic = 'force-static';
 export const metadata: Metadata = {
-  title: 'SSC CGL formula sheet PDF — all Quant formulas & shortcuts, free',
-  description: 'Free SSC CGL formula sheet (save as PDF): every Quant formula, reasoning rule, English grammar rule and GA mnemonic on one page, with shortcut tricks for last-minute revision.',
+  title: 'SSC CGL formula sheet — all Quant formulas & shortcuts, free',
+  description: 'Free SSC CGL formula sheet: every Quant formula, reasoning rule, English grammar rule and GA mnemonic on one page, with shortcut tricks for last-minute revision.',
 };
 
 /** 220-char trick preview as plain text + browser-rendered inline math. Full
@@ -33,12 +32,9 @@ export default function FormulaSheetPage() {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="flex items-start justify-between gap-4 flex-wrap no-print">
-        <div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold">SSC CGL formula sheet</h1>
-          <p className="muted mt-2 max-w-2xl">Every formula and shortcut trick from the notes, on one page. Tap “Download PDF” (or press Ctrl/Cmd + P) and choose “Save as PDF” — it's formatted for paper.</p>
-        </div>
-        <PrintButton />
+      <div className="no-print">
+        <h1 className="text-2xl sm:text-4xl font-extrabold">SSC CGL formula sheet</h1>
+        <p className="muted mt-2 max-w-2xl">Every formula and shortcut trick from the notes, on one page.</p>
       </div>
 
       {sections.map((sec) => (
@@ -57,7 +53,7 @@ export default function FormulaSheetPage() {
                       <div key={i} className="mt-2">
                         <div className="text-xs font-semibold faint">{f.name}</div>
                         <div className="overflow-x-auto overflow-y-hidden py-0.5"><LazyTex tex={f.tex} /></div>
-                        {f.note && <div className="text-[11px] muted">{f.note}</div>}
+                        {f.note && <div className="text-xs muted">{f.note}</div>}
                       </div>
                     ))}
                     {s.tricks.map((k, i) => (

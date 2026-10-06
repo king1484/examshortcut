@@ -35,7 +35,7 @@ export default async function SectionPage({ params }: { params: Promise<{ sectio
   return (
     <div className="max-w-4xl mx-auto">
       <p className="text-xs font-bold uppercase tracking-wide" style={{ color: meta.color }}>{meta.short} · Subject</p>
-      <h1 className="text-3xl sm:text-4xl font-extrabold mt-1">{sec.name}</h1>
+      <h1 className="text-2xl sm:text-4xl font-extrabold mt-1">{sec.name}</h1>
       <div className="flex gap-2 mt-3 flex-wrap text-sm">
         <span className="chip">SSC CGL Tier 1: {sec.tier1.questions} Q · {sec.tier1.marks} marks</span>
         <span className="chip">{topics.length} topics</span>

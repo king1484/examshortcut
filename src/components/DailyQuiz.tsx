@@ -1,4 +1,5 @@
 'use client';
+import { Spinner } from './Spinner';
 import { useEffect, useMemo, useState } from 'react';
 import { store, useStore } from '@/lib/store';
 import { SECTION_META, type SectionId } from '@/lib/sections';
@@ -40,7 +41,7 @@ export function DailyQuiz() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dayIndex, secs, scores]);
 
-  if (dayIndex == null || (!bucket && !err)) return <div className="card p-8 text-center muted">Loading today's quiz…</div>;
+  if (dayIndex == null || (!bucket && !err)) return <div className="card"><Spinner label="Loading today's quiz" /></div>;
   if (err || !secs.length) {
     return (
       <div className="card p-6 text-center">

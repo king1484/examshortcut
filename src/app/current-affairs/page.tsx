@@ -16,8 +16,8 @@ export default function CurrentAffairsPage() {
   return (
     <div className="max-w-3xl mx-auto">
       <p className="text-xs font-bold uppercase tracking-wide mt-4" style={{ color: 'var(--brand)' }}>General awareness</p>
-      <h1 className="text-3xl sm:text-4xl font-extrabold mt-1">Current affairs</h1>
-      <p className="muted mt-2 text-[15px]">Month-wise, exam-relevant only — no news dump. Appointments, awards, sports, schemes, summits, reports, defence, science and the economy, in simple English. Every month ends with a quiz so the facts actually stick.</p>
+      <h1 className="text-2xl sm:text-4xl font-extrabold mt-1">Current affairs</h1>
+      <p className="muted mt-2 text-[15px]">Month-wise, exam-relevant only, in simple English. Every month ends with a quiz.</p>
 
       {years.length === 0 && <div className="card p-6 mt-6 text-center muted">The current-affairs desk is still verifying items. Check back shortly.</div>}
 
@@ -39,6 +39,14 @@ export default function CurrentAffairsPage() {
           </section>
         );
       })}
+
+      <section className="mt-10">
+        <h2 className="text-2xl font-extrabold">What we cover</h2>
+        <p className="card p-5 mt-3 text-sm muted">
+          No news dump: only what exams ask. Appointments, awards, sports, schemes, summits, reports, defence, science and the
+          economy. Each month ends with a quiz so the facts actually stick.
+        </p>
+      </section>
     </div>
   );
 }

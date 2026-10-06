@@ -29,7 +29,7 @@ export default async function CaYearPage({ params }: { params: Promise<{ year: s
   return (
     <div className="max-w-3xl mx-auto">
       <div className="text-xs faint mt-4"><Link href="/current-affairs/" className="underline decoration-dotted">Current affairs</Link> / {year}</div>
-      <h1 className="text-3xl sm:text-4xl font-extrabold mt-1">Current affairs {year}</h1>
+      <h1 className="text-2xl sm:text-4xl font-extrabold mt-1">Current affairs {year}</h1>
       <p className="muted mt-2 text-[15px]">Pick a month — each page has every exam-relevant headline in simple English, the facts exams repeat, and a short quiz.</p>
 
       <div className="space-y-3 mt-6">

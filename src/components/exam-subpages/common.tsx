@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import type { ReactNode } from 'react';
+import { Children, Fragment, isValidElement, type ReactNode } from 'react';
 import { getExam, listMocks } from '@/lib/content';
 import { getExamInfo, type ExamInfo } from '@/lib/exams';
 import { listShiftExams } from '@/lib/shifts';
@@ -151,6 +151,12 @@ export function SubpageFrame({ id, kind, h1, intro, faqs, children }: {
 }) {
   const info = getExamInfo(id)!;
   const label = subMeta(id, kind).label;
+  // Keep the intro short: first paragraph (and the trailing verified chip) stay under the heading, the rest moves below.
+  const introNodes = isValidElement(intro) && intro.type === Fragment
+    ? Children.toArray((intro.props as { children?: ReactNode }).children)
+    : [intro];
+  const lead = introNodes.length > 2 ? [introNodes[0], introNodes[introNodes.length - 1]] : introNodes;
+  const more = introNodes.length > 2 ? introNodes.slice(1, -1) : [];
   const crumbLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -175,10 +181,16 @@ export function SubpageFrame({ id, kind, h1, intro, faqs, children }: {
       <nav aria-label="Breadcrumb" className="text-xs faint">
         <Link href="/exams/" className="underline decoration-dotted">Exams</Link> / <Link href={hubPath(id)} className="underline decoration-dotted">{info.name}</Link> / {label}
       </nav>
-      <h1 className="text-3xl sm:text-4xl font-extrabold mt-2">{h1}</h1>
-      <div className="mt-3 text-[15px] muted space-y-3">{intro}</div>
+      <h1 className="text-2xl sm:text-4xl font-extrabold mt-2">{h1}</h1>
+      <div className="mt-3 text-[15px] muted space-y-3">{lead}</div>
       <SiblingNav id={id} current={kind} />
       {children}
+      {more.length > 0 && (
+        <section aria-labelledby="overview">
+          <h2 id="overview" className="text-2xl font-extrabold mt-10">{info.name} {label.toLowerCase()} — overview</h2>
+          <div className="card p-5 mt-3 text-sm muted space-y-3">{more}</div>
+        </section>
+      )}
       {faqs.length > 0 && (
         <section aria-labelledby="faqs">
           <h2 id="faqs" className="text-2xl font-extrabold mt-10">{info.name} {label.toLowerCase()} — FAQs</h2>

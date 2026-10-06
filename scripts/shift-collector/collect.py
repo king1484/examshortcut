@@ -1,0 +1,285 @@
+"""Stage 1 of the shift-analysis pipeline: collect sources for one exam day.
+
+    py -3.12 scripts/shift-collector/collect.py --date 2026-10-06 [--shift 1]
+
+Finds the newest YouTube shift-review videos (date-sorted search), pulls their
+transcripts, scrapes a few web articles, and writes
+scripts/shift-collector/packs/<date>/pack.json for the synthesis stage.
+No API keys needed. Needs: yt-dlp, youtube-transcript-api, requests, bs4.
+"""
+import argparse, datetime as dt, json, os, random, re, sys, time
+from concurrent.futures import ThreadPoolExecutor
+from urllib.parse import quote_plus
+
+import requests
+from bs4 import BeautifulSoup
+import yt_dlp
+from youtube_transcript_api import YouTubeTranscriptApi
+from youtube_transcript_api.proxies import GenericProxyConfig
+from youtube_transcript_api._errors import IpBlocked, NoTranscriptFound, RequestBlocked, TranscriptsDisabled
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+CACHE = os.path.join(HERE, "cache")
+UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126 Safari/537.36"}
+MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
+ORD = {1: ["1st", "first", "shift 1", "shift-1", "s1", "1 shift"], 2: ["2nd", "second", "shift 2", "shift-2", "s2", "2 shift"], 3: ["3rd", "third", "shift 3", "shift-3", "s3", "3 shift"]}
+SHIFT_END_IST = {1: (11, 0), 2: (14, 30), 3: (18, 0)}
+MAX_TRANSCRIPT_CHARS = 14000
+
+
+def date_re(d: dt.date):
+    m = MONTHS[d.month - 1]
+    ms = f"(?:{m}|{m[:3]})"
+    day = f"0?{d.day}"
+    suf = "(?:st|nd|rd|th)?"
+    a = rf"(?<![\d\-&,/]){day}{suf}\s*{ms}\b"                      # 6 october / 6th oct
+    b = rf"\b{ms}\s*{day}(?!\d)(?!{suf}\s*(?:shift|sh\b)){suf}(?![\-&]|,\s*\d{{1,2}}\b(?!\d{{2}}))"   # october 6 / oct 6th (not "oct 2nd shift")
+    c = rf"(?<!\d){d.day:02d}[/\-.]{d.month:02d}(?!\d)"
+    return re.compile(f"{a}|{b}|{c}", re.I)
+
+
+def yt_search(query: str, n: int = 25):
+    url = f"https://www.youtube.com/results?search_query={quote_plus(query)}&sp=CAI%253D"  # sorted by upload date
+    opts = {"quiet": True, "extract_flat": True, "playlistend": n, "skip_download": True, **({"proxy": PROXY} if PROXY else {})}
+    with yt_dlp.YoutubeDL(opts) as y:
+        info = y.extract_info(url, download=False)
+    return [{"id": e["id"], "title": e.get("title") or "", "channel": e.get("channel") or e.get("uploader") or ""}
+            for e in (info.get("entries") or []) if e.get("id")]
+
+
+def yt_meta(vid: str):
+    with yt_dlp.YoutubeDL({"quiet": True, "skip_download": True}) as y:
+        i = y.extract_info(f"https://www.youtube.com/watch?v={vid}", download=False)
+    return {"upload_date": i.get("upload_date"), "timestamp": i.get("timestamp"), "duration": i.get("duration"),
+            "views": i.get("view_count"), "is_live": i.get("is_live"), "channel": i.get("channel")}
+
+
+def _proxy_url():
+    """Optional proxy for transcript fetches (YouTube rate-limits home/cloud IPs). Env YT_PROXY or proxy.txt, host:port:user:pass."""
+    raw = os.environ.get("YT_PROXY", "")
+    f = os.path.join(HERE, "proxy.txt")
+    if not raw and os.path.exists(f):
+        raw = open(f, encoding="utf8").read().strip()
+    if not raw:
+        return None
+    if "://" in raw:
+        return raw
+    h, p, u, pw = raw.split(":", 3)
+    return f"http://{u}:{pw}@{h}:{p}"
+
+
+PROXY = _proxy_url()
+PROXIES = {"http": PROXY, "https": PROXY} if PROXY else None
+
+
+class Blocked(Exception):
+    pass
+
+
+def ytdlp_captions(vid: str):
+    """Second route: yt-dlp's ios / web_embedded player clients still return caption tracks when the
+    default client is bot-checked. Format errors are ignored (we only want the subtitle URLs)."""
+    last = "no captions"
+    for client in ("ios", "web_embedded"):
+        opts = {"quiet": True, "no_warnings": True, "skip_download": True, "ignore_no_formats_error": True,
+                "extractor_args": {"youtube": {"player_client": [client]}}, **({"proxy": PROXY} if PROXY else {})}
+        try:
+            with yt_dlp.YoutubeDL(opts) as y:
+                i = y.extract_info(f"https://www.youtube.com/watch?v={vid}", download=False)
+        except Exception as e:  # noqa
+            last = "bot check" if "not a bot" in str(e) else str(e)[:80]
+            continue
+        pools = [i.get("subtitles") or {}, i.get("automatic_captions") or {}]
+        for lang in ("en", "en-orig", "en-IN", "hi", "hi-orig"):
+            for pool in pools:
+                for f in pool.get(lang, []):
+                    if f.get("ext") != "json3":
+                        continue
+                    r = requests.get(f["url"], headers=UA, timeout=25, proxies=PROXIES)
+                    if r.status_code == 429:
+                        raise Blocked("timedtext 429")
+                    if r.status_code != 200:
+                        continue
+                    j = r.json()
+                    text = " ".join("".join(sg.get("utf8", "") for sg in ev.get("segs", [])) for ev in j.get("events", []))
+                    text = re.sub(r"\s+", " ", text).strip()
+                    if text:
+                        return {"lang": lang, "text": text}
+        last = "no captions"
+    raise RuntimeError(last)
+
+
+INVIDIOUS = ["https://inv.nadeko.net", "https://yewtu.be"]
+
+
+def invidious_captions(vid: str):
+    for base in INVIDIOUS:
+        try:
+            r = requests.get(f"{base}/api/v1/captions/{vid}", headers=UA, timeout=20)
+            tracks = r.json().get("captions") or []
+            if not tracks:
+                continue
+            pick = next((t for t in tracks if t["languageCode"].startswith("en")), None) or next((t for t in tracks if t["languageCode"].startswith("hi")), tracks[0])
+            v = requests.get(base + pick["url"], headers=UA, timeout=30).text
+            lines = [l.strip() for l in v.splitlines() if l.strip() and "-->" not in l and not l.startswith(("WEBVTT", "Kind:", "Language:", "NOTE"))]
+            text = re.sub(r"<[^>]+>", "", " ".join(lines))
+            text = re.sub(r"\s+", " ", text)
+            # auto-captions repeat each line twice; collapse immediate repeats
+            out, prev = [], None
+            for w in re.split(r"(?<=[.!?।])\s+|\s{2,}", text):
+                if w != prev:
+                    out.append(w)
+                prev = w
+            if len(text) > 200:
+                return {"lang": pick["languageCode"], "text": " ".join(out)}
+        except Exception:  # noqa
+            continue
+    return None
+
+
+def transcript(vid: str):
+    api = YouTubeTranscriptApi(proxy_config=GenericProxyConfig(http_url=PROXY, https_url=PROXY)) if PROXY else YouTubeTranscriptApi()
+    for langs in (["en", "en-IN", "hi"], None):
+        try:
+            if langs:
+                t = api.fetch(vid, languages=langs)
+            else:
+                t = next(iter(api.list(vid))).fetch()
+            text = " ".join(s.text.replace("\n", " ") for s in t)
+            return {"lang": getattr(t, "language_code", ""), "text": text}
+        except (IpBlocked, RequestBlocked):
+            try:
+                return ytdlp_captions(vid)
+            except Blocked:
+                return {"lang": "", "text": "", "error": "ip blocked", "blocked": True}
+            except Exception as e:  # noqa
+                err = str(e)[:120]
+                if err == "bot check":
+                    return {"lang": "", "text": "", "error": "ip blocked", "blocked": True}
+                return {"lang": "", "text": "", "error": err}
+        except (TranscriptsDisabled, NoTranscriptFound):
+            err = "no captions"
+        except Exception as e:  # noqa
+            err = str(e)[:120]
+    return {"lang": "", "text": "", "error": err}
+
+
+def title_matches(title: str, d: dt.date, shift: int | None):
+    t = title.lower()
+    if "cgl" not in t or any(w in t for w in ("technician", "expected", "most repeated", "previous year", "pyq")):
+        return False
+    if not date_re(d).search(t):
+        return False
+    if shift:
+        others = [s for s in (1, 2, 3) if s != shift]
+        has_me = any(k in t for k in ORD[shift])
+        has_other = any(k in t for s in others for k in ORD[s])
+        multi = "1st" in t and "2nd" in t
+        return has_me or multi or not has_other
+    return True
+
+
+def find_videos(d: dt.date, shift: int | None):
+    day = f"{d.day} {MONTHS[d.month - 1].capitalize()}"
+    shifts = [shift] if shift else [1, 2, 3]
+    queries = []
+    for s in shifts:
+        o = {1: "1st", 2: "2nd", 3: "3rd"}[s]
+        queries += [f"SSC CGL {day} 2026 {o} shift review analysis", f"SSC CGL exam review today {day} shift {s}",
+                    f"SSC CGL {MONTHS[d.month-1].capitalize()} {d.day} 2026 {o} shift"]
+    queries += [f"SSC CGL {day} 2026 all shift analysis"]
+    seen, cands = set(), []
+    with ThreadPoolExecutor(6) as ex:
+        for res in ex.map(yt_search, queries):
+            for r in res:
+                if r["id"] not in seen:
+                    seen.add(r["id"]); cands.append(r)
+    keep = [c for c in cands if title_matches(c["title"], d, shift)]
+    print(f"videos: {len(cands)} found, {len(keep)} title-match", file=sys.stderr)
+    return keep
+
+
+def web_articles(d: dt.date, shift: int | None, limit: int = 8):
+    day = f"{d.day} {MONTHS[d.month - 1]}"
+    q = f"SSC CGL 2026 tier 1 exam analysis {day} shift review good attempts"
+    try:
+        r = requests.post("https://html.duckduckgo.com/html/", data={"q": q, "df": "w"}, headers=UA, timeout=25, proxies=PROXIES)
+        soup = BeautifulSoup(r.text, "html.parser")
+        links = []
+        for a in soup.select("a.result__a"):
+            href = a.get("href", "")
+            m = re.search(r"uddg=([^&]+)", href)
+            if m:
+                from urllib.parse import unquote
+                href = unquote(m.group(1))
+            if href.startswith("http") and "youtube.com" not in href:
+                links.append((a.get_text(" ", strip=True), href))
+    except Exception as e:  # noqa
+        print("ddg failed", e, file=sys.stderr)
+        links = []
+    links.append(("RealMocks attempts analysis", "https://realmocks.com/attempts-analysis/ssc-cgl-2026"))
+    arts, seen = [], set()
+    for title, href in links:
+        if href in seen or len(arts) >= limit:
+            continue
+        seen.add(href)
+        try:
+            h = requests.get(href, headers=UA, timeout=25)
+            s = BeautifulSoup(h.text, "html.parser")
+            for tag in s(["script", "style", "nav", "footer", "header", "aside", "form"]):
+                tag.decompose()
+            text = re.sub(r"\s+", " ", s.get_text(" ", strip=True))
+            low = text.lower()
+            if date_re(d).search(low) and "cgl" in low:
+                arts.append({"title": title, "url": href, "text": text[:9000]})
+        except Exception as e:  # noqa
+            print("fetch failed", href, str(e)[:60], file=sys.stderr)
+    return arts
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--date", required=True)
+    ap.add_argument("--shift", type=int, choices=(1, 2, 3))
+    ap.add_argument("--max-videos", type=int, default=10)
+    a = ap.parse_args()
+    d = dt.date.fromisoformat(a.date)
+    vids = find_videos(d, a.shift)
+    vids = [v for v in vids if not (v.get("duration") and v["duration"] < 120)]   # drop shorts
+    vids = vids[: a.max_videos]
+    os.makedirs(CACHE, exist_ok=True)
+    blocked = False
+    for v in vids:  # one at a time, cached, stop hammering once YouTube blocks the IP
+        cf = os.path.join(CACHE, v["id"] + ".json")
+        t = None
+        if os.path.exists(cf):
+            t = json.load(open(cf, encoding="utf8"))
+            if not t.get("text") and (time.time() - os.path.getmtime(cf)) > 1800:
+                t = None                      # empty result older than 30 min: captions may exist now
+        if t is None and not blocked:
+            t = transcript(v["id"])
+            if t.get("blocked"):
+                blocked = True
+            elif t.get("text") or "no captions" in t.get("error", ""):
+                json.dump(t, open(cf, "w", encoding="utf8"), ensure_ascii=False)
+            time.sleep(random.uniform(2.0, 4.0))
+        t = t or {"text": "", "error": "skipped: IP blocked earlier in this run"}
+        v["transcript"] = t["text"][:MAX_TRANSCRIPT_CHARS]
+        v["transcript_lang"] = t.get("lang")
+        if t.get("error"):
+            v["transcript_error"] = t["error"]
+    if blocked:
+        print("WARNING: YouTube blocked this IP for transcripts; try again later", file=sys.stderr)
+    arts = web_articles(d, a.shift)
+    pack = {"date": a.date, "shift": a.shift, "collected_at": dt.datetime.now(dt.timezone(dt.timedelta(hours=5, minutes=30))).isoformat(timespec="minutes"),
+            "videos": vids, "articles": arts}
+    out = os.path.join(HERE, "packs", a.date + (f"-s{a.shift}" if a.shift else ""))
+    os.makedirs(out, exist_ok=True)
+    with open(os.path.join(out, "pack.json"), "w", encoding="utf8") as f:
+        json.dump(pack, f, ensure_ascii=False, indent=1)
+    ok = sum(1 for v in vids if v.get("transcript"))
+    print(f"{a.date} shift={a.shift}: {len(vids)} videos ({ok} with transcript), {len(arts)} articles -> {out}")
+
+
+if __name__ == "__main__":
+    main()

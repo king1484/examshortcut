@@ -7,6 +7,7 @@ import {
 } from 'firebase/auth';
 import { auth, googleProvider } from '@/lib/firebase';
 import { useAuth } from './Auth';
+import { Spinner } from './Spinner';
 
 function nextPath() {
   try {
@@ -59,16 +60,15 @@ export function LoginForm() {
     <div className="card p-6 sm:p-8">
       <h1 className="text-2xl font-extrabold">Log in to ExamShortcut</h1>
       <p className="muted text-sm mt-2">
-        Log in to sync your scores and progress across devices.
-        Log in only to <b>save and sync</b> your revision list, studied topics, daily-quiz streak and test scores.
+        Log in to track your progress and sync it across devices.
       </p>
 
       {!configured ? (
         <p className="card p-3 mt-5 text-sm muted">
-          Accounts are being switched on shortly. Until then, your progress is saved in this browser automatically.
+          Accounts are being switched on shortly.
         </p>
       ) : loading ? (
-        <p className="mt-6 muted">Checking your session…</p>
+        <Spinner label="Checking your session" />
       ) : user ? (
         <div className="mt-6 space-y-3">
           <p className="text-sm">Logged in as <b>{user.email}</b>. Taking you back…</p>
@@ -99,7 +99,7 @@ export function LoginForm() {
             </form>
           )}
           {state === 'error' && <p className="text-sm" style={{ color: 'var(--bad, #d33)' }}>{err}</p>}
-          <p className="text-xs faint">No password to remember. New here? The same buttons create your free account.</p>
+          <p className="text-xs faint">No password needed. New here? Same buttons sign you up.</p>
         </div>
       )}
       <p className="text-xs faint mt-6">By continuing you agree to our <Link href="/privacy/" className="underline">privacy policy</Link>.</p>

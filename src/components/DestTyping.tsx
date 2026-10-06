@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { canTrack } from '@/lib/store';
 import type { DestPassage } from '@/lib/destPassages';
 
 type Op = { kind: 'ok' | 'half' | 'full'; master?: string; typed?: string; why?: string };
@@ -114,7 +115,7 @@ export function DestTyping({ passages }: { passages: DestPassage[] }) {
     const a: Attempt = { at: new Date().toISOString(), passage: passage.title, kd, secs: Math.round(done.secs), errPct: +summary.errPct.toFixed(1), pass: summary.pass };
     setHist((h) => {
       const n = [a, ...h].slice(0, 10);
-      try { localStorage.setItem(HIST, JSON.stringify(n)); window.dispatchEvent(new Event('es-store')); } catch {}
+      if (canTrack()) { try { localStorage.setItem(HIST, JSON.stringify(n)); window.dispatchEvent(new Event('es-store')); } catch {} }
       return n;
     });
   }, [done]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -141,10 +142,10 @@ export function DestTyping({ passages }: { passages: DestPassage[] }) {
           </select>
         </label>
         <div className="ml-auto flex gap-4 items-center">
-          <div className="text-center"><div className="text-2xl font-extrabold tabular-nums" style={{ color: limit - elapsed < 60 && startAt && !done ? 'var(--bad)' : 'var(--brand)' }}>{mmss(limit - elapsed)}</div><div className="text-[11px] faint">left</div></div>
-          <div className="text-center"><div className="text-2xl font-extrabold tabular-nums">{kd}</div><div className="text-[11px] faint">key depressions</div></div>
+          <div className="text-center"><div className="text-2xl font-extrabold tabular-nums" style={{ color: limit - elapsed < 60 && startAt && !done ? 'var(--bad)' : 'var(--brand)' }}>{mmss(limit - elapsed)}</div><div className="text-xs faint">left</div></div>
+          <div className="text-center"><div className="text-2xl font-extrabold tabular-nums">{kd}</div><div className="text-xs faint">key depressions</div></div>
           {!done && projected > 0 && (
-            <div className="text-center"><div className="text-2xl font-extrabold tabular-nums" style={{ color: projected >= 2000 ? 'var(--ok)' : 'var(--warn)' }}>{projected}</div><div className="text-[11px] faint">pace / 15 min</div></div>
+            <div className="text-center"><div className="text-2xl font-extrabold tabular-nums" style={{ color: projected >= 2000 ? 'var(--ok)' : 'var(--warn)' }}>{projected}</div><div className="text-xs faint">pace / 15 min</div></div>
           )}
         </div>
       </div>
@@ -199,7 +200,7 @@ export function DestTyping({ passages }: { passages: DestPassage[] }) {
                 style={{ background: o.kind === 'full' ? 'color-mix(in srgb, var(--bad) 18%, transparent)' : 'color-mix(in srgb, var(--warn) 20%, transparent)' }}>
                 {o.master && <span style={{ textDecoration: o.typed ? 'line-through' : 'underline wavy' }}>{o.master}</span>}
                 {o.typed && <b style={{ color: o.kind === 'full' ? 'var(--bad)' : 'var(--warn)' }}> {o.typed}</b>}
-                <sup className="text-[10px] faint ml-0.5">{o.why}</sup>
+                <sup className="text-xs faint ml-0.5">{o.why}</sup>
               </span>
             ))}
             {result.attemptedWords < result.totalWords && <span className="faint">… (not reached)</span>}

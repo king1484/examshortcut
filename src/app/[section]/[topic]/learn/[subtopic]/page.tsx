@@ -146,9 +146,9 @@ export default async function SubtopicPage({ params }: { params: Promise<{ secti
       {s.formulas && s.formulas.length > 0 && (
         <section id="formulas" className="lesson-sec">
           <SectionHead n={num('formulas')} title="Formula sheet" />
-          <div className="grid sm:grid-cols-2 gap-2.5 mt-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mt-4">
             {s.formulas.map((f, k) => (
-              <div key={k} className="card p-3.5">
+              <div key={k} className="card p-3.5 min-w-0">
                 <div className="text-sm font-bold">{f.name}</div>
                 <div className="my-1.5 overflow-x-auto"><Tex tex={f.tex} display /></div>
                 {f.note && <p className="text-xs muted">{f.note}</p>}

@@ -12,8 +12,8 @@ export default function AboutPage() {
       <h1 className="text-3xl font-extrabold">About ExamShortcut</h1>
       <p className="mt-3">
         ExamShortcut is a preparation site for Indian government and entrance exams, starting with SSC CGL.
-        All learning content is open to everyone. Your mock attempts, mistake notebook and progress are saved on your
-        device, and — if you log in — synced to your private account so they follow you to every device.
+        All learning content is open to everyone. Log in to track your mock attempts, mistake notebook and progress,
+        synced to your private account across devices.
       </p>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6 text-center">
         {[['Topics', stats.topics], ['Questions', stats.questions], ['Formulas', stats.formulas], ['Shortcut tricks', stats.tricks]].map(([k, v]) => (
@@ -46,14 +46,7 @@ export default function AboutPage() {
         <p>Mock scores, normalisation bands and safe-score estimates are approximations for guidance, not predictions.</p>
       </div>
 
-      <h2 className="text-2xl font-extrabold mt-10">Roadmap</h2>
-      <ul className="list-disc pl-5 mt-3 space-y-1.5 text-sm">
-        <li><b>Now</b> — the common subjects (Quant, Reasoning, English, GA, Computer) in depth, daily quiz, 5 years of current affairs, and the full SSC CGL hub.</li>
-        <li><b>Live</b> — exam hubs for SSC CHSL, MTS, GD Constable, RRB NTPC and RRB Group D, next to SSC CGL.</li>
-        <li><b>Later</b> — Hindi medium, error reporting on every question, spaced-repetition revision.</li>
-      </ul>
-
-      <p className="text-sm muted mt-8">Found a wrong answer or a bug? It happens — <Link className="underline" href="/revision/">your data stays local</Link> while we keep improving. A report-an-error button is on the roadmap.</p>
+      <p className="text-sm muted mt-8">Found a wrong answer or a bug? Tell us on the <Link className="underline" href="/contact/">contact page</Link>.</p>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { getCutoffs } from '@/lib/content';
 import { EXAMS, getExamInfo } from '@/lib/exams';
 import { Md } from '@/components/Md';
+import { splitLead } from '@/lib/lead';
 import { ExamCutoffs } from '@/components/ExamCutoffs';
 
 export const dynamic = 'force-static';
@@ -37,13 +38,20 @@ export default async function CutoffsPage({ params }: { params: Params }) {
   const { sources: _sources, ...shown } = data;
   void _sources;
 
+  const notes = splitLead(typeof data.notes === 'string' ? data.notes : '');
   return (
     <div className="max-w-4xl mx-auto">
-      <h1 className="text-3xl sm:text-4xl font-extrabold">{info.name} cutoffs</h1>
-      {typeof data.notes === 'string' && <Md className="muted mt-2 max-w-3xl text-[15px]">{data.notes}</Md>}
+      <h1 className="text-2xl sm:text-4xl font-extrabold">{info.name} cutoffs</h1>
+      {notes.lead && <Md className="muted mt-2 max-w-3xl text-[15px]">{notes.lead}</Md>}
       <ExamCutoffs data={shown} />
+      {notes.rest && (
+        <>
+          <h2 className="text-2xl font-extrabold mt-10">About these figures</h2>
+          <Md className="muted mt-2 max-w-3xl text-[15px]">{notes.rest}</Md>
+        </>
+      )}
       <p className="faint text-xs mt-8">
-        Cutoff rows are compiled from official result notices and reputable reproductions — see the notes above for what each row means.
+        Cutoff rows are compiled from official result notices and reputable reproductions — see the notes for what each row means.
         Always confirm on the official website.
       </p>
     </div>

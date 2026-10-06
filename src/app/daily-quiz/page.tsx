@@ -14,8 +14,8 @@ export default function DailyQuizPage() {
   return (
     <div className="max-w-3xl mx-auto">
       <p className="text-xs font-bold uppercase tracking-wide mt-4" style={{ color: 'var(--brand)' }}>New every day</p>
-      <h1 className="text-3xl sm:text-4xl font-extrabold mt-1">Daily quiz</h1>
-      <p className="muted mt-2 text-[15px]">A fresh set every day, mixed across subjects. Answer with the clock in mind, read the one-line shortcut after each question, and keep the streak alive. Scores are saved automatically when you're logged in.</p>
+      <h1 className="text-2xl sm:text-4xl font-extrabold mt-1">Daily quiz</h1>
+      <p className="muted mt-2 text-[15px]">A fresh mixed set every day. Read the one-line shortcut after each question and keep your streak alive.</p>
 
       <div className="mt-6"><DailyQuiz /></div>
 

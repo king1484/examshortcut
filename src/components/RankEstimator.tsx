@@ -114,7 +114,7 @@ export function RankEstimator({ cutoffs }: { cutoffs: any }) {
               <option value={1500000}>~15 lakh</option>
               <option value={2000000}>~20 lakh</option>
             </select>
-            <span className="block text-[11px] font-normal normal-case mt-1 faint">Tier 1 has appeared 12-13 lakh candidates in recent cycles. The rank scales with this number; the percentile does not.</span>
+            <span className="block text-xs font-normal normal-case mt-1 faint">Tier 1 has appeared 12-13 lakh candidates in recent cycles. The rank scales with this number; the percentile does not.</span>
           </label>
         </div>
       </div>
@@ -149,7 +149,7 @@ export function RankEstimator({ cutoffs }: { cutoffs: any }) {
               </tbody>
             </table>
           </div>
-          <p className="text-[11px] faint mt-3">
+          <p className="text-xs faint mt-3">
             How this works: the curve is anchored on the official {activeYear} UR cutoff ({urCutoff} — roughly the 90th percentile of all candidates who appeared) and shaped like recent years' score distributions. SSC never publishes all-India ranks for CGL, so this is a planning estimate, not a prediction — your normalised score after shift normalisation decides the real outcome. Use the {activeYear} cutoff comparison in the score calculator for the go/no-go call.
           </p>
         </div>

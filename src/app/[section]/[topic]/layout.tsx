@@ -42,7 +42,7 @@ export default async function TopicLayout({
       </nav>
 
       <div className="flex items-start gap-3 mt-2">
-        <h1 className="text-3xl sm:text-4xl font-extrabold flex-1">{t.title}</h1>
+        <h1 className="text-2xl sm:text-4xl font-extrabold flex-1">{t.title}</h1>
         <StudiedToggle storeKey={`${t.sectionId}/${t.id}`} />
       </div>
       <div className="flex gap-2 mt-3 flex-wrap text-sm">

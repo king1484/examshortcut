@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { getExam, getCutoffs, contentStats, SECTION_META, listTopics, listMocks } from '@/lib/content';
 import { EXAMS, getExamInfo } from '@/lib/exams';
 import { Md } from '@/components/Md';
+import { splitLead } from '@/lib/lead';
 import { DatePhases } from '@/components/DatePhases';
 import { CycleTimeline } from '@/components/CycleTimeline';
 import { MoreOnExam } from '@/components/exam-subpages/common';
@@ -98,12 +99,14 @@ export default async function ExamHub({ params }: { params: Params }) {
     ['/revision/', '📝 Mistake notebook', 'Your wrong answers, ready to revise'],
   ];
 
+  const overview = splitLead(exam.overview);
+
   return (
     <article className="max-w-4xl mx-auto">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([faqLd, crumbLd]) }} />
       <p className="text-xs font-bold uppercase tracking-wide" style={{ color: 'var(--brand)' }}>Complete exam guide</p>
-      <h1 className="text-3xl sm:text-4xl font-extrabold mt-1">{exam.fullName}</h1>
-      <Md className="mt-3 text-[15px] muted">{exam.overview}</Md>
+      <h1 className="text-2xl sm:text-4xl font-extrabold mt-1">{exam.fullName}</h1>
+      <Md className="mt-3 text-[15px] muted">{overview.lead}</Md>
 
       <div id="status" className="card p-5 mt-6 scroll-mt-28">
         <div className="flex items-center justify-between flex-wrap gap-2">
@@ -134,6 +137,13 @@ export default async function ExamHub({ params }: { params: Params }) {
           </Link>
         ))}
       </nav>
+
+      {overview.rest && (
+        <>
+          <h2 className="text-2xl font-extrabold mt-10">About this exam</h2>
+          <Md className="mt-2 text-[15px] muted">{overview.rest}</Md>
+        </>
+      )}
 
       <MoreOnExam id={id} />
       {id === 'cat' && <CatToolsBlock />}

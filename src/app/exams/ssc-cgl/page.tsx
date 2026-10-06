@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getExam, contentStats, availableSections, SECTION_META, listTopics } from '@/lib/content';
 import { Md } from '@/components/Md';
+import { splitLead } from '@/lib/lead';
 import { CountdownChip } from '@/components/CountdownChip';
 import { DatePhases } from '@/components/DatePhases';
 import { CycleTimeline } from '@/components/CycleTimeline';
@@ -47,12 +48,14 @@ export default function ExamPage() {
     })),
   };
 
+  const overview = splitLead(exam.overview);
+
   return (
     <article className="max-w-4xl mx-auto">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
       <p className="text-xs font-bold uppercase tracking-wide" style={{ color: 'var(--brand)' }}>Complete exam guide</p>
-      <h1 className="text-3xl sm:text-4xl font-extrabold mt-1">{exam.fullName}</h1>
-      <Md className="mt-3 text-[15px] muted">{exam.overview}</Md>
+      <h1 className="text-2xl sm:text-4xl font-extrabold mt-1">{exam.fullName}</h1>
+      <Md className="mt-3 text-[15px] muted">{overview.lead}</Md>
 
       <div id="status" className="card p-5 mt-6 scroll-mt-28">
         <div className="flex items-center justify-between flex-wrap gap-2">
@@ -86,7 +89,9 @@ export default function ExamPage() {
           ['/exams/ssc-cgl/mocks/', '🖥️ Mock tests', 'Real CBT interface + analysis'],
           ['/exams/ssc-cgl/cutoffs/', '📈 Cutoff trends', 'Year × category official cutoffs'],
           ['/exams/ssc-cgl/score-calculator/', '🧮 Score calculator', 'Safe-score estimator'],
+          ['/exams/ssc-cgl/marks-calculator/', '📄 Marks from response sheet', 'Read your saved sheet, private'],
           ['/exams/ssc-cgl/rank-estimator/', '🏅 Rank estimator', 'Marks → percentile + all-India rank'],
+          ['/exams/ssc-cgl/guides/', '🧭 Preparation guides', 'Strategy, 30/60/90-day plans, books, Tier 2'],
           ['/formula-sheet/', '⚡ Formula sheet', 'Printable, all sections'],
           ['/current-affairs/', '📰 Current affairs', 'Apr–Sep 2026, exam-relevant'],
           ['/vocab/', '🔤 Vocab bank', 'Idioms, one-word, synonyms, spellings'],
@@ -103,6 +108,13 @@ export default function ExamPage() {
           </Link>
         ))}
       </nav>
+
+      {overview.rest && (
+        <>
+          <h2 className="text-2xl font-extrabold mt-10">About this exam</h2>
+          <Md className="mt-2 text-[15px] muted">{overview.rest}</Md>
+        </>
+      )}
 
       <MoreOnExam id="ssc-cgl" />
 

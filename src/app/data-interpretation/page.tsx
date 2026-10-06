@@ -56,7 +56,7 @@ export default function DataInterpretationPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
 
       <p className="text-xs font-bold uppercase tracking-wide" style={{ color: 'var(--c-quant)' }}>Quant · Data interpretation</p>
-      <h1 className="text-3xl sm:text-4xl font-extrabold mt-1">Data interpretation formulas &amp; tricks for SSC CGL</h1>
+      <h1 className="text-2xl sm:text-4xl font-extrabold mt-1">Data interpretation formulas &amp; tricks for SSC CGL</h1>
       <div className="flex gap-2 mt-3 flex-wrap text-sm">
         <span className="chip chip-brand">{nFormulas} formulas</span>
         <span className="chip">{tricks.length} tricks</span>
@@ -65,18 +65,7 @@ export default function DataInterpretationPage() {
       </div>
 
       <p className="mt-4 text-[15px] muted">
-        Data interpretation (DI) means reading numbers off a table, bar graph, line graph or pie chart and answering a few
-        questions about them. {t.summary}
-        {q1 != null || q2 != null ? (
-          <> Our topic notes put DI at about {q1 ?? '–'} question{q1 === 1 ? '' : 's'} in a Tier 1 paper and about {q2 ?? '–'} in Tier 2, so it is a smaller block than Percentage or Algebra, but it is among the most predictable.</>
-        ) : null}
-      </p>
-      <p className="mt-3 text-[15px] muted">
-        The good news is that DI needs very few formulas. Almost everything is a total, an average, a ratio, a percentage
-        or a percentage change. What decides your score is reading the question carefully (which row, which year, which
-        unit, percent of what) and keeping the arithmetic light. The sections below give you the formulas from our notes,
-        a method for each chart type, the traps that cost marks, and the calculation habits that save time. Jump straight to
-        what you need.
+        Reading tables and charts quickly. Formulas, a method for each chart type, and the traps that cost marks.
       </p>
 
       <nav aria-label="On this page" className="card p-3.5 mt-6 flex flex-wrap gap-2 items-center text-sm">
@@ -319,6 +308,26 @@ export default function DataInterpretationPage() {
           <Link href="/shortcut-tricks/" className="underline decoration-dotted">All shortcut tricks</Link> ·{' '}
           <Link href="/formula-sheet/" className="underline decoration-dotted">Formula sheet</Link>
         </p>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-2xl font-extrabold">About data interpretation</h2>
+        <div className="card p-5 mt-3 text-sm muted space-y-3 max-w-3xl">
+      <p>
+        Data interpretation (DI) means reading numbers off a table, bar graph, line graph or pie chart and answering a few
+        questions about them. {t.summary}
+        {q1 != null || q2 != null ? (
+          <> Our topic notes put DI at about {q1 ?? '–'} question{q1 === 1 ? '' : 's'} in a Tier 1 paper and about {q2 ?? '–'} in Tier 2, so it is a smaller block than Percentage or Algebra, but it is among the most predictable.</>
+        ) : null}
+      </p>
+<p>
+        The good news is that DI needs very few formulas. Almost everything is a total, an average, a ratio, a percentage
+        or a percentage change. What decides your score is reading the question carefully (which row, which year, which
+        unit, percent of what) and keeping the arithmetic light. The sections below give you the formulas from our notes,
+        a method for each chart type, the traps that cost marks, and the calculation habits that save time. Jump straight to
+        what you need.
+      </p>
+        </div>
       </section>
 
       <aside className="mt-8 text-sm muted max-w-3xl">

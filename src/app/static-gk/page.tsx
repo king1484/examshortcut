@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 export default function StaticGkPage() {
   return (
     <div className="max-w-4xl mx-auto">
-      <h1 className="text-3xl sm:text-4xl font-extrabold">SSC static GK quick reference</h1>
+      <h1 className="text-2xl sm:text-4xl font-extrabold">SSC static GK quick reference</h1>
       <p className="muted mt-2 max-w-2xl">
-        The static GK tables SSC draws from year after year, on one searchable page. Type a state, river or name to filter every table at once, or jump straight to a table.
+        The static GK tables SSC repeats, on one searchable page. Type a name to filter every table at once.
       </p>
       <StaticGk />
     </div>

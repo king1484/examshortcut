@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { contentStats, listMocks, listTopics, SECTION_META, availableSections } from '@/lib/content';
 import { ExamPicker } from '@/components/ExamPicker';
 import { ExamNotice } from '@/components/ExamNotice';
+import { HomeMocks } from '@/components/HomeMocks';
+import { EXAMS } from '@/lib/exams';
 
 const BUILT_AT = Date.now();
 
@@ -19,29 +21,32 @@ export const dynamic = 'force-static';
 
 export default function Home() {
   const stats = contentStats();
-  const mocks = listMocks();
+  const mocks = EXAMS.flatMap((e) => listMocks(e.id).filter((m) => m.available)
+    .map((m) => ({ id: m.id, title: m.title, blurb: m.blurb, tier: m.tier, exam: e.id, available: m.available })));
 
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SITE_LD) }} />
-      <section className="text-center max-w-3xl mx-auto pt-8 pb-4 sm:pt-14">
+      <section className="text-center max-w-3xl mx-auto pt-4 pb-4 sm:pt-14">
         <ExamNotice exam="SSC CGL" stage="Tier 1" start="2026-09-30" end="2026-10-30" href="/exams/ssc-cgl/#status" builtAt={BUILT_AT} />
-        <div className="flex justify-center gap-2 flex-wrap mt-4">
+        <div className="flex justify-center gap-2 flex-wrap mt-3 sm:mt-4">
           <span className="chip chip-high">SSC · Railways · Banking · CAT</span>
         </div>
-        <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight mt-4 leading-tight">
+        <h1 className="text-[2rem] sm:text-6xl font-extrabold tracking-tight mt-3 sm:mt-4 leading-tight">
           Prepare for any exam with<br /><span style={{ color: 'var(--brand)' }}>shortcuts, not slog</span>
         </h1>
-        <p className="muted text-lg mt-4">
+        <p className="muted text-[15px] sm:text-lg mt-3 sm:mt-4">
           Maths, reasoning, English and GK are common to almost every government and entrance exam. Learn each topic
           in depth — simple notes, every question type with its formula, practice sets — then test yourself with a daily
           quiz and full mocks.
         </p>
-        <div className="flex gap-3 justify-center flex-wrap mt-6">
-          <Link href="/learn/" className="btn btn-brand">Start learning</Link>
-          <Link href="/daily-quiz/" className="btn">Today&apos;s quiz</Link>
-          <Link href="/exams/ssc-cgl/mocks/" className="btn">Take a mock test</Link>
-          <Link href="/exam-analysis/" className="btn">📊 Today&apos;s exam analysis</Link>
+        <div className="flex flex-col items-center gap-3 mt-5 sm:mt-6">
+          <Link href="/learn/" className="btn btn-brand px-8">Start learning</Link>
+          <div className="flex justify-center gap-2 sm:gap-3 flex-wrap">
+            <Link href="/daily-quiz/" className="btn">Today&apos;s quiz</Link>
+            <Link href="/exams/ssc-cgl/mocks/" className="btn">Take a mock</Link>
+            <Link href="/exam-analysis/" className="btn">📊 Exam analysis</Link>
+          </div>
         </div>
         <p className="faint text-xs mt-3">
           {stats.questions > 0 ? `${stats.questions}+ questions · ${stats.formulas}+ formulas · ${stats.tricks}+ shortcut tricks` : 'Content is being compiled right now — refresh in a bit.'}
@@ -67,18 +72,7 @@ export default function Home() {
         ))}
       </section>
 
-      <section className="mt-10">
-        <h2 className="text-xl font-extrabold">Mock tests <span className="text-sm font-semibold faint">· SSC CGL</span></h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
-          {mocks.map((m) => (
-            <Link key={m.id} href={`/exams/ssc-cgl/mocks/${m.id}/`} className="card p-5 flex flex-col">
-              <span className="flex gap-2"><span className={`chip ${m.available ? 'chip-low' : 'chip-medium'}`}>{m.available ? 'Ready' : 'Coming up'}</span><span className="chip">Tier {m.tier}</span><span className="chip">Free</span></span>
-              <h3 className="font-bold mt-2">{m.title}</h3>
-              <p className="text-sm muted mt-1 flex-1">{m.blurb}</p>
-            </Link>
-          ))}
-        </div>
-      </section>
+      <HomeMocks mocks={mocks} />
 
       <section className="mt-10">
         <h2 className="text-xl font-extrabold">Tools</h2>
