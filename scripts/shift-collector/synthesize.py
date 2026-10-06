@@ -137,6 +137,13 @@ def build_shift(date, n, extractions, valid_topics):
             "observations": (m.get("observations") or [])[:4], "disagreements": (m.get("disagreements") or [])[:4], "sources": srcs}
 
 
+def quality(sh):
+    """How many headline fields carry real content (a shift full of 'Not reported' is worth less than one with data)."""
+    q = sum(1 for k in ("overall", "goodAttempts") if sh.get(k) and not str(sh[k]).startswith("Not "))
+    q += sum(1 for s in sh.get("sections") or [] if s.get("difficulty") and not str(s["difficulty"]).startswith("Not "))
+    return q + min(len(sh.get("asked") or []), 6) / 10
+
+
 def pending_shift(n):
     return {"shift": n, "time": TIMES[n], "status": "pending", "auto": True,
             "note": "This shift has not been analysed yet. The analysis is added a few hours after the shift ends, once enough candidate reviews are out."}
@@ -177,8 +184,12 @@ def main():
         if new is None:
             by.setdefault(n, pending_shift(n)); continue
         rank = {"pending": 0, "partial": 1, "reported": 2}
-        if old and old.get("sources") and rank.get(old.get("status"), 0) >= rank[new["status"]] and len(old["sources"]) >= len(new["sources"]):
-            continue                                     # only replace with strictly better evidence
+        if old and old.get("sources"):
+            ro, rn = rank.get(old.get("status"), 0), rank[new["status"]]
+            qo, qn = quality(old), quality(new)
+            better = rn > ro or (rn == ro and (qn > qo or (qn == qo and len(new["sources"]) > len(old["sources"]))))
+            if rn < ro or not better:
+                continue                                 # only replace with strictly better evidence / content
         by[n] = new; changed.append(n)
     day["shifts"] = [by[n] for n in sorted(by)]
     if not changed:

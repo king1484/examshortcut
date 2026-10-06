@@ -43,14 +43,15 @@ def _key(name):
     if os.environ.get(name):
         return os.environ[name].strip()
     if _dotenv is None:
-        _dotenv = {}
+        d = {}                                           # build fully, then publish (extract threads race on this)
         try:
             for line in open(BOT_ENV, encoding="utf8", errors="ignore"):
                 m = re.match(r"\s*([A-Z0-9_]+)\s*=\s*(.*?)\s*$", line)
                 if m:
-                    _dotenv[m.group(1)] = m.group(2).strip("'\"")
+                    d[m.group(1)] = m.group(2).strip("'\"")
         except OSError:
             pass
+        _dotenv = d
     if _dotenv.get(name):
         return _dotenv[name]
     if name in KEY_RE:
