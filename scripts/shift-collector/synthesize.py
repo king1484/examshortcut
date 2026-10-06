@@ -66,7 +66,7 @@ def extract_source(date, src):
     kind = "YouTube transcript" if src["kind"] == "video" else "web article"
     user = f"Exam date asked: {date}. Source type: {kind}. Title: {src['title']}\n\n{src['text']}"
     # Same source text on the same date always yields the same facts: reuse them (saves LLM quota across runs).
-    key = hashlib.sha1((date + EXTRACT_SYS + user).encode("utf8")).hexdigest()[:20]
+    key = hashlib.sha1(("v2" + date + EXTRACT_SYS + user).encode("utf8")).hexdigest()[:20]   # bump v-tag to discard weak cached facts
     cf_ = os.path.join(HERE, "cache", f"ex-{key}.json")
     if os.path.exists(cf_):
         return {**src, "facts": json.load(open(cf_, encoding="utf8"))}
