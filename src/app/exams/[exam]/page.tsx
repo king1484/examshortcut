@@ -8,7 +8,9 @@ import { splitLead } from '@/lib/lead';
 import { DatePhases } from '@/components/DatePhases';
 import { CycleTimeline } from '@/components/CycleTimeline';
 import { MoreOnExam } from '@/components/exam-subpages/common';
+import { ExamGuideLinks } from '@/components/exam-pages/ExamInfoPages';
 import { CatToolsBlock } from '@/components/cat/CatToolsNav';
+import { ExamToolsBlock } from '@/components/exam-tools/ExamToolsBlock';
 
 const BUILT_AT = Date.now();
 
@@ -146,6 +148,8 @@ export default async function ExamHub({ params }: { params: Params }) {
       )}
 
       <MoreOnExam id={id} />
+      <ExamGuideLinks id={id} />
+      <ExamToolsBlock id={id} />
       {id === 'cat' && <CatToolsBlock />}
 
       <h2 className="text-2xl font-extrabold mt-10">Exam pattern</h2>
