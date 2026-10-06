@@ -137,7 +137,7 @@ def invidious_captions(vid: str):
     return None
 
 
-def transcript(vid: str):
+def yt_transcript(vid: str):
     api = YouTubeTranscriptApi(proxy_config=GenericProxyConfig(http_url=PROXY, https_url=PROXY)) if PROXY else YouTubeTranscriptApi()
     for langs in (["en", "en-IN", "hi"], None):
         try:
@@ -162,6 +162,40 @@ def transcript(vid: str):
         except Exception as e:  # noqa
             err = str(e)[:120]
     return {"lang": "", "text": "", "error": err}
+
+
+def api_transcript(vid: str):
+    """Fallback when YouTube blocks this IP: a free anonymous third-party API (freetranscriptapi.com,
+    ~20 requests/hour/IP, no key) that fetches the captions from its own IPs."""
+    try:
+        r = requests.get("https://api.freetranscriptapi.com/v1/transcript", params={"video_url": vid}, headers=UA, timeout=45)
+    except Exception as e:  # noqa
+        return {"lang": "", "text": "", "error": "api: " + str(e)[:80]}
+    if r.status_code == 429:
+        return {"lang": "", "text": "", "error": "api rate limited", "blocked": True}
+    if r.status_code != 200:
+        return {"lang": "", "text": "", "error": f"api HTTP {r.status_code}"}
+    j = r.json()
+    segs = j.get("transcript") or []
+    text = " ".join((x.get("text") if isinstance(x, dict) else str(x)).replace("\n", " ") for x in segs)
+    return {"lang": j.get("language", ""), "text": text} if text.strip() else {"lang": "", "text": "", "error": "api: empty"}
+
+
+def transcript(vid: str, use_yt: bool = True, use_api: bool = True):
+    """YouTube direct (proxy, yt-dlp) first, then the free API. Flags report which route is blocked."""
+    t = {"lang": "", "text": "", "error": "skipped"}
+    if use_yt:
+        t = yt_transcript(vid)
+        if t.get("text") or not t.get("blocked"):
+            return t
+        t["yt_blocked"] = True
+    if use_api:
+        a = api_transcript(vid)
+        a["yt_blocked"] = bool(use_yt)
+        if a.get("text") or a.get("blocked"):
+            return a
+        return {**a, "yt_blocked": bool(use_yt)}
+    return {**t, "blocked": True}
 
 
 def title_matches(title: str, d: dt.date, shift: int | None):
@@ -248,28 +282,30 @@ def main():
     vids = [v for v in vids if not (v.get("duration") and v["duration"] < 120)]   # drop shorts
     vids = vids[: a.max_videos]
     os.makedirs(CACHE, exist_ok=True)
-    blocked = False
-    for v in vids:  # one at a time, cached, stop hammering once YouTube blocks the IP
+    yt_ok, api_ok = True, True         # False once that route is blocked: stop hammering it for this run
+    for v in vids:  # one at a time, cached
         cf = os.path.join(CACHE, v["id"] + ".json")
         t = None
         if os.path.exists(cf):
             t = json.load(open(cf, encoding="utf8"))
             if not t.get("text") and (time.time() - os.path.getmtime(cf)) > 1800:
                 t = None                      # empty result older than 30 min: captions may exist now
-        if t is None and not blocked:
-            t = transcript(v["id"])
+        if t is None and (yt_ok or api_ok):
+            t = transcript(v["id"], use_yt=yt_ok, use_api=api_ok)
+            if t.pop("yt_blocked", False):
+                yt_ok = False
             if t.get("blocked"):
-                blocked = True
-            elif t.get("text") or "no captions" in t.get("error", ""):
+                api_ok = False
+            if t.get("text") or "no captions" in t.get("error", ""):
                 json.dump(t, open(cf, "w", encoding="utf8"), ensure_ascii=False)
-            time.sleep(random.uniform(2.0, 4.0))
-        t = t or {"text": "", "error": "skipped: IP blocked earlier in this run"}
+            time.sleep(random.uniform(1.0, 2.5))
+        t = t or {"text": "", "error": "skipped: transcript routes blocked earlier in this run"}
         v["transcript"] = t["text"][:MAX_TRANSCRIPT_CHARS]
         v["transcript_lang"] = t.get("lang")
         if t.get("error"):
             v["transcript_error"] = t["error"]
-    if blocked:
-        print("WARNING: YouTube blocked this IP for transcripts; try again later", file=sys.stderr)
+    if not yt_ok:
+        print("NOTE: YouTube blocked this IP; used the free transcript API fallback" if api_ok else "WARNING: YouTube and the fallback API are both blocked; try again later", file=sys.stderr)
     arts = web_articles(d, a.shift)
     pack = {"date": a.date, "shift": a.shift, "collected_at": dt.datetime.now(dt.timezone(dt.timedelta(hours=5, minutes=30))).isoformat(timespec="minutes"),
             "videos": vids, "articles": arts}

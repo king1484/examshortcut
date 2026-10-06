@@ -48,6 +48,10 @@ jobs:
       OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
       NOUS_API_KEY: ${{ secrets.NOUS_API_KEY }}
       NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+      OLLAMA_CLOUD_API_KEY: ${{ secrets.OLLAMA_CLOUD_API_KEY }}
+      AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+      KILO_API_KEY: ${{ secrets.KILO_API_KEY }}
+      MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -73,6 +77,8 @@ jobs:
 
       - name: Collect and analyse
         if: inputs.build_check != true && inputs.deploy_check != true
+        env:
+          CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}   # Workers AI leg; step-scoped so wrangler never sees it
         run: |
           args=""
           if [ -n "${{ inputs.date }}" ]; then args="$args --date ${{ inputs.date }}"; fi
