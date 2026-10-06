@@ -6,7 +6,7 @@ Per source: the LLM extracts facts (no prose). Per shift: the LLM merges the fac
 Code (not the LLM) decides status, sources list, ids, names, marks and drops invalid topic links.
 Shifts that were written by hand (no "auto": true and status "reported") are never overwritten.
 """
-import argparse, concurrent.futures as cf, datetime as dt, json, os, re, sys
+import argparse, concurrent.futures as cf, datetime as dt, hashlib, json, os, re, sys
 
 from llm import ask_json
 
@@ -65,9 +65,17 @@ def topic_slugs():
 def extract_source(date, src):
     kind = "YouTube transcript" if src["kind"] == "video" else "web article"
     user = f"Exam date asked: {date}. Source type: {kind}. Title: {src['title']}\n\n{src['text']}"
+    # Same source text on the same date always yields the same facts: reuse them (saves LLM quota across runs).
+    key = hashlib.sha1((date + EXTRACT_SYS + user).encode("utf8")).hexdigest()[:20]
+    cf_ = os.path.join(HERE, "cache", f"ex-{key}.json")
+    if os.path.exists(cf_):
+        return {**src, "facts": json.load(open(cf_, encoding="utf8"))}
     try:
         r = ask_json(EXTRACT_SYS, user, max_tokens=4000, log=log)
-        return {**src, "facts": clean_tree(r.get("shifts", []))}
+        facts = clean_tree(r.get("shifts", []))
+        os.makedirs(os.path.dirname(cf_), exist_ok=True)
+        json.dump(facts, open(cf_, "w", encoding="utf8"), ensure_ascii=False)
+        return {**src, "facts": facts}
     except Exception as e:  # noqa
         log("extract failed", src["title"][:50], str(e)[:80])
         return {**src, "facts": []}
