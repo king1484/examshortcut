@@ -186,11 +186,14 @@ def transcript(vid: str, use_yt: bool = True, use_api: bool = True):
     t = {"lang": "", "text": "", "error": "skipped"}
     if use_yt:
         t = yt_transcript(vid)
-        if t.get("text") or not t.get("blocked"):
+        if t.get("text") or "no captions" in t.get("error", ""):
             return t
-        t["yt_blocked"] = True
+        print(f"  yt transcript {vid}: {t.get('error', '?')[:110]}", file=sys.stderr)
+        t["yt_blocked"] = True            # blocked or any other failure: try the free API fallback
     if use_api:
         a = api_transcript(vid)
+        if not a.get("text"):
+            print(f"  api transcript {vid}: {a.get('error', '?')[:110]}", file=sys.stderr)
         a["yt_blocked"] = bool(use_yt)
         if a.get("text") or a.get("blocked"):
             return a
