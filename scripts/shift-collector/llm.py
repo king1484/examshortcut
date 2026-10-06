@@ -31,6 +31,11 @@ PROVIDERS = [
 ]
 
 
+def _ok(r):
+    if r.status_code >= 400:
+        raise RuntimeError(f"HTTP {r.status_code}: " + r.text[:120].replace("\n", " "))
+
+
 def _call(p, messages, max_tokens):
     key = _key(p["key"])
     if not key:
@@ -41,15 +46,19 @@ def _call(p, messages, max_tokens):
         body["stream"] = True
         out = []
         with requests.post(p["url"], json=body, headers=h, timeout=(20, 90), stream=True) as r:
-            r.raise_for_status()
+            _ok(r)
             for line in r.iter_lines():
                 if line and line.startswith(b"data: ") and line != b"data: [DONE]":
-                    d = json.loads(line[6:])["choices"][0].get("delta", {})
-                    out.append(d.get("content") or "")
+                    ch = json.loads(line[6:]).get("choices") or []
+                    if ch:
+                        out.append((ch[0].get("delta") or {}).get("content") or "")
         return "".join(out)
     r = requests.post(p["url"], json=body, headers=h, timeout=p["timeout"])
-    r.raise_for_status()
-    m = r.json()["choices"][0]
+    _ok(r)
+    ch = r.json().get("choices")
+    if not ch:
+        raise RuntimeError("no choices: " + r.text[:120].replace("\n", " "))
+    m = ch[0]
     if m.get("finish_reason") == "length":
         raise RuntimeError("truncated")
     return m["message"].get("content") or m["message"].get("reasoning_content") or ""

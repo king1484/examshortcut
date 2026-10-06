@@ -27,7 +27,7 @@ def log(msg):
 def run(cmd, timeout):
     env = {**os.environ, "PYTHONIOENCODING": "utf8"}
     p = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, encoding="utf8", errors="replace", timeout=timeout, env=env)
-    tail = (p.stderr or "").strip().splitlines()[-6:]
+    tail = (p.stderr or "").strip().splitlines()[-25:]
     for l in tail:
         log("   " + l[:200])
     return p.returncode, p.stdout
