@@ -6,7 +6,7 @@ import { EXAMS } from '@/lib/exams';
 export const dynamic = 'force-static';
 export const metadata: Metadata = {
   title: "Choose your exam — SSC, Railway, Banking & CAT",
-  description: 'SSC CGL, CHSL, MTS, GD, CPO, RRB NTPC, RRB Group D, IBPS PO, IBPS Clerk and CAT — pattern, eligibility, posts, selection process and FAQs, with shared maths, reasoning, English and GA notes, practice and tracking.',
+  description: 'SSC CGL, CHSL, MTS, GD, CPO, RRB NTPC, RRB Group D, RRB ALP, RRB JE, IBPS PO, IBPS Clerk, SBI PO, SBI Clerk, UP Police and CAT — pattern, eligibility, posts, selection process and FAQs, with shared maths, reasoning, English and GA notes, practice and tracking.',
   alternates: { canonical: '/exams/' },
 };
 

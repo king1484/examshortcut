@@ -28,6 +28,15 @@ const push = (doc) => docs.push(doc);
   ['/exams/ssc-gd/', 'SSC GD Constable exam guide pattern eligibility posts salary selection process'],
   ['/exams/rrb-ntpc/', 'RRB NTPC exam guide pattern eligibility posts salary selection process'],
   ['/exams/rrb-group-d/', 'RRB Group D exam guide pattern eligibility posts salary selection process'],
+  ['/exams/ssc-cpo/', 'SSC CPO Sub Inspector exam guide pattern eligibility posts salary selection process'],
+  ['/exams/rrb-alp/', 'RRB ALP Technician Assistant Loco Pilot exam guide pattern eligibility posts salary selection process'],
+  ['/exams/rrb-je/', 'RRB JE Junior Engineer exam guide pattern eligibility posts salary selection process'],
+  ['/exams/ibps-po/', 'IBPS PO exam guide pattern eligibility posts salary selection process'],
+  ['/exams/ibps-clerk/', 'IBPS Clerk exam guide pattern eligibility posts salary selection process'],
+  ['/exams/sbi-po/', 'SBI PO exam guide pattern eligibility posts salary selection process'],
+  ['/exams/sbi-clerk/', 'SBI Clerk Junior Associate exam guide pattern eligibility posts salary selection process'],
+  ['/exams/up-police/', 'UP Police Constable exam guide pattern eligibility posts salary selection process'],
+  ['/exams/cat/', 'CAT MBA exam guide pattern eligibility posts salary selection process'],
   ['/learn/', 'Subjects notes syllabus all sections topics list'],
   ['/daily-quiz/', 'Daily quiz today streak practice'],
   ['/exams/ssc-cgl/mocks/', 'Mock tests free CBT full paper previous year'],
@@ -48,7 +57,7 @@ if (fs.existsSync(EXAMS)) {
     const ids = [...new Set(fs.readdirSync(partsDir).filter((f) => f.endsWith('.json')).map((f) => f.split('--')[0]))];
     for (const id of ids) {
       const title = id.replace(/^t(\d)-/, 'Tier $1 ').replace(/-/g, ' ');
-      push({ t: 'mock', title: `${exam.toUpperCase().replace('-', ' ')} ${title}`, url: `/exams/${exam}/mocks/${id}/`, text: clean(`${exam} mock test ${title}`) });
+      push({ t: 'mock', title: `${exam.toUpperCase().replaceAll('-', ' ')} ${title}`, url: `/exams/${exam}/mocks/${id}/`, text: clean(`${exam} mock test ${title}`) });
     }
   }
 }
