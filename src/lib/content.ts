@@ -199,6 +199,11 @@ export const MOCK_DEFS: MockDef[] = [
     blurb: '100 questions · 200 marks · 60 minutes · −0.50 per wrong answer.',
   },
   {
+    id: 't1-mock-4', title: 'Tier 1 Full Mock 4', kind: 'full', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
+    blurb: '100 questions · 200 marks · 60 minutes · −0.50 per wrong answer.',
+  },
+  {
     id: 't2-mock-1', title: 'Tier 2 Paper 1 Full Mock 1', kind: 'full', tier: 2,
     durationMin: 135, plus: 3, minus: 1, sections: ['quant', 'reasoning', 'english', 'ga', 'computer'],
     blurb: '150 questions · Maths, Reasoning, English, GA + Computer module · +3 / −1.',

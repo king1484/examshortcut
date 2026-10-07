@@ -4,7 +4,7 @@
 // The list = the exams whose syllabus is >80% the shared maths / reasoning / English / GA subjects.
 import type { SectionId } from './sections';
 
-export type ExamCategory = 'SSC' | 'Railways' | 'MBA' | 'Banking';
+export type ExamCategory = 'SSC' | 'Railways' | 'MBA' | 'Banking' | 'Police';
 
 export interface ExamBasics {
   conductingBody: string;
@@ -69,6 +69,18 @@ export const EXAMS: ExamInfo[] = [
     basics: { conductingBody: 'Railway Recruitment Boards (RRBs)', eligibility: '10th pass or ITI',
       stages: 'CBT → physical efficiency test → document verification + medical',
       applicants: '1.08 crore (2025)' } },
+  { id: 'rrb-alp', name: 'RRB ALP / Technician', short: 'ALP', category: 'Railways', status: 'soon',
+    sections: ['quant', 'reasoning', 'ga'],
+    blurb: 'Assistant Loco Pilot and Technician posts in Indian Railways.',
+    basics: { conductingBody: 'Railway Recruitment Boards (RRBs)', eligibility: '10th pass + ITI in a notified trade / Act Apprenticeship, or 10th + 3-year engineering diploma (post-wise for Technician)',
+      stages: 'CBT 1 → CBT 2 (Part A + B) → CBAT (ALP) → DV + medical',
+      applicants: '22 lakh+ appeared in CBT 1 (2024 cycle)' } },
+  { id: 'rrb-je', name: 'RRB JE', short: 'JE', category: 'Railways', status: 'soon',
+    sections: ['quant', 'reasoning', 'ga'],
+    blurb: 'Junior Engineers and technical posts in Indian Railways.',
+    basics: { conductingBody: 'Railway Recruitment Boards (RRBs)', eligibility: 'Diploma or degree in the relevant engineering branch (B.Sc Physics + Chemistry for CMA)',
+      stages: 'CBT 1 → CBT 2 (with Technical Abilities paper) → document verification + medical',
+      applicants: '5.74 lakh applications (CEN 05/2025)' } },
   { id: 'cat', name: 'CAT', short: 'CAT', category: 'MBA', status: 'live',
     sections: ['english', 'reasoning', 'quant'],
     blurb: 'IIM MBA entrance — VARC, DILR and Quantitative Ability at full difficulty.',
@@ -108,9 +120,21 @@ export const EXAMS: ExamInfo[] = [
     basics: { conductingBody: 'Institute of Banking Personnel Selection (IBPS)', eligibility: 'Graduation in any discipline; computer literacy preferred',
       stages: 'Prelims CBT → Mains CBT → provisional allotment (no interview)',
       applicants: '≈10–13 lakh a year' } },
+  { id: 'sbi-clerk', name: 'SBI Clerk (Junior Associate)', short: 'SBI Clerk', category: 'Banking', status: 'soon',
+    sections: ['english', 'quant', 'reasoning', 'computer'],
+    blurb: 'Junior Associates in State Bank of India — prelims, mains, state-wise cutoffs.',
+    basics: { conductingBody: 'State Bank of India (SBI)', eligibility: 'Graduation + local language proficiency', stages: 'Prelims CBT → Mains CBT → local language test → provisional selection', applicants: 'No official figure published by SBI (2026-27 cycle: 9,124 vacancies)' } },
+  { id: 'sbi-po', name: 'SBI PO', short: 'SBI PO', category: 'Banking', status: 'soon',
+    sections: ['english', 'quant', 'reasoning', 'computer'],
+    blurb: 'Probationary Officers in State Bank of India — prelims, mains, interview.',
+    basics: { conductingBody: 'State Bank of India (SBI)', eligibility: 'Graduation in any discipline', stages: 'Prelims CBT → Mains CBT (+ descriptive) → psychometric / GD / interview → provisional selection', applicants: 'No official figure published by SBI (2026-27 cycle: 1,500 vacancies)' } },
+  { id: 'up-police', name: 'UP Police Constable', short: 'UP Police', category: 'Police', status: 'soon',
+    sections: ['ga', 'english', 'quant', 'reasoning'],
+    blurb: 'Constables in Uttar Pradesh Police — written exam, PET/PST, UP-specific GK.',
+    basics: { conductingBody: 'Uttar Pradesh Police Recruitment and Promotion Board (UPPRPB)', eligibility: 'Intermediate (12th pass) + PET/PST standards', stages: 'Written exam (offline OMR) → PET/PST → document verification + medical', applicants: '≈28.86 lakh applied (June 2026 exam, 32,679 vacancies)' } },
 ];
 
-export const EXAM_CATEGORIES: ExamCategory[] = ['SSC', 'Railways', 'MBA', 'Banking'];
+export const EXAM_CATEGORIES: ExamCategory[] = ['SSC', 'Railways', 'MBA', 'Banking', 'Police'];
 
 export const getExamInfo = (id: string | null | undefined) => EXAMS.find((e) => e.id === id) ?? null;
 
