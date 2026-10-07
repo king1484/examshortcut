@@ -10,10 +10,7 @@ const content = await import(moduleUrl(transpile('src/lib/content.ts').replaceAl
 const imports = JSON.parse(fs.readFileSync('content/pyq-imports-2026-10-07.json', 'utf8'));
 const allIds = new Set();
 let total = 0;
-// Held back: explanations are near-verbatim from the source site; rewrite before registering.
-const HELD = new Set(['cat-real-2025-1130-s2', 'cat-real-2025-1130-s3']);
 for (const paper of imports) {
-  if (HELD.has(paper.id ?? paper.mockId)) continue;
   assert.notEqual(paper.readyForRegistration, false);
   const exam = paper.exam ?? paper.examId ?? 'ssc-cgl';
   const id = paper.id ?? paper.mockId;
