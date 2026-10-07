@@ -337,6 +337,57 @@ export const MOCK_DEFS: MockDef[] = [
   "open": true
 },
 {
+  "id": "ibps-clerk-pattern-2024-0824-s1",
+  "title": "IBPS Clerk Prelims 2024 · 24 Aug Shift 1",
+  "kind": "pyq-pattern",
+  "tier": 1,
+  "durationMin": 60,
+  "blurb": "99 verified memory-based questions imported with five options, source answer key and original explanations. Damaged or unavailable items are omitted.",
+  "plus": 1,
+  "minus": 0.25,
+  "sections": [
+    "reasoning",
+    "english",
+    "quant"
+  ],
+  "exam": "ibps-clerk",
+  "open": true
+},
+{
+  "id": "ibps-clerk-pattern-2022-0903-s4",
+  "title": "IBPS Clerk Prelims 2022 · 3 Sep Shift 4",
+  "kind": "pyq-pattern",
+  "tier": 1,
+  "durationMin": 60,
+  "blurb": "98 verified memory-based questions imported with five options, source keys and original explanations. This is a reduced practice subset with damaged or unavailable items omitted.",
+  "plus": 1,
+  "minus": 0.25,
+  "sections": [
+    "english",
+    "quant",
+    "reasoning"
+  ],
+  "exam": "ibps-clerk",
+  "open": true
+},
+{
+  "id": "ibps-clerk-pattern-2023-0826-s1",
+  "title": "IBPS Clerk Prelims 2023 · 26 Aug Shift 1",
+  "kind": "pyq-pattern",
+  "tier": 1,
+  "durationMin": 60,
+  "blurb": "99 verified memory-based questions imported with five options, source keys and original explanations. This is a reduced practice subset with damaged or unavailable items omitted.",
+  "plus": 1,
+  "minus": 0.25,
+  "sections": [
+    "english",
+    "quant",
+    "reasoning"
+  ],
+  "exam": "ibps-clerk",
+  "open": true
+},
+{
   "id": "alp-real-2024-1125-s2",
   "title": "RRB ALP CBT 1 · 25 Nov 2024 Shift 2 · 66 imported questions",
   "kind": "real-pyq",
@@ -470,6 +521,108 @@ export const MOCK_DEFS: MockDef[] = [
     "ga"
   ],
   "exam": "rrb-ntpc",
+  "open": true
+},
+{
+  "id": "sbi-clerk-real-2025-0920-s1",
+  "title": "SBI Clerk Prelims 2025 · 20 Sep Shift 1",
+  "kind": "pyq-pattern",
+  "tier": 1,
+  "durationMin": 60,
+  "blurb": "100 questions imported from a publicly published memory-based paper, with five original options, verified source keys and original explanations. This is a reduced practice subset where damaged or unparseable items are omitted.",
+  "plus": 1,
+  "minus": 0.25,
+  "sections": [
+    "english",
+    "quant",
+    "reasoning"
+  ],
+  "exam": "sbi-clerk",
+  "open": true
+},
+{
+  "id": "sbi-clerk-real-2025-0921-s1",
+  "title": "SBI Clerk Prelims 2025 · 21 Sep Shift 1",
+  "kind": "pyq-pattern",
+  "tier": 1,
+  "durationMin": 60,
+  "blurb": "100 questions imported from a publicly published memory-based paper, with five original options, verified source keys and original explanations. This is a reduced practice subset where damaged or unparseable items are omitted.",
+  "plus": 1,
+  "minus": 0.25,
+  "sections": [
+    "english",
+    "quant",
+    "reasoning"
+  ],
+  "exam": "sbi-clerk",
+  "open": true
+},
+{
+  "id": "sbi-clerk-real-2025-0927-s1",
+  "title": "SBI Clerk Prelims 2025 · 27 Sep Shift 1",
+  "kind": "pyq-pattern",
+  "tier": 1,
+  "durationMin": 60,
+  "blurb": "100 questions imported from a publicly published memory-based paper, with five original options, verified source keys and original explanations. This is a reduced practice subset where damaged or unparseable items are omitted.",
+  "plus": 1,
+  "minus": 0.25,
+  "sections": [
+    "english",
+    "quant",
+    "reasoning"
+  ],
+  "exam": "sbi-clerk",
+  "open": true
+},
+{
+  "id": "sbi-po-pattern-2025-0804-s1",
+  "title": "SBI PO Prelims 2025 · 4 Aug Shift 1",
+  "kind": "pyq-pattern",
+  "tier": 1,
+  "durationMin": 60,
+  "blurb": "81 verified memory-based questions imported with five options, answer keys and original explanations. This is a reduced practice subset with malformed or unavailable source items omitted.",
+  "plus": 1,
+  "minus": 0.25,
+  "sections": [
+    "english",
+    "quant",
+    "reasoning"
+  ],
+  "exam": "sbi-po",
+  "open": true
+},
+{
+  "id": "sbi-po-pattern-2025-0804-s2",
+  "title": "SBI PO Prelims 2025 · 4 Aug Shift 2",
+  "kind": "pyq-pattern",
+  "tier": 1,
+  "durationMin": 60,
+  "blurb": "82 verified memory-based questions imported with five options, answer keys and original explanations. This is a reduced practice subset with malformed or unavailable source items omitted.",
+  "plus": 1,
+  "minus": 0.25,
+  "sections": [
+    "english",
+    "quant",
+    "reasoning"
+  ],
+  "exam": "sbi-po",
+  "open": true
+},
+{
+  "id": "sbi-po-pattern-2025-0805-s1",
+  "title": "SBI PO Prelims 2025 · 5 Aug Shift 1",
+  "kind": "pyq-pattern",
+  "tier": 1,
+  "durationMin": 60,
+  "blurb": "83 verified memory-based questions imported with five options, answer keys and original explanations. This is a reduced practice subset with malformed or unavailable source items omitted.",
+  "plus": 1,
+  "minus": 0.25,
+  "sections": [
+    "english",
+    "quant",
+    "reasoning"
+  ],
+  "exam": "sbi-po",
   "open": true
 },
 {
