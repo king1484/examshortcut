@@ -124,7 +124,7 @@ function Empty({ text }: { text: string }) {
   return <div className="card p-6 text-center muted text-sm">{text}</div>;
 }
 
-function SavedCard({ sk, item, onRemove, removeLabel }: { sk: string; item: { question: { q: string; options: string[]; answer: number; solution: string; shortcut?: string | null }; chosen: number | null; from: string; href: string }; onRemove: () => void; removeLabel: string }) {
+function SavedCard({ sk, item, onRemove, removeLabel }: { sk: string; item: { question: { type?: 'numeric'; q: string; options: string[]; answer: number; solution: string; shortcut?: string | null }; chosen: number | null; from: string; href: string }; onRemove: () => void; removeLabel: string }) {
   const [chosen, setChosen] = useState<number | null>(null);
   const revealed = chosen !== null;
   const q = item.question;
@@ -135,6 +135,12 @@ function SavedCard({ sk, item, onRemove, removeLabel }: { sk: string; item: { qu
         <button className="underline" onClick={onRemove}>{removeLabel}</button>
       </div>
       <div className="mt-2"><Md>{q.q}</Md></div>
+      {q.type === 'numeric' && (
+        <label className="block text-sm mt-2">Numerical answer
+          <input type="number" step="any" aria-label="Numerical answer" disabled={revealed} value={chosen ?? ''} onChange={(e) => setChosen(e.target.value === '' || !Number.isFinite(e.target.valueAsNumber) ? null : e.target.valueAsNumber)} className="block mt-1 rounded-lg border p-2" style={{ borderColor: 'var(--line)', background: 'var(--surface)', color: 'var(--ink)' }} />
+          {revealed && <span className="block mt-1">Correct answer: <b>{q.answer}</b></span>}
+        </label>
+      )}
       {isSvg(q.q) || (q.options.length === 0) ? null : (
         <div className="grid gap-1.5 mt-2">
           {q.options.map((o, i) => {
@@ -145,7 +151,7 @@ function SavedCard({ sk, item, onRemove, removeLabel }: { sk: string; item: { qu
               <button key={i} disabled={revealed} onClick={() => setChosen(i)}
                 className="text-left text-sm p-2 rounded-lg border transition-colors"
                 style={{ borderColor: state === 'correct' ? 'var(--ok)' : state === 'wrong' ? 'var(--bad)' : state === 'selected' ? 'var(--info)' : 'var(--line)', background: state === 'correct' ? 'var(--ok-soft)' : state === 'wrong' ? 'var(--bad-soft)' : state === 'selected' ? 'var(--info-soft)' : 'transparent' }}>
-                <b>{'ABCD'[i]}.</b> <Md inline>{o}</Md>
+                <b>{'ABCDE'[i]}.</b> <Md inline>{o}</Md>
               </button>
             );
           })}

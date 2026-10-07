@@ -7,6 +7,7 @@ import type { Mock, Question } from '@/lib/types';
 import { store, type MockAttempt } from '@/lib/store';
 import { ShareScore } from './ShareScore';
 import { Explanation, LETTERS, OptionButton, QuestionBody, withPassages } from './QuestionView';
+import { questionScore, wrongAnswerPenalty } from '@/lib/questionScore';
 
 // SSC-style palette states
 type Status = 'not-visited' | 'not-answered' | 'answered' | 'marked' | 'answered-marked';
@@ -137,7 +138,8 @@ export function MockCBT({ mock }: { mock: Mock }) {
       s.total++; s.max += mock.plus;
       const a = answers[i];
       if (a === null) return;
-      if (a === f.q.answer) { s.correct++; s.score += mock.plus; correct++; } else { s.wrong++; s.score -= mock.minus; wrong++; }
+      s.score += questionScore(f.q, a, mock.plus, mock.minus);
+      if (a === f.q.answer) { s.correct++; correct++; } else { s.wrong++; wrong++; }
     });
     const scoreVal = Object.values(sections).reduce((n, s) => n + s.score, 0);
     const timeSec = mock.durationMin * 60 - Math.max(0, stRef.current.remaining);
@@ -166,7 +168,8 @@ export function MockCBT({ mock }: { mock: Mock }) {
           <h2 className="font-bold text-base">Instructions (same as the real CBT)</h2>
           <ul className="list-disc pl-5 space-y-1 muted">
             <li>Total time: <b>{mock.durationMin} minutes</b>. The clock at the top counts down; the test submits automatically at 00:00.</li>
-            <li>+{mock.plus} for every correct answer, −{mock.minus} for every wrong answer. No marks deducted for unattempted questions.</li>
+            <li>+{mock.plus} for every correct answer. {flat.some((f) => f.q.negativeMarks !== undefined) ? 'Wrong-answer penalties depend on the session and are shown with each question.' : `−${mock.minus} for every wrong MCQ answer.`} No marks deducted for unattempted questions.</li>
+            {flat.some((f) => f.q.type === 'numeric') && <li>For TITA questions, type the numerical answer. Wrong TITA answers carry no negative marks.</li>}
             <li>Click an option, then <b>Save &amp; Next</b>. An option clicked without saving is not counted — just like the real exam.</li>
             <li><b>Mark for Review &amp; Next</b> flags a question. A marked question that has an answer <i>is</i> evaluated.</li>
             <li>You can jump between sections and questions using the palette. Your progress is saved on this device if you close the tab.</li>
@@ -241,10 +244,15 @@ export function MockCBT({ mock }: { mock: Mock }) {
           <div className="max-w-3xl mx-auto p-4 sm:p-6">
             <div className="flex justify-between text-sm mb-3">
               <span className="font-bold">Question {cur.n + 1}</span>
-              <span className="faint">+{mock.plus} / −{mock.minus}</span>
+              <span className="faint">+{mock.plus} / −{wrongAnswerPenalty(cur.q, mock.minus)}</span>
             </div>
             <QuestionBody q={cur.q} />
             <div className="grid gap-2 mt-4">
+              {cur.q.type === 'numeric' && (
+                <label className="font-semibold text-sm">Numerical answer (TITA)
+                  <input key={st.cur} type="number" step="any" aria-label="Numerical answer" className="block w-full mt-2 rounded-xl border p-3" style={{ borderColor: 'var(--line)', background: 'var(--surface)', color: 'var(--ink)' }} value={pending ?? ''} onChange={(e) => setPending(e.target.value === '' || !Number.isFinite(e.target.valueAsNumber) ? null : e.target.valueAsNumber)} />
+                </label>
+              )}
               {cur.q.options.map((o, i) => (
                 <OptionButton key={i} label={LETTERS[i]} text={o} state={pending === i ? 'selected' : 'idle'} onClick={() => setPending(i)} />
               ))}
@@ -425,6 +433,7 @@ function MockResult({ mock, flat, answers, times, attempt }: { mock: Mock; flat:
                 <div className="mt-3">
                   <QuestionBody q={f.q} />
                   <div className="grid gap-2 mt-3">
+                    {f.q.type === 'numeric' && <p className="text-sm">Your answer: <b>{a ?? 'Skipped'}</b> · Correct answer: <b>{f.q.answer}</b></p>}
                     {f.q.options.map((o, k) => (
                       <OptionButton key={k} label={LETTERS[k]} text={o} disabled
                         state={k === f.q.answer ? (a === k ? 'correct' : 'missed') : a === k ? 'wrong' : 'idle'} />

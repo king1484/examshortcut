@@ -75,4 +75,4 @@ export function Explanation({ q }: { q: Question }) {
   );
 }
 
-export const LETTERS = ['A', 'B', 'C', 'D'];
+export const LETTERS = ['A', 'B', 'C', 'D', 'E'];

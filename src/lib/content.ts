@@ -123,6 +123,492 @@ interface MockDef {
 }
 
 export const MOCK_DEFS: MockDef[] = [
+// BEGIN VERIFIED PYQ IMPORTS
+{
+  "id": "up-police-real-2024-0823-s1",
+  "title": "UP Police Constable — 23 Aug 2024 Shift 1 (verified subset)",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 120,
+  "blurb": "120 source questions fully imported with answers and original explanations. Excludes 30 of the source's 150 questions: unavailable figures, ambiguous statements, suspect keys or insufficiently verified items. General Hindi is preserved in Hindi; this is a reduced-question practice test, not the full 150-question paper.",
+  "plus": 2,
+  "minus": 0.5,
+  "sections": [
+    "quant",
+    "reasoning",
+    "english",
+    "ga"
+  ],
+  "exam": "up-police",
+  "sectionNames": {
+    "english": "General Hindi"
+  },
+  "open": true
+},
+{
+  "id": "ibps-po-pattern-2025-0817",
+  "title": "IBPS PO Prelims — 17 Aug 2025 memory-based subset",
+  "kind": "pyq-pattern",
+  "tier": 1,
+  "durationMin": 60,
+  "blurb": "65 verified questions from a publicly published memory-based paper, with all five original options, imported answers and original explanations. Not an official question paper. 35 source questions are omitted: image-only data, unverified puzzles, ambiguous items and the longer reading passage. This is a reduced practice subset of the 100-question source.",
+  "plus": 1,
+  "minus": 0.25,
+  "sections": [
+    "reasoning",
+    "quant",
+    "english"
+  ],
+  "exam": "ibps-po",
+  "open": true
+},
+{
+  "id": "up-police-real-2024-0824-s1",
+  "title": "UP Police Constable — 24 Aug 2024 Shift 1 (verified subset)",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 120,
+  "blurb": "120 source questions imported with answers and original explanations. 30 of 150 source items are omitted because figures, passage context, wording, keys or facts could not be adequately verified. General Hindi is preserved. This is a reduced-question practice test, not the full 150-question paper.",
+  "plus": 2,
+  "minus": 0.5,
+  "sections": [
+    "quant",
+    "reasoning",
+    "english",
+    "ga"
+  ],
+  "exam": "up-police",
+  "sectionNames": {
+    "english": "General Hindi"
+  },
+  "open": true
+},
+{
+  "id": "up-police-real-2024-0823-s2",
+  "title": "UP Police Constable — 23 Aug 2024 Shift 2 (verified subset)",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 120,
+  "blurb": "110 source questions fully imported with answers and original explanations. Omits 40 of 150 source items with unavailable figures, conflicting keys, ambiguous wording, unverified facts or passage requirements. Hindi is preserved; dated current affairs refer to the source exam context. This is a reduced-question practice test, not the full paper.",
+  "plus": 2,
+  "minus": 0.5,
+  "sections": [
+    "quant",
+    "reasoning",
+    "english",
+    "ga"
+  ],
+  "exam": "up-police",
+  "sectionNames": {
+    "english": "General Hindi"
+  },
+  "open": true
+},
+{
+  "id": "ibps-po-pattern-2025-0824",
+  "title": "IBPS PO Prelims — 24 Aug 2025 memory-based subset",
+  "kind": "pyq-pattern",
+  "tier": 1,
+  "durationMin": 60,
+  "blurb": "84 verified source questions from a publicly published memory-based paper, with all five original options, imported answers and original explanations. Not an official paper. Omits 16 of the source’s 100 questions with missing figures/context, malformed choices, conflicting keys or unresolved ambiguities. This is a reduced-question practice test with all three sections.",
+  "plus": 1,
+  "minus": 0.25,
+  "sections": [
+    "reasoning",
+    "quant",
+    "english"
+  ],
+  "exam": "ibps-po",
+  "open": true
+},
+{
+  "id": "ibps-po-pattern-2025-0823",
+  "title": "IBPS PO Prelims — 23 Aug 2025 memory-based subset",
+  "kind": "pyq-pattern",
+  "tier": 1,
+  "durationMin": 60,
+  "blurb": "82 verified source questions from a publicly published memory-based paper, with all five original options, imported answers and original explanations. Not an official paper. Omits 18 of the source’s 100 questions with missing figures/context, malformed choices, conflicting keys or unresolved ambiguities. This is a reduced-question practice test with all three sections.",
+  "plus": 1,
+  "minus": 0.25,
+  "sections": [
+    "reasoning",
+    "quant",
+    "english"
+  ],
+  "exam": "ibps-po",
+  "open": true
+},
+{
+  "id": "t1-real-2025-0918-s1",
+  "title": "SSC CGL 2025 (Held On: 18 Sept, 2025 Shift 1) (verified subset)",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 60,
+  "plus": 2,
+  "minus": 0.5,
+  "sections": [
+    "reasoning",
+    "ga",
+    "quant",
+    "english"
+  ],
+  "exam": "ssc-cgl",
+  "blurb": "81 verified source questions imported with answers and original explanations. 19 source questions omitted because passage or figure context, wording, keys or facts could not be adequately verified. This is a reduced-question timed practice test.",
+  "open": true
+},
+{
+  "id": "t1-real-2025-0919-s2",
+  "title": "SSC CGL 2025 (Held On: 19 Sept, 2025 Shift 2) (verified subset)",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 60,
+  "plus": 2,
+  "minus": 0.5,
+  "sections": [
+    "reasoning",
+    "ga",
+    "quant",
+    "english"
+  ],
+  "exam": "ssc-cgl",
+  "blurb": "84 verified source questions imported with answers and original explanations. 16 source questions omitted because passage or figure context, wording, keys or facts could not be adequately verified. This is a reduced-question timed practice test.",
+  "open": true
+},
+{
+  "id": "t1-real-2025-0922-s3",
+  "title": "SSC CGL 2025 (Held On: 22 Sept, 2025 Shift 3) (verified subset)",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 60,
+  "plus": 2,
+  "minus": 0.5,
+  "sections": [
+    "reasoning",
+    "ga",
+    "quant",
+    "english"
+  ],
+  "exam": "ssc-cgl",
+  "blurb": "82 verified source questions imported with answers and original explanations. 18 source questions omitted because passage or figure context, wording, keys or facts could not be adequately verified. This is a reduced-question timed practice test.",
+  "open": true
+},
+{
+  "id": "alp-real-2024-1125-s2",
+  "title": "RRB ALP CBT 1 · 25 Nov 2024 Shift 2 · 66 imported questions",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 60,
+  "blurb": "66 actual questions imported from the 25 Nov 2024 Shift 2 response-paper PDF, with original worked solutions. This is a partial paper: Quant 17, Reasoning 21, Ga 28. Image-dependent, unreadable, incomplete or disputed items are omitted. The 60-minute practice timer is the original paper duration despite the reduced question count.",
+  "plus": 1,
+  "minus": 0.33,
+  "sections": [
+    "quant",
+    "reasoning",
+    "ga"
+  ],
+  "exam": "rrb-alp",
+  "open": true
+},
+{
+  "id": "alp-real-2024-1126-s3",
+  "title": "RRB ALP CBT 1 · 26 Nov 2024 Shift 3 · 71 imported questions",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 60,
+  "blurb": "71 actual questions imported from the 26 Nov 2024 Shift 3 response-paper PDF, with original worked solutions. This is a partial paper: Quant 20, Reasoning 23, Ga 28. Image-dependent, unreadable, incomplete or disputed items are omitted. The 60-minute practice timer is the original paper duration despite the reduced question count.",
+  "plus": 1,
+  "minus": 0.33,
+  "sections": [
+    "quant",
+    "reasoning",
+    "ga"
+  ],
+  "exam": "rrb-alp",
+  "open": true
+},
+{
+  "id": "alp-real-2024-1127-s1",
+  "title": "RRB ALP CBT 1 · 27 Nov 2024 Shift 1 · 70 imported questions",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 60,
+  "blurb": "70 actual questions imported from the 27 Nov 2024 Shift 1 response-paper PDF, with original worked solutions. This is a partial paper: Quant 16, Reasoning 24, Ga 30. Image-dependent, unreadable, incomplete or disputed items are omitted. The 60-minute practice timer is the original paper duration despite the reduced question count.",
+  "plus": 1,
+  "minus": 0.33,
+  "sections": [
+    "quant",
+    "reasoning",
+    "ga"
+  ],
+  "exam": "rrb-alp",
+  "open": true
+},
+{
+  "id": "groupd-real-2025-1201-s1",
+  "title": "RRB Group D CBT · 01 Dec 2025 Shift 1 · 95 imported questions",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 90,
+  "blurb": "95 actual questions imported from the 01 Dec 2025 Shift 1 response-paper PDF, with original worked solutions. This is a partial paper: Quant 22, Reasoning 29, Ga 44. Image-dependent, unreadable, incomplete or disputed items are omitted. The 90-minute practice timer is the original paper duration despite the reduced question count.",
+  "plus": 1,
+  "minus": 0.33,
+  "sections": [
+    "quant",
+    "reasoning",
+    "ga"
+  ],
+  "exam": "rrb-group-d",
+  "open": true
+},
+{
+  "id": "je-real-2024-1216-s1",
+  "title": "RRB JE CBT 1 · 16 Dec 2024 Shift 1 · 90 imported questions",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 90,
+  "blurb": "90 actual questions imported from the 16 Dec 2024 Shift 1 response-paper PDF, with original worked solutions. This is a partial paper: Quant 28, Reasoning 23, Ga 39. Image-dependent, unreadable, incomplete or disputed items are omitted. The 90-minute practice timer is the original paper duration despite the reduced question count.",
+  "plus": 1,
+  "minus": 0.33,
+  "sections": [
+    "quant",
+    "reasoning",
+    "ga"
+  ],
+  "exam": "rrb-je",
+  "open": true
+},
+{
+  "id": "ntpc-g-real-2026-0317-s1",
+  "title": "RRB NTPC Graduate CBT 1 · 17 Mar 2026 Shift 1 · 91 imported questions",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 90,
+  "blurb": "91 actual questions imported from the 17 Mar 2026 Shift 1 response-paper PDF, with original worked solutions. This is a partial paper: Quant 21, Reasoning 30, Ga 40. Image-dependent, unreadable, incomplete or disputed items are omitted. The 90-minute practice timer is the original paper duration despite the reduced question count.",
+  "plus": 1,
+  "minus": 0.33,
+  "sections": [
+    "quant",
+    "reasoning",
+    "ga"
+  ],
+  "exam": "rrb-ntpc",
+  "open": true
+},
+{
+  "id": "ntpc-g-real-2026-0318-s1",
+  "title": "RRB NTPC Graduate CBT 1 · 18 Mar 2026 Shift 1 · 84 imported questions",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 90,
+  "blurb": "84 actual questions imported from the 18 Mar 2026 Shift 1 response-paper PDF, with original worked solutions. This is a partial paper: Quant 19, Reasoning 30, Ga 35. Image-dependent, unreadable, incomplete or disputed items are omitted. The 90-minute practice timer is the original paper duration despite the reduced question count.",
+  "plus": 1,
+  "minus": 0.33,
+  "sections": [
+    "quant",
+    "reasoning",
+    "ga"
+  ],
+  "exam": "rrb-ntpc",
+  "open": true
+},
+{
+  "id": "ntpc-g-real-2026-0319-s1",
+  "title": "RRB NTPC Graduate CBT 1 · 19 Mar 2026 Shift 1 · 90 imported questions",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 90,
+  "blurb": "90 actual questions imported from the 19 Mar 2026 Shift 1 response-paper PDF, with original worked solutions. This is a partial paper: Quant 23, Reasoning 30, Ga 37. Image-dependent, unreadable, incomplete or disputed items are omitted. The 90-minute practice timer is the original paper duration despite the reduced question count.",
+  "plus": 1,
+  "minus": 0.33,
+  "sections": [
+    "quant",
+    "reasoning",
+    "ga"
+  ],
+  "exam": "rrb-ntpc",
+  "open": true
+},
+{
+  "id": "chsl-t1-real-2025-1114-s3",
+  "title": "CHSL 2025 Tier 1 · 14 Nov 2025 Shift 3 · 72 imported questions",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 60,
+  "blurb": "72 verified text questions imported from the 14 Nov 2025 Shift 3 paper, with original worked solutions. This is a partial paper: English 16, Reasoning 16, Quant 24, GA 16. Missing passages, unreadable or incomplete items, duplicates and disputed answers are omitted. The 60-minute practice timer is the original paper duration, despite the reduced question count.",
+  "plus": 2,
+  "minus": 0.5,
+  "sections": [
+    "english",
+    "reasoning",
+    "quant",
+    "ga"
+  ],
+  "exam": "ssc-chsl",
+  "open": true
+},
+{
+  "id": "chsl-t1-real-2025-1115-s1",
+  "title": "CHSL 2025 Tier 1 · 15 Nov 2025 Shift 1 · 81 imported questions",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 60,
+  "blurb": "81 verified text questions imported from the 15 Nov 2025 Shift 1 paper, with original worked solutions. This is a partial paper: English 16, Reasoning 24, Quant 21, GA 20. Missing passages, unreadable or incomplete items, duplicates and disputed answers are omitted. The 60-minute practice timer is the original paper duration, despite the reduced question count.",
+  "plus": 2,
+  "minus": 0.5,
+  "sections": [
+    "english",
+    "reasoning",
+    "quant",
+    "ga"
+  ],
+  "exam": "ssc-chsl",
+  "open": true
+},
+{
+  "id": "chsl-t1-real-2025-1118-s1",
+  "title": "CHSL 2025 Tier 1 · 18 Nov 2025 Shift 1 · 85 imported questions",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 60,
+  "blurb": "85 verified text questions imported from the 18 Nov 2025 Shift 1 paper, with original worked solutions. This is a partial paper: English 20, Reasoning 22, Quant 25, GA 18. Missing passages, unreadable or incomplete items, duplicates and disputed answers are omitted. The 60-minute practice timer is the original paper duration, despite the reduced question count.",
+  "plus": 2,
+  "minus": 0.5,
+  "sections": [
+    "english",
+    "reasoning",
+    "quant",
+    "ga"
+  ],
+  "exam": "ssc-chsl",
+  "open": true
+},
+{
+  "id": "chsl-t1-real-2025-1119-s2",
+  "title": "CHSL 2025 Tier 1 · 19 Nov 2025 Shift 2 · 86 imported questions",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 60,
+  "blurb": "86 verified text questions imported from the 19 Nov 2025 Shift 2 paper, with original worked solutions. This is a partial paper: English 16, Reasoning 25, Quant 25, GA 20. Missing passages, unreadable or incomplete items, duplicates and disputed answers are omitted. The 60-minute practice timer is the original paper duration, despite the reduced question count.",
+  "plus": 2,
+  "minus": 0.5,
+  "sections": [
+    "english",
+    "reasoning",
+    "quant",
+    "ga"
+  ],
+  "exam": "ssc-chsl",
+  "open": true
+},
+{
+  "id": "cpo-p1-real-2025-1211-s1",
+  "title": "CPO 2025 Paper 1 · 11 Dec 2025 Shift 1 · 76 imported questions",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 120,
+  "blurb": "76 verified text questions imported from the 11 Dec 2025 Shift 1 paper, with original worked solutions. This is a partial paper: English 21, Reasoning 14, Quant 23, GA 18. Missing passages, unreadable or incomplete items, duplicates and disputed answers are omitted. The 120-minute practice timer is the original paper duration, despite the reduced question count.",
+  "plus": 1,
+  "minus": 0.25,
+  "sections": [
+    "reasoning",
+    "ga",
+    "quant",
+    "english"
+  ],
+  "exam": "ssc-cpo",
+  "open": true
+},
+{
+  "id": "cpo-p1-real-2025-1211-s2",
+  "title": "CPO 2025 Paper 1 · 11 Dec 2025 Shift 2 · 77 imported questions",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 120,
+  "blurb": "77 verified text questions imported from the 11 Dec 2025 Shift 2 paper, with original worked solutions. This is a partial paper: English 18, Reasoning 16, Quant 23, GA 20. Missing passages, unreadable or incomplete items, duplicates and disputed answers are omitted. The 120-minute practice timer is the original paper duration, despite the reduced question count.",
+  "plus": 1,
+  "minus": 0.25,
+  "sections": [
+    "reasoning",
+    "ga",
+    "quant",
+    "english"
+  ],
+  "exam": "ssc-cpo",
+  "open": true
+},
+{
+  "id": "gd-real-2026-0429-s1",
+  "title": "GD Constable 2026 · 29 Apr 2026 Shift 1 · 67 imported questions",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 60,
+  "blurb": "67 verified text questions imported from the 29 Apr 2026 Shift 1 paper, with original worked solutions. This is a partial paper: English 10, Reasoning 18, Quant 20, GA 19. Missing passages, unreadable or incomplete items, duplicates and disputed answers are omitted. The 60-minute practice timer is the original paper duration, despite the reduced question count.",
+  "plus": 2,
+  "minus": 0.5,
+  "sections": [
+    "reasoning",
+    "ga",
+    "quant",
+    "english"
+  ],
+  "exam": "ssc-gd",
+  "open": true
+},
+{
+  "id": "mts-real-2025-0204-s3",
+  "title": "MTS 2025 · 4 Feb 2026 Shift 3 · 73 imported questions",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 90,
+  "blurb": "73 verified text questions imported from the 4 Feb 2026 Shift 3 paper, with original worked solutions. This is a partial paper: English 18, Reasoning 17, Quant 15, GA 23. Missing passages, unreadable or incomplete items, duplicates and disputed answers are omitted. Scoring: +3 per correct answer; no penalty in Quant/Reasoning and −1 in GA/English. The practice uses a combined 90-minute timer; separate examination session timing is not simulated.",
+  "plus": 3,
+  "minus": 0,
+  "sections": [
+    "quant",
+    "reasoning",
+    "ga",
+    "english"
+  ],
+  "exam": "ssc-mts",
+  "open": true
+},
+{
+  "id": "mts-real-2025-0205-s3",
+  "title": "MTS 2025 · 5 Feb 2026 Shift 3 · 75 imported questions",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 90,
+  "blurb": "75 verified text questions imported from the 5 Feb 2026 Shift 3 paper, with original worked solutions. This is a partial paper: English 18, Reasoning 19, Quant 16, GA 22. Missing passages, unreadable or incomplete items, duplicates and disputed answers are omitted. Scoring: +3 per correct answer; no penalty in Quant/Reasoning and −1 in GA/English. The practice uses a combined 90-minute timer; separate examination session timing is not simulated.",
+  "plus": 3,
+  "minus": 0,
+  "sections": [
+    "quant",
+    "reasoning",
+    "ga",
+    "english"
+  ],
+  "exam": "ssc-mts",
+  "open": true
+},
+{
+  "id": "mts-real-2025-0206-s2",
+  "title": "MTS 2025 · 6 Feb 2026 Shift 2 · 71 imported questions",
+  "kind": "real-pyq",
+  "tier": 1,
+  "durationMin": 90,
+  "blurb": "71 verified text questions imported from the 6 Feb 2026 Shift 2 paper, with original worked solutions. This is a partial paper: English 19, Reasoning 18, Quant 13, GA 21. Missing passages, unreadable or incomplete items, duplicates and disputed answers are omitted. Scoring: +3 per correct answer; no penalty in Quant/Reasoning and −1 in GA/English. The practice uses a combined 90-minute timer; separate examination session timing is not simulated.",
+  "plus": 3,
+  "minus": 0,
+  "sections": [
+    "quant",
+    "reasoning",
+    "ga",
+    "english"
+  ],
+  "exam": "ssc-mts",
+  "open": true
+},
+// END VERIFIED PYQ IMPORTS
   {
     id: 't1-real-2025-0926-s3', title: 'CGL 2025 Tier 1 — real paper, 26 Sept Shift 3', kind: 'real-pyq', tier: 1,
     durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
@@ -204,8 +690,18 @@ export const MOCK_DEFS: MockDef[] = [
     blurb: '100 questions · 200 marks · 60 minutes · −0.50 per wrong answer.',
   },
   {
+    id: 't1-mock-5', title: 'Tier 1 Full Mock 5', kind: 'full', tier: 1,
+    durationMin: 60, plus: 2, minus: 0.5, sections: ['reasoning', 'ga', 'quant', 'english'], open: true,
+    blurb: '100 questions · 200 marks · 60 minutes · −0.50 per wrong answer.',
+  },
+  {
     id: 't2-mock-1', title: 'Tier 2 Paper 1 Full Mock 1', kind: 'full', tier: 2,
     durationMin: 135, plus: 3, minus: 1, sections: ['quant', 'reasoning', 'english', 'ga', 'computer'],
+    blurb: '150 questions · Maths, Reasoning, English, GA + Computer module · +3 / −1.',
+  },
+  {
+    id: 't2-mock-2', title: 'Tier 2 Paper 1 Full Mock 2', kind: 'full', tier: 2,
+    durationMin: 135, plus: 3, minus: 1, sections: ['quant', 'reasoning', 'english', 'ga', 'computer'], open: true,
     blurb: '150 questions · Maths, Reasoning, English, GA + Computer module · +3 / −1.',
   },
   // ---------- other exams ----------
@@ -393,7 +889,7 @@ export function getMock(id: string): Mock | null {
       return { sectionId: sid, name: def.sectionNames?.[sid] ?? SECTION_META[sid].name, questions: part.questions };
     })
     .filter((s): s is NonNullable<typeof s> => !!s && s.questions.length > 0);
-  if (sections.length === 0) return null;
+  if (sections.length !== def.sections.length) return null;
   const { sections: _unused, ...rest } = def;
   void _unused;
   return { ...rest, sections };

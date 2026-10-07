@@ -23,9 +23,11 @@ function checkQ(q, where) {
   const at = `${where} · ${id}`;
   if (!q.id) errors.push(`${at}: missing id`);
   if (!q.q) errors.push(`${at}: missing q`);
-  if (!Array.isArray(q.options) || q.options.length !== 4) errors.push(`${at}: options must be exactly 4`);
+  const numeric = q.type === 'numeric';
+  if (q.negativeMarks !== undefined && (!Number.isFinite(q.negativeMarks) || q.negativeMarks < 0)) errors.push(`${at}: invalid negative marks`);
+  if (!Array.isArray(q.options) || (numeric ? q.options.length !== 0 : ![4, 5].includes(q.options.length))) errors.push(`${at}: numeric questions need no options; MCQs need 4 or 5 choices`);
   if (q.options && new Set(q.options).size !== q.options.length) errors.push(`${at}: duplicate options`);
-  if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer > 3) errors.push(`${at}: answer index out of range`);
+  if (numeric ? !Number.isFinite(q.answer) : (!Number.isInteger(q.answer) || q.answer < 0 || q.answer >= (q.options?.length ?? 0))) errors.push(`${at}: invalid answer`);
   if (!q.solution) errors.push(`${at}: missing solution`);
   questions++;
 }

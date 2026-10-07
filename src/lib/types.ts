@@ -1,6 +1,10 @@
 export type SectionId = 'quant' | 'reasoning' | 'english' | 'ga' | 'computer';
 
 export interface Question {
+  /** CAT TITA questions use the numeric answer directly, with no options. */
+  type?: 'numeric';
+  /** Session-specific penalty, e.g. SSC MTS qualifying versus merit sections. */
+  negativeMarks?: number;
   id: string;
   q: string;
   figure?: string | null;
