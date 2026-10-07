@@ -239,50 +239,6 @@ export const MOCK_DEFS: MockDef[] = [
   "open": true
 },
 {
-  "id": "cat-real-2025-1130-s2",
-  "title": "CAT 2025 Slot 2 · complete verified paper",
-  "kind": "real-pyq",
-  "tier": 1,
-  "durationMin": 120,
-  "blurb": "68 questions imported across VARC, DILR and QA, including genuine TITA numeric questions, with original worked explanations. This timed test uses the complete published slot structure.",
-  "plus": 3,
-  "minus": 1,
-  "sections": [
-    "english",
-    "reasoning",
-    "quant"
-  ],
-  "exam": "cat",
-  "sectionNames": {
-    "english": "VARC",
-    "reasoning": "DILR",
-    "quant": "QA"
-  },
-  "open": true
-},
-{
-  "id": "cat-real-2025-1130-s3",
-  "title": "CAT 2025 Slot 3 · complete verified paper",
-  "kind": "real-pyq",
-  "tier": 1,
-  "durationMin": 120,
-  "blurb": "68 questions imported across VARC, DILR and QA, including genuine TITA numeric questions, with original worked explanations. This timed test uses the complete published slot structure.",
-  "plus": 3,
-  "minus": 1,
-  "sections": [
-    "english",
-    "reasoning",
-    "quant"
-  ],
-  "exam": "cat",
-  "sectionNames": {
-    "english": "VARC",
-    "reasoning": "DILR",
-    "quant": "QA"
-  },
-  "open": true
-},
-{
   "id": "t1-real-2025-0918-s1",
   "title": "SSC CGL 2025 (Held On: 18 Sept, 2025 Shift 1) (verified subset)",
   "kind": "real-pyq",
