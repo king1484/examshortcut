@@ -228,3 +228,15 @@ body {
 .check { list-style: none; padding: 0; display: grid; gap: .5rem; }
 .check li { position: relative; padding-left: 1.7rem; }
 .check li::before { content: '✓'; position: absolute; left: 0; top: 0; color: var(--ok); font-weight: 900; }
+
+/* Long guide tables scroll within the article on small screens. */
+.study-guide .md { min-width: 0; overflow-wrap: anywhere; }
+.study-guide .md table { display: block; max-width: 100%; overflow-x: auto; }
+@media print {
+  header, footer, .resource-share, .resource-actions, .resource-related, .study-guide nav { display: none !important; }
+  .study-guide { max-width: none; }
+  .study-guide .md table { display: table; overflow: visible; }
+  .study-guide .card, .study-guide .callout { box-shadow: none; }
+  .study-guide h2 { break-after: avoid; }
+  .study-guide { color: #111; background: #fff; }
+}

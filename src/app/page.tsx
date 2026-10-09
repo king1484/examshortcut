@@ -4,6 +4,7 @@ import { ExamPicker } from '@/components/ExamPicker';
 import { ExamNotice } from '@/components/ExamNotice';
 import { HomeMocks } from '@/components/HomeMocks';
 import { EXAMS } from '@/lib/exams';
+import { STUDY_GUIDES } from '@/lib/studyGuides';
 
 const BUILT_AT = Date.now();
 
@@ -33,12 +34,11 @@ export default function Home() {
           <span className="chip chip-high">SSC · Railways · Banking · CAT</span>
         </div>
         <h1 className="text-[2rem] sm:text-6xl font-extrabold tracking-tight mt-3 sm:mt-4 leading-tight">
-          Prepare for any exam with<br /><span style={{ color: 'var(--brand)' }}>shortcuts, not slog</span>
+          Prepare for competitive exams<br /><span style={{ color: 'var(--brand)' }}>one clear topic at a time</span>
         </h1>
         <p className="muted text-[15px] sm:text-lg mt-3 sm:mt-4">
-          Maths, reasoning, English and GK are common to almost every government and entrance exam. Learn each topic
-          in depth — simple notes, every question type with its formula, practice sets — then test yourself with a daily
-          quiz and full mocks.
+          Learn maths, reasoning, English and GK with simple notes, worked examples and topic practice.
+          Follow a study guide for your weak areas, then build a revision routine you can keep.
         </p>
         <div className="flex flex-col items-center gap-3 mt-5 sm:mt-6">
           <Link href="/learn/" className="btn btn-brand px-8">Start learning</Link>
@@ -56,6 +56,22 @@ export default function Home() {
       <div className="mt-8">
         <ExamPicker collapse />
       </div>
+
+      <section className="mt-9">
+        <div className="flex flex-wrap items-baseline justify-between gap-3">
+          <h2 className="text-2xl font-extrabold">Find a better way to study</h2>
+          <Link className="text-sm font-semibold underline" href="/study-guides/">All free study guides →</Link>
+        </div>
+        <p className="text-sm muted mt-2">Start from basics, fit preparation around your day, or fix the mistakes that keep returning.</p>
+        <div className="grid sm:grid-cols-3 gap-3 mt-4">
+          {STUDY_GUIDES.slice(0, 3).map((g) => <Link href={`/study-guides/${g.slug}/`} key={g.slug} className="card p-5">
+            <span className="chip">{g.audience}</span>
+            <h3 className="font-bold mt-3">{g.title}</h3>
+            <p className="text-sm muted mt-2">{g.description}</p>
+          </Link>)}
+        </div>
+        <Link className="btn mt-4" href="/revision-planner/">Make a free revision calendar</Link>
+      </section>
 
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-10">
         {[

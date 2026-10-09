@@ -94,6 +94,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="flex flex-wrap gap-x-5 gap-y-2">
               <Link href="/exams/">All exams</Link>
               <Link href="/learn/">Subjects &amp; notes</Link>
+              <Link href="/study-guides/">Study guides</Link>
+              <Link href="/revision-planner/">Revision planner</Link>
               <Link href="/quant/">Quantitative Aptitude</Link>
               <Link href="/reasoning/">Reasoning</Link>
               <Link href="/english/">English</Link>

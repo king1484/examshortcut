@@ -11,6 +11,7 @@ const NAV = [
   { href: '/', label: 'Home', exact: true },
   { href: '/exams/', label: 'Exams' },
   { href: '/learn/', label: 'Notes' },
+  { href: '/study-guides/', label: 'Study Guides' },
   { href: '/daily-quiz/', label: 'Daily Quiz' },
   { href: '/exams/ssc-cgl/mocks/', label: 'Mocks' },
   { href: '/dashboard/', label: 'Progress', exact: true },

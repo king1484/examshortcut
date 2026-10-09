@@ -2,6 +2,7 @@
 /* Builds public/search-index.json from content/ for the client-side search page. */
 import fs from 'node:fs';
 import path from 'node:path';
+import ts from 'typescript';
 
 const ROOT = process.cwd();
 const CORE = path.join(ROOT, 'content', 'core');
@@ -38,6 +39,8 @@ const push = (doc) => docs.push(doc);
   ['/exams/up-police/', 'UP Police Constable exam guide pattern eligibility posts salary selection process'],
   ['/exams/cat/', 'CAT MBA exam guide pattern eligibility posts salary selection process'],
   ['/learn/', 'Subjects notes syllabus all sections topics list'],
+  ['/study-guides/', 'Study guides beginners weak maths English job college revision current affairs preparation'],
+  ['/revision-planner/', 'Free revision planner calendar spaced reviews schedule study topics reminders'],
   ['/daily-quiz/', 'Daily quiz today streak practice'],
   ['/exams/ssc-cgl/mocks/', 'Mock tests free CBT full paper previous year'],
   ['/formula-sheet/', 'Formula sheet printable all formulas'],
@@ -48,6 +51,15 @@ const push = (doc) => docs.push(doc);
   ['/login/', 'Login sign in track progress'],
   ['/revision/', 'My revision mistakes bookmarks progress'],
 ].forEach(([url, text]) => push({ t: 'page', title: clean(text).split(' ').slice(0, 4).join(' '), url, text }));
+
+// Use the same catalogue as the pages so guide titles and URLs stay aligned.
+const guideCode = ts.transpileModule(fs.readFileSync(path.join(ROOT, 'src/lib/studyGuides.ts'), 'utf8'),
+  { compilerOptions: { module: ts.ModuleKind.ESNext } }).outputText;
+const { STUDY_GUIDES } = await import(`data:text/javascript;base64,${Buffer.from(guideCode).toString('base64')}`);
+for (const guide of STUDY_GUIDES) {
+  push({ t: 'page', title: guide.title, url: `/study-guides/${guide.slug}/`,
+    text: clean(`${guide.title} ${guide.description} ${guide.audience} ${guide.sections.map(s => s.title).join(' ')}`) });
+}
 
 // Mocks
 if (fs.existsSync(EXAMS)) {
@@ -85,7 +97,7 @@ if (fs.existsSync(topicsDir)) {
       const tp = read(path.join(secDir, f));
       const url = `/${sec}/${tp.id}/`;
       const title = tp.title || tp.id.replace(/-/g, ' ');
-      const bits = [title, SECTION_NAMES[sec], ...(tp.subtopics ?? []).map((s) => s.name),
+      const bits = [title, SECTION_NAMES[sec], ...(tp.subtopics ?? []).map((s) => s.title),
         ...(tp.pyqPatterns ?? []).map((p) => p.pattern), ...(tp.tags ?? [])].map(clean).filter(Boolean);
       push({ t: 'topic', title, section: sec, url, text: bits.join(' · ') });
 
@@ -99,7 +111,8 @@ if (fs.existsSync(topicsDir)) {
           push({ t: 'trick', title: tr.title, section: sec, url, text: clean(`${tr.title} ${tr.body ?? ''} ${title}`) });
         }
         for (const mi of st.mistakes ?? []) {
-          push({ t: 'mistake', title: mi, section: sec, url, text: clean(`${mi} ${title}`) });
+          const mistake = typeof mi === 'string' ? mi : `${mi.wrong} — ${mi.right}`;
+          push({ t: 'mistake', title: mistake, section: sec, url, text: clean(`${mistake} ${title}`) });
         }
       }
     }

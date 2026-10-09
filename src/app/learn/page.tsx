@@ -20,6 +20,9 @@ export default function LearnPage() {
         Common to almost every government and entrance exam. Pick a subject, then a topic.
       </p>
       <LearnExamFilter />
+      <div className="card p-4 mt-4 text-sm">
+        <b>Not sure where to begin?</b> Follow a <Link className="underline" href="/study-guides/">study guide for your current difficulty</Link> or <Link className="underline" href="/revision-planner/">plan reviews for topics you already learned</Link>.
+      </div>
       <p className="text-sm muted mt-4 max-w-3xl">
         Short on time? Go straight to the{' '}
         <Link href="/shortcut-tricks/" className="underline decoration-dotted">shortcut tricks index</Link>,{' '}

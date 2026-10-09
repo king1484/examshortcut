@@ -50,7 +50,11 @@ function check(p) {
       // Shapes the pages dereference directly (formula-sheet prerender crashed on string tricks)
       (s.tricks ?? []).forEach((k, i) => { if (!k || typeof k.title !== 'string' || typeof k.body !== 'string') errors.push(`${rel}#${s.id}: tricks[${i}] needs {title, body}`); });
       (s.formulas ?? []).forEach((f, i) => { if (!f || typeof f.name !== 'string' || typeof f.tex !== 'string') errors.push(`${rel}#${s.id}: formulas[${i}] needs {name, tex}`); });
-      (s.mistakes ?? []).forEach((m, i) => { if (typeof m !== 'string') errors.push(`${rel}#${s.id}: mistakes[${i}] must be a string`); });
+      (s.mistakes ?? []).forEach((m, i) => {
+        if (typeof m !== 'string' && (!m || typeof m.wrong !== 'string' || typeof m.right !== 'string')) {
+          errors.push(`${rel}#${s.id}: mistakes[${i}] needs a string or {wrong, right}`);
+        }
+      });
       (s.patterns ?? []).forEach((p, i) => { if (!p || !p.id || typeof p.name !== 'string') errors.push(`${rel}#${s.id}: patterns[${i}] needs {id, name}`); });
     }
     (data.solvedExamples ?? []).forEach((q) => checkQ(q, `${rel}#solved`));
