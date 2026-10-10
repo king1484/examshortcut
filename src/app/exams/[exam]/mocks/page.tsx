@@ -23,6 +23,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     title: `${info.name} mock tests — real exam interface, full analysis`,
     description: `${info.name} mock tests and previous-year papers in the exact exam interface: question palette, mark for review, auto-submit, section-wise analysis and per-question timing.`,
     alternates: { canonical: `/exams/${id}/mocks/` },
+    robots: !listMocks(id).some(m => m.available) ? { index: false, follow: true } : undefined,
   };
 }
 

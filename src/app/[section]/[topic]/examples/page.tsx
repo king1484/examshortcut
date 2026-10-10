@@ -14,6 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ section: 
   return {
     title: `${t.title} — solved examples`,
     description: `${t.solvedExamples?.length ?? 0} exam-level ${t.title} questions solved step by step, with the shortcut route marked where one exists.`,
+    robots: !t.solvedExamples?.length ? { index: false, follow: true } : undefined,
   };
 }
 

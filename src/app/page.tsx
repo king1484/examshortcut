@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { contentStats, listMocks, listTopics, SECTION_META, availableSections } from '@/lib/content';
 import { ExamPicker } from '@/components/ExamPicker';
 import { ExamNotice } from '@/components/ExamNotice';
@@ -19,6 +20,11 @@ const SITE_LD = {
 };
 
 export const dynamic = 'force-static';
+export const metadata: Metadata = {
+  title: { absolute: 'ExamShortcut: Free Notes & Study Guides for SSC, Banking, Railway & CAT' },
+  description: 'Learn maths, reasoning, English and GK with free notes, worked examples and study guides. Plan your revision for SSC, Railway, Banking and CAT exams.',
+  alternates: { canonical: '/' },
+};
 
 export default function Home() {
   const stats = contentStats();

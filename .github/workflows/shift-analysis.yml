@@ -107,6 +107,7 @@ jobs:
         if: steps.diff.outputs.changed == 'true'
         run: |
           npm run build
+          node scripts/verify-seo.mjs
           test -f out/exam-analysis/ssc-cgl-2026/index.html
 
       - name: Commit data

@@ -15,6 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ section: 
   return {
     title: `${t.title} — all ${n} formulas (printable)`,
     description: `Every ${t.title} formula for competitive exams on one printable page, grouped by subtopic with usage notes.`,
+    robots: n === 0 ? { index: false, follow: true } : undefined,
   };
 }
 

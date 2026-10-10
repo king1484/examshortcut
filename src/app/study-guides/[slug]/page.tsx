@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const url = `/study-guides/${g.slug}/`;
   return { title: g.title, description: g.description, alternates: { canonical: url },
     openGraph: { title: g.title, description: g.description, url, type: 'article',
-      images: [{ url: '/og.png', width: 1200, height: 630 }], publishedTime: g.published ?? GUIDE_DATE },
+      images: [{ url: '/og.png', width: 1200, height: 630 }], publishedTime: g.published ?? GUIDE_DATE, modifiedTime: g.published ?? GUIDE_DATE },
     twitter: { card: 'summary_large_image', title: g.title, description: g.description, images: ['/og.png'] } };
 }
 

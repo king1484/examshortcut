@@ -15,6 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ section: 
   return {
     title: `${t.title} — practice & timed test (${t.practice?.length ?? 0} Q)`,
     description: `Practice ${t.title} questions: untimed mode with instant explanations, or exam-mode with a per-question time budget, scoring and weakness analysis.`,
+    robots: !t.practice?.length ? { index: false, follow: true } : undefined,
   };
 }
 

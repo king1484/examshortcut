@@ -20,7 +20,7 @@ type Params = Promise<{ exam: string; id: string }>;
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { exam, id } = await params;
   const m = MOCK_DEFS.find((x) => x.id === id && x.exam === exam);
-  return m ? { title: m.title, description: m.blurb, robots: m.reviewHold ? { index: false, follow: true } : undefined } : {};
+  return m ? { title: m.title, description: `${m.title}. ${m.blurb}`, alternates: { canonical: `/exams/${exam}/mocks/${id}/` }, robots: m.reviewHold ? { index: false, follow: true } : undefined } : {};
 }
 
 export default async function MockPage({ params }: { params: Params }) {
