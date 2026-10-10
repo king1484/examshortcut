@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { contentStats } from '@/lib/content';
 
 export const dynamic = 'force-static';
-export const metadata: Metadata = { title: 'About ExamShortcut & disclaimer' };
+export const metadata: Metadata = { title: 'About ExamShortcut', description: 'ExamShortcut is an independent study website maintained by Vinay, with topic explanations, study guides and practice resources for Indian exam aspirants.', alternates: { canonical: '/about/' } };
 
 export default function AboutPage() {
   const stats = contentStats();
@@ -33,10 +33,11 @@ export default function AboutPage() {
 
       <h2 className="text-2xl font-extrabold mt-10">Where the content comes from</h2>
       <ul className="list-disc pl-5 mt-3 space-y-1.5 text-sm">
-        <li><b>Exam data &amp; cutoffs</b> — compiled from official notifications and result notices, and checked against each new cycle.</li>
+        <li><b>Exam data &amp; cutoffs</b> — compiled from notifications and result notices. Confirm the current rules with the official examining body.</li>
         <li><b>Notes, formulas, shortcuts</b> — original explanations written for this site.</li>
-        <li><b>Practice questions &amp; mocks</b> — original questions modelled on the recurring patterns of real exam papers; every quantitative answer is computed and verified by code before publishing. We deliberately do not republish copyrighted papers or coaching material.</li>
+        <li><b>Practice questions &amp; tests</b> — a mixture of original exercises and imported previous-year or memory-based questions, identified in test descriptions. Worked solutions and software checks help catch errors, but do not guarantee that every answer is correct.</li>
         <li><b>Current affairs</b> — exam-relevant events written up month by month in simple English.</li>
+        <li><b>Shift analyses</b> — automatically compiled summaries of linked candidate reviews. Difficulty and attempt ranges are unofficial, with partial coverage labelled.</li>
       </ul>
 
       <h2 className="text-2xl font-extrabold mt-10">Disclaimer</h2>
@@ -46,7 +47,7 @@ export default function AboutPage() {
         <p>Mock scores, normalisation bands and safe-score estimates are approximations for guidance, not predictions.</p>
       </div>
 
-      <p className="text-sm muted mt-8">Found a wrong answer or a bug? Tell us on the <Link className="underline" href="/contact/">contact page</Link>.</p>
+      <p className="text-sm muted mt-8">Read our <Link className="underline" href="/editorial-policy/">content sources and correction policy</Link>. Found a wrong answer or a bug? Tell us on the <Link className="underline" href="/contact/">contact page</Link>.</p>
     </div>
   );
 }

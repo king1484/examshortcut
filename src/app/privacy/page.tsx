@@ -4,48 +4,51 @@ import Link from 'next/link';
 export const dynamic = 'force-static';
 export const metadata: Metadata = {
   title: 'Privacy policy',
-  description: 'What ExamShortcut stores (and does not store): studying is open without an account and your data stays on your device; if you choose to log in, only your email and your progress sync — nothing is sold or profiled.',
+  description: 'How ExamShortcut uses browser storage, optional account progress, hosting logs, Google Analytics and advertising technologies.',
 };
 
 export default function PrivacyPage() {
   return (
     <div className="max-w-3xl mx-auto">
       <h1 className="text-3xl font-extrabold">Privacy policy</h1>
-      <p className="muted mt-2">Last updated: 4 October 2026</p>
+      <p className="muted mt-2">Last updated: 10 October 2026</p>
 
       <div className="card p-5 mt-6 text-sm space-y-4">
         <div>
           <h2 className="font-extrabold text-base">The short version</h2>
           <p className="mt-1">
-            All notes, practice, calculators and open mocks work <b>without an account</b>. Without logging in, your progress —
-            mock attempts, mistake notebook, study plan, eligibility inputs — is saved <b>only in your own browser</b> and we never
-            receive a copy. A free login exists for one reason only: to sync that same progress across your devices.
+            Notes, study guides, the revision planner and open practice resources work <b>without an account</b>.
+            Personal progress features use an optional account. Some tools save inputs in your browser; account progress can sync
+            through Firebase. Google Analytics, advertising services and the hosting provider may receive technical visit data,
+            even when you do not sign in.
           </p>
         </div>
 
         <div>
           <h2 className="font-extrabold text-base">What stays on your device</h2>
           <p className="mt-1">
-            Without an account, the site uses your browser&apos;s local storage to remember your progress between visits: mock attempts and analysis,
-            your score entries, your study-plan ticks, your date of birth and category <i>if</i> you choose to enter them in the
-            posts checker, and your typing-test history. This data never leaves your device — it is not transmitted to us or to
-            anyone else. Clearing your browser data for this site erases it permanently; there is no server copy to restore.
+            Browser storage remembers settings, in-progress test drafts, revision-planner topics and some calculator inputs.
+            Date of birth and category inputs in the posts checker are processed locally. The standalone revision planner is
+            separate from account sync. Clearing site data removes these local records; export your revision calendar first if
+            you want to keep its dates. Signed-in progress is also saved locally and may sync as described below.
           </p>
         </div>
 
         <div>
           <h2 className="font-extrabold text-base">If you log in</h2>
           <p className="mt-1">
-            Accounts are optional and free (Google sign-in or an email link). Logging in stores <b>your email address</b> and a
-            copy of your progress (scores, mistakes, saved questions, studied topics) with our authentication provider so your
-            devices stay in sync. We do not sell it, share it, or use it to profile you, and you can erase it any time by logging
-            out and asking us to delete your account data.
+            Accounts are optional and free (Google sign-in or an email link). Logging in stores <b>your email address</b> and an
+            account identifier and progress (scores, mistakes, saved questions, studied topics) using Google Firebase authentication
+            and database services so your devices stay in sync. We do not sell your account data. Logging out stops account access
+            but does not delete stored data. To request account-data deletion, contact us from the email associated with your account.
           </p>
+          <h2 className="font-extrabold text-base mt-4">Optional public leaderboard</h2>
+          <p className="mt-1">If you choose to join the leaderboard, your chosen display name and activity totals become public. Leaving removes your leaderboard entry. Keep personal information out of your display name.</p>
 
           <h2 className="font-extrabold text-base">Analytics</h2>
           <p className="mt-1">
             We use <b>Google Analytics 4</b> to count visits and see which pages are useful. It sets first-party cookies (such as <code>_ga</code>) and
-            receives your IP address (truncated by Google), browser, device type, approximate location (city level) and the pages you view. We use
+            processes technical visit information including browser, device type, approximate location and pages viewed. Google states that GA4 does not log or store individual IP addresses. We use
             this only in aggregate to improve the site; we do not build profiles of individual visitors or combine it with your account.
             You can opt out with the <a className="underline" href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google Analytics opt-out add-on</a>.
           </p>
@@ -67,7 +70,6 @@ export default function PrivacyPage() {
             or at <a className="underline" href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer">aboutads.info</a>, and you can
             control or delete cookies through your browser settings. See{' '}
             <a className="underline" href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">how Google uses data when you use our site</a>.
-            Visitors from the EEA, UK and Switzerland are shown Google&apos;s consent choices before personalised ads or cookies are used.
           </p>
         </div>
 
@@ -82,8 +84,9 @@ export default function PrivacyPage() {
         <div>
           <h2 className="font-extrabold text-base">Children</h2>
           <p className="mt-1">
-            The site is intended for exam aspirants and does not knowingly collect any personal information from anyone, including
-            children under 13.
+            The site is intended for government-exam and entrance-exam aspirants. We do not knowingly create accounts for children under 13.
+            If you believe a child has provided account information, contact us so we can review and remove it. Optional accounts,
+            analytics and technical logs collect information as described above.
           </p>
         </div>
 

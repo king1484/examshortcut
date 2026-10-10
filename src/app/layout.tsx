@@ -116,6 +116,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/dashboard/">My progress</Link>
               <Link href="/revision/">My revision</Link>
               <Link href="/about/">About</Link>
+              <Link href="/editorial-policy/">Content &amp; corrections</Link>
               <Link href="/privacy/">Privacy</Link>
               <Link href="/terms/">Terms</Link>
               <Link href="/disclaimer/">Disclaimer</Link>

@@ -4,6 +4,7 @@ import { getExamInfo } from '@/lib/exams';
 import { MOCK_DEFS, getMock } from '@/lib/content';
 import { MockCBT } from '@/components/MockCBT';
 import { MockAccessGate } from '@/components/MockAccessGate';
+import Link from 'next/link';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -19,7 +20,7 @@ type Params = Promise<{ exam: string; id: string }>;
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { exam, id } = await params;
   const m = MOCK_DEFS.find((x) => x.id === id && x.exam === exam);
-  return m ? { title: m.title, description: m.blurb } : {};
+  return m ? { title: m.title, description: m.blurb, robots: m.reviewHold ? { index: false, follow: true } : undefined } : {};
 }
 
 export default async function MockPage({ params }: { params: Params }) {
@@ -27,6 +28,7 @@ export default async function MockPage({ params }: { params: Params }) {
   const info = getExamInfo(exam);
   const def = MOCK_DEFS.find((x) => x.id === id && x.exam === exam);
   if (!info || !def) notFound();
+  if (def.reviewHold) return <div className="max-w-3xl mx-auto"><h1 className="text-3xl font-bold">{def.title}</h1><p className="card p-5 mt-5">{def.reviewHold}</p><p className="mt-4">A question that refers to a missing passage or puzzle cannot be used for a meaningful timed score.</p><p className="mt-4"><Link className="underline" href="/learn/">Study the topic notes</Link> or <Link className="underline" href={`/exams/${exam}/mocks/`}>choose an available test</Link>.</p></div>;
   const mock = getMock(id);
   if (!mock) notFound();
   return (

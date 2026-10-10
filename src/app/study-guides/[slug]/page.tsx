@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const url = `/study-guides/${g.slug}/`;
   return { title: g.title, description: g.description, alternates: { canonical: url },
     openGraph: { title: g.title, description: g.description, url, type: 'article',
-      images: [{ url: '/og.png', width: 1200, height: 630 }], publishedTime: GUIDE_DATE },
+      images: [{ url: '/og.png', width: 1200, height: 630 }], publishedTime: g.published ?? GUIDE_DATE },
     twitter: { card: 'summary_large_image', title: g.title, description: g.description, images: ['/og.png'] } };
 }
 
@@ -26,7 +26,7 @@ export default async function StudyGuidePage({ params }: { params: Promise<{ slu
   const url = `https://examshortcut.in/study-guides/${g.slug}/`;
   const ld = { '@context': 'https://schema.org', '@graph': [
     { '@type': 'Article', headline: g.title, description: g.description, url,
-      datePublished: GUIDE_DATE, dateModified: GUIDE_DATE, inLanguage: 'en-IN',
+      datePublished: g.published ?? GUIDE_DATE, dateModified: g.published ?? GUIDE_DATE, inLanguage: 'en-IN',
       author: { '@type': 'Person', name: 'Vinay', url: 'https://examshortcut.in/about/' },
       publisher: { '@type': 'Organization', name: 'ExamShortcut', url: 'https://examshortcut.in/' },
       image: 'https://examshortcut.in/og.png', mainEntityOfPage: url },
@@ -42,7 +42,7 @@ export default async function StudyGuidePage({ params }: { params: Promise<{ slu
       <Link className="text-sm underline muted" href="/study-guides/">← All study guides</Link>
       <p className="kicker mt-4">{g.audience} · free</p>
       <h1 className="text-3xl sm:text-4xl font-extrabold mt-2 leading-tight">{g.title}</h1>
-      <p className="text-xs faint mt-3">By Vinay · Published 9 October 2026</p>
+      <p className="text-xs faint mt-3">By <Link href="/about/" className="underline">Vinay</Link> · Published {new Date(g.published ?? GUIDE_DATE).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Kolkata' })}</p>
       <p className="muted mt-4 text-base leading-relaxed">{g.intro}</p>
       <nav className="card p-4 mt-6" aria-label="On this page">
         <p className="kicker">On this page</p>

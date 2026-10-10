@@ -38,10 +38,13 @@ export interface Shift {
   observations?: string[];
   disagreements?: string[];
   sources?: Source[];
+  qualityNotes?: string[];
+  auto?: boolean;
 }
 export interface ShiftDay {
   exam: string; date: string; updatedAt: string;
   intro?: string; shifts: Shift[]; faqs?: { q: string; a: string }[];
+  correctionNote?: string;
 }
 
 function read<T>(rel: string): T | null {

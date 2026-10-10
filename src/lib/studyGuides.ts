@@ -7,11 +7,117 @@ export interface StudyGuide {
   sections: { id: string; title: string; body: string }[];
   checklist: string[];
   related: string[];
+  published?: string;
 }
 
 export const GUIDE_DATE = '2026-10-09';
 
 export const STUDY_GUIDES: StudyGuide[] = [
+  {
+    slug: 'percentages-base-value-and-successive-change',
+    title: 'Percentage changes: choose the right base before using a shortcut',
+    description: 'Understand percentage increase, successive changes, reverse percentages and percentage points with worked examples and a self-check.',
+    audience: 'Arithmetic learners', published: '2026-10-10',
+    intro: 'Most percentage errors begin before multiplication: the wrong number is chosen as the base. This lesson follows one idea through price changes, discounts and reverse questions. The examples are original study exercises, not recalled exam questions.',
+    sections: [
+      { id: 'base', title: 'Write the base beside the percentage', body: `A percentage compares a part with a base of 100. To find 15% of 240, calculate $240 × 15 ÷ 100 = 36$. Here 240 is the base.
+
+When a value changes, the percentage change usually compares the difference with the **original** value. A price rises from 400 to 460. The increase is 60, so the percentage rise is $60 ÷ 400 × 100 = 15$.
+
+If the price falls from 460 back to 400, the decrease is still 60, but its base is now 460. The percentage fall is $60 ÷ 460 × 100$, approximately 13.04%. Equal differences do not mean equal percentage changes when their bases differ.
+
+Before calculating, write “percentage of ___” in the margin. If the question says profit as a percentage of cost, the base is cost. If it asks the discount on marked price, the base is marked price. Learn those definitions in [profit, loss and discount](/quant/profit-loss-discount/).` },
+      { id: 'multipliers', title: 'Turn successive changes into multipliers', body: `A 20% increase retains the original 100% and adds 20%, so its multiplier is 1.20. A 20% decrease retains 80%, so its multiplier is 0.80.
+
+Starting with 500, a 20% rise followed by a 20% fall gives $500 × 1.20 × 0.80 = 480$. This is a 20 decrease from the original 500, or 4% overall.
+
+For signed changes $a$ and $b$, the combined percentage is $a + b + ab ÷ 100$. Use positive values for increases and negative values for decreases. With 20 and −20, the result is $20 - 20 - 4 = -4$.
+
+The multiplier method is often easier to audit. For a 10% increase followed by a 10% decrease, $1.10 × 0.90 = 0.99$, a 1% decrease. This assumes that each change applies to the value produced by the previous change. If two discounts apply independently to the original price, read the wording before multiplying.` },
+      { id: 'reverse', title: 'Reverse a change by division', body: `After a 25% increase, a fee is 750. The original fee is not 750 minus 25% of 750: that would use the wrong base.
+
+Let the original fee be $x$. Then $1.25x = 750$, so $x = 750 ÷ 1.25 = 600$. Check forward: 25% of 600 is 150, and 600 + 150 is 750.
+
+After a 20% discount, a book costs 640. Its marked price is $640 ÷ 0.80 = 800$. Check: 20% of 800 is 160, leaving 640.
+
+A useful boundary check is that a positive increase makes the final value larger than the original; a discount makes it smaller. If your reverse answer violates this, examine the multiplier or division.` },
+      { id: 'points', title: 'Distinguish percentage points from percentage change', body: `A test accuracy rate rises from 40% to 50%. The difference is **10 percentage points**. The relative increase in the rate is $10 ÷ 40 × 100 = 25\\%$.
+
+These answer different questions. Percentage points subtract two rates. Percentage change divides the difference by the original rate. Do not say “10% increase” when the question asks for the relative change from 40% to 50%.
+
+For a population of 200 students, 40% is 80 and 50% is 100. The increase of 20 students is 25% of the original 80, which confirms the relative calculation. This example assumes the population stays at 200.` },
+      { id: 'practice', title: 'Check the idea with four short problems', body: `Try these with the answers covered:
+
+1. A quantity rises from 800 to 920. Find its percentage increase.
+2. A price of 1,000 receives successive discounts of 10% and 20%. Find the final price and overall discount.
+3. A value is 900 after a 25% decrease. Find the original value.
+4. An accuracy rate rises from 60% to 72%. Find the percentage-point difference and relative increase.
+
+**Worked answers:** (1) $120 ÷ 800 × 100 = 15\\%$. (2) $1000 × 0.90 × 0.80 = 720$, so the discount is 28%. (3) $900 ÷ 0.75 = 1200$. (4) 12 percentage points; $12 ÷ 60 × 100 = 20\\%$ relative increase.
+
+If you got a wrong answer, record the base you used in your [error notebook](/study-guides/error-notebook-for-exam-preparation/). Then retry with different numbers. Continue with the [percentage topic](/quant/percentage/) and put a closed-book review in the [revision planner](/revision-planner/).` },
+    ],
+    checklist: ['Name the base before multiplying.', 'Use multipliers for successive changes.', 'Divide to reverse an increase or decrease.', 'Keep percentage points separate from relative change.', 'Check the result by applying the change forward.'],
+    related: ['maths-from-basics-for-competitive-exams', 'error-notebook-for-exam-preparation', 'revision-without-forgetting'],
+  },
+  {
+    slug: 'reading-comprehension-find-evidence',
+    title: 'Reading comprehension: choose an answer the passage can support',
+    description: 'A practical reading-comprehension method with an original passage, worked main-idea and inference questions, and a review checklist.',
+    audience: 'English and CAT learners', published: '2026-10-10',
+    intro: 'A familiar topic can make a wrong option feel convincing. Reading comprehension asks what this passage supports, not everything you know about the topic. Work through the short original passage below, then use the same evidence-first method on longer texts.',
+    sections: [
+      { id: 'passage', title: 'Read for the author’s claim and its limits', body: `**Original practice passage**
+
+When a neighbourhood library extended its evening hours for six weeks, attendance after 6 pm increased. The staff had also placed a notice about the new hours at a nearby bus stop. Some visitors said they came because the later closing time suited their work schedules; others had learned about the library from the notice. The trial cost more because a second staff member stayed late. The manager recommended continuing it for another month while recording the number of repeat visitors and the extra staffing cost. She did not claim that longer opening hours alone explained the increase.
+
+The first sentence reports an observation: attendance increased during the trial. The next sentences describe two possible influences, visitor comments and a cost. The final recommendation is cautious: continue collecting evidence. The passage does not prove that one change caused the whole increase.
+
+After reading, state the passage in one sentence: “An evening-hours trial increased attendance, but the manager wants more evidence before judging its value.” This summary keeps both the result and the limitation.` },
+      { id: 'main-idea', title: 'Compare the scope of the main-idea options', body: `**Question:** Which statement best captures the passage?
+
+A. Longer opening hours always improve a library’s performance.
+
+B. A library trial showed promising attendance, but its causes and costs still need evaluation.
+
+C. Advertising is the only reason people visit libraries.
+
+D. Libraries should avoid employing extra staff.
+
+**Answer: B.** It includes the attendance change and the manager’s qualified recommendation. A adds “always”, although the passage discusses one six-week trial. C turns one possible influence into the only cause. D converts a reported cost into advice the author never gives.
+
+A main-idea answer should fit the whole passage. A detail such as the bus-stop notice is important evidence, but it is too narrow to replace the central point.` },
+      { id: 'inference', title: 'Make the smallest inference the evidence allows', body: `**Question:** What can reasonably be inferred about the manager?
+
+A. She knows that the notice had no effect.
+
+B. She thinks the trial should be assessed using more than attendance alone.
+
+C. She wants to close the library immediately.
+
+D. She believes every visitor works late.
+
+**Answer: B.** She asks for repeat-visitor counts and extra staffing cost, so her assessment goes beyond the current attendance increase. A conflicts with her refusal to isolate a cause. C conflicts with extending the trial. D takes comments from “some visitors” and applies them to everyone.
+
+Inference is not free speculation. Ask whether the passage gives enough support for the answer without adding a new fact. “Some”, “all”, “may” and “must” change the strength of an option. Treat these words as part of the reasoning, not decorative language.` },
+      { id: 'evidence', title: 'Use an evidence line to test close options', body: `For each candidate answer, identify the sentence that supports it. If there is no supporting sentence or clear combination of sentences, you may be relying on outside knowledge.
+
+Suppose an option says “The trial proved that later closing alone caused attendance to rise.” The passage explicitly says the manager **did not claim** this. Another option might say “Staffing cost rose during the trial.” That follows directly from the sentence about a second staff member staying late.
+
+For a vocabulary question, first identify the word’s role in that sentence. In this passage, “trial” means a limited experiment, not a court case. Replace the word with your proposed meaning and check whether the sentence still fits.
+
+Tone questions also need evidence. Here the manager’s recommendation is cautious and investigative. “Angry” or “triumphant” would require language that the passage does not contain.` },
+      { id: 'routine', title: 'Review the reason an option failed', body: `Use a 20-minute practice block: read a short passage for 5 minutes, answer its questions for 8 minutes, and spend 7 minutes reviewing. Adjust the timing to your level and target exam; this is a learning routine, not a universal test strategy.
+
+Record one reason for each rejected option: too broad, too narrow, unsupported cause, reversed meaning, or stronger language than the passage. If you chose a wrong answer, write the evidence you overlooked. Avoid keeping only the option letter, which does not explain the error.
+
+For longer CAT passages, map each paragraph’s role: introduce a claim, explain it, qualify it, offer evidence, or challenge an alternative. Do not assume that every paragraph states the author’s own opinion. Read attribution words such as “critics argue” carefully.
+
+Continue with [reading comprehension](/english/reading-comprehension/), the [beginner English routine](/study-guides/english-for-competitive-exams-beginners/) and the [error notebook](/study-guides/error-notebook-for-exam-preparation/). Revisit this passage later and explain why each incorrect option fails without looking at the solutions.` },
+    ],
+    checklist: ['Summarise the passage with its limits intact.', 'Find evidence for the selected answer.', 'Check strong words such as always and only.', 'Keep inference smaller than speculation.', 'Review why the wrong options fail.'],
+    related: ['english-for-competitive-exams-beginners', 'error-notebook-for-exam-preparation', 'study-with-job-or-college'],
+  },
   {
     slug: 'maths-from-basics-for-competitive-exams',
     title: 'Weak in maths? Start competitive exam preparation from the basics',

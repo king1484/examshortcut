@@ -100,12 +100,8 @@ jobs:
         if: steps.diff.outputs.changed == 'true'
         run: |
           npm ci
-          # The validator carries ~1900 pre-existing "mistakes[n] must be a string" shape errors (stale rule).
-          # Ignore only those; anything else aborts before deploy.
-          node scripts/validate-content.mjs > validate.log 2>&1 || true
-          if grep -E '^ - ' validate.log | grep -vE 'mistakes\[[0-9]+\] must be a string'; then
-            echo "content validation failed"; exit 1
-          fi
+          python -m unittest discover -s scripts/shift-collector -p 'test_*.py'
+          npm run validate
 
       - name: Build
         if: steps.diff.outputs.changed == 'true'

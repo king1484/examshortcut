@@ -2,7 +2,7 @@
    Static export: every page is a static file; cache-on-request keeps visited
    topics/mocks available offline. Content updates via network-first for pages,
    cache-first for static assets. */
-const VERSION = 'es-v7';
+const VERSION = 'es-v8';
 const SHELL = ['/', '/exams/', '/exams/ssc-cgl/', '/learn/', '/daily-quiz/', '/exams/ssc-cgl/mocks/', '/formula-sheet/', '/revision/', '/about/', '/search/', '/manifest.webmanifest', '/icon.svg', '/search-index.json'];
 
 self.addEventListener('install', (e) => {

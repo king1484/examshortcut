@@ -9,6 +9,7 @@ Shifts that were written by hand (no "auto": true and status "reported") are nev
 import argparse, concurrent.futures as cf, datetime as dt, hashlib, json, os, re, sys
 
 from llm import ask_json
+from quality import sanitize_facts, sanitize_shift, source_shift_labels, publisher_key
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
@@ -23,6 +24,7 @@ log = lambda *a: print(*a, file=sys.stderr, flush=True)
 
 EXTRACT_SYS = """You extract facts from an SSC CGL 2026 Tier 1 exam review (a YouTube transcript, often Hindi/Hinglish, or a web article). Reply with ONE JSON object and nothing else.
 Rules: report only what the source says. Translate to English. Use null or [] when not stated. Never guess numbers. Keep each string under 160 characters.
+Overall attempts are out of 100. Each section has only 25 questions: never copy an overall attempt total into a section. "asked" must contain recalled exam questions or specific exam topics, never interviewer questions about difficulty, guesses or timing.
 Schema: {"shifts":[{"shift":1|2|3,"overall":"Easy|Easy to Moderate|Moderate|Moderate to Difficult|Difficult|null","good_attempts":"as stated, e.g. '75-80' or null",
 "sections":{"reasoning":{"difficulty":str|null,"good_attempts":str|null,"topics":[{"topic":str,"count":str|null}],"notes":str|null},"ga":{...same},"quant":{...same},"english":{...same}},
 "asked":[{"section":"reasoning|ga|quant|english","q":"a specific question or topic recalled by candidates"}],"issues":["technical or centre problems reported"],"mentions":["other notable remarks, e.g. attempts survey results"]}]}
@@ -36,7 +38,7 @@ Schema: {"overall":str,"goodAttempts":str,"summary":"3-5 sentences","sections":{
 "asked":[{"section":"reasoning|ga|quant|english","q":str}],"observations":[str],"disagreements":[str]}
 Limit: topics max 8 per section, asked max 14, observations max 4, disagreements max 4."""
 
-INTRO_SYS = """Write the intro paragraph (3-5 sentences) and 5 FAQs for an SSC CGL 2026 Tier 1 exam-analysis page for one day, from the shift summaries given. Plain neutral tone, no hype, no em dashes, say figures are unofficial and SSC normalises scores across shifts. If a shift is pending, say its analysis will be added after the shift. Reply with ONE JSON object: {"intro":str,"faqs":[{"q":str,"a":str}]}. FAQ questions must mention the date given."""
+INTRO_SYS = """Write the intro paragraph (3-5 sentences) and 5 FAQs for an SSC CGL 2026 Tier 1 exam-analysis page for one day, from the shift summaries given. Plain neutral tone, no hype, no em dashes, say figures are unofficial and SSC normalises scores across shifts. If a shift is pending, say no usable analysis is published yet and more evidence is needed. Never promise a publication time or assume the shift has not ended. Reply with ONE JSON object: {"intro":str,"faqs":[{"q":str,"a":str}]}. FAQ questions must mention the date given."""
 
 
 def clean(s):
@@ -108,7 +110,12 @@ def status_for(n_sources, n_video):
 
 
 def build_shift(date, n, extractions, valid_topics):
-    rel = [(e, [f for f in e["facts"] if f.get("shift") == n]) for e in extractions]
+    # A source explicitly titled for another single shift is not evidence for this shift.
+    def matches(e):
+        labels = source_shift_labels(e['title'])
+        return not labels or n in labels
+    extractions = [e for e in extractions if matches(e)]
+    rel = [(e, [sanitize_facts(f) for f in e["facts"] if isinstance(f, dict) and f.get("shift") == n]) for e in extractions]
     rel = [(e, f) for e, f in rel if f]
     if not rel:
         return None
@@ -127,16 +134,17 @@ def build_shift(date, n, extractions, valid_topics):
                      **({"goodAttempts": s["goodAttempts"]} if s.get("goodAttempts") else {}),
                      "notes": s.get("notes") or "", "topics": topics})
     used = [e for e, _ in rel]
-    n_video = sum(1 for e in used if e["kind"] == "video")
     seen, srcs = set(), []
     for e in used:
         if e["url"] not in seen:
             seen.add(e["url"]); srcs.append({"name": src_name(e), "url": e["url"]})
     asked = [a for a in (m.get("asked") or []) if isinstance(a, dict) and a.get("section") in {s for s, _ in SECTIONS} and a.get("q")][:14]
-    return {"shift": n, "time": TIMES[n], "status": status_for(len(used), n_video), "auto": True,
+    publishers = {publisher_key(e) for e in used}
+    video_publishers = {publisher_key(e) for e in used if e['kind'] == 'video'}
+    return sanitize_shift({"shift": n, "time": TIMES[n], "status": status_for(len(publishers), len(video_publishers)), "auto": True,
             "overall": m.get("overall") or "Not reported", "goodAttempts": m.get("goodAttempts") or "Not reliably reported",
             "summary": m.get("summary") or "", "sections": secs, "asked": asked,
-            "observations": (m.get("observations") or [])[:4], "disagreements": (m.get("disagreements") or [])[:4], "sources": srcs}
+            "observations": (m.get("observations") or [])[:4], "disagreements": (m.get("disagreements") or [])[:4], "sources": srcs})
 
 
 def quality(sh):
@@ -169,6 +177,8 @@ def main():
     with cf.ThreadPoolExecutor(3) as ex:
         extractions = list(ex.map(lambda s: extract_source(date, s), srcs))
     log("facts per source:", [len(e["facts"]) for e in extractions])
+    if not any(e['facts'] for e in extractions):
+        raise RuntimeError('No source produced usable extracted facts; check extraction logs before retrying.')
 
     path = os.path.join(OUT_DIR, date + ".json")
     day = json.load(open(path, encoding="utf8")) if os.path.exists(path) else {"exam": EXAM, "date": date, "shifts": []}

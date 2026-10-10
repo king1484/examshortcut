@@ -17,6 +17,7 @@ import yt_dlp
 from youtube_transcript_api import YouTubeTranscriptApi
 from youtube_transcript_api.proxies import GenericProxyConfig
 from youtube_transcript_api._errors import IpBlocked, NoTranscriptFound, RequestBlocked, TranscriptsDisabled
+from quality import balanced_videos
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CACHE = os.path.join(HERE, "cache")
@@ -279,12 +280,14 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--date", required=True)
     ap.add_argument("--shift", type=int, choices=(1, 2, 3))
-    ap.add_argument("--max-videos", type=int, default=10)
+    ap.add_argument("--max-videos", type=int, default=12)
     a = ap.parse_args()
     d = dt.date.fromisoformat(a.date)
     vids = find_videos(d, a.shift)
     vids = [v for v in vids if not (v.get("duration") and v["duration"] < 120)]   # drop shorts
-    vids = vids[: a.max_videos]
+    # Search results arrive grouped by query. Taking the first ten starved later shifts.
+    # Round-robin across labelled shifts before filling spare slots with general reviews.
+    vids = balanced_videos(vids, a.max_videos, ORD)
     os.makedirs(CACHE, exist_ok=True)
     yt_ok, api_ok = True, True         # False once that route is blocked: stop hammering it for this run
     for v in vids:  # one at a time, cached

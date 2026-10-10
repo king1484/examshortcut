@@ -14,7 +14,7 @@ export default function ExamAnalysisIndex() {
   return (
     <div className="max-w-3xl mx-auto">
       <h1 className="text-2xl sm:text-4xl font-extrabold mt-4">Exam analysis — shift by shift</h1>
-      <p className="muted mt-2 text-[15px]">How each shift went, straight after it ends: difficulty, safe attempts, and the topics and questions candidates recall. Use it to calibrate before your own shift.</p>
+      <p className="muted mt-2 text-[15px]">Candidate-reported difficulty, attempt ranges and recalled topics, added as sources become available. These are unofficial study references, not safe-score predictions.</p>
       <div className="space-y-4 mt-6">
         {exams.map(({ e, days }) => (
           <section key={e.slug} className="card p-5">

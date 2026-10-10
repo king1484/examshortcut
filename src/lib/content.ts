@@ -120,6 +120,7 @@ interface MockDef {
   exam?: string;
   /** display names per section (e.g. CAT shows VARC / DILR / QA); default = subject name */
   sectionNames?: Partial<Record<SectionId, string>>;
+  reviewHold?: string;
 }
 
 export const MOCK_DEFS: MockDef[] = [
@@ -240,11 +241,12 @@ export const MOCK_DEFS: MockDef[] = [
 },
 {
   "id": "cat-real-2025-1130-s2",
-  "title": "CAT 2025 Slot 2 · complete verified paper",
+  "title": "CAT 2025 Slot 2 · import under review",
   "kind": "real-pyq",
   "tier": 1,
   "durationMin": 120,
-  "blurb": "68 questions imported across VARC, DILR and QA, including genuine TITA numeric questions, with original worked explanations. This timed test uses the complete published slot structure.",
+  "blurb": "This imported test is temporarily unavailable: reading passages and DILR set context are incomplete. It is not a complete verified paper.",
+  "reviewHold": "Reading passages and DILR set context are missing from this import. The timed test is paused while the content is reviewed.",
   "plus": 3,
   "minus": 1,
   "sections": [
@@ -262,11 +264,12 @@ export const MOCK_DEFS: MockDef[] = [
 },
 {
   "id": "cat-real-2025-1130-s3",
-  "title": "CAT 2025 Slot 3 · complete verified paper",
+  "title": "CAT 2025 Slot 3 · import under review",
   "kind": "real-pyq",
   "tier": 1,
   "durationMin": 120,
-  "blurb": "68 questions imported across VARC, DILR and QA, including genuine TITA numeric questions, with original worked explanations. This timed test uses the complete published slot structure.",
+  "blurb": "This imported test is temporarily unavailable: reading passages and DILR set context are incomplete. It is not a complete verified paper.",
+  "reviewHold": "Reading passages and DILR set context are missing from this import. The timed test is paused while the content is reviewed.",
   "plus": 3,
   "minus": 1,
   "sections": [
@@ -1095,7 +1098,7 @@ export function getMock(id: string): Mock | null {
 export function listMocks(examId = 'ssc-cgl'): (MockDef & { available: boolean; questionCount: number })[] {
   return MOCK_DEFS.filter((d) => (d.exam ?? 'ssc-cgl') === examId).map((d) => {
     const m = getMock(d.id);
-    return { ...d, available: !!m && m.sections.length === d.sections.length, questionCount: m ? m.sections.reduce((n, s) => n + s.questions.length, 0) : 0 };
+    return { ...d, available: !d.reviewHold && !!m && m.sections.length === d.sections.length, questionCount: m ? m.sections.reduce((n, s) => n + s.questions.length, 0) : 0 };
   });
 }
 

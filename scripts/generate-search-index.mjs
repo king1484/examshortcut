@@ -40,6 +40,7 @@ const push = (doc) => docs.push(doc);
   ['/exams/cat/', 'CAT MBA exam guide pattern eligibility posts salary selection process'],
   ['/learn/', 'Subjects notes syllabus all sections topics list'],
   ['/study-guides/', 'Study guides beginners weak maths English job college revision current affairs preparation'],
+  ['/editorial-policy/', 'Content sources corrections automatic shift analysis original lessons imported questions policy'],
   ['/revision-planner/', 'Free revision planner calendar spaced reviews schedule study topics reminders'],
   ['/daily-quiz/', 'Daily quiz today streak practice'],
   ['/exams/ssc-cgl/mocks/', 'Mock tests free CBT full paper previous year'],

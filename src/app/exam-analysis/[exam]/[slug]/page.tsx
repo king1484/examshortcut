@@ -24,7 +24,7 @@ function titleFor(exam: ShiftExam, day: ShiftDay, shift: Shift | null) {
 }
 function descFor(exam: ShiftExam, day: ShiftDay, shift: Shift | null) {
   if (shift) {
-    if (shift.status === 'pending') return `${exam.name} ${dayLabel(day.date)} Shift ${shift.shift} (${shift.time}) analysis: difficulty level, good attempts and questions asked — updated right after the shift ends.`;
+    if (shift.status === 'pending') return `${exam.name} ${dayLabel(day.date)} Shift ${shift.shift} (${shift.time}): no usable analysis has been published yet. Reports are added when sufficient candidate feedback is available.`;
     if (shift.status === 'not-held') {
       const held = day.shifts.filter(hasAnalysis);
       return `No ${exam.short} exam was held in Shift ${shift.shift} (${shift.time}) on ${dayLabel(day.date)}. ${held.length ? `The first shift conducted was Shift ${held[0].shift} (${held[0].time}) — ${held[0].overall}, good attempts ${held[0].goodAttempts ?? '—'}.` : ''}`.trim();
@@ -45,6 +45,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title: { absolute: title },
     description,
+    robots: r.shift?.status === 'pending' || (!r.shift && !r.day.shifts.some(hasAnalysis)) ? { index: false, follow: true } : undefined,
     openGraph: { title, description, type: 'article', url: `${BASE}/exam-analysis/${examSlug}/${slug}/`, modifiedTime: r.day.updatedAt },
     twitter: { card: 'summary_large_image', title, description },
   };
@@ -77,7 +78,7 @@ function autoFaqs(exam: ShiftExam, day: ShiftDay, shift: Shift) {
     return f;
   }
   if (shift.overall) f.push({ q: `How was the ${exam.short} ${when} paper?`, a: `Candidates rated the ${when} paper ${shift.overall} overall.${shift.summary ? ' ' + shift.summary : ''}` });
-  if (shift.goodAttempts) f.push({ q: `What are good attempts for ${exam.short} ${when}?`, a: `Around ${shift.goodAttempts} out of 100 questions, going by candidate and coaching-institute reviews. Accuracy matters more than raw attempts because of the 0.50 negative marking.` });
+  if (shift.goodAttempts && shift.goodAttempts !== 'Not reliably reported') f.push({ q: `What attempt range was reported for ${exam.short} ${when}?`, a: `${shift.goodAttempts} out of 100 questions, according to the linked reviews. This is an unofficial reported range, not a recommended attempt count or safe-score prediction.` });
   for (const s of shift.sections ?? []) {
     if (s.topics?.length) f.push({ q: `Which ${s.name} topics were asked in ${exam.short} ${when}?`, a: `${s.name} was ${s.difficulty}. Topics reported: ${s.topics.map((t) => t.topic + (t.count ? ` (${t.count})` : '')).join(', ')}.` });
   }
@@ -106,17 +107,17 @@ function ShiftView({ exam, day, shift }: { exam: ShiftExam; day: ShiftDay; shift
         </div>
       ) : shift.status === 'pending' ? (
         <div className="card p-5 mt-6" style={{ borderLeft: '3px solid var(--warn)' }}>
-          <h2 className="font-extrabold">Analysis coming after the shift</h2>
-          <p className="text-sm muted mt-1">Shift {shift.shift} runs {shift.time}. We update this page with difficulty, good attempts and the questions candidates recall as soon as reviews come in — usually within an hour of the shift ending.</p>
+          <h2 className="font-extrabold">Analysis not yet available</h2>
+          <p className="text-sm muted mt-1">Shift {shift.shift} is scheduled for {shift.time}. No usable analysis has been published here yet. Reports are added when sufficient candidate feedback is available; publication timing is not guaranteed.</p>
         </div>
       ) : (
         <>
           <div className="flex gap-3 flex-wrap mt-6">
             <Stat k="Overall difficulty" v={shift.overall ?? '—'} color={difficultyColor(shift.overall)} />
-            <Stat k="Good attempts" v={shift.goodAttempts ? `${shift.goodAttempts} / 100` : '—'} />
+            <Stat k="Reported attempts" v={shift.goodAttempts && shift.goodAttempts !== 'Not reliably reported' ? `${shift.goodAttempts} / 100` : 'Not reliably reported'} />
             <Stat k="Shift timing" v={<span className="text-base">{shift.time}</span>} />
           </div>
-          {shift.status === 'partial' && <p className="text-xs mt-3" style={{ color: 'var(--warn)' }}>Early reviews — numbers may shift as more candidates report.</p>}
+          {shift.status === 'partial' && <p className="text-xs mt-3" style={{ color: 'var(--warn)' }}>Partial coverage. Some figures may be withheld; read the source and correction notes below.</p>}
           {shift.summary && <p className="mt-5 text-[15px] leading-relaxed">{shift.summary}</p>}
 
           {!!shift.sections?.length && (
@@ -224,13 +225,15 @@ function ShiftView({ exam, day, shift }: { exam: ShiftExam; day: ShiftDay; shift
 }
 
 function Sources({ shift }: { shift: Shift }) {
-  if (!shift.sources?.length) return null;
+  if (!shift.sources?.length && !shift.qualityNotes?.length) return null;
   return (
     <section className="mt-10 text-sm">
       <h2 className="font-extrabold">Sources</h2>
-      <p className="faint text-xs mt-1">Compiled and cross-checked from candidate reviews and coaching-institute analyses. Figures are unofficial until SSC releases the answer key.</p>
+      <p className="faint text-xs mt-1">{shift.auto ? 'Automatically compiled from the linked reviews. Source agreement does not guarantee accuracy; this is not a manually verified paper.' : 'Compiled from the linked candidate reviews and coaching-institute analyses.'} Difficulty and attempt figures are unofficial.</p>
+      {shift.qualityNotes?.length ? <ul className="mt-2 space-y-1">{shift.qualityNotes.map(n => <li key={n}>{n}</li>)}</ul> : null}
+      <p className="mt-2"><Link className="underline" href="/editorial-policy/">How we use sources and correct errors</Link></p>
       <ul className="mt-2 space-y-0.5">
-        {shift.sources.map((s, i) => <li key={i}><a href={s.url} rel="nofollow noopener" target="_blank" className="underline decoration-dotted">{s.name}</a></li>)}
+        {shift.sources?.map((s, i) => <li key={i}><a href={s.url} rel="nofollow noopener" target="_blank" className="underline decoration-dotted">{s.name}</a></li>)}
       </ul>
     </section>
   );
@@ -240,6 +243,7 @@ function DayView({ exam, day }: { exam: ShiftExam; day: ShiftDay }) {
   return (
     <>
       {day.intro && <p className="mt-4 text-[15px] leading-relaxed">{day.intro}</p>}
+      {day.correctionNote && <p className="card p-3 mt-3 text-sm">{day.correctionNote}</p>}
       <div className="card mt-6 overflow-x-auto">
         <table className="w-full text-sm">
           <thead><tr className="text-left faint text-xs uppercase">
@@ -312,6 +316,7 @@ export default async function ShiftAnalysisPage({ params }: Params) {
       <p className="text-xs faint mt-2">
         {exam.name}{shift ? ` · ${shift.time}` : ''} · Updated {istTime(day.updatedAt)}
       </p>
+      {shift && day.correctionNote && <p className="card p-3 mt-3 text-sm">{day.correctionNote}</p>}
 
       {shift ? <ShiftView exam={exam} day={day} shift={shift} /> : <DayView exam={exam} day={day} />}
 

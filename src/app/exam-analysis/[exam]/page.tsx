@@ -32,7 +32,7 @@ export default async function ExamShiftHub({ params }: Params) {
       <nav className="text-xs faint mt-4"><Link href="/exam-analysis/" className="underline decoration-dotted">Exam analysis</Link> / {exam.short}</nav>
       <h1 className="text-2xl sm:text-4xl font-extrabold mt-1">{exam.name} Exam Analysis — Shift-wise</h1>
       <p className="muted mt-2 text-[15px]">
-        Every shift from {dayLabel(exam.window.start)} to {dayLabel(exam.window.end)}: how tough it was, safe attempts, and the topics and questions candidates remember. Updated after each shift.
+        Reports from {dayLabel(exam.window.start)} to {dayLabel(exam.window.end)}: difficulty, unofficial attempt ranges and topics candidates remember. Updates depend on relevant sources being available.
         {exam.guide && <> New to the exam? Read the <Link href={exam.guide} className="underline">complete {exam.short} guide</Link>.</>}
       </p>
 

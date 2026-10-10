@@ -80,11 +80,13 @@ def main():
             rc, out = run([sys.executable, "-X", "utf8", os.path.join(HERE, "collect.py"), "--date", date], 1500)
             log("   " + out.strip().splitlines()[-1] if out.strip() else f"   collect rc={rc}")
             if rc != 0:
-                continue
+                raise RuntimeError(f'Collector failed for {date} (exit {rc})')
             before = open(day_file(date), "rb").read() if os.path.exists(day_file(date)) else b""
             rc, _ = run([sys.executable, "-X", "utf8", os.path.join(HERE, "synthesize.py"), "--date", date], 3000)
             after = open(day_file(date), "rb").read() if os.path.exists(day_file(date)) else b""
             log(f"{date}: synthesize rc={rc} changed={before != after}")
+            if rc not in (0, 2, 3):
+                raise RuntimeError(f'Synthesis failed for {date} (exit {rc})')
             if rc == 0 and before != after:
                 changed.append(date)
         if changed and a.deploy:

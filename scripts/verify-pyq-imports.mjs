@@ -47,7 +47,9 @@ for (const paper of imports) {
   assert.ok(mock, `Import missing from website registry: ${id}`);
   assert.equal(mock.sections.length, sections.length, id);
   assert.equal(mock.sections.reduce((n, s) => n + s.questions.length, 0), count, id);
-  assert.ok(content.listMocks(exam).find(m => m.id === id)?.available, id);
+  const listing = content.listMocks(exam).find(m => m.id === id);
+  assert.ok(listing, id);
+  assert.equal(listing.available, !listing.reviewHold, id);
   total += count;
 }
 for (const def of content.MOCK_DEFS) {

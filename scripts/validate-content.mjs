@@ -72,6 +72,21 @@ function check(p) {
     }
   } else if (rel.startsWith('mocks')) {
     (data.questions ?? []).forEach((q) => checkQ(q, rel));
+  } else if (full.startsWith('shift-analysis/') && Array.isArray(data.shifts)) {
+    for (const shift of data.shifts) {
+      if (!shift.auto) continue; // Older manually authored reports can include explanatory survey text.
+      for (const section of shift.sections ?? []) {
+        if (!section.goodAttempts) continue;
+        const range = /^(\d+)(?:\s*[-–—]\s*(\d+))?$/.exec(section.goodAttempts.trim());
+        if (!range || Number(range[1]) > Number(range[2] ?? range[1]) || Number(range[2] ?? range[1]) > section.questions) {
+          errors.push(`${full}: shift ${shift.shift} ${section.id} attempts exceed section size or are invalid`);
+        }
+      }
+      if (shift.goodAttempts && shift.goodAttempts !== 'Not reliably reported') {
+        const range = /^(\d+)(?:\s*[-–—]\s*(\d+))?(?:\s+overall)?$/.exec(shift.goodAttempts.trim());
+        if (!range || Number(range[1]) > Number(range[2] ?? range[1]) || Number(range[2] ?? range[1]) > 100) errors.push(`${full}: shift ${shift.shift} invalid overall attempts`);
+      }
+    }
   } else if (['sections', 'topics'].includes(rel.split(path.sep)[0]) || rel.endsWith('.json')) {
     // exam.json / cutoffs.json / sections — structural checks are light
     if (typeof data !== 'object' || data === null) errors.push(`${rel}: not an object`);

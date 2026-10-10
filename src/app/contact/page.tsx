@@ -11,7 +11,7 @@ export default function ContactPage() {
   return (
     <div className="max-w-3xl mx-auto">
       <h1 className="text-3xl font-extrabold">Contact</h1>
-      <p className="muted mt-2">Found a wrong answer, a broken page, or want a topic added? Tell us — corrections go out fast.</p>
+      <p className="muted mt-2">Found a wrong answer, a broken page, or want a topic added? Send the page and the details so we can review it.</p>
 
       <div className="card p-5 mt-6 text-sm space-y-3">
         <p className="text-base">Email: <a className="underline font-bold" href="mailto:singirikonda3@gmail.com">singirikonda3@gmail.com</a></p>
@@ -43,8 +43,8 @@ export default function ContactPage() {
       </div>
 
       <p className="text-sm muted mt-6">
-        Before writing, the <Link className="underline" href="/about/">about page</Link> explains where our data comes from, and the{' '}
-        <Link className="underline" href="/privacy/">privacy policy</Link> explains why we never ask for your personal details.
+        Before writing, read our <Link className="underline" href="/editorial-policy/">content and corrections policy</Link> and{' '}
+        <Link className="underline" href="/privacy/">privacy policy</Link>. Please do not send passwords, identity documents or admit cards.
       </p>
     </div>
   );
