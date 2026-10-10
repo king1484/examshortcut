@@ -24,7 +24,7 @@ def recalled_question(text):
     if not isinstance(text, str) or len(text.strip()) < 8:
         return False
     # Questions asked by reviewers about the exam are not questions in the exam.
-    interview = r"difficulty|tougher|consumed most time|how many guesses|how many .*solved|new pattern .*appeared|what made reasoning|sectional tim|how was (?:the |your )?(?:exam|paper|shift)"
+    interview = r"difficulty|tougher|consumed most time|how many guesses|how many .*solved|new pattern .*appeared|what made reasoning|sectional tim|how was (?:the |your )?(?:exam|paper|shift)|how many attempts|what was your accuracy|did you find .*difficult|are .*questions (?:lengthy|easy|hard)|how is time management|what type of .*questions (?:appear|were asked)"
     return not re.search(interview, text, re.I)
 
 

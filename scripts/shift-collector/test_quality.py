@@ -20,6 +20,11 @@ class QualityChecks(unittest.TestCase):
         self.assertFalse(recalled_question('Which math topics consumed most time?'))
         self.assertFalse(recalled_question('How many guesses were taken?'))
         self.assertFalse(recalled_question('What was the difficulty of the comprehension passage?'))
+        for question in ['Are Math questions lengthy or normal?', 'How is time management in Math?',
+                         'What type of English questions appear?', 'How many attempts did you score in reasoning?',
+                         'What was your accuracy in General Awareness?', 'Did you find Quantitative Aptitude difficult?',
+                         'How many attempts in English comprehension?']:
+            self.assertFalse(recalled_question(question), question)
 
     def test_cleanup_preserves_valid_evidence(self):
         original = {'auto': True, 'status': 'reported', 'goodAttempts': '75–90 overall',

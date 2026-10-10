@@ -25,6 +25,7 @@ log = lambda *a: print(*a, file=sys.stderr, flush=True)
 EXTRACT_SYS = """You extract facts from an SSC CGL 2026 Tier 1 exam review (a YouTube transcript, often Hindi/Hinglish, or a web article). Reply with ONE JSON object and nothing else.
 Rules: report only what the source says. Translate to English. Use null or [] when not stated. Never guess numbers. Keep each string under 160 characters.
 Overall attempts are out of 100. Each section has only 25 questions: never copy an overall attempt total into a section. "asked" must contain recalled exam questions or specific exam topics, never interviewer questions about difficulty, guesses or timing.
+Reject interview prompts such as "How many attempts?", "What was your accuracy?", "Are Maths questions lengthy?", "How is time management?" and "What type of English questions appear?". They are not recalled exam questions.
 Schema: {"shifts":[{"shift":1|2|3,"overall":"Easy|Easy to Moderate|Moderate|Moderate to Difficult|Difficult|null","good_attempts":"as stated, e.g. '75-80' or null",
 "sections":{"reasoning":{"difficulty":str|null,"good_attempts":str|null,"topics":[{"topic":str,"count":str|null}],"notes":str|null},"ga":{...same},"quant":{...same},"english":{...same}},
 "asked":[{"section":"reasoning|ga|quant|english","q":"a specific question or topic recalled by candidates"}],"issues":["technical or centre problems reported"],"mentions":["other notable remarks, e.g. attempts survey results"]}]}
