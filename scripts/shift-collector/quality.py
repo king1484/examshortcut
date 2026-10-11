@@ -20,6 +20,35 @@ def attempts(value, maximum):
     return value.strip() if 0 <= low <= high <= maximum else None
 
 
+def attempt_bounds(value, maximum):
+    valid = attempts(value, maximum)
+    if not valid:
+        return None
+    numbers = [int(n) for n in re.findall(r'\d+', valid)]
+    return numbers[0], numbers[-1]
+
+
+def is_shift_source(source):
+    # This survey combines exam-wide averages, accuracy and older shift rows.
+    # Its current update date does not make it evidence for the requested shift.
+    url = urlparse(source.get('url', ''))
+    return not ((url.hostname or '').removeprefix('www.') == 'realmocks.com'
+                and url.path.startswith('/attempts-analysis/'))
+
+
+def remove_attempt_sentences(text):
+    sentences = re.split(r'(?<=[.!?])\s+', text or '')
+    return ' '.join(s for s in sentences if not re.search(r'attempt', s, re.I))
+
+
+def supported_attempt_total(value, facts):
+    candidate = attempt_bounds(value, 100)
+    evidence = [attempt_bounds(f.get('good_attempts'), 100) for f in facts]
+    evidence = [b for b in evidence if b]
+    return bool(candidate and evidence and min(b[0] for b in evidence) <= candidate[0]
+                and candidate[1] <= max(b[1] for b in evidence))
+
+
 def recalled_question(text):
     if not isinstance(text, str) or len(text.strip()) < 8:
         return False
@@ -64,8 +93,13 @@ def sanitize_shift(shift):
         return shift
     if shift.get('auto') and shift.get('sources'):
         sources = shift['sources']
-        shift['sources'] = [s for s in sources if not source_shift_labels(s['name']) or shift['shift'] in source_shift_labels(s['name'])]
-        if len(sources) != len(shift['sources']):
+        shift['sources'] = [s for s in sources if is_shift_source(s) and (not source_shift_labels(s['name']) or shift['shift'] in source_shift_labels(s['name']))]
+        if any(not is_shift_source(s) for s in sources):
+            shift['goodAttempts'] = 'Not reliably reported'
+            shift['summary'] = remove_attempt_sentences(shift.get('summary'))
+            shift['observations'] = [s for s in shift.get('observations', []) if not re.search(r'attempt', s, re.I)]
+            notices.append('An exam-wide survey was removed from the shift evidence; its pooled averages are not shift-specific good-attempt estimates.')
+        if any(is_shift_source(s) and source_shift_labels(s['name']) and shift['shift'] not in source_shift_labels(s['name']) for s in sources):
             notices.append('A source labelled for a different shift was removed. The remaining summary has limited coverage and needs further corroboration.')
     value = shift.get('goodAttempts')
     if value and value != 'Not reliably reported' and not attempts(value, 100):
@@ -80,6 +114,15 @@ def sanitize_shift(shift):
             value = topic.get('count')
             if value and not attempts(value, section.get('questions', 25)):
                 topic.pop('count', None)
+    total = attempt_bounds(shift.get('goodAttempts'), 100)
+    sections = shift.get('sections', [])
+    bounds = [attempt_bounds(s.get('goodAttempts'), s.get('questions', 25)) for s in sections]
+    if total and len(bounds) == 4 and all(bounds):
+        low, high = sum(b[0] for b in bounds), sum(b[1] for b in bounds)
+        if total[1] < low or total[0] > high:
+            shift['goodAttempts'] = 'Not reliably reported'
+            shift['summary'] = remove_attempt_sentences(shift.get('summary'))
+            notices.append('The overall attempt estimate conflicted with the section estimates and was withheld; no replacement total was calculated.')
     original = shift.get('asked', [])
     shift['asked'] = [q for q in original if isinstance(q, dict) and recalled_question(q.get('q'))]
     if len(original) != len(shift['asked']):

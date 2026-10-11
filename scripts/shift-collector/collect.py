@@ -256,7 +256,6 @@ def web_articles(d: dt.date, shift: int | None, limit: int = 8):
     except Exception as e:  # noqa
         print("ddg failed", e, file=sys.stderr)
         links = []
-    links.append(("RealMocks attempts analysis", "https://realmocks.com/attempts-analysis/ssc-cgl-2026"))
     arts, seen = [], set()
     for title, href in links:
         if href in seen or len(arts) >= limit:

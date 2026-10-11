@@ -9,7 +9,7 @@ Shifts that were written by hand (no "auto": true and status "reported") are nev
 import argparse, concurrent.futures as cf, datetime as dt, hashlib, json, os, re, sys
 
 from llm import ask_json
-from quality import sanitize_facts, sanitize_shift, source_shift_labels, publisher_key
+from quality import sanitize_facts, sanitize_shift, source_shift_labels, publisher_key, is_shift_source, supported_attempt_total, remove_attempt_sentences
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
@@ -25,6 +25,7 @@ log = lambda *a: print(*a, file=sys.stderr, flush=True)
 EXTRACT_SYS = """You extract facts from an SSC CGL 2026 Tier 1 exam review (a YouTube transcript, often Hindi/Hinglish, or a web article). Reply with ONE JSON object and nothing else.
 Rules: report only what the source says. Translate to English. Use null or [] when not stated. Never guess numbers. Keep each string under 160 characters.
 Overall attempts are out of 100. Each section has only 25 questions: never copy an overall attempt total into a section. "asked" must contain recalled exam questions or specific exam topics, never interviewer questions about difficulty, guesses or timing.
+Only explicit counts of questions attempted well belong in good_attempts. Percentages, accuracy, marks, average attempts and exam-wide survey averages are not good-attempt recommendations. Do not convert or round them into counts. An article update date is not an exam date; only use evidence explicitly tied to the requested date and shift.
 Reject interview prompts such as "How many attempts?", "What was your accuracy?", "Are Maths questions lengthy?", "How is time management?" and "What type of English questions appear?". They are not recalled exam questions.
 Schema: {"shifts":[{"shift":1|2|3,"overall":"Easy|Easy to Moderate|Moderate|Moderate to Difficult|Difficult|null","good_attempts":"as stated, e.g. '75-80' or null",
 "sections":{"reasoning":{"difficulty":str|null,"good_attempts":str|null,"topics":[{"topic":str,"count":str|null}],"notes":str|null},"ga":{...same},"quant":{...same},"english":{...same}},
@@ -34,12 +35,13 @@ Only include shifts the source actually discusses. If the source is about an ear
 MERGE_SYS = """You write one shift's entry for an exam-analysis website from several extracted source reports. Reply with ONE JSON object and nothing else.
 Style: plain, short sentences, neutral, like a careful student writing notes. Say 'reported' or 'candidates said'. No hype, no marketing words, no em dashes (use commas or colons; en dash only in numeric ranges). All figures are unofficial.
 Use ONLY facts present in the reports. Do not invent topics, counts or questions.
+Do not turn percentages, average attempts, accuracy or marks in mentions into goodAttempts. Only use the explicit good_attempts fields. If none contains a usable count, set goodAttempts to "Not reliably reported" and avoid numerical attempt claims in summary or observations.
 Aggregate, never answer 'Varied' or 'Not reported' when any report gives a level. "overall" and every section "difficulty" must be a short label built from the reports: the most common level, or a range such as "Easy to Moderate" when reports spread (use only Easy / Easy to Moderate / Moderate / Moderate to Difficult / Difficult). Add "(most reports)" or "(reports differ)" only if useful. "goodAttempts" is a figure range from the reports, for example "78–92 overall" (section: "20–23"); it is the number of questions candidates said they attempted well. Put any real disagreement in "disagreements" as a sentence naming the split (for example '4 reports called Quant easy, 2 called it difficult'). Only if NO report mentions a section or the overall level, set it to "Not reported". Leave topics empty for a section with no data.
 Schema: {"overall":str,"goodAttempts":str,"summary":"3-5 sentences","sections":{"reasoning":{"difficulty":str,"goodAttempts":str|null,"notes":"1-3 sentences","topics":[{"topic":str,"count":str|null}]},"ga":{...},"quant":{...},"english":{...}},
 "asked":[{"section":"reasoning|ga|quant|english","q":str}],"observations":[str],"disagreements":[str]}
 Limit: topics max 8 per section, asked max 14, observations max 4, disagreements max 4."""
 
-INTRO_SYS = """Write the intro paragraph (3-5 sentences) and 5 FAQs for an SSC CGL 2026 Tier 1 exam-analysis page for one day, from the shift summaries given. Plain neutral tone, no hype, no em dashes, say figures are unofficial and SSC normalises scores across shifts. If a shift is pending, say no usable analysis is published yet and more evidence is needed. Never promise a publication time or assume the shift has not ended. Reply with ONE JSON object: {"intro":str,"faqs":[{"q":str,"a":str}]}. FAQ questions must mention the date given."""
+INTRO_SYS = """Write the intro paragraph (3-5 sentences) and 5 FAQs for an SSC CGL 2026 Tier 1 exam-analysis page for one day, from the shift summaries given. Plain neutral tone, no hype, no em dashes, say figures are unofficial and SSC normalises scores across shifts. If a shift is pending, say no usable analysis is published yet and more evidence is needed. Partial means a limited review is published but needs corroboration; do not say it has no analysis. If goodAttempts is Not reliably reported, do not supply or infer any number in the intro or FAQs. Never promise a publication time or assume the shift has not ended. Reply with ONE JSON object: {"intro":str,"faqs":[{"q":str,"a":str}]}. FAQ questions must mention the date given."""
 
 
 def clean(s):
@@ -92,6 +94,8 @@ def sources_from_pack(pack):
             out.append({"kind": "video", "id": v["id"], "title": v["title"], "channel": v["channel"].strip(),
                         "url": f"https://www.youtube.com/watch?v={v['id']}", "text": v["transcript"]})
     for a in pack["articles"]:
+        if not is_shift_source(a):
+            continue
         out.append({"kind": "article", "id": a["url"], "title": a["title"], "channel": a["title"], "url": a["url"], "text": a["text"]})
     return out
 
@@ -123,6 +127,10 @@ def build_shift(date, n, extractions, valid_topics):
     payload = [{"source": e["channel"][:40], "type": e["kind"], "reports": f} for e, f in rel]
     m = ask_json(MERGE_SYS, f"Date: {date}, Shift {n}.\nExtracted reports:\n" + json.dumps(payload, ensure_ascii=False)[:60000], max_tokens=7000, log=log)
     m = clean_tree(m)
+    if not supported_attempt_total(m.get('goodAttempts'), [f for _, facts in rel for f in facts]):
+        m['goodAttempts'] = 'Not reliably reported'
+        m['summary'] = remove_attempt_sentences(m.get('summary'))
+        m['observations'] = [s for s in m.get('observations', []) if not re.search(r'attempt', s, re.I)]
     log(f"  merge shift {n}: {len(rel)} sources, payload {len(json.dumps(payload, ensure_ascii=False))} chars -> overall={m.get('overall')!r} good={m.get('goodAttempts')!r} sections={ {k: (v or {}).get('difficulty') for k, v in (m.get('sections') or {}).items()} }")
     secs = []
     for sid, name in SECTIONS:
@@ -159,7 +167,7 @@ def quality(sh):
 
 def pending_shift(n):
     return {"shift": n, "time": TIMES[n], "status": "pending", "auto": True,
-            "note": "This shift has not been analysed yet. The analysis is added a few hours after the shift ends, once enough candidate reviews are out."}
+            "note": "No usable analysis is published for this shift yet. A review is added when sufficient candidate evidence is available."}
 
 
 def main():
@@ -192,6 +200,11 @@ def main():
         old = by.get(n)
         if old and not old.get("auto") and old.get("status") == "reported":
             continue                                     # hand-written and complete: keep
+        if old:
+            checked = sanitize_shift(old)
+            if checked != old:
+                old = by[n] = checked
+                changed.append(n)
         end = dt.datetime.combine(d, dt.time(*END_IST[n]), IST)
         if now < end:
             by.setdefault(n, pending_shift(n)); continue  # shift not over yet
@@ -205,7 +218,9 @@ def main():
             better = rn > ro or (rn == ro and (qn > qo or (qn == qo and len(new["sources"]) > len(old["sources"]))))
             if rn < ro or not better:
                 continue                                 # only replace with strictly better evidence / content
-        by[n] = new; changed.append(n)
+        by[n] = new
+        if n not in changed:
+            changed.append(n)
     day["shifts"] = [by[n] for n in sorted(by)]
     if not changed:
         log("no shift changed"); return 3
