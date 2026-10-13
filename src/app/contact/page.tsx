@@ -13,6 +13,11 @@ export default function ContactPage() {
       <h1 className="text-3xl font-extrabold">Contact</h1>
       <p className="muted mt-2">Found a wrong answer, a broken page, or want a topic added? Send the page and the details so we can review it.</p>
 
+      <div className="flex flex-wrap gap-3 mt-5">
+        <Link href="/feedback/" className="btn btn-brand">Send feedback or a correction</Link>
+        <Link href="/feature-requests/" className="btn">Request a feature</Link>
+      </div>
+
       <div className="card p-5 mt-6 text-sm space-y-3">
         <p className="text-base">Email: <a className="underline font-bold" href="mailto:singirikonda3@gmail.com">singirikonda3@gmail.com</a></p>
         <p>For a content correction, include:</p>

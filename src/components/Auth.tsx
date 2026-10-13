@@ -23,17 +23,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     let stopPush: (() => void) | undefined;
     let stopLb: (() => void) | undefined;
     let syncedFor: string | null = null;
+    let active = true;
     const unsub = onAuthStateChanged(auth, (u) => {
       setUser(u);
       setLoading(false);
       if (u && syncedFor !== u.uid) {
         syncedFor = u.uid;
         stopPush?.(); stopLb?.();
-        void pullAndMerge(u.uid).then(() => { stopPush = startAutoPush(u.uid); stopLb = startLeaderboardPublish(u.uid); });
+        void pullAndMerge(u.uid).then(() => {
+          if (!active || syncedFor !== u.uid) return;
+          stopPush = startAutoPush(u.uid); stopLb = startLeaderboardPublish(u.uid);
+        }).catch(() => {
+          // A database outage must not reject login or start sync for a previous account.
+          console.warn('[sync] Account signed in; cloud progress could not be loaded.');
+        });
       }
       if (!u) { syncedFor = null; stopPush?.(); stopPush = undefined; stopLb?.(); stopLb = undefined; resetSyncState(); }
-    });
-    return () => { unsub(); stopPush?.(); stopLb?.(); };
+    }, () => { setLoading(false); });
+    return () => { active = false; syncedFor = null; unsub(); stopPush?.(); stopLb?.(); };
   }, []);
 
   // Track progress only once logged in (or when accounts aren't configured, i.e. preview mode).

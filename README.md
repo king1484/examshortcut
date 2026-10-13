@@ -151,6 +151,14 @@ Styling: Tailwind 4 plus design tokens and component classes (`.card`, `.btn`, `
 
 Environment variables (`.env.local`, not committed): `NEXT_PUBLIC_FIREBASE_API_KEY`, `_AUTH_DOMAIN`, `_PROJECT_ID`, `_APP_ID`.
 
+These four public Firebase web settings also live in GitHub Actions repository variables, passed to every scheduled/manual build. `npm run build` verifies complete matching configuration, authorized production domains and the Google provider before compiling, then verifies the actual exported login and bundled settings. A missing configuration stops deployment rather than silently shipping preview mode. Any new build pipeline must supply the same variables. Firebase web configuration identifies the public app; access control remains in Firebase Auth and Firestore rules. Never put service-account credentials in these variables.
+
+### Student feedback and feature requests
+
+`/feedback/` and `/feature-requests/` submit to the Pages Function `/api/feedback`, independently of Firebase login. Requests are stored privately in Cloudflare D1 `examshortcut-feedback`; the browser API has no read/list endpoint. `wrangler.jsonc` keeps the database binding in source so every analysis deployment preserves it. `public/_routes.json` limits function invocations to this API. Initialize storage with `npx wrangler d1 execute examshortcut-feedback --remote --file migrations/feedback.sql`.
+
+Read submissions in Cloudflare dashboard → Storage & databases → D1 → examshortcut-feedback → Console, or run `npx wrangler d1 execute examshortcut-feedback --remote --command "SELECT id, kind, title, message, exam, page, email, created_at FROM submissions ORDER BY created_at DESC LIMIT 50"`. Treat email/message data as private. There is no automatic email notification. The API checks field lengths, page URLs and same-origin submissions, uses an atomic five-per-network-per-hour limit, and accepts retries with the same request ID without duplication. Run `node --test scripts/test-auth-config.mjs scripts/test-feedback.mjs` and a local `wrangler pages dev out` integration check after backend changes.
+
 ## Deploying the site
 
 Cloudflare Pages, static upload of `out/`:

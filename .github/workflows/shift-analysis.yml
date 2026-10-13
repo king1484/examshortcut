@@ -52,6 +52,12 @@ jobs:
       AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
       KILO_API_KEY: ${{ secrets.KILO_API_KEY }}
       MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+      # Public Firebase web settings must be present on EVERY full-site build.
+      # Laptop .env.local is not checked out by Actions. npm run build rejects a missing config.
+      NEXT_PUBLIC_FIREBASE_API_KEY: ${{ vars.NEXT_PUBLIC_FIREBASE_API_KEY }}
+      NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{ vars.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN }}
+      NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${{ vars.NEXT_PUBLIC_FIREBASE_PROJECT_ID }}
+      NEXT_PUBLIC_FIREBASE_APP_ID: ${{ vars.NEXT_PUBLIC_FIREBASE_APP_ID }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -101,6 +107,7 @@ jobs:
         if: steps.diff.outputs.changed == 'true'
         run: |
           npm ci
+          node --test scripts/test-auth-config.mjs scripts/test-feedback.mjs
           python -m unittest discover -s scripts/shift-collector -p 'test_*.py'
           npm run validate
 

@@ -122,6 +122,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/terms/">Terms</Link>
               <Link href="/disclaimer/">Disclaimer</Link>
               <Link href="/contact/">Contact</Link>
+              <Link href="/feedback/">Feedback &amp; corrections</Link>
+              <Link href="/feature-requests/">Request a feature</Link>
             </div>
             <p>
               © {new Date().getFullYear()} ExamShortcut · Made with <span aria-label="love">❤️</span> by{' '}

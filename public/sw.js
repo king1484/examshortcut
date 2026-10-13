@@ -2,7 +2,7 @@
    Static export: every page is a static file; cache-on-request keeps visited
    topics/mocks available offline. Content updates via network-first for pages,
    cache-first for static assets. */
-const VERSION = 'es-v9';
+const VERSION = 'es-v10';
 const SHELL = ['/', '/exams/', '/exams/ssc-cgl/', '/learn/', '/daily-quiz/', '/exams/ssc-cgl/mocks/', '/formula-sheet/', '/revision/', '/about/', '/search/', '/manifest.webmanifest', '/icon.svg', '/search-index.json'];
 
 self.addEventListener('install', (e) => {
@@ -22,6 +22,8 @@ self.addEventListener('fetch', (e) => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   if (url.origin !== location.origin) return;
+  // Account and submission endpoints must never fall back to a cached page.
+  if (url.pathname.startsWith('/api/') || url.pathname.startsWith('/__/auth/')) return;
 
   // Hashed build assets never change under the same URL: cache-first
   if (url.pathname.startsWith('/_next/static/')) {

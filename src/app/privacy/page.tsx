@@ -11,7 +11,7 @@ export default function PrivacyPage() {
   return (
     <div className="max-w-3xl mx-auto">
       <h1 className="text-3xl font-extrabold">Privacy policy</h1>
-      <p className="muted mt-2">Last updated: 10 October 2026</p>
+      <p className="muted mt-2">Last updated: 14 October 2026</p>
 
       <div className="card p-5 mt-6 text-sm space-y-4">
         <div>
@@ -91,7 +91,10 @@ export default function PrivacyPage() {
         </div>
 
         <div>
-          <h2 className="font-extrabold text-base">Questions</h2>
+          <h2 className="font-extrabold text-base">Feedback and feature requests</h2>
+          <p className="mt-1">Our optional forms save your message, its title, any exam or page URL you provide, and an optional reply email in a private Cloudflare database. No account is required. We use this information to review your report or suggestion and contact you if needed; submissions are not posted publicly. A temporary hourly hash of the submitting network address limits spam without storing the raw address in the feedback database. Old rate-limit hashes are cleared when new submissions arrive. We keep reports while needed to resolve or assess them; contact us to request deletion, quoting your submission reference. Please do not send passwords or identity documents.</p>
+
+          <h2 className="font-extrabold text-base mt-4">Questions</h2>
           <p className="mt-1">
             Anything about this policy — <Link className="underline" href="/contact/">write to us</Link>.
           </p>

@@ -21,6 +21,7 @@ const NAV = [
   { href: '/current-affairs/', label: 'Current Affairs' },
   { href: '/exams/ssc-cgl/cutoffs/', label: 'Cutoffs' },
   { href: '/revision/', label: 'Revision' },
+  { href: '/feedback/', label: 'Feedback' },
 ];
 
 export function Logo() {
