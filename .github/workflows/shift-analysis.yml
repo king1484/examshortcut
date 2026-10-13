@@ -140,6 +140,10 @@ jobs:
         continue-on-error: true
         run: node scripts/notify-indexnow.mjs
 
+      - name: Verify deployed login
+        if: steps.diff.outputs.changed == 'true' && inputs.build_check != true
+        run: node scripts/verify-live-login.mjs
+
       - name: Upload logs
         if: always()
         uses: actions/upload-artifact@v4
