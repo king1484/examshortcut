@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { SECTION_META, getTopic } from '@/lib/content';
 import type { SectionId } from '@/lib/sections';
 import { TopicQuiz } from '@/components/TopicQuiz';
+import { TopicPracticeGuide } from '@/components/topic-pages/TopicPracticeGuide';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -52,6 +53,7 @@ export default async function PracticePage({ params }: { params: Promise<{ secti
       ) : (
         <p className="card p-6 mt-4 text-center muted">Questions for this topic are being written — check back shortly.</p>
       )}
+      <TopicPracticeGuide topic={t} />
     </div>
   );
 }

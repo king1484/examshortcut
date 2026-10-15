@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { availableSections, listTopics } from '@/lib/content';
 import { RevisionPlanner } from '@/components/RevisionPlanner';
 import { ShareResource } from '@/components/ShareResource';
+import { RevisionGuide } from '@/components/topic-pages/RevisionGuide';
 
 export const dynamic = 'force-static';
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export default function RevisionPlannerPage() {
         <p className="text-sm mt-4">Read <Link href="/study-guides/revision-without-forgetting/" className="underline">the revision guide</Link> or open your <Link className="underline" href="/learn/">next lesson</Link>.</p>
         <p className="text-xs muted mt-3">Calendar entries are all-day events. Notifications depend on your calendar settings. Reimporting the same file may create duplicates in some calendar apps.</p>
       </section>
+      <RevisionGuide />
       <ShareResource title="Free revision planner for competitive exams" path="/revision-planner/" />
     </div>
   );

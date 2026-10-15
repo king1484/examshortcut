@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getTopic } from '@/lib/content';
 import { LazyTex } from '@/components/LazyTex';
+import { TopicFormulaGuide } from '@/components/topic-pages/TopicFormulaGuide';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -43,6 +44,7 @@ export default async function FormulasPage({ params }: { params: Promise<{ secti
           </div>
         </section>
       ))}
+      <TopicFormulaGuide topic={t} />
     </div>
   );
 }

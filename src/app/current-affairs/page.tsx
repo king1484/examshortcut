@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getCaYear, listCaYears } from '@/lib/content';
+import { CaIndexGuide } from '@/components/CaYearDigest';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -47,6 +48,7 @@ export default function CurrentAffairsPage() {
           economy. Each month ends with a quiz so the facts actually stick.
         </p>
       </section>
+      <CaIndexGuide />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { getCutoffs } from '@/lib/content';
 import { Md } from '@/components/Md';
 import { splitLead } from '@/lib/lead';
 import { CutoffExplorer } from '@/components/CutoffExplorer';
+import { CglCutoffIndexDepth } from '@/components/exam-pages/CglDepth';
 
 export const dynamic = 'force-static';
 export const metadata: Metadata = {
@@ -38,6 +39,7 @@ export default function CutoffsPage() {
           <Md className="mt-2 text-[15px] muted">{notes.rest}</Md>
         </>
       )}
+      <CglCutoffIndexDepth />
     </div>
   );
 }

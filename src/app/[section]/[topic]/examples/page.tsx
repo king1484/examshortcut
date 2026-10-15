@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getTopic } from '@/lib/content';
 import { SolvedExample } from '@/components/SolvedExample';
+import { TopicExamplesGuide } from '@/components/topic-pages/TopicExamplesGuide';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -30,6 +31,7 @@ export default async function ExamplesPage({ params }: { params: Promise<{ secti
         {(t.solvedExamples ?? []).map((q, k) => <SolvedExample key={q.id} q={q} n={k + 1} />)}
         {(t.solvedExamples ?? []).length === 0 && <p className="card p-6 mt-4 text-center muted">Solved examples are being written — check back shortly.</p>}
       </div>
+      <TopicExamplesGuide topic={t} />
       {(t.practice?.length ?? 0) > 0 && (
         <Link href={`/${t.sectionId}/${t.id}/practice/`} className="btn btn-brand mt-6">Ready? Take the {t.practice!.length}-question test →</Link>
       )}

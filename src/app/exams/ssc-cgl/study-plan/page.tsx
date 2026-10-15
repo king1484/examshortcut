@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { SECTION_META, SECTION_ORDER, listTopics, listMocks } from '@/lib/content';
 import { StudyPlanner, type PlanTopic, type PlanMock } from '@/components/StudyPlanner';
+import { CglStudyPlanDepth } from '@/components/exam-pages/PlanDepth';
 
 export const dynamic = 'force-static';
 export const metadata: Metadata = {
@@ -35,6 +36,7 @@ export default function StudyPlanPage() {
         <li>If time is short, lower-weightage topics are dropped first.</li>
         <li>Every item links to its notes or test. Tick items as you go; the plan is saved in this browser.</li>
       </ul>
+      <CglStudyPlanDepth />
     </div>
   );
 }

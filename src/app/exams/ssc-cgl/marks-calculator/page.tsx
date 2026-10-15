@@ -1,3 +1,4 @@
+import { CglToolDepth } from '@/components/exam-pages/CglToolDepth';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getCutoffs } from '@/lib/content';
@@ -22,6 +23,7 @@ export default function MarksCalculatorPage() {
           Use the <Link className="underline" href="/exams/ssc-cgl/score-calculator/">score calculator</Link> to enter your counts by hand, or check <Link className="underline" href="/exams/ssc-cgl/cutoffs/">past cutoffs</Link>. The <Link className="underline" href="/exam-analysis/">shift-wise analysis</Link> shows how hard each shift was.
         </p>
       </div>
+      <CglToolDepth kind="marks" />
     </div>
   );
 }

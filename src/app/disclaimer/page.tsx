@@ -11,7 +11,7 @@ export default function DisclaimerPage() {
   return (
     <div className="max-w-3xl mx-auto">
       <h1 className="text-3xl font-extrabold">Disclaimer</h1>
-      <p className="muted mt-2">Last updated: 4 October 2026</p>
+      <p className="muted mt-2">Last updated: 15 October 2026</p>
 
       <div className="card p-5 mt-6 text-sm space-y-4">
         <div>
@@ -44,6 +44,21 @@ export default function DisclaimerPage() {
             Shift-wise difficulty ratings, &ldquo;good attempts&rdquo; figures and questions recalled by candidates are compiled from candidate feedback
             and publicly shared reports. They are subjective, may differ from your own experience, and are not official figures. Where data is thin
             or unconfirmed, the page says so.
+          </p>
+        </div>
+        <div>
+          <h2 className="font-extrabold text-base">Not professional advice</h2>
+          <p className="mt-1">
+            Study plans, score targets and strategy tips are general guidance from one maintainer, not career, legal or financial advice. How you prepare, and which
+            exams you apply for, is your own decision.
+          </p>
+        </div>
+        <div>
+          <h2 className="font-extrabold text-base">Advertising and external links</h2>
+          <p className="mt-1">
+            The site may show ads served by Google AdSense, and ads are never presented as study content or as a recommendation. Links to other websites, including
+            official exam sites, are provided for convenience; we do not control their content or availability. See the{' '}
+            <Link className="underline" href="/privacy/">privacy policy</Link> for how ads and cookies work.
           </p>
         </div>
         <div>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { RevisionNotebookGuide } from '@/components/topic-pages/RevisionNotebookGuide';
 
 // The revision page is a client component, so its metadata lives here. It shows the visitor's own
 // mistakes and bookmarks — nothing for a search engine to index.
@@ -9,5 +10,10 @@ export const metadata: Metadata = {
 };
 
 export default function RevisionLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <>
+      {children}
+      <RevisionNotebookGuide />
+    </>
+  );
 }

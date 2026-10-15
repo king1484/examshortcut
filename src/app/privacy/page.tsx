@@ -11,7 +11,7 @@ export default function PrivacyPage() {
   return (
     <div className="max-w-3xl mx-auto">
       <h1 className="text-3xl font-extrabold">Privacy policy</h1>
-      <p className="muted mt-2">Last updated: 14 October 2026</p>
+      <p className="muted mt-2">Last updated: 15 October 2026</p>
 
       <div className="card p-5 mt-6 text-sm space-y-4">
         <div>
@@ -45,7 +45,14 @@ export default function PrivacyPage() {
           <h2 className="font-extrabold text-base mt-4">Optional public leaderboard</h2>
           <p className="mt-1">If you choose to join the leaderboard, your chosen display name and activity totals become public. Leaving removes your leaderboard entry. Keep personal information out of your display name.</p>
 
-          <h2 className="font-extrabold text-base">Analytics</h2>
+          <h2 className="font-extrabold text-base">Information we do not collect</h2>
+          <p className="mt-1">
+            We do not ask for your phone number, address, date of birth, exam roll number, payment details or identity documents, and we do not run paid
+            plans, so no payment information passes through the site. The marks calculator reads a response sheet you choose <b>inside your browser only</b>;
+            the file is not uploaded to our servers.
+          </p>
+
+          <h2 className="font-extrabold text-base mt-4">Analytics</h2>
           <p className="mt-1">
             We use <b>Google Analytics 4</b> to count visits and see which pages are useful. It sets first-party cookies (such as <code>_ga</code>) and
             processes technical visit information including browser, device type, approximate location and pages viewed. Google states that GA4 does not log or store individual IP addresses. We use
@@ -74,6 +81,27 @@ export default function PrivacyPage() {
         </div>
 
         <div>
+          <h2 className="font-extrabold text-base">Services that process data for the site</h2>
+          <ul className="mt-1 list-disc pl-5 space-y-1">
+            <li><b>Cloudflare</b> hosts the site and the feedback database, and sees standard request logs.</li>
+            <li><b>Google Firebase</b> handles optional sign-in and account progress sync.</li>
+            <li><b>Google Analytics 4</b> measures visits in aggregate.</li>
+            <li><b>Google AdSense</b> may serve ads, using cookies as described above.</li>
+          </ul>
+          <p className="mt-1">These providers process data under their own privacy terms. We do not sell personal information or share it with advertisers.</p>
+        </div>
+
+        <div>
+          <h2 className="font-extrabold text-base">Your choices and rights</h2>
+          <ul className="mt-1 list-disc pl-5 space-y-1">
+            <li>Use the site without signing in. Learning content does not require an account.</li>
+            <li>Block or delete cookies in your browser settings, or use the opt-out links above for analytics and personalised ads.</li>
+            <li>Clear the site&apos;s local storage in your browser to remove data saved on your device.</li>
+            <li>Ask us to access, correct or delete the data tied to your account or a feedback submission by writing from the same email address. We will act on a verified request as soon as we reasonably can.</li>
+          </ul>
+        </div>
+
+        <div>
           <h2 className="font-extrabold text-base">Offline use (PWA)</h2>
           <p className="mt-1">
             If you install ExamShortcut as an app, a service worker stores the site&apos;s pages on your device so it works offline.
@@ -94,9 +122,14 @@ export default function PrivacyPage() {
           <h2 className="font-extrabold text-base">Feedback and feature requests</h2>
           <p className="mt-1">Our optional forms save your message, its title, any exam or page URL you provide, and an optional reply email in a private Cloudflare database. No account is required. We use this information to review your report or suggestion and contact you if needed; submissions are not posted publicly. A temporary hourly hash of the submitting network address limits spam without storing the raw address in the feedback database. Old rate-limit hashes are cleared when new submissions arrive. We keep reports while needed to resolve or assess them; contact us to request deletion, quoting your submission reference. Please do not send passwords or identity documents.</p>
 
-          <h2 className="font-extrabold text-base mt-4">Questions</h2>
+          <h2 className="font-extrabold text-base mt-4">Changes to this policy</h2>
+          <p className="mt-1">If the site starts collecting something new, this page is updated first and the date above changes. Material changes are also noted on the <Link className="underline" href="/updates/">updates log</Link>.</p>
+
+          <h2 className="font-extrabold text-base mt-4">Questions and contact</h2>
           <p className="mt-1">
-            Anything about this policy — <Link className="underline" href="/contact/">write to us</Link>.
+            ExamShortcut is run by Vinay. For anything about this policy or your data, email{' '}
+            <a className="underline font-bold" href="mailto:singirikonda3@gmail.com">singirikonda3@gmail.com</a> or use the{' '}
+            <Link className="underline" href="/contact/">contact page</Link>.
           </p>
         </div>
       </div>

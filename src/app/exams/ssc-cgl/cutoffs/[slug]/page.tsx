@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getCutoffs } from '@/lib/content';
+import { CglExpectedDepth, CglFinalDepth, CglYearDepth } from '@/components/exam-pages/CglDepth';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -115,6 +116,7 @@ export default async function CutoffSlugPage({ params }: { params: Promise<{ slu
         </p>
         {final.map((l) => <CutoffTable key={l.list} l={l} />)}
         <p className="text-xs faint mt-4">Cutoffs differ post by post and list by list, and decimals can differ slightly between reproductions. The official SSC result PDF is always the final word.</p>
+        <CglFinalDepth />
         <Footer current={slug} />
       </div>
     );
@@ -163,6 +165,7 @@ export default async function CutoffSlugPage({ params }: { params: Promise<{ slu
         <p className="text-[15px] muted mt-2">
           Aim for a mock score a comfortable margin above the <b>high end</b> of your category&apos;s band, because Tier 1 is only a screening round and a borderline score can miss. Remember Tier 1 marks do not count towards the final merit for most posts, so use the extra time in Tier 2 preparation too.
         </p>
+        <CglExpectedDepth />
         <Footer current={slug} />
       </div>
     );
@@ -183,6 +186,7 @@ export default async function CutoffSlugPage({ params }: { params: Promise<{ slu
       </p>
       {lists.map((l) => <CutoffTable key={l.list} l={l} prev={earlier(l)} />)}
       <p className="text-xs faint mt-4">Cutoffs are declared per post list. Decimals can differ slightly between reproductions of SSC result notices; the SSC PDF is canonical. A green change means the cutoff fell compared with the previous year.</p>
+      <CglYearDepth year={year} />
       <Footer current={slug} />
     </div>
   );

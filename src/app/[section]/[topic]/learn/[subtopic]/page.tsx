@@ -85,6 +85,7 @@ export default async function SubtopicPage({ params }: { params: Promise<{ secti
         {patterns.length > 0 && <span className="chip">🧩 {patterns.length} question types</span>}
         {questions.length > 0 && <span className="chip">🎯 {questions.length} practice Q</span>}
       </div>
+      <p className="text-xs faint mt-3">By <Link href="/about/" className="underline">Vinay</Link> · <Link href="/editorial-policy/" className="underline">How we check content</Link> · Spotted a mistake? <Link href="/feedback/" className="underline">Tell us</Link></p>
 
       <div className="card p-4 sm:p-5 mt-5" style={{ borderLeft: '4px solid var(--brand)' }}>
         <div className="kicker">The idea in one minute</div>

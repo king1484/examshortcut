@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { listGuides } from '@/lib/content';
+import { CglGuidesDepth } from '@/components/exam-pages/PlanDepth';
 
 export const dynamic = 'force-static';
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function GuidesIndex() {
         ))}
       </div>
       {guides.length === 0 && <p className="card p-6 mt-6 muted">Guides are being written. Check back shortly.</p>}
+      <CglGuidesDepth />
     </div>
   );
 }

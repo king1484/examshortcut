@@ -56,6 +56,7 @@ const siteJsonLd = JSON.stringify({
       '@type': 'Person',
       '@id': 'https://examshortcut.in/#vinay',
       name: 'Vinay',
+      jobTitle: 'Software engineer',
       url: 'https://examshortcut.in/about/',
       sameAs: ['https://www.instagram.com/vinni1484'],
     },
@@ -92,39 +93,50 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </svg>
               Join Telegram
             </a>
-            <div className="flex flex-wrap gap-x-5 gap-y-2">
-              <Link href="/exams/">All exams</Link>
-              <Link href="/learn/">Subjects &amp; notes</Link>
-              <Link href="/study-guides/">Study guides</Link>
-              <Link href="/revision-planner/">Revision planner</Link>
-              <Link href="/quant/">Quantitative Aptitude</Link>
-              <Link href="/reasoning/">Reasoning</Link>
-              <Link href="/english/">English</Link>
-              <Link href="/ga/">General Awareness</Link>
-              <Link href="/computer/">Computer</Link>
-              <Link href="/daily-quiz/">Daily quiz</Link>
-              <Link href="/current-affairs/">Current affairs</Link>
-              <Link href="/exams/ssc-cgl/">SSC CGL</Link>
-              <Link href="/exams/ssc-cgl/mocks/">Mock tests</Link>
-              <Link href="/formula-sheet/">Formula sheet</Link>
-              <Link href="/shortcut-tricks/">Shortcut tricks</Link>
-              <Link href="/data-interpretation/">Data interpretation</Link>
-              <Link href="/exam-analysis/">Exam analysis</Link>
-              <Link href="/vocab/">Vocab bank</Link>
-              <Link href="/static-gk/">Static GK</Link>
-              <Link href="/exams/ssc-cgl/cutoffs/">Cutoffs</Link>
-              <Link href="/exams/ssc-cgl/score-calculator/">Score calculator</Link>
-              <Link href="/dashboard/">My progress</Link>
-              <Link href="/revision/">My revision</Link>
-              <Link href="/about/">About</Link>
-              <Link href="/editorial-policy/">Content &amp; corrections</Link>
-              <Link href="/privacy/">Privacy</Link>
-              <Link href="/terms/">Terms</Link>
-              <Link href="/disclaimer/">Disclaimer</Link>
-              <Link href="/contact/">Contact</Link>
-              <Link href="/feedback/">Feedback &amp; corrections</Link>
-              <Link href="/feature-requests/">Request a feature</Link>
-            </div>
+            <nav aria-label="Footer" className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-5">
+              <div><p className="font-bold muted mb-1.5">Exams</p><ul className="space-y-1.5">
+                <li><Link href="/exams/">All exams</Link></li>
+                <li><Link href="/exams/ssc-cgl/">SSC CGL</Link></li>
+                <li><Link href="/exams/ssc-cgl/mocks/">Mock tests</Link></li>
+                <li><Link href="/exams/ssc-cgl/cutoffs/">Cutoffs</Link></li>
+                <li><Link href="/exams/ssc-cgl/score-calculator/">Score calculator</Link></li>
+                <li><Link href="/exam-analysis/">Exam analysis</Link></li>
+              </ul></div>
+              <div><p className="font-bold muted mb-1.5">Subjects</p><ul className="space-y-1.5">
+                <li><Link href="/learn/">Subjects &amp; notes</Link></li>
+                <li><Link href="/quant/">Quantitative Aptitude</Link></li>
+                <li><Link href="/reasoning/">Reasoning</Link></li>
+                <li><Link href="/english/">English</Link></li>
+                <li><Link href="/ga/">General Awareness</Link></li>
+                <li><Link href="/computer/">Computer</Link></li>
+              </ul></div>
+              <div><p className="font-bold muted mb-1.5">Practice</p><ul className="space-y-1.5">
+                <li><Link href="/daily-quiz/">Daily quiz</Link></li>
+                <li><Link href="/current-affairs/">Current affairs</Link></li>
+                <li><Link href="/formula-sheet/">Formula sheet</Link></li>
+                <li><Link href="/shortcut-tricks/">Shortcut tricks</Link></li>
+                <li><Link href="/data-interpretation/">Data interpretation</Link></li>
+                <li><Link href="/vocab/">Vocab bank</Link></li>
+                <li><Link href="/static-gk/">Static GK</Link></li>
+              </ul></div>
+              <div><p className="font-bold muted mb-1.5">Your study</p><ul className="space-y-1.5">
+                <li><Link href="/study-guides/">Study guides</Link></li>
+                <li><Link href="/revision-planner/">Revision planner</Link></li>
+                <li><Link href="/dashboard/">My progress</Link></li>
+                <li><Link href="/revision/">My revision</Link></li>
+              </ul></div>
+              <div><p className="font-bold muted mb-1.5">About</p><ul className="space-y-1.5">
+                <li><Link href="/about/">About</Link></li>
+                <li><Link href="/editorial-policy/">Content &amp; corrections</Link></li>
+                <li><Link href="/updates/">Site updates</Link></li>
+                <li><Link href="/contact/">Contact</Link></li>
+                <li><Link href="/feedback/">Feedback &amp; corrections</Link></li>
+                <li><Link href="/feature-requests/">Request a feature</Link></li>
+                <li><Link href="/privacy/">Privacy</Link></li>
+                <li><Link href="/terms/">Terms</Link></li>
+                <li><Link href="/disclaimer/">Disclaimer</Link></li>
+              </ul></div>
+            </nav>
             <p>
               © {new Date().getFullYear()} ExamShortcut · Made with <span aria-label="love">❤️</span> by{' '}
               <a href="https://www.instagram.com/vinni1484" target="_blank" rel="noopener" className="underline">Vinay</a>

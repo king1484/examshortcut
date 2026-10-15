@@ -5,6 +5,7 @@ import { EXAMS, getExamInfo } from '@/lib/exams';
 import { Md } from '@/components/Md';
 import { splitLead } from '@/lib/lead';
 import { ExamCutoffs } from '@/components/ExamCutoffs';
+import { CutoffDigest } from '@/components/exam-pages/ExamDepth';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -50,6 +51,7 @@ export default async function CutoffsPage({ params }: { params: Params }) {
           <Md className="muted mt-2 max-w-3xl text-[15px]">{notes.rest}</Md>
         </>
       )}
+      <CutoffDigest id={id} data={shown} />
       <p className="faint text-xs mt-8">
         Cutoff rows are compiled from official result notices and reputable reproductions — see the notes for what each row means.
         Always confirm on the official website.

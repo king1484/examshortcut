@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getCaYear, listCaYears } from '@/lib/content';
+import { CaYearDigest } from '@/components/CaYearDigest';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -46,6 +47,7 @@ export default async function CaYearPage({ params }: { params: Promise<{ year: s
           </Link>
         ))}
       </div>
+      <CaYearDigest data={data} year={year} />
     </div>
   );
 }

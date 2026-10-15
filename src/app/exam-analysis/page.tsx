@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { ExamAnalysisGuide } from '@/components/ExamAnalysisGuide';
 import { dayLabel, daySlug, listShiftDays, listShiftExams } from '@/lib/shifts';
 
 export const dynamic = 'force-static';
@@ -28,6 +29,7 @@ export default function ExamAnalysisIndex() {
           </section>
         ))}
       </div>
+      <ExamAnalysisGuide />
     </div>
   );
 }

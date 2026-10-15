@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { DailyQuiz } from '@/components/DailyQuiz';
+import { DailyQuizGuide } from '@/components/topic-pages/DailyQuizGuide';
 import { SECTION_META, SECTION_ORDER, type SectionId } from '@/lib/content';
 
 export const dynamic = 'force-static';
@@ -18,6 +19,8 @@ export default function DailyQuizPage() {
       <p className="muted mt-2 text-[15px]">A fresh mixed set every day. Read the one-line shortcut after each question and keep your streak alive.</p>
 
       <div className="mt-6"><DailyQuiz /></div>
+
+      <DailyQuizGuide />
 
       <section className="card p-5 mt-10">
         <h2 className="font-extrabold">Want more practice on one topic?</h2>

@@ -12,6 +12,7 @@ import {
 } from '@/lib/examPages';
 import { VerifiedChip, hubPath, loadExamPage, plain, type Faq } from '@/components/exam-subpages/common';
 import { ExamEvents } from './ExamEvents';
+import { AdmitCardChecklist, CalendarPlaybook } from './ExamDepth';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* Generic info pages for every exam except SSC CGL (which keeps hand-written ones):
@@ -281,6 +282,7 @@ export function AdmitCardInfoPage({ id }: { id: string }) {
         <p className="mt-3"><b>Scorecard:</b> {pr.result.scorecard}</p>
         {getCutoffs(id) && <p className="mt-3">Once the result is out, compare your score with the <Link className="underline" href={`/exams/${id}/cutoffs/`}>official cutoffs</Link>.</p>}
       </div>
+      <AdmitCardChecklist id={id} />
       <p className="text-xs faint mt-6">Source basis: {pr.sources.join('; ')}. Always follow the notice and the official website for your cycle.</p>
     </Frame>
   );
@@ -314,6 +316,7 @@ export function CalendarInfoPage({ id }: { id: string }) {
       <p className="text-sm muted mt-4">
         Expected dates can move, and the exam body announces changes only on its own website ({portal}). Add reminders for the confirmed dates and look at the official site again a few days before each one. For the {year} cycle summary, see the <Link className="underline" href={hubPath(id)}>{info.name} guide</Link>.
       </p>
+      <CalendarPlaybook id={id} />
     </Frame>
   );
 }

@@ -31,6 +31,17 @@ export default function ContactPage() {
         </p>
       </div>
 
+      <div className="card p-5 mt-4 text-sm space-y-2">
+        <p className="font-bold">Who reads your message</p>
+        <p>
+          ExamShortcut is built and run by one person, Vinay, a software engineer. Messages go to him directly, not to a support team or a bot.
+          Correction reports are reviewed first, because a wrong answer hurts every aspirant who reads it.
+        </p>
+        <p>
+          When a report is confirmed, the page is fixed and the change is listed on the <Link className="underline" href="/updates/">updates log</Link>.
+          If it is not a mistake, the reply explains why the page says what it says.        </p>
+      </div>
+
       <div className="card p-5 mt-4 text-sm">
         <p>
           Prefer a quick message? Reach <b>Vinay</b>, who builds ExamShortcut, on{' '}

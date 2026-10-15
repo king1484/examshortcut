@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function EditorialPolicy() {
   return <article className="max-w-3xl mx-auto lesson">
     <h1 className="text-3xl font-extrabold">Content sources and corrections</h1>
-    <p className="text-sm muted mt-2">Updated 10 October 2026 · Maintained by Vinay</p>
+    <p className="text-sm muted mt-2">Updated 15 October 2026 · Maintained by Vinay</p>
     <p className="mt-4">ExamShortcut is an independent study resource. Vinay maintains the website and handles correction requests. We distinguish explanations written for this site from exam information, imported practice material and automatically compiled reports. None of these resources guarantees an exam result.</p>
     <section className="lesson-sec"><h2 className="text-xl font-bold">Lessons and study guides</h2>
       <p className="mt-3">Our study guides explain a method, show small worked examples and link to relevant lessons. Practice examples are study exercises, not claims about questions in a future paper. A shortcut should state the conditions under which it works. For arithmetic, a correct option is not enough: the calculation and the explanation should agree.</p>
@@ -30,6 +30,10 @@ export default function EditorialPolicy() {
       </ul>
       <p className="mt-3">Section attempt counts must fit the section size. Overall totals must not be copied into individual sections. Interview questions about difficulty or timing are excluded from the recalled-question list. Different channels can repeat the same candidate report, so several links do not necessarily mean several independent observations.</p>
       <p className="mt-3">Difficulty is subjective. Attempt ranges are what reports say, not recommended attempts or safe-score predictions. A missing Shift 3 report means insufficient usable evidence; it does not mean the exam was cancelled. We show source disagreements where available and withhold invalid figures instead of inventing replacements.</p>
+    </section>
+    <section className="lesson-sec"><h2 className="text-xl font-bold">How content is checked</h2>
+      <p className="mt-3">Before a practice paper is published it must pass an automated check: every question needs options, a valid answer position and a solution, and the stated answer must match the text of the keyed option. We also scan imports for garbled characters and for stray text attached to options or solutions. These checks catch structural errors; they do not replace a careful read, and some answer keys in imported papers have not been independently re-solved.</p>
+      <p className="mt-3">When a paper&apos;s explanations stay too close to their source, we hold the paper back and rewrite them in our own words before it is republished. Each material change is noted in the <Link className="underline" href="/updates/">updates log</Link>.</p>
     </section>
     <section className="lesson-sec"><h2 className="text-xl font-bold">Request a correction</h2>
       <p className="mt-3">Send the page URL, the question or statement, and the reason it needs correction through our <Link className="underline" href="/contact/">contact page</Link>. Include your working or a reliable source if possible. You do not need to send an admit card, identity document or account password.</p>

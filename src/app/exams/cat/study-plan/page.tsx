@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getExam } from '@/lib/content';
 import { CatStudyPlanner, type CatEvent } from '@/components/cat/CatStudyPlanner';
 import { CatToolHeader } from '@/components/cat/CatToolsNav';
+import { CatStudyPlanDepth } from '@/components/exam-pages/PlanDepth';
 
 export const dynamic = 'force-static';
 
@@ -36,6 +37,7 @@ export default function CatStudyPlanPage() {
         intro={<>The countdown runs to the CAT {year} exam date ({new Date(`${examDate}T00:00:00+05:30`).toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Kolkata' })}). Your remaining weeks are split into four phases: concepts, then sectional practice, then full mocks, then analysis and final revision. The fewer weeks you have, the earlier you move to mocks. No login is needed; your ticks and settings are saved only in this browser.</>}
       />
       <div className="mt-6"><CatStudyPlanner examDate={examDate} events={events} /></div>
+      <CatStudyPlanDepth />
     </div>
   );
 }

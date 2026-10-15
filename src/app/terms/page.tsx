@@ -11,7 +11,7 @@ export default function TermsPage() {
   return (
     <div className="max-w-3xl mx-auto">
       <h1 className="text-3xl font-extrabold">Terms of use</h1>
-      <p className="muted mt-2">Last updated: 10 October 2026</p>
+      <p className="muted mt-2">Last updated: 15 October 2026</p>
 
       <div className="card p-5 mt-6 text-sm space-y-4">
         <div>
@@ -44,6 +44,14 @@ export default function TermsPage() {
             Shift-wise exam analyses are compiled from candidate feedback and publicly available reports and are shown as indicative only.
             Memory-based questions are recalled by candidates and are not the official paper. We do not claim to provide
             an official complete paper for every practice test. Imported questions are identified in their test descriptions; third-party material belongs to its respective rights holders.
+          </p>
+        </div>
+        <div>
+          <h2 className="font-extrabold text-base">Copyright concerns and takedown</h2>
+          <p className="mt-1">
+            If you believe something on the site infringes your copyright, email{' '}
+            <a className="underline" href="mailto:singirikonda3@gmail.com">singirikonda3@gmail.com</a> with the page URL, what you believe is yours and how to reach you.
+            We will review the request promptly and remove or rewrite the material where it is justified.
           </p>
         </div>
         <div>

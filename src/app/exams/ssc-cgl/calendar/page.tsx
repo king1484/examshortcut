@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getExam } from '@/lib/content';
 import { ExamCalendar, type CalEvent } from '@/components/ExamCalendar';
+import { CalendarPlaybook } from '@/components/exam-pages/ExamDepth';
 
 export const dynamic = 'force-static';
 export const metadata: Metadata = {
@@ -45,6 +46,7 @@ export default function CalendarPage() {
         <Link href="/exams/ssc-cgl/study-plan/" className="card p-4"><div className="font-bold text-sm">🗓️ Build a day-by-day plan to exam day</div><div className="text-xs faint mt-1">Fitted to the days you have left</div></Link>
         <Link href="/exams/ssc-cgl/mocks/" className="card p-4"><div className="font-bold text-sm">📝 Take a full mock</div><div className="text-xs faint mt-1">Real pattern, with negative marking</div></Link>
       </div>
+      <CalendarPlaybook id="ssc-cgl" />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { getExamInfo } from '@/lib/exams';
 import { MOCK_DEFS, getMock } from '@/lib/content';
 import { MockCBT } from '@/components/MockCBT';
 import { MockAccessGate } from '@/components/MockAccessGate';
+import { MockSeoSection } from '@/components/exam-pages/MockSeoSection';
 import Link from 'next/link';
 
 export const dynamic = 'force-static';
@@ -32,8 +33,11 @@ export default async function MockPage({ params }: { params: Params }) {
   const mock = getMock(id);
   if (!mock) notFound();
   return (
-    <MockAccessGate open={mock.open} title={mock.title}>
-      <MockCBT mock={mock} />
-    </MockAccessGate>
+    <>
+      <MockAccessGate open={mock.open} title={mock.title}>
+        <MockCBT mock={mock} />
+      </MockAccessGate>
+      <MockSeoSection mock={mock} />
+    </>
   );
 }

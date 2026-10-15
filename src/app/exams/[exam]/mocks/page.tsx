@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { listMocks } from '@/lib/content';
 import { EXAMS, getExamInfo } from '@/lib/exams';
 import { MockList } from '@/components/MockList';
+import { MockGuide } from '@/components/exam-pages/ExamDepth';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -46,6 +47,8 @@ export default async function MocksPage({ params }: { params: Params }) {
         <p><b>Analysis:</b> section-wise scores, accuracy, <b>time spent per question</b>, and the topics to fix first.</p>
         <p>Wrong answers go straight into your <Link className="underline" href="/revision/">mistake notebook</Link>.</p>
       </div>
+
+      <MockGuide id={id} />
     </div>
   );
 }

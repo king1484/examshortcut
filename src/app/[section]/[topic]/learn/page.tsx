@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getTopic } from '@/lib/content';
 import { StudiedToggle } from '@/components/StudiedToggle';
+import { TopicLearnGuide } from '@/components/topic-pages/TopicLearnGuide';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -50,6 +51,7 @@ export default async function LearnIndexPage({ params }: { params: Promise<{ sec
           );
         })}
       </div>
+      <TopicLearnGuide topic={t} />
     </div>
   );
 }

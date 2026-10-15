@@ -22,12 +22,23 @@ export default function AboutPage() {
       </div>
 
       <h2 className="text-2xl font-extrabold mt-10">Built by Vinay</h2>
-      <div className="card p-5 mt-3 text-sm">
+      <div className="card p-5 mt-3 text-sm space-y-3">
         <p>
-          ExamShortcut is built and maintained by{' '}
-          <a className="underline font-bold" href="https://www.instagram.com/vinni1484" target="_blank" rel="noopener">Vinay</a>{' '}
-          — made with <span aria-label="love">❤️</span> for aspirants who want clear notes and honest practice without the noise.
-          Feedback is welcome on <a className="underline" href="https://www.instagram.com/vinni1484" target="_blank" rel="noopener">Instagram</a> or through the <Link className="underline" href="/contact/">contact page</Link>.
+          Hi, I&apos;m Vinay. I&apos;m a software engineer, and what I enjoy most is creating and shipping products that are genuinely helpful to the people who use them.
+        </p>
+        <p>
+          ExamShortcut started from a problem I ran into myself. While looking into government-exam preparation, I struggled to find good content that was free
+          and had everything in one place: the prep guides, the formulas and shortcuts, practice questions and the exam details. What I found was either
+          scattered across many sites or kept behind a paywall. So I decided to build the thing I was looking for.
+        </p>
+        <p>
+          I build and maintain the site myself. I write and review the material, fix mistakes when readers report them, and publish every change on the{' '}
+          <Link className="underline" href="/updates/">updates log</Link>. The site is free, and it will stay focused on being useful to aspirants first.
+        </p>
+        <p>
+          You can write to me at <a className="underline font-bold" href="mailto:singirikonda3@gmail.com">singirikonda3@gmail.com</a>, send a note through the{' '}
+          <Link className="underline" href="/contact/">contact page</Link>, or find me on{' '}
+          <a className="underline" href="https://www.instagram.com/vinni1484" target="_blank" rel="noopener">Instagram</a>. If a page here is wrong or unclear, I want to know.
         </p>
       </div>
 
@@ -38,6 +49,22 @@ export default function AboutPage() {
         <li><b>Practice questions &amp; tests</b> — a mixture of original exercises and imported previous-year or memory-based questions, identified in test descriptions. Worked solutions and software checks help catch errors, but do not guarantee that every answer is correct.</li>
         <li><b>Current affairs</b> — exam-relevant events written up month by month in simple English.</li>
         <li><b>Shift analyses</b> — automatically compiled summaries of linked candidate reviews. Difficulty and attempt ranges are unofficial, with partial coverage labelled.</li>
+      </ul>
+
+      <h2 className="text-2xl font-extrabold mt-10">How we check content before and after it goes live</h2>
+      <div className="card p-5 mt-3 text-sm space-y-2">
+        <p>Every practice paper goes through an automated structural check before it is published: each question must have its options, a valid answer position, and a solution, and the stated answer must match the text of the keyed option. Papers that fail are fixed or held back.</p>
+        <p>Where a paper&apos;s explanations followed the source too closely, we hold it back and rewrite the explanations in our own words before republishing. Garbled characters and stray text from imports are cleaned up when found.</p>
+        <p>Shift analyses carry a Pending, Partial or Reported label, and any figure that fails a sanity check (for example, attempts larger than the section size) is withheld rather than guessed.</p>
+        <p>Corrections are recorded on our <Link className="underline" href="/updates/">updates log</Link>.</p>
+      </div>
+
+      <h2 className="text-2xl font-extrabold mt-10">Who it is for and what we promise</h2>
+      <ul className="list-disc pl-5 mt-3 space-y-1.5 text-sm">
+        <li>Aspirants preparing for SSC, railway, banking, police and CAT exams who want clear topic notes, shortcut methods, and timed practice in one place.</li>
+        <li>We explain the method, not just the answer, and say when a shortcut only works under certain conditions.</li>
+        <li>We do not sell admit cards, guarantee selection, or ask for identity documents. We do not claim any affiliation with an examining body.</li>
+        <li>We separate original material, imported previous-year questions, and automated summaries, so you know what you are reading.</li>
       </ul>
 
       <h2 className="text-2xl font-extrabold mt-10">Disclaimer</h2>
