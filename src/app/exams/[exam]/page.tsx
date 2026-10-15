@@ -11,6 +11,7 @@ import { MoreOnExam } from '@/components/exam-subpages/common';
 import { ExamGuideLinks } from '@/components/exam-pages/ExamInfoPages';
 import { CatToolsBlock } from '@/components/cat/CatToolsNav';
 import { ExamToolsBlock } from '@/components/exam-tools/ExamToolsBlock';
+import { ExamPhoto } from '@/components/ExamPhoto';
 
 const BUILT_AT = Date.now();
 
@@ -139,6 +140,8 @@ export default async function ExamHub({ params }: { params: Params }) {
           </Link>
         ))}
       </nav>
+
+      <ExamPhoto id={id} />
 
       {overview.rest && (
         <>

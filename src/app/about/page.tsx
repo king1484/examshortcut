@@ -47,6 +47,7 @@ export default function AboutPage() {
         <li><b>Exam data &amp; cutoffs</b> — compiled from notifications and result notices. Confirm the current rules with the official examining body.</li>
         <li><b>Notes, formulas, shortcuts</b> — original explanations written for this site.</li>
         <li><b>Practice questions &amp; tests</b> — a mixture of original exercises and imported previous-year or memory-based questions, identified in test descriptions. Worked solutions and software checks help catch errors, but do not guarantee that every answer is correct.</li>
+        <li><b>Photographs</b> — real photographs on the exam pages come from Wikimedia Commons under open licences (CC0 or Creative Commons). The photographer, licence and source are credited under each image. We do not use AI-generated images.</li>
         <li><b>Current affairs</b> — exam-relevant events written up month by month in simple English.</li>
         <li><b>Shift analyses</b> — automatically compiled summaries of linked candidate reviews. Difficulty and attempt ranges are unofficial, with partial coverage labelled.</li>
       </ul>

@@ -7,6 +7,7 @@ import { CountdownChip } from '@/components/CountdownChip';
 import { DatePhases } from '@/components/DatePhases';
 import { CycleTimeline } from '@/components/CycleTimeline';
 import { MoreOnExam } from '@/components/exam-subpages/common';
+import { ExamPhoto } from '@/components/ExamPhoto';
 
 const BUILT_AT = Date.now();
 
@@ -108,6 +109,8 @@ export default function ExamPage() {
           </Link>
         ))}
       </nav>
+
+      <ExamPhoto id="ssc-cgl" />
 
       {overview.rest && (
         <>
