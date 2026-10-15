@@ -13,7 +13,7 @@ export function generateStaticParams() {
   return examsWith('normalisation-calculator').map((exam) => ({ exam }));
 }
 
-const MAX: Record<string, number> = { 'ssc-chsl': 200, 'ssc-mts': 150, 'ssc-gd': 160, 'ssc-cpo': 100, 'rrb-ntpc': 100, 'rrb-group-d': 100 };
+const MAX: Record<string, number> = { 'ssc-chsl': 200, 'ssc-mts': 150, 'ssc-gd': 160, 'ssc-cpo': 100, 'rrb-ntpc': 100, 'rrb-group-d': 100, 'rrb-alp': 75, 'rrb-je': 100 };
 
 type Params = Promise<{ exam: string }>;
 

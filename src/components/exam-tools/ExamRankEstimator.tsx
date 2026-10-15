@@ -91,7 +91,7 @@ export function ExamRankEstimator({ id, cuts }: { id: string; cuts: CutRef[] }) 
               className="w-full mt-1 p-2 rounded-lg border text-base font-bold" style={input} />
             <span className="block text-xs font-normal normal-case mt-1 faint">
               {cfg.appearedFixed
-                ? 'Matches the number reported for the 2025-26 cycle.'
+                ? (cfg.appearedNote ?? 'Matches the number reported for the 2025-26 cycle.')
                 : `Default is about ${fmt(cfg.applicants)} applicants × ${cfg.appearedPct}% attendance. ${cfg.appearedVerified ? '' : 'Both are assumptions, so edit them.'}`}
             </span>
           </label>

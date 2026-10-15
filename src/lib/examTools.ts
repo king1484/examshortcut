@@ -17,16 +17,22 @@ export const TOOL_META: Record<ToolKind, { label: string; blurb: string; emoji: 
 };
 
 /** Exams that get the generic tools. ssc-cgl and cat have their own hand-written ones. */
-export const TOOL_EXAMS = ['ssc-chsl', 'ssc-mts', 'ssc-gd', 'ssc-cpo', 'rrb-ntpc', 'rrb-group-d', 'ibps-po', 'ibps-clerk'] as const;
+export const TOOL_EXAMS = ['ssc-chsl', 'ssc-mts', 'ssc-gd', 'ssc-cpo', 'rrb-ntpc', 'rrb-group-d', 'ibps-po', 'ibps-clerk', 'rrb-alp', 'rrb-je', 'sbi-po', 'sbi-clerk', 'up-police'] as const;
 
-/** Multi-shift exams that normalise marks. IBPS exams are not offered a normalisation tool. */
+/** Multi-shift exams that normalise marks. IBPS, SBI and UP Police are not offered a normalisation tool: the
+    IBPS and SBI notices do not describe any cross-shift adjustment, and the UP Police board's method is not
+    confirmed from an official source. */
 export const NORMALISING: Record<string, 'ssc' | 'rrb'> = {
   'ssc-chsl': 'ssc', 'ssc-mts': 'ssc', 'ssc-gd': 'ssc', 'ssc-cpo': 'ssc',
-  'rrb-ntpc': 'rrb', 'rrb-group-d': 'rrb',
+  'rrb-ntpc': 'rrb', 'rrb-group-d': 'rrb', 'rrb-alp': 'rrb', 'rrb-je': 'rrb',
 };
 
+/** A rank estimator needs an applicant or shortlist figure to anchor on, so it is offered only where RANK_CFG has one.
+    SBI PO and SBI Clerk publish no cut-offs and no applicant counts on file, so they get none. */
 export const hasTool = (id: string, kind: ToolKind) =>
-  (TOOL_EXAMS as readonly string[]).includes(id) && (kind !== 'normalisation-calculator' || id in NORMALISING);
+  (TOOL_EXAMS as readonly string[]).includes(id)
+  && (kind !== 'normalisation-calculator' || id in NORMALISING)
+  && (kind !== 'rank-estimator' || id in RANK_CFG);
 
 export const toolsFor = (id: string): ToolKind[] => TOOL_KINDS.filter((k) => hasTool(id, k));
 
@@ -260,6 +266,132 @@ export const SCORE_CFG: Record<string, ScoreCfg> = {
       },
     ],
   },
+  /* CEN 01/2026 ALP. Source: content/exams/rrb-alp/exam.json (lastVerified 2026-10-06). */
+  'rrb-alp': {
+    schemeLine: 'CBT 1: 75 questions, 75 marks, 60 minutes. CBT 2: Part A of 100 questions in 90 minutes decides merit, and Part B (ITI trade) of 75 questions in 60 minutes is qualifying only. One mark per right answer, one third off per wrong answer.',
+    checkOfficial: 'The 2026 CEN does not fix a question count for each CBT 1 subject area or for the Part A subjects, so each stage is entered as one block. The Part B marks and the 35% Part B qualifying line are taken from our exam page, not read from the CEN itself. The CBAT weighting has changed between cycles (70:30 earlier, 50:50 from CEN 01/2026). Check the CEN for the current year.',
+    stages: [
+      {
+        id: 'cbt1', label: 'CBT 1 (75 Q)', cutStage: 'cbt1@75', qualPct: { UR: 40, EWS: 40, OBC: 30, SC: 30, ST: 25 },
+        sections: [
+          { name: 'All questions (Mathematics, Mental Ability, General Science)', q: 75, mpq: 1, neg: 1 / 3 },
+        ],
+        note: 'The CEN lists three subject areas but does not fix how many questions each carries, so enter your total right and wrong answers. The 60 minutes run as one block. CBT 1 marks are normalised across shifts and only shortlist you for CBT 2. They do not count in the final panel. The past cut-offs on file are RRB Secunderabad figures for one cycle, so zone and year change them.',
+        qualNote: 'Minimum qualifying marks: 40% for UR and EWS, 30% for OBC-NCL and SC, 25% for ST. The actual shortlist cut-off is zone-wise and runs higher.',
+      },
+      {
+        id: 'cbt2', label: 'CBT 2 (Part A 100 Q + Part B 75 Q)', cutStage: 'cbt1@100', qualPct: { UR: 40, EWS: 40, OBC: 30, SC: 30, ST: 25 },
+        sections: [
+          { name: 'Part A: Mathematics, Reasoning, Basic Science and Engineering', q: 100, mpq: 1, neg: 1 / 3, mins: 90 },
+          { name: 'Part B: ITI trade (qualifying)', q: 75, mpq: 1, neg: 1 / 3, mins: 60, merit: false },
+        ],
+        note: 'Only Part A counts towards the CBAT shortlist, and only if you also clear Part B. Part B needs 35% for every category. The percentage check above applies to Part A. Final merit is 50% Part A and 50% CBAT from CEN 01/2026. Technician posts use a different single CBT (100 questions, 90 minutes) that this calculator does not cover.',
+        qualNote: 'Part A minimum qualifying marks: 40% for UR and EWS, 30% for OBC-NCL and SC, 25% for ST. Part B: 35% for every category.',
+      },
+    ],
+  },
+  /* CEN 04/2026 JE/DMS/CMA. Source: content/exams/rrb-je/exam.json (lastVerified 2026-10-06). */
+  'rrb-je': {
+    schemeLine: 'CBT 1: 100 questions, 100 marks, 90 minutes. CBT 2: 150 questions, 120 minutes. One mark per right answer, one third off per wrong answer.',
+    checkOfficial: 'The CBT 2 technical paper depends on your Exam Group, and the final list uses a Merit Index of 350 to 900, not raw marks. Check the CEN for the current year.',
+    stages: [
+      {
+        id: 'cbt1', label: 'CBT 1 (100 Q)', cutStage: 'cbt1', qualPct: { UR: 40, EWS: 40, OBC: 30, SC: 30, ST: 25 },
+        sections: [
+          { name: 'Mathematics', q: 30, mpq: 1, neg: 1 / 3 },
+          { name: 'General Intelligence and Reasoning', q: 25, mpq: 1, neg: 1 / 3 },
+          { name: 'General Science (30) and General Awareness (15)', q: 45, mpq: 1, neg: 1 / 3 },
+        ],
+        note: 'CBT 1 is one 90 minute block with no sectional timing. Normalised CBT 1 marks only shortlist you for CBT 2, at 15 times the community-wise vacancies of the board, and do not count in the final merit. Cut-offs are zone-wise and post-category-wise, and the reference points on file are RRB Chandigarh figures.',
+        qualNote: 'Minimum qualifying marks: 40% for UR and EWS, 30% for OBC-NCL and SC, 25% for ST. The actual shortlist cut-off for your post category is higher.',
+      },
+      {
+        id: 'cbt2', label: 'CBT 2 (150 Q)', qualPct: { UR: 40, EWS: 40, OBC: 30, SC: 30, ST: 25 },
+        sections: [
+          { name: 'Common part: General Awareness', q: 15, mpq: 1, neg: 1 / 3 },
+          { name: 'Common part: Physics and Chemistry', q: 15, mpq: 1, neg: 1 / 3 },
+          { name: 'Common part: Basics of Computers and Applications', q: 10, mpq: 1, neg: 1 / 3 },
+          { name: 'Common part: Environment and Pollution Control', q: 10, mpq: 1, neg: 1 / 3 },
+          { name: 'Technical Abilities (your Exam Group)', q: 100, mpq: 1, neg: 1 / 3 },
+        ],
+        note: 'CBT 2 decides merit, but the board converts normalised marks to a Merit Index from 350 to 900 so that different branches compete on one list. So the raw total here cannot be compared with the Merit Index cut-offs, and no cut-off comparison is shown for this stage.',
+        qualNote: 'Minimum qualifying marks are the same as CBT 1: 40% for UR and EWS, 30% for OBC-NCL and SC, 25% for ST.',
+      },
+    ],
+  },
+  /* Advertisement CRPD/PO/2026-27/09. Source: SBI detailed advertisement (sbi.bank.in/csfile/18062026_1_Detailed_Adv.2026.pdf),
+     section 8, and content/exams/sbi-po/exam.json (lastVerified 2026-10-06). SBI publishes no cut-off figures. */
+  'sbi-po': {
+    schemeLine: 'Prelims: 100 questions, 100 marks, 60 minutes, 20 minutes per section. Mains objective: 170 questions, 200 marks, 3 hours, with a timer for every section. A wrong answer costs one quarter of that question\'s marks.',
+    checkOfficial: 'SBI decides the sectional cut-offs and the minimum aggregate itself, and no past cut-off figures are on file, so this page does not compare your score with a cut-off. Check the advertisement for the current year.',
+    stages: [
+      {
+        id: 'prelims', label: 'Prelims (100 Q)',
+        sections: [
+          { name: 'English Language', q: 40, mpq: 1, neg: 0.25, mins: 20 },
+          { name: 'Quantitative Aptitude', q: 30, mpq: 1, neg: 0.25, mins: 20 },
+          { name: 'Reasoning Ability', q: 30, mpq: 1, neg: 0.25, mins: 20 },
+        ],
+        note: 'Prelims is a shortlist only: about 10 times the category-wise vacancies go to Mains, from the aggregate. There is no sectional cut-off in Prelims, and Prelims marks are not added to the final merit.',
+      },
+      {
+        id: 'mains', label: 'Mains objective (170 Q)',
+        sections: [
+          { name: 'Reasoning and Computer Aptitude', q: 40, mpq: 1.5, neg: 0.375, mins: 50 },
+          { name: 'Data Analysis and Interpretation', q: 30, mpq: 2, neg: 0.5, mins: 45 },
+          { name: 'General, Economy and Banking Awareness', q: 60, mpq: 1, neg: 0.25, mins: 45 },
+          { name: 'English Language', q: 40, mpq: 0.5, neg: 0.125, mins: 40 },
+        ],
+        note: 'The descriptive test (30 marks, 30 minutes: email, situation analysis and a report or precis) is marked separately and not entered here. The objective and descriptive marks together (230) are scaled to 75, the group exercise and interview (50) to 25, and the final merit is out of 100. Each Mains section has its own minimum, set by the Bank, and about 3 times the category-wise vacancies go to the final phase.',
+      },
+    ],
+  },
+  /* Advertisement CRPD/CR/2026-27/17. Source: SBI Junior Associate detailed advertisement
+     (sbi.bank.in/webfiles/uploads/files_2627/08/JA_2026_Detailed_Advt_Eng.pdf), section 4, and
+     content/exams/sbi-clerk/exam.json (lastVerified 2026-10-06). SBI publishes no numeric cut-offs. */
+  'sbi-clerk': {
+    schemeLine: 'Prelims: 100 questions, 100 marks, 60 minutes, 20 minutes per section. Mains: 190 questions, 200 marks, 2 hours 40 minutes, with a timer for every section. A wrong answer costs one quarter of that question\'s marks.',
+    checkOfficial: 'SBI sets the minimum aggregate for Mains in the result notice, and no past cut-off figures are on file, so this page does not compare your score with a cut-off. Check the advertisement for the current year.',
+    stages: [
+      {
+        id: 'prelims', label: 'Prelims (100 Q)',
+        sections: [
+          { name: 'English Language', q: 30, mpq: 1, neg: 0.25, mins: 20 },
+          { name: 'Numerical Ability', q: 35, mpq: 1, neg: 0.25, mins: 20 },
+          { name: 'Reasoning Ability', q: 35, mpq: 1, neg: 0.25, mins: 20 },
+        ],
+        note: 'Prelims is a shortlist only. No minimum qualifying marks are fixed, about 10 times the category-wise vacancies go to Mains, and Prelims marks are not added to the final merit.',
+      },
+      {
+        id: 'mains', label: 'Mains (190 Q)',
+        sections: [
+          { name: 'General and Financial Awareness', q: 50, mpq: 1, neg: 0.25, mins: 35 },
+          { name: 'General English', q: 40, mpq: 1, neg: 0.25, mins: 35 },
+          { name: 'Quantitative Aptitude', q: 50, mpq: 1, neg: 0.25, mins: 45 },
+          { name: 'Reasoning Ability and Computer Aptitude', q: 50, mpq: 1.2, neg: 0.3, mins: 45 },
+        ],
+        note: 'Mains is the final merit, state-wise and category-wise, with no interview. Reasoning and Computer Aptitude carries 60 marks for 50 questions, so it is 1.2 marks per question here. SBI trained apprentices who meet the notice conditions get 5 extra marks on the aggregate, which is not added here. The local language test is qualifying.',
+      },
+    ],
+  },
+  /* Advertisement 07/2025. Source: content/exams/up-police/exam.json (lastVerified 2026-10-06). */
+  'up-police': {
+    schemeLine: 'One written paper: 150 questions, 2 marks each, 300 marks, 2 hours, OMR sheet, four subjects. The physical standard and efficiency tests are qualifying only.',
+    checkOfficial: 'Not confirmed from the board\'s own notice: the number of questions in each subject (the 38, 37, 38, 37 split is from the previous cycle\'s paper) and the penalty for a wrong answer. Our exam page records 0.5 marks off for the previous cycle, and some secondary exam pages quote 0.25, so this calculator uses 0.5 and you should check the board notice at uppbpb.gov.in.',
+    stages: [
+      {
+        id: 'written', label: 'Written exam (150 Q)', cutStage: 'written', qualPct: { UR: 30, OBC: 25, SC: 20, ST: 20 },
+        sections: [
+          { name: 'General Knowledge', q: 38, mpq: 2, neg: 0.5 },
+          { name: 'General Hindi', q: 37, mpq: 2, neg: 0.5 },
+          { name: 'Numerical and Mental Ability', q: 38, mpq: 2, neg: 0.5 },
+          { name: 'Mental Aptitude, IQ and Reasoning', q: 37, mpq: 2, neg: 0.5 },
+        ],
+        note: 'Merit is built from written marks alone, category-wise, and the document, height and race tests only qualify. There is no sectional timing. The cut-offs on file are normalised marks shown for male and female candidates, so a raw score is only a rough guide against them. The 2025 cycle ran far higher than the 2023 cycle, so compare within a cycle.',
+        qualNote: 'Minimum qualifying marks: 30% for Unreserved, 25% for OBC, 20% for SC and ST. A separate EWS figure is not stated in our notes, so no line is shown for EWS. Check the notice.',
+      },
+    ],
+  },
 };
 
 /* ───────────────────────── rank estimator config ───────────────────────── */
@@ -276,6 +408,8 @@ export interface RankCfg {
   appearedVerified: boolean;
   /** exact appeared count when one was published */
   appearedFixed?: number;
+  /** shown under the appeared field instead of the default text when appearedFixed is set */
+  appearedNote?: string;
   vacancies: number;
   /** number shortlisted divided by vacancies, or null when shortlistFixed is used */
   ratio: number;
@@ -342,6 +476,29 @@ export const RANK_CFG: Record<string, RankCfg> = {
     vacancies: 11663, ratio: 10, ratioVerified: false,
     ratioNote: 'IBPS does not publish how many were shortlisted for mains in advance. The ratio of 10 and the attendance are assumptions. Edit them.',
     caveat: 'Clerk cut-offs are state-wise and the vacancies are spread across states, so an all-India rank says little about your own state. Pick your state in the reference list.',
+  },
+  'rrb-alp': {
+    stageId: 'cbt1', stageLabel: 'CBT 1', maxMarks: 75, cutStage: 'cbt1@75',
+    applicants: 2200000, applicantsVerified: false, appearedPct: 100, appearedVerified: false, appearedFixed: 2200000,
+    appearedNote: 'About 22 lakh appeared in CBT 1 of the previous cycle (CEN 01/2024), as per press reports. No 2026 figure is on file, so this is a previous-cycle number. Edit it.',
+    vacancies: 11127, ratio: 15, ratioVerified: true,
+    ratioNote: 'Candidates are shortlisted for CBT 2 at 15 times the ALP vacancies (11,127 in CEN 01/2026), per our exam page. The attendance figure is from the previous cycle and is not confirmed.',
+    caveat: 'Cut-offs are zone-wise (RRB-wise), so an all-India rank is a rough guide only. The reference point on file is one RRB Secunderabad cycle.',
+  },
+  'rrb-je': {
+    stageId: 'cbt1', stageLabel: 'CBT 1', maxMarks: 100, cutStage: 'cbt1',
+    applicants: 574402, applicantsVerified: false, appearedPct: 60, appearedVerified: false,
+    vacancies: 4029, ratio: 15, ratioVerified: true,
+    ratioNote: 'Candidates are shortlisted for CBT 2 at 15 times the community-wise vacancies (4,029 in CEN 04/2026), per our exam page, and the board can change this ratio. The applicant count (5,74,402) is from the previous cycle, CEN 05/2025, and the attendance figure is an assumption. Edit both.',
+    caveat: 'Cut-offs are zone-wise and post-category-wise, and a JE shortlist is made per post category, so an all-India rank is a rough guide only. The reference points on file are RRB Chandigarh figures.',
+  },
+  'up-police': {
+    stageId: 'written', stageLabel: 'written exam', maxMarks: 300, cutStage: 'written',
+    applicants: 2886000, applicantsVerified: false, appearedPct: 76, appearedVerified: false, appearedFixed: 2190000,
+    appearedNote: 'About 21.9 lakh appeared for the June 2026 written exam, as per dated news reports. The board\'s own figure may differ. Edit it.',
+    vacancies: 32679, ratio: 2.3, ratioVerified: false, shortlistFixed: 76184,
+    ratioNote: 'About 28.86 lakh applied, about 21.9 lakh appeared and about 76,184 were shortlisted for document verification and the physical tests, all from dated news reports and not from a board notice. The shortlist is made category-wise and gender-wise, so one overall rank is a rough stand-in.',
+    caveat: 'The cut-offs on file are normalised marks and differ by category and gender. Pick the list that matches you in the reference list. The 2025 cycle ran far higher than the 2023 cycle.',
   },
 };
 

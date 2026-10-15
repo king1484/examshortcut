@@ -43,8 +43,10 @@ function Result({ rows, inHand, gross }: { rows: [string, number, boolean?][]; i
   );
 }
 
-export function SalaryCalculator({ mode, posts, bank }: { mode: 'central' | 'bank'; posts: SalaryPost[]; bank: { name: string; basic: number; scaleMax: number | null }[] }) {
-  return mode === 'central' ? <Central posts={posts} /> : <Bank posts={bank} />;
+/** "state" reuses the bank form for state government posts (UP Police): DA and HRA come from a state government order
+    that we could not confirm, so they stay blank here too. */
+export function SalaryCalculator({ mode, posts, bank }: { mode: 'central' | 'bank' | 'state'; posts: SalaryPost[]; bank: { name: string; basic: number; scaleMax: number | null }[] }) {
+  return mode === 'central' ? <Central posts={posts} /> : <Bank posts={bank} state={mode === 'state'} />;
 }
 
 function Central({ posts }: { posts: SalaryPost[] }) {
@@ -125,7 +127,7 @@ function Central({ posts }: { posts: SalaryPost[] }) {
   );
 }
 
-function Bank({ posts }: { posts: { name: string; basic: number; scaleMax: number | null }[] }) {
+function Bank({ posts, state = false }: { posts: { name: string; basic: number; scaleMax: number | null }[]; state?: boolean }) {
   const [pi, setPi] = useState(0);
   const post = posts[Math.min(pi, posts.length - 1)];
   const [basicEdit, setBasicEdit] = useState<string | null>(null);
@@ -148,8 +150,10 @@ function Bank({ posts }: { posts: { name: string; basic: number; scaleMax: numbe
     <div className="mt-6">
       <div className="card p-5">
         <p className="text-sm">
-          Banks set DA, HRA and special allowance through circulars that change often, and we could not confirm current official values.
-          So those boxes start empty. Fill them from your bank&apos;s latest circular or offer letter.
+          {state
+            ? <>The state government sets DA and HRA by government order, and we could not confirm current official values. So those boxes start empty. Fill them from the latest order or your appointment letter.</>
+            : <>Banks set DA, HRA and special allowance through circulars that change often, and we could not confirm current official values.
+          So those boxes start empty. Fill them from your bank&apos;s latest circular or offer letter.</>}
         </p>
         {posts.length > 1 && (
           <label className="text-xs font-semibold faint uppercase block mt-3">
@@ -160,12 +164,12 @@ function Bank({ posts }: { posts: { name: string; basic: number; scaleMax: numbe
           </label>
         )}
         <div className="grid sm:grid-cols-2 gap-4 mt-4">
-          <Field label="Basic pay (₹ per month)" value={basicEdit ?? String(post.basic)} onChange={setBasicEdit} hint={`Starting basic${post.scaleMax ? ` on a scale up to ${inr(post.scaleMax)}` : ''}. Increments raise it.`} />
-          <Field label="DA (% of basic)" value={da} onChange={setDa} step={0.01} hint="Taken from the bank's current circular." />
+          <Field label="Basic pay (₹ per month)" value={basicEdit ?? String(post.basic)} onChange={setBasicEdit} hint={`Starting basic${post.scaleMax ? ` on ${state ? 'a range' : 'a scale'} up to ${inr(post.scaleMax)}` : ''}. Increments raise it.`} />
+          <Field label="DA (% of basic)" value={da} onChange={setDa} step={0.01} hint={state ? "Taken from the state government's current order." : "Taken from the bank's current circular."} />
           <Field label="HRA (% of basic)" value={hra} onChange={setHra} step={0.5} hint="Depends on the centre. Use the rate for your posting." />
           <Field label="Special allowance and others (₹ per month)" value={special} onChange={setSpecial} hint="Total of the fixed allowances on the offer letter." />
-          <Field label="NPS (% of basic + DA)" value={nps} onChange={setNps} step={0.5} hint="Your bank's employee contribution rate." />
-          <Field label="Other deductions (₹ per month)" value={other} onChange={setOther} hint="Union fee, loans, insurance and so on." />
+          <Field label="NPS (% of basic + DA)" value={nps} onChange={setNps} step={0.5} hint={state ? 'Your pension or provident fund contribution rate, if it applies to you.' : "Your bank's employee contribution rate."} />
+          <Field label="Other deductions (₹ per month)" value={other} onChange={setOther} hint={state ? 'Loans, insurance, group funds and so on.' : 'Union fee, loans, insurance and so on.'} />
         </div>
       </div>
 
@@ -178,7 +182,11 @@ function Bank({ posts }: { posts: { name: string; basic: number; scaleMax: numbe
         [`NPS (${num(nps)}% of basic + DA)`, npsAmt, true],
         ...(num(other) ? [['Other deductions', num(other), true] as [string, number, boolean]] : []),
       ]} />
-      <p className="text-xs faint mt-3">Not included: income tax, perquisites, and any bank-specific allowances. Check the official recruitment notice and your bank&apos;s circular for the real structure.</p>
+      <p className="text-xs faint mt-3">
+        {state
+          ? <>Not included: income tax, post-specific allowances such as uniform, ration and risk, and any city allowance. Check the official recruitment notice and the state government order for the real structure.</>
+          : <>Not included: income tax, perquisites, and any bank-specific allowances. Check the official recruitment notice and your bank&apos;s circular for the real structure.</>}
+      </p>
     </div>
   );
 }

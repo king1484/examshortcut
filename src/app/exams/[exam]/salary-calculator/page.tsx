@@ -4,7 +4,7 @@ import { SalaryCalculator } from '@/components/exam-tools/SalaryCalculator';
 import { ToolPageFrame } from '@/components/exam-tools/ToolPageFrame';
 import { VerifiedChip, loadExamPage, type Faq } from '@/components/exam-subpages/common';
 import { CENTRAL, examsWith, hasTool } from '@/lib/examTools';
-import { bankPay, salaryPosts } from '@/lib/examToolsServer';
+import { bankPay, salaryPosts, statePay } from '@/lib/examToolsServer';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -31,12 +31,20 @@ export default async function SalaryCalculatorPage({ params }: { params: Params 
   const page = hasTool(id, 'salary-calculator') ? loadExamPage(id) : null;
   if (!page) notFound();
   const { info, exam } = page;
-  const bank = id.startsWith('ibps');
-  const posts = bank ? [] : salaryPosts(exam);
-  const banks = bank ? bankPay(exam) : [];
-  if (bank ? banks.length === 0 : posts.length === 0) notFound();
+  const bank = /^(ibps|sbi)/.test(id);
+  // UP Police is a state government force: central 7th CPC allowance rules would be wrong, so it gets the blank-allowance form.
+  const state = id === 'up-police';
+  const posts = bank || state ? [] : salaryPosts(exam);
+  const banks = bank ? bankPay(exam) : state ? statePay(exam) : [];
+  if (bank || state ? banks.length === 0 : posts.length === 0) notFound();
 
-  const faqs: Faq[] = bank
+  const faqs: Faq[] = state
+    ? [
+        { q: `What is the starting pay for ${info.name}?`, a: `Pay Level 3, which our exam page gives as ${'₹' + banks[0].basic.toLocaleString('en-IN')}${banks[0].scaleMax ? ` to ${'₹' + banks[0].scaleMax.toLocaleString('en-IN')}` : ''} a month before allowances. This comes from the recruitment notice.` },
+        { q: 'Why are DA and HRA left blank?', a: 'UP government employees get DA and HRA by state government order, and we could not confirm the current official values. The central government rates do not apply, so enter the numbers from the latest order or your appointment letter.' },
+        { q: 'Is the in-hand figure exact?', a: 'No. It is an estimate from the numbers you enter. Income tax, uniform and ration allowances and any other deductions are not included, so your payslip will differ.' },
+      ]
+    : bank
     ? [
         { q: `What is the starting basic pay for ${info.name}?`, a: `${banks.map((b) => `${b.name}: basic ${'₹' + b.basic.toLocaleString('en-IN')}${b.scaleMax ? ` on a scale up to ${'₹' + b.scaleMax.toLocaleString('en-IN')}` : ''}`).join('; ')}. These come from the recruitment notice.` },
         { q: 'Why are DA and HRA left blank?', a: 'Banks revise DA by circular and HRA depends on the centre, and we could not confirm current official values. Enter the numbers from your bank\'s latest circular or offer letter.' },
@@ -56,7 +64,13 @@ export default async function SalaryCalculatorPage({ params }: { params: Params 
       h1={`${info.name} salary calculator`}
       faqs={faqs}
       intro={
-        bank ? (
+        state ? (
+          <>
+            <p>Pick the post, then enter DA, HRA and other allowances from the latest UP government order. The calculator adds them to the starting pay and subtracts deductions to give an approximate monthly in-hand figure.</p>
+            <p>The starting pay comes from the recruitment notice. State allowances change by order and we could not confirm current official values, so they start blank. Check the government order and the official notice.</p>
+            <p><VerifiedChip exam={exam} /></p>
+          </>
+        ) : bank ? (
           <>
             <p>Pick the post, then enter DA, HRA and other allowances from your bank&apos;s latest circular. The calculator adds them to basic pay and subtracts deductions to give an approximate monthly in-hand figure.</p>
             <p>Basic pay comes from the recruitment notice. Bank allowances change often and we could not confirm current official values, so they start blank. Check your bank&apos;s circular and the official notice.</p>
@@ -71,7 +85,7 @@ export default async function SalaryCalculatorPage({ params }: { params: Params 
         )
       }
     >
-      <SalaryCalculator mode={bank ? 'bank' : 'central'} posts={posts} bank={banks} />
+      <SalaryCalculator mode={state ? 'state' : bank ? 'bank' : 'central'} posts={posts} bank={banks} />
     </ToolPageFrame>
   );
 }

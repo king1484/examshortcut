@@ -49,6 +49,24 @@ export default function ContactPage() {
         </p>
       </div>
 
+      <section className="card p-5 mt-4 text-sm space-y-3" aria-labelledby="ct-which">
+        <h2 id="ct-which" className="font-bold text-base">Which route to use</h2>
+        <ul className="list-disc pl-5 space-y-1.5">
+          <li><b>A wrong answer, a typo or a broken page:</b> use the <Link className="underline" href="/feedback/">feedback form</Link>. It carries the page and details with your message and does not need an account.</li>
+          <li><b>A missing topic or a new tool:</b> use the <Link className="underline" href="/feature-requests/">feature request form</Link>, and describe the study problem you want solved.</li>
+          <li><b>Anything private, or a copyright or privacy concern:</b> email directly. The <Link className="underline" href="/terms/">terms</Link> explain how takedown requests are handled and the <Link className="underline" href="/privacy/">privacy policy</Link> explains what data the site keeps.</li>
+          <li><b>A quick question or a thank-you:</b> Instagram works, and so does email.</li>
+        </ul>
+      </section>
+
+      <section className="card p-5 mt-4 text-sm space-y-2" aria-labelledby="ct-where">
+        <h2 id="ct-where" className="font-bold text-base">About the site and the person behind it</h2>
+        <p>
+          ExamShortcut was started to give government-exam aspirants a free place with the guides, notes, mock tests and tools for several exams together. You can read how it is made and where its content comes from on the <Link className="underline" href="/about/">about page</Link>, and how errors are handled on the <Link className="underline" href="/editorial-policy/">editorial policy</Link>.
+          Replies are written by hand, as time allows, so there is no fixed response time. Exam-day questions about dates, notices or admit cards should always be checked with the official exam website.
+        </p>
+      </section>
+
       <div className="card p-5 mt-4 text-sm">
         <p className="font-bold">Please don&apos;t ask us about:</p>
         <p className="mt-1">

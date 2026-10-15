@@ -100,8 +100,34 @@ const strip = (s: string) => s.replace(/\*\*\s*answer\s*:[^*]*\*\*/gi, '').trim(
 // stems that lean on context (a para, table, chart, puzzle set) we cannot show next to a single question
 const NEEDS_CONTEXT = /\bpara(graph)?\s*\d|\b(passage|author|writer)\b|\b(table|chart|graph|diagram|pie|histogram|caption)\b|\b(above|below|given (data|information|statements?|arrangement|series))\b|\bfollowing (data|information|arrangement|puzzle)\b/i;
 
+// backslash-stripped TeX that never rendered (sqrt{3}, frac{5}9, 12sqrt3); delimited $...$ maths is fine
+const RAW_TEX = /(?<![\\A-Za-z])(sqrt|frac|dfrac|cdot|leq|geq|ldots)(\{|(?=\d))/;
+// short "Who/Which ... among the following" stems that belong to a puzzle or an earlier sentence set
+const FOLLOW_UP = /\b(who|which|what|where|when)\b[^.?]*\b(among the following|of the following|following (person|persons|statement))\b|\bsentence\b.*\b(second|third|first|fourth)\b/i;
+const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+
+// stems that occur more than once across every mock (real exams repeat questions). Such a question
+// is still in its papers; it is just not used as the sample on more than one page.
+let stemCounts: Map<string, number> | null = null;
+function repeatedStems(): Map<string, number> {
+  if (stemCounts) return stemCounts;
+  stemCounts = new Map();
+  for (const def of MOCK_DEFS) {
+    const m = getMock(def.id);
+    if (!m) continue;
+    for (const s of m.sections) for (const q of s.questions) {
+      const k = norm(q.q ?? '');
+      if (k.length >= 25) stemCounts.set(k, (stemCounts.get(k) ?? 0) + 1);
+    }
+  }
+  return stemCounts;
+}
+
 function usable(q: Question): boolean {
   if (q.passage || q.group || !q.q || q.q.length < 40 || q.q.length > 700 || NEEDS_CONTEXT.test(q.q)) return false;
+  if (RAW_TEX.test(q.q) || (q.options ?? []).some((o) => typeof o === 'string' && RAW_TEX.test(o))) return false;
+  if (q.q.length < 110 && FOLLOW_UP.test(q.q)) return false;
+  if ((repeatedStems().get(norm(q.q)) ?? 0) > 1) return false;
   if (q.type === 'numeric') return true;
   return Array.isArray(q.options) && q.options.length >= 2 && q.answer >= 0 && q.answer < q.options.length;
 }
@@ -114,7 +140,7 @@ function pickSamples(mock: Mock): MockSeoSample[] {
   const secs = mock.sections;
   if (!secs.length) return [];
   const good = secs.map((s) => s.questions.map((q, i) => ({ q, i })).filter((x) => usable(x.q) && substantive(x.q)));
-  const thin = secs.map((s) => s.questions.map((q, i) => ({ q, i })).filter((x) => usable(x.q) && !substantive(x.q) && x.q.q.length >= 60 && x.q.q.length <= 400));
+  const thin = secs.map((s) => s.questions.map((q, i) => ({ q, i })).filter((x) => usable(x.q) && !substantive(x.q) && x.q.q.length >= 90 && x.q.q.length <= 400));
   // spread the three picks over the sections: first, middle, last
   const want = [0, 1, 2].map((k) => (secs.length === 1 ? 0 : Math.round((k * (secs.length - 1)) / 2)));
   const out: MockSeoSample[] = [];
