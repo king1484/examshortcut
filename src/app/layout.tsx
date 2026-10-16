@@ -19,7 +19,10 @@ export const metadata: Metadata = {
     'Prepare for SSC, Railway, Banking and CAT exams: topic notes, shortcut tricks, practice sets, a daily quiz, full mocks, cutoffs and current affairs.',
   authors: [{ name: 'Vinay', url: 'https://www.instagram.com/vinni1484' }],
   creator: 'Vinay',
-  other: { 'msvalidate.01': '97737EC02E19AF7CCACEDE49DAFF567A' },
+  other: {
+    'msvalidate.01': '97737EC02E19AF7CCACEDE49DAFF567A',
+    monetag: '679832828bb053d461f8d19484ba886f',
+  },
   manifest: '/manifest.webmanifest',
   icons: { icon: '/icon.svg', apple: '/icon-192.png' },
   openGraph: {
