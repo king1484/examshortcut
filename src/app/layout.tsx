@@ -8,8 +8,6 @@ import { NavLoader } from '@/components/NavLoader';
 import Link from 'next/link';
 import Script from 'next/script';
 import { AuthProvider } from '@/components/Auth';
-import { Monetag } from '@/components/Monetag';
-import { AdNavigation } from '@/components/AdNavigation';
 
 const sans = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-sans', display: 'swap' });
 
@@ -22,7 +20,6 @@ export const metadata: Metadata = {
   creator: 'Vinay',
   other: {
     'msvalidate.01': '97737EC02E19AF7CCACEDE49DAFF567A',
-    monetag: '679832828bb053d461f8d19484ba886f',
   },
   manifest: '/manifest.webmanifest',
   icons: { icon: '/icon.svg', apple: '/icon-192.png' },
@@ -74,7 +71,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-IN" className={sans.variable} suppressHydrationWarning>
       <head>
-        <Monetag />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: siteJsonLd }} />
         <meta name="google-adsense-account" content="ca-pub-1700177065699672" />
@@ -149,7 +145,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </footer>
         <NavLoader />
-        <AdNavigation />
         <SwRegister />
         {/* lazyOnload: gtag.js is ~170 KB and ~0.8 s of main-thread work on mobile; load it after the page is idle */}
         <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`} strategy="lazyOnload" />
