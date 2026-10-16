@@ -18,8 +18,9 @@ test('the issued Vignette zone initializes once over HTTPS on both public hosts'
       document: {
         readyState: 'complete',
         getElementById: id => scripts.find(s => s.id === id),
-        createElement: () => ({ dataset: {} }),
-        body: { appendChild: script => scripts.push(script) },
+        createElement: () => ({ dataset: {}, async: true }),
+        querySelector: () => scripts.find(s => s.dataset.zone === '12047445'),
+        body: { appendChild: script => { scripts.push(script); return script; } },
       },
     };
     vm.runInNewContext(monetagBootstrap, context);
@@ -53,8 +54,9 @@ test('the head bootstrap waits for page load and browser idle before inserting t
     document: {
       readyState: 'loading',
       getElementById: id => scripts.find(s => s.id === id),
-      createElement: () => ({ dataset: {} }),
-      documentElement: { appendChild: script => scripts.push(script) },
+      createElement: () => ({ dataset: {}, async: true }),
+      querySelector: () => scripts.find(s => s.dataset.zone === '12047445'),
+      documentElement: { appendChild: script => { scripts.push(script); return script; } },
     },
   };
   vm.runInNewContext(monetagBootstrap, context);

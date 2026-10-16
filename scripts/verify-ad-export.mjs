@@ -2,6 +2,7 @@ import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import { isPublicAdPage } from '../src/lib/advertising.ts';
+import { monetagIssuedTag } from '../src/lib/monetag.ts';
 
 const root = path.resolve('out');
 let checked = 0;
@@ -24,6 +25,7 @@ async function verify(directory) {
         assert.match(head, /id="monetag-vignette-bootstrap"/, `Monetag must be in the head of ${route}`);
         assert.match(head, /https:\/\/n6wxm\.com\/vignette\.min\.js/);
         assert.match(head, /12047445/);
+        assert.ok(head.includes(monetagIssuedTag), `Issued Monetag embed changed on ${route}`);
         adPages++;
       }
       checked++;
