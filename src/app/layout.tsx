@@ -8,6 +8,7 @@ import { NavLoader } from '@/components/NavLoader';
 import Link from 'next/link';
 import Script from 'next/script';
 import { AuthProvider } from '@/components/Auth';
+import { Infolinks, InfolinksTextBoundary } from '@/components/Infolinks';
 
 const sans = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-sans', display: 'swap' });
 
@@ -72,12 +73,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: siteJsonLd }} />
         <meta name="google-adsense-account" content="ca-pub-1700177065699672" />
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1700177065699672" crossOrigin="anonymous" />
       </head>
       <body className="min-h-screen flex flex-col">
         <AuthProvider>
+        <InfolinksTextBoundary mode="off" />
         <SiteHeader />
+        <InfolinksTextBoundary mode="on" />
         <main className="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">{children}</main>
+        <InfolinksTextBoundary mode="off" />
         <footer className="border-t mt-10" style={{ borderColor: 'var(--line)' }}>
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 text-sm faint space-y-3">
             <a
@@ -145,6 +148,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </footer>
         <NavLoader />
         <SwRegister />
+        <Infolinks />
         {/* lazyOnload: gtag.js is ~170 KB and ~0.8 s of main-thread work on mobile; load it after the page is idle */}
         <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`} strategy="lazyOnload" />
         <Script id="ga4" strategy="lazyOnload">

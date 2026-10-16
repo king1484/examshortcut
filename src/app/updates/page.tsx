@@ -12,6 +12,15 @@ type Entry = { date: string; title: string; points: string[] };
 
 const LOG: Entry[] = [
   {
+    date: '16 October 2026',
+    title: 'Advertising integration and privacy disclosure',
+    points: [
+      'Added Infolinks integration on selected public reading pages, ready for the provider’s approval.',
+      'Excluded sign-in, personal progress, feedback forms, calculators and tests from the advertising code.',
+      'Updated the privacy policy to explain advertising data and visitor choices.',
+    ],
+  },
+  {
     date: '15 October 2026',
     title: 'Content depth pass',
     points: [

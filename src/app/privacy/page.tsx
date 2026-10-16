@@ -11,7 +11,7 @@ export default function PrivacyPage() {
   return (
     <div className="max-w-3xl mx-auto">
       <h1 className="text-3xl font-extrabold">Privacy policy</h1>
-      <p className="muted mt-2">Last updated: 15 October 2026</p>
+      <p className="muted mt-2">Last updated: 16 October 2026</p>
 
       <div className="card p-5 mt-6 text-sm space-y-4">
         <div>
@@ -70,6 +70,15 @@ export default function PrivacyPage() {
         <div>
           <h2 className="font-extrabold text-base">Cookies and advertising</h2>
           <p className="mt-1">
+            We load <b>Infolinks</b> advertising code on selected public reading pages to help fund the free site.
+            Ads can appear once the provider approves the site. Infolinks and its advertising partners may use cookies and
+            device identifiers, the page being viewed, IP address, browser details and approximate location to select and measure ads.
+            We do not deliberately send your account details, feedback messages, calculator inputs or test answers to Infolinks.
+            Its code is excluded from sign-in, personal-progress, feedback, calculator and test pages. Read the{' '}
+            <a className="underline" href="https://www.infolinks.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Infolinks privacy policy</a>
+            {' '}for its data practices and choices. The information icon on an Infolinks ad also provides an opt-out option.
+          </p>
+          <p className="mt-1">
             ExamShortcut may show advertising served by <b>Google AdSense</b>. Third-party vendors, including Google, use cookies to serve ads based on
             your prior visits to this or other websites. Google&apos;s use of advertising cookies enables it and its partners to serve ads to you based
             on your visit to this site and/or other sites on the internet. You can opt out of personalised advertising at{' '}
@@ -86,9 +95,10 @@ export default function PrivacyPage() {
             <li><b>Cloudflare</b> hosts the site and the feedback database, and sees standard request logs.</li>
             <li><b>Google Firebase</b> handles optional sign-in and account progress sync.</li>
             <li><b>Google Analytics 4</b> measures visits in aggregate.</li>
+            <li><b>Infolinks</b> and its advertising partners process technical visit data on selected public reading pages.</li>
             <li><b>Google AdSense</b> may serve ads, using cookies as described above.</li>
           </ul>
-          <p className="mt-1">These providers process data under their own privacy terms. We do not sell personal information or share it with advertisers.</p>
+          <p className="mt-1">These providers process data under their own privacy terms. We do not sell account data or give advertisers access to your saved progress or private feedback.</p>
         </div>
 
         <div>
