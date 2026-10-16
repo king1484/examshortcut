@@ -1,17 +1,18 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
-import { infolinksBootstrap, isInfolinksPage } from '../src/lib/infolinks.ts';
+import { infolinksBootstrap } from '../src/lib/infolinks.ts';
+import { isPublicAdPage } from '../src/lib/advertising.ts';
 
 test('advertising excludes account, messages, personal inputs and active tests', () => {
   for (const url of [
-    '/login/', '/dashboard/', '/revision/', '/feedback/', '/feature-requests/', '/contact/', '/privacy/',
+    '', '/login/', '/dashboard/', '/revision/', '/feedback/', '/feature-requests/', '/contact/', '/privacy/',
     '/revision-planner/', '/exams/ssc-cgl/score-calculator/', '/exams/ssc-cgl/posts/',
     '/exams/ssc-cgl/mocks/', '/exams/ssc-cgl/mocks/tier-1-2025/', '/daily-quiz/',
     '/quant/percentage/practice/', '/quant/percentage/examples/', '/quant/percentage/formulas/',
-  ]) assert.equal(isInfolinksPage(url), false, url);
-  assert.equal(isInfolinksPage('/study-guides/revision-without-forgetting/'), true);
-  assert.equal(isInfolinksPage('/exam-analysis/ssc-cgl-2026/'), true);
+  ]) assert.equal(isPublicAdPage(url), false, url);
+  assert.equal(isPublicAdPage('/study-guides/revision-without-forgetting/'), true);
+  assert.equal(isPublicAdPage('/exam-analysis/ssc-cgl-2026/'), true);
 });
 
 test('verification and development hosts never make advertising requests', () => {

@@ -9,6 +9,8 @@ import Link from 'next/link';
 import Script from 'next/script';
 import { AuthProvider } from '@/components/Auth';
 import { Infolinks, InfolinksTextBoundary } from '@/components/Infolinks';
+import { AdNavigation } from '@/components/AdNavigation';
+import { Monetag } from '@/components/Monetag';
 
 const sans = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-sans', display: 'swap' });
 
@@ -151,7 +153,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </footer>
         <NavLoader />
         <SwRegister />
+        <AdNavigation />
         <Infolinks />
+        <Monetag />
         {/* lazyOnload: gtag.js is ~170 KB and ~0.8 s of main-thread work on mobile; load it after the page is idle */}
         <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`} strategy="lazyOnload" />
         <Script id="ga4" strategy="lazyOnload">

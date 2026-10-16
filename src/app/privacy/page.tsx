@@ -79,6 +79,18 @@ export default function PrivacyPage() {
             {' '}for its data practices and choices. The information icon on an Infolinks ad also provides an opt-out option.
           </p>
           <p className="mt-1">
+            We also use <b>Monetag</b> Vignette advertising on selected public reading pages. A Vignette is an advertisement
+            displayed over the page with a close control; it is separate from the learning content. Monetag and its advertising
+            partners may process cookies, device identifiers, page and referral information, IP address, browser details and
+            approximate location to deliver and measure ads. We do not deliberately send them account details, private feedback,
+            calculator inputs or test answers. Monetag code is excluded from sign-in, personal-progress, feedback, calculator
+            and test pages. Read the{' '}
+            <a className="underline" href="https://monetag.com/privacy/" target="_blank" rel="noopener noreferrer">Monetag privacy policy</a>
+            {' '}and its{' '}
+            <a className="underline" href="https://monetag.com/opt-out/" target="_blank" rel="noopener noreferrer">opt-out page</a>
+            {' '}for data practices and choices. You can also block or delete cookies through your browser settings.
+          </p>
+          <p className="mt-1">
             ExamShortcut may show advertising served by <b>Google AdSense</b>. Third-party vendors, including Google, use cookies to serve ads based on
             your prior visits to this or other websites. Google&apos;s use of advertising cookies enables it and its partners to serve ads to you based
             on your visit to this site and/or other sites on the internet. You can opt out of personalised advertising at{' '}
@@ -96,6 +108,7 @@ export default function PrivacyPage() {
             <li><b>Google Firebase</b> handles optional sign-in and account progress sync.</li>
             <li><b>Google Analytics 4</b> measures visits in aggregate.</li>
             <li><b>Infolinks</b> and its advertising partners process technical visit data on selected public reading pages.</li>
+            <li><b>Monetag</b> and its advertising partners deliver and measure Vignette ads on selected public reading pages.</li>
             <li><b>Google AdSense</b> may serve ads, using cookies as described above.</li>
           </ul>
           <p className="mt-1">These providers process data under their own privacy terms. We do not sell account data or give advertisers access to your saved progress or private feedback.</p>
