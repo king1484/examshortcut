@@ -78,6 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: siteJsonLd }} />
         <meta name="google-adsense-account" content="ca-pub-1700177065699672" />
+        <Monetag />
       </head>
       <body className="min-h-screen flex flex-col">
         <AuthProvider>
@@ -155,7 +156,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SwRegister />
         <AdNavigation />
         <Infolinks />
-        <Monetag />
         {/* lazyOnload: gtag.js is ~170 KB and ~0.8 s of main-thread work on mobile; load it after the page is idle */}
         <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`} strategy="lazyOnload" />
         <Script id="ga4" strategy="lazyOnload">
