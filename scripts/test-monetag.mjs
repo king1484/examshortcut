@@ -14,7 +14,6 @@ test('the issued Vignette zone initializes once over HTTPS on both public hosts'
     const scripts = [];
     const context = {
       location: { hostname },
-      window: { requestIdleCallback: callback => callback() },
       document: {
         readyState: 'complete',
         getElementById: id => scripts.find(s => s.id === id),
@@ -37,20 +36,10 @@ test('the issued Vignette zone initializes once over HTTPS on both public hosts'
   }
 });
 
-test('the head bootstrap waits for page load and browser idle before inserting the SDK', () => {
+test('the issued tag starts in the head before body exists without waiting for page load', () => {
   const scripts = [];
-  const pending = [];
-  let onPageLoad;
   const context = {
     location: { hostname: 'examshortcut.in' },
-    window: {
-      addEventListener: (event, callback, options) => {
-        assert.equal(event, 'load');
-        assert.equal(options.once, true);
-        onPageLoad = callback;
-      },
-      setTimeout: callback => pending.push(callback),
-    },
     document: {
       readyState: 'loading',
       getElementById: id => scripts.find(s => s.id === id),
@@ -60,10 +49,7 @@ test('the head bootstrap waits for page load and browser idle before inserting t
     },
   };
   vm.runInNewContext(monetagBootstrap, context);
-  assert.equal(scripts.length, 0);
-  assert.equal(pending.length, 0);
-  onPageLoad();
-  assert.equal(scripts.length, 0);
-  pending.shift()();
   assert.equal(scripts.length, 1);
+  assert.equal(scripts[0].dataset.zone, '12047445');
+  assert.equal(scripts[0].src, 'https://n6wxm.com/vignette.min.js');
 });

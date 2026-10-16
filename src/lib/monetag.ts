@@ -8,19 +8,11 @@ export const monetagIssuedTag = `(function(s){s.dataset.zone='${MONETAG_VIGNETTE
 export const monetagBootstrap = `
 (function () {
   if (!['examshortcut.in', 'www.examshortcut.in'].includes(location.hostname)) return;
-  function loadAds() {
-    if (document.getElementById('monetag-vignette-sdk')) return;
-    ${monetagIssuedTag};
-    var script = document.querySelector('script[data-zone="${MONETAG_VIGNETTE_ZONE}"][src="${MONETAG_VIGNETTE_SRC}"]');
-    script.id = 'monetag-vignette-sdk';
-    script.dataset.loadState = 'loading';
-    script.onload = function () { script.dataset.loadState = 'loaded'; };
-    script.onerror = function () { script.dataset.loadState = 'error'; };
-  }
-  function scheduleAds() {
-    if (window.requestIdleCallback) window.requestIdleCallback(loadAds);
-    else window.setTimeout(loadAds, 1);
-  }
-  if (document.readyState === 'complete') scheduleAds();
-  else window.addEventListener('load', scheduleAds, { once: true });
+  if (document.getElementById('monetag-vignette-sdk')) return;
+  ${monetagIssuedTag};
+  var script = document.querySelector('script[data-zone="${MONETAG_VIGNETTE_ZONE}"][src="${MONETAG_VIGNETTE_SRC}"]');
+  script.id = 'monetag-vignette-sdk';
+  script.dataset.loadState = 'loading';
+  script.onload = function () { script.dataset.loadState = 'loaded'; };
+  script.onerror = function () { script.dataset.loadState = 'error'; };
 })();`;

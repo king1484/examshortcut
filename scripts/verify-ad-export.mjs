@@ -23,6 +23,7 @@ async function verify(directory) {
       assert.equal(count, eligible ? 1 : 0, `Unexpected Monetag tag on ${route}`);
       if (eligible) {
         assert.match(head, /id="monetag-vignette-bootstrap"/, `Monetag must be in the head of ${route}`);
+        assert.match(head, /<script\s+data-cfasync="false"[^>]*\bid="monetag-vignette-bootstrap"/, `Monetag must opt out of Rocket Loader on ${route}`);
         assert.match(head, /https:\/\/n6wxm\.com\/vignette\.min\.js/);
         assert.match(head, /12047445/);
         assert.ok(head.includes(monetagIssuedTag), `Issued Monetag embed changed on ${route}`);

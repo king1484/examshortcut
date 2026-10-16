@@ -7,7 +7,7 @@ import { monetagBootstrap } from '@/lib/monetag';
 export function Monetag() {
   const pathname = usePathname() || '';
   if (!isPublicAdPage(pathname)) return null;
-  // Keep the vendor tag in the exported head so installation scanners can find it.
-  // The bootstrap itself waits for page load and idle time before requesting ads.
-  return <script id="monetag-vignette-bootstrap" dangerouslySetInnerHTML={{ __html: monetagBootstrap }} />;
+  // Run the issued tag from the head to match Monetag's installation instructions.
+  // Its documented Cloudflare attribute keeps Rocket Loader from deferring it.
+  return <script data-cfasync="false" id="monetag-vignette-bootstrap" dangerouslySetInnerHTML={{ __html: monetagBootstrap }} />;
 }

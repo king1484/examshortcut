@@ -75,10 +75,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-IN" className={sans.variable} suppressHydrationWarning>
       <head>
+        <Monetag />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: siteJsonLd }} />
         <meta name="google-adsense-account" content="ca-pub-1700177065699672" />
-        <Monetag />
       </head>
       <body className="min-h-screen flex flex-col">
         <AuthProvider>
