@@ -9,5 +9,5 @@ export function Monetag() {
   if (!isPublicAdPage(pathname)) return null;
   // Run the issued tag from the head to match Monetag's installation instructions.
   // Its documented Cloudflare attribute keeps Rocket Loader from deferring it.
-  return <script data-cfasync="false" id="monetag-vignette-bootstrap" dangerouslySetInnerHTML={{ __html: monetagBootstrap }} />;
+  return <script data-cfasync="false" id="monetag-multitag-bootstrap" dangerouslySetInnerHTML={{ __html: monetagBootstrap }} />;
 }

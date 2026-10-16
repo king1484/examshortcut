@@ -70,9 +70,12 @@ export default function PrivacyPage() {
         <div>
           <h2 className="font-extrabold text-base">Cookies and advertising</h2>
           <p className="mt-1">
-            Advertising is currently paused. We disabled the Infolinks and Monetag integrations on 16 October 2026
-            while arranging ordinary display banners that stay within the page layout. We do not currently request
-            ads from either provider. If you visited while the integrations were enabled, you can review the{' '}
+            Public reading pages use <b>Monetag MultiTag</b>, which can show popunders, in-page push and Vignette overlays,
+            and offer browser push notifications. Browser notifications require your permission; you can decline or revoke
+            it in your browser&apos;s site settings. Monetag and its advertising partners may process cookies, IP address,
+            browser and device information, pages visited and ad interactions to deliver and measure advertising.
+            We exclude sign-in, personal progress, forms, calculators and tests from the page ad script. Infolinks is disabled.
+            You can review the{' '}
             <a className="underline" href="https://www.infolinks.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Infolinks privacy policy</a>
             {' '}and the{' '}
             <a className="underline" href="https://monetag.com/privacy/" target="_blank" rel="noopener noreferrer">Monetag privacy policy</a>
@@ -97,7 +100,7 @@ export default function PrivacyPage() {
             <li><b>Cloudflare</b> hosts the site and the feedback database, and sees standard request logs.</li>
             <li><b>Google Firebase</b> handles optional sign-in and account progress sync.</li>
             <li><b>Google Analytics 4</b> measures visits in aggregate.</li>
-            <li><b>Infolinks</b> and <b>Monetag</b> advertising integrations are currently disabled.</li>
+            <li><b>Monetag</b> and its advertising partners deliver and measure ads on public reading pages. <b>Infolinks</b> is disabled.</li>
             <li><b>Google AdSense</b> may serve ads, using cookies as described above.</li>
           </ul>
           <p className="mt-1">These providers process data under their own privacy terms. We do not sell account data or give advertisers access to your saved progress or private feedback.</p>

@@ -12,7 +12,7 @@ export function AdNavigation() {
   useEffect(() => {
     if (!['examshortcut.in', 'www.examshortcut.in'].includes(location.hostname)) return;
     // Ad SDKs mutate the document and have no shared SPA reset API.
-    // A fresh document clears both providers before entering an account or form page.
+    // A fresh document clears the ad SDK before entering an account or form page.
     if (pathname !== firstPath.current && (eligible || isPublicAdPage(firstPath.current))) {
       location.replace(location.href);
       return;
