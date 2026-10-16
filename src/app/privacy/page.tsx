@@ -70,21 +70,11 @@ export default function PrivacyPage() {
         <div>
           <h2 className="font-extrabold text-base">Cookies and advertising</h2>
           <p className="mt-1">
-            We load <b>Infolinks</b> advertising code on selected public reading pages to help fund the free site.
-            Ads can appear once the provider approves the site. Infolinks and its advertising partners may use cookies and
-            device identifiers, the page being viewed, IP address, browser details and approximate location to select and measure ads.
-            We do not deliberately send your account details, feedback messages, calculator inputs or test answers to Infolinks.
-            Its code is excluded from sign-in, personal-progress, feedback, calculator and test pages. Read the{' '}
+            Advertising is currently paused. We disabled the Infolinks and Monetag integrations on 16 October 2026
+            while arranging ordinary display banners that stay within the page layout. We do not currently request
+            ads from either provider. If you visited while the integrations were enabled, you can review the{' '}
             <a className="underline" href="https://www.infolinks.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Infolinks privacy policy</a>
-            {' '}for its data practices and choices. The information icon on an Infolinks ad also provides an opt-out option.
-          </p>
-          <p className="mt-1">
-            We also use <b>Monetag</b> Vignette advertising on selected public reading pages. A Vignette is an advertisement
-            displayed over the page with a close control; it is separate from the learning content. Monetag and its advertising
-            partners may process cookies, device identifiers, page and referral information, IP address, browser details and
-            approximate location to deliver and measure ads. We do not deliberately send them account details, private feedback,
-            calculator inputs or test answers. Monetag code is excluded from sign-in, personal-progress, feedback, calculator
-            and test pages. Read the{' '}
+            {' '}and the{' '}
             <a className="underline" href="https://monetag.com/privacy/" target="_blank" rel="noopener noreferrer">Monetag privacy policy</a>
             {' '}and its{' '}
             <a className="underline" href="https://monetag.com/opt-out/" target="_blank" rel="noopener noreferrer">opt-out page</a>
@@ -107,8 +97,7 @@ export default function PrivacyPage() {
             <li><b>Cloudflare</b> hosts the site and the feedback database, and sees standard request logs.</li>
             <li><b>Google Firebase</b> handles optional sign-in and account progress sync.</li>
             <li><b>Google Analytics 4</b> measures visits in aggregate.</li>
-            <li><b>Infolinks</b> and its advertising partners process technical visit data on selected public reading pages.</li>
-            <li><b>Monetag</b> and its advertising partners deliver and measure Vignette ads on selected public reading pages.</li>
+            <li><b>Infolinks</b> and <b>Monetag</b> advertising integrations are currently disabled.</li>
             <li><b>Google AdSense</b> may serve ads, using cookies as described above.</li>
           </ul>
           <p className="mt-1">These providers process data under their own privacy terms. We do not sell account data or give advertisers access to your saved progress or private feedback.</p>

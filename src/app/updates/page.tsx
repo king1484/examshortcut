@@ -15,8 +15,8 @@ const LOG: Entry[] = [
     date: '16 October 2026',
     title: 'Advertising integration and privacy disclosure',
     points: [
-      'Added Infolinks integration on selected public reading pages, ready for the provider’s approval.',
-      'Verified the site with Monetag and added a Vignette advertising zone on public reading pages.',
+      'Tested Infolinks and Monetag integration, then disabled both while arranging ordinary display banners.',
+      'Removed the Vignette overlay and retained the site’s offline service worker.',
       'Excluded sign-in, personal progress, feedback forms, calculators and tests from the advertising code.',
       'Updated the privacy policy to explain advertising data and visitor choices.',
     ],
