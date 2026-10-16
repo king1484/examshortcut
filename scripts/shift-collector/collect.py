@@ -39,9 +39,23 @@ def date_re(d: dt.date):
     return re.compile(f"{a}|{b}|{c}", re.I)
 
 
-def yt_search(query: str, n: int = 25):
+class SearchLogger:
+    # yt-dlp errors can contain proxy credentials; report only route availability below.
+    def debug(self, message):
+        pass
+
+    def warning(self, message):
+        pass
+
+    def error(self, message):
+        pass
+
+
+def yt_search(query: str, n: int = 25, use_proxy: bool = True):
     url = f"https://www.youtube.com/results?search_query={quote_plus(query)}&sp=CAI%253D"  # sorted by upload date
-    opts = {"quiet": True, "extract_flat": True, "playlistend": n, "skip_download": True, **({"proxy": PROXY} if PROXY else {})}
+    opts = {"quiet": True, "extract_flat": True, "playlistend": n, "skip_download": True,
+            "socket_timeout": 15, "retries": 1, "extractor_retries": 1, "logger": SearchLogger(),
+            **({"proxy": PROXY} if use_proxy and PROXY else {})}
     with yt_dlp.YoutubeDL(opts) as y:
         info = y.extract_info(url, download=False)
     return [{"id": e["id"], "title": e.get("title") or "", "channel": e.get("channel") or e.get("uploader") or ""}
@@ -227,12 +241,39 @@ def find_videos(d: dt.date, shift: int | None):
         queries += [f"SSC CGL {day} 2026 {o} shift review analysis", f"SSC CGL exam review today {day} shift {s}",
                     f"SSC CGL {MONTHS[d.month-1].capitalize()} {d.day} 2026 {o} shift"]
     queries += [f"SSC CGL {day} 2026 all shift analysis"]
+    # Probe one query before starting the pool. A dead proxy must not abort collection
+    # or be retried by every search worker. Direct search and article collection still run.
+    use_proxy = bool(PROXY)
+    try:
+        first = yt_search(queries[0], use_proxy=use_proxy)
+    except yt_dlp.utils.DownloadError:
+        if not use_proxy:
+            print("YouTube search unavailable; continuing with article sources", file=sys.stderr)
+            return []
+        print("YouTube proxy unavailable; retrying search directly", file=sys.stderr)
+        use_proxy = False
+        try:
+            first = yt_search(queries[0], use_proxy=False)
+        except yt_dlp.utils.DownloadError:
+            print("Direct YouTube search unavailable; continuing with article sources", file=sys.stderr)
+            return []
+
+    failed = []
+    def search_remaining(query):
+        try:
+            return yt_search(query, use_proxy=use_proxy)
+        except yt_dlp.utils.DownloadError:
+            failed.append(query)
+            return []
+
     seen, cands = set(), []
     with ThreadPoolExecutor(6) as ex:
-        for res in ex.map(yt_search, queries):
+        for res in [first, *ex.map(search_remaining, queries[1:])]:
             for r in res:
                 if r["id"] not in seen:
                     seen.add(r["id"]); cands.append(r)
+    if failed:
+        print(f"YouTube: {len(failed)} searches unavailable; retaining other results", file=sys.stderr)
     keep = [c for c in cands if title_matches(c["title"], d, shift)]
     print(f"videos: {len(cands)} found, {len(keep)} title-match", file=sys.stderr)
     return keep
@@ -242,7 +283,9 @@ def web_articles(d: dt.date, shift: int | None, limit: int = 8):
     day = f"{d.day} {MONTHS[d.month - 1]}"
     q = f"SSC CGL 2026 tier 1 exam analysis {day} shift review good attempts"
     try:
-        r = requests.post("https://html.duckduckgo.com/html/", data={"q": q, "df": "w"}, headers=UA, timeout=25, proxies=PROXIES)
+        # The optional YouTube proxy is unrelated to web search and may be offline.
+        r = requests.post("https://html.duckduckgo.com/html/", data={"q": q, "df": "w"}, headers=UA, timeout=25)
+        r.raise_for_status()
         soup = BeautifulSoup(r.text, "html.parser")
         links = []
         for a in soup.select("a.result__a"):
@@ -253,8 +296,8 @@ def web_articles(d: dt.date, shift: int | None, limit: int = 8):
                 href = unquote(m.group(1))
             if href.startswith("http") and "youtube.com" not in href:
                 links.append((a.get_text(" ", strip=True), href))
-    except Exception as e:  # noqa
-        print("ddg failed", e, file=sys.stderr)
+    except requests.RequestException as e:
+        print(f"Article search unavailable ({type(e).__name__}); retaining existing analysis", file=sys.stderr)
         links = []
     arts, seen = [], set()
     for title, href in links:
@@ -263,6 +306,7 @@ def web_articles(d: dt.date, shift: int | None, limit: int = 8):
         seen.add(href)
         try:
             h = requests.get(href, headers=UA, timeout=25)
+            h.raise_for_status()
             s = BeautifulSoup(h.text, "html.parser")
             for tag in s(["script", "style", "nav", "footer", "header", "aside", "form"]):
                 tag.decompose()

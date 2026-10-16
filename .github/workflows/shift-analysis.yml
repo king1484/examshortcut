@@ -73,6 +73,9 @@ jobs:
       - name: Install collector dependencies
         run: pip install -r scripts/shift-collector/requirements.txt
 
+      - name: Test collector reliability
+        run: python -m unittest discover -s scripts/shift-collector -p 'test_*.py'
+
       # Transcripts and LLM extractions are cached across runs: each video is fetched from YouTube
       # (one proxy IP, rate-limited) and analysed only once. A new key per run lets the cache grow.
       - name: Restore transcript cache
@@ -108,7 +111,6 @@ jobs:
         run: |
           npm ci
           node --test scripts/test-auth-config.mjs scripts/test-feedback.mjs
-          python -m unittest discover -s scripts/shift-collector -p 'test_*.py'
           npm run validate
 
       - name: Build
