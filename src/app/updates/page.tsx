@@ -12,6 +12,16 @@ type Entry = { date: string; title: string; points: string[] };
 
 const LOG: Entry[] = [
   {
+    date: '18 October 2026',
+    title: 'Ordinary display advertising',
+    points: [
+      'Added a labelled 300×250 Adcash display banner to public study guides, exam analyses, topic overviews and the homepage.',
+      'Ads load as their slot approaches the screen, with one request per page visit and no automatic refresh.',
+      'Sign-in, account progress, feedback forms, calculators and active tests remain outside advertising placements.',
+      'Updated advertising privacy disclosures. Monetag and Infolinks remain disabled.',
+    ],
+  },
+  {
     date: '16 October 2026',
     title: 'Advertising integration and privacy disclosure',
     points: [

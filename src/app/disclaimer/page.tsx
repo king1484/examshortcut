@@ -56,7 +56,7 @@ export default function DisclaimerPage() {
         <div>
           <h2 className="font-extrabold text-base">Advertising and external links</h2>
           <p className="mt-1">
-            The site may show ads served by Google AdSense, and ads are never presented as study content or as a recommendation. Links to other websites, including
+            The site may show ads served by Adcash or Google AdSense, and ads are never presented as study content or as a recommendation. Links to other websites, including
             official exam sites, are provided for convenience; we do not control their content or availability. See the{' '}
             <Link className="underline" href="/privacy/">privacy policy</Link> for how ads and cookies work.
           </p>
