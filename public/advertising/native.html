@@ -10,7 +10,10 @@
 <body>
   <div id="container-843472de0df6800e210bdae1ed686f7a"></div>
   <script>
-    if (['examshortcut.in', 'www.examshortcut.in'].includes(location.hostname)) {
+    var parentOrigin = '';
+    try { parentOrigin = new URL(document.referrer).origin; } catch (_) {}
+    if (location.hostname === 'examshortcut.pages.dev' &&
+        ['https://examshortcut.in', 'https://www.examshortcut.in'].includes(parentOrigin)) {
       var nativeScript = document.createElement('script');
       nativeScript.async = true;
       nativeScript.dataset.cfasync = 'false';
@@ -18,7 +21,7 @@
       document.body.appendChild(nativeScript);
       var nativeContainer = document.getElementById('container-843472de0df6800e210bdae1ed686f7a');
       new ResizeObserver(function () {
-        parent.postMessage({ type: 'examshortcut-native-height', height: nativeContainer.scrollHeight }, '*');
+        parent.postMessage({ type: 'examshortcut-native-height', height: nativeContainer.scrollHeight }, parentOrigin);
       }).observe(nativeContainer);
     }
   </script>

@@ -3,6 +3,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
+// A different origin allows the vendor's nested frames and storage to work,
+// while the browser keeps it separate from examshortcut.in account storage.
+const AD_DOCUMENT_ORIGIN = 'https://examshortcut.pages.dev';
+
 const BANNERS = {
   '300x250': { zone: '31786624', width: 300, height: 250 },
   '468x60': { zone: '31792395', width: 468, height: 60 },
@@ -52,9 +56,9 @@ function BannerSlot({ size, media, className }: {
       <p className="text-[11px] faint text-center mb-2">Advertisement</p>
       <div ref={slot} data-adsterra-zone={zone} style={{ width, height, maxWidth: '100%' }}>
         {ready && <iframe title={`Adsterra ${size} display advertisement`}
-          src={`/advertising/display?size=${size}`} width={width} height={height}
+          src={`${AD_DOCUMENT_ORIGIN}/advertising/display?size=${size}`} width={width} height={height}
           scrolling="no" referrerPolicy="origin"
-          sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
+          sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox"
           style={{ border: 0, display: 'block', maxWidth: '100%' }} />}
       </div>
     </aside>
@@ -84,7 +88,7 @@ function NativeSlot() {
   const [height, setHeight] = useState(160);
   useEffect(() => {
     const resize = (event: MessageEvent) => {
-      if (event.source !== frame.current?.contentWindow || event.data?.type !== 'examshortcut-native-height') return;
+      if (event.origin !== AD_DOCUMENT_ORIGIN || event.source !== frame.current?.contentWindow || event.data?.type !== 'examshortcut-native-height') return;
       const value = event.data.height;
       if (typeof value === 'number' && Number.isFinite(value)) {
         setHeight(Math.max(100, Math.min(1800, Math.ceil(value))));
@@ -97,8 +101,8 @@ function NativeSlot() {
     <p className="text-[11px] faint text-center mb-2">Advertisement</p>
     <div ref={slot} data-adsterra-zone="31792392" style={{ minHeight: height }}>
       {ready && <iframe ref={frame} title="Adsterra native banner advertisements"
-        src="/advertising/native" width="100%" height={height} scrolling="no"
-        referrerPolicy="origin" sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
+        src={`${AD_DOCUMENT_ORIGIN}/advertising/native`} width="100%" height={height} scrolling="no"
+        referrerPolicy="origin" sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox"
         style={{ border: 0, display: 'block' }} />}
     </div>
   </aside>;

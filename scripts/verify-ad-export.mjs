@@ -68,13 +68,14 @@ await verify(root);
 // and every allowed size selects exactly its issued code and dimensions.
 const display = await readFile(path.join(root, 'advertising/display.html'), 'utf8');
 const loader = display.match(/<script>([\s\S]*?)<\/script>/)[1];
-for (const hostname of ['localhost', 'preview.examshortcut.pages.dev', 'examshortcut.in', 'www.examshortcut.in']) {
+for (const hostname of ['localhost', 'preview.examshortcut.pages.dev', 'examshortcut.in', 'examshortcut.pages.dev']) {
+ for (const referrer of ['', 'https://example.com/', 'https://examshortcut.in/', 'https://www.examshortcut.in/']) {
   for (const size of [...Object.keys(issued), '__proto__', 'constructor', 'https://example.com/unsafe.js']) {
     const requests = [];
-    const context = { location: { hostname, search: `?size=${encodeURIComponent(size)}` }, URLSearchParams,
-      document: { body: { style: {}, appendChild: (node) => requests.push(node.src) }, createElement: () => ({}) } };
+    const context = { location: { hostname, search: `?size=${encodeURIComponent(size)}` }, URLSearchParams, URL,
+      document: { referrer, body: { style: {}, appendChild: (node) => requests.push(node.src) }, createElement: () => ({}) } };
     vm.runInNewContext(loader, context);
-    const allowed = ['examshortcut.in', 'www.examshortcut.in'].includes(hostname) && Object.hasOwn(issued, size);
+    const allowed = hostname === 'examshortcut.pages.dev' && ['https://examshortcut.in/', 'https://www.examshortcut.in/'].includes(referrer) && Object.hasOwn(issued, size);
     assert.deepEqual(requests, allowed ? [`https://bauval.org/22/${issued[size]}`] : [], `Unexpected request for ${hostname}/${size}`);
     if (allowed) {
       const [width, height] = size.split('x').map(Number);
@@ -83,7 +84,14 @@ for (const hostname of ['localhost', 'preview.examshortcut.pages.dev', 'examshor
       assert.equal(context.atOptions.format, 'iframe');
     }
   }
+ }
 }
+// Allowing vendor storage is safe only on a separate origin, never on the
+// account origin. Catch accidental relative iframe URLs before deployment.
+const component = await readFile('src/components/DisplayBanner.tsx', 'utf8');
+assert.match(component, /const AD_DOCUMENT_ORIGIN = 'https:\/\/examshortcut\.pages\.dev'/);
+assert.equal((component.match(/src=\{`\$\{AD_DOCUMENT_ORIGIN\}/g) || []).length, 2);
+assert.doesNotMatch(component, /allow-top-navigation/);
 assert.ok(checked > 0, 'No exported pages were checked');
 assert.ok(banners > 0, 'Display advertising placements missing from export');
 console.log(`Verified seven responsive Adsterra slots and a labelled Smartlink on each of ${checked} pages (${banners} total); loader guards passed; no Popunder, unrestricted Social Bar or old SDKs.`);

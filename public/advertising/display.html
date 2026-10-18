@@ -20,7 +20,10 @@
     };
     var size = new URLSearchParams(location.search).get('size') || '300x250';
     var banner = Object.hasOwn(banners, size) ? banners[size] : null;
-    if (banner && ['examshortcut.in', 'www.examshortcut.in'].includes(location.hostname)) {
+    var parentOrigin = '';
+    try { parentOrigin = new URL(document.referrer).origin; } catch (_) {}
+    if (banner && location.hostname === 'examshortcut.pages.dev' &&
+        ['https://examshortcut.in', 'https://www.examshortcut.in'].includes(parentOrigin)) {
       document.body.style.width = banner.width + 'px';
       document.body.style.height = banner.height + 'px';
       atOptions = { key: banner.key, format: 'iframe', height: banner.height, width: banner.width, params: {} };
