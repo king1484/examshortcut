@@ -5,21 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <title>Advertisement</title>
-  <style>html,body{margin:0;padding:0;width:300px;height:250px;overflow:hidden;background:transparent}</style>
+  <style>html,body{margin:0;padding:0;overflow:hidden;background:transparent}</style>
 </head>
 <body>
   <script>
-    // Only production visitors request ads, even if this file is opened directly.
-    if (['examshortcut.in', 'www.examshortcut.in'].includes(location.hostname)) {
-      atOptions = {
-        'key': '59e3808cf2d39bca0ebc82811c6249ee',
-        'format': 'iframe',
-        'height': 250,
-        'width': 300,
-        'params': {}
-      };
+    // Fixed issued codes only: query strings cannot select an arbitrary script.
+    var banners = {
+      '300x250': { key: '59e3808cf2d39bca0ebc82811c6249ee', width: 300, height: 250 },
+      '468x60': { key: '20450e07856c27fb0dbc5aa6013720ac', width: 468, height: 60 },
+      '160x300': { key: '8daf048adbebe221d752a368db3181ab', width: 160, height: 300 },
+      '160x600': { key: '230ad824659625c6badc44597930e2c3', width: 160, height: 600 },
+      '320x50': { key: 'ad421e7c46979528e3db607ca2bb682e', width: 320, height: 50 },
+      '728x90': { key: '7e0573e36a571b0d145ab23096b1e4da', width: 728, height: 90 }
+    };
+    var size = new URLSearchParams(location.search).get('size') || '300x250';
+    var banner = Object.hasOwn(banners, size) ? banners[size] : null;
+    if (banner && ['examshortcut.in', 'www.examshortcut.in'].includes(location.hostname)) {
+      document.body.style.width = banner.width + 'px';
+      document.body.style.height = banner.height + 'px';
+      atOptions = { key: banner.key, format: 'iframe', height: banner.height, width: banner.width, params: {} };
       var displayScript = document.createElement('script');
-      displayScript.src = 'https://bauval.org/22/59e3808cf2d39bca0ebc82811c6249ee';
+      displayScript.src = 'https://bauval.org/22/' + banner.key;
       document.body.appendChild(displayScript);
     }
   </script>

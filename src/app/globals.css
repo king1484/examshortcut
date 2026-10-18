@@ -230,6 +230,27 @@ body {
 .check li::before { content: '✓'; position: absolute; left: 0; top: 0; color: var(--ok); font-weight: 900; }
 
 /* Long guide tables scroll within the article on small screens. */
+.ad-placement { margin: 1.25rem auto; }
+.ad-horizontal { width: 100%; }
+.ad-content-layout { width: 100%; }
+.ad-rail, .ad-top-desktop, .ad-bottom-desktop { display: none; }
+.ad-native { width: calc(100% - 32px); max-width: 960px; }
+@media (min-width: 600px) {
+  .ad-bottom-desktop { display: block; }
+  .ad-bottom-mobile { display: none; }
+}
+@media (min-width: 768px) {
+  .ad-top-desktop { display: block; }
+  .ad-top-mobile { display: none; }
+}
+@media (min-width: 1600px) {
+  .ad-content-layout { display: grid; grid-template-columns: 160px minmax(0, 1152px) 160px; gap: 24px; justify-content: center; }
+  .ad-rail { display: block; align-self: start; }
+}
+@media print {
+  .ad-placement, .ad-horizontal, .ad-sponsored { display: none !important; }
+  .ad-content-layout { display: block; }
+}
 .study-guide .md { min-width: 0; overflow-wrap: anywhere; }
 .study-guide .md table { display: block; max-width: 100%; overflow-x: auto; }
 @media print {

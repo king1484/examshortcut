@@ -13,6 +13,16 @@ type Entry = { date: string; title: string; points: string[] };
 const LOG: Entry[] = [
   {
     date: '18 October 2026',
+    title: 'Responsive banners and sponsored offers',
+    points: [
+      'Added mobile and desktop banners, wide-screen side banners and native banners through the shared layout on every page.',
+      'Only formats that fit the screen request ads. Frames load near the viewport and keep advertising scripts separate from accounts and study controls.',
+      'Sponsored offers is a clearly labelled link that opens only when selected.',
+      'Adult campaigns are enabled for the new units. Popunders and the unrestricted Social Bar tag are not installed.',
+    ],
+  },
+  {
+    date: '18 October 2026',
     title: 'Display banners across every page',
     points: [
       'Replaced Adcash with Adsterra’s approved 300×250 display banner.',

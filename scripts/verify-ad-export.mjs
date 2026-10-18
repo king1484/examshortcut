@@ -1,10 +1,21 @@
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import assert from 'node:assert/strict';
+import vm from 'node:vm';
 
 const root = path.resolve('out');
 let checked = 0;
 let banners = 0;
+const zones = ['31786624', '31792395', '31792396', '31792397', '31792398', '31792399', '31792392'];
+const issued = {
+  '300x250': '59e3808cf2d39bca0ebc82811c6249ee',
+  '468x60': '20450e07856c27fb0dbc5aa6013720ac',
+  '160x300': '8daf048adbebe221d752a368db3181ab',
+  '160x600': '230ad824659625c6badc44597930e2c3',
+  '320x50': 'ad421e7c46979528e3db607ca2bb682e',
+  '728x90': '7e0573e36a571b0d145ab23096b1e4da',
+};
+const smartlink = 'https://araplhn.org/4/2030aeb2a6b6a453f627153d8cb02b50';
 async function verify(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
     const filename = path.join(directory, entry.name);
@@ -14,7 +25,8 @@ async function verify(directory) {
       const relative = path.relative(root, filename).split(path.sep).join('/');
       const route = relative === 'index.html' ? '/' : `/${relative.replace(/(?:\/index)?\.html$/, '')}/`;
       const html = await readFile(filename, 'utf8');
-      // Only the issued manual display zone is permitted; bundled formats stay out.
+      // The unrestricted Social Bar and Popunder must never ship accidentally.
+      assert.doesNotMatch(html, /31792391|31792394|fddeed3afc5be59e6049e19c4d7ffb40|bauval\.org\/14\//, `Unapproved Adsterra format on ${route}`);
       assert.doesNotMatch(html, /monetag-(?:multitag|vignette)-(?:bootstrap|sdk)|quge5\.com\/88\/tag\.min\.js|n6wxm\.com\/vignette\.min\.js/, `Monetag tag still present on ${route}`);
       assert.doesNotMatch(html, /infolinks-(?:bootstrap|sdk)|resources\.infolinks\.com\/js\/infolinks_main\.js/, `Infolinks tag still present on ${route}`);
       assert.doesNotMatch(html, /runAutoTag|runPop|runInterstitial|runInPagePush|1wj8naoruw/, `Non-display Adcash integration on ${route}`);
@@ -27,13 +39,24 @@ async function verify(directory) {
         assert.match(html, /noindex, nofollow/);
         continue;
       }
+      if (relative === 'advertising/native.html') {
+        assert.match(html, /bauval\.org\/21\/843472de0df6800e210bdae1ed686f7a/);
+        assert.match(html, /id="container-843472de0df6800e210bdae1ed686f7a"/);
+        assert.match(html, /noindex, nofollow/);
+        continue;
+      }
       if (/^yandex_[\da-f]+\.html$/.test(relative)) {
         assert.equal(slots.length, 0, 'Search verification documents must stay unchanged');
         continue;
       }
-      assert.equal(slots.length, 1, `Expected one shared advertising slot on ${route}`);
+      assert.deepEqual(slots.map(([, zone]) => zone).sort(), [...zones].sort(), `Expected each responsive advertising slot once on ${route}`);
+      const link = html.match(/<a\b[^>]*data-adsterra-smartlink="31792393"[^>]*>/)?.[0];
+      assert.ok(link, `Sponsored offers missing on ${route}`);
+      assert.ok(link.includes(`href="${smartlink}"`), `Wrong Smartlink on ${route}`);
+      assert.match(link, /rel="sponsored noopener noreferrer"/);
+      assert.match(link, /target="_blank"/);
       for (const [, zone] of slots) {
-        assert.equal(zone, '31786624', `Unrecognised display zone on ${route}`);
+        assert.ok(zones.includes(zone), `Unrecognised display zone on ${route}`);
         banners++;
       }
       checked++;
@@ -41,6 +64,26 @@ async function verify(directory) {
   }
 }
 await verify(root);
+// Exercise the real exported loader: local/preview/unknown inputs cannot load ads,
+// and every allowed size selects exactly its issued code and dimensions.
+const display = await readFile(path.join(root, 'advertising/display.html'), 'utf8');
+const loader = display.match(/<script>([\s\S]*?)<\/script>/)[1];
+for (const hostname of ['localhost', 'preview.examshortcut.pages.dev', 'examshortcut.in', 'www.examshortcut.in']) {
+  for (const size of [...Object.keys(issued), '__proto__', 'constructor', 'https://example.com/unsafe.js']) {
+    const requests = [];
+    const context = { location: { hostname, search: `?size=${encodeURIComponent(size)}` }, URLSearchParams,
+      document: { body: { style: {}, appendChild: (node) => requests.push(node.src) }, createElement: () => ({}) } };
+    vm.runInNewContext(loader, context);
+    const allowed = ['examshortcut.in', 'www.examshortcut.in'].includes(hostname) && Object.hasOwn(issued, size);
+    assert.deepEqual(requests, allowed ? [`https://bauval.org/22/${issued[size]}`] : [], `Unexpected request for ${hostname}/${size}`);
+    if (allowed) {
+      const [width, height] = size.split('x').map(Number);
+      assert.equal(context.atOptions.width, width);
+      assert.equal(context.atOptions.height, height);
+      assert.equal(context.atOptions.format, 'iframe');
+    }
+  }
+}
 assert.ok(checked > 0, 'No exported pages were checked');
 assert.ok(banners > 0, 'Display advertising placements missing from export');
-console.log(`Verified one Adsterra display slot on each of ${checked} pages (${banners} total); no old or bundled advertising SDKs.`);
+console.log(`Verified seven responsive Adsterra slots and a labelled Smartlink on each of ${checked} pages (${banners} total); loader guards passed; no Popunder, unrestricted Social Bar or old SDKs.`);

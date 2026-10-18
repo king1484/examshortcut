@@ -8,7 +8,7 @@ import { NavLoader } from '@/components/NavLoader';
 import Link from 'next/link';
 import Script from 'next/script';
 import { AuthProvider } from '@/components/Auth';
-import { DisplayBanner } from '@/components/DisplayBanner';
+import { DisplayBanner, NativeBanner, SponsoredOffers } from '@/components/DisplayBanner';
 
 const sans = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-sans', display: 'swap' });
 
@@ -80,7 +80,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AuthProvider>
         <SiteHeader />
         <DisplayBanner />
-        <main className="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">{children}</main>
+        <div className="ad-content-layout flex-1">
+          <DisplayBanner position="left" />
+          <main className="w-full min-w-0 max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">{children}</main>
+          <DisplayBanner position="right" />
+        </div>
+        <DisplayBanner position="bottom" />
+        <NativeBanner />
+        <SponsoredOffers />
         <footer className="border-t mt-10" style={{ borderColor: 'var(--line)' }}>
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 text-sm faint space-y-3">
             <a

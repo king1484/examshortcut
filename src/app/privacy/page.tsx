@@ -70,11 +70,12 @@ export default function PrivacyPage() {
         <div>
           <h2 className="font-extrabold text-base">Cookies and advertising</h2>
           <p className="mt-1">
-            Pages across the site may show ordinary display banners from <b>Adsterra</b>. Its advertising partners may
+            Pages across the site may show display and native banners from <b>Adsterra</b>, and a labelled Sponsored offers link. Its advertising partners may
             receive technical information such as your IP address, browser, device and referring site, and may use
             cookies or web beacons to deliver ads and measure their performance. Advertising can include gambling
             or adult-service offers where permitted by the provider. Ads are separate from our study content and are
-            not recommendations. The banner runs in a separate frame with no access to the page&apos;s account data or form inputs.
+            not recommendations. Banners run in separate frames with no access to the page&apos;s account data or form inputs.
+            Sponsored offers opens an advertiser destination only when you choose that link; the destination has its own privacy policy.
             See <a className="underline" href="https://adsterra.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Adsterra&apos;s privacy policy</a>.
             You can block or delete advertising cookies through your browser settings.
           </p>
@@ -108,7 +109,7 @@ export default function PrivacyPage() {
             <li><b>Cloudflare</b> hosts the site and the feedback database, and sees standard request logs.</li>
             <li><b>Google Firebase</b> handles optional sign-in and account progress sync.</li>
             <li><b>Google Analytics 4</b> measures visits in aggregate.</li>
-            <li><b>Adsterra</b> serves display banners across the site and processes advertising visit data.</li>
+            <li><b>Adsterra</b> serves display and native banners and Sponsored offers links across the site, and processes advertising visit data.</li>
             <li><b>Adcash</b> was replaced on 18 October 2026.</li>
             <li><b>Monetag</b> has been removed and <b>Infolinks</b> is disabled.</li>
             <li><b>Google AdSense</b> may serve ads, using cookies as described above.</li>
