@@ -73,18 +73,25 @@ export default function PrivacyPage() {
             We are preparing ordinary display advertising through <b>Ezoic</b>. Its consent-management, connection and analytics scripts
             run on the site and may process technical visit information, including IP address, browser, device, pages viewed and referring site,
             and use cookies or similar technologies. Ezoic&apos;s consent interface provides choices where applicable.
-            Advertising placements remain inactive while the site awaits review and ad-category configuration.
-            We have removed Adsterra&apos;s banners, native ads and Sponsored offers link. Monetag, Adcash and Infolinks ad scripts are inactive.
+            Ezoic advertising placements remain inactive while the site awaits review and ad-category configuration.
+            We have removed Adsterra&apos;s banners, native ads and Sponsored offers link. Adcash and Infolinks ad scripts are inactive.
             We do not pass your Firebase account details, saved study progress or private feedback to Ezoic through this integration.
             See <a className="underline" href="https://www.ezoic.com/privacy-policy" target="_blank" rel="noopener noreferrer">Ezoic&apos;s privacy policy</a>.
+          </p>
+          <p className="mt-1">
+            <b>Monetag OnClick advertising</b> runs on public reading pages. After a visitor clicks, it may open an advertiser&apos;s page
+            in a separate browser tab. Its script may process IP address, browser, device, referring page and other technical visit information,
+            and use cookies or similar technologies for ad selection and frequency. It is excluded from sign-in, personal progress, forms,
+            calculators and active tests. We do not send account details or saved progress to Monetag. Its push notifications, in-page push,
+            Vignette overlays and MultiTag are disabled.
           </p>
           <p className="mt-1">
             We removed Adsterra on 18 October 2026. For earlier visits, see the{' '}
             <a className="underline" href="https://adsterra.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Adsterra privacy policy</a>.
             For earlier Adcash visits, see its{' '}
             <a className="underline" href="https://adcash.com/legal/" target="_blank" rel="noopener noreferrer">privacy and opt-out information</a>.
-            Monetag page scripts and its push worker remain disabled. Infolinks is also disabled. If you previously allowed browser notifications, you can revoke that permission
-            in your browser&apos;s site settings. For earlier visits, you can review the{' '}
+            Monetag&apos;s push worker remains disabled. Infolinks is also disabled. If you previously allowed browser notifications, you can revoke that permission
+            in your browser&apos;s site settings. You can review the{' '}
             <a className="underline" href="https://www.infolinks.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Infolinks privacy policy</a>
             {' '}and the{' '}
             <a className="underline" href="https://monetag.com/privacy/" target="_blank" rel="noopener noreferrer">Monetag privacy policy</a>
@@ -112,7 +119,7 @@ export default function PrivacyPage() {
             <li><b>Ezoic</b> provides the consent, site connection and analytics scripts for our display-ad application. Ad placements await review and configuration.</li>
             <li><b>Adsterra</b> was removed on 18 October 2026.</li>
             <li><b>Adcash</b> was replaced on 18 October 2026.</li>
-            <li><b>Monetag</b> has been removed and <b>Infolinks</b> is disabled.</li>
+            <li><b>Monetag</b> serves standalone OnClick ads on public reading pages. <b>Infolinks</b> is disabled.</li>
             <li><b>Google AdSense</b> may serve ads, using cookies as described above.</li>
           </ul>
           <p className="mt-1">These providers process data under their own privacy terms. We do not sell account data or give advertisers access to your saved progress or private feedback.</p>

@@ -4,11 +4,19 @@ import assert from 'node:assert/strict';
 
 const root = path.resolve('out');
 let checked = 0;
+let monetagBundles = 0;
 async function verify(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
     const filename = path.join(directory, entry.name);
     if (entry.isDirectory()) {
       await verify(filename);
+    } else if (entry.name.endsWith('.js')) {
+      const javascript = await readFile(filename, 'utf8');
+      assert.doesNotMatch(javascript, /quge5\.com\/88\/tag\.min\.js|n6wxm\.com\/vignette\.min\.js|bauval\.org|araplhn\.org/, `Unapproved ad SDK in ${filename}`);
+      if (javascript.includes('https://al5sm.com/tag.min.js')) {
+        assert.ok(javascript.includes('12061370') && javascript.includes('monetag-onclick-sdk'), 'Unexpected Monetag zone');
+        monetagBundles++;
+      }
     } else if (entry.name.endsWith('.html')) {
       const html = await readFile(filename, 'utf8');
       const route = path.relative(root, filename);
@@ -27,6 +35,7 @@ async function verify(directory) {
 
 await verify(root);
 assert.ok(checked > 0, 'No exported application pages checked');
+assert.equal(monetagBundles, 1, 'Expected one shared standalone Monetag SDK loader');
 const redirects = await readFile(path.join(root, '_redirects'), 'utf8');
 assert.match(redirects, /^\/ads\.txt\s+https:\/\/srv\.adstxtmanager\.com\/19390\/examshortcut\.in\s+301$/m);
-console.log(`Verified Ezoic connection scripts on ${checked} pages, managed ads.txt, no old ad tags, and no ad placements before approval.`);
+console.log(`Verified Ezoic connection on ${checked} pages, managed ads.txt, one approved standalone Monetag loader, and no Ezoic placements or other ad SDKs.`);

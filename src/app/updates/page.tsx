@@ -13,6 +13,16 @@ type Entry = { date: string; title: string; points: string[] };
 const LOG: Entry[] = [
   {
     date: '18 October 2026',
+    title: 'Standalone Monetag OnClick advertising',
+    points: [
+      'Enabled one standalone Monetag popunder zone on public reading pages; it may open a separate advertiser tab after a click.',
+      'Login, personal progress, forms, calculators and active tests are excluded. Navigation into these pages clears the advertising document.',
+      'Adsterra, MultiTag, push notifications, in-page push and Vignette overlays remain disabled.',
+      'Ezoic connection and managed ads.txt remain in place. Ezoic display placements are inactive pending review and configuration.',
+    ],
+  },
+  {
+    date: '18 October 2026',
     title: 'Ezoic display-ad application',
     points: [
       'Removed Adsterra banners, native ads and Sponsored offers, along with their reserved page space.',
