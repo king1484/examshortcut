@@ -52,7 +52,7 @@ function BannerSlot({ size, media, className }: {
       <p className="text-[11px] faint text-center mb-2">Advertisement</p>
       <div ref={slot} data-adsterra-zone={zone} style={{ width, height, maxWidth: '100%' }}>
         {ready && <iframe title={`Adsterra ${size} display advertisement`}
-          src={`/advertising/display.html?size=${size}`} width={width} height={height}
+          src={`/advertising/display?size=${size}`} width={width} height={height}
           scrolling="no" referrerPolicy="origin"
           sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
           style={{ border: 0, display: 'block', maxWidth: '100%' }} />}
@@ -97,7 +97,7 @@ function NativeSlot() {
     <p className="text-[11px] faint text-center mb-2">Advertisement</p>
     <div ref={slot} data-adsterra-zone="31792392" style={{ minHeight: height }}>
       {ready && <iframe ref={frame} title="Adsterra native banner advertisements"
-        src="/advertising/native.html" width="100%" height={height} scrolling="no"
+        src="/advertising/native" width="100%" height={height} scrolling="no"
         referrerPolicy="origin" sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
         style={{ border: 0, display: 'block' }} />}
     </div>
