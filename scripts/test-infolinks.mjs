@@ -4,7 +4,7 @@ import vm from 'node:vm';
 import { infolinksBootstrap } from '../src/lib/infolinks.ts';
 import { isPublicAdPage } from '../src/lib/advertising.ts';
 
-test('advertising excludes account, messages, personal inputs and active tests', () => {
+test('disabled Infolinks integration retains its public-reading allowlist', () => {
   for (const url of [
     '', '/login/', '/dashboard/', '/revision/', '/feedback/', '/feature-requests/', '/contact/', '/privacy/',
     '/revision-planner/', '/exams/ssc-cgl/score-calculator/', '/exams/ssc-cgl/posts/',

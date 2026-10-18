@@ -70,14 +70,17 @@ export default function PrivacyPage() {
         <div>
           <h2 className="font-extrabold text-base">Cookies and advertising</h2>
           <p className="mt-1">
-            Public reading pages may show ordinary display banners from <b>Adcash</b>. Its advertising partners may
+            Pages across the site may show ordinary display banners from <b>Adsterra</b>. Its advertising partners may
             receive technical information such as your IP address, browser, device and referring site, and may use
             cookies or web beacons to deliver ads and measure their performance. Advertising can include gambling
             or adult-service offers where permitted by the provider. Ads are separate from our study content and are
-            not recommendations. See <a className="underline" href="https://adcash.com/legal/" target="_blank" rel="noopener noreferrer">Adcash&apos;s privacy policy and opt-out information</a>.
+            not recommendations. The banner runs in a separate frame with no access to the page&apos;s account data or form inputs.
+            See <a className="underline" href="https://adsterra.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Adsterra&apos;s privacy policy</a>.
             You can block or delete advertising cookies through your browser settings.
           </p>
           <p className="mt-1">
+            We replaced Adcash with Adsterra on 18 October 2026. For earlier Adcash visits, see its{' '}
+            <a className="underline" href="https://adcash.com/legal/" target="_blank" rel="noopener noreferrer">privacy and opt-out information</a>.
             We removed the Monetag page scripts and push worker on 16 October 2026. Infolinks is also disabled. We do not request
             ads from either provider. If you previously allowed browser notifications, you can revoke that permission
             in your browser&apos;s site settings. For earlier visits, you can review the{' '}
@@ -105,7 +108,8 @@ export default function PrivacyPage() {
             <li><b>Cloudflare</b> hosts the site and the feedback database, and sees standard request logs.</li>
             <li><b>Google Firebase</b> handles optional sign-in and account progress sync.</li>
             <li><b>Google Analytics 4</b> measures visits in aggregate.</li>
-            <li><b>Adcash</b> serves display banners on public reading pages and processes advertising visit data.</li>
+            <li><b>Adsterra</b> serves display banners across the site and processes advertising visit data.</li>
+            <li><b>Adcash</b> was replaced on 18 October 2026.</li>
             <li><b>Monetag</b> has been removed and <b>Infolinks</b> is disabled.</li>
             <li><b>Google AdSense</b> may serve ads, using cookies as described above.</li>
           </ul>

@@ -13,6 +13,16 @@ type Entry = { date: string; title: string; points: string[] };
 const LOG: Entry[] = [
   {
     date: '18 October 2026',
+    title: 'Display banners across every page',
+    points: [
+      'Replaced Adcash with Adsterra’s approved 300×250 display banner.',
+      'A single shared placement now covers every page, including formulas, practice, mocks, exam tools and account pages.',
+      'The banner sits outside page forms and test controls. Its isolated frame cannot read account data or form inputs.',
+      'One banner request when the slot approaches the screen, no automatic refresh, push prompts, popunders or overlays.',
+    ],
+  },
+  {
+    date: '18 October 2026',
     title: 'Ordinary display advertising',
     points: [
       'Added a labelled 300×250 Adcash display banner to public study guides, exam analyses, topic overviews and the homepage.',

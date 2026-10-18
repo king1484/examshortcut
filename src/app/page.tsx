@@ -6,7 +6,6 @@ import { ExamNotice } from '@/components/ExamNotice';
 import { HomeMocks } from '@/components/HomeMocks';
 import { EXAMS } from '@/lib/exams';
 import { STUDY_GUIDES } from '@/lib/studyGuides';
-import { DisplayBanner } from '@/components/DisplayBanner';
 
 const BUILT_AT = Date.now();
 
@@ -80,7 +79,6 @@ export default function Home() {
         <Link className="btn mt-4" href="/revision-planner/">Make a free revision calendar</Link>
       </section>
 
-      <DisplayBanner />
 
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-10">
         {[
