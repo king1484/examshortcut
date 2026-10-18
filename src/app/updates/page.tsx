@@ -13,6 +13,16 @@ type Entry = { date: string; title: string; points: string[] };
 const LOG: Entry[] = [
   {
     date: '18 October 2026',
+    title: 'Ezoic display-ad application',
+    points: [
+      'Removed Adsterra banners, native ads and Sponsored offers, along with their reserved page space.',
+      'Connected Ezoic through its consent, header and analytics scripts and configured the domain-specific managed ads.txt file.',
+      'Monetag, push ads, popunders and overlay ad units remain inactive during Ezoic review.',
+      'Display placements will wait for approval and ad-category settings so advertising can fit around study content.',
+    ],
+  },
+  {
+    date: '18 October 2026',
     title: 'Non-adult advertising',
     points: [
       'Kept the existing responsive banners, native banners and labelled Sponsored offers link.',

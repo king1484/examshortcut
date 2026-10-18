@@ -8,7 +8,6 @@ import { NavLoader } from '@/components/NavLoader';
 import Link from 'next/link';
 import Script from 'next/script';
 import { AuthProvider } from '@/components/Auth';
-import { DisplayBanner, NativeBanner, SponsoredOffers } from '@/components/DisplayBanner';
 
 const sans = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-sans', display: 'swap' });
 
@@ -72,6 +71,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-IN" className={sans.variable} suppressHydrationWarning>
       <head>
+        <Script id="ezoic-cmp" data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js" strategy="beforeInteractive" />
+        <Script id="ezoic-cmp-2" data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js" strategy="beforeInteractive" />
+        <script async src="https://www.ezojs.com/ezoic/sa.min.js" />
+        <script async src="https://ezoicanalytics.com/analytics.js" />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: siteJsonLd }} />
         <meta name="google-adsense-account" content="ca-pub-1700177065699672" />
@@ -79,15 +82,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen flex flex-col">
         <AuthProvider>
         <SiteHeader />
-        <DisplayBanner />
-        <div className="ad-content-layout flex-1">
-          <DisplayBanner position="left" />
-          <main className="w-full min-w-0 max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">{children}</main>
-          <DisplayBanner position="right" />
-        </div>
-        <DisplayBanner position="bottom" />
-        <NativeBanner />
-        <SponsoredOffers />
+        <main className="w-full min-w-0 max-w-6xl mx-auto flex-1 px-4 sm:px-6 py-6 sm:py-8">{children}</main>
         <footer className="border-t mt-10" style={{ borderColor: 'var(--line)' }}>
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 text-sm faint space-y-3">
             <a
