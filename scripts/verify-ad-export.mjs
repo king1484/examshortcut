@@ -25,7 +25,8 @@ async function verify(directory) {
       const relative = path.relative(root, filename).split(path.sep).join('/');
       const route = relative === 'index.html' ? '/' : `/${relative.replace(/(?:\/index)?\.html$/, '')}/`;
       const html = await readFile(filename, 'utf8');
-      assert.doesNotMatch(html, /31792391/, `Popunder integration on ${route}`);
+      // The live Social Bar test still showed a notification-style card.
+      assert.doesNotMatch(html, /31792391|31792394|fddeed3afc5be59e6049e19c4d7ffb40|bauval\.org\/14\//, `Unapproved Adsterra format on ${route}`);
       assert.doesNotMatch(html, /monetag-(?:multitag|vignette)-(?:bootstrap|sdk)|quge5\.com\/88\/tag\.min\.js|n6wxm\.com\/vignette\.min\.js/, `Monetag tag still present on ${route}`);
       assert.doesNotMatch(html, /infolinks-(?:bootstrap|sdk)|resources\.infolinks\.com\/js\/infolinks_main\.js/, `Infolinks tag still present on ${route}`);
       assert.doesNotMatch(html, /runAutoTag|runPop|runInterstitial|runInPagePush|1wj8naoruw/, `Non-display Adcash integration on ${route}`);
@@ -49,7 +50,6 @@ async function verify(directory) {
         continue;
       }
       assert.deepEqual(slots.map(([, zone]) => zone).sort(), [...zones].sort(), `Expected each responsive advertising slot once on ${route}`);
-      assert.equal([...html.matchAll(/data-adsterra-interstitial="31792394"/g)].length, 1, `Expected one shared interstitial integration on ${route}`);
       const link = html.match(/<a\b[^>]*data-adsterra-smartlink="31792393"[^>]*>/)?.[0];
       assert.ok(link, `Sponsored offers missing on ${route}`);
       assert.ok(link.includes(`href="${smartlink}"`), `Wrong Smartlink on ${route}`);
@@ -92,11 +92,6 @@ const component = await readFile('src/components/DisplayBanner.tsx', 'utf8');
 assert.match(component, /const AD_DOCUMENT_ORIGIN = 'https:\/\/examshortcut\.pages\.dev'/);
 assert.equal((component.match(/src=\{`\$\{AD_DOCUMENT_ORIGIN\}/g) || []).length, 2);
 assert.doesNotMatch(component, /allow-top-navigation/);
-const interstitial = await readFile('src/components/AdsterraInterstitial.tsx', 'utf8');
-assert.match(interstitial, /https:\/\/bauval\.org\/14\/fddeed3afc5be59e6049e19c4d7ffb40/);
-assert.match(interstitial, /strategy="afterInteractive"/);
-assert.match(interstitial, /\['examshortcut\.in', 'www\.examshortcut\.in'\]/);
-assert.doesNotMatch(interstitial, /setInterval|usePathname|31792391|quge5\.com|n6wxm\.com/);
 assert.ok(checked > 0, 'No exported pages were checked');
 assert.ok(banners > 0, 'Display advertising placements missing from export');
-console.log(`Verified seven responsive Adsterra slots, a labelled Smartlink and one interstitial integration on each of ${checked} pages (${banners} total); loader guards passed; no Popunder or old SDKs.`);
+console.log(`Verified seven responsive Adsterra slots and a labelled Smartlink on each of ${checked} pages (${banners} total); loader guards passed; no Social Bar, Popunder or old SDKs.`);
