@@ -13,6 +13,16 @@ type Entry = { date: string; title: string; points: string[] };
 const LOG: Entry[] = [
   {
     date: '18 October 2026',
+    title: 'Non-adult advertising and interstitials',
+    points: [
+      'Kept the existing responsive banners, native banners and labelled Sponsored offers link.',
+      'Adult campaigns are excluded through the advertising provider’s settings.',
+      'Installed the Social Bar unit after provider support restricted it to interstitials. Popunders and push-like Social Bar formats are excluded.',
+      'The interstitial script loads once after page hydration; navigation does not insert duplicate tags.',
+    ],
+  },
+  {
+    date: '18 October 2026',
     title: 'Responsive banners and sponsored offers',
     points: [
       'Added mobile and desktop banners, wide-screen side banners and native banners through the shared layout on every page.',

@@ -70,12 +70,13 @@ export default function PrivacyPage() {
         <div>
           <h2 className="font-extrabold text-base">Cookies and advertising</h2>
           <p className="mt-1">
-            Pages across the site may show display and native banners from <b>Adsterra</b>, and a labelled Sponsored offers link. Its advertising partners may
+            Pages across the site may show display and native banners, interstitial ads and a labelled Sponsored offers link from <b>Adsterra</b>. Its advertising partners may
             receive technical information such as your IP address, browser, device and referring site, and may use
-            cookies or web beacons to deliver ads and measure their performance. Advertising can include gambling
-            or adult-service offers where permitted by the provider. Ads are separate from our study content and are
+            cookies or web beacons to deliver ads and measure their performance. Adult campaigns are excluded in the provider&apos;s settings.
+            Advertising can include gambling offers where permitted by the provider. Ads are separate from our study content and are
             not recommendations. Banners run in separate frames with no access to the page&apos;s account data or form inputs.
             Sponsored offers opens an advertiser destination only when you choose that link; the destination has its own privacy policy.
+            Interstitials use a provider script on the page and may appear over the content; the Social Bar unit is configured for interstitials only, without push-like formats.
             See <a className="underline" href="https://adsterra.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Adsterra&apos;s privacy policy</a>.
             You can block or delete advertising cookies through your browser settings.
           </p>
@@ -109,7 +110,7 @@ export default function PrivacyPage() {
             <li><b>Cloudflare</b> hosts the site and the feedback database, and sees standard request logs.</li>
             <li><b>Google Firebase</b> handles optional sign-in and account progress sync.</li>
             <li><b>Google Analytics 4</b> measures visits in aggregate.</li>
-            <li><b>Adsterra</b> serves display and native banners and Sponsored offers links across the site, and processes advertising visit data.</li>
+            <li><b>Adsterra</b> serves banners, interstitials and Sponsored offers links across the site, and processes advertising visit data.</li>
             <li><b>Adcash</b> was replaced on 18 October 2026.</li>
             <li><b>Monetag</b> has been removed and <b>Infolinks</b> is disabled.</li>
             <li><b>Google AdSense</b> may serve ads, using cookies as described above.</li>
