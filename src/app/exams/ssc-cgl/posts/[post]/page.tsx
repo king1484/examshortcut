@@ -41,9 +41,10 @@ export default async function PostPage({ params }: { params: Promise<{ post: str
   const jsonLd = {
     '@context': 'https://schema.org', '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'SSC CGL', item: '/exams/ssc-cgl/' },
-      { '@type': 'ListItem', position: 2, name: 'Posts', item: '/exams/ssc-cgl/posts/' },
-      { '@type': 'ListItem', position: 3, name: post.name },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://examshortcut.in/' },
+      { '@type': 'ListItem', position: 2, name: 'SSC CGL', item: 'https://examshortcut.in/exams/ssc-cgl/' },
+      { '@type': 'ListItem', position: 3, name: 'Posts', item: 'https://examshortcut.in/exams/ssc-cgl/posts/' },
+      { '@type': 'ListItem', position: 4, name: post.name, item: `https://examshortcut.in/exams/ssc-cgl/posts/${id}/` },
     ],
   };
 

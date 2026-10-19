@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { getTopic } from '@/lib/content';
 import { SolvedExample } from '@/components/SolvedExample';
 import { TopicExamplesGuide } from '@/components/topic-pages/TopicExamplesGuide';
+import { cap } from '@/lib/seo';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -13,8 +14,8 @@ export async function generateMetadata({ params }: { params: Promise<{ section: 
   const t = getTopic(section as never, topic);
   if (!t) return {};
   return {
-    title: `${t.title} — solved examples`,
-    description: `${t.solvedExamples?.length ?? 0} exam-level ${t.title} questions solved step by step, with the shortcut route marked where one exists.`,
+    title: { absolute: cap(`${t.title} — solved examples`, 60) },
+    description: cap(`${t.solvedExamples?.length ?? 0} exam-level ${t.title} questions solved step by step, with the shortcut route marked where one exists.`, 160),
     robots: !t.solvedExamples?.length ? { index: false, follow: true } : undefined,
   };
 }

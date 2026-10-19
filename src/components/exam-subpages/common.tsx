@@ -33,6 +33,22 @@ export function subMeta(id: string, kind: SubKind) {
 export const hubPath = (id: string) => `/exams/${id}/`;
 export const subPath = (id: string, kind: SubKind) => `/exams/${id}/${kind}/`;
 
+/** The SSC MTS hub and its sub-pages still describe the 2025 cycle. */
+export const isSscMtsArchive = (id: string) => id === 'ssc-mts';
+
+export function SscMtsArchiveNote({ id, self = false }: { id: string; self?: boolean }) {
+  if (!isSscMtsArchive(id)) return null;
+  return (
+    <div className="card p-3 mt-4 text-sm" style={{ borderLeft: '3px solid var(--warn)' }}>
+      <strong>2025 cycle archive.</strong>{' '}
+      This page documents the SSC MTS 2025 cycle, whose CBT was held in February 2026. The next cycle has not been verified as notified.{' '}
+      {self
+        ? <a href="#status" className="underline decoration-dotted">Jump to the latest cycle status →</a>
+        : <Link href={hubPath(id)} className="underline decoration-dotted">Read the main SSC MTS guide for the latest status →</Link>}
+    </div>
+  );
+}
+
 export function loadExamPage(id: string): { info: ExamInfo; exam: any; year: number | string } | null {
   const info = getExamInfo(id);
   const exam = getExam(id);
@@ -48,6 +64,15 @@ export function pickFaqs(exam: any, re: RegExp, skip?: RegExp, cap = 5): Faq[] {
   return ((exam.faqs ?? []) as Faq[])
     .filter((f) => f?.q && f?.a && re.test(f.q) && !(skip && skip.test(f.q)))
     .slice(0, cap);
+}
+
+function cap(text: string, max: number) {
+  const clean = text.replace(/\s+/g, ' ').trim();
+  if (clean.length <= max) return clean;
+  const cut = clean.slice(0, max - 1);
+  const at = cut.lastIndexOf(' ');
+  const base = at > Math.floor(max * 0.5) ? cut.slice(0, at) : cut;
+  return `${base.replace(/[\s,;:·—–-]+$/, '')}…`;
 }
 
 export function metaFor(id: string, kind: SubKind): Metadata {
@@ -71,12 +96,17 @@ export function metaFor(id: string, kind: SubKind): Metadata {
     title = `${n} ${year} Exam Pattern — Sections, Marks, Negative Marking`;
     description = `${n} exam pattern: stage-wise questions, marks, duration and negative marking, selection process, normalisation, and how to approach each section with topic links.`;
   }
+  if (isSscMtsArchive(id)) {
+    description = `Archive of the SSC MTS 2025 cycle. ${description}`;
+  }
+  title = cap(title, 60);
+  description = cap(description, 160);
   return {
     title: { absolute: title },
     description,
     alternates: { canonical: subPath(id, kind) },
-    openGraph: { title, description },
-    twitter: { card: 'summary_large_image', title, description },
+    openGraph: { title, description, images: ['/og.png'] },
+    twitter: { card: 'summary_large_image', title, description, images: ['/og.png'] },
   };
 }
 
@@ -182,6 +212,7 @@ export function SubpageFrame({ id, kind, h1, intro, faqs, children }: {
         <Link href="/exams/" className="underline decoration-dotted">Exams</Link> / <Link href={hubPath(id)} className="underline decoration-dotted">{info.name}</Link> / {label}
       </nav>
       <h1 className="text-2xl sm:text-4xl font-extrabold mt-2">{h1}</h1>
+      <SscMtsArchiveNote id={id} />
       <div className="mt-3 text-[15px] muted space-y-3">{lead}</div>
       <SiblingNav id={id} current={kind} />
       {children}

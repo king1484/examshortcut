@@ -10,7 +10,7 @@ import {
   computeSeries, getCalendar, getExpectedSpec, getProcess, getSyllabus, hasPage, pagesFor,
   type PageKind,
 } from '@/lib/examPages';
-import { VerifiedChip, hubPath, loadExamPage, plain, type Faq } from '@/components/exam-subpages/common';
+import { SscMtsArchiveNote, VerifiedChip, hubPath, isSscMtsArchive, loadExamPage, plain, type Faq } from '@/components/exam-subpages/common';
 import { ExamEvents } from './ExamEvents';
 import { AdmitCardChecklist, CalendarPlaybook } from './ExamDepth';
 
@@ -39,6 +39,15 @@ const fmtDate = (iso: string) => new Date(`${iso}T00:00:00+05:30`).toLocaleDateS
 const fmtNum = (n: number) => (Number.isInteger(n) ? String(n) : n.toFixed(2).replace(/0$/, ''));
 
 // ------------------------------------------------------------------ metadata
+function cap(text: string, max: number) {
+  const clean = text.replace(/\s+/g, ' ').trim();
+  if (clean.length <= max) return clean;
+  const cut = clean.slice(0, max - 1);
+  const at = cut.lastIndexOf(' ');
+  const base = at > Math.floor(max * 0.5) ? cut.slice(0, at) : cut;
+  return `${base.replace(/[\s,;:·—–-]+$/, '')}…`;
+}
+
 export function infoMeta(id: string, kind: PageKind): Metadata {
   const page = loadExamPage(id);
   if (!page || !hasPage(id, kind)) return {};
@@ -59,12 +68,17 @@ export function infoMeta(id: string, kind: PageKind): Metadata {
     title = `${n} Expected Cut Off ${y}: Trend From Past Years`;
     description = `${n} previous cut-off trend by year and a rough range for the next cycle, clearly marked as an estimate and not an official figure.`;
   }
+  if (isSscMtsArchive(id)) {
+    description = `Archive of the SSC MTS 2025 cycle. ${description}`;
+  }
+  title = cap(title, 60);
+  description = cap(description, 160);
   return {
     title: { absolute: title },
     description,
     alternates: { canonical: pagePath(id, kind) },
-    openGraph: { title, description },
-    twitter: { card: 'summary_large_image', title, description },
+    openGraph: { title, description, images: ['/og.png'] },
+    twitter: { card: 'summary_large_image', title, description, images: ['/og.png'] },
   };
 }
 
@@ -99,6 +113,7 @@ function Frame({ id, kind, h1, intro, faqs, children }: {
         <Link href="/exams/" className="underline decoration-dotted">Exams</Link> / <Link href={hubPath(id)} className="underline decoration-dotted">{info.name}</Link> / {LABEL[kind]}
       </nav>
       <h1 className="text-2xl sm:text-4xl font-extrabold mt-2">{h1}</h1>
+      <SscMtsArchiveNote id={id} />
       <div className="mt-3 text-[15px] muted space-y-3">{intro}</div>
       <nav aria-label={`${info.name} guide pages`} className="flex flex-wrap gap-2 mt-4 text-sm">
         <Link href={hubPath(id)} className="chip hover:underline">← {info.name} guide</Link>

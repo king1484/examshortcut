@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESC,
   alternates: { canonical: '/exams/cat/score-calculator/' },
-  openGraph: { title: TITLE, description: DESC },
+  openGraph: { title: TITLE, description: DESC, images: ['/og.png'] },
 };
 
 /* eslint-disable @typescript-eslint/no-explicit-any */

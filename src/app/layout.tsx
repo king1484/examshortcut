@@ -8,7 +8,6 @@ import { NavLoader } from '@/components/NavLoader';
 import Link from 'next/link';
 import Script from 'next/script';
 import { AuthProvider } from '@/components/Auth';
-import { MonetagAds } from '@/components/MonetagAds';
 
 const sans = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-sans', display: 'swap' });
 
@@ -72,10 +71,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-IN" className={sans.variable} suppressHydrationWarning>
       <head>
-        <Script id="ezoic-cmp" data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js" strategy="beforeInteractive" />
-        <Script id="ezoic-cmp-2" data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js" strategy="beforeInteractive" />
-        <script async src="https://www.ezojs.com/ezoic/sa.min.js" />
-        <script async src="https://ezoicanalytics.com/analytics.js" />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: siteJsonLd }} />
         <meta name="google-adsense-account" content="ca-pub-1700177065699672" />
@@ -151,7 +146,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </footer>
         <NavLoader />
         <SwRegister />
-        <MonetagAds />
         {/* lazyOnload: gtag.js is ~170 KB and ~0.8 s of main-thread work on mobile; load it after the page is idle */}
         <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`} strategy="lazyOnload" />
         <Script id="ga4" strategy="lazyOnload">

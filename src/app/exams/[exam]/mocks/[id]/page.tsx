@@ -18,10 +18,26 @@ export function generateStaticParams(): { exam: string; id: string }[] {
 
 type Params = Promise<{ exam: string; id: string }>;
 
+/** Trim to Google's display limits at a word boundary (local, so other templates stay untouched). */
+function cap(text: string, max: number) {
+  const clean = text.replace(/\s+/g, ' ').trim();
+  if (clean.length <= max) return clean;
+  const cut = clean.slice(0, max - 1);
+  const at = cut.lastIndexOf(' ');
+  const base = at > Math.floor(max * 0.5) ? cut.slice(0, at) : cut;
+  return `${base.replace(/[\s,;:·—–-]+$/, '')}…`;
+}
+
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { exam, id } = await params;
   const m = MOCK_DEFS.find((x) => x.id === id && x.exam === exam);
-  return m ? { title: m.title, description: `${m.title}. ${m.blurb}`, alternates: { canonical: `/exams/${exam}/mocks/${id}/` }, robots: m.reviewHold ? { index: false, follow: true } : undefined } : {};
+  if (!m) return {};
+  return {
+    title: { absolute: cap(m.title, 60) },
+    description: cap(`${m.title}: ${m.blurb}`, 160),
+    alternates: { canonical: `/exams/${exam}/mocks/${id}/` },
+    robots: m.reviewHold ? { index: false, follow: true } : undefined,
+  };
 }
 
 export default async function MockPage({ params }: { params: Params }) {

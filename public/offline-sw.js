@@ -2,8 +2,10 @@
    Static export: every page is a static file; cache-on-request keeps visited
    topics/mocks available offline. Content updates via network-first for pages,
    cache-first for static assets. */
-const VERSION = 'es-v10';
-const SHELL = ['/', '/exams/', '/exams/ssc-cgl/', '/learn/', '/daily-quiz/', '/exams/ssc-cgl/mocks/', '/formula-sheet/', '/revision/', '/about/', '/search/', '/manifest.webmanifest', '/icon.svg', '/search-index.json'];
+const VERSION = 'es-v11';
+// Keep the install small. The 1.4 MB formula sheet and 1.45 MB search index are
+// cached at runtime when a visitor opens those pages, not on every first visit.
+const SHELL = ['/', '/exams/', '/exams/ssc-cgl/', '/learn/', '/daily-quiz/', '/exams/ssc-cgl/mocks/', '/revision/', '/about/', '/search/', '/manifest.webmanifest', '/icon.svg'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()).catch(() => {}));

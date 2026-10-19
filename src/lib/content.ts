@@ -94,7 +94,11 @@ export function getGuide(id: string, examId = 'ssc-cgl'): Guide | null {
 }
 
 // ---------- current affairs (core, month-wise per year) ----------
-export interface CaItem { date: string; category: string; headline: string; detail: string; examFacts?: string[] }
+export interface CaItem {
+  date: string; category: string; headline: string; detail: string; examFacts?: string[];
+  /** Optional attribution for individually verified items. */
+  source?: string; sourceUrl?: string; sourceDate?: string;
+}
 export interface CaMonth { month: string; label: string; items: CaItem[]; quiz?: Question[] }
 export interface CaYear { year: number; months: CaMonth[] }
 
@@ -897,12 +901,12 @@ export const MOCK_DEFS: MockDef[] = [
   {
     id: 't2-mock-1', title: 'Tier 2 Paper 1 Full Mock 1', kind: 'full', tier: 2,
     durationMin: 135, plus: 3, minus: 1, sections: ['quant', 'reasoning', 'english', 'ga', 'computer'],
-    blurb: '150 questions · Maths, Reasoning, English, GA + Computer module · +3 / −1.',
+    blurb: '150 questions · 135 minutes · +3 / −1 · merit 390; Computer 60 marks are qualifying.',
   },
   {
     id: 't2-mock-2', title: 'Tier 2 Paper 1 Full Mock 2', kind: 'full', tier: 2,
     durationMin: 135, plus: 3, minus: 1, sections: ['quant', 'reasoning', 'english', 'ga', 'computer'], open: true,
-    blurb: '150 questions · Maths, Reasoning, English, GA + Computer module · +3 / −1.',
+    blurb: '150 questions · 135 minutes · +3 / −1 · merit 390; Computer 60 marks are qualifying.',
   },
   // ---------- other exams ----------
   {

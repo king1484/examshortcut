@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!exam) return {};
   const title = `${exam.name} Exam Analysis — Shift-wise Difficulty, Good Attempts, Questions Asked`;
   const description = `Day-by-day, shift-by-shift ${exam.name} exam analysis (${dayLabel(exam.window.start)} – ${dayLabel(exam.window.end)}): difficulty level, good attempts, section-wise topics and memory-based questions, updated after every shift.`;
-  return { title: { absolute: title }, description, openGraph: { title, description }, twitter: { card: 'summary_large_image', title, description } };
+  return { title: { absolute: title }, description, openGraph: { title, description, images: ['/og.png'] }, twitter: { card: 'summary_large_image', title, description, images: ['/og.png'] } };
 }
 
 export default async function ExamShiftHub({ params }: Params) {

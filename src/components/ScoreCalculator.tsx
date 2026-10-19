@@ -5,12 +5,16 @@ import { useMemo, useState } from 'react';
 
 interface SecState { correct: number; wrong: number; total: number }
 const T1: Record<string, number> = { quant: 25, reasoning: 25, english: 25, ga: 25 };
+/* Tier 2 merit: 130 questions × 3 = 390. Computer (20 Q) is qualifying only and scored separately. */
+const T2_MERIT: Record<string, number> = { quant: 30, reasoning: 30, english: 45, ga: 25 };
+const T2_COMPUTER = 20;
+const makeState = (totals: Record<string, number>): Record<string, SecState> =>
+  Object.fromEntries(Object.entries(totals).map(([k, v]) => [k, { correct: 0, wrong: 0, total: v }]));
 
 export function ScoreCalculator({ cutoffs, latestYear }: { cutoffs: any; latestYear: number }) {
   const [mode, setMode] = useState<'tier1' | 'tier2'>('tier1');
-  const [sec, setSec] = useState<Record<string, SecState>>(() =>
-    Object.fromEntries(Object.entries(T1).map(([k, v]) => [k, { correct: 0, wrong: 0, total: v }])));
-  const [t2, setT2] = useState<SecState>({ correct: 0, wrong: 0, total: 150 });
+  const [sec, setSec] = useState<Record<string, SecState>>(() => makeState(T1));
+  const [t2, setT2] = useState<Record<string, SecState>>(() => makeState({ ...T2_MERIT, computer: T2_COMPUTER }));
 
   const cats = useMemo(() => {
     const lists = (cutoffs?.tier1 ?? []) as any[];
@@ -19,8 +23,8 @@ export function ScoreCalculator({ cutoffs, latestYear }: { cutoffs: any; latestY
   }, [cutoffs]);
 
   const [cat, setCat] = useState('UR');
-  const active = mode === 'tier1' ? sec : { all: t2 };
-  const keys = Object.keys(active);
+  const active = mode === 'tier1' ? sec : t2;
+  const keys = mode === 'tier1' ? Object.keys(T1) : Object.keys(T2_MERIT);
 
   const attempted = keys.reduce((n, k) => n + active[k].correct + active[k].wrong, 0);
   const totalQ = keys.reduce((n, k) => n + active[k].total, 0);
@@ -29,7 +33,13 @@ export function ScoreCalculator({ cutoffs, latestYear }: { cutoffs: any; latestY
   const correct = keys.reduce((n, k) => n + active[k].correct, 0);
   const wrong = keys.reduce((n, k) => n + active[k].wrong, 0);
   const raw = correct * plus - wrong * minus;
+  const maxMarks = totalQ * plus;
   const accuracy = correct + wrong ? Math.round((100 * correct) / (correct + wrong)) : 0;
+
+  const computer = t2.computer;
+  const computerScore = computer.correct * 3 - computer.wrong;
+  const computerAttempted = computer.correct + computer.wrong;
+  const computerAccuracy = computerAttempted ? Math.round((100 * computer.correct) / computerAttempted) : 0;
 
   // Normalisation heuristics (widely observed ranges, NOT official): typical normalised score
   // drifts ±5-10 marks from raw depending on shift difficulty. Show a band.
@@ -44,31 +54,28 @@ export function ScoreCalculator({ cutoffs, latestYear }: { cutoffs: any; latestY
     { t: 'Well below the cutoff — rebuild weak topics before more mocks', c: 'var(--bad)' };
 
   const update = (k: string, field: keyof SecState, val: number) => {
-    if (mode === 'tier1') {
-      setSec((p) => {
-        const s = { ...p[k] };
-        (s[field] as number) = Math.max(0, Math.min(val, field === 'correct' || field === 'wrong' ? s.total : 400));
-        if (s.correct + s.wrong > s.total) { if (field === 'correct') s.wrong = s.total - s.correct; else s.correct = s.total - s.wrong; }
-        return { ...p, [k]: s };
-      });
-    } else {
-      setT2((p) => {
-        const s = { ...p };
-        (s[field] as number) = Math.max(0, Math.min(val, field === 'correct' || field === 'wrong' ? s.total : 400));
-        if (s.correct + s.wrong > s.total) { if (field === 'correct') s.wrong = s.total - s.correct; else s.correct = s.total - s.wrong; }
-        return s;
-      });
-    }
+    const apply = (p: Record<string, SecState>) => {
+      const s = { ...p[k] };
+      (s[field] as number) = Math.max(0, Math.min(val, field === 'correct' || field === 'wrong' ? s.total : 400));
+      if (s.correct + s.wrong > s.total) { if (field === 'correct') s.wrong = s.total - s.correct; else s.correct = s.total - s.wrong; }
+      return { ...p, [k]: s };
+    };
+    if (mode === 'tier1') setSec(apply); else setT2(apply);
   };
 
-  const names: Record<string, string> = { quant: 'Quant', reasoning: 'Reasoning', english: 'English', ga: 'General Awareness', all: 'All sections (Paper 1)' };
+  const names: Record<string, string> = {
+    quant: mode === 'tier2' ? 'Mathematical Abilities' : 'Quant',
+    reasoning: mode === 'tier2' ? 'Reasoning & General Intelligence' : 'Reasoning',
+    english: mode === 'tier2' ? 'English Language & Comprehension' : 'English',
+    ga: mode === 'tier2' ? 'General Awareness' : 'General Awareness',
+  };
 
   return (
     <div className="mt-6">
       <div className="flex gap-2">
         {(['tier1', 'tier2'] as const).map((m) => (
           <button key={m} className="chip" style={mode === m ? { background: 'var(--ink)', color: 'var(--bg)' } : {}} onClick={() => setMode(m)}>
-            {m === 'tier1' ? 'Tier 1 (100 Q)' : 'Tier 2 Paper 1 (150 Q)'}
+            {m === 'tier1' ? 'Tier 1 (100 Q)' : 'Tier 2 Paper 1 (130 merit Q + 20 Computer)'}
           </button>
         ))}
       </div>
@@ -97,9 +104,32 @@ export function ScoreCalculator({ cutoffs, latestYear }: { cutoffs: any; latestY
         })}
       </div>
 
+      {mode === 'tier2' && (
+        <div className="card p-4 mt-3" style={{ borderStyle: 'dashed' }}>
+          <div className="flex items-center justify-between gap-2 flex-wrap">
+            <span className="font-bold text-sm">Computer Knowledge (qualifying — not in merit)</span>
+            <span className="text-sm font-extrabold">{computerScore.toFixed(2).replace(/\.00$/, '')} / 60</span>
+          </div>
+          <div className="flex items-center justify-between gap-2 flex-wrap mt-1">
+            <span className="text-xs faint">{computerAttempted}/{computer.total} attempted · {computerAccuracy}% accuracy</span>
+            <span className="text-xs faint">Session-I Section-III · 20 Q · 15 min</span>
+          </div>
+          <div className="grid grid-cols-2 gap-3 mt-2">
+            {(['correct', 'wrong'] as const).map((f) => (
+              <label key={f} className="text-xs font-semibold faint uppercase">
+                {f}
+                <input type="number" min={0} max={computer.total} value={computer[f]} onChange={(e) => update('computer', f, Number(e.target.value) || 0)}
+                  className="w-full mt-1 p-2 rounded-lg border text-base font-bold" style={{ borderColor: 'var(--line)', background: 'var(--surface)', color: 'var(--ink)' }} />
+              </label>
+            ))}
+          </div>
+          <input type="range" min={0} max={computer.total} value={computerAttempted} readOnly className="w-full mt-2" aria-label="computer attempted slider" />
+        </div>
+      )}
+
       <div className="card p-5 mt-5">
         <div className="grid grid-cols-3 gap-3 text-center">
-          <div><div className="text-3xl font-extrabold">{raw.toFixed(mode === 'tier1' ? 2 : 0).replace(/\.00$/, '')}</div><div className="text-xs faint font-semibold uppercase">Net score / {totalQ * plus}</div></div>
+          <div><div className="text-3xl font-extrabold">{raw.toFixed(mode === 'tier1' ? 2 : 0).replace(/\.00$/, '')}</div><div className="text-xs faint font-semibold uppercase">Net score / {maxMarks}</div></div>
           <div><div className="text-3xl font-extrabold">{accuracy}%</div><div className="text-xs faint font-semibold uppercase">Accuracy</div></div>
           <div><div className="text-3xl font-extrabold">{attempted}<span className="text-base faint">/{totalQ}</span></div><div className="text-xs faint font-semibold uppercase">Attempted</div></div>
         </div>
@@ -114,6 +144,12 @@ export function ScoreCalculator({ cutoffs, latestYear }: { cutoffs: any; latestY
             </tbody>
           </table>
         </div>
+
+        {mode === 'tier2' && (
+          <p className="text-xs faint mt-3">
+            Merit is out of <b>390</b> (Maths 90 + Reasoning 90 + English 135 + GA 75). The 20-question Computer module is scored separately above and is qualifying only — it does not add to the 390.
+          </p>
+        )}
 
         {cats && mode === 'tier1' && (
           <div className="mt-4">

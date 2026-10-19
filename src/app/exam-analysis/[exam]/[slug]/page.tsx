@@ -42,12 +42,20 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!exam || !r) return {};
   const title = titleFor(exam, r.day, r.shift);
   const description = descFor(exam, r.day, r.shift);
+  /* A shift page is indexable once it has usable analysis; pending shifts stay
+     noindex. A day page needs at least two usable shifts, and if every usable
+     shift is only partial we wait for at least one complete analysis. */
+  const analysed = r.day.shifts.filter(hasAnalysis);
+  const thinDay = !r.shift && (
+    analysed.length < 2 ||
+    (r.day.shifts.some((s) => s.status === 'pending' || s.status === 'partial') && !analysed.some((s) => s.status === 'reported'))
+  );
   return {
     title: { absolute: title },
     description,
-    robots: r.shift?.status === 'pending' || (!r.shift && !r.day.shifts.some(hasAnalysis)) ? { index: false, follow: true } : undefined,
-    openGraph: { title, description, type: 'article', url: `${BASE}/exam-analysis/${examSlug}/${slug}/`, modifiedTime: r.day.updatedAt },
-    twitter: { card: 'summary_large_image', title, description },
+    robots: r.shift?.status === 'pending' || thinDay ? { index: false, follow: true } : undefined,
+    openGraph: { title, description, type: 'article', url: `${BASE}/exam-analysis/${examSlug}/${slug}/`, modifiedTime: r.day.updatedAt, images: ['/og.png'] },
+    twitter: { card: 'summary_large_image', title, description, images: ['/og.png'] },
   };
 }
 

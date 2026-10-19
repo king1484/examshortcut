@@ -26,14 +26,26 @@ export function generateStaticParams() {
   );
 }
 
+/** Trim to Google's display limits at a word boundary (local, so other templates stay untouched). */
+function cap(text: string, max: number) {
+  const clean = text.replace(/\s+/g, ' ').trim();
+  if (clean.length <= max) return clean;
+  const cut = clean.slice(0, max - 1);
+  const at = cut.lastIndexOf(' ');
+  const base = at > Math.floor(max * 0.5) ? cut.slice(0, at) : cut;
+  return `${base.replace(/[\s,;:·—–-]+$/, '')}…`;
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ section: string; topic: string; subtopic: string }> }): Promise<Metadata> {
   const { section, topic, subtopic } = await params;
   const t = getTopic(section as never, topic);
   const s = t?.subtopics.find((x) => x.id === subtopic);
   if (!t || !s) return {};
+  const base = `${s.title} — notes & practice`;
+  const withTopic = `${base} · ${t.title}`;
   return {
-    title: `${s.title} — notes, question types & practice · ${t.title}`,
-    description: `Learn ${s.title} in ${t.title}: clear explanations, worked question types, common mistakes and practice for competitive exams.`,
+    title: { absolute: cap(withTopic.length <= 60 ? withTopic : base, 60) },
+    description: cap(`${s.title} in ${t.title}: notes, worked question types, common mistakes and practice questions for competitive exams.`, 160),
   };
 }
 
@@ -58,6 +70,28 @@ export default async function SubtopicPage({ params }: { params: Promise<{ secti
   const revision = s.revision?.length ? s.revision : recap;
   const minutes = readMinutes(s.concept, s.notes, ...patterns.map((p) => `${p.logic ?? ''} ${(p.steps ?? []).join(' ')} ${p.example?.q ?? ''}`));
 
+  const pageUrl = `https://examshortcut.in/${t.sectionId}/${t.id}/learn/${s.id}/`;
+  const lessonLd = [
+    {
+      '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://examshortcut.in/' },
+        { '@type': 'ListItem', position: 2, name: meta.name, item: `https://examshortcut.in/${t.sectionId}/` },
+        { '@type': 'ListItem', position: 3, name: t.title, item: `https://examshortcut.in/${t.sectionId}/${t.id}/` },
+        { '@type': 'ListItem', position: 4, name: 'Learn', item: `https://examshortcut.in/${t.sectionId}/${t.id}/learn/` },
+        { '@type': 'ListItem', position: 5, name: s.title, item: pageUrl },
+      ],
+    },
+    {
+      '@context': 'https://schema.org', '@type': 'LearningResource',
+      name: s.title, url: pageUrl, inLanguage: 'en-IN', isAccessibleForFree: true,
+      educationalLevel: 'Competitive exam preparation',
+      teaches: patterns.map((p) => p.name),
+      isPartOf: { '@type': 'Course', name: t.title, url: `https://examshortcut.in/${t.sectionId}/${t.id}/` },
+      provider: { '@type': 'Organization', name: 'ExamShortcut', url: 'https://examshortcut.in/' },
+    },
+  ];
+
   // One numbered list drives both the "on this page" box and the section headings.
   const toc: { id: string; title: string }[] = [
     ...sections.map((x) => ({ id: x.id, title: x.title })),
@@ -72,6 +106,7 @@ export default async function SubtopicPage({ params }: { params: Promise<{ secti
 
   return (
     <div className="lesson">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(lessonLd) }} />
       <div className="flex items-center gap-2 mt-4 flex-wrap text-xs faint">
         <Link href={`${learnBase}/`} className="underline decoration-dotted">All subtopics</Link>
         <span>·</span><span>Subtopic {si + 1} of {t.subtopics.length}</span>

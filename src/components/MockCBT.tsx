@@ -142,8 +142,23 @@ export function MockCBT({ mock }: { mock: Mock }) {
       if (a === f.q.answer) { s.correct++; correct++; } else { s.wrong++; wrong++; }
     });
     const scoreVal = Object.values(sections).reduce((n, s) => n + s.score, 0);
+    const meritSections = Object.entries(sections).filter(([sid]) => !(mock.tier === 2 && sid === 'computer'));
+    const meritScoreVal = meritSections.reduce((n, [, s]) => n + s.score, 0);
+    const meritMax = meritSections.reduce((n, [, s]) => n + s.max, 0);
+    const meritCorrect = meritSections.reduce((n, [, s]) => n + s.correct, 0);
+    const meritWrong = meritSections.reduce((n, [, s]) => n + s.wrong, 0);
+    const meritTotal = meritSections.reduce((n, [, s]) => n + s.total, 0);
     const timeSec = mock.durationMin * 60 - Math.max(0, stRef.current.remaining);
-    return { at: Date.now(), score: scoreVal, max: total * mock.plus, correct, wrong, skipped: total - correct - wrong, timeSec, sections };
+    return {
+      at: Date.now(),
+      score: mock.tier === 2 ? meritScoreVal : scoreVal,
+      max: mock.tier === 2 ? meritMax : total * mock.plus,
+      correct: mock.tier === 2 ? meritCorrect : correct,
+      wrong: mock.tier === 2 ? meritWrong : wrong,
+      skipped: mock.tier === 2 ? meritTotal - meritCorrect - meritWrong : total - correct - wrong,
+      timeSec,
+      sections,
+    };
   }
 
   // ---------------- INTRO ----------------
@@ -311,7 +326,19 @@ function MockResult({ mock, flat, answers, times, attempt }: { mock: Mock; flat:
   const { user, configured } = useAuth();
   const path = usePathname() || '/';
   const history = store.attempts()[mock.id] ?? [];
-  const accuracy = attempt.correct + attempt.wrong ? Math.round((100 * attempt.correct) / (attempt.correct + attempt.wrong)) : 0;
+  const computer = mock.tier === 2 ? attempt.sections['computer'] : undefined;
+  /* Tier 2 merit excludes the 20-question Computer module (60 qualifying marks). */
+  const meritEntries = Object.entries(attempt.sections).filter(([sid]) => !(mock.tier === 2 && sid === 'computer'));
+  const meritScore = meritEntries.reduce((n, [, s]) => n + s.score, 0);
+  const meritCorrect = meritEntries.reduce((n, [, s]) => n + s.correct, 0);
+  const meritWrong = meritEntries.reduce((n, [, s]) => n + s.wrong, 0);
+  const meritTotal = meritEntries.reduce((n, [, s]) => n + s.total, 0);
+  const displayScore = mock.tier === 2 ? meritScore : attempt.score;
+  const displayMax = mock.tier === 2 ? 390 : attempt.max;
+  const displayCorrect = mock.tier === 2 ? meritCorrect : attempt.correct;
+  const displayWrong = mock.tier === 2 ? meritWrong : attempt.wrong;
+  const displaySkipped = mock.tier === 2 ? meritTotal - meritCorrect - meritWrong : attempt.skipped;
+  const accuracy = displayCorrect + displayWrong ? Math.round((100 * displayCorrect) / (displayCorrect + displayWrong)) : 0;
 
   // topic-level weakness from subtopic tags
   const topics: Record<string, { c: number; w: number; s: number }> = {};
@@ -338,18 +365,31 @@ function MockResult({ mock, flat, answers, times, attempt }: { mock: Mock; flat:
       <h1 className="text-2xl sm:text-3xl font-extrabold mt-2">Result · {mock.title}</h1>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-5">
         {[
-          ['Score', `${attempt.score.toFixed(2).replace(/\.00$/, '')} / ${attempt.max}`],
+          [mock.tier === 2 ? 'Merit score' : 'Score', `${displayScore.toFixed(2).replace(/\.00$/, '')} / ${displayMax}`],
           ['Accuracy', `${accuracy}%`],
-          ['Correct · Wrong · Skipped', `${attempt.correct} · ${attempt.wrong} · ${attempt.skipped}`],
+          ['Correct · Wrong · Skipped', `${displayCorrect} · ${displayWrong} · ${displaySkipped}`],
           ['Time used', fmt(attempt.timeSec)],
         ].map(([k, v]) => (
           <div key={k} className="card p-4"><div className="text-xs faint font-semibold">{k}</div><div className="text-xl font-extrabold mt-1">{v}</div></div>
         ))}
       </div>
-      {attempt.score > 0 && (
+      {mock.tier === 2 && (
+        <div className="card p-4 mt-3" style={{ borderStyle: 'dashed' }}>
+          <div className="text-xs faint font-semibold">Computer Knowledge (Session-I Section-III)</div>
+          <div className="text-xl font-extrabold mt-1">
+            Computer Knowledge (qualifying): {computer ? `${computer.score.toFixed(2).replace(/\.00$/, '')} / 60` : '— / 60'}
+          </div>
+          <p className="text-xs faint mt-1">
+            {computer
+              ? 'These 60 marks are qualifying only and are not part of the 390-mark merit score.'
+              : 'This attempt has no separate Computer section score, so only the merit score above is shown.'}
+          </p>
+        </div>
+      )}
+      {displayScore > 0 && (
         <ShareScore
-          title={mock.title} score={attempt.score} max={attempt.max} accuracy={accuracy}
-          correct={attempt.correct} wrong={attempt.wrong} skipped={attempt.skipped}
+          title={mock.title} score={displayScore} max={displayMax} accuracy={accuracy}
+          correct={displayCorrect} wrong={displayWrong} skipped={displaySkipped}
           url={`https://examshortcut.in/exams/${mock.exam ?? 'ssc-cgl'}/mocks/${mock.id}/`}
         />
       )}
@@ -373,6 +413,14 @@ function MockResult({ mock, flat, answers, times, attempt }: { mock: Mock; flat:
               const s = attempt.sections[sec.sectionId];
               const idx = flat.map((f, i) => (f.s === si ? i : -1)).filter((i) => i >= 0);
               const t = idx.length ? Math.round(idx.reduce((n, i) => n + times[i], 0) / idx.length) : 0;
+              if (!s) {
+                return (
+                  <tr key={sec.sectionId}>
+                    <td className="font-semibold">{sec.name}</td>
+                    <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>{t}s</td>
+                  </tr>
+                );
+              }
               return (
                 <tr key={sec.sectionId}>
                   <td className="font-semibold">{sec.name}</td>

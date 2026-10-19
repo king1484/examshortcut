@@ -7,7 +7,7 @@ import { Md } from '@/components/Md';
 import { splitLead } from '@/lib/lead';
 import { DatePhases } from '@/components/DatePhases';
 import { CycleTimeline } from '@/components/CycleTimeline';
-import { MoreOnExam } from '@/components/exam-subpages/common';
+import { MoreOnExam, SscMtsArchiveNote, isSscMtsArchive } from '@/components/exam-subpages/common';
 import { ExamGuideLinks } from '@/components/exam-pages/ExamInfoPages';
 import { CatToolsBlock } from '@/components/cat/CatToolsNav';
 import { ExamToolsBlock } from '@/components/exam-tools/ExamToolsBlock';
@@ -31,9 +31,11 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const data = getExam(id);
   if (!info) return {};
   const year = data?.latestCycle?.year ?? new Date().getFullYear();
+  const archive = isSscMtsArchive(id);
+  const title = `${info.name} ${year} — pattern, syllabus & eligibility`;
   return {
-    title: `${info.name} ${year} — exam pattern, syllabus, eligibility & preparation`,
-    description: `${info.name}: ${info.blurb} Exam pattern, eligibility, posts and pay, selection process, topic-wise syllabus with shortcut tricks and FAQs.`,
+    title: { absolute: title },
+    description: `${archive ? 'Archive of the SSC MTS 2025 cycle. ' : ''}${info.name}: ${info.blurb} Pattern, eligibility, posts and pay, selection, syllabus with shortcut tricks and FAQs.`,
     alternates: { canonical: `/exams/${id}/` },
   };
 }
@@ -109,6 +111,7 @@ export default async function ExamHub({ params }: { params: Params }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([faqLd, crumbLd]) }} />
       <p className="text-xs font-bold uppercase tracking-wide" style={{ color: 'var(--brand)' }}>Complete exam guide</p>
       <h1 className="text-2xl sm:text-4xl font-extrabold mt-1">{exam.fullName}</h1>
+      <SscMtsArchiveNote id={id} self />
       <Md className="mt-3 text-[15px] muted">{overview.lead}</Md>
 
       <div id="status" className="card p-5 mt-6 scroll-mt-28">

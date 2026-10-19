@@ -108,15 +108,30 @@ export function StudyPlanner({ topics, mocks, t1Default, t2Default }: { topics: 
   const [today, setToday] = useState<Date | null>(null);
 
   useEffect(() => {
+    const n = new Date(); const t = new Date(n.getFullYear(), n.getMonth(), n.getDate());
+    const todayIso = isoDay(t);
+    /* The page supplies Tier 1's last exam date as the default. Once that date is past,
+       start on Tier 2 instead of opening on a plan that immediately says the date has passed. */
+    const defaultTarget: Config['target'] = t1Default < todayIso ? 'tier2' : 'tier1';
     try {
       const s = JSON.parse(localStorage.getItem(KEY) || 'null');
-      if (s?.cfg) setCfg((c) => ({ ...c, ...s.cfg, t1Date: t1Default }));
+      if (s?.cfg) {
+        const saved = s.cfg as Partial<Config>;
+        setCfg((c) => ({
+          ...c,
+          ...saved,
+          target: saved.target ?? defaultTarget,
+          t1Date: saved.t1Date || t1Default,
+          t2Date: saved.t2Date || t2Default,
+        }));
+      } else {
+        setCfg((c) => ({ ...c, target: defaultTarget }));
+      }
       if (s?.done) setDone(s.done);
     } catch {}
-    const n = new Date(); const t = new Date(n.getFullYear(), n.getMonth(), n.getDate());
     setToday(t);
     setCfg((c) => (c.start ? c : { ...c, start: isoDay(t) }));
-  }, [t1Default]);
+  }, [t1Default, t2Default]);
   const result = useMemo(() => (today ? buildPlan(topics, mocks, cfg, today) : null), [topics, mocks, cfg, today]);
 
   useEffect(() => {

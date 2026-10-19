@@ -21,10 +21,13 @@ export async function generateMetadata({ params }: { params: Promise<{ year: str
   const m = y?.months.find((x) => x.month === `${year}-${month}`);
   if (!m) return {};
   return {
-    title: `Current affairs ${m.label} — exam headlines + quiz`,
-    description: `${m.items.length} exam-relevant current-affairs headlines from ${m.label} in simple English — appointments, awards, sports, schemes, summits, defence, science and economy — with a ${m.quiz?.length ?? 0}-question quiz.`,
+    title: `Current affairs ${m.label} — exam headlines${m.quiz?.length ? ' + quiz' : ''}`,
+    description: `${m.items.length} exam-relevant current-affairs headlines from ${m.label} in simple English — appointments, awards, sports, schemes, summits, defence, science and economy${m.quiz?.length ? ` — with a ${m.quiz.length}-question quiz` : ''}.`,
   };
 }
+
+const sourceDateLabel = (iso: string) =>
+  new Date(`${iso}T00:00:00+05:30`).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' });
 
 const CAT_COLOR: Record<string, string> = {
   appointments: 'var(--info)', awards: 'var(--warn)', sports: 'var(--ok)', schemes: 'var(--brand)',
@@ -70,6 +73,15 @@ export default async function CaMonthPage({ params }: { params: Promise<{ year: 
               <ul className="mt-2 text-sm space-y-0.5" style={{ color: 'var(--ink)' }}>
                 {it.examFacts.map((f, k) => <li key={k}>📌 {f}</li>)}
               </ul>
+            )}
+            {it.source && (
+              <p className="text-xs faint mt-2">
+                Source:{' '}
+                {it.sourceUrl
+                  ? <a className="underline decoration-dotted" href={it.sourceUrl} rel="nofollow noopener" target="_blank">{it.source}</a>
+                  : it.source}
+                {it.sourceDate ? ` · ${sourceDateLabel(it.sourceDate)}` : ''}
+              </p>
             )}
           </article>
         ))}

@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { getTopic } from '@/lib/content';
 import { StudiedToggle } from '@/components/StudiedToggle';
 import { TopicLearnGuide } from '@/components/topic-pages/TopicLearnGuide';
+import { cap } from '@/lib/seo';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -13,8 +14,8 @@ export async function generateMetadata({ params }: { params: Promise<{ section: 
   const t = getTopic(section as never, topic);
   if (!t) return {};
   return {
-    title: `${t.title}: lessons and worked question types`,
-    description: `Learn ${t.title} subtopic by subtopic: detailed notes, every question type with formulas and logic, shortcut tricks and practice sets.`,
+    title: { absolute: cap(`${t.title}: lessons and worked question types`, 60) },
+    description: cap(`Learn ${t.title} subtopic by subtopic: detailed notes, every question type with formulas and logic, shortcut tricks and practice sets.`, 160),
   };
 }
 

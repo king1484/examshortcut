@@ -12,73 +12,23 @@ type Entry = { date: string; title: string; points: string[] };
 
 const LOG: Entry[] = [
   {
-    date: '18 October 2026',
-    title: 'Standalone Monetag OnClick advertising',
+    date: '19 October 2026',
+    title: 'AdSense review clean-up and content corrections',
     points: [
-      'Enabled one standalone Monetag popunder zone on public reading pages; it may open a separate advertiser tab after a click.',
-      'Login, personal progress, forms, calculators and active tests are excluded. Navigation into these pages clears the advertising document.',
-      'Adsterra, MultiTag, push notifications, in-page push and Vignette overlays remain disabled.',
-      'Ezoic connection and managed ads.txt remain in place. Ezoic display placements are inactive pending review and configuration.',
+      'Paused the Monetag OnClick test and removed the Ezoic connection scripts while the AdSense application is reviewed.',
+      'Restored the local ads.txt file for the AdSense publisher and removed the Ezoic redirect.',
+      'Corrected SSC CGL Tier 2 timing and merit scoring, fixed a connector explanation, and repaired the study planner date handling.',
+      'Tightened page metadata, added missing social preview images, and noindexed incomplete exam-analysis pages.',
     ],
   },
   {
-    date: '18 October 2026',
-    title: 'Ezoic display-ad application',
+    date: '16–18 October 2026',
+    title: 'Advertising tests concluded',
     points: [
-      'Removed Adsterra banners, native ads and Sponsored offers, along with their reserved page space.',
-      'Connected Ezoic through its consent, header and analytics scripts and configured the domain-specific managed ads.txt file.',
-      'Monetag, push ads, popunders and overlay ad units remain inactive during Ezoic review.',
-      'Display placements will wait for approval and ad-category settings so advertising can fit around study content.',
-    ],
-  },
-  {
-    date: '18 October 2026',
-    title: 'Non-adult advertising',
-    points: [
-      'Kept the existing responsive banners, native banners and labelled Sponsored offers link.',
-      'Adult campaigns are excluded through the advertising provider’s settings.',
-      'The Social Bar unit remains disabled: the live test showed a notification-style card after support confirmed an interstitial-only setting.',
-      'Popunders and push-like overlays are excluded from the website.',
-    ],
-  },
-  {
-    date: '18 October 2026',
-    title: 'Responsive banners and sponsored offers',
-    points: [
-      'Added mobile and desktop banners, wide-screen side banners and native banners through the shared layout on every page.',
-      'Only formats that fit the screen request ads. Frames load near the viewport and keep advertising scripts separate from accounts and study controls.',
-      'Sponsored offers is a clearly labelled link that opens only when selected.',
-      'Adult campaigns are enabled for the new units. Popunders and the unrestricted Social Bar tag are not installed.',
-    ],
-  },
-  {
-    date: '18 October 2026',
-    title: 'Display banners across every page',
-    points: [
-      'Replaced Adcash with Adsterra’s approved 300×250 display banner.',
-      'A single shared placement now covers every page, including formulas, practice, mocks, exam tools and account pages.',
-      'The banner sits outside page forms and test controls. Its isolated frame cannot read account data or form inputs.',
-      'One banner request when the slot approaches the screen, no automatic refresh, push prompts, popunders or overlays.',
-    ],
-  },
-  {
-    date: '18 October 2026',
-    title: 'Ordinary display advertising',
-    points: [
-      'Added a labelled 300×250 Adcash display banner to public study guides, exam analyses, topic overviews and the homepage.',
-      'Ads load as their slot approaches the screen, with one request per page visit and no automatic refresh.',
-      'Sign-in, account progress, feedback forms, calculators and active tests remain outside advertising placements.',
-      'Updated advertising privacy disclosures. Monetag and Infolinks remain disabled.',
-    ],
-  },
-  {
-    date: '16 October 2026',
-    title: 'Advertising integration and privacy disclosure',
-    points: [
-      'Removed the Monetag MultiTag trial and its push worker. Advertising is paused while applying for ordinary display ads; Infolinks remains disabled.',
-      'Retained the site’s offline handlers under one service-worker registration.',
-      'Excluded sign-in, personal progress, feedback forms, calculators and tests from the advertising code.',
-      'Updated the privacy policy to explain advertising data and visitor choices.',
+      'Tested third-party display and OnClick formats while evaluating advertising partners. All of those tests are paused as of 19 October 2026.',
+      'No pop-unders, push notifications, overlays or sponsored-offer links are active.',
+      'Sign-in, personal progress, forms, calculators and active tests are excluded from advertising.',
+      'Updated the privacy policy to describe the current AdSense-only application.',
     ],
   },
   {

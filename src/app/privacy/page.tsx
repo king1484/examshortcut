@@ -11,7 +11,7 @@ export default function PrivacyPage() {
   return (
     <div className="max-w-3xl mx-auto">
       <h1 className="text-3xl font-extrabold">Privacy policy</h1>
-      <p className="muted mt-2">Last updated: 18 October 2026</p>
+      <p className="muted mt-2">Last updated: 19 October 2026</p>
 
       <div className="card p-5 mt-6 text-sm space-y-4">
         <div>
@@ -70,43 +70,18 @@ export default function PrivacyPage() {
         <div>
           <h2 className="font-extrabold text-base">Cookies and advertising</h2>
           <p className="mt-1">
-            We are preparing ordinary display advertising through <b>Ezoic</b>. Its consent-management, connection and analytics scripts
-            run on the site and may process technical visit information, including IP address, browser, device, pages viewed and referring site,
-            and use cookies or similar technologies. Ezoic&apos;s consent interface provides choices where applicable.
-            Ezoic advertising placements remain inactive while the site awaits review and ad-category configuration.
-            We have removed Adsterra&apos;s banners, native ads and Sponsored offers link. Adcash and Infolinks ad scripts are inactive.
-            We do not pass your Firebase account details, saved study progress or private feedback to Ezoic through this integration.
-            See <a className="underline" href="https://www.ezoic.com/privacy-policy" target="_blank" rel="noopener noreferrer">Ezoic&apos;s privacy policy</a>.
-          </p>
-          <p className="mt-1">
-            <b>Monetag OnClick advertising</b> runs on public reading pages. After a visitor clicks, it may open an advertiser&apos;s page
-            in a separate browser tab. Its script may process IP address, browser, device, referring page and other technical visit information,
-            and use cookies or similar technologies for ad selection and frequency. It is excluded from sign-in, personal progress, forms,
-            calculators and active tests. We do not send account details or saved progress to Monetag. Its push notifications, in-page push,
-            Vignette overlays and MultiTag are disabled.
-          </p>
-          <p className="mt-1">
-            We removed Adsterra on 18 October 2026. For earlier visits, see the{' '}
-            <a className="underline" href="https://adsterra.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Adsterra privacy policy</a>.
-            For earlier Adcash visits, see its{' '}
-            <a className="underline" href="https://adcash.com/legal/" target="_blank" rel="noopener noreferrer">privacy and opt-out information</a>.
-            Monetag&apos;s push worker remains disabled. Infolinks is also disabled. If you previously allowed browser notifications, you can revoke that permission
-            in your browser&apos;s site settings. You can review the{' '}
-            <a className="underline" href="https://www.infolinks.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Infolinks privacy policy</a>
-            {' '}and the{' '}
-            <a className="underline" href="https://monetag.com/privacy/" target="_blank" rel="noopener noreferrer">Monetag privacy policy</a>
-            {' '}and its{' '}
-            <a className="underline" href="https://monetag.com/opt-out/" target="_blank" rel="noopener noreferrer">opt-out page</a>
-            {' '}for data practices and choices. You can also block or delete cookies through your browser settings.
-          </p>
-          <p className="mt-1">
-            ExamShortcut may show advertising served by <b>Google AdSense</b>. Third-party vendors, including Google, use cookies to serve ads based on
-            your prior visits to this or other websites. Google&apos;s use of advertising cookies enables it and its partners to serve ads to you based
-            on your visit to this site and/or other sites on the internet. You can opt out of personalised advertising at{' '}
+            ExamShortcut has applied for <b>Google AdSense</b>. AdSense ads are not served while the application is under review.
+            If the site is approved, Google and its partners may use cookies to serve ads based on your prior visits to this or other websites.
+            You can opt out of personalised advertising at{' '}
             <a className="underline" href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer">Google Ads Settings</a>{' '}
             or at <a className="underline" href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer">aboutads.info</a>, and you can
             control or delete cookies through your browser settings. See{' '}
             <a className="underline" href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">how Google uses data when you use our site</a>.
+          </p>
+          <p className="mt-1">
+            We removed the Ezoic connection scripts and the Monetag OnClick test on 19 October 2026. Adsterra, Adcash and Infolinks were removed earlier.
+            No other advertising network script currently runs on the site. If you previously allowed browser notifications from an older ad unit, you can
+            revoke that permission in your browser&apos;s site settings.
           </p>
         </div>
 
@@ -116,11 +91,7 @@ export default function PrivacyPage() {
             <li><b>Cloudflare</b> hosts the site and the feedback database, and sees standard request logs.</li>
             <li><b>Google Firebase</b> handles optional sign-in and account progress sync.</li>
             <li><b>Google Analytics 4</b> measures visits in aggregate.</li>
-            <li><b>Ezoic</b> provides the consent, site connection and analytics scripts for our display-ad application. Ad placements await review and configuration.</li>
-            <li><b>Adsterra</b> was removed on 18 October 2026.</li>
-            <li><b>Adcash</b> was replaced on 18 October 2026.</li>
-            <li><b>Monetag</b> serves standalone OnClick ads on public reading pages. <b>Infolinks</b> is disabled.</li>
-            <li><b>Google AdSense</b> may serve ads, using cookies as described above.</li>
+            <li><b>Google AdSense</b> is the display-advertising provider applied for; ads are not served until the application is approved.</li>
           </ul>
           <p className="mt-1">These providers process data under their own privacy terms. We do not sell account data or give advertisers access to your saved progress or private feedback.</p>
         </div>

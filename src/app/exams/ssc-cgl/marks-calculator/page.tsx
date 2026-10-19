@@ -7,7 +7,7 @@ import { MarksCalculator } from '@/components/MarksCalculator';
 export const dynamic = 'force-static';
 const TITLE = 'SSC CGL marks calculator from response sheet (private, in your browser)';
 const DESC = 'Read your saved SSC CGL response sheet in the browser: marks with negative marking, section-wise correct, wrong and skipped, and a question-by-question view. Nothing is uploaded.';
-export const metadata: Metadata = { title: TITLE, description: DESC, openGraph: { title: TITLE, description: DESC } };
+export const metadata: Metadata = { title: TITLE, description: DESC, openGraph: { title: TITLE, description: DESC, images: ['/og.png'] } };
 
 export default function MarksCalculatorPage() {
   return (

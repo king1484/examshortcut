@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { getTopic } from '@/lib/content';
 import { LazyTex } from '@/components/LazyTex';
 import { TopicFormulaGuide } from '@/components/topic-pages/TopicFormulaGuide';
+import { cap } from '@/lib/seo';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -14,8 +15,8 @@ export async function generateMetadata({ params }: { params: Promise<{ section: 
   if (!t) return {};
   const n = t.subtopics.reduce((acc, s) => acc + (s.formulas?.length ?? 0), 0);
   return {
-    title: `${t.title} — all ${n} formulas (printable)`,
-    description: `Every ${t.title} formula for competitive exams on one printable page, grouped by subtopic with usage notes.`,
+    title: { absolute: cap(`${t.title} — all ${n} formulas (printable)`, 60) },
+    description: cap(`Every ${t.title} formula for competitive exams on one printable page, grouped by subtopic with usage notes.`, 160),
     robots: n === 0 ? { index: false, follow: true } : undefined,
   };
 }

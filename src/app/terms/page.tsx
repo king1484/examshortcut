@@ -11,7 +11,7 @@ export default function TermsPage() {
   return (
     <div className="max-w-3xl mx-auto">
       <h1 className="text-3xl font-extrabold">Terms of use</h1>
-      <p className="muted mt-2">Last updated: 15 October 2026</p>
+      <p className="muted mt-2">Last updated: 19 October 2026</p>
 
       <div className="card p-5 mt-6 text-sm space-y-4">
         <div>
@@ -71,8 +71,9 @@ export default function TermsPage() {
         <div>
           <h2 className="font-extrabold text-base">Advertising and external links</h2>
           <p className="mt-1">
-            The site may display ads served by third parties such as Google AdSense. We do not control those advertisers and are not responsible
-            for their products or sites. The same applies to any external site we link to.
+            The site has applied for Google AdSense; ads are not served while the application is under review. If approved, ads will be served by
+            Google and its partners. We do not control those advertisers and are not responsible for their products or sites. The same applies to
+            any external site we link to.
           </p>
         </div>
         <div>

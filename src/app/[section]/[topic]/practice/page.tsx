@@ -5,6 +5,7 @@ import { SECTION_META, getTopic } from '@/lib/content';
 import type { SectionId } from '@/lib/sections';
 import { TopicQuiz } from '@/components/TopicQuiz';
 import { TopicPracticeGuide } from '@/components/topic-pages/TopicPracticeGuide';
+import { cap } from '@/lib/seo';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -14,8 +15,8 @@ export async function generateMetadata({ params }: { params: Promise<{ section: 
   const t = getTopic(section as never, topic);
   if (!t) return {};
   return {
-    title: `${t.title} — practice & timed test (${t.practice?.length ?? 0} Q)`,
-    description: `Practice ${t.title} questions: untimed mode with instant explanations, or exam-mode with a per-question time budget, scoring and weakness analysis.`,
+    title: { absolute: cap(`${t.title} — practice & timed test (${t.practice?.length ?? 0} Q)`, 60) },
+    description: cap(`Practice ${t.title} questions: untimed mode with instant explanations, or exam-mode with a per-question time budget, scoring and weakness analysis.`, 160),
     robots: !t.practice?.length ? { index: false, follow: true } : undefined,
   };
 }

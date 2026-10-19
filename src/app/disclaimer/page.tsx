@@ -11,7 +11,7 @@ export default function DisclaimerPage() {
   return (
     <div className="max-w-3xl mx-auto">
       <h1 className="text-3xl font-extrabold">Disclaimer</h1>
-      <p className="muted mt-2">Last updated: 15 October 2026</p>
+      <p className="muted mt-2">Last updated: 19 October 2026</p>
 
       <div className="card p-5 mt-6 text-sm space-y-4">
         <div>
@@ -56,7 +56,8 @@ export default function DisclaimerPage() {
         <div>
           <h2 className="font-extrabold text-base">Advertising and external links</h2>
           <p className="mt-1">
-            The site may show ads served by Adsterra or Google AdSense, and ads are never presented as study content or as a recommendation. Links to other websites, including
+            The site has applied for Google AdSense; ads are not shown while the application is under review. If approved, ads will be served by Google
+            and its partners. Ads are never presented as study content or as a recommendation. Links to other websites, including
             official exam sites, are provided for convenience; we do not control their content or availability. See the{' '}
             <Link className="underline" href="/privacy/">privacy policy</Link> for how ads and cookies work.
           </p>

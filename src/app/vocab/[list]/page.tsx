@@ -60,7 +60,14 @@ export async function generateMetadata({ params }: { params: Promise<{ list: str
   const l = byId(list);
   if (!l) return {};
   const m = META[l.id];
-  return { title: m.title(l.items.length), description: m.desc(l.items.length), openGraph: { title: m.title(l.items.length), description: m.desc(l.items.length) } };
+  const title = m.title(l.items.length);
+  const description = m.desc(l.items.length);
+  return {
+    title,
+    description,
+    openGraph: { title, description, images: ['/og.png'] },
+    twitter: { card: 'summary_large_image', title, description, images: ['/og.png'] },
+  };
 }
 
 export default async function VocabListPage({ params }: { params: Promise<{ list: string }> }) {
