@@ -15,8 +15,8 @@ const LOG: Entry[] = [
     date: '19 October 2026',
     title: 'AdSense review clean-up and content corrections',
     points: [
-      'Paused the Monetag OnClick test and removed the Ezoic connection scripts while the AdSense application is reviewed.',
-      'Restored the local ads.txt file for the AdSense publisher and removed the Ezoic redirect.',
+      'Paused the remaining third-party advertising test and removed all non-AdSense ad scripts while the AdSense application is reviewed.',
+      'Restored the local ads.txt file for the AdSense publisher and removed the third-party ads.txt redirect.',
       'Corrected SSC CGL Tier 2 timing and merit scoring, fixed a connector explanation, and repaired the study planner date handling.',
       'Tightened page metadata, added missing social preview images, and noindexed incomplete exam-analysis pages.',
     ],
@@ -25,7 +25,7 @@ const LOG: Entry[] = [
     date: '16–18 October 2026',
     title: 'Advertising tests concluded',
     points: [
-      'Tested third-party display and OnClick formats while evaluating advertising partners. All of those tests are paused as of 19 October 2026.',
+      'Tested third-party display and sponsored-link formats while evaluating advertising partners. All of those tests are paused as of 19 October 2026.',
       'No pop-unders, push notifications, overlays or sponsored-offer links are active.',
       'Sign-in, personal progress, forms, calculators and active tests are excluded from advertising.',
       'Updated the privacy policy to describe the current AdSense-only application.',

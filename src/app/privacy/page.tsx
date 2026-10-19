@@ -79,9 +79,8 @@ export default function PrivacyPage() {
             <a className="underline" href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">how Google uses data when you use our site</a>.
           </p>
           <p className="mt-1">
-            We removed the Ezoic connection scripts and the Monetag OnClick test on 19 October 2026. Adsterra, Adcash and Infolinks were removed earlier.
-            No other advertising network script currently runs on the site. If you previously allowed browser notifications from an older ad unit, you can
-            revoke that permission in your browser&apos;s site settings.
+            We removed all third-party advertising scripts on 19 October 2026. Only Google AdSense is currently used.
+            If your browser saved a notification permission from an earlier third-party script, you can revoke that permission in your browser&apos;s site settings.
           </p>
         </div>
 
