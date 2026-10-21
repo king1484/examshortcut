@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { listExamUpdates } from '@/lib/examUpdates';
 import { ExamUpdateBrowser } from '@/components/ExamUpdateBrowser';
+import { AllExamPreparationLinks } from '@/components/ExamPreparationLinks';
 
 export const dynamic = 'force-static';
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function ExamUpdatesPage() {
     <p className="muted mt-4 max-w-3xl">Results, official exam dates and the next step to take. Every update names the recruitment cycle, links to its official notice and shows when we checked it.</p>
     <nav className="flex flex-wrap gap-3 mt-5" aria-label="Exam update sections"><Link className="btn" href="/results/">Published results →</Link><Link className="btn" href="/answer-keys/">Answer keys &amp; response sheets</Link><Link className="btn" href="/exam-analysis/">Shift analysis</Link><a className="btn" href="/exam-updates.xml">RSS feed</a></nav>
     <ExamUpdateBrowser items={items} />
+    <AllExamPreparationLinks />
     <p className="text-sm muted mt-8">We publish an update after finding usable official evidence. A future date is a schedule, not proof that a result or download is available. <Link href="/editorial-policy/" className="underline">How we check content</Link>.</p>
   </div>;
 }

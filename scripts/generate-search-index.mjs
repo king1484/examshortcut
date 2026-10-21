@@ -73,6 +73,15 @@ for (const guide of STUDY_GUIDES) {
     text: clean(`${guide.title} ${guide.description} ${guide.audience} ${guide.sections.map(s => s.title).join(' ')}`) });
 }
 
+// Exam-specific playbooks use the same JSON files as their static pages.
+for (const exam of fs.readdirSync(EXAMS)) {
+  const dir = path.join(EXAMS, exam, 'guides');
+  if (!fs.existsSync(dir)) continue;
+  const guides = fs.readdirSync(dir).filter(file => file.endsWith('.json')).map(file => read(path.join(dir, file)));
+  if (guides.length) push({ t: 'page', title: `${exam.toUpperCase().replaceAll('-', ' ')} preparation guides`, url: `/exams/${exam}/guides/`, text: clean(guides.map(guide => guide.title).join(' ')) });
+  for (const guide of guides) push({ t: 'page', title: guide.title, url: `/exams/${exam}/guides/${guide.id}/`, text: clean(`${guide.description} ${guide.intro} ${guide.sections.map(section => section.title).join(' ')}`) });
+}
+
 // Mocks
 if (fs.existsSync(EXAMS)) {
   for (const exam of fs.readdirSync(EXAMS)) {

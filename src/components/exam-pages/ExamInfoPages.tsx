@@ -242,7 +242,7 @@ export function AdmitCardInfoPage({ id }: { id: string }) {
   const faqs: Faq[] = [
     { q: `Where do I download the ${info.name} admit card?`, a: `${pr.admitCard.where}. ${pr.admitCard.when}.` },
     pr.answerKey.released
-      ? { q: `Is the ${info.name} answer key released, and can I challenge it?`, a: `${pr.answerKey.summary} ${pr.answerKey.fee}` }
+      ? { q: `How do ${info.name} answer keys and objections work?`, a: `${pr.answerKey.summary} ${pr.answerKey.fee}` }
       : { q: `Does ${info.name} release an answer key?`, a: pr.answerKey.summary },
     { q: `How do I check the ${info.name} result?`, a: `${pr.result.summary} ${pr.result.scorecard}` },
   ];

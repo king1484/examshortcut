@@ -14,6 +14,7 @@ import { ExamToolsBlock } from '@/components/exam-tools/ExamToolsBlock';
 import { ExamPhoto } from '@/components/ExamPhoto';
 import { ExamUpdatesForExam } from '@/components/ExamUpdatesForExam';
 import { OfficialSourceLinks } from '@/components/OfficialSourceLinks';
+import { ExamPreparationLinks } from '@/components/ExamPreparationLinks';
 
 const BUILT_AT = Date.now();
 
@@ -139,6 +140,7 @@ export default async function ExamHub({ params }: { params: Params }) {
       </div>
 
       <ExamUpdatesForExam examId={id} />
+      <ExamPreparationLinks examId={id} />
 
       <nav className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-6">
         {links.map(([href, t, s]) => (

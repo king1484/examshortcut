@@ -9,6 +9,13 @@ on:
       - 'content/exam-updates.json'
       - 'content/exams/**/exam.json'
       - 'content/exams/**/process.json'
+      - 'content/exams/**/guides/**'
+      - 'src/app/exams/**/guides/**'
+      - 'src/app/study-guides/**'
+      - 'src/components/ExamGuideArticle.tsx'
+      - 'src/components/ExamPreparationLinks.tsx'
+      - 'src/components/GuideChecklist.tsx'
+      - 'scripts/*exam-guide*.mjs'
       - 'src/app/exam-updates/**'
       - 'src/app/results/**'
       - 'src/app/answer-keys/**'
@@ -55,6 +62,7 @@ jobs:
           npm run build
           node scripts/verify-seo.mjs
           node scripts/verify-exam-updates-export.mjs
+          node --experimental-strip-types scripts/verify-exam-guides.mjs
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -67,3 +75,4 @@ jobs:
         run: |
           node scripts/verify-live-login.mjs
           node scripts/verify-live-exam-updates.mjs
+          node --experimental-strip-types scripts/verify-exam-guides.mjs --live

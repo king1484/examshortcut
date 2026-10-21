@@ -10,6 +10,11 @@ if (!base) throw new Error('--base requires a Git revision');
 const changed = execFileSync('git', ['diff', '--name-only', base, 'HEAD'], {encoding:'utf8'}).trim().split('\n');
 const urls = new Set();
 for (const file of changed) {
+  const guideChange = /^content\/exams\/([^/]+)\/guides\/([^/]+)\.json$/.exec(file);
+  if (guideChange) {
+    const [, exam, slug] = guideChange;
+    for (const route of [`/exams/${exam}/guides/${slug}/`, `/exams/${exam}/guides/`, `/exams/${exam}/`, '/study-guides/']) urls.add(BASE + route);
+  }
   const examChange = /^content\/exams\/([^/]+)\/(exam|process)\.json$/.exec(file);
   if (examChange) {
     const exam = examChange[1];

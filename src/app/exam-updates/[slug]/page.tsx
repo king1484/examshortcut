@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { ExamPreparationLinks } from '@/components/ExamPreparationLinks';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getExamUpdate, listExamUpdates } from '@/lib/examUpdates';
@@ -53,6 +54,7 @@ export default async function ExamUpdatePage({ params }: Props) {
     <section className="card p-5 mt-8"><h2 className="text-xl font-extrabold">What to do next</h2><ol className="list-decimal pl-5 space-y-3 mt-4">{item.nextSteps.map(step => <li key={step}>{step}</li>)}</ol></section>
     <nav className="flex flex-wrap gap-3 mt-6" aria-label="Continue with this exam"><Link className="btn" href={`/exams/${item.examId}/`}>{exam?.name} guide</Link><Link className="btn" href={`/exams/${item.examId}/calendar/`}>Important dates</Link><Link className="btn" href={`/exams/${item.examId}/admit-card/`}>Result and admit-card guide</Link></nav>
     <p className="text-sm muted mt-6">Compiled from the official sources linked above. <Link href="/editorial-policy/" className="underline">Source and corrections policy</Link> · <Link href="/feedback/" className="underline">Report a correction</Link>.</p>
+    <ExamPreparationLinks examId={item.examId} />
     {related.length > 0 && <section className="mt-10"><h2 className="font-extrabold text-2xl mb-4">Related updates</h2><ExamUpdateCards items={related} /></section>}
   </article>;
 }

@@ -78,6 +78,11 @@ export interface Guide {
   faqs?: { q: string; a: string }[];
   related?: string[];
   lastVerified?: string;
+  publishedAt?: string;
+  updatedAt?: string;
+  sources?: { label: string; url: string }[];
+  checklist?: string[];
+  drills?: { prompt: string; answer: string; explanation: string }[];
 }
 /** Display order for the guides index; anything not listed follows alphabetically. */
 const GUIDE_ORDER = ['preparation-strategy', 'study-plan-30-days', 'study-plan-60-days', 'study-plan-90-days', 'best-books', 'tier-2-strategy', 'cgl-vs-chsl'];

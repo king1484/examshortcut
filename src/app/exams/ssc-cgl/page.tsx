@@ -8,6 +8,7 @@ import { DatePhases } from '@/components/DatePhases';
 import { CycleTimeline } from '@/components/CycleTimeline';
 import { MoreOnExam } from '@/components/exam-subpages/common';
 import { ExamPhoto } from '@/components/ExamPhoto';
+import { ExamPreparationLinks } from '@/components/ExamPreparationLinks';
 
 const BUILT_AT = Date.now();
 
@@ -222,6 +223,7 @@ export default function ExamPage() {
         ))}
       </div>
 
+      <ExamPreparationLinks examId="ssc-cgl" />
       {exam.documents && (
         <>
           <h2 className="text-2xl font-extrabold mt-10">Documents for document verification</h2>

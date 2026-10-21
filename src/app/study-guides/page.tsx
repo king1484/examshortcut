@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { STUDY_GUIDES } from '@/lib/studyGuides';
+import { AllExamPreparationLinks } from '@/components/ExamPreparationLinks';
 
 export const dynamic = 'force-static';
 export const metadata: Metadata = {
   title: 'Free study guides for competitive exam preparation',
-  description: 'Start maths and English from basics, study with a job, revise current affairs and fix repeated mistakes. Practical free guides for competitive exam aspirants.',
+  description: 'Free guides for all 15 portal exams: SSC, Railway, banking, CAT and UP Police. Worked learning checks, saved action checklists and beginner study routines.',
   alternates: { canonical: '/study-guides/' },
 };
 
@@ -15,6 +16,7 @@ export default function StudyGuidesPage() {
       <p className="kicker">Free resources · no login needed</p>
       <h1 className="text-3xl sm:text-5xl font-extrabold mt-2 leading-tight">Make your next study hour count</h1>
       <p className="muted mt-4 max-w-3xl">Pick the problem you face today. Each guide gives you a practical routine, small examples and a route into the lessons you need.</p>
+      <a className="btn btn-brand mt-5" href="#exam-guides">Find my exam’s next-stage guide ↓</a>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-7">
         {STUDY_GUIDES.map((g) => (
           <Link href={`/study-guides/${g.slug}/`} key={g.slug} className="card p-5 flex flex-col hover:-translate-y-0.5 transition-transform">
@@ -25,6 +27,7 @@ export default function StudyGuidesPage() {
           </Link>
         ))}
       </div>
+      <AllExamPreparationLinks />
       <section className="card p-5 sm:p-7 mt-8">
         <h2 className="text-2xl font-extrabold">Turn a lesson into a revision schedule</h2>
         <p className="muted mt-2">Add topics you studied, get suggested review dates and download calendar reminders. Your saved list stays in this browser.</p>
