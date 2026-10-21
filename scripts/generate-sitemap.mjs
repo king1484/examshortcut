@@ -239,7 +239,7 @@ function walk(dir) {
       ?? head.match(/<meta\b[^>]*content="([^"]+)"[^>]*property="article:modified_time"/)?.[1];
     // Explicit content dates win; otherwise the generating page's mtime. The build
     // date is only the last resort for a page whose source cannot be identified.
-    const lastmod = newest([isoDate(declared), contentDateFor(route)]) ?? sourceDateFor(route) ?? BUILD_DATE;
+    const lastmod = isoDate(declared) ?? contentDateFor(route) ?? sourceDateFor(route) ?? BUILD_DATE;
     pages.set(url, { url, lastmod });
     groups.get(groupFor(route)).push({ url, lastmod });
   }

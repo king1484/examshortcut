@@ -6,6 +6,7 @@ const BASE = 'https://examshortcut.in';
 const flat = fs.readFileSync(path.join(OUT, 'sitemap.xml'), 'utf8');
 const getLocs = xml => [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]);
 const urls = getLocs(flat);
+const lastmods = new Map([...flat.matchAll(/<url><loc>(.*?)<\/loc>(?:<lastmod>(.*?)<\/lastmod>)?<\/url>/g)].map(m => [m[1], m[2]]));
 assert.equal(new Set(urls).size, urls.length);
 const index = getLocs(fs.readFileSync(path.join(OUT, 'sitemap-index.xml'), 'utf8'));
 const grouped = index.flatMap(url => getLocs(fs.readFileSync(path.join(OUT, new URL(url).pathname), 'utf8')));
@@ -20,6 +21,9 @@ for (const url of urls) {
   assert(head.includes('property="og:title"'), url);
   assert(head.includes('property="og:description"'), url);
   assert(head.includes('name="twitter:title"'), url);
+  const declared = head.match(/<meta\b[^>]*property="article:modified_time"[^>]*content="([^"]+)"/)?.[1]
+    ?? head.match(/<meta\b[^>]*content="([^"]+)"[^>]*property="article:modified_time"/)?.[1];
+  if (declared) assert.equal(lastmods.get(url), declared, `Declared content date overridden: ${url}`);
   checked++;
 }
 const read = route => fs.readFileSync(path.join(OUT,route,'index.html'),'utf8');
@@ -47,7 +51,6 @@ for (const exam of fs.readdirSync(path.join(OUT, 'exams'))) {
     }
   }
 }
-assert(fs.readFileSync(path.join(OUT,'sitemap-study-guides.xml'),'utf8').includes('<lastmod>2026-10-10</lastmod>'));
 assert(fs.readFileSync(path.join(OUT,'robots.txt'),'utf8').includes(BASE+'/sitemap-index.xml'));
 // Every exported sitemap URL must resolve; canonical redirects stay outside it.
 console.log(`SEO export checks passed: ${checked} canonical pages, ${index.length} sitemaps, metadata, content dates and ${legacyMocks} legacy-test redirects.`);
