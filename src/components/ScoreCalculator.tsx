@@ -1,7 +1,6 @@
 'use client';
 import { useMemo, useState } from 'react';
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { cutoffKey, tier1CutoffEntries, updateAnswerCounts, type CutoffEntry } from '@/lib/scoreCalculator';
 
 interface SecState { correct: number; wrong: number; total: number }
 const T1: Record<string, number> = { quant: 25, reasoning: 25, english: 25, ga: 25 };
@@ -11,18 +10,16 @@ const T2_COMPUTER = 20;
 const makeState = (totals: Record<string, number>): Record<string, SecState> =>
   Object.fromEntries(Object.entries(totals).map(([k, v]) => [k, { correct: 0, wrong: 0, total: v }]));
 
-export function ScoreCalculator({ cutoffs, latestYear }: { cutoffs: any; latestYear: number }) {
+export function ScoreCalculator({ cutoffs }: { cutoffs: { tier1?: CutoffEntry[] } | null }) {
   const [mode, setMode] = useState<'tier1' | 'tier2'>('tier1');
   const [sec, setSec] = useState<Record<string, SecState>>(() => makeState(T1));
   const [t2, setT2] = useState<Record<string, SecState>>(() => makeState({ ...T2_MERIT, computer: T2_COMPUTER }));
 
-  const cats = useMemo(() => {
-    const lists = (cutoffs?.tier1 ?? []) as any[];
-    const latest = lists.filter((l) => l.cutoffs).sort((a, b) => b.year - a.year)[0];
-    return latest ? { year: latest.year, cutoffs: latest.cutoffs as Record<string, number>, list: latest.list } : null;
-  }, [cutoffs]);
-
+  const entries = useMemo(() => tier1CutoffEntries(cutoffs), [cutoffs]);
+  const [selectedList, setSelectedList] = useState('');
+  const cats = entries.find((entry) => cutoffKey(entry) === selectedList) ?? entries[0] ?? null;
   const [cat, setCat] = useState('UR');
+  const activeCat = cats && cat in cats.cutoffs ? cat : Object.keys(cats?.cutoffs ?? {})[0];
   const active = mode === 'tier1' ? sec : t2;
   const keys = mode === 'tier1' ? Object.keys(T1) : Object.keys(T2_MERIT);
 
@@ -41,25 +38,12 @@ export function ScoreCalculator({ cutoffs, latestYear }: { cutoffs: any; latestY
   const computerAttempted = computer.correct + computer.wrong;
   const computerAccuracy = computerAttempted ? Math.round((100 * computer.correct) / computerAttempted) : 0;
 
-  // Normalisation heuristics (widely observed ranges, NOT official): typical normalised score
-  // drifts ±5-10 marks from raw depending on shift difficulty. Show a band.
-  const normLow = raw - 7, normHigh = raw + 5;
-  const cutoff = cats?.cutoffs?.[cat] ?? null;
+  const cutoff = cats?.cutoffs?.[activeCat] ?? null;
   const gap = cutoff !== null ? raw - cutoff : null;
-  const verdict =
-    gap === null ? null :
-    gap >= 20 ? { t: 'Strong — this was a cutoff-clearing score in recent years', c: 'var(--ok)' } :
-    gap >= 0 ? { t: 'Around the cutoff — borderline. Push accuracy and attempts', c: 'var(--warn)' } :
-    gap >= -20 ? { t: 'Close — 10-20 more marks is very doable with 5-6 more correct answers', c: 'var(--warn)' } :
-    { t: 'Well below the cutoff — rebuild weak topics before more mocks', c: 'var(--bad)' };
+  const gapColor = gap !== null && gap >= 0 ? 'var(--ok)' : 'var(--warn)';
 
-  const update = (k: string, field: keyof SecState, val: number) => {
-    const apply = (p: Record<string, SecState>) => {
-      const s = { ...p[k] };
-      (s[field] as number) = Math.max(0, Math.min(val, field === 'correct' || field === 'wrong' ? s.total : 400));
-      if (s.correct + s.wrong > s.total) { if (field === 'correct') s.wrong = s.total - s.correct; else s.correct = s.total - s.wrong; }
-      return { ...p, [k]: s };
-    };
+  const update = (k: string, field: 'correct' | 'wrong', val: number) => {
+    const apply = (p: Record<string, SecState>) => ({ ...p, [k]: updateAnswerCounts(p[k], field, val) });
     if (mode === 'tier1') setSec(apply); else setT2(apply);
   };
 
@@ -140,10 +124,10 @@ export function ScoreCalculator({ cutoffs, latestYear }: { cutoffs: any; latestY
               <tr><td>Correct × +{plus}</td><td className="text-right">+{(correct * plus).toFixed(2).replace(/\.00$/, '')}</td></tr>
               <tr><td>Wrong × −{minus}</td><td className="text-right" style={{ color: 'var(--bad)' }}>−{(wrong * minus).toFixed(2).replace(/\.00$/, '')}</td></tr>
               <tr><td className="font-bold">Net (before normalisation)</td><td className="text-right font-bold">{raw.toFixed(2).replace(/\.00$/, '')}</td></tr>
-              <tr><td>Likely normalised band*</td><td className="text-right">{normLow.toFixed(1)} – {normHigh.toFixed(1)}</td></tr>
             </tbody>
           </table>
         </div>
+        <p className="text-xs faint mt-3">This is your raw score. Normalised marks cannot be calculated from correct and wrong counts alone; use SSC&apos;s published scorecard for your official result.</p>
 
         {mode === 'tier2' && (
           <p className="text-xs faint mt-3">
@@ -153,14 +137,19 @@ export function ScoreCalculator({ cutoffs, latestYear }: { cutoffs: any; latestY
 
         {cats && mode === 'tier1' && (
           <div className="mt-4">
+            <label className="block text-sm font-bold">Historical cutoff list
+              <select className="block w-full mt-2 p-2 rounded-lg border text-sm" style={{ borderColor: 'var(--line)', background: 'var(--surface)', color: 'var(--ink)' }} value={cutoffKey(cats)} onChange={(event) => setSelectedList(event.target.value)}>
+                {entries.map((entry) => <option key={cutoffKey(entry)} value={cutoffKey(entry)}>{entry.year} · {entry.list}</option>)}
+              </select>
+            </label>
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-sm font-bold">Compare with {cats.year} cutoff:</span>
+              <span className="text-sm font-bold">Category:</span>
               {Object.keys(cats.cutoffs).map((c) => (
-                <button key={c} className="chip" style={cat === c ? { background: 'var(--ink)', color: 'var(--bg)' } : {}} onClick={() => setCat(c)}>{c}</button>
+                <button key={c} className="chip" aria-pressed={activeCat === c} style={activeCat === c ? { background: 'var(--ink)', color: 'var(--bg)' } : {}} onClick={() => setCat(c)}>{c}</button>
               ))}
             </div>
             {(() => {
-              const c = cats.cutoffs[cat];
+              const c = cats.cutoffs[activeCat];
               const pct = Math.max(0, Math.min(100, (raw / c) * 100));
               return (
                 <div className="mt-3">
@@ -170,10 +159,9 @@ export function ScoreCalculator({ cutoffs, latestYear }: { cutoffs: any; latestY
                   </div>
                   <p className="text-sm mt-2">
                     Cutoff <b>{c}</b> · your net <b>{raw.toFixed(2).replace(/\.00$/, '')}</b> ·{' '}
-                    {gap !== null && <b style={{ color: verdict?.c }}>{gap >= 0 ? '+' : ''}{gap.toFixed(2).replace(/\.00$/, '')} vs cutoff</b>}
+                    {gap !== null && <b style={{ color: gapColor }}>{gap >= 0 ? '+' : ''}{gap.toFixed(2).replace(/\.00$/, '')} vs cutoff</b>}
                   </p>
-                  {verdict && <p className="text-sm font-semibold mt-1" style={{ color: verdict.c }}>{verdict.t}</p>}
-                  <p className="text-xs faint mt-2">List used: {cats.list}. *Normalisation band is an estimate based on typical year-to-year/shift-to-shift movement — SSC's exact normalised score depends on your shift's difficulty.</p>
+                  <p className="text-xs faint mt-2">List used: {cats.year} · {cats.list} · {activeCat}. This compares your raw score with a historical published cutoff. It does not predict normalisation, qualification or this year&apos;s cutoff.</p>
                 </div>
               );
             })()}

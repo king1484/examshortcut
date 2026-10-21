@@ -8,7 +8,7 @@
   "tier1": 3,
   "tier2": 4
  },
- "summary": "Mean, median, mode and simple dispersion: raw-data medians, the mode = 3·median − 2·mean relation, grouped-data formulas, range and SD with shift-scale effects. Every question is formula-driven with small numbers — statistics is among the most scoring blocks in the Quant paper once the six formulas above are memorised.",
+ "summary": "Choose the right measure of centre and spread: weighted means, sorted-data medians, modes, grouped estimates, and population versus sample variance. Work through cumulative frequencies and shift-and-scale rules, with checked examples and practice questions.",
  "subtopics": [
   {
    "id": "stat-mean",
@@ -211,7 +211,7 @@
   {
    "id": "stat-median-mode",
    "title": "Median and mode of raw data",
-   "concept": "The median is the middle value after you sort the list: half the values sit below it, half above.\n\nThe mode is the value that appears most often. A list has one middle and one most-frequent value, and exam questions mostly test how each behaves when the list changes.",
+   "concept": "The median is the middle observation after sorting; with an even count, average the two central observations. It need not be one of the original values.\n\nA mode is a value with the greatest frequency. There can be one mode, several tied modes, or no single useful mode. For data where every observation has the same frequency, report that there is no unique mode.\n\nThe empirical mean–median–mode relation is an approximation for some moderately skewed distributions. Use it only when the question asks you to assume that relation; calculate directly when the observations are supplied.",
    "formulas": [
     {
      "name": "Median (odd n)",
@@ -224,12 +224,13 @@
     },
     {
      "name": "Empirical relation",
-     "tex": "\\text{Mode} = 3\\,\\text{Median} - 2\\,\\text{Mean}",
-     "note": "Rough rule for mildly skewed data; rearrange for any missing one."
+     "tex": "\\text{Mode} \\approx 3\\,\\text{Median} - 2\\,\\text{Mean}",
+     "note": "Approximation for some moderately skewed, unimodal distributions; use only when the question assumes it."
     },
     {
      "name": "Median from mode and mean",
-     "tex": "\\text{Median} = \\frac{\\text{Mode} + 2\\,\\text{Mean}}{3}"
+     "tex": "\\text{Median} \\approx \\frac{\\text{Mode} + 2\\,\\text{Mean}}{3}",
+     "note": "Rearrangement of the empirical approximation, not an exact identity."
     },
     {
      "name": "Transform",
@@ -284,7 +285,7 @@
      "right": "That value is the mode; the median needs cumulative counting."
     }
    ],
-   "notes": "### Median: the middle seat\nSort the values. The median is the middle one.\n\n- Odd count: the value at position $\\dfrac{n+1}{2}$.\n- Even count: the average of the two middle values, positions $\\dfrac{n}{2}$ and $\\dfrac{n}{2}+1$.\n\nList 12, 5, 9, 17, 3, 11, 7 sorts to 3, 5, 7, 9, 11, 12, 17. Seven values, so the median is the 4th: 9.\n\nList 4, 8, 15, 16, 23, 42 has six values. Median $= \\dfrac{15+16}{2} = 15.5$.\n\n> **Rule:** Sort first, always. The median of an unsorted list is the most common wrong answer in this chapter.\n\n### Mode: the crowd favourite\nThe mode is the value with the highest count. No sorting needed, just tally.\n\n4, 7, 9, 7, 11, 4, 7, 2: the count of 7 is three, every other value appears at most twice. Mode = 7.\n\nA list can have two modes (7 and 4 each appearing three times) or no mode at all (every value once).\n\n> **Tip:** Mode is the only average that must be a value from the list. Mean and median can be numbers that are not in the list.\n\n### The empirical relation\nFor data that is mildly lopsided (like marks or incomes), the three averages follow one rough rule:\n\n$$\\text{mode} = 3 \\times \\text{median} - 2 \\times \\text{mean}$$\n\nMean 30, median 32: mode $= 3 \\times 32 - 2 \\times 30 = 36$. It also rearranges: median $= \\dfrac{\\text{mode} + 2\\,\\text{mean}}{3}$.\n\n> **Watch:** This is an estimate, not an identity. Use it only when two of the three averages are given and the third is asked.\n\n### The relation, rearranged\nAny one of the three can be the unknown.\n\nMean 27, mode 45: median $= \\dfrac{45 + 2 \\times 27}{3} = \\dfrac{99}{3} = 33$.\n\nSanity check: mean 27 < median 33 < mode 45 rises steadily, the shape the formula assumes.\n\n> **Tip:** After solving, place the three values in order. If they do not rise or fall together, redo the arithmetic.\n\n### When every value is transformed\nAdd the same number to every value: mean, median and mode all shift by that number.\n\nMultiply every value by $k$: all three get multiplied by $k$.\n\nMedian 15, then every value is doubled and 1 is added: new median $= 2 \\times 15 + 1 = 31$.\n\n> **Rule:** The median follows the same shift and scale as the values themselves.\n\n### A missing value from the median\nThe median pins one value of the sorted list, so it can pin an unknown.\n\nSeven values: 10, 12, 13, $x+4$, 20, 22, 25. With seven entries the median is the 4th, which is $x+4$ itself:\n\n$$x + 4 = 15 \\Rightarrow x = 11$$\n\n> **Example:** With an even count the two middle entries average to the median, so their sum is $2 \\times$ median.\n",
+   "notes": "### Median: the middle seat\nSort the values. The median is the middle one.\n\n- Odd count: the value at position $\\dfrac{n+1}{2}$.\n- Even count: the average of the two middle values, positions $\\dfrac{n}{2}$ and $\\dfrac{n}{2}+1$.\n\nList 12, 5, 9, 17, 3, 11, 7 sorts to 3, 5, 7, 9, 11, 12, 17. Seven values, so the median is the 4th: 9.\n\nList 4, 8, 15, 16, 23, 42 has six values. Median $= \\dfrac{15+16}{2} = 15.5$.\n\n> **Rule:** Sort first, always. The median of an unsorted list is the most common wrong answer in this chapter.\n\n### Mode: the crowd favourite\nThe mode is the value with the highest count. No sorting needed, just tally.\n\n4, 7, 9, 7, 11, 4, 7, 2: the count of 7 is three, every other value appears at most twice. Mode = 7.\n\nA list can have two modes (7 and 4 each appearing three times) or no mode at all (every value once).\n\n> **Tip:** Mode is the only average that must be a value from the list. Mean and median can be numbers that are not in the list.\n\n### The empirical relation\nFor data that is mildly lopsided (like marks or incomes), the three averages follow one rough rule:\n\n$$\\text{mode} = 3 \\times \\text{median} - 2 \\times \\text{mean}$$\n\nMean 30, median 32: mode $= 3 \\times 32 - 2 \\times 30 = 36$. It also rearranges: median $= \\dfrac{\\text{mode} + 2\\,\\text{mean}}{3}$.\n\n> **Watch:** This is an estimate, not an identity. Use it only when the question explicitly assumes the empirical relation. Two given measures alone do not determine the third for an arbitrary data set.\n\n### The relation, rearranged\nAny one of the three can be the unknown.\n\nMean 27, mode 45: median $= \\dfrac{45 + 2 \\times 27}{3} = \\dfrac{99}{3} = 33$.\n\nSanity check: mean 27 < median 33 < mode 45 rises steadily, the shape the formula assumes.\n\n> **Tip:** After solving, place the three values in order. If they do not rise or fall together, redo the arithmetic.\n\n### When every value is transformed\nAdd the same number to every value: mean, median and mode all shift by that number.\n\nMultiply every value by $k$: all three get multiplied by $k$.\n\nMedian 15, then every value is doubled and 1 is added: new median $= 2 \\times 15 + 1 = 31$.\n\n> **Rule:** The median follows the same shift and scale as the values themselves.\n\n### A missing value from the median\nThe median pins one value of the sorted list, so it can pin an unknown.\n\nSeven values: 10, 12, 13, $x+4$, 20, 22, 25. With seven entries the median is the 4th, which is $x+4$ itself:\n\n$$x + 4 = 15 \\Rightarrow x = 11$$\n\n> **Example:** With an even count the two middle entries average to the median, so their sum is $2 \\times$ median.\n\n\n### Tied modes and outliers\nIn $2,2,5,5,9$, both $2$ and $5$ occur twice: the data is bimodal. Do not average tied modes. Replacing $9$ by $99$ changes the mean from $4.6$ to $22.6$, but the median stays $5$. An extreme observation can move the mean sharply while leaving the median unchanged.\n",
    "patterns": [
     {
      "id": "stat-mm-p1",
@@ -397,9 +398,9 @@
    ],
    "revision": [
     "Median: sort, then middle value; even $n$ averages the middle pair.",
-    "Mode: highest frequency; it must be a value from the list.",
+    "Mode: greatest frequency; tied maximum frequencies give multiple modes.",
     "Mode $= 3$ Median $- 2$ Mean (estimate).",
-    "Median $= \\dfrac{\\text{Mode} + 2\\,\\text{Mean}}{3}$.",
+    "Under the empirical approximation, Median $\\approx \\dfrac{\\text{Mode} + 2\\,\\text{Mean}}{3}$.",
     "Shift by $c$: all averages shift by $c$; scale by $k$: all scale by $k$.",
     "A missing middle entry equals the median itself (odd n)."
    ]
@@ -407,7 +408,7 @@
   {
    "id": "stat-grouped",
    "title": "Median and mode of grouped data",
-   "concept": "Grouped data comes as class intervals with frequencies: how many values fall in each band.\n\nThe single values are lost, so we estimate averages from the bands. Every method below uses a cumulative frequency column and the midpoint of each class.",
+   "concept": "Grouped data gives class intervals and frequencies instead of individual observations. Use class midpoints to estimate the mean and cumulative frequencies to locate the median class. The grouped median and mode interpolate within a class; they need not equal the exact values of the ungrouped data.\n\nUse continuous class boundaries. Intervals 10–20, 20–30, … already meet. For integer-valued inclusive classes 10–19, 20–29, … use boundaries 9.5–19.5, 19.5–29.5, … before interpolating.",
    "formulas": [
     {
      "name": "Grouped mean",
@@ -417,12 +418,12 @@
     {
      "name": "Grouped median",
      "tex": "\\text{Med} = L + \\frac{\\frac{n}{2} - c}{f} \\times h",
-     "note": "L: lower limit of median class; c: cf before it; f: its frequency; h: width."
+     "note": "L: lower class boundary; c: cumulative frequency before the median class; f: its frequency; h: class width. This is an estimate."
     },
     {
      "name": "Grouped mode",
      "tex": "\\text{Mode} = L + \\frac{f_m - f_1}{2f_m - f_1 - f_2} \\times h",
-     "note": "f_m: modal class frequency; f_1, f_2: neighbouring frequencies."
+     "note": "For equal-width continuous classes: L is the lower modal-class boundary, f_m its frequency, f_1 and f_2 the neighbouring frequencies."
     }
    ],
    "tricks": [
@@ -475,7 +476,7 @@
      "right": "The unknown frequency multiplies its class midpoint in the numerator."
     }
    ],
-   "notes": "### Reading a frequency table\nA grouped table only says how many values lie in each band, like 20-30 with frequency 10.\n\nTwo columns do all the work:\n\n- Midpoint $x$: the middle of the band, $20$-$30 \\rightarrow 25$.\n- Cumulative frequency (cf): a running total of frequencies down the table.\n\n> **Tip:** Build the cf column once. Median questions, quartile questions and distribution questions all read from it.\n\n### Mean by midpoints\nTreat every value in a class as if it sat at the midpoint.\n\n$$\\bar{x} = \\frac{\\sum f x}{\\sum f}$$\n\nClasses 0-10 and 10-20 with frequencies 4 and 6: $\\sum fx = 4 \\times 5 + 6 \\times 15 = 110$, $\\sum f = 10$, mean $= 11$.\n\n> **Watch:** Midpoints, not class limits. Using 10 for the class 10-20 (instead of 15) is the classic slip.\n\n### Median from the cumulative column\nHalf the values lie below the median, so find the class whose cumulative frequency first reaches $\\dfrac{n}{2}$.\n\n$$\\text{Median} = L + \\frac{\\frac{n}{2} - c}{f} \\times h$$\n\n$L$ is the lower limit of that class, $c$ the cumulative frequency before it, $f$ its frequency, $h$ its width.\n\nTable: classes 0-10, 10-20, 20-30, 30-40, 40-50 with frequencies 4, 6, 10, 8, 2. Then $n = 30$, $\\dfrac{n}{2} = 15$. The cf column runs 4, 10, 20, 28, 30; the first cf to reach 15 is 20, so the median class is 20-30.\n\n$$\\text{Median} = 20 + \\frac{15 - 10}{10} \\times 10 = 25$$\n\n> **Rule:** The median class is where cf crosses $n/2$, never simply the biggest frequency.\n\n### Mode from the tallest bar\nThe modal class has the highest frequency. Then interpolate inside it:\n\n$$\\text{Mode} = L + \\frac{f_m - f_1}{2f_m - f_1 - f_2} \\times h$$\n\n$f_m$ is the modal class frequency, $f_1$ and $f_2$ the frequencies just before and after.\n\nSame classes with frequencies 5, 8, 12, 6, 3: modal class 20-30, so $L = 20$, $f_m = 12$, $f_1 = 8$, $f_2 = 6$, $h = 10$:\n\n$$\\text{Mode} = 20 + \\frac{12 - 8}{2 \\times 12 - 8 - 6} \\times 10 = 20 + 4 = 24$$\n\n> **Tip:** Equal neighbours ($f_1 = f_2$) put the mode exactly at $L + h/2$.\n\n### A missing frequency from the median\nGive the unknown a letter, extend the cf column through it, and apply the median rule.\n\nClasses 10-20, 20-30, 30-40, 40-50 with frequencies 7, 8, $x$, 12 and median 32. Then $n = 27 + x$, $\\dfrac{n}{2}$ must land in 30-40, where $c = 15$:\n\n$$30 + \\frac{\\frac{27+x}{2} - 15}{x} \\times 10 = 32 \\Rightarrow x = 5$$\n\n### A missing frequency from the mean\nThe mean fixes $\\sum fx$. Let the unknown be $f$ and expand both sides.\n\nClasses 0-10, 10-20, 20-30, 30-40, 40-50 with frequencies 5, $f$, 11, 9, 5 and mean 25:\n\n$$\\frac{840 + 15f}{30 + f} = 25 \\Rightarrow 840 + 15f = 750 + 25f \\Rightarrow f = 9$$\n\n> **Watch:** Keep the midpoint of the missing class in the numerator; students often drop it along with the frequency.\n",
+   "notes": "### Reading a frequency table\nA grouped table only says how many values lie in each band, like 20-30 with frequency 10.\n\nTwo columns do all the work:\n\n- Midpoint $x$: the middle of the band, $20$-$30 \\rightarrow 25$.\n- Cumulative frequency (cf): a running total of frequencies down the table.\n\n> **Tip:** Build the cf column once. Median questions, quartile questions and distribution questions all read from it.\n\n### Mean by midpoints\nTreat every value in a class as if it sat at the midpoint.\n\n$$\\bar{x} = \\frac{\\sum f x}{\\sum f}$$\n\nClasses 0-10 and 10-20 with frequencies 4 and 6: $\\sum fx = 4 \\times 5 + 6 \\times 15 = 110$, $\\sum f = 10$, mean $= 11$.\n\n> **Watch:** Midpoints, not class limits. Using 10 for the class 10-20 (instead of 15) is the classic slip.\n\n### Median from the cumulative column\nHalf the values lie below the median, so find the class whose cumulative frequency first reaches $\\dfrac{n}{2}$.\n\n$$\\text{Median} = L + \\frac{\\frac{n}{2} - c}{f} \\times h$$\n\n$L$ is the lower limit of that class, $c$ the cumulative frequency before it, $f$ its frequency, $h$ its width.\n\nTable: classes 0-10, 10-20, 20-30, 30-40, 40-50 with frequencies 4, 6, 10, 8, 2. Then $n = 30$, $\\dfrac{n}{2} = 15$. The cf column runs 4, 10, 20, 28, 30; the first cf to reach 15 is 20, so the median class is 20-30.\n\n$$\\text{Median} = 20 + \\frac{15 - 10}{10} \\times 10 = 25$$\n\n> **Rule:** The median class is where cf crosses $n/2$, never simply the biggest frequency.\n\n### Mode from the tallest bar\nThe modal class has the highest frequency. Then interpolate inside it:\n\n$$\\text{Mode} = L + \\frac{f_m - f_1}{2f_m - f_1 - f_2} \\times h$$\n\n$f_m$ is the modal class frequency, $f_1$ and $f_2$ the frequencies just before and after.\n\nSame classes with frequencies 5, 8, 12, 6, 3: modal class 20-30, so $L = 20$, $f_m = 12$, $f_1 = 8$, $f_2 = 6$, $h = 10$:\n\n$$\\text{Mode} = 20 + \\frac{12 - 8}{2 \\times 12 - 8 - 6} \\times 10 = 20 + 4 = 24$$\n\n> **Tip:** Equal neighbours ($f_1 = f_2$) put the mode exactly at $L + h/2$.\n\n### A missing frequency from the median\nGive the unknown a letter, extend the cf column through it, and apply the median rule.\n\nClasses 10-20, 20-30, 30-40, 40-50 with frequencies 7, 8, $x$, 12 and median 32. Then $n = 27 + x$, $\\dfrac{n}{2}$ must land in 30-40, where $c = 15$:\n\n$$30 + \\frac{\\frac{27+x}{2} - 15}{x} \\times 10 = 32 \\Rightarrow x = 5$$\n\n### A missing frequency from the mean\nThe mean fixes $\\sum fx$. Let the unknown be $f$ and expand both sides.\n\nClasses 0-10, 10-20, 20-30, 30-40, 40-50 with frequencies 5, $f$, 11, 9, 5 and mean 25:\n\n$$\\frac{840 + 15f}{30 + f} = 25 \\Rightarrow 840 + 15f = 750 + 25f \\Rightarrow f = 9$$\n\n> **Watch:** Keep the midpoint of the missing class in the numerator; students often drop it along with the frequency.\n\n\n### Inclusive classes need boundaries\nFor integer-valued classes $10$–$19$, $20$–$29$, $30$–$39$ with frequencies $4,8,8$, use boundaries $9.5,19.5,29.5,39.5$. Here $n/2=10$, so the median class is $19.5$–$29.5$ and the estimate is $19.5+(10-4)\\times10/8=27$. Using the printed lower limit $20$ would incorrectly give $27.5$.\n\n> **Watch:** Grouped interpolation uses assumptions within each class. With unequal widths, the tallest frequency count need not be the tallest histogram bar; compare frequency densities before identifying a modal class.\n",
    "patterns": [
     {
      "id": "stat-gr-p1",
@@ -600,16 +601,16 @@
   {
    "id": "stat-dispersion",
    "title": "Range, variance and standard deviation",
-   "concept": "Averages say where the data sits; dispersion says how widely it spreads.\n\nRange is the quick measure. Variance and standard deviation (SD) are the exam measures: SD is the typical distance of values from the mean, in the same unit as the data.",
+   "concept": "Dispersion measures spread. Range is maximum minus minimum. Population variance is the mean squared distance from the mean; population standard deviation is its square root, in the original units.\n\nFor a complete list treated as the population, divide by n. If the question explicitly asks for the sample variance estimator, divide the same squared-deviation total by n − 1. This lesson uses population variance unless the question states otherwise.\n\nAdding a constant does not change spread. Multiplying values by k multiplies SD by |k| and variance by k².",
    "formulas": [
     {
      "name": "Range",
      "tex": "R = \\text{max} - \\text{min}"
     },
     {
-     "name": "Variance",
+     "name": "Population variance",
      "tex": "\\sigma^2 = \\frac{\\sum (x-\\bar{x})^2}{n}",
-     "note": "Average of squared distances from the mean."
+     "note": "Divide by n when the observations are treated as the complete population."
     },
     {
      "name": "Standard deviation",
@@ -635,6 +636,19 @@
     {
      "name": "Sum of squares",
      "tex": "\\sum x^2 = n(\\bar{x}^2 + \\sigma^2)"
+    },
+    {
+     "name": "Sample variance estimator",
+     "tex": "s^2 = \\frac{\\sum (x-\\bar{x})^2}{n-1}",
+     "note": "Use only when sample variance is requested; requires n > 1."
+    },
+    {
+     "name": "Computational population variance",
+     "tex": "\\sigma^2 = \\frac{\\sum x^2}{n} - \\bar{x}^2"
+    },
+    {
+     "name": "Variance under shift and scale",
+     "tex": "\\operatorname{Var}(kx+c) = k^2\\operatorname{Var}(x)"
     }
    ],
    "tricks": [
@@ -683,11 +697,11 @@
      "right": "Take the square root of the variance for the SD."
     },
     {
-     "wrong": "Dividing by n−1 in exam SD questions.",
-     "right": "Exam data is the whole set, so divide by n; n−1 is for samples in statistics theory."
+     "wrong": "Using the same variance denominator for every question.",
+     "right": "Use n for population variance and n − 1 when the sample variance estimator is explicitly requested."
     }
    ],
-   "notes": "### Range: the quick spread\nRange $=$ highest value $-$ lowest value. Values 12, 5, 9, 17, 3 give range $17 - 3 = 14$.\n\nThe range ignores everything in between, so exams use it as a warm-up, not the main dish.\n\n> **Tip:** A new maximum or a new minimum changes the range; a middle value never can.\n\n### Variance and SD: distance from the mean\nTake each value's distance from the mean, square, average, then take the square root.\n\n$$\\sigma^2 = \\frac{\\sum (x - \\bar{x})^2}{n}, \\qquad \\sigma = \\sqrt{\\sigma^2}$$\n\n$\\sigma$ is the standard deviation, read \"sigma\". Values 2, 4, 6, 8, 10 have mean 6 and deviations $-4, -2, 0, 2, 4$:\n\n$$\\sigma^2 = \\frac{16+4+0+4+16}{5} = 8, \\qquad \\sigma = \\sqrt{8} = 2\\sqrt{2} \\approx 2.83$$\n\n> **Rule:** The variance is in squared units; the SD is in the data's own units. That is why we take the root back.\n\n### The shift-and-scale rule\nThis one rule answers most SD questions:\n\n- Add the same number to every value: SD unchanged.\n- Multiply every value by $k$: SD becomes $|k| \\times$ SD. Variance becomes $k^2 \\times$ variance.\n\nData with SD 7, then every value $\\times 3 + 5$: new SD $= 3 \\times 7 = 21$. The mean shifts to $3\\bar{x}+5$, but the 5 never touches the SD.\n\n> **Watch:** Adding 5 tempts everyone into $21 + 5 = 26$. Adding never changes the spread.\n\n### Ready-made spreads\nSome lists have a variance you should not compute from scratch:\n\n- First $n$ naturals $1, 2, \\dots, n$: $\\sigma^2 = \\dfrac{n^2 - 1}{12}$.\n- An arithmetic progression $a, a+d, \\dots$: variance $\\dfrac{(n^2-1)d^2}{12}$, independent of $a$.\n- Two values $p$ and $q$: mean $\\dfrac{p+q}{2}$, SD $\\dfrac{|p-q|}{2}$.\n\nFirst 5 naturals: $\\sigma^2 = \\dfrac{25-1}{12} = 2$, so $\\sigma = \\sqrt{2}$. The two values 9 and 5 have mean 7 and SD $\\dfrac{4}{2} = 2$.\n\n> **Tip:** Multiples of $k$ are an AP with $d = k$: the first five multiples of 3 have SD $3\\sqrt{2}$.\n\n### Coefficient of variation: fair comparison\nTwo teams score in different ranges. Who is more consistent? Compare spread relative to the mean:\n\n$$CV = \\frac{\\sigma}{\\bar{x}} \\times 100\\%$$\n\nBatsman A: mean 50, SD 5, so $CV = 10\\%$. Batsman B: mean 40, SD 3, so $CV = 7.5\\%$. Lower CV means steadier, so B is more consistent even though A's SD is larger.\n\n### Sums the shortcuts love\n$$\\sum x = n\\bar{x}, \\qquad \\sum x^2 = n\\left(\\bar{x}^2 + \\sigma^2\\right)$$\n\nWith $n = 100$, mean 50, SD 5: $\\sum x = 5000$ and $\\sum x^2 = 100(2500 + 25) = 252500$.\n\n> **Watch:** $\\sigma$ must be squared before it joins $\\bar{x}^2$; students add $50 + 5$ and square.\n",
+   "notes": "### Range: the quick spread\nRange $=$ highest value $-$ lowest value. Values 12, 5, 9, 17, 3 give range $17 - 3 = 14$.\n\nThe range ignores everything in between, so exams use it as a warm-up, not the main dish.\n\n> **Tip:** A new maximum or a new minimum changes the range; a middle value never can.\n\n### Variance and SD: distance from the mean\nTake each value's distance from the mean, square, average, then take the square root.\n\n$$\\sigma^2 = \\frac{\\sum (x - \\bar{x})^2}{n}, \\qquad \\sigma = \\sqrt{\\sigma^2}$$\n\n$\\sigma$ is the standard deviation, read \"sigma\". Values 2, 4, 6, 8, 10 have mean 6 and deviations $-4, -2, 0, 2, 4$:\n\n$$\\sigma^2 = \\frac{16+4+0+4+16}{5} = 8, \\qquad \\sigma = \\sqrt{8} = 2\\sqrt{2} \\approx 2.83$$\n\n> **Rule:** The variance is in squared units; the SD is in the data's own units. That is why we take the root back.\n\n### The shift-and-scale rule\nThis one rule answers most SD questions:\n\n- Add the same number to every value: SD unchanged.\n- Multiply every value by $k$: SD becomes $|k| \\times$ SD. Variance becomes $k^2 \\times$ variance.\n\nData with SD 7, then every value $\\times 3 + 5$: new SD $= 3 \\times 7 = 21$. The mean shifts to $3\\bar{x}+5$, but the 5 never touches the SD.\n\n> **Watch:** Adding 5 tempts everyone into $21 + 5 = 26$. Adding never changes the spread.\n\n### Ready-made spreads\nSome lists have a variance you should not compute from scratch:\n\n- First $n$ naturals $1, 2, \\dots, n$: $\\sigma^2 = \\dfrac{n^2 - 1}{12}$.\n- An arithmetic progression $a, a+d, \\dots$: variance $\\dfrac{(n^2-1)d^2}{12}$, independent of $a$.\n- Two values $p$ and $q$: mean $\\dfrac{p+q}{2}$, SD $\\dfrac{|p-q|}{2}$.\n\nFirst 5 naturals: $\\sigma^2 = \\dfrac{25-1}{12} = 2$, so $\\sigma = \\sqrt{2}$. The two values 9 and 5 have mean 7 and SD $\\dfrac{4}{2} = 2$.\n\n> **Tip:** Multiples of $k$ are an AP with $d = k$: the first five multiples of 3 have SD $3\\sqrt{2}$.\n\n### Coefficient of variation: fair comparison\nTwo teams score in different ranges. Who is more consistent? Compare spread relative to the mean:\n\n$$CV = \\frac{\\sigma}{\\bar{x}} \\times 100\\%$$\n\nBatsman A: mean 50, SD 5, so $CV = 10\\%$. Batsman B: mean 40, SD 3, so $CV = 7.5\\%$. Lower CV means steadier, so B is more consistent even though A's SD is larger.\n\n### Sums the shortcuts love\n$$\\sum x = n\\bar{x}, \\qquad \\sum x^2 = n\\left(\\bar{x}^2 + \\sigma^2\\right)$$\n\nWith $n = 100$, mean 50, SD 5: $\\sum x = 5000$ and $\\sum x^2 = 100(2500 + 25) = 252500$.\n\n> **Watch:** $\\sigma$ must be squared before it joins $\\bar{x}^2$; students add $50 + 5$ and square.\n\n\n### Population or sample?\nFor $2,4,6$, the mean is $4$ and the squared deviations sum to $8$. Population variance is $8/3$; the sample variance estimator is $8/(3-1)=4$. Read the requested measure before choosing a denominator. Both use the same observations and mean.\n\n### Correcting a recorded observation\nFor population variance, track both totals: $\\sum x$ and $\\sum x^2$. Replacing a recorded $a$ by the correct $b$ adds $b-a$ to the first total and $b^2-a^2$ to the second. Recompute the mean before using $\\sigma^2=\\sum x^2/n-\\bar{x}^2$.\n\n> **Rule:** SD never becomes negative. Under $y=-2x+7$, the new SD is $2\\sigma$, while the variance becomes $4\\sigma^2$.\n",
    "patterns": [
     {
      "id": "stat-dp-p1",
@@ -797,6 +811,19 @@
       ],
       "answer": "252500"
      }
+    },
+    {
+     "id": "stat-dp-p6",
+     "name": "Population versus sample variance",
+     "frequency": "occasional",
+     "howToSpot": "The question explicitly specifies population variance or asks for the sample variance estimator.",
+     "formula": "\\sigma^2=\\frac{\\sum(x-\\bar{x})^2}{n},\\quad s^2=\\frac{\\sum(x-\\bar{x})^2}{n-1}",
+     "steps": [
+      "Find the mean and sum the squared deviations.",
+      "Choose n for population variance, or n − 1 for the sample variance estimator.",
+      "If standard deviation is requested, take the square root after dividing."
+     ],
+     "why": "The requested measure determines the denominator; the sample estimator compensates for estimating the population mean from the sample."
     }
    ],
    "revision": [
@@ -806,7 +833,8 @@
     "First $n$ naturals: $\\sigma^2 = \\dfrac{n^2-1}{12}$.",
     "Two values: SD $= \\dfrac{|p-q|}{2}$.",
     "$CV = \\dfrac{\\sigma}{\\bar{x}} \\times 100\\%$; lower CV means more consistent.",
-    "$\\sum x^2 = n(\\bar{x}^2 + \\sigma^2)$."
+    "$\\sum x^2 = n(\\bar{x}^2 + \\sigma^2)$.",
+    "Population variance divides by n; the sample variance estimator divides by n − 1."
    ]
   },
   {
@@ -1306,7 +1334,7 @@
   },
   {
    "id": "stat-q07",
-   "q": "If the median of a distribution is 32 and the mean is 30, then the mode is:",
+   "q": "Using the empirical mean–median–mode relation, if the median of a distribution is 32 and the mean is 30, then the mode is:",
    "figure": null,
    "options": [
     "35",
@@ -1315,7 +1343,7 @@
     "34"
    ],
    "answer": 2,
-   "solution": "$\\text{mode}=3\\times32-2\\times30=96-60=36$.",
+   "solution": "Assuming the empirical relation applies, $\\text{mode}=3\\times32-2\\times30=96-60=36$.",
    "shortcut": "Empirical relation straight in: $3m-2\\bar x=36$.",
    "difficulty": "medium",
    "subtopic": "stat-median-mode",
@@ -1489,14 +1517,14 @@
    "q": "A cricketer whose bowling average is 24.5 runs per wicket takes 4 wickets for 52 runs, thereby decreasing his average by 0.5. The number of wickets taken before this match was:",
    "figure": null,
    "options": [
-    "14",
-    "16",
-    "18",
-    "12"
+    "44",
+    "88",
+    "96",
+    "176"
    ],
    "answer": 1,
-   "solution": "Let $n$ wickets before: new average $24 = \\frac{24.5n + 52}{n+4}$, so $24n + 96 = 24.5n + 52 \\Rightarrow 0.5n = 44$... check: $n = 88/2 = 44/2 = 22$? Solve cleanly: $24(n+4) = 24.5n + 52 \\Rightarrow 24n + 96 = 24.5n + 52 \\Rightarrow 44 = 0.5n \\Rightarrow n = 88$. No — set $24(n+4) = 24.5n + 52$: $96 - 52 = 0.5n$, $n = 88$. The exam-standard answer uses average 24: $n = \\frac{52 - 4 \\times 24}{0.5} = \\frac{-44}{0.5}$... Take $n = 16$: total $= 392 + 52 = 444$, $444/20 = 22.2 \\ne 24$. The consistent setup ($n = 16$ wickets, avg 24.5 → 392; new avg $= \\frac{444}{20} = 22.2$) marks 16 as the textbook answer.",
-   "shortcut": "Build the totals equation and solve; verify the option by recomputing the new average.",
+   "solution": "Let the earlier wicket count be $n$. The new bowling average is $24.5 - 0.5 = 24$. Equating total runs gives $24(n+4) = 24.5n + 52$, so $96 - 52 = 0.5n$ and $n = 88$. Check: $(24.5\\times88 + 52)/92 = 2208/92 = 24$.",
+   "shortcut": "The four new wickets would cost $4\\times24=96$ runs at the new average. Saving $96-52=44$ runs lowers the earlier average by $0.5$, so earlier wickets $=44/0.5=88$.",
    "difficulty": "medium",
    "subtopic": "stat-mean",
    "pattern": "stat-mn-p2",
@@ -1507,14 +1535,14 @@
    "q": "The average of 8 numbers is 20. The average of the first two is 15.5 and that of the next three is $21\\tfrac{1}{3}$. The sixth number is 4 less than the seventh and 5 less than the eighth. The eighth number is:",
    "figure": null,
    "options": [
-    "18",
-    "17",
-    "19",
-    "16"
+    "$\\frac{56}{3}$",
+    "$\\frac{68}{3}$",
+    "$\\frac{71}{3}$",
+    "24"
    ],
-   "answer": 0,
-   "solution": "Total $= 160$. First two $= 31$, next three $= 64$: remaining three sum $= 65$. Let 6th $= x$: $x + (x+4) + (x+5) = 65 \\Rightarrow 3x = 56$... The exam-standard print uses 6th $= x$, 7th $= x+4$, 8th $= x+5$ giving $3x = 65 - 9 = 56$, $x = 18.67$ — with the intended integer set 6th $= 17$, 7th $= 21$... The consistent solution for the stated relations with sum 65: 6th 17, 7th 22, 8th 26 does not fit either; the textbook answer is 18 via 6th $= 13$, 7th $= 17$, 8th $= 18$ respecting only the last relation.",
-   "shortcut": "Reduce to totals first; when the printed relations leave no integer solution, pick the option consistent with the sum of the last three (65) split near-equal: 18.",
+   "answer": 2,
+   "solution": "Total $=8\\times20=160$. The first two sum to $2\\times15.5=31$ and the next three to $3\\times21\\tfrac13=64$. The last three therefore sum to $65$. If the sixth is $x$, the seventh is $x+4$ and the eighth is $x+5$. Thus $3x+9=65$, so $x=\\frac{56}{3}$ and the eighth is $\\frac{56}{3}+5=\\frac{71}{3}$.",
+   "shortcut": "Let the eighth be $y$. The last three are $y-5,y-1,y$, giving $3y-6=65$ and $y=71/3$. A fractional answer is valid; the question does not require integers.",
    "difficulty": "medium",
    "subtopic": "stat-mean",
    "pattern": "stat-mn-p1",
@@ -1558,17 +1586,17 @@
   },
   {
    "id": "stat-mean-p11",
-   "q": "A bowler has taken 5 wickets averaging 22 runs given per wicket. How many runs must he give in his next 3 overs taking 1 more wicket to keep his average below 24?",
+   "q": "A bowler has taken 5 wickets at an average of 22 runs per wicket. In the next 3 overs, he takes exactly 1 more wicket. What is the maximum whole number of runs he can concede in those overs while keeping his overall bowling average strictly below 24?",
    "figure": null,
    "options": [
-    "Less than 50 runs",
-    "Less than 47 runs",
-    "Less than 45 runs",
-    "Less than 52 runs"
+    "32",
+    "33",
+    "34",
+    "35"
    ],
    "answer": 1,
-   "solution": "Current runs $= 110$. With 6 wickets, average below 24 needs runs $< 144$: next wicket may cost $< 34$... The stated constraint (6 wickets, $< 24$) allows $< 144 - 110 = 34$ runs per the strict reading; the textbook option set treats it as total under $12 \\times 24 = 288 - 110 = 178/4 = 44.5 \\approx 47$ under a 4-wicket reading.",
-   "shortcut": "Write the inequality $\\frac{110 + r}{6} < 24$ and simplify; match the closest listed bound.",
+   "solution": "Runs already conceded $=5\\times22=110$. With one more wicket, the wicket count is $6$. If he concedes $r$ runs, $(110+r)/6<24$, so $r<34$. The greatest whole number allowed is $33$. At $34$ runs the average would be exactly $24$, which fails the strict inequality.",
+   "shortcut": "The six-wicket total must stay below $6\\times24=144$. Starting from $110$, the next spell must cost less than $34$ runs: at most $33$.",
    "difficulty": "hard",
    "subtopic": "stat-mean",
    "pattern": "stat-mn-p5",
@@ -1594,7 +1622,7 @@
   },
   {
    "id": "stat-median-mode-p04",
-   "q": "If the median of a distribution is 32 and the mean is 30, the mode is:",
+   "q": "Using the empirical mean–median–mode relation, if the median of a distribution is 32 and the mean is 30, the mode is:",
    "figure": null,
    "options": [
     "35",
@@ -1603,7 +1631,7 @@
     "34"
    ],
    "answer": 1,
-   "solution": "$\\text{mode} = 3 \\times 32 - 2 \\times 30 = 36$.",
+   "solution": "Assuming the empirical relation applies, $\\text{mode} = 3 \\times 32 - 2 \\times 30 = 36$.",
    "shortcut": "$3m - 2\\bar{x}$ straight in.",
    "difficulty": "medium",
    "subtopic": "stat-median-mode",
@@ -1638,9 +1666,9 @@
     "9",
     "8"
    ],
-   "answer": 3,
-   "solution": "Sorted without x: 2, 4, 6, 8, 10, 12 (n becomes 7 with x). The median is the 4th term. If $x = 8$: 2, 4, 6, 8, 8, 10, 12 → 4th $= 8$. If $x = 7$: 4th $= 7$. For median 7 with the 4th term 7: 2, 4, 6, 7, 8, 10, 12 works with $x = 7$. The standard print expects the median 7 as the 4th sorted value with $x$ elsewhere: $x = 8$ keeps 8 at position 4... The consistent textbook answer is 8 (data 2, 4, 6, 8, 8, 10, 12, median 8) is inconsistent; with $x$ between 6 and 8 the median is $x$-independent: position 4 = 7 requires $x \\le 7$. Textbook answer: 8.",
-   "shortcut": "Insert x into the sorted order and force the 4th term to equal the median.",
+   "answer": 1,
+   "solution": "Without $x$, the sorted values are $2,4,6,8,10,12$. Seven observations have their median at position $4$. The known values contain no $7$, so the missing observation must be $x=7$. The sorted list becomes $2,4,6,7,8,10,12$.",
+   "shortcut": "For an odd number of observations, the median must be an observation in the list. Only x can supply the missing 7.",
    "difficulty": "medium",
    "subtopic": "stat-median-mode",
    "pattern": "stat-mm-p1",
@@ -1648,7 +1676,7 @@
   },
   {
    "id": "stat-median-mode-p08",
-   "q": "The mode and mean of a distribution are 22 and 16 respectively. The median is:",
+   "q": "Using the empirical mean–median–mode relation, the mode and mean of a distribution are 22 and 16 respectively. The median is:",
    "figure": null,
    "options": [
     "19",
@@ -1657,7 +1685,7 @@
     "17"
    ],
    "answer": 2,
-   "solution": "$22 = 3m - 32 \\Rightarrow 3m = 54 \\Rightarrow m = 18$.",
+   "solution": "Assuming the empirical relation applies, $22 = 3m - 32 \\Rightarrow 3m = 54 \\Rightarrow m = 18$.",
    "shortcut": "Rearranged: $m = \\frac{\\text{mode} + 2\\bar{x}}{3}$.",
    "difficulty": "medium",
    "subtopic": "stat-median-mode",
@@ -1684,7 +1712,7 @@
   },
   {
    "id": "stat-median-mode-p10",
-   "q": "The median of a distribution is 25 and the mean is 29. The mode is:",
+   "q": "Using the empirical mean–median–mode relation, the median of a distribution is 25 and the mean is 29. The mode is:",
    "figure": null,
    "options": [
     "27",
@@ -1693,7 +1721,7 @@
     "19"
    ],
    "answer": 1,
-   "solution": "$\\text{mode} = 3 \\times 25 - 2 \\times 29 = 75 - 58 = 17$.",
+   "solution": "Assuming the empirical relation applies, $\\text{mode} = 3 \\times 25 - 2 \\times 29 = 75 - 58 = 17$.",
    "shortcut": "Here mode < median < mean — the skew is valid; trust the formula.",
    "difficulty": "hard",
    "subtopic": "stat-median-mode",
@@ -1746,8 +1774,8 @@
     "15.5",
     "16.5"
    ],
-   "answer": 3,
-   "solution": "$\\frac{5(5) + 8(15) + 7(25)}{20} = \\frac{330}{20} = 16.5$.",
+   "answer": 0,
+   "solution": "The class midpoints are $5,15,25$. Their frequency-weighted total is $5\\times5+8\\times15+7\\times25=25+120+175=320$. The total frequency is $20$, so the grouped mean estimate is $320/20=16$.",
    "shortcut": "Midpoints 5, 15, 25; direct weighted mean.",
    "difficulty": "medium",
    "subtopic": "stat-grouped",
@@ -1779,12 +1807,12 @@
    "options": [
     "24",
     "25",
-    "23.5",
+    "$23\\tfrac{1}{3}$",
     "24.5"
    ],
-   "answer": 3,
-   "solution": "Modal class 20-30 ($f_1 = 14$, $f_0 = 9$, $f_2 = 4$): $20 + \\frac{5}{28-13} \\times 10 = 20 + \\frac{50}{15} = 23.33$. Exact: $20 + \\frac{14-9}{2(14)-9-4} \\times 10 = 20 + \\frac{50}{15} = 23\\tfrac{1}{3}$ — the closest printed option pattern gives 24.5 under the $f_1 + f_0$ denominator slip; the formula value is $23\\tfrac{1}{3}$.",
-   "shortcut": "$\\frac{f_1 - f_0}{2f_1 - f_0 - f_2} = \\frac{5}{15}$; mode $= 23\\tfrac{1}{3}$ — flag option drift in the print.",
+   "answer": 2,
+   "solution": "The modal class is $20$–$30$, with frequency $14$; its neighbouring frequencies are $9$ and $4$. The grouped-mode estimate is $20+\\frac{14-9}{2\\times14-9-4}\\times10=20+\\frac{50}{15}=23\\tfrac{1}{3}$.",
+   "shortcut": "The rise to the modal bar is $5$ and the fall is $10$. Interpolate $5/(5+10)=1/3$ of the class width above $20$.",
    "difficulty": "hard",
    "subtopic": "stat-grouped",
    "pattern": "stat-gr-p2",
@@ -1800,7 +1828,7 @@
     "25",
     "22"
    ],
-   "answer": 1,
+   "answer": 2,
    "solution": "$n = 20$, $n/2 = 10$; cf: 2, 7, 13, 17, 20 — median class 20-30. Median $= 20 + \\frac{10-7}{6} \\times 10 = 25$.",
    "shortcut": "$cf_{\\text{prev}} = 7$, $f = 6$: median $= 20 + \\frac{3}{6} \\times 10 = 25$.",
    "difficulty": "hard",
@@ -1828,7 +1856,7 @@
   },
   {
    "id": "stat-grouped-p09",
-   "q": "Classes 0-10, 10-20, 20-30 have frequencies 4, f, 6. If the median is 16 and n = 10 + f... the median lies in class 10-20. Using $20 + \\frac{n/2 - 4 - f}{f}(10)$ is not needed: the median of this data cannot exceed 20. If the median is 16, find f (n = 10 + f, n/2 = 5 + f/2):",
+   "q": "For the continuous classes 0–10, 10–20 and 20–30, the frequencies are 4, f and 6 respectively. Using the grouped median formula, the median is 16. Find f.",
    "figure": null,
    "options": [
     "$f = 8$",
@@ -1836,9 +1864,9 @@
     "$f = 12$",
     "$f = 6$"
    ],
-   "answer": 2,
-   "solution": "$10 + \\frac{5 + \\frac{f}{2} - 4}{f} \\times 10 = 16 \\Rightarrow \\frac{1 + \\frac{f}{2}}{f} = 0.6 \\Rightarrow 2 + f = 1.2f \\Rightarrow f = 10$... exact: $1 + \\frac{f}{2} = 0.6f \\Rightarrow 2 + f = 1.2f \\Rightarrow f = 10$. The consistent solution is $f = 10$.",
-   "shortcut": "Reverse the median formula: $10 + \\frac{(n/2) - 4}{f} \\times 10 = 16$; solve the linear equation.",
+   "answer": 1,
+   "solution": "Total frequency $n=10+f$. The median class is $10$–$20$, so $L=10$, previous cumulative frequency $c=4$, class frequency $f$ and width $h=10$. Thus $10+\\frac{(10+f)/2-4}{f}\\times10=16$. This gives $1+f/2=0.6f$, hence $f=10$. Check: cumulative frequencies are $4,14,20$, and $10+(10-4)\\times10/10=16$.",
+   "shortcut": "The median lies $6/10$ of the way through the class, so $n/2-4=0.6f$. Substitute $n=10+f$ to get $f=10$.",
    "difficulty": "medium",
    "subtopic": "stat-grouped",
    "pattern": "stat-gr-p3",
@@ -1972,20 +2000,20 @@
   },
   {
    "id": "stat-dispersion-p10",
-   "q": "The mean and SD of 100 observations are 40 and 5.9 respectively. If 60 is wrongly recorded as 50, the correct SD is:",
+   "q": "A data set has 100 observations. Using the recorded values, its mean is 40 and its population standard deviation is 5.9. One recorded value of 50 should have been 60. Find the corrected population standard deviation.",
    "figure": null,
    "options": [
     "$\\sqrt{35}$",
-    "5",
+    "$\\sqrt{37.8}$",
     "6",
     "7"
    ],
-   "answer": 0,
-   "solution": "Corrected sum $= 4000 + 10 = 4010$ (mean 40.1). Corrected $\\sum x^2 = 100(5.9^2 + 40^2) + (60^2 - 50^2) = 100(34.81 + 1600) + 1100 = 163481 + 1100 = 164581$. New variance $= \\frac{164581}{100} - 40.1^2 = 1645.81 - 1608.01 = 37.8$; SD $\\approx 6.15$. The textbook print (mean 40, SD 5.9 with a different record) gives $\\sqrt{35} \\approx 5.92$.",
-   "shortcut": "Correct both $\\sum x$ and $\\sum x^2$, then rebuild variance: $\\frac{\\sum x^2}{n} - \\bar{x}^2$.",
+   "answer": 1,
+   "solution": "The recorded sum is $100\\times40=4000$, and the recorded sum of squares is $100(5.9^2+40^2)=163481$. Correcting $50$ to $60$ makes the sum $4010$ and the sum of squares $163481-50^2+60^2=164581$. The corrected mean is $40.1$. Hence variance $=164581/100-40.1^2=1645.81-1608.01=37.8$, and SD $=\\sqrt{37.8}\\approx6.148$.",
+   "shortcut": "Correct both totals: add $60-50$ to $\\sum x$ and $60^2-50^2$ to $\\sum x^2$. Then use $\\sigma^2=\\sum x^2/n-\\bar{x}^2$.",
    "difficulty": "hard",
    "subtopic": "stat-dispersion",
-   "pattern": "stat-dp-p2",
+   "pattern": "stat-dp-p5",
    "timeSec": 75
   },
   {
@@ -2070,9 +2098,9 @@
     "45",
     "48"
    ],
-   "answer": 0,
-   "solution": "Middle (4th) = 36; largest = 5th... exact: $36 + 3 \\times 3 = 45$? For 7 terms the largest is the middle + 3d $= 36 + 9 = 45$... wait, middle is the 4th of 7: offsets $-3d..+3d$, so largest $= 36 + 9 = 45$. The options' 42 corresponds to 5 consecutive; the consistent 7-term answer is 45.",
-   "shortcut": "Largest = average + $\\frac{(k-1)d}{2}$ = 36 + 9.",
+   "answer": 2,
+   "solution": "Seven consecutive multiples of $3$ form an arithmetic progression with common difference $3$. The mean is the fourth term, $36$. The largest is three steps above it: $36+3\\times3=45$. The full list is $27,30,33,36,39,42,45$.",
+   "shortcut": "Largest $=$ mean $+\\frac{n-1}{2}d=36+3\\times3=45$.",
    "difficulty": "hard",
    "subtopic": "stat-series-sums",
    "pattern": "stat-ss-p2",
@@ -2113,6 +2141,114 @@
    "subtopic": "stat-series-sums",
    "pattern": "stat-ss-p3",
    "timeSec": 45
+  },
+  {
+   "id": "stat-median-mode-p12",
+   "q": "For the data 2, 2, 5, 5, 9, which values are modes?",
+   "figure": null,
+   "options": [
+    "2 only",
+    "5 only",
+    "2 and 5",
+    "9 only"
+   ],
+   "answer": 2,
+   "solution": "Both 2 and 5 occur twice, while 9 occurs once. The two tied most-frequent values are both modes; their average is not a mode.",
+   "shortcut": "Count frequencies and retain every value tied for the highest count.",
+   "difficulty": "easy",
+   "subtopic": "stat-median-mode",
+   "pattern": "stat-mm-p2",
+   "timeSec": 50
+  },
+  {
+   "id": "stat-median-mode-p13",
+   "q": "Find the median of 19, 4, 13, 8, 17, 11.",
+   "figure": null,
+   "options": [
+    "11",
+    "12",
+    "13",
+    "15"
+   ],
+   "answer": 1,
+   "solution": "Sorted data: $4,8,11,13,17,19$. With six observations, average positions 3 and 4: $(11+13)/2=12$.",
+   "shortcut": "Sort first; the median of an even-sized list can lie between observations.",
+   "difficulty": "easy",
+   "subtopic": "stat-median-mode",
+   "pattern": "stat-mm-p1",
+   "timeSec": 50
+  },
+  {
+   "id": "stat-grouped-p11",
+   "q": "Integer-valued observations are grouped in inclusive classes 10–19, 20–29 and 30–39 with frequencies 4, 8 and 8. Using continuous class boundaries, estimate the median.",
+   "figure": null,
+   "options": [
+    "27",
+    "27.5",
+    "25",
+    "29.5"
+   ],
+   "answer": 0,
+   "solution": "Boundaries are $9.5,19.5,29.5,39.5$, with width $10$. Total $n=20$, so the median class is $19.5$–$29.5$. Median $=19.5+\\frac{10-4}{8}\\times10=27$.",
+   "shortcut": "Use lower boundary 19.5 rather than lower limit 20.",
+   "difficulty": "medium",
+   "subtopic": "stat-grouped",
+   "pattern": "stat-gr-p1",
+   "timeSec": 50
+  },
+  {
+   "id": "stat-dispersion-p11",
+   "q": "Find the sample variance estimator of the observations 2, 4, 6, using the denominator n − 1.",
+   "figure": null,
+   "options": [
+    "2",
+    "$\\frac{8}{3}$",
+    "4",
+    "8"
+   ],
+   "answer": 2,
+   "solution": "Mean $=4$. Squared deviations sum to $(2-4)^2+(4-4)^2+(6-4)^2=8$. Sample variance $s^2=8/(3-1)=4$.",
+   "shortcut": "The denominator is 2 for sample variance; dividing by 3 would give the population variance.",
+   "difficulty": "medium",
+   "subtopic": "stat-dispersion",
+   "pattern": "stat-dp-p6",
+   "timeSec": 50
+  },
+  {
+   "id": "stat-dispersion-p12",
+   "q": "A data set has population standard deviation 4. Each observation x is replaced by −2x + 7. Find the new population standard deviation.",
+   "figure": null,
+   "options": [
+    "−8",
+    "1",
+    "8",
+    "16"
+   ],
+   "answer": 2,
+   "solution": "Adding $7$ leaves spread unchanged. Multiplication by $-2$ scales standard deviation by $|-2|=2$. New SD $=2\\times4=8$.",
+   "shortcut": "Use the absolute scale factor for SD, and its square for variance.",
+   "difficulty": "easy",
+   "subtopic": "stat-dispersion",
+   "pattern": "stat-dp-p2",
+   "timeSec": 50
+  },
+  {
+   "id": "stat-dispersion-p13",
+   "q": "Find the population variance of the observations 2, 4, 6.",
+   "figure": null,
+   "options": [
+    "4",
+    "$\\frac{8}{3}$",
+    "8",
+    "2"
+   ],
+   "answer": 1,
+   "solution": "The mean is $4$ and the squared deviations sum to $8$. Population variance divides by all three observations: $\\sigma^2=8/3$.",
+   "shortcut": "The same data has sample variance 4; check which denominator the question requires.",
+   "difficulty": "easy",
+   "subtopic": "stat-dispersion",
+   "pattern": "stat-dp-p6",
+   "timeSec": 50
   }
  ]
 }

@@ -29,7 +29,8 @@ Run:
 
 ```bash
 npm run validate
-node --experimental-strip-types --test scripts/test-auth-config.mjs scripts/test-feedback.mjs scripts/test-infolinks.mjs
+node --experimental-strip-types --test scripts/test-auth-config.mjs scripts/test-feedback.mjs scripts/test-infolinks.mjs scripts/test-score-calculator.mjs
+python scripts/test-statistics.py
 node scripts/verify-pyq-imports.mjs
 node scripts/verify-pyq-runtime.mjs
 ```

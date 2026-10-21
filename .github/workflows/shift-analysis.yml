@@ -45,6 +45,7 @@ jobs:
     timeout-minutes: 60
     env:
       YT_PROXY: ${{ secrets.YT_PROXY }}
+      YT_PROXIES: ${{ secrets.YT_PROXIES }}
       OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
       NOUS_API_KEY: ${{ secrets.NOUS_API_KEY }}
       NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
@@ -110,7 +111,8 @@ jobs:
         if: steps.diff.outputs.changed == 'true'
         run: |
           npm ci
-          node --test scripts/test-auth-config.mjs scripts/test-feedback.mjs
+          node --experimental-strip-types --test scripts/test-auth-config.mjs scripts/test-feedback.mjs scripts/test-score-calculator.mjs
+          python scripts/test-statistics.py
           npm run validate
 
       - name: Build

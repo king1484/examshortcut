@@ -12,6 +12,16 @@ type Entry = { date: string; title: string; points: string[] };
 
 const LOG: Entry[] = [
   {
+    date: '21 October 2026',
+    title: 'Statistics corrections and clearer score comparisons',
+    points: [
+      'Corrected 10 statistics practice questions, including wrong answer keys, missing correct options and contradictory explanations.',
+      'Added six original questions and expanded the lessons on tied modes, continuous class boundaries, and population versus sample variance. All 62 statistics questions now have independently calculated answer checks.',
+      'The SSC CGL score calculator now accepts whole answer counts and lets you select a historical cutoff by year and post list. Removed the unsupported normalisation band and qualification predictions.',
+      'Restored redirects from old mock-test addresses to their correct exam pages and repaired the check that had blocked automatic analysis publication.',
+    ],
+  },
+  {
     date: '19 October 2026',
     title: 'AdSense review clean-up and content corrections',
     points: [

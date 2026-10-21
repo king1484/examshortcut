@@ -33,6 +33,7 @@ export default function EditorialPolicy() {
     </section>
     <section className="lesson-sec"><h2 className="text-xl font-bold">How content is checked</h2>
       <p className="mt-3">Before a practice paper is published it must pass an automated check: every question needs options, a valid answer position and a solution, and the stated answer must match the text of the keyed option. We also scan imports for garbled characters and for stray text attached to options or solutions. These checks catch structural errors; they do not replace a careful read, and some answer keys in imported papers have not been independently re-solved.</p>
+      <p className="mt-3">All 62 questions in the statistics topic also have independent calculation checks, including a check that exactly one option matches the calculated answer. This additional check covers that topic; it does not mean every question on the site has been independently re-solved.</p>
       <p className="mt-3">When a paper&apos;s explanations stay too close to their source, we hold the paper back and rewrite them in our own words before it is republished. Each material change is noted in the <Link className="underline" href="/updates/">updates log</Link>.</p>
     </section>
     <section className="lesson-sec"><h2 className="text-xl font-bold">Request a correction</h2>

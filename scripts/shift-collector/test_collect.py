@@ -15,6 +15,67 @@ VIDEO = {"id": "review1", "title": "SSC CGL 16 October 2026 1st shift analysis",
 
 
 class CollectionAvailability(unittest.TestCase):
+    def test_proxy_pool_encodes_credentials_deduplicates_and_hides_invalid_entries(self):
+        with contextlib.redirect_stderr(io.StringIO()) as output:
+            routes = collect.parse_proxy_pool('proxy.test:8080:user:name:p@ss\nhttp://second.test:8000\nhttp://second.test:8000\ninvalid:secret\n')
+        self.assertEqual(routes, ['http://user:name%3Ap%40ss@proxy.test:8080', 'http://second.test:8000'])
+        self.assertNotIn('secret', output.getvalue())
+
+    def test_environment_pool_precedes_legacy_single_proxy(self):
+        with patch.dict(os.environ, {'YT_PROXIES': 'http://pool.test:8080\nhttp://other.test:8080', 'YT_PROXY': 'http://legacy.test:8080'}):
+            self.assertEqual(collect._proxy_urls(), ['http://pool.test:8080', 'http://other.test:8080', 'http://legacy.test:8080'])
+
+    def test_second_search_proxy_is_used_by_remaining_workers(self):
+        def search(query, **options):
+            if options['proxy'] == 'http://dead.test:8080':
+                raise collect.yt_dlp.utils.DownloadError('unreachable')
+            self.assertEqual(options['proxy'], 'http://working.test:8080')
+            self.assertTrue(options['use_proxy'])
+            return [VIDEO]
+        with patch.object(collect, 'PROXY', 'http://dead.test:8080'), \
+             patch.object(collect, 'EXTRA_PROXIES', ['http://working.test:8080']), \
+             patch.object(collect, 'yt_search', side_effect=search) as requests:
+            self.assertEqual(collect.find_videos(DAY, None), [VIDEO])
+            self.assertEqual(requests.call_count, 11)
+
+    def test_transcript_tries_next_proxy_before_direct_or_fallback(self):
+        with patch.object(collect, 'PROXY', 'http://dead.test:8080'), \
+             patch.object(collect, 'EXTRA_PROXIES', ['http://working.test:8080']), \
+             patch.object(collect, 'UNAVAILABLE_TRANSCRIPT_ROUTES', set()), \
+             patch.object(collect, 'yt_transcript', side_effect=[{'text': '', 'route_unavailable': True}, {'text': 'review', 'lang': 'en'}]) as fetch, \
+             patch.object(collect, 'api_transcript') as fallback:
+            self.assertEqual(collect.transcript('video')['text'], 'review')
+            self.assertEqual([call.kwargs['proxy'] for call in fetch.call_args_list], ['http://dead.test:8080', 'http://working.test:8080'])
+            fallback.assert_not_called()
+
+    def test_missing_captions_does_not_disable_youtube_for_other_videos(self):
+        with patch.object(collect, 'PROXY', None), patch.object(collect, 'EXTRA_PROXIES', []), \
+             patch.object(collect, 'UNAVAILABLE_TRANSCRIPT_ROUTES', set()), \
+             patch.object(collect, 'yt_transcript', side_effect=[{'text': '', 'error': 'no captions'}, {'text': 'second video', 'lang': 'en'}]), \
+             patch.object(collect, 'api_transcript', return_value={'text': 'fallback', 'lang': 'en'}):
+            self.assertFalse(collect.transcript('first')['yt_blocked'])
+            self.assertEqual(collect.transcript('second')['text'], 'second video')
+
+    def test_blocked_routes_are_not_retried_for_every_video(self):
+        with patch.object(collect, 'PROXY', 'http://blocked.test:8080'), patch.object(collect, 'EXTRA_PROXIES', []), \
+             patch.object(collect, 'UNAVAILABLE_TRANSCRIPT_ROUTES', set()), \
+             patch.object(collect, 'yt_transcript', return_value={'text': '', 'blocked': True}) as fetch, \
+             patch.object(collect, 'api_transcript', return_value={'text': 'fallback', 'lang': 'en'}):
+            self.assertTrue(collect.transcript('first')['yt_blocked'])
+            self.assertEqual(collect.transcript('second')['text'], 'fallback')
+            self.assertEqual(fetch.call_count, 2)
+
+    def test_transcript_requests_have_bounded_network_timeouts(self):
+        with patch.object(collect.requests.Session, 'request', return_value=Mock()) as request:
+            collect.TranscriptSession().get('https://www.youtube.com/watch?v=synthetic')
+            self.assertEqual(request.call_args.kwargs['timeout'], 15)
+
+    def test_malformed_fallback_response_does_not_crash_collection(self):
+        response = Mock(status_code=200)
+        response.json.side_effect = ValueError('upstream returned HTML')
+        with patch.object(collect.requests, 'get', return_value=response):
+            self.assertEqual(collect.api_transcript('video')['error'], 'api: invalid JSON')
+
     def test_dead_proxy_switches_remaining_searches_to_direct_once(self):
         calls = []
         def search(query, **options):

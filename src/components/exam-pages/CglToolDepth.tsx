@@ -45,9 +45,9 @@ const SPECIFIC: Record<Kind, { h: string; paras: string[] }> = {
   score: {
     h: 'Reading your result',
     paras: [
-      'Enter the number of correct and wrong answers in each section. Skipped questions need no entry. The net score is the marks for correct answers minus the penalty for wrong ones, so a wrong answer costs a quarter of what a right one earns and a guess is only worth taking when you can remove at least one option.',
+      'Enter whole numbers of correct and wrong answers in each section. Skipped questions need no entry. Tier 1 awards 2 marks per correct answer and deducts 0.5 per wrong answer. Tier 2 Paper 1 awards 3 and deducts 1. Whether to guess depends on your confidence and the time available; eliminating an option does not guarantee a correct answer.',
       'Compare the net score with the cutoff table, not with a single number. Cutoffs differ by category and by post list, and they moved noticeably between years, which is why the figure to track is the gap, not the absolute value.',
-      'Use the section split to decide where to push. A section with many wrong answers is losing marks twice, once for the missing credit and once for the penalty; a section with many skips is a speed problem. They need different fixes.',
+      'Use the section split to decide what to practise. Review wrong answers for concept errors and rushed calculation. Check skipped questions separately: missing knowledge, low confidence and lack of time need different fixes. A historical cutoff comparison does not predict qualification.',
     ],
   },
   rank: {

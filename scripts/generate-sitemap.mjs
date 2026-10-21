@@ -11,7 +11,7 @@ const APP = path.join(ROOT, 'src', 'app');
 const BASE = 'https://examshortcut.in';
 const BUILD_DATE = new Date().toISOString().slice(0, 10);
 const pages = new Map();
-const redirects = [];
+const redirects = new Set();
 let noindex = 0, alternate = 0, tagsAdded = 0;
 const escape = value => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&apos;');
 const groups = new Map(['pages', 'lessons', 'study-guides', 'exams', 'current-affairs', 'exam-analysis'].map(g => [g, []]));
@@ -202,6 +202,15 @@ function walk(dir) {
     if (fs.statSync(p).isDirectory()) { if (f !== '_next') walk(p); continue; }
     if (f !== 'index.html') continue;
     const route = ('/' + path.relative(OUT, p).replaceAll('\\', '/')).replace(/index\.html$/, '');
+    // Legacy CGL URLs used to export mocks belonging to other exams. Their
+    // replacement pages no longer exist, so derive redirects from the actual
+    // destination exports, including review-held pages excluded from sitemaps.
+    const mockRoute = /^\/exams\/([^/]+)\/mocks\/([^/]+)\/$/.exec(route);
+    if (mockRoute && mockRoute[1] !== 'ssc-cgl') {
+      const legacy = `/exams/ssc-cgl/mocks/${mockRoute[2]}`;
+      redirects.add(`${legacy}/ ${route} 301`);
+      redirects.add(`${legacy} ${route} 301`);
+    }
     let html = fs.readFileSync(p, 'utf8');
     const head = html.slice(0, html.indexOf('</head>'));
     const canonical = head.match(/<link\b[^>]*rel="canonical"[^>]*href="([^"]+)"/);
@@ -221,7 +230,7 @@ function walk(dir) {
     }
     if (canonical && canonical[1] !== url) {
       alternate++;
-      if (canonical[1].startsWith(BASE + '/')) redirects.push(`${route} ${canonical[1].slice(BASE.length)} 301`);
+      if (canonical[1].startsWith(BASE + '/')) redirects.add(`${route} ${canonical[1].slice(BASE.length)} 301`);
       continue;
     }
     if (/<meta\b[^>]*name="robots"[^>]*content="[^"]*noindex/.test(head)) { noindex++; continue; }
@@ -252,9 +261,9 @@ for (const [group, entries] of groups) {
 }
 fs.writeFileSync(path.join(OUT, 'sitemap-index.xml'), xmlHeader + '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + maps.map(file => `  <sitemap><loc>${BASE}/${file}</loc></sitemap>`).join('\n') + '\n</sitemapindex>\n');
 console.log(`SEO: ${pages.size} canonical URLs, ${maps.length} grouped sitemaps, ${noindex} noindex pages excluded, ${alternate} alternate pages excluded; ${tagsAdded} metadata tags added.`);
-if (redirects.length) {
+if (redirects.size) {
   const file = path.join(OUT, '_redirects');
   const existing = fs.readFileSync(file, 'utf8');
   const marker = '\n# Generated canonical route redirects\n';
-  fs.writeFileSync(file, existing.split(marker)[0] + marker + redirects.sort().join('\n') + '\n');
+  fs.writeFileSync(file, existing.split(marker)[0] + marker + [...redirects].sort().join('\n') + '\n');
 }
