@@ -16,7 +16,7 @@ export function ExamPreparationLinks({ examId }: { examId: string }) {
 }
 
 export function AllExamPreparationLinks() {
-  return <section id="exam-guides" className="mt-9" aria-label="Guides for every exam">
+  return <section id="exam-guides" className="mt-9 scroll-mt-28" aria-label="Guides for every exam">
     <h2 className="text-2xl font-extrabold">Choose your exam and next stage</h2>
     <p className="muted mt-2">Practical guides for all {EXAMS.length} exams: worked checks, revision decisions and a checklist you can save.</p>
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">{EXAMS.map(exam => {
