@@ -3,6 +3,20 @@
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
+/* News and result pages keep the complete action link visible on narrow screens. */
+.exam-update-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 285px), 1fr)); gap: 1rem; }
+.exam-update-card { padding: 1.25rem; min-width: 0; display: flex; flex-direction: column; }
+.exam-update-card > p:nth-of-type(1) { flex: 1; }
+.exam-update-card h3 a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.exam-update-filters { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; }
+.exam-update-input { width: 100%; min-height: 44px; padding: .65rem .75rem; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); }
+.exam-update-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+.exam-updates .btn { white-space: normal; text-align: center; min-height: 44px; }
+.exam-update-primary { background: var(--brand-text); color: var(--brand-ink); border-color: var(--brand-text); }
+.exam-update-primary:hover { background: var(--brand-text); filter: brightness(.95); }
+.exam-updates :is(a, button, input, select):focus-visible { outline: 3px solid var(--info); outline-offset: 3px; }
+@media (max-width: 639px) { .exam-update-filters, .exam-update-facts { grid-template-columns: minmax(0, 1fr); } }
+
 :root {
   --bg: #f7f5f0;
   --surface: #ffffff;

@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { ExamUpdatesForExam } from '@/components/ExamUpdatesForExam';
+import { OfficialSourceLinks } from '@/components/OfficialSourceLinks';
 import type { ReactNode } from 'react';
 import { notFound } from 'next/navigation';
 import { Md } from '@/components/Md';
@@ -258,9 +260,10 @@ export function AdmitCardInfoPage({ id }: { id: string }) {
         </div>
       )}
 
+      <ExamUpdatesForExam examId={id} />
       <h2 className="text-2xl font-extrabold mt-10">Admit card</h2>
       <div className="card p-5 mt-3 text-sm">
-        <p><b>Where:</b> {pr.admitCard.where}.</p>
+        <div><b>Where:</b> <Md inline>{pr.admitCard.where}</Md></div>
         <p className="mt-1"><b>When:</b> {pr.admitCard.when}.</p>
         <ol className="mt-3 space-y-2">
           {pr.admitCard.steps.map((s, i) => (
@@ -272,7 +275,7 @@ export function AdmitCardInfoPage({ id }: { id: string }) {
         </ol>
         <h3 className="font-bold mt-4">What to carry</h3>
         <ul className="mt-1 space-y-1 list-disc pl-5">{pr.admitCard.carry.map((c) => <li key={c}>{c}</li>)}</ul>
-        {pr.admitCard.note && <p className="mt-3 muted">{pr.admitCard.note}</p>}
+        {pr.admitCard.note && <Md className="mt-3 muted">{pr.admitCard.note}</Md>}
       </div>
 
       <h2 className="text-2xl font-extrabold mt-10">Answer key</h2>
@@ -287,17 +290,18 @@ export function AdmitCardInfoPage({ id }: { id: string }) {
 
       <h2 className="text-2xl font-extrabold mt-10">Result and scorecard</h2>
       <div className="card p-5 mt-3 text-sm">
-        <p>{pr.result.summary}</p>
+        <Md>{pr.result.summary}</Md>
         <div className="tbl-wrap mt-3">
           <table className="tbl">
             <thead><tr><th>Stage</th><th>What the result means</th></tr></thead>
-            <tbody>{pr.result.stages.map((s) => <tr key={s.stage}><td className="font-semibold whitespace-nowrap">{s.stage}</td><td>{s.what}</td></tr>)}</tbody>
+            <tbody>{pr.result.stages.map((s) => <tr key={s.stage}><td className="font-semibold whitespace-nowrap">{s.stage}</td><td><Md inline>{s.what}</Md></td></tr>)}</tbody>
           </table>
         </div>
         <p className="mt-3"><b>Scorecard:</b> {pr.result.scorecard}</p>
         {getCutoffs(id) && <p className="mt-3">Once the result is out, compare your score with the <Link className="underline" href={`/exams/${id}/cutoffs/`}>official cutoffs</Link>.</p>}
       </div>
       <AdmitCardChecklist id={id} />
+      <OfficialSourceLinks sources={pr.sources} />
       <p className="text-xs faint mt-6">Source basis: {pr.sources.join('; ')}. Always follow the notice and the official website for your cycle.</p>
     </Frame>
   );

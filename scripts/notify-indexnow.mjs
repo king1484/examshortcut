@@ -1,4 +1,4 @@
-/* After deployment, notify only changed analysis pages that are publicly indexable. */
+/* After deployment, notify changed indexable analysis, notice and exam pages. */
 import fs from 'node:fs';
 import { execFileSync } from 'node:child_process';
 const BASE = 'https://examshortcut.in';
@@ -10,6 +10,19 @@ if (!base) throw new Error('--base requires a Git revision');
 const changed = execFileSync('git', ['diff', '--name-only', base, 'HEAD'], {encoding:'utf8'}).trim().split('\n');
 const urls = new Set();
 for (const file of changed) {
+  const examChange = /^content\/exams\/([^/]+)\/(exam|process)\.json$/.exec(file);
+  if (examChange) {
+    const exam = examChange[1];
+    for (const suffix of ['', 'calendar/', 'admit-card/']) urls.add(`${BASE}/exams/${exam}/${suffix}`);
+  }
+  if (file === 'content/exam-updates.json') {
+    const current = JSON.parse(fs.readFileSync(file, 'utf8'));
+    let previous = [];
+    try { previous = JSON.parse(execFileSync('git', ['show', `${base}:${file}`], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] })); } catch { /* first publication */ }
+    const before = new Map(previous.map(item => [item.slug, JSON.stringify(item)]));
+    for (const item of current) if (item.published && before.get(item.slug) !== JSON.stringify(item)) urls.add(`${BASE}/exam-updates/${item.slug}/`);
+    for (const route of ['/', '/results/', '/answer-keys/', '/exam-updates/']) urls.add(BASE + route);
+  }
   const match = /^content\/shift-analysis\/([^/]+)\/(\d{4})-(\d{2})-(\d{2})\.json$/.exec(file);
   if (!match || !fs.existsSync(file)) continue;
   const [, exam, , month, day] = match;
@@ -24,7 +37,7 @@ const indexable = new Set([...fs.readFileSync('out/sitemap.xml','utf8').matchAll
 const localXml = fs.readFileSync('out/sitemap.xml','utf8');
 const urlList = [...urls].filter(url=>indexable.has(url)).sort();
 if (!urlList.length) {
-  console.log('IndexNow: no changed indexable analysis pages to submit.');
+  console.log('IndexNow: no changed indexable pages to submit.');
 } else if (process.argv.includes('--dry-run')) {
   console.log(JSON.stringify({urlCount:urlList.length,urlList},null,2));
 } else {

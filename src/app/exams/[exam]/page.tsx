@@ -12,6 +12,8 @@ import { ExamGuideLinks } from '@/components/exam-pages/ExamInfoPages';
 import { CatToolsBlock } from '@/components/cat/CatToolsNav';
 import { ExamToolsBlock } from '@/components/exam-tools/ExamToolsBlock';
 import { ExamPhoto } from '@/components/ExamPhoto';
+import { ExamUpdatesForExam } from '@/components/ExamUpdatesForExam';
+import { OfficialSourceLinks } from '@/components/OfficialSourceLinks';
 
 const BUILT_AT = Date.now();
 
@@ -133,7 +135,10 @@ export default async function ExamHub({ params }: { params: Params }) {
           {lc.fee && <span className="cycle-fact"><b>Fee</b>{lc.fee}</span>}
         </div>
         {lc.notes && <Md className="mt-3 text-sm muted">{lc.notes}</Md>}
+        {exam.sources && <OfficialSourceLinks sources={exam.sources} />}
       </div>
+
+      <ExamUpdatesForExam examId={id} />
 
       <nav className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-6">
         {links.map(([href, t, s]) => (

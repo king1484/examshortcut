@@ -97,6 +97,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <nav aria-label="Footer" className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-5">
               <div><p className="font-bold muted mb-1.5">Exams</p><ul className="space-y-1.5">
                 <li><Link href="/exams/">All exams</Link></li>
+                <li><Link href="/results/">Exam results</Link></li>
+                <li><Link href="/answer-keys/">Answer keys &amp; response sheets</Link></li>
+                <li><Link href="/exam-updates/">Latest exam updates</Link></li>
                 <li><Link href="/exams/ssc-cgl/">SSC CGL</Link></li>
                 <li><Link href="/exams/ssc-cgl/mocks/">Mock tests</Link></li>
                 <li><Link href="/exams/ssc-cgl/cutoffs/">Cutoffs</Link></li>

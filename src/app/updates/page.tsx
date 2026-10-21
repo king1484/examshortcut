@@ -13,6 +13,15 @@ type Entry = { date: string; title: string; points: string[] };
 const LOG: Entry[] = [
   {
     date: '21 October 2026',
+    title: 'Results and exam notices now have their own section',
+    points: [
+      'Published five result explainers, three answer-key guides and four admit-card, schedule and application updates with official sources, recruitment-cycle details and candidate next steps.',
+      'Added searchable exam-updates, results and answer-key hubs, matching exam-guide links and an RSS feed. Technician Grade I and III have separate official candidate links; expired NTPC and Group D objection windows are labelled as archives.',
+      'Added article dates and structured data, search and sitemap coverage, and automatic deployment after reviewed notice content is pushed.',
+    ],
+  },
+  {
+    date: '21 October 2026',
     title: 'Official exam notices, results and schedule corrections',
     points: [
       'Updated SSC GD with the 12 October CBT result and physical-test shortlist, and SSC MTS/Havaldar with the 7 October additional shortlist and its candidature conditions.',

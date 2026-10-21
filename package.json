@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/check-auth-config.mjs && node --experimental-strip-types --test scripts/test-infolinks.mjs && node scripts/generate-daily-quiz.mjs && node scripts/generate-search-index.mjs && node scripts/generate-pattern-names.mjs && next build && node --experimental-strip-types scripts/verify-ad-export.mjs && node scripts/fix-segment-prefetch.mjs && node scripts/generate-sitemap.mjs && node scripts/verify-auth-export.mjs",
+    "build": "node scripts/check-auth-config.mjs && node --experimental-strip-types scripts/validate-exam-updates.mjs && node --experimental-strip-types --test scripts/test-infolinks.mjs && node scripts/generate-daily-quiz.mjs && node scripts/generate-search-index.mjs && node scripts/generate-pattern-names.mjs && next build && node --experimental-strip-types scripts/verify-ad-export.mjs && node scripts/fix-segment-prefetch.mjs && node scripts/generate-sitemap.mjs && node scripts/generate-exam-update-feeds.mjs && node scripts/verify-auth-export.mjs",
     "start": "npx serve out",
-    "validate": "node scripts/validate-content.mjs"
+    "validate": "node scripts/validate-content.mjs && node --experimental-strip-types scripts/validate-exam-updates.mjs"
   },
   "dependencies": {
     "firebase": "^12.19.0",

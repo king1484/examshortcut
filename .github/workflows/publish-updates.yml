@@ -1,0 +1,69 @@
+name: Publish exam updates
+
+# Publish reviewed repository content immediately after a push. This workflow
+# does not manufacture articles or infer releases from a calendar date.
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'content/exam-updates.json'
+      - 'content/exams/**/exam.json'
+      - 'content/exams/**/process.json'
+      - 'src/app/exam-updates/**'
+      - 'src/app/results/**'
+      - 'src/app/answer-keys/**'
+      - 'src/components/ExamUpdate*.tsx'
+      - 'src/lib/examUpdate*.ts'
+      - 'scripts/*exam-update*.mjs'
+      - '.github/workflows/publish-updates.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Share the deployment lock with shift-analysis, preventing overlapping uploads.
+concurrency:
+  group: shift-analysis
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      NEXT_PUBLIC_FIREBASE_API_KEY: ${{ vars.NEXT_PUBLIC_FIREBASE_API_KEY }}
+      NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{ vars.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN }}
+      NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${{ vars.NEXT_PUBLIC_FIREBASE_PROJECT_ID }}
+      NEXT_PUBLIC_FIREBASE_APP_ID: ${{ vars.NEXT_PUBLIC_FIREBASE_APP_ID }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Validate source evidence and publishing rules
+        run: |
+          npm run validate
+          node --experimental-strip-types --test scripts/test-exam-updates.mjs scripts/test-sitemap.mjs scripts/test-auth-config.mjs
+      - name: Build and verify public pages
+        run: |
+          npm run build
+          node scripts/verify-seo.mjs
+          node scripts/verify-exam-updates-export.mjs
+      - name: Deploy to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler pages deploy out --project-name examshortcut --branch main --commit-dirty=true
+      - name: Notify IndexNow of published notices
+        continue-on-error: true
+        run: node scripts/notify-indexnow.mjs
+      - name: Verify deployed login and news hub
+        run: |
+          node scripts/verify-live-login.mjs
+          node scripts/verify-live-exam-updates.mjs

@@ -6,6 +6,8 @@ import { ExamNotice } from '@/components/ExamNotice';
 import { HomeMocks } from '@/components/HomeMocks';
 import { EXAMS } from '@/lib/exams';
 import { STUDY_GUIDES } from '@/lib/studyGuides';
+import { listExamUpdates } from '@/lib/examUpdates';
+import { ExamUpdateCards } from '@/components/ExamUpdateCards';
 
 const BUILT_AT = Date.now();
 
@@ -59,6 +61,12 @@ export default function Home() {
         </p>
       </section>
 
+      <section className="mt-8 exam-updates" aria-labelledby="latest-exam-updates">
+        <div className="flex flex-wrap justify-between gap-3 items-baseline"><h2 id="latest-exam-updates" className="text-2xl font-extrabold">Results, answer keys &amp; exam notices</h2><Link className="font-semibold underline text-sm" href="/exam-updates/">All exam updates →</Link></div>
+        <p className="muted text-sm mt-2 mb-4">Official sources, the right recruitment cycle and what to do next.</p>
+        <ExamUpdateCards items={listExamUpdates().filter(item => !item.status.startsWith('Archive:')).slice(0, 3)} />
+        <div className="flex flex-wrap gap-3 mt-4"><Link className="btn" href="/results/">Published results →</Link><Link className="btn" href="/answer-keys/">Answer keys &amp; objection windows →</Link></div>
+      </section>
       <div className="mt-8">
         <ExamPicker collapse />
       </div>

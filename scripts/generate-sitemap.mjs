@@ -14,10 +14,10 @@ const pages = new Map();
 const redirects = new Set();
 let noindex = 0, alternate = 0, tagsAdded = 0;
 const escape = value => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&apos;');
-const groups = new Map(['pages', 'lessons', 'study-guides', 'exams', 'current-affairs', 'exam-analysis'].map(g => [g, []]));
+const groups = new Map(['pages', 'lessons', 'study-guides', 'exams', 'current-affairs', 'exam-analysis', 'exam-updates'].map(g => [g, []]));
 function groupFor(url) {
   if (/^\/(quant|reasoning|english|ga|computer)\//.test(url)) return 'lessons';
-  for (const g of ['study-guides', 'exams', 'current-affairs', 'exam-analysis']) if (url.startsWith(`/${g}/`)) return g;
+  for (const g of ['study-guides', 'exams', 'current-affairs', 'exam-analysis', 'exam-updates']) if (url.startsWith(`/${g}/`)) return g;
   return 'pages';
 }
 

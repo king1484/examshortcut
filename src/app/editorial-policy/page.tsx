@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function EditorialPolicy() {
   return <article className="max-w-3xl mx-auto lesson">
     <h1 className="text-3xl font-extrabold">Content sources and corrections</h1>
-    <p className="text-sm muted mt-2">Updated 15 October 2026 · Maintained by Vinay</p>
+    <p className="text-sm muted mt-2">Updated 21 October 2026 · Maintained by Vinay</p>
     <p className="mt-4">ExamShortcut is an independent study resource. Vinay maintains the website and handles correction requests. We distinguish explanations written for this site from exam information, imported practice material and automatically compiled reports. None of these resources guarantees an exam result.</p>
     <section className="lesson-sec"><h2 className="text-xl font-bold">Lessons and study guides</h2>
       <p className="mt-3">Our study guides explain a method, show small worked examples and link to relevant lessons. Practice examples are study exercises, not claims about questions in a future paper. A shortcut should state the conditions under which it works. For arithmetic, a correct option is not enough: the calculation and the explanation should agree.</p>
@@ -20,6 +20,10 @@ export default function EditorialPolicy() {
     <section className="lesson-sec"><h2 className="text-xl font-bold">Exam facts and previous-year material</h2>
       <p className="mt-3">Exam dates, eligibility, vacancies and scoring rules should be confirmed against the examining body&apos;s current notice. A historical cutoff is a past result, not a promise about the next cycle. Follow the official-source links on an exam page before making an application decision.</p>
       <p className="mt-3">The practice collection includes original exercises and questions imported from publicly accessible previous-year or memory-based sources. These are identified in their test descriptions; some are reduced subsets. Public availability and attribution do not by themselves establish permission to reproduce material. We do not claim ownership of third-party questions or passages. Rights holders can contact us with the page and source details for review.</p>
+    </section>
+    <section className="lesson-sec"><h2 className="text-xl font-bold">Results and exam notices</h2>
+      <p className="mt-3">Our <Link className="underline" href="/exam-updates/">exam updates</Link> explain retrieved official notices in our own words. Each article identifies the recruitment cycle, links to the official source and gives practical next steps. ExamShortcut is the publisher of the explanation, not the examining body. Software assists with drafting and structural checks; the source-check date does not imply that an examining body endorses this site.</p>
+      <p className="mt-3">The article publication date is separate from the official notice date. We keep the original publication date when correcting an article, distinguish a shortlist from final selection, and label tentative schedules. A future calendar date does not prove that a result or download has become available. Reviewed notice content is deployed automatically after repository checks; this does not mean every new official notice is detected automatically.</p>
     </section>
     <section className="lesson-sec"><h2 className="text-xl font-bold">Automatic shift analyses</h2>
       <p className="mt-3">The collector finds date- and shift-labelled reviews, extracts candidate reports and combines them into short summaries. It runs independently of the maintainer&apos;s laptop. These pages are automated summaries, not manually verified papers or official SSC statements.</p>

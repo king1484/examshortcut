@@ -10,6 +10,9 @@ import { useSelectedExam } from '@/lib/useExam';
 const NAV = [
   { href: '/', label: 'Home', exact: true },
   { href: '/exams/', label: 'Exams' },
+  { href: '/results/', label: 'Results' },
+  { href: '/answer-keys/', label: 'Answer Keys' },
+  { href: '/exam-updates/', label: 'Latest Updates' },
   { href: '/learn/', label: 'Notes' },
   { href: '/study-guides/', label: 'Study Guides' },
   { href: '/daily-quiz/', label: 'Daily Quiz' },

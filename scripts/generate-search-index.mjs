@@ -23,6 +23,9 @@ const push = (doc) => docs.push(doc);
 // Static pages
 [
   ['/exams/', 'All exams SSC Railway Banking entrance choose exam'],
+  ['/results/', 'Exam results official SSC SBI IBPS UP Police shortlist selection lists'],
+  ['/answer-keys/', 'Answer keys response sheets objection windows deadlines fees official releases'],
+  ['/exam-updates/', 'Latest exam updates official notices admit cards answer keys dates applications'],
   ['/exams/ssc-cgl/', 'SSC CGL exam guide pattern eligibility posts salary selection process'],
   ['/exams/ssc-chsl/', 'SSC CHSL exam guide pattern eligibility posts salary selection process'],
   ['/exams/ssc-mts/', 'SSC MTS Havaldar exam guide pattern eligibility posts salary selection process'],
@@ -52,6 +55,14 @@ const push = (doc) => docs.push(doc);
   ['/login/', 'Login sign in track progress'],
   ['/revision/', 'My revision mistakes bookmarks progress'],
 ].forEach(([url, text]) => push({ t: 'page', title: clean(text).split(' ').slice(0, 4).join(' '), url, text }));
+
+// Every published notice is searchable; drafts never enter the public index.
+const updateFile = path.join(ROOT, 'content/exam-updates.json');
+if (fs.existsSync(updateFile)) {
+  for (const item of read(updateFile).filter(item => item.published)) {
+    push({ t: 'page', title: item.title, url: `/exam-updates/${item.slug}/`, text: clean(`${item.title} ${item.summary} ${item.cycle} ${item.kind}`) });
+  }
+}
 
 // Use the same catalogue as the pages so guide titles and URLs stay aligned.
 const guideCode = ts.transpileModule(fs.readFileSync(path.join(ROOT, 'src/lib/studyGuides.ts'), 'utf8'),
