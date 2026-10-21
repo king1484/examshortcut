@@ -2,8 +2,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { SECTION_META } from '@/lib/sections';
+import { Md } from '@/components/Md';
 import {
-  allShiftParams, dayLabel, daySlug, difficultyColor, getShiftExam, hasAnalysis, resolveSlug, shiftLabel, shiftSlug,
+  allShiftParams, dayLabel, daySlug, difficultyColor, getShiftExam, hasAnalysis, listShiftDays, resolveSlug, shiftLabel, shiftSlug,
   type Shift, type ShiftDay, type ShiftExam,
 } from '@/lib/shifts';
 
@@ -63,14 +64,23 @@ const istTime = (iso: string) =>
   new Date(iso).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' }) + ' IST';
 
 function DiffChip({ label }: { label?: string }) {
-  if (!label) return <span className="faint">—</span>;
-  const c = difficultyColor(label);
-  return <span className="chip font-semibold" style={{ color: c, borderColor: c }}>{label}</span>;
+  const text = label && label !== 'Not reliably reported' ? label : 'Not reported';
+  const unknown = /not reported|not held|awaiting|coming soon/i.test(text);
+  const c = unknown ? 'var(--ink-2)' : difficultyColor(text);
+  return <span className="analysis-label" style={{ color: c, borderColor: unknown ? 'var(--line)' : c }}>{text}</span>;
+}
+
+function StatusLabel({ shift }: { shift: Shift }) {
+  return <span className={`analysis-status analysis-status-${shift.status}`}>{shift.status === 'reported' ? 'Reported' : shift.status === 'partial' ? 'Partial coverage' : shift.status === 'not-held' ? 'Not held' : 'Awaiting sources'}</span>;
+}
+
+function attempts(value?: string) {
+  return !value || value === 'Not reliably reported' ? 'Not reported' : value.replace(/\s+overall$/i, '');
 }
 
 function Stat({ k, v, color }: { k: string; v: React.ReactNode; color?: string }) {
   return (
-    <div className="card p-4 flex-1 min-w-[9rem]" style={color ? { borderTop: `3px solid ${color}` } : undefined}>
+    <div className="analysis-stat" style={color ? { borderTop: `3px solid ${color}` } : undefined}>
       <div className="text-xs uppercase tracking-wide faint font-bold">{k}</div>
       <div className="text-lg font-extrabold mt-1">{v}</div>
     </div>
@@ -116,43 +126,36 @@ function ShiftView({ exam, day, shift }: { exam: ShiftExam; day: ShiftDay; shift
       ) : shift.status === 'pending' ? (
         <div className="card p-5 mt-6" style={{ borderLeft: '3px solid var(--warn)' }}>
           <h2 className="font-extrabold">Analysis not yet available</h2>
-          <p className="text-sm muted mt-1">Shift {shift.shift} is scheduled for {shift.time}. No usable analysis has been published here yet. Reports are added when sufficient candidate feedback is available; publication timing is not guaranteed.</p>
+          <p className="text-sm muted mt-1">No usable report is available for this slot ({shift.time}). We will add analysis when sources support it. A missing report does not confirm that a shift was cancelled.</p>
         </div>
       ) : (
         <>
-          <div className="flex gap-3 flex-wrap mt-6">
+          <div className="analysis-stats mt-6">
             <Stat k="Overall difficulty" v={shift.overall ?? '—'} color={difficultyColor(shift.overall)} />
-            <Stat k="Reported attempts" v={shift.goodAttempts && shift.goodAttempts !== 'Not reliably reported' ? `${shift.goodAttempts} / 100` : 'Not reliably reported'} />
+            <Stat k="Reported attempts" v={attempts(shift.goodAttempts) === 'Not reported' ? 'Not reported' : `${attempts(shift.goodAttempts)} / 100`} />
             <Stat k="Shift timing" v={<span className="text-base">{shift.time}</span>} />
           </div>
           {shift.status === 'partial' && <p className="text-xs mt-3" style={{ color: 'var(--warn)' }}>Partial coverage. Some figures may be withheld; read the source and correction notes below.</p>}
           {shift.summary && <p className="mt-5 text-[15px] leading-relaxed">{shift.summary}</p>}
 
           {!!shift.sections?.length && (
-            <section className="mt-8">
-              <h2 className="text-xl font-extrabold">Section-wise difficulty and good attempts</h2>
-              <div className="card mt-3 overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead><tr className="text-left faint text-xs uppercase">
-                    <th className="p-3">Section</th><th className="p-3">Qs</th><th className="p-3">Difficulty</th><th className="p-3">Good attempts</th>
-                  </tr></thead>
-                  <tbody>
-                    {shift.sections.map((s) => (
-                      <tr key={s.id} className="border-t" style={{ borderColor: 'var(--line)' }}>
-                        <td className="p-3 font-semibold">{s.name}</td>
-                        <td className="p-3">{s.questions}</td>
-                        <td className="p-3"><DiffChip label={s.difficulty} /></td>
-                        <td className="p-3">{s.goodAttempts ?? '—'}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+            <section className="mt-8 analysis-anchor" id="sections">
+              <h2 className="text-xl font-extrabold">Section overview</h2>
+              <div className="analysis-section-grid mt-3">
+                {shift.sections.map((s) => <article key={s.id} className="analysis-section-card" style={{ borderTopColor: SECTION_META[s.id]?.color ?? 'var(--line)' }}>
+                  <h3 className="font-bold text-sm">{s.name}</h3>
+                  <p className="text-xs muted mt-1">{s.questions} questions · {s.marks} marks</p>
+                  <dl className="analysis-section-facts">
+                    <div><dt>Difficulty</dt><dd><DiffChip label={s.difficulty} /></dd></div>
+                    <div><dt>Reported attempts</dt><dd>{attempts(s.goodAttempts)}</dd></div>
+                  </dl>
+                </article>)}
               </div>
             </section>
           )}
 
           {shift.sections?.some((s) => s.topics?.length || s.notes) && (
-            <section className="mt-8">
+            <section className="mt-8 analysis-anchor" id="topics">
               <h2 className="text-xl font-extrabold">Topics asked, section by section</h2>
               <div className="space-y-3 mt-3">
                 {shift.sections.filter((s) => s.topics?.length || s.notes).map((s) => (
@@ -162,12 +165,12 @@ function ShiftView({ exam, day, shift }: { exam: ShiftExam; day: ShiftDay; shift
                     </div>
                     {s.notes && <p className="text-sm muted mt-1.5">{s.notes}</p>}
                     {!!s.topics?.length && (
-                      <ul className="mt-2 flex flex-wrap gap-1.5 text-sm">
+                      <ul className="analysis-topic-list mt-3 text-sm">
                         {s.topics.map((t, i) => (
                           <li key={i}>
                             {t.link
-                              ? <Link href={`/${t.link}/`} className="chip hover:underline" title={`Revise ${t.topic}`}>{t.topic}{t.count ? ` · ${t.count}` : ''} →</Link>
-                              : <span className="chip">{t.topic}{t.count ? ` · ${t.count}` : ''}</span>}
+                              ? <Link href={`/${t.link}/`} title={`Revise ${t.topic}`}>{t.topic}{t.count ? ` · ${t.count}` : ''} <span aria-hidden="true">→</span></Link>
+                              : <span>{t.topic}{t.count ? ` · ${t.count}` : ''}</span>}
                           </li>
                         ))}
                       </ul>
@@ -180,16 +183,16 @@ function ShiftView({ exam, day, shift }: { exam: ShiftExam; day: ShiftDay; shift
           )}
 
           {!!shift.asked?.length && (
-            <section className="mt-8">
+            <section className="mt-8 analysis-anchor" id="questions">
               <h2 className="text-xl font-extrabold">Questions asked (memory-based)</h2>
               <p className="text-sm muted mt-1">What candidates recalled after the shift, reworded. Exact wording and options may differ from the real paper.</p>
               <div className="space-y-4 mt-3">
                 {Object.entries(bySection).map(([sid, qs]) => (
                   <div key={sid}>
                     <h3 className="font-bold text-sm">{SECTION_META[sid as keyof typeof SECTION_META]?.name ?? sid}</h3>
-                    <ol className="list-decimal pl-5 mt-1.5 space-y-1.5 text-[15px]">
+                    <ol className="analysis-question-list mt-3 text-[15px]">
                       {qs!.map((q, i) => (
-                        <li key={i}>{q.q}{q.a && <details className="inline-block ml-2 text-sm"><summary className="cursor-pointer faint">answer</summary><span style={{ color: 'var(--ok)' }}>{q.a}</span></details>}</li>
+                        <li key={i}><span className="analysis-question-number">{i + 1}</span><div className="min-w-0"><Md>{q.q}</Md>{q.a && <details className="analysis-answer text-sm"><summary>Show reported answer</summary><Md>{q.a}</Md></details>}</div></li>
                       ))}
                     </ol>
                   </div>
@@ -235,12 +238,12 @@ function ShiftView({ exam, day, shift }: { exam: ShiftExam; day: ShiftDay; shift
 function Sources({ shift }: { shift: Shift }) {
   if (!shift.sources?.length && !shift.qualityNotes?.length) return null;
   return (
-    <section className="mt-10 text-sm">
+    <section className="mt-10 text-sm analysis-anchor analysis-sources" id="sources">
       <h2 className="font-extrabold">Sources</h2>
       <p className="faint text-xs mt-1">{shift.auto ? 'Automatically compiled from the linked reviews. Source agreement does not guarantee accuracy; this is not a manually verified paper.' : 'Compiled from the linked candidate reviews and coaching-institute analyses.'} Difficulty and attempt figures are unofficial.</p>
       {shift.qualityNotes?.length ? <ul className="mt-2 space-y-1">{shift.qualityNotes.map(n => <li key={n}>{n}</li>)}</ul> : null}
       <p className="mt-2"><Link className="underline" href="/editorial-policy/">How we use sources and correct errors</Link></p>
-      <ul className="mt-2 space-y-0.5">
+      <ul className="mt-3 space-y-2">
         {shift.sources?.map((s, i) => <li key={i}><a href={s.url} rel="nofollow noopener" target="_blank" className="underline decoration-dotted">{s.name}</a></li>)}
       </ul>
     </section>
@@ -252,32 +255,16 @@ function DayView({ exam, day }: { exam: ShiftExam; day: ShiftDay }) {
     <>
       {day.intro && <p className="mt-4 text-[15px] leading-relaxed">{day.intro}</p>}
       {day.correctionNote && <p className="card p-3 mt-3 text-sm">{day.correctionNote}</p>}
-      <div className="card mt-6 overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead><tr className="text-left faint text-xs uppercase">
-            <th className="p-3">Shift</th><th className="p-3">Timing</th><th className="p-3">Overall</th><th className="p-3">Good attempts</th><th className="p-3" />
-          </tr></thead>
-          <tbody>
-            {day.shifts.map((s) => (
-              <tr key={s.shift} className="border-t" style={{ borderColor: 'var(--line)' }}>
-                <td className="p-3 font-semibold">Shift {s.shift}</td>
-                <td className="p-3 whitespace-nowrap">{s.time}</td>
-                <td className="p-3"><DiffChip label={shiftLabel(s)} /></td>
-                <td className="p-3">{s.goodAttempts ?? '—'}</td>
-                <td className="p-3"><Link className="underline decoration-dotted whitespace-nowrap" href={`/exam-analysis/${exam.slug}/${shiftSlug(day.date, s.shift)}/`}>Full analysis →</Link></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <div className="space-y-3 mt-6">
-        {day.shifts.filter((s) => hasAnalysis(s) && s.summary).map((s) => (
-          <Link key={s.shift} href={`/exam-analysis/${exam.slug}/${shiftSlug(day.date, s.shift)}/`} className="card p-4 block hover:-translate-y-0.5 transition-transform" style={{ borderLeft: `3px solid ${difficultyColor(s.overall)}` }}>
-            <h2 className="font-bold">Shift {s.shift} — {s.overall}</h2>
-            <p className="text-sm muted mt-1">{s.summary}</p>
-          </Link>
-        ))}
-      </div>
+      <section className="mt-6 space-y-4" aria-label="Shifts for this date">
+        {day.shifts.map(s => <article key={s.shift} className="analysis-day-card">
+          <div className="analysis-card-heading"><div><h2 className="text-xl font-extrabold">Shift {s.shift}</h2><p className="text-sm muted mt-1">{s.time}</p></div><StatusLabel shift={s} /></div>
+          {hasAnalysis(s) && <dl className="analysis-day-facts"><div><dt>Overall difficulty</dt><dd><DiffChip label={s.overall} /></dd></div><div><dt>Reported attempts</dt><dd className="font-bold">{attempts(s.goodAttempts)}</dd></div><div><dt>Sources</dt><dd>{s.sources?.length ?? 0} linked review{(s.sources?.length ?? 0) === 1 ? '' : 's'}</dd></div></dl>}
+          {s.summary && <p className="text-sm muted mt-4 leading-relaxed">{s.summary}</p>}
+          {s.status === 'pending' && <p className="text-sm muted mt-3">No usable report has been published for this slot. We show it here so you can see the coverage gap.</p>}
+          {s.status === 'not-held' && <p className="text-sm muted mt-3">{s.note ?? 'This shift was not held according to the linked sources.'}</p>}
+          <Link className={`btn mt-4 ${hasAnalysis(s) ? 'btn-brand' : ''}`} href={`/exam-analysis/${exam.slug}/${shiftSlug(day.date, s.shift)}/`}>{hasAnalysis(s) ? `Read Shift ${s.shift} analysis` : `View Shift ${s.shift} details`} <span aria-hidden="true">→</span></Link>
+        </article>)}
+      </section>
     </>
   );
 }
@@ -288,6 +275,10 @@ export default async function ShiftAnalysisPage({ params }: Params) {
   const r = resolveSlug(examSlug, slug);
   if (!exam || !r) notFound();
   const { day, shift } = r;
+  const chronologicalDays = listShiftDays(examSlug).reverse();
+  const dayIndex = chronologicalDays.findIndex(entry => entry.date === day.date);
+  const previousDay = chronologicalDays[dayIndex - 1];
+  const nextDay = chronologicalDays[dayIndex + 1];
   const url = `${BASE}/exam-analysis/${examSlug}/${slug}/`;
   const h1 = shift
     ? `${exam.short} Exam Analysis ${dayLabel(day.date)} — Shift ${shift.shift}`
@@ -313,7 +304,7 @@ export default async function ShiftAnalysisPage({ params }: Params) {
   ];
 
   return (
-    <article className="max-w-3xl mx-auto">
+    <article className="max-w-4xl mx-auto analysis-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <nav className="text-xs faint mt-4">
         <Link href="/exam-analysis/" className="underline decoration-dotted">Exam analysis</Link> /{' '}
@@ -324,6 +315,22 @@ export default async function ShiftAnalysisPage({ params }: Params) {
       <p className="text-xs faint mt-2">
         {exam.name}{shift ? ` · ${shift.time}` : ''} · Updated {istTime(day.updatedAt)}
       </p>
+      <nav className="analysis-day-navigation" aria-label="Browse report dates">
+        {previousDay ? <Link href={`/exam-analysis/${examSlug}/${daySlug(previousDay.date)}/`}>← {dayLabel(previousDay.date, false)}</Link> : <span>First report</span>}
+        <Link href={`/exam-analysis/${examSlug}/`}>All dates</Link>
+        {nextDay ? <Link href={`/exam-analysis/${examSlug}/${daySlug(nextDay.date)}/`}>{dayLabel(nextDay.date, false)} →</Link> : <span>Latest report</span>}
+      </nav>
+      <nav className="analysis-shift-navigation" aria-label="Choose a shift">
+        <Link href={`/exam-analysis/${examSlug}/${daySlug(day.date)}/`} aria-current={!shift ? 'page' : undefined}>Day overview</Link>
+        {day.shifts.map(entry => <Link key={entry.shift} href={`/exam-analysis/${examSlug}/${shiftSlug(day.date, entry.shift)}/`} aria-current={shift?.shift === entry.shift ? 'page' : undefined}>Shift {entry.shift}</Link>)}
+      </nav>
+      {shift && <div className="analysis-card-heading mt-5"><StatusLabel shift={shift} /><span className="text-xs muted">{shift.sources?.length ?? 0} linked source{shift.sources?.length === 1 ? '' : 's'} · unofficial candidate reports</span></div>}
+      {shift && hasAnalysis(shift) && <nav className="analysis-jump-links" aria-label="On this shift page">
+        {!!shift.sections?.length && <a href="#sections">Section overview</a>}
+        {shift.sections?.some(section => section.topics?.length || section.notes) && <a href="#topics">Topics asked</a>}
+        {!!shift.asked?.length && <a href="#questions">Recalled questions</a>}
+        {!!shift.sources?.length && <a href="#sources">Sources</a>}
+      </nav>}
       {shift && day.correctionNote && <p className="card p-3 mt-3 text-sm">{day.correctionNote}</p>}
 
       {shift ? <ShiftView exam={exam} day={day} shift={shift} /> : <DayView exam={exam} day={day} />}

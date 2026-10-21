@@ -9,26 +9,21 @@ export function ExamAnalysisGuide() {
     const days = listShiftDays(e.slug);
     const shifts = days.flatMap((d) => d.shifts);
     const n = (s: string) => shifts.filter((x) => x.status === s).length;
-    return { e, days: days.length, shifts: shifts.length, reported: n('reported'), partial: n('partial'), pending: n('pending') };
+    return { e, days: days.length, shifts: shifts.length, reported: n('reported'), partial: n('partial'), pending: n('pending'), notHeld: n('not-held') };
   });
   if (!exams.length) return null;
   return (
     <div className="mt-10">
       <section aria-labelledby="ea-cover">
         <h2 id="ea-cover" className="text-2xl font-extrabold">What is covered so far</h2>
-        <div className="tbl-wrap mt-3">
-          <table className="tbl">
-            <thead><tr><th>Exam</th><th className="text-right">Days</th><th className="text-right">Shifts</th><th className="text-right">Reported</th><th className="text-right">Partial</th><th className="text-right">Pending</th></tr></thead>
-            <tbody>
-              {exams.map(({ e, days, shifts, reported, partial, pending }) => (
-                <tr key={e.slug}>
-                  <td><Link className="underline decoration-dotted" href={`/exam-analysis/${e.slug}/`}>{e.name}</Link></td>
-                  <td className="text-right">{days}</td><td className="text-right">{shifts}</td>
-                  <td className="text-right">{reported}</td><td className="text-right">{partial}</td><td className="text-right">{pending}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="space-y-3 mt-3">
+          {exams.map(({ e, days, shifts, reported, partial, pending, notHeld }) => <article key={e.slug} className="analysis-day-card">
+            <h3 className="font-bold"><Link className="underline decoration-dotted" href={`/exam-analysis/${e.slug}/`}>{e.name}</Link></h3>
+            <p className="text-sm muted mt-1">{days} published dates · {shifts} shift slots</p>
+            <dl className="analysis-day-facts">
+              {[['Reported', reported], ['Partial coverage', partial], ['Awaiting sources', pending], ['Not held', notHeld]].map(([label, count]) => <div key={label}><dt>{label}</dt><dd className="text-lg font-extrabold">{count}</dd></div>)}
+            </dl>
+          </article>)}
         </div>
       </section>
 

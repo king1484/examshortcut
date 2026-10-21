@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { AnalysisArchive } from '@/components/AnalysisArchive';
 import { dayLabel, daySlug, difficultyColor, getShiftExam, hasAnalysis, listShiftDays, listShiftExams, shiftLabel, shiftSlug } from '@/lib/shifts';
 
 export const dynamic = 'force-static';
@@ -28,7 +29,7 @@ export default async function ExamShiftHub({ params }: Params) {
   const days = listShiftDays(slug);
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-3xl mx-auto analysis-page">
       <nav className="text-xs faint mt-4"><Link href="/exam-analysis/" className="underline decoration-dotted">Exam analysis</Link> / {exam.short}</nav>
       <h1 className="text-2xl sm:text-4xl font-extrabold mt-1">{exam.name} Exam Analysis — Shift-wise</h1>
       <p className="muted mt-2 text-[15px]">
@@ -42,6 +43,8 @@ export default async function ExamShiftHub({ params }: Params) {
         </div>
       )}
 
+      <AnalysisArchive exam={exam} days={days} />
+
       <div className="space-y-4 mt-8">
         {days.map((d) => (
           <section key={d.date} className="card p-4">
@@ -54,7 +57,8 @@ export default async function ExamShiftHub({ params }: Params) {
                 <Link key={s.shift} href={`/exam-analysis/${slug}/${shiftSlug(d.date, s.shift)}/`} className="p-3 rounded-lg border text-sm hover:-translate-y-0.5 transition-transform" style={{ borderColor: 'var(--line)', borderLeft: `3px solid ${hasAnalysis(s) ? difficultyColor(s.overall) : 'var(--line)'}` }}>
                   <div className="font-bold">Shift {s.shift}</div>
                   <div className="text-xs faint">{s.time}</div>
-                  <div className="text-xs mt-1 font-semibold">{hasAnalysis(s) ? `${s.overall} · ${s.goodAttempts ?? '—'} attempts` : shiftLabel(s)}</div>
+                  <div className="text-xs mt-1 font-semibold">{shiftLabel(s) ?? 'Not reported'}</div>
+                  <div className="text-xs muted mt-1">{s.status === 'reported' ? 'Reported' : s.status === 'partial' ? 'Partial coverage' : s.status === 'pending' ? 'Awaiting sources' : 'Not held'}</div>
                 </Link>
               ))}
             </div>

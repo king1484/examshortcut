@@ -19,6 +19,7 @@ const LOG: Entry[] = [
       'Added six original questions and expanded the lessons on tied modes, continuous class boundaries, and population versus sample variance. All 62 statistics questions now have independently calculated answer checks.',
       'The SSC CGL score calculator now accepts whole answer counts and lets you select a historical cutoff by year and post list. Removed the unsupported normalisation band and qualification predictions.',
       'Restored redirects from old mock-test addresses to their correct exam pages and repaired the check that had blocked automatic analysis publication.',
+      'The analysis archive now shows dates from 30 September onward. Replaced scrolling shift tables with readable cards, improved text contrast, and added date and shift navigation.',
     ],
   },
   {

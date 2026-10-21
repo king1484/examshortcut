@@ -102,7 +102,7 @@ export function allShiftParams() {
 
 /** Chip text for a shift: its difficulty, or why there is none. */
 export function shiftLabel(s: Shift) {
-  if (s.status === 'pending') return 'Coming soon';
+  if (s.status === 'pending') return 'Awaiting sources';
   if (s.status === 'not-held') return 'Not held';
   return s.overall;
 }
@@ -115,5 +115,5 @@ export function difficultyColor(label = '') {
   if (/easy to moderate/.test(l)) return 'var(--info)';
   if (/moderate/.test(l)) return 'var(--warn)';
   if (/easy/.test(l)) return 'var(--ok)';
-  return 'var(--line)';
+  return 'var(--ink-2)';
 }
