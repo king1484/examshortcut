@@ -1,66 +1,36 @@
-# Deploying ExamShortcut
+# Configuration and hosting
 
-The site is a fully static Next.js export (`out/`). No server, no database —
-all user state (mistakes, bookmarks, mock attempts) lives in the visitor's
-localStorage. Any static host works; **Cloudflare Pages** is the recommended
-default (free, unlimited bandwidth on static, Indian edge presence, custom
-domain + free SSL).
+This document describes the current configuration. Reading it or running repository checks does not deploy anything. Production service settings and the existing collector workflow are maintainer-controlled.
 
-## Build
+## Local preview
 
-```bash
-npm ci
-npm run build        # next build && node scripts/generate-sitemap.mjs
-```
+Use Node.js 24, run `npm ci`, then `npm run dev`. With no Firebase environment variables, public content and browser-local progress work in preview mode. Login and cloud sync are unavailable. Run the README's validation commands without production credentials.
 
-Deployable artifact: `out/` (index.html + trailingSlash directory routes +
-sitemap.xml + PWA assets).
+## Optional Firebase accounts
 
-## Cloudflare Pages (recommended)
+Copy `.env.example` to ignored `.env.local` and supply the four `NEXT_PUBLIC_FIREBASE_*` values from **your own** Firebase web app. Enable the intended sign-in providers and configure authorized domains. Deploy reviewed Firestore rules to your own project for progress sync and the optional leaderboard. Never use the production project's accounts or request its private credentials for a fork.
 
-1. Push the repo to GitHub.
-2. Cloudflare dashboard → Workers & Pages → Create → Pages → Connect to Git.
-3. Build settings:
-   - Framework preset: **None**
-   - Build command: `npm run build`
-   - Build output directory: `out`
-   - Node version: add environment variable `NODE_VERSION` = `22`
-4. Custom domain: add `examshortcut.in` (and `www`), then at the domain
-   registrar point nameservers to Cloudflare (or CNAME `www` →
-   `<project>.pages.dev`).
+The `NEXT_PUBLIC_*` settings identify a web application and are browser-visible. Service-account credentials and provider API keys are private and must not use that prefix or be committed.
 
-Notes:
-- TrailingSlash routes (`/ssc-cgl/quant/` → `/ssc-cgl/quant/index.html`) are
-  served natively by Pages — no `_redirects` needed.
-- `sw.js` is served with the right scope automatically. Bump `VERSION` in
-  `public/sw.js` when shipping changed shells so clients refresh.
-- `manifest.webmanifest`, `icon.svg`, `icon-maskable.svg`, `robots.txt` are
-  already in `public/` and land in `out/` root.
+## Current production build constraints
 
-## Domain
+`npm run build` generates `out/`, but first calls `scripts/check-auth-config.mjs`. That script makes Firebase configuration requests and verifies the production `examshortcut.in` domains and Google provider. It rejects blank or mismatched settings. This protects the existing deployment from accidentally losing login.
 
-- Primary: `examshortcut.in` (Cloudflare registrar or any registrar).
-- `examshortcut.com` → 301 redirect to `.in` (Cloudflare Redirect Rule:
-  `http.host eq "examshortcut.com"` → 301 `https://examshortcut.in{uri}`).
+A fresh clone can run development and repository checks without those settings; it cannot produce a successful production build with blank configuration. Self-hosting on a different domain currently requires adapting the production-specific checks and references. Also review canonical URLs, sitemap generation, redirects, service-worker behavior, analytics/advertising identifiers, feedback origin checks, and the scheduled workflow. Domain-neutral production builds are a future improvement, not an implemented feature.
 
-## Post-deploy checklist
+## Hosting components
 
-- [ ] Lighthouse: PWA installable, ≥90 on all four scores for the homepage.
-- [ ] Offline check: load homepage, go offline, reload → shell renders from SW.
-- [ ] `https://examshortcut.in/sitemap.xml` lists the topic pages.
-- [ ] Google Search Console: submit sitemap, request indexing for `/ssc-cgl/`.
-- [ ] Install prompt on Android Chrome works (manifest + SW + icons).
+- **Study pages:** the generated `out/` directory is static.
+- **Accounts/progress:** Firebase Auth and Firestore, with project-specific configuration and rules.
+- **Feedback:** Cloudflare Pages Functions in `functions/`, a D1 database, and `migrations/feedback.sql`. A static-only host does not provide this endpoint.
+- **Collector:** optional Python tooling with its own provider/network configuration. It is not necessary for ordinary development.
 
-## Play Store TWA (later phase)
+The checked-in `wrangler.jsonc`, `firebase.json`, and existing scheduled workflow describe the maintainer's deployment. Fork owners must create and bind their own resources. Do not run database migrations, publish to the production Cloudflare project, or deploy Firebase rules merely to verify a documentation or software contribution.
 
-Once deployed, a Trusted Web Activity wrapper publishes the same site as an
-Android app using Bubblewrap:
+## Workflows
 
-```bash
-npm i -g @bubblewrap/cli
-bubblewrap init --manifest https://examshortcut.in/manifest.webmanifest
-bubblewrap build
-```
+`checks.yml` validates contributions without production secrets or deployment. The existing `shift-analysis.yml` can collect sources, commit analysis updates, build, and deploy the production site; do not dispatch it for a documentation change. Fork owners should review and configure scheduled automation before enabling it in their own repository.
 
-Requires: hosted `assetlinks.json` (Cloudflare Pages `public/.well-known/`)
-and a keystore. Only do this after the web version is stable.
+## Historical notes
+
+`DEPLOY-HANDOFF.md` records an earlier import/deployment handoff. Its counts, validation results, local-server status, and deployment instructions are historical rather than current release guarantees. Follow the current README and package scripts for contributor checks.

@@ -1,179 +1,107 @@
-# ExamShortcut
+<p align="center">
+  <img src="public/icon.svg" alt="ExamShortcut" width="72" height="72">
+</p>
 
-Free exam-prep site for Indian competitive exams — **SSC · Railways · Banking · CAT** (live at <https://examshortcut.in>).
-Notes, formula sheets, shortcut tricks, topic tests, a daily quiz, full CBT-style mock tests, shift-wise exam analysis,
-cutoffs and calculators. Public content needs no login; an optional free account syncs progress across devices.
+<h1 align="center">ExamShortcut</h1>
 
-- **Stack:** Next.js (App Router, `output: 'export'` → fully static) · React 19 · Tailwind CSS 4 · TypeScript ·
-  react-markdown + remark-math + rehype-katex · Firebase (Auth + Firestore, Spark free tier).
-- **Hosting:** Cloudflare Pages, project `examshortcut`. There is no server: `out/` is the whole site.
-- **Next.js is non-standard here.** `AGENTS.md` says to read `node_modules/next/dist/docs/` before writing framework code.
+<p align="center">An open-source study platform for Indian competitive exams.<br>Learn the concept. Practise the shortcut. Review your mistakes.</p>
 
-## Quick start
+<p align="center">
+  <a href="https://examshortcut.in">Use ExamShortcut</a> ·
+  <a href="#run-locally">Run locally</a> ·
+  <a href="CONTRIBUTING.md">Contribute</a> ·
+  <a href="https://github.com/king1484/examshortcut/issues/new/choose">Report an issue</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/king1484/examshortcut/actions/workflows/checks.yml"><img src="https://github.com/king1484/examshortcut/actions/workflows/checks.yml/badge.svg?branch=master" alt="Repository checks"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/Software_license-MIT-blue.svg" alt="Software license: MIT"></a>
+</p>
+
+## Why this project exists
+
+Preparing for an exam involves more than collecting questions. Students need clear explanations, timed practice, a way to revisit mistakes, and a study history that stays useful across sessions. ExamShortcut brings those workflows together in a free web app, with structured content that contributors can inspect and improve in Git.
+
+The platform covers SSC, Railways, Banking, and CAT. Public lessons can be read without an account. Progress is stored locally; an optional Firebase account adds cross-device sync. The source is published so developers and educators can improve the software, report incorrect answers, and extend its exam coverage.
+
+## What you can do
+
+- **Learn:** subject notes, worked examples, formula sheets, and shortcut techniques with Markdown and mathematical notation.
+- **Practise:** topic quizzes, a rotating daily quiz, and timed computer-based mock tests, including numeric-answer and five-option questions where supported.
+- **Review:** bookmarks, mistake tracking, revision tools, scores, and study progress.
+- **Plan:** exam hubs, syllabus and cutoff references, study planners, typing practice, and score calculators.
+- **Stay informed:** dated exam-shift analysis with source references and checks that withhold unsupported attempt estimates.
+- **Use it on different devices:** responsive pages, light/dark themes, and a service worker for the app shell. Offline coverage depends on what has been cached.
+
+ExamShortcut is an independent study aid, not an official examination authority. Check exam notices, dates, and eligibility against the relevant official source. Estimates and recalled questions are not official results or answer keys.
+
+## Run locally
+
+Use **Node.js 24** and npm. Python **3.12** is needed only for the optional analysis collector and its tests.
 
 ```bash
+git clone https://github.com/king1484/examshortcut.git
+cd examshortcut
 npm ci
-cp .env.example .env.local     # fill the 4 NEXT_PUBLIC_FIREBASE_* values (optional, see "Accounts")
-npm run dev                    # http://localhost:3000
-npm run validate               # parse + schema-check every content JSON
-npm run build                  # full production build → out/
+npm run dev
 ```
 
-`npm run build` is a pipeline, not just `next build`:
+Open [localhost:3000](http://localhost:3000). Leave Firebase settings unset for local preview: public study content and local progress work without a cloud account. Login and cloud sync require your own Firebase project.
 
-| Step | Script | What it does |
-|---|---|---|
-| 1 | `scripts/generate-daily-quiz.mjs` | Builds `public/data/daily/<n>.json` — 30 rotating buckets mixing every subject's practice questions |
-| 2 | `scripts/generate-search-index.mjs` | Builds `public/search-index.json` (topics, pages) used by Search and the Dashboard |
-| 3 | `scripts/generate-pattern-names.mjs` | Builds `src/data/pattern-names.json` (pattern id → human name) used by the Explanation chip in `QuestionView` |
-| 4 | `next build` | Static export to `out/` |
-| 5 | `scripts/fix-segment-prefetch.mjs` | Writes the flat `__next.a.b.__PAGE__.txt` copies the client router asks for (otherwise every link prefetch 404s) |
-| 6 | `scripts/generate-sitemap.mjs` | `out/sitemap.xml` (skips `noindex` pages) and adds canonical tags |
+To configure accounts, copy `.env.example` to `.env.local` (`Copy-Item .env.example .env.local` in PowerShell, or `cp .env.example .env.local` on macOS/Linux), then fill in its four `NEXT_PUBLIC_FIREBASE_*` web-app settings. These are public client configuration, not service-account credentials. Never add private keys or production secrets to Git. See [configuration and hosting](DEPLOY.md).
 
-If the build fails with `EBUSY` on `out/`, a local static server (e.g. `python -m http.server`) is holding that folder — stop it.
-
-## Repository layout
-
-```
-content/            ALL site content as JSON (see "Content model")
-  SCHEMA.md           authoring rules + the Question/Topic JSON contract — read before writing content
-  core/               exam-agnostic subject content shared by every exam
-    sections/<section>.json         quant | reasoning | english | ga | computer
-    topics/<section>/<topic>.json   notes, patterns, formulas, solved examples, practice set
-    current-affairs/<year>.json     monthly current-affairs items (rendered as plain text, not Markdown)
-    blurbs.json
-  exams/<examId>/     exam-specific data: exam.json, cutoffs.json, weightage.json, mocks/
-    mocks/parts/<mockId>--<sectionId>.json   one file per section of a mock paper
-  shift-analysis/     per-exam-day analysis: <examSlug>/<YYYY-MM-DD>.json + exams.json registry
-  research/, _work/   scratch/research — ignored by build and scans (_work is git-ignored)
-public/             static assets copied to out/ root
-  _headers, _redirects  Cloudflare Pages caching/security headers and old-URL 301s
-  sw.js               service worker (bump VERSION when shipping changed shells)
-  manifest.webmanifest, icons, og.png, robots.txt, ads.txt (AdSense pub id)
-  data/daily/         GENERATED daily-quiz buckets      search-index.json  GENERATED
-scripts/            build-time Node scripts (above) + validate-content.mjs + icon/OG image helpers (Python)
-src/
-  app/                routes (App Router) — see "Routes"
-  components/         UI; subfolders: cat/ (CAT tools), di/ (data-interpretation charts), exam-subpages/ (pattern/eligibility/salary/age pages)
-  lib/                data access + shared logic — see "Libraries"
-firestore.rules     Firestore security rules (deployed separately, see "Accounts")
-firebase.json, firestore.indexes.json
-supabase/schema.sql legacy, unused (the app uses Firebase)
-DEPLOY.md           hosting notes (partly outdated: it predates Firebase accounts)
-```
-
-## Content model
-
-Two layers (details and writing rules in `content/SCHEMA.md`):
-
-1. **Core** (`content/core`) — subjects are shared by every exam. A *topic* file carries notes/subtopics, pattern
-   cards (`patterns[].formula` is bare TeX), `pyqPatterns`, `solvedExamples`, a `practice` set and `revision` bullets.
-2. **Exam** (`content/exams/<id>`) — an exam only decides which subjects matter and adds its own pattern, cutoffs,
-   weightage and mocks. Exams: `ssc-cgl`, `ssc-chsl`, `ssc-cpo`, `ssc-gd`, `ssc-mts`, `ibps-po`, `ibps-clerk`,
-   `rrb-ntpc`, `rrb-group-d`, `cat`.
-
-**Rules that matter**
-- Content is read at build time by `src/lib/content.ts` (Node `fs`). Client components must import only the
-  client-safe modules (`sections.ts`, `exams.ts`, `types.ts`).
-- Every string field is **Markdown with `$…$` / `$$…$$` math**, except fields named `.tex` / `.formula`, which are
-  bare TeX. Current-affairs text is plain text (no Markdown, so never add `\$` there).
-- Math gotchas (all were real bugs): JSON needs doubled backslashes (`"\\frac"`, never a bare `\f`/`\t`/`\b`);
-  a literal dollar sign is `\$` in prose, and inside inline math use `\mathdollar` (remark-math closes math at any `$`);
-  don't put a space-led `$ … $` pair around symbols.
-- Only real, verified questions and answers. Quant answers are checked with Python before being written.
-
-## Routes (`src/app`)
-
-| Route | What |
-|---|---|
-| `/` | Home: exam picker, daily quiz teaser, tools |
-| `/[section]/` · `/[section]/[topic]/` | Subject and topic hub (tabs: overview, `learn/[subtopic]`, `formulas`, `examples`, `practice`) |
-| `/learn/`, `/formula-sheet/`, `/quant-formulas/`, `/shortcut-tricks/`, `/vocab/`, `/static-gk/`, `/data-interpretation/` | Cross-subject study pages |
-| `/daily-quiz/` | Today's mix (`public/data/daily`, bucket = day-number % 30, IST rollover) |
-| `/exams/` · `/exams/[exam]/…` | Exam hubs: `exam-pattern`, `eligibility`, `salary-and-posts`, `cutoffs`, `mocks/[id]` (CBT) |
-| `/exams/ssc-cgl/…` | CGL has its own richer pages (posts, calendar, admit-card, rank-estimator, typing test, weightage, syllabus, study-plan, score-calculator) |
-| `/exams/cat/…` | CAT syllabus, score calculator, study planner |
-| `/exam-analysis/[exam]/[slug]/` | Shift-wise analysis from `content/shift-analysis` |
-| `/current-affairs/[year]/[month]/` | Current affairs archive |
-| `/dashboard/`, `/revision/` | Personal progress and mistake notebook (behind `AuthGate`) |
-| `/leaderboard/` | Opt-in public leaderboard (points only) |
-| `/login/`, `/search/`, `/about`, `/contact`, `/privacy`, `/terms`, `/disclaimer` | Utility/legal pages |
-
-`src/app/layout.tsx` holds the head (metadata, AdSense snippet), `AuthProvider`, header, footer (Telegram button,
-links) and the service-worker registration.
-
-## Libraries (`src/lib`)
-
-| File | Role |
-|---|---|
-| `content.ts` | Build-time (Node) loaders for sections, topics, mocks; the only place that reads `content/` |
-| `sections.ts`, `exams.ts`, `types.ts` | Client-safe constants: section meta/colours, exam registry, `Question`/`Topic` types |
-| `shifts.ts` | Shift-analysis loaders |
-| `catSyllabus.ts`, `postDetails.ts`, `destPassages.ts` | Static reference data for CAT, SSC post pages, typing-test passages |
-| `store.ts` | **Local-first progress** in `localStorage` (`es-*` keys): mistakes, bookmarks, topic scores, studied, mock attempts, drafts. `useStore()` re-renders on any write |
-| `useExam.ts` | Selected exam (`es-exam`) |
-| `firebase.ts` | Firebase init; exports `authConfigured`, `auth`, `db`. Without env vars the site runs in "preview mode" (no accounts, everything local) |
-| `sync.ts` | When logged in, mirrors the `SYNC_KEYS` store keys to Firestore `user_progress/{uid}`; merges cloud + local on login |
-| `streak.ts` | Streak and points maths (`computeStreak`, `computeStats`, `useProgress`). IST calendar days |
-| `leaderboard.ts` | Opt-in public leaderboard reads/writes (`leaderboard/{uid}`) |
-
-## Components worth knowing (`src/components`)
-
-- **Rendering:** `Md.tsx` (Markdown + KaTeX pipeline), `MathText.tsx`, `LazyTex.tsx` (client-side KaTeX for `Tex` blocks).
-- **Learning flow:** `TopicTabs`, `Lesson`, `SolvedExample`, `PracticeSets`, `TopicQuiz`, `QuestionView`, `StudiedToggle`.
-- **Tests:** `MockCBT` (full CBT interface + analysis), `MockList`, `MockAccessGate`, `DailyQuiz`.
-- **Account/progress:** `Auth.tsx` (`AuthProvider`, `useAuth`, `AuthGate`, `AccountButton`), `LoginForm`, `Dashboard`,
-  `Streak.tsx` (`StreakChip`, `StreakCard`), `Leaderboard.tsx`.
-- **Tools:** `ScoreCalculator`, `RankEstimator`, `StudyPlanner`, `PostPlanner`, `DestTyping`, `ExamCutoffs`, `CutoffExplorer`, `ExamCalendar`, `Search`.
-- **Chrome:** `SiteHeader` (nav + streak chip + account), `ThemeToggle`, `NavLoader`, `SwRegister`.
-
-Styling: Tailwind 4 plus design tokens and component classes (`.card`, `.btn`, `.btn-brand`, `.chip`, `.tbl`) in
-`src/app/globals.css`, with light/dark themes via CSS variables. Keep CTAs calm — no gradients or glow on login prompts.
-
-## Accounts, streak and leaderboard
-
-- **Auth:** Firebase Auth (Google + email link). Optional; everything public works without it.
-- **Progress sync:** Firestore `user_progress/{uid}` — private to the owner.
-- **Streak:** personal motivation only — never published or ranked. Any studied topic, topic/daily test, mock attempt or
-  logged mistake marks that IST day active. Shown in the header chip (links to the daily quiz) and the dashboard; works
-  for logged-out visitors from local data.
-- **Points:** 10 per studied topic · up to 30 per test (best score) · 25 + best-score% per mock paper. Streak does not count.
-- **Leaderboard:** strictly **opt-in** and **real users only** (no seeded/fake entries). Joining writes
-  `leaderboard/{uid}` = `{name, points, studied, tests, mocks, updatedAt}`; leaving deletes it.
-  Anyone can read the collection, only the owner can write their row (validated shapes in `firestore.rules`).
-  Scores are computed client-side, so they are self-reported.
-- **Deploying Firestore rules** (needed whenever `firestore.rules` changes; the site deploy does not do this):
-  ```bash
-  npx firebase-tools login
-  npx firebase-tools deploy --only firestore:rules --project examshortcut-app
-  ```
-  Until the rules are live the leaderboard shows "couldn't be loaded"; nothing else is affected.
-
-Environment variables (`.env.local`, not committed): `NEXT_PUBLIC_FIREBASE_API_KEY`, `_AUTH_DOMAIN`, `_PROJECT_ID`, `_APP_ID`.
-
-These four public Firebase web settings also live in GitHub Actions repository variables, passed to every scheduled/manual build. `npm run build` verifies complete matching configuration, authorized production domains and the Google provider before compiling, then verifies the actual exported login and bundled settings. A missing configuration stops deployment rather than silently shipping preview mode. Any new build pipeline must supply the same variables. Firebase web configuration identifies the public app; access control remains in Firebase Auth and Firestore rules. Never put service-account credentials in these variables.
-
-### Student feedback and feature requests
-
-`/feedback/` and `/feature-requests/` submit to the Pages Function `/api/feedback`, independently of Firebase login. Requests are stored privately in Cloudflare D1 `examshortcut-feedback`; the browser API has no read/list endpoint. `wrangler.jsonc` keeps the database binding in source so every analysis deployment preserves it. `public/_routes.json` limits function invocations to this API. Initialize storage with `npx wrangler d1 execute examshortcut-feedback --remote --file migrations/feedback.sql`.
-
-Read submissions in Cloudflare dashboard → Storage & databases → D1 → examshortcut-feedback → Console, or run `npx wrangler d1 execute examshortcut-feedback --remote --command "SELECT id, kind, title, message, exam, page, email, created_at FROM submissions ORDER BY created_at DESC LIMIT 50"`. Treat email/message data as private. There is no automatic email notification. The API checks field lengths, page URLs and same-origin submissions, uses an atomic five-per-network-per-hour limit, and accepts retries with the same request ID without duplication. Run `node --test scripts/test-auth-config.mjs scripts/test-feedback.mjs` and a local `wrangler pages dev out` integration check after backend changes.
-
-## Deploying the site
-
-Cloudflare Pages, static upload of `out/`:
+### Validate your changes
 
 ```bash
-npm run build
-npx wrangler pages deploy out --project-name examshortcut --branch main --commit-dirty=true
+npm run validate
+node --experimental-strip-types --test scripts/test-auth-config.mjs scripts/test-feedback.mjs scripts/test-infolinks.mjs
+node scripts/verify-pyq-imports.mjs
+node scripts/verify-pyq-runtime.mjs
 ```
 
-Verify on the live URL with a cache-buster (`?cb=<random>`). `public/_headers` sets long-cache for `/_next/static/*`
-and no-cache for `sw.js`; bump `VERSION` in `public/sw.js` when shell assets change.
+Optional collector checks:
 
-## Conventions
+```bash
+python -m pip install -r scripts/shift-collector/requirements.txt
+python -m unittest discover -s scripts/shift-collector -p "test_*.py"
+```
 
-- Prefer editing JSON in place; keep CRLF/LF as the file already has. Validate with `npm run validate` after content edits.
-- Don't put Node imports in files that client components import.
-- New pages that are personal/thin should set `robots: { index: false }` (dashboard, leaderboard do).
-- Ads: AdSense publisher snippet is in `layout.tsx` `<head>`; `public/ads.txt` carries the publisher line.
+These checks run without production credentials. The content validator checks JSON structure and answer-field contracts; it does **not** prove that every explanation or answer is factually correct. Collector tests use mocked sources rather than running a live collection.
+
+`npm run build` creates the static export in `out/`. Its production preflight currently verifies the maintainer's Firebase domains and Google sign-in provider, so a fresh clone cannot run a production build with blank settings. Local development and repository checks do not need that configuration. Fork owners must adapt the production-specific settings before deploying their own instance; see [DEPLOY.md](DEPLOY.md).
+
+## How it fits together
+
+The application uses Next.js App Router, React, TypeScript, Tailwind CSS, Markdown, and KaTeX. Lessons and questions are loaded from JSON at build time. Firebase supplies optional authentication and progress sync. Cloudflare Pages serves the static export; a Pages Function and D1 handle private student feedback. The optional Python collector produces source-backed shift-analysis data.
+
+```text
+content/                  Subject material, exam data, mocks, shift analysis
+src/app/                  Pages and routes
+src/components/           Lessons, quizzes, mock tests, progress, study tools
+src/lib/                  Content loaders, scoring, local storage, Firebase sync
+functions/api/            Student feedback endpoint
+migrations/               Feedback database schema
+scripts/                  Validation, generation, verification, optional collector
+public/                   Static assets and service worker
+.github/                  Repository checks and contribution templates
+```
+
+Read the [architecture notes](docs/ARCHITECTURE.md) for the content model and component map, and [content/SCHEMA.md](content/SCHEMA.md) before editing questions.
+
+## Contributing
+
+Useful contributions include reproducible bug reports, corrected explanations with worked evidence, accessibility improvements, scoring tests, and better contributor setup. Start with [CONTRIBUTING.md](CONTRIBUTING.md). Please check existing issues before beginning a large change.
+
+For an answer correction, include the exam/topic, question ID or URL, the incorrect result, and your derivation or authoritative source. For a security issue, follow [SECURITY.md](SECURITY.md) instead of posting sensitive details in a public issue.
+
+## Maintenance and near-term priorities
+
+[Vinay Singirikonda (@king1484)](https://github.com/king1484) is the primary maintainer. Maintenance includes reviewing content corrections, fixing scoring and interface regressions, validating imported papers, reviewing changes from the analysis collector, and maintaining the hosted app. Repository checks validate contributions; the existing scheduled collector has a separate production workflow.
+
+Current priorities are to improve answer-verification coverage, make self-hosting less coupled to the production domain, expand accessibility checks, and document content provenance and redistribution permissions. These are areas for contribution, not promises of a delivery date. The project has no guaranteed response time.
+
+## License and content rights
+
+The original **software** is available under the [MIT License](LICENSE). See [CONTENT_RIGHTS.md](CONTENT_RIGHTS.md) for the scope and exclusions.
+
+Past-paper questions, source excerpts, third-party images, and other external material are **not automatically licensed under MIT**. Source links and import records document provenance, not permission to redistribute. Check the applicable rights before reusing content or publishing a fork's question bank. No blanket open-content license is granted for `content/` or third-party assets.
