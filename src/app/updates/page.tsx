@@ -13,6 +13,19 @@ type Entry = { date: string; title: string; points: string[] };
 const LOG: Entry[] = [
   {
     date: '21 October 2026',
+    title: 'Official exam notices, results and schedule corrections',
+    points: [
+      'Updated SSC GD with the 12 October CBT result and physical-test shortlist, and SSC MTS/Havaldar with the 7 October additional shortlist and its candidature conditions.',
+      'Added the SSC CHSL 2026 Tier 1 window of 30 November–31 December from the official schedule. Kept the 7 October CHSL 2025 final result clearly separate from the 2026 recruitment.',
+      'Updated SBI PO with the published mains shortlist and tentative Phase 3 dates: psychometric test on 31 October and Group Exercise/interviews from 18 November.',
+      'Added the SBI Clerk special-drive mains date of 29 October, explicitly separated from the regular Junior Associate recruitment.',
+      'Updated UP Police with the 14 October final selection result and the completed PET window of 1–11 October.',
+      'Corrected IBPS Clerk mains to 27 December in the official tentative calendar. Confirmed CAT’s limited-edit dates and scheduled 4 November admit-card download, without claiming future downloads are already open.',
+      'Updated the matching result, admit-card and calendar pages with official source links. Railway updates could not be independently confirmed because the official portals were unavailable during this check.',
+    ],
+  },
+  {
+    date: '21 October 2026',
     title: 'Statistics corrections and clearer score comparisons',
     points: [
       'Corrected 10 statistics practice questions, including wrong answer keys, missing correct options and contradictory explanations.',
