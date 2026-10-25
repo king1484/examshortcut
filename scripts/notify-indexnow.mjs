@@ -1,6 +1,7 @@
 /* After deployment, notify changed indexable analysis, notice and exam pages. */
 import fs from 'node:fs';
 import { execFileSync } from 'node:child_process';
+import { changedCurrentAffairsRoutes } from './current-affairs-routes.mjs';
 const BASE = 'https://examshortcut.in';
 const KEY = '538756d8d399f34c2bb5583accbce022';
 const months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
@@ -10,6 +11,12 @@ if (!base) throw new Error('--base requires a Git revision');
 const changed = execFileSync('git', ['diff', '--name-only', base, 'HEAD'], {encoding:'utf8'}).trim().split('\n');
 const urls = new Set();
 for (const file of changed) {
+  if (/^content\/core\/current-affairs\/\d{4}\.json$/.test(file) && fs.existsSync(file)) {
+    const current = JSON.parse(fs.readFileSync(file, 'utf8'));
+    let previous;
+    try { previous = JSON.parse(execFileSync('git', ['show', `${base}:${file}`], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] })); } catch { /* first publication */ }
+    for (const route of changedCurrentAffairsRoutes(current, previous)) urls.add(BASE + route);
+  }
   const guideChange = /^content\/exams\/([^/]+)\/guides\/([^/]+)\.json$/.exec(file);
   if (guideChange) {
     const [, exam, slug] = guideChange;

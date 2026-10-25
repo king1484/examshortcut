@@ -104,8 +104,8 @@ export interface CaItem {
   /** Optional attribution for individually verified items. */
   source?: string; sourceUrl?: string; sourceDate?: string;
 }
-export interface CaMonth { month: string; label: string; items: CaItem[]; quiz?: Question[] }
-export interface CaYear { year: number; months: CaMonth[] }
+export interface CaMonth { month: string; label: string; items: CaItem[]; quiz?: Question[]; updatedAt?: string }
+export interface CaYear { year: number; months: CaMonth[]; updatedAt?: string }
 
 export function listCaYears(): number[] {
   const dir = path.join(CORE, 'current-affairs');

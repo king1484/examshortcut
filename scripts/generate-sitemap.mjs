@@ -105,6 +105,14 @@ function examContentDate(parts) {
 
 function currentAffairsDate(parts) {
   const dir = path.join(CONTENT, 'core', 'current-affairs');
+  if (parts[1] && parts[2] && /^\d{4}$/.test(parts[1])) {
+    const file = path.join(dir, `${parts[1]}.json`);
+    if (fs.existsSync(file)) {
+      const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+      const month = data.months?.find(month => month.month === `${parts[1]}-${parts[2]}`);
+      if (month) return isoDate(month.updatedAt) ?? newest(month.items.map(item => isoDate(item.date))) ?? dateForFile(file);
+    }
+  }
   if (parts[1] && /^\d{4}$/.test(parts[1])) return dateForFile(path.join(dir, `${parts[1]}.json`));
   if (!fs.existsSync(dir)) return undefined;
   return newestOfFiles(fs.readdirSync(dir).filter(f => /^\d{4}\.json$/.test(f)).map(f => path.join(dir, f)));

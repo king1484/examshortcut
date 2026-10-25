@@ -8,6 +8,9 @@ const items = JSON.parse(fs.readFileSync('content/exam-updates.json', 'utf8'));
 
 test('official links reject spoofed hosts, credentials and unsafe protocols', () => {
   assert(isOfficialUpdateUrl('https://rrb.digialm.com//EForms/configuredHtml/33244/102815/login.html'));
+  assert(isOfficialUpdateUrl('https://ibpsreg.ibps.in/csaxvijul26/'));
+  assert(isOfficialUpdateUrl('https://ibpsreg.ibps.in/sbijasrdjl26/oecla_oct26/login.php?appid=public-link'));
+  for (const url of ['https://ibpsreg.ibps.in/unverified/', 'https://ibpsreg.ibps.in.evil.example/csaxvijul26/', 'https://ibpsreg.ibps.in/csaxvijul26/extra', 'https://user:pass@ibpsreg.ibps.in/csaxvijul26/']) assert(!isOfficialUpdateUrl(url), url);
   for (const url of ['https://ssc.gov.in/a.pdf', 'https://sbi.bank.in/web/careers/current-openings', 'https://www.ibps.in/', 'https://rrb.digialm.com/EForms/configuredHtml/33128/102593/login.html']) assert(isOfficialUpdateUrl(url));
   for (const url of ['javascript:alert(1)', 'http://ssc.gov.in/', 'https://ssc.gov.in.evil.example/a', 'https://ssc.gov.in@evil.example/', 'https://user:password@ssc.gov.in/', '//ssc.gov.in/', 'https://ssc.gov.in:8443/', 'https://rrb.digialm.com/unverified', 'https://rrb.digialm.com.evil.example/EForms/configuredHtml/']) assert(!isOfficialUpdateUrl(url), url);
 });

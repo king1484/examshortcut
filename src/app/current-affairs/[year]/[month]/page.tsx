@@ -59,6 +59,7 @@ export default async function CaMonthPage({ params }: { params: Promise<{ year: 
       </div>
       <h1 className="text-2xl sm:text-4xl font-extrabold mt-1">Current affairs — {m.label}</h1>
       <p className="muted mt-2 text-[15px]">{m.items.length} exam-relevant headlines, written simply. Read the bold fact in each — that's what exams ask.</p>
+      {m.updatedAt && <p className="text-xs muted mt-2">Updated {new Date(m.updatedAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Kolkata' })} · Sources are linked with each verified item.</p>}
 
       <div className="space-y-3 mt-6">
         {m.items.map((it, i) => (
@@ -90,7 +91,7 @@ export default async function CaMonthPage({ params }: { params: Promise<{ year: 
       {m.quiz && m.quiz.length > 0 && (
         <section className="mt-10">
           <h2 className="text-xl font-extrabold">{m.label} quiz — {m.quiz.length} questions</h2>
-          <p className="text-sm muted mt-1">From exactly the headlines above. If you read the month, you should score 8+.</p>
+          <p className="text-sm muted mt-1">Test recall from the headlines above, then review the explanation for every missed answer.</p>
           <div className="mt-3"><TopicQuiz questions={m.quiz} storageKey={`ca/${m.month}`} href={`/current-affairs/${year}/${month}/`} section="ga" title={`Current affairs · ${m.label}`} /></div>
         </section>
       )}

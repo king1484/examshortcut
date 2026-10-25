@@ -18,6 +18,8 @@ test('declared dates survive fresh checkouts and removed legacy mock pages retai
     page('study-guides/explicit-date-test', '<meta property="article:modified_time" content="2020-01-02"/>');
     page('exams/cat/mocks/available');
     page('exams/cat/mocks/held', '<meta name="robots" content="noindex, follow"/>');
+    page('current-affairs/2026/09');
+    page('current-affairs/2026/10');
     fs.writeFileSync(path.join(output, '_redirects'), '# Existing rules\n/old/ /new/ 301\n');
     function generate() {
       const result = spawnSync(process.execPath, ['scripts/generate-sitemap.mjs'], {
@@ -29,6 +31,12 @@ test('declared dates survive fresh checkouts and removed legacy mock pages retai
     const map = fs.readFileSync(path.join(output, 'sitemap.xml'), 'utf8');
     assert(map.includes('<loc>https://examshortcut.in/study-guides/explicit-date-test/</loc><lastmod>2020-01-02</lastmod>'));
     assert(!map.includes('/exams/cat/mocks/held/'));
+    const ca = JSON.parse(fs.readFileSync('content/core/current-affairs/2026.json', 'utf8'));
+    for (const number of ['09', '10']) {
+      const month = ca.months.find(month => month.month === `2026-${number}`);
+      const date = month.updatedAt ?? month.items.map(item => item.date).sort().at(-1);
+      assert(map.includes(`<loc>https://examshortcut.in/current-affairs/2026/${number}/</loc><lastmod>${date}</lastmod>`));
+    }
     const redirects = fs.readFileSync(path.join(output, '_redirects'), 'utf8');
     for (const id of ['available', 'held']) {
       for (const slash of ['', '/']) {

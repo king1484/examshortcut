@@ -7,6 +7,10 @@ on:
     branches: [master]
     paths:
       - 'content/exam-updates.json'
+      - 'content/core/current-affairs/**'
+      - 'src/app/current-affairs/**'
+      - 'scripts/*current-affairs*.mjs'
+      - 'scripts/notify-indexnow.mjs'
       - 'content/exams/**/exam.json'
       - 'content/exams/**/process.json'
       - 'content/exams/**/guides/**'
@@ -56,7 +60,7 @@ jobs:
       - name: Validate source evidence and publishing rules
         run: |
           npm run validate
-          node --experimental-strip-types --test scripts/test-exam-updates.mjs scripts/test-sitemap.mjs scripts/test-auth-config.mjs
+          node --experimental-strip-types --test scripts/test-exam-updates.mjs scripts/test-sitemap.mjs scripts/test-auth-config.mjs scripts/test-current-affairs.mjs
       - name: Build and verify public pages
         run: |
           npm run build

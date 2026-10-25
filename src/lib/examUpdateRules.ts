@@ -29,6 +29,7 @@ export function isOfficialUpdateUrl(value: string): boolean {
     const host = u.hostname.toLowerCase();
     return u.protocol === 'https:' && !u.username && !u.password && !u.port &&
       (host.endsWith('.gov.in') || ['ibps.in', 'www.ibps.in', 'sbi.bank.in', 'iimcat.ac.in'].includes(host) ||
+        (host === 'ibpsreg.ibps.in' && (u.pathname === '/csaxvijul26/' || u.pathname === '/sbijasrdjl26/oecla_oct26/login.php')) ||
         (host === 'rrb.digialm.com' && u.pathname.replace(/^\/+/, '/').startsWith('/EForms/configuredHtml/')));
   } catch { return false; }
 }
