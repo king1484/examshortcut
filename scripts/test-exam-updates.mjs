@@ -1,12 +1,17 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { filterExamUpdates, isOfficialUpdateUrl } from '../src/lib/examUpdateRules.ts';
+import { filterExamUpdates, isOfficialUpdateUrl, sortExamUpdates } from '../src/lib/examUpdateRules.ts';
 import { validateExamUpdates } from './validate-exam-updates.mjs';
 import { buildExamUpdateRss } from './exam-update-feeds.mjs';
 const items = JSON.parse(fs.readFileSync('content/exam-updates.json', 'utf8'));
 
 test('official links reject spoofed hosts, credentials and unsafe protocols', () => {
+  const gdKey = 'https://sscexams.cbexams.com/Gd2026sdsFinalkeysLandingpage/loginnew.aspx';
+  const catRelease = 'https://g03.tcsion.com//per/g03/pub/726/EForms/image/ImageDocUpload/71161/7/9901914301.pdf';
+  assert(isOfficialUpdateUrl(gdKey));
+  assert(isOfficialUpdateUrl(catRelease));
+  for (const url of [gdKey + '?redirect=https://evil.example', gdKey + '/extra', gdKey.replace('cbexams.com', 'cbexams.com.evil.example'), gdKey.replace('https://', 'http://'), gdKey.replace('https://', 'https://user:pass@'), catRelease.replace('9901914301', 'unverified'), catRelease + '?redirect=elsewhere', catRelease.replace('g03.tcsion.com', 'g03.tcsion.com.evil.example')]) assert(!isOfficialUpdateUrl(url), url);
   assert(isOfficialUpdateUrl('https://rrb.digialm.com//EForms/configuredHtml/33244/102815/login.html'));
   assert(isOfficialUpdateUrl('https://ibpsreg.ibps.in/csaxvijul26/'));
   assert(isOfficialUpdateUrl('https://ibpsreg.ibps.in/sbijasrdjl26/oecla_oct26/login.php?appid=public-link'));
@@ -24,6 +29,15 @@ test('search combines exam, update type and words; drafts remain hidden', () => 
   assert.equal(selected[0].slug, 'example-result');
   assert.equal(filterExamUpdates(data, 'nonexistent-search').length, 0);
   assert.equal(filterExamUpdates(data, '', '', 'admit-card').length, 0);
+});
+
+test('a revised older notice surfaces without changing its original publication date', () => {
+  const older = { ...items[0], slug: 'corrected', publishedAt: '2026-10-21T12:00:00Z', updatedAt: '2026-11-04T12:00:00Z' };
+  const newer = { ...items[0], slug: 'newer', publishedAt: '2026-11-03T12:00:00Z', updatedAt: '2026-11-03T12:00:00Z' };
+  const source = [newer, older];
+  assert.deepEqual(sortExamUpdates(source).map(item => item.slug), ['corrected', 'newer']);
+  assert.equal(source[0].slug, 'newer');
+  assert.equal(older.publishedAt, '2026-10-21T12:00:00Z');
 });
 test('publication requires official evidence and consistent dates', () => {
   assert.equal(validateExamUpdates(items), items.filter(item => item.published).length);

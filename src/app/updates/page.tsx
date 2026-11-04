@@ -12,6 +12,17 @@ type Entry = { date: string; title: string; points: string[] };
 
 const LOG: Entry[] = [
   {
+    date: '4 November 2026',
+    title: 'GD final keys, revised CAT and ALP dates, and JE vacancy correction',
+    points: [
+      'Added SSC GD final-key and CBE-marks access through 17 November at 5 PM, plus an original guide to saving and reviewing the records.',
+      'Corrected CAT admission downloads to 6–29 November under the 4 November release; the official mock is scheduled from 6 November.',
+      'Added the older ALP CBAT replacement date of 12 November, third shift, with the separate document rules for postponed-centre and technical-problem candidates.',
+      'Updated RRB JE to 4,487 vacancies under Corrigendum No. 2, keeping the revised regional rows separate from the overall total.',
+      'Expanded November current affairs with 14 sourced notes and 14 original recall questions from the 3–4 November releases.',
+    ],
+  },
+  {
     date: '21 October 2026',
     title: 'Results and exam notices now have their own section',
     points: [
