@@ -79,10 +79,10 @@ export default function PrivacyPage() {
             <a className="underline" href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">how Google uses data when you use our site</a>.
           </p>
           <p className="mt-1">
-            Adsterra serves limited display-banner placements on public reading pages. Adsterra support confirmed our requested adult/erotic/dating and gambling/betting/casino exclusions on 6 November 2026, together with the requested sound and deceptive download/alert exclusions.
+            Adsterra serves limited display-banner placements on public reading pages, quizzes, calculators and mock-result screens. Adsterra support confirmed our requested adult/erotic/dating and gambling/betting/casino exclusions on 6 November 2026, together with the requested sound and deceptive download/alert exclusions.
             When enabled, Adsterra and its advertising partners may receive your IP address, browser/device information and referring site, and may use cookies or similar technologies for ad delivery and measurement.
             See <a className="underline" href="https://adsterra.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Adsterra&apos;s privacy policy</a>.
-            A “Hide ads while studying” control hides these placements for the current browser-tab session and stores that choice in session storage. Tests, quizzes, calculators, sign-in and account pages are excluded from these placements.
+            Placements are labelled and appear at content breaks, outside answer and calculator controls. Active mock tests, sign-in and account pages are excluded. There is no in-page ad-dismissal control.
             If your browser saved a notification permission from an earlier third-party script, you can revoke that permission in your browser&apos;s site settings.
           </p>
         </div>

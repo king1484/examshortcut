@@ -1,4 +1,5 @@
 'use client';
+import { AdsterraBanner } from './AdsterraBanner';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Question } from '@/lib/types';
 import { store, useStore } from '@/lib/store';
@@ -11,7 +12,13 @@ function fmt(sec: number) {
   return `${m}:${String(s).padStart(2, '0')}`;
 }
 
-export function TopicQuiz({ questions: raw, storageKey, href, section, title }: { questions: Question[]; storageKey: string; href: string; section: string; title: string }) {
+type TopicQuizProps = { questions: Question[]; storageKey: string; href: string; section: string; title: string };
+
+export function TopicQuiz(props: TopicQuizProps) {
+  return <><TopicQuizBody {...props} />{props.questions.length > 0 && <AdsterraBanner context="quiz" />}</>;
+}
+
+function TopicQuizBody({ questions: raw, storageKey, href, section, title }: TopicQuizProps) {
   const questions = useMemo(() => withPassages(raw), [raw]);
   const [mode, setMode] = useState<Mode | null>(null);
   const [idx, setIdx] = useState(0);

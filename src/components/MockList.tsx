@@ -1,4 +1,6 @@
 'use client';
+import { Fragment } from 'react';
+import { AdsterraBanner } from './AdsterraBanner';
 import Link from 'next/link';
 import { store, useStore } from '@/lib/store';
 
@@ -9,11 +11,11 @@ export function MockList({ mocks, examId = 'ssc-cgl', showTier = true }: { mocks
 
   return (
     <div className="space-y-4 mt-6">
-      {mocks.map((m) => {
+      {mocks.map((m, index) => {
         const hist = attempts[m.id] ?? [];
         const best = hist.length ? Math.max(...hist.map((h) => h.score)) : null;
         return (
-          <div key={m.id} className="card p-5 flex flex-col sm:flex-row sm:items-center gap-4">
+          <Fragment key={m.id}><div className="card p-5 flex flex-col sm:flex-row sm:items-center gap-4">
             <div className="flex-1">
               <div className="flex items-center gap-2 flex-wrap">
                 <h2 className="font-extrabold text-lg">{m.title}</h2>
@@ -30,7 +32,7 @@ export function MockList({ mocks, examId = 'ssc-cgl', showTier = true }: { mocks
             <div className="flex gap-2 shrink-0">
               <Link href={`/exams/${examId}/mocks/${m.id}/`} className={`btn ${m.available ? 'btn-brand' : ''}`}>{m.available ? (hist.length ? 'Retake' : 'Start test') : 'Preview'}</Link>
             </div>
-          </div>
+          </div>{index === 2 && <AdsterraBanner />}</Fragment>
         );
       })}
     </div>

@@ -1,3 +1,4 @@
+import { AdsterraBanner } from '@/components/AdsterraBanner';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
@@ -152,6 +153,7 @@ export default async function ExamHub({ params }: { params: Params }) {
       </nav>
 
       <ExamPhoto id={id} />
+      <AdsterraBanner />
 
       {overview.rest && (
         <>

@@ -106,6 +106,7 @@ export default function Home() {
         ))}
       </section>
 
+      <AdsterraBanner />
       <HomeMocks mocks={mocks} />
 
       <section className="mt-10">

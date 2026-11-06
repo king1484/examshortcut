@@ -1,3 +1,4 @@
+import { AdsterraBanner } from '@/components/AdsterraBanner';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { listMocks } from '@/lib/content';
@@ -73,7 +74,9 @@ export function ToolPageFrame({ id, kind, h1, intro, faqs, children }: {
         </nav>
       )}
 
+      <AdsterraBanner context="calculator" />
       {children}
+      <AdsterraBanner context="calculator" />
 
       {faqs.length > 0 && (
         <section aria-labelledby="faqs">

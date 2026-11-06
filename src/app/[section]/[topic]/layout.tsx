@@ -1,3 +1,4 @@
+import { AdsterraBanner } from '@/components/AdsterraBanner';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { SECTION_META, SECTION_ORDER, getSection, getTopic, listTopics } from '@/lib/content';
@@ -55,6 +56,7 @@ export default async function TopicLayout({
 
       <TopicTabs base={base} nLearn={t.subtopics.length} nFormulas={nFormulas} nExamples={t.solvedExamples?.length ?? 0} nPractice={t.practice?.length ?? 0} />
 
+      <AdsterraBanner />
       {children}
 
       <nav className="flex justify-between gap-3 mt-12 text-sm">

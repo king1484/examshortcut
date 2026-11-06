@@ -1,3 +1,4 @@
+import { AdsterraBanner } from '@/components/AdsterraBanner';
 import type { Metadata } from 'next';
 import { getExam } from '@/lib/content';
 import { CAT_SECS } from '@/lib/catSyllabus';
@@ -35,7 +36,9 @@ export default function CatScoreCalculatorPage() {
         h1="CAT score calculator"
         intro={<>Enter your counts for each section and get your raw score, accuracy and attempts. CAT gives <b>+3</b> for a correct answer and <b>{'−'}1</b> for a wrong MCQ. <b>TITA</b> (type-in-the-answer) questions have <b>no negative marking</b>. Each section is {minutes} minutes. The question counts below are the CAT 2025 paper ({sections.map((s) => `${s.short} ${s.questions}`).join(', ')}); the IIMs do not announce counts in advance.</>}
       />
+      <AdsterraBanner context="calculator" />
       <CatScoreCalculator sections={sections} minutesPerSection={minutes} />
+      <AdsterraBanner context="calculator" />
     </div>
   );
 }

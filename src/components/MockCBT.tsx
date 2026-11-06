@@ -1,4 +1,5 @@
 'use client';
+import { AdsterraBanner } from './AdsterraBanner';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -404,6 +405,7 @@ function MockResult({ mock, flat, answers, times, attempt }: { mock: Mock; flat:
           (remember real scores are normalised across shifts).</p>
       )}
 
+      <AdsterraBanner context="mock-result" />
       <h2 className="font-bold text-lg mt-8 mb-3">Section-wise</h2>
       <div className="tbl-wrap">
         <table className="tbl">

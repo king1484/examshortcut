@@ -1,3 +1,4 @@
+import { AdsterraBanner } from '@/components/AdsterraBanner';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getExam, contentStats, availableSections, SECTION_META, listTopics } from '@/lib/content';
@@ -112,6 +113,7 @@ export default function ExamPage() {
       </nav>
 
       <ExamPhoto id="ssc-cgl" />
+      <AdsterraBanner />
 
       {overview.rest && (
         <>

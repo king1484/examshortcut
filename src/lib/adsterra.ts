@@ -27,7 +27,22 @@ export function isAdsterraReadingPage(path: string): boolean {
     || /^\/(quant|reasoning|english|ga|computer)(\/[^/]+)?\/?$/.test(path)
     || /^\/(quant|reasoning|english|ga|computer)\/[^/]+\/(learn|formulas|examples)\/?$/.test(path)
     || /^\/exam-analysis(\/[^/]+){0,2}\/?$/.test(path)
+    || /^\/(results|answer-keys)\/?$/.test(path)
+    || /^\/exams\/[^/]+\/mocks\/?$/.test(path)
+    || /^\/(quant|reasoning|english|ga|computer)\/[^/]+\/learn\/[^/]+\/?$/.test(path)
     || path === '/current-affairs/' || /^\/current-affairs\/\d{4}\/?$/.test(path);
+}
+
+export type AdsterraContext = 'reading' | 'quiz' | 'calculator' | 'mock-result';
+
+/** Interactive pages require an explicit placement, never the global page-end banner. */
+export function canPlaceAdsterra(path: string, context: AdsterraContext): boolean {
+  if (context === 'reading') return isAdsterraReadingPage(path);
+  if (context === 'calculator') return /^\/exams\/[^/]+\/(score|marks|salary|normalisation)-calculator\/?$/.test(path);
+  if (context === 'mock-result') return /^\/exams\/[^/]+\/mocks\/[^/]+\/?$/.test(path);
+  return /^\/daily-quiz\/?$/.test(path)
+    || /^\/current-affairs\/\d{4}\/\d{2}\/?$/.test(path)
+    || /^\/(quant|reasoning|english|ga|computer)\/[^/]+\/(practice|learn\/[^/]+)\/?$/.test(path);
 }
 
 export function chooseAdsterraUnit(width: number, position: 'reading' | 'article'): AdsterraUnit | null {

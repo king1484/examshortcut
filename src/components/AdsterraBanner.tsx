@@ -3,44 +3,37 @@
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 import { ADSTERRA_ENABLED, ADSTERRA_CATEGORY_CONFIRMATION, ADSTERRA_SERVE_AFTER, ADSTERRA_FRAME_ORIGIN, ADSTERRA_UNITS,
-  canServeAdsterra, chooseAdsterraUnit, isAdsterraReadingPage, type AdsterraUnit } from '@/lib/adsterra';
+  canServeAdsterra, chooseAdsterraUnit, canPlaceAdsterra, type AdsterraContext, type AdsterraUnit } from '@/lib/adsterra';
 
-const AdPreferences = createContext({ hidden: false, ready: false, hide: () => {} });
-const HIDE_KEY = 'es-hide-ads-this-session';
+const AdReadiness = createContext(false);
 
 export function AdsterraProvider({ children }: { children: ReactNode }) {
-  const [hidden, setHidden] = useState(false);
   const [ready, setReady] = useState(false);
   useEffect(() => {
-    try { setHidden(sessionStorage.getItem(HIDE_KEY) === '1'); } catch { /* Storage may be unavailable. */ }
     const delay = process.env.NODE_ENV === 'development' ? 0 : Math.max(0, Date.parse(ADSTERRA_SERVE_AFTER) - Date.now());
     const timer = window.setTimeout(() => setReady(true), delay);
     return () => window.clearTimeout(timer);
   }, []);
-  const hide = () => {
-    setHidden(true);
-    try { sessionStorage.setItem(HIDE_KEY, '1'); } catch { /* The current page still hides ads. */ }
-  };
-  return <AdPreferences.Provider value={{ hidden, ready, hide }}>{children}</AdPreferences.Provider>;
+  return <AdReadiness.Provider value={ready}>{children}</AdReadiness.Provider>;
 }
 
 export function AdsterraPageEnd() {
   const pathname = usePathname();
-  return pathname === '/' ? null : <AdsterraBanner />;
+  // Embedded lesson quizzes own their second slot; never add a third at the footer.
+  return pathname === '/' || /\/learn\/[^/]+\/?$/.test(pathname || '') ? null : <AdsterraBanner />;
 }
 
-export function AdsterraBanner({ position = 'reading' }: { position?: 'reading' | 'article' }) {
+export function AdsterraBanner({ position = 'reading', context = 'reading' }: { position?: 'reading' | 'article'; context?: AdsterraContext }) {
   const pathname = usePathname() || '';
-  const preferences = useContext(AdPreferences);
   const enabled = ADSTERRA_ENABLED && Boolean(ADSTERRA_CATEGORY_CONFIRMATION);
   // Development preview reserves real sizes but never requests an advertisement.
   const preview = process.env.NODE_ENV === 'development';
-  if ((!enabled && !preview) || preferences.hidden || !isAdsterraReadingPage(pathname)) return null;
+  if ((!enabled && !preview) || !canPlaceAdsterra(pathname, context)) return null;
   return <BannerSlot key={`${pathname}:${position}`} position={position} preview={preview} />;
 }
 
 function BannerSlot({ position, preview }: { position: 'reading' | 'article'; preview: boolean }) {
-  const { ready, hide } = useContext(AdPreferences);
+  const ready = useContext(AdReadiness);
   const slot = useRef<HTMLElement>(null);
   const [unit, setUnit] = useState<AdsterraUnit | null>(null);
   const [availableWidth, setAvailableWidth] = useState(0);
@@ -70,7 +63,7 @@ function BannerSlot({ position, preview }: { position: 'reading' | 'article'; pr
   const load = ready && idle && visible && unit && !preview && canServeAdsterra(location.hostname);
   return <aside ref={slot} className={`adsterra-placement adsterra-${position}`} aria-label="Advertisement">
     <div className="adsterra-panel" style={banner && availableWidth < banner.width ? { display: 'none' } : undefined}>
-      <div className="adsterra-caption"><span>Advertisement{preview ? ' · layout preview' : ''}</span><button type="button" onClick={hide}>Hide ads while studying</button></div>
+      <div className="adsterra-caption"><span>Advertisement{preview ? ' · layout preview' : ''}</span></div>
       <div className="adsterra-space" style={banner ? { maxWidth: banner.width, minHeight: banner.height } : undefined}>
         {load && banner && <iframe key={unit} title="Advertisement from Adsterra"
           src={`${ADSTERRA_FRAME_ORIGIN}/advertising/display?unit=${unit}`}
