@@ -22,6 +22,19 @@ on:
       - 'src/app/study-guides/**'
       - 'src/app/updates/**'
       - 'src/components/ExamGuideArticle.tsx'
+      - 'src/components/ExamNotice.tsx'
+      - 'src/components/SiteHeader.tsx'
+      - 'src/app/globals.css'
+      - 'src/app/page.tsx'
+      - 'src/app/layout.tsx'
+      - 'src/app/privacy/page.tsx'
+      - 'src/components/AdsterraBanner.tsx'
+      - 'src/lib/adsterra.ts'
+      - 'scripts/*ad*.mjs'
+      - 'public/advertising/**'
+      - 'public/_headers'
+      - 'public/robots.txt'
+      - 'package.json'
       - 'src/components/ExamPreparationLinks.tsx'
       - 'src/components/GuideChecklist.tsx'
       - 'scripts/*exam-guide*.mjs'
@@ -65,7 +78,7 @@ jobs:
       - name: Validate source evidence and publishing rules
         run: |
           npm run validate
-          node --experimental-strip-types --test scripts/test-exam-updates.mjs scripts/test-sitemap.mjs scripts/test-auth-config.mjs scripts/test-current-affairs.mjs
+          node --experimental-strip-types --test scripts/test-exam-updates.mjs scripts/test-sitemap.mjs scripts/test-auth-config.mjs scripts/test-current-affairs.mjs scripts/test-adsterra.mjs
       - name: Build and verify public pages
         run: |
           npm run build

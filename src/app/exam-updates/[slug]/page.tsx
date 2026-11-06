@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Fragment } from 'react';
 import { ExamPreparationLinks } from '@/components/ExamPreparationLinks';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -6,6 +7,7 @@ import { getExamUpdate, listExamUpdates } from '@/lib/examUpdates';
 import { isOfficialUpdateUrl, UPDATE_LABELS, updateDate } from '@/lib/examUpdateRules';
 import { getExamInfo } from '@/lib/exams';
 import { ExamUpdateCards } from '@/components/ExamUpdateCards';
+import { AdsterraBanner } from '@/components/AdsterraBanner';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -50,7 +52,7 @@ export default async function ExamUpdatePage({ params }: Props) {
       {sources.some(source => source.url.startsWith('https://rrb.indianrailways.gov.in/')) && <p className="text-xs muted mt-2">If a direct PDF does not open, use the linked RRB notice table and select the document&apos;s English version.</p>}
     </section>
     <dl className="exam-update-facts mt-5">{item.facts.map(fact => <div className="card p-4" key={fact.label}><dt className="text-xs font-bold uppercase muted">{fact.label}</dt><dd className="font-semibold mt-1">{fact.value}</dd></div>)}</dl>
-    {item.sections.map(section => <section key={section.title} className="mt-8"><h2 className="text-xl font-extrabold">{section.title}</h2><p className="muted mt-3 leading-relaxed">{section.body}</p></section>)}
+    {item.sections.map((section, index) => <Fragment key={section.title}><section className="mt-8"><h2 className="text-xl font-extrabold">{section.title}</h2><p className="muted mt-3 leading-relaxed">{section.body}</p></section>{index === 1 && <AdsterraBanner position="article" />}</Fragment>)}
     <section className="card p-5 mt-8"><h2 className="text-xl font-extrabold">What to do next</h2><ol className="list-decimal pl-5 space-y-3 mt-4">{item.nextSteps.map(step => <li key={step}>{step}</li>)}</ol></section>
     <nav className="flex flex-wrap gap-3 mt-6" aria-label="Continue with this exam"><Link className="btn" href={`/exams/${item.examId}/`}>{exam?.name} guide</Link><Link className="btn" href={`/exams/${item.examId}/calendar/`}>Important dates</Link><Link className="btn" href={`/exams/${item.examId}/admit-card/`}>Result and admit-card guide</Link></nav>
     <p className="text-sm muted mt-6">Compiled from the official sources linked above. <Link href="/editorial-policy/" className="underline">Source and corrections policy</Link> · <Link href="/feedback/" className="underline">Report a correction</Link>.</p>

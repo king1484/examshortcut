@@ -8,6 +8,7 @@ import { NavLoader } from '@/components/NavLoader';
 import Link from 'next/link';
 import Script from 'next/script';
 import { AuthProvider } from '@/components/Auth';
+import { AdsterraPageEnd, AdsterraProvider } from '@/components/AdsterraBanner';
 
 const sans = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-sans', display: 'swap' });
 
@@ -77,8 +78,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-screen flex flex-col">
         <AuthProvider>
+        <AdsterraProvider>
         <SiteHeader />
-        <main className="w-full min-w-0 max-w-6xl mx-auto flex-1 px-4 sm:px-6 py-6 sm:py-8">{children}</main>
+        <main className="w-full min-w-0 max-w-6xl mx-auto flex-1 px-4 sm:px-6 py-6 sm:py-8">{children}<AdsterraPageEnd /></main>
         <footer className="border-t mt-10" style={{ borderColor: 'var(--line)' }}>
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 text-sm faint space-y-3">
             <a
@@ -154,6 +156,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script id="ga4" strategy="lazyOnload">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${GA4_ID}');`}
         </Script>
+        </AdsterraProvider>
         </AuthProvider>
       </body>
     </html>

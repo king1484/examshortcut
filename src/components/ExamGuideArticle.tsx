@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Fragment } from 'react';
 import type { Metadata } from 'next';
 import { listGuides, type Guide } from '@/lib/content';
 import { getExamInfo } from '@/lib/exams';
@@ -8,6 +9,7 @@ import { PrintGuide } from '@/components/PrintGuide';
 import { ShareResource } from '@/components/ShareResource';
 import { ExamUpdatesForExam } from '@/components/ExamUpdatesForExam';
 import { isOfficialUpdateUrl, updateDate } from '@/lib/examUpdateRules';
+import { AdsterraBanner } from '@/components/AdsterraBanner';
 
 export function examGuideMetadata(examId: string, guide: Guide): Metadata {
   const path = `/exams/${examId}/guides/${guide.id}/`;
@@ -41,7 +43,7 @@ export function ExamGuideArticle({ examId, guide: g }: { examId: string; guide: 
     <p className="text-sm muted mt-3">By <Link href="/about/" className="underline">ExamShortcut</Link>{g.publishedAt && <> · Published {updateDate(g.publishedAt)}</>}{g.lastVerified && <> · Checked {updateDate(g.lastVerified)}</>}</p>
     <Md className="mt-4 muted">{g.intro}</Md>
     <nav className="card p-4 mt-6" aria-label="On this page"><p className="kicker">In this guide</p><div className="toc mt-2">{g.sections.map((section, i) => <a key={section.id} href={`#${section.id}`}><b>{i + 1}</b><span>{section.title}</span></a>)}</div></nav>
-    {g.sections.map((section, i) => <section key={section.id} id={section.id} className="lesson-sec"><h2 className="text-xl sm:text-2xl font-bold">{i + 1}. {section.title}</h2><Md className="mt-4">{section.body}</Md></section>)}
+    {g.sections.map((section, i) => <Fragment key={section.id}><section id={section.id} className="lesson-sec"><h2 className="text-xl sm:text-2xl font-bold">{i + 1}. {section.title}</h2><Md className="mt-4">{section.body}</Md></section>{i === 1 && <AdsterraBanner position="article" />}</Fragment>)}
     {!!g.drills?.length && <section className="lesson-sec"><h2 className="text-2xl font-bold">Try it before opening the answer</h2><p className="muted mt-2">Original learning checks, not recalled exam questions or a prediction of your score.</p><div className="space-y-3 mt-4">{g.drills.map((drill, i) => <details key={drill.prompt} className="card p-4"><summary className="font-semibold cursor-pointer min-h-11">{i + 1}. {drill.prompt}</summary><p className="mt-3 font-bold">{drill.answer}</p><Md className="mt-2">{drill.explanation}</Md></details>)}</div></section>}
     {!!g.checklist?.length && <GuideChecklist guideKey={`${examId}:${g.id}`} items={g.checklist} />}
     {!!g.sources?.length && <section className="lesson-sec"><h2 className="text-xl font-bold">Official references</h2><p className="text-sm muted mt-2">Use the matching cycle’s notice and call letter for eligibility, dates and test rules. Study routines and examples above are our editorial suggestions.</p><ul className="space-y-3 mt-4">{g.sources.filter(source => isOfficialUpdateUrl(source.url)).map(source => <li key={source.url}><a className="underline underline-offset-4 break-words" href={source.url} target="_blank" rel="noopener noreferrer">{source.label} ↗<span className="sr-only"> (opens in a new tab)</span></a></li>)}</ul></section>}

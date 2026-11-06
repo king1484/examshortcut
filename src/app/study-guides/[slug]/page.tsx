@@ -1,10 +1,12 @@
 import Link from 'next/link';
+import { Fragment } from 'react';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { STUDY_GUIDES, GUIDE_DATE, getStudyGuide } from '@/lib/studyGuides';
 import { Md } from '@/components/Md';
 import { ShareResource } from '@/components/ShareResource';
 import { PrintGuide } from '@/components/PrintGuide';
+import { AdsterraBanner } from '@/components/AdsterraBanner';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -49,10 +51,10 @@ export default async function StudyGuidePage({ params }: { params: Promise<{ slu
         <div className="toc mt-2">{g.sections.map((s, i) => <a key={s.id} href={`#${s.id}`}><b>{i + 1}</b><span>{s.title}</span></a>)}</div>
       </nav>
       {g.sections.map((s, i) => (
-        <section key={s.id} id={s.id} className="lesson-sec">
+        <Fragment key={s.id}><section id={s.id} className="lesson-sec">
           <h2 className="text-xl sm:text-2xl font-bold flex gap-3 items-start"><span className="sec-num mt-1">{i + 1}</span>{s.title}</h2>
           <Md className="mt-4">{s.body}</Md>
-        </section>
+        </section>{i === 1 && <AdsterraBanner position="article" />}</Fragment>
       ))}
       <section className="lesson-sec">
         <h2 className="text-xl font-bold">Your next study session</h2>

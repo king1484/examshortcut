@@ -29,8 +29,8 @@ const NAV = [
 
 export function Logo() {
   return (
-    <span className="flex items-center gap-2 font-extrabold tracking-tight text-lg">
-      <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden>
+    <span className="flex items-center gap-2 max-[360px]:gap-1 font-extrabold tracking-tight text-lg max-[360px]:text-sm">
+      <svg width="28" height="28" className="shrink-0 max-[360px]:size-6" viewBox="0 0 32 32" aria-hidden>
         <rect width="32" height="32" rx="8" fill="var(--brand)" />
         <path d="M9 17.5 14 22 23 10" stroke="var(--brand-ink)" strokeWidth="3.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
@@ -49,7 +49,7 @@ export function SiteHeader() {
   if (/\/mocks\/[^/]+\/?$/.test(path) && path !== '/exams/ssc-cgl/mocks/') return null;
   return (
     <header className="sticky top-0 z-30 border-b backdrop-blur" style={{ borderColor: 'var(--line)', background: 'color-mix(in srgb, var(--bg) 88%, transparent)' }}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-2 sm:gap-3">
+      <div className="max-w-6xl mx-auto px-4 max-[360px]:px-3 sm:px-6 h-14 flex items-center justify-between gap-2 max-[360px]:gap-1 sm:gap-3">
         <Link href="/" aria-label="ExamShortcut home"><Logo /></Link>
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           <Link href="/search/" aria-label="Search" className="btn icon-btn">

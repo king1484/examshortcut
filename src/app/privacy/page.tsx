@@ -11,7 +11,7 @@ export default function PrivacyPage() {
   return (
     <div className="max-w-3xl mx-auto">
       <h1 className="text-3xl font-extrabold">Privacy policy</h1>
-      <p className="muted mt-2">Last updated: 19 October 2026</p>
+      <p className="muted mt-2">Last updated: 6 November 2026</p>
 
       <div className="card p-5 mt-6 text-sm space-y-4">
         <div>
@@ -79,7 +79,10 @@ export default function PrivacyPage() {
             <a className="underline" href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">how Google uses data when you use our site</a>.
           </p>
           <p className="mt-1">
-            We removed all third-party advertising scripts on 19 October 2026. Only Google AdSense is currently used.
+            Adsterra serves limited display-banner placements on public reading pages. Adsterra support confirmed our requested adult/erotic/dating and gambling/betting/casino exclusions on 6 November 2026, together with the requested sound and deceptive download/alert exclusions.
+            When enabled, Adsterra and its advertising partners may receive your IP address, browser/device information and referring site, and may use cookies or similar technologies for ad delivery and measurement.
+            See <a className="underline" href="https://adsterra.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Adsterra&apos;s privacy policy</a>.
+            A “Hide ads while studying” control hides these placements for the current browser-tab session and stores that choice in session storage. Tests, quizzes, calculators, sign-in and account pages are excluded from these placements.
             If your browser saved a notification permission from an earlier third-party script, you can revoke that permission in your browser&apos;s site settings.
           </p>
         </div>
@@ -91,6 +94,7 @@ export default function PrivacyPage() {
             <li><b>Google Firebase</b> handles optional sign-in and account progress sync.</li>
             <li><b>Google Analytics 4</b> measures visits in aggregate.</li>
             <li><b>Google AdSense</b> is the display-advertising provider applied for; ads are not served until the application is approved.</li>
+            <li><b>Adsterra</b> provides display banners with the category exclusions requested above. Advertising code runs in a separate frame, outside the application document.</li>
           </ul>
           <p className="mt-1">These providers process data under their own privacy terms. We do not sell account data or give advertisers access to your saved progress or private feedback.</p>
         </div>

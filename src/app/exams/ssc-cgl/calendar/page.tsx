@@ -7,7 +7,7 @@ import { CalendarPlaybook } from '@/components/exam-pages/ExamDepth';
 export const dynamic = 'force-static';
 export const metadata: Metadata = {
   title: 'SSC CGL 2026 calendar: published dates and upcoming notice checks',
-  description: 'Review the published CGL Tier 1 window and check SSC for the next key, result and Tier 2 notices. Unknown release dates are not assigned invented calendar days.',
+  description: 'SSC CGL Tier 1 tentative keys and responses: 4 November, 9 PM–7 November, 9 PM. Check the official challenge deadline and the next result and Tier 2 notices.',
 };
 
 export default function CalendarPage() {
@@ -33,13 +33,13 @@ export default function CalendarPage() {
       <nav className="text-xs faint"><Link href="/exams/ssc-cgl/" className="underline decoration-dotted">SSC CGL</Link> / Exam calendar</nav>
       <h1 className="text-2xl sm:text-4xl font-extrabold mt-2">SSC CGL {cal?.cycle} exam calendar</h1>
       <p className="muted mt-3 text-[15px]">
-        {tier1 && <>The published Tier 1 window, <b>30 Sep – 30 Oct 2026</b>, has ended. </>}
-        Follow SSC for the actual answer-key, result and Tier 2 notices.
+        {tier1 && <>SSC&apos;s key notice records Tier 1 held <b>30 Sep – 28 Oct 2026</b>. </>}
+        The tentative-key viewing and challenge period is <b>4 November, 9 PM–7 November, 9 PM IST</b>.
       </p>
       <div className="mt-6"><ExamCalendar events={events} /></div>
       {cal?.note && <p className="text-xs faint mt-2">{cal.note.replaceAll('*', '')}</p>}
 
-      <p className="text-sm muted mt-4">A confirmed answer-key day or Tier 2 date was not verified in the 2 November review. Check <a href="https://ssc.gov.in/" className="underline" target="_blank" rel="noopener noreferrer">SSC&apos;s official notices</a> for the actual dates and challenge conditions before adding a deadline to your calendar.</p>
+      <p className="text-sm muted mt-4">The <Link href="/exam-updates/ssc-cgl-2026-tier-1-answer-key-november/" className="underline">4 November key notice</Link> gives a ₹50 charge per question/answer challenged and says responses will not remain available after the published window. Result and Tier 2 dates require separate <a href="https://ssc.gov.in/" className="underline" target="_blank" rel="noopener noreferrer">SSC notices</a>; no date is inferred here.</p>
 
       <h2 className="text-2xl font-extrabold mt-10">Use the time you have</h2>
       <div className="grid sm:grid-cols-2 gap-3 mt-3">

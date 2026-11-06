@@ -17,18 +17,20 @@ function text(exam: string, stage: string, start: string, end: string, now: numb
 
 /* One-line, date-aware exam alert for the homepage. Renders the build-day text, then
    recomputes from the visitor's clock; disappears 45 days after the window closes. */
-export function ExamNotice({ exam, stage, start, end, href, builtAt }: {
+export function ExamNotice({ exam, stage, start, end, href, builtAt, latest }: {
   exam: string; stage: string; start: string; end: string; href: string; builtAt: number;
+  latest?: { message: string; afterMessage: string; endsAt: string; href: string };
 }) {
   const [now, setNow] = useState(builtAt);
   useEffect(() => setNow(Date.now()), []);
   const t = text(exam, stage, start, end, now);
   if (!t) return null;
+  const message = latest ? (now <= Date.parse(latest.endsAt) ? latest.message : latest.afterMessage) : t;
   return (
-    <Link href={href} className="notice-pill">
+    <Link href={latest?.href ?? href} className="notice-pill">
       <span className="notice-dot" aria-hidden />
-      <span>{t}</span>
-      <span className="notice-cta"><span className="hidden min-[420px]:inline">See timeline </span>→</span>
+      <span className="notice-copy">{message}</span>
+      <span className="notice-cta" aria-hidden="true"><span className="hidden sm:inline">{latest ? 'See notice' : 'See timeline'}</span><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg></span>
     </Link>
   );
 }

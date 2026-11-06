@@ -11,6 +11,12 @@ test('official links reject spoofed hosts, credentials and unsafe protocols', ()
   const catRelease = 'https://g03.tcsion.com//per/g03/pub/726/EForms/image/ImageDocUpload/71161/7/9901914301.pdf';
   assert(isOfficialUpdateUrl(gdKey));
   assert(isOfficialUpdateUrl(catRelease));
+  for (const file of ['1175320', '401158884']) {
+    const reference = `https://g03.tcsion.com//per/g03/pub/726/EForms/image/ImageDocUpload/71161/8/${file}.pdf`;
+    assert(isOfficialUpdateUrl(reference));
+    assert(!isOfficialUpdateUrl(reference + '?redirect=elsewhere'));
+    assert(!isOfficialUpdateUrl(reference + '#unverified'));
+  }
   for (const url of [gdKey + '?redirect=https://evil.example', gdKey + '/extra', gdKey.replace('cbexams.com', 'cbexams.com.evil.example'), gdKey.replace('https://', 'http://'), gdKey.replace('https://', 'https://user:pass@'), catRelease.replace('9901914301', 'unverified'), catRelease + '?redirect=elsewhere', catRelease.replace('g03.tcsion.com', 'g03.tcsion.com.evil.example')]) assert(!isOfficialUpdateUrl(url), url);
   assert(isOfficialUpdateUrl('https://rrb.digialm.com//EForms/configuredHtml/33244/102815/login.html'));
   assert(isOfficialUpdateUrl('https://ibpsreg.ibps.in/csaxvijul26/'));

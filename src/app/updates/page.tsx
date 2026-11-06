@@ -12,6 +12,17 @@ type Entry = { date: string; title: string; points: string[] };
 
 const LOG: Entry[] = [
   {
+    date: '6 November 2026',
+    title: 'CGL keys, CAT download links, Group D refunds and a mobile alert fix',
+    points: [
+      'Published the CGL Tier 1 tentative-key notice: challenges and key viewing close 7 November at 9 PM, at ₹50 per question/answer. Corrected held dates to 30 September–28 October as recorded in that notice.',
+      'Updated CAT with the portal-listed admission download, official mock and calculator guide, and Group D with the 5–11 November failed-refund bank-update facility.',
+      'Added six sourced current-affairs notes and six original recall questions from 5–6 November; changed ALP’s completed 3–5 November window to past tense.',
+      'Kept the homepage notice arrow compact on mobile and beside the text when the label wraps.',
+      'Added limited, lazy-loaded Adsterra display banners with session-wide hiding and excluded study tools. Adsterra support confirmed the requested adult and gambling category exclusions; serving waits for the specified propagation period.',
+    ],
+  },
+  {
     date: '4 November 2026',
     title: 'GD final keys, revised CAT and ALP dates, and JE vacancy correction',
     points: [

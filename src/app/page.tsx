@@ -8,6 +8,7 @@ import { EXAMS } from '@/lib/exams';
 import { STUDY_GUIDES } from '@/lib/studyGuides';
 import { listExamUpdates } from '@/lib/examUpdates';
 import { ExamUpdateCards } from '@/components/ExamUpdateCards';
+import { AdsterraBanner } from '@/components/AdsterraBanner';
 
 const BUILT_AT = Date.now();
 
@@ -37,7 +38,8 @@ export default function Home() {
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SITE_LD) }} />
       <section className="text-center max-w-3xl mx-auto pt-4 pb-4 sm:pt-14">
-        <ExamNotice exam="SSC CGL" stage="Tier 1" start="2026-09-30" end="2026-10-30" href="/exams/ssc-cgl/#status" builtAt={BUILT_AT} />
+        <ExamNotice exam="SSC CGL" stage="Tier 1" start="2026-09-30" end="2026-10-28" href="/exams/ssc-cgl/#status" builtAt={BUILT_AT}
+          latest={{ message: 'SSC CGL key: challenge by 7 Nov, 9 PM', afterMessage: 'SSC CGL key challenge window ended · check next steps', endsAt: '2026-11-07T21:00:00+05:30', href: '/exam-updates/ssc-cgl-2026-tier-1-answer-key-november/' }} />
         <div className="flex justify-center gap-2 flex-wrap mt-3 sm:mt-4">
           <span className="chip chip-high">SSC · Railways · Banking · CAT</span>
         </div>
@@ -67,6 +69,7 @@ export default function Home() {
         <ExamUpdateCards items={listExamUpdates().filter(item => !item.status.startsWith('Archive:')).slice(0, 3)} />
         <div className="flex flex-wrap gap-3 mt-4"><Link className="btn" href="/results/">Published results →</Link><Link className="btn" href="/answer-keys/">Answer keys &amp; objection windows →</Link></div>
       </section>
+      <AdsterraBanner />
       <div className="mt-8">
         <ExamPicker collapse />
       </div>

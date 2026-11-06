@@ -30,7 +30,11 @@ export function isOfficialUpdateUrl(value: string): boolean {
     return u.protocol === 'https:' && !u.username && !u.password && !u.port &&
       (host.endsWith('.gov.in') || ['ibps.in', 'www.ibps.in', 'sbi.bank.in', 'iimcat.ac.in'].includes(host) ||
         (host === 'sscexams.cbexams.com' && u.pathname === '/Gd2026sdsFinalkeysLandingpage/loginnew.aspx' && !u.search && !u.hash) ||
-        (host === 'g03.tcsion.com' && u.pathname.replace(/^\/+/, '/') === '/per/g03/pub/726/EForms/image/ImageDocUpload/71161/7/9901914301.pdf' && !u.search && !u.hash) ||
+        (host === 'g03.tcsion.com' && [
+          '/per/g03/pub/726/EForms/image/ImageDocUpload/71161/7/9901914301.pdf',
+          '/per/g03/pub/726/EForms/image/ImageDocUpload/71161/8/1175320.pdf',
+          '/per/g03/pub/726/EForms/image/ImageDocUpload/71161/8/401158884.pdf',
+        ].includes(u.pathname.replace(/^\/+/, '/')) && !u.search && !u.hash) ||
         (host === 'ibpsreg.ibps.in' && (u.pathname === '/csaxvijul26/' || u.pathname === '/sbijasrdjl26/oecla_oct26/login.php')) ||
         (host === 'rrb.digialm.com' && u.pathname.replace(/^\/+/, '/').startsWith('/EForms/configuredHtml/')));
   } catch { return false; }

@@ -1,6 +1,8 @@
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import assert from 'node:assert/strict';
+import { ADSTERRA_ENABLED, ADSTERRA_CATEGORY_CONFIRMATION } from '../src/lib/adsterra.ts';
+import { buildAdDocument } from './generate-ad-documents.mjs';
 
 const root = path.resolve('out');
 const adsenseLine = 'google.com, pub-1700177065699672, DIRECT, f08c47fec0942fa0';
@@ -18,6 +20,11 @@ async function verify(directory) {
     } else if (entry.name.endsWith('.html')) {
       const html = await readFile(filename, 'utf8');
       const route = path.relative(root, filename);
+      if (route.replaceAll('\\', '/') === 'advertising/display.html') {
+        assert.equal(html, buildAdDocument(ADSTERRA_ENABLED, ADSTERRA_CATEGORY_CONFIRMATION), 'Advertisement document differs from reviewed fixed-unit generator');
+        assert.match(html, /noindex,nofollow/);
+        continue;
+      }
       assert.doesNotMatch(html, blockedSdk, `Old advertising integration on ${route}`);
       if (/^yandex_[\da-f]+\.html$/.test(route)) continue;
       const head = html.match(/<head>([\s\S]*?)<\/head>/)?.[1];
@@ -43,4 +50,4 @@ assert.doesNotMatch(ads, /infolinks|ezoic|adsterra|adcash/i, 'ads.txt still auth
 const redirects = await readFile(path.join(root, '_redirects'), 'utf8');
 assert.doesNotMatch(redirects, /^\/ads\.txt\s/m, 'ads.txt must be served locally, not redirected to Ezoic');
 
-console.log(`Verified AdSense-only export: ${checked} pages, local ads.txt, no Monetag/Ezoic/Infolinks/Adsterra SDKs.`);
+console.log(`Verified advertising export: ${checked} application pages without vendor SDKs; isolated fixed-unit document ${ADSTERRA_ENABLED && ADSTERRA_CATEGORY_CONFIRMATION ? 'enabled' : 'disabled pending category confirmation'}; local ads.txt.`);
