@@ -123,7 +123,7 @@ export function SelectedExamPanel({ exam, onChange }: { exam: ExamInfo; onChange
       </p>
       <div className="flex flex-wrap gap-2 mt-2">
         {exam.sections.map((s) => (
-          <Link key={s} href={`/${s}/`} className="btn" style={{ padding: '.35rem .75rem' }}>
+          <Link key={s} href={`/${s}/`} className="btn min-w-0 max-w-full" style={{ padding: '.35rem .75rem', whiteSpace: 'normal', textAlign: 'left' }}>
             <span style={{ color: SECTION_META[s].color }} className="font-bold mr-1">{SECTION_META[s].emoji}</span>
             {SECTION_META[s].name}
           </Link>
